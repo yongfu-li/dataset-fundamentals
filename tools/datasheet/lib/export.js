@@ -19,6 +19,7 @@
 
   function buildMetadataPayload(state) {
     const tpl = DatasheetLib.TEMPLATES[state.templateId] || DatasheetLib.TEMPLATES.datasheet;
+    const licenseFile = DatasheetLib.buildLicenseFile(state.fields);
     const sectionDocs = {};
     tpl.sections.forEach(function (sec) {
       sectionDocs[sec.id] = {
@@ -60,7 +61,11 @@
         creators: (state.fields.creators || "").trim(),
         created_date: (state.fields.created_date || "").trim(),
         license: (state.fields.license || "").trim(),
+        license_key: state.fields.license_key || null,
         contact: (state.fields.contact || "").trim(),
+        spdx_license_identifier: licenseFile.spdx,
+        license_file: licenseFile.filename,
+        license_has_full_text: !!licenseFile.has_full_text,
       },
       documentation: sectionDocs,
       sample_data: state.sample
@@ -84,7 +89,14 @@
     download("datasheet-metadata.json", JSON.stringify(payload, null, 2), "application/json");
   }
 
+  function downloadLicense(state) {
+    if (state.fields) DatasheetLib.syncLicenseField(state.fields);
+    const file = DatasheetLib.buildLicenseFile(state.fields);
+    download(file.filename, file.content, "text/plain;charset=utf-8");
+  }
+
   DatasheetLib.buildMetadataPayload = buildMetadataPayload;
   DatasheetLib.downloadMarkdown = downloadMarkdown;
   DatasheetLib.downloadMetadata = downloadMetadata;
+  DatasheetLib.downloadLicense = downloadLicense;
 })(typeof window !== "undefined" ? window : globalThis);

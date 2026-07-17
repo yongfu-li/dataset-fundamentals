@@ -120,6 +120,8 @@
       creators: "",
       created_date: "",
       license: "CC BY 4.0",
+      license_key: "cc-by-4.0",
+      license_other: "",
       contact: "",
     };
     tpl.sections.forEach(function (sec) {

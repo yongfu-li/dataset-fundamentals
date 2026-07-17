@@ -17,7 +17,21 @@ Guided browser lab for **dataset documentation** (book §8.2–8.3). Learners lo
 4. **Complete prompts** — composition may auto-fill from the sample profile.
 5. **Edit data dictionary** — add human descriptions per column.
 6. **Preview** — live Markdown preview.
-7. **Export** — `datasheet.md` and `datasheet-metadata.json`.
+7. **Export** — `datasheet.md`, `datasheet-metadata.json`, and `LICENSE` (matched from the license field).
+
+## Release bundle
+
+| File | Purpose |
+|------|---------|
+| `datasheet.md` | Human-readable documentation |
+| `datasheet-metadata.json` | Machine-readable metadata + data dictionary |
+| `LICENSE` | Full legal text for listed licenses (CC BY 4.0, CC0, MIT, Apache-2.0) plus a notice header with dataset name, creators, contact, and SPDX id. **Other…** exports a stub to fill in. |
+
+Regenerate license texts (optional; re-fetch from upstream):
+
+```bash
+python data/make_licenses.py
+```
 
 ## Presets
 
@@ -26,11 +40,15 @@ Guided browser lab for **dataset documentation** (book §8.2–8.3). Learners lo
 | `hiring-applicants` | Fairness-style tabular sample (group, label, score) |
 | `climate-sensors` | Sensor log with timestamps and quality flags |
 
-Regenerate presets:
+Regenerate presets (includes default documentation prompts per dataset):
 
 ```bash
 python data/make_presets.py
 ```
+
+## Preset defaults
+
+Each preset ships with **pre-filled documentation** (Datasheet + Data Card templates), identity fields, and column descriptions so exported Markdown has no `_Not provided._` sections out of the box. Learners can edit any field before export.
 
 ## JSON metadata shape
 

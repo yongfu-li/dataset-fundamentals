@@ -1,8 +1,8 @@
-/* Classic script — attaches to window.DatasheetLib (file:// safe).
- * CSV/JSON parsing and preset loading for the Datasheet builder. */
+/* Classic script — attaches to window.IaaLib (file:// safe).
+ * CSV/JSON parsing and preset loading for the IAA calculator. */
 (function (global) {
   "use strict";
-  const DatasheetLib = global.DatasheetLib || (global.DatasheetLib = {});
+  const IaaLib = global.IaaLib || (global.IaaLib = {});
 
   const MAX_ROWS = 5000;
   const MAX_BYTES = 2 * 1024 * 1024;
@@ -100,7 +100,7 @@
         current += ch;
       }
     }
-    if (current) lines.push(current);
+    if (current.length || lines.length) lines.push(current);
     return lines;
   }
 
@@ -129,23 +129,57 @@
   }
 
   function loadPreset(id) {
-    const presets = global.DatasheetPresets || {};
-    const preset = presets[id];
-    if (!preset) throw new Error("Unknown preset: " + id);
+    const presets = global.IaaPresets || {};
+    const p = presets[id];
+    if (!p) throw new Error("Unknown preset '" + id + "'.");
+    const rows = p.rows.map(function (r) {
+      return Object.assign({}, r);
+    });
     return {
-      rows: preset.rows.slice(),
-      columns: collectColumns(preset.rows),
-      source: preset.name || id,
-      description: preset.description || "",
-      suggestedName: preset.suggestedName || "",
-      suggestedDomain: preset.suggestedDomain || "",
-      defaults: preset.defaults || null,
-      columnDescriptions: preset.columnDescriptions || null,
+      rows: rows,
+      columns: collectColumns(rows),
+      source: id,
+      description: p.description || "",
+      defaultMapping: p.defaultMapping || {},
+      teachingFocus: p.teachingFocus || "",
+      expectedKappa: p.expectedKappa,
     };
   }
 
-  DatasheetLib.MAX_ROWS = MAX_ROWS;
-  DatasheetLib.MAX_BYTES = MAX_BYTES;
-  DatasheetLib.parseUpload = parseUpload;
-  DatasheetLib.loadPreset = loadPreset;
+  function suggestMapping(columns, defaults) {
+    const lower = {};
+    columns.forEach(function (c) {
+      lower[c.toLowerCase()] = c;
+    });
+    function pick(keys, fallback) {
+      if (fallback && columns.indexOf(fallback) >= 0) return fallback;
+      for (let i = 0; i < keys.length; i += 1) {
+        if (lower[keys[i]]) return lower[keys[i]];
+      }
+      return null;
+    }
+    const d = defaults || {};
+    return {
+      id: pick(["id", "item_id", "span_id", "uid"], d.id),
+      text: pick(["text", "span", "sentence", "content", "utterance"], d.text),
+      raterA: pick(
+        ["annotator_a", "rater_a", "label_a", "annotator1", "rater1", "a"],
+        d.raterA
+      ),
+      raterB: pick(
+        ["annotator_b", "rater_b", "label_b", "annotator2", "rater2", "b"],
+        d.raterB
+      ),
+      raterC: pick(
+        ["annotator_c", "rater_c", "label_c", "annotator3", "rater3", "c"],
+        d.raterC
+      ),
+    };
+  }
+
+  IaaLib.MAX_ROWS = MAX_ROWS;
+  IaaLib.MAX_BYTES = MAX_BYTES;
+  IaaLib.parseUpload = parseUpload;
+  IaaLib.loadPreset = loadPreset;
+  IaaLib.suggestMapping = suggestMapping;
 })(typeof window !== "undefined" ? window : globalThis);
