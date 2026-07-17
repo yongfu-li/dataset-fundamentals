@@ -18,7 +18,7 @@ Organizations collect records about customers, patients, students, or transactio
 
 ## Slide 4 — Example 1.21 — Purchase history
 
-Example 1.21 stores one row per order with customer, category, date, and amount. Aggregating by customer reveals repurchase intervals and category preferences that drive segmentation and promotions. See `modules/chapter1/example21/` for the conceptual module.
+Example 1.21 stores one row per order with customer, category, date, and amount. Aggregating by customer reveals repurchase intervals and category preferences that drive segmentation and promotions. The example 21 module walks through the concept.
 
 ## Slide 5 — Case study: customer churn
 
@@ -26,7 +26,7 @@ The churn case study stitches the chapter together: assemble behavioral features
 
 ## Slide 6 — Example 1.31 — Churn model sketch
 
-Example 1.31 provides a Python sketch of that pipeline. The same structure appears in fraud scoring and demand forecasting—only labels and the cost of errors change. Run `modules/chapter1/example31/` when you want to see the code path.
+Example 1.31 provides a Python sketch of that pipeline. The same structure appears in fraud scoring and demand forecasting—only labels and the cost of errors change. Run the example 31 module when you want to see the code in action.
 
 ## Slide 7 — Takeaways
 

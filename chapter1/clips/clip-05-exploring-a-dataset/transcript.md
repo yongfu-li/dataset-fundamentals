@@ -26,7 +26,7 @@ Spreadsheets suit small tables. SQL handles filtering and aggregation in relatio
 
 ## Slide 6 — Example 1.20 — Household incomes EDA
 
-Example 1.20 walks through a standard pandas profiling script on a compact household-income table. Use it as a template: summary statistics, distribution checks, and null counts. Run `modules/chapter1/example20/` to see the pattern end to end.
+Example 1.20 walks through a standard pandas profiling script on a compact household-income table. Use it as a template: summary statistics, distribution checks, and null counts. Run the example 20 module to see the pattern end to end.
 
 ## Slide 7 — Takeaways
 

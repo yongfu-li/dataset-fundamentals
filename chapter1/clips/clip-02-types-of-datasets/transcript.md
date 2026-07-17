@@ -26,7 +26,7 @@ Unstructured data has no predefined row–column model. Text, images, audio, and
 
 ## Slide 6 — Semi-structured datasets
 
-Semi-structured data uses tags or keys—JSON, XML, YAML—without requiring every record to share the same flat columns. Example 1.7 shows JSON objects where optional fields appear when relevant. Open `modules/chapter1/example7/` to inspect a concrete sample.
+Semi-structured data uses tags or keys—JSON, XML, YAML—without requiring every record to share the same flat columns. Example 1.7 shows JSON objects where optional fields appear when relevant. Open the example 7 module to inspect a concrete sample.
 
 ## Slide 7 — Static vs dynamic
 

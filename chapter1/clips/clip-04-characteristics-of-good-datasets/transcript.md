@@ -18,7 +18,7 @@ Table 1.6 in the chapter lists accuracy, completeness, consistency, relevance, a
 
 ## Slide 4 — Example 1.11 — Incorrect transaction
 
-Example 1.11 shows a ledger where one transaction likely contains an extra zero. That single accuracy error changes monthly revenue by an order of magnitude and can distort averages and forecasts. Inspect `modules/chapter1/example11/` to spot the suspicious amount.
+Example 1.11 shows a ledger where one transaction likely contains an extra zero. That single accuracy error changes monthly revenue by an order of magnitude and can distort averages and forecasts. Inspect the example 11 module and try to spot the suspicious amount.
 
 ## Slide 5 — Completeness and consistency
 
@@ -26,7 +26,7 @@ Completeness failures—blank diagnosis or age cells—force models to guess or 
 
 ## Slide 6 — Metadata and documentation
 
-Metadata records schema, units, provenance, and related context; documentation explains how to interpret and reuse the file. Example 1.14 illustrates metadata for a weather dataset. Without these, even accurate tables become hard to trust outside the original team. See `modules/chapter1/example14/`.
+Metadata records schema, units, provenance, and related context; documentation explains how to interpret and reuse the file. Example 1.14 illustrates metadata for a weather dataset. Without these, even accurate tables become hard to trust outside the original team. The example 14 module shows what good metadata looks like in practice.
 
 ## Slide 7 — Takeaways
 

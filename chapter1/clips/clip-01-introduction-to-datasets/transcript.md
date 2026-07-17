@@ -22,11 +22,11 @@ In tabular data, each record is one observation—one sale, one patient, one sen
 
 ## Slide 5 — Example 1.1 — Sample CSV sales data
 
-Example 1.1 is the chapter's first concrete anchor: a small CSV of retail sales. Each row is one sale; columns detail product, date, quantity, and price. Open `modules/chapter1/example1/` to inspect the file and count rows and columns before moving on—later examples change domain but keep this shape.
+Example 1.1 is the chapter's first concrete anchor: a small CSV of retail sales. Each row is one sale; columns detail product, date, quantity, and price. Open the example 1 module for this chapter to inspect the file and count rows and columns before moving on. Later examples change domain but keep this shape.
 
 ## Slide 6 — Example 1.4 — Housing prices in JSON
 
-Datasets are not only tables. Example 1.4 stores housing listings as JSON with nested fields—still records with attributes, but in a flexible schema. The form changes; the objective stays the same: provide meaningful data that can be turned into insight. Try `modules/chapter1/example4/` to see how keys and nested objects play the role of columns.
+Datasets are not only tables. Example 1.4 stores housing listings as JSON with nested fields—still records with attributes, but in a flexible schema. The form changes; the objective stays the same: provide meaningful data that can be turned into insight. Try the example 4 module to see how keys and nested objects play the role of columns.
 
 ## Slide 7 — Takeaways
 

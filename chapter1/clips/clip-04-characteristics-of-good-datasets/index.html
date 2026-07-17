@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Characteristics of good datasets — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter1/index.html">Chapter 1</a><span class="here">Clip 4/7</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 1 · Guided clip</div>
+    
+<section class="hero">
+  <h1>Characteristics of good datasets</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Clip 4 of 7</span>
+  </div>
+  <div class="deck-links"><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a></div>
+</section>
+
+<section class="video-panel" aria-label="Clip video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<nav class="clip-nav" aria-label="Clip navigation">
+  <a class="btn btn-secondary" href="../clip-03-dataset-formats/index.html">← Previous</a>
+  <span class="spacer"></span>
+  <a class="btn" href="../clip-05-exploring-a-dataset/index.html">Next: Exploring a dataset →</a>
+</nav>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>List five quality dimensions from the chapter</li>
+<li>Diagnose accuracy, completeness, and consistency defects</li>
+<li>Explain why metadata and documentation matter</li>
+</ul>
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Characteristics of good datasets</h3><ul><li>Judge quality as a bundle of task-relative dimensions</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>List five quality dimensions from the chapter</li><li>Diagnose accuracy, completeness, and consistency defects</li><li>Explain why metadata and documentation matter</li></ul></div><div class="slide-card"><h3>Five quality dimensions</h3><ul><li><strong>Accuracy</strong> — values reflect ground truth closely enough</li><li><strong>Completeness</strong> — needed records and attributes are present</li><li><strong>Consistency</strong> — uniform formats, units, definitions</li><li><strong>Relevance</strong> — data answers the intended question</li><li><strong>Timeliness</strong> — data is sufficiently up to date</li></ul></div><div class="slide-card"><h3>Example 1.11 — Incorrect transaction</h3><ul><li>Setting: financial ledger with a mis-keyed amount</li><li>Key idea: one extra zero shifts monthly revenue by 10×</li><li>Accuracy failures distort aggregates and forecasts</li><li>Try it: <code>modules/chapter1/example11/</code></li></ul></div><div class="slide-card"><h3>Completeness and consistency</h3><ul><li>Missing age or diagnosis fields bias clinical models (eg:1.12)</li><li>Mixed date formats break chronological sorting (eg:1.13)</li><li>Defects interact: complete yet inaccurate still fails the task</li><li>Systematic repair is deferred to later chapters</li></ul></div><div class="slide-card"><h3>Metadata and documentation</h3><ul><li>Metadata: who, when, schema, units, provenance</li><li>Documentation: how to interpret and reuse the file</li><li>Example 1.14: weather dataset metadata fields</li><li>Try it: <code>modules/chapter1/example14/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Quality is multi-dimensional and task-relative</li><li>Spot accuracy, missingness, and format clashes early</li><li>Metadata + docs make datasets usable beyond their author</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this clip</li><li>Then continue to: Exploring a dataset</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Characteristics of good datasets</h3><p>Knowing a file&#x27;s type and format is not enough. This clip treats quality as a bundle of properties judged relative to an intended task.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You will list five widely cited dimensions, diagnose concrete defects in accuracy, completeness, and consistency, and explain why metadata and documentation make a dataset reusable.</p></div><div class="transcript"><h3>Slide 3 — Five quality dimensions</h3><p>Table 1.6 in the chapter lists accuracy, completeness, consistency, relevance, and timeliness. None stands alone: a dataset can be complete yet inaccurate, or timely yet irrelevant to the question at hand. Assessment starts by asking whether values are trustworthy, sufficiently populated, comparable, and still on-question.</p></div><div class="transcript"><h3>Slide 4 — Example 1.11 — Incorrect transaction</h3><p>Example 1.11 shows a ledger where one transaction likely contains an extra zero. That single accuracy error changes monthly revenue by an order of magnitude and can distort averages and forecasts. Inspect <code>modules/chapter1/example11/</code> to spot the suspicious amount.</p></div><div class="transcript"><h3>Slide 5 — Completeness and consistency</h3><p>Completeness failures—blank diagnosis or age cells—force models to guess or drop rows and can bias estimates when missingness is not random. Consistency failures—mixed regional date formats—break sorting until one convention is enforced. Later chapters develop systematic repair; here the goal is recognition.</p></div><div class="transcript"><h3>Slide 6 — Metadata and documentation</h3><p>Metadata records schema, units, provenance, and related context; documentation explains how to interpret and reuse the file. Example 1.14 illustrates metadata for a weather dataset. Without these, even accurate tables become hard to trust outside the original team. See <code>modules/chapter1/example14/</code>.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Quality is multi-dimensional and task-relative. Learn to spot accuracy errors, missing fields, and format clashes early, and treat metadata plus documentation as part of the dataset—not optional extras.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then continue to exploring a dataset—the practical first pass for surfacing these issues.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../clip-05-exploring-a-dataset/index.html" data-next-label="Continue to Exploring a dataset"></div>
+  <script id="quiz-data" type="application/json">{
+  "clip_id": "clip-04-characteristics-of-good-datasets",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which set matches the five quality dimensions emphasized in this chapter?",
+      "choices": [
+        "Accuracy, completeness, consistency, relevance, timeliness",
+        "Velocity, volume, variety only",
+        "Encryption, MFA, backups only",
+        "Precision, recall, F1 only"
+      ],
+      "answer_index": 0,
+      "explain": "Table 1.6 lists accuracy, completeness, consistency, relevance, and timeliness."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Completeness and accuracy are the same quality dimension.",
+      "answer": false,
+      "explain": "They are distinct: values can be present (complete) yet wrong (inaccurate), or correct where present but missing key fields."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "In Example 1.11, the main defect illustrated is:",
+      "choices": [
+        "Missing columns",
+        "An inaccurate (mis-keyed) amount",
+        "Wrong file format (HDF5 vs CSV)",
+        "Lack of a Git repository"
+      ],
+      "answer_index": 1,
+      "explain": "An extra zero in a transaction amount is an accuracy error that distorts totals."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one thing metadata should capture about a dataset.",
+      "rubric": "Accept schema, units, provenance, collection time, ownership, or similar from the chapter.",
+      "sample_answer": "Schema and units for each attribute, or provenance describing how the file was produced."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

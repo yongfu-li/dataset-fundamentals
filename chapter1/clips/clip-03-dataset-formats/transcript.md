@@ -22,11 +22,11 @@ CSV remains the common language for simple tables. SQL tables add typed schemas 
 
 ## Slide 5 — Example 1.8 — SQL format
 
-Example 1.8 shows structured data in a relational form: typed columns and queries for filtering and joins. When attributes are stable and analysts need aggregations, SQL (or an equivalent relational store) is a natural fit. Explore `modules/chapter1/example8/`.
+Example 1.8 shows structured data in a relational form: typed columns and queries for filtering and joins. When attributes are stable and analysts need aggregations, SQL, or an equivalent relational store, is a natural fit. The example 8 module lets you explore this hands-on.
 
 ## Slide 6 — Example 1.9 — HDF5
 
-Example 1.9 creates and reads an HDF5 file—a hierarchical binary format efficient for large numeric arrays. Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or too large. Try `modules/chapter1/example9/` (requires h5py).
+Example 1.9 creates and reads an HDF5 file—a hierarchical binary format efficient for large numeric arrays. Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or too large. Try the example 9 module to create and read one yourself.
 
 ## Slide 7 — Choosing a format
 
