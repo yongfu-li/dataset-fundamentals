@@ -1,0 +1,97 @@
+title: Chapter 11 — From fundamentals to advanced annotation
+footer: Chapter 11 — From Fundamentals To Advanced
+slides:
+- type: title
+  title: Chapter 11 — From fundamentals to advanced annotation
+  subtitle: Chapter 4 covered annotation modalities, workflows, tools, and quality
+    control
+  notes: 'Chapter 4 covered annotation modalities, workflows, tools, and quality control.
+    This chapter does not repeat that foundation. It develops four strategies that
+    reduce expert labeling cost at scale: active learning, weak supervision, self-supervised
+    representation learning, and hybrid crowd–expert pipelines.'
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to name the four advanced
+    annotation strategies developed in this chapter; explain the shared bottleneck
+    of expensive human labels; summarize what each strategy optimizes according to
+    the chapter comparison table; and recognize that the strategies are complementary
+    rather than mutually exclusive.
+- type: bullets
+  title: Shared labeling bottleneck
+  bullets:
+  - Manual labels are slow, expensive
+  - Chapter 4 already identified that bottleneck
+  - Advanced strategies attack it from different angles
+  notes: 'Manual labels are slow, expensive, and hard to keep consistent when datasets
+    grow to millions of items. Chapter 4 already identified that bottleneck. Advanced
+    strategies attack it from different angles: choosing which items humans label,
+    proposing labels from heuristics, learning from unlabeled structure first, or
+    staffing the queue with a mixed workforce.'
+- type: bullets
+  title: Four strategies at a glance
+  bullets:
+  - Active learning chooses which unlabeled items humans should label next
+  - Weak supervision proposes training labels from heuristics and distant sources
+  - Self-supervised learning postpones task labels by pretraining on unlabeled structure
+  - Hybrid crowd–expert pipelines assign routine items to crowds and reserve experts
+    for gold
+  notes: Active learning chooses which unlabeled items humans should label next. Weak
+    supervision proposes training labels from heuristics and distant sources. Self-supervised
+    learning postpones task labels by pretraining on unlabeled structure. Hybrid crowd–expert
+    pipelines assign routine items to crowds and reserve experts for gold sets and
+    hard cases.
+- type: bullets
+  title: Table 11.1 — What each strategy optimizes
+  bullets:
+  - The chapter comparison table contrasts who provides labels, when each strategy
+    fits
+  - Active learning optimizes which items humans label when a seed model can rank
+    uncertainty
+  - Weak supervision optimizes scale from cheap sources when domain rules exist
+  notes: The chapter comparison table contrasts who provides labels, when each strategy
+    fits, and primary risks. Active learning optimizes which items humans label when
+    a seed model can rank uncertainty, with risks of over-focusing on odd cases or
+    a cold start. Weak supervision optimizes scale from cheap sources when domain
+    rules exist, with risks of noisy or conflicting signals.
+- type: bullets
+  title: Table 11.1 — Self-supervision and hybrid pipelines
+  bullets:
+  - But still needs labeled data for the final task
+  - Hybrid crowd–expert staffing optimizes the cost–quality mix when the schema is
+    partly
+  notes: Self-supervised learning optimizes representations before task labels when
+    large unlabeled corpora exist, but still needs labeled data for the final task.
+    Hybrid crowd–expert staffing optimizes the cost–quality mix when the schema is
+    partly simple and partly expert-critical, with risks that weak quality control
+    lets crowd errors scale or that experts become a bottleneck.
+- type: bullets
+  title: Complementary, not exclusive
+  bullets:
+  - Teams often combine strategies
+  - Synthetic companions from Chapter 10 can still fill rare classes
+  notes: 'Teams often combine strategies: pretrain with self-supervision, expand labels
+    with weak supervision, route uncertain items with active learning, and staff the
+    queue with a hybrid crowd–expert pool. Synthetic companions from Chapter 10 can
+    still fill rare classes, but they do not replace quality-control gates from Chapter
+    4.'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - 'Four strategies share one goal: reduce costly expert labeling without abandoning
+    quality'
+  - Active learning queries humans selectively
+  - The remainder of the chapter develops each strategy in turn
+  notes: 'Four strategies share one goal: reduce costly expert labeling without abandoning
+    quality. Active learning queries humans selectively; weak supervision scales noisy
+    signals; self-supervision learns from unlabeled structure; hybrid pipelines mix
+    workforce roles. The remainder of the chapter develops each strategy in turn.'
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Entropy sampling, with examples from vision and medical imaging
+  notes: 'The next part defines the active-learning loop and the main uncertainty-based
+    query strategies: uncertainty sampling, margin sampling, and entropy sampling,
+    with examples from vision and medical imaging.'

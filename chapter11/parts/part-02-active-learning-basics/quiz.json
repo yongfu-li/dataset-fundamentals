@@ -1,0 +1,54 @@
+{
+  "part_id": "part-02-active-learning-basics",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What is the core idea of the active-learning loop?",
+      "choices": [
+        "Label every unlabeled item before any training begins",
+        "Iteratively query informative unlabeled items, label them, and retrain",
+        "Replace all human labels with random synthetic labels",
+        "Train once on a fixed set and never request new labels"
+      ],
+      "answer_index": 1,
+      "explain": "Section 11.2 describes the seed–query–annotate–retrain iteration."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 11.1 queues a cat–dog image when predicted probabilities are near a 0.51/0.49 tie.",
+      "answer": true,
+      "explain": "Uncertainty sampling targets near-ties that reshape the decision boundary."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Margin sampling primarily ranks instances by which criterion?",
+      "choices": [
+        "The smallest gap between the top two predicted class probabilities",
+        "The longest filename in the unlabeled pool",
+        "The oldest timestamp in the collection log",
+        "The highest single-class probability only"
+      ],
+      "answer_index": 0,
+      "explain": "Example 11.2 and the margin-sampling definition use the top-two probability gap."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "In Example 11.3, why is entropy high when class probabilities are 0.4, 0.3, and 0.3?",
+      "rubric": "No class dominates / flat distribution / high predictive uncertainty.",
+      "sample_answer": "No class dominates; the flat distribution yields high predictive entropy."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Example 11.4 uses active learning so radiologists label every MRI scan in the pool.",
+      "answer": false,
+      "explain": "The example queries ambiguous or rare-tumor scans, cutting expert hours on easy cases."
+    }
+  ]
+}

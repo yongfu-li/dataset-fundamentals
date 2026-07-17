@@ -1,0 +1,17 @@
+# Chapter 11 — Crowdsourcing versus expert annotation
+
+**Duration:** ~7 min  
+**Video:** [Watch](video/clip.mp4) *(generate with narrate_clips.sh)*  
+**Slides:** [slides.md](slides.md) · [clip.pptx](clip.pptx)  
+**Transcript:** [transcript.md](transcript.md)
+
+## Objectives
+
+- List crowd advantages of scale, cost, and turnaround on clear schemas
+- Explain quality risks of crowd labels and needed gold or redundancy checks
+- Contrast expert strengths on radiology and legal high-stakes tasks
+- Recognize cost and scalability limits of expert-only staffing
+
+## Quiz
+
+Formative check: load [quiz.json](quiz.json) in the site quiz player.

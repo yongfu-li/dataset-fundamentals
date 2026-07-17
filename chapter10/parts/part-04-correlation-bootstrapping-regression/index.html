@@ -26,7 +26,7 @@
     <span class="pill pill-muted">Part 4 of 10</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-statistical-distributions-and-simulation/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-gan-architecture-and-training/index.html" title="GAN architecture and training">Next →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-statistical-distributions-and-simulation/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-gan-architecture-and-training/index.html" title="GAN architecture and training">Next →</a>
   </nav>
 </section>
 
@@ -91,7 +91,64 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><p>Slides not found.</p></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 10 — Correlation, bootstrapping, and regression</h3><ul><li>Univariate sampling ignores relationships between variables</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Correlations and dependencies</h3><ul><li>Real datasets rarely treat columns as independent</li><li>Income and age co-vary; asset returns co-move; vitals correlate across visits</li><li>Useful synthetic tabular data must replicate these joint relationships</li><li>Multivariate distributions and copulas model dependence structures</li></ul></div><div class="slide-card"><h3>Example 10.8 — Income-Age Joint Distribution</h3><ul><li>Example 10.8 — hands-on module</li><li>Example 10.8 preserves correlations between income and age</li><li>Analysts model the joint distribution so synthetic rows keep segment-level relationships</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example8/</code></li></ul></div><div class="slide-card"><h3>Example 10.8 — listing</h3><pre><code>&quot;&quot;&quot;Example 10.8 — preserve the joint relationship between income and age.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import math
+import random
+
+
+def pearson(xs: list[float], ys: list[float]) -&gt; float:
+    &quot;&quot;&quot;Return Pearson&#x27;s r for two equal-length sequences.&quot;&quot;&quot;
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    cov = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+    sx = math.sqrt(sum((x - mx) ** 2 for x in xs))
+    sy = math.sqrt(sum((y - my) ** 2 for y in ys))
+    return cov / (sx * sy)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Generate synthetic (age, income) pairs that keep a positive correlation.&quot;&quot;&quot;</code></pre></div><div class="slide-card"><h3>Copulas for complex dependence</h3><ul><li>Copulas separate marginal behavior from dependence structure</li><li>After fitting dependence</li></ul></div><div class="slide-card"><h3>Bootstrapping from small samples</h3><ul><li>Bootstrapping resamples an original dataset with replacement to create larger synthetic</li><li>Some real rows repeat; others are omitted</li><li>Repeating the process yields multiple bootstrap datasets for training or uncertainty</li></ul></div><div class="slide-card"><h3>Example 10.9 — Bootstrapping Purchase Histories</h3><ul><li>Example 10.9 — hands-on module</li><li>Example 10.9 bootstraps a small customer purchase-history sample into a larger training</li><li>This supports model training when raw logs are limited</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example9/</code></li></ul></div><div class="slide-card"><h3>Example 10.9 — listing</h3><pre><code>&quot;&quot;&quot;Example 10.9 — bootstrap larger synthetic purchase histories from a small sample.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+from collections import Counter
+from statistics import fmean
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Resample a tiny purchase-amount sample with replacement.&quot;&quot;&quot;
+    random.seed(10)
+    original = [12.5, 40.0, 8.0, 95.0, 22.0, 15.5, 60.0, 33.0]
+    n_boot = 40
+    synthetic = [random.choice(original) for _ in range(n_boot)]
+    counts = Counter(synthetic)
+    print(f&quot;Original sample (n={len(original)}): {original}&quot;)
+    print(f&quot;Bootstrap synthetic sample (n={n_boot})&quot;)
+    print(f&quot;Original mean:  ${fmean(original):.2f}&quot;)
+    print(f&quot;Synthetic mean: ${fmean(synthetic):.2f}&quot;)</code></pre></div><div class="slide-card"><h3>Regression-based synthetic data</h3><ul><li>Regression models fit relationships between predictors and an outcome</li><li>Economics, healthcare</li></ul></div><div class="slide-card"><h3>Example 10.10 — Regression-Based GDP Projection</h3><ul><li>Example 10.10 — hands-on module</li><li>Government spending</li><li>The regression preserves structured relationships among indicators rather than independent</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example10/</code></li></ul></div><div class="slide-card"><h3>Example 10.10 — listing</h3><pre><code>&quot;&quot;&quot;Example 10.10 — generate synthetic GDP growth from a fitted linear regression.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+
+
+def fit_simple_regression(
+    xs: list[float], ys: list[float]
+) -&gt; tuple[float, float, float]:
+    &quot;&quot;&quot;Fit Y = b0 + b1 X and return (b0, b1, residual_sd).&quot;&quot;&quot;
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    b1 = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+    b0 = my - b1 * mx
+    residuals = [y - (b0 + b1 * x) for x, y in zip(xs, ys)]
+    residual_sd = (sum(r * r for r in residuals) / n) ** 0.5
+    return b0, b1, residual_sd
+
+</code></pre></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Realistic tabular synthesis requires joint structure, not independent marginals</li><li>Bootstrapping expands small real samples while preserving variability</li><li>Statistical methods set the foundation before generative adversarial networks learn</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Convergence challenges that affect synthetic realism in generative adversarial networks</li></ul></div></div></div>
 </details>
 
 

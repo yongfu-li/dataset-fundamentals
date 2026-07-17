@@ -1,0 +1,166 @@
+title: Chapter 11 — Active learning basics
+footer: Chapter 11 — Active Learning Basics
+slides:
+- type: title
+  title: Chapter 11 — Active learning basics
+  subtitle: Active learning attacks the labeling bottleneck by letting the model choose
+    which unlabeled items humans should label
+  notes: Active learning attacks the labeling bottleneck by letting the model choose
+    which unlabeled items humans should label next. Instead of treating every instance
+    as equally important, the model uses its own uncertainty to focus annotator effort
+    where new labels most improve performance.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to define the active-learning
+    iterative loop; contrast uncertainty, margin, and entropy sampling as query strategies;
+    and interpret short examples that apply those strategies to vision and medical
+    imaging queues.
+- type: bullets
+  title: The iterative feedback loop
+  bullets:
+  - Active learning starts from a small labeled seed set
+  - The cycle repeats until performance or budget stops the loop
+  - The goal is better generalization with fewer total labels than random annotation
+  notes: Active learning starts from a small labeled seed set. The model then selects
+    unlabeled points it is most uncertain about, humans label those points, the model
+    retrains, and the cycle repeats until performance or budget stops the loop. The
+    goal is better generalization with fewer total labels than random annotation.
+- type: bullets
+  title: Query strategies overview
+  bullets:
+  - A query strategy defines how the model ranks unlabeled items for human labeling
+  - Uncertainty sampling targets low-confidence predictions near decision boundaries
+  - Margin sampling ranks by the gap between the top two class probabilities
+  - Entropy sampling ranks by predictive entropy over the full class distribution
+  - Strategies can be combined or adapted to the task
+  notes: A query strategy defines how the model ranks unlabeled items for human labeling.
+    Uncertainty sampling targets low-confidence predictions near decision boundaries.
+    Margin sampling ranks by the gap between the top two class probabilities. Entropy
+    sampling ranks by predictive entropy over the full class distribution. Strategies
+    can be combined or adapted to the task.
+- type: bullets
+  title: Example 11.1 — Uncertainty Sampling for Cat-Dog Images
+  bullets:
+  - Example 11.1 — hands-on module
+  - Example 11.1 shows uncertainty sampling on a binary vision task
+  - An image with predicted probabilities near 0.51 and 0.49 for cat versus dog is
+    queued for
+  - Explore the chapter example module
+  - 'View files: `modules/chapter11/example1/`'
+  notes: Example 11.1 shows uncertainty sampling on a binary vision task. An image
+    with predicted probabilities near 0.51 and 0.49 for cat versus dog is queued for
+    a human label because that near-tie is where a new label most reshapes the decision
+    boundary. The example 1 module for this chapter summarizes that near-tie selection
+    idea.
+- type: code
+  title: Example 11.1 — listing
+  code: "\"\"\"Example 11.1 — uncertainty sampling queues near-tie binary predictions.\"\
+    \"\"\n\nfrom __future__ import annotations\n\n\ndef uncertainty_score(p_positive:\
+    \ float) -> float:\n    \"\"\"Return distance from a 0.5 decision boundary (lower\
+    \ => more uncertain).\"\"\"\n    return abs(p_positive - 0.5)\n\n\ndef main()\
+    \ -> None:\n    \"\"\"Rank unlabeled images by binary prediction uncertainty.\"\
+    \"\"\n    pool: list[tuple[str, float]] = [\n        (\"img_clear_dog.jpg\", 0.92),\n\
+    \        (\"img_clear_cat.jpg\", 0.11),\n        (\"img_blurry_pet.jpg\", 0.51),\n\
+    \        (\"img_night_pet.jpg\", 0.48),\n        (\"img_toy_animal.jpg\", 0.67),\n\
+    \    ]\n    ranked = sorted(pool, key=lambda row: uncertainty_score(row[1]))"
+- type: bullets
+  title: Example 11.2 — Margin Sampling in Multi-Class Tasks
+  bullets:
+  - Example 11.2 — hands-on module
+  - Example 11.2 refines the idea for multi-class settings
+  - Signaling weak class separation that a new label can sharpen
+  - This differs from absolute least-confidence alone by focusing on the competing
+    pair of
+  - 'View files: `modules/chapter11/example2/`'
+  notes: Example 11.2 refines the idea for multi-class settings. Margin sampling prioritizes
+    instances where the top two predicted probabilities are closest, signaling weak
+    class separation that a new label can sharpen. This differs from absolute least-confidence
+    alone by focusing on the competing pair of classes. The example 2 module for this
+    chapter frames that margin criterion.
+- type: code
+  title: Example 11.2 — listing
+  code: "\"\"\"Example 11.2 — margin sampling prioritizes the smallest top-two gap.\"\
+    \"\"\n\nfrom __future__ import annotations\n\n\ndef margin(probs: dict[str, float])\
+    \ -> float:\n    \"\"\"Return the gap between the top two class probabilities.\"\
+    \"\"\n    ordered = sorted(probs.values(), reverse=True)\n    return ordered[0]\
+    \ - ordered[1]\n\n\ndef main() -> None:\n    \"\"\"Rank multi-class predictions\
+    \ by margin (smaller margin => query first).\"\"\"\n    pool: list[tuple[str,\
+    \ dict[str, float]]] = [\n        (\"doc_clear\", {\"sports\": 0.80, \"politics\"\
+    : 0.12, \"biz\": 0.08}),\n        (\"doc_close\", {\"sports\": 0.41, \"politics\"\
+    : 0.39, \"biz\": 0.20}),\n        (\"doc_flatish\", {\"sports\": 0.36, \"politics\"\
+    : 0.34, \"biz\": 0.30}),\n    ]\n    ranked = sorted(pool, key=lambda row: margin(row[1]))\n\
+    \    print(\"Multi-class pool; smaller top-two margin => higher labeling priority\\\
+    n\")"
+- type: bullets
+  title: Example 11.3 — High-Entropy Multi-Class Prediction
+  bullets:
+  - Example 11.3 — hands-on module
+  - Example 11.3 illustrates entropy sampling
+  - If the model predicts class A at 0.4 and classes B and C at 0.3 each
+  - Flat distributions across many classes are informative even when no single probability
+    is
+  - 'View files: `modules/chapter11/example3/`'
+  notes: Example 11.3 illustrates entropy sampling. If the model predicts class A
+    at 0.4 and classes B and C at 0.3 each, entropy is high because no class dominates,
+    so such instances are prioritized for labeling. Flat distributions across many
+    classes are informative even when no single probability is near 0.5. The example
+    3 module for this chapter covers this high-entropy case.
+- type: code
+  title: Example 11.3 — listing
+  code: "\"\"\"Example 11.3 — entropy sampling selects the flattest predictive distribution.\"\
+    \"\"\n\nfrom __future__ import annotations\n\nimport math\n\n\ndef entropy(probs:\
+    \ list[float]) -> float:\n    \"\"\"Return Shannon entropy of a discrete probability\
+    \ distribution.\"\"\"\n    return -sum(p * math.log2(p) for p in probs if p >\
+    \ 0)\n\n\ndef main() -> None:\n    \"\"\"Compare entropy for peaked vs flat multi-class\
+    \ predictions.\"\"\"\n    cases: list[tuple[str, list[float]]] = [\n        (\"\
+    peaked (A=0.90)\", [0.90, 0.05, 0.05]),\n        (\"book example (A=0.4, B=C=0.3)\"\
+    , [0.40, 0.30, 0.30]),\n        (\"uniform (1/3 each)\", [1 / 3, 1 / 3, 1 / 3]),\n\
+    \    ]\n    print(f\"{'Distribution':<32}{'Entropy (bits)':>16}{'Priority':>10}\"\
+    )"
+- type: bullets
+  title: Active-learning pipeline steps
+  bullets:
+  - The pipeline is incremental
+  - The loop stops when the model meets a performance threshold or the labeling budget
+    is
+  - Effort concentrates on informative cases rather than easy majority examples
+  notes: 'The pipeline is incremental: train on the seed set, query the most informative
+    unlabeled items, send them to human annotators, retrain on the expanded labeled
+    set, and iterate. The loop stops when the model meets a performance threshold
+    or the labeling budget is exhausted. Effort concentrates on informative cases
+    rather than easy majority examples.'
+- type: bullets
+  title: Example 11.4 — Active Learning for MRI Tumor Detection
+  bullets:
+  - Example 11.4 — hands-on module
+  - Example 11.4 applies the full loop to expert MRI labeling
+  - A tumor detector starts from a small labeled MRI seed set
+  - Explore the chapter example module
+  - 'View files: `modules/chapter11/example4/`'
+  notes: Example 11.4 applies the full loop to expert MRI labeling. A tumor detector
+    starts from a small labeled MRI seed set, then repeatedly queries ambiguous or
+    rare-tumor scans for radiologist labels, cutting expert hours while improving
+    detection on hard cases. The example 4 module for this chapter describes that
+    medical active-learning pattern.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Active learning is an iterative loop that queries humans where the model is least
+    sure
+  - Uncertainty, margin, and entropy sampling are complementary ways to rank informativeness
+  - Medical and vision examples show how seed training plus selective expert labels
+    can reduce
+  notes: Active learning is an iterative loop that queries humans where the model
+    is least sure. Uncertainty, margin, and entropy sampling are complementary ways
+    to rank informativeness. Medical and vision examples show how seed training plus
+    selective expert labels can reduce total annotation volume.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part covers complementary techniques beyond basic uncertainty
+  notes: 'The next part covers complementary techniques beyond basic uncertainty:
+    least-confidence selection near decision boundaries, diversity sampling across
+    clusters, cost-sensitive routing of expensive experts, and model-in-the-loop review.'

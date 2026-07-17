@@ -1,0 +1,54 @@
+{
+  "part_id": "part-06-weak-supervision-techniques",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "In Snorkel-style programmatic labeling, what do labeling functions provide?",
+      "choices": [
+        "Weak, possibly conflicting votes from rules or noisy models over subsets of data",
+        "Perfect gold labels for every row with no noise",
+        "Only storage paths for unlabeled files",
+        "A single deterministic label with no aggregation"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.6 and Example 11.14 describe noisy labeling functions combined probabilistically."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 11.14 requires a full hand-labeled email corpus before any training labels exist.",
+      "answer": false,
+      "explain": "Snorkel outputs probabilistic training labels without requiring a full hand-labeled corpus."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What does data programming typically emit instead of hard labels?",
+      "choices": [
+        "Probabilistic labels reflecting source reliability and uncertainty",
+        "Only empty labels for every instance",
+        "Exact copies of distant-database rows",
+        "Audio waveforms for vision models"
+      ],
+      "answer_index": 0,
+      "explain": "Data programming learns labeling-function quality and combines votes into soft labels."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one benefit and one limit of heuristic-based labeling.",
+      "rubric": "Benefit: scale/domain knowledge/efficiency. Limit: noise/sparse coverage/edge cases.",
+      "sample_answer": "Heuristics scale domain rules quickly, but they are noisy and miss edge cases."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Snorkel can estimate labeling-function accuracies and reconcile conflicting weak labels.",
+      "answer": true,
+      "explain": "The generative model / EM step adjusts weights and infers likely true labels."
+    }
+  ]
+}

@@ -18,5 +18,6 @@ Each chapter is a **learning path**: short video clips with bridge descriptions 
 | 8 — Dataset Documentation and Version Control | [chapter8](chapter8/pages/index.md) |
 | 9 — Advanced Data Collection Techniques | [chapter9](chapter9/pages/index.md) |
 | 10 — Synthetic Data Generation | [chapter10](chapter10/pages/index.md) |
+| 11 — Advanced Annotation Techniques | [chapter11](chapter11/pages/index.md) |
 
 Videos are optional media under each part’s `video/` folder. Generate with the `book-slides` TTS/ffmpeg helpers when ready.

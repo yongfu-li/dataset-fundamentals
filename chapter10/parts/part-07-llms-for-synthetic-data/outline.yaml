@@ -1,0 +1,103 @@
+title: Chapter 10 — LLMs for synthetic text and labels
+footer: Chapter 10 — Llms For Synthetic Data
+slides:
+- type: title
+  title: Chapter 10 — LLMs for synthetic text and labels
+  subtitle: Images and tabular rows are not the only synthesis targets
+  notes: Images and tabular rows are not the only synthesis targets. This part explains
+    how large language models generate synthetic text, labels, and structured records
+    through prompting, and why hallucination, memorization, and bias require the same
+    validation gates as generative adversarial outputs.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Bias risks that demand screening and audit before training use
+  notes: By the end of this part, learners should be able to describe prompt-based
+    text and label synthesis workflows; explain differences from adversarial image
+    generators; and list hallucination, memorization, and bias risks that demand screening
+    and audit before training use.
+- type: bullets
+  title: Large language models as synthesizers
+  bullets:
+  - Large language models offer a practical route for synthetic text, labels
+  - Language-model synthesis typically conditions a pretrained model on prompts
+  - This supports low-resource natural language processing, instruction tuning
+  notes: Large language models offer a practical route for synthetic text, labels,
+    and structured rows. Unlike generative adversarial networks trained through a
+    discriminator game, language-model synthesis typically conditions a pretrained
+    model on prompts, schema instructions, or seed examples and asks it to emit new
+    content. This supports low-resource natural language processing, instruction tuning,
+    and rapid dataset prototyping.
+- type: bullets
+  title: Common workflows
+  bullets:
+  - Teams paraphrase existing sentences
+  - The same pattern appears in programmatic weak supervision
+  - Cheap generation is attractive when real text is scarce
+  notes: 'Teams paraphrase existing sentences, expand class-balanced corpora, or draft
+    customer-support transcripts with controlled attributes such as product, sentiment,
+    and urgency. The same pattern appears in programmatic weak supervision: a model
+    proposes candidate labels that humans or heuristics later audit. Cheap generation
+    is attractive when real text is scarce, sensitive, or expensive to annotate.'
+- type: bullets
+  title: Hallucination and factual risk
+  bullets:
+  - Language models can invent facts
+  - For regulated or clinical text
+  - Synthetic corpora therefore need factual and schema checks
+  notes: Language models can invent facts, entities, or label rationales that look
+    plausible yet are wrong. For regulated or clinical text, hallucinated content
+    can poison training data and mislead downstream systems. Synthetic corpora therefore
+    need factual and schema checks—not only fluency review—before they enter model
+    training or human-subjects research.
+- type: bullets
+  title: Memorization and privacy leakage
+  bullets:
+  - Pretrained models may reproduce memorized training snippets
+  - Synthetic text is not automatically privacy-safe
+  - Releases must be screened for identifiers and linkage risk
+  - Privacy engineering controls from earlier chapters still apply
+  notes: Pretrained models may reproduce memorized training snippets, including personally
+    identifiable information. Synthetic text is not automatically privacy-safe. Releases
+    must be screened for identifiers and linkage risk, especially when prompts echo
+    rare real records. Privacy engineering controls from earlier chapters still apply.
+- type: bullets
+  title: Bias and representation skew
+  bullets:
+  - Language models inherit social and demographic biases present in pretraining corpora
+  - Synthetic labels or dialogues can over-represent dominant viewpoints or stereotyped
+    roles
+  - Fairness audits should cover both source seeds and generated cohorts
+  notes: Language models inherit social and demographic biases present in pretraining
+    corpora. Synthetic labels or dialogues can over-represent dominant viewpoints
+    or stereotyped roles, amplifying unfair outcomes in hiring, moderation, or healthcare
+    applications. Fairness audits should cover both source seeds and generated cohorts.
+- type: bullets
+  title: Validation gates
+  bullets:
+  - Retain human oversight for high-stakes labels
+  - Annotation quality practices from earlier chapters extend directly to synthetic
+    text
+  notes: 'Language-model synthesis must pass the same validation and ethics gates
+    as statistical or generative-adversarial outputs: compare distributions to real
+    benchmarks, document prompts and model versions, audit for sensitive content,
+    and retain human oversight for high-stakes labels. Annotation quality practices
+    from earlier chapters extend directly to synthetic text pipelines.'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Large language models enable fast text and label synthesis through prompting rather
+    than
+  - Low cost does not imply low risk, hallucination, memorization
+  - Domain use cases in healthcare, finance, autonomy
+  notes: Large language models enable fast text and label synthesis through prompting
+    rather than adversarial training. Low cost does not imply low risk—hallucination,
+    memorization, and bias demand explicit screening. Domain use cases in healthcare,
+    finance, autonomy, and security are explored in the next parts.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part walks privacy-preserving medical records, rare-disease simulation
+  notes: The next part walks privacy-preserving medical records, rare-disease simulation,
+    and synthetic fraud patterns for financial model training.

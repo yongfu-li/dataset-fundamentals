@@ -1,0 +1,119 @@
+{
+  "chapter": 11,
+  "title": "Chapter 11 — Advanced Annotation Techniques",
+  "slug": "chapter11",
+  "objectives": [
+    "Contrast active learning, weak supervision, self-supervised learning, and hybrid crowd–expert pipelines",
+    "Explain the active-learning loop and common query strategies such as uncertainty, margin, and entropy sampling",
+    "Apply diversity, cost-sensitive, and model-in-the-loop techniques when selecting items to label",
+    "Recognize active-learning use cases in NLP, driving perception, and medical imaging",
+    "Define weak supervision and programmatic labeling with labeling functions and Snorkel-style aggregation",
+    "Describe self-supervised pretext tasks and contrastive pretraining before fine-tuning",
+    "Compare crowdsourcing and expert annotation on cost, quality, and domain risk",
+    "Design hybrid pipelines that combine crowd scale with expert gold sets and hard-case routing"
+  ],
+  "parts": [
+    {
+      "id": "part-01-from-fundamentals-to-advanced",
+      "section": "sec:11.1",
+      "title": "From fundamentals to advanced annotation",
+      "slug": "from-fundamentals-to-advanced",
+      "estimate_min": 6,
+      "examples": [],
+      "path": "parts/part-01-from-fundamentals-to-advanced/",
+      "bridge_in": "Chapter 4 covered annotation modalities, workflows, tools, and quality control. This chapter does not repeat that foundation. It develops four strategies that reduce expert labeling cost at scale: active learning, weak supervision, self-supervised representation learning, and hybrid crowd–expert pipelines."
+    },
+    {
+      "id": "part-02-active-learning-basics",
+      "section": "sec:11.2",
+      "title": "Active learning basics",
+      "slug": "active-learning-basics",
+      "estimate_min": 7,
+      "examples": ["eg:11.1", "eg:11.2", "eg:11.3", "eg:11.4"],
+      "path": "parts/part-02-active-learning-basics/",
+      "bridge_in": "The chapter overview contrasted four strategies that share one bottleneck: expensive human labels. Active learning attacks that bottleneck by letting the model choose which unlabeled items humans should label next. This part defines the iterative loop and the main uncertainty-based query strategies."
+    },
+    {
+      "id": "part-03-active-learning-techniques",
+      "section": "sec:11.3",
+      "title": "Techniques in active learning",
+      "slug": "active-learning-techniques",
+      "estimate_min": 7,
+      "examples": ["eg:11.5", "eg:11.6", "eg:11.7", "eg:11.8"],
+      "path": "parts/part-03-active-learning-techniques/",
+      "bridge_in": "Uncertainty sampling alone can over-focus on odd or redundant cases. This part covers complementary techniques: least-confidence selection near decision boundaries, diversity sampling across clusters, cost-sensitive routing of expensive experts, and model-in-the-loop review."
+    },
+    {
+      "id": "part-04-active-learning-applications",
+      "section": "sec:11.4",
+      "title": "Active learning applications",
+      "slug": "active-learning-applications",
+      "estimate_min": 7,
+      "examples": ["eg:11.9", "eg:11.10", "eg:11.12", "eg:11.13"],
+      "path": "parts/part-04-active-learning-applications/",
+      "bridge_in": "Query strategies matter only when they change real labeling queues. This part walks active-learning applications in review sentiment, driving perception, pneumonia X-rays, and dermoscopic lesion review, showing how uncertain items reach human experts."
+    },
+    {
+      "id": "part-05-weak-supervision-intro",
+      "section": "sec:11.5",
+      "title": "Introduction to weak supervision",
+      "slug": "weak-supervision-intro",
+      "estimate_min": 7,
+      "examples": [],
+      "path": "parts/part-05-weak-supervision-intro/",
+      "bridge_in": "Active learning still spends human labels on selected items. Weak supervision instead generates training labels from noisy, incomplete, or heuristic signals so teams can scale without a fully hand-labeled corpus. This part defines weak labels, advantages, and common sources."
+    },
+    {
+      "id": "part-06-weak-supervision-techniques",
+      "section": "sec:11.6",
+      "title": "Techniques in weak supervision",
+      "slug": "weak-supervision-techniques",
+      "estimate_min": 7,
+      "examples": ["eg:11.14"],
+      "path": "parts/part-06-weak-supervision-techniques/",
+      "bridge_in": "Knowing that weak signals exist is not enough; teams need methods that combine them into usable training labels. This part covers programmatic labeling with Snorkel-style labeling functions, heuristic rules, and data programming that outputs probabilistic labels."
+    },
+    {
+      "id": "part-07-self-supervised-learning",
+      "section": "sec:11.7",
+      "title": "Introduction to self-supervised learning",
+      "slug": "self-supervised-learning",
+      "estimate_min": 7,
+      "examples": ["eg:11.15"],
+      "path": "parts/part-07-self-supervised-learning/",
+      "bridge_in": "Weak supervision still invents labels. Self-supervised learning postpones task labels by training on unlabeled structure through pretext tasks. This part defines self-supervision, contrasts it with supervised learning, and introduces contrastive pretraining before fine-tuning."
+    },
+    {
+      "id": "part-08-ssl-applications",
+      "section": "sec:11.8",
+      "title": "Applications of self-supervised learning",
+      "slug": "ssl-applications",
+      "estimate_min": 6,
+      "examples": [],
+      "path": "parts/part-08-ssl-applications/",
+      "bridge_in": "Pretext tasks become concrete in domain settings. This part surveys self-supervised applications in computer vision, natural language processing, and time-series forecasting, emphasizing data efficiency when downstream labels remain scarce."
+    },
+    {
+      "id": "part-09-crowd-versus-expert",
+      "section": "sec:11.9.1",
+      "title": "Crowdsourcing versus expert annotation",
+      "slug": "crowd-versus-expert",
+      "estimate_min": 7,
+      "examples": ["eg:11.16", "eg:11.17", "eg:11.20", "eg:11.22"],
+      "path": "parts/part-09-crowd-versus-expert/",
+      "bridge_in": "Representation learning and weak labels still leave a workforce question: who should annotate which items? This part compares crowd scale, cost, and turnaround with expert quality for radiology, legal, and other high-stakes schemas.",
+      "split_reason": "Section 11.9 is split across parts 09–10."
+    },
+    {
+      "id": "part-10-hybrid-annotation-pipelines",
+      "section": "sec:11.9.4",
+      "title": "Hybrid annotation pipelines",
+      "slug": "hybrid-annotation-pipelines",
+      "estimate_min": 8,
+      "examples": ["eg:11.25", "eg:11.26", "eg:11.28", "eg:11.29"],
+      "path": "parts/part-10-hybrid-annotation-pipelines/",
+      "bridge_in": "Neither crowd-only nor expert-only staffing is optimal for mixed schemas. This final part shows hybrid patterns: expert gold then crowd scale-up, crowd for routine objects and experts for pathology, active routing of hard cases, and cost–quality–speed benefits.",
+      "split_reason": "Continuation of sec:11.9 after crowd versus expert comparison."
+    }
+  ]
+}

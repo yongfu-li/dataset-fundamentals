@@ -1,0 +1,103 @@
+title: Chapter 11 — Introduction to weak supervision
+footer: Chapter 11 — Weak Supervision Intro
+slides:
+- type: title
+  title: Chapter 11 — Introduction to weak supervision
+  subtitle: Active learning still spends human labels on selected items
+  notes: Active learning still spends human labels on selected items. Weak supervision
+    instead generates training labels from noisy, incomplete, or heuristic signals
+    so teams can scale without a fully hand-labeled corpus. This part defines weak
+    labels, advantages, and common sources.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to define weak supervision
+    relative to fully supervised labeling; distinguish noisy, incomplete, and heuristic
+    labels; list cost, speed, and coverage advantages; and name common sources such
+    as heuristics, distant supervision, and related weak signals.
+- type: bullets
+  title: Definition of weak supervision
+  bullets:
+  - Weak supervision trains models using data that is partially labeled
+  - Then managing the noise they introduce
+  notes: Weak supervision trains models using data that is partially labeled, noisy,
+    or derived from unreliable sources rather than relying solely on high-quality
+    human ground truth. The goal is to reduce dependence on large manually labeled
+    sets by using accessible weak signals that are cheaper to obtain, then managing
+    the noise they introduce.
+- type: bullets
+  title: Noisy, incomplete, and heuristic labels
+  bullets:
+  - Noisy labels are incorrect or imprecise
+  - Incomplete labeling leaves much of the pool unlabeled and requires extrapolation
+    from
+  - Heuristic or imprecise labels come from rules
+  notes: Noisy labels are incorrect or imprecise, often from automation, crowds, or
+    low-confidence annotators. Incomplete labeling leaves much of the pool unlabeled
+    and requires extrapolation from patterns. Heuristic or imprecise labels come from
+    rules, search queries, web scraping, or domain-specific shortcuts that may not
+    match true ground truth but still inform training.
+- type: bullets
+  title: Programmatic and data-programming ideas
+  bullets:
+  - Weakly supervised pipelines often use labeling functions
+  - The key challenge is managing noise and conflict among sources while still extracting
+  - Later sections detail Snorkel-style aggregation
+  notes: Weakly supervised pipelines often use labeling functions, data programming,
+    or programmatic labeling to create large-scale weak label sets. The key challenge
+    is managing noise and conflict among sources while still extracting useful training
+    signal. Later sections detail Snorkel-style aggregation; this part establishes
+    why those methods are needed.
+- type: bullets
+  title: Advantages of weak supervision
+  bullets:
+  - Weak supervision is cost-effective because it avoids labeling every item by hand
+  - It scales volume quickly when rules or distant sources can run over large corpora
+  - It also enables coverage in domains where clean labels are scarce
+  notes: Weak supervision is cost-effective because it avoids labeling every item
+    by hand. It scales volume quickly when rules or distant sources can run over large
+    corpora. It also enables coverage in domains where clean labels are scarce, provided
+    teams validate against a small gold set and do not treat weak labels as perfect
+    truth.
+- type: bullets
+  title: Sources of weak supervision
+  bullets:
+  - Transfer from pretrained models when domain labels are limited
+  - Each source is imperfect
+  notes: Common sources include heuristic rules written by domain experts, distant
+    supervision that infers labels from knowledge bases or related databases, and
+    transfer from pretrained models when domain labels are limited. Each source is
+    imperfect; combining and auditing them is part of the method, not an optional
+    afterthought.
+- type: bullets
+  title: Distant supervision and related signals
+  bullets:
+  - Distant supervision might infer company–investor relations from financial databases
+    even
+  - Transfer learning can act as a weak signal when a general pretrained model is
+    fine-tuned
+  - These patterns expand label volume but still require quality checks before production
+  notes: Distant supervision might infer company–investor relations from financial
+    databases even when text mentions are noisy. Transfer learning can act as a weak
+    signal when a general pretrained model is fine-tuned on a small domain set. These
+    patterns expand label volume but still require quality checks before production
+    training.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Weak supervision replaces full hand labeling with noisy, incomplete, or heuristic
+    signals
+  - Advantages include cost, scale, and coverage when gold labels are scarce
+  - Sources range from rules and distant databases to pretrained models
+  notes: Weak supervision replaces full hand labeling with noisy, incomplete, or heuristic
+    signals. Advantages include cost, scale, and coverage when gold labels are scarce.
+    Sources range from rules and distant databases to pretrained models; the next
+    part shows how to combine them into usable training labels.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Data programming that outputs probabilistic labels for training
+  notes: The next part covers programmatic labeling with Snorkel-style labeling functions,
+    heuristic rules, and data programming that outputs probabilistic labels for training.

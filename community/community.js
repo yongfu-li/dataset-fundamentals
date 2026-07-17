@@ -66,6 +66,10 @@
         role: String(payload.role || "").trim(),
         published: true,
       };
+      const profileType = String(payload.profile_type || "").trim();
+      const profileUrl = String(payload.profile_url || "").trim();
+      if (profileType) entry.profile_type = profileType;
+      if (profileUrl) entry.profile_url = profileUrl;
       payload.publish_json = JSON.stringify(entry, null, 2);
       payload.publish_howto =
         "To show this on Reader stories: paste publish_json into the testimonials array in lectures/community/community.json, then run build_site.py and redeploy.";

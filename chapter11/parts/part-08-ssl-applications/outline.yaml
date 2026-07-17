@@ -1,0 +1,99 @@
+title: Chapter 11 — Applications of self-supervised learning
+footer: Chapter 11 — Ssl Applications
+slides:
+- type: title
+  title: Chapter 11 — Applications of self-supervised learning
+  subtitle: Pretext tasks become concrete in domain settings
+  notes: Pretext tasks become concrete in domain settings. This part surveys self-supervised
+    applications in computer vision, natural language processing, and time-series
+    forecasting, emphasizing data efficiency when downstream labels remain scarce.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to describe self-supervised
+    uses in image representation learning; summarize language-model pretraining benefits
+    for NLP downstream tasks; and explain time-series applications such as forecasting
+    and anomaly detection with unlabeled sequences.
+- type: bullets
+  title: Computer vision applications
+  bullets:
+  - Segmentation before scarce labels are applied
+  - Which matters in domains where bounding boxes or masks are expensive
+  notes: In vision, self-supervised pretraining on large unlabeled image collections
+    learns features for classification, detection, and segmentation before scarce
+    labels are applied. Contrastive and reconstruction-style objectives reduce the
+    labeled volume needed for competitive accuracy, which matters in domains where
+    bounding boxes or masks are expensive.
+- type: bullets
+  title: Data efficiency in vision
+  bullets:
+  - Once representations exist
+  - Teams still validate on held-out gold labels
+  notes: Once representations exist, fine-tuning a smaller labeled set often matches
+    or approaches fully supervised baselines that would have required labeling the
+    entire corpus. Teams still validate on held-out gold labels; self-supervision
+    reduces early labeling demand rather than removing evaluation.
+- type: bullets
+  title: Natural language processing applications
+  bullets:
+  - Masked language modeling and related objectives pretrain encoders on unlabeled
+    text
+  - Downstream tasks such as classification, named entity recognition
+  - Large web-scale corpora supply the unlabeled fuel for that pretraining stage
+  notes: In NLP, masked language modeling and related objectives pretrain encoders
+    on unlabeled text. Downstream tasks such as classification, named entity recognition,
+    and sentiment analysis then fine-tune with far fewer task-specific labels than
+    training from scratch. Large web-scale corpora supply the unlabeled fuel for that
+    pretraining stage.
+- type: bullets
+  title: Transfer to specialized text
+  bullets:
+  - Domain teams often start from a general pretrained language model and fine-tune
+    on a
+  - The pretext-learned context and syntax transfer
+  - This pattern is common when expert text labels are scarce
+  notes: Domain teams often start from a general pretrained language model and fine-tune
+    on a modest labeled domain set. The pretext-learned context and syntax transfer,
+    while the fine-tuning stage adapts to domain vocabulary and label schemas. This
+    pattern is common when expert text labels are scarce.
+- type: bullets
+  title: Time-series forecasting and imputation
+  bullets:
+  - For time series
+  - Models learn temporal structure from unlabeled sensor or transaction streams
+  - Gap filling also prepares incomplete series for downstream monitoring tasks
+  notes: For time series, self-supervised objectives may predict future values or
+    fill masked time steps from neighboring observations. Models learn temporal structure
+    from unlabeled sensor or transaction streams, then support forecasting where dense
+    labels are unavailable. Gap filling also prepares incomplete series for downstream
+    monitoring tasks.
+- type: bullets
+  title: Anomaly detection and contrastive sequences
+  bullets:
+  - Useful for fraud or equipment failure
+  - Clustering without labeling every window
+  notes: Anomaly detection can train a model of normal behavior on unlabeled series
+    and flag large prediction residuals as anomalies, useful for fraud or equipment
+    failure. Contrastive learning on sequences embeds similar temporal patterns nearby,
+    supporting classification, forecasting, and clustering without labeling every
+    window.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Self-supervised applications span vision, language, and time series with a shared
+    theme
+  - Benefits include data efficiency, real-time monitoring potential
+  - Quality still depends on validating the downstream labeled evaluation set
+  notes: 'Self-supervised applications span vision, language, and time series with
+    a shared theme: learn from unlabeled scale, then fine-tune lightly. Benefits include
+    data efficiency, real-time monitoring potential, and improved forecasting when
+    labels are scarce. Quality still depends on validating the downstream labeled
+    evaluation set.'
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part compares crowdsourcing and expert annotation on scale, cost, turnaround
+  notes: The next part compares crowdsourcing and expert annotation on scale, cost,
+    turnaround, and quality for high-stakes schemas such as radiology and legal text.

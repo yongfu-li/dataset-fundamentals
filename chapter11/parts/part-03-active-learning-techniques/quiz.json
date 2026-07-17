@@ -1,0 +1,54 @@
+{
+  "part_id": "part-03-active-learning-techniques",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why can uncertainty sampling alone be problematic?",
+      "choices": [
+        "It may over-focus on difficult or ambiguous outliers and skew the labeled set",
+        "It never improves decision boundaries",
+        "It requires labeling every item in the pool",
+        "It only works for regression, never classification"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.3 notes uncertainty sampling can over-weight hard cases and miss distribution coverage."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 11.5 queues an X-ray scored 0.52 abnormal and 0.48 normal because of the near-tie.",
+      "answer": true,
+      "explain": "Least-confidence selection targets near decision-boundary ties for expert labels."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What does diversity-based sampling primarily ensure?",
+      "choices": [
+        "Selected samples cover a wide range of the data distribution",
+        "Only the single hardest outlier is labeled each round",
+        "Experts never review any samples",
+        "All labels come from distant databases"
+      ],
+      "answer_index": 0,
+      "explain": "Diversity sampling, often via clustering, prevents overfitting to a narrow uncertain subset."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "In Example 11.7, how does cost-sensitive routing allocate legal labeling effort?",
+      "rubric": "Ambiguous contracts to experts; simpler documents to non-experts / maximize gain per dollar.",
+      "sample_answer": "Ambiguous contracts go to legal experts; simpler documents go to non-experts to maximize accuracy gain per dollar."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "In Example 11.8, experts review every X-ray tumor proposal, not only ambiguous cases.",
+      "answer": false,
+      "explain": "Experts review ambiguous cases; corrections retrain so later rounds need fewer edits."
+    }
+  ]
+}
