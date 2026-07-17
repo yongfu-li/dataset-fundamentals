@@ -102,6 +102,16 @@ try {
 }
 
 try {
+  const sentTpl = Lib.emptyTemplate("sentiment");
+  check("sentiment template is full preset", sentTpl.length === 8);
+  const nerTpl = Lib.emptyTemplate("ner");
+  check("ner template is full preset", nerTpl.length === 6);
+} catch (e) {
+  check("templates", false, e.message);
+}
+
+
+try {
   const flags = Lib.reviewFlags(
     [{ id: "1", text: "a" }, { id: "2", text: "b" }],
     "sentiment",

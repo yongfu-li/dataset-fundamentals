@@ -24,6 +24,8 @@ For agreement metrics, see [`../iaa/`](../iaa/).
 4. **Apply** — upload CSV/JSON (`id`, `text`), map columns, continue
 5. **Export** — JSON or CSV
 
+Template downloads include the **full teaching presets** (8 sentiment reviews / 6 NER sentences) as `id` + `text` JSON arrays — ready to re-upload or edit.
+
 ## Upload rules
 
 - Formats: CSV, JSON (array of objects)

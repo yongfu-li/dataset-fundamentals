@@ -105,8 +105,21 @@
   }
 
   function downloadTemplate(mode) {
-    const rows = TextAnnLib.emptyTemplate(mode || "sentiment");
-    downloadJson(rows, "text-annotation-template.json");
+    const presetId = mode === "ner" ? "ner-entities" : "sentiment-reviews";
+    let rows;
+    try {
+      const preset = TextAnnLib.loadPreset(presetId);
+      rows = (preset.items || []).map(function (item) {
+        const row = { id: item.id, text: item.text };
+        if (item.hint) row.hint = item.hint;
+        return row;
+      });
+    } catch (err) {
+      rows = TextAnnLib.emptyTemplate(mode || "sentiment");
+    }
+    const filename =
+      mode === "ner" ? "ner-entities-template.json" : "sentiment-reviews-template.json";
+    downloadJson(rows, filename);
   }
 
   TextAnnLib.buildExport = buildExport;

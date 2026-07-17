@@ -29,6 +29,9 @@
   let pendingUpload = null;
   let mapping = { id: null, text: null };
   let uploadMode = "sentiment";
+  /** @type {null|{start:number,end:number}} saved before button mousedown clears the DOM selection */
+  let pendingSelection = null;
+  let eventsBound = false;
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -188,51 +191,68 @@
 
   function setSentiment(label) {
     const item = activeItem();
-    if (!item) return;
+    if (!item || !session || session.mode !== "sentiment") return;
     ensureAnn(item.id).label = label;
     persist();
     showMessage("Labeled " + item.id + " as " + label + ".", "ok");
     renderAll();
   }
 
-  function onAddSpanFromSelection() {
+  function captureSelection() {
+    if (!session || session.mode !== "ner") return null;
     const item = activeItem();
-    if (!item || session.mode !== "ner") return;
     const host = document.getElementById("ta-text-host");
-    if (!host) return;
+    if (!item || !host) return null;
     const sel = window.getSelection();
-    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) {
-      showMessage("Select a contiguous span in the text first.", "warn");
-      renderAll();
-      return;
-    }
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return null;
     const range = sel.getRangeAt(0);
-    if (!host.contains(range.commonAncestorContainer)) {
-      showMessage("Selection must be inside the current sentence.", "warn");
-      renderAll();
-      return;
-    }
+    if (!host.contains(range.commonAncestorContainer)) return null;
     const offsets = selectionOffsets(host, range);
-    if (!offsets) {
-      showMessage("Could not map selection to character offsets.", "warn");
-      renderAll();
-      return;
-    }
+    if (!offsets || offsets.start === offsets.end) return null;
+    pendingSelection = offsets;
+    return offsets;
+  }
+
+  function addSpanAt(start, end, label) {
+    const item = activeItem();
+    if (!item || !session || session.mode !== "ner") return false;
+    const useLabel = label || activeLabel;
     const ann = ensureAnn(item.id);
-    const result = Lib.tryAddSpan(ann.spans || [], offsets.start, offsets.end, activeLabel, item.text);
+    const result = Lib.tryAddSpan(ann.spans || [], start, end, useLabel, item.text);
     if (!result.ok) {
       showMessage(result.error, "error");
       renderAll();
-      return;
+      return false;
     }
     ann.spans = result.spans;
-    sel.removeAllRanges();
+    pendingSelection = null;
+    const sel = window.getSelection();
+    if (sel) sel.removeAllRanges();
     persist();
     showMessage(
-      "Added " + activeLabel + ' span "' + item.text.slice(offsets.start, offsets.end) + '".',
+      "Added " + useLabel + ' span "' + item.text.slice(start, end) + '".',
       "ok"
     );
     renderAll();
+    return true;
+  }
+
+  function onAddSpanFromSelection() {
+    if (!session || session.mode !== "ner") return;
+    // Prefer freshly captured selection; fall back to pending (mousedown may have cleared live selection).
+    const live = captureSelection();
+    const offsets = live || pendingSelection;
+    if (!offsets) {
+      showMessage("Select a contiguous span in the text first, then click Add span (or click an entity label).", "warn");
+      renderAll();
+      return;
+    }
+    if (!activeLabel) {
+      showMessage("Choose an entity label (ORG, LOC, …) first.", "warn");
+      renderAll();
+      return;
+    }
+    addSpanAt(offsets.start, offsets.end, activeLabel);
   }
 
   /** Map a DOM Range inside #ta-text-host to character offsets in plain text. */
@@ -262,6 +282,7 @@
   function go(delta) {
     if (!session) return;
     activeIndex = Math.max(0, Math.min(session.items.length - 1, activeIndex + delta));
+    pendingSelection = null;
     persist();
     renderAll();
   }
@@ -302,7 +323,7 @@
       renderMessage() +
       (pendingUpload ? renderMapping() : "") +
       (session ? renderWorkspace() : "");
-    bindEvents();
+    bindEventsOnce();
   }
 
   function renderIntro() {
@@ -570,7 +591,7 @@
     return (
       '<section class="ta-panel">' +
       "<h2>4 · Mark entity spans</h2>" +
-      '<p class="ta-hint">1) Select an entity label · 2) Drag-select text · 3) Click Add span (or press Enter).</p>' +
+      '<p class="ta-hint">1) Choose a label (or select text first) · 2) Drag-select the entity in the sentence · 3) Click the label again or Add span. Selection is kept when you click Add span.</p>' +
       '<div class="ta-labels">' +
       labs +
       "</div>" +
@@ -622,98 +643,143 @@
     );
   }
 
-  function bindEvents() {
-    root.querySelectorAll("[data-preset]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        loadPreset(btn.getAttribute("data-preset"));
-      });
-    });
-    const up = document.getElementById("ta-upload");
-    if (up) up.addEventListener("change", onFileUpload);
-    const ts = document.getElementById("ta-template-sent");
-    if (ts) {
-      ts.addEventListener("click", function () {
-        Lib.downloadTemplate("sentiment");
-      });
+  function closest(el, sel) {
+    if (!el || !el.closest) return null;
+    return el.closest(sel);
+  }
+
+  function onRootMouseDown(ev) {
+    const t = ev.target;
+    if (closest(t, "#ta-add-span") || closest(t, "[data-ner-label]")) {
+      captureSelection();
     }
-    const tn = document.getElementById("ta-template-ner");
-    if (tn) {
-      tn.addEventListener("click", function () {
-        Lib.downloadTemplate("ner");
-      });
+    if (closest(t, "#ta-add-span")) {
+      ev.preventDefault();
     }
-    const modeEl = document.getElementById("ta-upload-mode");
-    if (modeEl) {
-      modeEl.addEventListener("change", function () {
-        uploadMode = modeEl.value;
-      });
+  }
+
+  function onRootMouseUp(ev) {
+    if (closest(ev.target, "#ta-text-host") || closest(ev.target, ".ta-span")) {
+      captureSelection();
     }
-    const apply = document.getElementById("ta-apply-upload");
-    if (apply) {
-      apply.addEventListener("click", function () {
-        const idEl = document.getElementById("ta-map-id");
-        const textEl = document.getElementById("ta-map-text");
-        const modeSel = document.getElementById("ta-upload-mode");
-        mapping = {
-          id: idEl && idEl.value ? idEl.value : null,
-          text: textEl && textEl.value ? textEl.value : null,
-        };
-        if (modeSel) uploadMode = modeSel.value;
-        applyUpload();
-      });
+  }
+
+  function onRootClick(ev) {
+    const t = ev.target;
+    const presetBtn = closest(t, "[data-preset]");
+    if (presetBtn) {
+      loadPreset(presetBtn.getAttribute("data-preset"));
+      return;
     }
-    root.querySelectorAll("[data-item-index]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        activeIndex = Number(btn.getAttribute("data-item-index"));
-        persist();
-        renderAll();
-      });
-    });
-    const prev = document.getElementById("ta-prev");
-    if (prev) prev.addEventListener("click", function () {
+    if (closest(t, "#ta-template-sent")) {
+      Lib.downloadTemplate("sentiment");
+      return;
+    }
+    if (closest(t, "#ta-template-ner")) {
+      Lib.downloadTemplate("ner");
+      return;
+    }
+    if (closest(t, "#ta-apply-upload")) {
+      const idEl = document.getElementById("ta-map-id");
+      const textEl = document.getElementById("ta-map-text");
+      const modeSel = document.getElementById("ta-upload-mode");
+      mapping = {
+        id: idEl && idEl.value ? idEl.value : null,
+        text: textEl && textEl.value ? textEl.value : null,
+      };
+      if (modeSel) uploadMode = modeSel.value;
+      applyUpload();
+      return;
+    }
+    const itemPill = closest(t, "[data-item-index]");
+    if (itemPill) {
+      activeIndex = Number(itemPill.getAttribute("data-item-index"));
+      pendingSelection = null;
+      persist();
+      renderAll();
+      return;
+    }
+    if (closest(t, "#ta-prev")) {
       go(-1);
-    });
-    const next = document.getElementById("ta-next");
-    if (next) next.addEventListener("click", function () {
+      return;
+    }
+    if (closest(t, "#ta-next")) {
       go(1);
-    });
-    root.querySelectorAll("[data-sent-label]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        setSentiment(btn.getAttribute("data-sent-label"));
+      return;
+    }
+    const sentBtn = closest(t, "[data-sent-label]");
+    if (sentBtn) {
+      setSentiment(sentBtn.getAttribute("data-sent-label"));
+      return;
+    }
+    const nerBtn = closest(t, "[data-ner-label]");
+    if (nerBtn) {
+      activeLabel = nerBtn.getAttribute("data-ner-label");
+      const offsets = pendingSelection || captureSelection();
+      if (offsets) {
+        addSpanAt(offsets.start, offsets.end, activeLabel);
+      } else {
+        persist();
+        showMessage(
+          "Label " + activeLabel + " selected. Drag-select text, then click this label again or Add span.",
+          "ok"
+        );
+        renderAll();
+      }
+      return;
+    }
+    if (closest(t, "#ta-add-span")) {
+      onAddSpanFromSelection();
+      return;
+    }
+    const delBtn = closest(t, ".ta-span-del");
+    if (delBtn) {
+      removeSpan(delBtn.getAttribute("data-span-id"));
+      return;
+    }
+    const gotoBtn = closest(t, "[data-goto-id]");
+    if (gotoBtn && session) {
+      const id = gotoBtn.getAttribute("data-goto-id");
+      const idx = session.items.findIndex(function (it) {
+        return it.id === id;
       });
-    });
-    root.querySelectorAll("[data-ner-label]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        activeLabel = btn.getAttribute("data-ner-label");
+      if (idx >= 0) {
+        activeIndex = idx;
+        pendingSelection = null;
         persist();
         renderAll();
-      });
-    });
-    const addSpan = document.getElementById("ta-add-span");
-    if (addSpan) addSpan.addEventListener("click", onAddSpanFromSelection);
-    root.querySelectorAll("[data-span-id]").forEach(function (btn) {
-      if (!btn.classList.contains("ta-span-del")) return;
-      btn.addEventListener("click", function () {
-        removeSpan(btn.getAttribute("data-span-id"));
-      });
-    });
-    root.querySelectorAll("[data-goto-id]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        const id = btn.getAttribute("data-goto-id");
-        const idx = session.items.findIndex(function (it) {
-          return it.id === id;
-        });
-        if (idx >= 0) {
-          activeIndex = idx;
-          persist();
-          renderAll();
-        }
-      });
-    });
-    const ej = document.getElementById("ta-export-json");
-    if (ej) ej.addEventListener("click", exportJson);
-    const ec = document.getElementById("ta-export-csv");
-    if (ec) ec.addEventListener("click", exportCsv);
+      }
+      return;
+    }
+    if (closest(t, "#ta-export-json")) {
+      exportJson();
+      return;
+    }
+    if (closest(t, "#ta-export-csv")) {
+      exportCsv();
+    }
+  }
+
+  function onRootChange(ev) {
+    const t = ev.target;
+    if (!t || !t.id) return;
+    if (t.id === "ta-upload") {
+      onFileUpload(ev);
+      return;
+    }
+    if (t.id === "ta-upload-mode") {
+      uploadMode = t.value;
+    }
+  }
+
+  function bindEventsOnce() {
+    if (eventsBound) return;
+    eventsBound = true;
+    root.addEventListener("click", onRootClick);
+    root.addEventListener("mousedown", onRootMouseDown);
+    root.addEventListener("mouseup", onRootMouseUp);
+    root.addEventListener("change", onRootChange);
+    document.addEventListener("keydown", onKey);
   }
 
   function onKey(ev) {
@@ -731,8 +797,6 @@
       go(-1);
     }
   }
-
-  document.addEventListener("keydown", onKey);
 
   if (!restore()) {
     if (window.TextAnnPresets && window.TextAnnPresets["sentiment-reviews"]) {

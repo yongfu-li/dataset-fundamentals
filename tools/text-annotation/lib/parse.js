@@ -196,17 +196,27 @@
   }
 
   function emptyTemplate(mode) {
-    if (mode === "ner") {
+    try {
+      const presetId = mode === "ner" ? "ner-entities" : "sentiment-reviews";
+      const preset = loadPreset(presetId);
+      return (preset.items || []).map(function (item) {
+        const row = { id: item.id, text: item.text };
+        if (item.hint) row.hint = item.hint;
+        return row;
+      });
+    } catch (err) {
+      if (mode === "ner") {
+        return [
+          { id: "S01", text: "Apple is headquartered in Cupertino." },
+          { id: "S02", text: "Microsoft opened an office in Redmond." },
+        ];
+      }
       return [
-        { id: "S01", text: "Apple is headquartered in Cupertino." },
-        { id: "S02", text: "Microsoft opened an office in Redmond." },
+        { id: "R01", text: "Great product, fast shipping." },
+        { id: "R02", text: "It arrived late and scratched." },
+        { id: "R03", text: "Average quality for the price." },
       ];
     }
-    return [
-      { id: "R01", text: "Great product, fast shipping." },
-      { id: "R02", text: "It arrived late and scratched." },
-      { id: "R03", text: "Average quality for the price." },
-    ];
   }
 
   TextAnnLib.MAX_ROWS = MAX_ROWS;
