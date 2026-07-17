@@ -1,0 +1,110 @@
+title: Chapter 12 — Practical applications and case studies
+footer: Chapter 12 — Case Studies
+slides:
+- type: title
+  title: Chapter 12 — Practical applications and case studies
+  subtitle: Storage theory becomes concrete in production architectures
+  notes: Storage theory becomes concrete in production architectures. This part walks
+    scalable patterns for streaming media, real-time analytics pipelines, and healthcare
+    imaging at volume, combining object storage, streaming, and governance ideas from
+    earlier parts.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to describe how global streaming
+    platforms combine object storage, CDNs, and real-time pipelines; outline music-platform
+    analytics that mix SQL, NoSQL, and Spark-style frameworks; and apply object-store
+    patterns to governed healthcare imaging archives using Examples 12.23 through
+    12.25.
+- type: bullets
+  title: From mechanisms to production
+  bullets:
+  - Earlier parts assembled storage formats, consistency trade-offs, lakehouse versioning
+  - The short case sketches below show how those pieces combine in production domains
+    without
+  - The same object-store and streaming patterns recur across media and clinical settings
+  notes: Earlier parts assembled storage formats, consistency trade-offs, lakehouse
+    versioning, and platform lineage. The short case sketches below show how those
+    pieces combine in production domains without repeating the tool tutorials already
+    given. The same object-store and streaming patterns recur across media and clinical
+    settings.
+- type: bullets
+  title: Example 12.23 — Netflix Scale Streaming Architecture
+  bullets:
+  - Example 12.23 — hands-on module
+  - Example 12.23 sketches Netflix-scale streaming storage needs
+  - Global streaming platforms combine object storage, content delivery networks
+  - Seamless integration of these technologies delivers high performance while keeping
+    storage
+  - Explore the chapter example module
+  - 'View files: `modules/chapter12/example23/`'
+  notes: Example 12.23 sketches Netflix-scale streaming storage needs. Global streaming
+    platforms combine object storage, content delivery networks, and real-time pipelines
+    so viewing events and catalog metadata remain available under heavy concurrent
+    load. Seamless integration of these technologies delivers high performance while
+    keeping storage and egress costs manageable. The example 23 module for this chapter
+    summarizes that architecture sketch.
+- type: bullets
+  title: Example 12.24 — Spotify Real-Time Analytics Pipelines
+  bullets:
+  - Example 12.24 — hands-on module
+  - Example 12.24 sketches Spotify-style analytics on listening events
+  - Music platforms stream listening events into cloud storage and real-time analytics
+    so
+  - A mix of SQL and NoSQL stores with frameworks such as Apache Spark lets the infrastructure
+  - Explore the chapter example module
+  - 'View files: `modules/chapter12/example24/`'
+  notes: Example 12.24 sketches Spotify-style analytics on listening events. Music
+    platforms stream listening events into cloud storage and real-time analytics so
+    recommendations and charts update without nightly batch-only warehouses. A mix
+    of SQL and NoSQL stores with frameworks such as Apache Spark lets the infrastructure
+    absorb traffic spikes and serve millions of users globally. The example 24 module
+    for this chapter frames that analytics pipeline.
+- type: bullets
+  title: Example 12.25 — Healthcare Imaging at Scale
+  bullets:
+  - Example 12.25 — hands-on module
+  - Example 12.25 applies scalable stores to clinical imaging archives
+  - Healthcare imaging vendors store large DICOM archives in object storage with governed
+  - Durability and access control matter as much as raw throughput in regulated clinical
+  - Explore the chapter example module
+  - 'View files: `modules/chapter12/example25/`'
+  notes: Example 12.25 applies scalable stores to clinical imaging archives. Healthcare
+    imaging vendors store large DICOM archives in object storage with governed access
+    so studies remain durable while analytics run on derived feature tables. Durability
+    and access control matter as much as raw throughput in regulated clinical settings.
+    The example 25 module for this chapter covers that imaging pattern.
+- type: bullets
+  title: Shared patterns across domains
+  bullets:
+  - Streaming media and music analytics lean on object storage plus real-time buses
+    and mixed
+  - Healthcare imaging reuses object storage for large binary archives but adds stronger
+  - Across all three cases
+  notes: Streaming media and music analytics lean on object storage plus real-time
+    buses and mixed database families. Healthcare imaging reuses object storage for
+    large binary archives but adds stronger governance around access. Across all three
+    cases, scale is achieved by composing earlier chapter building blocks rather than
+    inventing a one-off stack.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Netflix-style streaming pairs object storage, CDNs
+  - Spotify-style analytics stream events into cloud storage with SQL, NoSQL
+  - Healthcare imaging keeps DICOM archives on governed object storage with analytics
+    on
+  - Production scale is composition of storage, streaming
+  notes: Netflix-style streaming pairs object storage, CDNs, and real-time pipelines
+    under concurrent load. Spotify-style analytics stream events into cloud storage
+    with SQL, NoSQL, and Spark for live recommendations. Healthcare imaging keeps
+    DICOM archives on governed object storage with analytics on derived tables. Production
+    scale is composition of storage, streaming, and governance patterns already covered.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The final part surveys emerging trends
+  notes: 'The final part surveys emerging trends: serverless compute over object storage,
+    graph and time-series specialty stores, and high-throughput messaging platforms
+    that shape the next generation of scalable pipelines.'

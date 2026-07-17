@@ -1,0 +1,109 @@
+title: Chapter 13 — Automation and continuous integration
+footer: Chapter 13 — Automation And Ci
+slides:
+- type: title
+  title: Chapter 13 — Automation and continuous integration
+  subtitle: Manual reruns drift
+  notes: Manual reruns drift. Continuous integration and automated tests catch broken
+    preprocessing, environment mismatches, and model regressions before results are
+    published. This part covers CI checks and automated workflow documentation.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to explain continuous integration
+    for research pipelines; describe CI checks on preprocessing and inputs; recognize
+    cross-environment consistency tests; and state why CI should retest model training
+    after updates.
+- type: bullets
+  title: CI for reproducible research
+  bullets:
+  - For research workflows, tests and validates changes to code or data pipelines
+  - Services such as GitHub Actions, GitLab CI
+  - The goal is to catch silent breaks early
+  notes: 'Continuous integration automatically integrates contributor changes into
+    a shared repository and, for research workflows, tests and validates changes to
+    code or data pipelines. Services such as GitHub Actions, GitLab CI, and Travis
+    CI can run tests whenever code or data pipelines change. The goal is to catch
+    silent breaks early: a small edit should not quietly alter published results.'
+- type: bullets
+  title: Example 13.37 — CI Checks Preprocessing and Inputs
+  bullets:
+  - Example 13.37 — hands-on module
+  - Example 13.37 uses continuous integration to validate pipeline prerequisites
+  - Automated checks can verify that preprocessing steps run and that required inputs
+    are
+  - Catching input and preprocessing failures in CI prevents wasted compute and unreproducible
+  - Explore the chapter example module
+  - 'View files: `modules/chapter13/example37/`'
+  notes: Example 13.37 uses continuous integration to validate pipeline prerequisites.
+    Automated checks can verify that preprocessing steps run and that required inputs
+    are present and well-formed before downstream analysis proceeds. Catching input
+    and preprocessing failures in CI prevents wasted compute and unreproducible partial
+    runs. The example 37 module for this chapter covers those preprocessing and input
+    checks.
+- type: bullets
+  title: Example 13.38 — Tests for Cross-Environment Consistency
+  bullets:
+  - Example 13.38 — hands-on module
+  - Environment drift is a common reproducibility failure
+  - Example 13.38 emphasizes tests for cross-environment consistency
+  - Automated tests that compare outputs or checksums across environments expose dependency
+  - Explore the chapter example module
+  - 'View files: `modules/chapter13/example38/`'
+  notes: 'Environment drift is a common reproducibility failure. Example 13.38 emphasizes
+    tests for cross-environment consistency: the same pipeline should produce expected
+    results across machines or container images used by the team. Automated tests
+    that compare outputs or checksums across environments expose dependency mismatches
+    before collaborators publish conflicting numbers. The example 38 module for this
+    chapter frames that consistency-testing pattern.'
+- type: bullets
+  title: Example 13.39 — CI Retests Model Training After Updates
+  bullets:
+  - Example 13.39 — hands-on module
+  - Machine-learning pipelines change when data, features, or training code update
+  - Example 13.39 shows CI retesting model training after such updates so regressions
+    in
+  - Continuous checks keep the published training path aligned with the current repository
+  - Explore the chapter example module
+  - 'View files: `modules/chapter13/example39/`'
+  notes: Machine-learning pipelines change when data, features, or training code update.
+    Example 13.39 shows CI retesting model training after such updates so regressions
+    in metrics or training failures are caught automatically. Continuous checks keep
+    the published training path aligned with the current repository state rather than
+    relying on a one-time local success. The example 39 module for this chapter summarizes
+    retrain-oriented CI.
+- type: bullets
+  title: Automated workflow documentation
+  bullets:
+  - Automation also supports workflow documentation
+  - The published narrative stays synchronized with the executable path
+  - Combined with CI
+  notes: 'Automation also supports workflow documentation: logs, regenerated reports,
+    and machine-readable records of what ran. When documentation is produced as part
+    of the pipeline rather than hand-written after the fact, the published narrative
+    stays synchronized with the executable path. Combined with CI, automated documentation
+    reduces the gap between what the paper claims and what the repository actually
+    runs.'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Continuous integration turns reproducibility from a manual hope into a repeated
+    check
+  - CI can validate preprocessing and inputs before costly downstream stages
+  - Cross-environment tests catch dependency drift across machines and containers
+  - Retrain CI detects model regressions when data or code change
+  - Automated documentation keeps published workflows aligned with what actually executed
+  notes: Continuous integration turns reproducibility from a manual hope into a repeated
+    check. CI can validate preprocessing and inputs before costly downstream stages.
+    Cross-environment tests catch dependency drift across machines and containers.
+    Retrain CI detects model regressions when data or code change. Automated documentation
+    keeps published workflows aligned with what actually executed.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part covers R Markdown reports and DVC for tracking training data, model
+    weights
+  notes: The next part covers R Markdown reports and DVC for tracking training data,
+    model weights, and pipeline stages.
