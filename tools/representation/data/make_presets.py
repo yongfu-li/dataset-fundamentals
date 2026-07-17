@@ -1,0 +1,147 @@
+"""Generate synthetic presets for the Representation bias visualizer.
+
+Each preset includes a population reference and dataset rows so learners
+can compare composition gaps (§7.2 sampling bias, §7.3 distribution checks).
+
+Bundled as ``window.RepresentationPresets`` for file:// compatibility.
+
+Run:
+    python make_presets.py
+"""
+
+from __future__ import annotations
+
+import json
+import random
+from pathlib import Path
+
+
+def _clamp01(x: float) -> float:
+    return max(0.0, min(1.0, x))
+
+
+def hiring_gender_skew(rng: random.Random) -> dict:
+    """Male-heavy training pool vs balanced candidate population (§7.3)."""
+    # Group A = majority in dataset, Group B = underrepresented
+    population = {"Group A": 0.5, "Group B": 0.5}
+    specs = [
+        ("Group A", 280, 0.55, 0.12),   # n, P(qualified), score bump
+        ("Group B", 120, 0.52, -0.15),  # fewer rows + lower scores
+    ]
+    rows = []
+    n = 0
+    for group, count, p_qual, bias in specs:
+        for _ in range(count):
+            n += 1
+            qualified = 1 if rng.random() < p_qual else 0
+            signal = 0.72 if qualified else 0.28
+            score = _clamp01(signal + bias + rng.gauss(0, 0.10))
+            rows.append(
+                {
+                    "id": f"H{n:04d}",
+                    "group": group,
+                    "label": qualified,
+                    "score": round(score, 4),
+                }
+            )
+    rng.shuffle(rows)
+    return {
+        "name": "hiring-gender-skew",
+        "description": "Hiring pool: population is 50/50, but the training set is ~70% Group A. "
+        "Underrepresented Group B also has lower scores — composition + performance gap (§7.2 / §7.3).",
+        "population": population,
+        "populationEditable": False,
+        "defaultMapping": {"group": "group", "label": "label", "score": "score", "id": "id"},
+        "rows": rows,
+    }
+
+
+def facial_skin_tone(rng: random.Random) -> dict:
+    """Light-skinned overrepresentation in facial recognition training (eg:7.12)."""
+    population = {"Tone Light": 0.33, "Tone Medium": 0.33, "Tone Dark": 0.34}
+    specs = [
+        ("Tone Light", 240, 0.90, 0.08),
+        ("Tone Medium", 100, 0.75, -0.05),
+        ("Tone Dark", 60, 0.55, -0.18),
+    ]
+    rows = []
+    n = 0
+    for group, count, p_match, bias in specs:
+        for _ in range(count):
+            n += 1
+            # label = correctly recognizable in ground truth
+            match = 1 if rng.random() < p_match else 0
+            signal = 0.78 if match else 0.30
+            score = _clamp01(signal + bias + rng.gauss(0, 0.10))
+            rows.append(
+                {
+                    "id": f"F{n:04d}",
+                    "group": group,
+                    "label": match,
+                    "score": round(score, 4),
+                }
+            )
+    rng.shuffle(rows)
+    return {
+        "name": "facial-skin-tone",
+        "description": "Facial recognition training images: population is roughly balanced across "
+        "three skin-tone bands, but the dataset overrepresents Tone Light (eg:7.12).",
+        "population": population,
+        "populationEditable": False,
+        "defaultMapping": {"group": "group", "label": "label", "score": "score", "id": "id"},
+        "rows": rows,
+    }
+
+
+def balanced_screening(rng: random.Random) -> dict:
+    """Control case — dataset matches population shares."""
+    population = {"Group A": 0.34, "Group B": 0.33, "Group C": 0.33}
+    counts = [("Group A", 136), ("Group B", 132), ("Group C", 132)]
+    rows = []
+    n = 0
+    for group, count in counts:
+        for _ in range(count):
+            n += 1
+            qualified = 1 if rng.random() < 0.55 else 0
+            signal = 0.70 if qualified else 0.30
+            score = _clamp01(signal + rng.gauss(0, 0.10))
+            rows.append(
+                {
+                    "id": f"B{n:04d}",
+                    "group": group,
+                    "label": qualified,
+                    "score": round(score, 4),
+                }
+            )
+    rng.shuffle(rows)
+    return {
+        "name": "balanced-screening",
+        "description": "Control preset: dataset group shares match the population reference. "
+        "Use to see what near-zero representation gaps look like.",
+        "population": population,
+        "populationEditable": False,
+        "defaultMapping": {"group": "group", "label": "label", "score": "score", "id": "id"},
+        "rows": rows,
+    }
+
+
+def main() -> None:
+    rng = random.Random(9)
+    presets = {
+        "hiring-gender-skew": hiring_gender_skew(rng),
+        "facial-skin-tone": facial_skin_tone(rng),
+        "balanced-screening": balanced_screening(rng),
+    }
+    out = Path(__file__).with_name("presets-bundle.js")
+    payload = json.dumps(presets, separators=(",", ":"))
+    out.write_text(
+        "/* Generated by make_presets.py — do not edit by hand. */\n"
+        f"window.RepresentationPresets = {payload};\n",
+        encoding="utf-8",
+    )
+    size_kb = out.stat().st_size / 1024
+    print(f"Wrote {out} ({len(presets)} presets, {size_kb:.1f} KB)")
+
+
+if __name__ == "__main__":
+    main()

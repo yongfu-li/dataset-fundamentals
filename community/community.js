@@ -57,6 +57,33 @@
     const payload = Object.fromEntries(new FormData(form).entries());
     payload.access_key = accessKey;
 
+    const formType = form.dataset.form;
+    // Include a copy-paste block in the email so authors can publish without retyping.
+    if (formType === "testimonial") {
+      const entry = {
+        quote: String(payload.message || "").trim(),
+        name: String(payload.name || "Reader").trim(),
+        role: String(payload.role || "").trim(),
+        published: true,
+      };
+      payload.publish_json = JSON.stringify(entry, null, 2);
+      payload.publish_howto =
+        "To show this on Reader stories: paste publish_json into the testimonials array in lectures/community/community.json, then run build_site.py and redeploy.";
+    } else if (formType === "tool") {
+      payload.publish_json = JSON.stringify(
+        {
+          form_type: "tool_feedback",
+          tool: payload.tool || "",
+          feedback_type: payload.feedback_type || "",
+          name: payload.name || "",
+          email: payload.email || "",
+          message: payload.message || "",
+        },
+        null,
+        2
+      );
+    }
+
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -69,7 +96,9 @@
         statusEl.hidden = false;
         statusEl.className = "comm-status comm-status-ok";
         statusEl.textContent =
-          "Thank you — your message was sent. We read every submission; testimonials are reviewed before appearing on this page.";
+          formType === "testimonial"
+            ? "Thank you — your testimonial was sent. We review every submission before publishing it on the Reader stories page."
+            : "Thank you — your feedback was sent. We read every tool suggestion.";
       } else {
         throw new Error(data.message || "Submission failed");
       }

@@ -1,0 +1,123 @@
+{
+  "chapter": 10,
+  "title": "Chapter 10 — Synthetic Data Generation",
+  "slug": "chapter10",
+  "objectives": [
+    "Define synthetic data and explain its benefits for privacy, scarcity, and augmentation",
+    "Anticipate validation gaps, bias amplification, and diversity limits in synthetic datasets",
+    "Apply statistical methods including distribution fitting, Monte Carlo, bootstrapping, and regression",
+    "Explain GAN architecture, training dynamics, variants, evaluation metrics, and deepfake risks",
+    "Describe LLM-based synthesis for text, labels, and structured records with audit gates",
+    "Recognize synthetic-data use cases in healthcare, finance, autonomy, and cybersecurity",
+    "Evaluate ethical risks including privacy claims, over-reliance, quality, and regulatory compliance",
+    "Follow best practices for transparency, validation, and oversight before deployment"
+  ],
+  "parts": [
+    {
+      "id": "part-01-introduction-to-synthetic-data",
+      "section": "sec:10.1",
+      "title": "Introduction to synthetic data",
+      "slug": "introduction-to-synthetic-data",
+      "estimate_min": 7,
+      "examples": ["eg:10.1", "eg:10.2", "eg:10.3"],
+      "path": "parts/part-01-introduction-to-synthetic-data/",
+      "bridge_in": "Chapters 2 through 9 covered how real records are collected, labeled, cleaned, documented, and scaled. This chapter asks when artificially generated data can supplement or replace scarce or sensitive observations. This opening part defines synthetic data, cross-modal fidelity, and benefits for privacy, rare scenarios, and model training."
+    },
+    {
+      "id": "part-02-challenges-of-synthetic-data",
+      "section": "sec:10.2",
+      "title": "Challenges of synthetic data",
+      "slug": "challenges-of-synthetic-data",
+      "estimate_min": 6,
+      "examples": ["eg:10.4", "eg:10.5"],
+      "path": "parts/part-02-challenges-of-synthetic-data/",
+      "bridge_in": "Synthetic data promises scale and privacy, but generated rows are not automatically trustworthy. This part covers validation and generalization gaps, demographic bias inherited from generators, and overfitting or lack of diversity when models train only on synthetic copies."
+    },
+    {
+      "id": "part-03-statistical-distributions-and-simulation",
+      "section": "sec:10.3.1",
+      "title": "Statistical distributions and simulation",
+      "slug": "statistical-distributions-and-simulation",
+      "estimate_min": 7,
+      "examples": ["eg:10.6", "eg:10.7"],
+      "path": "parts/part-03-statistical-distributions-and-simulation/",
+      "bridge_in": "Before deep generative models, teams synthesized data with explicit statistical assumptions. This part introduces distribution modeling, normal-distribution sampling sketches, and Monte Carlo simulation for uncertain outcomes such as asset returns.",
+      "split_reason": "Section 10.3 is split across parts 03–04."
+    },
+    {
+      "id": "part-04-correlation-bootstrapping-regression",
+      "section": "sec:10.3.2",
+      "title": "Correlation, bootstrapping, and regression",
+      "slug": "correlation-bootstrapping-regression",
+      "estimate_min": 7,
+      "examples": ["eg:10.8", "eg:10.9", "eg:10.10"],
+      "path": "parts/part-04-correlation-bootstrapping-regression/",
+      "bridge_in": "Univariate sampling ignores relationships between variables. This part covers joint distributions that preserve dependencies, bootstrapping from small real samples, and regression-based projection for structured synthetic rows.",
+      "split_reason": "Continuation of sec:10.3 after distributions and simulation."
+    },
+    {
+      "id": "part-05-gan-architecture-and-training",
+      "section": "sec:10.4.1",
+      "title": "GAN architecture and training",
+      "slug": "gan-architecture-and-training",
+      "estimate_min": 7,
+      "examples": [],
+      "path": "parts/part-05-gan-architecture-and-training/",
+      "bridge_in": "Statistical methods assume known forms; generative adversarial networks learn complex structure from data. This part explains generator and discriminator roles, adversarial training, loss functions, and convergence challenges that affect synthetic realism.",
+      "split_reason": "Section 10.4 is split across parts 05–06."
+    },
+    {
+      "id": "part-06-gan-variants-evaluation-ethics",
+      "section": "sec:10.4.3",
+      "title": "GAN variants, evaluation, and ethics",
+      "slug": "gan-variants-evaluation-ethics",
+      "estimate_min": 7,
+      "examples": ["eg:10.11"],
+      "path": "parts/part-06-gan-variants-evaluation-ethics/",
+      "bridge_in": "Basic GANs are only the starting point. This part surveys conditional GANs, CycleGANs, and StyleGANs, then discusses realism metrics, use cases, and ethical risks such as deepfakes and malicious misuse.",
+      "split_reason": "Continuation of sec:10.4 after architecture and training."
+    },
+    {
+      "id": "part-07-llms-for-synthetic-data",
+      "section": "sec:10.5",
+      "title": "LLMs for synthetic text and labels",
+      "slug": "llms-for-synthetic-data",
+      "estimate_min": 6,
+      "examples": [],
+      "path": "parts/part-07-llms-for-synthetic-data/",
+      "bridge_in": "Images and tabular rows are not the only synthesis targets. This part explains how large language models generate synthetic text, labels, and structured records through prompting, and why hallucination, memorization, and bias require the same validation gates as GAN outputs."
+    },
+    {
+      "id": "part-08-use-cases-healthcare-finance",
+      "section": "sec:10.6.2",
+      "title": "Use cases in healthcare and finance",
+      "slug": "use-cases-healthcare-finance",
+      "estimate_min": 7,
+      "examples": ["eg:10.12", "eg:10.13", "eg:10.14"],
+      "path": "parts/part-08-use-cases-healthcare-finance/",
+      "bridge_in": "Synthesis methods become concrete in domain settings. This part walks privacy-preserving medical records, rare-disease simulation, and synthetic fraud patterns for financial model training.",
+      "split_reason": "Section 10.6 is split across parts 08–09."
+    },
+    {
+      "id": "part-09-use-cases-autonomy-security",
+      "section": "sec:10.6.4",
+      "title": "Use cases in autonomy and security",
+      "slug": "use-cases-autonomy-security",
+      "estimate_min": 7,
+      "examples": ["eg:10.15", "eg:10.16", "eg:10.17"],
+      "path": "parts/part-09-use-cases-autonomy-security/",
+      "bridge_in": "Healthcare and finance are not the only high-stakes domains. This part covers pedestrian-in-rain edge cases for autonomous systems, computer-vision augmentation, and ransomware attack simulation for cybersecurity training.",
+      "split_reason": "Continuation of sec:10.6 after healthcare and finance."
+    },
+    {
+      "id": "part-10-ethics-and-regulation",
+      "section": "sec:10.7",
+      "title": "Ethics and regulation",
+      "slug": "ethics-and-regulation",
+      "estimate_min": 8,
+      "examples": ["eg:10.18", "eg:10.19", "eg:10.22", "eg:10.23"],
+      "path": "parts/part-10-ethics-and-regulation/",
+      "bridge_in": "The chapter closes by asking when synthetic data truly protects people and when it creates new harms. This final part covers privacy claims under GDPR, manipulated reporting, bias amplification, mitigation practices, and regulatory considerations for synthetic releases."
+    }
+  ]
+}

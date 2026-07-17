@@ -192,7 +192,7 @@
       '<button type="button" id="mc-export-json" class="mc-primary">Download metadata-scorecard.json</button>' +
       '<button type="button" id="mc-export-md" class="mc-secondary">Download metadata-scorecard.md</button>' +
       "</div>" +
-      '<p class="mc-hint">Share the scorecard with your team or attach it to a dataset release review.</p>" +
+      '<p class="mc-hint">Share the scorecard with your team or attach it to a dataset release review.</p>' +
       "</section>"
     );
   }
