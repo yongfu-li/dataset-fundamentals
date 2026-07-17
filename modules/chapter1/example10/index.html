@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.10 — Sample of GeoJSON File — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.10 — Sample of GeoJSON File</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.10</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.10</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.2.5</code> — Dataset Format</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Read a GeoJSON FeatureCollection and separate geometry (where) from properties (what), the way spatial datasets are structured.</p>
+<h2>Chapter context</h2>
+<p>Section 1.2.5 closes the format survey with geospatial data, making Example 1.5&#x27;s conceptual sketch concrete: coordinates and feature types replace flat columns.</p>
+<h2>What this example shows</h2>
+<p>A FeatureCollection with a New York City point and a connecting line, each carrying a <code>name</code> property.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>FeatureCollection</strong> — the top-level GeoJSON object wrapping an array of features.</li>
+<li><strong>Feature</strong> — one GeoJSON record: a <code>geometry</code> plus its <code>properties</code>.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Top-level <code>&quot;type&quot;: &quot;FeatureCollection&quot;</code> wraps a <code>features</code> array — the GeoJSON equivalent of &quot;here are all the rows.&quot;</li>
+<li>Each feature has <code>geometry</code> (a <code>type</code> plus <code>coordinates</code>) and <code>properties</code> (non-spatial attributes) — the geometry/properties split Example 1.5 introduced in the abstract.</li>
+<li>Coordinates are ordered <code>[longitude, latitude]</code> — easy to get backwards when converting from other tools.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Pretty-printed output shows exactly two features: one <code>Point</code>, one <code>LineString</code>. The book&#x27;s prose also mentions polygons, but this listing only contains these two geometry types.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.geojson</code></td><td>GeoJSON sample</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Pretty-prints GeoJSON</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If you can say &quot;geometry = where, properties = what&quot; for both features, you have the working definition Section 1.2.5 wants before you meet GIS tools later in the book that build on exactly this structure.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add a <code>Polygon</code> feature for a simple bounding box and confirm your GeoJSON still parses by round-tripping it through <code>json.load</code>/<code>json.dump</code>.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.5</code> — the conceptual introduction this listing makes concrete.</li>
+<li><code>eg:1.8</code> — SQL/relational format, for contrast with this geometry-first structure.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Complements conceptual Example 1.5.</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.10 — Sample of GeoJSON File
+{
+    &quot;type&quot;: &quot;FeatureCollection&quot;,
+    &quot;features&quot;: [
+        {
+            &quot;type&quot;: &quot;Feature&quot;,
+            &quot;geometry&quot;: {
+                &quot;type&quot;: &quot;Point&quot;,
+                &quot;coordinates&quot;: [
+                    -73.935242,
+                    40.73061
+                ]
+            },
+            &quot;properties&quot;: {
+                &quot;name&quot;: &quot;New York City&quot;
+            }
+        },
+        {
+            &quot;type&quot;: &quot;Feature&quot;,
+            &quot;geometry&quot;: {
+                &quot;type&quot;: &quot;LineString&quot;,
+                &quot;coordinates&quot;: [
+                    [-73.935242, 40.73061],
+                    [-74.006, 40.7128]
+                ]
+            },
+            &quot;properties&quot;: {
+                &quot;name&quot;: &quot;Sample Line&quot;
+            }
+        }
+    ]
+}</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 8.29 — Live Demonstration of DVC Automation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 8</a><span class="here">eg:8.29</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 8.29 — Live Demonstration of DVC Automation</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:8.29</span>
+    <span class="pill pill-muted">Chapter 8</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>8</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:8.29</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter8.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:8.4.12</code> — Automating Version Control and Live Demonstration</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Review the manuscript DVC+Git command sequence for init, add, push, stage creation, and pull.</p>
+<h2>Chapter context</h2>
+<p>Section 8.4.12 automates version control with CI (GitHub Actions) and DVC pipeline stages. During a live demonstration, instructors can showcase how DVC integrates with Git and cloud storage to manage datasets, as well as how version control operations can be automated. : Initialize a Git r…</p>
+<h2>What this example shows</h2>
+<p>During a live demonstration, instructors can showcase how DVC integrates with Git and cloud storage to manage datasets, as well as how version control operations can be automated. : Initialize a Git repository, initialize DVC, and configure remote storage. : Add a dataset to DVC and push it to remote storage. : Define a simple pipeline for preprocessing, model training, and evaluation using DVC. : Demonstrate the automatic tracking of dataset updates and model training when new data or code changes are pushed. Use a CI/CD tool to trigger these actions based on new commits. : Show how multiple team members can collaborate on the same dataset by pulling the correct version using DVC&#x27;s pull command, ensuring that everyone is working with the same data.</p>
+<h2>What you should learn</h2>
+<h3>From the artifact / process</h3>
+<ul class='objectives'>
+<li>workflow.sh ---</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> displays the chapter artifact or runs <code>main.py</code>—compare output to the manuscript listing.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>workflow.sh</code></td><td>DVC+Git demonstration command sequence</td></tr><tr><td><code>install.sh</code></td><td>Prerequisite check (no global tool install)</td></tr><tr><td><code>run.sh</code></td><td>Displays artifact or runs demo</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Each line or field in the captured output should map to a documentation or version-control obligation from Section 8—if a collaborator cannot answer &#x27;which version and which transform&#x27; from this artifact alone, add metadata.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add one missing field to the live demonstration of dvc automation artifact—what downstream user would need it?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:8.28</code> — Previous example in the same section.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Inspect the bundled artifact; configure real remotes/tools before production use.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>--- workflow.sh ---
+#!/usr/bin/env bash
+# Demonstration commands from the manuscript; review and configure a real remote before use.
+git init
+dvc init
+dvc remote add -d myremote s3://mybucket/datasets
+dvc add data/my_dataset.csv
+git add data/my_dataset.csv.dvc
+git commit -m &quot;Add initial dataset&quot;
+dvc push
+dvc stage add -n preprocess -d data/raw_data.csv -o data/preprocessed_data.csv python preprocess.py data/raw_data.csv data/preprocessed_data.csv
+dvc stage add -n train -d data/preprocessed_data.csv -o models/model.pkl python train_model.py data/preprocessed_data.csv models/model.pkl
+git pull
+dvc pull</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

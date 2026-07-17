@@ -1,0 +1,14 @@
+version: "v1.0"
+stages:
+  - name: ingest_data
+    cmd: python ingest_data.py
+    deps:
+      - sensor_data/raw_data.csv
+  - name: clean_data
+    cmd: python clean_data.py
+    deps:
+      - sensor_data/raw_data.csv
+  - name: train_model
+    cmd: python train_model.py
+    deps:
+      - cleaned_data.csv

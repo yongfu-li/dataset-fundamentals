@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 2.21 — Traffic and Air-Quality Feeds Without a Shared Key — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 2</a><span class="here">eg:2.21</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 2.21 — Traffic and Air-Quality Feeds Without a Shared Key</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:2.21</span>
+    <span class="pill pill-muted">Chapter 2</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>2</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:2.21</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter2.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:2.8.3</code> — Scalability and Integration</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Anticipate integration failure when streams lack a shared station identifier and clock policy.</p>
+<h2>Chapter context</h2>
+<p>Section 2.8.3 covers scaling and joining multi-source collections. Smart-city feeds that cannot join are a warning that &quot;integrated&quot; dashboards need shared keys designed at collection time.</p>
+<h2>What this example shows</h2>
+<p>A city streams traffic counts and particulate readings from separate vendors; without a shared station ID and clock policy, analysts cannot join feeds into one block-level table.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Shared key</strong> — A common identifier that lets rows from different sources join.</li>
+<li><strong>Clock policy</strong> — Agreed timestamp meaning (timezone, truncation, sync).</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the concept</h3>
+<ul class='objectives'>
+<li>Integration requirements belong in the collection contract with vendors.</li>
+<li>Missing shared keys make &quot;integrated&quot; analytics impossible.</li>
+<li>Clock skew without a policy silently misaligns events.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> prints the takeaway or data/code output below; use it as a checklist for similar collection designs.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Prints the structured takeaway</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Scalability is not only volume — it is whether sources can be joined for the decision the city claimed to support.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Name the minimal join key you would require in both vendor contracts (e.g., <code>station_id</code> + UTC timestamp).</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:2.23</code> — Soil-moisture + satellite join needing common field IDs.</li>
+<li><code>eg:2.4</code> — Single-stream warehouse sensors — easier than multi-vendor joins.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Prose-only in the manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Integration needs shared keys at collection time:
+- Traffic and air-quality feeds from separate vendors
+- Without station_id + clock policy, block-level joins fail
+- &quot;Integrated&quot; dashboards require contracts, not hope</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

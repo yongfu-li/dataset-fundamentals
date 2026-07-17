@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.8 — Sample of SQL Format — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.8</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.8 — Sample of SQL Format</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.8</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.8</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.2.5</code> — Dataset Format</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Explain how primary/foreign keys and constraints keep related entities consistent across tables, and how a JOIN reassembles an analysis-ready view.</p>
+<h2>Chapter context</h2>
+<p>Section 1.2.5 surveys dataset formats; SQL is presented as the format of choice when a schema must be enforced under concurrent writes, in contrast to JSON&#x27;s flexibility. The chapter uses customers/orders/order items as the running relational example.</p>
+<h2>What this example shows</h2>
+<p>DDL for <code>Customers</code>, <code>Orders</code>, and <code>Order_Items</code>, plus a query that joins orders back to customer names and totals.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Primary key</strong> — the column that uniquely identifies a row in its own table (e.g., <code>customer_id</code>).</li>
+<li><strong>Foreign key</strong> — a column in one table that references a primary key in another, enforcing referential integrity.</li>
+<li><strong>JOIN</strong> — a SQL operation that combines rows from two or more tables using a shared key.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / schema (input)</h3>
+<ul class='objectives'>
+<li>Splitting customers from orders avoids repeating customer fields on every order line — normalization in miniature.</li>
+<li><code>FOREIGN KEY</code> ties each order to a customer; <code>CHECK (quantity &gt; 0)</code> encodes a business rule directly in the schema.</li>
+<li>Book DDL uses PostgreSQL-style <code>SERIAL</code>; the runnable demo swaps in SQLite-compatible DDL because <code>SERIAL</code> is not a SQLite keyword.</li>
+</ul>
+<h3>From the code / process</h3>
+<ol class='objectives'>
+<li>Create the three tables from <code>schema_sqlite.sql</code>.</li>
+<li>(Demo only) insert two seed customers and two seed orders.</li>
+<li>Run the <code>JOIN</code> query in <code>query.sql</code>, linking <code>Orders</code> to <code>Customers</code>.</li>
+</ol>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Each result row is one order enriched with the customer&#x27;s name — the relational &quot;rebuild&quot; of a wide table from normalized pieces.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>schema.sql</code></td><td>Book DDL (PostgreSQL-style SERIAL)</td></tr><tr><td><code>query.sql</code></td><td>Book JOIN query</td></tr><tr><td><code>schema_sqlite.sql</code></td><td>SQLite-compatible DDL + seed rows for the demo</td></tr><tr><td><code>run_demo.py</code></td><td>In-memory SQLite runner</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Executes the join demo</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Seeing names beside order IDs and totals shows why normalized storage still supports denormalized analysis views via SQL — you pay the join cost at query time instead of the duplication cost at write time.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add a third seed order for Alice in <code>schema_sqlite.sql</code> and confirm the join now returns three rows, two of them naming Alice.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.7</code> — the JSON order document this schema normalizes.</li>
+<li><code>eg:1.9</code> — HDF5 as the format of choice for array-heavy scientific data, contrasted with SQL&#x27;s relational integrity.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li><code>schema.sql</code> matches the book; <code>run.sh</code> uses <code>schema_sqlite.sql</code> because <code>SERIAL</code> is not SQLite.</li>
+<li>Seed customers/orders are for demonstration only (not in the book listing).</li>
+<li><code>order_date</code> uses <code>CURRENT_TIMESTAMP</code>, so the printed timestamp will differ on each run; row order, names, and totals will not.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.8 — Sample of SQL Format
+order_id | customer_name | order_date | total_amount
+1 | Alice | 2026-07-17 05:38:26 | 99.5
+2 | Bob | 2026-07-17 05:38:26 | 45.0</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>query.sql</summary>
+  <div class="module-file-actions"><a href="query.sql">Open raw file</a></div>
+  <pre><code>SELECT o.order_id, c.name AS customer_name, o.order_date, o.total_amount
+FROM Orders o
+JOIN Customers c ON o.customer_id = c.customer_id;
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>run_demo.py</summary>
+  <div class="module-file-actions"><a href="run_demo.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Run the Example 1.8 join query against a SQLite adaptation of the book schema.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import sqlite3
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Create tables, seed rows, and print the join query result.&quot;&quot;&quot;
+    schema = (ROOT / &quot;schema_sqlite.sql&quot;).read_text(encoding=&quot;utf-8&quot;)
+    query = (ROOT / &quot;query.sql&quot;).read_text(encoding=&quot;utf-8&quot;)
+    conn = sqlite3.connect(&quot;:memory:&quot;)
+    try:
+        conn.executescript(schema)
+        rows = conn.execute(query).fetchall()
+        print(&quot;order_id | customer_name | order_date | total_amount&quot;)
+        for row in rows:
+            print(&quot; | &quot;.join(str(col) for col in row))
+    finally:
+        conn.close()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>schema.sql</summary>
+  <div class="module-file-actions"><a href="schema.sql">Open raw file</a></div>
+  <pre><code>CREATE TABLE Customers (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE Orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Order_Items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity &gt; 0),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>schema_sqlite.sql</summary>
+  <div class="module-file-actions"><a href="schema_sqlite.sql">Open raw file</a></div>
+  <pre><code>CREATE TABLE Customers (
+    customer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL
+);
+
+CREATE TABLE Orders (
+    order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    customer_id INTEGER NOT NULL,
+    order_date TEXT DEFAULT CURRENT_TIMESTAMP,
+    total_amount REAL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Order_Items (
+    order_item_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL CHECK (quantity &gt; 0),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+
+INSERT INTO Customers (name, email) VALUES
+  (&#x27;Alice&#x27;, &#x27;alice@example.com&#x27;),
+  (&#x27;Bob&#x27;, &#x27;bob@example.com&#x27;);
+
+INSERT INTO Orders (customer_id, total_amount) VALUES
+  (1, 99.50),
+  (2, 45.00);
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

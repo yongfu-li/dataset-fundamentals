@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 10.10 — Regression-Based GDP Projection — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 10</a><span class="here">eg:10.10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 10.10 — Regression-Based GDP Projection</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:10.10</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>10</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:10.10</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter10.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:10.3.4</code> — Regression-Based Synthetic Data: Using Regression Models to Generate Values</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Fit a regression model and synthesize GDP projections for new rate scenarios.</p>
+<h2>Chapter context</h2>
+<p>Section 10.3.4 uses regression-based models to synthesize dependent variables from fitted relationships plus noise. In economics, synthetic data for GDP growth can be generated based on predictors like interest rates, inflation, and government spending.</p>
+<h2>What this example shows</h2>
+<p>In economics, synthetic data for GDP growth can be generated based on predictors like interest rates, inflation, and government spending.</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Fit GDP = b0 + b1×interest_rate on eight historical pairs.</li>
+<li>Add Gaussian noise at residual sd for new rate scenarios.</li>
+<li>Regression preserves the learned macro relationship.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed behavior (moments, correlation, frequencies, or projections).</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter&#x27;s statistical method</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Synthetic GDP at unseen rates should follow the fitted negative slope; if projections ignore the learned relationship, the regression synthesis failed.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Predict GDP at 6% interest from the fitted slope before running the script.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:10.7</code> — Simulation under uncertainty.</li>
+<li><code>eg:10.19</code> — Synthetic-only metric misuse.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python demo; fixed seed for reproducible teaching output.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Fitted model: GDP = 3.99 + (-0.75) * interest_rate + noise
+Residual sd: 0.03
+
+Synthetic GDP projections for new rate scenarios:
+  interest_rate=1.25% -&gt; synthetic GDP growth=3.03%
+  interest_rate=2.75% -&gt; synthetic GDP growth=1.92%
+  interest_rate=5.00% -&gt; synthetic GDP growth=0.24%
+
+The regression preserves the learned rate-growth relationship while
+noise samples new but plausible dependent-variable values.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 10.10 — generate synthetic GDP growth from a fitted linear regression.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+
+
+def fit_simple_regression(
+    xs: list[float], ys: list[float]
+) -&gt; tuple[float, float, float]:
+    &quot;&quot;&quot;Fit Y = b0 + b1 X and return (b0, b1, residual_sd).&quot;&quot;&quot;
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    b1 = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+    b0 = my - b1 * mx
+    residuals = [y - (b0 + b1 * x) for x, y in zip(xs, ys)]
+    residual_sd = (sum(r * r for r in residuals) / n) ** 0.5
+    return b0, b1, residual_sd
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Train on macro observations, then synthesize GDP for new interest-rate levels.&quot;&quot;&quot;
+    random.seed(10)
+    # Illustrative historical pairs: interest rate (%) -&gt; GDP growth (%).
+    rates = [1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5]
+    gdp = [3.2, 2.9, 2.5, 2.1, 1.8, 1.4, 1.0, 0.6]
+    b0, b1, residual_sd = fit_simple_regression(rates, gdp)
+    print(f&quot;Fitted model: GDP = {b0:.2f} + ({b1:.2f}) * interest_rate + noise&quot;)
+    print(f&quot;Residual sd: {residual_sd:.2f}&quot;)
+    print()
+    print(&quot;Synthetic GDP projections for new rate scenarios:&quot;)
+    for rate in (1.25, 2.75, 5.0):
+        synth = b0 + b1 * rate + random.gauss(0, residual_sd)
+        print(f&quot;  interest_rate={rate:.2f}% -&gt; synthetic GDP growth={synth:.2f}%&quot;)
+    print()
+    print(&quot;The regression preserves the learned rate-growth relationship while&quot;)
+    print(&quot;noise samples new but plausible dependent-variable values.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

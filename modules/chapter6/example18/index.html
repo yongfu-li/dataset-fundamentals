@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 6.18 — Variance Sketch — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 6</a><span class="here">eg:6.18</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 6.18 — Variance Sketch</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:6.18</span>
+    <span class="pill pill-muted">Chapter 6</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>6</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:6.18</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter6.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:6.2.3</code> — Measures of Dispersion: Variance, Standard Deviation, Range</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Compute squared deviations from the mean and population vs sample variance for a small dataset.</p>
+<h2>Chapter context</h2>
+<p>Section 6.2.3 dispersion—Example 6.18 walks variance as average squared deviation; Example 6.19 takes the square root.</p>
+<h2>What this example shows</h2>
+<p>For [2, 4, 4, 6, 8], mean 4.8; squared deviations average to population variance 4.16 (n) or sample variance 5.2 (n−1).</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Variance is in squared units—harder to interpret than SD.</li>
+<li>Report whether you use population or sample formula.</li>
+<li>Larger spread → larger squared deviations.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> prints mean, squared deviations, and both variance formulas.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library calculation from the book example</td></tr><tr><td><code>install.sh</code></td><td>Confirms Python 3 is available (no external packages)</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Match population vs sample denominators to your inference goal—modules print both for teaching.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Which single value in the list most increases squared deviation from the mean?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:6.19</code> — Standard deviation as sqrt(variance).</li>
+<li><code>eg:6.20</code> — Range as simpler spread measure.</li>
+<li><code>eg:6.15</code> — Mean used in deviation calculation.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library only.</li>
+<li>EDA detects and frames issues; Chapter 5 contains cleaning and preprocessing remedies.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Values: [2, 4, 4, 6, 8]
+Mean: 4.8
+Squared deviations: [7.839999999999999, 0.6399999999999997, 0.6399999999999997, 1.4400000000000004, 10.240000000000002]
+Population variance (n): 4.16
+Sample variance (n-1): 5.2</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Calculate variance from Example 6.18.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+from statistics import fmean, pvariance, variance
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Print deviations and both population and sample variance.&quot;&quot;&quot;
+    values: list[int] = [2, 4, 4, 6, 8]
+    mean_value: float = fmean(values)
+    squared_deviations: list[float] = [
+        (value - mean_value) ** 2 for value in values
+    ]
+    print(&quot;Values:&quot;, values)
+    print(&quot;Mean:&quot;, mean_value)
+    print(&quot;Squared deviations:&quot;, squared_deviations)
+    print(&quot;Population variance (n):&quot;, pvariance(values))
+    print(&quot;Sample variance (n-1):&quot;, variance(values))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

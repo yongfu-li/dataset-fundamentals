@@ -24,7 +24,7 @@
     <span class="pill pill-muted">Chapter 1</span>
     <span class="pill pill-muted">Clip 6 of 7</span>
   </div>
-  <div class="deck-links"><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a></div>
+  <div class="deck-links"><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a></div>
 </section>
 
 <section class="video-panel" aria-label="Clip video">
@@ -51,15 +51,110 @@
 <li>Outline the customer-churn case study steps</li>
 </ul>
 
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.21</span>
+    <h3>Example 1.21 — Purchase History Dataset</h3>
+    <p>Decide the grain of a retail table (order vs customer) before aggregating, since repurchase and preference analysis both depend on getting the grain right.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example21/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.31</span>
+    <h3>Example 1.31 — Python Code on Predicting Customer Churn</h3>
+    <p>Walk one end-to-end analytics arc on tabular customer data: explore, impute, train, rank feature importance, and evaluate with classification metrics.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code>, <code>requirements.txt</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example31/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Uses of datasets</h3><ul><li>Where datasets create value—and one end-to-end workflow</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Map sectors to typical datasets and analytical goals</li><li>Trace the shared lifecycle: define, assess, explore, act</li><li>Outline the customer-churn case study steps</li></ul></div><div class="slide-card"><h3>Applications across sectors</h3><ul><li>Retail: purchase histories → segmentation, forecasts</li><li>Healthcare: EHRs and wearables → risk and monitoring</li><li>Finance: ledgers → fraud and credit scoring</li><li>Education and government: logs and statistics → intervention and planning</li></ul></div><div class="slide-card"><h3>Example 1.21 — Purchase history</h3><ul><li>Setting: one row per order (customer, category, date, amount)</li><li>Key idea: aggregates reveal repurchase rhythms</li><li>Drives segmentation and promotional calendars</li><li>Module: <code>modules/chapter1/example21/</code></li></ul></div><div class="slide-card"><h3>Case study: customer churn</h3><ul><li>Collect and join customer behavior features</li><li>Explore and clean before modeling</li><li>Train a classifier; score risk of cancellation</li><li>Act with retention offers guided by feature importance</li></ul></div><div class="slide-card"><h3>Example 1.31 — Churn model sketch</h3><ul><li>Setting: Python workflow on churn labels</li><li>Key idea: same arc as fraud or demand forecasting</li><li>Only labels and cost of errors change by domain</li><li>Try it: <code>modules/chapter1/example31/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Domain vocabulary changes; the lifecycle does not</li><li>Exploration and quality feed every serious application</li><li>Churn shows define → prepare → model → intervene</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this clip</li><li>Then continue to: Dataset management</li></ul></div></div></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Uses of datasets</h3><ul><li>Earlier clips answered what a dataset is and how to read one responsibly</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Map sectors to typical datasets and goals, recognize the shared lifecycle across domains</li><li>Outline the steps in the customer-churn case study</li></ul></div><div class="slide-card"><h3>Applications across sectors</h3><ul><li>Use them to monitor performance, detect risk, or personalize services</li><li>Retail emphasizes purchase and clickstream data</li></ul></div><div class="slide-card"><h3>Example 1.21 — Purchase history</h3><ul><li>Example 1.21 — hands-on module</li><li>Example 1.21 stores one row per order with customer, category, date, and amount</li><li>Aggregating by customer reveals repurchase intervals and category preferences that drive</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example21/</code></li></ul></div><div class="slide-card"><h3>Case study: customer churn</h3><ul><li>The churn case study stitches the chapter together</li><li>Ranked feature importance highlights which behaviors precede churn</li></ul></div><div class="slide-card"><h3>Example 1.31 — Churn model sketch</h3><ul><li>Example 1.31 — hands-on module</li><li>Example 1.31 provides a Python sketch of that pipeline</li><li>The same structure appears in fraud scoring and demand forecasting</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example31/</code></li></ul></div><div class="slide-card"><h3>Example 1.31 — listing</h3><pre><code>import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# Sample dataset
+data = {
+    &quot;Customer_ID&quot;: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010],
+    &quot;Complaints&quot;: [2, 5, 8, 1, 3, 7, 0, 4, 6, 9],
+    &quot;Product_Usage&quot;: [50, 30, 20, 70, 45, 15, 80, 35, 25, 10],
+    &quot;Account_Activity_Change&quot;: [5, -10, -15, 8, -5, -20, 10, -7, -12, -25],
+    &quot;Subscription_Length&quot;: [24, 36, 12, 48, 30, 6, 60, 28, 14, 10],
+    &quot;Churned&quot;: [0, 1, 1, 0, 0, 1, 0, 1, 1, 1]  # 1 = Churned, 0 = Not Churned
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Explore dataset
+print(&quot;Dataset Info:&quot;)
+df.info()
+print(&quot;\nMissing Values:&quot;)
+print(df.isnull().sum())
+print(&quot;\nSummary Statistics:&quot;)
+print(df.describe())
+
+# Handle missing values using imputation
+imputer = SimpleImputer(strategy=&quot;mean&quot;)
+X = df.drop(columns=[&quot;Customer_ID&quot;, &quot;Churned&quot;])
+X.iloc[:, :] = imputer.fit_transform(X)
+
+y = df[&quot;Churned&quot;]
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train a Random Forest model
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Feature importance
+feature_importance = pd.DataFrame({&quot;Feature&quot;: X.columns, &quot;Importance&quot;: rf.feature_importances_})
+feature_importance = feature_importance.sort_values(by=&quot;Importance&quot;, ascending=False)
+
+# Print feature importance
+print(&quot;Feature Importance:&quot;)
+print(feature_importance)
+
+# Make predictions
+y_pred = rf.predict(X_test)
+
+# Calculate evaluation metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+# Display evaluation metrics
+evaluation_metrics = pd.DataFrame({
+    &quot;Metric&quot;: [&quot;Accuracy&quot;, &quot;Precision&quot;, &quot;Recall&quot;, &quot;F1 Score&quot;],
+    &quot;Value&quot;: [accuracy, precision, recall, f1]
+})
+
+print(&quot;\nModel Evaluation Metrics:&quot;)
+print(evaluation_metrics)</code></pre></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Domain vocabulary changes; the lifecycle does not</li><li>Quality and exploration feed every serious application</li><li>Churn is the chapter&#x27;s end-to-end illustration of define, prepare, model, and intervene</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this clip</li><li>Complete the quiz, then finish the chapter with dataset management, versioning, access</li></ul></div></div></div>
 </details>
 
 
 <details class="panel" data-persist="transcript">
   <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Uses of datasets</h3><p>Earlier clips answered what a dataset is and how to read one responsibly. This clip asks where datasets create value in practice, then walks a complete churn workflow.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should map sectors to typical datasets and goals, recognize the shared lifecycle across domains, and outline the steps in the customer-churn case study.</p></div><div class="transcript"><h3>Slide 3 — Applications across sectors</h3><p>Organizations collect records about customers, patients, students, or transactions, organize them, and use them to monitor performance, detect risk, or personalize services. Retail emphasizes purchase and clickstream data; healthcare joins EHRs with wearables; finance scores transactions; education and government use logs and public statistics for intervention and planning.</p></div><div class="transcript"><h3>Slide 4 — Example 1.21 — Purchase history</h3><p>Example 1.21 stores one row per order with customer, category, date, and amount. Aggregating by customer reveals repurchase intervals and category preferences that drive segmentation and promotions. See <code>modules/chapter1/example21/</code> for the conceptual module.</p></div><div class="transcript"><h3>Slide 5 — Case study: customer churn</h3><p>The churn case study stitches the chapter together: assemble behavioral features, explore and clean, train a classifier, and intervene before cancellation. Ranked feature importance highlights which behaviors precede churn; thresholded scores let retention teams act.</p></div><div class="transcript"><h3>Slide 6 — Example 1.31 — Churn model sketch</h3><p>Example 1.31 provides a Python sketch of that pipeline. The same structure appears in fraud scoring and demand forecasting—only labels and the cost of errors change. Run <code>modules/chapter1/example31/</code> when you want to see the code path.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Domain vocabulary changes; the lifecycle does not. Quality and exploration feed every serious application. Churn is the chapter&#x27;s end-to-end illustration of define, prepare, model, and intervene.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then finish the chapter with dataset management—versioning, access, and privacy that keep such pipelines trustworthy.</p></div></div>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Uses of datasets</h3><p>Earlier clips answered what a dataset is and how to read one responsibly. This clip asks where datasets create value in practice, then walks a complete churn workflow.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should map sectors to typical datasets and goals, recognize the shared lifecycle across domains, and outline the steps in the customer-churn case study.</p></div><div class="transcript"><h3>Slide 3 — Applications across sectors</h3><p>Organizations collect records about customers, patients, students, or transactions, organize them, and use them to monitor performance, detect risk, or personalize services. Retail emphasizes purchase and clickstream data; healthcare joins EHRs with wearables; finance scores transactions; education and government use logs and public statistics for intervention and planning.</p></div><div class="transcript"><h3>Slide 4 — Example 1.21 — Purchase history</h3><p>Example 1.21 stores one row per order with customer, category, date, and amount. Aggregating by customer reveals repurchase intervals and category preferences that drive segmentation and promotions. The example 21 module walks through the concept.</p></div><div class="transcript"><h3>Slide 5 — Case study: customer churn</h3><p>The churn case study stitches the chapter together: assemble behavioral features, explore and clean, train a classifier, and intervene before cancellation. Ranked feature importance highlights which behaviors precede churn; thresholded scores let retention teams act.</p></div><div class="transcript"><h3>Slide 6 — Example 1.31 — Churn model sketch</h3><p>Example 1.31 provides a Python sketch of that pipeline. The same structure appears in fraud scoring and demand forecasting—only labels and the cost of errors change. Run the example 31 module when you want to see the code in action.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Domain vocabulary changes; the lifecycle does not. Quality and exploration feed every serious application. Churn is the chapter&#x27;s end-to-end illustration of define, prepare, model, and intervene.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then finish the chapter with dataset management—versioning, access, and privacy that keep such pipelines trustworthy.</p></div></div>
 </details>
 
 

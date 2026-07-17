@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 10.9 — Bootstrapping Purchase Histories — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 10</a><span class="here">eg:10.9</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 10.9 — Bootstrapping Purchase Histories</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:10.9</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>10</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:10.9</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter10.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:10.3.3</code> — Bootstrapping Techniques: Generating Synthetic Datasets from Small Samples</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Bootstrap a larger purchase-history sample and note support limitations.</p>
+<h2>Chapter context</h2>
+<p>Section 10.3.3 explains bootstrapping: resampling with replacement to expand datasets while reusing observed support. If you have a small dataset of customer purchase histories, bootstrapping can generate larger synthetic datasets that mimic the patterns observed in the original data, which can th…</p>
+<h2>What this example shows</h2>
+<p>If you have a small dataset of customer purchase histories, bootstrapping can generate larger synthetic datasets that mimic the patterns observed in the original data, which can then be used to train a machine learning model for prediction.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Bootstrap</strong> — Resampling with replacement from an observed sample to create synthetic sets.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Bootstrap 40 purchase amounts by sampling 8 originals with replacement.</li>
+<li>Compare original vs synthetic means and value frequencies.</li>
+<li>Support is limited to observed amounts—no new extremes invented.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed behavior (moments, correlation, frequencies, or projections).</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter&#x27;s statistical method</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Matching means is not enough—check that no bootstrap value falls outside the original support; that boundary defines what resampling can invent.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Can bootstrap invent a purchase amount outside the original eight values?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:10.6</code> — Distribution modeling alternative.</li>
+<li><code>Chapter 5</code> — SMOTE as local resampling.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python demo; fixed seed for reproducible teaching output.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Original sample (n=8): [12.5, 40.0, 8.0, 95.0, 22.0, 15.5, 60.0, 33.0]
+Bootstrap synthetic sample (n=40)
+Original mean:  $35.75
+Synthetic mean: $36.09
+Value frequencies in synthetic set:
+  $  8.0: 5 times
+  $ 12.5: 6 times
+  $ 15.5: 5 times
+  $ 22.0: 5 times
+  $ 33.0: 7 times
+  $ 40.0: 1 times
+  $ 60.0: 5 times
+  $ 95.0: 6 times
+
+Sampling with replacement reuses real rows; it expands volume but
+cannot invent purchase amounts outside the original support.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 10.9 — bootstrap larger synthetic purchase histories from a small sample.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+from collections import Counter
+from statistics import fmean
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Resample a tiny purchase-amount sample with replacement.&quot;&quot;&quot;
+    random.seed(10)
+    original = [12.5, 40.0, 8.0, 95.0, 22.0, 15.5, 60.0, 33.0]
+    n_boot = 40
+    synthetic = [random.choice(original) for _ in range(n_boot)]
+    counts = Counter(synthetic)
+    print(f&quot;Original sample (n={len(original)}): {original}&quot;)
+    print(f&quot;Bootstrap synthetic sample (n={n_boot})&quot;)
+    print(f&quot;Original mean:  ${fmean(original):.2f}&quot;)
+    print(f&quot;Synthetic mean: ${fmean(synthetic):.2f}&quot;)
+    print(&quot;Value frequencies in synthetic set:&quot;)
+    for value, count in sorted(counts.items()):
+        print(f&quot;  ${value:&gt;5.1f}: {count} times&quot;)
+    print()
+    print(&quot;Sampling with replacement reuses real rows; it expands volume but&quot;)
+    print(&quot;cannot invent purchase amounts outside the original support.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

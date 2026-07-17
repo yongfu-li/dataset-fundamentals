@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 11.2 — Margin Sampling in Multi-Class Tasks — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 11</a><span class="here">eg:11.2</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 11.2 — Margin Sampling in Multi-Class Tasks</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:11.2</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>11</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:11.2</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter11.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:11</code> — ?</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Apply margin sampling to multi-class tasks where the top-two probabilities are closest.</p>
+<h2>Chapter context</h2>
+<p>Chapter 11 extends Chapter 4 with active learning, weak supervision, self-supervision, and hybrid crowd–expert pipelines. In a multi-class task, margin sampling prioritizes instances where the top two predicted probabilities are closest, signaling weak class separation that a new label can sharpen.</p>
+<h2>What this example shows</h2>
+<p>In a multi-class task, margin sampling prioritizes instances where the top two predicted probabilities are closest, signaling weak class separation that a new label can sharpen.</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>For each multi-class prediction, take margin = top1 − top2 probability.</li>
+<li>Sort by smallest margin—doc_close and doc_flatish queue first.</li>
+<li>Tiny margin means weak separation a new label can sharpen.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed ranks, margins, entropies, or weak-label votes to the chapter&#x27;s selection rule.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter query strategy or labeling functions</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Margin sampling targets class confusion, not just binary near-50% cases—doc_clear&#x27;s large margin correctly stays unqueued.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Which doc_close margin would flip priority if Top2 rose by 0.05?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:11.1</code> — Binary uncertainty baseline.</li>
+<li><code>eg:11.3</code> — Entropy when many classes tie.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python demo; fixed logic mirrors the chapter query strategy.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Multi-class pool; smaller top-two margin =&gt; higher labeling priority
+
+Instance        Top1    Top2  Margin  Queue?
+doc_close       0.41    0.39    0.02     YES
+doc_flatish     0.36    0.34    0.02     YES
+doc_clear       0.80    0.12    0.68        
+
+A tiny margin signals weak class separation that a new label can sharpen.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 11.2 — margin sampling prioritizes the smallest top-two gap.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def margin(probs: dict[str, float]) -&gt; float:
+    &quot;&quot;&quot;Return the gap between the top two class probabilities.&quot;&quot;&quot;
+    ordered = sorted(probs.values(), reverse=True)
+    return ordered[0] - ordered[1]
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Rank multi-class predictions by margin (smaller margin =&gt; query first).&quot;&quot;&quot;
+    pool: list[tuple[str, dict[str, float]]] = [
+        (&quot;doc_clear&quot;, {&quot;sports&quot;: 0.80, &quot;politics&quot;: 0.12, &quot;biz&quot;: 0.08}),
+        (&quot;doc_close&quot;, {&quot;sports&quot;: 0.41, &quot;politics&quot;: 0.39, &quot;biz&quot;: 0.20}),
+        (&quot;doc_flatish&quot;, {&quot;sports&quot;: 0.36, &quot;politics&quot;: 0.34, &quot;biz&quot;: 0.30}),
+    ]
+    ranked = sorted(pool, key=lambda row: margin(row[1]))
+    print(&quot;Multi-class pool; smaller top-two margin =&gt; higher labeling priority\n&quot;)
+    print(f&quot;{&#x27;Instance&#x27;:&lt;12}{&#x27;Top1&#x27;:&gt;8}{&#x27;Top2&#x27;:&gt;8}{&#x27;Margin&#x27;:&gt;8}{&#x27;Queue?&#x27;:&gt;8}&quot;)
+    for name, probs in ranked:
+        tops = sorted(probs.items(), key=lambda item: item[1], reverse=True)[:2]
+        m = margin(probs)
+        flag = &quot;YES&quot; if m &lt;= 0.05 else &quot;&quot;
+        print(f&quot;{name:&lt;12}{tops[0][1]:&gt;8.2f}{tops[1][1]:&gt;8.2f}{m:&gt;8.2f}{flag:&gt;8}&quot;)
+    print()
+    print(&quot;A tiny margin signals weak class separation that a new label can sharpen.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

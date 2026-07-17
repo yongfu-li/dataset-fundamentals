@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 10.7 — Monte Carlo Asset-Return Simulation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 10</a><span class="here">eg:10.7</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 10.7 — Monte Carlo Asset-Return Simulation</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:10.7</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>10</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:10.7</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter10.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:10.3.1</code> — Data Distribution Modeling: Fitting Data to Known Distributions, Monte Carlo Simulations</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Run a Monte Carlo return simulation and read distributional risk summaries.</p>
+<h2>Chapter context</h2>
+<p>Section 10.3.1 introduces distribution modeling and Monte Carlo simulation: fit a law, then sample or simulate many draws under uncertainty. In financial modeling, Monte Carlo simulations are used to generate synthetic data that mimics the returns of an asset, considering various risk factors and market conditions.</p>
+<h2>What this example shows</h2>
+<p>In financial modeling, Monte Carlo simulations are used to generate synthetic data that mimics the returns of an asset, considering various risk factors and market conditions.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Monte Carlo simulation</strong> — Repeated random sampling to approximate an outcome distribution.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Simulate 5,000 one-period returns from N(8%, 20%).</li>
+<li>Report mean, sd, P(return&lt;0), and 5th percentile.</li>
+<li>Many random paths approximate risk under uncertainty.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed behavior (moments, correlation, frequencies, or projections).</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter&#x27;s statistical method</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Tail metrics like P(return&lt;0) and the 5th percentile matter more than the mean alone for risk decisions—the Monte Carlo spread is the deliverable.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>How does P(return &lt; 0) change if you halve sigma?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:10.6</code> — Parametric sampling baseline.</li>
+<li><code>eg:10.10</code> — Regression-based projection.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python demo; fixed seed for reproducible teaching output.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Assumed return model: N(mu=8%, sigma=20%)
+Monte Carlo paths: 5000
+Mean simulated return: 7.60%
+Sd of simulated return: 19.98%
+P(return &lt; 0): 35.5%
+5th percentile: -25.31%
+
+Repeated random draws approximate the outcome distribution under risk factors.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 10.7 — Monte Carlo simulation of asset returns under uncertainty.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+from statistics import fmean, pstdev
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Simulate many one-period returns and summarize the resulting distribution.&quot;&quot;&quot;
+    random.seed(10)
+    # Annualized mean return and volatility (illustrative).
+    mu, sigma = 0.08, 0.20
+    n_paths = 5_000
+    returns = [random.gauss(mu, sigma) for _ in range(n_paths)]
+    print(f&quot;Assumed return model: N(mu={mu:.0%}, sigma={sigma:.0%})&quot;)
+    print(f&quot;Monte Carlo paths: {n_paths}&quot;)
+    print(f&quot;Mean simulated return: {fmean(returns):.2%}&quot;)
+    print(f&quot;Sd of simulated return: {pstdev(returns):.2%}&quot;)
+    print(f&quot;P(return &lt; 0): {sum(r &lt; 0 for r in returns) / n_paths:.1%}&quot;)
+    print(f&quot;5th percentile: {sorted(returns)[int(0.05 * n_paths)]:.2%}&quot;)
+    print()
+    print(&quot;Repeated random draws approximate the outcome distribution under risk factors.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

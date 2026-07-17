@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 8.42 — Sphinx Data-Dictionary Generation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 8</a><span class="here">eg:8.42</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 8.42 — Sphinx Data-Dictionary Generation</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:8.42</span>
+    <span class="pill pill-muted">Chapter 8</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>8</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:8.42</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter8.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:8.7.1</code> — Automating Documentation Updates</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Run the Sphinx-style data-dictionary generator and read field descriptions it emits.</p>
+<h2>Chapter context</h2>
+<p>Section 8.7.1 covers automated doc updates, lineage, privacy processing, and emerging audit ideas. Using Sphinx, the following code can be used to auto-generate a data dictionary:</p>
+<h2>What this example shows</h2>
+<p>Using Sphinx, the following code can be used to auto-generate a data dictionary:</p>
+<h2>What you should learn</h2>
+<h3>From the artifact / process</h3>
+<ul class='objectives'>
+<li>Using Sphinx, the following code can be used to auto-generate a data dictionary:</li>
+<li>Inspect the artifact fields and tie each to a documentation or versioning duty.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> displays the chapter artifact or runs <code>main.py</code>—compare output to the manuscript listing.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Generates Sphinx-style field descriptions</td></tr><tr><td><code>install.sh</code></td><td>Prerequisite check (no global tool install)</td></tr><tr><td><code>run.sh</code></td><td>Displays artifact or runs demo</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Each line or field in the captured output should map to a documentation or version-control obligation from Section 8—if a collaborator cannot answer &#x27;which version and which transform&#x27; from this artifact alone, add metadata.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add one missing field to the sphinx data-dictionary generation artifact—what downstream user would need it?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:8.8</code> — JSON dictionary entry.</li>
+<li><code>eg:8.19</code> — CSV dictionary in template.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Artifact from chapter listing.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>age: Age of the individual in years
+gender: Self-described gender category
+purchase_amount: Total amount spent by the customer in the month (USD)</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Generate a small data dictionary from documented table columns.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Final
+
+
+@dataclass(frozen=True)
+class Dataset:
+    &quot;&quot;&quot;Minimal table-like dataset carrying column names.&quot;&quot;&quot;
+
+    columns: tuple[str, ...]
+
+
+DESCRIPTIONS: Final[dict[str, str]] = {
+    &quot;age&quot;: &quot;Age of the individual in years&quot;,
+    &quot;gender&quot;: &quot;Self-described gender category&quot;,
+    &quot;purchase_amount&quot;: &quot;Total amount spent by the customer in the month (USD)&quot;,
+}
+
+
+def get_column_description(column: str) -&gt; str:
+    &quot;&quot;&quot;Return the maintained description for a dataset column.&quot;&quot;&quot;
+    return DESCRIPTIONS.get(column, &quot;Description not yet documented&quot;)
+
+
+def generate_data_dictionary(dataset: Dataset) -&gt; None:
+    &quot;&quot;&quot;Print a description for every column in a table-like dataset.&quot;&quot;&quot;
+    for column in dataset.columns:
+        print(f&quot;{column}: {get_column_description(column)}&quot;)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Demonstrate automatic data-dictionary generation.&quot;&quot;&quot;
+    generate_data_dictionary(Dataset((&quot;age&quot;, &quot;gender&quot;, &quot;purchase_amount&quot;)))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

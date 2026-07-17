@@ -1,0 +1,17 @@
+stages:
+  preprocessing:
+    cmd: python preprocess.py data/raw_data.csv data/preprocessed_data.csv
+    deps:
+      - data/raw_data.csv
+    outs:
+      - data/preprocessed_data.csv
+  training:
+    cmd: python train_model.py data/preprocessed_data.csv models/model.pkl
+    deps:
+      - data/preprocessed_data.csv
+    outs:
+      - models/model.pkl
+  evaluating:
+    cmd: python evaluate_model.py models/model.pkl
+    deps:
+      - models/model.pkl

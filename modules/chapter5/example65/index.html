@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 5.65 — Guided Pandas Cleaning Template — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 5</a><span class="here">eg:5.65</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 5.65 — Guided Pandas Cleaning Template</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:5.65</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>5</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:5.65</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter5.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:5.8.2</code> — Fix the Problem: Using Python to Clean and Preprocess Data</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Complete a guided pandas cleaning template: impute, dedupe, standardize, and filter outliers on retail rows.</p>
+<h2>Chapter context</h2>
+<p>Section 5.8.2 provides a guided pandas template to impute, dedupe, standardize, and cap outliers. Complete the template to impute, deduplicate, standardize, and filter outliers:</p>
+<h2>What this example shows</h2>
+<p>Template stitches impute, dedupe, type fixes, and outlier filtering in one script</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Template stitches impute, dedupe, type fixes, and outlier filtering in one script.</li>
+<li>Row count shrinks from six to four on the toy retail extract.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> runs <code>main.py</code> (or <code>main.R</code>) and prints Before/After frames—compare shapes and columns.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Guided cleaning template</td></tr><tr><td><code>data.csv</code></td><td>Retail rows with defects</td></tr><tr><td><code>cleaned_data.csv</code></td><td>Written on run</td></tr><tr><td><code>install.sh</code></td><td>Installs runtime dependencies</td></tr><tr><td><code>run.sh</code></td><td>Runs the example</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Match each printed Before/After change to a book listing step—those deltas are the cleaning decisions Section 5.5 expects you to defend in a pipeline review.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change one step in the script (e.g., keep NA rows or skip dedupe)—how does the After shape or columns differ?</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Sample CSVs are synthetic and sized for the listing; they are not from a published dataset.</li>
+<li><code>install.sh</code> uses <code>pip install --user</code> (no local venv) for reliability on Windows-mounted paths.</li>
+<li>Listing logic matches the book; wrappers only add imports and I/O so the module runs standalone.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Before: (6, 4)
+After: (4, 4)
+   customer_id product   price purchase_date
+0          1.0  widget    10.0    2024-01-01
+1          2.0  gadget   208.0    2024-01-02
+2          3.0  widget    12.5    2024-01-03
+4          4.0   gizmo  1000.0    2024-01-04
+Wrote cleaned_data.csv</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>cleaned_data.csv</summary>
+  <div class="module-file-actions"><a href="cleaned_data.csv">Open raw file</a></div>
+  <pre><code>customer_id,product,price,purchase_date
+1.0,widget,10.0,2024-01-01
+2.0,gadget,208.0,2024-01-02
+3.0,widget,12.5,2024-01-03
+4.0,gizmo,1000.0,2024-01-04
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>customer_id,product,price,purchase_date
+1,Widget,10.0,2024-01-01
+2,GADGET,,2024-01-02
+3,widget,12.5,2024-01-03
+3,widget,12.5,2024-01-03
+4,Gizmo,1000.0,2024-01-04
+,orphan,5.0,2024-01-05
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 5.65 — guided pandas cleaning template.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import pandas as pd
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Impute, deduplicate, standardize, filter outliers, save.&quot;&quot;&quot;
+    df = pd.read_csv(&quot;data.csv&quot;)
+    print(&quot;Before:&quot;, df.shape)
+
+    df[&quot;price&quot;] = df[&quot;price&quot;].fillna(df[&quot;price&quot;].mean())
+    df.dropna(subset=[&quot;customer_id&quot;], inplace=True)
+
+    df.drop_duplicates(inplace=True)
+
+    df[&quot;product&quot;] = df[&quot;product&quot;].str.lower()
+    df[&quot;purchase_date&quot;] = pd.to_datetime(df[&quot;purchase_date&quot;], format=&quot;mixed&quot;)
+
+    z_scores = (df[&quot;price&quot;] - df[&quot;price&quot;].mean()) / df[&quot;price&quot;].std()
+    df = df[z_scores &lt; 3]
+
+    df.to_csv(&quot;cleaned_data.csv&quot;, index=False)
+    print(&quot;After:&quot;, df.shape)
+    print(df)
+    print(&quot;Wrote cleaned_data.csv&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>pandas&gt;=2.0
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

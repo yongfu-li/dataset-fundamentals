@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.6 — Textual Social Media Dataset — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.6</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.6 — Textual Social Media Dataset</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.6</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.6</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.1.3</code> — The Versatility of Datasets</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Recognize free text as a legitimate dataset attribute in its own right, wrapped in a table alongside category and sentiment labels.</p>
+<h2>Chapter context</h2>
+<p>Section 1.1.3 pairs geospatial data with textual data to make the same versatility point from another angle: the row/column definition still applies, but now one attribute is unstructured language rather than a number or short code.</p>
+<h2>What this example shows</h2>
+<p>Five labeled posts/reviews spanning Review, News, Social Media, and Chatbot categories, each with free-text content and a Positive/Negative/Neutral sentiment tag.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Unstructured attribute</strong> — a field, like free text, that has no fixed internal schema even though it sits inside a structured table.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li><code>Text</code> is the unstructured payload; <code>Category</code> and <code>Sentiment</code> are structured labels/metadata riding alongside it.</li>
+<li>Quoted fields containing commas (e.g., the review sentences) still parse correctly in CSV once quoting is applied.</li>
+<li>Four different source types share one schema — proof that heterogeneous text sources can be normalized into one table.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Five rows print with visibly different sentiment values (Positive/Negative/Neutral) — read each pair as one supervised NLP example (text in, label out).</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.csv</code></td><td>Text + sentiment sample</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Prints the CSV</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>The lesson is format versatility with a twist: the wrapper is still tabular (rows and columns), but the interesting content is language, which is why NLP pipelines still start from something that looks like a CSV.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Group the rows by <code>Category</code> and check whether the sentiment distribution differs by source — a first EDA question for this kind of dataset.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.5</code> — the other versatility example, for spatial geometry instead of text.</li>
+<li><code>eg:1.7</code> — a JSON record that also mixes structured fields with a free-text <code>comments</code> field.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.6 — Textual Social Media Dataset
+---- data.csv ----
+ID,Category,Text,Sentiment
+1,Review,&quot;The product quality is excellent and exceeded my expectations.&quot;,Positive
+2,Review,&quot;Delivery was late and customer service was unhelpful.&quot;,Negative
+3,News,&quot;Stock markets saw a significant rise amid economic recovery.&quot;,Neutral
+4,Social Media,&quot;Loving the new features in this app! Great job!&quot;,Positive
+5,Chatbot,&quot;I need help with my order, it hasn&#x27;t arrived yet.&quot;,Neutral</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>ID,Category,Text,Sentiment
+1,Review,&quot;The product quality is excellent and exceeded my expectations.&quot;,Positive
+2,Review,&quot;Delivery was late and customer service was unhelpful.&quot;,Negative
+3,News,&quot;Stock markets saw a significant rise amid economic recovery.&quot;,Neutral
+4,Social Media,&quot;Loving the new features in this app! Great job!&quot;,Positive
+5,Chatbot,&quot;I need help with my order, it hasn&#x27;t arrived yet.&quot;,Neutral
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

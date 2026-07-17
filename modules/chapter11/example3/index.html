@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 11.3 — High-Entropy Multi-Class Prediction — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 11</a><span class="here">eg:11.3</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 11.3 — High-Entropy Multi-Class Prediction</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:11.3</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>11</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:11.3</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter11.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:11</code> — ?</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Compute predictive entropy and prioritize flat multi-class distributions for labeling.</p>
+<h2>Chapter context</h2>
+<p>Chapter 11 extends Chapter 4 with active learning, weak supervision, self-supervision, and hybrid crowd–expert pipelines. If the model predicts class A at 0.4 and classes B and C at 0.3 each, entropy is high because no class dominates; such instances are prioritized for labeling.</p>
+<h2>What this example shows</h2>
+<p>If the model predicts class A at 0.4 and classes B and C at 0.3 each, entropy is high because no class dominates; such instances are prioritized for labeling.</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Compute Shannon entropy H = −Σ p log₂ p for each probability vector.</li>
+<li>Flat distributions (≈1/3 each) score highest; peaked A=0.90 scores lowest.</li>
+<li>Prioritize HIGH entropy cases like the book&#x27;s 0.4/0.3/0.3 split.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed ranks, margins, entropies, or weak-label votes to the chapter&#x27;s selection rule.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter query strategy or labeling functions</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>When entropy matches the uniform case, the model is genuinely undecided; labeling those points beats labeling peaked predictions.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Compute entropy by hand for [0.5, 0.25, 0.25] and compare to the book case.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:11.1</code> — Uncertainty for binary tasks.</li>
+<li><code>eg:11.5</code> — Least-confidence medical example.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python demo; fixed logic mirrors the chapter query strategy.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Distribution                      Entropy (bits)  Priority
+uniform (1/3 each)                         1.585      HIGH
+book example (A=0.4, B=C=0.3)              1.571      HIGH
+peaked (A=0.90)                            0.569       LOW
+
+When no class dominates (e.g., 0.4 / 0.3 / 0.3), entropy is high and
+the instance is prioritized for labeling.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 11.3 — entropy sampling selects the flattest predictive distribution.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import math
+
+
+def entropy(probs: list[float]) -&gt; float:
+    &quot;&quot;&quot;Return Shannon entropy of a discrete probability distribution.&quot;&quot;&quot;
+    return -sum(p * math.log2(p) for p in probs if p &gt; 0)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Compare entropy for peaked vs flat multi-class predictions.&quot;&quot;&quot;
+    cases: list[tuple[str, list[float]]] = [
+        (&quot;peaked (A=0.90)&quot;, [0.90, 0.05, 0.05]),
+        (&quot;book example (A=0.4, B=C=0.3)&quot;, [0.40, 0.30, 0.30]),
+        (&quot;uniform (1/3 each)&quot;, [1 / 3, 1 / 3, 1 / 3]),
+    ]
+    print(f&quot;{&#x27;Distribution&#x27;:&lt;32}{&#x27;Entropy (bits)&#x27;:&gt;16}{&#x27;Priority&#x27;:&gt;10}&quot;)
+    scored = [(name, entropy(ps)) for name, ps in cases]
+    max_h = max(h for _, h in scored)
+    for name, h in sorted(scored, key=lambda row: row[1], reverse=True):
+        priority = &quot;HIGH&quot; if h &gt;= 0.95 * max_h else (&quot;MED&quot; if h &gt;= 1.0 else &quot;LOW&quot;)
+        print(f&quot;{name:&lt;32}{h:&gt;16.3f}{priority:&gt;10}&quot;)
+    print()
+    print(&quot;When no class dominates (e.g., 0.4 / 0.3 / 0.3), entropy is high and&quot;)
+    print(&quot;the instance is prioritized for labeling.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

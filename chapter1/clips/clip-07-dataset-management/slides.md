@@ -6,62 +6,50 @@ paginate: true
 
 # Chapter 1 — Dataset management
 
-Keep datasets trustworthy as they are stored, shared, and reused
+Models and dashboards depend on quieter work
 
 ---
 
 ## Learning objectives
-
-- Explain why management matters after models ship
-- List core management practices (versioning, metadata, access, catalog)
-- Name privacy and security controls that protect sensitive tables
+- Explain why management matters after a model ships
+- Name privacy controls that protect sensitive extracts
 
 ---
 
 ## Why management matters
-
-- Quiet work: access, versions, backups, retention
-- Traceability for audits and collaboration
-- Prevents undocumented preprocessing from poisoning models
-- Protects the investment in collection and quality
+- A dataset is collected, cleaned, documented, stored, shared, and sometimes retired
+- Traceability links figures to their sources
+- Without these foundations
 
 ---
 
 ## Best practices (overview)
-
-- Version control for evolving extracts
-- Cleaning and transformation with clear schemas
-- Metadata documentation and data catalogs
-- Storage, backups, and role-based access control
+- Table 1.8 highlights version control
+- These reinforce one another
 
 ---
 
 ## Privacy and security
-
-- Encryption at rest and in transit
-- Anonymization / de-identification for sharing
-- MFA and role-based access
-- Compliance (e.g., GDPR, HIPAA) plus audit logging
+- Encryption, anonymization, role-based access with MFA, regulatory compliance
+- Healthcare extracts, banking ledgers
+- Ethical nuance continues in later chapters
 
 ---
 
 ## Looking ahead
-
-- This chapter: what datasets are and how to use them responsibly
-- Next: Chapter 2 — how records are collected
-- Management depth continues in later chapters (privacy, docs, storage)
+- Chapter 1 established definitions, types, quality, exploration, applications
+- Chapter 2 turns to data collection
 
 ---
 
 ## Takeaways
-
-- Management is not an optional add-on
-- Versioning + metadata + access must work together
-- Protection begins when records are first stored
+- Management is not optional
+- Versioning, metadata, and access must work together
+- Protection begins at first storage and continues through every reuse
 
 ---
 
 ## Next
-
 - Complete the quiz for this clip
-- Return to the chapter learning path or continue to Chapter 2
+- Complete the quiz
+

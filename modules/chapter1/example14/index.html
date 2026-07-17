@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.14 — Metadata of Weather Dataset — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.14</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.14 — Metadata of Weather Dataset</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.14</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.14</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.3.2</code> — Metadata</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Use a metadata sidecar to answer questions a raw measurement table cannot: what units, what coverage, whose data, how fresh.</p>
+<h2>Chapter context</h2>
+<p>Section 1.3.2 shifts from the values themselves to describing the dataset: provenance, schema, units, and licensing. Without this, even an accurate, complete, consistent table is easy to misread.</p>
+<h2>What this example shows</h2>
+<p>A JSON metadata record for a weather extract: measurement units, geographic location, time period, data source, and last-updated timestamp.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Metadata</strong> — data about the dataset itself — units, coverage, provenance, update time — as opposed to the measurements it contains.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li><code>measurement_units</code> prevents Celsius/Fahrenheit confusion before any value is read.</li>
+<li><code>geographic_location</code> and <code>time_period</code> define spatial and temporal scope.</li>
+<li><code>data_source</code> and <code>last_updated</code> support provenance and freshness (timeliness) checks.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Pretty-printed JSON should read as documentation about the data, not the measurements themselves.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>metadata.json</code></td><td>Weather metadata record</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Pretty-prints JSON</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Ask of any new file: do I know units, coverage, and source? If any answer is &quot;no,&quot; the dataset&#x27;s metadata is incomplete — regardless of how clean the rows themselves look.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Write a one-paragraph metadata sidecar for Example 1.16&#x27;s income CSV, modeled on this JSON&#x27;s keys.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.3</code> — units embedded in column headers instead of a separate metadata file; compare the two approaches.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Chapter 8 expands documentation and catalogs.</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.14 — Metadata of Weather Dataset
+{
+    &quot;dataset_name&quot;: &quot;Global Weather Data&quot;,
+    &quot;description&quot;: &quot;This dataset contains weather measurements from various geographic locations.&quot;,
+    &quot;measurement_units&quot;: {
+        &quot;temperature&quot;: &quot;Celsius&quot;,
+        &quot;humidity&quot;: &quot;Percentage&quot;,
+        &quot;wind_speed&quot;: &quot;m/s&quot;,
+        &quot;pressure&quot;: &quot;hPa&quot;
+    },
+    &quot;geographic_location&quot;: {
+        &quot;latitude&quot;: 37.7749,
+        &quot;longitude&quot;: -122.4194,
+        &quot;city&quot;: &quot;San Francisco&quot;,
+        &quot;country&quot;: &quot;USA&quot;
+    },
+    &quot;time_period&quot;: {
+        &quot;start_date&quot;: &quot;2024-01-01&quot;,
+        &quot;end_date&quot;: &quot;2024-01-31&quot;,
+        &quot;time_zone&quot;: &quot;UTC&quot;
+    },
+    &quot;data_source&quot;: &quot;National Meteorological Agency&quot;,
+    &quot;last_updated&quot;: &quot;2024-02-01T12:00:00Z&quot;
+}</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>metadata.json</summary>
+  <div class="module-file-actions"><a href="metadata.json">Open raw file</a></div>
+  <pre><code>{
+  &quot;dataset_name&quot;: &quot;Global Weather Data&quot;,
+  &quot;description&quot;: &quot;This dataset contains weather measurements from various geographic locations.&quot;,
+  &quot;measurement_units&quot;: {
+    &quot;temperature&quot;: &quot;Celsius&quot;,
+    &quot;humidity&quot;: &quot;Percentage&quot;,
+    &quot;wind_speed&quot;: &quot;m/s&quot;,
+    &quot;pressure&quot;: &quot;hPa&quot;
+  },
+  &quot;geographic_location&quot;: {
+    &quot;latitude&quot;: 37.7749,
+    &quot;longitude&quot;: -122.4194,
+    &quot;city&quot;: &quot;San Francisco&quot;,
+    &quot;country&quot;: &quot;USA&quot;
+  },
+  &quot;time_period&quot;: {
+    &quot;start_date&quot;: &quot;2024-01-01&quot;,
+    &quot;end_date&quot;: &quot;2024-01-31&quot;,
+    &quot;time_zone&quot;: &quot;UTC&quot;
+  },
+  &quot;data_source&quot;: &quot;National Meteorological Agency&quot;,
+  &quot;last_updated&quot;: &quot;2024-02-01T12:00:00Z&quot;
+}
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.20 — Exploratory Analysis of Household Incomes — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.20</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.20 — Exploratory Analysis of Household Incomes</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.20</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.20</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.4.3</code> — Techniques for Data Exploration</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Run a minimal pandas EDA loop — preview, summarize, check missingness, visualize — and read skew directly off mean vs median.</p>
+<h2>Chapter context</h2>
+<p>Section 1.4.3&#x27;s worked exploration recipe (<code>head</code>, <code>describe</code>, <code>isnull</code>, histogram) is applied here to Example 1.16&#x27;s income table, producing the mean-greater-than-median evidence for right skew the text discusses.</p>
+<h2>What this example shows</h2>
+<p>A Python script that loads <code>household_incomes.csv</code>, previews it, computes summary statistics, checks nulls, and saves a histogram.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong><code>describe()</code></strong> — a pandas method producing count/mean/std/quartiles per numeric column.</li>
+<li><strong>Right skew</strong> — mean &gt; median, caused by a long tail of high values; diagnosed here from the summary statistics.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Same ten incomes as Example 1.16 (this module keeps a local copy so it is self-contained).</li>
+</ul>
+<h3>From the code / process</h3>
+<ol class='objectives'>
+<li><code>read_csv</code> loads the table.</li>
+<li><code>head()</code> previews structure.</li>
+<li><code>describe()</code> reports count/mean/std/quartiles.</li>
+<li><code>isnull().sum()</code> checks completeness.</li>
+<li><code>hist()</code> visualizes the income distribution — this module saves <code>income_hist.png</code> for headless runs; the book listing uses <code>plt.show()</code>.</li>
+</ol>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Mean ~= 105200, median (50%) = 87500 -&gt; mean &gt; median =&gt; right skew.</li>
+<li>Missing counts are zero for both columns.</li>
+<li>Histogram shows more mass at lower incomes with a long high-income tail.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>household_incomes.csv</code></td><td>Same data as Example 1.16</td></tr><tr><td><code>main.py</code></td><td>Book EDA script (savefig instead of interactive show)</td></tr><tr><td><code>requirements.txt</code></td><td>pandas, matplotlib</td></tr><tr><td><code>install.sh</code></td><td>Creates venv and installs deps</td></tr><tr><td><code>run.sh</code></td><td>Runs main.py with MPLBACKEND=Agg</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Skew is a modeling/cleaning signal, not a footnote — later cleaning chapters return to it when choosing transforms; here, the message is simply: do not assume symmetry from the mean alone.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Open <code>income_hist.png</code> after running and count how many of the ten incomes fall below the mean (105200) versus above it.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.16</code> — the raw data this script profiles.</li>
+<li><code>eg:1.12</code> — the same <code>isnull().sum()</code> idea applied manually to a smaller table.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Book listing calls <code>plt.show()</code>; this module saves a PNG so headless runs succeed.</li>
+<li>CSV duplicated here so the module is self-contained.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.20 — Exploratory Analysis of Household Incomes
+   ID  Income
+0   1   45000
+1   2   52000
+2   3   60000
+3   4   75000
+4   5   80000
+             ID         Income
+count  10.00000      10.000000
+mean    5.50000  105200.000000
+std     3.02765   53989.299351
+min     1.00000   45000.000000
+25%     3.25000   63750.000000
+50%     5.50000   87500.000000
+75%     7.75000  142500.000000
+max    10.00000  200000.000000
+ID        0
+Income    0
+dtype: int64
+Saved histogram to income_hist.png</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>household_incomes.csv</summary>
+  <div class="module-file-actions"><a href="household_incomes.csv">Open raw file</a></div>
+  <pre><code>ID,Income
+1,45000
+2,52000
+3,60000
+4,75000
+5,80000
+6,95000
+7,120000
+8,150000
+9,175000
+10,200000
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the dataset
+household_incomes = pd.read_csv(&quot;household_incomes.csv&quot;)
+
+# View the first few rows
+print(household_incomes.head())
+
+# Summary statistics for numerical columns
+print(household_incomes.describe())
+
+# Check for missing values
+print(household_incomes.isnull().sum())
+
+# Visualize the income distribution
+household_incomes[&quot;Income&quot;].hist()
+plt.title(&quot;Distribution of Household Incomes&quot;)
+plt.xlabel(&quot;Income&quot;)
+plt.ylabel(&quot;Frequency&quot;)
+plt.savefig(&quot;income_hist.png&quot;, dpi=120, bbox_inches=&quot;tight&quot;)
+print(&quot;Saved histogram to income_hist.png&quot;)
+# plt.show()  # disabled for non-interactive runs; book listing uses show()
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>pandas
+matplotlib
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

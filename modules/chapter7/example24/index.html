@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 7.24 — The 80\% Rule in Hiring — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 7</a><span class="here">eg:7.24</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 7.24 — The 80\% Rule in Hiring</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:7.24</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>7</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:7.33</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter7.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:7.3.2</code> — Statistical Measures: Distribution Comparison and Correlation Analysis</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Compute hiring selection rates and apply the 80% disparate-impact rule.</p>
+<h2>Chapter context</h2>
+<p>Section 7.3.2 introduces quantitative and visual bias detection techniques. In hiring, if a selection process disproportionately excludes candidates from a certain race or gender without a justified reason, the metric of disparate impact would flag this di…</p>
+<h2>What this example shows</h2>
+<p>In hiring, if a selection process disproportionately excludes candidates from a certain race or gender without a justified reason, the metric of disparate impact would flag this disparity. A common threshold used in disparate impact analysis is the 80</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>80% rule</strong> — Disparate-impact heuristic: group selection rate should be ≥80% of the highest group.</li>
+<li><strong>Chi-squared test</strong> — Tests whether two categorical variables are independent.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Selection rate = selected / applicants per group.</li>
+<li>Ratio = group rate / highest group rate.</li>
+<li>Ratios below 0.80 trigger adverse-impact review under the 80% rule.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed bias signal or fairness trade-off.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter bias metric</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Groups C and D below 0.80 need process review—legal disparate-impact analysis often starts exactly here.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Which group&#x27;s ratio crosses 0.80 if Group C selects 30 instead of 24?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:7.36</code> — Bar chart screening.</li>
+<li><code>eg:7.47</code> — Procedural fairness in hiring.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library bias-metric demo aligned with the chapter calculation.</li>
+<li>Module folder <code>example24</code> is <strong>Example 7.24</strong> in the PDF; manuscript label is <code>eg:7.33</code>.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Group     Applied Selected   Rate  Ratio
+Group A       200       60 30.0%   1.00
+Group B       180       45 25.0%   0.83
+Group C       120       24 20.0%   0.67  &lt;-- below 80% rule
+Group D       100       20 20.0%   0.67  &lt;-- below 80% rule
+
+Reference (highest) selection rate: 30.0%
+Any group whose ratio falls below 0.80 may indicate adverse impact and
+should trigger review of the selection process (cf. Figure 7.1).</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 7.24 — the 80% rule (disparate impact ratio) on hiring selection rates.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Compute selection rates per group and flag ratios below the 80% rule.&quot;&quot;&quot;
+    applicants: dict[str, int] = {&quot;Group A&quot;: 200, &quot;Group B&quot;: 180, &quot;Group C&quot;: 120, &quot;Group D&quot;: 100}
+    selected: dict[str, int] = {&quot;Group A&quot;: 60, &quot;Group B&quot;: 45, &quot;Group C&quot;: 24, &quot;Group D&quot;: 20}
+
+    rates = {g: selected[g] / applicants[g] for g in applicants}
+    reference = max(rates.values())
+
+    print(f&quot;{&#x27;Group&#x27;:&lt;9}{&#x27;Applied&#x27;:&gt;8}{&#x27;Selected&#x27;:&gt;9}{&#x27;Rate&#x27;:&gt;7}{&#x27;Ratio&#x27;:&gt;7}&quot;)
+    for group, rate in rates.items():
+        ratio = rate / reference
+        flag = &quot;  &lt;-- below 80% rule&quot; if ratio &lt; 0.8 else &quot;&quot;
+        print(f&quot;{group:&lt;9}{applicants[group]:&gt;8}{selected[group]:&gt;9}{rate:&gt;6.1%}{ratio:&gt;7.2f}{flag}&quot;)
+
+    print()
+    print(f&quot;Reference (highest) selection rate: {reference:.1%}&quot;)
+    print(&quot;Any group whose ratio falls below 0.80 may indicate adverse impact and&quot;)
+    print(&quot;should trigger review of the selection process (cf. Figure 7.1).&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

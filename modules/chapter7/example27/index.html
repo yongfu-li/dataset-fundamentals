@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 7.27 — Bar Chart of Predictions by Demographic Group — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 7</a><span class="here">eg:7.27</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 7.27 — Bar Chart of Predictions by Demographic Group</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:7.27</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>7</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:7.36</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter7.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:7.3.2</code> — Statistical Measures: Distribution Comparison and Correlation Analysis</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Visualize favorable prediction rates per demographic group and note spread.</p>
+<h2>Chapter context</h2>
+<p>Section 7.3.2 introduces quantitative and visual bias detection techniques. Bar charts can show the number of instances of a particular demographic group in different categories of a model&#x27;s predictions. If one group is significantly underrepresented in a …</p>
+<h2>What this example shows</h2>
+<p>Bar charts can show the number of instances of a particular demographic group in different categories of a model&#x27;s predictions. If one group is significantly underrepresented in a particular category (e.g., fewer women hired or fewer Black applicants approved for loans), this can be easily spotted using a bar chart.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>80% rule</strong> — Disparate-impact heuristic: group selection rate should be ≥80% of the highest group.</li>
+<li><strong>Chi-squared test</strong> — Tests whether two categorical variables are independent.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Plot ASCII bars of favorable prediction rate per subgroup.</li>
+<li>Measure spread between highest and lowest group.</li>
+<li>Wide spread is a visual cue to run formal tests like the 80% rule.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed bias signal or fairness trade-off.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter bias metric</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>A 27-point spread between groups demands formal follow-up; visuals alone do not satisfy compliance documentation.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Where does &#x27;Bar Chart of Predictions by Demographic Group&#x27; appear in a dataset you have worked with?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:7.35</code> — Previous example in the same section.</li>
+<li><code>eg:7.37</code> — Next example in the same section.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library bias-metric demo aligned with the chapter calculation.</li>
+<li>Module folder <code>example27</code> is <strong>Example 7.27</strong> in the PDF; manuscript label is <code>eg:7.36</code>.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Selection rate by demographic subgroup (each # = 2 percentage points):
+
+Group A   42.0%  #####################
+Group B   35.0%  ##################
+Group C   19.0%  ##########
+Group D   15.0%  ########
+
+Spread between highest and lowest group: 27.0%
+A wide spread across bars is the first visual cue of potential bias
+(cf. Figure 7.2); follow up with formal tests such as the 80% rule.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 7.27 — bar chart of favorable predictions by demographic group (ASCII).&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Draw an ASCII bar chart of selection rates per subgroup.&quot;&quot;&quot;
+    selection_rate: dict[str, float] = {
+        &quot;Group A&quot;: 0.42,
+        &quot;Group B&quot;: 0.35,
+        &quot;Group C&quot;: 0.19,
+        &quot;Group D&quot;: 0.15,
+    }
+
+    print(&quot;Selection rate by demographic subgroup (each # = 2 percentage points):\n&quot;)
+    for group, rate in selection_rate.items():
+        bar = &quot;#&quot; * round(rate * 50)
+        print(f&quot;{group:&lt;9}{rate:&gt;6.1%}  {bar}&quot;)
+
+    spread = max(selection_rate.values()) - min(selection_rate.values())
+    print(f&quot;\nSpread between highest and lowest group: {spread:.1%}&quot;)
+    print(&quot;A wide spread across bars is the first visual cue of potential bias&quot;)
+    print(&quot;(cf. Figure 7.2); follow up with formal tests such as the 80% rule.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

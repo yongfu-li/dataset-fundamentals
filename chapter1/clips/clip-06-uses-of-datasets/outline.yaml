@@ -1,48 +1,107 @@
 title: Chapter 1 — Uses of datasets
-footer: Chapter 1 — Uses Of Datasets
+footer: Chapter 1 — 06 Uses Of Datasets
 slides:
 - type: title
   title: Chapter 1 — Uses of datasets
-  subtitle: Where datasets create value—and one end-to-end workflow
+  subtitle: Earlier clips answered what a dataset is and how to read one responsibly
+  notes: Earlier clips answered what a dataset is and how to read one responsibly.
+    This clip asks where datasets create value in practice, then walks a complete
+    churn workflow.
 - type: bullets
   title: Learning objectives
   bullets:
-  - Map sectors to typical datasets and analytical goals
-  - 'Trace the shared lifecycle: define, assess, explore, act'
-  - Outline the customer-churn case study steps
+  - Map sectors to typical datasets and goals, recognize the shared lifecycle across
+    domains
+  - Outline the steps in the customer-churn case study
+  notes: You should map sectors to typical datasets and goals, recognize the shared
+    lifecycle across domains, and outline the steps in the customer-churn case study.
 - type: bullets
   title: Applications across sectors
   bullets:
-  - 'Retail: purchase histories → segmentation, forecasts'
-  - 'Healthcare: EHRs and wearables → risk and monitoring'
-  - 'Finance: ledgers → fraud and credit scoring'
-  - 'Education and government: logs and statistics → intervention and planning'
-- type: demo
+  - Use them to monitor performance, detect risk, or personalize services
+  - Retail emphasizes purchase and clickstream data
+  notes: Organizations collect records about customers, patients, students, or transactions,
+    organize them, and use them to monitor performance, detect risk, or personalize
+    services. Retail emphasizes purchase and clickstream data; healthcare joins EHRs
+    with wearables; finance scores transactions; education and government use logs
+    and public statistics for intervention and planning.
+- type: bullets
   title: Example 1.21 — Purchase history
-  command: cd modules/chapter1/example21/ && bash run.sh
-  notes: 'Setting: one row per order (customer, category, date, amount)
-
-    Key idea: aggregates reveal repurchase rhythms
-
-    Drives segmentation and promotional calendars'
+  bullets:
+  - Example 1.21 — hands-on module
+  - Example 1.21 stores one row per order with customer, category, date, and amount
+  - Aggregating by customer reveals repurchase intervals and category preferences
+    that drive
+  - Explore the chapter example module
+  - 'View files: `modules/chapter1/example21/`'
+  notes: Example 1.21 stores one row per order with customer, category, date, and
+    amount. Aggregating by customer reveals repurchase intervals and category preferences
+    that drive segmentation and promotions. The example 21 module walks through the
+    concept.
 - type: bullets
   title: 'Case study: customer churn'
   bullets:
-  - Collect and join customer behavior features
-  - Explore and clean before modeling
-  - Train a classifier; score risk of cancellation
-  - Act with retention offers guided by feature importance
-- type: demo
+  - The churn case study stitches the chapter together
+  - Ranked feature importance highlights which behaviors precede churn
+  notes: 'The churn case study stitches the chapter together: assemble behavioral
+    features, explore and clean, train a classifier, and intervene before cancellation.
+    Ranked feature importance highlights which behaviors precede churn; thresholded
+    scores let retention teams act.'
+- type: bullets
   title: Example 1.31 — Churn model sketch
-  command: cd modules/chapter1/example31/ && bash run.sh
-  notes: 'Setting: Python workflow on churn labels
-
-    Key idea: same arc as fraud or demand forecasting
-
-    Only labels and cost of errors change by domain'
+  bullets:
+  - Example 1.31 — hands-on module
+  - Example 1.31 provides a Python sketch of that pipeline
+  - The same structure appears in fraud scoring and demand forecasting
+  - Explore the chapter example module
+  - 'View files: `modules/chapter1/example31/`'
+  notes: Example 1.31 provides a Python sketch of that pipeline. The same structure
+    appears in fraud scoring and demand forecasting—only labels and the cost of errors
+    change. Run the example 31 module when you want to see the code in action.
+- type: code
+  title: Example 1.31 — listing
+  code: "import pandas as pd\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\n\
+    from sklearn.model_selection import train_test_split\nfrom sklearn.impute import\
+    \ SimpleImputer\nfrom sklearn.metrics import accuracy_score, precision_score,\
+    \ recall_score, f1_score\n\n# Sample dataset\ndata = {\n    \"Customer_ID\": [1001,\
+    \ 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010],\n    \"Complaints\":\
+    \ [2, 5, 8, 1, 3, 7, 0, 4, 6, 9],\n    \"Product_Usage\": [50, 30, 20, 70, 45,\
+    \ 15, 80, 35, 25, 10],\n    \"Account_Activity_Change\": [5, -10, -15, 8, -5,\
+    \ -20, 10, -7, -12, -25],\n    \"Subscription_Length\": [24, 36, 12, 48, 30, 6,\
+    \ 60, 28, 14, 10],\n    \"Churned\": [0, 1, 1, 0, 0, 1, 0, 1, 1, 1]  # 1 = Churned,\
+    \ 0 = Not Churned\n}\n\n# Convert to DataFrame\ndf = pd.DataFrame(data)\n\n# Explore\
+    \ dataset\nprint(\"Dataset Info:\")\ndf.info()\nprint(\"\\nMissing Values:\")\n\
+    print(df.isnull().sum())\nprint(\"\\nSummary Statistics:\")\nprint(df.describe())\n\
+    \n# Handle missing values using imputation\nimputer = SimpleImputer(strategy=\"\
+    mean\")\nX = df.drop(columns=[\"Customer_ID\", \"Churned\"])\nX.iloc[:, :] = imputer.fit_transform(X)\n\
+    \ny = df[\"Churned\"]\n\n# Train-test split\nX_train, X_test, y_train, y_test\
+    \ = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Train a Random\
+    \ Forest model\nrf = RandomForestClassifier(n_estimators=100, random_state=42)\n\
+    rf.fit(X_train, y_train)\n\n# Feature importance\nfeature_importance = pd.DataFrame({\"\
+    Feature\": X.columns, \"Importance\": rf.feature_importances_})\nfeature_importance\
+    \ = feature_importance.sort_values(by=\"Importance\", ascending=False)\n\n# Print\
+    \ feature importance\nprint(\"Feature Importance:\")\nprint(feature_importance)\n\
+    \n# Make predictions\ny_pred = rf.predict(X_test)\n\n# Calculate evaluation metrics\n\
+    accuracy = accuracy_score(y_test, y_pred)\nprecision = precision_score(y_test,\
+    \ y_pred)\nrecall = recall_score(y_test, y_pred)\nf1 = f1_score(y_test, y_pred)\n\
+    \n# Display evaluation metrics\nevaluation_metrics = pd.DataFrame({\n    \"Metric\"\
+    : [\"Accuracy\", \"Precision\", \"Recall\", \"F1 Score\"],\n    \"Value\": [accuracy,\
+    \ precision, recall, f1]\n})\n\nprint(\"\\nModel Evaluation Metrics:\")\nprint(evaluation_metrics)"
 - type: bullets
   title: Takeaways
   bullets:
   - Domain vocabulary changes; the lifecycle does not
-  - Exploration and quality feed every serious application
-  - Churn shows define → prepare → model → intervene
+  - Quality and exploration feed every serious application
+  - Churn is the chapter's end-to-end illustration of define, prepare, model, and
+    intervene
+  notes: Domain vocabulary changes; the lifecycle does not. Quality and exploration
+    feed every serious application. Churn is the chapter's end-to-end illustration
+    of define, prepare, model, and intervene.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this clip
+  - Complete the quiz, then finish the chapter with dataset management, versioning,
+    access
+  notes: Complete the quiz, then finish the chapter with dataset management—versioning,
+    access, and privacy that keep such pipelines trustworthy.

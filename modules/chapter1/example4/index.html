@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.4 — Housing Price Dataset in JSON Format — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.4</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.4 — Housing Price Dataset in JSON Format</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.4</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.4</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.1.2</code> — Components of a Dataset</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Identify the attributes/features of a predictive dataset when they arrive as JSON object keys instead of fixed CSV columns.</p>
+<h2>Chapter context</h2>
+<p>Section 1.1.2 also previews machine-learning framing: the same &quot;attribute&quot; idea becomes a &quot;feature&quot; once a value like Price is treated as a modeling target. JSON is introduced here so the record/attribute idea survives a change of format, foreshadowing the semi-structured discussion in Section 1.2.3.</p>
+<h2>What this example shows</h2>
+<p>A JSON array of four houses, each carrying location, square footage, bedrooms, school proximity, and price.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Feature</strong> — an attribute used as a model input; in this listing, everything except <code>Price</code>.</li>
+<li><strong>Target</strong> — the attribute a model predicts; here, <code>Price</code>.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Each object is one house record; its keys (<code>Square_Footage</code>, <code>Bedrooms</code>, ...) are the attributes.</li>
+<li><code>Price</code> is the natural regression target; the remaining keys are candidate predictors.</li>
+<li>Named keys replace positional CSV columns — same information, different layout, same record/attribute meaning.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>All four objects share the same key set — verify this before assuming the array is a consistent schema you can flatten into a table.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>housing.json</code></td><td>Housing feature records</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Pretty-prints JSON</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If you can point at <code>Price</code> and say &quot;target&quot; and at the rest and say &quot;features,&quot; you have connected the book&#x27;s attribute vocabulary to the ML vocabulary used everywhere after Chapter 1.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Flatten this JSON into a CSV with pandas (<code>pd.json_normalize</code>) and confirm you get four rows, five feature columns, and one target column.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.7</code> — a JSON record with a nested array, one step past this flat structure.</li>
+<li><code>eg:1.2</code> — the tabular CSV equivalent of one-record-per-row.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>See also Section 1.2.3 on semi-structured data.</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.4 — Housing Price Dataset in JSON Format
+[
+    {
+        &quot;House_ID&quot;: 101,
+        &quot;Location&quot;: &quot;New York&quot;,
+        &quot;Square_Footage&quot;: 2000,
+        &quot;Bedrooms&quot;: 3,
+        &quot;Proximity_to_Schools&quot;: &quot;0.5 miles&quot;,
+        &quot;Price&quot;: 850000
+    },
+    {
+        &quot;House_ID&quot;: 102,
+        &quot;Location&quot;: &quot;Los Angeles&quot;,
+        &quot;Square_Footage&quot;: 1800,
+        &quot;Bedrooms&quot;: 4,
+        &quot;Proximity_to_Schools&quot;: &quot;1.2 miles&quot;,
+        &quot;Price&quot;: 720000
+    },
+    ... (2 more houses, same key set) ...
+]</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>housing.json</summary>
+  <div class="module-file-actions"><a href="housing.json">Open raw file</a></div>
+  <pre><code>[
+  {
+    &quot;House_ID&quot;: 101,
+    &quot;Location&quot;: &quot;New York&quot;,
+    &quot;Square_Footage&quot;: 2000,
+    &quot;Bedrooms&quot;: 3,
+    &quot;Proximity_to_Schools&quot;: &quot;0.5 miles&quot;,
+    &quot;Price&quot;: 850000
+  },
+  {
+    &quot;House_ID&quot;: 102,
+    &quot;Location&quot;: &quot;Los Angeles&quot;,
+    &quot;Square_Footage&quot;: 1800,
+    &quot;Bedrooms&quot;: 4,
+    &quot;Proximity_to_Schools&quot;: &quot;1.2 miles&quot;,
+    &quot;Price&quot;: 720000
+  },
+  {
+    &quot;House_ID&quot;: 103,
+    &quot;Location&quot;: &quot;Chicago&quot;,
+    &quot;Square_Footage&quot;: 2200,
+    &quot;Bedrooms&quot;: 3,
+    &quot;Proximity_to_Schools&quot;: &quot;0.8 miles&quot;,
+    &quot;Price&quot;: 650000
+  },
+  {
+    &quot;House_ID&quot;: 104,
+    &quot;Location&quot;: &quot;San Francisco&quot;,
+    &quot;Square_Footage&quot;: 1500,
+    &quot;Bedrooms&quot;: 2,
+    &quot;Proximity_to_Schools&quot;: &quot;0.3 miles&quot;,
+    &quot;Price&quot;: 950000
+  }
+]
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

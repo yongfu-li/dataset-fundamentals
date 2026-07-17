@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 2.4 — Real-Time Warehouse Sensor Stream — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 2</a><span class="here">eg:2.4</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 2.4 — Real-Time Warehouse Sensor Stream</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:2.4</span>
+    <span class="pill pill-muted">Chapter 2</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>2</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:2.4</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter2.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:2.2.3</code> — Real-Time Data</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Characterize real-time collection as high-frequency streams that require volume handling, missing-packet policy, and clock discipline.</p>
+<h2>Chapter context</h2>
+<p>Section 2.2.3 moves from batch extracts to continuous streams. The cold-chain warehouse shows why &quot;collecting data&quot; now includes pipeline reliability, not only sensor placement.</p>
+<h2>What this example shows</h2>
+<p>A cold-chain warehouse streams temperature and humidity every thirty seconds; operators get threshold alerts, but the pipeline must handle volume, missing packets, and clock skew.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Real-time data</strong> — Continuously arriving measurements used for near-immediate decisions or alerts.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the concept</h3>
+<ul class='objectives'>
+<li>Frequency (e.g., every 30s) is a design choice tied to the alert SLA.</li>
+<li>Missing packets and clock skew are collection problems, not later cleaning only.</li>
+<li>Storage and alerting are part of the collection system.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> prints the takeaway or data/code output below; use it as a checklist for similar collection designs.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Prints the structured takeaway</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If your decision needs seconds-scale reaction, batch daily extracts are the wrong source type — design the stream&#x27;s failure modes up front.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Would a 5-minute interval still catch a cold-room excursion that lasts 2 minutes? (Usually no — interval must be finer than the failure window.)</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:2.9</code> — Automated cold-room logging at one-minute cadence.</li>
+<li><code>eg:2.23</code> — Soil-moisture streams joined with satellite indices.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Prose-only in the manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Real-time collection = high-frequency streams + reliable pipeline:
+- Example: temp/humidity every 30s in a cold-chain warehouse
+- Must handle volume, missing packets, and clock skew
+- Alerts only work if the stream&#x27;s failure modes are designed in</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

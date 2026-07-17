@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.7 — Semi-Structured Dataset In JSON Format — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.7</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.7 — Semi-Structured Dataset In JSON Format</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.7</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.7</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.2.3</code> — Semi-Structured Datasets</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Distinguish semi-structured data from strict tables: fixed keys, a variable-length nested array, and free text can all coexist in one document.</p>
+<h2>Chapter context</h2>
+<p>Section 1.2.3 places semi-structured data between rigid relational tables and freeform text. This order object is the chapter&#x27;s working illustration of the JSON payloads that power e-commerce APIs — the same shape Example 1.8 later normalizes into SQL tables.</p>
+<h2>What this example shows</h2>
+<p>One customer order: fixed <code>order_id</code>/<code>customer_id</code> identifiers, a nested <code>products</code> array of variable length, and a free-text <code>comments</code> field.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Semi-structured data</strong> — data with some fixed structure (keys, IDs) but also flexible or nested elements, e.g., a variable-length array or free text.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li><code>order_id</code> and <code>customer_id</code> are fixed top-level identifiers — the &quot;structured&quot; part.</li>
+<li><code>products</code> is a nested array — it can hold one item or twenty without adding a single CSV column.</li>
+<li><code>comments</code> is free text embedded inside an otherwise well-defined document — the &quot;semi&quot; in semi-structured.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Pretty-printing exposes the nesting clearly; note which part (products) would need a second table if you tried to force this into flat CSV.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>order.json</code></td><td>Order object sample</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Pretty-prints JSON</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If you can point to which parts of this document are rigid (IDs) and which are flexible (products, comments), you understand why APIs favor JSON for orders and why analytics teams still normalize the rigid parts into SQL (Example 1.8) once volume grows.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add a third product to the <code>products</code> array and confirm no other part of the schema needs to change.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.4</code> — a flatter JSON record with no nested arrays.</li>
+<li><code>eg:1.8</code> — the relational (SQL) version of orders/products, using separate tables instead of nesting.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.7 — Semi-Structured Dataset In JSON Format
+{
+    &quot;order_id&quot;: &quot;12345&quot;,
+    &quot;customer_id&quot;: &quot;1&quot;,
+    &quot;products&quot;: [
+        {
+            &quot;product_name&quot;: &quot;Shoes&quot;,
+            &quot;quantity&quot;: 2
+        },
+        {
+            &quot;product_name&quot;: &quot;Jacket&quot;,
+            &quot;quantity&quot;: 1
+        }
+    ],
+    &quot;comments&quot;: &quot;Fast shipping, excellent quality!&quot;
+}</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>order.json</summary>
+  <div class="module-file-actions"><a href="order.json">Open raw file</a></div>
+  <pre><code>{
+    &quot;order_id&quot;: &quot;12345&quot;,
+    &quot;customer_id&quot;: &quot;1&quot;,
+    &quot;products&quot;: [
+        {&quot;product_name&quot;: &quot;Shoes&quot;, &quot;quantity&quot;: 2},
+        {&quot;product_name&quot;: &quot;Jacket&quot;, &quot;quantity&quot;: 1}
+    ],
+    &quot;comments&quot;: &quot;Fast shipping, excellent quality!&quot;
+}
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

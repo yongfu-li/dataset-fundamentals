@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 2.7 — Fetching a Public Weather API Record — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 2</a><span class="here">eg:2.7</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 2.7 — Fetching a Public Weather API Record</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:2.7</span>
+    <span class="pill pill-muted">Chapter 2</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>2</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:2.7</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter2.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:2.3.4</code> — APIs</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Execute a minimal API collection pattern: HTTP GET → JSON → one row of fields, with timeout and status checks.</p>
+<h2>Chapter context</h2>
+<p>Section 2.3.4 presents APIs as structured programmatic access with clearer contracts than scraping. Example 2.7 is the minimal request; Example 2.18 later adds operational polling and quotas.</p>
+<h2>What this example shows</h2>
+<p>A Python <code>requests.get</code> for city weather with timeout and <code>raise_for_status()</code>, then reading <code>temp</code>, <code>humidity</code>, and <code>observed_at</code> as one appendable monitoring row.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>API</strong> — A contractual interface for programmatic data access, often returning JSON.</li>
+<li><strong>Rate limit</strong> — Provider cap on how many requests you may send in a window.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li><code>requests.get(url, params=..., timeout=10)</code> is the request skeleton.</li>
+<li><code>raise_for_status()</code> fails fast on HTTP errors before parsing.</li>
+<li><code>response.json()</code> yields a dict; select fields as one collection row.</li>
+<li>Production jobs must also handle auth keys and rate limits (book prose).</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> prints the takeaway or data/code output below; use it as a checklist for similar collection designs.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Book request pattern + offline mock wrapper</td></tr><tr><td><code>requirements.txt</code></td><td>requests</td></tr><tr><td><code>install.sh</code></td><td>Import-checked pip --user install</td></tr><tr><td><code>run.sh</code></td><td>Runs main.py</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Treat each successful call as one row in a growing weather table — the chapter&#x27;s API method in miniature; scale it with backoff in Example 2.18.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add a print of <code>response.status_code</code> before <code>json()</code> — what would you log on a 429?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:2.18</code> — Operational polling loop that backs off at quota.</li>
+<li><code>eg:2.6</code> — Scraping when no API exists.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Book URL is illustrative; default run mocks HTTP.</li>
+<li>Set LIVE=1 only with a real endpoint.</li>
+<li>install.sh uses import-checked pip --user (no local venv).</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 2.7 — Fetching a Public Weather API Record
+Offline demo: requests.get was mocked.
+Call args: call(&#x27;https://api.example.com/weather&#x27;, params={&#x27;city&#x27;: &#x27;Singapore&#x27;}, timeout=10)
+Stored row fields:
+{
+  &quot;city&quot;: &quot;Singapore&quot;,
+  &quot;temp&quot;: 31.2,
+  &quot;humidity&quot;: 74,
+  &quot;observed_at&quot;: &quot;2024-06-01T12:00:00Z&quot;
+}
+temp = 31.2
+humidity = 74
+observed_at = 2024-06-01T12:00:00Z</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 2.7 — fetch a weather-like JSON record (book pattern + offline demo).
+
+The manuscript calls https://api.example.com/weather (illustrative).
+By default this module uses a mocked response so the example runs offline.
+Set LIVE=1 to attempt a real HTTP call to the book URL (will fail unless you
+replace the URL with a working endpoint).
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import json
+import os
+from typing import Any
+from unittest.mock import MagicMock, patch
+
+import requests
+
+
+def fetch_weather(city: str = &quot;Singapore&quot;) -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Request current conditions and return the JSON payload.&quot;&quot;&quot;
+    response = requests.get(
+        &quot;https://api.example.com/weather&quot;,
+        params={&quot;city&quot;: city},
+        timeout=10,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    # Example fields: payload[&quot;temp&quot;], payload[&quot;humidity&quot;]
+    return payload
+
+
+def _demo_payload() -&gt; dict[str, Any]:
+    &quot;&quot;&quot;Synthetic record shaped like the fields named in the book.&quot;&quot;&quot;
+    return {
+        &quot;city&quot;: &quot;Singapore&quot;,
+        &quot;temp&quot;: 31.2,
+        &quot;humidity&quot;: 74,
+        &quot;observed_at&quot;: &quot;2024-06-01T12:00:00Z&quot;,
+    }
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Run the book request pattern, mocking the network unless LIVE=1.&quot;&quot;&quot;
+    if os.environ.get(&quot;LIVE&quot;) == &quot;1&quot;:
+        payload = fetch_weather(&quot;Singapore&quot;)
+    else:
+        mock_resp = MagicMock()
+        mock_resp.raise_for_status = MagicMock()
+        mock_resp.json.return_value = _demo_payload()
+        with patch(&quot;requests.get&quot;, return_value=mock_resp) as mocked:
+            payload = fetch_weather(&quot;Singapore&quot;)
+            print(&quot;Offline demo: requests.get was mocked.&quot;)
+            print(&quot;Call args:&quot;, mocked.call_args)
+
+    print(&quot;Stored row fields:&quot;)
+    print(json.dumps(payload, indent=2))
+    print(&quot;temp =&quot;, payload.get(&quot;temp&quot;))
+    print(&quot;humidity =&quot;, payload.get(&quot;humidity&quot;))
+    print(&quot;observed_at =&quot;, payload.get(&quot;observed_at&quot;))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>requests
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

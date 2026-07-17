@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.13 — Inconsistent Date Formats — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.13</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.13 — Inconsistent Date Formats</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.13</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.13</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.3.1</code> — Attributes of a Good Dataset</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Recognize a consistency failure when the same attribute (a ship date) uses incompatible formats across rows, and see why that breaks chronological sorting.</p>
+<h2>Chapter context</h2>
+<p>Consistency closes the accuracy/completeness/consistency trio in Section 1.3.1: merged extracts often mix locale date conventions, and nothing downstream works correctly until one convention is enforced.</p>
+<h2>What this example shows</h2>
+<p>Three ship dates: <code>03/04/2024</code> (ambiguous MM/DD or DD/MM), an ISO <code>2024-04-03</code>, and <code>04/03/2024</code> — three notations that may or may not denote the same day.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Consistency</strong> — uniform formats/definitions for the same attribute across records; the third quality dimension in Section 1.3.1.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li><code>03/04/2024</code> is ambiguous (March 4 vs April 3) without a documented convention.</li>
+<li>ISO dates (<code>2024-04-03</code>) sort lexicographically as strings; slash forms do not sort reliably.</li>
+</ul>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li><code>main.py</code> prints each row and states the locale ambiguity explicitly — the analytical failure mode, made visible.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Three formats side by side are the teaching point: inconsistency is visible before any date parser even runs.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.csv</code></td><td>Orders with mixed date formats</td></tr><tr><td><code>main.py</code></td><td>Prints rows and the locale caveat</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Runs the preview script</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Standardizing dates (and, by extension, units, categories, and IDs) is a prerequisite for any trustworthy time-based analysis — you cannot sort or diff what you cannot parse unambiguously.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Rewrite all three dates to ISO 8601 in a copy of <code>data.csv</code> and confirm they now sort correctly with a plain string sort.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.11</code> — accuracy.</li>
+<li><code>eg:1.12</code> — completeness — together the Section 1.3.1 quality trio.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Closes the accuracy/completeness/consistency trio with Examples 1.11-1.12.</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.13 — Inconsistent Date Formats
+{&#x27;Order_ID&#x27;: &#x27;O1001&#x27;, &#x27;Ship_Date&#x27;: &#x27;03/04/2024&#x27;}
+{&#x27;Order_ID&#x27;: &#x27;O1002&#x27;, &#x27;Ship_Date&#x27;: &#x27;2024-04-03&#x27;}
+{&#x27;Order_ID&#x27;: &#x27;O1003&#x27;, &#x27;Ship_Date&#x27;: &#x27;04/03/2024&#x27;}
+
+Without a documented convention, 03/04/2024 may mean March 4 or April 3.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>Order_ID,Ship_Date
+O1001,03/04/2024
+O1002,2024-04-03
+O1003,04/03/2024
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Show ambiguous regional date formats from Example 1.13.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Print ship dates and explain locale ambiguity.&quot;&quot;&quot;
+    path = Path(__file__).resolve().parent / &quot;data.csv&quot;
+    for row in csv.DictReader(path.open(encoding=&quot;utf-8&quot;)):
+        print(row)
+    print(&quot;\nWithout a documented convention, 03/04/2024 may mean March 4 or April 3.&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

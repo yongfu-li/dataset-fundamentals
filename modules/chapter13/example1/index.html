@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 13.1 — Same Data and Methods Yield Identical Results — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 13</a><span class="here">eg:13.1</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 13.1 — Same Data and Methods Yield Identical Results</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:13.1</span>
+    <span class="pill pill-muted">Chapter 13</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>13</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:13.1</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter13.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:13.1.1</code> — Defining Reproducibility and Replicability</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Demonstrate methods reproducibility: identical data, seed, and transform yield the same result hash.</p>
+<h2>Chapter context</h2>
+<p>Section 13.1.1 distinguishes reproducibility (same data and method → same result) from replicability (independent rerun with new data or team). If a researcher publishes a study using a dataset and a specific analytical technique, other researchers should be able to use the exact same dataset and method to obtain identical…</p>
+<h2>What this example shows</h2>
+<p>If a researcher publishes a study using a dataset and a specific analytical technique, other researchers should be able to use the exact same dataset and method to obtain identical results. It is a measure of the transparency and robustness of the scientific process.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Reproducibility</strong> — Same dataset and computational method yield the same result.</li>
+<li><strong>Replicability</strong> — Independent study with new data tests whether findings generalize.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Fix <code>random.Random(seed)</code> and transform (<code>zscore</code> vs <code>minmax</code>) for deterministic draws.</li>
+<li>Hash processed values with SHA-256 so equality checks are unambiguous.</li>
+<li>Same seed + same transform → identical digest; change either → different digest.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>identical? True</code> confirms methods reproducibility; changed seed or transform must differ.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of computational reproducibility</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If run A and run B differ with the same seed, your pipeline is non-deterministic—fix ordering, seeds, or floating-point steps before claiming reproducibility.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change the transform to minmax in main.py—does the hash match run A?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:13.2</code> — Replicability contrast.</li>
+<li><code>eg:13.50</code> — Environment drift pitfall.</li>
+<li><code>Chapter 8</code> — Documentation and versioning.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library determinism demo; SHA-256 summarizes numeric output for teaching.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Reproducibility (same data + same method):
+  run A (seed=42, zscore): 5e9a5a59f03d3c32
+  run B (seed=42, zscore): 5e9a5a59f03d3c32
+  identical? True
+
+Breaking reproducibility (change one input):
+  different seed   : 304b943459cc620e  -&gt; matches A? False
+  different method : 5e2b13f1674275d3  -&gt; matches A? False
+
+Lesson: fix the data and the method (including the seed) to reproduce a result;
+        any change in seed, step, or order can break bit-for-bit reproducibility.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 13.1 — same data and methods yield identical results.
+
+Demonstrates computational (methods) reproducibility with the standard library:
+a seeded pipeline produces a byte-identical result across runs, while changing
+the seed or a step breaks that guarantee.
+&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+import random
+import statistics
+
+
+def analysis(seed: int, transform: str = &quot;zscore&quot;) -&gt; str:
+    &quot;&quot;&quot;Run a small deterministic &#x27;analysis&#x27; and return a hash of its result.
+
+    Args:
+        seed: Random seed fixing the synthetic dataset and any sampling.
+        transform: Processing step applied to the data (&#x27;zscore&#x27; or &#x27;minmax&#x27;).
+
+    Returns:
+        A short SHA-256 hex digest summarizing the numeric result.
+    &quot;&quot;&quot;
+    rng = random.Random(seed)
+    data = [rng.gauss(50.0, 10.0) for _ in range(1000)]
+
+    if transform == &quot;zscore&quot;:
+        mu = statistics.fmean(data)
+        sigma = statistics.pstdev(data)
+        processed = [(x - mu) / sigma for x in data]
+    elif transform == &quot;minmax&quot;:
+        lo, hi = min(data), max(data)
+        processed = [(x - lo) / (hi - lo) for x in data]
+    else:
+        raise ValueError(f&quot;unknown transform: {transform}&quot;)
+
+    rounded = &quot;,&quot;.join(f&quot;{x:.6f}&quot; for x in processed)
+    return hashlib.sha256(rounded.encode(&quot;utf-8&quot;)).hexdigest()[:16]
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Show reproducible vs non-reproducible runs.&quot;&quot;&quot;
+    seed, transform = 42, &quot;zscore&quot;
+
+    run_a = analysis(seed, transform)
+    run_b = analysis(seed, transform)
+    print(&quot;Reproducibility (same data + same method):&quot;)
+    print(f&quot;  run A (seed={seed}, {transform}): {run_a}&quot;)
+    print(f&quot;  run B (seed={seed}, {transform}): {run_b}&quot;)
+    print(f&quot;  identical? {run_a == run_b}\n&quot;)
+
+    changed_seed = analysis(seed + 1, transform)
+    changed_step = analysis(seed, &quot;minmax&quot;)
+    print(&quot;Breaking reproducibility (change one input):&quot;)
+    print(f&quot;  different seed   : {changed_seed}  -&gt; matches A? {changed_seed == run_a}&quot;)
+    print(f&quot;  different method : {changed_step}  -&gt; matches A? {changed_step == run_a}\n&quot;)
+
+    print(&quot;Lesson: fix the data and the method (including the seed) to reproduce a result;&quot;)
+    print(&quot;        any change in seed, step, or order can break bit-for-bit reproducibility.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

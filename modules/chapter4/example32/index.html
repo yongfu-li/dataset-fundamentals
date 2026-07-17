@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 4.32 — Annotator Audit Versus Model Test — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 4</a><span class="here">eg:4.32</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 4.32 — Annotator Audit Versus Model Test</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:4.32</span>
+    <span class="pill pill-muted">Chapter 4</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>4</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:4.32</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter4.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:4.5.3</code> — Quality Control Metrics Against Gold Labels</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Separate annotator precision/recall against gold labels from model test metrics on the released corpus.</p>
+<h2>Chapter context</h2>
+<p>Section 4.5.3 on QC metrics—Example 4.32 clarifies that labeler audit scores answer a different question than detector evaluation on a test split.</p>
+<h2>What this example shows</h2>
+<p>On a held-out review batch, an annotator&#x27;s box labels achieve precision 0.92 and recall 0.81 against gold—those figures evaluate the labeler, not the detector trained later; model test metrics answer a different question.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Gold set</strong> — Expert-adjudicated reference labels for QC audits.</li>
+<li><strong>Annotator audit</strong> — Measuring labeler P/R against gold on a review batch.</li>
+<li><strong>Model evaluation</strong> — Scoring a trained detector on a held-out test split—downstream of annotation QC.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the concept</h3>
+<ul class='objectives'>
+<li>Good labelers ≠ good models automatically.</li>
+<li>Report annotation QC and model metrics separately in documentation.</li>
+<li>Low recall in labeling becomes false negatives in training data.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> prints example P/R for the labeler and warns against conflating with model test scores.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Prints the structured takeaway</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>In dataset datasheets, include both IAA/audit stats and baseline model numbers—Example 4.32 defines the distinction.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>For your last project, did you report annotator agreement, gold audit, or only final model F1?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:4.31</code> — IAA before scale—complementary to gold audit.</li>
+<li><code>eg:4.14</code> — Box labels whose quality drives detector training.</li>
+<li><code>eg:4.5</code> — Clinical settings where label recall has safety weight.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Prose-only.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Annotator audit vs model test:
+- Held-out review batch: precision 0.92, recall 0.81 against gold set
+- Those figures evaluate the labeler
+- Detector metrics on a test split answer a different question
+Do not confuse annotation QC with model evaluation.</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

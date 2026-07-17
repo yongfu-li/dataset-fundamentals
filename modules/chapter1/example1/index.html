@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.1 — Sample CSV Sales Data — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.1</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.1 — Sample CSV Sales Data</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.1</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.1</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.1.1</code> — Definition of a Dataset</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Recognize a dataset as an organized collection of records by reading a plain CSV sales log where each row is one transaction and each column is an attribute of that transaction.</p>
+<h2>Chapter context</h2>
+<p>Chapter 1 opens by defining a dataset before showing its many shapes. Before introducing healthcare, sensor, and non-tabular data, the author reaches for the most familiar layout — a spreadsheet of sales — so the record/attribute idea has one concrete anchor before it gets generalized.</p>
+<h2>What this example shows</h2>
+<p>A CSV of six retail transactions with columns for date, product, quantity, unit price, and total — the simplest everyday instance of the row-and-column definition the section just gave in prose.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Record</strong> — one row of the dataset; here, a single sale.</li>
+<li><strong>Attribute</strong> — one column describing a record; here, Date/Product/Quantity/Price/Total.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Each row (e.g., the Apple sale on 2024-01-01) is one record — one observed transaction.</li>
+<li><code>Date, Product, Quantity, Price, Total</code> are the attributes that describe that record.</li>
+<li><code>Total</code> is derivable from <code>Quantity x Price</code>; noticing this hints at the redundancy checks Example 1.11 later automates for accuracy.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>The printed table has 6 data rows and 5 columns — count both before moving on, since later examples change domain but keep this shape.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.csv</code></td><td>Sales sample from the book</td></tr><tr><td><code>install.sh</code></td><td>No-op installer (no dependencies)</td></tr><tr><td><code>run.sh</code></td><td>Prints the CSV to the terminal</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If you can point at any line and say &quot;this is one record with five attributes,&quot; you have the mental model the rest of the chapter builds on — later examples only change the domain (healthcare, sensors) or the format (JSON, SQL), never this row/column idea.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add a seventh row for a return (negative quantity) and decide whether <code>Total</code> should also go negative — this is the kind of accuracy check Example 1.11 automates.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.2</code> — the same record/attribute pattern applied to a healthcare cohort.</li>
+<li><code>eg:1.3</code> — the same pattern applied to timestamped sensor readings.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Reused conceptually through Chapter 1 (e.g., alongside Examples 1.2-1.3).</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.1 — Sample CSV Sales Data
+---- data.csv ----
+Date,Product,Quantity,Price,Total
+2024-01-01,Apple,3,0.5,1.5
+2024-01-01,Banana,2,0.3,0.6
+2024-01-02,Orange,5,0.7,3.5
+2024-01-02,Grapes,1,2.0,2.0
+2024-01-03,Mango,4,1.5,6.0
+2024-01-04,Apple,2,0.5,1.0</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>Date,Product,Quantity,Price,Total
+2024-01-01,Apple,3,0.5,1.5
+2024-01-01,Banana,2,0.3,0.6
+2024-01-02,Orange,5,0.7,3.5
+2024-01-02,Grapes,1,2.0,2.0
+2024-01-03,Mango,4,1.5,6.0
+2024-01-04,Apple,2,0.5,1.0
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

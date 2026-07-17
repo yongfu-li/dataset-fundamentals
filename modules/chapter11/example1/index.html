@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 11.1 — Uncertainty Sampling for Cat-Dog Images — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 11</a><span class="here">eg:11.1</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 11.1 — Uncertainty Sampling for Cat-Dog Images</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:11.1</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>11</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:11.1</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter11.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:11</code> — ?</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Rank binary predictions by distance from 0.5 and queue near-tie images for labeling.</p>
+<h2>Chapter context</h2>
+<p>Chapter 11 extends Chapter 4 with active learning, weak supervision, self-supervision, and hybrid crowd–expert pipelines. In a binary image classifier, an image with predicted probabilities near 0.51/0.49 for cat versus dog is queued for a human label because that near-tie is where a new label most re…</p>
+<h2>What this example shows</h2>
+<p>In a binary image classifier, an image with predicted probabilities near 0.51/0.49 for cat versus dog is queued for a human label because that near-tie is where a new label most reshapes the decision boundary .</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Compute |P(dog) − 0.5| for each unlabeled image.</li>
+<li>Sort ascending—smallest distance means highest query priority.</li>
+<li>Flag Queue=YES when |p−0.5| ≤ 0.05 (near-tie decision boundary).</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed ranks, margins, entropies, or weak-label votes to the chapter&#x27;s selection rule.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter query strategy or labeling functions</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>If near-ties are not queued first, you waste expert time on 0.92/0.11 &#x27;easy&#x27; images that barely move the boundary.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add an image at P(dog)=0.50—which rank should it take?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:11.2</code> — Margin sampling for multi-class.</li>
+<li><code>eg:11.3</code> — Entropy sampling alternative.</li>
+<li><code>Chapter 4</code> — Annotation fundamentals.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python demo; fixed logic mirrors the chapter query strategy.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Binary pool (P(dog)); lower |p-0.5| =&gt; higher priority
+
+Image                   P(dog)   |p-0.5|  Queue?
+img_blurry_pet.jpg        0.51      0.01     YES
+img_night_pet.jpg         0.48      0.02     YES
+img_toy_animal.jpg        0.67      0.17        
+img_clear_cat.jpg         0.11      0.39        
+img_clear_dog.jpg         0.92      0.42        
+
+Near-ties (≈0.51/0.49) most reshape the decision boundary when labeled.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 11.1 — uncertainty sampling queues near-tie binary predictions.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def uncertainty_score(p_positive: float) -&gt; float:
+    &quot;&quot;&quot;Return distance from a 0.5 decision boundary (lower =&gt; more uncertain).&quot;&quot;&quot;
+    return abs(p_positive - 0.5)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Rank unlabeled images by binary prediction uncertainty.&quot;&quot;&quot;
+    pool: list[tuple[str, float]] = [
+        (&quot;img_clear_dog.jpg&quot;, 0.92),
+        (&quot;img_clear_cat.jpg&quot;, 0.11),
+        (&quot;img_blurry_pet.jpg&quot;, 0.51),
+        (&quot;img_night_pet.jpg&quot;, 0.48),
+        (&quot;img_toy_animal.jpg&quot;, 0.67),
+    ]
+    ranked = sorted(pool, key=lambda row: uncertainty_score(row[1]))
+    print(&quot;Binary pool (P(dog)); lower |p-0.5| =&gt; higher priority\n&quot;)
+    print(f&quot;{&#x27;Image&#x27;:&lt;22}{&#x27;P(dog)&#x27;:&gt;8}{&#x27;|p-0.5|&#x27;:&gt;10}{&#x27;Queue?&#x27;:&gt;8}&quot;)
+    for name, prob in ranked:
+        score = uncertainty_score(prob)
+        flag = &quot;YES&quot; if score &lt;= 0.05 else &quot;&quot;
+        print(f&quot;{name:&lt;22}{prob:&gt;8.2f}{score:&gt;10.2f}{flag:&gt;8}&quot;)
+    print()
+    print(&quot;Near-ties (≈0.51/0.49) most reshape the decision boundary when labeled.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

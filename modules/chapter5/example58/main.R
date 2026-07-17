@@ -1,0 +1,5 @@
+# Example 5.58 — dplyr filter and select (book listing)
+library(dplyr)
+df <- read.csv("data.csv")
+df <- df %>% filter(!is.na(column_name)) %>% select(column1, column2)
+print(df)

@@ -6,64 +6,64 @@ paginate: true
 
 # Chapter 1 — Characteristics of good datasets
 
-Judge quality as a bundle of task-relative dimensions
+Knowing a file's type and format is not enough
 
 ---
 
 ## Learning objectives
-
-- List five quality dimensions from the chapter
-- Diagnose accuracy, completeness, and consistency defects
-- Explain why metadata and documentation matter
+- Consistency, and explain why metadata and documentation make a dataset reusable
 
 ---
 
 ## Five quality dimensions
-
-- **Accuracy** — values reflect ground truth closely enough
-- **Completeness** — needed records and attributes are present
-- **Consistency** — uniform formats, units, definitions
-- **Relevance** — data answers the intended question
-- **Timeliness** — data is sufficiently up to date
+- Table 1.6 in the chapter lists accuracy, completeness, consistency, relevance
+- None stands alone
+- Still on-question
 
 ---
 
 ## Example 1.11 — Incorrect transaction
+- Example 1.11 — hands-on module
+- Example 1.11 shows a ledger where one transaction likely contains an extra zero
+- That single accuracy error changes monthly revenue by an order of magnitude and can
+- Explore the chapter example module
+- View files: `modules/chapter1/example11/`
 
-- Setting: financial ledger with a mis-keyed amount
-- Key idea: one extra zero shifts monthly revenue by 10×
-- Accuracy failures distort aggregates and forecasts
-- Try it: `modules/chapter1/example11/`
+---
+
+## Example 1.11 — listing
+
+```
+Txn_ID,Date,Account,Amount,Type
+T001,2024-03-01,Revenue,1500.00,Credit
+T002,2024-03-02,Revenue,15000.00,Credit
+T003,2024-03-03,Refund,50.00,Debit
+```
 
 ---
 
 ## Completeness and consistency
-
-- Missing age or diagnosis fields bias clinical models (eg:1.12)
-- Mixed date formats break chronological sorting (eg:1.13)
-- Defects interact: complete yet inaccurate still fails the task
-- Systematic repair is deferred to later chapters
+- Completeness failures
+- Consistency failures
+- Later chapters develop systematic repair; here the goal is recognition
 
 ---
 
 ## Metadata and documentation
-
-- Metadata: who, when, schema, units, provenance
-- Documentation: how to interpret and reuse the file
-- Example 1.14: weather dataset metadata fields
-- Try it: `modules/chapter1/example14/`
+- Metadata records schema, units, provenance, and related context
+- Example 1.14 illustrates metadata for a weather dataset
+- Without these, even accurate tables become hard to trust outside the original team
+- The example 14 module shows what good metadata looks like in practice
 
 ---
 
 ## Takeaways
-
 - Quality is multi-dimensional and task-relative
-- Spot accuracy, missingness, and format clashes early
-- Metadata + docs make datasets usable beyond their author
+- Learn to spot accuracy errors, missing fields
 
 ---
 
 ## Next
-
 - Complete the quiz for this clip
-- Then continue to: Exploring a dataset
+- Complete the quiz
+

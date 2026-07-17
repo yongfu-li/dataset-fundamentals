@@ -24,7 +24,7 @@
     <span class="pill pill-muted">Chapter 1</span>
     <span class="pill pill-muted">Clip 3 of 7</span>
   </div>
-  <div class="deck-links"><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a></div>
+  <div class="deck-links"><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a></div>
 </section>
 
 <section class="video-panel" aria-label="Clip video">
@@ -51,15 +51,78 @@
 <li>Link format choice to downstream tooling</li>
 </ul>
 
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.8</span>
+    <h3>Example 1.8 — Sample of SQL Format</h3>
+    <p>Explain how primary/foreign keys and constraints keep related entities consistent across tables, and how a JOIN reassembles an analysis-ready view.</p>
+    <p class='module-files-inline'>Preview files: <code>query.sql</code>, <code>run_demo.py</code>, <code>schema.sql</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example8/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.9</span>
+    <h3>Example 1.9 — Creating and Reading an HDF5 File</h3>
+    <p>Describe HDF5 as a container for large multidimensional arrays and grouped scientific series, and practice writing then reading one back programmatically.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code>, <code>requirements.txt</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example9/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Dataset formats</h3><ul><li>Match storage formats to structure, volume, and tools</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Name common formats for tabular, hierarchical, and geospatial data</li><li>Explain when CSV, SQL, HDF5, or GeoJSON is a fit</li><li>Link format choice to downstream tooling</li></ul></div><div class="slide-card"><h3>Why format matters</h3><ul><li>Format is how structure is serialized on disk</li><li>Wrong format creates friction in the pipeline</li><li>Match format to structure, volume, and tools</li><li>Complements the type taxonomy from the previous clip</li></ul></div><div class="slide-card"><h3>Common formats at a glance</h3><ul><li><strong>CSV</strong> — simple tabular exchange</li><li><strong>SQL tables</strong> — queryable structured stores</li><li><strong>JSON / GeoJSON</strong> — nested or spatial features</li><li><strong>HDF5</strong> — large scientific / array datasets</li></ul></div><div class="slide-card"><h3>Example 1.8 — SQL format</h3><ul><li>Setting: relational tables with typed columns</li><li>Key idea: schema + queries for filtering and joins</li><li>Fits structured datasets with stable attributes</li><li>Try it: <code>modules/chapter1/example8/</code></li></ul></div><div class="slide-card"><h3>Example 1.9 — HDF5</h3><ul><li>Setting: hierarchical binary store for arrays</li><li>Key idea: efficient read/write for large numeric data</li><li>Common in scientific and ML feature pipelines</li><li>Try it: <code>modules/chapter1/example9/</code></li></ul></div><div class="slide-card"><h3>Choosing a format</h3><ul><li>Start from structure (tabular vs nested vs spatial)</li><li>Consider size, update rate, and who will query it</li><li>Prefer formats your stack already supports well</li><li>Document the choice in metadata (next quality topics)</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Format = serialization of structure</li><li>CSV and SQL dominate everyday tables</li><li>HDF5 and GeoJSON serve specialized shapes and scales</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this clip</li><li>Then continue to: Characteristics of good datasets</li></ul></div></div></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Dataset formats</h3><ul><li>Structure tells you how records are organized; format tells you how they are stored</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Leave able to name formats for tabular, hierarchical</li><li>Geospatial data, explain when CSV, SQL, HDF5, or GeoJSON fits</li><li>Connect format choice to the tools that will consume the data</li></ul></div><div class="slide-card"><h3>Why format matters</h3><ul><li>Format is the serialization of structure</li><li>Matching format to structure, expected volume</li><li>A mismatch, for example, forcing huge arrays through naive CSV, creates avoidable cost</li></ul></div><div class="slide-card"><h3>Common formats at a glance</h3><ul><li>CSV remains the common language for simple tables</li><li>SQL tables add typed schemas and efficient queries</li><li>JSON and GeoJSON handle nested objects and spatial features</li><li>HDF5 targets large scientific or array-oriented datasets</li><li>Each aligns with a structural niche</li></ul></div><div class="slide-card"><h3>Example 1.8 — SQL format</h3><ul><li>Example 1.8 — hands-on module</li><li>Example 1.8 shows structured data in a relational form</li><li>When attributes are stable and analysts need aggregations</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example8/</code></li></ul></div><div class="slide-card"><h3>Example 1.8 — listing</h3><pre><code>]
+CREATE TABLE Customers (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE Orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Order_Items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity &gt; 0),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);</code></pre></div><div class="slide-card"><h3>Example 1.9 — HDF5</h3><ul><li>Example 1.9 — hands-on module</li><li>Example 1.9 creates and reads an HDF5 file</li><li>Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example9/</code></li></ul></div><div class="slide-card"><h3>Example 1.9 — listing</h3><pre><code>import h5py
+import numpy as np
+
+with h5py.File(&quot;example.h5&quot;, &quot;w&quot;) as hdf:
+    data = np.random.rand(100, 100)
+    hdf.create_dataset(&quot;random_data&quot;, data=data)
+    group = hdf.create_group(&quot;experiment&quot;)
+    group.create_dataset(&quot;temperature&quot;, data=np.linspace(0, 100, 100))
+    group.create_dataset(&quot;pressure&quot;, data=np.linspace(1, 10, 100))
+
+with h5py.File(&quot;example.h5&quot;, &quot;r&quot;) as hdf:
+    print(&quot;Datasets in root:&quot;, list(hdf.keys()))
+    random_data = hdf[&quot;random_data&quot;][:]
+    print(&quot;Shape of &#x27;random_data&#x27;:&quot;, random_data.shape)</code></pre></div><div class="slide-card"><h3>Choosing a format</h3><ul><li>Start from structure, then consider size, update rate, and tooling</li><li>Prefer formats your team already supports</li><li>Metadata and documentation, covered next, make that choice durable</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Format serializes structure</li><li>Everyday tables lean on CSV and SQL</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this clip</li><li>Complete the quiz, then move to characteristics of good datasets, accuracy, completeness</li></ul></div></div></div>
 </details>
 
 
 <details class="panel" data-persist="transcript">
   <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Dataset formats</h3><p>Structure tells you how records are organized; format tells you how they are stored. This clip connects common on-disk formats to the types from the previous clip.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should leave able to name formats for tabular, hierarchical, and geospatial data, explain when CSV, SQL, HDF5, or GeoJSON fits, and connect format choice to the tools that will consume the data.</p></div><div class="transcript"><h3>Slide 3 — Why format matters</h3><p>Format is the serialization of structure. Matching format to structure, expected volume, and downstream tools reduces friction across collection and analysis. A mismatch—for example, forcing huge arrays through naive CSV—creates avoidable cost.</p></div><div class="transcript"><h3>Slide 4 — Common formats at a glance</h3><p>CSV remains the common language for simple tables. SQL tables add typed schemas and efficient queries. JSON and GeoJSON handle nested objects and spatial features. HDF5 targets large scientific or array-oriented datasets. Each aligns with a structural niche.</p></div><div class="transcript"><h3>Slide 5 — Example 1.8 — SQL format</h3><p>Example 1.8 shows structured data in a relational form: typed columns and queries for filtering and joins. When attributes are stable and analysts need aggregations, SQL (or an equivalent relational store) is a natural fit. Explore <code>modules/chapter1/example8/</code>.</p></div><div class="transcript"><h3>Slide 6 — Example 1.9 — HDF5</h3><p>Example 1.9 creates and reads an HDF5 file—a hierarchical binary format efficient for large numeric arrays. Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or too large. Try <code>modules/chapter1/example9/</code> (requires h5py).</p></div><div class="transcript"><h3>Slide 7 — Choosing a format</h3><p>Start from structure, then consider size, update rate, and tooling. Prefer formats your team already supports, and document the choice so later consumers are not guessing. Metadata and documentation—covered next—make that choice durable.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Format serializes structure. Everyday tables lean on CSV and SQL; specialized shapes and scales use HDF5, GeoJSON, and related formats.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Complete the quiz, then move to characteristics of good datasets—accuracy, completeness, and related quality dimensions.</p></div></div>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Dataset formats</h3><p>Structure tells you how records are organized; format tells you how they are stored. This clip connects common on-disk formats to the types from the previous clip.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should leave able to name formats for tabular, hierarchical, and geospatial data, explain when CSV, SQL, HDF5, or GeoJSON fits, and connect format choice to the tools that will consume the data.</p></div><div class="transcript"><h3>Slide 3 — Why format matters</h3><p>Format is the serialization of structure. Matching format to structure, expected volume, and downstream tools reduces friction across collection and analysis. A mismatch—for example, forcing huge arrays through naive CSV—creates avoidable cost.</p></div><div class="transcript"><h3>Slide 4 — Common formats at a glance</h3><p>CSV remains the common language for simple tables. SQL tables add typed schemas and efficient queries. JSON and GeoJSON handle nested objects and spatial features. HDF5 targets large scientific or array-oriented datasets. Each aligns with a structural niche.</p></div><div class="transcript"><h3>Slide 5 — Example 1.8 — SQL format</h3><p>Example 1.8 shows structured data in a relational form: typed columns and queries for filtering and joins. When attributes are stable and analysts need aggregations, SQL, or an equivalent relational store, is a natural fit. The example 8 module lets you explore this hands-on.</p></div><div class="transcript"><h3>Slide 6 — Example 1.9 — HDF5</h3><p>Example 1.9 creates and reads an HDF5 file—a hierarchical binary format efficient for large numeric arrays. Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or too large. Try the example 9 module to create and read one yourself.</p></div><div class="transcript"><h3>Slide 7 — Choosing a format</h3><p>Start from structure, then consider size, update rate, and tooling. Prefer formats your team already supports, and document the choice so later consumers are not guessing. Metadata and documentation—covered next—make that choice durable.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Format serializes structure. Everyday tables lean on CSV and SQL; specialized shapes and scales use HDF5, GeoJSON, and related formats.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Complete the quiz, then move to characteristics of good datasets—accuracy, completeness, and related quality dimensions.</p></div></div>
 </details>
 
 

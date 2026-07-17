@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 5.68 — Label Versus One Hot Encoding Lab — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 5</a><span class="here">eg:5.68</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 5.68 — Label Versus One Hot Encoding Lab</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:5.68</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>5</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:5.68</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter5.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:5.8.4</code> — Encoding Activity: Choosing Between One-Hot and Label Encoding</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Apply label encoding to an ordinal field and one-hot encoding to a nominal field on the same frame.</p>
+<h2>Chapter context</h2>
+<p>Section 5.8.4 lab contrasts label vs one-hot encoding on ordinal vs nominal fields. Apply label encoding to an ordinal product type and one-hot encoding to a nominal region column:</p>
+<h2>What this example shows</h2>
+<p>Ordinal <code>product_type</code> gets label codes; nominal <code>region</code> gets one-hot dummies</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Ordinal <code>product_type</code> gets label codes; nominal <code>region</code> gets one-hot dummies.</li>
+<li>Side-by-side columns show false ordinality risk vs expanded dimensionality.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> runs <code>main.py</code> (or <code>main.R</code>) and prints Before/After frames—compare shapes and columns.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Label vs one-hot encoding lab</td></tr><tr><td><code>data.csv</code></td><td>Ordinal product_type + nominal region</td></tr><tr><td><code>encoded_data.csv</code></td><td>Written on run</td></tr><tr><td><code>install.sh</code></td><td>Installs runtime dependencies</td></tr><tr><td><code>run.sh</code></td><td>Runs the example</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Match each printed Before/After change to a book listing step—those deltas are the cleaning decisions Section 5.5 expects you to defend in a pipeline review.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change one step in the script (e.g., keep NA rows or skip dedupe)—how does the After shape or columns differ?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:5.48</code> — Label encoding for ordinal size.</li>
+<li><code>eg:5.47</code> — One-hot for nominal color.</li>
+<li><code>eg:5.69</code> — Encoding tradeoffs prose.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Sample CSVs are synthetic and sized for the listing; they are not from a published dataset.</li>
+<li><code>install.sh</code> uses <code>pip install --user</code> (no local venv) for reliability on Windows-mounted paths.</li>
+<li>Listing logic matches the book; wrappers only add imports and I/O so the module runs standalone.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Before:
+   product_type region  sales
+0        small   east     10
+1       medium   west     20
+2        large   east     30
+3       medium  north     15
+4        small   west     12
+After:
+   product_type  sales  product_type_encoded  region_north  region_west
+0        small     10                     2         False        False
+1       medium     20                     1         False         True
+2        large     30                     0         False        False
+3       medium     15                     1          True        False
+4        small     12                     2         False         True
+Wrote encoded_data.csv</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>product_type,region,sales
+small,east,10
+medium,west,20
+large,east,30
+medium,north,15
+small,west,12
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>encoded_data.csv</summary>
+  <div class="module-file-actions"><a href="encoded_data.csv">Open raw file</a></div>
+  <pre><code>product_type,sales,product_type_encoded,region_north,region_west
+small,10,2,False,False
+medium,20,1,False,True
+large,30,0,False,False
+medium,15,1,True,False
+small,12,2,False,True
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 5.68 — label encode ordinal type; one-hot encode region.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Apply LabelEncoder and get_dummies as in the book listing.&quot;&quot;&quot;
+    df = pd.read_csv(&quot;data.csv&quot;)
+    print(&quot;Before:\n&quot;, df)
+
+    label_encoder = LabelEncoder()
+    df[&quot;product_type_encoded&quot;] = label_encoder.fit_transform(df[&quot;product_type&quot;])
+
+    df = pd.get_dummies(df, columns=[&quot;region&quot;], drop_first=True)
+
+    df.to_csv(&quot;encoded_data.csv&quot;, index=False)
+    print(&quot;After:\n&quot;, df)
+    print(&quot;Wrote encoded_data.csv&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>pandas&gt;=2.0
+scikit-learn&gt;=1.3
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

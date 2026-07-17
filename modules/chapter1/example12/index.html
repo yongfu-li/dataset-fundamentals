@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.12 — Healthcare Dataset with Missing Attributes — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.12 — Healthcare Dataset with Missing Attributes</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.12</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.12</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.3.1</code> — Attributes of a Good Dataset</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Explain completeness by profiling which attributes are missing and recognizing that a blank cell forces a decision (impute, drop, or re-collect) before modeling.</p>
+<h2>Chapter context</h2>
+<p>Completeness is the second quality dimension Section 1.3.1 introduces after accuracy. Blank clinical fields are not simply &quot;less data&quot; — if missingness correlates with the outcome you are studying, ignoring it can bias estimates.</p>
+<h2>What this example shows</h2>
+<p>The same four-patient schema as Example 1.2, but rows 102-104 are each missing one attribute (Age, Gender, or Diagnosis, respectively).</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Completeness</strong> — the extent to which all required attribute values are present; the second quality dimension in Section 1.3.1.</li>
+<li><strong>Missingness</strong> — the pattern of which values are absent — profiling it is the first step before choosing to impute, drop, or re-collect.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Row 102 is missing <code>Age</code>; row 103 is missing <code>Gender</code>; row 104 is missing <code>Diagnosis</code>.</li>
+<li>Contrast with complete Example 1.2 — same schema, different quality.</li>
+</ul>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li><code>main.py</code> counts empty strings per column — a basic missingness profile.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Missing counts should read 1 for Age, Gender, and Diagnosis — visible gaps before any model runs.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.csv</code></td><td>Incomplete patient table</td></tr><tr><td><code>main.py</code></td><td>Counts missing attributes</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Runs the missingness report</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Any modeling plan for this table must choose impute / drop / collect for each blank before proceeding — that decision, not the missing cell itself, is completeness&#x27;s practical lesson.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change <code>main.py</code> to fill missing <code>Age</code> with the column mean instead of just counting blanks, and recompute the count — does the row still look risky?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.2</code> — the complete version of this exact schema.</li>
+<li><code>eg:1.20</code> — pandas <code>isnull().sum()</code> performs the same missingness count at scale.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Revisited when Example 1.20 counts nulls with pandas.</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.12 — Healthcare Dataset with Missing Attributes
+{&#x27;ID&#x27;: &#x27;101&#x27;, &#x27;Age&#x27;: &#x27;45&#x27;, &#x27;Gender&#x27;: &#x27;Male&#x27;, &#x27;Diagnosis&#x27;: &#x27;Hypertension&#x27;, &#x27;Medication&#x27;: &#x27;Amlodipine&#x27;}
+{&#x27;ID&#x27;: &#x27;102&#x27;, &#x27;Age&#x27;: &#x27;&#x27;, &#x27;Gender&#x27;: &#x27;Female&#x27;, &#x27;Diagnosis&#x27;: &#x27;Diabetes&#x27;, &#x27;Medication&#x27;: &#x27;Metformin&#x27;}
+{&#x27;ID&#x27;: &#x27;103&#x27;, &#x27;Age&#x27;: &#x27;35&#x27;, &#x27;Gender&#x27;: &#x27;&#x27;, &#x27;Diagnosis&#x27;: &#x27;Asthma&#x27;, &#x27;Medication&#x27;: &#x27;Albuterol&#x27;}
+{&#x27;ID&#x27;: &#x27;104&#x27;, &#x27;Age&#x27;: &#x27;50&#x27;, &#x27;Gender&#x27;: &#x27;Female&#x27;, &#x27;Diagnosis&#x27;: &#x27;&#x27;, &#x27;Medication&#x27;: &#x27;Atorvastatin&#x27;}
+
+Missing counts:
+  ID: 0
+  Age: 1
+  Gender: 1
+  Diagnosis: 1
+  Medication: 0</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>ID,Age,Gender,Diagnosis,Medication
+101,45,Male,Hypertension,Amlodipine
+102,,Female,Diabetes,Metformin
+103,35,,Asthma,Albuterol
+104,50,Female,,Atorvastatin
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Report missing fields in Example 1.12.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Count blank cells per column.&quot;&quot;&quot;
+    path = Path(__file__).resolve().parent / &quot;data.csv&quot;
+    rows = list(csv.DictReader(path.open(encoding=&quot;utf-8&quot;)))
+    for row in rows:
+        print(row)
+    print(&quot;\nMissing counts:&quot;)
+    for col in rows[0]:
+        missing = sum(1 for r in rows if r[col] == &quot;&quot;)
+        print(f&quot;  {col}: {missing}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

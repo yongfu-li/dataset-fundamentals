@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 7.19 — Distribution Comparison Across Demographics — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 7</a><span class="here">eg:7.19</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 7.19 — Distribution Comparison Across Demographics</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:7.19</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>7</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:7.28</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter7.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:7.3.2</code> — Statistical Measures: Distribution Comparison and Correlation Analysis</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Compare dataset demographic shares to population targets and flag ≥5-point gaps.</p>
+<h2>Chapter context</h2>
+<p>Section 7.3.2 introduces quantitative and visual bias detection techniques. If the dataset includes features like age, gender, and race, comparing the distribution of these features across different groups can reveal any imbalances.</p>
+<h2>What this example shows</h2>
+<p>If the dataset includes features like age, gender, and race, comparing the distribution of these features across different groups can reveal any imbalances.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>80% rule</strong> — Disparate-impact heuristic: group selection rate should be ≥80% of the highest group.</li>
+<li><strong>Chi-squared test</strong> — Tests whether two categorical variables are independent.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Compare each group&#x27;s dataset share to a target population share.</li>
+<li>Flag gaps ≥5 percentage points as re-sampling candidates.</li>
+<li>Male over-representation (+15 pts) and Female under-representation (−18 pts) signal imbalance.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed bias signal or fairness trade-off.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter bias metric</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Large population gaps mean the model learns a non-representative world; fix collection or re-weight before claiming fair deployment.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change Female count to 490—does the gap flag disappear?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:7.29</code> — Age skew check.</li>
+<li><code>Chapter 3</code> — Demographic imbalance eg:3.20.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library bias-metric demo aligned with the chapter calculation.</li>
+<li>Module folder <code>example19</code> is <strong>Example 7.19</strong> in the PDF; manuscript label is <code>eg:7.28</code>.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Group    Dataset n  Dataset %  Population %     Gap
+Male           640     64.0%        49.0%  +15.0%  &lt;-- imbalance
+Female         310     31.0%        49.0%  -18.0%  &lt;-- imbalance
+Other           50      5.0%         2.0%   +3.0%
+
+Groups whose dataset share differs from the population share by 5+ points
+are candidates for re-sampling or re-weighting before training.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 7.19 — compare demographic distributions in a dataset vs the target population.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Print dataset vs population shares per group and flag imbalances.&quot;&quot;&quot;
+    dataset_counts: dict[str, int] = {&quot;Male&quot;: 640, &quot;Female&quot;: 310, &quot;Other&quot;: 50}
+    population_share: dict[str, float] = {&quot;Male&quot;: 0.49, &quot;Female&quot;: 0.49, &quot;Other&quot;: 0.02}
+
+    total = sum(dataset_counts.values())
+    print(f&quot;{&#x27;Group&#x27;:&lt;8}{&#x27;Dataset n&#x27;:&gt;10}{&#x27;Dataset %&#x27;:&gt;11}{&#x27;Population %&#x27;:&gt;14}{&#x27;Gap&#x27;:&gt;8}&quot;)
+    for group, count in dataset_counts.items():
+        share = count / total
+        gap = share - population_share[group]
+        flag = &quot;  &lt;-- imbalance&quot; if abs(gap) &gt;= 0.05 else &quot;&quot;
+        print(f&quot;{group:&lt;8}{count:&gt;10}{share:&gt;10.1%}{population_share[group]:&gt;13.1%}{gap:&gt;+8.1%}{flag}&quot;)
+
+    print()
+    print(&quot;Groups whose dataset share differs from the population share by 5+ points&quot;)
+    print(&quot;are candidates for re-sampling or re-weighting before training.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

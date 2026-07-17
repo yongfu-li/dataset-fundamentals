@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.9 — Creating and Reading an HDF5 File — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.9</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.9 — Creating and Reading an HDF5 File</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.9</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.9</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.2.5</code> — Dataset Format</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Describe HDF5 as a container for large multidimensional arrays and grouped scientific series, and practice writing then reading one back programmatically.</p>
+<h2>Chapter context</h2>
+<p>Section 1.2.5 continues the format survey into scientific storage. After CSV/JSON/SQL, HDF5 is presented for simulation or instrument output where arrays and nested groups matter more than rows and columns.</p>
+<h2>What this example shows</h2>
+<p>A Python script that creates <code>example.h5</code>, stores a 100x100 random matrix, adds an <code>experiment</code> group holding temperature and pressure series, then reopens the file to print keys and shapes.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>HDF5</strong> — a binary file format for storing large, multidimensional array data plus metadata inside hierarchical groups.</li>
+<li><strong>Group</strong> — an HDF5 container, like a folder, that nests related datasets (here, <code>temperature</code> and <code>pressure</code> under <code>experiment</code>).</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ol class='objectives'>
+<li><code>h5py.File(..., &quot;w&quot;)</code> opens (creates) the file for writing.</li>
+<li><code>create_dataset(&quot;random_data&quot;, data=...)</code> stores the array at the file root.</li>
+<li><code>create_group(&quot;experiment&quot;)</code> nests two related series (<code>temperature</code>, <code>pressure</code>) instead of storing them at the root.</li>
+<li>Reopening in <code>&quot;r&quot;</code> mode and calling <code>.keys()</code> / <code>.shape</code> confirms what was written, without re-running the generation code.</li>
+</ol>
+<h3>From the input / artifacts</h3>
+<ul class='objectives'>
+<li>Data is generated in memory with <code>numpy</code> (<code>random.rand</code>, <code>linspace</code>) — there is no external CSV to load.</li>
+<li>The output artifact is the binary <code>example.h5</code> file written to the module directory.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Root keys should list <code>experiment</code> and <code>random_data</code>.</li>
+<li><code>random_data</code> shape should read <code>(100, 100)</code> — confirming the array round-tripped intact.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Book Python listing</td></tr><tr><td><code>requirements.txt</code></td><td>h5py, numpy</td></tr><tr><td><code>install.sh</code></td><td>Creates venv and installs deps</td></tr><tr><td><code>run.sh</code></td><td>Runs main.py</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>A clean key list and shape is the chapter&#x27;s point made concrete: format choice follows data structure and scale — HDF5 earns its keep once you have large arrays and logical groupings that CSV/JSON would represent poorly.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add a third top-level dataset (e.g., <code>np.zeros(10)</code>) and confirm it shows up in the root key list on the next read.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.8</code> — SQL as the format of choice for relational integrity, versus HDF5 for array-heavy scientific data.</li>
+<li><code>eg:1.10</code> — GeoJSON as the format of choice for spatial features.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Writes <code>example.h5</code> in the module directory (safe to delete; regenerated by <code>run.sh</code>).</li>
+<li>Synthetic/generated data — no external CSV in the book listing.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Datasets in root: [&#x27;experiment&#x27;, &#x27;random_data&#x27;]
+Shape of &#x27;random_data&#x27;: (100, 100)</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>import h5py
+import numpy as np
+
+with h5py.File(&quot;example.h5&quot;, &quot;w&quot;) as hdf:
+    data = np.random.rand(100, 100)
+    hdf.create_dataset(&quot;random_data&quot;, data=data)
+    group = hdf.create_group(&quot;experiment&quot;)
+    group.create_dataset(&quot;temperature&quot;, data=np.linspace(0, 100, 100))
+    group.create_dataset(&quot;pressure&quot;, data=np.linspace(1, 10, 100))
+
+with h5py.File(&quot;example.h5&quot;, &quot;r&quot;) as hdf:
+    print(&quot;Datasets in root:&quot;, list(hdf.keys()))
+    random_data = hdf[&quot;random_data&quot;][:]
+    print(&quot;Shape of &#x27;random_data&#x27;:&quot;, random_data.shape)
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>h5py
+numpy
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

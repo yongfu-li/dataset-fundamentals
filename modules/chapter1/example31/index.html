@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.31 — Python Code on Predicting Customer Churn — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.31</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.31 — Python Code on Predicting Customer Churn</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.31</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.31</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.5.3</code> — Case Study: Predicting Customer Churn</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Walk one end-to-end analytics arc on tabular customer data: explore, impute, train, rank feature importance, and evaluate with classification metrics.</p>
+<h2>Chapter context</h2>
+<p>Section 1.5.3&#x27;s case study stitches the chapter&#x27;s themes into a single pipeline: the customer fields introduced earlier become a modeling frame, and this listing implements imputation, a random forest, an importance ranking, and accuracy/precision/recall/F1 on a holdout split.</p>
+<h2>What this example shows</h2>
+<p>Python code that builds a 10-row churn table, profiles it (<code>info</code>, missing counts, <code>describe</code>), imputes, trains a <code>RandomForestClassifier</code>, ranks feature importances, and reports evaluation metrics on a 20% holdout.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Imputation</strong> — filling missing values with a statistic, here the column mean, so the model has a value for every feature.</li>
+<li><strong>Feature importance</strong> — a random-forest score ranking how much each feature contributed to the model&#x27;s predictions.</li>
+<li><strong>Holdout evaluation</strong> — measuring accuracy/precision/recall/F1 on a test split the model never trained on.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Features: <code>Complaints</code>, <code>Product_Usage</code>, <code>Account_Activity_Change</code>, <code>Subscription_Length</code>.</li>
+<li>Label: <code>Churned</code> (1 = churned, 0 = not).</li>
+<li>Only 10 rows — metrics are illustrative, not production-grade.</li>
+</ul>
+<h3>From the code / process</h3>
+<ol class='objectives'>
+<li>Build a DataFrame and explore it (<code>info</code>, missingness, <code>describe</code>).</li>
+<li><code>SimpleImputer</code> with the mean strategy on the predictor columns.</li>
+<li><code>train_test_split</code> (20% test, <code>random_state=42</code>).</li>
+<li>Fit a random forest; rank <code>feature_importances_</code>.</li>
+<li>Predict on the holdout and compute accuracy, precision, recall, F1.</li>
+</ol>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Feature importance ranks which behaviors precede cancellation — on this toy set, usage/complaints/activity dominate subscription length.</li>
+<li>The evaluation table reports holdout metrics that look perfect (1.0 across the board) only because the test split has 2 rows — read the table as a template for interpreting scores, not as evidence of real performance.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Book Python listing</td></tr><tr><td><code>requirements.txt</code></td><td>pandas, numpy, scikit-learn</td></tr><tr><td><code>install.sh</code></td><td>Creates venv and installs deps</td></tr><tr><td><code>run.sh</code></td><td>Runs main.py</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>The chapter&#x27;s closing lesson: datasets support decisions when exploration, cleaning, modeling, and interpretation form one workflow. The perfect-looking metrics are a 10-row artifact (a 2-row test set), not a claim about real-world churn accuracy — governance and collection details continue in later chapters.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change <code>random_state</code> in <code>train_test_split</code> and rerun — watch accuracy/precision/recall stop being a perfect 1.0 once the toy test set changes.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.28</code> — the same labeled-features-to-classifier pattern applied to fraud instead of churn.</li>
+<li><code>eg:1.12</code>, <code>eg:1.20</code> — completeness/missingness and EDA techniques this pipeline reuses.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Data mirrors the customer-churn case study in the chapter.</li>
+<li>Synthetic toy sample; do not generalize the perfect metrics.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Dataset Info:
+&lt;class &#x27;pandas.core.frame.DataFrame&#x27;&gt;
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 6 columns):
+ #   Column                   Non-Null Count  Dtype
+---  ------                   --------------  -----
+ 0   Customer_ID              10 non-null     int64
+ 1   Complaints               10 non-null     int64
+ 2   Product_Usage            10 non-null     int64
+ 3   Account_Activity_Change  10 non-null     int64
+ 4   Subscription_Length      10 non-null     int64
+ 5   Churned                  10 non-null     int64
+dtypes: int64(6)
+
+Missing Values:
+Customer_ID                0
+Complaints                 0
+Product_Usage              0
+Account_Activity_Change    0
+Subscription_Length        0
+Churned                    0
+dtype: int64
+
+Feature Importance:
+                   Feature  Importance
+1            Product_Usage    0.323232
+0               Complaints    0.282828
+2  Account_Activity_Change    0.252525
+3      Subscription_Length    0.141414
+
+Model Evaluation Metrics:
+      Metric  Value
+0   Accuracy    1.0
+1  Precision    1.0
+2     Recall    1.0
+3   F1 Score    1.0</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# Sample dataset
+data = {
+    &quot;Customer_ID&quot;: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010],
+    &quot;Complaints&quot;: [2, 5, 8, 1, 3, 7, 0, 4, 6, 9],
+    &quot;Product_Usage&quot;: [50, 30, 20, 70, 45, 15, 80, 35, 25, 10],
+    &quot;Account_Activity_Change&quot;: [5, -10, -15, 8, -5, -20, 10, -7, -12, -25],
+    &quot;Subscription_Length&quot;: [24, 36, 12, 48, 30, 6, 60, 28, 14, 10],
+    &quot;Churned&quot;: [0, 1, 1, 0, 0, 1, 0, 1, 1, 1]  # 1 = Churned, 0 = Not Churned
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Explore dataset
+print(&quot;Dataset Info:&quot;)
+df.info()
+print(&quot;\nMissing Values:&quot;)
+print(df.isnull().sum())
+print(&quot;\nSummary Statistics:&quot;)
+print(df.describe())
+
+# Handle missing values using imputation
+imputer = SimpleImputer(strategy=&quot;mean&quot;)
+X = df.drop(columns=[&quot;Customer_ID&quot;, &quot;Churned&quot;])
+X.iloc[:, :] = imputer.fit_transform(X)
+
+y = df[&quot;Churned&quot;]
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train a Random Forest model
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Feature importance
+feature_importance = pd.DataFrame({&quot;Feature&quot;: X.columns, &quot;Importance&quot;: rf.feature_importances_})
+feature_importance = feature_importance.sort_values(by=&quot;Importance&quot;, ascending=False)
+
+# Print feature importance
+print(&quot;Feature Importance:&quot;)
+print(feature_importance)
+
+# Make predictions
+y_pred = rf.predict(X_test)
+
+# Calculate evaluation metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+# Display evaluation metrics
+evaluation_metrics = pd.DataFrame({
+    &quot;Metric&quot;: [&quot;Accuracy&quot;, &quot;Precision&quot;, &quot;Recall&quot;, &quot;F1 Score&quot;],
+    &quot;Value&quot;: [accuracy, precision, recall, f1]
+})
+
+print(&quot;\nModel Evaluation Metrics:&quot;)
+print(evaluation_metrics)
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>pandas
+numpy
+scikit-learn
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

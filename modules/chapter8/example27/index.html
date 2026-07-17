@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 8.27 — GitHub Actions Dataset Update Pipeline — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 8</a><span class="here">eg:8.27</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 8.27 — GitHub Actions Dataset Update Pipeline</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:8.27</span>
+    <span class="pill pill-muted">Chapter 8</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>8</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:8.27</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter8.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:8.4.12</code> — Automating Version Control and Live Demonstration</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Inspect a GitHub Actions workflow that preprocesses data, commits DVC metadata, and pushes to remote storage.</p>
+<h2>Chapter context</h2>
+<p>Section 8.4.12 automates version control with CI (GitHub Actions) and DVC pipeline stages. Imagine you are working on a machine learning model, and every time you commit new code to a Git repository, you want the following steps to occur: Run preprocessing on a new dataset. Add the updated …</p>
+<h2>What this example shows</h2>
+<p>Imagine you are working on a machine learning model, and every time you commit new code to a Git repository, you want the following steps to occur: Run preprocessing on a new dataset. Add the updated dataset to DVC. Push the dataset to a remote cloud storage service. Trigger model training using the new dataset version. This workflow could be automated using GitHub Actions, with a YAML configuration file that defines the steps to execute: Every time a new dataset is added or updated, the CI/CD pipeline automatically stages the changes, commits them, and pushes the dataset to a cloud storage backend. The same pipeline can be used to trigger training or testing processes for machine learning models, keeping the entire workflow automated and reproducible.</p>
+<h2>What you should learn</h2>
+<h3>From the artifact / process</h3>
+<ul class='objectives'>
+<li>dataset-update.yml ---</li>
+<li>name: Checkout code</li>
+<li>name: Set up Python</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> displays the chapter artifact or runs <code>main.py</code>—compare output to the manuscript listing.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>dataset-update.yml</code></td><td>GitHub Actions DVC update workflow</td></tr><tr><td><code>install.sh</code></td><td>Prerequisite check (no global tool install)</td></tr><tr><td><code>run.sh</code></td><td>Displays artifact or runs demo</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Each line or field in the captured output should map to a documentation or version-control obligation from Section 8—if a collaborator cannot answer &#x27;which version and which transform&#x27; from this artifact alone, add metadata.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Add one missing field to the github actions dataset update pipeline artifact—what downstream user would need it?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:8.28</code> — DVC pipeline YAML.</li>
+<li><code>eg:8.29</code> — Live DVC workflow commands.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Inspect the bundled artifact; configure real remotes/tools before production use.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>--- dataset-update.yml ---
+name: Dataset Update Pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  update-dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: &quot;3.8&quot;
+      - name: Install dependencies
+        run: |
+          pip install dvc
+          pip install -r requirements.txt
+      - name: Execute data preprocessing
+        run: python preprocess_data.py
+      - name: Add new data to DVC
+        run: |
+          dvc add data/my_updated_data.csv
+          git add data/my_updated_data.csv.dvc
+          git commit -m &quot;Updated dataset&quot;
+      - name: Push data to DVC remote storage
+        run: dvc push</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

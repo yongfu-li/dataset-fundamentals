@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 12.10 — Sharding by Geography or Customer ID — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 12</a><span class="here">eg:12.10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 12.10 — Sharding by Geography or Customer ID</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:12.10</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>12</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:12.10</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter12.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:12.2.8</code> — Data Sharding and Replication</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Demonstrate hash and geography sharding to spread write load across nodes.</p>
+<h2>Chapter context</h2>
+<p>Section 12.2.8 introduces horizontal sharding to spread keys across cluster nodes. Customer tables are often sharded by geography or customer ID so each node owns a slice of keys and write load spreads across the cluster.</p>
+<h2>What this example shows</h2>
+<p>Customer tables are often sharded by geography or customer ID so each node owns a slice of keys and write load spreads across the cluster.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Sharding</strong> — Splitting keys across nodes so write/read load spreads horizontally.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Hash customer_id with MD5 and mod n_shards for stable shard assignment.</li>
+<li>Compare load counts per shard—imbalance suggests more shards or better keys.</li>
+<li>Geography sharding maps explicit regions (us-east, eu) to shard IDs.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Inspect shard assignments and load counts—each node should own a predictable key slice.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Hash and geography sharding demonstration</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Stable hashing keeps each customer on one node; geography sharding colocates regional traffic—pick the key that matches your query and compliance pattern.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Which shard gets customer_id c_9999 under hash mod 4?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:12.8</code> — Horizontal scale pattern.</li>
+<li><code>eg:12.7</code> — HDFS partitioning.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library Python sharding demo; MD5 used for stable teaching hashes only.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Hash sharding by customer_id across 4 nodes:
+
+customer_id  shard
+c_1001           2
+c_1002           3
+c_2044           3
+c_3110           0
+c_4500           2
+c_4501           3
+
+Load per shard: {0: 1, 2: 2, 3: 3}
+
+Geography sharding (explicit region -&gt; shard):
+  us-east  -&gt; shard 0
+  us-west  -&gt; shard 1
+  eu       -&gt; shard 2
+  apac     -&gt; shard 3
+
+Each node owns a slice of keys so write load spreads across the cluster.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 12.10 — shard customer keys by geography or customer ID.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import hashlib
+from collections import Counter
+
+
+def shard_for_customer(customer_id: str, n_shards: int) -&gt; int:
+    &quot;&quot;&quot;Return a stable shard index for a customer ID.&quot;&quot;&quot;
+    digest = hashlib.md5(customer_id.encode(&quot;utf-8&quot;)).hexdigest()
+    return int(digest, 16) % n_shards
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Show ID hashing and region mapping as two common sharding keys.&quot;&quot;&quot;
+    n_shards = 4
+    customers = [&quot;c_1001&quot;, &quot;c_1002&quot;, &quot;c_2044&quot;, &quot;c_3110&quot;, &quot;c_4500&quot;, &quot;c_4501&quot;]
+    print(f&quot;Hash sharding by customer_id across {n_shards} nodes:\n&quot;)
+    print(f&quot;{&#x27;customer_id&#x27;:&lt;12}{&#x27;shard&#x27;:&gt;6}&quot;)
+    counts: Counter[int] = Counter()
+    for cid in customers:
+        shard = shard_for_customer(cid, n_shards)
+        counts[shard] += 1
+        print(f&quot;{cid:&lt;12}{shard:&gt;6}&quot;)
+    print(f&quot;\nLoad per shard: {dict(sorted(counts.items()))}&quot;)
+
+    region_map = {&quot;us-east&quot;: 0, &quot;us-west&quot;: 1, &quot;eu&quot;: 2, &quot;apac&quot;: 3}
+    print(&quot;\nGeography sharding (explicit region -&gt; shard):&quot;)
+    for region, shard in region_map.items():
+        print(f&quot;  {region:&lt;8} -&gt; shard {shard}&quot;)
+    print()
+    print(&quot;Each node owns a slice of keys so write load spreads across the cluster.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

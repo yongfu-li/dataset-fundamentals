@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 7.21 — Chi-Squared Test for Gender Distribution — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 7</a><span class="here">eg:7.21</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 7.21 — Chi-Squared Test for Gender Distribution</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:7.21</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>7</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:7.30</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter7.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:7.3.2</code> — Statistical Measures: Distribution Comparison and Correlation Analysis</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Run a chi-squared test on gender vs performance category and interpret rejection.</p>
+<h2>Chapter context</h2>
+<p>Section 7.3.2 introduces quantitative and visual bias detection techniques. A Chi-squared test could check whether there is a significant difference in the distribution of gender across different categories in a dataset, such as high-performing vs. low-per…</p>
+<h2>What this example shows</h2>
+<p>A Chi-squared test could check whether there is a significant difference in the distribution of gender across different categories in a dataset, such as high-performing vs. low-performing candidates.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>80% rule</strong> — Disparate-impact heuristic: group selection rate should be ≥80% of the highest group.</li>
+<li><strong>Chi-squared test</strong> — Tests whether two categorical variables are independent.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Build a 2×2 table: gender × (high/low performer).</li>
+<li>Compute chi-squared manually and compare to critical value 3.841 (df=1, α=0.05).</li>
+<li>Rejecting independence means gender and performance category are associated.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed bias signal or fairness trade-off.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter bias metric</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>A significant chi-squared result is a screening alarm, not proof of discrimination; it tells you where to audit labels and features next.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>What happens to chi-squared if Female high performers rise to 60?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:7.29</code> — Previous example in the same section.</li>
+<li><code>eg:7.31</code> — Next example in the same section.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library bias-metric demo aligned with the chapter calculation.</li>
+<li>Module folder <code>example21</code> is <strong>Example 7.21</strong> in the PDF; manuscript label is <code>eg:7.30</code>.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Gender    High   Low  Total
+Male        90   210    300
+Female      30   170    200
+Total      120   380    500
+
+Chi-squared statistic (df=1): 14.80
+Critical value at alpha=0.05:  3.841
+Result: REJECT independence — the high/low split differs by gender.
+This is a bias signal worth investigating before training.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 7.21 — chi-squared test of gender distribution across performance categories.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Run a 2x2 chi-squared test on gender vs performance category.&quot;&quot;&quot;
+    # Observed contingency table: rows = gender, cols = (high, low) performers.
+    observed: dict[str, tuple[int, int]] = {&quot;Male&quot;: (90, 210), &quot;Female&quot;: (30, 170)}
+
+    row_totals = {g: sum(cells) for g, cells in observed.items()}
+    col_totals = (
+        sum(cells[0] for cells in observed.values()),
+        sum(cells[1] for cells in observed.values()),
+    )
+    grand = sum(row_totals.values())
+
+    print(f&quot;{&#x27;Gender&#x27;:&lt;8}{&#x27;High&#x27;:&gt;6}{&#x27;Low&#x27;:&gt;6}{&#x27;Total&#x27;:&gt;7}&quot;)
+    for gender, (high, low) in observed.items():
+        print(f&quot;{gender:&lt;8}{high:&gt;6}{low:&gt;6}{row_totals[gender]:&gt;7}&quot;)
+    print(f&quot;{&#x27;Total&#x27;:&lt;8}{col_totals[0]:&gt;6}{col_totals[1]:&gt;6}{grand:&gt;7}&quot;)
+
+    chi2 = 0.0
+    for gender, cells in observed.items():
+        for j, obs in enumerate(cells):
+            expected = row_totals[gender] * col_totals[j] / grand
+            chi2 += (obs - expected) ** 2 / expected
+
+    critical_5pct = 3.841  # chi-squared critical value, df = 1, alpha = 0.05
+    print(f&quot;\nChi-squared statistic (df=1): {chi2:.2f}&quot;)
+    print(f&quot;Critical value at alpha=0.05:  {critical_5pct}&quot;)
+    if chi2 &gt; critical_5pct:
+        print(&quot;Result: REJECT independence — the high/low split differs by gender.&quot;)
+        print(&quot;This is a bias signal worth investigating before training.&quot;)
+    else:
+        print(&quot;Result: no significant difference detected at the 5% level.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

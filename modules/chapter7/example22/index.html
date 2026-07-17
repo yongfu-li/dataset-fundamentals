@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 7.22 — Correlation with Sensitive Attributes — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 7</a><span class="here">eg:7.22</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 7.22 — Correlation with Sensitive Attributes</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:7.22</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>7</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:7.31</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter7.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:7.3.2</code> — Statistical Measures: Distribution Comparison and Correlation Analysis</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Screen features for proxy correlation with sensitive attributes before training.</p>
+<h2>Chapter context</h2>
+<p>Section 7.3.2 introduces quantitative and visual bias detection techniques. If certain features in the dataset are correlated with sensitive attributes like race, gender, or socio-economic status, these correlations may lead to biased predictions when the …</p>
+<h2>What this example shows</h2>
+<p>If certain features in the dataset are correlated with sensitive attributes like race, gender, or socio-economic status, these correlations may lead to biased predictions when the model is trained on these features.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>80% rule</strong> — Disparate-impact heuristic: group selection rate should be ≥80% of the highest group.</li>
+<li><strong>Chi-squared test</strong> — Tests whether two categorical variables are independent.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>Compute Pearson r between each feature and a binary sensitive attribute.</li>
+<li>Flag |r| ≥ 0.5 as likely proxy features (zip_income_index here).</li>
+<li>Dropping the sensitive column alone does not remove the proxy path.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Compare printed statistics to the chapter&#x27;s claimed bias signal or fairness trade-off.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>Standard-library demo of the chapter bias metric</td></tr><tr><td><code>install.sh</code></td><td>Checks that <code>python3</code> is available</td></tr><tr><td><code>run.sh</code></td><td>Runs <code>python3 main.py</code></td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>A near-perfect proxy correlation means the model can reconstruct the sensitive attribute; remove or transform the proxy before training.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Where does &#x27;Correlation with Sensitive Attributes&#x27; appear in a dataset you have worked with?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:7.32</code> — Proxy features.</li>
+<li><code>eg:7.35</code> — Correlation heatmap.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Standard-library bias-metric demo aligned with the chapter calculation.</li>
+<li>Module folder <code>example22</code> is <strong>Example 7.22</strong> in the PDF; manuscript label is <code>eg:7.31</code>.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Correlation of each feature with the sensitive attribute:
+  years_experience   r = +0.05
+  zip_income_index   r = -0.98  &lt;-- likely proxy, review before use
+
+A feature strongly correlated with the sensitive attribute can act as a
+proxy: dropping the attribute itself is not enough to remove the bias path.</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 7.22 — correlation between a model feature and a sensitive attribute.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import math
+
+
+def pearson(xs: list[float], ys: list[float]) -&gt; float:
+    &quot;&quot;&quot;Return the Pearson correlation coefficient of two equal-length lists.&quot;&quot;&quot;
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    cov = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+    sx = math.sqrt(sum((x - mx) ** 2 for x in xs))
+    sy = math.sqrt(sum((y - my) ** 2 for y in ys))
+    return cov / (sx * sy)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Correlate candidate features with a sensitive attribute (group = 0/1).&quot;&quot;&quot;
+    # Ten applicants; group is the sensitive attribute (e.g., two demographic groups).
+    group: list[float] = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+    features: dict[str, list[float]] = {
+        &quot;years_experience&quot;: [2, 5, 3, 8, 4, 3, 6, 2, 7, 5],
+        &quot;zip_income_index&quot;: [82, 78, 85, 80, 84, 41, 45, 38, 50, 44],
+    }
+
+    print(&quot;Correlation of each feature with the sensitive attribute:&quot;)
+    for name, values in features.items():
+        r = pearson(values, group)
+        flag = &quot;  &lt;-- likely proxy, review before use&quot; if abs(r) &gt;= 0.5 else &quot;&quot;
+        print(f&quot;  {name:&lt;18} r = {r:+.2f}{flag}&quot;)
+
+    print()
+    print(&quot;A feature strongly correlated with the sensitive attribute can act as a&quot;)
+    print(&quot;proxy: dropping the attribute itself is not enough to remove the bias path.&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

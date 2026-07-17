@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.11 — Financial Dataset with an Incorrect Transaction — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.11</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.11 — Financial Dataset with an Incorrect Transaction</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.11</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.11</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.3.1</code> — Attributes of a Good Dataset</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Detect an accuracy defect by comparing a suspicious value against its neighbors, and see how one bad cell can dominate an aggregate.</p>
+<h2>Chapter context</h2>
+<p>Section 1.3.1 opens the quality-dimensions discussion with accuracy: a mis-keyed amount is the simplest, most damaging kind of defect because downstream sums and models trust it at face value.</p>
+<h2>What this example shows</h2>
+<p>A three-row ledger where transaction <code>T002</code>&#x27;s credit amount (15000.00) is an order of magnitude above the otherwise-similar <code>T001</code> (1500.00) — a plausible extra-zero data-entry error.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Accuracy</strong> — the degree to which recorded values reflect real-world truth; the first quality dimension Section 1.3.1 introduces.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>Compare credit amounts: <code>1500.00</code> vs <code>15000.00</code> — same account type, implausible jump without further context.</li>
+<li>Defects can be local (one cell) yet global in impact (a monthly revenue total).</li>
+</ul>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li><code>main.py</code> loads the CSV, prints every row, sums the credit amounts, then explicitly flags <code>T002</code>.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Credit total <code>16500.0</code> is dominated by the suspect row — the &quot;problem signal&quot; the chapter wants you to notice before trusting the number.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.csv</code></td><td>Transaction sample</td></tr><tr><td><code>main.py</code></td><td>Prints rows and flags the outlier</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Runs the preview script</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Before trusting any KPI built from this table (like &quot;credit total&quot;), sanity-check magnitudes against neighboring rows — accuracy failures often look like round numbers or 10x jumps, exactly the pattern flagged here.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change <code>T002</code>&#x27;s amount to a plausible <code>1600.00</code> in <code>data.csv</code> and rerun — watch the credit total drop from 16500.0 to 3100.0.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.12</code> — completeness (missing values) as the next quality dimension.</li>
+<li><code>eg:1.13</code> — consistency (mixed date formats) as the third.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Pair with Examples 1.12-1.13 (completeness and consistency).</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.11 — Financial Dataset with an Incorrect Transaction
+{&#x27;Txn_ID&#x27;: &#x27;T001&#x27;, &#x27;Date&#x27;: &#x27;2024-03-01&#x27;, &#x27;Account&#x27;: &#x27;Revenue&#x27;, &#x27;Amount&#x27;: &#x27;1500.00&#x27;, &#x27;Type&#x27;: &#x27;Credit&#x27;}
+{&#x27;Txn_ID&#x27;: &#x27;T002&#x27;, &#x27;Date&#x27;: &#x27;2024-03-02&#x27;, &#x27;Account&#x27;: &#x27;Revenue&#x27;, &#x27;Amount&#x27;: &#x27;15000.00&#x27;, &#x27;Type&#x27;: &#x27;Credit&#x27;}
+{&#x27;Txn_ID&#x27;: &#x27;T003&#x27;, &#x27;Date&#x27;: &#x27;2024-03-03&#x27;, &#x27;Account&#x27;: &#x27;Refund&#x27;, &#x27;Amount&#x27;: &#x27;50.00&#x27;, &#x27;Type&#x27;: &#x27;Debit&#x27;}
+
+Credit total: 16500.0
+Note: T002 (15000.00) is an order of magnitude larger than T001 (1500.00).</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>Txn_ID,Date,Account,Amount,Type
+T001,2024-03-01,Revenue,1500.00,Credit
+T002,2024-03-02,Revenue,15000.00,Credit
+T003,2024-03-03,Refund,50.00,Debit
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Highlight the likely data-entry error in Example 1.11.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Print transactions and flag the outlier amount.&quot;&quot;&quot;
+    path = Path(__file__).resolve().parent / &quot;data.csv&quot;
+    rows = list(csv.DictReader(path.open(encoding=&quot;utf-8&quot;)))
+    for row in rows:
+        print(row)
+    amounts = [float(r[&quot;Amount&quot;]) for r in rows if r[&quot;Type&quot;] == &quot;Credit&quot;]
+    print(&quot;\nCredit total:&quot;, sum(amounts))
+    print(&quot;Note: T002 (15000.00) is an order of magnitude larger than T001 (1500.00).&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

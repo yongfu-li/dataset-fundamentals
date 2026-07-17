@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 2.17 — Static Parser vs Browser Driver for Catalog Pages — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 2</a><span class="here">eg:2.17</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 2.17 — Static Parser vs Browser Driver for Catalog Pages</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:2.17</span>
+    <span class="pill pill-muted">Chapter 2</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>2</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:2.17</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter2.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:2.7.2</code> — Web Scraping Tools</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Choose a static HTML parser when content is in the initial markup, and a browser driver when content appears only after interaction.</p>
+<h2>Chapter context</h2>
+<p>Section 2.7.2 pairs tool choice with the course-catalog harvest from Example 2.6. BeautifulSoup vs Selenium is the practical fork: cost and anti-bot risk rise with browser automation.</p>
+<h2>What this example shows</h2>
+<p>If course titles appear in the initial HTML, BeautifulSoup (or equivalent) is enough; if titles load only after clicking a term filter, the team switches to Selenium, accepting slower jobs and higher anti-bot risk.</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Static parser</strong> — Library that extracts from downloaded HTML without executing page scripts.</li>
+<li><strong>Browser driver</strong> — Automates a real browser so dynamically loaded content becomes visible.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the concept</h3>
+<ul class='objectives'>
+<li>Prefer the cheapest tool that sees the fields you need.</li>
+<li>Dynamic pages force browser drivers and higher failure rates.</li>
+<li>Document selectors and the reason for the tool switch.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> prints the takeaway or data/code output below; use it as a checklist for similar collection designs.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Prints the structured takeaway</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Tool escalation is evidence about the page, not a preference — start static, move to a driver only when fields are absent from initial HTML.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>View page source vs rendered DOM: if the title string appears only in the latter, you need a driver.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:2.6</code> — Why scrape the catalogs at all.</li>
+<li><code>eg:2.17b</code> — Harvest stages and cross-repository QA after scraping.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Prose-only in the manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Scrape tooling follows how the page loads:
+- Titles in initial HTML → static parser (e.g., BeautifulSoup)
+- Titles after clicks/filters → browser driver (e.g., Selenium)
+- Drivers are slower and more likely to hit anti-bot blocks</code></pre>
+</div>
+
+  <p>No previewable data or result files are packaged for this module yet.</p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

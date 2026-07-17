@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 1.3 — Sensor Reading Dataset — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 1</a><span class="here">eg:1.3</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 1.3 — Sensor Reading Dataset</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:1.3</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>1</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:1.3</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter1.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:1.1.2</code> — Components of a Dataset</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Recognize a timestamped sensor reading as a record whose attributes include physical units, extending &quot;row = observation&quot; to machine-monitoring data.</p>
+<h2>Chapter context</h2>
+<p>Section 1.1.2 rounds out the record/attribute definition with an industrial case: sensors emit one row per reading, and the units live in the column name itself rather than in a separate lookup table.</p>
+<h2>What this example shows</h2>
+<p>Four evenly-spaced readings from machine M001 with timestamp, machine ID, temperature (K), and vibration (mm/s).</p>
+<h2>Key terms</h2>
+<ul class='objectives'>
+<li><strong>Record</strong> — one sensor reading at a specific timestamp.</li>
+<li><strong>Attribute</strong> — a measured property of that reading (Temperature, Vibration), often with units in the column name.</li>
+</ul>
+<h2>What you should learn</h2>
+<h3>From the data / input</h3>
+<ul class='objectives'>
+<li>The de facto key of each record is the pair (<code>Timestamp</code>, <code>Machine_ID</code>), not a single ID column.</li>
+<li>Units are embedded in the header (<code>Temperature (K)</code>, <code>Vibration (mm/s)</code>) — metadata riding inside the schema, a preview of Section 1.3.2.</li>
+<li>Five-minute spacing signals this is a monitoring stream, not a one-off snapshot.</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li>Values drift only slightly between rows (75.4 to 76.5 K, 2.5 to 2.8 mm/s) — small, steady change typical of healthy equipment rather than a fault signature.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>data.csv</code></td><td>Industrial sensor sample</td></tr><tr><td><code>install.sh</code></td><td>No-op installer</td></tr><tr><td><code>run.sh</code></td><td>Prints the CSV</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Reading a sensor table as a short time series — not four unrelated rows — prepares you for &quot;dynamic&quot; datasets later in the chapter and for the consistency/timeliness checks quality control performs on streaming data.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Insert a fifth row with a temperature that jumps to 120K and note how obviously it breaks the small-steady-drift pattern you just read.</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:1.1</code>, <code>eg:1.2</code> — the same record/attribute idea in retail and clinical domains.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Together with Examples 1.1-1.2, shows row-as-record across retail, clinical, and industrial data.</li>
+<li>Synthetic sample data from the book manuscript.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Running Example 1.3 — Sensor Reading Dataset
+---- data.csv ----
+Timestamp,Machine_ID,Temperature (K),Vibration (mm/s)
+2024-02-01 12:00:00,M001,75.4,2.5
+2024-02-01 12:05:00,M001,76.1,2.7
+2024-02-01 12:10:00,M001,75.8,2.6
+2024-02-01 12:15:00,M001,76.5,2.8</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>Timestamp,Machine_ID,Temperature (K),Vibration (mm/s)
+2024-02-01 12:00:00,M001,75.4,2.5
+2024-02-01 12:05:00,M001,76.1,2.7
+2024-02-01 12:10:00,M001,75.8,2.6
+2024-02-01 12:15:00,M001,76.5,2.8
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example 5.66 — Compare MinMax and Standard Scaling — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../modules/index.html">Examples</a><a href="../index.html">Chapter 5</a><span class="here">eg:5.66</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Example module</div>
+    
+<section class="hero">
+  <h1>Example 5.66 — Compare MinMax and Standard Scaling</h1>
+  <div class="clip-meta">
+    <span class="pill">eg:5.66</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Static preview</span>
+  </div>
+  <p class="lead">GitHub Pages cannot execute this module, so the site presents the
+  packaged notes, source/data files, and saved expected result when available.</p>
+  <div class="module-meta"><div class="module-meta-item"><span>Chapter</span><strong>5</strong></div><div class="module-meta-item"><span>Label</span><strong><code>eg:5.66</code></strong></div><div class="module-meta-item"><span>Source</span><strong><code>author/chapter5.tex</code></strong></div><div class="module-meta-item"><span>Section</span><strong><code>sec:5.8.3</code> — Scaling Exercise: Applying Normalization and Standardization</strong></div></div>
+</section>
+
+<details class="panel" open>
+  <summary>Module notes</summary>
+  <div class="panel-body module-readme"><h2>Learning objective</h2>
+<p>Compare MinMaxScaler and StandardScaler on the same numeric columns and read bounded vs z-scored ranges.</p>
+<h2>Chapter context</h2>
+<p>Section 5.8.3 compares min-max normalization with z-score standardization on numeric columns. Apply both scalers to numeric columns and inspect the transformed ranges:</p>
+<h2>What this example shows</h2>
+<p>MinMax maps price to [0,1]; StandardScaler z-scores quantity</p>
+<h2>What you should learn</h2>
+<h3>From the code / process</h3>
+<ul class='objectives'>
+<li>MinMax maps price to [0,1]; StandardScaler z-scores quantity.</li>
+<li>Same data, different geometry—pick based on model (Section 5.8.3 / eg:5.67).</li>
+</ul>
+<h3>From the output / result</h3>
+<ul class='objectives'>
+<li><code>run.sh</code> runs <code>main.py</code> (or <code>main.R</code>) and prints Before/After frames—compare shapes and columns.</li>
+</ul>
+<h2>Contents</h2>
+<div class="md-table-wrap"><table class="md-table"><thead><tr><th>File</th><th>Role</th></tr></thead><tbody><tr><td><code>main.py</code></td><td>MinMax vs StandardScaler</td></tr><tr><td><code>data.csv</code></td><td>Numeric price/quantity sample</td></tr><tr><td><code>scaled_data.csv</code></td><td>Written on run</td></tr><tr><td><code>install.sh</code></td><td>Installs runtime dependencies</td></tr><tr><td><code>run.sh</code></td><td>Runs the example</td></tr></tbody></table></div>
+<h2>How to interpret the result</h2>
+<p>Match each printed Before/After change to a book listing step—those deltas are the cleaning decisions Section 5.5 expects you to defend in a pipeline review.</p>
+<h2>Try it / Reflect</h2>
+<ul class='objectives'>
+<li>Change one step in the script (e.g., keep NA rows or skip dedupe)—how does the After shape or columns differ?</li>
+</ul>
+<h2>Related examples</h2>
+<ul class='objectives'>
+<li><code>eg:5.67</code> — Next example in the same section.</li>
+</ul>
+<h2>Notes</h2>
+<ul class='objectives'>
+<li>Sample CSVs are synthetic and sized for the listing; they are not from a published dataset.</li>
+<li><code>install.sh</code> uses <code>pip install --user</code> (no local venv) for reliability on Windows-mounted paths.</li>
+<li>Listing logic matches the book; wrappers only add imports and I/O so the module runs standalone.</li>
+</ul></div>
+</details>
+
+<section class="module-previews">
+  <h2>Files and expected result</h2>
+  
+<div class="expected-result">
+  <h2>Expected result</h2>
+  <pre><code>Before:
+    price  quantity
+0     10         1
+1     20         2
+2     30         3
+3     40         4
+4     50         5
+After:
+    price  quantity  normalized_price  standardized_quantity
+0     10         1              0.00              -1.414214
+1     20         2              0.25              -0.707107
+2     30         3              0.50               0.000000
+3     40         4              0.75               0.707107
+4     50         5              1.00               1.414214
+Wrote scaled_data.csv</code></pre>
+</div>
+
+  
+<details class="module-file" open>
+  <summary>data.csv</summary>
+  <div class="module-file-actions"><a href="data.csv">Open raw file</a></div>
+  <pre><code>price,quantity
+10,1
+20,2
+30,3
+40,4
+50,5
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>main.py</summary>
+  <div class="module-file-actions"><a href="main.py">Open raw file</a></div>
+  <pre><code>&quot;&quot;&quot;Example 5.66 — compare MinMaxScaler and StandardScaler.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Apply both scalers and inspect transformed ranges.&quot;&quot;&quot;
+    df = pd.read_csv(&quot;data.csv&quot;)
+    print(&quot;Before:\n&quot;, df)
+
+    scaler = MinMaxScaler()
+    df[&quot;normalized_price&quot;] = scaler.fit_transform(df[[&quot;price&quot;]])
+
+    standardizer = StandardScaler()
+    df[&quot;standardized_quantity&quot;] = standardizer.fit_transform(df[[&quot;quantity&quot;]])
+
+    df.to_csv(&quot;scaled_data.csv&quot;, index=False)
+    print(&quot;After:\n&quot;, df)
+    print(&quot;Wrote scaled_data.csv&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>requirements.txt</summary>
+  <div class="module-file-actions"><a href="requirements.txt">Open raw file</a></div>
+  <pre><code>pandas&gt;=2.0
+scikit-learn&gt;=1.3
+</code></pre>
+</details>
+
+<details class="module-file" open>
+  <summary>scaled_data.csv</summary>
+  <div class="module-file-actions"><a href="scaled_data.csv">Open raw file</a></div>
+  <pre><code>price,quantity,normalized_price,standardized_quantity
+10,1,0.0,-1.414213562373095
+20,2,0.25,-0.7071067811865475
+30,3,0.5,0.0
+40,4,0.75,0.7071067811865475
+50,5,1.0,1.414213562373095
+</code></pre>
+</details>
+
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>
