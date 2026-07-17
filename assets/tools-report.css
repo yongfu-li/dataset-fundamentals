@@ -1,0 +1,183 @@
+/* Tool analysis report — print-to-PDF + high-res figure downloads.
+ * Loaded on every interactive tool page (build_site.py). */
+
+:root {
+  --report-toolbar-bg: var(--surface);
+}
+
+.tr-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  margin: 0 0 1.25rem;
+  padding: 0.65rem 0.85rem;
+  background: color-mix(in srgb, var(--surface) 92%, var(--accent-soft));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.tr-toolbar-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--ink);
+  margin-right: 0.25rem;
+}
+
+.tr-toolbar .btn {
+  font-size: 0.88rem;
+  padding: 0.4rem 0.75rem;
+}
+
+.tr-toolbar-hint {
+  flex: 1 1 12rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.tr-fig-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.tr-fig-wrap canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.tr-fig-actions {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 2;
+}
+
+.tr-fig-wrap:hover .tr-fig-actions,
+.tr-fig-wrap:focus-within .tr-fig-actions {
+  opacity: 1;
+}
+
+.tr-fig-btn {
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(28, 36, 33, 0.12);
+}
+
+.tr-fig-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+.tr-toast {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 50;
+  max-width: 22rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--ok) 35%, var(--line));
+  background: var(--ok-bg);
+  color: var(--ink);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.tr-toast.show {
+  opacity: 1;
+}
+
+.tr-print-cover {
+  display: none;
+}
+
+@media print {
+  .tr-toolbar,
+  .tr-fig-actions,
+  .tr-toast,
+  .skip-link,
+  .site-header nav,
+  .site-footer,
+  input[type="file"],
+  .btn,
+  button:not(.tr-print-keep),
+  label.sc-upload,
+  label.sp-upload,
+  label.cl-upload,
+  .quiz-actions {
+    display: none !important;
+  }
+
+  .tr-print-cover {
+    display: block !important;
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .tr-print-cover h1 {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .tr-print-cover p {
+    margin: 0.2rem 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .site-header {
+    border: none;
+    box-shadow: none;
+  }
+
+  main {
+    max-width: none;
+  }
+
+  canvas {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  section,
+  .sc-panel,
+  .sp-panel,
+  .cl-panel,
+  .eda-panel {
+    page-break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: none !important;
+  }
+}

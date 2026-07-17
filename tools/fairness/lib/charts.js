@@ -3,16 +3,29 @@
   "use strict";
   const FairnessCharts = global.FairnessCharts || (global.FairnessCharts = {});
   const FONT = "Source Sans 3, Arial, sans-serif";
-  const TEXT = "#33413c";
-  const MUTED = "#66736d";
-  const GRID = "#dfe4e1";
+  const TEXT = "#1c2421";
+  const MUTED = "#1c2421";
+  const GRID = "rgba(28, 36, 33, 0.18)";
+  const AXIS = "#1c2421";
   const BAR = "#0f6b5c";
   const BAR_ALT = "#5c8f86";
   const WARN = "#b45309";
-  const GROUP_COLORS = ["#0f6b5c", "#5c8f86", "#7a9e8e", "#3d5a80", "#6b5b95", "#8b6f47"];
+  const GROUP_COLORS = ["#0f6b5c", "#5c8f86", "#7a9e8e", "#3d5a80", "#6b5b7a", "#b45309"];
 
   function groupColor(i) {
     return GROUP_COLORS[i % GROUP_COLORS.length];
+  }
+
+  function drawAxisFrame(ctx, plot) {
+    ctx.save();
+    ctx.strokeStyle = AXIS;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(plot.left, plot.top);
+    ctx.lineTo(plot.left, plot.bottom);
+    ctx.lineTo(plot.right, plot.bottom);
+    ctx.stroke();
+    ctx.restore();
   }
 
   function clear(canvas) {
@@ -96,6 +109,7 @@
       ctx.fillText(display, plot.left + w + 6, y);
     });
 
+    drawAxisFrame(ctx, plot);
     ctx.fillStyle = TEXT;
     ctx.font = "600 12px " + FONT;
     ctx.textAlign = "center";
@@ -289,6 +303,8 @@
       ctx.fillText((acc * 100).toFixed(0) + "%", plot.left - 6, y + 3);
     }
 
+    drawAxisFrame(ctx, plot);
+
     function xAt(t) {
       return plot.left + t * plot.width;
     }
@@ -394,7 +410,13 @@
       ctx.fillStyle = MUTED;
       ctx.textAlign = "right";
       ctx.fillText(String(Math.round(value)), plot.left - 6, y + 3);
+      ctx.strokeStyle = AXIS;
+      ctx.beginPath();
+      ctx.moveTo(plot.left - 4, y);
+      ctx.lineTo(plot.left, y);
+      ctx.stroke();
     }
+    drawAxisFrame(ctx, plot);
 
     dist.groups.forEach(function (g, gi) {
       const color = groupColor(gi);

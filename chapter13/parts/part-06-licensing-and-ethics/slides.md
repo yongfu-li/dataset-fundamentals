@@ -15,6 +15,21 @@ Openness is not unlimited
 
 ---
 
+## Open license menu
+- Creative Commons covers CC0, CC BY, CC BY-SA, CC BY-NC, and CC BY-NC-SA
+- Open Data Commons adds database-oriented paths: ODC-By, ODbL, and PDDL
+- Companion code beside a dataset usually needs a software license such as MIT
+- License choice follows the intended reuse, not the row layout of a CSV
+
+---
+
+## Choosing from the use case
+- Ask whether the release is sensitive or community-controlled
+- Public-domain paths suit government tables
+- Practice these paths in the course license chooser
+
+---
+
 ## Licenses and the privacy trade-off
 - Responsible open science depends on clear licenses and ethical constraints
 - Some teams draft custom or restricted licenses that limit redistribution
@@ -55,18 +70,18 @@ Openness is not unlimited
 - Example 13.28 — hands-on module
 - Open science must respect the rights and wishes of people and communities whose data are
 - Communities involved in collection
-- Example 13.28 emphasizes that indigenous communities involved in ecological or
+- Example 13.28 emphasizes that Indigenous communities involved in ecological or
 - Explore the chapter example module
 - View files: `modules/chapter13/example28/`
 
 ---
 
 ## Takeaways
-- Licenses can be open or restricted; health data often need limited-access terms
+- Match the license family to the artifact
+- Restricted access, not an open deed, for sensitive health or community-controlled data
 - License choice must follow a privacy assessment, not precede it
 - Open release creates ongoing ethical duties around bias, security, attribution, and scope
-- Including indigenous communities, retain legitimate control over sharing decisions
-- Openness without ethics and privacy is not responsible open science
+- Including Indigenous communities, retain legitimate control over sharing decisions
 
 ---
 

@@ -4,13 +4,26 @@
   const RepresentationCharts = global.RepresentationCharts || (global.RepresentationCharts = {});
 
   const FONT = "Source Sans 3, Arial, sans-serif";
-  const TEXT = "#33413c";
-  const MUTED = "#66736d";
-  const GRID = "#dfe4e1";
+  const TEXT = "#1c2421";
+  const MUTED = "#1c2421";
+  const GRID = "rgba(28, 36, 33, 0.18)";
+  const AXIS = "#1c2421";
   const POP_BAR = "#9aada6";
   const DATA_BAR = "#0f6b5c";
   const WARN = "#b45309";
   const ACC_BAR = "#5c8f86";
+
+  function drawAxisFrame(ctx, plot) {
+    ctx.save();
+    ctx.strokeStyle = AXIS;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(plot.left, plot.top);
+    ctx.lineTo(plot.left, plot.bottom);
+    ctx.lineTo(plot.right, plot.bottom);
+    ctx.stroke();
+    ctx.restore();
+  }
 
   function clear(canvas) {
     if (!canvas) return;
@@ -75,7 +88,13 @@
       ctx.font = "10px " + FONT;
       ctx.textAlign = "center";
       ctx.fillText(formatPct(value), x, plot.bottom + 14);
+      ctx.strokeStyle = AXIS;
+      ctx.beginPath();
+      ctx.moveTo(x, plot.bottom);
+      ctx.lineTo(x, plot.bottom + 4);
+      ctx.stroke();
     }
+    drawAxisFrame(ctx, plot);
 
     const rowH = plot.height / items.length;
     const barH = Math.min(12, rowH * 0.28);
@@ -137,7 +156,13 @@
       ctx.font = "10px " + FONT;
       ctx.textAlign = "center";
       ctx.fillText(formatPct(value), x, plot.bottom + 14);
+      ctx.strokeStyle = AXIS;
+      ctx.beginPath();
+      ctx.moveTo(x, plot.bottom);
+      ctx.lineTo(x, plot.bottom + 4);
+      ctx.stroke();
     }
+    drawAxisFrame(ctx, plot);
 
     const rowH = plot.height / items.length;
     const barH = Math.min(16, rowH * 0.45);

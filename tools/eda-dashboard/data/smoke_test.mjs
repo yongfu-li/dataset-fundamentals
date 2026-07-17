@@ -80,6 +80,43 @@ try {
 }
 
 try {
+  const p = Lib.loadPreset("confounder-icecream");
+  check("confounder rows", p.rows.length >= 30);
+  const rawPairs = Lib.scatterPairs(p.rows, "ice_cream_sales", "drownings");
+  const rawR = Lib.pearson(
+    rawPairs.map((pt) => pt.x),
+    rawPairs.map((pt) => pt.y)
+  );
+  const partial = Lib.partialPearson(
+    p.rows,
+    "ice_cream_sales",
+    "drownings",
+    "temperature_c"
+  );
+  check("confounder raw |r| strong", rawR != null && Math.abs(rawR) > 0.5, "r=" + rawR);
+  check(
+    "confounder partial |r| weaker",
+    partial != null && Math.abs(partial) < Math.abs(rawR) - 0.1,
+    "raw=" + rawR + " partial=" + partial
+  );
+} catch (e) {
+  check("confounder", false, e.message);
+}
+
+try {
+  const p = Lib.loadPreset("household-incomes");
+  const box = Lib.boxPlotStats(p.rows, "Income");
+  check("boxplot has quartiles", box && box.q1 != null && box.median != null && box.q3 != null);
+  const filtered = Lib.filterRows(p.rows, [
+    { column: "Income", op: "gte", value: 50000 },
+    { column: "Income", op: "lte", value: 200000 },
+  ]);
+  check("multi-filter AND", filtered.length >= 1 && filtered.length < p.rows.length);
+} catch (e) {
+  check("boxplot/filter", false, e.message);
+}
+
+try {
   const data = Lib.parseUpload(
     JSON.stringify([{ a: 1, b: "x" }, { a: 2, b: "y" }]),
     "t.json"

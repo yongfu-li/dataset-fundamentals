@@ -1,13 +1,15 @@
-/* Classic script — canvas charts for EDA (window.EdaCharts). */
+/* Classic script — canvas charts for EDA (window.EdaCharts). Black axes + y ticks. */
 (function (global) {
   "use strict";
   const EdaCharts = global.EdaCharts || (global.EdaCharts = {});
+  const Axis = global.DatasetToolsAxis;
   const FONT = "Source Sans 3, Arial, sans-serif";
-  const TEXT = "#33413c";
-  const MUTED = "#66736d";
-  const GRID = "#dfe4e1";
+  const TEXT = "#1c2421";
+  const MUTED = "#1c2421";
+  const AXIS_C = "#1c2421";
+  const GRID = "rgba(28, 36, 33, 0.18)";
   const ACCENT = "#0f6b5c";
-  const ACCENT2 = "#d67928";
+  const ACCENT2 = "#b45309";
 
   function clear(canvas) {
     if (!canvas) return;
@@ -19,6 +21,7 @@
   }
 
   function niceMax(value) {
+    if (Axis) return Axis.niceMax(value);
     if (value <= 0) return 1;
     const magnitude = 10 ** Math.floor(Math.log10(value));
     const normalized = value / magnitude;
@@ -26,11 +29,15 @@
     return nice * magnitude;
   }
 
+  function fmt(v) {
+    return Axis ? Axis.formatTick(v) : String(Math.round(v));
+  }
+
   function drawHistogram(canvas, hist, title) {
     clear(canvas);
     if (!hist || !hist.bins || !hist.bins.length) return;
     const ctx = canvas.getContext("2d");
-    const pad = { t: 28, r: 16, b: 40, l: 48 };
+    const pad = { t: 28, r: 16, b: 40, l: 52 };
     const plot = {
       left: pad.l,
       top: pad.t,
@@ -49,6 +56,21 @@
     ctx.fillStyle = TEXT;
     ctx.font = "600 13px " + FONT;
     ctx.fillText(title || "Histogram", pad.l, 16);
+
+    if (Axis) {
+      Axis.drawYTicks(ctx, plot, 0, scaleMax, { fromZero: true, ticks: 4 });
+    } else {
+      for (let i = 0; i <= 4; i += 1) {
+        const value = (scaleMax * i) / 4;
+        const y = plot.bottom - (value / scaleMax) * plot.height;
+        ctx.fillStyle = MUTED;
+        ctx.font = "11px " + FONT;
+        ctx.textAlign = "right";
+        ctx.fillText(fmt(value), plot.left - 7, y + 3);
+      }
+      ctx.textAlign = "left";
+    }
+
     hist.bins.forEach(function (b, i) {
       const w = plot.width / hist.bins.length;
       const h = (b.count / scaleMax) * plot.height;
@@ -57,24 +79,33 @@
       ctx.fillStyle = ACCENT;
       ctx.fillRect(x + 1, y, Math.max(1, w - 2), h);
     });
-    ctx.strokeStyle = GRID;
-    ctx.beginPath();
-    ctx.moveTo(plot.left, plot.bottom);
-    ctx.lineTo(plot.right, plot.bottom);
-    ctx.stroke();
-    ctx.fillStyle = MUTED;
-    ctx.font = "11px " + FONT;
-    ctx.fillText(String(Math.round(hist.min)), plot.left, plot.bottom + 14);
-    ctx.textAlign = "right";
-    ctx.fillText(String(Math.round(hist.max)), plot.right, plot.bottom + 14);
-    ctx.textAlign = "left";
+
+    if (Axis) {
+      Axis.drawFrame(ctx, plot);
+      Axis.drawXTicks(ctx, plot, hist.min, hist.max, { ticks: 4 });
+      Axis.drawYLabel(ctx, plot, "Count");
+    } else {
+      ctx.strokeStyle = AXIS_C;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(plot.left, plot.top);
+      ctx.lineTo(plot.left, plot.bottom);
+      ctx.lineTo(plot.right, plot.bottom);
+      ctx.stroke();
+      ctx.fillStyle = MUTED;
+      ctx.font = "11px " + FONT;
+      ctx.fillText(String(Math.round(hist.min)), plot.left, plot.bottom + 14);
+      ctx.textAlign = "right";
+      ctx.fillText(String(Math.round(hist.max)), plot.right, plot.bottom + 14);
+      ctx.textAlign = "left";
+    }
   }
 
   function drawBars(canvas, items, title) {
     clear(canvas);
     if (!items || !items.length) return;
     const ctx = canvas.getContext("2d");
-    const pad = { t: 28, r: 16, b: 16, l: 90 };
+    const pad = { t: 28, r: 48, b: 36, l: 90 };
     const plot = {
       left: pad.l,
       top: pad.t,
@@ -93,6 +124,26 @@
     ctx.fillStyle = TEXT;
     ctx.font = "600 13px " + FONT;
     ctx.fillText(title || "Counts", pad.l, 16);
+
+    for (let tick = 0; tick <= 4; tick += 1) {
+      const value = (scaleMax * tick) / 4;
+      const x = plot.left + (value / scaleMax) * plot.width;
+      ctx.strokeStyle = GRID;
+      ctx.beginPath();
+      ctx.moveTo(x, plot.top);
+      ctx.lineTo(x, plot.bottom);
+      ctx.stroke();
+      ctx.strokeStyle = AXIS_C;
+      ctx.beginPath();
+      ctx.moveTo(x, plot.bottom);
+      ctx.lineTo(x, plot.bottom + 4);
+      ctx.stroke();
+      ctx.fillStyle = MUTED;
+      ctx.font = "11px " + FONT;
+      ctx.textAlign = "center";
+      ctx.fillText(fmt(value), x, plot.bottom + 8);
+    }
+
     const rowH = plot.height / items.length;
     items.forEach(function (it, i) {
       const c = it.count != null ? it.count : it.value || 0;
@@ -109,13 +160,21 @@
       ctx.fillStyle = MUTED;
       ctx.fillText(String(c), plot.left + w + 4, y + Math.min(12, rowH - 4));
     });
+
+    ctx.strokeStyle = AXIS_C;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(plot.left, plot.top);
+    ctx.lineTo(plot.left, plot.bottom);
+    ctx.lineTo(plot.right, plot.bottom);
+    ctx.stroke();
   }
 
   function drawScatter(canvas, pts, xLabel, yLabel) {
     clear(canvas);
     if (!pts || !pts.length) return;
     const ctx = canvas.getContext("2d");
-    const pad = { t: 28, r: 16, b: 40, l: 48 };
+    const pad = { t: 28, r: 16, b: 40, l: 56 };
     const plot = {
       left: pad.l,
       top: pad.t,
@@ -145,6 +204,22 @@
     ctx.fillStyle = TEXT;
     ctx.font = "600 13px " + FONT;
     ctx.fillText((xLabel || "x") + " vs " + (yLabel || "y"), pad.l, 16);
+
+    if (Axis) {
+      Axis.drawYTicks(ctx, plot, minY, maxY, { ticks: 4 });
+      Axis.drawXTicks(ctx, plot, minX, maxX, { ticks: 4 });
+    } else {
+      for (let i = 0; i <= 4; i += 1) {
+        const yv = minY + ((maxY - minY) * i) / 4;
+        const y = plot.bottom - ((yv - minY) / (maxY - minY)) * plot.height;
+        ctx.fillStyle = MUTED;
+        ctx.font = "11px " + FONT;
+        ctx.textAlign = "right";
+        ctx.fillText(fmt(yv), plot.left - 7, y + 3);
+      }
+      ctx.textAlign = "left";
+    }
+
     pts.forEach(function (p) {
       const x = plot.left + ((p.x - minX) / (maxX - minX)) * plot.width;
       const y = plot.bottom - ((p.y - minY) / (maxY - minY)) * plot.height;
@@ -153,14 +228,16 @@
       ctx.arc(x, y, 3.5, 0, Math.PI * 2);
       ctx.fill();
     });
-    ctx.strokeStyle = GRID;
-    ctx.strokeRect(plot.left, plot.top, plot.width, plot.height);
-    ctx.fillStyle = MUTED;
-    ctx.font = "11px " + FONT;
-    ctx.fillText(String(Math.round(minX)), plot.left, plot.bottom + 14);
-    ctx.textAlign = "right";
-    ctx.fillText(String(Math.round(maxX)), plot.right, plot.bottom + 14);
-    ctx.textAlign = "left";
+
+    if (Axis) {
+      Axis.drawFrame(ctx, plot);
+      Axis.drawYLabel(ctx, plot, yLabel || "y");
+      Axis.drawXLabel(ctx, plot, canvas.height, xLabel || "x");
+    } else {
+      ctx.strokeStyle = AXIS_C;
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(plot.left, plot.top, plot.width, plot.height);
+    }
   }
 
   function drawHeatmap(canvas, corr) {
@@ -180,7 +257,7 @@
         const r = corr.matrix[i][j];
         const x = pad.l + j * cell;
         const y = pad.t + i * cell;
-        let fill = "#e5e7eb";
+        let fill = "#efe8db";
         if (r != null) {
           const t = (r + 1) / 2;
           const g = Math.round(80 + t * 100);
@@ -198,6 +275,9 @@
         }
       }
     }
+    ctx.strokeStyle = AXIS_C;
+    ctx.lineWidth = 1.25;
+    ctx.strokeRect(pad.l, pad.t, size, size);
     ctx.fillStyle = MUTED;
     ctx.font = "10px " + FONT;
     cols.forEach(function (c, i) {
@@ -276,11 +356,24 @@
         ctx.fill();
       });
     }
+    if (Axis) {
+      Axis.drawXTicks(ctx, plot, lo, hi, { ticks: 4 });
+      Axis.drawFrame(ctx, {
+        left: plot.left,
+        right: plot.right,
+        top: midY - boxH / 2,
+        bottom: plot.bottom,
+      });
+    }
     ctx.fillStyle = MUTED;
     ctx.font = "11px " + FONT;
     ctx.fillText("min " + box.min, plot.left, plot.bottom + 14);
     ctx.textAlign = "center";
-    ctx.fillText("Q1 " + box.q1 + " · med " + box.median + " · Q3 " + box.q3, (plot.left + plot.right) / 2, plot.bottom + 14);
+    ctx.fillText(
+      "Q1 " + box.q1 + " · med " + box.median + " · Q3 " + box.q3,
+      (plot.left + plot.right) / 2,
+      plot.bottom + 14
+    );
     ctx.textAlign = "right";
     ctx.fillText("max " + box.max, plot.right, plot.bottom + 14);
     ctx.textAlign = "left";

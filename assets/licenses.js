@@ -1,7 +1,9 @@
-/* Classic script — full LICENSE file generation for dataset release bundles.
- * Prefers window.DatasheetLicenseTexts (licenses-bundle.js) for canonical bodies. */
+/* Shared LICENSE file generation for dataset tools.
+ * Prefers window.ToolsLicenseTexts (licenses-bundle.js). Exposes ToolsLicenses
+ * and mirrors the API onto DatasheetLib for the datasheet builder. */
 (function (global) {
   "use strict";
+  const ToolsLicenses = global.ToolsLicenses || (global.ToolsLicenses = {});
   const DatasheetLib = global.DatasheetLib || (global.DatasheetLib = {});
 
   const FALLBACK_SPECS = {
@@ -11,6 +13,7 @@
       short_label: "CC BY 4.0",
       url: "https://creativecommons.org/licenses/by/4.0/",
       filename: "LICENSE",
+      downloadable: true,
     },
     "cc0-1.0": {
       spdx: "CC0-1.0",
@@ -18,6 +21,7 @@
       short_label: "CC0 1.0",
       url: "https://creativecommons.org/publicdomain/zero/1.0/",
       filename: "LICENSE",
+      downloadable: true,
     },
     mit: {
       spdx: "MIT",
@@ -25,6 +29,7 @@
       short_label: "MIT",
       url: "https://opensource.org/licenses/MIT",
       filename: "LICENSE",
+      downloadable: true,
     },
     "apache-2.0": {
       spdx: "Apache-2.0",
@@ -32,9 +37,83 @@
       short_label: "Apache-2.0",
       url: "https://www.apache.org/licenses/LICENSE-2.0",
       filename: "LICENSE",
+      downloadable: true,
+    },
+    "cc-by-nc-4.0": {
+      spdx: "CC-BY-NC-4.0",
+      label: "Creative Commons Attribution-NonCommercial 4.0 International",
+      short_label: "CC BY-NC 4.0",
+      url: "https://creativecommons.org/licenses/by-nc/4.0/",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "cc-by-sa-4.0": {
+      spdx: "CC-BY-SA-4.0",
+      label: "Creative Commons Attribution-ShareAlike 4.0 International",
+      short_label: "CC BY-SA 4.0",
+      url: "https://creativecommons.org/licenses/by-sa/4.0/",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "cc-by-nc-sa-4.0": {
+      spdx: "CC-BY-NC-SA-4.0",
+      label: "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+      short_label: "CC BY-NC-SA 4.0",
+      url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "odc-by-1.0": {
+      spdx: "ODC-By-1.0",
+      label: "Open Data Commons Attribution License (ODC-By) v1.0",
+      short_label: "ODC-By 1.0",
+      url: "https://opendatacommons.org/licenses/by/1-0/",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "odc-odbl-1.0": {
+      spdx: "ODbL-1.0",
+      label: "Open Data Commons Open Database License (ODbL) v1.0",
+      short_label: "ODbL 1.0",
+      url: "https://opendatacommons.org/licenses/odbl/1-0/",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "pddl-1.0": {
+      spdx: "PDDL-1.0",
+      label: "ODC Public Domain Dedication and License (PDDL) v1.0",
+      short_label: "PDDL 1.0",
+      url: "https://opendatacommons.org/licenses/pddl/1-0/",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "bsd-3-clause": {
+      spdx: "BSD-3-Clause",
+      label: "BSD 3-Clause License",
+      short_label: "BSD-3-Clause",
+      url: "https://opensource.org/licenses/BSD-3-Clause",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    "gpl-3.0": {
+      spdx: "GPL-3.0-only",
+      label: "GNU General Public License v3.0 only",
+      short_label: "GPL-3.0",
+      url: "https://www.gnu.org/licenses/gpl-3.0.html",
+      filename: "LICENSE",
+      downloadable: false,
+    },
+    closed: {
+      spdx: "LicenseRef-Restricted",
+      label: "Restricted / closed access",
+      short_label: "Restricted",
+      url: "",
+      filename: "LICENSE",
+      downloadable: false,
     },
   };
 
+  /** Dropdown options for tools that ship full legal text (datasheet). */
   const LICENSE_OPTIONS = [
     { key: "cc-by-4.0", value: "CC BY 4.0" },
     { key: "cc0-1.0", value: "CC0 1.0" },
@@ -44,11 +123,15 @@
   ];
 
   function licenseBundle() {
-    return global.DatasheetLicenseTexts || { specs: FALLBACK_SPECS, bodies: {} };
+    return (
+      global.ToolsLicenseTexts ||
+      global.DatasheetLicenseTexts || { specs: FALLBACK_SPECS, bodies: {} }
+    );
   }
 
   function licenseSpecs() {
-    return licenseBundle().specs || FALLBACK_SPECS;
+    const bundled = licenseBundle().specs || {};
+    return Object.assign({}, FALLBACK_SPECS, bundled);
   }
 
   function copyrightYear(createdDate) {
@@ -61,13 +144,25 @@
     const raw = String(licenseField || "").trim().toLowerCase();
     if (!raw) return "other";
     if (raw === "other" || raw === "other…" || raw === "custom") return "other";
+    if (raw.indexOf("restricted") !== -1 || raw.indexOf("closed") !== -1) return "closed";
+    if (raw.indexOf("odbl") !== -1) return "odc-odbl-1.0";
+    if (raw.indexOf("pddl") !== -1) return "pddl-1.0";
+    if (raw.indexOf("odc") !== -1) return "odc-by-1.0";
+    if (raw.indexOf("by-nc-sa") !== -1 || raw.indexOf("nc-sa") !== -1) return "cc-by-nc-sa-4.0";
+    if (raw.indexOf("by-nc") !== -1 || raw.indexOf("noncommercial") !== -1 || raw.indexOf("non-commercial") !== -1) {
+      return "cc-by-nc-4.0";
+    }
+    if (raw.indexOf("by-sa") !== -1 || raw.indexOf("sharealike") !== -1 || raw.indexOf("share-alike") !== -1) {
+      return "cc-by-sa-4.0";
+    }
     if (raw.indexOf("cc0") !== -1 || raw.indexOf("public domain") !== -1) return "cc0-1.0";
     if (raw.indexOf("cc by") !== -1 || raw.indexOf("cc-by") !== -1 || raw.indexOf("attribution 4") !== -1) {
       return "cc-by-4.0";
     }
+    if (raw.indexOf("gpl") !== -1) return "gpl-3.0";
+    if (raw.indexOf("bsd") !== -1) return "bsd-3-clause";
     if (raw === "mit" || raw.indexOf("mit license") !== -1) return "mit";
     if (raw.indexOf("apache") !== -1) return "apache-2.0";
-    // Exact match against short labels
     const specs = licenseSpecs();
     const keys = Object.keys(specs);
     for (let i = 0; i < keys.length; i += 1) {
@@ -142,7 +237,6 @@
         .replace(/Copyright \(c\) \[year\] \[fullname\]/g, "Copyright (c) " + year + " " + who);
     }
     if (key === "apache-2.0") {
-      // Apache appendix often uses [yyyy] [name of copyright owner]
       let text = body;
       if (text.indexOf("[yyyy]") !== -1) {
         text = text.replace(/\[yyyy\]/g, year).replace(/\[name of copyright owner\]/g, who);
@@ -155,17 +249,44 @@
   function buildCustom(fields) {
     const license = displayLicenseName(fields);
     const contact = (fields.contact || "").trim();
+    const source = (fields.license_source || "release tool").trim();
     return (
       buildNoticeHeader(fields, null) +
       "Custom / other license\n\n" +
       "License name or identifier: " +
       license +
       "\n\n" +
-      "This release selected \"Other\" in the datasheet builder. Paste the full legal\n" +
+      'This release selected "Other" in the ' +
+      source +
+      ". Paste the full legal\n" +
       "text approved by your institution or legal team below this notice, or replace\n" +
       "this file entirely before publishing.\n\n" +
-      "Keep datasheet.md, datasheet-metadata.json, and LICENSE consistent.\n" +
+      "Keep documentation, metadata, and LICENSE consistent.\n" +
       (contact ? "\nFor licensing questions, contact: " + contact + "\n" : "")
+    );
+  }
+
+  function buildRestrictedStub(fields, spec) {
+    const contact = (fields.contact || "").trim();
+    return (
+      buildNoticeHeader(fields, spec) +
+      "Restricted / closed access\n\n" +
+      "This dataset should not carry an unrestricted open license.\n" +
+      "Publish clear access procedures (who may request data, under what terms)\n" +
+      "instead of a permissive Creative Commons or software license.\n\n" +
+      "Replace this stub with your institution's data-use agreement or access policy.\n" +
+      (contact ? "\nFor access requests, contact: " + contact + "\n" : "")
+    );
+  }
+
+  function buildLinkStub(fields, spec) {
+    return (
+      buildNoticeHeader(fields, spec) +
+      "Full license text was not bundled in this teaching site.\n" +
+      "Download the canonical text from:\n" +
+      (spec && spec.url ? spec.url : "(unknown)") +
+      "\n\n" +
+      "Keep the SPDX identifier and URL in your datasheet / metadata.\n"
     );
   }
 
@@ -186,15 +307,22 @@
     }
 
     const spec = specs[key] || FALLBACK_SPECS[key];
+    if (key === "closed") {
+      return {
+        filename: "LICENSE",
+        content: buildRestrictedStub(fields, spec),
+        spdx: (spec && spec.spdx) || "LicenseRef-Restricted",
+        license_key: key,
+        license_label: (spec && spec.label) || key,
+        has_full_text: false,
+      };
+    }
+
     const rawBody = bodies[key];
     if (!rawBody) {
       return {
         filename: "LICENSE",
-        content:
-          buildNoticeHeader(fields, spec) +
-          "Full license text was not bundled. Download the canonical text from:\n" +
-          (spec && spec.url ? spec.url : "(unknown)") +
-          "\n",
+        content: buildLinkStub(fields, spec),
         spdx: (spec && spec.spdx) || "LicenseRef-custom",
         license_key: key,
         license_label: (spec && spec.label) || key,
@@ -225,6 +353,38 @@
     }
     return fields;
   }
+
+  function downloadText(filename, text, mime) {
+    const blob = new Blob([text], { type: mime || "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 500);
+  }
+
+  function downloadLicenseFile(fields) {
+    syncLicenseField(fields);
+    const file = buildLicenseFile(fields);
+    downloadText(file.filename, file.content, "text/plain;charset=utf-8");
+    return file;
+  }
+
+  ToolsLicenses.FALLBACK_SPECS = FALLBACK_SPECS;
+  ToolsLicenses.LICENSE_OPTIONS = LICENSE_OPTIONS;
+  ToolsLicenses.licenseSpecs = licenseSpecs;
+  ToolsLicenses.normalizeLicenseKey = normalizeLicenseKey;
+  ToolsLicenses.resolveLicenseKey = resolveLicenseKey;
+  ToolsLicenses.displayLicenseName = displayLicenseName;
+  ToolsLicenses.syncLicenseField = syncLicenseField;
+  ToolsLicenses.buildLicenseFile = buildLicenseFile;
+  ToolsLicenses.downloadText = downloadText;
+  ToolsLicenses.downloadLicenseFile = downloadLicenseFile;
 
   DatasheetLib.LICENSE_OPTIONS = LICENSE_OPTIONS;
   DatasheetLib.licenseSpecs = licenseSpecs;

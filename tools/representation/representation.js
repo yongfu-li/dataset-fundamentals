@@ -560,5 +560,10 @@
     }
   }
 
+  if (window.DatasetToolsReport) {
+    window.DatasetToolsReport.registerRedraw(function () {
+      drawCharts();
+    });
+  }
   renderAll();
 })();

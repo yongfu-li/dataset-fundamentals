@@ -27,10 +27,10 @@ Guided browser lab for **dataset documentation** (book §8.2–8.3). Learners lo
 | `datasheet-metadata.json` | Machine-readable metadata + data dictionary |
 | `LICENSE` | Full legal text for listed licenses (CC BY 4.0, CC0, MIT, Apache-2.0) plus a notice header with dataset name, creators, contact, and SPDX id. **Other…** exports a stub to fill in. |
 
-Regenerate license texts (optional; re-fetch from upstream):
+License texts are shared under `lectures/assets/` (`licenses-bundle.js`, `licenses.js`) with the [license chooser](../license-chooser/). Regenerate (optional; re-fetch from upstream):
 
 ```bash
-python data/make_licenses.py
+python ../../assets/make_licenses.py
 ```
 
 ## Presets

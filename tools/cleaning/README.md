@@ -3,7 +3,8 @@
 Interactive browser tool for **Chapter 5 — Data Cleaning and Preprocessing**.
 Load a deliberately messy dataset (or upload your own), inspect the detected
 issues, apply cleaning operations step by step, and export the cleaned CSV
-together with an audit-trail change log.
+together with an audit-trail change log. Use **Send to scaling / encoding** to
+hand off the cleaned table to the next lab in the Ch.5 workflow.
 
 Runs entirely client-side — works on GitHub Pages and directly from `file://`
 (all scripts are classic IIFEs on `window.CleaningLib`; presets are bundled in
@@ -26,8 +27,9 @@ Runs entirely client-side — works on GitHub Pages and directly from `file://`
 
 ## Workflow
 
-1. **Load data** — pick a bundled preset or upload a CSV / JSON array
-   (≤ 2 MB, ≤ 5000 rows).
+1. **Load data** — pick a bundled preset, upload a CSV / JSON array
+   (≤ 2 MB, ≤ 5000 rows), or arrive from the EDA dashboard via
+   **Send to cleaning workbench** (`?from=eda` + `sessionStorage` handoff).
 2. **Read detected issues** — missing cells per column, exact and
    near-duplicates (repeated ID), category variant groups, 1.5×IQR outliers.
 3. **Explore rows** — filter the preview table; color-coded cells show *why*

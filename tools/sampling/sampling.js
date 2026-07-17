@@ -485,12 +485,12 @@ function drawChartLegend(ctx, x, y, firstColor, firstLabel, secondColor, secondL
   ctx.font = "11px Source Sans 3, Arial, sans-serif";
   ctx.fillStyle = firstColor;
   ctx.fillRect(x, y - 8, 14, 9);
-  ctx.fillStyle = "#33413c";
+  ctx.fillStyle = "#1c2421";
   ctx.fillText(firstLabel, x + 20, y);
   const offset = Math.max(100, ctx.measureText(firstLabel).width + 36);
   ctx.fillStyle = secondColor;
   ctx.fillRect(x + offset, y - 8, 14, 9);
-  ctx.fillStyle = "#33413c";
+  ctx.fillStyle = "#1c2421";
   ctx.fillText(secondLabel, x + offset + 20, y);
 }
 
@@ -535,18 +535,18 @@ function drawScatter() {
   for (let tick = 0; tick <= 4; tick += 1) {
     const xValue = minX + ((maxX - minX) * tick) / 4;
     const x = plot.left + (plotW * tick) / 4;
-    ctx.strokeStyle = "#dfe4e1";
+    ctx.strokeStyle = "rgba(28, 36, 33, 0.18)";
     ctx.beginPath();
     ctx.moveTo(x, plot.top);
     ctx.lineTo(x, plot.bottom);
     ctx.stroke();
-    ctx.fillStyle = "#66736d";
+    ctx.fillStyle = "#1c2421";
     ctx.textAlign = "center";
     ctx.fillText(formatChartNumber(xValue), x, plot.bottom + 17);
 
     const yValue = minY + ((maxY - minY) * tick) / 4;
     const y = plot.bottom - (plotH * tick) / 4;
-    ctx.strokeStyle = "#dfe4e1";
+    ctx.strokeStyle = "rgba(28, 36, 33, 0.18)";
     ctx.beginPath();
     ctx.moveTo(plot.left, y);
     ctx.lineTo(plot.right, y);
@@ -571,13 +571,15 @@ function drawScatter() {
     }
   });
 
-  ctx.strokeStyle = "#33413c";
+  ctx.strokeStyle = "#1c2421";
+  ctx.lineWidth = 1.5;
   ctx.beginPath();
   ctx.moveTo(plot.left, plot.top);
   ctx.lineTo(plot.left, plot.bottom);
   ctx.lineTo(plot.right, plot.bottom);
   ctx.stroke();
-  ctx.fillStyle = "#33413c";
+  ctx.lineWidth = 1;
+  ctx.fillStyle = "#1c2421";
   ctx.font = "600 12px Source Sans 3, Arial, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText(mapping.x, plot.left + plotW / 2, h - 10);
@@ -621,12 +623,12 @@ function drawBars(dist, column) {
   for (let tick = 0; tick <= 4; tick += 1) {
     const value = (maxPct * tick) / 4;
     const x = plot.left + (plotW * tick) / 4;
-    ctx.strokeStyle = "#dfe4e1";
+    ctx.strokeStyle = "rgba(28, 36, 33, 0.18)";
     ctx.beginPath();
     ctx.moveTo(x, plot.top);
     ctx.lineTo(x, plot.bottom);
     ctx.stroke();
-    ctx.fillStyle = "#66736d";
+    ctx.fillStyle = "#1c2421";
     ctx.textAlign = "center";
     ctx.fillText(formatChartNumber(value) + "%", x, plot.bottom + 14);
   }
@@ -639,17 +641,17 @@ function drawBars(dist, column) {
     ctx.fillRect(plot.left, y - barH - 1, popW, barH);
     ctx.fillStyle = "#0f6b5c";
     ctx.fillRect(plot.left, y + 1, sampleW, barH);
-    ctx.fillStyle = "#33413c";
+    ctx.fillStyle = "#1c2421";
     ctx.textAlign = "right";
     const label = String(item.label);
     ctx.fillText(label.length > 18 ? label.slice(0, 17) + "…" : label, plot.left - 8, y);
-    ctx.fillStyle = "#66736d";
+    ctx.fillStyle = "#1c2421";
     ctx.textAlign = "left";
     if (item.population > 0) ctx.fillText(item.population.toFixed(1) + "%", plot.left + popW + 4, y - 7);
     if (item.sample > 0) ctx.fillText(item.sample.toFixed(1) + "%", plot.left + sampleW + 4, y + 8);
   });
 
-  ctx.fillStyle = "#33413c";
+  ctx.fillStyle = "#1c2421";
   ctx.font = "600 12px Source Sans 3, Arial, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "alphabetic";

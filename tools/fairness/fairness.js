@@ -508,5 +508,10 @@
     on("ff-export", "click", exportReport);
   }
 
+  if (window.DatasetToolsReport) {
+    window.DatasetToolsReport.registerRedraw(function () {
+      drawCharts();
+    });
+  }
   renderAll();
 })();

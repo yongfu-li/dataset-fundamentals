@@ -10,12 +10,12 @@
 
   const STORAGE_KEY = "textann:v1";
   const LABEL_COLORS = {
-    positive: "#2b8a3e",
-    neutral: "#6b7280",
-    negative: "#9b2c2c",
-    org: "#2563af",
-    loc: "#d67928",
-    per: "#6b4fbb",
+    positive: "#1f7a4c",
+    neutral: "#5c675f",
+    negative: "#a33b3b",
+    org: "#3d5a80",
+    loc: "#b45309",
+    per: "#6b5b7a",
     misc: "#0f6b5c",
   };
 

@@ -6,17 +6,17 @@ window.AnnGuidelines = {
   classes: [
     {
       name: "car",
-      color: "#2563af",
+      color: "#3d5a80",
       rule: "Box the whole vehicle including cabin and wheels. One box per vehicle.",
     },
     {
       name: "person",
-      color: "#d67928",
+      color: "#b45309",
       rule: "Box head to feet. Label pedestrians even when partly occluded.",
     },
     {
       name: "sign",
-      color: "#2b8a3e",
+      color: "#1f7a4c",
       rule: "Box the sign face only, not the post.",
     },
   ],

@@ -3,9 +3,10 @@
   "use strict";
   const CleaningCharts = global.CleaningCharts || (global.CleaningCharts = {});
   const FONT = "Source Sans 3, Arial, sans-serif";
-  const TEXT = "#33413c";
-  const MUTED = "#66736d";
-  const GRID = "#dfe4e1";
+  const TEXT = "#1c2421";
+  const MUTED = "#1c2421";
+  const GRID = "rgba(28, 36, 33, 0.18)";
+  const AXIS = "#1c2421";
   const ORIGINAL = "#aeb4b0";
   const CURRENT = "#0f6b5c";
 
@@ -60,9 +61,22 @@
       ctx.moveTo(plot.left, y);
       ctx.lineTo(plot.right, y);
       ctx.stroke();
+      ctx.strokeStyle = AXIS;
+      ctx.lineWidth = 1.25;
+      ctx.beginPath();
+      ctx.moveTo(plot.left - 4, y);
+      ctx.lineTo(plot.left, y);
+      ctx.stroke();
       ctx.fillStyle = MUTED;
       ctx.fillText(formatNumber(value), plot.left - 8, y);
     }
+    ctx.strokeStyle = AXIS;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(plot.left, plot.top);
+    ctx.lineTo(plot.left, plot.bottom);
+    ctx.lineTo(plot.right, plot.bottom);
+    ctx.stroke();
     ctx.save();
     ctx.translate(15, plot.top + plot.height / 2);
     ctx.rotate(-Math.PI / 2);
@@ -120,7 +134,8 @@
       ctx.fillRect(x + barWidth + 2, plot.bottom - afterHeight, barWidth, afterHeight);
     });
 
-    ctx.strokeStyle = TEXT;
+    ctx.strokeStyle = AXIS;
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(plot.left, plot.bottom);
     ctx.lineTo(plot.right, plot.bottom);
@@ -196,10 +211,23 @@
       ctx.moveTo(x, plot.top);
       ctx.lineTo(x, plot.bottom);
       ctx.stroke();
+      ctx.strokeStyle = AXIS;
+      ctx.lineWidth = 1.25;
+      ctx.beginPath();
+      ctx.moveTo(x, plot.bottom);
+      ctx.lineTo(x, plot.bottom + 4);
+      ctx.stroke();
       ctx.fillStyle = MUTED;
       ctx.textAlign = "center";
       ctx.fillText(formatNumber(value), x, plot.bottom + 14);
     }
+    ctx.strokeStyle = AXIS;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(plot.left, plot.top);
+    ctx.lineTo(plot.left, plot.bottom);
+    ctx.lineTo(plot.right, plot.bottom);
+    ctx.stroke();
 
     shown.forEach(function (label, index) {
       const y = plot.top + index * rowHeight + rowHeight / 2;

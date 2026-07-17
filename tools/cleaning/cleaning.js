@@ -160,6 +160,51 @@
     return text[0] || columns[0] || "";
   }
 
+  function tryHandoffFromEda() {
+    const Handoff = window.DatasetToolsHandoff;
+    let from = null;
+    try {
+      from = new URLSearchParams(window.location.search).get("from");
+    } catch (err) {
+      from = null;
+    }
+    if (from !== "eda" || !Handoff) return false;
+    const payload = Handoff.read("eda-dashboard");
+    if (!payload || !payload.table || !payload.table.rows || !payload.table.columns) {
+      return false;
+    }
+    const table = payload.table;
+    const hints = payload.hints || {};
+    original = {
+      rows: table.rows.map(function (r) {
+        return Object.assign({}, r);
+      }),
+      columns: table.columns.slice(),
+      source: table.name || "eda-handoff",
+      idColumn: null,
+    };
+    steps = [];
+    rowFilter = hints.rowFilter || "any";
+    chartColumn = pickDefaultChartColumn(original.rows, original.columns);
+    const focus = hints.focusColumns || {};
+    if (focus.outlier && focus.outlier.length) chartColumn = focus.outlier[0];
+    else if (focus.missing && focus.missing.length) chartColumn = focus.missing[0];
+    Handoff.clear();
+    try {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+    } catch (err) {
+      /* ignore */
+    }
+    showMessage(
+      "Loaded from EDA dashboard (" + original.rows.length + " rows, " +
+        original.columns.length + " columns). Inspect issues, then apply fixes.",
+      "ok"
+    );
+    return true;
+  }
+
   function cellClass(issue) {
     if (!issue) return "";
     return ' class="cl-cell-' + issue.type + '"';
@@ -621,8 +666,10 @@
       '<div class="cl-op-row">' +
       '<button type="button" id="cl-export-csv" class="cl-primary">Download cleaned CSV</button>' +
       '<button type="button" id="cl-export-log">Download change log (JSON)</button>' +
+      '<button type="button" id="cl-send-scale" class="cl-primary">Send to scaling / encoding</button>' +
       "</div>" +
-      '<p class="cl-hint">The change log is your audit trail — good practice from §5.6 (document every transformation).</p>' +
+      '<p class="cl-hint">The change log is your audit trail — good practice from §5.6 (document every transformation). ' +
+      "Next in the workflow: scale and encode features before splitting.</p>" +
       "</section>"
     );
   }
@@ -649,6 +696,30 @@
     on("cl-reset", "click", resetAll);
     on("cl-export-csv", "click", exportCsv);
     on("cl-export-log", "click", exportLog);
+    on("cl-send-scale", "click", function () {
+      if (!original || !window.DatasetToolsHandoff) {
+        showMessage("Handoff helper missing.", "error");
+        renderAll();
+        return;
+      }
+      const rows = currentRows();
+      const columns = currentColumns();
+      try {
+        window.DatasetToolsHandoff.write({
+          source: "cleaning",
+          table: {
+            name: original.source || "cleaned",
+            columns: columns,
+            rows: rows,
+          },
+          hints: { from: "cleaning" },
+        });
+        window.location.href = "../scaling-encoding/index.html?from=cleaning";
+      } catch (err) {
+        showMessage(err.message || String(err), "error");
+        renderAll();
+      }
+    });
 
     root.querySelectorAll("[data-filter]").forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -720,5 +791,11 @@
     });
   }
 
+  tryHandoffFromEda();
+  if (window.DatasetToolsReport) {
+    window.DatasetToolsReport.registerRedraw(function () {
+      if (original) drawCharts();
+    });
+  }
   renderAll();
 })();

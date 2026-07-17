@@ -325,5 +325,298 @@ window.EdaPresets = {
         "channel": "Online"
       }
     ]
+  },
+  "confounder-icecream": {
+    "id": "confounder-icecream",
+    "name": "confounder-icecream",
+    "title": "Ice cream & drownings",
+    "description": "Correlation trap: ice_cream ↔ drownings look linked until you control for temperature.",
+    "bookAnchors": [
+      "§6.3",
+      "correlation ≠ causation"
+    ],
+    "teachingFocus": "Strong Pearson r can be spurious — toggle control-for temperature.",
+    "rows": [
+      {
+        "day": "D01",
+        "temperature_c": 29.5,
+        "ice_cream_sales": 86.0,
+        "drownings": 11.93,
+        "region": "Inland"
+      },
+      {
+        "day": "D02",
+        "temperature_c": 22.0,
+        "ice_cream_sales": 64.3,
+        "drownings": 8.01,
+        "region": "Coast"
+      },
+      {
+        "day": "D03",
+        "temperature_c": 34.1,
+        "ice_cream_sales": 97.3,
+        "drownings": 13.86,
+        "region": "Inland"
+      },
+      {
+        "day": "D04",
+        "temperature_c": 18.5,
+        "ice_cream_sales": 57.4,
+        "drownings": 8.92,
+        "region": "Coast"
+      },
+      {
+        "day": "D05",
+        "temperature_c": 18.5,
+        "ice_cream_sales": 58.2,
+        "drownings": 9.07,
+        "region": "Inland"
+      },
+      {
+        "day": "D06",
+        "temperature_c": 27.8,
+        "ice_cream_sales": 79.7,
+        "drownings": 12.28,
+        "region": "Coast"
+      },
+      {
+        "day": "D07",
+        "temperature_c": 32.6,
+        "ice_cream_sales": 97.4,
+        "drownings": 12.96,
+        "region": "Inland"
+      },
+      {
+        "day": "D08",
+        "temperature_c": 30.6,
+        "ice_cream_sales": 84.1,
+        "drownings": 12.59,
+        "region": "Coast"
+      },
+      {
+        "day": "D09",
+        "temperature_c": 35.2,
+        "ice_cream_sales": 95.6,
+        "drownings": 14.13,
+        "region": "Inland"
+      },
+      {
+        "day": "D10",
+        "temperature_c": 19.7,
+        "ice_cream_sales": 62.5,
+        "drownings": 7.52,
+        "region": "Coast"
+      },
+      {
+        "day": "D11",
+        "temperature_c": 32.5,
+        "ice_cream_sales": 89.4,
+        "drownings": 11.9,
+        "region": "Inland"
+      },
+      {
+        "day": "D12",
+        "temperature_c": 35.5,
+        "ice_cream_sales": 93.6,
+        "drownings": 14.63,
+        "region": "Coast"
+      },
+      {
+        "day": "D13",
+        "temperature_c": 32.9,
+        "ice_cream_sales": 85.2,
+        "drownings": 11.95,
+        "region": "Inland"
+      },
+      {
+        "day": "D14",
+        "temperature_c": 28.4,
+        "ice_cream_sales": 79.8,
+        "drownings": 11.2,
+        "region": "Coast"
+      },
+      {
+        "day": "D15",
+        "temperature_c": 22.1,
+        "ice_cream_sales": 64.6,
+        "drownings": 9.55,
+        "region": "Inland"
+      },
+      {
+        "day": "D16",
+        "temperature_c": 22.2,
+        "ice_cream_sales": 67.9,
+        "drownings": 9.65,
+        "region": "Coast"
+      },
+      {
+        "day": "D17",
+        "temperature_c": 29.4,
+        "ice_cream_sales": 80.1,
+        "drownings": 12.38,
+        "region": "Inland"
+      },
+      {
+        "day": "D18",
+        "temperature_c": 21.8,
+        "ice_cream_sales": 63.3,
+        "drownings": 10.99,
+        "region": "Coast"
+      },
+      {
+        "day": "D19",
+        "temperature_c": 29.7,
+        "ice_cream_sales": 81.3,
+        "drownings": 11.57,
+        "region": "Inland"
+      },
+      {
+        "day": "D20",
+        "temperature_c": 31.1,
+        "ice_cream_sales": 88.7,
+        "drownings": 13.06,
+        "region": "Coast"
+      },
+      {
+        "day": "D21",
+        "temperature_c": 35.8,
+        "ice_cream_sales": 94.7,
+        "drownings": 13.25,
+        "region": "Inland"
+      },
+      {
+        "day": "D22",
+        "temperature_c": 30.3,
+        "ice_cream_sales": 88.6,
+        "drownings": 10.96,
+        "region": "Coast"
+      },
+      {
+        "day": "D23",
+        "temperature_c": 22.1,
+        "ice_cream_sales": 68.5,
+        "drownings": 9.38,
+        "region": "Inland"
+      },
+      {
+        "day": "D24",
+        "temperature_c": 22.8,
+        "ice_cream_sales": 69.1,
+        "drownings": 11.34,
+        "region": "Coast"
+      },
+      {
+        "day": "D25",
+        "temperature_c": 33.8,
+        "ice_cream_sales": 90.8,
+        "drownings": 14.39,
+        "region": "Inland"
+      },
+      {
+        "day": "D26",
+        "temperature_c": 25.1,
+        "ice_cream_sales": 76.1,
+        "drownings": 9.84,
+        "region": "Coast"
+      },
+      {
+        "day": "D27",
+        "temperature_c": 22.8,
+        "ice_cream_sales": 66.8,
+        "drownings": 10.5,
+        "region": "Inland"
+      },
+      {
+        "day": "D28",
+        "temperature_c": 22.7,
+        "ice_cream_sales": 59.2,
+        "drownings": 8.59,
+        "region": "Coast"
+      },
+      {
+        "day": "D29",
+        "temperature_c": 25.2,
+        "ice_cream_sales": 75.1,
+        "drownings": 13.04,
+        "region": "Inland"
+      },
+      {
+        "day": "D30",
+        "temperature_c": 27.2,
+        "ice_cream_sales": 78.3,
+        "drownings": 11.14,
+        "region": "Coast"
+      },
+      {
+        "day": "D31",
+        "temperature_c": 20.0,
+        "ice_cream_sales": 55.0,
+        "drownings": 7.47,
+        "region": "Inland"
+      },
+      {
+        "day": "D32",
+        "temperature_c": 25.6,
+        "ice_cream_sales": 77.1,
+        "drownings": 10.76,
+        "region": "Coast"
+      },
+      {
+        "day": "D33",
+        "temperature_c": 35.9,
+        "ice_cream_sales": 87.8,
+        "drownings": 13.69,
+        "region": "Inland"
+      },
+      {
+        "day": "D34",
+        "temperature_c": 33.5,
+        "ice_cream_sales": 98.8,
+        "drownings": 13.32,
+        "region": "Coast"
+      },
+      {
+        "day": "D35",
+        "temperature_c": 30.3,
+        "ice_cream_sales": 81.6,
+        "drownings": 11.95,
+        "region": "Inland"
+      },
+      {
+        "day": "D36",
+        "temperature_c": 29.5,
+        "ice_cream_sales": 86.2,
+        "drownings": 12.39,
+        "region": "Coast"
+      },
+      {
+        "day": "D37",
+        "temperature_c": 26.2,
+        "ice_cream_sales": 82.6,
+        "drownings": 10.19,
+        "region": "Inland"
+      },
+      {
+        "day": "D38",
+        "temperature_c": 22.7,
+        "ice_cream_sales": 64.1,
+        "drownings": 9.46,
+        "region": "Coast"
+      },
+      {
+        "day": "D39",
+        "temperature_c": 34.4,
+        "ice_cream_sales": 96.9,
+        "drownings": 13.06,
+        "region": "Inland"
+      },
+      {
+        "day": "D40",
+        "temperature_c": 29.5,
+        "ice_cream_sales": 81.0,
+        "drownings": 11.53,
+        "region": "Coast"
+      }
+    ]
   }
 };

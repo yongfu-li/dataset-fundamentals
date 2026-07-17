@@ -23,16 +23,16 @@
   const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
   const MAX_IMAGES = 30;
   const CLASS_PALETTE = [
-    "#2563af",
-    "#d67928",
-    "#2b8a3e",
-    "#9b2c2c",
-    "#6b4fbb",
+    "#3d5a80",
+    "#b45309",
+    "#1f7a4c",
+    "#a33b3b",
+    "#6b5b7a",
     "#0f6b5c",
     "#b45309",
-    "#1d4ed8",
-    "#be185d",
-    "#365314",
+    "#33413c",
+    "#9a6b12",
+    "#5c675f",
   ];
 
   /** @type {{name:string,color:string,rule:string,custom:boolean}[]} */
@@ -189,11 +189,19 @@
   function fitZoom() {
     const wrap = document.getElementById("an-canvas-wrap");
     const img = currentImage();
-    if (!wrap || !img) return;
+    if (!wrap || !img || !img.width || !img.height) return;
+    // Viewport size must be independent of the current canvas size. The wrap has a
+    // fixed CSS height; measuring after a brief overflow:hidden avoids scrollbar
+    // feedback (scrollbar → narrower clientWidth → slightly smaller fit → repeat).
+    const prevOverflow = wrap.style.overflow;
+    wrap.style.overflow = "hidden";
     const availW = Math.max(80, wrap.clientWidth - 4);
     const availH = Math.max(80, wrap.clientHeight - 4);
+    wrap.style.overflow = prevOverflow;
     zoom = clampZoom(Math.min(1, availW / img.width, availH / img.height));
     applyZoom();
+    wrap.scrollLeft = 0;
+    wrap.scrollTop = 0;
   }
 
   function setZoom(next, anchorClientX, anchorClientY) {
@@ -1112,12 +1120,12 @@
     if (bmp) {
       ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
     } else {
-      ctx.fillStyle = "#eef2f4";
+      ctx.fillStyle = "#efe8db";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
     currentBoxes().forEach(function (box) {
-      const color = box.class && classColor[box.class] ? classColor[box.class] : "#c0392b";
+      const color = box.class && classColor[box.class] ? classColor[box.class] : "#a33b3b";
       const selected = box.id === selectedId;
       ctx.lineWidth = selected ? 3 : 2;
       ctx.strokeStyle = color;

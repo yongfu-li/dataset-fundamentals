@@ -137,45 +137,55 @@
     const withVariation = withoutIdName.filter(function (c) {
       return !isAllUnique(c, session.rows);
     });
+    // Univariate: prefer non-unique columns; scatter/control: use all non-ID numerics
+    // so pedagogically named columns (e.g. ice_cream_sales) are not dropped when unique.
     const plotNumeric = withVariation.length
       ? withVariation
       : withoutIdName.length
         ? withoutIdName
         : numeric;
+    const pairNumeric = withoutIdName.length ? withoutIdName : numeric;
     const cats = cols.filter(function (c) {
       return !Lib.isNumericColumn(session.rows, c);
     });
     uniCol = uniCol && cols.indexOf(uniCol) !== -1 ? uniCol : plotNumeric[0] || cats[0] || cols[0];
-    const prefX = preferNamed(plotNumeric, ["income", "ice_cream_sales", "x"]);
+    const prefX = preferNamed(pairNumeric, ["income", "ice_cream_sales", "x"]);
     const prefY = preferNamed(
-      plotNumeric.filter(function (c) {
+      pairNumeric.filter(function (c) {
         return c !== (prefX || scatterX);
       }),
       ["spend", "drownings", "y"]
     );
     scatterX =
-      scatterX && plotNumeric.indexOf(scatterX) !== -1
+      scatterX && pairNumeric.indexOf(scatterX) !== -1
         ? scatterX
-        : prefX || plotNumeric[0] || null;
+        : prefX || pairNumeric[0] || null;
     scatterY =
-      scatterY && plotNumeric.indexOf(scatterY) !== -1 && scatterY !== scatterX
+      scatterY && pairNumeric.indexOf(scatterY) !== -1 && scatterY !== scatterX
         ? scatterY
-        : prefY || plotNumeric[1] || plotNumeric[0] || null;
+        : prefY ||
+          pairNumeric.find(function (c) {
+            return c !== scatterX;
+          }) ||
+          pairNumeric[0] ||
+          null;
     groupCol = groupCol && cats.indexOf(groupCol) !== -1 ? groupCol : cats[0] || null;
     groupVal =
-      groupVal && plotNumeric.indexOf(groupVal) !== -1 ? groupVal : plotNumeric[0] || null;
+      groupVal && pairNumeric.indexOf(groupVal) !== -1 ? groupVal : plotNumeric[0] || pairNumeric[0] || null;
     const prefZ = preferNamed(
-      plotNumeric.filter(function (c) {
+      pairNumeric.filter(function (c) {
         return c !== scatterX && c !== scatterY;
       }),
       ["temperature_c", "temp", "age"]
     );
     controlZ =
-      controlZ && plotNumeric.indexOf(controlZ) !== -1
+      controlZ && pairNumeric.indexOf(controlZ) !== -1
         ? controlZ
-        : prefZ || plotNumeric.find(function (c) {
+        : prefZ ||
+          pairNumeric.find(function (c) {
             return c !== scatterX && c !== scatterY;
-          }) || null;
+          }) ||
+          null;
     if (!filterRules.length && cats.length) {
       filterRules = [{ id: nextFilterId++, column: cats[0], op: "eq", value: "" }];
     }
@@ -195,7 +205,13 @@
       resetViewState();
       pickDefaults();
       applyFilters();
-      if (session.id === "confounder-icecream") controlOn = true;
+      if (session.id === "confounder-icecream") {
+        controlOn = true;
+        scatterX = "ice_cream_sales";
+        scatterY = "drownings";
+        controlZ = "temperature_c";
+        uniCol = "ice_cream_sales";
+      }
       showMessage(
         "Loaded '" + session.name + "' (" + session.rows.length + " rows).",
         "ok"
@@ -1137,6 +1153,11 @@
     if (sc) sc.addEventListener("click", sendToCleaning);
   }
 
+  if (window.DatasetToolsReport) {
+    window.DatasetToolsReport.registerRedraw(function () {
+      if (session) drawCharts();
+    });
+  }
   if (window.EdaPresets && window.EdaPresets["household-incomes"]) {
     loadPreset("household-incomes");
   } else {

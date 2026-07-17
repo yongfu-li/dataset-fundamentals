@@ -181,13 +181,14 @@
   padding-left: 1.1rem;
 }
 
-/* Canvas stage */
+/* Canvas stage — fixed height so Fit uses a stable viewport.
+   With only max-height, clientHeight tracked the canvas and each Fit shrunk again. */
 .an-canvas-wrap {
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: auto;
-  max-height: min(70vh, 640px);
-  background: #eef2f4;
+  height: min(70vh, 640px);
+  background: var(--surface2);
   line-height: 0;
   overscroll-behavior: contain;
 }
@@ -274,7 +275,7 @@
   font-size: 0.9rem;
 }
 .an-del:hover {
-  color: #7a2a2a;
+  color: var(--err);
 }
 
 /* Review + messages */
