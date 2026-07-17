@@ -1,0 +1,119 @@
+title: Chapter 7 — Mitigating bias in datasets
+footer: Chapter 7 — Mitigating Bias
+slides:
+- type: title
+  title: Chapter 7 — Mitigating bias in datasets
+  subtitle: Once a disparity and a fairness objective are defined
+  notes: Once a disparity and a fairness objective are defined, intervention can occur
+    before training, during learning, or after a model produces outputs. These stages
+    correspond to pre-processing, in-processing, and post-processing. The best choice
+    depends on the diagnosed bias, access to the model, governance constraints, and
+    the harms the intervention is intended to reduce.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Select an intervention using evidence rather than convenience
+  notes: By the end of this clip, learners should classify mitigation methods by pipeline
+    stage, explain reweighting and feature treatment, describe fairness-constrained
+    learning and adversarial debiasing, compare equalized-odds post-processing with
+    calibration, and select an intervention using evidence rather than convenience.
+- type: bullets
+  title: Pre-processing through reweighting
+  bullets:
+  - Reweighting changes how strongly training instances influence learning
+  - Underrepresented groups can receive greater weight so that the majority group
+    does not
+  - This approach preserves records while changing their contribution
+  notes: Reweighting changes how strongly training instances influence learning. Underrepresented
+    groups can receive greater weight so that the majority group does not dominate
+    the objective. This approach preserves records while changing their contribution,
+    but extreme weights can increase variance and cannot repair labels or measurements
+    that are fundamentally invalid.
+- type: bullets
+  title: Pre-processing through feature treatment
+  bullets:
+  - Sensitive or strongly biased features may be removed
+  - Simple removal is not a guarantee of fairness because names, neighborhoods, schools
+  - Feature treatment should be followed by proxy analysis and subgroup evaluation
+  notes: Sensitive or strongly biased features may be removed, transformed, or replaced
+    with less harmful representations. Simple removal is not a guarantee of fairness
+    because names, neighborhoods, schools, and other variables can act as proxies.
+    Feature treatment should be followed by proxy analysis and subgroup evaluation,
+    while sensitive attributes may still be retained securely for auditing.
+- type: bullets
+  title: In-processing with fairness constraints
+  bullets:
+  - Fairness-constrained learning modifies the training objective by adding a constraint
+    or
+  - The model then optimizes predictive performance and the selected fairness criterion
+  - Quality of outcome labels
+  notes: Fairness-constrained learning modifies the training objective by adding a
+    constraint or penalty for disparities such as unequal selection or error rates.
+    The model then optimizes predictive performance and the selected fairness criterion
+    together. This makes the trade-off explicit, but the result depends heavily on
+    the criterion, tolerance, group definitions, and quality of outcome labels.
+- type: bullets
+  title: In-processing with adversarial debiasing
+  bullets:
+  - Adversarial debiasing trains a predictor alongside an adversary that tries to
+    infer a
+  - The predictor is penalized when the adversary succeeds
+  - The method can reduce proxy leakage
+  notes: Adversarial debiasing trains a predictor alongside an adversary that tries
+    to infer a sensitive attribute from the predictor's representation or output.
+    The predictor is penalized when the adversary succeeds, encouraging less sensitive
+    information to remain. The method can reduce proxy leakage, but it adds training
+    complexity and still requires downstream fairness testing.
+- type: bullets
+  title: Post-processing with equalized odds
+  bullets:
+  - Equalized-odds post-processing adjusts decisions or thresholds from an already
+    trained
+  - Operational review
+  - They can also change accuracy and may become unstable when group samples are small
+  notes: Equalized-odds post-processing adjusts decisions or thresholds from an already
+    trained model so that error rates become more comparable across groups. It is
+    useful when retraining is impossible, but group-specific adjustments require careful
+    legal, ethical, and operational review. They can also change accuracy and may
+    become unstable when group samples are small.
+- type: bullets
+  title: Post-processing with calibration
+  bullets:
+  - Calibration adjusts predicted probabilities so that a score has a consistent empirical
+  - It is valuable when scores guide human decisions or resource allocation
+  - Calibration does not guarantee equal selection or error rates
+  notes: Calibration adjusts predicted probabilities so that a score has a consistent
+    empirical meaning for each group. It is valuable when scores guide human decisions
+    or resource allocation. Calibration does not guarantee equal selection or error
+    rates, and it can conflict with equalized odds when base rates differ, so the
+    deployment purpose must determine priority.
+- type: bullets
+  title: Choosing and validating an intervention
+  bullets:
+  - Intervention begins with a diagnosed mechanism and a stated fairness target
+  - Monitor drift after deployment
+  - Mitigation is an iterative control process rather than a one-time repair
+  notes: Intervention begins with a diagnosed mechanism and a stated fairness target.
+    Teams should compare a baseline with candidate methods, report group performance
+    and uncertainty, inspect utility costs, test on representative holdout data, document
+    residual harms, and monitor drift after deployment. Mitigation is an iterative
+    control process rather than a one-time repair.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Pre-processing changes data, in-processing changes learning
+  - Output adjustment targets decision behavior or probability meaning
+  - Every method must be validated against the intended fairness objective
+  notes: Pre-processing changes data, in-processing changes learning, and post-processing
+    changes outputs. Reweighting addresses influence, feature treatment reduces direct
+    or proxy pathways, fairness constraints and adversaries reshape training, and
+    output adjustment targets decision behavior or probability meaning. Every method
+    must be validated against the intended fairness objective.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next clip moves from individual techniques to operating practice
+  notes: The next clip moves from individual techniques to operating practice. It
+    explains how representative collection, labeling governance, human oversight,
+    validation, audits, and impact assessments make fairness routine rather than reactive.

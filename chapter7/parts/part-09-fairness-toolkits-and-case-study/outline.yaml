@@ -1,0 +1,110 @@
+title: Chapter 7 — Fairness toolkits and case study
+footer: Chapter 7 — Fairness Toolkits And Case Study
+slides:
+- type: title
+  title: Chapter 7 — Fairness toolkits and case study
+  subtitle: Fairness toolkits help teams compute disaggregated metrics, compare mitigation
+    strategies
+  notes: Fairness toolkits help teams compute disaggregated metrics, compare mitigation
+    strategies, and repeat analyses as data and models change. They reduce implementation
+    effort, but they do not determine which groups, harms, or fairness definitions
+    matter. This clip compares two toolkits and applies the broader workflow to gender
+    bias in text.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this clip
+  notes: By the end of this clip, learners should describe the main capabilities of
+    AI Fairness 360 and Fairlearn, select a toolkit according to workflow needs, explain
+    how gender stereotypes enter text representations, and design evaluation that
+    checks whether a debiasing intervention actually improves downstream behavior.
+- type: bullets
+  title: IBM AI Fairness 360
+  bullets:
+  - Mitigation algorithms
+  - Its methods span pre-processing, in-processing
+  - This breadth supports experimentation across several fairness definitions
+  notes: IBM AI Fairness 360 offers a broad collection of dataset and model metrics,
+    reference datasets, and mitigation algorithms. Its methods span pre-processing,
+    in-processing, and post-processing, including reweighting and adversarial approaches.
+    This breadth supports experimentation across several fairness definitions, especially
+    when a team needs to compare interventions at different pipeline stages.
+- type: bullets
+  title: Microsoft Fairlearn
+  bullets:
+  - Fairlearn emphasizes disaggregated assessment and fairness-aware mitigation within
+    common
+  - Grouped metric reporting exposes performance gaps that an average conceals
+  - It is particularly convenient when models already use the scikit-learn ecosystem
+  notes: Fairlearn emphasizes disaggregated assessment and fairness-aware mitigation
+    within common Python model workflows. Grouped metric reporting exposes performance
+    gaps that an average conceals, while reduction and threshold methods can impose
+    constraints such as demographic parity or equalized odds. It is particularly convenient
+    when models already use the scikit-learn ecosystem.
+- type: bullets
+  title: Using tools responsibly
+  bullets:
+  - A defensible workflow first states the decision context, affected groups, harms,
+    labels
+  - The toolkit then computes evidence and tests candidate interventions
+  - Teams must report uncertainty, utility changes, and unresolved harms
+  - Default settings and benchmark datasets are starting points
+  notes: A defensible workflow first states the decision context, affected groups,
+    harms, labels, and desired fairness criterion. The toolkit then computes evidence
+    and tests candidate interventions. Teams must report uncertainty, utility changes,
+    and unresolved harms. Default settings and benchmark datasets are starting points,
+    not substitutes for domain judgment or stakeholder participation.
+- type: bullets
+  title: Case study — Gender bias in text data
+  bullets:
+  - Large text corpora can associate occupations and social roles with gender stereotypes
+  - Models learn these associations and may reproduce them in generation
+  notes: Large text corpora can associate occupations and social roles with gender
+    stereotypes, such as linking doctors and engineers with men while linking nurses
+    and teachers with women. Models learn these associations and may reproduce them
+    in generation, translation, sentiment analysis, recommendation, or hiring applications,
+    even when gender is not an explicit input field.
+- type: bullets
+  title: Debiasing representations
+  bullets:
+  - One mitigation strategy identifies a gender direction in a word-embedding space
+    and
+  - Data balancing and fairness-aware training provide alternatives
+  - Any intervention must distinguish harmful stereotypes from legitimate linguistic
+  notes: One mitigation strategy identifies a gender direction in a word-embedding
+    space and reduces unwanted associations by projecting selected representations
+    toward a more neutral space. Data balancing and fairness-aware training provide
+    alternatives. Any intervention must distinguish harmful stereotypes from legitimate
+    linguistic information and avoid erasing identities or masking bias that persists
+    elsewhere.
+- type: bullets
+  title: Evaluating the outcome
+  bullets:
+  - Realistic prompts
+  - Human review by affected communities can identify harms that a numeric score misses
+  - Because language and usage evolve
+  notes: Evaluation should compare association tests before and after intervention
+    and then examine downstream tasks, subgroup errors, generated content, and realistic
+    prompts. Human review by affected communities can identify harms that a numeric
+    score misses. Because language and usage evolve, the evaluation should recur after
+    data updates and deployment.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - AI Fairness 360 provides broad metrics and interventions across pipeline stages
+  - Toolkits make analysis repeatable but cannot choose the ethical objective
+  - Text debiasing requires both representation-level tests and downstream
+  notes: AI Fairness 360 provides broad metrics and interventions across pipeline
+    stages, while Fairlearn integrates disaggregated assessment and constrained mitigation
+    into familiar model workflows. Toolkits make analysis repeatable but cannot choose
+    the ethical objective. Text debiasing requires both representation-level tests
+    and downstream, human-centered evaluation.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Deployment governance
+  notes: The final clip looks ahead to generative artificial intelligence, decentralized
+    training, evolving regulation, and deployment governance. These settings extend
+    the same core principles while introducing new sources of scale, opacity, and
+    distribution shift.
