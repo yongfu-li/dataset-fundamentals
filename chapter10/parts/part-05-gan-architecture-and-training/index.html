@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAN architecture and training — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter10/index.html">Chapter 10</a><span class="here">Part 5/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 10 · Guided part</div>
+    
+<section class="hero">
+  <h1>GAN architecture and training</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Part 5 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-correlation-bootstrapping-regression/index.html">← Previous</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-gan-variants-evaluation-ethics/index.html" title="GAN variants, evaluation, and ethics">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Describe generator and discriminator roles in adversarial training</li>
+<li>Outline alternating updates and binary cross-entropy loss functions</li>
+<li>Identify mode collapse and training instability as key failure modes</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 10 — GAN architecture and training</h3><p>Statistical methods assume known forms; generative adversarial networks learn complex structure from data. This part explains generator and discriminator roles, adversarial training, loss functions, and convergence challenges that affect synthetic realism.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to describe the generator–discriminator minimax setup; outline alternating training updates for each network; explain binary cross-entropy loss roles; and name mode collapse and training instability as primary failure modes.</p></div><div class="transcript"><h3>Slide 3 — Generative adversarial network overview</h3><p>A generative adversarial network pairs two neural networks trained simultaneously in a game-theoretic framework. The generator creates synthetic samples from random noise; the discriminator classifies inputs as real or fake. Competition drives the generator toward outputs that are hard to distinguish from real data across images, text, audio, and other modalities.</p></div><div class="transcript"><h3>Slide 4 — The generator</h3><p>The generator maps latent noise to synthetic data points—faces, waveforms, or tabular feature vectors. Its objective is to produce samples that appear authentic to humans or downstream classifiers. Early training yields poor fakes; later iterations refine texture, structure, and label-consistent patterns as discriminator feedback improves.</p></div><div class="transcript"><h3>Slide 5 — The discriminator</h3><p>The discriminator acts as a binary classifier scoring whether each input is real or synthetic. It trains on batches of real records and generator outputs, providing the learning signal that pushes the generator toward realism. If the discriminator becomes too strong or too weak relative to the generator, training can stall or diverge.</p></div><div class="transcript"><h3>Slide 6 — Adversarial minimax training</h3><p>Training alternates discriminator and generator updates. First the discriminator learns to separate real and fake batches. Then the generator updates to fool the discriminator. This minimax game continues until fakes are sufficiently realistic—though perfect equilibrium is rare in practice, and careful balance of learning rates and capacity is required.</p></div><div class="transcript"><h3>Slide 7 — Loss functions</h3><p>The common choice is binary cross-entropy loss. The discriminator minimizes classification error on real versus fake labels. The generator minimizes the discriminator’s ability to reject fakes—effectively maximizing the probability assigned to synthetic samples as real. Loss design directly affects stability and sample quality.</p></div><div class="transcript"><h3>Slide 8 — Convergence challenges</h3><p>Generative adversarial network training is notoriously unstable. Mode collapse occurs when the generator repeats a narrow set of outputs instead of exploring the full data distribution. Vanishing gradients, imbalanced network capacity, and diverging losses can prevent convergence. Teams monitor samples, losses, and diversity metrics throughout training.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Generative adversarial networks learn synthesis through adversarial feedback rather than explicit distributional assumptions. Success depends on balanced generator–discriminator training and appropriate loss functions. Architectural variants, evaluation metrics, and ethical risks are covered in the next part.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part surveys conditional generative adversarial networks, CycleGANs, and StyleGANs, then discusses realism metrics, prominent use cases, and ethical risks such as deepfakes and malicious misuse.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-gan-variants-evaluation-ethics/index.html" data-next-label="Continue to GAN variants, evaluation, and ethics"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-05-gan-architecture-and-training",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What is the generator's primary role in a GAN?",
+      "choices": [
+        "Classify inputs as real or fake",
+        "Create synthetic data from random noise",
+        "Enforce GDPR retention policies",
+        "Compute bootstrap confidence intervals"
+      ],
+      "answer_index": 1,
+      "explain": "Section 10.4.1 assigns the generator the task of creating synthetic data from latent noise."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "GAN training alternates between updating the discriminator and updating the generator.",
+      "answer": true,
+      "explain": "Section 10.4.2 describes alternating discriminator and generator update steps."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Mode collapse refers to:",
+      "choices": [
+        "The generator producing limited variations instead of diverse realistic samples",
+        "Perfect convergence on the first epoch",
+        "Encrypting all synthetic rows at rest",
+        "Using copulas for financial returns"
+      ],
+      "answer_index": 0,
+      "explain": "Section 10.4.2 defines mode collapse as the generator emitting limited variations rather than a diverse set."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What loss function is most commonly used in basic GAN training?",
+      "rubric": "Mention binary cross-entropy (or BCE) for discriminator and generator objectives.",
+      "sample_answer": "Binary cross-entropy loss, with the discriminator minimizing classification error and the generator trying to fool the discriminator."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "If the discriminator becomes too powerful relative to the generator, training can become unstable or stall.",
+      "answer": true,
+      "explain": "Section 10.4.2 notes instability when discriminator and generator capacities or learning rates are imbalanced."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

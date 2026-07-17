@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Challenges of synthetic data — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter10/index.html">Chapter 10</a><span class="here">Part 2/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 10 · Guided part</div>
+    
+<section class="hero">
+  <h1>Challenges of synthetic data</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Part 2 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-01-introduction-to-synthetic-data/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-03-statistical-distributions-and-simulation/index.html" title="Statistical distributions and simulation">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain validation and generalization gaps for synthetic datasets</li>
+<li>Identify how source-data bias propagates through generators</li>
+<li>Describe overfitting and lack-of-diversity risks in synthetic generation</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.4</span>
+    <h3>Example 10.4 — Face-Recognition Validation Gap</h3>
+    <p>Diagnose validation gaps when synthetic faces omit lighting and occlusion variation.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example4/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.5</span>
+    <h3>Example 10.5 — Demographic Bias in GAN Training Data</h3>
+    <p>Recognize how biased GAN training demographics propagate into generated samples.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example5/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 10 — Challenges of synthetic data</h3><ul><li>Synthetic data promises scale and privacy, but generated rows are not automatically trustworthy</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Validation and generalization gaps</h3><ul><li>A central challenge is proving that synthetic data represents the phenomena it is meant to</li><li>Generated samples may match aggregate statistics yet miss subtle structure</li><li>Models trained only on synthetic data may look strong in controlled tests yet fail when</li></ul></div><div class="slide-card"><h3>Example 10.4 — Face-Recognition Validation Gap</h3><ul><li>Example 10.4 — hands-on module</li><li>Example 10.4 highlights a validation gap for synthetic faces</li><li>Images may appear realistic yet lack lighting changes, occlusions</li><li>A face-recognition model trained on such data can underperform in production</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example4/</code></li></ul></div><div class="slide-card"><h3>Generalization beyond the generator</h3><ul><li>Synthetic data must generalize to conditions the generator never saw</li><li>Real environments change unpredictably, markets shift, sensors drift</li><li>When synthetic corpora oversimplify those dynamics</li></ul></div><div class="slide-card"><h3>Potential biases from source data</h3><ul><li>Because generators learn from existing datasets or predefined models</li><li>Mitigation matters</li></ul></div><div class="slide-card"><h3>Example 10.5 — Demographic Bias in GAN Training Data</h3><ul><li>Example 10.5 — hands-on module</li><li>Example 10.5 shows how biased source data propagates through a generative adversarial</li><li>If training images underrepresent certain groups</li><li>In sensitive domains such as healthcare or hiring</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example5/</code></li></ul></div><div class="slide-card"><h3>Overfitting and lack of diversity</h3><ul><li>Machine-learning generators can overfit training data and emit homogeneous samples</li><li>When synthetic sets omit edge cases or rare events</li><li>Diversity is not optional</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Synthetic data requires explicit validation against real benchmarks</li><li>Source bias, mode collapse, and homogeneity can all undermine utility</li><li>Teams should treat challenges here as design constraints before choosing statistical</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Monte Carlo simulation for uncertain outcomes such as asset returns</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 10 — Challenges of synthetic data</h3><p>Synthetic data promises scale and privacy, but generated rows are not automatically trustworthy. This part covers validation and generalization gaps, demographic bias inherited from generators, and overfitting or lack of diversity when models train only on synthetic copies.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to explain why statistical similarity does not guarantee real-world utility; identify how source-data bias propagates through generators; and describe overfitting and homogeneity risks in machine-learning-based synthesis.</p></div><div class="transcript"><h3>Slide 3 — Validation and generalization gaps</h3><p>A central challenge is proving that synthetic data represents the phenomena it is meant to simulate. Generated samples may match aggregate statistics yet miss subtle structure, natural variation, or noise that real systems exhibit. Models trained only on synthetic data may look strong in controlled tests yet fail when deployed on live inputs.</p></div><div class="transcript"><h3>Slide 4 — Example 10.4 — Face-Recognition Validation Gap</h3><p>Example 10.4 highlights a validation gap for synthetic faces. Images may appear realistic yet lack lighting changes, occlusions, and other variation present in real portraits. A face-recognition model trained on such data can underperform in production. The example 4 module for this chapter frames this fidelity versus variation tradeoff.</p></div><div class="transcript"><h3>Slide 5 — Generalization beyond the generator</h3><p>Synthetic data must generalize to conditions the generator never saw. Real environments change unpredictably—markets shift, sensors drift, and human behavior varies. When synthetic corpora oversimplify those dynamics, downstream models inherit a narrow view of the world and degrade outside the training distribution.</p></div><div class="transcript"><h3>Slide 6 — Potential biases from source data</h3><p>Because generators learn from existing datasets or predefined models, they can inherit and amplify demographic or label skew present in the source. Mitigation matters: biased synthetic hiring or healthcare data can reinforce unfair outcomes even when individual identifiers are removed.</p></div><div class="transcript"><h3>Slide 7 — Example 10.5 — Demographic Bias in GAN Training Data</h3><p>Example 10.5 shows how biased source data propagates through a generative adversarial network. If training images underrepresent certain groups, generated faces may perpetuate the same skew. In sensitive domains such as healthcare or hiring, that can produce systematically unfair decisions. The example 5 module for this chapter summarizes this propagation risk.</p></div><div class="transcript"><h3>Slide 8 — Overfitting and lack of diversity</h3><p>Machine-learning generators can overfit training data and emit homogeneous samples. When synthetic sets omit edge cases or rare events, models may memorize simplified patterns and fail on varied real-world inputs. Diversity is not optional—it is part of whether synthetic augmentation actually improves robustness.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Synthetic data requires explicit validation against real benchmarks, not assumption of fidelity. Source bias, mode collapse, and homogeneity can all undermine utility. Teams should treat challenges here as design constraints before choosing statistical, GAN, or language-model synthesis methods.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part introduces statistical distribution modeling, normal-distribution sampling sketches, and Monte Carlo simulation for uncertain outcomes such as asset returns.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-03-statistical-distributions-and-simulation/index.html" data-next-label="Continue to Statistical distributions and simulation"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-02-challenges-of-synthetic-data",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why might synthetic face images fail for face-recognition training (Example 10.4)?",
+      "choices": [
+        "They always contain too much personal identifiable information",
+        "They may lack natural variation such as lighting changes and occlusions",
+        "They cannot be generated by any algorithm",
+        "They always outperform real images in validation"
+      ],
+      "answer_index": 1,
+      "explain": "Example 10.4 notes synthetic faces may look similar yet miss variation found in real images."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Synthetic data can inherit biases present in the datasets used to train generators.",
+      "answer": true,
+      "explain": "Section 10.2.2 and Example 10.5 describe bias propagation from source data through GANs and other generators."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Overfitting in synthetic data generation often leads to:",
+      "choices": [
+        "Homogeneous samples that miss edge cases and real-world diversity",
+        "Guaranteed GDPR compliance without review",
+        "Elimination of all validation requirements",
+        "Perfect generalization to unseen environments"
+      ],
+      "answer_index": 0,
+      "explain": "Section 10.2.3 warns that overfitting can produce overly homogeneous synthetic data with poor real-world coverage."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What validation concern arises when a model trained on synthetic data performs well in testing but poorly in deployment?",
+      "rubric": "Mention generalization gap, failure to capture real-world complexity, or mismatch between synthetic and live conditions.",
+      "sample_answer": "The synthetic data may not capture real-world complexity and variation, so the model generalizes poorly outside the synthetic training environment."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Statistical similarity alone guarantees that synthetic data is ready for production model training.",
+      "answer": false,
+      "explain": "Section 10.2.1 stresses that synthetic data can be statistically similar yet miss important structure, noise, or edge behavior."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

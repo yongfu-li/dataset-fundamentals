@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLMs for synthetic text and labels — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter10/index.html">Chapter 10</a><span class="here">Part 7/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 10 · Guided part</div>
+    
+<section class="hero">
+  <h1>LLMs for synthetic text and labels</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Part 7 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-gan-variants-evaluation-ethics/index.html">← Previous</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-use-cases-healthcare-finance/index.html" title="Use cases in healthcare and finance">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Describe prompt-based LLM synthesis for text, labels, and structured records</li>
+<li>Explain hallucination, memorization, and bias risks</li>
+<li>State validation gates required before training on LLM-generated data</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 10 — LLMs for synthetic text and labels</h3><p>Images and tabular rows are not the only synthesis targets. This part explains how large language models generate synthetic text, labels, and structured records through prompting, and why hallucination, memorization, and bias require the same validation gates as generative adversarial outputs.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to describe prompt-based text and label synthesis workflows; explain differences from adversarial image generators; and list hallucination, memorization, and bias risks that demand screening and audit before training use.</p></div><div class="transcript"><h3>Slide 3 — Large language models as synthesizers</h3><p>Large language models offer a practical route for synthetic text, labels, and structured rows. Unlike generative adversarial networks trained through a discriminator game, language-model synthesis typically conditions a pretrained model on prompts, schema instructions, or seed examples and asks it to emit new content. This supports low-resource natural language processing, instruction tuning, and rapid dataset prototyping.</p></div><div class="transcript"><h3>Slide 4 — Common workflows</h3><p>Teams paraphrase existing sentences, expand class-balanced corpora, or draft customer-support transcripts with controlled attributes such as product, sentiment, and urgency. The same pattern appears in programmatic weak supervision: a model proposes candidate labels that humans or heuristics later audit. Cheap generation is attractive when real text is scarce, sensitive, or expensive to annotate.</p></div><div class="transcript"><h3>Slide 5 — Hallucination and factual risk</h3><p>Language models can invent facts, entities, or label rationales that look plausible yet are wrong. For regulated or clinical text, hallucinated content can poison training data and mislead downstream systems. Synthetic corpora therefore need factual and schema checks—not only fluency review—before they enter model training or human-subjects research.</p></div><div class="transcript"><h3>Slide 6 — Memorization and privacy leakage</h3><p>Pretrained models may reproduce memorized training snippets, including personally identifiable information. Synthetic text is not automatically privacy-safe. Releases must be screened for identifiers and linkage risk, especially when prompts echo rare real records. Privacy engineering controls from earlier chapters still apply.</p></div><div class="transcript"><h3>Slide 7 — Bias and representation skew</h3><p>Language models inherit social and demographic biases present in pretraining corpora. Synthetic labels or dialogues can over-represent dominant viewpoints or stereotyped roles, amplifying unfair outcomes in hiring, moderation, or healthcare applications. Fairness audits should cover both source seeds and generated cohorts.</p></div><div class="transcript"><h3>Slide 8 — Validation gates</h3><p>Language-model synthesis must pass the same validation and ethics gates as statistical or generative-adversarial outputs: compare distributions to real benchmarks, document prompts and model versions, audit for sensitive content, and retain human oversight for high-stakes labels. Annotation quality practices from earlier chapters extend directly to synthetic text pipelines.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Large language models enable fast text and label synthesis through prompting rather than adversarial training. Low cost does not imply low risk—hallucination, memorization, and bias demand explicit screening. Domain use cases in healthcare, finance, autonomy, and security are explored in the next parts.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part walks privacy-preserving medical records, rare-disease simulation, and synthetic fraud patterns for financial model training.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-use-cases-healthcare-finance/index.html" data-next-label="Continue to Use cases in healthcare and finance"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-07-llms-for-synthetic-data",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "How does LLM-based synthesis typically differ from GAN-based synthesis?",
+      "choices": [
+        "LLMs always require paired image domains",
+        "LLMs condition a pretrained model on prompts or schema instructions to emit new text or records",
+        "LLMs never produce structured outputs",
+        "LLMs eliminate the need for any validation"
+      ],
+      "answer_index": 1,
+      "explain": "Section 10.5 contrasts adversarial GAN training with prompt-conditioned LLM emission of text, labels, or rows."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "LLM-generated synthetic text can hallucinate facts and still require screening before training use.",
+      "answer": true,
+      "explain": "Section 10.5 lists hallucination as a key risk requiring validation in regulated domains."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which workflow appears in both LLM synthesis and weak supervision?",
+      "choices": [
+        "Unconditional noise-to-image mapping only",
+        "Model-proposed labels later audited by humans or heuristics",
+        "Mandatory deletion of all real data",
+        "Exclusive use of paper surveys"
+      ],
+      "answer_index": 1,
+      "explain": "Section 10.5 notes LLMs proposing candidate labels that humans or heuristics later audit."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name two risks of LLM synthetic data besides hallucination.",
+      "rubric": "Mention memorization/leakage of PII and/or social bias from pretraining corpora.",
+      "sample_answer": "Memorization can leak training snippets or PII, and pretraining bias can skew generated text or labels."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Synthetic LLM outputs should pass the same validation and ethics gates as GAN or statistical synthesis.",
+      "answer": true,
+      "explain": "Section 10.5 states LLM generation must pass the same validation and ethics gates as other synthesis methods."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

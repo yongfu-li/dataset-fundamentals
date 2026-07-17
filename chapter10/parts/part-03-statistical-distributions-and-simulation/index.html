@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistical distributions and simulation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter10/index.html">Chapter 10</a><span class="here">Part 3/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 10 · Guided part</div>
+    
+<section class="hero">
+  <h1>Statistical distributions and simulation</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Part 3 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-challenges-of-synthetic-data/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-correlation-bootstrapping-regression/index.html" title="Correlation, bootstrapping, and regression">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Describe distribution-fitting and parametric sampling workflows</li>
+<li>Explain when Monte Carlo simulation applies to uncertain outcomes</li>
+<li>Connect statistical synthesis to privacy and benchmark use cases</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.6</span>
+    <h3>Example 10.6 — Normal-Distribution Sampling Sketch</h3>
+    <p>Sample synthetic points from a fitted normal distribution and verify sample moments.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example6/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.7</span>
+    <h3>Example 10.7 — Monte Carlo Asset-Return Simulation</h3>
+    <p>Run a Monte Carlo return simulation and read distributional risk summaries.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example7/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 10 — Statistical distributions and simulation</h3><ul><li>Before deep generative models, teams synthesized data with explicit statistical assumptions</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Statistical methods overview</h3><ul><li>Statistical synthesis uses mathematical models to simulate data that shares properties</li><li>Common tools include distribution fitting, Monte Carlo draws, bootstrapping</li><li>The main challenge is matching correlations and trends, not just marginal distributions</li></ul></div><div class="slide-card"><h3>Data distribution modeling</h3><ul><li>Distribution modeling fits a known law</li><li>Draw synthetic values from the same family</li><li>This works when the assumed distribution matches the domain</li></ul></div><div class="slide-card"><h3>Example 10.6 — Normal-Distribution Sampling Sketch</h3><ul><li>Example 10.6 — hands-on module</li><li>Example 10.6 sketches sampling from a fitted normal distribution</li><li>If real values follow a mean of fifty and standard deviation of ten</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example6/</code></li></ul></div><div class="slide-card"><h3>Example 10.6 — listing</h3><pre><code>&quot;&quot;&quot;Example 10.6 — sample synthetic points from a fitted normal distribution.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+from statistics import fmean, pstdev
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Draw samples from N(50, 10^2) and compare sample moments to the target.&quot;&quot;&quot;
+    random.seed(10)
+    mean, sd, n = 50.0, 10.0, 1000
+    samples = [random.gauss(mean, sd) for _ in range(n)]
+    print(f&quot;Target distribution: N(mean={mean}, sd={sd})&quot;)
+    print(f&quot;Sample size: {n}&quot;)
+    print(f&quot;Sample mean: {fmean(samples):.2f}&quot;)
+    print(f&quot;Sample sd:   {pstdev(samples):.2f}&quot;)
+    print(f&quot;First 5 draws: {[round(x, 2) for x in samples[:5]]}&quot;)
+    print()
+    print(&quot;Synthetic points inherit the fitted moments; they do not copy real rows.&quot;)</code></pre></div><div class="slide-card"><h3>Monte Carlo simulation</h3><ul><li>Monte Carlo methods repeat random sampling and simulation when the underlying process is</li><li>Many draws are averaged or aggregated to estimate outcomes under uncertainty</li><li>Finance, engineering</li></ul></div><div class="slide-card"><h3>Example 10.7 — Monte Carlo Asset-Return Simulation</h3><ul><li>Example 10.7 — hands-on module</li><li>Example 10.7 applies Monte Carlo simulation to financial returns</li><li>Synthetic return paths incorporate risk factors and market conditions</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter10/example7/</code></li></ul></div><div class="slide-card"><h3>Example 10.7 — listing</h3><pre><code>&quot;&quot;&quot;Example 10.7 — Monte Carlo simulation of asset returns under uncertainty.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import random
+from statistics import fmean, pstdev
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Simulate many one-period returns and summarize the resulting distribution.&quot;&quot;&quot;
+    random.seed(10)
+    # Annualized mean return and volatility (illustrative).
+    mu, sigma = 0.08, 0.20
+    n_paths = 5_000
+    returns = [random.gauss(mu, sigma) for _ in range(n_paths)]
+    print(f&quot;Assumed return model: N(mu={mu:.0%}, sigma={sigma:.0%})&quot;)
+    print(f&quot;Monte Carlo paths: {n_paths}&quot;)
+    print(f&quot;Mean simulated return: {fmean(returns):.2%}&quot;)
+    print(f&quot;Sd of simulated return: {pstdev(returns):.2%}&quot;)
+    print(f&quot;P(return &lt; 0): {sum(r &lt; 0 for r in returns) / n_paths:.1%}&quot;)</code></pre></div><div class="slide-card"><h3>Controlled simulation benchmarks</h3><ul><li>Some releases, such as device-model sweeps, are synthetic by construction</li><li>Quality assurance then documents settings and reproducibility rather than detecting</li><li>That differs from privacy-motivated tabular synthesis but still produces shareable</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Parametric sampling copies moments from fitted laws</li><li>Both require explicit assumptions and validation against real benchmarks</li><li>Univariate methods ignore variable relationships</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Regression-based projection for structured synthetic rows</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 10 — Statistical distributions and simulation</h3><p>Before deep generative models, teams synthesized data with explicit statistical assumptions. This part introduces distribution modeling, normal-distribution sampling sketches, and Monte Carlo simulation for uncertain outcomes such as asset returns.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to describe distribution-fitting workflows for parametric sampling; explain when Monte Carlo simulation is appropriate; and connect both methods to privacy-preserving and benchmark-oriented synthetic releases.</p></div><div class="transcript"><h3>Slide 3 — Statistical methods overview</h3><p>Statistical synthesis uses mathematical models to simulate data that shares properties with real records while limiting exposure of individual rows. Common tools include distribution fitting, Monte Carlo draws, bootstrapping, and regression—each preserving structure under stated assumptions. The main challenge is matching correlations and trends, not just marginal distributions.</p></div><div class="transcript"><h3>Slide 4 — Data distribution modeling</h3><p>Distribution modeling fits a known law—normal, exponential, Poisson, or others—to observed data, then samples new points from that law. Analysts first characterize the real dataset, estimate parameters such as mean and standard deviation, and draw synthetic values from the same family. This works when the assumed distribution matches the domain.</p></div><div class="transcript"><h3>Slide 5 — Example 10.6 — Normal-Distribution Sampling Sketch</h3><p>Example 10.6 sketches sampling from a fitted normal distribution. If real values follow a mean of fifty and standard deviation of ten, synthetic points are drawn from a normal with the same parameters. The example 6 module for this chapter runs this sketch in Python and compares sample moments to the targets.</p></div><div class="transcript"><h3>Slide 6 — Monte Carlo simulation</h3><p>Monte Carlo methods repeat random sampling and simulation when the underlying process is complex or the distribution is unknown. Many draws are averaged or aggregated to estimate outcomes under uncertainty. Finance, engineering, and risk analysis use this approach to stress portfolios, systems, and scenarios that closed-form models cannot capture cleanly.</p></div><div class="transcript"><h3>Slide 7 — Example 10.7 — Monte Carlo Asset-Return Simulation</h3><p>Example 10.7 applies Monte Carlo simulation to financial returns. Synthetic return paths incorporate risk factors and market conditions, letting analysts explore outcome distributions without relying on a single historical trace. The example 7 module for this chapter demonstrates randomized draw-based simulation for asset returns.</p></div><div class="transcript"><h3>Slide 8 — Controlled simulation benchmarks</h3><p>Some releases—such as device-model sweeps—are synthetic by construction: every point comes from a specified simulator and parameter grid. Quality assurance then documents settings and reproducibility rather than detecting missing field packets after collection. That differs from privacy-motivated tabular synthesis but still produces shareable reference distributions.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Parametric sampling copies moments from fitted laws; Monte Carlo handles complex uncertainty through repeated simulation. Both require explicit assumptions and validation against real benchmarks. Univariate methods ignore variable relationships, which the next part addresses through correlation modeling, bootstrapping, and regression.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part covers joint distributions that preserve dependencies between variables, bootstrapping from small real samples, and regression-based projection for structured synthetic rows.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-04-correlation-bootstrapping-regression/index.html" data-next-label="Continue to Correlation, bootstrapping, and regression"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-03-statistical-distributions-and-simulation",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What is the first step in data distribution modeling?",
+      "choices": [
+        "Deploy the generator to production without validation",
+        "Analyze the real dataset to determine its underlying distribution",
+        "Remove all correlations between variables",
+        "Train a discriminator network"
+      ],
+      "answer_index": 1,
+      "explain": "Section 10.3.1 states that modeling begins by analyzing real data to identify the underlying distribution."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Monte Carlo simulation is especially useful when the underlying data distribution is complex or unknown.",
+      "answer": true,
+      "explain": "Section 10.3.1 describes Monte Carlo methods for unknown or complex distributions via repeated simulation."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Example 10.6 demonstrates sampling from which distribution?",
+      "choices": [
+        "Uniform on zero to one only",
+        "Normal with mean 50 and standard deviation 10",
+        "Poisson with lambda zero",
+        "Categorical with one class"
+      ],
+      "answer_index": 1,
+      "explain": "Example 10.6 specifies a normal distribution with mean 50 and standard deviation 10."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What domain does Example 10.7 use Monte Carlo simulation for?",
+      "rubric": "Mention financial modeling, asset returns, or market/risk factors.",
+      "sample_answer": "Financial modeling—generating synthetic asset returns under varied risk factors and market conditions."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Statistical synthetic data methods can support privacy by sharing simulated distributions instead of individual records.",
+      "answer": true,
+      "explain": "Section 10.3 notes statistical methods can preserve privacy while generating useful training and testing data."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAN variants, evaluation, and ethics — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter10/index.html">Chapter 10</a><span class="here">Part 6/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 10 · Guided part</div>
+    
+<section class="hero">
+  <h1>GAN variants, evaluation, and ethics</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Part 6 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-05-gan-architecture-and-training/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-07-llms-for-synthetic-data/index.html" title="LLMs for synthetic text and labels">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Contrast conditional GANs, CycleGANs, and StyleGANs</li>
+<li>Name evaluation metrics such as Inception Score and FID</li>
+<li>Recognize deepfake and misuse risks tied to realistic GAN synthesis</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.11</span>
+    <h3>Example 10.11 — Conditional GAN Class Labels</h3>
+    <p>Describe conditional GAN class labels and per-class fidelity validation.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example11/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 10 — GAN variants, evaluation, and ethics</h3><p>Basic generative adversarial networks are only the starting point. This part surveys conditional generative adversarial networks, CycleGANs, and StyleGANs, then discusses realism metrics, use cases, and ethical risks such as deepfakes and malicious misuse.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to contrast conditional, cycle-consistent, and style-controlled GAN variants; name common evaluation metrics for generated media; summarize domain use cases; and recognize deepfake and misuse risks tied to realistic synthesis.</p></div><div class="transcript"><h3>Slide 3 — Conditional GANs</h3><p>Conditional generative adversarial networks feed class labels or other attributes into both generator and discriminator. The generator then produces samples that satisfy specified constraints—particular object categories, demographics, or scene types—while remaining visually or statistically plausible. This supports supervised augmentation and controlled image translation.</p></div><div class="transcript"><h3>Slide 4 — Example 10.11 — Conditional GAN Class Labels</h3><p>Example 10.11 shows a conditional generative adversarial network generating cats, dogs, or cars from a provided label. Label conditioning makes the output useful for image-to-image tasks and class-balanced training sets. The example 11 module for this chapter summarizes conditional generation scenarios.</p></div><div class="transcript"><h3>Slide 5 — CycleGAN and StyleGAN</h3><p>CycleGAN translates between image domains without paired training examples—horses to zebras, winter to summer—using cycle consistency so round-trip mappings preserve content. StyleGAN focuses on high-quality faces and fine-grained style control through a hierarchical generator, enabling photorealistic synthesis with adjustable coarse and fine attributes.</p></div><div class="transcript"><h3>Slide 6 — Advantages and limitations</h3><p>Generative adversarial networks excel at realistic image, text, and time-series synthesis and strong data augmentation for scarce domains. Limitations include training instability, heavy compute for high resolution, and difficult quantitative evaluation without ground-truth synthetic labels. Human review and statistical metrics both remain necessary.</p></div><div class="transcript"><h3>Slide 7 — Evaluation metrics</h3><p>Because synthetic sets lack per-row ground truth, teams use proxy metrics. Inception Score measures classifiability and diversity of generated images. Fréchet Inception Distance compares feature distributions of real and generated images. Precision and recall adaptations assess fidelity versus coverage of the real manifold.</p></div><div class="transcript"><h3>Slide 8 — Prominent use cases</h3><p>Generative adversarial networks synthesize medical imaging for privacy-aware research, augment rare events in vision and time series, and support creative generation. In security and media, the same machinery can forge identities or fabricate events—so evaluation must include utility for intended tasks, not realism alone.</p></div><div class="transcript"><h3>Slide 9 — Ethical challenges and deepfakes</h3><p>Realistic generators enable deepfakes: synthetic faces, voices, or video that impersonate people or invent scenes. The same tools can produce fraudulent documents or misleading news. These risks connect to the chapter-wide ethics agenda—privacy, bias amplification, and over-reliance—not a separate policy silo for generative adversarial networks alone.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Variant architectures add control, unpaired translation, and style manipulation atop basic adversarial training. Metrics such as Inception Score and Fréchet Inception Distance help compare generators but do not replace task-level validation. Deepfakes illustrate why governance and provenance matter alongside model quality.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>The next part explains how large language models generate synthetic text, labels, and structured records through prompting, and why hallucination, memorization, and bias require the same validation gates as generative adversarial outputs.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-07-llms-for-synthetic-data/index.html" data-next-label="Continue to LLMs for synthetic text and labels"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-06-gan-variants-evaluation-ethics",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What distinguishes a conditional GAN (cGAN) from a basic GAN?",
+      "choices": [
+        "It never uses a discriminator",
+        "Generator and discriminator are conditioned on labels or attributes",
+        "It only works on financial time series",
+        "It eliminates all ethical risks"
+      ],
+      "answer_index": 1,
+      "explain": "Section 10.4.3 describes cGANs as conditioning both networks on additional information such as class labels."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "CycleGAN is designed for image-to-image translation when paired training examples are unavailable.",
+      "answer": true,
+      "explain": "Section 10.4.3 introduces CycleGAN for unpaired domain translation with cycle consistency."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Fréchet Inception Distance (FID) primarily measures:",
+      "choices": [
+        "GDPR lawful basis for processing",
+        "Similarity between feature distributions of real and generated images",
+        "Bootstrap resampling variance",
+        "LLM token perplexity only"
+      ],
+      "answer_index": 1,
+      "explain": "Section 10.4.6 defines FID as comparing feature distributions of real and generated images."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one ethical misuse risk highlighted for GANs in this chapter.",
+      "rubric": "Mention deepfakes, forged identity documents, fake news, or fraudulent synthetic traces.",
+      "sample_answer": "Deepfakes—synthetic media that impersonates people or fabricates events—are a prominent GAN misuse risk."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Example 10.11 shows label-conditioned generation of categories such as cats, dogs, or cars.",
+      "answer": true,
+      "explain": "Example 10.11 describes a conditional GAN generating class-specific synthetic images from provided labels."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Correlation, bootstrapping, and regression — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter10/index.html">Chapter 10</a><span class="here">Part 4/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 10 · Guided part</div>
+    
+<section class="hero">
+  <h1>Correlation, bootstrapping, and regression</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 10</span>
+    <span class="pill pill-muted">Part 4 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-statistical-distributions-and-simulation/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-gan-architecture-and-training/index.html" title="GAN architecture and training">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain multivariate and copula-based dependence modeling for tabular synthesis</li>
+<li>Describe bootstrapping with replacement from small samples</li>
+<li>Outline regression-based generation of dependent variables from predictors</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.8</span>
+    <h3>Example 10.8 — Income-Age Joint Distribution</h3>
+    <p>Generate correlated age–income pairs and explain why independent sampling fails.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example8/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.9</span>
+    <h3>Example 10.9 — Bootstrapping Purchase Histories</h3>
+    <p>Bootstrap a larger purchase-history sample and note support limitations.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example9/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:10.10</span>
+    <h3>Example 10.10 — Regression-Based GDP Projection</h3>
+    <p>Fit a regression model and synthesize GDP projections for new rate scenarios.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter10/example10/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 10 — Correlation, bootstrapping, and regression</h3><p>Univariate sampling ignores relationships between variables. This part covers joint distributions that preserve dependencies, bootstrapping from small real samples, and regression-based projection for structured synthetic rows.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to explain why multivariate modeling matters for realistic tabular synthesis; describe bootstrapping with replacement from small samples; and outline regression-based generation of dependent variables from predictors.</p></div><div class="transcript"><h3>Slide 3 — Correlations and dependencies</h3><p>Real datasets rarely treat columns as independent. Income and age co-vary; asset returns co-move; vitals correlate across visits. Useful synthetic tabular data must replicate these joint relationships, not just marginal histograms. Multivariate distributions and copulas model dependence structures, including nonlinear ties that simple pairwise correlation misses.</p></div><div class="transcript"><h3>Slide 4 — Example 10.8 — Income-Age Joint Distribution</h3><p>Example 10.8 preserves correlations between income and age. Analysts model the joint distribution so synthetic rows keep segment-level relationships—such as higher income in certain age bands—rather than sampling each column independently. The example 8 module for this chapter demonstrates correlated draws in Python.</p></div><div class="transcript"><h3>Slide 5 — Copulas for complex dependence</h3><p>Copulas separate marginal behavior from dependence structure, which helps when variables have non-linear or time-varying relationships—as in financial markets. After fitting dependence, new synthetic rows are sampled from the joint model or copula, yielding data suitable for predictive modeling and stress testing.</p></div><div class="transcript"><h3>Slide 6 — Bootstrapping from small samples</h3><p>Bootstrapping resamples an original dataset with replacement to create larger synthetic sets that reflect observed variability. Some real rows repeat; others are omitted. Repeating the process yields multiple bootstrap datasets for training or uncertainty estimation when collection produced only a small real sample.</p></div><div class="transcript"><h3>Slide 7 — Example 10.9 — Bootstrapping Purchase Histories</h3><p>Example 10.9 bootstraps a small customer purchase-history sample into a larger training set that preserves observed purchase patterns. This supports model training when raw logs are limited. The example 9 module for this chapter runs resampling with replacement on a tiny purchase table.</p></div><div class="transcript"><h3>Slide 8 — Regression-based synthetic data</h3><p>Regression models fit relationships between predictors and an outcome, then generate synthetic outcomes by sampling predictor values and applying the fitted equation—including error terms for simple linear or richer multi-predictor forms. Economics, healthcare, and social science often use this when domain theory guides variable relationships.</p></div><div class="transcript"><h3>Slide 9 — Example 10.10 — Regression-Based GDP Projection</h3><p>Example 10.10 generates synthetic GDP growth from macro predictors such as interest rates, inflation, and government spending. The regression preserves structured relationships among indicators rather than independent column draws. The example 10 module for this chapter implements projection from fitted coefficients.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Realistic tabular synthesis requires joint structure, not independent marginals. Bootstrapping expands small real samples while preserving variability; regression projects outcomes from known predictor relationships. Statistical methods set the foundation before generative adversarial networks learn complex structure from data.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>The next part explains generator and discriminator roles, adversarial training, loss functions, and convergence challenges that affect synthetic realism in generative adversarial networks.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-05-gan-architecture-and-training/index.html" data-next-label="Continue to GAN architecture and training"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-04-correlation-bootstrapping-regression",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why is multivariate or copula-based modeling used in synthetic data generation?",
+      "choices": [
+        "To ignore all relationships between variables",
+        "To preserve correlations and dependencies among variables",
+        "To guarantee zero privacy risk without validation",
+        "To replace bootstrapping entirely"
+      ],
+      "answer_index": 1,
+      "explain": "Sections 10.3.2–10.3.4 emphasize capturing inter-variable relationships for realistic synthetic data."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Bootstrapping draws samples with replacement from an original dataset.",
+      "answer": true,
+      "explain": "Section 10.3.3 defines bootstrapping as resampling with replacement, allowing repeated and omitted points."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Example 10.9 applies bootstrapping to:",
+      "choices": [
+        "GAN discriminator updates",
+        "Small customer purchase histories",
+        "Deepfake video frames",
+        "GDPR data-subject erasure requests"
+      ],
+      "answer_index": 1,
+      "explain": "Example 10.9 bootstraps a small purchase-history dataset to create larger synthetic training data."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "How does regression-based synthesis generate a dependent variable?",
+      "rubric": "Mention sampling predictors and using a fitted regression model (with error term) to predict the outcome.",
+      "sample_answer": "Sample values for independent predictors, apply the trained regression equation (including error), and produce synthetic values of the dependent variable."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Example 10.10 uses macro predictors such as interest rates and inflation to project synthetic GDP growth.",
+      "answer": true,
+      "explain": "Example 10.10 describes regression-based GDP synthesis from interest rates, inflation, and government spending."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

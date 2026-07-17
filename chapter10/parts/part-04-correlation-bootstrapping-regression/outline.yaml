@@ -1,0 +1,152 @@
+title: Chapter 10 — Correlation, bootstrapping, and regression
+footer: Chapter 10 — Correlation Bootstrapping Regression
+slides:
+- type: title
+  title: Chapter 10 — Correlation, bootstrapping, and regression
+  subtitle: Univariate sampling ignores relationships between variables
+  notes: Univariate sampling ignores relationships between variables. This part covers
+    joint distributions that preserve dependencies, bootstrapping from small real
+    samples, and regression-based projection for structured synthetic rows.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to explain why multivariate
+    modeling matters for realistic tabular synthesis; describe bootstrapping with
+    replacement from small samples; and outline regression-based generation of dependent
+    variables from predictors.
+- type: bullets
+  title: Correlations and dependencies
+  bullets:
+  - Real datasets rarely treat columns as independent
+  - Income and age co-vary; asset returns co-move; vitals correlate across visits
+  - Useful synthetic tabular data must replicate these joint relationships
+  - Multivariate distributions and copulas model dependence structures
+  notes: Real datasets rarely treat columns as independent. Income and age co-vary;
+    asset returns co-move; vitals correlate across visits. Useful synthetic tabular
+    data must replicate these joint relationships, not just marginal histograms. Multivariate
+    distributions and copulas model dependence structures, including nonlinear ties
+    that simple pairwise correlation misses.
+- type: bullets
+  title: Example 10.8 — Income-Age Joint Distribution
+  bullets:
+  - Example 10.8 — hands-on module
+  - Example 10.8 preserves correlations between income and age
+  - Analysts model the joint distribution so synthetic rows keep segment-level relationships
+  - Explore the chapter example module
+  - 'View files: `modules/chapter10/example8/`'
+  notes: Example 10.8 preserves correlations between income and age. Analysts model
+    the joint distribution so synthetic rows keep segment-level relationships—such
+    as higher income in certain age bands—rather than sampling each column independently.
+    The example 8 module for this chapter demonstrates correlated draws in Python.
+- type: code
+  title: Example 10.8 — listing
+  code: "\"\"\"Example 10.8 — preserve the joint relationship between income and age.\"\
+    \"\"\n\nfrom __future__ import annotations\n\nimport math\nimport random\n\n\n\
+    def pearson(xs: list[float], ys: list[float]) -> float:\n    \"\"\"Return Pearson's\
+    \ r for two equal-length sequences.\"\"\"\n    n = len(xs)\n    mx, my = sum(xs)\
+    \ / n, sum(ys) / n\n    cov = sum((x - mx) * (y - my) for x, y in zip(xs, ys))\n\
+    \    sx = math.sqrt(sum((x - mx) ** 2 for x in xs))\n    sy = math.sqrt(sum((y\
+    \ - my) ** 2 for y in ys))\n    return cov / (sx * sy)\n\n\ndef main() -> None:\n\
+    \    \"\"\"Generate synthetic (age, income) pairs that keep a positive correlation.\"\
+    \"\""
+- type: bullets
+  title: Copulas for complex dependence
+  bullets:
+  - Copulas separate marginal behavior from dependence structure
+  - After fitting dependence
+  notes: Copulas separate marginal behavior from dependence structure, which helps
+    when variables have non-linear or time-varying relationships—as in financial markets.
+    After fitting dependence, new synthetic rows are sampled from the joint model
+    or copula, yielding data suitable for predictive modeling and stress testing.
+- type: bullets
+  title: Bootstrapping from small samples
+  bullets:
+  - Bootstrapping resamples an original dataset with replacement to create larger
+    synthetic
+  - Some real rows repeat; others are omitted
+  - Repeating the process yields multiple bootstrap datasets for training or uncertainty
+  notes: Bootstrapping resamples an original dataset with replacement to create larger
+    synthetic sets that reflect observed variability. Some real rows repeat; others
+    are omitted. Repeating the process yields multiple bootstrap datasets for training
+    or uncertainty estimation when collection produced only a small real sample.
+- type: bullets
+  title: Example 10.9 — Bootstrapping Purchase Histories
+  bullets:
+  - Example 10.9 — hands-on module
+  - Example 10.9 bootstraps a small customer purchase-history sample into a larger
+    training
+  - This supports model training when raw logs are limited
+  - Explore the chapter example module
+  - 'View files: `modules/chapter10/example9/`'
+  notes: Example 10.9 bootstraps a small customer purchase-history sample into a larger
+    training set that preserves observed purchase patterns. This supports model training
+    when raw logs are limited. The example 9 module for this chapter runs resampling
+    with replacement on a tiny purchase table.
+- type: code
+  title: Example 10.9 — listing
+  code: "\"\"\"Example 10.9 — bootstrap larger synthetic purchase histories from a\
+    \ small sample.\"\"\"\n\nfrom __future__ import annotations\n\nimport random\n\
+    from collections import Counter\nfrom statistics import fmean\n\n\ndef main()\
+    \ -> None:\n    \"\"\"Resample a tiny purchase-amount sample with replacement.\"\
+    \"\"\n    random.seed(10)\n    original = [12.5, 40.0, 8.0, 95.0, 22.0, 15.5,\
+    \ 60.0, 33.0]\n    n_boot = 40\n    synthetic = [random.choice(original) for _\
+    \ in range(n_boot)]\n    counts = Counter(synthetic)\n    print(f\"Original sample\
+    \ (n={len(original)}): {original}\")\n    print(f\"Bootstrap synthetic sample\
+    \ (n={n_boot})\")\n    print(f\"Original mean:  ${fmean(original):.2f}\")\n  \
+    \  print(f\"Synthetic mean: ${fmean(synthetic):.2f}\")"
+- type: bullets
+  title: Regression-based synthetic data
+  bullets:
+  - Regression models fit relationships between predictors and an outcome
+  - Economics, healthcare
+  notes: Regression models fit relationships between predictors and an outcome, then
+    generate synthetic outcomes by sampling predictor values and applying the fitted
+    equation—including error terms for simple linear or richer multi-predictor forms.
+    Economics, healthcare, and social science often use this when domain theory guides
+    variable relationships.
+- type: bullets
+  title: Example 10.10 — Regression-Based GDP Projection
+  bullets:
+  - Example 10.10 — hands-on module
+  - Government spending
+  - The regression preserves structured relationships among indicators rather than
+    independent
+  - Explore the chapter example module
+  - 'View files: `modules/chapter10/example10/`'
+  notes: Example 10.10 generates synthetic GDP growth from macro predictors such as
+    interest rates, inflation, and government spending. The regression preserves structured
+    relationships among indicators rather than independent column draws. The example
+    10 module for this chapter implements projection from fitted coefficients.
+- type: code
+  title: Example 10.10 — listing
+  code: "\"\"\"Example 10.10 — generate synthetic GDP growth from a fitted linear\
+    \ regression.\"\"\"\n\nfrom __future__ import annotations\n\nimport random\n\n\
+    \ndef fit_simple_regression(\n    xs: list[float], ys: list[float]\n) -> tuple[float,\
+    \ float, float]:\n    \"\"\"Fit Y = b0 + b1 X and return (b0, b1, residual_sd).\"\
+    \"\"\n    n = len(xs)\n    mx, my = sum(xs) / n, sum(ys) / n\n    b1 = sum((x\
+    \ - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\n\
+    \    b0 = my - b1 * mx\n    residuals = [y - (b0 + b1 * x) for x, y in zip(xs,\
+    \ ys)]\n    residual_sd = (sum(r * r for r in residuals) / n) ** 0.5\n    return\
+    \ b0, b1, residual_sd\n\n"
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Realistic tabular synthesis requires joint structure, not independent marginals
+  - Bootstrapping expands small real samples while preserving variability
+  - Statistical methods set the foundation before generative adversarial networks
+    learn
+  notes: Realistic tabular synthesis requires joint structure, not independent marginals.
+    Bootstrapping expands small real samples while preserving variability; regression
+    projects outcomes from known predictor relationships. Statistical methods set
+    the foundation before generative adversarial networks learn complex structure
+    from data.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Convergence challenges that affect synthetic realism in generative adversarial
+    networks
+  notes: The next part explains generator and discriminator roles, adversarial training,
+    loss functions, and convergence challenges that affect synthetic realism in generative
+    adversarial networks.

@@ -17,7 +17,7 @@
     }, 500);
   }
 
-  function buildPayload(source, mapping, gapReport, perfReport, description) {
+  function buildPayload(source, mapping, gapReport, perfReport, description, schemaHints) {
     return {
       tool: "Representation bias visualizer",
       generated: new Date().toISOString(),
@@ -28,6 +28,13 @@
       source: source,
       description: description || "",
       mapping: mapping,
+      schema_hints: schemaHints
+        ? {
+            source: schemaHints.source,
+            default_mapping: schemaHints.defaultMapping,
+            columns: schemaHints.columns || [],
+          }
+        : null,
       total_rows: gapReport.total,
       skipped_rows: gapReport.skipped,
       max_abs_gap_pp: gapReport.maxAbsGapPp,
@@ -86,10 +93,10 @@
     return md;
   }
 
-  function downloadJson(source, mapping, gapReport, perfReport, description) {
+  function downloadJson(source, mapping, gapReport, perfReport, description, schemaHints) {
     download(
       "representation-gap.json",
-      JSON.stringify(buildPayload(source, mapping, gapReport, perfReport, description), null, 2),
+      JSON.stringify(buildPayload(source, mapping, gapReport, perfReport, description, schemaHints), null, 2),
       "application/json"
     );
   }

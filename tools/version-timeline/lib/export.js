@@ -82,4 +82,17 @@
 
   VersionTimelineLib.downloadManifest = downloadManifest;
   VersionTimelineLib.downloadMarkdown = downloadMarkdown;
+
+  function downloadTemplate() {
+    const tpl = VersionTimelineLib.emptyTemplate
+      ? VersionTimelineLib.emptyTemplate()
+      : { name: "my-dataset", versions: [] };
+    download(
+      "version-chain-template.json",
+      JSON.stringify(tpl, null, 2),
+      "application/json"
+    );
+  }
+
+  VersionTimelineLib.downloadTemplate = downloadTemplate;
 })(typeof window !== "undefined" ? window : globalThis);

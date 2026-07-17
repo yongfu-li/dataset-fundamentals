@@ -1,0 +1,131 @@
+title: Chapter 10 — Statistical distributions and simulation
+footer: Chapter 10 — Statistical Distributions And Simulation
+slides:
+- type: title
+  title: Chapter 10 — Statistical distributions and simulation
+  subtitle: Before deep generative models, teams synthesized data with explicit statistical
+    assumptions
+  notes: Before deep generative models, teams synthesized data with explicit statistical
+    assumptions. This part introduces distribution modeling, normal-distribution sampling
+    sketches, and Monte Carlo simulation for uncertain outcomes such as asset returns.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to describe distribution-fitting
+    workflows for parametric sampling; explain when Monte Carlo simulation is appropriate;
+    and connect both methods to privacy-preserving and benchmark-oriented synthetic
+    releases.
+- type: bullets
+  title: Statistical methods overview
+  bullets:
+  - Statistical synthesis uses mathematical models to simulate data that shares properties
+  - Common tools include distribution fitting, Monte Carlo draws, bootstrapping
+  - The main challenge is matching correlations and trends, not just marginal distributions
+  notes: Statistical synthesis uses mathematical models to simulate data that shares
+    properties with real records while limiting exposure of individual rows. Common
+    tools include distribution fitting, Monte Carlo draws, bootstrapping, and regression—each
+    preserving structure under stated assumptions. The main challenge is matching
+    correlations and trends, not just marginal distributions.
+- type: bullets
+  title: Data distribution modeling
+  bullets:
+  - Distribution modeling fits a known law
+  - Draw synthetic values from the same family
+  - This works when the assumed distribution matches the domain
+  notes: Distribution modeling fits a known law—normal, exponential, Poisson, or others—to
+    observed data, then samples new points from that law. Analysts first characterize
+    the real dataset, estimate parameters such as mean and standard deviation, and
+    draw synthetic values from the same family. This works when the assumed distribution
+    matches the domain.
+- type: bullets
+  title: Example 10.6 — Normal-Distribution Sampling Sketch
+  bullets:
+  - Example 10.6 — hands-on module
+  - Example 10.6 sketches sampling from a fitted normal distribution
+  - If real values follow a mean of fifty and standard deviation of ten
+  - Explore the chapter example module
+  - 'View files: `modules/chapter10/example6/`'
+  notes: Example 10.6 sketches sampling from a fitted normal distribution. If real
+    values follow a mean of fifty and standard deviation of ten, synthetic points
+    are drawn from a normal with the same parameters. The example 6 module for this
+    chapter runs this sketch in Python and compares sample moments to the targets.
+- type: code
+  title: Example 10.6 — listing
+  code: "\"\"\"Example 10.6 — sample synthetic points from a fitted normal distribution.\"\
+    \"\"\n\nfrom __future__ import annotations\n\nimport random\nfrom statistics import\
+    \ fmean, pstdev\n\n\ndef main() -> None:\n    \"\"\"Draw samples from N(50, 10^2)\
+    \ and compare sample moments to the target.\"\"\"\n    random.seed(10)\n    mean,\
+    \ sd, n = 50.0, 10.0, 1000\n    samples = [random.gauss(mean, sd) for _ in range(n)]\n\
+    \    print(f\"Target distribution: N(mean={mean}, sd={sd})\")\n    print(f\"Sample\
+    \ size: {n}\")\n    print(f\"Sample mean: {fmean(samples):.2f}\")\n    print(f\"\
+    Sample sd:   {pstdev(samples):.2f}\")\n    print(f\"First 5 draws: {[round(x,\
+    \ 2) for x in samples[:5]]}\")\n    print()\n    print(\"Synthetic points inherit\
+    \ the fitted moments; they do not copy real rows.\")"
+- type: bullets
+  title: Monte Carlo simulation
+  bullets:
+  - Monte Carlo methods repeat random sampling and simulation when the underlying
+    process is
+  - Many draws are averaged or aggregated to estimate outcomes under uncertainty
+  - Finance, engineering
+  notes: Monte Carlo methods repeat random sampling and simulation when the underlying
+    process is complex or the distribution is unknown. Many draws are averaged or
+    aggregated to estimate outcomes under uncertainty. Finance, engineering, and risk
+    analysis use this approach to stress portfolios, systems, and scenarios that closed-form
+    models cannot capture cleanly.
+- type: bullets
+  title: Example 10.7 — Monte Carlo Asset-Return Simulation
+  bullets:
+  - Example 10.7 — hands-on module
+  - Example 10.7 applies Monte Carlo simulation to financial returns
+  - Synthetic return paths incorporate risk factors and market conditions
+  - Explore the chapter example module
+  - 'View files: `modules/chapter10/example7/`'
+  notes: Example 10.7 applies Monte Carlo simulation to financial returns. Synthetic
+    return paths incorporate risk factors and market conditions, letting analysts
+    explore outcome distributions without relying on a single historical trace. The
+    example 7 module for this chapter demonstrates randomized draw-based simulation
+    for asset returns.
+- type: code
+  title: Example 10.7 — listing
+  code: "\"\"\"Example 10.7 — Monte Carlo simulation of asset returns under uncertainty.\"\
+    \"\"\n\nfrom __future__ import annotations\n\nimport random\nfrom statistics import\
+    \ fmean, pstdev\n\n\ndef main() -> None:\n    \"\"\"Simulate many one-period returns\
+    \ and summarize the resulting distribution.\"\"\"\n    random.seed(10)\n    #\
+    \ Annualized mean return and volatility (illustrative).\n    mu, sigma = 0.08,\
+    \ 0.20\n    n_paths = 5_000\n    returns = [random.gauss(mu, sigma) for _ in range(n_paths)]\n\
+    \    print(f\"Assumed return model: N(mu={mu:.0%}, sigma={sigma:.0%})\")\n   \
+    \ print(f\"Monte Carlo paths: {n_paths}\")\n    print(f\"Mean simulated return:\
+    \ {fmean(returns):.2%}\")\n    print(f\"Sd of simulated return: {pstdev(returns):.2%}\"\
+    )\n    print(f\"P(return < 0): {sum(r < 0 for r in returns) / n_paths:.1%}\")"
+- type: bullets
+  title: Controlled simulation benchmarks
+  bullets:
+  - Some releases, such as device-model sweeps, are synthetic by construction
+  - Quality assurance then documents settings and reproducibility rather than detecting
+  - That differs from privacy-motivated tabular synthesis but still produces shareable
+  notes: 'Some releases—such as device-model sweeps—are synthetic by construction:
+    every point comes from a specified simulator and parameter grid. Quality assurance
+    then documents settings and reproducibility rather than detecting missing field
+    packets after collection. That differs from privacy-motivated tabular synthesis
+    but still produces shareable reference distributions.'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Parametric sampling copies moments from fitted laws
+  - Both require explicit assumptions and validation against real benchmarks
+  - Univariate methods ignore variable relationships
+  notes: Parametric sampling copies moments from fitted laws; Monte Carlo handles
+    complex uncertainty through repeated simulation. Both require explicit assumptions
+    and validation against real benchmarks. Univariate methods ignore variable relationships,
+    which the next part addresses through correlation modeling, bootstrapping, and
+    regression.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Regression-based projection for structured synthetic rows
+  notes: The next part covers joint distributions that preserve dependencies between
+    variables, bootstrapping from small real samples, and regression-based projection
+    for structured synthetic rows.

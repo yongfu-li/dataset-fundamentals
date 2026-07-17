@@ -14,6 +14,7 @@
   let mapping = { id: null, group: null, label: null, score: null };
   let population = {};
   let populationEditable = false;
+  let schemaHints = null;
   let threshold = 0.5;
   let gapReport = null;
   let perfReport = null;
@@ -40,10 +41,37 @@
 
   function syncPopulationFromDataset() {
     if (!dataset || !mapping.group) return;
-    const counted = Lib.countGroups(dataset.rows, mapping.group);
-    if (populationEditable || !Object.keys(population).length) {
+    if (!Object.keys(population).length) {
+      const counted = Lib.countGroups(dataset.rows, mapping.group);
       population = Lib.uniformPopulation(counted.groups);
     }
+  }
+
+  function applySchemaHints() {
+    if (!dataset || !schemaHints) return;
+    mapping = Lib.suggestMapping(
+      dataset.columns,
+      Lib.mergeMappingHints(schemaHints.defaultMapping || {}, dataset.defaultMapping || {})
+    );
+    if (!dataset.description && schemaHints.description) {
+      dataset.description = schemaHints.description;
+    }
+  }
+
+  function applyDataset(data) {
+    dataset = data;
+    applySchemaHints();
+    if (!mapping.group) {
+      mapping = Lib.suggestMapping(data.columns, data.defaultMapping || {});
+    }
+    if (data.population && Object.keys(data.population).length) {
+      population = Object.assign({}, data.population);
+    } else if (!Object.keys(population).length) {
+      population = {};
+    }
+    populationEditable = data.populationEditable !== false;
+    threshold = 0.5;
+    recompute();
   }
 
   function readPopulationFromForm() {
@@ -76,12 +104,9 @@
   function loadPreset(id) {
     try {
       const data = Lib.loadPreset(id);
-      dataset = data;
-      mapping = Lib.suggestMapping(data.columns, data.defaultMapping || {});
-      population = Object.assign({}, data.population || {});
+      schemaHints = null;
+      applyDataset(data);
       populationEditable = data.populationEditable === true;
-      threshold = 0.5;
-      recompute();
       showMessage(
         "Loaded '" + data.source + "' (" + data.rows.length + " rows). Compare population vs dataset shares below.",
         "ok"
@@ -92,38 +117,110 @@
     renderAll();
   }
 
-  function onFileUpload(ev) {
-    const file = ev.target.files && ev.target.files[0];
-    if (!file) return;
+  function readFile(file, cb) {
     if (file.size > Lib.MAX_BYTES) {
-      showMessage("File exceeds 2 MB limit.", "error");
-      renderAll();
-      return;
+      throw new Error("File exceeds " + Lib.MAX_BYTES / (1024 * 1024) + " MB limit.");
     }
     const reader = new FileReader();
     reader.onload = function () {
-      try {
-        const data = Lib.parseUpload(String(reader.result), file.name);
-        dataset = data;
-        mapping = Lib.suggestMapping(data.columns, {});
-        population = {};
-        populationEditable = true;
-        threshold = 0.5;
-        recompute();
-        showMessage(
-          "Loaded '" + file.name + "' (" + data.rows.length + " rows). Set population reference % and confirm mapping.",
-          "ok"
-        );
-      } catch (err) {
-        showMessage(err.message || String(err), "error");
-      }
-      renderAll();
+      cb(String(reader.result));
     };
     reader.onerror = function () {
       showMessage("Could not read file.", "error");
       renderAll();
     };
     reader.readAsText(file);
+  }
+
+  function onFileUpload(ev) {
+    const file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    try {
+      readFile(file, function (text) {
+        try {
+          const parsed = Lib.parseUpload(text, file.name);
+          if (parsed.kind === "datasheet") {
+            schemaHints = parsed;
+            applySchemaHints();
+            if (dataset) recompute();
+            showMessage(
+              "Loaded schema hints from '" +
+                file.name +
+                "' (group→" +
+                (schemaHints.defaultMapping.group || "?") +
+                ")." +
+                (dataset ? " Mapping updated." : " Upload dataset CSV/JSON/bundle next."),
+              dataset ? "ok" : "warn"
+            );
+          } else if (parsed.kind === "population") {
+            population = parsed.population;
+            populationEditable = true;
+            if (dataset) recompute();
+            showMessage(
+              "Loaded population reference (" + Object.keys(population).length + " groups) from '" + file.name + "'.",
+              "ok"
+            );
+          } else {
+            applyDataset(parsed);
+            showMessage(
+              "Loaded '" + file.name + "' (" + parsed.rows.length + " rows). " +
+                (schemaHints ? "Applied datasheet column hints." : "Set population % or upload population-ref.json."),
+              "ok"
+            );
+          }
+        } catch (err) {
+          showMessage(err.message || String(err), "error");
+        }
+        renderAll();
+      });
+    } catch (err) {
+      showMessage(err.message || String(err), "error");
+      renderAll();
+    }
+    ev.target.value = "";
+  }
+
+  function onPopulationUpload(ev) {
+    const file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    readFile(file, function (text) {
+      try {
+        const parsed = Lib.parsePopulationReference(text, file.name);
+        population = parsed.population;
+        populationEditable = true;
+        if (dataset) recompute();
+        showMessage("Population reference loaded from '" + file.name + "'.", "ok");
+      } catch (err) {
+        showMessage(err.message || String(err), "error");
+      }
+      renderAll();
+    });
+    ev.target.value = "";
+  }
+
+  function onMetadataUpload(ev) {
+    const file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    readFile(file, function (text) {
+      try {
+        schemaHints = Lib.parseDatasheetMetadata(text, file.name);
+        applySchemaHints();
+        if (dataset) recompute();
+        showMessage(
+          "Datasheet metadata loaded — suggested columns: group=" +
+            (schemaHints.defaultMapping.group || "—") +
+            ", label=" +
+            (schemaHints.defaultMapping.label || "—") +
+            ", score=" +
+            (schemaHints.defaultMapping.score || "—") +
+            (dataset ? "" : ". Upload dataset next."),
+          dataset ? "ok" : "warn"
+        );
+      } catch (err) {
+        showMessage(err.message || String(err), "error");
+      }
+      renderAll();
+    });
     ev.target.value = "";
   }
 
@@ -192,7 +289,9 @@
       "<p>Who is missing from the training distribution? (book §7.2.1, §7.3). " +
       "Compare a <strong>population reference</strong> to your <strong>dataset</strong> group shares before " +
       "running outcome-fairness metrics in the " +
-      '<a href="../fairness/index.html">bias &amp; fairness meter</a>.</p>' +
+      '<a href="../fairness/index.html">bias &amp; fairness meter</a>. ' +
+      "Bring your own data via CSV, a <strong>bundle JSON</strong> (<code>rows</code> + <code>population</code>), " +
+      "optional <code>population-ref.json</code>, or <code>datasheet-metadata.json</code> for column hints.</p>" +
       "</section>"
     );
   }
@@ -212,8 +311,28 @@
       '<section class="rp-panel">' +
       "<h2>1 · Load data</h2>" +
       '<div class="rp-presets">' + cards + "</div>" +
-      '<label class="rp-upload-label">Or upload CSV / JSON (≤ 2 MB, ≤ 5000 rows): ' +
+      '<div class="rp-upload-grid">' +
+      '<label class="rp-upload-label">Dataset (CSV, row JSON, or bundle JSON)<br>' +
+      '<span class="rp-upload-hint">Bundle: <code>{name, population, rows, defaultMapping}</code> · ≤ ' +
+      Lib.MAX_ROWS +
+      " rows, ≤ " +
+      Lib.MAX_BYTES / (1024 * 1024) +
+      " MB</span>" +
       '<input type="file" id="rp-upload" accept=".csv,.json"></label>' +
+      '<label class="rp-upload-label">Population reference (optional)<br>' +
+      '<span class="rp-upload-hint"><code>{"Group A": 0.5, ...}</code> or <code>{population:{...}}</code></span>' +
+      '<input type="file" id="rp-pop-upload" accept=".json,application/json"></label>' +
+      '<label class="rp-upload-label">Schema hints (optional)<br>' +
+      '<span class="rp-upload-hint"><code>datasheet-metadata.json</code> from the datasheet builder</span>' +
+      '<input type="file" id="rp-meta-upload" accept=".json,application/json"></label>' +
+      "</div>" +
+      (schemaHints
+        ? '<p class="rp-hint rp-hint-active">Schema hints loaded: <strong>' +
+          esc(schemaHints.source) +
+          "</strong> · suggested group=<code>" +
+          esc(schemaHints.defaultMapping.group || "—") +
+          "</code></p>"
+        : "") +
       "</section>"
     );
   }
@@ -237,7 +356,9 @@
     return (
       '<section class="rp-panel">' +
       "<h2>2 · Map columns</h2>" +
-      '<p class="rp-hint">Required: sensitive <em>group</em> column. Optional: <em>label</em> + <em>score</em> unlock per-group accuracy.</p>' +
+      '<p class="rp-hint">Required: sensitive <em>group</em> column. Optional: <em>label</em> + <em>score</em> unlock per-group accuracy.' +
+      (schemaHints ? " Column suggestions from datasheet metadata are pre-selected." : "") +
+      "</p>" +
       '<div class="rp-map-grid">' +
       '<label>Group<select id="rp-map-group">' + optionList(cols, mapping.group, false) + "</select></label>" +
       '<label>Label (optional)<select id="rp-map-label">' + optionList(cols, mapping.label, true) + "</select></label>" +
@@ -400,6 +521,10 @@
     });
     const upload = document.getElementById("rp-upload");
     if (upload) upload.addEventListener("change", onFileUpload);
+    const popUpload = document.getElementById("rp-pop-upload");
+    if (popUpload) popUpload.addEventListener("change", onPopulationUpload);
+    const metaUpload = document.getElementById("rp-meta-upload");
+    if (metaUpload) metaUpload.addEventListener("change", onMetadataUpload);
     const applyMap = document.getElementById("rp-apply-map");
     if (applyMap) applyMap.addEventListener("click", onApplyMapping);
     const applyPop = document.getElementById("rp-apply-pop");
@@ -417,7 +542,14 @@
     const ej = document.getElementById("rp-export-json");
     if (ej) {
       ej.addEventListener("click", function () {
-        Lib.downloadJson(dataset.source, mapping, gapReport, perfReport, dataset.description || "");
+        Lib.downloadJson(
+          dataset.source,
+          mapping,
+          gapReport,
+          perfReport,
+          dataset.description || "",
+          schemaHints
+        );
       });
     }
     const em = document.getElementById("rp-export-md");

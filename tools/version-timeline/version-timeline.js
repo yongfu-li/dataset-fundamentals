@@ -43,11 +43,84 @@
     try {
       preset = Lib.loadPreset(id);
       activeIndex = 0;
-      showMessage("Loaded '" + preset.name + "' — step through versions to see what changed.", "ok");
+      showMessage("Loaded preset '" + preset.name + "' — step through versions to see what changed.", "ok");
     } catch (err) {
       showMessage(err.message || String(err), "error");
     }
     renderAll();
+  }
+
+  function loadChain(chain, label) {
+    preset = chain;
+    activeIndex = 0;
+    showMessage(
+      "Loaded " + label + " (" + chain.versions.length + " versions). Step through the timeline or export a manifest.",
+      "ok"
+    );
+    renderAll();
+  }
+
+  function onJsonUpload(ev) {
+    const file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    if (file.size > Lib.MAX_BYTES) {
+      showMessage("File exceeds 2 MB limit.", "error");
+      renderAll();
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function () {
+      try {
+        loadChain(Lib.parseUpload(String(reader.result), file.name), "'" + file.name + "'");
+      } catch (err) {
+        showMessage(err.message || String(err), "error");
+        renderAll();
+      }
+    };
+    reader.onerror = function () {
+      showMessage("Could not read file.", "error");
+      renderAll();
+    };
+    reader.readAsText(file);
+    ev.target.value = "";
+  }
+
+  function onCsvUpload(ev) {
+    const fileList = ev.target.files;
+    if (!fileList || !fileList.length) return;
+    const arr = Array.prototype.slice.call(fileList);
+    for (let i = 0; i < arr.length; i += 1) {
+      if (arr[i].size > Lib.MAX_BYTES) {
+        showMessage("File '" + arr[i].name + "' exceeds 2 MB limit.", "error");
+        renderAll();
+        ev.target.value = "";
+        return;
+      }
+    }
+    const files = [];
+    let pending = arr.length;
+    arr.forEach(function (file) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        files.push({ name: file.name, text: String(reader.result) });
+        pending -= 1;
+        if (pending === 0) {
+          try {
+            const chain = Lib.parseCsvSnapshots(files);
+            loadChain(chain, chain.versions.length + " CSV snapshots");
+          } catch (err) {
+            showMessage(err.message || String(err), "error");
+            renderAll();
+          }
+        }
+      };
+      reader.onerror = function () {
+        showMessage("Could not read CSV file.", "error");
+        renderAll();
+      };
+      reader.readAsText(file);
+    });
+    ev.target.value = "";
   }
 
   function setVersionIndex(idx) {
@@ -63,6 +136,7 @@
     const diff = activeDiff();
     root.innerHTML =
       renderIntro() +
+      renderPracticalGuide() +
       renderLoader() +
       renderMessage() +
       (preset ? renderTimeline() + renderVersionSummary() + (diff ? renderChangeSummary(diff) + renderSchemaDiff(diff) + renderRowDiff(diff) + renderCallout() : renderBaseline()) + renderExport() : "");
@@ -74,11 +148,26 @@
       '<section class="vt-intro">' +
       "<h1>Version timeline</h1>" +
       "<p>Documentation freezes meaning at a point in time; <strong>version control</strong> tracks how the data itself changes " +
-      "(book §8.4, <code>eg:8.2</code>, <code>eg:8.20</code>). Step through v1 → v2 → v3 of a toy dataset, " +
-      "inspect schema and label drift, then export a version manifest. Pairs with the " +
+      "(book §8.4, <code>eg:8.2</code>, <code>eg:8.20</code>). Try a bundled scenario first, then load <strong>your own</strong> version chain " +
+      "to diff schema and label drift and export a version manifest. Pairs with the " +
       '<a href="../datasheet/index.html">datasheet builder</a> and ' +
       '<a href="../metadata-checker/index.html">metadata checker</a>.</p>' +
       "</section>"
+    );
+  }
+
+  function renderPracticalGuide() {
+    return (
+      '<details class="vt-panel vt-guide" open>' +
+      "<summary><strong>Learn → apply with your data</strong></summary>" +
+      '<ol class="vt-guide-steps">' +
+      "<li><strong>Learn</strong> — run <code>feature-drift-pilot</code> and step v1 → v3. Watch row churn, label edits, and the <code>sentiment</code> → <code>label</code> rename.</li>" +
+      "<li><strong>Prepare</strong> — export snapshots from Git/DVC/Excel as CSV (one file per release) <em>or</em> download the JSON template below. Every row needs a stable <code>id</code>.</li>" +
+      "<li><strong>Document</strong> — use the <a href=\"../datasheet/index.html\">datasheet builder</a> for field meanings; score the card in the <a href=\"../metadata-checker/index.html\">metadata checker</a>.</li>" +
+      "<li><strong>Apply</strong> — upload your <code>version-chain.json</code> or 2+ CSV snapshots. Step the timeline and export <code>version-manifest.json</code> for release review.</li>" +
+      "</ol>" +
+      '<p class="vt-hint">Column renames between versions? List them in each version\'s <code>renames</code> array so the diff shows rename vs remove+add.</p>' +
+      "</details>"
     );
   }
 
@@ -87,7 +176,7 @@
     let cards = "";
     Object.keys(presets).forEach(function (id) {
       const p = presets[id];
-      const active = preset && preset.source === id ? " vt-preset-active" : "";
+      const active = preset && preset.source === id && preset.teachingFocus !== "user-upload" ? " vt-preset-active" : "";
       cards +=
         '<button type="button" class="vt-preset' +
         active +
@@ -104,9 +193,24 @@
     return (
       '<section class="vt-panel">' +
       "<h2>1 · Load scenario</h2>" +
+      '<p class="vt-hint"><strong>Teaching presets</strong> — start here if this is your first visit.</p>' +
       '<div class="vt-presets">' +
       cards +
-      "</div></section>"
+      "</div>" +
+      '<hr class="vt-divider">' +
+      '<p class="vt-hint"><strong>Your data</strong> — after the preset, try your own chain.</p>' +
+      '<div class="vt-upload-block">' +
+      '<label class="vt-upload-label">Upload <code>version-chain.json</code> (≤ 2 MB): ' +
+      '<input type="file" id="vt-json-upload" accept=".json,application/json"></label>' +
+      "</div>" +
+      '<div class="vt-upload-block">' +
+      '<label class="vt-upload-label">Or select 2+ CSV snapshots (one per version, must include <code>id</code> column): ' +
+      '<input type="file" id="vt-csv-upload" accept=".csv,text/csv" multiple></label>' +
+      "</div>" +
+      '<div class="vt-op-row">' +
+      '<button type="button" id="vt-template" class="vt-secondary">Download version-chain-template.json</button>' +
+      "</div>" +
+      "</section>"
     );
   }
 
@@ -379,7 +483,7 @@
       '<button type="button" id="vt-export-json" class="vt-primary">Download version-manifest.json</button>' +
       '<button type="button" id="vt-export-md" class="vt-secondary">Download version-manifest.md</button>' +
       "</div>" +
-      '<p class="vt-hint">Manifest includes version history from v1 through the active step and the current diff.</p>' +
+      '<p class="vt-hint">Manifest includes version history from v1 through the active step and the current diff. Attach it to a release review alongside <code>datasheet-metadata.json</code>.</p>' +
       "</section>"
     );
   }
@@ -419,6 +523,16 @@
       em.addEventListener("click", function () {
         if (!preset) return;
         Lib.downloadMarkdown(preset, activeIndex, activeDiff());
+      });
+    }
+    const ju = document.getElementById("vt-json-upload");
+    if (ju) ju.addEventListener("change", onJsonUpload);
+    const cu = document.getElementById("vt-csv-upload");
+    if (cu) cu.addEventListener("change", onCsvUpload);
+    const tpl = document.getElementById("vt-template");
+    if (tpl) {
+      tpl.addEventListener("click", function () {
+        Lib.downloadTemplate();
       });
     }
   }

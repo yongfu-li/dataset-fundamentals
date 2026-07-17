@@ -213,7 +213,8 @@
       "<p>Fairness is a measurable gap across groups, not a vibe (book §7.3, §7.5). " +
       "Load a dataset with a sensitive <em>group</em>, a true <em>label</em>, and a model <em>score</em>. " +
       "Choose a decision threshold, then compare demographic parity, the 80% disparate-impact rule, " +
-      "equal opportunity, and equalized odds — and watch the accuracy–fairness trade-off.</p>" +
+      "equal opportunity, and equalized odds — and watch the accuracy–fairness trade-off. " +
+      'Check group representation first in the <a href="../representation/index.html">representation visualizer</a>.</p>' +
       "</section>"
     );
   }
