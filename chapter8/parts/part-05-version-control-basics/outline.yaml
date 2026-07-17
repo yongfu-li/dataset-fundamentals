@@ -1,0 +1,109 @@
+title: Chapter 8 — Version control basics
+footer: Chapter 8 — Version Control Basics
+slides:
+- type: title
+  title: Chapter 8 — Version control basics
+  subtitle: Documentation freezes meaning at a point in time; version control tracks
+    how the data itself changes
+  notes: Documentation freezes meaning at a point in time; version control tracks
+    how the data itself changes. This part defines dataset version control, contrasts
+    traditional folder naming with automated systems, and introduces Git-based commits
+    alongside DVC for large remote-backed assets.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Describe how DVC tracks large datasets stored outside Git
+  notes: By the end of this part, learners should be able to define dataset version
+    control and its goals, contrast traditional versus automated approaches, explain
+    when plain Git commits suffice for small tables, and describe how DVC tracks large
+    datasets stored outside Git.
+- type: bullets
+  title: What dataset version control provides
+  bullets:
+  - Dataset version control tracks and manages evolving releases so changes from cleaning
+  - Collaborating without silent overwrites
+  notes: Dataset version control tracks and manages evolving releases so changes from
+    cleaning, transformation, or augmentation remain recorded and reversible. It supports
+    knowing what changed and by whom, recovering from mistakes, reproducing prior
+    experiments with exact data, and collaborating without silent overwrites.
+- type: bullets
+  title: Traditional versus automated approaches
+  bullets:
+  - Traditional practice relies on manual names such as versioned filenames or dated
+    folders
+  - It is simple for tiny projects but lacks granularity, automation, and reliable
+    history
+  - Scale better for frequent updates and multi-user work, at the cost of a learning
+    curve
+  notes: Traditional practice relies on manual names such as versioned filenames or
+    dated folders. It is simple for tiny projects but lacks granularity, automation,
+    and reliable history. Automated systems such as Git with large-file support and
+    DVC record changes systematically, integrate with code history, and scale better
+    for frequent updates and multi-user work—at the cost of a learning curve.
+- type: bullets
+  title: Git for small, text-like datasets
+  bullets:
+  - Git is a distributed system designed for source code
+  - Combined with careful file choices
+  - Each update becomes a commit with an author and message
+  notes: Git is a distributed system designed for source code. Combined with careful
+    file choices, it can track small CSV or schema-like artifacts whose changes sit
+    beside code. Each update becomes a commit with an author and message, forming
+    an auditable timeline for lightweight data assets.
+- type: bullets
+  title: Example 8.20 — CSV Dataset Commits in Git
+  bullets:
+  - Example 8.20 — hands-on module
+  - Example 8.20 stores a CSV dataset in a Git repository and creates a new commit
+    whenever
+  - That pattern works when files stay modest in size and change alongside analysis
+    code
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example20/`'
+  notes: Example 8.20 stores a CSV dataset in a Git repository and creates a new commit
+    whenever rows are added or updated. That pattern works when files stay modest
+    in size and change alongside analysis code. The example 20 module for this chapter
+    restates the commit-on-update habit for small tables.
+- type: bullets
+  title: DVC for large remote-backed data
+  bullets:
+  - DVC extends Git-centered workflows for large datasets and models
+  - Data files live in local or cloud storage while lightweight references remain
+    in the
+  - Collaborators can pull a specific dataset version so training and analysis use
+    the same
+  notes: DVC extends Git-centered workflows for large datasets and models. Data files
+    live in local or cloud storage while lightweight references remain in the repository.
+    Collaborators can pull a specific dataset version so training and analysis use
+    the same bytes that earlier experiments recorded.
+- type: bullets
+  title: Example 8.21 — DVC Tracking of Cloud-Stored Datasets
+  bullets:
+  - Example 8.21 — hands-on module
+  - Example 8.21 places a large corpus in cloud object storage while DVC tracks versions
+  - Analysts keep history and collaboration benefits without stuffing binaries into
+    Git itself
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example21/`'
+  notes: Example 8.21 places a large corpus in cloud object storage while DVC tracks
+    versions. Analysts keep history and collaboration benefits without stuffing binaries
+    into Git itself. Open the example 21 module for this chapter to review the remote-backed
+    tracking idea.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Version control preserves change history for datasets, not only for code
+  - Manual folder naming does not scale; automated tools do, with some training cost
+  - Git fits small text-like tables
+  notes: Version control preserves change history for datasets, not only for code.
+    Manual folder naming does not scale; automated tools do, with some training cost.
+    Git fits small text-like tables; DVC fits large assets whose content belongs in
+    remotes with pointers in the repository.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Shows when Git LFS is the right layer for large training artifacts
+  notes: The next part compares additional tools—Quilt and DataHub for package-style
+    and streaming catalogs—and shows when Git LFS is the right layer for large training
+    artifacts.

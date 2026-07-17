@@ -26,7 +26,7 @@
     <span class="pill pill-muted">Part 3 of 10</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-types-of-dataset-bias/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-bias-visualization-and-tools/index.html" title="Bias visualization and tools">Next →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-types-of-dataset-bias/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-bias-visualization-and-tools/index.html" title="Bias visualization and tools">Next →</a>
   </nav>
 </section>
 
@@ -102,7 +102,26 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><p>Slides not found.</p></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 7 — Detecting bias statistically</h3><ul><li>A bias taxonomy identifies possible mechanisms, but an audit needs measurable evidence</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Calculate and cautiously interpret a disparate-impact ratio using the eighty-percent rule</li></ul></div><div class="slide-card"><h3>Example 7.27 — Multiple Manifestations of Dataset Bias</h3><ul><li>Example 7.27 — hands-on module</li><li>Example 7.27 establishes why one metric is insufficient</li><li>Bias may appear in demographic representation</li><li>An audit should therefore inspect both inputs and decisions, compare several subgroups</li><li>View files: <code>modules/chapter7/example27/</code></li></ul></div><div class="slide-card"><h3>Example 7.27 — listing</h3><pre><code>&quot;&quot;&quot;Example 7.27 — bar chart of favorable predictions by demographic group (ASCII).&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Draw an ASCII bar chart of selection rates per subgroup.&quot;&quot;&quot;
+    selection_rate: dict[str, float] = {
+        &quot;Group A&quot;: 0.42,
+        &quot;Group B&quot;: 0.35,
+        &quot;Group C&quot;: 0.19,
+        &quot;Group D&quot;: 0.15,
+    }
+
+    print(&quot;Selection rate by demographic subgroup (each # = 2 percentage points):\n&quot;)
+    for group, rate in selection_rate.items():
+        bar = &quot;#&quot; * round(rate * 50)
+        print(f&quot;{group:&lt;9}{rate:&gt;6.1%}  {bar}&quot;)
+
+    spread = max(selection_rate.values()) - min(selection_rate.values())</code></pre></div><div class="slide-card"><h3>Example 7.28 — Distribution Comparison Across Demographics</h3><ul><li>Example 7.28 — hands-on module</li><li>Example 7.28 compares features such as age, gender</li><li>Differences in counts</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter7/example28/</code></li></ul></div><div class="slide-card"><h3>Statistical tests and practical significance</h3><ul><li>Formal tests can assess whether observed distribution differences are unlikely under a</li><li>A chi-squared test is suitable for categorical counts</li><li>Statistical significance does not establish harm or practical importance</li><li>Effect size and context remain essential</li></ul></div><div class="slide-card"><h3>Example 7.30 — Chi-Squared Test for Gender Distribution</h3><ul><li>Example 7.30 — hands-on module</li><li>Example 7.30 asks whether gender distribution differs across outcome categories</li><li>The test compares observed counts with counts expected under independence</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter7/example30/</code></li></ul></div><div class="slide-card"><h3>Correlations and proxy features</h3><ul><li>Correlation analysis can reveal features that encode sensitive attributes indirectly</li><li>Names, neighborhoods, schools, or purchasing patterns may act as proxies even after race</li><li>Subgroup outcomes</li></ul></div><div class="slide-card"><h3>Example 7.33 — The 80% Rule in Hiring</h3><ul><li>Example 7.33 — hands-on module</li><li>Example 7.33 calculates a disparate-impact ratio by dividing one group&#x27;s selection rate by</li><li>A ratio below zero point eight is commonly used as a screening threshold for potential</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter7/example33/</code></li></ul></div><div class="slide-card"><h3>Building a defensible audit</h3><ul><li>Chosen reference group</li><li>It reports both absolute rates and relative ratios, checks small groups carefully</li><li>Results should be repeatable and linked to a decision about further analysis or mitigation</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Distribution checks reveal representation and data-quality gaps</li><li>Statistical tests formalize comparisons but must be paired with effect size and context</li><li>Correlation can uncover proxy pathways</li><li>Disparate-impact ratios summarize unequal selection rates</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>The next clip makes these findings easier to inspect and communicate</li></ul></div></div></div>
 </details>
 
 

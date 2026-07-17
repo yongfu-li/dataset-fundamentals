@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DVC pipelines and automation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter8/index.html">Chapter 8</a><span class="here">Part 7/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 8 · Guided part</div>
+    
+<section class="hero">
+  <h1>DVC pipelines and automation</h1>
+  <div class="clip-meta">
+    <span class="pill">~8 min</span>
+    <span class="pill pill-muted">Chapter 8</span>
+    <span class="pill pill-muted">Part 7 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-version-control-tools/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-best-practices/index.html" title="Best practices">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain DVC tracking of data and models beside code</li>
+<li>Read multi-stage pipeline definitions</li>
+<li>Describe CI-driven dataset updates and live DVC collaboration loops</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.25</span>
+    <h3>Example 8.25 — DVC in an ML Pipeline</h3>
+    <p>Map DVC stages in an ML pipeline example (prepare → train) with deps/outs.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example25/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.28</span>
+    <h3>Example 8.28 — DVC Pipeline Stages for Training</h3>
+    <p>Read a DVC pipeline definition linking preprocess, train, and evaluate stages with explicit deps and outs.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example28/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.29</span>
+    <h3>Example 8.29 — Live Demonstration of DVC Automation</h3>
+    <p>Review the manuscript DVC+Git command sequence for init, add, push, stage creation, and pull.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example29/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 8 — DVC pipelines and automation</h3><p>Tool choice becomes operational when pipelines reproduce training from pinned data. This part walks DVC in a machine learning pipeline, pipeline stage definitions, and live automation patterns including continuous-integration updates that keep data, models, and code aligned.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to explain how DVC tracks data and models beside code, read a multi-stage pipeline definition, describe continuous-integration dataset updates, and outline a live DVC workflow from init through pull for collaborators.</p></div><div class="transcript"><h3>Slide 3 — DVC inside machine learning workflows</h3><p>DVC records data and model changes alongside the code repository, supports remote storage backends, and encodes transformation and training steps so experiments remain reproducible. Teams share references rather than duplicating large files, while still retrieving the exact bytes an earlier run used.</p></div><div class="transcript"><h3>Slide 4 — Example 8.25 — DVC in an ML Pipeline</h3><p>Example 8.25 embeds DVC in a machine learning pipeline so data and model versions travel with code, workflows automate, and storage burden stays on remotes. Inspect the module files and listing for this example to see how pipeline-oriented tracking is summarized for learners.</p></div><div class="transcript"><h3>Slide 5 — Pipeline stages as executable history</h3><p>A DVC pipeline declares stages with commands, dependencies, and outputs—from raw download through preprocessing and training to evaluation. When inputs or code change, the system can re-run affected stages so results stay tied to the versions that produced them. That dependency graph is the operational heart of reproducibility.</p></div><div class="transcript"><h3>Slide 6 — Example 8.28 — DVC Pipeline Stages for Training</h3><p>Example 8.28 defines preprocessing, training, and evaluating stages with explicit dependencies and outputs. Learners can inspect the YAML listing and module files for this example to see how commands, inputs, and artifacts are declared. The structure makes it clear which files regenerate when upstream data changes.</p></div><div class="transcript"><h3>Slide 7 — Continuous integration for dataset updates</h3><p>Continuous integration systems can stage new data, commit lightweight references, push remotes, and trigger training when code or data lands on a protected branch. Automation reduces forgotten manual steps and keeps shared remotes current for the team’s experiments and validations.</p></div><div class="transcript"><h3>Slide 8 — Example 8.29 — Live Demonstration of DVC Automation</h3><p>Example 8.29 outlines a live walkthrough: initialize Git and DVC, configure remote storage, add and push a dataset, define preprocess and train stages, then show collaborators pulling matching code and data. Inspect the module files and command listings for this example to follow the end-to-end sequence without inventing steps.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>DVC pipelines turn versioned data into reproducible workflows. Stage YAML records commands, dependencies, and outputs; continuous integration keeps updates automatic; live init-add-push-pull loops make collaboration concrete. Together they close the gap between “we have a dataset” and “we can retrain from the same snapshot.”</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part turns documentation and versioning into day-to-day operating practice: living codebooks, provenance habits, descriptive commits, naming conventions, and realistic handling of large binaries and access control.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-best-practices/index.html" data-next-label="Continue to Best practices"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-07-dvc-pipelines-and-automation",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does a DVC pipeline stage typically declare?",
+      "choices": [
+        "Only slide fonts",
+        "A command plus dependencies and outputs",
+        "Only the author’s email signature",
+        "A random forest hyperparameter search by default"
+      ],
+      "answer_index": 1,
+      "explain": "Stages link commands to input dependencies and generated outputs."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 8.28’s stages include preprocessing, training, and evaluating with explicit deps and outs.",
+      "answer": true,
+      "explain": "The YAML example wires those three stages into a reproducible graph."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Continuous integration with DVC is useful primarily because it can:",
+      "choices": [
+        "Delete remotes after every push",
+        "Automatically stage data updates, push remotes, and trigger follow-on training",
+        "Replace the need for any documentation",
+        "Forbid collaborators from pulling data"
+      ],
+      "answer_index": 1,
+      "explain": "CI/CD reduces manual forgotten steps and keeps datasets ready for experiments."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "List two steps from Example 8.29’s live DVC demonstration sequence.",
+      "rubric": "Any two of: git/dvc init, remote add, dvc add/push, define stages, git pull + dvc pull for collaborators.",
+      "sample_answer": "Initialize DVC with a remote, then add and push a dataset; collaborators later run git pull and dvc pull."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "DVC helps teams share large datasets without duplicating storage burden by tracking remotes and lightweight references.",
+      "answer": true,
+      "explain": "Example 8.25 emphasizes remote-backed sharing beside the code repository."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

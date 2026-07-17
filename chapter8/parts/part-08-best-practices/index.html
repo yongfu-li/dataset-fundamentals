@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Best practices — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter8/index.html">Chapter 8</a><span class="here">Part 8/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 8 · Guided part</div>
+    
+<section class="hero">
+  <h1>Best practices</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 8</span>
+    <span class="pill pill-muted">Part 8 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-07-dvc-pipelines-and-automation/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-09-case-studies/index.html" title="Case studies">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Maintain documentation as a living release checklist</li>
+<li>Write descriptive dataset commit messages</li>
+<li>Apply naming, folder, and large-file practices for collaboration</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.30</span>
+    <h3>Example 8.30 — Codebook for Categorical Labels</h3>
+    <p>Inspect a JSON codebook mapping categorical codes to labels, ranges, and units.</p>
+    <p class='module-files-inline'>Preview files: <code>codebook.json</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example30/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.33</span>
+    <h3>Example 8.33 — Descriptive Dataset Commit Message</h3>
+    <p>Write a commit message that names the artifact and the cleaning operation.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example33/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.34</span>
+    <h3>Example 8.34 — Large Binary Files Beyond Plain Git</h3>
+    <p>Choose Git LFS or DVC when plain Git is inefficient for large binaries.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example34/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 8 — Best practices</h3><p>Pipelines fail when day-to-day habits are weak. This part turns documentation and versioning into operating practice: consistent release checklists, living codebooks, provenance notes, descriptive commits, clear naming, and realistic handling of large binaries, conflicts, and access control.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to maintain documentation as a living checklist, write descriptive dataset commit messages, apply naming and folder conventions for collaboration, and choose Git LFS or DVC when plain Git cannot hold large binaries.</p></div><div class="transcript"><h3>Slide 3 — Documentation as a living checklist</h3><p>Every release should carry the same minimum set: metadata, variable definitions, codebooks, provenance, limitations, and license or access terms. Update the checklist whenever the data change rather than rewriting definitions from scratch. Consistency across releases matters more than occasional long essays.</p></div><div class="transcript"><h3>Slide 4 — Example 8.30 — Codebook for Categorical Labels</h3><p>Example 8.30 reminds teams to keep a codebook for categorical encodings, including ranges and allowed values such as age units and gender categories. Learners can inspect the JSON listing and module files for this example to see a compact, maintainable codebook shape. Encoded regions and demographics especially need this habit.</p></div><div class="transcript"><h3>Slide 5 — Provenance and version-control habits</h3><p>Provenance should record sources, instruments, cleaning scripts, transforms, joins, and the commit or tag for each release. Dataset changes should be committed as logical units. Git suits scripts and small text artifacts; Git LFS or DVC should manage large files; DVC pipelines should track dependencies when preprocessing must be reproduced.</p></div><div class="transcript"><h3>Slide 6 — Example 8.33 — Descriptive Dataset Commit Message</h3><p>Example 8.33 shows a useful commit message: cleaned training data with missing values imputed using the median. Messages should explain what changed and why, not merely say “update.” The example 33 module for this chapter restates that descriptive standard.</p></div><div class="transcript"><h3>Slide 7 — Naming and collaborative practice</h3><p>Clear names encode project, version, date, and processing state—prefer structured filenames over labels like final new. Separate raw, processed, intermediate, model, and output folders. Use branches or separate experimental versions, sync regularly, and require review before primary releases, including access and privacy checks when data are sensitive.</p></div><div class="transcript"><h3>Slide 8 — Example 8.34 — Large Binary Files Beyond Plain Git</h3><p>Example 8.34 explains why plain Git is inefficient for large binaries and recommends Git LFS or DVC to store content externally while tracking metadata in Git. That pattern keeps repositories performant. Open the example 34 module for this chapter to review the recommended solution framing.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Best practice is operational consistency: living documentation checklists, provenance tied to commits, descriptive messages, predictable naming, and the right storage layer for large files. Collaboration and compliance rest on review, sync habits, and access controls—not on tools alone.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part shows these practices in domain settings: climate-agriculture research, predictive maintenance, and clinical-trial collaboration.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-09-case-studies/index.html" data-next-label="Continue to Case studies"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-08-best-practices",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does a living documentation checklist emphasize?",
+      "choices": [
+        "Updating metadata, dictionaries, codebooks, provenance, limits, and access terms on every release",
+        "Writing documentation only once at project kickoff",
+        "Deleting older notes after each model ships",
+        "Storing docs only in personal chat history"
+      ],
+      "answer_index": 0,
+      "explain": "Releases stay usable when the same minimum fields are maintained as data change."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "A commit message like “Added cleaned training dataset with missing values imputed using median” is preferred over a vague “update.”",
+      "answer": true,
+      "explain": "Example 8.33 models descriptive what-and-why messaging."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Example 8.34’s recommended response to large binaries is to:",
+      "choices": [
+        "Force all binaries into every Git commit blob forever",
+        "Use Git LFS or DVC to store large files externally and track metadata in Git",
+        "Avoid versioning large files entirely",
+        "Rename files randomly each week"
+      ],
+      "answer_index": 1,
+      "explain": "External storage with tracked metadata keeps repositories usable."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Give one naming or folder convention that helps collaborators identify dataset state.",
+      "rubric": "Mentions structured filenames (project/version/date) or separating raw/processed/models/outputs.",
+      "sample_answer": "Use names like project_v2_2024-12-01 and keep raw, processed, and model folders separate."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

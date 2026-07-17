@@ -1,6 +1,6 @@
 """Generate synthetic detection scenes and bundle them as data URIs.
 
-The annotation mini-lab must run under ``file://`` where ``fetch`` and external
+The annotation tool must run under ``file://`` where ``fetch`` and external
 ``<img src>`` loads are unreliable. Embedding tiny PNGs as base64 data URIs in a
 classic script (``window.AnnImages``) guarantees the images load everywhere,
 mirroring the ``presets-bundle.js`` approach used by the sampling tool.

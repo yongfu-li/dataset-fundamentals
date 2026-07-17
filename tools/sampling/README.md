@@ -1,4 +1,4 @@
-# Sampling Playground
+# Sampling tool
 
 Browser-based lab for Chapter 2 sampling designs (Sections 2.5–2.6).
 
@@ -39,7 +39,7 @@ This refreshes `tools/sampling/index.html` and clip links; it does **not** overw
 
 ## Manual QA checklist
 
-- [ ] Open `lectures/tools/sampling/index.html` via **file://** or a local static server — the playground UI (not only the quiz) should appear
+- [ ] Open `lectures/tools/sampling/index.html` via **file://** or a local static server — the tool UI (not only the quiz) should appear
 - [ ] Each preset loads and shows row/column summary
 - [ ] Each sampling method runs without console errors
 - [ ] Upload a small CSV and JSON with custom column mapping
@@ -47,7 +47,7 @@ This refreshes `tools/sampling/index.html` and clip links; it does **not** overw
 - [ ] Snowball without referrer column shows validation error
 - [ ] Export downloads `sample.csv`, `sample.json`, `sampling-metadata.json`
 - [ ] Quiz at bottom scores correctly
-- [ ] Chapter 2 clips 06–07 link to the playground
+- [ ] Chapter 2 clips 06–07 link to the sampling tool
 
 **Note:** Scripts are classic (non-module) and presets are embedded in `data/presets-bundle.js` so the tool works under `file://` as well as GitHub Pages.
 

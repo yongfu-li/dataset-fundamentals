@@ -4,7 +4,7 @@ Companion lecture parts, slides, and quizzes for *Fundamental of Dataset: Collec
 
 Each chapter is a **learning path**: short video clips with bridge descriptions between them, per-clip quizzes, and a downloadable full PPT deck.
 
-**Interactive tools:** [Sampling Playground](tools/sampling/index.html) (Chapter 2 sampling).
+**Interactive tools:** [Sampling tool](tools/sampling/index.html) (Ch.2) · [Annotation tool](tools/annotation/index.html) (Ch.4) · [Cleaning workbench](tools/cleaning/index.html) (Ch.5).
 
 | Chapter | Landing |
 |---------|---------|
@@ -15,5 +15,6 @@ Each chapter is a **learning path**: short video clips with bridge descriptions 
 | 5 — Data Cleaning and Preprocessing | [chapter5](chapter5/pages/index.md) |
 | 6 — Exploratory Data Analysis (EDA) | [chapter6](chapter6/pages/index.md) |
 | 7 — Dataset Bias and Fairness | [chapter7](chapter7/pages/index.md) |
+| 8 — Dataset Documentation and Version Control | [chapter8](chapter8/pages/index.md) |
 
 Videos are optional media under each part’s `video/` folder. Generate with the `book-slides` TTS/ffmpeg helpers when ready.

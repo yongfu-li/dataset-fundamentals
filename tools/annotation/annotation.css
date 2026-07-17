@@ -1,4 +1,4 @@
-/* Annotation mini-lab styles — builds on the shared site theme variables. */
+/* Annotation tool styles — builds on the shared site theme variables. */
 
 .an-hero {
   margin-bottom: 1.25rem;
@@ -70,7 +70,13 @@
   flex-direction: column;
   gap: 0.4rem;
 }
+.an-image-row {
+  display: flex;
+  gap: 0.25rem;
+  align-items: stretch;
+}
 .an-image-card {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -90,20 +96,44 @@
   border-color: var(--accent);
   background: var(--accent-soft);
 }
+.an-img-remove,
+.an-class-remove {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--err);
+  cursor: pointer;
+  padding: 0 0.45rem;
+  font-size: 0.85rem;
+}
+.an-img-remove:hover,
+.an-class-remove:hover {
+  background: var(--err-bg);
+}
+.an-upload {
+  display: inline-flex;
+  margin-top: 0.5rem;
+}
 
 /* Class chips */
 .an-classes {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.an-class-row {
+  display: flex;
+  gap: 0.25rem;
+  align-items: stretch;
 }
 .an-class-chip {
+  flex: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   padding: 0.35rem 0.6rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--bg);
   cursor: pointer;
   font: inherit;
@@ -120,6 +150,22 @@
   height: 12px;
   border-radius: 3px;
   display: inline-block;
+}
+.an-class-add {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+.an-class-add input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  background: var(--surface);
+  color: var(--ink);
 }
 
 .an-guide {
@@ -139,16 +185,40 @@
 .an-canvas-wrap {
   border: 1px solid var(--line);
   border-radius: 8px;
-  overflow: hidden;
+  overflow: auto;
+  max-height: min(70vh, 640px);
   background: #eef2f4;
   line-height: 0;
+  overscroll-behavior: contain;
 }
 #an-canvas {
-  width: 100%;
-  height: auto;
   display: block;
+  max-width: none;
+  height: auto;
   touch-action: none;
   cursor: crosshair;
+  vertical-align: top;
+}
+
+.an-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+.an-toolbar .btn {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.85rem;
+}
+.an-toolbar-sep {
+  width: 1px;
+  height: 1.2rem;
+  background: var(--line);
+  margin: 0 0.15rem;
+}
+#zoom-label {
+  min-width: 3.6rem;
 }
 
 .an-actions {

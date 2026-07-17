@@ -26,7 +26,7 @@
     <span class="pill pill-muted">Part 5 of 10</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-bias-visualization-and-tools/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-fairness-definitions-and-tradeoffs/index.html" title="Fairness definitions and trade-offs">Next →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-bias-visualization-and-tools/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-fairness-definitions-and-tradeoffs/index.html" title="Fairness definitions and trade-offs">Next →</a>
   </nav>
 </section>
 
@@ -72,7 +72,26 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><p>Slides not found.</p></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 7 — Impacts of dataset bias</h3><ul><li>Bias detection is not merely a technical quality exercise</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this clip</li></ul></div><div class="slide-card"><h3>Example 7.38 — Inequitable Treatment in Credit and Justice Decisions</h3><ul><li>Example 7.38 — hands-on module</li><li>Example 7.38 illustrates the ethical impact of unequal treatment</li><li>While biased justice data may produce unfair risk assessments</li><li>Such errors affect opportunities and liberty</li><li>View files: <code>modules/chapter7/example38/</code></li></ul></div><div class="slide-card"><h3>Example 7.38 — listing</h3><pre><code>&quot;&quot;&quot;Example 7.38 — enforcing demographic parity on loan approvals and its accuracy cost.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+Applicant = tuple[str, float, int]  # (group, score, actually_repays)
+
+
+def approve(data: list[Applicant], thresholds: dict[str, float]) -&gt; tuple[float, dict[str, float], float]:
+    &quot;&quot;&quot;Return (accuracy, approval rate per group, default rate among approved).&quot;&quot;&quot;
+    correct = 0
+    approved: dict[str, int] = {&quot;A&quot;: 0, &quot;B&quot;: 0}
+    counts: dict[str, int] = {&quot;A&quot;: 0, &quot;B&quot;: 0}
+    approved_total = 0
+    approved_defaults = 0
+    for group, score, repays in data:
+        counts[group] += 1
+        decision = 1 if score &gt;= thresholds[group] else 0
+        approved[group] += decision
+        if decision == repays:
+            correct += 1</code></pre></div><div class="slide-card"><h3>Example 7.40 — Amplification of Policing and Hiring Disparities</h3><ul><li>Example 7.40 — hands-on module</li><li>Example 7.40 shows social amplification</li><li>Which then directs still more policing there</li><li>Historical hiring patterns can similarly teach a ranking system to favor men</li><li>Repeated automated decisions scale and reinforce the pattern</li><li>View files: <code>modules/chapter7/example40/</code></li></ul></div><div class="slide-card"><h3>Example 7.42 — Compliance Exposure Under GDPR and CCPA</h3><ul><li>Example 7.42 — hands-on module</li><li>Example 7.42 connects unfair outcomes with legal and regulatory exposure</li><li>Recruitment and credit systems must comply with anti-discrimination duties</li><li>Organizations need more than a claim of neutral intent</li><li>View files: <code>modules/chapter7/example42/</code></li></ul></div><div class="slide-card"><h3>Example 7.45 — Financial Penalties from Biased Hiring and Credit Systems</h3><ul><li>Example 7.45 — hands-on module</li><li>Example 7.45 presents the business consequences</li><li>Lasting reputational damage</li><li>Fairness investment can therefore reduce risk and protect market legitimacy</li><li>Delayed mitigation is often more expensive because deployed decisions and public harms are</li><li>View files: <code>modules/chapter7/example45/</code></li></ul></div><div class="slide-card"><h3>The COMPAS bridge</h3><ul><li>Recidivism risk assessment provides a bridge across all four dimensions</li><li>Weaken institutional legitimacy</li><li>Overall accuracy does not settle these issues because false positives and false negatives</li></ul></div><div class="slide-card"><h3>From impact to accountability</h3><ul><li>Monitoring after deployment</li><li>Impact assessments should ask who can be harmed, how severe and reversible the harm is</li><li>These questions connect technical metrics to organizational responsibility</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Ethical impacts concern justice and individual treatment</li><li>Social impacts concern stereotypes, feedback loops, and unequal access</li><li>Legal impacts concern rights, discrimination, privacy, and explainability</li><li>Business impacts include cost, reputation, and legitimacy</li><li>A single disparity can cross all four dimensions, especially in consequential decisions</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>The next clip asks what fairness should mean in measurable terms</li></ul></div></div></div>
 </details>
 
 

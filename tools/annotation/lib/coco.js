@@ -50,7 +50,7 @@
 
     return {
       info: {
-        description: "Annotation mini-lab export",
+        description: "Annotation tool export",
         source: "lectures/tools/annotation",
       },
       images: cocoImages,

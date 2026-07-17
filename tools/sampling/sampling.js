@@ -1,4 +1,4 @@
-/* Sampling Playground — browser UI for Chapter 2 sampling designs.
+/* Sampling tool — browser UI for Chapter 2 sampling designs.
  * Classic scripts (no ES modules) so file:// and GitHub Pages both work.
  * Depends on window.SamplingLib + window.SamplingPresets.
  */
@@ -79,7 +79,7 @@ function render() {
   if (!root) return;
   root.innerHTML = [
     '<section class="sp-hero">',
-    "<h1>Sampling Playground</h1>",
+    "<h1>Sampling tool</h1>",
     '<p class="lead">Compare probability and non-probability sampling on preset or uploaded data. ',
     "Map columns, draw a sample, and inspect population vs sample distributions.</p>",
     '<p class="sp-book-ref">Chapter 2 · Sections 2.5–2.6 · ',
@@ -109,10 +109,10 @@ function render() {
     '<div id="bias-callouts" class="sp-callouts"></div>',
     '<div class="sp-viz-grid">',
     '<div class="sp-chart-wrap" id="scatter-wrap"><h3>Spatial view</h3>',
-    '<canvas id="scatter-canvas" width="480" height="320" role="img" aria-label="Scatter plot"></canvas>',
+    '<canvas id="scatter-canvas" width="560" height="360" role="img" aria-label="Population and sample scatter plot with labeled axes"></canvas>',
     '<p class="sp-hint" id="scatter-hint">Map X and Y columns to enable scatter plot.</p></div>',
     '<div class="sp-chart-wrap" id="bar-wrap"><h3>Distribution compare</h3>',
-    '<canvas id="bar-canvas" width="480" height="320" role="img" aria-label="Distribution bars"></canvas>',
+    '<canvas id="bar-canvas" width="560" height="360" role="img" aria-label="Population and sample distribution chart with labeled axes"></canvas>',
     '<p class="sp-hint" id="bar-hint"></p></div></div>',
     '<div id="results-table-wrap"></div>',
     '<div class="sp-actions"><button type="button" class="btn btn-secondary" id="export-btn" disabled>',
@@ -422,7 +422,7 @@ function updateVisuals() {
   if (scatterHint) {
     scatterHint.textContent =
       mapping.x && mapping.y
-        ? `Axes: X = ${mapping.x}, Y = ${mapping.y} (faint = population, bold = sample).`
+        ? `X-axis: ${mapping.x}. Y-axis: ${mapping.y}. Gray points are the population; teal points are the selected sample.`
         : "Map X and Y columns to enable scatter plot.";
   }
 }
@@ -467,6 +467,33 @@ function clearVisuals() {
   document.getElementById("export-btn")?.setAttribute("disabled", "disabled");
 }
 
+function formatChartNumber(value) {
+  const abs = Math.abs(value);
+  if (abs >= 1000) return value.toLocaleString(undefined, { maximumFractionDigits: 0 });
+  if (abs >= 10) return value.toFixed(0);
+  return value.toFixed(1).replace(/\.0$/, "");
+}
+
+function niceChartMax(value) {
+  if (value <= 0) return 1;
+  const magnitude = 10 ** Math.floor(Math.log10(value));
+  const normalized = value / magnitude;
+  return (normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10) * magnitude;
+}
+
+function drawChartLegend(ctx, x, y, firstColor, firstLabel, secondColor, secondLabel) {
+  ctx.font = "11px Source Sans 3, Arial, sans-serif";
+  ctx.fillStyle = firstColor;
+  ctx.fillRect(x, y - 8, 14, 9);
+  ctx.fillStyle = "#33413c";
+  ctx.fillText(firstLabel, x + 20, y);
+  const offset = Math.max(100, ctx.measureText(firstLabel).width + 36);
+  ctx.fillStyle = secondColor;
+  ctx.fillRect(x + offset, y - 8, 14, 9);
+  ctx.fillStyle = "#33413c";
+  ctx.fillText(secondLabel, x + offset + 20, y);
+}
+
 function drawScatter() {
   const canvas = /** @type {HTMLCanvasElement | null} */ (document.getElementById("scatter-canvas"));
   const wrap = document.getElementById("scatter-wrap");
@@ -484,18 +511,51 @@ function drawScatter() {
   const h = canvas.height;
   ctx.clearRect(0, 0, w, h);
 
-  const xs = dataset.rows.map((r) => Number(r[mapping.x]));
-  const ys = dataset.rows.map((r) => Number(r[mapping.y]));
+  const plottableRows = dataset.rows.filter(
+    (row) => Number.isFinite(Number(row[mapping.x])) && Number.isFinite(Number(row[mapping.y])),
+  );
+  const xs = plottableRows.map((r) => Number(r[mapping.x]));
+  const ys = plottableRows.map((r) => Number(r[mapping.y]));
+  if (!xs.length || !ys.length) {
+    wrap.classList.add("sp-disabled");
+    return;
+  }
   const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
   const minY = Math.min(...ys);
   const maxY = Math.max(...ys);
-  const pad = 24;
-  const scaleX = (v) => pad + ((v - minX) / (maxX - minX || 1)) * (w - 2 * pad);
-  const scaleY = (v) => h - pad - ((v - minY) / (maxY - minY || 1)) * (h - 2 * pad);
+  const plot = { left: 66, right: w - 18, top: 48, bottom: h - 58 };
+  const plotW = plot.right - plot.left;
+  const plotH = plot.bottom - plot.top;
+  const scaleX = (v) => plot.left + ((v - minX) / (maxX - minX || 1)) * plotW;
+  const scaleY = (v) => plot.bottom - ((v - minY) / (maxY - minY || 1)) * plotH;
   const sampleSet = new Set(lastResult?.selectedIds ?? []);
 
-  dataset.rows.forEach((row) => {
+  ctx.font = "10px Source Sans 3, Arial, sans-serif";
+  for (let tick = 0; tick <= 4; tick += 1) {
+    const xValue = minX + ((maxX - minX) * tick) / 4;
+    const x = plot.left + (plotW * tick) / 4;
+    ctx.strokeStyle = "#dfe4e1";
+    ctx.beginPath();
+    ctx.moveTo(x, plot.top);
+    ctx.lineTo(x, plot.bottom);
+    ctx.stroke();
+    ctx.fillStyle = "#66736d";
+    ctx.textAlign = "center";
+    ctx.fillText(formatChartNumber(xValue), x, plot.bottom + 17);
+
+    const yValue = minY + ((maxY - minY) * tick) / 4;
+    const y = plot.bottom - (plotH * tick) / 4;
+    ctx.strokeStyle = "#dfe4e1";
+    ctx.beginPath();
+    ctx.moveTo(plot.left, y);
+    ctx.lineTo(plot.right, y);
+    ctx.stroke();
+    ctx.textAlign = "right";
+    ctx.fillText(formatChartNumber(yValue), plot.left - 8, y + 3);
+  }
+
+  plottableRows.forEach((row) => {
     const id = String(row[mapping.id] ?? "");
     const x = scaleX(Number(row[mapping.x]));
     const y = scaleY(Number(row[mapping.y]));
@@ -511,9 +571,23 @@ function drawScatter() {
     }
   });
 
-  ctx.fillStyle = "#5c675f";
-  ctx.font = "12px Source Sans 3, sans-serif";
-  ctx.fillText("Population (faint) · Sample (bold)", pad, 16);
+  ctx.strokeStyle = "#33413c";
+  ctx.beginPath();
+  ctx.moveTo(plot.left, plot.top);
+  ctx.lineTo(plot.left, plot.bottom);
+  ctx.lineTo(plot.right, plot.bottom);
+  ctx.stroke();
+  ctx.fillStyle = "#33413c";
+  ctx.font = "600 12px Source Sans 3, Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(mapping.x, plot.left + plotW / 2, h - 10);
+  ctx.save();
+  ctx.translate(15, plot.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText(mapping.y, 0, 0);
+  ctx.restore();
+  ctx.textAlign = "left";
+  drawChartLegend(ctx, plot.left, 23, "#aeb4b0", "Population", "#0f6b5c", "Selected sample");
 }
 
 function drawBars(dist, column) {
@@ -529,31 +603,64 @@ function drawBars(dist, column) {
   const { labels, populationPct, samplePct } = dist;
   if (!labels.length) return;
 
-  const barW = Math.min(36, (w - 60) / Math.max(labels.length * 2.2, 1));
-  const maxPct = Math.max(...populationPct, ...samplePct, 1);
-  const baseY = h - 40;
+  const shown = labels
+    .map((label, i) => ({ label, population: populationPct[i], sample: samplePct[i] }))
+    .sort((a, b) => Math.max(b.population, b.sample) - Math.max(a.population, a.sample))
+    .slice(0, 8);
+  const plot = { left: 135, right: w - 45, top: 48, bottom: h - 43 };
+  const plotW = plot.right - plot.left;
+  const plotH = plot.bottom - plot.top;
+  const maxPct = niceChartMax(
+    Math.max(1, ...shown.map((item) => Math.max(item.population, item.sample))),
+  );
+  const rowH = plotH / Math.max(shown.length, 1);
+  const barH = Math.min(12, rowH * 0.32);
 
-  labels.forEach((label, i) => {
-    const x0 = 40 + i * (barW * 2 + 8);
-    const popH = (populationPct[i] / maxPct) * (baseY - 30);
-    const sampH = (samplePct[i] / maxPct) * (baseY - 30);
-    ctx.fillStyle = "rgba(92, 103, 95, 0.4)";
-    ctx.fillRect(x0, baseY - popH, barW, popH);
+  ctx.font = "10px Source Sans 3, Arial, sans-serif";
+  ctx.textBaseline = "middle";
+  for (let tick = 0; tick <= 4; tick += 1) {
+    const value = (maxPct * tick) / 4;
+    const x = plot.left + (plotW * tick) / 4;
+    ctx.strokeStyle = "#dfe4e1";
+    ctx.beginPath();
+    ctx.moveTo(x, plot.top);
+    ctx.lineTo(x, plot.bottom);
+    ctx.stroke();
+    ctx.fillStyle = "#66736d";
+    ctx.textAlign = "center";
+    ctx.fillText(formatChartNumber(value) + "%", x, plot.bottom + 14);
+  }
+
+  shown.forEach((item, i) => {
+    const y = plot.top + i * rowH + rowH / 2;
+    const popW = (item.population / maxPct) * plotW;
+    const sampleW = (item.sample / maxPct) * plotW;
+    ctx.fillStyle = "#aeb4b0";
+    ctx.fillRect(plot.left, y - barH - 1, popW, barH);
     ctx.fillStyle = "#0f6b5c";
-    ctx.fillRect(x0 + barW + 4, baseY - sampH, barW, sampH);
-    ctx.save();
-    ctx.translate(x0 + barW, baseY + 10);
-    ctx.rotate(-0.45);
-    ctx.fillStyle = "#5c675f";
-    ctx.font = "10px Source Sans 3, sans-serif";
-    ctx.fillText(String(label).slice(0, 14), 0, 0);
-    ctx.restore();
+    ctx.fillRect(plot.left, y + 1, sampleW, barH);
+    ctx.fillStyle = "#33413c";
+    ctx.textAlign = "right";
+    const label = String(item.label);
+    ctx.fillText(label.length > 18 ? label.slice(0, 17) + "…" : label, plot.left - 8, y);
+    ctx.fillStyle = "#66736d";
+    ctx.textAlign = "left";
+    if (item.population > 0) ctx.fillText(item.population.toFixed(1) + "%", plot.left + popW + 4, y - 7);
+    if (item.sample > 0) ctx.fillText(item.sample.toFixed(1) + "%", plot.left + sampleW + 4, y + 8);
   });
 
-  ctx.fillStyle = "#5c675f";
-  ctx.font = "11px Source Sans 3, sans-serif";
-  ctx.fillText("Pop", 4, 20);
-  ctx.fillText("Sample", 4, 34);
+  ctx.fillStyle = "#33413c";
+  ctx.font = "600 12px Source Sans 3, Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "alphabetic";
+  ctx.fillText("Share of records (%)", plot.left + plotW / 2, h - 7);
+  ctx.save();
+  ctx.translate(15, plot.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText(column + " categories", 0, 0);
+  ctx.restore();
+  ctx.textAlign = "left";
+  drawChartLegend(ctx, plot.left, 23, "#aeb4b0", "Population", "#0f6b5c", "Selected sample");
 }
 
 function renderResultsTable() {

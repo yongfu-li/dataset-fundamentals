@@ -1,0 +1,118 @@
+title: Chapter 8 — DVC pipelines and automation
+footer: Chapter 8 — Dvc Pipelines And Automation
+slides:
+- type: title
+  title: Chapter 8 — DVC pipelines and automation
+  subtitle: Tool choice becomes operational when pipelines reproduce training from
+    pinned data
+  notes: Tool choice becomes operational when pipelines reproduce training from pinned
+    data. This part walks DVC in a machine learning pipeline, pipeline stage definitions,
+    and live automation patterns including continuous-integration updates that keep
+    data, models, and code aligned.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Outline a live DVC workflow from init through pull for collaborators
+  notes: By the end of this part, learners should be able to explain how DVC tracks
+    data and models beside code, read a multi-stage pipeline definition, describe
+    continuous-integration dataset updates, and outline a live DVC workflow from init
+    through pull for collaborators.
+- type: bullets
+  title: DVC inside machine learning workflows
+  bullets:
+  - Encodes transformation and training steps so experiments remain reproducible
+  - Teams share references rather than duplicating large files
+  notes: DVC records data and model changes alongside the code repository, supports
+    remote storage backends, and encodes transformation and training steps so experiments
+    remain reproducible. Teams share references rather than duplicating large files,
+    while still retrieving the exact bytes an earlier run used.
+- type: bullets
+  title: Example 8.25 — DVC in an ML Pipeline
+  bullets:
+  - Example 8.25 — hands-on module
+  - Storage burden stays on remotes
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example25/`'
+  notes: Example 8.25 embeds DVC in a machine learning pipeline so data and model
+    versions travel with code, workflows automate, and storage burden stays on remotes.
+    Inspect the module files and listing for this example to see how pipeline-oriented
+    tracking is summarized for learners.
+- type: bullets
+  title: Pipeline stages as executable history
+  bullets:
+  - A DVC pipeline declares stages with commands, dependencies
+  - When inputs or code change
+  - That dependency graph is the operational heart of reproducibility
+  notes: A DVC pipeline declares stages with commands, dependencies, and outputs—from
+    raw download through preprocessing and training to evaluation. When inputs or
+    code change, the system can re-run affected stages so results stay tied to the
+    versions that produced them. That dependency graph is the operational heart of
+    reproducibility.
+- type: bullets
+  title: Example 8.28 — DVC Pipeline Stages for Training
+  bullets:
+  - Example 8.28 — hands-on module
+  - Example 8.28 defines preprocessing, training
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example28/`'
+  notes: Example 8.28 defines preprocessing, training, and evaluating stages with
+    explicit dependencies and outputs. Learners can inspect the YAML listing and module
+    files for this example to see how commands, inputs, and artifacts are declared.
+    The structure makes it clear which files regenerate when upstream data changes.
+- type: code
+  title: Example 8.28 — listing
+  code: "stages:\n  preprocessing:\n    cmd: python preprocess.py data/raw_data.csv\
+    \ data/preprocessed_data.csv\n    deps:\n      - data/raw_data.csv\n    outs:\n\
+    \      - data/preprocessed_data.csv\n  training:\n    cmd: python train_model.py\
+    \ data/preprocessed_data.csv models/model.pkl\n    deps:\n      - data/preprocessed_data.csv\n\
+    \    outs:\n      - models/model.pkl\n  evaluating:\n    cmd: python evaluate_model.py\
+    \ models/model.pkl\n    deps:\n      - models/model.pkl"
+- type: bullets
+  title: Continuous integration for dataset updates
+  bullets:
+  - Trigger training when code or data lands on a protected branch
+  - Automation reduces forgotten manual steps and keeps shared remotes current for
+    the team’s
+  notes: Continuous integration systems can stage new data, commit lightweight references,
+    push remotes, and trigger training when code or data lands on a protected branch.
+    Automation reduces forgotten manual steps and keeps shared remotes current for
+    the team’s experiments and validations.
+- type: bullets
+  title: Example 8.29 — Live Demonstration of DVC Automation
+  bullets:
+  - Example 8.29 — hands-on module
+  - Example 8.29 outlines a live walkthrough
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example29/`'
+  notes: 'Example 8.29 outlines a live walkthrough: initialize Git and DVC, configure
+    remote storage, add and push a dataset, define preprocess and train stages, then
+    show collaborators pulling matching code and data. Inspect the module files and
+    command listings for this example to follow the end-to-end sequence without inventing
+    steps.'
+- type: code
+  title: Example 8.29 — listing
+  code: 'git init
+
+    dvc init
+
+    dvc remote add -d myremote s3://mybucket/datasets'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - DVC pipelines turn versioned data into reproducible workflows
+  - Stage YAML records commands, dependencies, and outputs
+  - Together they close the gap between “we have a dataset” and “we can retrain from
+    the same
+  notes: DVC pipelines turn versioned data into reproducible workflows. Stage YAML
+    records commands, dependencies, and outputs; continuous integration keeps updates
+    automatic; live init-add-push-pull loops make collaboration concrete. Together
+    they close the gap between “we have a dataset” and “we can retrain from the same
+    snapshot.”
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part turns documentation and versioning into day-to-day operating practice
+  notes: 'The next part turns documentation and versioning into day-to-day operating
+    practice: living codebooks, provenance habits, descriptive commits, naming conventions,
+    and realistic handling of large binaries and access control.'

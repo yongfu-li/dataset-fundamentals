@@ -1,5 +1,5 @@
 /* Classic script — attaches to window.AnnLib (file:// safe).
- * Box model + geometry helpers for the annotation mini-lab. */
+ * Box model + geometry helpers for the annotation tool. */
 (function (global) {
   "use strict";
   const AnnLib = global.AnnLib || (global.AnnLib = {});

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Version control basics — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter8/index.html">Chapter 8</a><span class="here">Part 5/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 8 · Guided part</div>
+    
+<section class="hero">
+  <h1>Version control basics</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 8</span>
+    <span class="pill pill-muted">Part 5 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-creating-effective-documentation/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-version-control-tools/index.html" title="Version control tools">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define dataset version control and its goals</li>
+<li>Contrast traditional and automated versioning approaches</li>
+<li>Explain Git commits for small tables and DVC for remote-backed large data</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.20</span>
+    <h3>Example 8.20 — CSV Dataset Commits in Git</h3>
+    <p>Commit meaningful CSV updates in Git with descriptive messages.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example20/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:8.21</span>
+    <h3>Example 8.21 — DVC Tracking of Cloud-Stored Datasets</h3>
+    <p>Describe DVC tracking large cloud datasets via lightweight Git metadata.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter8/example21/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 8 — Version control basics</h3><p>Documentation freezes meaning at a point in time; version control tracks how the data itself changes. This part defines dataset version control, contrasts traditional folder naming with automated systems, and introduces Git-based commits alongside DVC for large remote-backed assets.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to define dataset version control and its goals, contrast traditional versus automated approaches, explain when plain Git commits suffice for small tables, and describe how DVC tracks large datasets stored outside Git.</p></div><div class="transcript"><h3>Slide 3 — What dataset version control provides</h3><p>Dataset version control tracks and manages evolving releases so changes from cleaning, transformation, or augmentation remain recorded and reversible. It supports knowing what changed and by whom, recovering from mistakes, reproducing prior experiments with exact data, and collaborating without silent overwrites.</p></div><div class="transcript"><h3>Slide 4 — Traditional versus automated approaches</h3><p>Traditional practice relies on manual names such as versioned filenames or dated folders. It is simple for tiny projects but lacks granularity, automation, and reliable history. Automated systems such as Git with large-file support and DVC record changes systematically, integrate with code history, and scale better for frequent updates and multi-user work—at the cost of a learning curve.</p></div><div class="transcript"><h3>Slide 5 — Git for small, text-like datasets</h3><p>Git is a distributed system designed for source code. Combined with careful file choices, it can track small CSV or schema-like artifacts whose changes sit beside code. Each update becomes a commit with an author and message, forming an auditable timeline for lightweight data assets.</p></div><div class="transcript"><h3>Slide 6 — Example 8.20 — CSV Dataset Commits in Git</h3><p>Example 8.20 stores a CSV dataset in a Git repository and creates a new commit whenever rows are added or updated. That pattern works when files stay modest in size and change alongside analysis code. The example 20 module for this chapter restates the commit-on-update habit for small tables.</p></div><div class="transcript"><h3>Slide 7 — DVC for large remote-backed data</h3><p>DVC extends Git-centered workflows for large datasets and models. Data files live in local or cloud storage while lightweight references remain in the repository. Collaborators can pull a specific dataset version so training and analysis use the same bytes that earlier experiments recorded.</p></div><div class="transcript"><h3>Slide 8 — Example 8.21 — DVC Tracking of Cloud-Stored Datasets</h3><p>Example 8.21 places a large corpus in cloud object storage while DVC tracks versions. Analysts keep history and collaboration benefits without stuffing binaries into Git itself. Open the example 21 module for this chapter to review the remote-backed tracking idea.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Version control preserves change history for datasets, not only for code. Manual folder naming does not scale; automated tools do, with some training cost. Git fits small text-like tables; DVC fits large assets whose content belongs in remotes with pointers in the repository.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part compares additional tools—Quilt and DataHub for package-style and streaming catalogs—and shows when Git LFS is the right layer for large training artifacts.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-version-control-tools/index.html" data-next-label="Continue to Version control tools"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-05-version-control-basics",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which capability is a primary goal of dataset version control?",
+      "choices": [
+        "Deleting all historical releases weekly",
+        "Tracking changes, enabling rollback, and reproducing prior experiments",
+        "Replacing documentation with screenshots",
+        "Training models without recording data versions"
+      ],
+      "answer_index": 1,
+      "explain": "History, rollback, reproducibility, and collaboration are the core goals."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Traditional filename versioning is usually sufficient for large, frequently changing collaborative datasets.",
+      "answer": false,
+      "explain": "Manual naming lacks automation and reliable history and becomes error-prone at scale."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "How does DVC typically handle large datasets relative to Git?",
+      "choices": [
+        "It forces all binary bytes into every Git clone",
+        "It stores data outside Git while tracking versions with lightweight references",
+        "It forbids cloud remotes",
+        "It only versions PowerPoint files"
+      ],
+      "answer_index": 1,
+      "explain": "DVC keeps pointers in Git and data content in local or cloud storage."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "When is Example 8.20’s plain Git CSV commit pattern most appropriate?",
+      "rubric": "Small or modest text-like datasets whose changes sit beside code.",
+      "sample_answer": "When the CSV stays modest in size and updates alongside analysis code in Git."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

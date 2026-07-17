@@ -1,23 +1,25 @@
-# Annotation mini-lab
+# Annotation tool
 
-Browser-based bounding-box labeling lab for Chapter 4 (Section 4.4.4, `eg:4.29`).
-Draw boxes on synthetic street scenes, assign classes, review, and export
-PASCAL VOC XML or COCO JSON — no install, no LabelImg required.
+Browser-based bounding-box labeling for Chapter 4 (Section 4.4.4, `eg:4.29`).
+Draw boxes on sample or **uploaded** images, manage classes, review labels, and
+download an annotated dataset (images + PASCAL VOC XML + COCO JSON).
 
 **Live path:** `lectures/tools/annotation/index.html` (after `build_site.py`)
 
 ## Learning objectives
 
-- Draw, move, resize, and delete bounding boxes on sample images
-- Assign classes from a fixed guideline vocabulary (schema discipline)
-- Read a pre-scale **review gate** that flags missing/typo classes and tiny boxes (mirrors `eg:4.30`)
-- Export detection labels in both PASCAL VOC XML and COCO JSON
+- Draw, move, resize, and delete bounding boxes
+- **Undo / redo** (toolbar or Ctrl+Z / Ctrl+Y)
+- **Zoom / pan** for large uploads (toolbar, Ctrl+wheel, Space+drag, Fit)
+- Upload your own PNG / JPEG / WebP images
+- Add and remove custom classes
+- Read a pre-scale **review gate** (missing class, off-vocabulary labels, tiny boxes)
+- Download an annotated dataset ZIP, or export VOC / COCO separately
 - Re-import a COCO file to resume work
 
 ## Sample images
 
-Three synthetic detection scenes are bundled as base64 PNG data URIs so the lab
-works under `file://` and static hosting alike:
+Three synthetic detection scenes ship as base64 PNG data URIs (works under `file://`):
 
 | Image | Contents |
 |-------|----------|
@@ -25,35 +27,36 @@ works under `file://` and static hosting alike:
 | `street-02` | Two cars, one person |
 | `street-03` | One car, two people, two signs (denser) |
 
-Classes come from `data/guidelines.js`: **car**, **person**, **sign**. Each scene
-also stores hidden ground-truth boxes (`truth`) for a possible future gold-set
-audit feature; v1 does not reveal them.
+Default classes: **car**, **person**, **sign**. You can add/remove classes freely.
 
-## Interactions
+## Upload rules
 
-- **Draw:** drag on the canvas to create a box with the active class.
-- **Select / move:** click a box, then drag inside it.
-- **Resize:** drag a corner handle of the selected box.
-- **Delete:** press `Delete`/`Backspace`, or use the row `✕` button.
-- **Keyboard path:** the box table under the canvas exposes class + numeric
-  `x/y/w/h` fields for every box, so labeling is possible without drawing
-  (accessibility fallback).
+- Formats: PNG, JPEG, WebP
+- Max **5 MB** per image, up to **30** images total
+- Uploaded images can be removed; sample scenes stay
 
-## Export / import
+## Download annotated dataset
 
-- **Export VOC (this image):** downloads `<image-id>.xml` (1-based inclusive
-  pixel indices, LabelImg-compatible).
-- **Export COCO (all):** downloads `annotations-coco.json` covering every image.
-- **Import COCO:** restores boxes from a previously exported COCO file, matched
-  by `file_name` (`<image-id>.png`).
+**Download annotated dataset (.zip)** builds:
 
-Work autosaves to `localStorage` (`annlab:v1`) per browser.
+```
+annotated-dataset.zip
+  README.txt
+  classes.json
+  annotations-coco.json
+  images/<filename>
+  annotations/<stem>.xml
+```
+
+Also available: per-image VOC XML, all-images COCO JSON, and COCO import.
+
+Work autosaves to `localStorage` (`anntool:v2`), including uploaded images when quota allows.
 
 ## Regenerate sample images
 
 ```bash
 cd lectures/tools/annotation/data
-python make_images.py     # rewrites images-bundle.js (needs Pillow)
+python make_images.py
 ```
 
 ## Regenerate site page
@@ -62,29 +65,22 @@ python make_images.py     # rewrites images-bundle.js (needs Pillow)
 python .cursor/skills/book-slides/scripts/build_site.py lectures/ --chapter 4
 ```
 
-This refreshes `tools/annotation/index.html`, the tools hub, and the Chapter 4
-"Try it" link; it does **not** overwrite `annotation.js`, `lib/`, `data/`, or
-`annotation.css`.
-
 ## Library modules (`lib/`)
 
 | File | Role |
 |------|------|
-| `boxes.js` | Box model, normalize/clamp, hit-testing, resize geometry, IoU |
+| `boxes.js` | Box model, hit-testing, resize, IoU |
 | `voc.js` | PASCAL VOC XML serializer |
 | `coco.js` | COCO JSON serializer + importer |
-| `export.js` | Client-side download helpers |
-
-All are classic (non-module) scripts attaching to `window.AnnLib`, and presets
-are embedded in `data/*.js`, so the tool works under `file://` as well as
-GitHub Pages.
+| `export.js` | Downloads + STORE-method ZIP builder |
 
 ## Manual QA checklist
 
-- [ ] Open via `file://` or a static server — the lab UI renders (not a blank page)
-- [ ] Each preset image renders on the canvas
-- [ ] Draw, move, resize, delete all work; label follows the box
-- [ ] Switching class chips recolors and reassigns the selected box
-- [ ] Review flags a box with no class, an off-vocabulary class, and a tiny box
-- [ ] VOC export opens as valid XML; COCO export opens as valid JSON
-- [ ] Import COCO restores the same boxes (round-trip)
+- [ ] UI renders under `file://` and a static server
+- [ ] Upload a PNG/JPEG; canvas matches its size; draw boxes
+- [ ] Undo / redo restore prior boxes; Ctrl+Z / Ctrl+Y work
+- [ ] Zoom in/out / Fit; Ctrl+wheel zooms toward cursor; Space+drag pans
+- [ ] Add a custom class; assign it; remove a class (clears labels with confirm)
+- [ ] Review flags missing class / tiny box
+- [ ] ZIP contains images + VOC + COCO and opens in a zip tool
+- [ ] COCO export → import round-trip restores boxes

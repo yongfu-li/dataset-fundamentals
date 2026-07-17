@@ -1,0 +1,110 @@
+title: Chapter 8 — Best practices
+footer: Chapter 8 — Best Practices
+slides:
+- type: title
+  title: Chapter 8 — Best practices
+  subtitle: Pipelines fail when day-to-day habits are weak
+  notes: 'Pipelines fail when day-to-day habits are weak. This part turns documentation
+    and versioning into operating practice: consistent release checklists, living
+    codebooks, provenance notes, descriptive commits, clear naming, and realistic
+    handling of large binaries, conflicts, and access control.'
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Choose Git LFS or DVC when plain Git cannot hold large binaries
+  notes: By the end of this part, learners should be able to maintain documentation
+    as a living checklist, write descriptive dataset commit messages, apply naming
+    and folder conventions for collaboration, and choose Git LFS or DVC when plain
+    Git cannot hold large binaries.
+- type: bullets
+  title: Documentation as a living checklist
+  bullets:
+  - Every release should carry the same minimum set
+  - Update the checklist whenever the data change rather than rewriting definitions
+    from
+  - Consistency across releases matters more than occasional long essays
+  notes: 'Every release should carry the same minimum set: metadata, variable definitions,
+    codebooks, provenance, limitations, and license or access terms. Update the checklist
+    whenever the data change rather than rewriting definitions from scratch. Consistency
+    across releases matters more than occasional long essays.'
+- type: bullets
+  title: Example 8.30 — Codebook for Categorical Labels
+  bullets:
+  - Example 8.30 — hands-on module
+  - Example 8.30 reminds teams to keep a codebook for categorical encodings
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example30/`'
+  notes: Example 8.30 reminds teams to keep a codebook for categorical encodings,
+    including ranges and allowed values such as age units and gender categories. Learners
+    can inspect the JSON listing and module files for this example to see a compact,
+    maintainable codebook shape. Encoded regions and demographics especially need
+    this habit.
+- type: code
+  title: Example 8.30 — listing
+  code: "{\n  \"age\": {\n    \"type\": \"integer\",\n    \"description\": \"Age of\
+    \ the individual in years\",\n    \"range\": \"0-120\",\n    \"unit\": \"years\"\
+    \n  },\n  \"gender\": {\n    \"type\": \"categorical\",\n    \"description\":\
+    \ \"Gender of the individual\",\n    \"values\": [\"male\", \"female\", \"non-binary\"\
+    ]\n  }\n}"
+- type: bullets
+  title: Provenance and version-control habits
+  bullets:
+  - Provenance should record sources, instruments, cleaning scripts, transforms, joins
+  - Dataset changes should be committed as logical units
+  - Git suits scripts and small text artifacts
+  notes: Provenance should record sources, instruments, cleaning scripts, transforms,
+    joins, and the commit or tag for each release. Dataset changes should be committed
+    as logical units. Git suits scripts and small text artifacts; Git LFS or DVC should
+    manage large files; DVC pipelines should track dependencies when preprocessing
+    must be reproduced.
+- type: bullets
+  title: Example 8.33 — Descriptive Dataset Commit Message
+  bullets:
+  - Example 8.33 — hands-on module
+  - Example 8.33 shows a useful commit message
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example33/`'
+  notes: 'Example 8.33 shows a useful commit message: cleaned training data with missing
+    values imputed using the median. Messages should explain what changed and why,
+    not merely say “update.” The example 33 module for this chapter restates that
+    descriptive standard.'
+- type: bullets
+  title: Naming and collaborative practice
+  bullets:
+  - Clear names encode project, version, date
+  - Separate raw, processed, intermediate, model, and output folders
+  - Use branches or separate experimental versions, sync regularly
+  notes: Clear names encode project, version, date, and processing state—prefer structured
+    filenames over labels like final new. Separate raw, processed, intermediate, model,
+    and output folders. Use branches or separate experimental versions, sync regularly,
+    and require review before primary releases, including access and privacy checks
+    when data are sensitive.
+- type: bullets
+  title: Example 8.34 — Large Binary Files Beyond Plain Git
+  bullets:
+  - Example 8.34 — hands-on module
+  - Example 8.34 explains why plain Git is inefficient for large binaries and recommends
+    Git
+  - That pattern keeps repositories performant
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example34/`'
+  notes: Example 8.34 explains why plain Git is inefficient for large binaries and
+    recommends Git LFS or DVC to store content externally while tracking metadata
+    in Git. That pattern keeps repositories performant. Open the example 34 module
+    for this chapter to review the recommended solution framing.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Best practice is operational consistency
+  - Collaboration and compliance rest on review, sync habits
+  notes: 'Best practice is operational consistency: living documentation checklists,
+    provenance tied to commits, descriptive messages, predictable naming, and the
+    right storage layer for large files. Collaboration and compliance rest on review,
+    sync habits, and access controls—not on tools alone.'
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part shows these practices in domain settings
+  notes: 'The next part shows these practices in domain settings: climate-agriculture
+    research, predictive maintenance, and clinical-trial collaboration.'

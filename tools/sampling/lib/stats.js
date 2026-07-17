@@ -4,7 +4,7 @@
 const SamplingLib = global.SamplingLib || (global.SamplingLib = {});
 
 /**
- * Distribution stats and bias callouts for sampling playground.
+ * Distribution stats and bias callouts for sampling tool.
  * @typedef {Record<string, unknown>} Row
  */
 

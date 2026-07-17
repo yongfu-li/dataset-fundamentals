@@ -4,7 +4,7 @@
 const SamplingLib = global.SamplingLib || (global.SamplingLib = {});
 
 /**
- * Pure sampling functions for the playground.
+ * Pure sampling functions for the sampling tool.
  * @typedef {Record<string, unknown>} Row
  * @typedef {{ next: () => number, int: (max: number) => number, shuffle: <T>(arr: T[]) => T[] }} Rng
  * @typedef {{ selectedIds: string[], selectedRows: Row[], metadata: Record<string, unknown> }} SampleResult
