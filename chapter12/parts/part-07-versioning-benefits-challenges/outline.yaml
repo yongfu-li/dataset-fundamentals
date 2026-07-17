@@ -1,0 +1,94 @@
+title: Chapter 12 — Versioning benefits and challenges
+footer: Chapter 12 — Versioning Benefits Challenges
+slides:
+- type: title
+  title: Chapter 12 — Versioning benefits and challenges
+  subtitle: Tools only help if teams understand why versioning matters and where it
+    fails
+  notes: Tools only help if teams understand why versioning matters and where it fails.
+    This part covers rollback and reproducibility benefits at lakehouse scale, then
+    storage cost, metadata complexity, and collaboration challenges when concurrent
+    writers share large tables.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - By the end of this part
+  notes: By the end of this part, learners should be able to state distinctive scale
+    benefits of dataset versioning beyond Chapter 8 documentation practices; explain
+    rollback after a corrupt preprocessing job using Example 12.18; and identify storage-overhead
+    and schema-evolution challenges under concurrency.
+- type: bullets
+  title: Benefits at platform scale
+  bullets:
+  - Reproducibility and audit benefits of versioning are developed in Chapters 8 and
+    13
+  - At scale, the distinctive gains are different
+  notes: 'Reproducibility and audit benefits of versioning are developed in Chapters
+    8 and 13. At scale, the distinctive gains are different: pin training to a lakehouse
+    snapshot without re-copying petabytes; roll back a bad partition write without
+    restoring an entire warehouse; and evolve schemas while concurrent readers stay
+    on a prior snapshot.'
+- type: bullets
+  title: Example 12.18 — Rollback After Corrupt Preprocessing
+  bullets:
+  - Example 12.18 — hands-on module
+  - Example 12.18 shows why rollback matters when a transform corrupts shared data
+  - If a preprocessing job corrupts a shared feature table
+  - Explore the chapter example module
+  - 'View files: `modules/chapter12/example18/`'
+  notes: Example 12.18 shows why rollback matters when a transform corrupts shared
+    data. If a preprocessing job corrupts a shared feature table, teams roll back
+    to the last good snapshot and rerun from a known state instead of rebuilding from
+    scratch. The example 18 module for this chapter summarizes that recovery path.
+- type: bullets
+  title: 'Challenge: storage overhead'
+  bullets:
+  - General versioning discipline
+  - At lakehouse and object-store scale, storage overhead dominates
+  - Full copies of petabyte tables are rarely affordable
+  - Delta and snapshot formats keep costs manageable by storing diffs
+  notes: General versioning discipline—commit hygiene, readable changelogs, documentation
+    of each release—belongs in Chapter 8. At lakehouse and object-store scale, storage
+    overhead dominates. Full copies of petabyte tables are rarely affordable. Delta
+    and snapshot formats keep costs manageable by storing diffs, but teams must still
+    tier cold snapshots and expire unused history.
+- type: bullets
+  title: 'Challenge: schema evolution under concurrency'
+  bullets:
+  - Adding columns or changing types while readers and writers share a table requires
+  - Lakehouse formats such as Delta Lake, Hudi
+  notes: Adding columns or changing types while readers and writers share a table
+    requires coordinated metadata and compatible readers. Lakehouse formats such as
+    Delta Lake, Hudi, and Iceberg provide schema-evolution primitives, yet operators
+    still need conventions for when a breaking change warrants a new table identity
+    rather than an in-place evolve.
+- type: bullets
+  title: Discipline still matters
+  bullets:
+  - Agreement on when a schema break is a new table
+  - Versioning succeeds when engineering practice and lakehouse primitives reinforce
+    each
+  notes: Platform tools reduce byte-level copying, but they do not remove the need
+    for clear promotion rules, ownership of production snapshots, and agreement on
+    when a schema break is a new table. Versioning succeeds when engineering practice
+    and lakehouse primitives reinforce each other.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - At scale, versioning enables snapshot pinning, partition rollback
+  - Example 12.18 shows rollback after corrupt preprocessing instead of a full rebuild
+  - Storage overhead and concurrent schema change remain the main challenges
+  - Chapter 8 still governs team hygiene; Chapter 12 governs lakehouse cost and concurrency
+  notes: At scale, versioning enables snapshot pinning, partition rollback, and schema
+    evolution with concurrent readers. Example 12.18 shows rollback after corrupt
+    preprocessing instead of a full rebuild. Storage overhead and concurrent schema
+    change remain the main challenges. Chapter 8 still governs team hygiene; Chapter
+    12 governs lakehouse cost and concurrency.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - The next part turns from what changed to how data moved
+  notes: 'The next part turns from what changed to how data moved: platform-scale
+    data lineage, metadata and automated capture techniques, catalog tools, and cross-platform
+    lineage gaps.'

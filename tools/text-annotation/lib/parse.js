@@ -64,19 +64,72 @@
     try {
       data = JSON.parse(text);
     } catch (err) {
-      throw new Error("Invalid JSON. Expected an array of objects.");
+      throw new Error("Invalid JSON. Expected an array of objects, or { mode, labels?, items|rows }.");
     }
-    if (!Array.isArray(data)) throw new Error("JSON must be an array of objects.");
-    if (data.length > MAX_ROWS) {
-      throw new Error("Dataset has " + data.length + " rows; maximum is " + MAX_ROWS + ".");
+
+    let modeHint = null;
+    let labelsHint = null;
+    let rows;
+
+    if (Array.isArray(data)) {
+      rows = data;
+    } else if (data && typeof data === "object") {
+      if (data.mode === "sentiment" || data.mode === "ner") modeHint = data.mode;
+      if (Array.isArray(data.labels)) {
+        labelsHint = normalizeLabelList(data.labels);
+      }
+      if (Array.isArray(data.items)) rows = data.items;
+      else if (Array.isArray(data.rows)) rows = data.rows;
+      else {
+        throw new Error(
+          "JSON object must include an items or rows array (or upload a plain array of objects)."
+        );
+      }
+    } else {
+      throw new Error("JSON must be an array of objects or a { mode, labels, items } object.");
     }
-    const rows = data.map(function (row, i) {
+
+    if (rows.length > MAX_ROWS) {
+      throw new Error("Dataset has " + rows.length + " rows; maximum is " + MAX_ROWS + ".");
+    }
+    const normalized = rows.map(function (row, i) {
       if (row === null || typeof row !== "object" || Array.isArray(row)) {
         throw new Error("Row " + (i + 1) + " is not an object.");
       }
       return Object.assign({}, row);
     });
-    return { rows: rows, columns: collectColumns(rows), source: source || "upload.json" };
+    return {
+      rows: normalized,
+      columns: collectColumns(normalized),
+      source: source || "upload.json",
+      modeHint: modeHint,
+      labelsHint: labelsHint,
+    };
+  }
+
+  function normalizeLabelList(labels) {
+    const out = [];
+    const seen = {};
+    (labels || []).forEach(function (raw) {
+      const name = String(raw == null ? "" : raw).trim();
+      if (!name) return;
+      if (name.length > 40) {
+        throw new Error("Label '" + name.slice(0, 20) + "…' exceeds 40 characters.");
+      }
+      const key = name.toLowerCase();
+      if (seen[key]) return;
+      seen[key] = true;
+      out.push(name);
+    });
+    if (!out.length) throw new Error("labels array is empty.");
+    if (out.length > 30) throw new Error("At most 30 labels are allowed.");
+    return out;
+  }
+
+  function defaultLabels(mode) {
+    return mode === "ner"
+      ? ["ORG", "LOC", "PER", "MISC"]
+      : ["positive", "neutral", "negative"];
   }
 
   function parseCsv(text, source) {
@@ -228,4 +281,6 @@
   TextAnnLib.listPresets = listPresets;
   TextAnnLib.rowsToItems = rowsToItems;
   TextAnnLib.emptyTemplate = emptyTemplate;
+  TextAnnLib.normalizeLabelList = normalizeLabelList;
+  TextAnnLib.defaultLabels = defaultLabels;
 })(typeof window !== "undefined" ? window : globalThis);

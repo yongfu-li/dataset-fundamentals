@@ -112,6 +112,29 @@ try {
 
 
 try {
+  const wrapped = Lib.parseUpload(
+    JSON.stringify({
+      mode: "ner",
+      labels: ["PRODUCT", "BRAND", "ORG"],
+      items: [{ id: "1", text: "Nike shoes from Acme." }],
+    }),
+    "custom.json"
+  );
+  check("wrapped mode hint", wrapped.modeHint === "ner");
+  check("wrapped labels hint", wrapped.labelsHint && wrapped.labelsHint[0] === "PRODUCT");
+  check("wrapped rows", wrapped.rows.length === 1);
+} catch (e) {
+  check("wrapped upload", false, e.message);
+}
+
+try {
+  const defaults = Lib.defaultLabels("sentiment");
+  check("default sentiment labels", defaults.length === 3);
+} catch (e) {
+  check("default labels", false, e.message);
+}
+
+try {
   const flags = Lib.reviewFlags(
     [{ id: "1", text: "a" }, { id: "2", text: "b" }],
     "sentiment",

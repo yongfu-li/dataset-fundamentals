@@ -12,6 +12,7 @@ For agreement metrics, see [`../iaa/`](../iaa/).
 
 - Assign one sentiment label per document (`eg:4.2` pattern)
 - Mark non-overlapping entity spans (ORG / LOC / PER / MISC) (`eg:4.12`)
+- **Add / remove custom labels** for your own schema (presets or uploads)
 - Notice that tokenization / span boundaries matter (`eg:4.9`)
 - Use a review gate before export; pair exports with the IAA calculator
 - Upload your own CSV/JSON and export `text-annotations.json` / `.csv`
@@ -28,9 +29,22 @@ Template downloads include the **full teaching presets** (8 sentiment reviews / 
 
 ## Upload rules
 
-- Formats: CSV, JSON (array of objects)
+- Formats: CSV, JSON (array of objects **or** `{ mode, labels?, items }`)
 - Max **2 MB**, **500** rows, **2,000** characters per text
 - Required column: `text` (or map an equivalent)
+- Optional: `labels` array in JSON to seed custom classes (editable in the UI)
+
+Example custom schema:
+
+```json
+{
+  "mode": "ner",
+  "labels": ["PRODUCT", "BRAND", "ORG"],
+  "items": [
+    { "id": "1", "text": "Nike Air Max sold by Acme Retail." }
+  ]
+}
+```
 
 ## File layout
 

@@ -167,12 +167,14 @@
     if (!pendingUpload) return;
     try {
       const items = Lib.rowsToItems(pendingUpload.rows, mapping);
+      if (pendingUpload.modeHint) uploadMode = pendingUpload.modeHint;
+      const labels =
+        pendingUpload.labelsHint && pendingUpload.labelsHint.length
+          ? pendingUpload.labelsHint.slice()
+          : Lib.defaultLabels(uploadMode);
       startSession({
         mode: uploadMode,
-        labels:
-          uploadMode === "ner"
-            ? ["ORG", "LOC", "PER", "MISC"]
-            : ["positive", "neutral", "negative"],
+        labels: labels,
         items: items,
         source: pendingUpload.source,
         title: "Uploaded texts",
@@ -180,13 +182,149 @@
         bookAnchors: ["§4.2.2"],
       });
       showMessage(
-        "Ready: " + items.length + " items in " + uploadMode + " mode. Label, then export.",
+        "Ready: " +
+          items.length +
+          " items · " +
+          labels.length +
+          " labels · " +
+          uploadMode +
+          " mode. Add/remove labels below if needed.",
         "ok"
       );
     } catch (err) {
       showMessage(err.message || String(err), "error");
     }
     renderAll();
+  }
+
+  function normalizeNewLabel(raw) {
+    const name = String(raw == null ? "" : raw).trim();
+    if (!name) throw new Error("Enter a label name.");
+    if (name.length > 40) throw new Error("Label names are limited to 40 characters.");
+    if (!/^[\w][\w\-./+ ]*$/i.test(name)) {
+      throw new Error("Use letters, numbers, spaces, -, _, ., /, or +.");
+    }
+    return name;
+  }
+
+  function addLabel(raw) {
+    if (!session) return;
+    let name;
+    try {
+      name = normalizeNewLabel(raw);
+    } catch (err) {
+      showMessage(err.message || String(err), "error");
+      renderAll();
+      return;
+    }
+    const exists = session.labels.some(function (l) {
+      return l.toLowerCase() === name.toLowerCase();
+    });
+    if (exists) {
+      showMessage("Label '" + name + "' already exists.", "warn");
+      renderAll();
+      return;
+    }
+    if (session.labels.length >= 30) {
+      showMessage("At most 30 labels are allowed.", "error");
+      renderAll();
+      return;
+    }
+    session.labels.push(name);
+    activeLabel = name;
+    persist();
+    showMessage("Added label '" + name + "'.", "ok");
+    renderAll();
+  }
+
+  function countLabelUsage(label) {
+    let n = 0;
+    if (!session) return 0;
+    session.items.forEach(function (item) {
+      const ann = annotations[item.id];
+      if (!ann) return;
+      if (session.mode === "sentiment") {
+        if (ann.label === label) n += 1;
+      } else {
+        (ann.spans || []).forEach(function (sp) {
+          if (sp.label === label) n += 1;
+        });
+      }
+    });
+    return n;
+  }
+
+  function removeLabel(label) {
+    if (!session) return;
+    if (session.labels.length <= 1) {
+      showMessage("Keep at least one label.", "warn");
+      renderAll();
+      return;
+    }
+    const used = countLabelUsage(label);
+    if (used > 0) {
+      const ok = window.confirm(
+        "Label '" +
+          label +
+          "' is used on " +
+          used +
+          " annotation(s). Remove it and clear those annotations?"
+      );
+      if (!ok) return;
+    }
+    session.labels = session.labels.filter(function (l) {
+      return l !== label;
+    });
+    session.items.forEach(function (item) {
+      const ann = annotations[item.id];
+      if (!ann) return;
+      if (session.mode === "sentiment") {
+        if (ann.label === label) ann.label = null;
+      } else {
+        ann.spans = (ann.spans || []).filter(function (sp) {
+          return sp.label !== label;
+        });
+      }
+    });
+    if (activeLabel === label) activeLabel = session.labels[0] || null;
+    persist();
+    showMessage("Removed label '" + label + "'.", "ok");
+    renderAll();
+  }
+
+  function renderLabelManager() {
+    if (!session) return "";
+    let chips = "";
+    session.labels.forEach(function (lab) {
+      const used = countLabelUsage(lab);
+      chips +=
+        '<span class="ta-label-chip">' +
+        "<strong>" +
+        esc(lab) +
+        "</strong>" +
+        (used ? '<span class="ta-chip-count">' + used + "</span>" : "") +
+        '<button type="button" class="ta-chip-remove" data-remove-label="' +
+        esc(lab) +
+        '" title="Remove label ' +
+        esc(lab) +
+        '" aria-label="Remove label ' +
+        esc(lab) +
+        '">×</button></span>';
+    });
+    return (
+      '<div class="ta-label-manager">' +
+      "<h3>Labels / classes</h3>" +
+      '<p class="ta-hint">Customize the label set for this session (presets or your upload). ' +
+      "Removing a label clears annotations that used it.</p>" +
+      '<div class="ta-label-chips">' +
+      chips +
+      "</div>" +
+      '<div class="ta-class-add">' +
+      '<input type="text" id="ta-new-label" placeholder="New label name" maxlength="40" aria-label="New label name">' +
+      '<button type="button" class="btn btn-secondary" id="ta-add-label">Add label</button>' +
+      "</div>" +
+      "</div>"
+    );
   }
 
   function setSentiment(label) {
@@ -346,9 +484,10 @@
       "<ol>" +
       "<li><strong>Learn</strong> — run <code>sentiment-reviews</code> or <code>ner-entities</code>. " +
       "Sentiment assigns one label per review; NER requires selecting character spans.</li>" +
-      "<li><strong>Prepare</strong> — export a CSV/JSON with at least a <code>text</code> column " +
-      "(optional <code>id</code>). Keep each row under 2,000 characters.</li>" +
-      "<li><strong>Apply</strong> — upload, choose mode, map columns, label, then export " +
+      '<li><strong>Prepare</strong> — export a CSV/JSON with at least a <code>text</code> column ' +
+      "(optional <code>id</code>). For custom classes, use JSON " +
+      "<code>{ \"mode\": \"ner\", \"labels\": [\"PRODUCT\",\"BRAND\"], \"items\": [...] }</code>.</li>" +
+      "<li><strong>Apply</strong> — upload, map columns, add/remove labels in the session, then export " +
       "<code>text-annotations.json</code> for review or IAA.</li>" +
       "</ol>" +
       '<p class="ta-hint">Overlapping NER spans are rejected — delete the conflict first. ' +
@@ -398,6 +537,10 @@
 
   function renderMapping() {
     const cols = pendingUpload.columns || [];
+    const hintLabels = pendingUpload.labelsHint
+      ? pendingUpload.labelsHint.join(", ")
+      : null;
+    if (pendingUpload.modeHint) uploadMode = pendingUpload.modeHint;
     function opts(selected) {
       let html = '<option value="">—</option>';
       cols.forEach(function (c) {
@@ -415,11 +558,16 @@
     return (
       '<section class="ta-panel">' +
       "<h2>Map columns</h2>" +
+      (hintLabels
+        ? '<p class="ta-hint">Upload includes custom labels: <code>' +
+          esc(hintLabels) +
+          "</code>. You can still edit them after Apply.</p>"
+        : '<p class="ta-hint">No labels in file — defaults will load; add/remove classes after Apply.</p>') +
       '<div class="ta-map-grid">' +
       "<label>Mode<select id=\"ta-upload-mode\">" +
       '<option value="sentiment"' +
       (uploadMode === "sentiment" ? " selected" : "") +
-      ">Sentiment (document)</option>" +
+      ">Document classification</option>" +
       '<option value="ner"' +
       (uploadMode === "ner" ? " selected" : "") +
       ">NER (spans)</option>" +
@@ -525,9 +673,10 @@
     let btns = "";
     session.labels.forEach(function (lab) {
       const on = ann.label === lab ? " ta-label-active" : "";
+      const slug = String(lab).toLowerCase().replace(/[^a-z0-9]+/g, "-");
       btns +=
         '<button type="button" class="ta-label-btn ta-lab-' +
-        esc(lab) +
+        esc(slug) +
         on +
         '" data-sent-label="' +
         esc(lab) +
@@ -537,14 +686,15 @@
     });
     return (
       '<section class="ta-panel">' +
-      "<h2>4 · Assign sentiment</h2>" +
+      "<h2>4 · Assign label</h2>" +
+      renderLabelManager() +
       '<blockquote class="ta-text" id="ta-text-host">' +
       esc(item.text) +
       "</blockquote>" +
       '<div class="ta-labels">' +
       btns +
       "</div>" +
-      '<p class="ta-hint">One label per document. Guidelines should define borderline cases (e.g. mixed reviews).</p>' +
+      '<p class="ta-hint">One label per document. Add custom classes above for your schema (e.g. toxic / spam / safe).</p>' +
       "</section>"
     );
   }
@@ -556,9 +706,10 @@
     let labs = "";
     session.labels.forEach(function (lab) {
       const on = activeLabel === lab ? " ta-label-active" : "";
+      const slug = String(lab).toLowerCase().replace(/[^a-z0-9]+/g, "-");
       labs +=
         '<button type="button" class="ta-label-btn ta-lab-' +
-        esc(lab.toLowerCase()) +
+        esc(slug) +
         on +
         '" data-ner-label="' +
         esc(lab) +
@@ -591,7 +742,8 @@
     return (
       '<section class="ta-panel">' +
       "<h2>4 · Mark entity spans</h2>" +
-      '<p class="ta-hint">1) Choose a label (or select text first) · 2) Drag-select the entity in the sentence · 3) Click the label again or Add span. Selection is kept when you click Add span.</p>' +
+      renderLabelManager() +
+      '<p class="ta-hint">1) Choose a label (or select text first) · 2) Drag-select the entity · 3) Click the label again or Add span.</p>' +
       '<div class="ta-labels">' +
       labs +
       "</div>" +
@@ -728,6 +880,16 @@
       }
       return;
     }
+    if (closest(t, "#ta-add-label")) {
+      const input = document.getElementById("ta-new-label");
+      addLabel(input ? input.value : "");
+      return;
+    }
+    const removeLab = closest(t, "[data-remove-label]");
+    if (removeLab) {
+      removeLabel(removeLab.getAttribute("data-remove-label"));
+      return;
+    }
     if (closest(t, "#ta-add-span")) {
       onAddSpanFromSelection();
       return;
@@ -772,6 +934,13 @@
     }
   }
 
+  function onRootKeydown(ev) {
+    if (ev.target && ev.target.id === "ta-new-label" && ev.key === "Enter") {
+      ev.preventDefault();
+      addLabel(ev.target.value);
+    }
+  }
+
   function bindEventsOnce() {
     if (eventsBound) return;
     eventsBound = true;
@@ -779,6 +948,7 @@
     root.addEventListener("mousedown", onRootMouseDown);
     root.addEventListener("mouseup", onRootMouseUp);
     root.addEventListener("change", onRootChange);
+    root.addEventListener("keydown", onRootKeydown);
     document.addEventListener("keydown", onKey);
   }
 
