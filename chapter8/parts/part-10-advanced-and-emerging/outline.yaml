@@ -1,0 +1,117 @@
+title: Chapter 8 — Advanced topics and emerging trends
+footer: Chapter 8 — Advanced And Emerging
+slides:
+- type: title
+  title: Chapter 8 — Advanced topics and emerging trends
+  subtitle: The chapter closes by looking beyond static README files and manual commits
+  notes: The chapter closes by looking beyond static README files and manual commits.
+    This final part covers auto-generated metadata, lineage-aware pipeline stages,
+    privacy-aware storage ideas, and emerging directions such as stronger auditability
+    mechanisms and edge-sensor version sync.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Outline emerging trends including auditability ledgers and real-time or edge versioning
+  notes: By the end of this part, learners should be able to explain automated metadata
+    capture after training, describe DVC stages embedded in sensor pipelines, recognize
+    lineage and privacy pressures on documentation, and outline emerging trends including
+    auditability ledgers and real-time or edge versioning.
+- type: bullets
+  title: Automating documentation updates
+  bullets:
+  - Manual documentation drifts when datasets update frequently or many teams contribute
+  - Integrating metadata extraction into processing pipelines reduces error and lag
+  - Tools that already version data can emit creation dates, sources, transforms
+  notes: Manual documentation drifts when datasets update frequently or many teams
+    contribute. Integrating metadata extraction into processing pipelines reduces
+    error and lag. Tools that already version data can emit creation dates, sources,
+    transforms, and related fields whenever a new release appears.
+- type: bullets
+  title: Example 8.41 — Auto-Generated Training Metadata
+  bullets:
+  - Example 8.41 — hands-on module
+  - Example 8.41 shows JSON metadata emitted after model training
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example41/`'
+  notes: 'Example 8.41 shows JSON metadata emitted after model training: dataset version,
+    creators, dates, transformation notes, and source links. Learners can inspect
+    the listing and module files for this example to see a standardized machine-readable
+    documentation fragment produced by the workflow rather than rewritten by hand.'
+- type: code
+  title: Example 8.41 — listing
+  code: "{\n  \"dataset_version\": \"v1.0\",\n  \"creator\": \"Data Science Team\"\
+    ,\n  \"creation_date\": \"2024-12-01\",\n  \"last_modified\": \"2024-12-02\",\n\
+    \  \"transformation\": \"Missing values imputed using median\",\n  \"source\"\
+    : \"Company internal database\",\n  \"data_source\": \"https://company.internal/data_source_v1\"\
+    \n}"
+- type: bullets
+  title: Pipelines, lineage, and compliance
+  bullets:
+  - Version control should travel with pipeline stages from ingestion through cleaning
+    to
+  - Lineage platforms help demonstrate where data came from, how they were transformed
+  - Sensitive assets may further require encryption and restricted remotes alongside
+    ordinary
+  notes: Version control should travel with pipeline stages from ingestion through
+    cleaning to training. Lineage platforms help demonstrate where data came from,
+    how they were transformed, and who accessed them—important under privacy regimes.
+    Sensitive assets may further require encryption and restricted remotes alongside
+    ordinary version pointers.
+- type: bullets
+  title: Example 8.43 — DVC Stages in a Sensor Pipeline
+  bullets:
+  - Example 8.43 — hands-on module
+  - Example 8.43 wires ingest, clean
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example43/`'
+  notes: Example 8.43 wires ingest, clean, and train stages so each sensor transformation
+    links to the models it feeds. Inspect the YAML listing and module files for this
+    example to see how stage names, commands, and dependencies keep pipeline history
+    executable. Monitoring systems can log which dataset version ran at each stage.
+- type: code
+  title: Example 8.43 — listing
+  code: "version: \"v1.0\"\nstages:\n  - name: ingest_data\n    cmd: python ingest_data.py\n\
+    \    deps:\n      - sensor_data/raw_data.csv\n  - name: clean_data\n    cmd: python\
+    \ clean_data.py\n    deps:\n      - sensor_data/raw_data.csv\n  - name: train_model\n\
+    \    cmd: python train_model.py\n    deps:\n      - cleaned_data.csv"
+- type: bullets
+  title: Emerging trends
+  bullets:
+  - Version sync across cloud and edge devices
+  - Not every idea is production-ready
+  notes: Trends include AI-assisted documentation and anomaly detection, decentralized
+    or blockchain-inspired immutable audit ideas, real-time versioning for streaming
+    data, stronger metadata standards, and version sync across cloud and edge devices.
+    Not every idea is production-ready, but each responds to scale, trust, or latency
+    pressures already visible today.
+- type: bullets
+  title: Example 8.47 — Blockchain Ideas for Version Auditability
+  bullets:
+  - Example 8.47 — hands-on module
+  - Aiming for verifiable authenticity and integrity among stakeholders
+  - Explore the chapter example module
+  - 'View files: `modules/chapter8/example47/`'
+  notes: Example 8.47 sketches blockchain-style ledgers as an emerging approach to
+    auditable dataset update history, aiming for verifiable authenticity and integrity
+    among stakeholders. The example 47 module for this chapter frames the idea as
+    a trend, not a required textbook default. Practical teams should weigh maturity,
+    cost, and governance fit before adoption.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Advanced practice automates metadata, embeds versioning in pipelines
+  - Emerging ideas push toward continuous, distributed, and highly auditable histories
+  - The durable lesson of the chapter remains
+  notes: 'Advanced practice automates metadata, embeds versioning in pipelines, and
+    connects lineage to compliance. Emerging ideas push toward continuous, distributed,
+    and highly auditable histories. The durable lesson of the chapter remains: document
+    meaning, version change, and keep both synchronized as data move through real
+    systems.'
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Complete the quiz for this part
+  notes: Complete the quiz for this part, then return to the chapter path or continue
+    to the full chapter deck. Later study can revisit modules and listings for any
+    example that needs a deeper inspection.

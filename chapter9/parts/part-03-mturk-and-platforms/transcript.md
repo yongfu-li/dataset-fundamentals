@@ -1,0 +1,45 @@
+# Chapter 9 — MTurk and other crowd platforms — transcript
+
+**Clip id:** part-03-mturk-and-platforms  
+**Estimated duration:** 7 minutes  
+**Sources:** `author/chapter9.tex` (§9.2.3, §9.2.7), `modules/chapter9/example11/`
+
+## Slide 1 — Chapter 9 — MTurk and other crowd platforms
+
+Use cases need operational platforms. This part walks the Amazon Mechanical Turk workflow for posting and reviewing Human Intelligence Tasks, then compares Prolific, CrowdFlower, and Clickworker as alternatives for research recruitment and microtask labor.
+
+## Slide 2 — Learning objectives
+
+By the end of this part, learners should be able to describe the MTurk requester–worker workflow including Human Intelligence Tasks, review, payment, and reputation; apply that workflow to a product-description labeling scenario; and contrast Prolific, CrowdFlower, and Clickworker with MTurk for research and annotation work.
+
+## Slide 3 — Amazon Mechanical Turk overview
+
+Amazon Mechanical Turk, launched in 2005, connects requesters with a large pool of remote workers who perform microtasks. Through a web interface, requesters post work ranging from data entry to content moderation or sentiment analysis. The platform is one of the best-known venues for crowd labor in research and industry labeling.
+
+## Slide 4 — HIT workflow: post, complete, review, pay
+
+Requesters create Human Intelligence Tasks—units that need human judgment, such as labeling, categorization, or short summaries. Workers browse available tasks and choose which to complete. After submission, the requester reviews results and pays when the work is satisfactory. Feedback builds worker reputation and influences access to harder tasks.
+
+## Slide 5 — Example 9.11 — MTurk Product-Description Labeling
+
+Example 9.11 walks a product-description labeling campaign. Workers read descriptions and tag categories such as electronics, clothing, or home goods. Those labels then train recommendation models. Open the example 11 module for this chapter to review the HIT-style labeling workflow.
+
+## Slide 6 — Prolific for research recruitment
+
+Prolific targets academic research. Participants are pre-screened to meet study criteria, and the platform emphasizes research ethics, fair compensation, and data quality. Compared with general microtask markets, Prolific workers are often preferred for surveys and experiments that need thoughtful responses rather than purely piece-rate labeling.
+
+## Slide 7 — CrowdFlower and Clickworker
+
+CrowdFlower, now Figure Eight, supports annotation, machine learning tasks, and content moderation by splitting complex workflows into smaller units for a global workforce. Clickworker, based in Germany, focuses on writing, translation, categorization, and proofreading, with a large European worker base and flexible microtask work. Platform choice should match task type, geography, and quality needs.
+
+## Slide 8 — Choosing a platform
+
+MTurk remains a common default for flexible microtasks and labeling. Prolific is often stronger when ethics screening and survey quality matter most. CrowdFlower and Clickworker emphasize managed annotation workflows or European language and content tasks. Teams should align platform features with recruitment criteria, pay norms, and validation plans.
+
+## Slide 9 — Takeaways
+
+MTurk operationalizes crowdsourcing through Human Intelligence Tasks, review, payment, and reputation. Product-description labeling shows how category tags feed downstream models. Prolific, CrowdFlower, and Clickworker offer research-focused or workflow-specific alternatives when MTurk is not the best fit.
+
+## Slide 10 — Next
+
+The next part covers advantages and failure modes of crowdsourcing, best practices for instructions and quality checks, and ethical obligations around fair pay, privacy, and harmful work conditions.

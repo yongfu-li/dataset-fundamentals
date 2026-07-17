@@ -26,7 +26,7 @@
     <span class="pill pill-muted">Part 10 of 10</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-09-case-studies/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../../../chapter8/index.html" title="Back to chapter learning path">Finish →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-09-case-studies/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../../../chapter8/index.html" title="Back to chapter learning path">Finish →</a>
   </nav>
 </section>
 
@@ -91,7 +91,28 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><p>Slides not found.</p></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 8 — Advanced topics and emerging trends</h3><ul><li>The chapter closes by looking beyond static README files and manual commits</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Outline emerging trends including auditability ledgers and real-time or edge versioning</li></ul></div><div class="slide-card"><h3>Automating documentation updates</h3><ul><li>Manual documentation drifts when datasets update frequently or many teams contribute</li><li>Integrating metadata extraction into processing pipelines reduces error and lag</li><li>Tools that already version data can emit creation dates, sources, transforms</li></ul></div><div class="slide-card"><h3>Example 8.41 — Auto-Generated Training Metadata</h3><ul><li>Example 8.41 — hands-on module</li><li>Example 8.41 shows JSON metadata emitted after model training</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter8/example41/</code></li></ul></div><div class="slide-card"><h3>Example 8.41 — listing</h3><pre><code>{
+  &quot;dataset_version&quot;: &quot;v1.0&quot;,
+  &quot;creator&quot;: &quot;Data Science Team&quot;,
+  &quot;creation_date&quot;: &quot;2024-12-01&quot;,
+  &quot;last_modified&quot;: &quot;2024-12-02&quot;,
+  &quot;transformation&quot;: &quot;Missing values imputed using median&quot;,
+  &quot;source&quot;: &quot;Company internal database&quot;,
+  &quot;data_source&quot;: &quot;https://company.internal/data_source_v1&quot;
+}</code></pre></div><div class="slide-card"><h3>Pipelines, lineage, and compliance</h3><ul><li>Version control should travel with pipeline stages from ingestion through cleaning to</li><li>Lineage platforms help demonstrate where data came from, how they were transformed</li><li>Sensitive assets may further require encryption and restricted remotes alongside ordinary</li></ul></div><div class="slide-card"><h3>Example 8.43 — DVC Stages in a Sensor Pipeline</h3><ul><li>Example 8.43 — hands-on module</li><li>Example 8.43 wires ingest, clean</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter8/example43/</code></li></ul></div><div class="slide-card"><h3>Example 8.43 — listing</h3><pre><code>version: &quot;v1.0&quot;
+stages:
+  - name: ingest_data
+    cmd: python ingest_data.py
+    deps:
+      - sensor_data/raw_data.csv
+  - name: clean_data
+    cmd: python clean_data.py
+    deps:
+      - sensor_data/raw_data.csv
+  - name: train_model
+    cmd: python train_model.py
+    deps:
+      - cleaned_data.csv</code></pre></div><div class="slide-card"><h3>Emerging trends</h3><ul><li>Version sync across cloud and edge devices</li><li>Not every idea is production-ready</li></ul></div><div class="slide-card"><h3>Example 8.47 — Blockchain Ideas for Version Auditability</h3><ul><li>Example 8.47 — hands-on module</li><li>Aiming for verifiable authenticity and integrity among stakeholders</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter8/example47/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Advanced practice automates metadata, embeds versioning in pipelines</li><li>Emerging ideas push toward continuous, distributed, and highly auditable histories</li><li>The durable lesson of the chapter remains</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz for this part</li></ul></div></div></div>
 </details>
 
 

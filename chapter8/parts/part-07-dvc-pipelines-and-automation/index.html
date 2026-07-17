@@ -26,7 +26,7 @@
     <span class="pill pill-muted">Part 7 of 10</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-version-control-tools/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-best-practices/index.html" title="Best practices">Next →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-version-control-tools/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-best-practices/index.html" title="Best practices">Next →</a>
   </nav>
 </section>
 
@@ -91,7 +91,25 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><p>Slides not found.</p></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 8 — DVC pipelines and automation</h3><ul><li>Tool choice becomes operational when pipelines reproduce training from pinned data</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Outline a live DVC workflow from init through pull for collaborators</li></ul></div><div class="slide-card"><h3>DVC inside machine learning workflows</h3><ul><li>Encodes transformation and training steps so experiments remain reproducible</li><li>Teams share references rather than duplicating large files</li></ul></div><div class="slide-card"><h3>Example 8.25 — DVC in an ML Pipeline</h3><ul><li>Example 8.25 — hands-on module</li><li>Storage burden stays on remotes</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter8/example25/</code></li></ul></div><div class="slide-card"><h3>Pipeline stages as executable history</h3><ul><li>A DVC pipeline declares stages with commands, dependencies</li><li>When inputs or code change</li><li>That dependency graph is the operational heart of reproducibility</li></ul></div><div class="slide-card"><h3>Example 8.28 — DVC Pipeline Stages for Training</h3><ul><li>Example 8.28 — hands-on module</li><li>Example 8.28 defines preprocessing, training</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter8/example28/</code></li></ul></div><div class="slide-card"><h3>Example 8.28 — listing</h3><pre><code>stages:
+  preprocessing:
+    cmd: python preprocess.py data/raw_data.csv data/preprocessed_data.csv
+    deps:
+      - data/raw_data.csv
+    outs:
+      - data/preprocessed_data.csv
+  training:
+    cmd: python train_model.py data/preprocessed_data.csv models/model.pkl
+    deps:
+      - data/preprocessed_data.csv
+    outs:
+      - models/model.pkl
+  evaluating:
+    cmd: python evaluate_model.py models/model.pkl
+    deps:
+      - models/model.pkl</code></pre></div><div class="slide-card"><h3>Continuous integration for dataset updates</h3><ul><li>Trigger training when code or data lands on a protected branch</li><li>Automation reduces forgotten manual steps and keeps shared remotes current for the team’s</li></ul></div><div class="slide-card"><h3>Example 8.29 — Live Demonstration of DVC Automation</h3><ul><li>Example 8.29 — hands-on module</li><li>Example 8.29 outlines a live walkthrough</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter8/example29/</code></li></ul></div><div class="slide-card"><h3>Example 8.29 — listing</h3><pre><code>git init
+dvc init
+dvc remote add -d myremote s3://mybucket/datasets</code></pre></div><div class="slide-card"><h3>Takeaways</h3><ul><li>DVC pipelines turn versioned data into reproducible workflows</li><li>Stage YAML records commands, dependencies, and outputs</li><li>Together they close the gap between “we have a dataset” and “we can retrain from the same</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>The next part turns documentation and versioning into day-to-day operating practice</li></ul></div></div></div>
 </details>
 
 
