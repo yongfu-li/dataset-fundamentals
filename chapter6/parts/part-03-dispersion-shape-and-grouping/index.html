@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dispersion, shape, and grouping — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter6/index.html">Chapter 6</a><span class="here">Part 3/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 6 · Guided part</div>
+    
+<section class="hero">
+  <h1>Dispersion, shape, and grouping</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 6</span>
+    <span class="pill pill-muted">Part 3 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-types-and-central-tendency/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-univariate-and-bivariate-visualization/index.html" title="Univariate and bivariate visualization">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Compute variance and standard deviation</li>
+<li>Interpret skewness cues</li>
+<li>Build frequency and group summaries</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.18</span>
+    <h3>Example 6.18 — Variance Sketch</h3>
+    <p>Compute squared deviations from the mean and population vs sample variance for a small dataset.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example18/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.19</span>
+    <h3>Example 6.19 — Standard Deviation from Variance</h3>
+    <p>Convert variance to standard deviation and report spread in original units.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example19/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.20</span>
+    <h3>Example 6.20 — Range of a Small Sample</h3>
+    <p>Compute range as max minus min and note its sensitivity to outliers.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example20/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 6 — Dispersion, shape, and grouping</h3><ul><li>A mean without spread is ambiguous</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Compute variance and standard deviation</li><li>Summarize by groups</li></ul></div><div class="slide-card"><h3>Variance and standard deviation</h3><ul><li>Variance averages squared deviations from the mean</li><li>Example 6.18 sketches variance for a small sample; Example 6.19 takes the square root</li><li>Larger standard deviation means more spread around the center</li></ul></div><div class="slide-card"><h3>Example 6.18 — Variance sketch</h3><ul><li>Example 6.18 — hands-on module</li><li>Example 6.18 uses the sample values two, four, four, six, and eight</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter6/example18/</code></li></ul></div><div class="slide-card"><h3>Example 6.18 — listing</h3><pre><code>&quot;&quot;&quot;Calculate variance from Example 6.18.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+from statistics import fmean, pvariance, variance
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Print deviations and both population and sample variance.&quot;&quot;&quot;
+    values: list[int] = [2, 4, 4, 6, 8]
+    mean_value: float = fmean(values)
+    squared_deviations: list[float] = [
+        (value - mean_value) ** 2 for value in values
+    ]
+    print(&quot;Values:&quot;, values)
+    print(&quot;Mean:&quot;, mean_value)
+    print(&quot;Squared deviations:&quot;, squared_deviations)
+    print(&quot;Population variance (n):&quot;, pvariance(values))
+    print(&quot;Sample variance (n-1):&quot;, variance(values))
+</code></pre></div><div class="slide-card"><h3>Range</h3><ul><li>Range is max minus min, Example 6.20 on a small sample</li><li>Simple but sensitive to outliers</li><li>Pair range with quartiles or IQR for robust spread views in later plots</li></ul></div><div class="slide-card"><h3>Measures of shape</h3><ul><li>Skewness indicates asymmetry: right-skewed income tails pull the mean above the median</li><li>Kurtosis relates to tail heaviness</li><li>Example 6.2 from the introduction linked skewness to model choice</li></ul></div><div class="slide-card"><h3>Frequency distributions and grouping</h3><ul><li>Frequency tables count category occurrences or bin counts for numerics</li><li>Group-by summaries compute mean spend by region or category</li><li>Aggregation reveals segment differences raw global means hide</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Report center and spread together</li><li>Shape guides transforms and model families</li><li>Frequency and group-by tables bridge summaries to the visual techniques in the next parts</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to univariate and bivariate visualization</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 6 — Dispersion, shape, and grouping</h3><p>A mean without spread is ambiguous. This part covers variance, standard deviation, range, distribution shape, frequency tables, and group-by aggregation.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should compute variance and standard deviation, interpret range, read skewness cues, build frequency distributions, and summarize by groups.</p></div><div class="transcript"><h3>Slide 3 — Variance and standard deviation</h3><p>Variance averages squared deviations from the mean; standard deviation is its square root in the original units. Example 6.18 sketches variance for a small sample; Example 6.19 takes the square root. Larger standard deviation means more spread around the center.</p></div><div class="transcript"><h3>Slide 4 — Example 6.18 — Variance sketch</h3><p>Example 6.18 uses the sample values two, four, four, six, and eight. Open the example 18 module for this chapter to follow the deviation steps. Standard deviation complements mean in describe() output.</p></div><div class="transcript"><h3>Slide 5 — Range</h3><p>Range is max minus min—Example 6.20 on a small sample. Simple but sensitive to outliers. Pair range with quartiles or IQR for robust spread views in later plots.</p></div><div class="transcript"><h3>Slide 6 — Measures of shape</h3><p>Skewness indicates asymmetry: right-skewed income tails pull the mean above the median. Kurtosis relates to tail heaviness. Example 6.2 from the introduction linked skewness to model choice—log transforms or robust methods may follow.</p></div><div class="transcript"><h3>Slide 7 — Frequency distributions and grouping</h3><p>Frequency tables count category occurrences or bin counts for numerics. Group-by summaries compute mean spend by region or category—Example 6.9 illustrates geography and purchase frequency hypotheses. Aggregation reveals segment differences raw global means hide.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Report center and spread together. Shape guides transforms and model families. Frequency and group-by tables bridge summaries to the visual techniques in the next parts.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to univariate and bivariate visualization.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-04-univariate-and-bivariate-visualization/index.html" data-next-label="Continue to Univariate and bivariate visualization"></div>
+  <script id="quiz-data" type="application/json">{"part_id":"clip-03-dispersion-shape-and-grouping","title":"Check your understanding","passing_score":0.7,"items":[{"id":"q1","type":"mcq","prompt":"Standard deviation is:","choices":["The square root of variance in original units","Always equal to the median","Only defined for nominal data","The max minus min"],"answer_index":0,"explain":"Examples 6.18–6.19 link variance and standard deviation."},{"id":"q2","type":"mcq","prompt":"Range is sensitive to:","choices":["Outliers at extremes","Only missing values","Ordinal ordering","JSON nesting"],"answer_index":0,"explain":"Range uses max and min only."},{"id":"q3","type":"true_false","prompt":"Right-skewed income often places the mean above the median.","answer":true,"explain":"Shape discussion ties to Example 6.2 and skewed tails."},{"id":"q4","type":"short","prompt":"What does a group-by summary add beyond a global mean?","rubric":"Segment-level means/counts; heterogeneity across categories/regions.","sample_answer":"It shows how a statistic differs across segments such as region or product type."}]}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

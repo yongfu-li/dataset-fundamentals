@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text and image annotation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter4/index.html">Chapter 4</a><span class="here">Part 2/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 4 · Guided part</div>
+    
+<section class="hero">
+  <h1>Text and image annotation</h1>
+  <div class="clip-meta">
+    <span class="pill">~8 min</span>
+    <span class="pill pill-muted">Chapter 4</span>
+    <span class="pill pill-muted">Part 2 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-01-introduction-to-data-annotation/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-03-audio-video-tabular-annotation/index.html" title="Audio, video, and tabular annotation">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Describe tokenization, sentiment, NER, and POS text operations</li>
+<li>Contrast bounding boxes, segmentation masks, and landmarks</li>
+<li>Match text and image techniques to typical NLP and vision tasks</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.9</span>
+    <h3>Example 4.9 — Tokenization on Text</h3>
+    <p>Treat tokenization as the prerequisite split that most text taggers depend on.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example9/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.12</span>
+    <h3>Example 4.12 — NER on Sentence</h3>
+    <p>Tag organization and location entities in a corporate factual sentence under NER.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example12/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.14</span>
+    <h3>Example 4.14 — Bounding Boxes for Detection</h3>
+    <p>Specify axis-aligned detection boxes with per-instance class labels for driving corpora.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example14/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.15</span>
+    <h3>Example 4.15 — Segmentation on Medical Images</h3>
+    <p>Produce pixel-level tumor contours for supervised segmentation training on medical scans.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example15/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 4 — Text and image annotation</h3><ul><li>The introduction showed what labeled data look like in each modality</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Describe common text annotation building blocks</li><li>Landmarks as image formats</li><li>Match each technique to typical natural language processing and computer-vision tasks</li></ul></div><div class="slide-card"><h3>Text annotation building blocks</h3><ul><li>Text annotation supports classification, information extraction, and retrieval</li><li>Common building blocks include tokenization, sentiment tagging, named entity recognition</li><li>Tokenization splits text into words</li><li>Sentiment tagging assigns polarity to spans or documents</li><li>Named entity recognition identifies and types entities such as people, organizations</li><li>Part-of-speech tagging assigns syntactic categories to tokens</li></ul></div><div class="slide-card"><h3>Example 4.9 — Tokenization on text</h3><ul><li>Example 4.9 — hands-on module</li><li>Example 4.9 shows a simple word split</li><li>The sentence “AI is the future” may tokenize to a short list of word tokens that</li><li>Whether casing is preserved</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example9/</code></li></ul></div><div class="slide-card"><h3>Example 4.12 — Named entities on a sentence</h3><ul><li>Example 4.12 — hands-on module</li><li>Example 4.12 applies organization and location tags</li><li>In “Apple is headquartered in Cupertino,” the company span receives an organization type</li><li>Subsidiary versus parent-brand boundaries are a frequent source of disagreement and are</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example12/</code></li></ul></div><div class="slide-card"><h3>Image annotation formats</h3><ul><li>Image annotation marks objects or regions for computer vision</li><li>Three frequent formats are bounding boxes, segmentation masks, and landmarks</li><li>Bounding boxes are axis-aligned rectangles around objects of interest and dominate many</li><li>Which matters in medical imaging and fine-grained scene parsing</li><li>Landmarking places keypoints on faces or bodies for recognition and pose estimation</li></ul></div><div class="slide-card"><h3>Example 4.14 — Bounding boxes for detection</h3><ul><li>Example 4.14 — hands-on module</li><li>Example 4.14 states the box format in a driving schema</li><li>In a self-driving corpus, rectangles may enclose cars, people</li><li>Box tightness, occlusion handling</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example14/</code></li></ul></div><div class="slide-card"><h3>Example 4.15 — Segmentation on medical images</h3><ul><li>Example 4.15 — hands-on module</li><li>Example 4.15 shows a clinical mask task</li><li>Enabling supervised segmentation training</li><li>Masks demand more effort per object than boxes but reward applications where boundary</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example15/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Text pipelines combine tokenization with sentiment, entity, or syntactic tags</li><li>Image work chooses among boxes, masks, and landmarks based on task precision and cost</li><li>Format choice belongs in the guideline before scale-up, because relabeling is expensive</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz, then continue to the next part on audio, video</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 4 — Text and image annotation</h3><p>The introduction showed what labeled data look like in each modality. This part turns to the label operations teams specify in guidelines: tokenization, sentiment, named entities, and part-of-speech for text; bounding boxes, segmentation, and landmarks for images.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should describe common text annotation building blocks, contrast bounding boxes, segmentation masks, and landmarks as image formats, and match each technique to typical natural language processing and computer-vision tasks.</p></div><div class="transcript"><h3>Slide 3 — Text annotation building blocks</h3><p>Text annotation supports classification, information extraction, and retrieval. Common building blocks include tokenization, sentiment tagging, named entity recognition, and part-of-speech tagging. Tokenization splits text into words, subwords, or characters as a prerequisite for most taggers. Sentiment tagging assigns polarity to spans or documents. Named entity recognition identifies and types entities such as people, organizations, and locations. Part-of-speech tagging assigns syntactic categories to tokens.</p></div><div class="transcript"><h3>Slide 4 — Example 4.9 — Tokenization on text</h3><p>Example 4.9 shows a simple word split. The sentence “AI is the future” may tokenize to a short list of word tokens that downstream taggers consume. Token boundaries affect every later label, so guidelines should specify whether punctuation is attached, how contractions are split, and whether casing is preserved. Open the example 9 module for this chapter to inspect the token list.</p></div><div class="transcript"><h3>Slide 5 — Example 4.12 — Named entities on a sentence</h3><p>Example 4.12 applies organization and location tags. In “Apple is headquartered in Cupertino,” the company span receives an organization type and the city span a location type. Subsidiary versus parent-brand boundaries are a frequent source of disagreement and are revisited under quality control. Open the example 12 module for this chapter to see the span schema.</p></div><div class="transcript"><h3>Slide 6 — Image annotation formats</h3><p>Image annotation marks objects or regions for computer vision. Three frequent formats are bounding boxes, segmentation masks, and landmarks. Bounding boxes are axis-aligned rectangles around objects of interest and dominate many detection benchmarks. Segmentation assigns pixel-level or polygon labels and yields tighter boundaries than boxes, which matters in medical imaging and fine-grained scene parsing. Landmarking places keypoints on faces or bodies for recognition and pose estimation.</p></div><div class="transcript"><h3>Slide 7 — Example 4.14 — Bounding boxes for detection</h3><p>Example 4.14 states the box format in a driving schema. In a self-driving corpus, rectangles may enclose cars, people, and road signs with a class label for each instance. Box tightness, occlusion handling, and consistent class names directly affect detector training. Open the example 14 module for this chapter to review a detection-oriented schema.</p></div><div class="transcript"><h3>Slide 8 — Example 4.15 — Segmentation on medical images</h3><p>Example 4.15 shows a clinical mask task. Annotators outline a tumor region on a scan so every pixel inside the contour receives the tumor class, enabling supervised segmentation training. Masks demand more effort per object than boxes but reward applications where boundary precision matters. Open the example 15 module for this chapter to compare mask labels with box labels.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Text pipelines combine tokenization with sentiment, entity, or syntactic tags. Image work chooses among boxes, masks, and landmarks based on task precision and cost. Format choice belongs in the guideline before scale-up, because relabeling is expensive.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>Complete the quiz, then continue to the next part on audio, video, and tabular annotation—transcription, diarization, frame tracks, activity labels, and row-level classes.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-03-audio-video-tabular-annotation/index.html" data-next-label="Continue to Audio, video, and tabular annotation"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-02-text-and-image-annotation",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which text operation splits raw strings into words or subwords before tagging?",
+      "choices": [
+        "Segmentation",
+        "Tokenization",
+        "Diarization",
+        "Majority vote"
+      ],
+      "answer_index": 1,
+      "explain": "Tokenization is the prerequisite step for most text taggers."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "In Example 4.12, which entity types appear?",
+      "choices": [
+        "Person and location only",
+        "Organization and location",
+        "Positive and negative sentiment",
+        "High, medium, and low value bands"
+      ],
+      "answer_index": 1,
+      "explain": "Apple is typed as an organization and Cupertino as a location."
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "prompt": "Segmentation masks typically provide tighter object boundaries than axis-aligned bounding boxes.",
+      "answer": true,
+      "explain": "Pixel- or polygon-level labels capture fine boundaries important in medical and scene parsing tasks."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "prompt": "Which image format places keypoints on eyes, nose, and mouth corners?",
+      "choices": [
+        "Bounding boxes",
+        "Landmarking",
+        "Row categorization",
+        "Transcription"
+      ],
+      "answer_index": 1,
+      "explain": "Landmarking supports face alignment and pose estimation."
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "prompt": "List two text annotation building blocks besides tokenization.",
+      "rubric": "Any two of sentiment tagging, NER, POS tagging, aspect tags.",
+      "sample_answer": "Sentiment tagging and named entity recognition; part-of-speech tagging is also valid."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

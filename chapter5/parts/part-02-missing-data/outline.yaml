@@ -1,0 +1,98 @@
+title: Chapter 5 — Missing data
+footer: Chapter 5 — Missing Data
+slides:
+- type: title
+  title: Chapter 5 — Missing data
+  subtitle: Missing values are among the most common defects, and the most dangerous
+    when handled blindly
+  notes: Missing values are among the most common defects—and the most dangerous when
+    handled blindly. This part classifies missing-data mechanisms and traces causes
+    from survey design to hardware failure.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Define MCAR, MAR
+  - MNAR, match each to a short scenario
+  - List typical causes of missing fields in real pipelines
+  notes: By the end of this part, you should define MCAR, MAR, and MNAR, match each
+    to a short scenario, and list typical causes of missing fields in real pipelines.
+- type: bullets
+  title: MCAR — missing completely at random
+  bullets:
+  - The probability a value is missing does not depend on observed or unobserved data
+  - Example 5.8 sketches a system error that omits records uniformly
+  - Simple deletion or mean imputation may be less biased when MCAR truly holds
+  notes: Under MCAR, the probability a value is missing does not depend on observed
+    or unobserved data. Example 5.8 sketches a system error that omits records uniformly—any
+    row is equally likely to be dropped. Simple deletion or mean imputation may be
+    less biased when MCAR truly holds, though that assumption is rare in practice.
+- type: bullets
+  title: MAR — missing at random
+  bullets:
+  - Under MAR, missingness depends on observed variables but not on the missing value
+    itself
+  - Example 5.9 shows income nonresponse related to age or employment status that
+    is recorded
+  - MAR is the sweet spot for many principled imputation methods
+  notes: Under MAR, missingness depends on observed variables but not on the missing
+    value itself after conditioning on what you see. Example 5.9 shows income nonresponse
+    related to age or employment status that is recorded—analysts can model missingness
+    using observed columns. MAR is the sweet spot for many principled imputation methods.
+- type: bullets
+  title: MNAR — missing not at random
+  bullets:
+  - Under MNAR, missingness depends on the unobserved value itself
+  - Example 5.10 shows high earners declining to report income
+  - MNAR demands explicit modeling, sensitivity analysis, or collection redesign
+  notes: Under MNAR, missingness depends on the unobserved value itself. Example 5.10
+    shows high earners declining to report income—the missing values are not random
+    even after conditioning on observed fields. MNAR demands explicit modeling, sensitivity
+    analysis, or collection redesign; naive imputation can seriously bias estimates.
+- type: bullets
+  title: Example 5.8 — MCAR system error
+  bullets:
+  - Example 5.8 — hands-on module
+  - The uniform omission pattern
+  - Explore the chapter example module
+  - 'View files: `modules/chapter5/example8/`'
+  notes: Example 5.8 is the uniform omission pattern. Open the example 8 module for
+    this chapter to compare MCAR assumptions with the MAR and MNAR vignettes. Always
+    document which mechanism you believe applies before choosing a fix.
+- type: bullets
+  title: Causes of missing data
+  bullets:
+  - Disk or sensor failures truncating files
+  - Example 5.11 shows skipped sensitive items; Example 5.13 shows truncated sensor
+    logs
+  - The cause hints at the mechanism
+  notes: Common causes include survey nonresponse on sensitive questions, data-entry
+    typos leaving blanks, integration gaps when merging sources, and disk or sensor
+    failures truncating files. Example 5.11 shows skipped sensitive items; Example
+    5.13 shows truncated sensor logs. The cause hints at the mechanism.
+- type: bullets
+  title: Why mechanism matters
+  bullets:
+  - Listwise deletion is simple but wasteful under MAR if informative rows are dropped
+  - Mean imputation understates variance
+  - MNAR fixes require domain judgment
+  - Chapter 6 exploration helps detect patterns
+  notes: Listwise deletion is simple but wasteful under MAR if informative rows are
+    dropped. Mean imputation understates variance. MNAR fixes require domain judgment.
+    Chapter 6 exploration helps detect patterns; this chapter supplies formal repair
+    methods in the cleaning-techniques part.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Classify missingness before imputing
+  - MNAR are not interchangeable labels, they dictate which repairs are defensible
+  - Causes range from human behavior to infrastructure failure
+  notes: Classify missingness before imputing. MCAR, MAR, and MNAR are not interchangeable
+    labels—they dictate which repairs are defensible. Causes range from human behavior
+    to infrastructure failure.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Continue to duplicates and inconsistent encodings
+  notes: Pause for the quiz, then continue to duplicates and inconsistent encodings—defects
+    that survive even when every cell is filled.

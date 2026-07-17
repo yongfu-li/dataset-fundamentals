@@ -1,0 +1,122 @@
+title: Chapter 3 — Privacy-preserving techniques
+footer: Chapter 3 — 05 Privacy Preserving Techniques
+slides:
+- type: title
+  title: Chapter 3 — Privacy-preserving techniques
+  subtitle: Teams often need useful analysis while reducing exposure of personal records
+  notes: 'Teams often need useful analysis while reducing exposure of personal records.
+    This part is the chapter''s technical home for those controls: anonymization and
+    encryption as baselines, then differential privacy and federated learning as stronger
+    formal or architectural options.'
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Place four techniques on a protection map, state the main caveat for each
+  - Explain how they stack with consent and purpose limits
+  notes: By the end of this part, you should place four techniques on a protection
+    map, state the main caveat for each, and explain how they stack with consent and
+    purpose limits.
+- type: bullets
+  title: Techniques at a glance
+  bullets:
+  - Anonymization and de-identification reduce linkability in shared tables
+  - Encryption protects confidentiality in transit and at rest
+  - Differential privacy limits how much any single record can change an aggregate
+    release
+  - Federated learning trains models where raw data stay on devices or silos
+  notes: Anonymization and de-identification reduce linkability in shared tables—but
+    auxiliary data can support re-identification. Encryption protects confidentiality
+    in transit and at rest, yet authorized users still see plaintext. Differential
+    privacy limits how much any single record can change an aggregate release, typically
+    by calibrated noise. Federated learning trains models where raw data stay on devices
+    or silos; only updates move to an aggregator.
+- type: bullets
+  title: Anonymization and re-identification risk
+  bullets:
+  - Coarsening rare combinations
+  - The canonical warning
+  - Stronger protection usually requires coarser aggregation
+  notes: 'Common moves include masking direct identifiers, generalizing quasi-identifiers
+    such as age bands, and coarsening rare combinations. Example 3.13 is the canonical
+    warning: sparse location histories, even without names, can be joined to public
+    records or social posts to recover identity. Stronger protection usually requires
+    coarser aggregation, formal privacy noise, or keeping raw traces off shared servers.'
+- type: bullets
+  title: Example 3.13 — Re-identification from location patterns
+  bullets:
+  - Example 3.13 — hands-on module
+  - Example 3.13 shows why anonymization is a management goal, not a guarantee
+  - Explore the chapter example module
+  - 'View files: `modules/chapter3/example13/`'
+  notes: Example 3.13 shows why anonymization is a management goal, not a guarantee.
+    Open the example 13 module for this chapter to review auxiliary-data join scenarios.
+    Encryption complements anonymization but solves a different problem.
+- type: bullets
+  title: Encryption limits
+  bullets:
+  - Encryption keeps intercepted packets unreadable
+  - Minimization, not from encryption alone
+  - Example 3.14 makes that limit explicit for medical messaging
+  notes: Encryption keeps intercepted packets unreadable—for example TLS during clinical
+    record transfer. Once an authorized clinician decrypts the payload, misuse controls
+    must come from access policy, audit logs, and minimization, not from encryption
+    alone. Example 3.14 makes that limit explicit for medical messaging.
+- type: bullets
+  title: Differential privacy
+  bullets:
+  - Differential privacy limits what an adversary learns about any individual from
+    aggregate
+  - The standing trade-off is privacy budget versus accuracy
+  - Example 3.15 shows product telemetry released under a differential-privacy mechanism
+    so
+  notes: 'Differential privacy limits what an adversary learns about any individual
+    from aggregate outputs. The standing trade-off is privacy budget versus accuracy:
+    more noise strengthens privacy but can blunt utility. Example 3.15 shows product
+    telemetry released under a differential-privacy mechanism so teams still see population
+    patterns without singling out users.'
+- type: bullets
+  title: Example 3.15 — Differential privacy for product telemetry
+  bullets:
+  - Example 3.15 — hands-on module
+  - Example 3.15 depends on correct noise calibration and on not publishing too many
+  - Explore the chapter example module
+  - 'View files: `modules/chapter3/example15/`'
+  notes: Example 3.15 depends on correct noise calibration and on not publishing too
+    many overlapping queries against the same budget. Try the example 15 module for
+    this chapter to see how budget exhaustion works in practice.
+- type: bullets
+  title: Federated learning
+  bullets:
+  - Federated learning reduces central pools of raw text or sensor data by training
+    locally
+  - Example 3.16 shows on-device keyboard prediction
+  notes: 'Federated learning reduces central pools of raw text or sensor data by training
+    locally and sending only update summaries for aggregation. Example 3.16 shows
+    on-device keyboard prediction: teams still need secure aggregation and monitoring
+    so updates do not reconstruct sensitive phrases.'
+- type: bullets
+  title: Example 3.16 — Federated learning for on-device keyboard prediction
+  bullets:
+  - Example 3.16 — hands-on module
+  - Example 3.16 illustrates when raw centralization is unacceptable
+  - Explore the chapter example module
+  - 'View files: `modules/chapter3/example16/`'
+  notes: Example 3.16 illustrates when raw centralization is unacceptable. Open the
+    example 16 module to compare centralized training with federated updates. Techniques
+    stack—none replaces consent and purpose limits from Section 3.3.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Choose controls to match the threat
+  - Stack techniques where needed
+  - Technical PETs implement privacy principles, they do not replace them
+  notes: 'Choose controls to match the threat: linkability, channel confidentiality,
+    aggregate leakage, or raw centralization. Stack techniques where needed. Technical
+    PETs implement privacy principles—they do not replace them.'
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Continue to bias and fairness, how ethical principles connect to model outcomes
+  notes: Pause for the quiz, then continue to bias and fairness—how ethical principles
+    connect to model outcomes.

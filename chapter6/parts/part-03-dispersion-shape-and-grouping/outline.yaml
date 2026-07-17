@@ -1,0 +1,93 @@
+title: Chapter 6 — Dispersion, shape, and grouping
+footer: Chapter 6 — 03 Dispersion Shape And Grouping
+slides:
+- type: title
+  title: Chapter 6 — Dispersion, shape, and grouping
+  subtitle: A mean without spread is ambiguous
+  notes: A mean without spread is ambiguous. This part covers variance, standard deviation,
+    range, distribution shape, frequency tables, and group-by aggregation.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Compute variance and standard deviation
+  - Summarize by groups
+  notes: By the end of this part, you should compute variance and standard deviation,
+    interpret range, read skewness cues, build frequency distributions, and summarize
+    by groups.
+- type: bullets
+  title: Variance and standard deviation
+  bullets:
+  - Variance averages squared deviations from the mean
+  - Example 6.18 sketches variance for a small sample; Example 6.19 takes the square
+    root
+  - Larger standard deviation means more spread around the center
+  notes: Variance averages squared deviations from the mean; standard deviation is
+    its square root in the original units. Example 6.18 sketches variance for a small
+    sample; Example 6.19 takes the square root. Larger standard deviation means more
+    spread around the center.
+- type: bullets
+  title: Example 6.18 — Variance sketch
+  bullets:
+  - Example 6.18 — hands-on module
+  - Example 6.18 uses the sample values two, four, four, six, and eight
+  - Explore the chapter example module
+  - 'View files: `modules/chapter6/example18/`'
+  notes: Example 6.18 uses the sample values two, four, four, six, and eight. Open
+    the example 18 module for this chapter to follow the deviation steps. Standard
+    deviation complements mean in describe() output.
+- type: code
+  title: Example 6.18 — listing
+  code: "\"\"\"Calculate variance from Example 6.18.\"\"\"\n\nfrom __future__ import\
+    \ annotations\n\nfrom statistics import fmean, pvariance, variance\n\n\ndef main()\
+    \ -> None:\n    \"\"\"Print deviations and both population and sample variance.\"\
+    \"\"\n    values: list[int] = [2, 4, 4, 6, 8]\n    mean_value: float = fmean(values)\n\
+    \    squared_deviations: list[float] = [\n        (value - mean_value) ** 2 for\
+    \ value in values\n    ]\n    print(\"Values:\", values)\n    print(\"Mean:\"\
+    , mean_value)\n    print(\"Squared deviations:\", squared_deviations)\n    print(\"\
+    Population variance (n):\", pvariance(values))\n    print(\"Sample variance (n-1):\"\
+    , variance(values))\n"
+- type: bullets
+  title: Range
+  bullets:
+  - Range is max minus min, Example 6.20 on a small sample
+  - Simple but sensitive to outliers
+  - Pair range with quartiles or IQR for robust spread views in later plots
+  notes: Range is max minus min—Example 6.20 on a small sample. Simple but sensitive
+    to outliers. Pair range with quartiles or IQR for robust spread views in later
+    plots.
+- type: bullets
+  title: Measures of shape
+  bullets:
+  - 'Skewness indicates asymmetry: right-skewed income tails pull the mean above the
+    median'
+  - Kurtosis relates to tail heaviness
+  - Example 6.2 from the introduction linked skewness to model choice
+  notes: 'Skewness indicates asymmetry: right-skewed income tails pull the mean above
+    the median. Kurtosis relates to tail heaviness. Example 6.2 from the introduction
+    linked skewness to model choice—log transforms or robust methods may follow.'
+- type: bullets
+  title: Frequency distributions and grouping
+  bullets:
+  - Frequency tables count category occurrences or bin counts for numerics
+  - Group-by summaries compute mean spend by region or category
+  - Aggregation reveals segment differences raw global means hide
+  notes: Frequency tables count category occurrences or bin counts for numerics. Group-by
+    summaries compute mean spend by region or category—Example 6.9 illustrates geography
+    and purchase frequency hypotheses. Aggregation reveals segment differences raw
+    global means hide.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Report center and spread together
+  - Shape guides transforms and model families
+  - Frequency and group-by tables bridge summaries to the visual techniques in the
+    next parts
+  notes: Report center and spread together. Shape guides transforms and model families.
+    Frequency and group-by tables bridge summaries to the visual techniques in the
+    next parts.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Continue to univariate and bivariate visualization
+  notes: Pause for the quiz, then continue to univariate and bivariate visualization.

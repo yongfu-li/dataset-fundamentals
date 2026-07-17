@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools for data annotation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter4/index.html">Chapter 4</a><span class="here">Part 5/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 4 · Guided part</div>
+    
+<section class="hero">
+  <h1>Tools for data annotation</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 4</span>
+    <span class="pill pill-muted">Part 5 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-annotation-techniques/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-quality-control/index.html" title="Quality control in annotation">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Name LabelImg, Label Studio, CVAT, and commercial platform classes</li>
+<li>List four features production annotation tools should provide</li>
+<li>Outline a minimal bounding-box workflow for object detection</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.29</span>
+    <h3>Example 4.29 — LabelImg Box-Label Workflow</h3>
+    <p>Execute a minimal LabelImg workflow for box labels and VOC export with a pre-scale review gate.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example29/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 4 — Tools for data annotation</h3><ul><li>Technique choices become operational through annotation platforms</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Name representative open-source and commercial annotation tools</li><li>Outline a minimal bounding-box workflow suitable for small detection projects</li></ul></div><div class="slide-card"><h3>Open-source annotation tools</h3><ul><li>Open-source tools suit research teams and pilots that need customization without license</li><li>Common in small object-detection projects tied to benchmarks such as PASCAL VOC and COCO</li><li>Label Studio supports text, image, audio</li><li>Team workflows for larger vision efforts</li></ul></div><div class="slide-card"><h3>Commercial annotation platforms</h3><ul><li>Commercial platforms add managed workforces, service-level agreements</li><li>Vendors such as Scale AI and Appen combine tooling with contracted annotators</li><li>NLP-focused products such as Prodigy emphasize tight active-learning loops for text</li><li>Product names change quickly</li><li>Many teams prototype in open-source tools and move to commercial platforms when scale or</li></ul></div><div class="slide-card"><h3>Four required platform features</h3><ul><li>Match the tool to modality and workflow</li><li>Also check collaboration, export formats, API hooks for pre-labeling</li><li>Hooks for quality review such as duplicate labeling or adjudication queues</li><li>If a candidate tool lacks those four</li></ul></div><div class="slide-card"><h3>Example 4.29 — LabelImg box-label workflow</h3><ul><li>Example 4.29 — hands-on module</li><li>Example 4.29 summarizes a minimal LabelImg path for object detection</li><li>Save VOC-compatible XML for downstream training</li><li>Before scaling, review a handful of exports to confirm class names, box tightness</li><li>The same export-check habit applies to other box editors</li><li>View files: <code>modules/chapter4/example29/</code></li></ul></div><div class="slide-card"><h3>Choosing tools for your program</h3><ul><li>Selection depends on modality, scale, integration with machine learning workflows</li><li>Open-source options favor customization and bring-your-own annotators</li><li>The right choice is the one that supports your schema, collaboration model</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>LabelImg, Label Studio, and CVAT cover common research and vision needs</li><li>Require schema validation, collaboration, versioned exports, and QC hooks</li><li>Always audit a small export batch before labeling thousands of images</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Annotator training</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 4 — Tools for data annotation</h3><p>Technique choices become operational through annotation platforms. This part maps open-source editors and commercial platforms to modality needs, lists four features every production tool should provide, and walks a minimal object-detection workflow with LabelImg.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should name representative open-source and commercial annotation tools, list four features effective platforms should provide, and outline a minimal bounding-box workflow suitable for small detection projects.</p></div><div class="transcript"><h3>Slide 3 — Open-source annotation tools</h3><p>Open-source tools suit research teams and pilots that need customization without license cost. LabelImg provides a lightweight interface for drawing bounding boxes and exporting PASCAL VOC-style XML, common in small object-detection projects tied to benchmarks such as PASCAL VOC and COCO. Label Studio supports text, image, audio, and video with configurable templates and optional model-assisted pre-labeling that implements the semi-automated pattern from the previous part. CVAT—the Computer Vision Annotation Tool—targets image and video with boxes, polygons, tracks, and team workflows for larger vision efforts.</p></div><div class="transcript"><h3>Slide 4 — Commercial annotation platforms</h3><p>Commercial platforms add managed workforces, service-level agreements, and enterprise integrations for high-volume programs. Vendors such as Scale AI and Appen combine tooling with contracted annotators. NLP-focused products such as Prodigy emphasize tight active-learning loops for text. Product names change quickly; treat the list as illustrative of capability classes rather than an endorsement ranking. Many teams prototype in open-source tools and move to commercial platforms when scale or managed quality assurance becomes the bottleneck.</p></div><div class="transcript"><h3>Slide 5 — Four required platform features</h3><p>Match the tool to modality and workflow: vision-heavy projects need box, mask, or track support; natural language processing projects need span and document interfaces. Also check collaboration, export formats, API hooks for pre-labeling, and whether inter-annotator agreement or audit trails are built in. Effective platforms typically provide schema definition and validation, role-based collaboration, version history or export snapshots, and hooks for quality review such as duplicate labeling or adjudication queues. If a candidate tool lacks those four, plan external quality-control processes before production labeling.</p></div><div class="transcript"><h3>Slide 6 — Example 4.29 — LabelImg box-label workflow</h3><p>Example 4.29 summarizes a minimal LabelImg path for object detection. Install the editor, open an image directory, draw a rectangle per object, assign a class label, and save VOC-compatible XML for downstream training. Before scaling, review a handful of exports to confirm class names, box tightness, and consistent handling of occluded objects. The same export-check habit applies to other box editors. Open the example 29 module for this chapter to follow the workflow checklist.</p></div><div class="transcript"><h3>Slide 7 — Choosing tools for your program</h3><p>Selection depends on modality, scale, integration with machine learning workflows, and budget. Open-source options favor customization and bring-your-own annotators; commercial options favor volume, managed labor, and SLA-bound programs. The right choice is the one that supports your schema, collaboration model, and QC gates—not the flashiest demo.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>LabelImg, Label Studio, and CVAT cover common research and vision needs; commercial vendors add managed scale. Require schema validation, collaboration, versioned exports, and QC hooks. Always audit a small export batch before labeling thousands of images.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to the next part on quality control—annotation errors, inter-annotator agreement, gold-set audits, and annotator training.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-quality-control/index.html" data-next-label="Continue to Quality control in annotation"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-05-tools-for-annotation",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which open-source tool is described as lightweight for drawing bounding boxes and exporting VOC-style XML?",
+      "choices": [
+        "LabelImg",
+        "Prodigy",
+        "Scale AI",
+        "SoundAnn"
+      ],
+      "answer_index": 0,
+      "explain": "LabelImg targets small object-detection box labeling with VOC-compatible export."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Which tool supports text, image, audio, and video with configurable templates?",
+      "choices": [
+        "Label Studio",
+        "LabelImg only",
+        "A spreadsheet with no schema",
+        "A model trainer without a UI"
+      ],
+      "answer_index": 0,
+      "explain": "Label Studio is multimodal with template-driven interfaces."
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "prompt": "Effective annotation platforms should provide schema validation, collaboration, export snapshots, and QC review hooks.",
+      "answer": true,
+      "explain": "Those four features are the chapter checklist before production labeling."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "List two checks from Example 4.29 to perform before scaling a LabelImg project.",
+      "rubric": "Any two of: class names, box tightness, occluded-object handling, export format review.",
+      "sample_answer": "Confirm consistent class names and review box tightness and occluded-object handling on a handful of exports."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "prompt": "CVAT is best matched to which need?",
+      "choices": [
+        "Image and video with boxes, polygons, tracks, and team workflows",
+        "Tabular fraud flags only",
+        "Unlabeled raw audio storage",
+        "Hyperparameter search"
+      ],
+      "answer_index": 0,
+      "explain": "CVAT targets larger computer-vision efforts with tracks and collaboration."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

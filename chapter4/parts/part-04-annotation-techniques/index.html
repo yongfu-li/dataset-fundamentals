@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Annotation techniques — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter4/index.html">Chapter 4</a><span class="here">Part 4/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 4 · Guided part</div>
+    
+<section class="hero">
+  <h1>Annotation techniques</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 4</span>
+    <span class="pill pill-muted">Part 4 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-audio-video-tabular-annotation/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-tools-for-annotation/index.html" title="Tools for data annotation">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Compare manual, semi-automated, automated, and crowdsourced workflows</li>
+<li>Summarize strengths and risks in Table 4.2</li>
+<li>Describe active learning queues and majority-vote redundancy</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.26</span>
+    <h3>Example 4.26 — Manual Sentiment Ambiguity</h3>
+    <p>Justify human sentiment labels when surface wording misleads brittle keyword rules.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example26/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.27</span>
+    <h3>Example 4.27 — Active Learning Queue for Text</h3>
+    <p>Design an active-learning queue that sends uncertain text items to humans and auto-labels high-confidence cases.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example27/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.28</span>
+    <h3>Example 4.28 — Majority Vote on Crowdsourced Sentiment</h3>
+    <p>Apply majority vote across redundant crowd labels while using gold items and qualification tests for QC.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example28/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 4 — Annotation techniques</h3><ul><li>Knowing which labels to apply is not enough, you still need a workflow that matches quality and budget</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Compare manual, semi-automated, fully automated</li><li>Crowdsourced annotation on throughput and risk, summarize the trade-offs in Table 4.2</li><li>Describe active learning and majority-vote patterns as practical workflow choices</li></ul></div><div class="slide-card"><h3>Technique trade-offs (Table 4.2)</h3><ul><li>Annotation is labor-intensive</li><li>Table 4.2 summarizes four approaches</li><li>Manual annotation handles ambiguity and domain nuance but offers low throughput and</li><li>Semi-automated labeling is faster when humans review model proposals but risks</li><li>Fully automated pipelines scale at low marginal cost yet inherit skew and silent errors</li><li>Crowdsourcing enables rapid scale for simple schemas but introduces worker variance and</li></ul></div><div class="slide-card"><h3>Manual annotation</h3><ul><li>Ambiguity, or domain expertise matter more than throughput</li><li>Humans handle occlusion, sarcasm</li></ul></div><div class="slide-card"><h3>Example 4.26 — Manual sentiment ambiguity</h3><ul><li>Example 4.26 — hands-on module</li><li>Example 4.26 shows a sentiment edge case</li><li>A sentence such as “That was quite a disaster</li><li>A brittle keyword rule may miss that tone</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example26/</code></li></ul></div><div class="slide-card"><h3>Semi-automated and active learning</h3><ul><li>Semi-automated annotation combines human review with model-generated proposals</li><li>A pre-trained detector may suggest boxes or entity spans</li><li>Active learning prioritizes labeling for the most uncertain items so human effort</li></ul></div><div class="slide-card"><h3>Example 4.27 — Active learning queue for text</h3><ul><li>Example 4.27 — hands-on module</li><li>Example 4.27 shows a typical queueing pattern</li><li>In text classification</li><li>Active learning reduces label volume but still requires monitoring for bias introduced</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example27/</code></li></ul></div><div class="slide-card"><h3>Fully automated and crowdsourced annotation</h3><ul><li>Fully automated pipelines label data without per-item human review</li><li>Automated labelers inherit training-data skew</li><li>Crowdsourcing distributes micro-tasks to many workers</li></ul></div><div class="slide-card"><h3>Example 4.28 — Majority vote on crowdsourced sentiment</h3><ul><li>Example 4.28 — hands-on module</li><li>Example 4.28 shows a simple redundancy pattern</li><li>Three workers label the same review as positive, positive, and negative</li><li>Crowdsourcing scales quickly but needs gold items, worker qualification</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example28/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Match technique to ambiguity, throughput, and ethics, not to habit</li><li>Table 4.2 pairs each approach with its primary risk</li><li>Combine workflows only when shared QC gates keep volume from eroding accuracy</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>A minimal object-detection workflow</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 4 — Annotation techniques</h3><p>Knowing which labels to apply is not enough—you still need a workflow that matches quality and budget. This part contrasts manual, semi-automated, fully automated, and crowdsourced annotation, including active learning queues and majority-vote redundancy.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should compare manual, semi-automated, fully automated, and crowdsourced annotation on throughput and risk, summarize the trade-offs in Table 4.2, and describe active learning and majority-vote patterns as practical workflow choices.</p></div><div class="transcript"><h3>Slide 3 — Technique trade-offs (Table 4.2)</h3><p>Annotation is labor-intensive, so teams must match technique to quality and budget constraints. Table 4.2 summarizes four approaches. Manual annotation handles ambiguity and domain nuance but offers low throughput and annotator variance. Semi-automated labeling is faster when humans review model proposals but risks over-trusting bad suggestions. Fully automated pipelines scale at low marginal cost yet inherit skew and silent errors. Crowdsourcing enables rapid scale for simple schemas but introduces worker variance and labor ethics concerns. No single technique dominates; production programs often combine several under shared quality-control gates.</p></div><div class="transcript"><h3>Slide 4 — Manual annotation</h3><p>Manual annotation assigns labels through trained humans and remains the reference standard when context, ambiguity, or domain expertise matter more than throughput. Humans handle occlusion, sarcasm, and guideline exceptions that automated pre-labelers often miss, but manual throughput is limited and inter-annotator variance must be managed with guidelines and agreement checks.</p></div><div class="transcript"><h3>Slide 5 — Example 4.26 — Manual sentiment ambiguity</h3><p>Example 4.26 shows a sentiment edge case. A sentence such as “That was quite a disaster, but at least I got the coffee!” may still be labeled positive from context even though surface words look negative. A brittle keyword rule may miss that tone. Open the example 26 module for this chapter to walk through the ambiguity decision.</p></div><div class="transcript"><h3>Slide 6 — Semi-automated and active learning</h3><p>Semi-automated annotation combines human review with model-generated proposals. A pre-trained detector may suggest boxes or entity spans; annotators accept, correct, or reject them. Active learning prioritizes labeling for the most uncertain items so human effort concentrates where it changes the model most.</p></div><div class="transcript"><h3>Slide 7 — Example 4.27 — Active learning queue for text</h3><p>Example 4.27 shows a typical queueing pattern. In text classification, ambiguous sentences are queued for human review while high-confidence cases are auto-labeled or skipped, so annotators spend time where the model is most uncertain. Active learning reduces label volume but still requires monitoring for bias introduced during adjudication. Open the example 27 module for this chapter to inspect the queue logic.</p></div><div class="transcript"><h3>Slide 8 — Fully automated and crowdsourced annotation</h3><p>Fully automated pipelines label data without per-item human review, which suits scale but raises accuracy and bias risk. Automated labelers inherit training-data skew, so subsets should be spot-checked and fairness metrics applied before release. Crowdsourcing distributes micro-tasks to many workers, often with redundancy and majority vote for quality on simpler schemas.</p></div><div class="transcript"><h3>Slide 9 — Example 4.28 — Majority vote on crowdsourced sentiment</h3><p>Example 4.28 shows a simple redundancy pattern. Three workers label the same review as positive, positive, and negative; majority vote yields positive, while gold-item checks and qualification tests limit random or adversarial workers. Crowdsourcing scales quickly but needs gold items, worker qualification, and fair payment practices. Open the example 28 module for this chapter to review the vote pattern.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Match technique to ambiguity, throughput, and ethics—not to habit. Table 4.2 pairs each approach with its primary risk. Combine workflows only when shared QC gates keep volume from eroding accuracy.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>Complete the quiz, then continue to the next part on annotation tools—open-source editors, commercial platforms, and a minimal object-detection workflow.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-05-tools-for-annotation/index.html" data-next-label="Continue to Tools for data annotation"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-04-annotation-techniques",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "According to Table 4.2, what is the primary risk of semi-automated annotation?",
+      "choices": [
+        "Low throughput only",
+        "Over-trust of model proposals",
+        "No need for human review",
+        "Impossible scale"
+      ],
+      "answer_index": 1,
+      "explain": "Humans may accept bad pre-labels without careful correction."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "What does active learning prioritize for human labeling?",
+      "choices": [
+        "Only the easiest items",
+        "The most uncertain items where labels change the model most",
+        "Random rows with no model input",
+        "Exports without schemas"
+      ],
+      "answer_index": 1,
+      "explain": "Uncertainty-focused queues concentrate scarce annotator time."
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "prompt": "In Example 4.28, majority vote yields positive when two of three workers label positive.",
+      "answer": true,
+      "explain": "Two positives and one negative produce a positive majority label."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one strength and one primary risk of fully automated annotation from Table 4.2.",
+      "rubric": "Strength: highest scale at low marginal cost; risk: inherited skew or silent errors.",
+      "sample_answer": "Strength: highest scale at low marginal cost; primary risk: inherited skew and silent errors without audit."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "prompt": "When is manual annotation still the reference standard?",
+      "choices": [
+        "Only when labels are free",
+        "When context, ambiguity, or domain expertise matter more than throughput",
+        "Never, because crowdsourcing always dominates",
+        "Only for tabular outliers"
+      ],
+      "answer_index": 1,
+      "explain": "Manual work handles nuance that brittle automation misses."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

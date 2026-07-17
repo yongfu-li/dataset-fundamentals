@@ -1,0 +1,145 @@
+{
+  "chapter": 5,
+  "title": "Chapter 5 — Data Cleaning and Preprocessing",
+  "slug": "chapter5",
+  "objectives": [
+    "Distinguish data cleaning from preprocessing and state why both precede modeling",
+    "Classify missing-data mechanisms (MCAR, MAR, MNAR) and common defect types",
+    "Apply deletion, imputation, deduplication, standardization, and outlier handling",
+    "Scale, encode, bin, engineer, and transform features for learning algorithms",
+    "Use pandas, scikit-learn, and related tools in reproducible workflows",
+    "Follow best practices for documentation, leakage avoidance, and class imbalance",
+    "Connect cleaning pipelines to retail and healthcare case studies",
+    "Recognize advanced directions: Bayesian imputation, streaming prep, and explainability"
+  ],
+  "parts": [
+    {
+      "id": "part-01-introduction-to-data-cleaning",
+      "section": "sec:5.1",
+      "title": "Introduction to data cleaning",
+      "slug": "introduction-to-data-cleaning",
+      "estimate_min": 6,
+      "examples": ["eg:5.1", "eg:5.2", "eg:5.3"],
+      "path": "parts/part-01-introduction-to-data-cleaning/",
+      "bridge_in": "Chapters 2 and 4 brought records and labels into a table; this chapter asks how to make that table reliable and model-ready. This first part defines cleaning versus preprocessing and names four motives—accuracy, comparable scales, efficiency, and trustworthy joins."
+    },
+    {
+      "id": "part-02-missing-data",
+      "section": "sec:5.2.1",
+      "title": "Missing data",
+      "slug": "missing-data",
+      "estimate_min": 7,
+      "examples": ["eg:5.8", "eg:5.9", "eg:5.10"],
+      "path": "parts/part-02-missing-data/",
+      "bridge_in": "Before fixing defects, you need a taxonomy. This part classifies missing-data mechanisms—MCAR, MAR, and MNAR—and traces common causes from survey nonresponse to sensor failures.",
+      "split_reason": "Section 5.2 is split across clips 02–04."
+    },
+    {
+      "id": "part-03-duplicates-and-inconsistency",
+      "section": "sec:5.2.3",
+      "title": "Duplicates and inconsistency",
+      "slug": "duplicates-and-inconsistency",
+      "estimate_min": 7,
+      "examples": ["eg:5.14", "eg:5.18", "eg:5.20"],
+      "path": "parts/part-03-duplicates-and-inconsistency/",
+      "bridge_in": "Missing values are one defect class; duplicated rows and inconsistent encodings are another. This part shows how retries inflate revenue, mixed date formats break joins, and split category labels fragment analysis.",
+      "split_reason": "Continuation of sec:5.2 (duplicates and inconsistency)."
+    },
+    {
+      "id": "part-04-outliers-irrelevant-and-imbalance",
+      "section": "sec:5.2.5",
+      "title": "Outliers, irrelevant features, and imbalance",
+      "slug": "outliers-irrelevant-and-imbalance",
+      "estimate_min": 7,
+      "examples": ["eg:5.22", "eg:5.29", "eg:5.33"],
+      "path": "parts/part-04-outliers-irrelevant-and-imbalance/",
+      "bridge_in": "Once rows are unique and consistently encoded, you still face extreme values, noise features, and skewed class counts. This part separates recording errors from valid extremes, drops irrelevant columns, and introduces imbalance as a modeling hazard.",
+      "split_reason": "Continuation of sec:5.2 (outliers through imbalance)."
+    },
+    {
+      "id": "part-05-cleaning-techniques",
+      "section": "sec:5.3",
+      "title": "Techniques for data cleaning",
+      "slug": "cleaning-techniques",
+      "estimate_min": 8,
+      "examples": ["eg:5.37", "eg:5.39", "eg:5.44"],
+      "path": "parts/part-05-cleaning-techniques/",
+      "bridge_in": "Naming issues is not enough—you need repair methods matched to each defect. This part covers listwise deletion and imputation, duplicate removal, format standardization, IQR outlier flags, and correlation-based feature drops."
+    },
+    {
+      "id": "part-06-preprocessing-scaling-and-encoding",
+      "section": "sec:5.4.1",
+      "title": "Scaling and encoding",
+      "slug": "preprocessing-scaling-and-encoding",
+      "estimate_min": 7,
+      "examples": ["eg:5.46", "eg:5.47", "eg:5.48"],
+      "path": "parts/part-06-preprocessing-scaling-and-encoding/",
+      "bridge_in": "Cleaning makes values trustworthy; preprocessing reshapes them for algorithms. This part compares normalization and standardization, then walks one-hot, label, and target encoding—with when each fits nominal versus ordinal data.",
+      "split_reason": "Section 5.4 split: scaling/encoding here; feature engineering in part-07."
+    },
+    {
+      "id": "part-07-feature-engineering-and-transforms",
+      "section": "sec:5.4.3",
+      "title": "Feature engineering and transforms",
+      "slug": "feature-engineering-and-transforms",
+      "estimate_min": 7,
+      "examples": ["eg:5.51", "eg:5.55", "eg:5.56"],
+      "path": "parts/part-07-feature-engineering-and-transforms/",
+      "bridge_in": "Scaling and encoding prepare existing columns; many models also need derived structure. This part adds binning, interaction and ratio features, dimensionality reduction, and log or polynomial transforms.",
+      "split_reason": "Continuation of sec:5.4 after scaling and encoding."
+    },
+    {
+      "id": "part-08-python-cleaning-tools",
+      "section": "sec:5.5.1",
+      "title": "Python cleaning tools",
+      "slug": "python-cleaning-tools",
+      "estimate_min": 7,
+      "examples": ["eg:5.57", "eg:5.59", "eg:5.60"],
+      "path": "parts/part-08-python-cleaning-tools/",
+      "bridge_in": "Methods become repeatable through libraries. This part maps pandas row-and-column operations, scikit-learn scalers and encoders, and NumPy vectorized fixes to the cleaning and preprocessing steps already introduced.",
+      "split_reason": "Section 5.5 split: Python stack here; automation and viz in part-09."
+    },
+    {
+      "id": "part-09-pipelines-automation-and-visualization",
+      "section": "sec:5.5.7",
+      "title": "Pipelines, automation, and visualization",
+      "slug": "pipelines-automation-and-visualization",
+      "estimate_min": 7,
+      "examples": ["eg:5.58", "eg:5.74"],
+      "path": "parts/part-09-pipelines-automation-and-visualization/",
+      "bridge_in": "Single-script cleaning does not scale across teams. This part introduces sklearn pipelines, Featuretools-style automation, AutoML preprocessing hooks, and box plots or heatmaps as cleaning diagnostics—plus a brief R dplyr/tidyr contrast.",
+      "split_reason": "Continuation of sec:5.5 after Python basics."
+    },
+    {
+      "id": "part-10-challenges-and-best-practices",
+      "section": "sec:5.6",
+      "title": "Challenges and best practices",
+      "slug": "challenges-and-best-practices",
+      "estimate_min": 7,
+      "examples": ["eg:5.62", "eg:5.63"],
+      "path": "parts/part-10-challenges-and-best-practices/",
+      "bridge_in": "Tools encode workflows, not judgment. This part names recurring obstacles—imbalance misleading accuracy, currency mixing, leakage risk—and summarizes best practices for documentation, validation splits, and reproducible preprocessing."
+    },
+    {
+      "id": "part-11-case-studies-and-activities",
+      "section": "sec:5.7",
+      "title": "Case studies and hands-on activities",
+      "slug": "case-studies-and-activities",
+      "estimate_min": 7,
+      "examples": ["eg:5.64", "eg:5.65"],
+      "path": "parts/part-11-case-studies-and-activities/",
+      "bridge_in": "Principles meet domain context in retail segmentation and healthcare outcome prediction. This part walks both case studies and points to packaged module activities for spotting issues, fixing tables, and comparing encodings.",
+      "split_reason": "Section 5.8 interactive activities referenced via modules; not a separate clip."
+    },
+    {
+      "id": "part-12-advanced-topics",
+      "section": "sec:5.9",
+      "title": "Advanced topics",
+      "slug": "advanced-topics",
+      "estimate_min": 7,
+      "examples": ["eg:5.70", "eg:5.72", "eg:5.75"],
+      "path": "parts/part-12-advanced-topics/",
+      "bridge_in": "Batch cleaning on static CSVs is the baseline; production systems push further. This final part previews Bayesian and deep imputation, streaming preprocessing, automated feature synthesis, and cleaning choices that support explainable models."
+    }
+  ]
+}

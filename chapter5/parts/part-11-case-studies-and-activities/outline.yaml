@@ -1,0 +1,118 @@
+title: Chapter 5 — Case studies and hands-on activities
+footer: Chapter 5 — 11 Case Studies And Activities
+slides:
+- type: title
+  title: Chapter 5 — Case studies and hands-on activities
+  subtitle: Principles become concrete in retail segmentation and healthcare outcome
+    prediction
+  notes: Principles become concrete in retail segmentation and healthcare outcome
+    prediction. This part walks both domain case studies and points to packaged module
+    activities for spotting and fixing defects.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Outline cleaning steps for an e-commerce segmentation table and a clinical outcomes
+    table
+  - Locate module labs for issue spotting and pandas repair templates
+  notes: By the end of this part, you should outline cleaning steps for an e-commerce
+    segmentation table and a clinical outcomes table, and locate module labs for issue
+    spotting and pandas repair templates.
+- type: bullets
+  title: 'Retail: customer segmentation'
+  bullets:
+  - An e-commerce firm segments customers by purchase behavior
+  - Challenges include missing age and frequency fields, inconsistent product capitalization
+  - 'Solutions: median or mode imputation, currency harmonization, text normalization'
+  - Cleaned data supports clustering and targeted campaigns
+  notes: 'An e-commerce firm segments customers by purchase behavior. Challenges include
+    missing age and frequency fields, inconsistent product capitalization, and mixed
+    currencies. Solutions: median or mode imputation, currency harmonization, text
+    normalization, and scaling of amount and frequency features. Cleaned data supports
+    clustering and targeted campaigns.'
+- type: bullets
+  title: 'Healthcare: predicting disease outcomes'
+  bullets:
+  - Clinical records combine age, history, labs, and outcomes
+  - Missing labs, outlier vitals, and inconsistent smoker labels are common
+  - 'Solutions: principled imputation, categorical standardization, IQR outlier review'
+  - Preprocessing improves allocative and diagnostic workflows when documented
+  notes: 'Clinical records combine age, history, labs, and outcomes. Missing labs,
+    outlier vitals, and inconsistent smoker labels are common. Solutions: principled
+    imputation, categorical standardization, IQR outlier review, and numeric scaling
+    before supervised models. Preprocessing improves allocative and diagnostic workflows
+    when documented.'
+- type: bullets
+  title: Example 5.64 — Retail purchase record schema
+  bullets:
+  - Example 5.64 — hands-on module
+  - Example 5.64 introduces a practice table with missing prices and duplicate transactions
+  - Explore the chapter example module
+  - 'View files: `modules/chapter5/example64/`'
+  notes: Example 5.64 introduces a practice table with missing prices and duplicate
+    transactions for issue spotting. Open the example 64 module for this chapter to
+    audit the schema before cleaning. This mirrors Section 5.8 spot-the-issue activities
+    on the static site.
+- type: bullets
+  title: Example 5.65 — Guided pandas cleaning template
+  bullets:
+  - Example 5.65 — hands-on module
+  - Example 5.65 provides a guided repair script
+  - Explore the chapter example module
+  - 'View files: `modules/chapter5/example65/`'
+  notes: Example 5.65 provides a guided repair script. Try the example 65 module to
+    apply drop, impute, encode, and scale steps end to end. Additional modules cover
+    scaling comparisons and encoding tradeoffs referenced in the chapter exercises.
+- type: code
+  title: Example 5.65 — listing
+  code: 'import pandas as pd
+
+
+    df = pd.read_csv("data.csv")
+
+
+    df[''price''] = df[''price''].fillna(df[''price''].mean())
+
+    df.dropna(subset=[''customer_id''], inplace=True)
+
+
+    df.drop_duplicates(inplace=True)
+
+
+    df[''product''] = df[''product''].str.lower()
+
+    df[''purchase_date''] = pd.to_datetime(df[''purchase_date''])
+
+
+    z_scores = (df[''price''] - df[''price''].mean()) / df[''price''].std()
+
+    df = df[z_scores < 3]
+
+
+    df.to_csv("cleaned_data.csv", index=False)'
+- type: bullets
+  title: From case study to production
+  bullets:
+  - Both cases share a pattern
+  - Retail emphasizes revenue integrity
+  - Fairness review may follow in Chapter 7
+  notes: 'Both cases share a pattern: profile defects, apply domain-aware fixes, validate
+    on held-out data, and document transforms. Retail emphasizes revenue integrity;
+    healthcare emphasizes measurement error and label consistency. Fairness review
+    may follow in Chapter 7.'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Domain context chooses imputation and outlier rules
+  - Case studies connect Sections 5.2–5.5 into narratives
+  - Module activities supply hands-on repetition without requiring live execution
+    on the
+  notes: Domain context chooses imputation and outlier rules. Case studies connect
+    Sections 5.2–5.5 into narratives. Module activities supply hands-on repetition
+    without requiring live execution on the course site.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Continue to advanced topics, Bayesian imputation, streaming data
+  notes: Pause for the quiz, then continue to advanced topics—Bayesian imputation,
+    streaming data, and explainability-aware cleaning.

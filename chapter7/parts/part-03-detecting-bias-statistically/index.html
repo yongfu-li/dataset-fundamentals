@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detecting bias statistically — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter7/index.html">Chapter 7</a><span class="here">Part 3/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 7 · Guided part</div>
+    
+<section class="hero">
+  <h1>Detecting bias statistically</h1>
+  <div class="clip-meta">
+    <span class="pill">~8 min</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Part 3 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-types-of-dataset-bias/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-bias-visualization-and-tools/index.html" title="Bias visualization and tools">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Compare subgroup distributions and data quality</li>
+<li>Interpret statistical tests with effect size and context</li>
+<li>Identify sensitive-attribute proxy correlations</li>
+<li>Calculate and interpret a disparate-impact ratio</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.27</span>
+    <h3>Example 7.27 — Bar Chart of Predictions by Demographic Group</h3>
+    <p>Visualize favorable prediction rates per demographic group and note spread.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example27/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.28</span>
+    <h3>Example 7.28 — Income-Race Scatter Plot</h3>
+    <p>Use income–race scatter plots to expose clustering and proxy structure.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example28/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.30</span>
+    <h3>Example 7.30 — Amplification of Policing and Hiring Disparities</h3>
+    <p>Describe amplification feedback loops in policing and hiring at scale.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example30/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.33</span>
+    <h3>Example 7.33 — GDPR Enforcement Against Discriminatory AI</h3>
+    <p>Cite GDPR enforcement risk when automated systems discriminate.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example33/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 7 — Detecting bias statistically</h3><p>A bias taxonomy identifies possible mechanisms, but an audit needs measurable evidence. Statistical detection begins by defining relevant groups, outcomes, and deployment populations. It then compares representation, distributions, relationships, and decision rates to locate disparities that require explanation or intervention.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this clip, learners should be able to plan a disaggregated bias screen, compare subgroup distributions, interpret the role of statistical tests, identify proxy relationships with sensitive attributes, and calculate and cautiously interpret a disparate-impact ratio using the eighty-percent rule.</p></div><div class="transcript"><h3>Slide 3 — Example 7.27 — Multiple Manifestations of Dataset Bias</h3><p>Example 7.27 establishes why one metric is insufficient. Bias may appear in demographic representation, processing, labels, aggregation, or outcomes. An audit should therefore inspect both inputs and decisions, compare several subgroups, and preserve context about how each variable was created. A flag is evidence for investigation, not a complete causal explanation.</p></div><div class="transcript"><h3>Slide 4 — Example 7.28 — Distribution Comparison Across Demographics</h3><p>Example 7.28 compares features such as age, gender, and race across groups and against the intended population. Differences in counts, proportions, ranges, or missingness can reveal underrepresentation and uneven data quality. Learners can inspect the runnable example 19 module for this chapter to see a compact distribution check and its output.</p></div><div class="transcript"><h3>Slide 5 — Statistical tests and practical significance</h3><p>Formal tests can assess whether observed distribution differences are unlikely under a stated null hypothesis. A chi-squared test is suitable for categorical counts, while other tests may compare continuous distributions. Statistical significance does not establish harm or practical importance, and very large samples can make small differences significant. Effect size and context remain essential.</p></div><div class="transcript"><h3>Slide 6 — Example 7.30 — Chi-Squared Test for Gender Distribution</h3><p>Example 7.30 asks whether gender distribution differs across outcome categories, such as high-performing and low-performing candidates. The test compares observed counts with counts expected under independence. Learners can inspect the runnable example 21 module for this chapter to follow the calculation, assumptions, and interpretation without treating the result as proof of discrimination.</p></div><div class="transcript"><h3>Slide 7 — Correlations and proxy features</h3><p>Correlation analysis can reveal features that encode sensitive attributes indirectly. Names, neighborhoods, schools, or purchasing patterns may act as proxies even after race or gender is removed. Correlation is a screening tool rather than a causal verdict, but a strong relationship warrants closer examination of feature necessity, historical context, and subgroup outcomes.</p></div><div class="transcript"><h3>Slide 8 — Example 7.33 — The 80% Rule in Hiring</h3><p>Example 7.33 calculates a disparate-impact ratio by dividing one group&#x27;s selection rate by the comparison group&#x27;s rate. A ratio below zero point eight is commonly used as a screening threshold for potential adverse impact. Learners can inspect the runnable example 24 module for this chapter to compute the rates and see why the threshold prompts review rather than automatically proving illegality.</p></div><div class="transcript"><h3>Slide 9 — Building a defensible audit</h3><p>A defensible statistical audit records the target population, protected or otherwise relevant groups, outcome definitions, sample sizes, uncertainty, and chosen reference group. It reports both absolute rates and relative ratios, checks small groups carefully, and tests multiple plausible explanations. Results should be repeatable and linked to a decision about further analysis or mitigation.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Distribution checks reveal representation and data-quality gaps. Statistical tests formalize comparisons but must be paired with effect size and context. Correlation can uncover proxy pathways. Disparate-impact ratios summarize unequal selection rates, and the eighty-percent rule is a screening convention rather than a universal fairness certificate.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>The next clip makes these findings easier to inspect and communicate. It combines dashboards, heatmaps, bar charts, and scatter plots, then introduces toolkits that support repeatable fairness assessment.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-04-bias-visualization-and-tools/index.html" data-next-label="Continue to Bias visualization and tools"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-03-detecting-bias-statistically",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What should a distribution comparison examine?",
+      "choices": [
+        "Only the dataset's total row count",
+        "Subgroup counts, proportions, ranges, and missingness against relevant references",
+        "Only model training time",
+        "Only statistically significant correlations"
+      ],
+      "answer_index": 1,
+      "explain": "Distribution checks compare representation and data quality across groups and target populations."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "A statistically significant chi-squared result by itself proves unlawful discrimination.",
+      "answer": false,
+      "explain": "The test flags an association; effect size, context, causality, and legal analysis remain necessary."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Group A has a selection rate of 40 percent and the reference group has a rate of 60 percent. What is the disparate-impact ratio?",
+      "choices": ["0.40", "0.60", "About 0.67", "1.50"],
+      "answer_index": 2,
+      "explain": "The ratio is 0.40 divided by 0.60, or approximately 0.67."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Why should proxy correlations be checked after a sensitive feature is removed?",
+      "rubric": "The answer should explain that other features may still encode or reveal the sensitive attribute and transmit its effects.",
+      "sample_answer": "Names, neighborhoods, schools, or similar features may still encode the sensitive attribute and reproduce biased associations."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

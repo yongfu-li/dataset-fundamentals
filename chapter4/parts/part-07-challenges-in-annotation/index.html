@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Challenges in data annotation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter4/index.html">Chapter 4</a><span class="here">Part 7/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 4 · Guided part</div>
+    
+<section class="hero">
+  <h1>Challenges in data annotation</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 4</span>
+    <span class="pill pill-muted">Part 7 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-quality-control/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-use-cases-and-applications/index.html" title="Use cases and applications">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Describe scale and throughput bottlenecks in labeling programs</li>
+<li>Identify annotator, sampling, and pre-label bias sources</li>
+<li>Name workforce ethics and sensitive-schema review needs</li>
+<li>Explain rare-class validation and targeted workflows</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 4 — Challenges in data annotation</h3><ul><li>Even strong quality-control programs face structural limits</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Describe throughput bottlenecks in large labeling programs</li><li>Explain why rare classes need expert validation and targeted workflows</li></ul></div><div class="slide-card"><h3>Scale and throughput bottlenecks</h3><ul><li>Large vision and language models can require millions of labeled instances</li><li>Common responses reuse workflows from earlier sections</li><li>Each speed-up still needs the quality-control gates from the previous part so volume does</li></ul></div><div class="slide-card"><h3>Bias in annotation</h3><ul><li>Bias in annotation can skew labels and propagate into models</li><li>The focus here is labeler and guideline failure modes that create biased training data</li><li>Annotator bias, unrepresentative sampling</li><li>Human adjudication when automated suggestions disagree across demographic subgroups</li><li>Fairness metrics and deeper mitigation appear in Chapter 3 and Chapter 7</li></ul></div><div class="slide-card"><h3>Ethical concerns</h3><ul><li>Data annotation raises ethical issues of fair compensation, privacy, and harmful labels</li><li>Crowdsourced marketplaces should pay fairly for task complexity, disclose payment rules</li><li>Label schemas for race</li><li>Chapter 3 supplies the broader ethics and privacy frame</li></ul></div><div class="slide-card"><h3>Annotating rare events</h3><ul><li>Rare classes</li><li>Domain experts should validate gold sets</li><li>Rare-class work is where manual review and QC investment concentrate rather than where</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Scale demands combined workflows, not blind volume</li><li>Bias enters through people, sampling</li><li>Ethics and rare classes both require expert gates before labels enter training pools</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Emerging domains</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 4 — Challenges in data annotation</h3><p>Even strong quality-control programs face structural limits. This part names scale bottlenecks, labeler bias, workforce ethics, and rare-class scarcity—and points back to workflows and governance already introduced rather than re-teaching them.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should describe throughput bottlenecks in large labeling programs, identify sources of bias in annotation, name ethical concerns specific to annotation workforces, and explain why rare classes need expert validation and targeted workflows.</p></div><div class="transcript"><h3>Slide 3 — Scale and throughput bottlenecks</h3><p>Large vision and language models can require millions of labeled instances, and manual throughput often lags model iteration cycles. Common responses reuse workflows from earlier sections: crowdsourcing, semi-automated pre-labeling, parallel annotator pools, adjudicator roles, active-learning queues, and phased schema rollout with core classes first and rare classes later. Each speed-up still needs the quality-control gates from the previous part so volume does not erode accuracy.</p></div><div class="transcript"><h3>Slide 4 — Bias in annotation</h3><p>Bias in annotation can skew labels and propagate into models. The focus here is labeler and guideline failure modes that create biased training data. Annotator bias, unrepresentative sampling, and biased pre-label models are the main sources. Mitigations include diverse review panels, inclusive guidelines, periodic bias audits on labeled slices, and human adjudication when automated suggestions disagree across demographic subgroups. Fairness metrics and deeper mitigation appear in Chapter 3 and Chapter 7.</p></div><div class="transcript"><h3>Slide 5 — Ethical concerns</h3><p>Data annotation raises ethical issues of fair compensation, privacy, and harmful labels. Crowdsourced marketplaces should pay fairly for task complexity, disclose payment rules, and restrict sensitive content to trained annotators under appropriate consent and de-identification. Label schemas for race, gender, mental health, or criminality need extra review so tags do not encode stigma or oversimplify context. Chapter 3 supplies the broader ethics and privacy frame; this section stresses workforce and label-governance practices specific to annotation pipelines.</p></div><div class="transcript"><h3>Slide 6 — Annotating rare events</h3><p>Rare classes—uncommon diagnoses, endangered species, fraud cases—are hard to label at scale because positives are scarce. Domain experts should validate gold sets; active learning can surface uncertain cases to those experts; transfer learning and careful synthetic augmentation can supplement but not replace verified real examples. Rare-class work is where manual review and QC investment concentrate rather than where shortcuts belong.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Scale demands combined workflows, not blind volume. Bias enters through people, sampling, and pre-label models—audit slices and adjudicate disagreements. Ethics and rare classes both require expert gates before labels enter training pools.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Pause for the quiz, then continue to the next part on use cases and applications—autonomous driving, healthcare, e-commerce, and emerging domains.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-use-cases-and-applications/index.html" data-next-label="Continue to Use cases and applications"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-07-challenges-in-annotation",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which response to scale bottlenecks still requires QC gates from Section 4.5?",
+      "choices": [
+        "Crowdsourcing and semi-automated pre-labeling",
+        "Ignoring agreement measurement",
+        "Skipping guidelines entirely",
+        "Publishing labels without audit"
+      ],
+      "answer_index": 0,
+      "explain": "Speed-ups such as crowdsourcing and pre-labeling must not erode accuracy without QC."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Which is named as a main source of bias in annotation?",
+      "choices": [
+        "Annotator bias and biased pre-label models",
+        "Using too many random seeds",
+        "Exporting to JSON",
+        "Reading guidelines aloud"
+      ],
+      "answer_index": 0,
+      "explain": "People, sampling, and pre-label skew are the chapter's bias sources."
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "prompt": "Crowdsourced marketplaces should pay fairly for task complexity and disclose payment rules.",
+      "answer": true,
+      "explain": "Fair compensation and transparency are ethical requirements for annotation workforces."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name two mitigations for rare-class annotation besides collecting more random rows.",
+      "rubric": "Expert gold validation, active learning for uncertain cases, transfer learning, careful synthetic augmentation with verification.",
+      "sample_answer": "Domain-expert gold validation and active learning to surface uncertain cases to experts; verified synthetic augmentation may supplement."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "prompt": "Sensitive label schemas for mental health or criminality require:",
+      "choices": [
+        "No review because crowds are fastest",
+        "Extra review to avoid stigma and oversimplified tags",
+        "Automatic majority vote only",
+        "Deletion of all metadata"
+      ],
+      "answer_index": 1,
+      "explain": "Harmful or stigmatizing tags need governance beyond speed."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

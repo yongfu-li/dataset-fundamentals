@@ -6,7 +6,7 @@ paginate: true
 
 # Chapter 1 — Introduction to datasets
 
-This clip opens Chapter 1 by answering a deceptively simple question: what counts as a dataset?
+This part opens Chapter 1 by answering a deceptively simple question: what counts as a dataset?
 
 ---
 
@@ -112,14 +112,14 @@ Date,Product,Quantity,Price,Total
 ---
 
 ## Next
-- Complete the quiz for this clip
-- Continue to the next clip on types of datasets, structured, unstructured
+- Complete the quiz for this part
+- Continue to the next part on types of datasets, structured, unstructured
 
 ---
 
 # Chapter 1 — Types of datasets
 
-This clip classifies how datasets are organized
+This part classifies how datasets are organized
 
 ---
 
@@ -174,7 +174,7 @@ This clip classifies how datasets are organized
 ---
 
 ## Next
-- Complete the quiz for this clip
+- Complete the quiz for this part
 - Complete the quiz, then continue to dataset formats, how these types are stored on disk
 
 ---
@@ -290,7 +290,7 @@ with h5py.File("example.h5", "r") as hdf:
 ---
 
 ## Next
-- Complete the quiz for this clip
+- Complete the quiz for this part
 - Complete the quiz, then move to characteristics of good datasets, accuracy, completeness
 
 ---
@@ -355,7 +355,7 @@ T003,2024-03-03,Refund,50.00,Debit
 ---
 
 ## Next
-- Complete the quiz for this clip
+- Complete the quiz for this part
 - Complete the quiz
 
 ---
@@ -437,14 +437,14 @@ plt.show()
 ---
 
 ## Next
-- Complete the quiz for this clip
+- Complete the quiz for this part
 - Complete the quiz
 
 ---
 
 # Chapter 1 — Uses of datasets
 
-Earlier clips answered what a dataset is and how to read one responsibly
+Earlier parts answered what a dataset is and how to read one responsibly
 
 ---
 
@@ -566,7 +566,7 @@ print(evaluation_metrics)
 ---
 
 ## Next
-- Complete the quiz for this clip
+- Complete the quiz for this part
 - Complete the quiz, then finish the chapter with dataset management, versioning, access
 
 ---
@@ -617,5 +617,5 @@ Models and dashboards depend on quieter work
 ---
 
 ## Next
-- Complete the quiz for this clip
+- Complete the quiz for this part
 - Complete the quiz

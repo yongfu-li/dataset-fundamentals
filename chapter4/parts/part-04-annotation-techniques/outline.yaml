@@ -1,0 +1,134 @@
+title: Chapter 4 — Annotation techniques
+footer: Chapter 4 — 04 Annotation Techniques
+slides:
+- type: title
+  title: Chapter 4 — Annotation techniques
+  subtitle: Knowing which labels to apply is not enough, you still need a workflow
+    that matches quality and budget
+  notes: Knowing which labels to apply is not enough—you still need a workflow that
+    matches quality and budget. This part contrasts manual, semi-automated, fully
+    automated, and crowdsourced annotation, including active learning queues and majority-vote
+    redundancy.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Compare manual, semi-automated, fully automated
+  - Crowdsourced annotation on throughput and risk, summarize the trade-offs in Table
+    4.2
+  - Describe active learning and majority-vote patterns as practical workflow choices
+  notes: By the end of this part, you should compare manual, semi-automated, fully
+    automated, and crowdsourced annotation on throughput and risk, summarize the trade-offs
+    in Table 4.2, and describe active learning and majority-vote patterns as practical
+    workflow choices.
+- type: bullets
+  title: Technique trade-offs (Table 4.2)
+  bullets:
+  - Annotation is labor-intensive
+  - Table 4.2 summarizes four approaches
+  - Manual annotation handles ambiguity and domain nuance but offers low throughput
+    and
+  - Semi-automated labeling is faster when humans review model proposals but risks
+  - Fully automated pipelines scale at low marginal cost yet inherit skew and silent
+    errors
+  - Crowdsourcing enables rapid scale for simple schemas but introduces worker variance
+    and
+  notes: Annotation is labor-intensive, so teams must match technique to quality and
+    budget constraints. Table 4.2 summarizes four approaches. Manual annotation handles
+    ambiguity and domain nuance but offers low throughput and annotator variance.
+    Semi-automated labeling is faster when humans review model proposals but risks
+    over-trusting bad suggestions. Fully automated pipelines scale at low marginal
+    cost yet inherit skew and silent errors. Crowdsourcing enables rapid scale for
+    simple schemas but introduces worker variance and labor ethics concerns. No single
+    technique dominates; production programs often combine several under shared quality-control
+    gates.
+- type: bullets
+  title: Manual annotation
+  bullets:
+  - Ambiguity, or domain expertise matter more than throughput
+  - Humans handle occlusion, sarcasm
+  notes: Manual annotation assigns labels through trained humans and remains the reference
+    standard when context, ambiguity, or domain expertise matter more than throughput.
+    Humans handle occlusion, sarcasm, and guideline exceptions that automated pre-labelers
+    often miss, but manual throughput is limited and inter-annotator variance must
+    be managed with guidelines and agreement checks.
+- type: bullets
+  title: Example 4.26 — Manual sentiment ambiguity
+  bullets:
+  - Example 4.26 — hands-on module
+  - Example 4.26 shows a sentiment edge case
+  - A sentence such as “That was quite a disaster
+  - A brittle keyword rule may miss that tone
+  - Explore the chapter example module
+  - 'View files: `modules/chapter4/example26/`'
+  notes: Example 4.26 shows a sentiment edge case. A sentence such as “That was quite
+    a disaster, but at least I got the coffee!” may still be labeled positive from
+    context even though surface words look negative. A brittle keyword rule may miss
+    that tone. Open the example 26 module for this chapter to walk through the ambiguity
+    decision.
+- type: bullets
+  title: Semi-automated and active learning
+  bullets:
+  - Semi-automated annotation combines human review with model-generated proposals
+  - A pre-trained detector may suggest boxes or entity spans
+  - Active learning prioritizes labeling for the most uncertain items so human effort
+  notes: Semi-automated annotation combines human review with model-generated proposals.
+    A pre-trained detector may suggest boxes or entity spans; annotators accept, correct,
+    or reject them. Active learning prioritizes labeling for the most uncertain items
+    so human effort concentrates where it changes the model most.
+- type: bullets
+  title: Example 4.27 — Active learning queue for text
+  bullets:
+  - Example 4.27 — hands-on module
+  - Example 4.27 shows a typical queueing pattern
+  - In text classification
+  - Active learning reduces label volume but still requires monitoring for bias introduced
+  - Explore the chapter example module
+  - 'View files: `modules/chapter4/example27/`'
+  notes: Example 4.27 shows a typical queueing pattern. In text classification, ambiguous
+    sentences are queued for human review while high-confidence cases are auto-labeled
+    or skipped, so annotators spend time where the model is most uncertain. Active
+    learning reduces label volume but still requires monitoring for bias introduced
+    during adjudication. Open the example 27 module for this chapter to inspect the
+    queue logic.
+- type: bullets
+  title: Fully automated and crowdsourced annotation
+  bullets:
+  - Fully automated pipelines label data without per-item human review
+  - Automated labelers inherit training-data skew
+  - Crowdsourcing distributes micro-tasks to many workers
+  notes: Fully automated pipelines label data without per-item human review, which
+    suits scale but raises accuracy and bias risk. Automated labelers inherit training-data
+    skew, so subsets should be spot-checked and fairness metrics applied before release.
+    Crowdsourcing distributes micro-tasks to many workers, often with redundancy and
+    majority vote for quality on simpler schemas.
+- type: bullets
+  title: Example 4.28 — Majority vote on crowdsourced sentiment
+  bullets:
+  - Example 4.28 — hands-on module
+  - Example 4.28 shows a simple redundancy pattern
+  - Three workers label the same review as positive, positive, and negative
+  - Crowdsourcing scales quickly but needs gold items, worker qualification
+  - Explore the chapter example module
+  - 'View files: `modules/chapter4/example28/`'
+  notes: Example 4.28 shows a simple redundancy pattern. Three workers label the same
+    review as positive, positive, and negative; majority vote yields positive, while
+    gold-item checks and qualification tests limit random or adversarial workers.
+    Crowdsourcing scales quickly but needs gold items, worker qualification, and fair
+    payment practices. Open the example 28 module for this chapter to review the vote
+    pattern.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Match technique to ambiguity, throughput, and ethics, not to habit
+  - Table 4.2 pairs each approach with its primary risk
+  - Combine workflows only when shared QC gates keep volume from eroding accuracy
+  notes: Match technique to ambiguity, throughput, and ethics—not to habit. Table
+    4.2 pairs each approach with its primary risk. Combine workflows only when shared
+    QC gates keep volume from eroding accuracy.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - A minimal object-detection workflow
+  notes: Complete the quiz, then continue to the next part on annotation tools—open-source
+    editors, commercial platforms, and a minimal object-detection workflow.

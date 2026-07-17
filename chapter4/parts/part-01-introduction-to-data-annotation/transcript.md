@@ -1,0 +1,45 @@
+# Chapter 4 — Introduction to data annotation — transcript
+
+**Part id:** part-01-introduction-to-data-annotation  
+**Estimated duration:** 7 minutes  
+**Sources:** `author/chapter4.tex` (§4.1), `modules/chapter4/example1/`, `modules/chapter4/example2/`, `modules/chapter4/example3/`
+
+## Slide 1 — Chapter 4 — Introduction to data annotation
+
+Chapters 2 and 3 covered how records enter a dataset and what obligations attach to them. This chapter asks how raw records become supervised training signal. This opening part defines annotation, shows why label quality often caps model accuracy, and previews labeled examples across text, image, audio, and video.
+
+## Slide 2 — Learning objectives
+
+By the end of this part, you should define data annotation as attaching task-defined labels to raw records, explain why label quality often bounds supervised learning more tightly than model architecture alone, and recognize how annotated examples differ across text, image, audio, and video modalities.
+
+## Slide 3 — What is data annotation?
+
+Data annotation assigns labels, tags, or structured metadata to raw records so supervised models can learn input–output mappings. Annotation is typically performed by trained humans, often with machine-assisted suggestions that humans review. Depending on modality, labels may tag linguistic attributes, mark objects in images, transcribe speech, or categorize tabular rows. Without reliable labels, a learner cannot associate inputs with intended outputs for classification, detection, or recognition tasks.
+
+## Slide 4 — Why label quality bounds learning
+
+Quality of those labels often bounds achievable accuracy more tightly than model architecture alone, especially in healthcare, finance, and autonomy settings where labeling errors propagate into high-stakes decisions. Inconsistent or incorrect annotations degrade held-out performance and can encode demographic skew into the training signal. Fairness and bias implications connect back to ethics constraints introduced in Chapter 3 and developed further in Chapter 7.
+
+## Slide 5 — Example 4.1 — Text dataset
+
+Example 4.1 shows a compact natural language processing case. In a text corpus, tokens or spans may be tagged with parts of speech, sentiment, or named-entity types so a supervised model can learn those categories from examples. Open the example 1 module for this chapter to see how a minimal text schema pairs raw tokens with label types.
+
+## Slide 6 — Example 4.2 — Sentiment on customer feedback
+
+Example 4.2 illustrates document-level sentiment. In a customer feedback survey, a sentence such as “The service was excellent” may be labeled positive, while “The product was disappointing” may be labeled negative. The label operation is simple, but guideline clarity matters when tone is mixed or sarcastic. Open the example 2 module for this chapter to compare positive and negative spans.
+
+## Slide 7 — Example 4.3 — Named entities in text
+
+Example 4.3 shows entity typing in a factual sentence. In “Barack Obama was born in Hawaii,” the person span and the location span receive distinct entity types under a standard named-entity recognition schema. Boundary decisions—where a span starts and ends—are as important as the class name. Open the example 3 module for this chapter to inspect the span schema.
+
+## Slide 8 — Previews across image, audio, and video
+
+The chapter also previews labels beyond text. Image annotation marks visual entities with bounding boxes, segmentation masks, or facial landmarks so computer-vision models can localize and classify them. Audio annotation aligns transcripts, speaker identities, or emotion tags with time ranges for speech and affect tasks. Video annotation extends spatial labeling across frames so perception stacks can track objects and recognize activities over time. Later clips deepen each modality; the static course site includes image, audio, and video previews where examples exist.
+
+## Slide 9 — Takeaways
+
+Remember three points. Annotation attaches task-defined labels that supervised learning depends on. Label quality often caps accuracy more than model choice alone. Text, image, audio, and video each need different label schemas, and inconsistent labels teach the wrong decision boundaries.
+
+## Slide 10 — Next
+
+Pause for the quiz, then continue to the next part on text and image annotation techniques—tokenization, sentiment, named entities, bounding boxes, segmentation, and landmarks.

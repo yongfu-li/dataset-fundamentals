@@ -1,0 +1,45 @@
+# Chapter 7 — Bias visualization and tools — transcript
+
+**Clip id:** clip-04-bias-visualization-and-tools  
+**Estimated duration:** 7 minutes  
+**Sources:** `author/chapter7.tex` (§7.3.3–7.3.4), `modules/chapter7/example25/`, `modules/chapter7/example27/`, `modules/chapter7/example28/`
+
+## Slide 1 — Chapter 7 — Bias visualization and tools
+
+Statistical summaries identify disparities, but visual displays help analysts locate patterns and help stakeholders understand them. Effective fairness visualization disaggregates data, presents appropriate denominators, and supports comparison without implying that every visible difference is causal or unjust.
+
+## Slide 2 — Learning objectives
+
+By the end of this clip, learners should select suitable charts for representation, correlation, and outcome gaps; explain how several views can triangulate a concern; avoid common visual interpretation errors; and describe how AI Fairness 360 and Fairlearn support repeatable assessment.
+
+## Slide 3 — Example 7.34 — Combining Views for Bias Screening
+
+Example 7.34 combines a correlation heatmap, approval bars by race, and a scatter plot of income against approval probability. No single view answers the fairness question. Together they show where imbalance is concentrated and which formal tests should follow. A dashboard should organize this sequence rather than display unrelated charts.
+
+## Slide 4 — Heatmaps and dashboards
+
+Heatmaps compactly display correlations or a matrix of subgroup metrics. They can expose proxy relationships and clusters of uneven error, but color scales must be consistent and values should remain visible. Dashboards add filters, reference rates, sample sizes, and time trends so users can distinguish a stable disparity from noise or a temporary data shift.
+
+## Slide 5 — Example 7.36 — Bar Chart of Predictions by Demographic Group
+
+Example 7.36 uses bars to compare predictions or selection rates across demographic groups. Rates are usually more informative than raw counts when group sizes differ. Learners can inspect the runnable example 27 module for this chapter to see how disaggregated values are prepared for a visual screen before deeper statistical analysis.
+
+## Slide 6 — Example 7.37 — Income-Race Scatter Plot
+
+Example 7.37 uses a scatter plot to inspect how income values and group membership align. Clustering or separation can suggest historical or measurement patterns, but categorical group encoding must be presented carefully and overplotting can hide density. Faceting, transparency, and clear annotations often produce a more honest comparison.
+
+## Slide 7 — AI Fairness 360
+
+IBM AI Fairness 360 provides datasets, fairness metrics, and mitigation algorithms across data, training, and prediction stages. It supports measures such as demographic parity and equal opportunity and offers methods including reweighting and adversarial debiasing. Its breadth is useful when teams need to compare several definitions and interventions within one workflow.
+
+## Slide 8 — Fairlearn
+
+Fairlearn supports disaggregated model assessment and fairness-aware mitigation in the Python machine learning ecosystem. Its metric framing approach reports performance by sensitive group, while mitigation components explore constraints such as demographic parity or equalized odds. The toolkit does not choose the ethically appropriate metric; that decision still requires domain and stakeholder judgment.
+
+## Slide 9 — Takeaways
+
+Heatmaps reveal relationships, bar charts compare group rates, scatter plots expose continuous patterns, and dashboards connect these views with context. Visual differences are screening evidence rather than causal conclusions. AI Fairness 360 and Fairlearn make metrics and interventions repeatable, but responsible metric selection remains a human governance task.
+
+## Slide 10 — Next
+
+The next clip examines why these disparities matter. It connects dataset bias to ethical harm, social amplification, legal exposure, business cost, and the accountability lessons of high-stakes risk assessment.

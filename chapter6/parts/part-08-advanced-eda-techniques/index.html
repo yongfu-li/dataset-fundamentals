@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced EDA techniques — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter6/index.html">Chapter 6</a><span class="here">Part 8/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 6 · Guided part</div>
+    
+<section class="hero">
+  <h1>Advanced EDA techniques</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 6</span>
+    <span class="pill pill-muted">Part 8 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-07-eda-workflow-and-tools/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-09-best-practices-in-eda/index.html" title="Best practices in EDA">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Contrast Pearson and Spearman</li>
+<li>Read correlation heatmaps cautiously</li>
+<li>Name advanced extensions</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.4</span>
+    <h3>Example 6.4 — Linear Versus Nonlinear Patterns</h3>
+    <p>Read scatter-plot shape to narrow candidate model families—linear vs nonlinear.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example4/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 6 — Advanced EDA techniques</h3><ul><li>High-dimensional structure</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Contrast Pearson and Spearman correlation, interpret correlation heatmaps cautiously</li><li>Name additional advanced techniques surveyed in the chapter</li></ul></div><div class="slide-card"><h3>Correlation analysis</h3><ul><li>Pearson correlation measures linear association between continuous pairs</li><li>Spearman uses ranks and tolerates monotonic nonlinear relationships better</li><li>Coefficients live on minus one to plus one</li></ul></div><div class="slide-card"><h3>Reading heatmaps</h3><ul><li>Correlation heatmaps make strong pairs easy to scan but do not prove causation</li><li>Confounding and small samples can inflate or hide relationships</li><li>Confirm interesting cells with scatter plots and domain reasoning</li></ul></div><div class="slide-card"><h3>Example 6.4 — Linear versus nonlinear patterns</h3><ul><li>Example 6.4 — hands-on module</li><li>Example 6.4 reminds you that high Pearson correlation implies linearity</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter6/example4/</code></li></ul></div><div class="slide-card"><h3>Additional advanced techniques</h3><ul><li>Links PCA and t-SNE from visualization to structural exploration</li><li>Use these when pairwise screens are insufficient for dimensionality or temporal dependence</li></ul></div><div class="slide-card"><h3>When to stop exploring</h3><ul><li>Advanced methods still serve exploration, not final inference</li><li>Document which correlations or components motivated feature selection or transforms before</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Choose Pearson or Spearman based on shape and scale</li><li>Heatmaps screen; scatter plots verify</li><li>Advanced tools extend EDA when many features or time order matter</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to best practices for reproducible, clear EDA</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 6 — Advanced EDA techniques</h3><p>Beyond first-pass plots, analysts need principled correlation analysis and related methods for multicollinearity, nonlinear association, and high-dimensional structure.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should contrast Pearson and Spearman correlation, interpret correlation heatmaps cautiously, and name additional advanced techniques surveyed in the chapter.</p></div><div class="transcript"><h3>Slide 3 — Correlation analysis</h3><p>Pearson correlation measures linear association between continuous pairs. Spearman uses ranks and tolerates monotonic nonlinear relationships better. Coefficients live on minus one to plus one—magnitude and sign guide which pairs deserve scatter follow-up.</p></div><div class="transcript"><h3>Slide 4 — Reading heatmaps</h3><p>Correlation heatmaps make strong pairs easy to scan but do not prove causation. Confounding and small samples can inflate or hide relationships. Confirm interesting cells with scatter plots and domain reasoning.</p></div><div class="transcript"><h3>Slide 5 — Example 6.4 — Linear versus nonlinear patterns</h3><p>Example 6.4 reminds you that high Pearson correlation implies linearity; curved relationships may show low Pearson but strong Spearman—or need transformation. Open the example 4 module to compare linear and nonlinear scatter patterns.</p></div><div class="transcript"><h3>Slide 6 — Additional advanced techniques</h3><p>The chapter surveys partial correlation, mutual information, autocorrelation for time series, and links PCA and t-SNE from visualization to structural exploration. Use these when pairwise screens are insufficient for dimensionality or temporal dependence.</p></div><div class="transcript"><h3>Slide 7 — When to stop exploring</h3><p>Advanced methods still serve exploration—not final inference. Document which correlations or components motivated feature selection or transforms before modeling chapters.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Choose Pearson or Spearman based on shape and scale. Heatmaps screen; scatter plots verify. Advanced tools extend EDA when many features or time order matter.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to best practices for reproducible, clear EDA.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-09-best-practices-in-eda/index.html" data-next-label="Continue to Best practices in EDA"></div>
+  <script id="quiz-data" type="application/json">{"part_id":"clip-08-advanced-eda-techniques","title":"Check your understanding","passing_score":0.7,"items":[{"id":"q1","type":"mcq","prompt":"Spearman correlation is based on:","choices":["Ranks (monotonic association)","Only one variable","File byte order","HTML tags"],"answer_index":0,"explain":"Spearman tolerates some nonlinear monotonic patterns better than Pearson."},{"id":"q2","type":"mcq","prompt":"A high Pearson correlation suggests:","choices":["Linear association between two continuous variables","Causation","No need for scatter plots","Perfect data quality"],"answer_index":0,"explain":"Pearson measures linear association, not causation."},{"id":"q3","type":"true_false","prompt":"Example 6.4 warns that nonlinear patterns may need non-linear models even if a linear fit looks tempting.","answer":true,"explain":"EDA should reveal curvature or clusters before model choice."},{"id":"q4","type":"short","prompt":"Why confirm heatmap pairs with scatter plots?","rubric":"Verify shape, outliers, nonlinear patterns; correlation ≠ causation.","sample_answer":"Scatter plots reveal curvature and outliers that a single coefficient can hide."}]}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

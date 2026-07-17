@@ -1,0 +1,108 @@
+title: Chapter 1 — Exploring a dataset
+footer: Chapter 1 — Exploring A Dataset
+slides:
+- type: title
+  title: Chapter 1 — Exploring a dataset
+  subtitle: Quality criteria tell you what good looks like
+  notes: Quality criteria tell you what good looks like. Exploration is how you check
+    whether a concrete file meets that bar before fitting models.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - A minimal profiling pattern using summaries, visuals, and missingness checks
+  notes: This part covers three early questions every analyst should settle, how to
+    match tools to the table at hand, and a minimal profiling pattern using summaries,
+    visuals, and missingness checks.
+- type: bullets
+  title: Why explore first?
+  bullets:
+  - Exploration builds a mental model of the domain
+  - It does not replace formal cleaning in later chapters
+  notes: 'Exploration builds a mental model of the domain: seasonal sales cycles,
+    sensor outliers, missing demographics that would bias a segmentation model. It
+    does not replace formal cleaning in later chapters; it reveals where cleaning
+    is needed and which variables merit deeper study.'
+- type: bullets
+  title: Three early questions
+  bullets:
+  - 'Ask: what is in the table, what looks suspicious'
+  - An e-commerce glance that reveals holiday spikes
+  notes: 'Ask: what is in the table, what looks suspicious, and what analysis goals
+    remain feasible given the defects you find. An e-commerce glance that reveals
+    holiday spikes, for example, can justify seasonal features long before training.'
+- type: bullets
+  title: Tools for exploration
+  bullets:
+  - Spreadsheets suit small tables
+  - SQL handles filtering and aggregation in relational stores
+  - Pandas supports reproducible profiling
+  - Dashboards help teams share interactive views
+  - No single tool wins every scenario
+  notes: Spreadsheets suit small tables. SQL handles filtering and aggregation in
+    relational stores. pandas supports reproducible profiling. Dashboards help teams
+    share interactive views. No single tool wins every scenario—the habit of documenting
+    findings matters more than the brand of software.
+- type: bullets
+  title: Example 1.20 — Household incomes EDA
+  bullets:
+  - Example 1.20 — hands-on module
+  - Example 1.20 walks through a standard pandas profiling script on a compact
+  - 'Use it as a template: summary statistics, distribution checks, and null counts'
+  - Explore the chapter example module
+  - 'View files: `modules/chapter1/example20/`'
+  notes: 'Example 1.20 walks through a standard pandas profiling script on a compact
+    household-income table. Use it as a template: summary statistics, distribution
+    checks, and null counts. Run the example 20 module to see the pattern end to end.'
+- type: code
+  title: Example 1.20 — listing
+  code: 'import pandas as pd
+
+    import matplotlib.pyplot as plt
+
+
+    # Load the dataset
+
+    household_incomes = pd.read_csv("household_incomes.csv")
+
+
+    # View the first few rows
+
+    print(household_incomes.head())
+
+
+    # Summary statistics for numerical columns
+
+    print(household_incomes.describe())
+
+
+    # Check for missing values
+
+    print(household_incomes.isnull().sum())
+
+
+    # Visualize the income distribution
+
+    household_incomes["Income"].hist()
+
+    plt.title("Distribution of Household Incomes")
+
+    plt.xlabel("Income")
+
+    plt.ylabel("Frequency")
+
+    plt.show()'
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Explore before modeling
+  - Choose tools that fit size and structure
+  - Document what you inspected and what you decided to fix so later analysis stays
+  notes: Explore before modeling. Choose tools that fit size and structure. Document
+    what you inspected and what you decided to fix so later analysis stays accountable.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Complete the quiz
+  notes: Complete the quiz, then continue to uses of datasets—where these practices
+    create value across sectors.

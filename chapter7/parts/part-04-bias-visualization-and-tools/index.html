@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bias visualization and tools — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter7/index.html">Chapter 7</a><span class="here">Part 4/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 7 · Guided part</div>
+    
+<section class="hero">
+  <h1>Bias visualization and tools</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Part 4 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-detecting-bias-statistically/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-impacts-of-dataset-bias/index.html" title="Impacts of dataset bias">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Select charts for representation, correlation, and outcome gaps</li>
+<li>Combine visual views to guide formal bias analysis</li>
+<li>Avoid causal overinterpretation of visual differences</li>
+<li>Describe the assessment roles of AI Fairness 360 and Fairlearn</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.34</span>
+    <h3>Example 7.34 — U.S. Regulatory Exposure for Biased AI</h3>
+    <p>List U.S. regulatory exposure: class actions and EEOC/DOJ investigations.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example34/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.36</span>
+    <h3>Example 7.36 — Consistent Criteria in Hiring Decisions</h3>
+    <p>Define procedural fairness: consistent criteria and transparent data use in hiring.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example36/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:7.37</span>
+    <h3>Example 7.37 — Outcome Fairness in Predictive Policing</h3>
+    <p>Define outcome fairness metrics for predictive policing (parity, equalized odds).</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter7/example37/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 7 — Bias visualization and tools</h3><p>Statistical summaries identify disparities, but visual displays help analysts locate patterns and help stakeholders understand them. Effective fairness visualization disaggregates data, presents appropriate denominators, and supports comparison without implying that every visible difference is causal or unjust.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this clip, learners should select suitable charts for representation, correlation, and outcome gaps; explain how several views can triangulate a concern; avoid common visual interpretation errors; and describe how AI Fairness 360 and Fairlearn support repeatable assessment.</p></div><div class="transcript"><h3>Slide 3 — Example 7.34 — Combining Views for Bias Screening</h3><p>Example 7.34 combines a correlation heatmap, approval bars by race, and a scatter plot of income against approval probability. No single view answers the fairness question. Together they show where imbalance is concentrated and which formal tests should follow. A dashboard should organize this sequence rather than display unrelated charts.</p></div><div class="transcript"><h3>Slide 4 — Heatmaps and dashboards</h3><p>Heatmaps compactly display correlations or a matrix of subgroup metrics. They can expose proxy relationships and clusters of uneven error, but color scales must be consistent and values should remain visible. Dashboards add filters, reference rates, sample sizes, and time trends so users can distinguish a stable disparity from noise or a temporary data shift.</p></div><div class="transcript"><h3>Slide 5 — Example 7.36 — Bar Chart of Predictions by Demographic Group</h3><p>Example 7.36 uses bars to compare predictions or selection rates across demographic groups. Rates are usually more informative than raw counts when group sizes differ. Learners can inspect the runnable example 27 module for this chapter to see how disaggregated values are prepared for a visual screen before deeper statistical analysis.</p></div><div class="transcript"><h3>Slide 6 — Example 7.37 — Income-Race Scatter Plot</h3><p>Example 7.37 uses a scatter plot to inspect how income values and group membership align. Clustering or separation can suggest historical or measurement patterns, but categorical group encoding must be presented carefully and overplotting can hide density. Faceting, transparency, and clear annotations often produce a more honest comparison.</p></div><div class="transcript"><h3>Slide 7 — AI Fairness 360</h3><p>IBM AI Fairness 360 provides datasets, fairness metrics, and mitigation algorithms across data, training, and prediction stages. It supports measures such as demographic parity and equal opportunity and offers methods including reweighting and adversarial debiasing. Its breadth is useful when teams need to compare several definitions and interventions within one workflow.</p></div><div class="transcript"><h3>Slide 8 — Fairlearn</h3><p>Fairlearn supports disaggregated model assessment and fairness-aware mitigation in the Python machine learning ecosystem. Its metric framing approach reports performance by sensitive group, while mitigation components explore constraints such as demographic parity or equalized odds. The toolkit does not choose the ethically appropriate metric; that decision still requires domain and stakeholder judgment.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Heatmaps reveal relationships, bar charts compare group rates, scatter plots expose continuous patterns, and dashboards connect these views with context. Visual differences are screening evidence rather than causal conclusions. AI Fairness 360 and Fairlearn make metrics and interventions repeatable, but responsible metric selection remains a human governance task.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next clip examines why these disparities matter. It connects dataset bias to ethical harm, social amplification, legal exposure, business cost, and the accountability lessons of high-stakes risk assessment.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-05-impacts-of-dataset-bias/index.html" data-next-label="Continue to Impacts of dataset bias"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-04-bias-visualization-and-tools",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which chart is generally best for comparing selection rates across demographic groups?",
+      "choices": ["Bar chart", "Unlabeled pie chart", "Network graph", "Three-dimensional surface"],
+      "answer_index": 0,
+      "explain": "A bar chart supports direct comparison of subgroup rates."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "A visible difference in a fairness dashboard is sufficient to establish its cause.",
+      "answer": false,
+      "explain": "Visualization is screening evidence and must be followed by contextual and statistical analysis."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What does Fairlearn's grouped metric approach primarily support?",
+      "choices": [
+        "Hiding sensitive groups",
+        "Reporting performance disaggregated by sensitive group",
+        "Automatically selecting an ethical objective",
+        "Replacing all stakeholder review"
+      ],
+      "answer_index": 1,
+      "explain": "Disaggregated metric reporting reveals gaps hidden by averages."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Why combine heatmaps, bar charts, and scatter plots in one bias screen?",
+      "rubric": "The answer should mention triangulating representation, correlation, or outcome patterns and guiding formal follow-up.",
+      "sample_answer": "The views triangulate different patterns and show where formal statistical investigation should focus."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

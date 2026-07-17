@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fairness toolkits and case study — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter7/index.html">Chapter 7</a><span class="here">Part 9/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 7 · Guided part</div>
+    
+<section class="hero">
+  <h1>Fairness toolkits and case study</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 7</span>
+    <span class="pill pill-muted">Part 9 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-08-best-practices-for-fairness/index.html">← Previous</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-10-emerging-fairness-topics/index.html" title="Emerging fairness topics">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Compare AI Fairness 360 and Fairlearn capabilities</li>
+<li>Use toolkits within a context-driven fairness workflow</li>
+<li>Explain how gender stereotypes enter text representations</li>
+<li>Evaluate debiasing at representation and downstream levels</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 7 — Fairness toolkits and case study</h3><p>Fairness toolkits help teams compute disaggregated metrics, compare mitigation strategies, and repeat analyses as data and models change. They reduce implementation effort, but they do not determine which groups, harms, or fairness definitions matter. This clip compares two toolkits and applies the broader workflow to gender bias in text.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this clip, learners should describe the main capabilities of AI Fairness 360 and Fairlearn, select a toolkit according to workflow needs, explain how gender stereotypes enter text representations, and design evaluation that checks whether a debiasing intervention actually improves downstream behavior.</p></div><div class="transcript"><h3>Slide 3 — IBM AI Fairness 360</h3><p>IBM AI Fairness 360 offers a broad collection of dataset and model metrics, reference datasets, and mitigation algorithms. Its methods span pre-processing, in-processing, and post-processing, including reweighting and adversarial approaches. This breadth supports experimentation across several fairness definitions, especially when a team needs to compare interventions at different pipeline stages.</p></div><div class="transcript"><h3>Slide 4 — Microsoft Fairlearn</h3><p>Fairlearn emphasizes disaggregated assessment and fairness-aware mitigation within common Python model workflows. Grouped metric reporting exposes performance gaps that an average conceals, while reduction and threshold methods can impose constraints such as demographic parity or equalized odds. It is particularly convenient when models already use the scikit-learn ecosystem.</p></div><div class="transcript"><h3>Slide 5 — Using tools responsibly</h3><p>A defensible workflow first states the decision context, affected groups, harms, labels, and desired fairness criterion. The toolkit then computes evidence and tests candidate interventions. Teams must report uncertainty, utility changes, and unresolved harms. Default settings and benchmark datasets are starting points, not substitutes for domain judgment or stakeholder participation.</p></div><div class="transcript"><h3>Slide 6 — Case study — Gender bias in text data</h3><p>Large text corpora can associate occupations and social roles with gender stereotypes, such as linking doctors and engineers with men while linking nurses and teachers with women. Models learn these associations and may reproduce them in generation, translation, sentiment analysis, recommendation, or hiring applications, even when gender is not an explicit input field.</p></div><div class="transcript"><h3>Slide 7 — Debiasing representations</h3><p>One mitigation strategy identifies a gender direction in a word-embedding space and reduces unwanted associations by projecting selected representations toward a more neutral space. Data balancing and fairness-aware training provide alternatives. Any intervention must distinguish harmful stereotypes from legitimate linguistic information and avoid erasing identities or masking bias that persists elsewhere.</p></div><div class="transcript"><h3>Slide 8 — Evaluating the outcome</h3><p>Evaluation should compare association tests before and after intervention and then examine downstream tasks, subgroup errors, generated content, and realistic prompts. Human review by affected communities can identify harms that a numeric score misses. Because language and usage evolve, the evaluation should recur after data updates and deployment.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>AI Fairness 360 provides broad metrics and interventions across pipeline stages, while Fairlearn integrates disaggregated assessment and constrained mitigation into familiar model workflows. Toolkits make analysis repeatable but cannot choose the ethical objective. Text debiasing requires both representation-level tests and downstream, human-centered evaluation.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The final clip looks ahead to generative artificial intelligence, decentralized training, evolving regulation, and deployment governance. These settings extend the same core principles while introducing new sources of scale, opacity, and distribution shift.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-10-emerging-fairness-topics/index.html" data-next-label="Continue to Emerging fairness topics"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-09-fairness-toolkits-and-case-study",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which capability is associated with AI Fairness 360?",
+      "choices": [
+        "Metrics and mitigation across data, training, and prediction stages",
+        "Automatic legal approval",
+        "Only slide generation",
+        "Only text tokenization"
+      ],
+      "answer_index": 0,
+      "explain": "AI Fairness 360 provides broad assessment and mitigation methods across pipeline stages."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "A fairness toolkit can determine the ethically correct metric without domain context.",
+      "answer": false,
+      "explain": "Metric selection requires knowledge of harms, stakeholders, and the decision context."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What is one goal of debiasing word embeddings?",
+      "choices": [
+        "Increase unwanted links between occupations and gender",
+        "Reduce unwanted stereotypical associations in the representation",
+        "Remove every identity term from language",
+        "Guarantee perfect downstream fairness"
+      ],
+      "answer_index": 1,
+      "explain": "Embedding debiasing aims to weaken unwanted stereotypical associations without claiming universal fairness."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Why must text debiasing be evaluated on downstream tasks?",
+      "rubric": "The answer should state that representation-level improvement may not transfer to generated content, errors, recommendations, or other application behavior.",
+      "sample_answer": "A lower embedding association score may not reduce harmful generated text or subgroup errors in the deployed application."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

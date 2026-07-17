@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 5 — Data Cleaning and Preprocessing — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="here">Chapter 5</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Learning path</div>
+    <section class='hero'><h1>Chapter 5 — Data Cleaning and Preprocessing</h1><p class='lead'>Follow the path in order: read the bridge, watch the part, then take the quiz before moving on. Downloads are available if you prefer to study offline.</p><div class="deck-links"><a class="btn" href="chapter5.pptx">Full chapter PPTX</a><a class="btn btn-ghost" href="parts/part-01-introduction-to-data-cleaning/index.html">Start first part →</a><a class="btn btn-secondary" href="../modules/chapter5/index.html">Browse examples</a></div></section><h2>What you will learn</h2><ul class='objectives'><li>Distinguish data cleaning from preprocessing and state why both precede modeling</li><li>Classify missing-data mechanisms (MCAR, MAR, MNAR) and common defect types</li><li>Apply deletion, imputation, deduplication, standardization, and outlier handling</li><li>Scale, encode, bin, engineer, and transform features for learning algorithms</li><li>Use pandas, scikit-learn, and related tools in reproducible workflows</li><li>Follow best practices for documentation, leakage avoidance, and class imbalance</li><li>Connect cleaning pipelines to retail and healthcare case studies</li><li>Recognize advanced directions: Bayesian imputation, streaming prep, and explainability</li></ul><h2>Learning path</h2><div class="path-progress" aria-hidden="true"><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div></div>
+<div class="learning-step" id="step-1">
+  <div class="bridge">
+    <span class="bridge-label">Before part 1</span>
+    Chapters 2 and 4 brought records and labels into a table; this chapter asks how to make that table reliable and model-ready. This first part defines cleaning versus preprocessing and names four motives—accuracy, comparable scales, efficiency, and trustworthy joins.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 1 of 12</div>
+        <h3>Introduction to data cleaning</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~6 min</span>
+        <span class="pill">Video ready</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-01-introduction-to-data-cleaning/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-01-introduction-to-data-cleaning/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example1/index.html">eg:5.1</a><a class="pill pill-muted" href="../modules/chapter5/example2/index.html">eg:5.2</a><a class="pill pill-muted" href="../modules/chapter5/example3/index.html">eg:5.3</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-2">
+  <div class="bridge">
+    <span class="bridge-label">Before part 2</span>
+    Before fixing defects, you need a taxonomy. This part classifies missing-data mechanisms—MCAR, MAR, and MNAR—and traces common causes from survey nonresponse to sensor failures.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 2 of 12</div>
+        <h3>Missing data</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-02-missing-data/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-02-missing-data/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example8/index.html">eg:5.8</a><a class="pill pill-muted" href="../modules/chapter5/example9/index.html">eg:5.9</a><a class="pill pill-muted" href="../modules/chapter5/example10/index.html">eg:5.10</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-3">
+  <div class="bridge">
+    <span class="bridge-label">Before part 3</span>
+    Missing values are one defect class; duplicated rows and inconsistent encodings are another. This part shows how retries inflate revenue, mixed date formats break joins, and split category labels fragment analysis.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 3 of 12</div>
+        <h3>Duplicates and inconsistency</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-03-duplicates-and-inconsistency/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-03-duplicates-and-inconsistency/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example14/index.html">eg:5.14</a><a class="pill pill-muted" href="../modules/chapter5/example18/index.html">eg:5.18</a><a class="pill pill-muted" href="../modules/chapter5/example20/index.html">eg:5.20</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-4">
+  <div class="bridge">
+    <span class="bridge-label">Before part 4</span>
+    Once rows are unique and consistently encoded, you still face extreme values, noise features, and skewed class counts. This part separates recording errors from valid extremes, drops irrelevant columns, and introduces imbalance as a modeling hazard.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 4 of 12</div>
+        <h3>Outliers, irrelevant features, and imbalance</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-04-outliers-irrelevant-and-imbalance/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-04-outliers-irrelevant-and-imbalance/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example22/index.html">eg:5.22</a><a class="pill pill-muted" href="../modules/chapter5/example29/index.html">eg:5.29</a><a class="pill pill-muted" href="../modules/chapter5/example33/index.html">eg:5.33</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-5">
+  <div class="bridge">
+    <span class="bridge-label">Before part 5</span>
+    Naming issues is not enough—you need repair methods matched to each defect. This part covers listwise deletion and imputation, duplicate removal, format standardization, IQR outlier flags, and correlation-based feature drops.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 5 of 12</div>
+        <h3>Techniques for data cleaning</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~8 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-05-cleaning-techniques/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-05-cleaning-techniques/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example37/index.html">eg:5.37</a><a class="pill pill-muted" href="../modules/chapter5/example39/index.html">eg:5.39</a><a class="pill pill-muted" href="../modules/chapter5/example44/index.html">eg:5.44</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-6">
+  <div class="bridge">
+    <span class="bridge-label">Before part 6</span>
+    Cleaning makes values trustworthy; preprocessing reshapes them for algorithms. This part compares normalization and standardization, then walks one-hot, label, and target encoding—with when each fits nominal versus ordinal data.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 6 of 12</div>
+        <h3>Scaling and encoding</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-06-preprocessing-scaling-and-encoding/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-06-preprocessing-scaling-and-encoding/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example46/index.html">eg:5.46</a><a class="pill pill-muted" href="../modules/chapter5/example47/index.html">eg:5.47</a><a class="pill pill-muted" href="../modules/chapter5/example48/index.html">eg:5.48</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-7">
+  <div class="bridge">
+    <span class="bridge-label">Before part 7</span>
+    Scaling and encoding prepare existing columns; many models also need derived structure. This part adds binning, interaction and ratio features, dimensionality reduction, and log or polynomial transforms.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 7 of 12</div>
+        <h3>Feature engineering and transforms</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-07-feature-engineering-and-transforms/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-07-feature-engineering-and-transforms/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example51/index.html">eg:5.51</a><a class="pill pill-muted" href="../modules/chapter5/example55/index.html">eg:5.55</a><a class="pill pill-muted" href="../modules/chapter5/example56/index.html">eg:5.56</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-8">
+  <div class="bridge">
+    <span class="bridge-label">Before part 8</span>
+    Methods become repeatable through libraries. This part maps pandas row-and-column operations, scikit-learn scalers and encoders, and NumPy vectorized fixes to the cleaning and preprocessing steps already introduced.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 8 of 12</div>
+        <h3>Python cleaning tools</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-08-python-cleaning-tools/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-08-python-cleaning-tools/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example57/index.html">eg:5.57</a><a class="pill pill-muted" href="../modules/chapter5/example59/index.html">eg:5.59</a><a class="pill pill-muted" href="../modules/chapter5/example60/index.html">eg:5.60</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-9">
+  <div class="bridge">
+    <span class="bridge-label">Before part 9</span>
+    Single-script cleaning does not scale across teams. This part introduces sklearn pipelines, Featuretools-style automation, AutoML preprocessing hooks, and box plots or heatmaps as cleaning diagnostics—plus a brief R dplyr/tidyr contrast.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 9 of 12</div>
+        <h3>Pipelines, automation, and visualization</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-09-pipelines-automation-and-visualization/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-09-pipelines-automation-and-visualization/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example58/index.html">eg:5.58</a><a class="pill pill-muted" href="../modules/chapter5/example74/index.html">eg:5.74</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-10">
+  <div class="bridge">
+    <span class="bridge-label">Before part 10</span>
+    Tools encode workflows, not judgment. This part names recurring obstacles—imbalance misleading accuracy, currency mixing, leakage risk—and summarizes best practices for documentation, validation splits, and reproducible preprocessing.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 10 of 12</div>
+        <h3>Challenges and best practices</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-10-challenges-and-best-practices/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-10-challenges-and-best-practices/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example62/index.html">eg:5.62</a><a class="pill pill-muted" href="../modules/chapter5/example63/index.html">eg:5.63</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-11">
+  <div class="bridge">
+    <span class="bridge-label">Before part 11</span>
+    Principles meet domain context in retail segmentation and healthcare outcome prediction. This part walks both case studies and points to packaged module activities for spotting issues, fixing tables, and comparing encodings.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 11 of 12</div>
+        <h3>Case studies and hands-on activities</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-11-case-studies-and-activities/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-11-case-studies-and-activities/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example64/index.html">eg:5.64</a><a class="pill pill-muted" href="../modules/chapter5/example65/index.html">eg:5.65</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-12">
+  <div class="bridge">
+    <span class="bridge-label">Before part 12</span>
+    Batch cleaning on static CSVs is the baseline; production systems push further. This final part previews Bayesian and deep imputation, streaming preprocessing, automated feature synthesis, and cleaning choices that support explainable models.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 12 of 12</div>
+        <h3>Advanced topics</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-12-advanced-topics/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-12-advanced-topics/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter5/example70/index.html">eg:5.70</a><a class="pill pill-muted" href="../modules/chapter5/example72/index.html">eg:5.72</a><a class="pill pill-muted" href="../modules/chapter5/example75/index.html">eg:5.75</a></div>
+  </div>
+</div>
+
+<section class="wrap-up">
+  <h2>Wrap-up</h2>
+  <p>After about 84 minutes across 12 parts, you should be ready
+  for the next chapter when it is published. Return to the course home anytime.</p>
+  <p><a href="../index.html">← All chapters</a></p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../assets/site.js"></script>
+</body>
+</html>

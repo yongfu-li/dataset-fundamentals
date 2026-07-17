@@ -164,11 +164,31 @@ h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
 
 .deck-links,
 .clip-links,
-.clip-nav {
+.clip-toolbar {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.6rem;
   margin: 1rem 0;
+}
+
+.clip-toolbar {
+  flex-wrap: nowrap;
+  padding: 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.clip-toolbar .is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.clip-toolbar .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .btn {
@@ -532,17 +552,6 @@ h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
   text-align: center;
 }
 
-.clip-nav {
-  justify-content: space-between;
-  margin: 1.5rem 0;
-  padding: 0.85rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-
-.clip-nav .spacer { flex: 1; }
-
 details.panel {
   margin: 1rem 0;
   padding: 0;
@@ -711,7 +720,7 @@ footer.site-footer {
 
 @media (max-width: 640px) {
   .site-header-inner { align-items: flex-start; }
-  .clip-nav { flex-direction: column; }
+  .clip-toolbar { flex-wrap: wrap; flex-direction: column; align-items: stretch; }
   .module-card { grid-template-columns: 1fr; }
-  .btn { width: 100%; }
+  .clip-toolbar .btn { width: 100%; }
 }

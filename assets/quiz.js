@@ -19,7 +19,7 @@
   const passing = quiz.passing_score ?? 0.7;
   const results = {};
   const nextHref = root.dataset.nextHref || "";
-  const nextLabel = root.dataset.nextLabel || "Next clip";
+  const nextLabel = root.dataset.nextLabel || "Next part";
 
   function render() {
     root.innerHTML = "";
@@ -182,7 +182,7 @@
         ? ` (${Math.round(pct * 100)}%) — ` +
           (passed
             ? "Nice work — you met the passing threshold."
-            : "Review the clip and try again.")
+            : "Review this part and try again.")
         : " — Answer every question for a full score.");
 
     if (passed && nextHref) {

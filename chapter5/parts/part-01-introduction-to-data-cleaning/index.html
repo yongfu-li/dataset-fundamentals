@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to data cleaning — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 1/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Introduction to data cleaning</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 1 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <span class="btn btn-secondary clip-toolbar-prev is-disabled">← Previous</span><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-02-missing-data/index.html" title="Missing data">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Distinguish cleaning from preprocessing</li>
+<li>Name four motives for both phases</li>
+<li>Recognize schema alignment across corpora</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.1</span>
+    <h3>Example 5.1 — Missing Target Values in Classification</h3>
+    <p>Explain why blank classification labels break supervised learning and skew decision boundaries.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example1/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.2</span>
+    <h3>Example 5.2 — Dropping Unused Identifier Columns</h3>
+    <p>Justify dropping high-cardinality ID columns that never enter the model to save memory and training time.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example2/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.3</span>
+    <h3>Example 5.3 — Duplicate Retail Transactions</h3>
+    <p>Recognize how duplicate order rows inflate revenue KPIs until deduplicated or merged.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example3/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Introduction to data cleaning</h3><ul><li>After collection and annotation, raw tables still need preparation before reliable analysis or supervised training</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Distinguish cleaning from preprocessing, name four practical motives for both phases</li><li>Recognize schema discipline when joining multiple corpora</li></ul></div><div class="slide-card"><h3>Why cleaning matters</h3><ul><li>Without cleaning, missing fields, duplicates, inconsistent encodings</li><li>Cross-corpus work makes those defects visible at pipeline scale</li></ul></div><div class="slide-card"><h3>Example 5.1 — Missing target values in classification</h3><ul><li>Example 5.1 — hands-on module</li><li>Example 5.1 shows a fraud table with blank labels</li><li>Supervised training either drops those rows or invents labels</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example1/</code></li></ul></div><div class="slide-card"><h3>Example 5.2 — Dropping unused identifier columns</h3><ul><li>Example 5.2 — hands-on module</li><li>Example 5.2 removes high-cardinality identifiers such as raw transaction IDs that never</li><li>Memory and training time improve without changing the predictive schema</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example2/</code></li></ul></div><div class="slide-card"><h3>Cleaning versus preprocessing</h3><ul><li>This book treats cleaning and preprocessing as consecutive phases</li><li>Non-model fields</li><li>Preprocessing transforms cleaned values into representations algorithms expect</li></ul></div><div class="slide-card"><h3>Example 5.3 — Duplicate retail transactions</h3><ul><li>Example 5.3 — hands-on module</li><li>Example 5.3 shows the same order ID appearing twice after a system retry</li><li>Counting both rows inflates revenue and customer frequency until duplicates are removed or</li><li>Cleaning precedes the scaling and encoding examples introduced later in the chapter</li><li>View files: <code>modules/chapter5/example3/</code></li></ul></div><div class="slide-card"><h3>Four recurring motives</h3><ul><li>Four motives recur</li><li>Detailed failure modes appear in the next parts; remedies follow in Sections 5.3 and 5.4</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Cleaning makes values trustworthy; preprocessing makes them algorithm-ready</li><li>Both follow annotation and precede exploration-heavy modeling work</li><li>Schema alignment across sources is itself a cleaning task</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to missing data, MCAR, MAR, MNAR mechanisms and their causes</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Introduction to data cleaning</h3><p>After collection and annotation, raw tables still need preparation before reliable analysis or supervised training. This opening part defines data cleaning versus preprocessing and explains why both precede model fitting and the exploratory summaries in Chapter 6.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should distinguish cleaning from preprocessing, name four practical motives for both phases, and recognize schema discipline when joining multiple corpora.</p></div><div class="transcript"><h3>Slide 3 — Why cleaning matters</h3><p>Without cleaning, missing fields, duplicates, inconsistent encodings, and scale mismatches distort statistics and learners alike. Cross-corpus work makes those defects visible at pipeline scale: models trained on one public release can fail silently on another when column names, units, or label taxonomies differ.</p></div><div class="transcript"><h3>Slide 4 — Example 5.1 — Missing target values in classification</h3><p>Example 5.1 shows a fraud table with blank labels. Supervised training either drops those rows or invents labels—both paths can bias decision boundaries. Open the example 1 module for this chapter to inspect how missing targets break training pipelines.</p></div><div class="transcript"><h3>Slide 5 — Example 5.2 — Dropping unused identifier columns</h3><p>Example 5.2 removes high-cardinality identifiers such as raw transaction IDs that never enter the model. Memory and training time improve without changing the predictive schema. Try the example 2 module to see identifier columns that should not reach the feature matrix.</p></div><div class="transcript"><h3>Slide 6 — Cleaning versus preprocessing</h3><p>This book treats cleaning and preprocessing as consecutive phases. Cleaning finds and corrects errors so values are reliable—missing values, duplicates, inconsistent formats, erroneous outliers, and non-model fields. Preprocessing transforms cleaned values into representations algorithms expect: scaling, encoding, binning, and feature construction.</p></div><div class="transcript"><h3>Slide 7 — Example 5.3 — Duplicate retail transactions</h3><p>Example 5.3 shows the same order ID appearing twice after a system retry. Counting both rows inflates revenue and customer frequency until duplicates are removed or merged. Cleaning precedes the scaling and encoding examples introduced later in the chapter.</p></div><div class="transcript"><h3>Slide 8 — Four recurring motives</h3><p>Four motives recur: accuracy on held-out data, comparable feature scales, computational efficiency, and trustworthy decisions when multiple sources are joined. Detailed failure modes appear in the next parts; remedies follow in Sections 5.3 and 5.4.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Cleaning makes values trustworthy; preprocessing makes them algorithm-ready. Both follow annotation and precede exploration-heavy modeling work. Schema alignment across sources is itself a cleaning task.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>Pause for the quiz, then continue to missing data—MCAR, MAR, MNAR mechanisms and their causes.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-02-missing-data/index.html" data-next-label="Continue to Missing data"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-01-introduction-to-data-cleaning",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "How does this chapter distinguish data cleaning from preprocessing?", "choices": ["They are identical phases", "Cleaning corrects errors; preprocessing transforms cleaned values for algorithms", "Preprocessing always comes before cleaning", "Cleaning applies only to images"], "answer_index": 1, "explain": "Cleaning addresses missing, duplicate, and inconsistent values; preprocessing scales, encodes, and engineers features."},
+    {"id": "q2", "type": "mcq", "prompt": "Example 5.1 (missing fraud labels) shows why:", "choices": ["Missing targets can bias supervised training", "JSON is better than CSV", "Duplicates never matter", "Scaling is unnecessary"], "answer_index": 0, "explain": "Blank labels force drop or invented labels, both risky for classifiers."},
+    {"id": "q3", "type": "true_false", "prompt": "Dropping unused high-cardinality ID columns can improve efficiency without changing the predictive schema.", "answer": true, "explain": "Example 5.2 removes identifiers that never enter the model."},
+    {"id": "q4", "type": "short", "prompt": "Name two of the four recurring motives for cleaning/preprocessing from this clip.", "rubric": "Any two of: accuracy, comparable scales, efficiency, trustworthy joins.", "sample_answer": "Accuracy on held-out data and computational efficiency."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

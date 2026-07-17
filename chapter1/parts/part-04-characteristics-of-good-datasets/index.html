@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Characteristics of good datasets — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter1/index.html">Chapter 1</a><span class="here">Part 4/7</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 1 · Guided part</div>
+    
+<section class="hero">
+  <h1>Characteristics of good datasets</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Part 4 of 7</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-dataset-formats/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-exploring-a-dataset/index.html" title="Exploring a dataset">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>List five quality dimensions from the chapter</li>
+<li>Diagnose accuracy, completeness, and consistency defects</li>
+<li>Explain why metadata and documentation matter</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.11</span>
+    <h3>Example 1.11 — Financial Dataset with an Incorrect Transaction</h3>
+    <p>Detect an accuracy defect by comparing a suspicious value against its neighbors, and see how one bad cell can dominate an aggregate.</p>
+    <p class='module-files-inline'>Preview files: <code>data.csv</code>, <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example11/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.14</span>
+    <h3>Example 1.14 — Metadata of Weather Dataset</h3>
+    <p>Use a metadata sidecar to answer questions a raw measurement table cannot: what units, what coverage, whose data, how fresh.</p>
+    <p class='module-files-inline'>Preview files: <code>metadata.json</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example14/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Characteristics of good datasets</h3><ul><li>Knowing a file&#x27;s type and format is not enough</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Consistency, and explain why metadata and documentation make a dataset reusable</li></ul></div><div class="slide-card"><h3>Five quality dimensions</h3><ul><li>Table 1.6 in the chapter lists accuracy, completeness, consistency, relevance</li><li>None stands alone</li><li>Still on-question</li></ul></div><div class="slide-card"><h3>Example 1.11 — Incorrect transaction</h3><ul><li>Example 1.11 — hands-on module</li><li>Example 1.11 shows a ledger where one transaction likely contains an extra zero</li><li>That single accuracy error changes monthly revenue by an order of magnitude and can</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example11/</code></li></ul></div><div class="slide-card"><h3>Example 1.11 — listing</h3><pre><code>Txn_ID,Date,Account,Amount,Type
+T001,2024-03-01,Revenue,1500.00,Credit
+T002,2024-03-02,Revenue,15000.00,Credit
+T003,2024-03-03,Refund,50.00,Debit</code></pre></div><div class="slide-card"><h3>Completeness and consistency</h3><ul><li>Completeness failures</li><li>Consistency failures</li><li>Later chapters develop systematic repair; here the goal is recognition</li></ul></div><div class="slide-card"><h3>Metadata and documentation</h3><ul><li>Metadata records schema, units, provenance, and related context</li><li>Example 1.14 illustrates metadata for a weather dataset</li><li>Without these, even accurate tables become hard to trust outside the original team</li><li>The example 14 module shows what good metadata looks like in practice</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Quality is multi-dimensional and task-relative</li><li>Learn to spot accuracy errors, missing fields</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Characteristics of good datasets</h3><p>Knowing a file&#x27;s type and format is not enough. This part treats quality as a bundle of properties judged relative to an intended task.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You will list five widely cited dimensions, diagnose concrete defects in accuracy, completeness, and consistency, and explain why metadata and documentation make a dataset reusable.</p></div><div class="transcript"><h3>Slide 3 — Five quality dimensions</h3><p>Table 1.6 in the chapter lists accuracy, completeness, consistency, relevance, and timeliness. None stands alone: a dataset can be complete yet inaccurate, or timely yet irrelevant to the question at hand. Assessment starts by asking whether values are trustworthy, sufficiently populated, comparable, and still on-question.</p></div><div class="transcript"><h3>Slide 4 — Example 1.11 — Incorrect transaction</h3><p>Example 1.11 shows a ledger where one transaction likely contains an extra zero. That single accuracy error changes monthly revenue by an order of magnitude and can distort averages and forecasts. Inspect the example 11 module and try to spot the suspicious amount.</p></div><div class="transcript"><h3>Slide 5 — Completeness and consistency</h3><p>Completeness failures—blank diagnosis or age cells—force models to guess or drop rows and can bias estimates when missingness is not random. Consistency failures—mixed regional date formats—break sorting until one convention is enforced. Later chapters develop systematic repair; here the goal is recognition.</p></div><div class="transcript"><h3>Slide 6 — Metadata and documentation</h3><p>Metadata records schema, units, provenance, and related context; documentation explains how to interpret and reuse the file. Example 1.14 illustrates metadata for a weather dataset. Without these, even accurate tables become hard to trust outside the original team. The example 14 module shows what good metadata looks like in practice.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Quality is multi-dimensional and task-relative. Learn to spot accuracy errors, missing fields, and format clashes early, and treat metadata plus documentation as part of the dataset—not optional extras.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then continue to exploring a dataset—the practical first pass for surfacing these issues.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-05-exploring-a-dataset/index.html" data-next-label="Continue to Exploring a dataset"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-04-characteristics-of-good-datasets",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which set matches the five quality dimensions emphasized in this chapter?",
+      "choices": [
+        "Accuracy, completeness, consistency, relevance, timeliness",
+        "Velocity, volume, variety only",
+        "Encryption, MFA, backups only",
+        "Precision, recall, F1 only"
+      ],
+      "answer_index": 0,
+      "explain": "Table 1.6 lists accuracy, completeness, consistency, relevance, and timeliness."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Completeness and accuracy are the same quality dimension.",
+      "answer": false,
+      "explain": "They are distinct: values can be present (complete) yet wrong (inaccurate), or correct where present but missing key fields."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "In Example 1.11, the main defect illustrated is:",
+      "choices": [
+        "Missing columns",
+        "An inaccurate (mis-keyed) amount",
+        "Wrong file format (HDF5 vs CSV)",
+        "Lack of a Git repository"
+      ],
+      "answer_index": 1,
+      "explain": "An extra zero in a transaction amount is an accuracy error that distorts totals."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one thing metadata should capture about a dataset.",
+      "rubric": "Accept schema, units, provenance, collection time, ownership, or similar from the chapter.",
+      "sample_answer": "Schema and units for each attribute, or provenance describing how the file was produced."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

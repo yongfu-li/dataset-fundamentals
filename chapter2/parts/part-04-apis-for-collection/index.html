@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APIs for collection — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter2/index.html">Chapter 2</a><span class="here">Part 4/9</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 2 · Guided part</div>
+    
+<section class="hero">
+  <h1>APIs for collection</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 2</span>
+    <span class="pill pill-muted">Part 4 of 9</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-surveys-and-scraping/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-manual-vs-automated/index.html" title="Manual vs automated collection">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain how APIs differ from scraping as a collection method</li>
+<li>Describe a minimal request-parse-append pattern for JSON feeds</li>
+<li>Treat rate limits and authentication as collection-design constraints</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:2.7</span>
+    <h3>Example 2.7 — Fetching a Public Weather API Record</h3>
+    <p>Execute a minimal API collection pattern: HTTP GET → JSON → one row of fields, with timeout and status checks.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code>, <code>requirements.txt</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter2/example7/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 2 — APIs for collection</h3><ul><li>When a provider exposes structured endpoints, APIs are usually preferable to scraping</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Explain how APIs differ from scraping as a collection method</li><li>Recognize rate limits and authentication as design constraints rather than afterthoughts</li></ul></div><div class="slide-card"><h3>What is an API for collection?</h3><ul><li>Application Programming Interfaces provide structured access to service data</li><li>Relative to scraping</li><li>The trade-off is usage quotas and incomplete coverage of a site&#x27;s full content</li></ul></div><div class="slide-card"><h3>Request, parse, append</h3><ul><li>A typical API collection job follows a short loop</li><li>Append one row per call to a growing store</li><li>Error handling and timeouts belong in the same script so that transient failures do not</li></ul></div><div class="slide-card"><h3>Example 2.7 — Fetching a public weather API record</h3><ul><li>Example 2.7 — hands-on module</li><li>Example 2.7 shows a minimal request pattern that returns a JSON record suitable for</li><li>Observed time as one row per call</li><li>Rate limits and authentication keys must be handled so that the job remains within the</li><li>View files: <code>modules/chapter2/example7/</code></li></ul></div><div class="slide-card"><h3>Example 2.7 — listing</h3><pre><code>import requests
+
+response = requests.get(
+    &quot;https://api.example.com/weather&quot;,
+    params={&quot;city&quot;: &quot;Singapore&quot;},
+    timeout=10,
+)
+response.raise_for_status()
+payload = response.json()
+# Example fields: payload[&quot;temp&quot;], payload[&quot;humidity&quot;]</code></pre></div><div class="slide-card"><h3>Rate limits and keys</h3><ul><li>API access is governed by contracts, not by page layout</li><li>Providers set rate limits, require keys, and may cap daily volume</li><li>Logging that separates successful rows from throttled calls</li><li>Treating these constraints as part of the protocol prevents loss of access mid-campaign</li></ul></div><div class="slide-card"><h3>When APIs beat scraping</h3><ul><li>Prefer APIs when a provider exposes them</li><li>Scraping remains a fallback when public content exists but no endpoint is offered</li><li>Each of these methods can still be executed manually or automatically</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>APIs trade scraping flexibility for structure and clearer access rules</li><li>A minimal job requests, parses JSON fields, and appends rows</li><li>Rate limits and keys are collection-design decisions, not deployment details</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 2 — APIs for collection</h3><p>When a provider exposes structured endpoints, APIs are usually preferable to scraping. This part shows how a programmatic weather request becomes one appendable row and why rate limits and keys are part of the collection design.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should explain how APIs differ from scraping as a collection method, describe a minimal request-and-store pattern for JSON feeds, and recognize rate limits and authentication as design constraints rather than afterthoughts.</p></div><div class="transcript"><h3>Slide 3 — What is an API for collection?</h3><p>Application Programming Interfaces provide structured access to service data, often as JSON or XML payloads that integrate cleanly into pipelines. Relative to scraping, APIs are usually more reliable and explicitly intended for programmatic use, including near-real-time feeds for finance, weather, or social platforms. The trade-off is usage quotas and incomplete coverage of a site&#x27;s full content.</p></div><div class="transcript"><h3>Slide 4 — Request, parse, append</h3><p>A typical API collection job follows a short loop. Authenticate if required, issue a request with explicit parameters such as city or date range, parse the structured response fields, and append one row per call to a growing store. Error handling and timeouts belong in the same script so that transient failures do not corrupt the table silently.</p></div><div class="transcript"><h3>Slide 5 — Example 2.7 — Fetching a public weather API record</h3><p>Example 2.7 shows a minimal request pattern that returns a JSON record suitable for appending to a collection table. A collection job can request the current conditions for a city and store fields such as temperature, humidity, and observed time as one row per call. Rate limits and authentication keys must be handled so that the job remains within the provider&#x27;s terms. Open the example 7 module to inspect the Python listing and sample payload fields.</p></div><div class="transcript"><h3>Slide 6 — Rate limits and keys</h3><p>API access is governed by contracts, not by page layout. Providers set rate limits, require keys, and may cap daily volume. Collection design must include backoff when quotas are reached, secure storage of credentials, and logging that separates successful rows from throttled calls. Treating these constraints as part of the protocol prevents loss of access mid-campaign.</p></div><div class="transcript"><h3>Slide 7 — When APIs beat scraping</h3><p>Prefer APIs when a provider exposes them: schemas are clearer, access rules are documented, and pipelines are less brittle than HTML selectors. Scraping remains a fallback when public content exists but no endpoint is offered, subject to the policy constraints covered in the previous part. Each of these methods can still be executed manually or automatically; that axis is the subject of the next part.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>APIs trade scraping flexibility for structure and clearer access rules. A minimal job requests, parses JSON fields, and appends rows. Rate limits and keys are collection-design decisions, not deployment details.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Complete the quiz, then continue to the next part on manual versus automated collection—who or what executes the same method.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-05-manual-vs-automated/index.html" data-next-label="Continue to Manual vs automated collection"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-04-apis-for-collection",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Relative to web scraping, APIs for collection are usually:",
+      "choices": [
+        "Less reliable because HTML changes daily",
+        "More reliable and intended for programmatic use with structured payloads",
+        "Unable to support near-real-time feeds",
+        "Free from all usage limits"
+      ],
+      "answer_index": 1,
+      "explain": "APIs offer structured JSON or XML access with documented rules, though quotas and partial coverage remain."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "In Example 2.7, which fields might be stored as one row per weather API call?",
+      "choices": [
+        "Only the HTTP status code",
+        "Temperature, humidity, and observed time",
+        "The entire website HTML",
+        "Trained model weights"
+      ],
+      "answer_index": 1,
+      "explain": "The example maps JSON fields such as temp, humidity, and observed_at into appendable table rows."
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "prompt": "Rate limits and authentication keys should be planned as part of collection design.",
+      "answer": true,
+      "explain": "Backoff, credential handling, and quota awareness keep jobs within provider terms."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "List three steps in a minimal API collection loop.",
+      "rubric": "Request (with params/auth), parse response, append/store row; error handling acceptable.",
+      "sample_answer": "Authenticate if needed, send a parameterized request, parse JSON fields, and append one row per successful call to the store."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

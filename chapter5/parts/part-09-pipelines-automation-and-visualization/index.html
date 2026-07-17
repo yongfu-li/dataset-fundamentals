@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipelines, automation, and visualization — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 9/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Pipelines, automation, and visualization</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 9 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-08-python-cleaning-tools/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-10-challenges-and-best-practices/index.html" title="Challenges and best practices">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Build sklearn pipelines</li>
+<li>Contrast automation with human curation</li>
+<li>Use plots as cleaning diagnostics</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.58</span>
+    <h3>Example 5.58 — Dplyr Filter and Select Columns</h3>
+    <p>Express dplyr filter/select column cleaning in R—or recognize the equivalent takeaway when R is unavailable.</p>
+    <p class='module-files-inline'>Preview files: <code>data.csv</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example58/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.74</span>
+    <h3>Example 5.74 — Deep Feature Synthesis on Transactions</h3>
+    <p>Generate aggregate customer features from raw transaction tables with DFS.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example74/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Pipelines, automation, and visualization</h3><ul><li>Single-notebook scripts do not scale across teams</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Explain why pipelines prevent leakage</li><li>Contrast dplyr/tidyr with pandas</li></ul></div><div class="slide-card"><h3>R: dplyr and tidyr</h3><ul><li>In R workflows</li><li>Example 5.58 shows filter and select patterns analogous to pandas</li><li>Teams standardized on Python may still encounter R extracts</li></ul></div><div class="slide-card"><h3>sklearn pipelines</h3><ul><li>Pipelines chain imputers, scalers, encoders</li><li>This prevents statistics computed on validation data from leaking into features</li><li>Serialize pipelines with the model for consistent deployment preprocessing</li></ul></div><div class="slide-card"><h3>Automation: Featuretools and AutoML</h3><ul><li>Featuretools performs deep feature synthesis on relational tables</li><li>AutoML platforms wrap search over imputers, encoders, and model families</li><li>Automation accelerates baselines but still requires domain review to drop leaky or</li></ul></div><div class="slide-card"><h3>Example 5.74 — Deep feature synthesis on transactions</h3><ul><li>Example 5.74 — hands-on module</li><li>Example 5.74 shows automated aggregates across related tables</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example74/</code></li></ul></div><div class="slide-card"><h3>Visualization for cleaning</h3><ul><li>Box plots expose outlier tails</li><li>Visual checks complement rule-based flags from earlier parts and align with exploratory</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Pipelines encode reproducible preprocessing</li><li>Automation proposes features; humans curate them</li><li>Visual diagnostics catch defects rules miss</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to challenges, best practices, and governance habits</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Pipelines, automation, and visualization</h3><p>Single-notebook scripts do not scale across teams. This part introduces sklearn pipelines, automated feature engineering, AutoML preprocessing hooks, visualization for defect detection, and a brief R tidyverse contrast.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should explain why pipelines prevent leakage, name Featuretools-style automation benefits, use box plots and heatmaps as cleaning diagnostics, and contrast dplyr/tidyr with pandas.</p></div><div class="transcript"><h3>Slide 3 — R: dplyr and tidyr</h3><p>In R workflows, dplyr filters and selects columns while tidyr reshapes long and wide tables. Example 5.58 shows filter and select patterns analogous to pandas. Teams standardized on Python may still encounter R extracts—know that the verbs differ but the cleaning goals match.</p></div><div class="transcript"><h3>Slide 4 — sklearn pipelines</h3><p>Pipelines chain imputers, scalers, encoders, and estimators so each cross-validation fold fits preprocessing only on training folds. This prevents statistics computed on validation data from leaking into features. Serialize pipelines with the model for consistent deployment preprocessing.</p></div><div class="transcript"><h3>Slide 5 — Automation: Featuretools and AutoML</h3><p>Featuretools performs deep feature synthesis on relational tables—Example 5.74 on transactions. AutoML platforms wrap search over imputers, encoders, and model families. Automation accelerates baselines but still requires domain review to drop leaky or nonsense columns.</p></div><div class="transcript"><h3>Slide 6 — Example 5.74 — Deep feature synthesis on transactions</h3><p>Example 5.74 shows automated aggregates across related tables. Open the example 74 module for this chapter to inspect generated features before modeling. Automated does not mean correct—validate cardinality and leakage.</p></div><div class="transcript"><h3>Slide 7 — Visualization for cleaning</h3><p>Box plots expose outlier tails; heatmaps of missingness reveal column-wise patterns; histograms show skew before log transforms. Visual checks complement rule-based flags from earlier parts and align with exploratory practice in Chapter 6.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Pipelines encode reproducible preprocessing. Automation proposes features; humans curate them. Visual diagnostics catch defects rules miss.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to challenges, best practices, and governance habits.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-10-challenges-and-best-practices/index.html" data-next-label="Continue to Challenges and best practices"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-09-pipelines-automation-and-visualization",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "sklearn pipelines primarily help prevent:", "choices": ["Data leakage across train/validation folds", "All missing data", "Legal jurisdiction conflicts", "Hardware disk failure"], "answer_index": 0, "explain": "Preprocessing fits inside each training fold."},
+    {"id": "q2", "type": "mcq", "prompt": "Featuretools-style synthesis (Example 5.74):", "choices": ["Can propose aggregates across related tables", "Eliminates need for human review", "Replaces consent management", "Only works on text corpora"], "answer_index": 0, "explain": "Automation accelerates feature ideas but requires curation."},
+    {"id": "q3", "type": "true_false", "prompt": "Box plots and missingness heatmaps are useful cleaning diagnostics.", "answer": true, "explain": "Visualization complements rule-based checks from earlier clips."},
+    {"id": "q4", "type": "mcq", "prompt": "dplyr in R is analogous to pandas for:", "choices": ["Filter/select table operations", "Only deep learning training", "Only PDF export", "Only SQL database hosting"], "answer_index": 0, "explain": "Example 5.58 shows filter/select patterns in R."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

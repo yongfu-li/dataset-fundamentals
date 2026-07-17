@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Challenges and best practices — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 10/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Challenges and best practices</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 10 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-09-pipelines-automation-and-visualization/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-11-case-studies-and-activities/index.html" title="Case studies and hands-on activities">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain imbalance metric pitfalls</li>
+<li>Harmonize currencies and units</li>
+<li>Document preprocessing reproducibly</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.62</span>
+    <h3>Example 5.62 — Rare Fraud Class Distorts Accuracy</h3>
+    <p>Choose precision/recall or PR-AUC over accuracy on rare fraud.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example62/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.63</span>
+    <h3>Example 5.63 — Convert Currencies Before Modeling</h3>
+    <p>Standardize multi-currency revenue before cross-region modeling.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example63/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Challenges and best practices</h3><ul><li>Cleaning is tedious because defects interact and fixes can introduce bias</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Explain why accuracy misleads on imbalanced data, describe currency and unit mixing risks</li><li>List documentation, validation</li><li>Version-control habits</li></ul></div><div class="slide-card"><h3>Recurring challenges</h3><ul><li>Missing data mechanisms complicate imputation choices</li><li>Inconsistent cross-source formats consume analyst time</li><li>Outliers mix errors with rare truth</li><li>Imbalance steers models toward majority classes</li><li>Duplicates inflate counts</li><li>Transformations can leak target information if fit globally</li></ul></div><div class="slide-card"><h3>Example 5.62 — Rare fraud class distorts accuracy</h3><ul><li>Example 5.62 — hands-on module</li><li>Example 5.62 shows fraud at a tiny fraction of events</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example62/</code></li></ul></div><div class="slide-card"><h3>Example 5.63 — Convert currencies before modeling</h3><ul><li>Example 5.63 — hands-on module</li><li>Example 5.63 reminds teams to harmonize currencies and units before comparing amounts</li><li>Mixed units silently rank features by exchange noise instead of behavior</li><li>Standardize early and record conversion tables</li><li>View files: <code>modules/chapter5/example63/</code></li></ul></div><div class="slide-card"><h3>Best practices overview</h3><ul><li>Handle missing data with explicit mechanism assumptions</li><li>Profile data before and after each step</li><li>Document parsing rules, imputation choices, and outlier policies</li><li>Separate train, validation, and test before fitting transformers</li><li>Use version control for datasets and preprocessing code</li><li>Review features for leakage and fairness implications connected to Chapter 7</li></ul></div><div class="slide-card"><h3>Validation and reproducibility</h3><ul><li>Fit scalers, encoders, and imputers inside training folds</li><li>Store random seeds and library versions</li><li>Write preprocessing metadata alongside exported tables so another team can replay the</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Challenges are expected, plan time for them</li><li>Metrics must match the defect, especially under imbalance</li><li>Documentation and leakage control are part of cleaning, not optional extras</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to retail and healthcare case studies plus hands-on module activities</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Challenges and best practices</h3><p>Cleaning is tedious because defects interact and fixes can introduce bias. This part names recurring obstacles and summarizes practices that keep preprocessing auditable and reproducible.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should explain why accuracy misleads on imbalanced data, describe currency and unit mixing risks, and list documentation, validation, and version-control habits.</p></div><div class="transcript"><h3>Slide 3 — Recurring challenges</h3><p>Missing data mechanisms complicate imputation choices. Inconsistent cross-source formats consume analyst time. Outliers mix errors with rare truth. Imbalance steers models toward majority classes. Duplicates inflate counts. Transformations can leak target information if fit globally.</p></div><div class="transcript"><h3>Slide 4 — Example 5.62 — Rare fraud class distorts accuracy</h3><p>Example 5.62 shows fraud at a tiny fraction of events—a majority-class classifier looks accurate while detecting almost no fraud. Open the example 62 module for this chapter to practice precision-recall thinking before choosing metrics.</p></div><div class="transcript"><h3>Slide 5 — Example 5.63 — Convert currencies before modeling</h3><p>Example 5.63 reminds teams to harmonize currencies and units before comparing amounts across markets. Mixed units silently rank features by exchange noise instead of behavior. Standardize early and record conversion tables.</p></div><div class="transcript"><h3>Slide 6 — Best practices overview</h3><p>Handle missing data with explicit mechanism assumptions. Profile data before and after each step. Document parsing rules, imputation choices, and outlier policies. Separate train, validation, and test before fitting transformers. Use version control for datasets and preprocessing code. Review features for leakage and fairness implications connected to Chapter 7.</p></div><div class="transcript"><h3>Slide 7 — Validation and reproducibility</h3><p>Fit scalers, encoders, and imputers inside training folds. Store random seeds and library versions. Write preprocessing metadata alongside exported tables so another team can replay the pipeline months later.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Challenges are expected—plan time for them. Metrics must match the defect, especially under imbalance. Documentation and leakage control are part of cleaning, not optional extras.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to retail and healthcare case studies plus hands-on module activities.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-11-case-studies-and-activities/index.html" data-next-label="Continue to Case studies and hands-on activities"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-10-challenges-and-best-practices",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "Example 5.62 shows accuracy fails when:", "choices": ["The positive class is extremely rare", "All features are scaled", "Duplicates are removed", "Dates are ISO formatted"], "answer_index": 0, "explain": "Majority-class classifiers look accurate while missing fraud."},
+    {"id": "q2", "type": "mcq", "prompt": "Example 5.63 reminds teams to:", "choices": ["Convert currencies before modeling", "Skip documentation", "Use only listwise deletion", "Avoid version control"], "answer_index": 0, "explain": "Mixed currencies distort amount-based features."},
+    {"id": "q3", "type": "true_false", "prompt": "Fitting imputers on the full dataset before splitting can leak information.", "answer": true, "explain": "Best practice fits transformers on training folds only."},
+    {"id": "q4", "type": "short", "prompt": "Name one documentation habit for reproducible preprocessing.", "rubric": "Version control, metadata, seeds, parsing rules, model cards.", "sample_answer": "Store preprocessing code and dataset versions in Git with recorded random seeds."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

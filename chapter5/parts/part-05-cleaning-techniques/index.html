@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Techniques for data cleaning — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 5/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Techniques for data cleaning</h1>
+  <div class="clip-meta">
+    <span class="pill">~8 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 5 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-outliers-irrelevant-and-imbalance/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-preprocessing-scaling-and-encoding/index.html" title="Scaling and encoding">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Compare deletion and imputation</li>
+<li>Standardize formats and currencies</li>
+<li>Flag outliers and correlated features</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.37</span>
+    <h3>Example 5.37 — Listwise Deletion Drops Any NA</h3>
+    <p>Assess row loss from listwise deletion on sparse multi-column surveys.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example37/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.39</span>
+    <h3>Example 5.39 — Mean Impute Missing Age</h3>
+    <p>Critique mean imputation for shrinking variance and ignoring covariates.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example39/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.44</span>
+    <h3>Example 5.44 — Extreme Income Flagged by IQR</h3>
+    <p>Flag or winsorize IQR outliers so one row cannot dominate means.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example44/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Techniques for data cleaning</h3><ul><li>This part turns defect taxonomy into repair methods</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Compare listwise deletion with available-case analysis, choose mean, median</li><li>Hot-deck imputation, remove duplicates in pandas-style workflows</li><li>Flag outliers with IQR rules</li></ul></div><div class="slide-card"><h3>Handling missing data — deletion</h3><ul><li>Listwise deletion drops any row with a missing value in selected columns</li><li>Available-case analysis keeps rows for each analysis using the fields present</li><li>Choose based on mechanism and how much data you can afford to lose</li></ul></div><div class="slide-card"><h3>Imputation methods</h3><ul><li>Mean imputation, Example 5.39 for age, preserves the sample mean but shrinks variance</li><li>Median imputation, Example 5.41 for skewed square footage, is robust to tails</li><li>Hot-deck imputation</li><li>Document imputation inside train splits to avoid leakage</li></ul></div><div class="slide-card"><h3>Example 5.39 — Mean impute missing age</h3><ul><li>Example 5.39 — hands-on module</li><li>The simple numeric fill</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example39/</code></li></ul></div><div class="slide-card"><h3>Removing duplicates</h3><ul><li>Near-duplicate customer names and repeated transaction keys should be collapsed with</li><li>Example 5.42 shows fuzzy duplicate risk</li><li>Use stable keys when available</li></ul></div><div class="slide-card"><h3>Standardizing formats</h3><ul><li>Example 5.43 normalizes currency symbols across markets before modeling</li><li>Date parsing, lowercasing product names</li><li>Record parsing rules in preprocessing metadata</li></ul></div><div class="slide-card"><h3>Outliers and feature selection</h3><ul><li>Example 5.44 flags extreme income with the interquartile range</li><li>Winsorization caps tails instead of deleting rows</li><li>Example 5.45 drops one of two highly correlated bathroom features to reduce redundancy</li><li>Pair outlier rules with domain review</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Match the repair to the defect and mechanism</li><li>Deletion is simple but costly; imputation carries bias risk</li><li>Standardization enables joins; IQR and correlation pruning stabilize training</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to preprocessing, scaling and encoding cleaned columns</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Techniques for data cleaning</h3><p>This part turns defect taxonomy into repair methods: deletion and imputation for missing values, deduplication, format standardization, outlier handling, and correlation-based feature drops.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should compare listwise deletion with available-case analysis, choose mean, median, and hot-deck imputation, remove duplicates in pandas-style workflows, and flag outliers with IQR rules.</p></div><div class="transcript"><h3>Slide 3 — Handling missing data — deletion</h3><p>Listwise deletion drops any row with a missing value in selected columns—Example 5.37 shows aggressive loss of sample size. Available-case analysis keeps rows for each analysis using the fields present—Example 5.38 preserves more data but complicates comparison across models. Choose based on mechanism and how much data you can afford to lose.</p></div><div class="transcript"><h3>Slide 4 — Imputation methods</h3><p>Mean imputation—Example 5.39 for age—preserves the sample mean but shrinks variance. Median imputation—Example 5.41 for skewed square footage—is robust to tails. Hot-deck imputation—Example 5.40—copies values from similar donor rows and preserves multivariate structure better than single-column means. Document imputation inside train splits to avoid leakage.</p></div><div class="transcript"><h3>Slide 5 — Example 5.39 — Mean impute missing age</h3><p>Example 5.39 is the simple numeric fill. Open the example 39 module for this chapter to compare mean, median, and model-based imputation on the same column. MNAR settings may invalidate all three without extra modeling.</p></div><div class="transcript"><h3>Slide 6 — Removing duplicates</h3><p>Near-duplicate customer names and repeated transaction keys should be collapsed with explicit keep rules. Example 5.42 shows fuzzy duplicate risk. Use stable keys when available; otherwise combine normalized text fields and timestamps before drop_duplicates.</p></div><div class="transcript"><h3>Slide 7 — Standardizing formats</h3><p>Example 5.43 normalizes currency symbols across markets before modeling. Date parsing, lowercasing product names, and canonical unit conversion belong here—not in the model trainer. Record parsing rules in preprocessing metadata.</p></div><div class="transcript"><h3>Slide 8 — Outliers and feature selection</h3><p>Example 5.44 flags extreme income with the interquartile range. Winsorization caps tails instead of deleting rows. Example 5.45 drops one of two highly correlated bathroom features to reduce redundancy. Pair outlier rules with domain review.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Match the repair to the defect and mechanism. Deletion is simple but costly; imputation carries bias risk. Standardization enables joins; IQR and correlation pruning stabilize training.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>Pause for the quiz, then continue to preprocessing—scaling and encoding cleaned columns.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-preprocessing-scaling-and-encoding/index.html" data-next-label="Continue to Scaling and encoding"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-05-cleaning-techniques",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "Listwise deletion (Example 5.37):", "choices": ["Drops any row with NA in selected columns", "Imputes with hot-deck donors only", "Encodes categories", "Caps outliers at 95th percentile"], "answer_index": 0, "explain": "Aggressive deletion reduces sample size quickly."},
+    {"id": "q2", "type": "mcq", "prompt": "Median imputation is especially useful when:", "choices": ["A numeric feature is skewed with outliers", "All data are MCAR by definition", "Categories are nominal", "No missing values exist"], "answer_index": 0, "explain": "Example 5.41 uses median for skewed square footage."},
+    {"id": "q3", "type": "true_false", "prompt": "IQR rules can flag extreme income values for review (Example 5.44).", "answer": true, "explain": "IQR is a standard outlier screening technique in Section 5.3."},
+    {"id": "q4", "type": "mcq", "prompt": "Dropping one of two highly correlated bathroom features is an example of:", "choices": ["Correlation-based feature selection", "MNAR modeling", "Target encoding", "Federated learning"], "answer_index": 0, "explain": "Example 5.45 reduces redundancy before modeling."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

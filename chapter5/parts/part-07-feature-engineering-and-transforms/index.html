@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feature engineering and transforms — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 7/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Feature engineering and transforms</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 7 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-preprocessing-scaling-and-encoding/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-python-cleaning-tools/index.html" title="Python cleaning tools">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Apply binning and derived features</li>
+<li>Use log and polynomial transforms</li>
+<li>Document engineered columns</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.51</span>
+    <h3>Example 5.51 — Equal Width Age Bins</h3>
+    <p>Create equal-width age bins and interpret boundary choices.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example51/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.55</span>
+    <h3>Example 5.55 — Engineer Price Per Square Foot</h3>
+    <p>Derive ratio features that normalize price by size for fair comparisons.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example55/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.56</span>
+    <h3>Example 5.56 — Polynomial Feature Expansion</h3>
+    <p>Expand features with powers for nonlinear regression while staying linear in parameters.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example56/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Feature engineering and transforms</h3><ul><li>Many models need more than scaled raw columns</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Explain equal-width versus frequency binning, construct ratio and interaction features</li><li>Choose log or polynomial expansions when skew or nonlinearity demands them</li></ul></div><div class="slide-card"><h3>Binning numerical data</h3><ul><li>Binning groups continuous values into intervals</li><li>Example 5.51 uses equal-width age bins</li><li>Binning reduces noise and handles nonlinear effects but loses granularity</li></ul></div><div class="slide-card"><h3>Adding new features</h3><ul><li>Example 5.53 adds a squared term</li><li>Domain ratios often outperform raw stacks of columns</li><li>Avoid generating features that duplicate identifiers or leak targets</li></ul></div><div class="slide-card"><h3>Example 5.55 — Engineer price per square foot</h3><ul><li>Example 5.55 — hands-on module</li><li>The classic ratio feature</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example55/</code></li></ul></div><div class="slide-card"><h3>Dimensionality reduction and selection</h3><ul><li>High-dimensional sparse tables benefit from principal components</li><li>Selection reduces overfitting and training time</li><li>Keep interpretability requirements in mind for regulated domains</li></ul></div><div class="slide-card"><h3>Log and polynomial transforms</h3><ul><li>Log transforms compress right tails, Example 5.26 on income</li><li>Polynomial expansions, Example 5.56, let linear models capture curvature</li><li>Apply transforms before splitting or fit parameters on training folds only</li><li>Inverse transforms may be needed for interpretation</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Engineering encodes domain knowledge</li><li>Binning and transforms trade resolution for stability</li><li>Document every derived column for reproducibility and explainability</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to Python tools that implement these steps at scale</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Feature engineering and transforms</h3><p>Many models need more than scaled raw columns. This part adds binning, derived and interaction features, dimensionality reduction, and log or polynomial transforms.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should explain equal-width versus frequency binning, construct ratio and interaction features, and choose log or polynomial expansions when skew or nonlinearity demands them.</p></div><div class="transcript"><h3>Slide 3 — Binning numerical data</h3><p>Binning groups continuous values into intervals. Example 5.51 uses equal-width age bins; Example 5.52 uses frequency bins for test scores so each bin has similar counts. Binning reduces noise and handles nonlinear effects but loses granularity—document cut points.</p></div><div class="transcript"><h3>Slide 4 — Adding new features</h3><p>Example 5.53 adds a squared term; Example 5.54 adds an age-by-income interaction; Example 5.55 engineers price per square foot from price and area. Domain ratios often outperform raw stacks of columns. Avoid generating features that duplicate identifiers or leak targets.</p></div><div class="transcript"><h3>Slide 5 — Example 5.55 — Engineer price per square foot</h3><p>Example 5.55 is the classic ratio feature. Open the example 55 module for this chapter to see how derived columns capture economics more directly than raw price alone. Validate that denominators are nonzero and units align.</p></div><div class="transcript"><h3>Slide 6 — Dimensionality reduction and selection</h3><p>High-dimensional sparse tables benefit from principal components, feature selection, or dropping correlated groups—as in Example 5.45. Selection reduces overfitting and training time. Keep interpretability requirements in mind for regulated domains.</p></div><div class="transcript"><h3>Slide 7 — Log and polynomial transforms</h3><p>Log transforms compress right tails—Example 5.26 on income. Polynomial expansions—Example 5.56—let linear models capture curvature. Apply transforms before splitting or fit parameters on training folds only. Inverse transforms may be needed for interpretation.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Engineering encodes domain knowledge. Binning and transforms trade resolution for stability. Document every derived column for reproducibility and explainability.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to Python tools that implement these steps at scale.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-python-cleaning-tools/index.html" data-next-label="Continue to Python cleaning tools"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-07-feature-engineering-and-transforms",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "Price per square foot (Example 5.55) is a:", "choices": ["Ratio feature from domain knowledge", "Listwise deletion rule", "MCAR test", "HIPAA control"], "answer_index": 0, "explain": "Derived ratios often capture economics better than raw columns."},
+    {"id": "q2", "type": "mcq", "prompt": "Frequency binning (Example 5.52) aims for:", "choices": ["Similar counts per bin", "Only two categories total", "Automatic deduplication", "JSON nesting"], "answer_index": 0, "explain": "Frequency bins balance support across intervals."},
+    {"id": "q3", "type": "true_false", "prompt": "Log transforms can compress right-skewed income tails.", "answer": true, "explain": "Example 5.26 motivates log transforms for skew."},
+    {"id": "q4", "type": "short", "prompt": "Why document engineered features?", "rubric": "Reproducibility, audit, explainability, deployment parity.", "sample_answer": "So another team can reproduce the pipeline and auditors can trace model inputs."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+title: Chapter 5 — Pipelines, automation, and visualization
+footer: Chapter 5 — Pipelines Automation And Visualization
+slides:
+- type: title
+  title: Chapter 5 — Pipelines, automation, and visualization
+  subtitle: Single-notebook scripts do not scale across teams
+  notes: Single-notebook scripts do not scale across teams. This part introduces sklearn
+    pipelines, automated feature engineering, AutoML preprocessing hooks, visualization
+    for defect detection, and a brief R tidyverse contrast.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Explain why pipelines prevent leakage
+  - Contrast dplyr/tidyr with pandas
+  notes: By the end of this part, you should explain why pipelines prevent leakage,
+    name Featuretools-style automation benefits, use box plots and heatmaps as cleaning
+    diagnostics, and contrast dplyr/tidyr with pandas.
+- type: bullets
+  title: 'R: dplyr and tidyr'
+  bullets:
+  - In R workflows
+  - Example 5.58 shows filter and select patterns analogous to pandas
+  - Teams standardized on Python may still encounter R extracts
+  notes: In R workflows, dplyr filters and selects columns while tidyr reshapes long
+    and wide tables. Example 5.58 shows filter and select patterns analogous to pandas.
+    Teams standardized on Python may still encounter R extracts—know that the verbs
+    differ but the cleaning goals match.
+- type: bullets
+  title: sklearn pipelines
+  bullets:
+  - Pipelines chain imputers, scalers, encoders
+  - This prevents statistics computed on validation data from leaking into features
+  - Serialize pipelines with the model for consistent deployment preprocessing
+  notes: Pipelines chain imputers, scalers, encoders, and estimators so each cross-validation
+    fold fits preprocessing only on training folds. This prevents statistics computed
+    on validation data from leaking into features. Serialize pipelines with the model
+    for consistent deployment preprocessing.
+- type: bullets
+  title: 'Automation: Featuretools and AutoML'
+  bullets:
+  - Featuretools performs deep feature synthesis on relational tables
+  - AutoML platforms wrap search over imputers, encoders, and model families
+  - Automation accelerates baselines but still requires domain review to drop leaky
+    or
+  notes: Featuretools performs deep feature synthesis on relational tables—Example
+    5.74 on transactions. AutoML platforms wrap search over imputers, encoders, and
+    model families. Automation accelerates baselines but still requires domain review
+    to drop leaky or nonsense columns.
+- type: bullets
+  title: Example 5.74 — Deep feature synthesis on transactions
+  bullets:
+  - Example 5.74 — hands-on module
+  - Example 5.74 shows automated aggregates across related tables
+  - Explore the chapter example module
+  - 'View files: `modules/chapter5/example74/`'
+  notes: Example 5.74 shows automated aggregates across related tables. Open the example
+    74 module for this chapter to inspect generated features before modeling. Automated
+    does not mean correct—validate cardinality and leakage.
+- type: bullets
+  title: Visualization for cleaning
+  bullets:
+  - Box plots expose outlier tails
+  - Visual checks complement rule-based flags from earlier parts and align with exploratory
+  notes: Box plots expose outlier tails; heatmaps of missingness reveal column-wise
+    patterns; histograms show skew before log transforms. Visual checks complement
+    rule-based flags from earlier parts and align with exploratory practice in Chapter
+    6.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Pipelines encode reproducible preprocessing
+  - Automation proposes features; humans curate them
+  - Visual diagnostics catch defects rules miss
+  notes: Pipelines encode reproducible preprocessing. Automation proposes features;
+    humans curate them. Visual diagnostics catch defects rules miss.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Continue to challenges, best practices, and governance habits
+  notes: Pause for the quiz, then continue to challenges, best practices, and governance
+    habits.

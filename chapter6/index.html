@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 6 — Exploratory Data Analysis (EDA) — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../index.html">Home</a><span class="here">Chapter 6</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 6 · Learning path</div>
+    <section class='hero'><h1>Chapter 6 — Exploratory Data Analysis (EDA)</h1><p class='lead'>Follow the path in order: read the bridge, watch the part, then take the quiz before moving on. Downloads are available if you prefer to study offline.</p><div class="deck-links"><a class="btn" href="chapter6.pptx">Full chapter PPTX</a><a class="btn btn-ghost" href="parts/part-01-introduction-to-eda/index.html">Start first part →</a><a class="btn btn-secondary" href="../modules/chapter6/index.html">Browse examples</a></div></section><h2>What you will learn</h2><ul class='objectives'><li>Define EDA as exploration before formal modeling and link it to Chapter 5 cleaning</li><li>Classify variable types and compute central tendency, dispersion, and shape summaries</li><li>Choose univariate, bivariate, and multivariate visualizations for EDA goals</li><li>Detect missing values, outliers, duplicates, inconsistency, and imbalance during exploration</li><li>Follow a four-step EDA workflow with pandas, matplotlib, seaborn, and related tools</li><li>Apply correlation analysis, PCA, and other advanced exploration techniques</li><li>Practice reproducible, stakeholder-ready visualization and avoid common EDA pitfalls</li><li>Connect EDA patterns to retail, healthcare, fraud, and climate case studies</li></ul><h2>Learning path</h2><div class="path-progress" aria-hidden="true"><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div><div class="path-dot"></div></div>
+<div class="learning-step" id="step-1">
+  <div class="bridge">
+    <span class="bridge-label">Before part 1</span>
+    Chapter 5 repaired defects; this chapter asks how to explore a table before modeling. This first part defines exploratory data analysis, contrasts it with hypothesis confirmation, and shows how EDA and cleaning iterate in practice.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 1 of 12</div>
+        <h3>Introduction to EDA</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~6 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-01-introduction-to-eda/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-01-introduction-to-eda/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example1/index.html">eg:6.1</a><a class="pill pill-muted" href="../modules/chapter6/example4/index.html">eg:6.4</a><a class="pill pill-muted" href="../modules/chapter6/example5/index.html">eg:6.5</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-2">
+  <div class="bridge">
+    <span class="bridge-label">Before part 2</span>
+    Exploration starts with knowing what each column measures. This part classifies continuous, discrete, nominal, and ordinal data, then computes mean, median, and mode—with when each summary fits.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 2 of 12</div>
+        <h3>Data types and central tendency</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-02-types-and-central-tendency/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-02-types-and-central-tendency/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example10/index.html">eg:6.10</a><a class="pill pill-muted" href="../modules/chapter6/example13/index.html">eg:6.13</a><a class="pill pill-muted" href="../modules/chapter6/example15/index.html">eg:6.15</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-3">
+  <div class="bridge">
+    <span class="bridge-label">Before part 3</span>
+    Central tendency locates a distribution; spread and shape explain how trustworthy a single number is. This part covers variance, standard deviation, range, skewness cues, frequency tables, and group-by summaries.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 3 of 12</div>
+        <h3>Dispersion, shape, and grouping</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-03-dispersion-shape-and-grouping/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-03-dispersion-shape-and-grouping/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example18/index.html">eg:6.18</a><a class="pill pill-muted" href="../modules/chapter6/example19/index.html">eg:6.19</a><a class="pill pill-muted" href="../modules/chapter6/example20/index.html">eg:6.20</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-4">
+  <div class="bridge">
+    <span class="bridge-label">Before part 4</span>
+    Summary statistics compress the table; plots restore context. This part introduces histograms, box plots, scatter plots, and correlation-matrix heatmaps for one- and two-variable exploration.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 4 of 12</div>
+        <h3>Univariate and bivariate visualization</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-04-univariate-and-bivariate-visualization/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-04-univariate-and-bivariate-visualization/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example2/index.html">eg:6.2</a><a class="pill pill-muted" href="../modules/chapter6/example11/index.html">eg:6.11</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-5">
+  <div class="bridge">
+    <span class="bridge-label">Before part 5</span>
+    Pairwise screens scale poorly as features accumulate. This part adds pair plots, parallel coordinates, PCA views, and t-SNE embeddings—with cautions on interpreting reduced dimensions.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 5 of 12</div>
+        <h3>Multivariate visualization</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-05-multivariate-visualization/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-05-multivariate-visualization/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example9/index.html">eg:6.9</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-6">
+  <div class="bridge">
+    <span class="bridge-label">Before part 6</span>
+    EDA&#x27;s practical payoff is finding problems early. This part shows detection signals for missingness, outliers, duplicates, inconsistency, and class imbalance—and routes repairs back to Chapter 5.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 6 of 12</div>
+        <h3>Detecting data issues</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-06-detecting-data-issues/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-06-detecting-data-issues/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example6/index.html">eg:6.6</a><a class="pill pill-muted" href="../modules/chapter6/example7/index.html">eg:6.7</a><a class="pill pill-muted" href="../modules/chapter6/example8/index.html">eg:6.8</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-7">
+  <div class="bridge">
+    <span class="bridge-label">Before part 7</span>
+    Scattered plots need a repeatable process. This part walks the four-step workflow—understand, summarize, visualize, quality-check—and maps it to pandas, matplotlib, seaborn, and automated profiling helpers.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 7 of 12</div>
+        <h3>EDA workflow and tools</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-07-eda-workflow-and-tools/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-07-eda-workflow-and-tools/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example1/index.html">eg:6.1</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-8">
+  <div class="bridge">
+    <span class="bridge-label">Before part 8</span>
+    Basic summaries miss nonlinear structure and multicollinearity. This part deepens correlation analysis (Pearson, Spearman) and surveys additional advanced methods referenced in the chapter.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 8 of 12</div>
+        <h3>Advanced EDA techniques</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-08-advanced-eda-techniques/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-08-advanced-eda-techniques/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example4/index.html">eg:6.4</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-9">
+  <div class="bridge">
+    <span class="bridge-label">Before part 9</span>
+    Good exploration is reproducible and communicable, not only correct. This part covers chart choice, avoiding misleading axes, documenting decisions, Jupyter workflows, and stakeholder storytelling.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 9 of 12</div>
+        <h3>Best practices in EDA</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~6 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-09-best-practices-in-eda/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-09-best-practices-in-eda/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example6/index.html">eg:6.6</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-10">
+  <div class="bridge">
+    <span class="bridge-label">Before part 10</span>
+    Even careful analysts over-read charts or stop too soon. This part warns against visualization overfitting, ignored quality issues, confirmation bias, and lack of iteration.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 10 of 12</div>
+        <h3>Common pitfalls in EDA</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~6 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-10-common-pitfalls/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-10-common-pitfalls/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example4/index.html">eg:6.4</a><a class="pill pill-muted" href="../modules/chapter6/example5/index.html">eg:6.5</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-11">
+  <div class="bridge">
+    <span class="bridge-label">Before part 11</span>
+    Workflows make sense when anchored in domain problems. This part tours retail sales, healthcare outcomes, fraud detection, e-commerce segmentation, and climate monitoring as end-to-end EDA narratives.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 11 of 12</div>
+        <h3>Case studies in EDA</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~7 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-11-case-studies/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-11-case-studies/index.html#quiz">Go to quiz</a>
+    </div>
+    <div class='example-pills'><a class="pill pill-muted" href="../modules/chapter6/example5/index.html">eg:6.5</a><a class="pill pill-muted" href="../modules/chapter6/example7/index.html">eg:6.7</a></div>
+  </div>
+</div>
+
+<div class="learning-step" id="step-12">
+  <div class="bridge">
+    <span class="bridge-label">Before part 12</span>
+    Static notebook EDA is the baseline; production pipelines keep evolving. This final part previews automated EDA tools, big-data and streaming exploration, and integration with machine learning pipelines.
+  </div>
+  <div class="clip-card">
+    <div class="clip-card-top">
+      <div>
+        <div class="clip-index">Part 12 of 12</div>
+        <h3>Advanced topics and future directions</h3>
+      </div>
+      <div class="clip-meta">
+        <span class="pill">~6 min</span>
+        <span class="pill pill-muted">Slides + quiz</span>
+      </div>
+    </div>
+    <div class="clip-links">
+      <a class="btn" href="parts/part-12-advanced-topics/index.html">Open part</a>
+      <a class="btn btn-secondary" href="parts/part-12-advanced-topics/index.html#quiz">Go to quiz</a>
+    </div>
+    
+  </div>
+</div>
+
+<section class="wrap-up">
+  <h2>Wrap-up</h2>
+  <p>After about 80 minutes across 12 parts, you should be ready
+  for the next chapter when it is published. Return to the course home anytime.</p>
+  <p><a href="../index.html">← All chapters</a></p>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../assets/site.js"></script>
+</body>
+</html>

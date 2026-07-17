@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EDA workflow and tools — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter6/index.html">Chapter 6</a><span class="here">Part 7/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 6 · Guided part</div>
+    
+<section class="hero">
+  <h1>EDA workflow and tools</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 6</span>
+    <span class="pill pill-muted">Part 7 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-detecting-data-issues/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-advanced-eda-techniques/index.html" title="Advanced EDA techniques">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Follow four-step EDA process</li>
+<li>Use pandas and seaborn</li>
+<li>Recognize automated profiling</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.1</span>
+    <h3>Example 6.1 — E-Commerce Customer EDA Pass</h3>
+    <p>Outline a first-pass EDA workflow that combines summary statistics with univariate and bivariate plots on a customer table.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example1/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 6 — EDA workflow and tools</h3><ul><li>Exploration needs a repeatable sequence and a tool stack</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Pass</li></ul></div><div class="slide-card"><h3>Step 1 — Data understanding</h3><ul><li>Review structure with head, dtypes, and missing or duplicate flags</li><li>Know which columns are numeric, categorical, or temporal before summarizing</li><li>Example 6.1 begins here on the e-commerce customer table</li></ul></div><div class="slide-card"><h3>Step 2 — Descriptive statistics</h3><ul><li>Compute means, medians, modes, variance, and standard deviation for numerics</li><li>Describe() in pandas bundles many numeric summaries</li></ul></div><div class="slide-card"><h3>Step 3 — Visualization</h3><ul><li>Apply histograms, box plots, scatter plots, and bar charts from earlier parts</li><li>Visualization reveals patterns summaries alone miss and supports stakeholder communication</li></ul></div><div class="slide-card"><h3>Step 4 — Data quality checks</h3><ul><li>Use Section 6.4 as a checklist, repair in Chapter 5, then re-explore</li><li>Iteration is normal: a fixed table may expose new relationship questions</li></ul></div><div class="slide-card"><h3>Tools — pandas, matplotlib, seaborn</h3><ul><li>Pandas handles tables, read_csv, describe, isnull, drop_duplicates</li><li>Matplotlib provides base plotting</li><li>R users mirror many steps with dplyr and ggplot2 mentioned in the chapter</li></ul></div><div class="slide-card"><h3>Automating EDA</h3><ul><li>Libraries such as pandas-profiling or ydata-profiling generate summary reports quickly</li><li>Automation starts exploration; it does not replace domain questions</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Follow understand, summarize, visualize, quality-check in order</li><li>Pandas plus seaborn cover most chapter workflows</li><li>Automate the first pass, then drill into anomalies manually</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to advanced EDA techniques including correlation depth</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 6 — EDA workflow and tools</h3><p>Exploration needs a repeatable sequence and a tool stack. This part walks four linked steps and maps them to pandas, matplotlib, seaborn, and automated profiling helpers.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should outline the four-step EDA process, name core Python libraries for tables and plots, and recognize when automated profiling accelerates a first pass.</p></div><div class="transcript"><h3>Slide 3 — Step 1 — Data understanding</h3><p>Review structure with head, dtypes, and missing or duplicate flags. Know which columns are numeric, categorical, or temporal before summarizing. Example 6.1 begins here on the e-commerce customer table.</p></div><div class="transcript"><h3>Slide 4 — Step 2 — Descriptive statistics</h3><p>Compute means, medians, modes, variance, and standard deviation for numerics; counts and percentages for categories. describe() in pandas bundles many numeric summaries—interpret alongside type checks from the previous part.</p></div><div class="transcript"><h3>Slide 5 — Step 3 — Visualization</h3><p>Apply histograms, box plots, scatter plots, and bar charts from earlier parts. Visualization reveals patterns summaries alone miss and supports stakeholder communication.</p></div><div class="transcript"><h3>Slide 6 — Step 4 — Data quality checks</h3><p>Use Section 6.4 as a checklist, repair in Chapter 5, then re-explore. Iteration is normal: a fixed table may expose new relationship questions.</p></div><div class="transcript"><h3>Slide 7 — Tools — pandas, matplotlib, seaborn</h3><p>pandas handles tables—read_csv, describe, isnull, drop_duplicates. matplotlib provides base plotting; seaborn adds statistical aesthetics like histplot with KDE. R users mirror many steps with dplyr and ggplot2 mentioned in the chapter.</p></div><div class="transcript"><h3>Slide 8 — Automating EDA</h3><p>Libraries such as pandas-profiling or ydata-profiling generate summary reports quickly—useful for wide tables, but review automated outputs critically and document overrides. Automation starts exploration; it does not replace domain questions.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Follow understand, summarize, visualize, quality-check in order. pandas plus seaborn cover most chapter workflows. Automate the first pass, then drill into anomalies manually.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>Pause for the quiz, then continue to advanced EDA techniques including correlation depth.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-advanced-eda-techniques/index.html" data-next-label="Continue to Advanced EDA techniques"></div>
+  <script id="quiz-data" type="application/json">{"part_id":"clip-07-eda-workflow-and-tools","title":"Check your understanding","passing_score":0.7,"items":[{"id":"q1","type":"mcq","prompt":"The four EDA steps in this clip are:","choices":["Understand, summarize, visualize, quality-check","Collect, annotate, deploy, monetize","Encrypt, federate, localize, audit","Only train and test split"],"answer_index":0,"explain":"Section 6.5.1 outlines these linked steps."},{"id":"q2","type":"mcq","prompt":"pandas describe() primarily provides:","choices":["Numeric summary statistics for columns","Automatic legal advice","GPU kernel compilation","SQL database hosting"],"answer_index":0,"explain":"describe() bundles mean, std, quartiles, etc."},{"id":"q3","type":"true_false","prompt":"Automated profiling can accelerate a first pass but still needs human review.","answer":true,"explain":"Section 6.5.4 warns against blind trust in automation."},{"id":"q4","type":"mcq","prompt":"After quality checks find issues, the next stop is:","choices":["Chapter 5 cleaning repairs","Immediate model deployment","Deleting the dataset","Skipping documentation"],"answer_index":0,"explain":"Workflow loops exploration with repair."}]}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

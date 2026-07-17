@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case studies and hands-on activities — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 11/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Case studies and hands-on activities</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 11 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-10-challenges-and-best-practices/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-12-advanced-topics/index.html" title="Advanced topics">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Outline retail segmentation cleaning</li>
+<li>Outline healthcare preprocessing</li>
+<li>Use module labs for practice</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.64</span>
+    <h3>Example 5.64 — Retail Purchase Record Schema</h3>
+    <p>Spot missing prices and duplicate rows in a practice retail table.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example64/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.65</span>
+    <h3>Example 5.65 — Guided Pandas Cleaning Template</h3>
+    <p>Complete a guided pandas cleaning template: impute, dedupe, standardize, and filter outliers on retail rows.</p>
+    <p class='module-files-inline'>Preview files: <code>cleaned_data.csv</code>, <code>data.csv</code>, <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example65/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Case studies and hands-on activities</h3><ul><li>Principles become concrete in retail segmentation and healthcare outcome prediction</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Outline cleaning steps for an e-commerce segmentation table and a clinical outcomes table</li><li>Locate module labs for issue spotting and pandas repair templates</li></ul></div><div class="slide-card"><h3>Retail: customer segmentation</h3><ul><li>An e-commerce firm segments customers by purchase behavior</li><li>Challenges include missing age and frequency fields, inconsistent product capitalization</li><li>Solutions: median or mode imputation, currency harmonization, text normalization</li><li>Cleaned data supports clustering and targeted campaigns</li></ul></div><div class="slide-card"><h3>Healthcare: predicting disease outcomes</h3><ul><li>Clinical records combine age, history, labs, and outcomes</li><li>Missing labs, outlier vitals, and inconsistent smoker labels are common</li><li>Solutions: principled imputation, categorical standardization, IQR outlier review</li><li>Preprocessing improves allocative and diagnostic workflows when documented</li></ul></div><div class="slide-card"><h3>Example 5.64 — Retail purchase record schema</h3><ul><li>Example 5.64 — hands-on module</li><li>Example 5.64 introduces a practice table with missing prices and duplicate transactions</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example64/</code></li></ul></div><div class="slide-card"><h3>Example 5.65 — Guided pandas cleaning template</h3><ul><li>Example 5.65 — hands-on module</li><li>Example 5.65 provides a guided repair script</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example65/</code></li></ul></div><div class="slide-card"><h3>Example 5.65 — listing</h3><pre><code>import pandas as pd
+
+df = pd.read_csv(&quot;data.csv&quot;)
+
+df[&#x27;price&#x27;] = df[&#x27;price&#x27;].fillna(df[&#x27;price&#x27;].mean())
+df.dropna(subset=[&#x27;customer_id&#x27;], inplace=True)
+
+df.drop_duplicates(inplace=True)
+
+df[&#x27;product&#x27;] = df[&#x27;product&#x27;].str.lower()
+df[&#x27;purchase_date&#x27;] = pd.to_datetime(df[&#x27;purchase_date&#x27;])
+
+z_scores = (df[&#x27;price&#x27;] - df[&#x27;price&#x27;].mean()) / df[&#x27;price&#x27;].std()
+df = df[z_scores &lt; 3]
+
+df.to_csv(&quot;cleaned_data.csv&quot;, index=False)</code></pre></div><div class="slide-card"><h3>From case study to production</h3><ul><li>Both cases share a pattern</li><li>Retail emphasizes revenue integrity</li><li>Fairness review may follow in Chapter 7</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Domain context chooses imputation and outlier rules</li><li>Case studies connect Sections 5.2–5.5 into narratives</li><li>Module activities supply hands-on repetition without requiring live execution on the</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to advanced topics, Bayesian imputation, streaming data</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Case studies and hands-on activities</h3><p>Principles become concrete in retail segmentation and healthcare outcome prediction. This part walks both domain case studies and points to packaged module activities for spotting and fixing defects.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should outline cleaning steps for an e-commerce segmentation table and a clinical outcomes table, and locate module labs for issue spotting and pandas repair templates.</p></div><div class="transcript"><h3>Slide 3 — Retail: customer segmentation</h3><p>An e-commerce firm segments customers by purchase behavior. Challenges include missing age and frequency fields, inconsistent product capitalization, and mixed currencies. Solutions: median or mode imputation, currency harmonization, text normalization, and scaling of amount and frequency features. Cleaned data supports clustering and targeted campaigns.</p></div><div class="transcript"><h3>Slide 4 — Healthcare: predicting disease outcomes</h3><p>Clinical records combine age, history, labs, and outcomes. Missing labs, outlier vitals, and inconsistent smoker labels are common. Solutions: principled imputation, categorical standardization, IQR outlier review, and numeric scaling before supervised models. Preprocessing improves allocative and diagnostic workflows when documented.</p></div><div class="transcript"><h3>Slide 5 — Example 5.64 — Retail purchase record schema</h3><p>Example 5.64 introduces a practice table with missing prices and duplicate transactions for issue spotting. Open the example 64 module for this chapter to audit the schema before cleaning. This mirrors Section 5.8 spot-the-issue activities on the static site.</p></div><div class="transcript"><h3>Slide 6 — Example 5.65 — Guided pandas cleaning template</h3><p>Example 5.65 provides a guided repair script. Try the example 65 module to apply drop, impute, encode, and scale steps end to end. Additional modules cover scaling comparisons and encoding tradeoffs referenced in the chapter exercises.</p></div><div class="transcript"><h3>Slide 7 — From case study to production</h3><p>Both cases share a pattern: profile defects, apply domain-aware fixes, validate on held-out data, and document transforms. Retail emphasizes revenue integrity; healthcare emphasizes measurement error and label consistency. Fairness review may follow in Chapter 7.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Domain context chooses imputation and outlier rules. Case studies connect Sections 5.2–5.5 into narratives. Module activities supply hands-on repetition without requiring live execution on the course site.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to advanced topics—Bayesian imputation, streaming data, and explainability-aware cleaning.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-12-advanced-topics/index.html" data-next-label="Continue to Advanced topics"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-11-case-studies-and-activities",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "Retail segmentation case study emphasizes:", "choices": ["Imputation, currency harmonization, text normalization, and scaling", "Only federated learning", "Only MNAR proofs", "Skipping duplicate checks"], "answer_index": 0, "explain": "Section 5.7.1 lists these cleaning steps before clustering."},
+    {"id": "q2", "type": "mcq", "prompt": "Healthcare case study commonly requires:", "choices": ["Lab imputation, categorical standardization, outlier review, and scaling", "Deleting all clinical identifiers without review", "Ignoring vitals outliers always", "One-hot encoding every numeric field"], "answer_index": 0, "explain": "Section 5.7.2 outlines clinical preprocessing patterns."},
+    {"id": "q3", "type": "true_false", "prompt": "Example 5.64 provides a practice table for spotting data issues.", "answer": true, "explain": "Supports Section 5.8 spot-the-issue activities via modules."},
+    {"id": "q4", "type": "mcq", "prompt": "Example 5.65 is a:", "choices": ["Guided pandas cleaning template", "GDPR fine calculator", "COMPAS fairness audit", "API rate-limit demo"], "answer_index": 0, "explain": "Hands-on repair walkthrough linked from the clip."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detecting data issues — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter6/index.html">Chapter 6</a><span class="here">Part 6/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 6 · Guided part</div>
+    
+<section class="hero">
+  <h1>Detecting data issues</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 6</span>
+    <span class="pill pill-muted">Part 6 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-05-multivariate-visualization/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-07-eda-workflow-and-tools/index.html" title="EDA workflow and tools">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Detect five defect classes</li>
+<li>Route repairs to Chapter 5</li>
+<li>Log exploration findings</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.6</span>
+    <h3>Example 6.6 — Healthcare Missingness Profile</h3>
+    <p>Profile missingness across healthcare fields and age groups before choosing imputation or exclusion.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example6/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.7</span>
+    <h3>Example 6.7 — Financial Transaction Outlier</h3>
+    <p>Decide whether a financial outlier is fraud, entry error, or the analytical focus.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example7/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.8</span>
+    <h3>Example 6.8 — City Name Inconsistency</h3>
+    <p>Resolve geographic label variants (NY vs New York City) before frequency or join analysis.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example8/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 6 — Detecting data issues</h3><ul><li>EDA finds problems; Chapter 5 fixes them</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Name detection methods for five defect classes</li><li>Explain the explore-then-repair loop with Chapter 5</li></ul></div><div class="slide-card"><h3>Missing data detection</h3><ul><li>Use null counts, column-wise sums, and missingness heatmaps</li><li>Example 6.6 profiles clinical missingness</li><li>Classify MCAR</li></ul></div><div class="slide-card"><h3>Example 6.6 — Healthcare missingness profile</h3><ul><li>Example 6.6 — hands-on module</li><li>Example 6.6 shows how missing labs appear across patients</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter6/example6/</code></li></ul></div><div class="slide-card"><h3>Outliers and duplicates</h3><ul><li>Detect outliers with box plots, scatter plots, Z-scores, and IQR rules</li><li>Example 6.7 places outliers in a fraud transaction setting</li><li>Find duplicates with duplicated checks on keys</li><li>Decide whether outliers are errors, rare valid events, or noise before treatment</li></ul></div><div class="slide-card"><h3>Inconsistency and imbalance</h3><ul><li>Frequency tables surface format drift, Example 6.8 shows city name inconsistency</li><li>Bar charts of class counts reveal imbalance typical in fraud screens</li><li>Standardize labels in Chapter 5</li></ul></div><div class="slide-card"><h3>Example 6.8 — City name inconsistency</h3><ul><li>Example 6.8 — hands-on module</li><li>A geographic label conflict visible in value counts</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter6/example8/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>EDA detection is deliberate routing, not silent fixing</li><li>Each defect class has visual and tabular signals</li><li>Repair workflows live in Chapter 5; exploration returns after fixes</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to the EDA workflow and tools</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 6 — Detecting data issues</h3><p>EDA finds problems; Chapter 5 fixes them. This part lists detection signals for missingness, outliers, duplicates, inconsistency, and class imbalance—with explicit handoffs to cleaning sections.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should name detection methods for five defect classes and explain the explore-then-repair loop with Chapter 5.</p></div><div class="transcript"><h3>Slide 3 — Missing data detection</h3><p>Use null counts, column-wise sums, and missingness heatmaps. Example 6.6 profiles clinical missingness. Classify MCAR, MAR, or MNAR, then choose imputation or deletion in Chapter 5—not during blind exploration without documentation.</p></div><div class="transcript"><h3>Slide 4 — Example 6.6 — Healthcare missingness profile</h3><p>Example 6.6 shows how missing labs appear across patients. Open the example 6 module for this chapter to read a missingness heatmap narrative. Document patterns before imputing.</p></div><div class="transcript"><h3>Slide 5 — Outliers and duplicates</h3><p>Detect outliers with box plots, scatter plots, Z-scores, and IQR rules. Example 6.7 places outliers in a fraud transaction setting. Find duplicates with duplicated checks on keys. Decide whether outliers are errors, rare valid events, or noise before treatment.</p></div><div class="transcript"><h3>Slide 6 — Inconsistency and imbalance</h3><p>Frequency tables surface format drift—Example 6.8 shows city name inconsistency. Bar charts of class counts reveal imbalance typical in fraud screens. Standardize labels in Chapter 5; address imbalance with resampling or weights before modeling.</p></div><div class="transcript"><h3>Slide 7 — Example 6.8 — City name inconsistency</h3><p>Example 6.8 is a geographic label conflict visible in value counts. Try the example 8 module to see how exploration precedes standardization. Keep a log of plots that motivated each cleaning action.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>EDA detection is deliberate routing, not silent fixing. Each defect class has visual and tabular signals. Repair workflows live in Chapter 5; exploration returns after fixes.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to the EDA workflow and tools.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-07-eda-workflow-and-tools/index.html" data-next-label="Continue to EDA workflow and tools"></div>
+  <script id="quiz-data" type="application/json">{"part_id":"clip-06-detecting-data-issues","title":"Check your understanding","passing_score":0.7,"items":[{"id":"q1","type":"mcq","prompt":"During EDA, missing data should be:","choices":["Detected and documented, then repaired via Chapter 5","Silently filled with zeros always","Ignored in all plots","Deleted without logging"],"answer_index":0,"explain":"Section 6.4 emphasizes detection then routed repair."},{"id":"q2","type":"mcq","prompt":"Example 6.7 places outliers in:","choices":["Financial transaction / fraud context","Ordinal satisfaction only","HTML templating","Git version tags"],"answer_index":0,"explain":"Fraud screens emphasize extreme amounts."},{"id":"q3","type":"true_false","prompt":"Example 6.8 illustrates inconsistent city labels found via frequency exploration.","answer":true,"explain":"Geographic label conflicts surface in value counts."},{"id":"q4","type":"mcq","prompt":"Class imbalance is commonly detected with:","choices":["Bar charts or class distribution tables","Only Pearson correlation","Only pie charts of file sizes","Only MD5 hashes"],"answer_index":0,"explain":"Section 6.4 links imbalance detection to distribution views."}]}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

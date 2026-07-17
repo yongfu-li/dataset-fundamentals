@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quality control in annotation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter4/index.html">Chapter 4</a><span class="here">Part 6/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 4 · Guided part</div>
+    
+<section class="hero">
+  <h1>Quality control in annotation</h1>
+  <div class="clip-meta">
+    <span class="pill">~8 min</span>
+    <span class="pill pill-muted">Chapter 4</span>
+    <span class="pill pill-muted">Part 6 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-05-tools-for-annotation/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-07-challenges-in-annotation/index.html" title="Challenges in data annotation">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Name common annotation errors and drift patterns</li>
+<li>Interpret Cohen&#x27;s, Fleiss&#x27;, and Krippendorff&#x27;s agreement measures</li>
+<li>Distinguish IAA from gold-set precision and recall audits</li>
+<li>Describe annotator training and calibration habits</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.30</span>
+    <h3>Example 4.30 — Inconsistent Class Names</h3>
+    <p>Diagnose how synonym class strings (dog vs puppy) split training signal and inflate disagreement metrics.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example30/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.31</span>
+    <h3>Example 4.31 — Low Kappa Triggers Guideline Revision</h3>
+    <p>Treat low Cohen&#x27;s κ on an NER pilot as a stop signal to revise guidelines and retrain—not as noise to ignore.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example31/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:4.32</span>
+    <h3>Example 4.32 — Annotator Audit Versus Model Test</h3>
+    <p>Separate annotator precision/recall against gold labels from model test metrics on the released corpus.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter4/example32/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 4 — Quality control in annotation</h3><ul><li>Tools speed labeling, but inconsistent labels teach the wrong decision boundaries</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Name frequent annotation failure modes</li><li>Describe training habits that sustain label quality during long projects</li></ul></div><div class="slide-card"><h3>Why quality control matters</h3><ul><li>Label quality bounds model performance in supervised learning</li><li>Inconsistent or missing labels teach the wrong decision boundaries</li><li>Quality control is therefore part of dataset governance, not optional polish</li><li>Annotator training before and during full-scale labeling</li></ul></div><div class="slide-card"><h3>Common annotation errors</h3><ul><li>Subjective bias in sentiment or toxicity labels</li><li>Guidelines with positive and negative examples reduce but do not eliminate these errors</li></ul></div><div class="slide-card"><h3>Example 4.30 — Inconsistent class names</h3><ul><li>Example 4.30 — hands-on module</li><li>Example 4.30 shows a naming inconsistency that looks minor but splits the class signal</li><li>One annotator tags pets as “dog” while another uses “puppy” for young dogs</li><li>Without a guideline that collapses those strings to one class</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example30/</code></li></ul></div><div class="slide-card"><h3>Inter-annotator agreement (Table 4.4)</h3><ul><li>Inter-annotator agreement measures consistency among annotators labeling the same items</li><li>High agreement supports reliable guidelines and usable gold labels</li><li>Table 4.4 summarizes common chance-corrected coefficients</li><li>Cohen’s kappa suits two raters on nominal labels</li><li>Fleiss’ kappa extends the idea to more than two raters</li><li>Krippendorff’s alpha handles ordinal or mixed levels and missing ratings with flexible</li></ul></div><div class="slide-card"><h3>Example 4.31 — Low kappa triggers guideline revision</h3><ul><li>Example 4.31 — hands-on module</li><li>Example 4.31 shows how low agreement should stop a scale-up rather than be ignored</li><li>On a named-entity pilot</li><li>The team revises examples and re-trains before labeling the full corpus</li><li>Clear instructions, calibration rounds</li><li>View files: <code>modules/chapter4/example31/</code></li></ul></div><div class="slide-card"><h3>Gold-set audit metrics</h3><ul><li>Inter-annotator agreement measures agreement among annotators</li><li>After adjudication, teams track label-level precision and recall on an audit set</li></ul></div><div class="slide-card"><h3>Example 4.32 — Annotator audit versus model test</h3><ul><li>Example 4.32 — hands-on module</li><li>Example 4.32 separates labeler metrics from model test scores</li><li>On a held-out review batch</li><li>Those figures evaluate the labeler, not the detector trained later on the released corpus</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter4/example32/</code></li></ul></div><div class="slide-card"><h3>Training annotators</h3><ul><li>Train annotators with written guidelines, worked examples</li><li>Regular feedback sessions and spot audits keep drift in check</li><li>Specialist programs</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Fix class-name hygiene, missed instances, and subjective drift with guidelines plus audits</li><li>Use IAA to decide whether to scale</li><li>Train, calibrate, and re-audit after any guideline or tool change</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 4 — Quality control in annotation</h3><p>Tools speed labeling, but inconsistent labels teach the wrong decision boundaries. This part covers common annotation errors, inter-annotator agreement measures, gold-set audit metrics, and annotator training habits that keep drift in check.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should name frequent annotation failure modes, interpret common inter-annotator agreement coefficients, distinguish IAA from gold-set precision and recall, and describe training habits that sustain label quality during long projects.</p></div><div class="transcript"><h3>Slide 3 — Why quality control matters</h3><p>Label quality bounds model performance in supervised learning. Inconsistent or missing labels teach the wrong decision boundaries: a missed pedestrian box becomes a false negative at deployment, and a missed lesion in clinical imaging can have patient-safety implications. Quality control is therefore part of dataset governance, not optional polish. Effective programs combine clear guidelines, pilot rounds, agreement measurement, adjudication of disagreements, gold-set audits, and annotator training before and during full-scale labeling.</p></div><div class="transcript"><h3>Slide 4 — Common annotation errors</h3><p>Frequent failure modes include inconsistent class names, missed instances, boundary slack in boxes or masks, and subjective bias in sentiment or toxicity labels. Guidelines with positive and negative examples reduce but do not eliminate these errors; audits on a held-out review set catch drift during long projects.</p></div><div class="transcript"><h3>Slide 5 — Example 4.30 — Inconsistent class names</h3><p>Example 4.30 shows a naming inconsistency that looks minor but splits the class signal. One annotator tags pets as “dog” while another uses “puppy” for young dogs. Without a guideline that collapses those strings to one class, training treats them as distinct categories and evaluation counts false disagreements. Open the example 30 module for this chapter to see how schema hygiene prevents split classes.</p></div><div class="transcript"><h3>Slide 6 — Inter-annotator agreement (Table 4.4)</h3><p>Inter-annotator agreement measures consistency among annotators labeling the same items. High agreement supports reliable guidelines and usable gold labels; low agreement often signals ambiguous schemas or inadequate training. Table 4.4 summarizes common chance-corrected coefficients. Cohen’s kappa suits two raters on nominal labels. Fleiss’ kappa extends the idea to more than two raters. Krippendorff’s alpha handles ordinal or mixed levels and missing ratings with flexible distance metrics. Values near one indicate strong agreement beyond chance; values near zero are consistent with chance agreement.</p></div><div class="transcript"><h3>Slide 7 — Example 4.31 — Low kappa triggers guideline revision</h3><p>Example 4.31 shows how low agreement should stop a scale-up rather than be ignored. On a named-entity pilot, two annotators reach kappa near 0.35 on organization spans because the guideline is unclear about subsidiaries versus parent brands. The team revises examples and re-trains before labeling the full corpus. Clear instructions, calibration rounds, and adjudication remain the primary remedies when agreement stays low. Open the example 31 module for this chapter to trace the pilot decision.</p></div><div class="transcript"><h3>Slide 8 — Gold-set audit metrics</h3><p>Inter-annotator agreement measures agreement among annotators; gold-set metrics measure correctness against adjudicated reference labels. After adjudication, teams track label-level precision and recall on an audit set: precision captures spurious labels; recall captures missed instances; F1 balances both when false positives and false negatives are costly.</p></div><div class="transcript"><h3>Slide 9 — Example 4.32 — Annotator audit versus model test</h3><p>Example 4.32 separates labeler metrics from model test scores. On a held-out review batch, an annotator’s box labels achieve precision 0.92 and recall 0.81 against the gold set. Those figures evaluate the labeler, not the detector trained later on the released corpus; model metrics on a test split answer a different question. Open the example 32 module for this chapter to compare audit versus evaluation metrics.</p></div><div class="transcript"><h3>Slide 10 — Training annotators</h3><p>Train annotators with written guidelines, worked examples, and a short qualification set before production labeling. Regular feedback sessions and spot audits keep drift in check; incentive schemes should reward accuracy and agreement, not raw speed alone. Specialist programs—such as clinical audio with physician panels on the tool path—illustrate putting domain experts inside the workflow, not only in a final audit.</p></div><div class="transcript"><h3>Slide 11 — Takeaways</h3><p>Fix class-name hygiene, missed instances, and subjective drift with guidelines plus audits. Use IAA to decide whether to scale; use gold-set precision and recall to score individual labelers. Train, calibrate, and re-audit after any guideline or tool change.</p></div><div class="transcript"><h3>Slide 12 — Next</h3><p>Complete the quiz, then continue to the next part on challenges in annotation—scale, bias, ethics, and rare events.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-07-challenges-in-annotation/index.html" data-next-label="Continue to Challenges in data annotation"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-06-quality-control",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What problem does Example 4.30 illustrate?",
+      "choices": [
+        "Perfect agreement on all labels",
+        "Inconsistent class names splitting one category into two training signals",
+        "Fully automated labeling without review",
+        "Missing video frames only"
+      ],
+      "answer_index": 1,
+      "explain": "Dog versus puppy strings fracture a single pet class without guideline collapse."
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "prompt": "Which agreement measure is described for two raters on nominal labels?",
+      "choices": [
+        "Cohen's kappa",
+        "Fleiss' kappa only for pairs",
+        "Training loss",
+        "Model F1 on a test split"
+      ],
+      "answer_index": 0,
+      "explain": "Cohen's kappa is the pairwise chance-corrected measure in Table 4.4."
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "prompt": "In Example 4.32, precision and recall on a gold audit set evaluate the annotator, not the trained detector.",
+      "answer": true,
+      "explain": "Labeler audit metrics answer a different question than model test metrics."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What should a team do when a pilot reaches kappa near 0.35 because guidelines are unclear, as in Example 4.31?",
+      "rubric": "Revise guidelines/examples, retrain, adjudicate—do not scale up blindly.",
+      "sample_answer": "Revise the guideline with clearer examples, retrain annotators, and rerun the pilot before full-corpus labeling."
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "prompt": "Which is NOT listed as a frequent annotation failure mode in this clip?",
+      "choices": [
+        "Missed instances",
+        "Boundary slack in boxes or masks",
+        "Choosing a learning rate",
+        "Subjective bias in sentiment labels"
+      ],
+      "answer_index": 2,
+      "explain": "Learning-rate tuning is model training, not a label QC failure mode."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

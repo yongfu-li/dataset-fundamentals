@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missing data — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter5/index.html">Chapter 5</a><span class="here">Part 2/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 5 · Guided part</div>
+    
+<section class="hero">
+  <h1>Missing data</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 5</span>
+    <span class="pill pill-muted">Part 2 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-01-introduction-to-data-cleaning/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-03-duplicates-and-inconsistency/index.html" title="Duplicates and inconsistency">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define MCAR, MAR, and MNAR</li>
+<li>Match mechanisms to scenarios</li>
+<li>List common causes of missing fields</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.8</span>
+    <h3>Example 5.8 — MCAR System Error Omits Records</h3>
+    <p>Classify MCAR survey dropouts and when listwise deletion or simple imputation is less biased.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example8/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.9</span>
+    <h3>Example 5.9 — MAR Income Nonresponse Pattern</h3>
+    <p>Identify MAR income nonresponse and when conditioning on observed covariates or MI helps.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example9/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:5.10</span>
+    <h3>Example 5.10 — MNAR Income Self-Censoring</h3>
+    <p>Explain MNAR self-censoring on sensitive values and why mean imputation can understate tails.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter5/example10/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 5 — Missing data</h3><ul><li>Missing values are among the most common defects, and the most dangerous when handled blindly</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Define MCAR, MAR</li><li>MNAR, match each to a short scenario</li><li>List typical causes of missing fields in real pipelines</li></ul></div><div class="slide-card"><h3>MCAR — missing completely at random</h3><ul><li>The probability a value is missing does not depend on observed or unobserved data</li><li>Example 5.8 sketches a system error that omits records uniformly</li><li>Simple deletion or mean imputation may be less biased when MCAR truly holds</li></ul></div><div class="slide-card"><h3>MAR — missing at random</h3><ul><li>Under MAR, missingness depends on observed variables but not on the missing value itself</li><li>Example 5.9 shows income nonresponse related to age or employment status that is recorded</li><li>MAR is the sweet spot for many principled imputation methods</li></ul></div><div class="slide-card"><h3>MNAR — missing not at random</h3><ul><li>Under MNAR, missingness depends on the unobserved value itself</li><li>Example 5.10 shows high earners declining to report income</li><li>MNAR demands explicit modeling, sensitivity analysis, or collection redesign</li></ul></div><div class="slide-card"><h3>Example 5.8 — MCAR system error</h3><ul><li>Example 5.8 — hands-on module</li><li>The uniform omission pattern</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter5/example8/</code></li></ul></div><div class="slide-card"><h3>Causes of missing data</h3><ul><li>Disk or sensor failures truncating files</li><li>Example 5.11 shows skipped sensitive items; Example 5.13 shows truncated sensor logs</li><li>The cause hints at the mechanism</li></ul></div><div class="slide-card"><h3>Why mechanism matters</h3><ul><li>Listwise deletion is simple but wasteful under MAR if informative rows are dropped</li><li>Mean imputation understates variance</li><li>MNAR fixes require domain judgment</li><li>Chapter 6 exploration helps detect patterns</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Classify missingness before imputing</li><li>MNAR are not interchangeable labels, they dictate which repairs are defensible</li><li>Causes range from human behavior to infrastructure failure</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to duplicates and inconsistent encodings</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 5 — Missing data</h3><p>Missing values are among the most common defects—and the most dangerous when handled blindly. This part classifies missing-data mechanisms and traces causes from survey design to hardware failure.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should define MCAR, MAR, and MNAR, match each to a short scenario, and list typical causes of missing fields in real pipelines.</p></div><div class="transcript"><h3>Slide 3 — MCAR — missing completely at random</h3><p>Under MCAR, the probability a value is missing does not depend on observed or unobserved data. Example 5.8 sketches a system error that omits records uniformly—any row is equally likely to be dropped. Simple deletion or mean imputation may be less biased when MCAR truly holds, though that assumption is rare in practice.</p></div><div class="transcript"><h3>Slide 4 — MAR — missing at random</h3><p>Under MAR, missingness depends on observed variables but not on the missing value itself after conditioning on what you see. Example 5.9 shows income nonresponse related to age or employment status that is recorded—analysts can model missingness using observed columns. MAR is the sweet spot for many principled imputation methods.</p></div><div class="transcript"><h3>Slide 5 — MNAR — missing not at random</h3><p>Under MNAR, missingness depends on the unobserved value itself. Example 5.10 shows high earners declining to report income—the missing values are not random even after conditioning on observed fields. MNAR demands explicit modeling, sensitivity analysis, or collection redesign; naive imputation can seriously bias estimates.</p></div><div class="transcript"><h3>Slide 6 — Example 5.8 — MCAR system error</h3><p>Example 5.8 is the uniform omission pattern. Open the example 8 module for this chapter to compare MCAR assumptions with the MAR and MNAR vignettes. Always document which mechanism you believe applies before choosing a fix.</p></div><div class="transcript"><h3>Slide 7 — Causes of missing data</h3><p>Common causes include survey nonresponse on sensitive questions, data-entry typos leaving blanks, integration gaps when merging sources, and disk or sensor failures truncating files. Example 5.11 shows skipped sensitive items; Example 5.13 shows truncated sensor logs. The cause hints at the mechanism.</p></div><div class="transcript"><h3>Slide 8 — Why mechanism matters</h3><p>Listwise deletion is simple but wasteful under MAR if informative rows are dropped. Mean imputation understates variance. MNAR fixes require domain judgment. Chapter 6 exploration helps detect patterns; this chapter supplies formal repair methods in the cleaning-techniques part.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Classify missingness before imputing. MCAR, MAR, and MNAR are not interchangeable labels—they dictate which repairs are defensible. Causes range from human behavior to infrastructure failure.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>Pause for the quiz, then continue to duplicates and inconsistent encodings—defects that survive even when every cell is filled.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-03-duplicates-and-inconsistency/index.html" data-next-label="Continue to Duplicates and inconsistency"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "clip-02-missing-data",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {"id": "q1", "type": "mcq", "prompt": "MAR (missing at random) means missingness depends on:", "choices": ["Nothing at all", "Observed variables but not the missing value after conditioning on observed data", "Only the missing value itself", "Only the model algorithm"], "answer_index": 1, "explain": "MAR allows modeling missingness using observed columns, unlike MNAR."},
+    {"id": "q2", "type": "mcq", "prompt": "Example 5.10 (high earners not reporting income) illustrates:", "choices": ["MCAR", "MAR", "MNAR", "No missing data"], "answer_index": 2, "explain": "Missingness depends on the unobserved income value."},
+    {"id": "q3", "type": "true_false", "prompt": "Sensor file truncation is one cause of missing data mentioned in the chapter.", "answer": true, "explain": "Hardware or disk failures can truncate logs (Example 5.13)."},
+    {"id": "q4", "type": "mcq", "prompt": "Why classify MCAR/MAR/MNAR before imputing?", "choices": ["It determines which repair strategies are defensible", "It picks the ML algorithm automatically", "It eliminates the need for documentation", "It only affects visualization colors"], "answer_index": 0, "explain": "Mechanism assumptions dictate whether deletion or simple imputation is appropriate."}
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

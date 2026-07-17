@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exploring a dataset — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter1/index.html">Chapter 1</a><span class="here">Part 5/7</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 1 · Guided part</div>
+    
+<section class="hero">
+  <h1>Exploring a dataset</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 1</span>
+    <span class="pill pill-muted">Part 5 of 7</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-characteristics-of-good-datasets/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-uses-of-datasets/index.html" title="Uses of datasets">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>State three early questions exploration should answer</li>
+<li>Match common tools to dataset size and structure</li>
+<li>Outline a first-pass profiling pattern</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.20</span>
+    <h3>Example 1.20 — Exploratory Analysis of Household Incomes</h3>
+    <p>Run a minimal pandas EDA loop — preview, summarize, check missingness, visualize — and read skew directly off mean vs median.</p>
+    <p class='module-files-inline'>Preview files: <code>household_incomes.csv</code>, <code>main.py</code>, <code>requirements.txt</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example20/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Exploring a dataset</h3><ul><li>Quality criteria tell you what good looks like</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>A minimal profiling pattern using summaries, visuals, and missingness checks</li></ul></div><div class="slide-card"><h3>Why explore first?</h3><ul><li>Exploration builds a mental model of the domain</li><li>It does not replace formal cleaning in later chapters</li></ul></div><div class="slide-card"><h3>Three early questions</h3><ul><li>Ask: what is in the table, what looks suspicious</li><li>An e-commerce glance that reveals holiday spikes</li></ul></div><div class="slide-card"><h3>Tools for exploration</h3><ul><li>Spreadsheets suit small tables</li><li>SQL handles filtering and aggregation in relational stores</li><li>Pandas supports reproducible profiling</li><li>Dashboards help teams share interactive views</li><li>No single tool wins every scenario</li></ul></div><div class="slide-card"><h3>Example 1.20 — Household incomes EDA</h3><ul><li>Example 1.20 — hands-on module</li><li>Example 1.20 walks through a standard pandas profiling script on a compact</li><li>Use it as a template: summary statistics, distribution checks, and null counts</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example20/</code></li></ul></div><div class="slide-card"><h3>Example 1.20 — listing</h3><pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the dataset
+household_incomes = pd.read_csv(&quot;household_incomes.csv&quot;)
+
+# View the first few rows
+print(household_incomes.head())
+
+# Summary statistics for numerical columns
+print(household_incomes.describe())
+
+# Check for missing values
+print(household_incomes.isnull().sum())
+
+# Visualize the income distribution
+household_incomes[&quot;Income&quot;].hist()
+plt.title(&quot;Distribution of Household Incomes&quot;)
+plt.xlabel(&quot;Income&quot;)
+plt.ylabel(&quot;Frequency&quot;)
+plt.show()</code></pre></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Explore before modeling</li><li>Choose tools that fit size and structure</li><li>Document what you inspected and what you decided to fix so later analysis stays</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Exploring a dataset</h3><p>Quality criteria tell you what good looks like. Exploration is how you check whether a concrete file meets that bar before fitting models.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>This part covers three early questions every analyst should settle, how to match tools to the table at hand, and a minimal profiling pattern using summaries, visuals, and missingness checks.</p></div><div class="transcript"><h3>Slide 3 — Why explore first?</h3><p>Exploration builds a mental model of the domain: seasonal sales cycles, sensor outliers, missing demographics that would bias a segmentation model. It does not replace formal cleaning in later chapters; it reveals where cleaning is needed and which variables merit deeper study.</p></div><div class="transcript"><h3>Slide 4 — Three early questions</h3><p>Ask: what is in the table, what looks suspicious, and what analysis goals remain feasible given the defects you find. An e-commerce glance that reveals holiday spikes, for example, can justify seasonal features long before training.</p></div><div class="transcript"><h3>Slide 5 — Tools for exploration</h3><p>Spreadsheets suit small tables. SQL handles filtering and aggregation in relational stores. pandas supports reproducible profiling. Dashboards help teams share interactive views. No single tool wins every scenario—the habit of documenting findings matters more than the brand of software.</p></div><div class="transcript"><h3>Slide 6 — Example 1.20 — Household incomes EDA</h3><p>Example 1.20 walks through a standard pandas profiling script on a compact household-income table. Use it as a template: summary statistics, distribution checks, and null counts. Run the example 20 module to see the pattern end to end.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Explore before modeling. Choose tools that fit size and structure. Document what you inspected and what you decided to fix so later analysis stays accountable.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then continue to uses of datasets—where these practices create value across sectors.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-uses-of-datasets/index.html" data-next-label="Continue to Uses of datasets"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-05-exploring-a-dataset",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Exploration in this chapter is primarily meant to:",
+      "choices": [
+        "Replace all formal cleaning forever",
+        "Discover structure, defects, and feasible goals before modeling",
+        "Train the final production model",
+        "Encrypt the dataset at rest"
+      ],
+      "answer_index": 1,
+      "explain": "Exploration reveals where cleaning is needed and what analysis remains feasible; it does not replace formal cleaning workflows."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "A first exploration pass often includes summary statistics, visuals, and missingness checks.",
+      "answer": true,
+      "explain": "Section 1.4.3 describes summaries, histograms/scatter plots, and null counts as a practical first pass."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which tool is highlighted for reproducible tabular profiling scripts?",
+      "choices": [
+        "Handwritten sticky notes only",
+        "Python pandas",
+        "Unlabeled image dumps",
+        "Random guessing"
+      ],
+      "answer_index": 1,
+      "explain": "Table 1.7 and Example 1.20 emphasize pandas for detailed, script-based exploration."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "State one of the three early questions exploration should answer.",
+      "rubric": "Accept: what is in the table; what looks suspicious; what goals remain feasible given defects.",
+      "sample_answer": "What looks suspicious in the table?"
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

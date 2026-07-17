@@ -1,0 +1,82 @@
+title: Chapter 5 — Feature engineering and transforms
+footer: Chapter 5 — Feature Engineering And Transforms
+slides:
+- type: title
+  title: Chapter 5 — Feature engineering and transforms
+  subtitle: Many models need more than scaled raw columns
+  notes: Many models need more than scaled raw columns. This part adds binning, derived
+    and interaction features, dimensionality reduction, and log or polynomial transforms.
+- type: bullets
+  title: Learning objectives
+  bullets:
+  - Explain equal-width versus frequency binning, construct ratio and interaction
+    features
+  - Choose log or polynomial expansions when skew or nonlinearity demands them
+  notes: By the end of this part, you should explain equal-width versus frequency
+    binning, construct ratio and interaction features, and choose log or polynomial
+    expansions when skew or nonlinearity demands them.
+- type: bullets
+  title: Binning numerical data
+  bullets:
+  - Binning groups continuous values into intervals
+  - Example 5.51 uses equal-width age bins
+  - Binning reduces noise and handles nonlinear effects but loses granularity
+  notes: Binning groups continuous values into intervals. Example 5.51 uses equal-width
+    age bins; Example 5.52 uses frequency bins for test scores so each bin has similar
+    counts. Binning reduces noise and handles nonlinear effects but loses granularity—document
+    cut points.
+- type: bullets
+  title: Adding new features
+  bullets:
+  - Example 5.53 adds a squared term
+  - Domain ratios often outperform raw stacks of columns
+  - Avoid generating features that duplicate identifiers or leak targets
+  notes: Example 5.53 adds a squared term; Example 5.54 adds an age-by-income interaction;
+    Example 5.55 engineers price per square foot from price and area. Domain ratios
+    often outperform raw stacks of columns. Avoid generating features that duplicate
+    identifiers or leak targets.
+- type: bullets
+  title: Example 5.55 — Engineer price per square foot
+  bullets:
+  - Example 5.55 — hands-on module
+  - The classic ratio feature
+  - Explore the chapter example module
+  - 'View files: `modules/chapter5/example55/`'
+  notes: Example 5.55 is the classic ratio feature. Open the example 55 module for
+    this chapter to see how derived columns capture economics more directly than raw
+    price alone. Validate that denominators are nonzero and units align.
+- type: bullets
+  title: Dimensionality reduction and selection
+  bullets:
+  - High-dimensional sparse tables benefit from principal components
+  - Selection reduces overfitting and training time
+  - Keep interpretability requirements in mind for regulated domains
+  notes: High-dimensional sparse tables benefit from principal components, feature
+    selection, or dropping correlated groups—as in Example 5.45. Selection reduces
+    overfitting and training time. Keep interpretability requirements in mind for
+    regulated domains.
+- type: bullets
+  title: Log and polynomial transforms
+  bullets:
+  - Log transforms compress right tails, Example 5.26 on income
+  - Polynomial expansions, Example 5.56, let linear models capture curvature
+  - Apply transforms before splitting or fit parameters on training folds only
+  - Inverse transforms may be needed for interpretation
+  notes: Log transforms compress right tails—Example 5.26 on income. Polynomial expansions—Example
+    5.56—let linear models capture curvature. Apply transforms before splitting or
+    fit parameters on training folds only. Inverse transforms may be needed for interpretation.
+- type: bullets
+  title: Takeaways
+  bullets:
+  - Engineering encodes domain knowledge
+  - Binning and transforms trade resolution for stability
+  - Document every derived column for reproducibility and explainability
+  notes: Engineering encodes domain knowledge. Binning and transforms trade resolution
+    for stability. Document every derived column for reproducibility and explainability.
+- type: bullets
+  title: Next
+  bullets:
+  - Complete the quiz for this part
+  - Continue to Python tools that implement these steps at scale
+  notes: Pause for the quiz, then continue to Python tools that implement these steps
+    at scale.

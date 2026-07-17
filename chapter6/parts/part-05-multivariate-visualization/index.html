@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multivariate visualization — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter6/index.html">Chapter 6</a><span class="here">Part 5/12</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 6 · Guided part</div>
+    
+<section class="hero">
+  <h1>Multivariate visualization</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 6</span>
+    <span class="pill pill-muted">Part 5 of 12</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-univariate-and-bivariate-visualization/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-detecting-data-issues/index.html" title="Detecting data issues">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Use pair plots and parallel coordinates</li>
+<li>Explain PCA and t-SNE roles</li>
+<li>State interpretive limits</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:6.9</span>
+    <h3>Example 6.9 — Geography and Purchase Frequency</h3>
+    <p>Form a testable geography–purchase hypothesis from a regional cluster in a scatter or map view.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter6/example9/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 6 — Multivariate visualization</h3><ul><li>When more than two features matter, pair plots, heatmaps, parallel coordinates, PCA</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Explain pair plots and parallel-coordinate uses</li><li>State cautions for t-SNE cluster views</li></ul></div><div class="slide-card"><h3>Heatmaps and pair plots</h3><ul><li>Heatmaps color-code matrix values, default for correlation tables</li><li>Frequency together</li></ul></div><div class="slide-card"><h3>Parallel coordinates</h3><ul><li>Each variable is a vertical axis; each row is a polyline across axes</li><li>Useful for finding similar customer profiles in moderate dimensions</li></ul></div><div class="slide-card"><h3>Principal component analysis</h3><ul><li>PCA builds orthogonal components capturing successive maximum variance directions</li><li>Plotting the first two or three components can reveal clusters invisible in raw feature</li><li>PCA is linear; nonlinear structure may need other tools</li></ul></div><div class="slide-card"><h3>t-SNE embeddings</h3><ul><li>T-SNE emphasizes local neighborhoods in two or three dimensions</li><li>Interpret distances between distant clusters cautiously</li></ul></div><div class="slide-card"><h3>Example 6.9 — Geography and purchase frequency</h3><ul><li>Example 6.9 — hands-on module</li><li>Example 6.9 links geography to purchase hypotheses</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter6/example9/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Escalate plot complexity only when the question requires it</li><li>PCA and t-SNE are exploratory projections, not replacements for domain validation</li><li>Pair plots remain the honest first multivariate screen</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Continue to detecting data issues during EDA</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 6 — Multivariate visualization</h3><p>When more than two features matter, pair plots, heatmaps, parallel coordinates, PCA, and t-SNE help you see structure—each with interpretive limits.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should explain pair plots and parallel-coordinate uses, describe PCA as a variance-maximizing projection, and state cautions for t-SNE cluster views.</p></div><div class="transcript"><h3>Slide 3 — Heatmaps and pair plots</h3><p>Heatmaps color-code matrix values—default for correlation tables. Pair plots show every pairwise scatter for continuous features, giving a quick tour of age, income, spend, and frequency together.</p></div><div class="transcript"><h3>Slide 4 — Parallel coordinates</h3><p>Each variable is a vertical axis; each row is a polyline across axes. Useful for finding similar customer profiles in moderate dimensions—color by category to separate product mixes.</p></div><div class="transcript"><h3>Slide 5 — Principal component analysis</h3><p>PCA builds orthogonal components capturing successive maximum variance directions. Plotting the first two or three components can reveal clusters invisible in raw feature space. PCA is linear; nonlinear structure may need other tools.</p></div><div class="transcript"><h3>Slide 6 — t-SNE embeddings</h3><p>t-SNE emphasizes local neighborhoods in two or three dimensions—helpful for cluster discovery after optional PCA pre-reduction on large tables. Interpret distances between distant clusters cautiously; t-SNE is primarily a local structure tool.</p></div><div class="transcript"><h3>Slide 7 — Example 6.9 — Geography and purchase frequency</h3><p>Example 6.9 links geography to purchase hypotheses—multivariate views help test whether regional segments differ once several features are viewed together. Open the example 9 module for this chapter to explore grouped and reduced views.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Escalate plot complexity only when the question requires it. PCA and t-SNE are exploratory projections, not replacements for domain validation. Pair plots remain the honest first multivariate screen.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Pause for the quiz, then continue to detecting data issues during EDA.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-detecting-data-issues/index.html" data-next-label="Continue to Detecting data issues"></div>
+  <script id="quiz-data" type="application/json">{"part_id":"clip-05-multivariate-visualization","title":"Check your understanding","passing_score":0.7,"items":[{"id":"q1","type":"mcq","prompt":"PCA components are constructed to capture:","choices":["Successive directions of maximum variance","Only categorical modes","Legal retention periods","API rate limits"],"answer_index":0,"explain":"PCA is a linear variance-maximizing projection."},{"id":"q2","type":"mcq","prompt":"t-SNE is best interpreted as:","choices":["A local neighborhood embedding tool","A causal inference proof","A duplicate removal rule","A GDPR lawful basis"],"answer_index":0,"explain":"Distant cluster distances in t-SNE need caution."},{"id":"q3","type":"true_false","prompt":"Pair plots show all pairwise scatters for selected continuous features.","answer":true,"explain":"Pair plots are a multivariate tour."},{"id":"q4","type":"mcq","prompt":"Parallel-coordinate plots represent:","choices":["Each row as a polyline across variable axes","Only two columns at a time","Missing data imputation","Train/test leakage"],"answer_index":0,"explain":"Useful for moderate-dimensional profile comparison."}]}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>
