@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAP, sharding, and consistency — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 5/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>CAP, sharding, and consistency</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 5 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-distributed-systems/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-dataset-versioning-tools/index.html" title="Dataset versioning tools">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>State the CAP theorem and the consistency-versus-availability choice under partition</li>
+<li>Explain sharding and replication for scale and fault tolerance</li>
+<li>Contrast strong and eventual consistency with ledger versus availability-first examples</li>
+<li>Match consistency models to workload cost of stale reads versus unavailability</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.10</span>
+    <h3>Example 12.10 — Sharding by Geography or Customer ID</h3>
+    <p>Demonstrate hash and geography sharding to spread write load across nodes.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example10/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.11</span>
+    <h3>Example 12.11 — Strong Consistency in Financial Ledgers</h3>
+    <p>Prefer strong consistency for financial ledgers under concurrent transfers.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example11/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.13</span>
+    <h3>Example 12.13 — Eventual Consistency in DynamoDB and Cassandra</h3>
+    <p>Recognize eventual consistency in DynamoDB/Cassandra for high availability.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example13/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — CAP, sharding, and consistency</h3><p>Distribution introduces trade-offs among consistency, availability, and partition tolerance. This part covers the CAP theorem, sharding and replication patterns, and when strong versus eventual consistency is appropriate.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to state the CAP theorem and why partitions force a consistency-versus-availability choice; explain sharding and replication for scale and fault tolerance; contrast strong and eventual consistency with Examples 12.11 and 12.13; and relate those choices to workload cost of stale reads versus temporary unavailability.</p></div><div class="transcript"><h3>Slide 3 — The CAP theorem</h3><p>The CAP theorem states that a distributed system cannot guarantee consistency, availability, and partition tolerance simultaneously. Consistency means every read returns the most recent write. Availability means every request receives a response even if some nodes are down. Partition tolerance means the system continues when the network splits nodes apart.</p></div><div class="transcript"><h3>Slide 4 — CP versus AP under partition</h3><p>Because partitions are unavoidable in real networks, practical datastores sit on a partition-tolerant edge and choose either consistency or availability when a partition occurs. Under partition, CP systems may reject writes until replicas agree, whereas AP systems accept traffic and reconcile later. The choice depends on whether stale reads or temporary unavailability is more costly for the workload.</p></div><div class="transcript"><h3>Slide 5 — Sharding and Example 12.10</h3><p>Data sharding partitions data across servers to improve scalability, fault tolerance, and performance. Example 12.10 shows a common sharding key choice: customer tables are often sharded by geography or customer ID so each node owns a slice of keys and write load spreads across the cluster. The example 10 module for this chapter summarizes that keying pattern. Replication duplicates data across nodes or data centers so another replica can take over if one node fails.</p></div><div class="transcript"><h3>Slide 6 — Example 12.11 — Strong Consistency in Financial Ledgers</h3><p>Strong consistency guarantees that any read returns the most recent write regardless of which replica is accessed. Example 12.11 requires that guarantee for balances: in payments and ledger systems, strong consistency is preferred so concurrent transfers cannot leave accounts in conflicting states visible to different clients. The example 11 module for this chapter covers that ledger case.</p></div><div class="transcript"><h3>Slide 7 — Example 12.13 — Eventual Consistency in DynamoDB and Cassandra</h3><p>Eventual consistency sacrifices immediate agreement for availability and partition tolerance: writes propagate to other nodes, but nodes may temporarily disagree. Example 12.13 lists stores that favor availability under partition. Amazon DynamoDB and Apache Cassandra commonly emphasize availability and partition tolerance with eventual consistency tunable by client read and write quorums. The example 13 module for this chapter frames that availability-first pattern.</p></div><div class="transcript"><h3>Slide 8 — Choosing a consistency model</h3><p>For many web and social applications, temporary discrepancies are acceptable and eventual consistency is a useful trade-off. E-commerce platforms, content delivery networks, and social media often favor availability and throughput. Conversely, sensitive financial or health-related data often require strong consistency to prevent critical errors. Design hinges on application needs and the consistency, availability, and scalability trade-offs already surveyed.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>CAP says partitions force a choice between consistency and availability in practice. Sharding spreads keys; replication preserves availability after failures. Strong consistency fits ledgers and similar integrity-critical work; eventual consistency fits availability-first web and social stores. Match the model to whether stale reads or downtime hurts more.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part shifts from storage mechanics to dataset versioning at platform scale: DVC remotes on object storage, Pachyderm partition recompute, Delta Lake time travel, and Iceberg snapshots—distinct from Chapter 8 team-scale Git workflows.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-dataset-versioning-tools/index.html" data-next-label="Continue to Dataset versioning tools"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-05-cap-sharding-consistency",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does the CAP theorem claim about consistency, availability, and partition tolerance?",
+      "choices": [
+        "A distributed system cannot guarantee all three simultaneously",
+        "Every system must always provide all three forever",
+        "Only single-node databases can have partitions",
+        "Availability is irrelevant when networks fail"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.2.7 states it is impossible to achieve all three guarantees simultaneously."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Under a network partition, AP systems may accept traffic and reconcile replicas later.",
+      "answer": true,
+      "explain": "The chapter contrasts CP (may reject writes) with AP (accept and reconcile later)."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "According to Example 12.10, why shard customer tables by geography or customer ID?",
+      "choices": [
+        "So each node owns a slice of keys and write load spreads across the cluster",
+        "So every node stores an identical full copy of all keys only",
+        "So sharding becomes unnecessary for all workloads",
+        "So CAP no longer applies to any store"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.10 describes sharding so each node owns a key slice and load spreads."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Why prefer strong consistency in financial ledgers (Example 12.11)?",
+      "rubric": "Mention avoiding conflicting account states / concurrent transfers / integrity.",
+      "sample_answer": "So concurrent transfers cannot leave accounts in conflicting states for different clients."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Example 12.13 states DynamoDB and Cassandra commonly emphasize availability with eventual consistency tunable by quorums.",
+      "answer": true,
+      "explain": "Example 12.13 lists those stores as availability-first with tunable eventual consistency."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

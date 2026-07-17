@@ -1,0 +1,54 @@
+{
+  "part_id": "part-06-dataset-versioning-tools",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "How does Chapter 12 versioning differ in emphasis from Chapter 8 team-scale workflows?",
+      "choices": [
+        "It focuses on lakehouse snapshots and object-store layouts at platform scale",
+        "It only repeats Git commit tutorials with no storage topics",
+        "It replaces all storage with handwritten logs",
+        "It removes any need for immutable version identifiers"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.3 states Chapter 8 holds Git/DVC tutorials; Chapter 12 focuses on distributed object stores and lakehouse table versions."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "In Example 12.14, DVC hash files can live in Git while training shards live in an S3 or GCS remote.",
+      "answer": true,
+      "explain": "Example 12.14 describes that split between Git metadata and object-store bytes."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What does Pachyderm emphasize in Example 12.15?",
+      "choices": [
+        "Recomputing only downstream stages that depend on a changed partition",
+        "Always rebuilding the entire lake on every tiny change",
+        "Deleting all version history after each run",
+        "Avoiding any pipeline input versioning"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.15 describes selective recompute for changed partitions."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What does Delta Lake time travel avoid copying, according to Example 12.16?",
+      "rubric": "Mention not copying every file / full table duplication; transaction log over Parquet on object storage.",
+      "sample_answer": "It avoids copying every file by using a transaction log over Parquet on object storage."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Iceberg snapshots let operators point readers at a prior table state after a bad overwrite without a full warehouse restore.",
+      "answer": true,
+      "explain": "Example 12.17 describes snapshot rollback without restoring an entire warehouse backup."
+    }
+  ]
+}

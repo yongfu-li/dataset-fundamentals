@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to scalable data management — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 1/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>Introduction to scalable data management</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 1 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <span class="btn btn-secondary clip-toolbar-prev is-disabled">← Previous</span><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-02-databases-and-cloud-storage/index.html" title="Databases and cloud storage">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define scalable data management for growing volume, variety, and velocity</li>
+<li>Explain elasticity, efficiency, and resilience as core principles</li>
+<li>Summarize storage, retrieval, performance, and cost challenges</li>
+<li>Name storage, query processing, and lineage as core platform components</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 12 — Introduction to scalable data management</h3><ul><li>Chapters 9 through 11 covered advanced collection, synthetic companions, and annotation at scale</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part, learners should be able to define scalable data management</li></ul></div><div class="slide-card"><h3>What scalable data management means</h3><ul><li>Scalable data management is the ability to handle growing volume, variety</li><li>As datasets grow</li><li>The goal is to design storage, processing</li></ul></div><div class="slide-card"><h3>Principle: elasticity</h3><ul><li>Elasticity means the system can expand and contract resources depending on the workload</li><li>This is especially useful in cloud environments</li><li>Elastic designs avoid permanently over-provisioning for peak load</li></ul></div><div class="slide-card"><h3>Principles: efficiency and resilience</h3><ul><li>Efficiency means optimizing storage, compute</li><li>Resilience means remaining available and fault-tolerant as the system scales</li><li>Together with elasticity</li></ul></div><div class="slide-card"><h3>Challenges: storage and retrieval</h3><ul><li>Traditional databases and file systems often struggle to store petabytes or exabytes</li><li>Distributed storage is needed so data is evenly placed, backed up</li><li>Retrieval also grows harder</li></ul></div><div class="slide-card"><h3>Challenges: performance and cost</h3><ul><li>Systems must handle high request rates with low latency while scaling</li><li>Network latency and consistency become central concerns in cloud and distributed settings</li><li>Scaling also raises operational cost</li></ul></div><div class="slide-card"><h3>Core components of the platform</h3><ul><li>Fault tolerance</li><li>Query processing often uses parallel and distributed databases that split work across</li><li>Data lineage tracks origin, transforms, and use so pipelines stay auditable and debuggable</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Scalable data management keeps volume, variety</li><li>Elasticity, efficiency, and resilience are the guiding principles</li><li>Storage, retrieval, performance, and cost challenges motivate distributed designs</li><li>Storage, query processing, and lineage form the core component stack this chapter develops</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>The next part surveys database families and cloud storage</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — Introduction to scalable data management</h3><p>Chapters 9 through 11 covered advanced collection, synthetic companions, and annotation at scale. This chapter asks how organizations store, distribute, and operate datasets when volume and concurrency outgrow single-node workflows. This opening part defines scalable data management, its key principles, and the challenges that drive distributed designs.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to define scalable data management; explain elasticity, efficiency, and resilience as core principles; summarize storage, retrieval, performance, and cost challenges for large datasets; and name storage, query processing, and lineage as core platform components.</p></div><div class="transcript"><h3>Slide 3 — What scalable data management means</h3><p>Scalable data management is the ability to handle growing volume, variety, and velocity of data while keeping performance, reliability, and cost under control. As datasets grow, systems must remain functional without sacrificing speed, accuracy, or cost. The goal is to design storage, processing, and retrieval that stay effective even as data grows exponentially.</p></div><div class="transcript"><h3>Slide 4 — Principle: elasticity</h3><p>Elasticity means the system can expand and contract resources depending on the workload. This is especially useful in cloud environments, where scaling resources on demand can reduce cost and improve performance. Elastic designs avoid permanently over-provisioning for peak load.</p></div><div class="transcript"><h3>Slide 5 — Principles: efficiency and resilience</h3><p>Efficiency means optimizing storage, compute, and network bandwidth to minimize waste while providing fast responses. Resilience means remaining available and fault-tolerant as the system scales, including replication and redundancy so data stays accessible when components fail. Together with elasticity, these three principles frame later storage and consistency choices.</p></div><div class="transcript"><h3>Slide 6 — Challenges: storage and retrieval</h3><p>Traditional databases and file systems often struggle to store petabytes or exabytes efficiently. Distributed storage is needed so data is evenly placed, backed up, and retrievable for both structured and unstructured types. Retrieval also grows harder: query optimization and indexing methods that worked at smaller scale become inefficient and need more sophisticated algorithms.</p></div><div class="transcript"><h3>Slide 7 — Challenges: performance and cost</h3><p>Systems must handle high request rates with low latency while scaling. Network latency and consistency become central concerns in cloud and distributed settings. Scaling also raises operational cost; cloud pricing is flexible, but teams must balance performance against cost through tiering and efficient formats for colder data.</p></div><div class="transcript"><h3>Slide 8 — Core components of the platform</h3><p>Scalable storage spans machines and data centers, including distributed file systems and cloud object stores that aim for availability, durability, and fault tolerance. Query processing often uses parallel and distributed databases that split work across nodes and scale horizontally. Data lineage tracks origin, transforms, and use so pipelines stay auditable and debuggable; later parts develop lineage at platform scale.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Scalable data management keeps volume, variety, and velocity under control without abandoning performance or cost. Elasticity, efficiency, and resilience are the guiding principles. Storage, retrieval, performance, and cost challenges motivate distributed designs. Storage, query processing, and lineage form the core component stack this chapter develops.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part surveys database families and cloud storage: relational versus NoSQL trade-offs, and managed object and database services across major cloud providers.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-02-databases-and-cloud-storage/index.html" data-next-label="Continue to Databases and cloud storage"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-01-introduction-to-scalable-management",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which three principles does the chapter treat as core to scalable data management?",
+      "choices": [
+        "Elasticity, efficiency, and resilience",
+        "Only strong consistency, CAP, and sharding",
+        "Only Git commits, pull requests, and code review",
+        "Only synthetic data, GANs, and active learning"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.1.1 defines elasticity, efficiency, and resilience as the three key principles."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Elasticity means permanently provisioning for peak load so resources never change.",
+      "answer": false,
+      "explain": "Elasticity is expanding and contracting resources with workload, especially useful in the cloud."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which challenge pair is highlighted for large datasets in Section 12.1.2?",
+      "choices": [
+        "Storage and retrieval difficulty as volume grows",
+        "Only font choice and slide layout",
+        "Only crowd-worker pay rates",
+        "Only GAN mode collapse"
+      ],
+      "answer_index": 0,
+      "explain": "Storage and retrieval are listed among the main challenges, along with performance and cost."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one core component of scalable data management besides storage.",
+      "rubric": "Accept query processing / parallel queries / distributed databases, or data lineage tracking.",
+      "sample_answer": "Query processing (or data lineage tracking)."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Resilience includes techniques such as replication and redundancy so data remains accessible after failures.",
+      "answer": true,
+      "explain": "The chapter ties resilience to high availability, fault tolerance, replication, and redundancy."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

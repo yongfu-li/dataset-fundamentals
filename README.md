@@ -4,7 +4,7 @@ Companion lecture parts, slides, and quizzes for *Fundamental of Dataset: Collec
 
 Each chapter is a **learning path**: short video clips with bridge descriptions between them, per-clip quizzes, and a downloadable full PPT deck.
 
-**Interactive tools:** [Sampling tool](tools/sampling/index.html) (Ch.2) · [Annotation tool](tools/annotation/index.html) (Ch.4) · [IAA calculator](tools/iaa/index.html) (Ch.4) · [Cleaning workbench](tools/cleaning/index.html) (Ch.5) · [Bias & fairness meter](tools/fairness/index.html) (Ch.7) · [Representation visualizer](tools/representation/index.html) (Ch.7) · [Datasheet builder](tools/datasheet/index.html) (Ch.8) · [Metadata checker](tools/metadata-checker/index.html) (Ch.8) · [Version timeline](tools/version-timeline/index.html) (Ch.8).
+**Interactive tools:** [Sampling tool](tools/sampling/index.html) (Ch.2) · [Image annotation](tools/image-annotation/index.html) (Ch.4) · [Text annotation](tools/text-annotation/index.html) (Ch.4) · [IAA calculator](tools/iaa/index.html) (Ch.4) · [Cleaning workbench](tools/cleaning/index.html) (Ch.5) · [Bias & fairness meter](tools/fairness/index.html) (Ch.7) · [Representation visualizer](tools/representation/index.html) (Ch.7) · [Datasheet builder](tools/datasheet/index.html) (Ch.8) · [Metadata checker](tools/metadata-checker/index.html) (Ch.8) · [Version timeline](tools/version-timeline/index.html) (Ch.8).
 
 | Chapter | Landing |
 |---------|---------|
@@ -19,5 +19,6 @@ Each chapter is a **learning path**: short video clips with bridge descriptions 
 | 9 — Advanced Data Collection Techniques | [chapter9](chapter9/pages/index.md) |
 | 10 — Synthetic Data Generation | [chapter10](chapter10/pages/index.md) |
 | 11 — Advanced Annotation Techniques | [chapter11](chapter11/pages/index.md) |
+| 12 — Scalable Data Management | [chapter12](chapter12/pages/index.md) |
 
 Videos are optional media under each part’s `video/` folder. Generate with the `book-slides` TTS/ffmpeg helpers when ready.

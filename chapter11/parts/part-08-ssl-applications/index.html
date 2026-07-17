@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Applications of self-supervised learning — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter11/index.html">Chapter 11</a><span class="here">Part 8/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 11 · Guided part</div>
+    
+<section class="hero">
+  <h1>Applications of self-supervised learning</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Part 8 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-07-self-supervised-learning/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-09-crowd-versus-expert/index.html" title="Crowdsourcing versus expert annotation">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Describe self-supervised uses in image representation learning and fine-tuning</li>
+<li>Summarize language-model pretraining benefits for NLP downstream tasks</li>
+<li>Explain time-series forecasting, imputation, and anomaly-detection patterns</li>
+<li>Emphasize data efficiency when downstream labels remain scarce</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 11 — Applications of self-supervised learning</h3><ul><li>Pretext tasks become concrete in domain settings</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Computer vision applications</h3><ul><li>Segmentation before scarce labels are applied</li><li>Which matters in domains where bounding boxes or masks are expensive</li></ul></div><div class="slide-card"><h3>Data efficiency in vision</h3><ul><li>Once representations exist</li><li>Teams still validate on held-out gold labels</li></ul></div><div class="slide-card"><h3>Natural language processing applications</h3><ul><li>Masked language modeling and related objectives pretrain encoders on unlabeled text</li><li>Downstream tasks such as classification, named entity recognition</li><li>Large web-scale corpora supply the unlabeled fuel for that pretraining stage</li></ul></div><div class="slide-card"><h3>Transfer to specialized text</h3><ul><li>Domain teams often start from a general pretrained language model and fine-tune on a</li><li>The pretext-learned context and syntax transfer</li><li>This pattern is common when expert text labels are scarce</li></ul></div><div class="slide-card"><h3>Time-series forecasting and imputation</h3><ul><li>For time series</li><li>Models learn temporal structure from unlabeled sensor or transaction streams</li><li>Gap filling also prepares incomplete series for downstream monitoring tasks</li></ul></div><div class="slide-card"><h3>Anomaly detection and contrastive sequences</h3><ul><li>Useful for fraud or equipment failure</li><li>Clustering without labeling every window</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Self-supervised applications span vision, language, and time series with a shared theme</li><li>Benefits include data efficiency, real-time monitoring potential</li><li>Quality still depends on validating the downstream labeled evaluation set</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>The next part compares crowdsourcing and expert annotation on scale, cost, turnaround</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 11 — Applications of self-supervised learning</h3><p>Pretext tasks become concrete in domain settings. This part surveys self-supervised applications in computer vision, natural language processing, and time-series forecasting, emphasizing data efficiency when downstream labels remain scarce.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to describe self-supervised uses in image representation learning; summarize language-model pretraining benefits for NLP downstream tasks; and explain time-series applications such as forecasting and anomaly detection with unlabeled sequences.</p></div><div class="transcript"><h3>Slide 3 — Computer vision applications</h3><p>In vision, self-supervised pretraining on large unlabeled image collections learns features for classification, detection, and segmentation before scarce labels are applied. Contrastive and reconstruction-style objectives reduce the labeled volume needed for competitive accuracy, which matters in domains where bounding boxes or masks are expensive.</p></div><div class="transcript"><h3>Slide 4 — Data efficiency in vision</h3><p>Once representations exist, fine-tuning a smaller labeled set often matches or approaches fully supervised baselines that would have required labeling the entire corpus. Teams still validate on held-out gold labels; self-supervision reduces early labeling demand rather than removing evaluation.</p></div><div class="transcript"><h3>Slide 5 — Natural language processing applications</h3><p>In NLP, masked language modeling and related objectives pretrain encoders on unlabeled text. Downstream tasks such as classification, named entity recognition, and sentiment analysis then fine-tune with far fewer task-specific labels than training from scratch. Large web-scale corpora supply the unlabeled fuel for that pretraining stage.</p></div><div class="transcript"><h3>Slide 6 — Transfer to specialized text</h3><p>Domain teams often start from a general pretrained language model and fine-tune on a modest labeled domain set. The pretext-learned context and syntax transfer, while the fine-tuning stage adapts to domain vocabulary and label schemas. This pattern is common when expert text labels are scarce.</p></div><div class="transcript"><h3>Slide 7 — Time-series forecasting and imputation</h3><p>For time series, self-supervised objectives may predict future values or fill masked time steps from neighboring observations. Models learn temporal structure from unlabeled sensor or transaction streams, then support forecasting where dense labels are unavailable. Gap filling also prepares incomplete series for downstream monitoring tasks.</p></div><div class="transcript"><h3>Slide 8 — Anomaly detection and contrastive sequences</h3><p>Anomaly detection can train a model of normal behavior on unlabeled series and flag large prediction residuals as anomalies, useful for fraud or equipment failure. Contrastive learning on sequences embeds similar temporal patterns nearby, supporting classification, forecasting, and clustering without labeling every window.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Self-supervised applications span vision, language, and time series with a shared theme: learn from unlabeled scale, then fine-tune lightly. Benefits include data efficiency, real-time monitoring potential, and improved forecasting when labels are scarce. Quality still depends on validating the downstream labeled evaluation set.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part compares crowdsourcing and expert annotation on scale, cost, turnaround, and quality for high-stakes schemas such as radiology and legal text.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-09-crowd-versus-expert/index.html" data-next-label="Continue to Crowdsourcing versus expert annotation"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-08-ssl-applications",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What shared benefit do SSL applications emphasize across vision, NLP, and time series?",
+      "choices": [
+        "Data efficiency when downstream labels remain scarce",
+        "Eliminating all evaluation on labeled test sets",
+        "Replacing sensors with synthetic labels only",
+        "Avoiding any fine-tuning forever"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.8 stresses unlabeled pretraining plus limited fine-tuning for data efficiency."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Self-supervised vision pretraining can reduce the labeled volume needed for competitive accuracy.",
+      "answer": true,
+      "explain": "Vision applications use unlabeled pretraining before scarce labels for detection or classification."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "How can SSL support time-series anomaly detection?",
+      "choices": [
+        "Train on normal unlabeled behavior and flag large prediction residuals",
+        "Require expert labels on every time step before any training",
+        "Ignore temporal structure entirely",
+        "Only classify static images"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.8 describes predicting next values and treating large deviations as anomalies."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one NLP benefit of pretrained language models with limited fine-tuning labels.",
+      "rubric": "Fewer task labels / transfer of context / better downstream classification or NER.",
+      "sample_answer": "Downstream tasks need far fewer task-specific labels than training from scratch."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Self-supervision removes the need to validate models on held-out gold labels.",
+      "answer": false,
+      "explain": "The part notes that teams still validate on held-out gold; SSL reduces early labeling demand."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

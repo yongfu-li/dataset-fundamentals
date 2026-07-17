@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Techniques in active learning — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter11/index.html">Chapter 11</a><span class="here">Part 3/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 11 · Guided part</div>
+    
+<section class="hero">
+  <h1>Techniques in active learning</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Part 3 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-active-learning-basics/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-active-learning-applications/index.html" title="Active learning applications">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain least-confidence and related uncertainty measures near decision boundaries</li>
+<li>Describe diversity-based sampling via clustering for distribution coverage</li>
+<li>Apply cost-sensitive routing when annotation cost varies by item</li>
+<li>Outline model-in-the-loop review where humans correct model proposals</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.5</span>
+    <h3>Example 11.5 — Uncertain Chest X-ray Near Decision Boundary</h3>
+    <p>Recognize least-confidence chest X-rays near the abnormal/normal decision boundary.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example5/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.6</span>
+    <h3>Example 11.6 — Diversity Sampling Across Review Clusters</h3>
+    <p>Explain diversity sampling as a counterweight to uncertainty-only query skew.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example6/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.7</span>
+    <h3>Example 11.7 — Cost-Sensitive Routing in Legal Labeling</h3>
+    <p>Route legal documents by cost-sensitive rules—experts for ambiguous contracts.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example7/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.8</span>
+    <h3>Example 11.8 — Model-in-the-Loop Tumor Review</h3>
+    <p>Outline model-in-the-loop tumor review where experts correct model proposals.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example8/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 11 — Techniques in active learning</h3><ul><li>Uncertainty sampling alone can over-focus on odd or redundant cases</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Least confidence and related uncertainty measures</h3><ul><li>Uncertainty sampling queries samples where the model is least predictable</li><li>Least confidence focuses on near-ties such as 0.55 versus 0.45 in binary classification</li><li>Margin sampling uses the top-two probability gap</li><li>Entropy sampling uses the full output distribution</li><li>These measures work well on complex boundaries but can skew the labeled set toward hard</li></ul></div><div class="slide-card"><h3>Example 11.5 — Uncertain Chest X-ray Near Decision Boundary</h3><ul><li>Example 11.5 — hands-on module</li><li>Example 11.5 shows least-confidence selection on a near-tie X-ray prediction</li><li>An X-ray scored 0.52 abnormal and 0.48 normal is queued for labeling because the near-tie</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example5/</code></li></ul></div><div class="slide-card"><h3>Diversity-based sampling</h3><ul><li>Diversity-based sampling ensures selected samples represent the data distribution</li><li>A common approach clusters unlabeled data and draws from underrepresented or highly</li><li>The goal is coverage across scenarios so the model does not overfit a narrow subset of</li></ul></div><div class="slide-card"><h3>Example 11.6 — Diversity Sampling Across Review Clusters</h3><ul><li>Example 11.6 — hands-on module</li><li>Example 11.6 uses clustering so sentiment labels cover mixed and neutral reviews</li><li>Diversity-based sampling draws reviews from multiple clusters</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example6/</code></li></ul></div><div class="slide-card"><h3>Cost-sensitive active learning</h3><ul><li>Cost-sensitive active learning incorporates labeling cost into selection</li><li>A cost-impact model ranks samples by expected performance gain relative to annotation</li><li>Under a fixed budget, the system selects the most impactful points within that budget</li><li>This matters when some items need expensive experts and others can use cheaper annotators</li></ul></div><div class="slide-card"><h3>Example 11.7 — Cost-Sensitive Routing in Legal Labeling</h3><ul><li>Example 11.7 — hands-on module</li><li>Example 11.7 allocates expensive expert labels only where they change the model most</li><li>Maximizing accuracy gain per labeling dollar</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example7/</code></li></ul></div><div class="slide-card"><h3>Example 11.8 — Model-in-the-Loop Tumor Review</h3><ul><li>Example 11.8 — hands-on module</li><li>Model-in-the-loop annotation emphasizes human–machine collaboration</li><li>The model proposes preliminary labels or highlights uncertain regions</li><li>So later rounds need fewer human edits</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example8/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Least-confidence, margin</li><li>Cost-sensitive routing protects scarce expert budgets</li><li>Model-in-the-loop workflows let humans focus on corrections rather than labeling every</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Dermoscopic lesion review, showing how uncertain items reach human experts</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 11 — Techniques in active learning</h3><p>Uncertainty sampling alone can over-focus on odd or redundant cases. This part covers complementary techniques that keep the labeling queue informative and affordable: least-confidence selection near decision boundaries, diversity sampling across clusters, cost-sensitive routing of expensive experts, and model-in-the-loop review.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to explain least-confidence uncertainty near decision boundaries; describe diversity-based sampling via clustering; apply cost-sensitive routing when labeling cost varies; and outline model-in-the-loop workflows where humans correct model proposals.</p></div><div class="transcript"><h3>Slide 3 — Least confidence and related uncertainty measures</h3><p>Uncertainty sampling queries samples where the model is least predictable. Least confidence focuses on near-ties such as 0.55 versus 0.45 in binary classification. Margin sampling uses the top-two probability gap. Entropy sampling uses the full output distribution. These measures work well on complex boundaries but can skew the labeled set toward hard outliers if used alone.</p></div><div class="transcript"><h3>Slide 4 — Example 11.5 — Uncertain Chest X-ray Near Decision Boundary</h3><p>Example 11.5 shows least-confidence selection on a near-tie X-ray prediction. An X-ray scored 0.52 abnormal and 0.48 normal is queued for labeling because the near-tie marks a region of the decision boundary that most needs an expert label. The example 5 module for this chapter captures that medical near-tie queue.</p></div><div class="transcript"><h3>Slide 5 — Diversity-based sampling</h3><p>Diversity-based sampling ensures selected samples represent the data distribution, not only the hardest outliers. A common approach clusters unlabeled data and draws from underrepresented or highly diverse clusters. The goal is coverage across scenarios so the model does not overfit a narrow subset of uncertain cases.</p></div><div class="transcript"><h3>Slide 6 — Example 11.6 — Diversity Sampling Across Review Clusters</h3><p>Example 11.6 uses clustering so sentiment labels cover mixed and neutral reviews. Diversity-based sampling draws reviews from multiple clusters, including subtle or mixed sentiment, so the model does not overfit to only strongly positive or negative text. The example 6 module for this chapter summarizes that cluster coverage idea.</p></div><div class="transcript"><h3>Slide 7 — Cost-sensitive active learning</h3><p>Cost-sensitive active learning incorporates labeling cost into selection. A cost-impact model ranks samples by expected performance gain relative to annotation effort. Under a fixed budget, the system selects the most impactful points within that budget. This matters when some items need expensive experts and others can use cheaper annotators.</p></div><div class="transcript"><h3>Slide 8 — Example 11.7 — Cost-Sensitive Routing in Legal Labeling</h3><p>Example 11.7 allocates expensive expert labels only where they change the model most. Cost-sensitive active learning sends ambiguous contracts to legal experts and simpler documents to non-experts, maximizing accuracy gain per labeling dollar. The example 7 module for this chapter frames that routing pattern.</p></div><div class="transcript"><h3>Slide 9 — Example 11.8 — Model-in-the-Loop Tumor Review</h3><p>Model-in-the-loop annotation emphasizes human–machine collaboration. The model proposes preliminary labels or highlights uncertain regions; humans correct or validate; corrections retrain the model. Example 11.8 shows the model proposing tumor locations on X-rays while experts review only ambiguous cases, so later rounds need fewer human edits. The example 8 module for this chapter describes that interactive medical loop.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Least-confidence, margin, and entropy remain core uncertainty tools but need diversity to avoid skewed queues. Cost-sensitive routing protects scarce expert budgets. Model-in-the-loop workflows let humans focus on corrections rather than labeling every item from scratch.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>The next part walks active-learning applications in review sentiment, driving perception, pneumonia X-rays, and dermoscopic lesion review, showing how uncertain items reach human experts.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-04-active-learning-applications/index.html" data-next-label="Continue to Active learning applications"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-03-active-learning-techniques",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why can uncertainty sampling alone be problematic?",
+      "choices": [
+        "It may over-focus on difficult or ambiguous outliers and skew the labeled set",
+        "It never improves decision boundaries",
+        "It requires labeling every item in the pool",
+        "It only works for regression, never classification"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.3 notes uncertainty sampling can over-weight hard cases and miss distribution coverage."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 11.5 queues an X-ray scored 0.52 abnormal and 0.48 normal because of the near-tie.",
+      "answer": true,
+      "explain": "Least-confidence selection targets near decision-boundary ties for expert labels."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What does diversity-based sampling primarily ensure?",
+      "choices": [
+        "Selected samples cover a wide range of the data distribution",
+        "Only the single hardest outlier is labeled each round",
+        "Experts never review any samples",
+        "All labels come from distant databases"
+      ],
+      "answer_index": 0,
+      "explain": "Diversity sampling, often via clustering, prevents overfitting to a narrow uncertain subset."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "In Example 11.7, how does cost-sensitive routing allocate legal labeling effort?",
+      "rubric": "Ambiguous contracts to experts; simpler documents to non-experts / maximize gain per dollar.",
+      "sample_answer": "Ambiguous contracts go to legal experts; simpler documents go to non-experts to maximize accuracy gain per dollar."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "In Example 11.8, experts review every X-ray tumor proposal, not only ambiguous cases.",
+      "answer": false,
+      "explain": "Experts review ambiguous cases; corrections retrain so later rounds need fewer edits."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

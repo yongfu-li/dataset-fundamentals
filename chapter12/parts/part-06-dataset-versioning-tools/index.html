@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dataset versioning tools — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 6/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>Dataset versioning tools</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 6 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-05-cap-sharding-consistency/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-07-versioning-benefits-challenges/index.html" title="Versioning benefits and challenges">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Distinguish Chapter 8 team versioning from Chapter 12 platform-scale lakehouse versioning</li>
+<li>Describe collaborative pinning of training runs to explicit snapshots</li>
+<li>Explain DVC remotes, Pachyderm partition recompute, Delta Lake time travel, and Iceberg rollback</li>
+<li>Apply Examples 12.14–12.17 to tool selection</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.14</span>
+    <h3>Example 12.14 — DVC Remotes on Object Storage</h3>
+    <p>Pin DVC dataset versions to object-storage remotes without copying petabytes.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example14/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.15</span>
+    <h3>Example 12.15 — Pachyderm Partition Recompute</h3>
+    <p>Use Pachyderm-style versioning to recompute only dependent pipeline stages.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example15/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.16</span>
+    <h3>Example 12.16 — Delta Lake Time Travel on Object Stores</h3>
+    <p>Apply Delta Lake time travel for point-in-time tables on object storage.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example16/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.17</span>
+    <h3>Example 12.17 — Iceberg Snapshot Rollback</h3>
+    <p>Rollback Iceberg snapshots after a bad overwrite without full restore.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example17/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — Dataset versioning tools</h3><p>Chapter 8 covered team-scale documentation and Git-oriented version control. At platform scale, versioning must track large binaries and lakehouse tables. This part surveys DVC remotes, Pachyderm, Delta Lake time travel, and Iceberg snapshots.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to distinguish Chapter 8 team versioning from Chapter 12 platform-scale lakehouse and object-store versioning; describe collaborative pinning of training runs to snapshots; and explain DVC remotes, Pachyderm partition recompute, Delta Lake time travel, and Iceberg snapshot rollback through Examples 12.14 through 12.17.</p></div><div class="transcript"><h3>Slide 3 — Collaborative workflows at scale</h3><p>At scale, multiple engineers and models share the same raw and feature tables. Without immutable version identifiers, notebooks drift to latest partitions and become unreproducible. Teams pin training runs to explicit dataset revisions or snapshot IDs, branch feature tables for parallel experiments, and record who promoted a candidate version into production—the same discipline as Chapter 8, applied to lakehouse and object-store layouts rather than only Git-tracked files.</p></div><div class="transcript"><h3>Slide 4 — Example 12.14 — DVC Remotes on Object Storage</h3><p>For machine-learning projects whose primary assets are still files beside code, DVC and Git LFS patterns from Chapter 8 remain useful. Example 12.14 ties DVC metadata to cloud remotes: a team keeps DVC hash files in Git while the actual training shards live in an S3 or GCS remote, so scalable object storage holds bytes and DVC records which version a run used. The example 14 module for this chapter summarizes that remote pattern.</p></div><div class="transcript"><h3>Slide 5 — Example 12.15 — Pachyderm Partition Recompute</h3><p>Pachyderm targets data-driven pipelines with automatic versioning of inputs and outputs. Example 12.15 shows pipeline versioning that recomputes only changed partitions: a new raw partition triggers only downstream stages that depend on that slice rather than rebuilding the entire lake. The example 15 module for this chapter covers that selective recompute idea.</p></div><div class="transcript"><h3>Slide 6 — Example 12.16 — Delta Lake Time Travel on Object Stores</h3><p>Delta Lake, Apache Hudi, and Apache Iceberg store incremental changes and point-in-time snapshots on object storage, enabling ACID-style table operations and time travel without duplicating entire datasets. Example 12.16 uses Delta Lake: a transaction log over Parquet files on object storage lets teams time-travel to prior table versions without copying every file. The example 16 module for this chapter frames that time-travel pattern.</p></div><div class="transcript"><h3>Slide 7 — Example 12.17 — Iceberg Snapshot Rollback</h3><p>Snapshot-based versioning captures a point-in-time view of a table for rollback and incremental processing across distributed nodes. Example 12.17 rolls back via table snapshots: Apache Iceberg and similar lakehouse formats expose snapshots so operators can point readers at a prior table state after a bad overwrite without restoring an entire warehouse backup. The example 17 module for this chapter summarizes that rollback path.</p></div><div class="transcript"><h3>Slide 8 — File-level versus table-level versioning</h3><p>DVC remains the file-and-pipeline companion when code, models, and large files share remotes. Lakehouse formats are the scalable counterpart to file-level DVC commits: they version partitions inside the storage layer. Regulated domains still need an auditable history of which snapshot trained which model, addressable across clusters and regions without copying every petabyte on each commit.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Platform-scale versioning extends Chapter 8 discipline to object stores and lakehouse tables. DVC remotes record versions while cloud storage holds bytes. Pachyderm recomputes only changed partitions. Delta Lake and Iceberg provide time travel and snapshot rollback without full warehouse restores. Pin experiments to explicit snapshots rather than latest.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part covers why versioning matters at scale—rollback and reproducibility benefits—then storage overhead and schema-evolution challenges under concurrency.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-07-versioning-benefits-challenges/index.html" data-next-label="Continue to Versioning benefits and challenges"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-06-dataset-versioning-tools",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "How does Chapter 12 versioning differ in emphasis from Chapter 8 team-scale workflows?",
+      "choices": [
+        "It focuses on lakehouse snapshots and object-store layouts at platform scale",
+        "It only repeats Git commit tutorials with no storage topics",
+        "It replaces all storage with handwritten logs",
+        "It removes any need for immutable version identifiers"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.3 states Chapter 8 holds Git/DVC tutorials; Chapter 12 focuses on distributed object stores and lakehouse table versions."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "In Example 12.14, DVC hash files can live in Git while training shards live in an S3 or GCS remote.",
+      "answer": true,
+      "explain": "Example 12.14 describes that split between Git metadata and object-store bytes."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What does Pachyderm emphasize in Example 12.15?",
+      "choices": [
+        "Recomputing only downstream stages that depend on a changed partition",
+        "Always rebuilding the entire lake on every tiny change",
+        "Deleting all version history after each run",
+        "Avoiding any pipeline input versioning"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.15 describes selective recompute for changed partitions."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What does Delta Lake time travel avoid copying, according to Example 12.16?",
+      "rubric": "Mention not copying every file / full table duplication; transaction log over Parquet on object storage.",
+      "sample_answer": "It avoids copying every file by using a transaction log over Parquet on object storage."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Iceberg snapshots let operators point readers at a prior table state after a bad overwrite without a full warehouse restore.",
+      "answer": true,
+      "explain": "Example 12.17 describes snapshot rollback without restoring an entire warehouse backup."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

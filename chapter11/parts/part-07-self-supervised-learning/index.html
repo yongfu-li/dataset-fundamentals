@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to self-supervised learning — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter11/index.html">Chapter 11</a><span class="here">Part 7/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 11 · Guided part</div>
+    
+<section class="hero">
+  <h1>Introduction to self-supervised learning</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Part 7 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-weak-supervision-techniques/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-ssl-applications/index.html" title="Applications of self-supervised learning">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define self-supervised learning and contrast it with supervised learning</li>
+<li>Explain pretext tasks as proxies for learning transferable representations</li>
+<li>Describe contrastive pretraining followed by fine-tuning on limited labels</li>
+<li>Interpret Example 11.15 SimCLR-style product-photo pretraining</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.15</span>
+    <h3>Example 11.15 — Contrastive Pretraining Then Fine-Tune</h3>
+    <p>Contrast contrastive pretraining on unlabeled data with fine-tuning on a small labeled set.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example15/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 11 — Introduction to self-supervised learning</h3><ul><li>Weak supervision still invents labels</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Definition versus supervised learning</h3><ul><li>Supervised learning trains on input–label pairs, such as images tagged cat or dog</li><li>Self-supervised learning does not require manual task labels during pretraining</li><li>Instead, the model creates its own supervisory signal from the data by solving a pretext</li></ul></div><div class="slide-card"><h3>Why pretext tasks matter</h3><ul><li>Pretext tasks force the model to learn useful features</li><li>After pretraining</li><li>This reduces labeling cost and can improve generalization when unlabeled corpora are</li></ul></div><div class="slide-card"><h3>Vision pretext examples</h3><ul><li>Rotation prediction of randomly rotated images</li><li>Solving these proxies teaches spatial and semantic structure that later supports detection</li></ul></div><div class="slide-card"><h3>Language pretext examples</h3><ul><li>In natural language processing</li><li>Next-sentence prediction and text infilling teach discourse and local coherence</li><li>These tasks turn large unlabeled text corpora into representation learners before any</li></ul></div><div class="slide-card"><h3>Contrastive learning idea</h3><ul><li>Contrastive methods learn representations by pulling similar views of the same instance</li><li>In vision, two augmented crops of one image form a positive pair</li><li>The resulting encoder captures discriminative features that transfer well when a linear</li></ul></div><div class="slide-card"><h3>Example 11.15 — Contrastive Pretraining Then Fine-Tune</h3><ul><li>Example 11.15 — hands-on module</li><li>Example 11.15 illustrates contrastive pretraining before fine-tuning</li><li>A vision encoder is pretrained with SimCLR-style contrastive loss on unlabeled product</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example15/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Self-supervised learning creates supervision from unlabeled structure via pretext tasks</li><li>It sits between supervised and unsupervised learning</li><li>Contrastive pretraining plus light fine-tuning is a practical recipe when downstream</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Time-series forecasting, emphasizing data efficiency when downstream labels remain scarce</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 11 — Introduction to self-supervised learning</h3><p>Weak supervision still invents labels. Self-supervised learning postpones task labels by training on unlabeled structure through pretext tasks. This part defines self-supervision, contrasts it with supervised learning, and introduces contrastive pretraining before fine-tuning.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to define self-supervised learning and how it differs from supervised learning; explain the role of pretext tasks in learning transferable representations; and describe contrastive pretraining followed by fine-tuning on a small labeled set.</p></div><div class="transcript"><h3>Slide 3 — Definition versus supervised learning</h3><p>Supervised learning trains on input–label pairs, such as images tagged cat or dog. Self-supervised learning does not require manual task labels during pretraining. Instead, the model creates its own supervisory signal from the data by solving a pretext task that exploits inherent structure, then transfers the learned representation to a downstream task.</p></div><div class="transcript"><h3>Slide 4 — Why pretext tasks matter</h3><p>Pretext tasks force the model to learn useful features—spatial relationships, object structure, or contextual semantics—from unlabeled data. After pretraining, a smaller labeled set fine-tunes the model for classification, detection, or language understanding. This reduces labeling cost and can improve generalization when unlabeled corpora are abundant.</p></div><div class="transcript"><h3>Slide 5 — Vision pretext examples</h3><p>In computer vision, common pretext tasks include jigsaw puzzle reassembly of shuffled patches, context prediction of masked image regions, and rotation prediction of randomly rotated images. Solving these proxies teaches spatial and semantic structure that later supports detection or classification without requiring class labels during pretraining.</p></div><div class="transcript"><h3>Slide 6 — Language pretext examples</h3><p>In natural language processing, masked language modeling asks the model to predict hidden tokens from context, as in BERT-style pretraining. Next-sentence prediction and text infilling teach discourse and local coherence. These tasks turn large unlabeled text corpora into representation learners before any sentiment or entity labels are collected.</p></div><div class="transcript"><h3>Slide 7 — Contrastive learning idea</h3><p>Contrastive methods learn representations by pulling similar views of the same instance together and pushing dissimilar instances apart in embedding space. In vision, two augmented crops of one image form a positive pair. The resulting encoder captures discriminative features that transfer well when a linear head is fine-tuned on limited labels.</p></div><div class="transcript"><h3>Slide 8 — Example 11.15 — Contrastive Pretraining Then Fine-Tune</h3><p>Example 11.15 illustrates contrastive pretraining before fine-tuning. A vision encoder is pretrained with SimCLR-style contrastive loss on unlabeled product photos, then a small labeled set fine-tunes a linear head for category recognition, cutting the labels needed for competitive accuracy. The example 15 module for this chapter summarizes that pretrain-then-fine-tune pattern.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Self-supervised learning creates supervision from unlabeled structure via pretext tasks. It sits between supervised and unsupervised learning: unlabeled scale with structured objectives. Contrastive pretraining plus light fine-tuning is a practical recipe when downstream labels remain scarce.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part surveys self-supervised applications in computer vision, natural language processing, and time-series forecasting, emphasizing data efficiency when downstream labels remain scarce.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-ssl-applications/index.html" data-next-label="Continue to Applications of self-supervised learning"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-07-self-supervised-learning",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "How does self-supervised learning differ from standard supervised learning during pretraining?",
+      "choices": [
+        "It creates supervisory signals from unlabeled data via pretext tasks instead of manual task labels",
+        "It always requires more hand labels than supervised learning",
+        "It forbids any later fine-tuning on labeled data",
+        "It only works on tabular data, never images or text"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.7 contrasts SSL pretext supervision with labeled input–output pairs."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Pretext tasks are the final production task the model must ship with.",
+      "answer": false,
+      "explain": "Pretext tasks are proxies that learn representations later fine-tuned for downstream tasks."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which is a common vision pretext task?",
+      "choices": [
+        "Jigsaw reassembly, masked context prediction, or rotation prediction",
+        "Paying crowd workers for every pixel label before pretraining",
+        "Deleting all unlabeled images",
+        "Training only on perfect medical gold sets"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.7 lists jigsaw, context prediction, and rotation as vision pretext examples."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "In Example 11.15, what happens after contrastive pretraining on unlabeled product photos?",
+      "rubric": "Fine-tune a linear head / small labeled set for category recognition.",
+      "sample_answer": "A small labeled set fine-tunes a linear head for category recognition."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Masked language modeling is an NLP pretext task that predicts hidden tokens from context.",
+      "answer": true,
+      "explain": "BERT-style MLM is a central NLP pretext task in Section 11.7."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

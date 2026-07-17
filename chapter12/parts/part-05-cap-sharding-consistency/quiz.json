@@ -1,0 +1,54 @@
+{
+  "part_id": "part-05-cap-sharding-consistency",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does the CAP theorem claim about consistency, availability, and partition tolerance?",
+      "choices": [
+        "A distributed system cannot guarantee all three simultaneously",
+        "Every system must always provide all three forever",
+        "Only single-node databases can have partitions",
+        "Availability is irrelevant when networks fail"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.2.7 states it is impossible to achieve all three guarantees simultaneously."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Under a network partition, AP systems may accept traffic and reconcile replicas later.",
+      "answer": true,
+      "explain": "The chapter contrasts CP (may reject writes) with AP (accept and reconcile later)."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "According to Example 12.10, why shard customer tables by geography or customer ID?",
+      "choices": [
+        "So each node owns a slice of keys and write load spreads across the cluster",
+        "So every node stores an identical full copy of all keys only",
+        "So sharding becomes unnecessary for all workloads",
+        "So CAP no longer applies to any store"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.10 describes sharding so each node owns a key slice and load spreads."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Why prefer strong consistency in financial ledgers (Example 12.11)?",
+      "rubric": "Mention avoiding conflicting account states / concurrent transfers / integrity.",
+      "sample_answer": "So concurrent transfers cannot leave accounts in conflicting states for different clients."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Example 12.13 states DynamoDB and Cassandra commonly emphasize availability with eventual consistency tunable by quorums.",
+      "answer": true,
+      "explain": "Example 12.13 lists those stores as availability-first with tunable eventual consistency."
+    }
+  ]
+}

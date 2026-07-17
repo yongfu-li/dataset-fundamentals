@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Versioning benefits and challenges — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 7/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>Versioning benefits and challenges</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 7 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-dataset-versioning-tools/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-08-data-lineage-tracking/index.html" title="Data lineage tracking">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>State distinctive scale benefits of dataset versioning (snapshot pin, rollback, schema evolve)</li>
+<li>Explain rollback after corrupt preprocessing using Example 12.18</li>
+<li>Identify storage-overhead and schema-evolution challenges under concurrency</li>
+<li>Distinguish Chapter 8 hygiene from Chapter 12 lakehouse cost and concurrency concerns</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.18</span>
+    <h3>Example 12.18 — Rollback After Corrupt Preprocessing</h3>
+    <p>Recover from corrupt preprocessing by rolling back to the last good snapshot.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example18/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — Versioning benefits and challenges</h3><p>Tools only help if teams understand why versioning matters and where it fails. This part covers rollback and reproducibility benefits at lakehouse scale, then storage cost, metadata complexity, and collaboration challenges when concurrent writers share large tables.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to state distinctive scale benefits of dataset versioning beyond Chapter 8 documentation practices; explain rollback after a corrupt preprocessing job using Example 12.18; and identify storage-overhead and schema-evolution challenges under concurrency.</p></div><div class="transcript"><h3>Slide 3 — Benefits at platform scale</h3><p>Reproducibility and audit benefits of versioning are developed in Chapters 8 and 13. At scale, the distinctive gains are different: pin training to a lakehouse snapshot without re-copying petabytes; roll back a bad partition write without restoring an entire warehouse; and evolve schemas while concurrent readers stay on a prior snapshot.</p></div><div class="transcript"><h3>Slide 4 — Example 12.18 — Rollback After Corrupt Preprocessing</h3><p>Example 12.18 shows why rollback matters when a transform corrupts shared data. If a preprocessing job corrupts a shared feature table, teams roll back to the last good snapshot and rerun from a known state instead of rebuilding from scratch. The example 18 module for this chapter summarizes that recovery path.</p></div><div class="transcript"><h3>Slide 5 — Challenge: storage overhead</h3><p>General versioning discipline—commit hygiene, readable changelogs, documentation of each release—belongs in Chapter 8. At lakehouse and object-store scale, storage overhead dominates. Full copies of petabyte tables are rarely affordable. Delta and snapshot formats keep costs manageable by storing diffs, but teams must still tier cold snapshots and expire unused history.</p></div><div class="transcript"><h3>Slide 6 — Challenge: schema evolution under concurrency</h3><p>Adding columns or changing types while readers and writers share a table requires coordinated metadata and compatible readers. Lakehouse formats such as Delta Lake, Hudi, and Iceberg provide schema-evolution primitives, yet operators still need conventions for when a breaking change warrants a new table identity rather than an in-place evolve.</p></div><div class="transcript"><h3>Slide 7 — Discipline still matters</h3><p>Platform tools reduce byte-level copying, but they do not remove the need for clear promotion rules, ownership of production snapshots, and agreement on when a schema break is a new table. Versioning succeeds when engineering practice and lakehouse primitives reinforce each other.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>At scale, versioning enables snapshot pinning, partition rollback, and schema evolution with concurrent readers. Example 12.18 shows rollback after corrupt preprocessing instead of a full rebuild. Storage overhead and concurrent schema change remain the main challenges. Chapter 8 still governs team hygiene; Chapter 12 governs lakehouse cost and concurrency.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>The next part turns from what changed to how data moved: platform-scale data lineage, metadata and automated capture techniques, catalog tools, and cross-platform lineage gaps.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-08-data-lineage-tracking/index.html" data-next-label="Continue to Data lineage tracking"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-07-versioning-benefits-challenges",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which distinctive scale benefit does Section 12.3.3 emphasize?",
+      "choices": [
+        "Pin training to a lakehouse snapshot without re-copying petabytes",
+        "Only printing paper changelogs for every row",
+        "Deleting all history after each successful run",
+        "Avoiding any rollback capability"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.3.3 lists snapshot pinning without petabyte re-copy among distinctive scale gains."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 12.18 recommends rebuilding the entire feature table from scratch after every corrupt preprocessing job.",
+      "answer": false,
+      "explain": "Example 12.18 rolls back to the last good snapshot and reruns from a known state."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What storage practice helps manage version history cost at petabyte scale?",
+      "choices": [
+        "Store diffs via delta/snapshot formats, tier cold snapshots, and expire unused history",
+        "Keep unlimited full copies of every petabyte table forever",
+        "Disable all snapshots to save nothing",
+        "Store only the latest corrupt overwrite"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.3.4 discusses diffs, tiering cold snapshots, and expiring unused history."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one concurrency challenge when evolving schemas on a shared lakehouse table.",
+      "rubric": "Mention coordinated metadata, compatible readers, or deciding when a breaking change needs a new table identity.",
+      "sample_answer": "Coordinating metadata and readers, or deciding when a break needs a new table identity."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "General commit hygiene and changelog discipline still belong primarily in Chapter 8, while Chapter 12 focuses on lakehouse-scale overhead and concurrency.",
+      "answer": true,
+      "explain": "Section 12.3.4 explicitly places general versioning discipline in Chapter 8."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

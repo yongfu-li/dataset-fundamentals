@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data lineage tracking — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 8/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>Data lineage tracking</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 8 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-07-versioning-benefits-challenges/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-09-case-studies/index.html" title="Practical applications and case studies">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define data lineage and its role in compliance and debugging at platform scale</li>
+<li>Describe metadata management and automated capture (Examples 12.19–12.20)</li>
+<li>Recognize catalog tools such as Apache Atlas and Amundsen</li>
+<li>Explain cross-platform lineage gaps (Example 12.22)</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.19</span>
+    <h3>Example 12.19 — Lineage Metadata on Schema and Steps</h3>
+    <p>Record lineage metadata—schema versions, job IDs, timestamps—for audits.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example19/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.20</span>
+    <h3>Example 12.20 — Automated Lineage Capture on Model Runs</h3>
+    <p>Automate lineage capture on model runs with input versions and model URIs.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example20/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.21</span>
+    <h3>Example 12.21 — Visualizing Transform Chains for Debug</h3>
+    <p>Use lineage visualization to debug empty partitions in transform chains.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example21/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.22</span>
+    <h3>Example 12.22 — Cross-Platform Lineage Gaps</h3>
+    <p>Diagnose lineage gaps when pipelines cross object store, Spark, and ML platforms.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example22/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — Data lineage tracking</h3><p>Versioning records what changed; lineage records how data moved and transformed. This part defines provenance at platform scale, metadata and automated capture techniques, visualization for debugging, and cross-platform lineage gaps.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to define data lineage and why it matters for compliance and debugging; describe metadata management and automated capture with Examples 12.19 and 12.20; recognize catalog tools such as Apache Atlas and Amundsen; and explain cross-platform lineage gaps with Example 12.22.</p></div><div class="transcript"><h3>Slide 3 — Definition and importance</h3><p>Data lineage tracks where data came from, how it was transformed, and which systems consume it. At scale, the same questions apply across dozens of pipelines rather than a single notebook: origin, transforms and aggregations, and downstream dependents. Chapter 8 covers provenance as documentation for individual datasets; Chapter 13 returns to research reproducibility. Here the focus is enterprise metadata platforms that capture table and stream movement across warehouses, lakes, and engines.</p></div><div class="transcript"><h3>Slide 4 — Compliance and debugging</h3><p>Regulated industries need lineage evidence for regimes such as GDPR and HIPAA. Large platforms also use lineage to debug broken dashboards by walking upstream transforms. Operational gains include proving which jobs touched regulated tables and coordinating ownership so parallel teams do not silently overwrite shared feature tables.</p></div><div class="transcript"><h3>Slide 5 — Example 12.19 — Lineage Metadata on Schema and Steps</h3><p>Metadata is central to lineage: it describes source, format, transformations, and usage. Example 12.19 lists fields that feed lineage views. Lineage catalogs record schema versions, transform job IDs, and update timestamps so operators can reconstruct how a table was produced. The example 19 module for this chapter summarizes those metadata fields.</p></div><div class="transcript"><h3>Slide 6 — Example 12.20 — Automated Lineage Capture on Model Runs</h3><p>Automated tracking systems monitor pipelines and capture lineage without manual input. Example 12.20 captures lineage when a training job starts: an automated tracker records the input table version, feature job ID, and model artifact URI so later audits can reconstruct the run. The example 20 module for this chapter covers that capture pattern.</p></div><div class="transcript"><h3>Slide 7 — Tools and Example 12.21</h3><p>Apache Atlas is an open-source metadata and governance tool for lineage, cataloging, and security, with strong Hadoop ecosystem integration and lineage visualization. Amundsen, developed at Lyft, emphasizes data discovery and integrates with Airflow and dbt for pipeline lineage. Example 12.21 uses lineage graphs to find a bad filter step: a lineage UI can show how a cohort table was filtered and joined so analysts locate which transform introduced an empty partition. The example 21 module for this chapter frames that debugging use case.</p></div><div class="transcript"><h3>Slide 8 — Example 12.22 — Cross-Platform Lineage Gaps</h3><p>The distinctive platform-scale challenge is cross-system coverage. Organizations mix cloud storage, Spark, Hadoop, Kafka, and machine-learning platforms; connectors that omit a hop create gaps. Example 12.22 shows lineage breaking across boundaries: data may land in object storage, transform in Spark, then train in an ML platform; without connectors, lineage stops at each boundary and audits cannot walk the full path. The example 22 module for this chapter summarizes that gap risk.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Lineage answers origin, transform, and dependency questions across pipelines. Metadata and automated capture keep records current; Atlas and Amundsen illustrate enterprise catalogs. Visualization helps debug empty partitions and broken dashboards. Cross-platform gaps remain the hard problem when connectors stop at system boundaries. Distinguish Chapter 8 per-dataset provenance from Chapter 12 platform catalogs.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part applies storage, streaming, and governance patterns in short case studies: Netflix-scale streaming, Spotify-style real-time analytics, and healthcare imaging archives.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-09-case-studies/index.html" data-next-label="Continue to Practical applications and case studies"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-08-data-lineage-tracking",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What does data lineage track at platform scale?",
+      "choices": [
+        "Where data came from, how it was transformed, and which systems consume it",
+        "Only the font used in slide decks",
+        "Only GPU clock speeds",
+        "Only annotator hourly wages"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.4.1 defines lineage as origin, transforms, and dependents."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 12.20 records input table version, feature job ID, and model artifact URI when a training job starts.",
+      "answer": true,
+      "explain": "Example 12.20 describes automated capture of those identifiers for later audits."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What debugging use does Example 12.21 illustrate?",
+      "choices": [
+        "Using a lineage UI to find which transform introduced an empty partition",
+        "Ignoring all upstream transforms forever",
+        "Deleting catalogs when dashboards break",
+        "Replacing lineage with random sampling only"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.21 shows walking filter/join chains to locate an empty partition."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What creates cross-platform lineage gaps in Example 12.22?",
+      "rubric": "Mention missing connectors / lineage stopping at cloud, Spark, or ML-platform boundaries.",
+      "sample_answer": "Missing connectors so lineage stops at object storage, Spark, or ML-platform boundaries."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Chapter 12 lineage tooling emphasizes enterprise catalogs such as Apache Atlas and Amundsen rather than only per-project DVC files.",
+      "answer": true,
+      "explain": "Section 12.4 contrasts enterprise metadata platforms with per-project DVC and paper-facing provenance."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From fundamentals to advanced annotation — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter11/index.html">Chapter 11</a><span class="here">Part 1/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 11 · Guided part</div>
+    
+<section class="hero">
+  <h1>From fundamentals to advanced annotation</h1>
+  <div class="clip-meta">
+    <span class="pill">~6 min</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Part 1 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <span class="btn btn-secondary clip-toolbar-prev is-disabled">← Previous</span><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-02-active-learning-basics/index.html" title="Active learning basics">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Name the four advanced annotation strategies developed in this chapter</li>
+<li>Explain the shared bottleneck of expensive, slow human labels at scale</li>
+<li>Summarize what each strategy optimizes, when it fits, and its primary risk</li>
+<li>Recognize that the strategies are complementary rather than mutually exclusive</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 11 — From fundamentals to advanced annotation</h3><ul><li>Chapter 4 covered annotation modalities, workflows, tools, and quality control</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Shared labeling bottleneck</h3><ul><li>Manual labels are slow, expensive</li><li>Chapter 4 already identified that bottleneck</li><li>Advanced strategies attack it from different angles</li></ul></div><div class="slide-card"><h3>Four strategies at a glance</h3><ul><li>Active learning chooses which unlabeled items humans should label next</li><li>Weak supervision proposes training labels from heuristics and distant sources</li><li>Self-supervised learning postpones task labels by pretraining on unlabeled structure</li><li>Hybrid crowd–expert pipelines assign routine items to crowds and reserve experts for gold</li></ul></div><div class="slide-card"><h3>Table 11.1 — What each strategy optimizes</h3><ul><li>The chapter comparison table contrasts who provides labels, when each strategy fits</li><li>Active learning optimizes which items humans label when a seed model can rank uncertainty</li><li>Weak supervision optimizes scale from cheap sources when domain rules exist</li></ul></div><div class="slide-card"><h3>Table 11.1 — Self-supervision and hybrid pipelines</h3><ul><li>But still needs labeled data for the final task</li><li>Hybrid crowd–expert staffing optimizes the cost–quality mix when the schema is partly</li></ul></div><div class="slide-card"><h3>Complementary, not exclusive</h3><ul><li>Teams often combine strategies</li><li>Synthetic companions from Chapter 10 can still fill rare classes</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Four strategies share one goal: reduce costly expert labeling without abandoning quality</li><li>Active learning queries humans selectively</li><li>The remainder of the chapter develops each strategy in turn</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Entropy sampling, with examples from vision and medical imaging</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 11 — From fundamentals to advanced annotation</h3><p>Chapter 4 covered annotation modalities, workflows, tools, and quality control. This chapter does not repeat that foundation. It develops four strategies that reduce expert labeling cost at scale: active learning, weak supervision, self-supervised representation learning, and hybrid crowd–expert pipelines.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to name the four advanced annotation strategies developed in this chapter; explain the shared bottleneck of expensive human labels; summarize what each strategy optimizes according to the chapter comparison table; and recognize that the strategies are complementary rather than mutually exclusive.</p></div><div class="transcript"><h3>Slide 3 — Shared labeling bottleneck</h3><p>Manual labels are slow, expensive, and hard to keep consistent when datasets grow to millions of items. Chapter 4 already identified that bottleneck. Advanced strategies attack it from different angles: choosing which items humans label, proposing labels from heuristics, learning from unlabeled structure first, or staffing the queue with a mixed workforce.</p></div><div class="transcript"><h3>Slide 4 — Four strategies at a glance</h3><p>Active learning chooses which unlabeled items humans should label next. Weak supervision proposes training labels from heuristics and distant sources. Self-supervised learning postpones task labels by pretraining on unlabeled structure. Hybrid crowd–expert pipelines assign routine items to crowds and reserve experts for gold sets and hard cases.</p></div><div class="transcript"><h3>Slide 5 — Table 11.1 — What each strategy optimizes</h3><p>The chapter comparison table contrasts who provides labels, when each strategy fits, and primary risks. Active learning optimizes which items humans label when a seed model can rank uncertainty, with risks of over-focusing on odd cases or a cold start. Weak supervision optimizes scale from cheap sources when domain rules exist, with risks of noisy or conflicting signals.</p></div><div class="transcript"><h3>Slide 6 — Table 11.1 — Self-supervision and hybrid pipelines</h3><p>Self-supervised learning optimizes representations before task labels when large unlabeled corpora exist, but still needs labeled data for the final task. Hybrid crowd–expert staffing optimizes the cost–quality mix when the schema is partly simple and partly expert-critical, with risks that weak quality control lets crowd errors scale or that experts become a bottleneck.</p></div><div class="transcript"><h3>Slide 7 — Complementary, not exclusive</h3><p>Teams often combine strategies: pretrain with self-supervision, expand labels with weak supervision, route uncertain items with active learning, and staff the queue with a hybrid crowd–expert pool. Synthetic companions from Chapter 10 can still fill rare classes, but they do not replace quality-control gates from Chapter 4.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Four strategies share one goal: reduce costly expert labeling without abandoning quality. Active learning queries humans selectively; weak supervision scales noisy signals; self-supervision learns from unlabeled structure; hybrid pipelines mix workforce roles. The remainder of the chapter develops each strategy in turn.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>The next part defines the active-learning loop and the main uncertainty-based query strategies: uncertainty sampling, margin sampling, and entropy sampling, with examples from vision and medical imaging.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-02-active-learning-basics/index.html" data-next-label="Continue to Active learning basics"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-01-from-fundamentals-to-advanced",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which four strategies does Chapter 11 develop beyond Chapter 4 fundamentals?",
+      "choices": [
+        "Active learning, weak supervision, self-supervised learning, and hybrid crowd–expert pipelines",
+        "Only crowdsourcing platforms and inter-annotator agreement",
+        "Only synthetic data generation and GAN training",
+        "Only storage versioning and lineage tracking"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.1 frames the chapter around those four complementary strategies."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Active learning and weak supervision are mutually exclusive; teams should pick only one.",
+      "answer": false,
+      "explain": "Table 11.1 and the surrounding prose state the strategies are complementary and often combined."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "According to Table 11.1, what does active learning primarily optimize?",
+      "choices": [
+        "Which unlabeled items humans should label next",
+        "Representations learned before any task labels",
+        "Scale of labels from distant databases only",
+        "Storage layout of labeled corpora"
+      ],
+      "answer_index": 0,
+      "explain": "Active learning selects the queried subset for human labeling when labels are expensive."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one primary risk of weak supervision listed in the chapter comparison.",
+      "rubric": "Mention noisy/conflicting sources or unvalidated weak labels entering training.",
+      "sample_answer": "Noisy or conflicting sources, or unvalidated weak labels entering training."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Self-supervised pretraining removes all need for labeled data on the final task.",
+      "answer": false,
+      "explain": "Table 11.1 notes that SSL still needs labeled data for fine-tuning the final task."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

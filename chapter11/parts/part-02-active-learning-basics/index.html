@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Active learning basics — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter11/index.html">Chapter 11</a><span class="here">Part 2/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 11 · Guided part</div>
+    
+<section class="hero">
+  <h1>Active learning basics</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Part 2 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-01-from-fundamentals-to-advanced/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-03-active-learning-techniques/index.html" title="Techniques in active learning">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define the active-learning iterative feedback loop from seed set to retraining</li>
+<li>Contrast uncertainty, margin, and entropy sampling as query strategies</li>
+<li>Interpret Examples 11.1–11.4 for vision and MRI labeling queues</li>
+<li>Outline the seed–query–annotate–retrain pipeline and stopping criteria</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.1</span>
+    <h3>Example 11.1 — Uncertainty Sampling for Cat-Dog Images</h3>
+    <p>Rank binary predictions by distance from 0.5 and queue near-tie images for labeling.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example1/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.2</span>
+    <h3>Example 11.2 — Margin Sampling in Multi-Class Tasks</h3>
+    <p>Apply margin sampling to multi-class tasks where the top-two probabilities are closest.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example2/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.3</span>
+    <h3>Example 11.3 — High-Entropy Multi-Class Prediction</h3>
+    <p>Compute predictive entropy and prioritize flat multi-class distributions for labeling.</p>
+    <p class='module-files-inline'>Preview files: <code>main.py</code></p>
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example3/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:11.4</span>
+    <h3>Example 11.4 — Active Learning for MRI Tumor Detection</h3>
+    <p>Describe the MRI active-learning loop: seed set, query ambiguous scans, retrain.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter11/example4/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 11 — Active learning basics</h3><ul><li>Active learning attacks the labeling bottleneck by letting the model choose which unlabeled items humans should label</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>The iterative feedback loop</h3><ul><li>Active learning starts from a small labeled seed set</li><li>The cycle repeats until performance or budget stops the loop</li><li>The goal is better generalization with fewer total labels than random annotation</li></ul></div><div class="slide-card"><h3>Query strategies overview</h3><ul><li>A query strategy defines how the model ranks unlabeled items for human labeling</li><li>Uncertainty sampling targets low-confidence predictions near decision boundaries</li><li>Margin sampling ranks by the gap between the top two class probabilities</li><li>Entropy sampling ranks by predictive entropy over the full class distribution</li><li>Strategies can be combined or adapted to the task</li></ul></div><div class="slide-card"><h3>Example 11.1 — Uncertainty Sampling for Cat-Dog Images</h3><ul><li>Example 11.1 — hands-on module</li><li>Example 11.1 shows uncertainty sampling on a binary vision task</li><li>An image with predicted probabilities near 0.51 and 0.49 for cat versus dog is queued for</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example1/</code></li></ul></div><div class="slide-card"><h3>Example 11.1 — listing</h3><pre><code>&quot;&quot;&quot;Example 11.1 — uncertainty sampling queues near-tie binary predictions.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def uncertainty_score(p_positive: float) -&gt; float:
+    &quot;&quot;&quot;Return distance from a 0.5 decision boundary (lower =&gt; more uncertain).&quot;&quot;&quot;
+    return abs(p_positive - 0.5)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Rank unlabeled images by binary prediction uncertainty.&quot;&quot;&quot;
+    pool: list[tuple[str, float]] = [
+        (&quot;img_clear_dog.jpg&quot;, 0.92),
+        (&quot;img_clear_cat.jpg&quot;, 0.11),
+        (&quot;img_blurry_pet.jpg&quot;, 0.51),
+        (&quot;img_night_pet.jpg&quot;, 0.48),
+        (&quot;img_toy_animal.jpg&quot;, 0.67),
+    ]
+    ranked = sorted(pool, key=lambda row: uncertainty_score(row[1]))</code></pre></div><div class="slide-card"><h3>Example 11.2 — Margin Sampling in Multi-Class Tasks</h3><ul><li>Example 11.2 — hands-on module</li><li>Example 11.2 refines the idea for multi-class settings</li><li>Signaling weak class separation that a new label can sharpen</li><li>This differs from absolute least-confidence alone by focusing on the competing pair of</li><li>View files: <code>modules/chapter11/example2/</code></li></ul></div><div class="slide-card"><h3>Example 11.2 — listing</h3><pre><code>&quot;&quot;&quot;Example 11.2 — margin sampling prioritizes the smallest top-two gap.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+
+def margin(probs: dict[str, float]) -&gt; float:
+    &quot;&quot;&quot;Return the gap between the top two class probabilities.&quot;&quot;&quot;
+    ordered = sorted(probs.values(), reverse=True)
+    return ordered[0] - ordered[1]
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Rank multi-class predictions by margin (smaller margin =&gt; query first).&quot;&quot;&quot;
+    pool: list[tuple[str, dict[str, float]]] = [
+        (&quot;doc_clear&quot;, {&quot;sports&quot;: 0.80, &quot;politics&quot;: 0.12, &quot;biz&quot;: 0.08}),
+        (&quot;doc_close&quot;, {&quot;sports&quot;: 0.41, &quot;politics&quot;: 0.39, &quot;biz&quot;: 0.20}),
+        (&quot;doc_flatish&quot;, {&quot;sports&quot;: 0.36, &quot;politics&quot;: 0.34, &quot;biz&quot;: 0.30}),
+    ]
+    ranked = sorted(pool, key=lambda row: margin(row[1]))
+    print(&quot;Multi-class pool; smaller top-two margin =&gt; higher labeling priority\n&quot;)</code></pre></div><div class="slide-card"><h3>Example 11.3 — High-Entropy Multi-Class Prediction</h3><ul><li>Example 11.3 — hands-on module</li><li>Example 11.3 illustrates entropy sampling</li><li>If the model predicts class A at 0.4 and classes B and C at 0.3 each</li><li>Flat distributions across many classes are informative even when no single probability is</li><li>View files: <code>modules/chapter11/example3/</code></li></ul></div><div class="slide-card"><h3>Example 11.3 — listing</h3><pre><code>&quot;&quot;&quot;Example 11.3 — entropy sampling selects the flattest predictive distribution.&quot;&quot;&quot;
+
+from __future__ import annotations
+
+import math
+
+
+def entropy(probs: list[float]) -&gt; float:
+    &quot;&quot;&quot;Return Shannon entropy of a discrete probability distribution.&quot;&quot;&quot;
+    return -sum(p * math.log2(p) for p in probs if p &gt; 0)
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Compare entropy for peaked vs flat multi-class predictions.&quot;&quot;&quot;
+    cases: list[tuple[str, list[float]]] = [
+        (&quot;peaked (A=0.90)&quot;, [0.90, 0.05, 0.05]),
+        (&quot;book example (A=0.4, B=C=0.3)&quot;, [0.40, 0.30, 0.30]),
+        (&quot;uniform (1/3 each)&quot;, [1 / 3, 1 / 3, 1 / 3]),
+    ]
+    print(f&quot;{&#x27;Distribution&#x27;:&lt;32}{&#x27;Entropy (bits)&#x27;:&gt;16}{&#x27;Priority&#x27;:&gt;10}&quot;)</code></pre></div><div class="slide-card"><h3>Active-learning pipeline steps</h3><ul><li>The pipeline is incremental</li><li>The loop stops when the model meets a performance threshold or the labeling budget is</li><li>Effort concentrates on informative cases rather than easy majority examples</li></ul></div><div class="slide-card"><h3>Example 11.4 — Active Learning for MRI Tumor Detection</h3><ul><li>Example 11.4 — hands-on module</li><li>Example 11.4 applies the full loop to expert MRI labeling</li><li>A tumor detector starts from a small labeled MRI seed set</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter11/example4/</code></li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Active learning is an iterative loop that queries humans where the model is least sure</li><li>Uncertainty, margin, and entropy sampling are complementary ways to rank informativeness</li><li>Medical and vision examples show how seed training plus selective expert labels can reduce</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>The next part covers complementary techniques beyond basic uncertainty</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 11 — Active learning basics</h3><p>Active learning attacks the labeling bottleneck by letting the model choose which unlabeled items humans should label next. Instead of treating every instance as equally important, the model uses its own uncertainty to focus annotator effort where new labels most improve performance.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to define the active-learning iterative loop; contrast uncertainty, margin, and entropy sampling as query strategies; and interpret short examples that apply those strategies to vision and medical imaging queues.</p></div><div class="transcript"><h3>Slide 3 — The iterative feedback loop</h3><p>Active learning starts from a small labeled seed set. The model then selects unlabeled points it is most uncertain about, humans label those points, the model retrains, and the cycle repeats until performance or budget stops the loop. The goal is better generalization with fewer total labels than random annotation.</p></div><div class="transcript"><h3>Slide 4 — Query strategies overview</h3><p>A query strategy defines how the model ranks unlabeled items for human labeling. Uncertainty sampling targets low-confidence predictions near decision boundaries. Margin sampling ranks by the gap between the top two class probabilities. Entropy sampling ranks by predictive entropy over the full class distribution. Strategies can be combined or adapted to the task.</p></div><div class="transcript"><h3>Slide 5 — Example 11.1 — Uncertainty Sampling for Cat-Dog Images</h3><p>Example 11.1 shows uncertainty sampling on a binary vision task. An image with predicted probabilities near 0.51 and 0.49 for cat versus dog is queued for a human label because that near-tie is where a new label most reshapes the decision boundary. The example 1 module for this chapter summarizes that near-tie selection idea.</p></div><div class="transcript"><h3>Slide 6 — Example 11.2 — Margin Sampling in Multi-Class Tasks</h3><p>Example 11.2 refines the idea for multi-class settings. Margin sampling prioritizes instances where the top two predicted probabilities are closest, signaling weak class separation that a new label can sharpen. This differs from absolute least-confidence alone by focusing on the competing pair of classes. The example 2 module for this chapter frames that margin criterion.</p></div><div class="transcript"><h3>Slide 7 — Example 11.3 — High-Entropy Multi-Class Prediction</h3><p>Example 11.3 illustrates entropy sampling. If the model predicts class A at 0.4 and classes B and C at 0.3 each, entropy is high because no class dominates, so such instances are prioritized for labeling. Flat distributions across many classes are informative even when no single probability is near 0.5. The example 3 module for this chapter covers this high-entropy case.</p></div><div class="transcript"><h3>Slide 8 — Active-learning pipeline steps</h3><p>The pipeline is incremental: train on the seed set, query the most informative unlabeled items, send them to human annotators, retrain on the expanded labeled set, and iterate. The loop stops when the model meets a performance threshold or the labeling budget is exhausted. Effort concentrates on informative cases rather than easy majority examples.</p></div><div class="transcript"><h3>Slide 9 — Example 11.4 — Active Learning for MRI Tumor Detection</h3><p>Example 11.4 applies the full loop to expert MRI labeling. A tumor detector starts from a small labeled MRI seed set, then repeatedly queries ambiguous or rare-tumor scans for radiologist labels, cutting expert hours while improving detection on hard cases. The example 4 module for this chapter describes that medical active-learning pattern.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Active learning is an iterative loop that queries humans where the model is least sure. Uncertainty, margin, and entropy sampling are complementary ways to rank informativeness. Medical and vision examples show how seed training plus selective expert labels can reduce total annotation volume.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>The next part covers complementary techniques beyond basic uncertainty: least-confidence selection near decision boundaries, diversity sampling across clusters, cost-sensitive routing of expensive experts, and model-in-the-loop review.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-03-active-learning-techniques/index.html" data-next-label="Continue to Techniques in active learning"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-02-active-learning-basics",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What is the core idea of the active-learning loop?",
+      "choices": [
+        "Label every unlabeled item before any training begins",
+        "Iteratively query informative unlabeled items, label them, and retrain",
+        "Replace all human labels with random synthetic labels",
+        "Train once on a fixed set and never request new labels"
+      ],
+      "answer_index": 1,
+      "explain": "Section 11.2 describes the seed–query–annotate–retrain iteration."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 11.1 queues a cat–dog image when predicted probabilities are near a 0.51/0.49 tie.",
+      "answer": true,
+      "explain": "Uncertainty sampling targets near-ties that reshape the decision boundary."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Margin sampling primarily ranks instances by which criterion?",
+      "choices": [
+        "The smallest gap between the top two predicted class probabilities",
+        "The longest filename in the unlabeled pool",
+        "The oldest timestamp in the collection log",
+        "The highest single-class probability only"
+      ],
+      "answer_index": 0,
+      "explain": "Example 11.2 and the margin-sampling definition use the top-two probability gap."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "In Example 11.3, why is entropy high when class probabilities are 0.4, 0.3, and 0.3?",
+      "rubric": "No class dominates / flat distribution / high predictive uncertainty.",
+      "sample_answer": "No class dominates; the flat distribution yields high predictive entropy."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Example 11.4 uses active learning so radiologists label every MRI scan in the pool.",
+      "answer": false,
+      "explain": "The example queries ambiguous or rare-tumor scans, cutting expert hours on easy cases."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

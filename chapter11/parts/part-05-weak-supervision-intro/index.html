@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to weak supervision — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter11/index.html">Chapter 11</a><span class="here">Part 5/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 11 · Guided part</div>
+    
+<section class="hero">
+  <h1>Introduction to weak supervision</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 11</span>
+    <span class="pill pill-muted">Part 5 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-active-learning-applications/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-weak-supervision-techniques/index.html" title="Techniques in weak supervision">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Define weak supervision relative to fully supervised hand labeling</li>
+<li>Distinguish noisy, incomplete, and heuristic or imprecise labels</li>
+<li>List cost, scale, and coverage advantages of weak signals</li>
+<li>Name common sources such as heuristics, distant supervision, and related signals</li>
+</ul>
+
+
+
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 11 — Introduction to weak supervision</h3><ul><li>Active learning still spends human labels on selected items</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>By the end of this part</li></ul></div><div class="slide-card"><h3>Definition of weak supervision</h3><ul><li>Weak supervision trains models using data that is partially labeled</li><li>Then managing the noise they introduce</li></ul></div><div class="slide-card"><h3>Noisy, incomplete, and heuristic labels</h3><ul><li>Noisy labels are incorrect or imprecise</li><li>Incomplete labeling leaves much of the pool unlabeled and requires extrapolation from</li><li>Heuristic or imprecise labels come from rules</li></ul></div><div class="slide-card"><h3>Programmatic and data-programming ideas</h3><ul><li>Weakly supervised pipelines often use labeling functions</li><li>The key challenge is managing noise and conflict among sources while still extracting</li><li>Later sections detail Snorkel-style aggregation</li></ul></div><div class="slide-card"><h3>Advantages of weak supervision</h3><ul><li>Weak supervision is cost-effective because it avoids labeling every item by hand</li><li>It scales volume quickly when rules or distant sources can run over large corpora</li><li>It also enables coverage in domains where clean labels are scarce</li></ul></div><div class="slide-card"><h3>Sources of weak supervision</h3><ul><li>Transfer from pretrained models when domain labels are limited</li><li>Each source is imperfect</li></ul></div><div class="slide-card"><h3>Distant supervision and related signals</h3><ul><li>Distant supervision might infer company–investor relations from financial databases even</li><li>Transfer learning can act as a weak signal when a general pretrained model is fine-tuned</li><li>These patterns expand label volume but still require quality checks before production</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Weak supervision replaces full hand labeling with noisy, incomplete, or heuristic signals</li><li>Advantages include cost, scale, and coverage when gold labels are scarce</li><li>Sources range from rules and distant databases to pretrained models</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Data programming that outputs probabilistic labels for training</li></ul></div></div></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 11 — Introduction to weak supervision</h3><p>Active learning still spends human labels on selected items. Weak supervision instead generates training labels from noisy, incomplete, or heuristic signals so teams can scale without a fully hand-labeled corpus. This part defines weak labels, advantages, and common sources.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to define weak supervision relative to fully supervised labeling; distinguish noisy, incomplete, and heuristic labels; list cost, speed, and coverage advantages; and name common sources such as heuristics, distant supervision, and related weak signals.</p></div><div class="transcript"><h3>Slide 3 — Definition of weak supervision</h3><p>Weak supervision trains models using data that is partially labeled, noisy, or derived from unreliable sources rather than relying solely on high-quality human ground truth. The goal is to reduce dependence on large manually labeled sets by using accessible weak signals that are cheaper to obtain, then managing the noise they introduce.</p></div><div class="transcript"><h3>Slide 4 — Noisy, incomplete, and heuristic labels</h3><p>Noisy labels are incorrect or imprecise, often from automation, crowds, or low-confidence annotators. Incomplete labeling leaves much of the pool unlabeled and requires extrapolation from patterns. Heuristic or imprecise labels come from rules, search queries, web scraping, or domain-specific shortcuts that may not match true ground truth but still inform training.</p></div><div class="transcript"><h3>Slide 5 — Programmatic and data-programming ideas</h3><p>Weakly supervised pipelines often use labeling functions, data programming, or programmatic labeling to create large-scale weak label sets. The key challenge is managing noise and conflict among sources while still extracting useful training signal. Later sections detail Snorkel-style aggregation; this part establishes why those methods are needed.</p></div><div class="transcript"><h3>Slide 6 — Advantages of weak supervision</h3><p>Weak supervision is cost-effective because it avoids labeling every item by hand. It scales volume quickly when rules or distant sources can run over large corpora. It also enables coverage in domains where clean labels are scarce, provided teams validate against a small gold set and do not treat weak labels as perfect truth.</p></div><div class="transcript"><h3>Slide 7 — Sources of weak supervision</h3><p>Common sources include heuristic rules written by domain experts, distant supervision that infers labels from knowledge bases or related databases, and transfer from pretrained models when domain labels are limited. Each source is imperfect; combining and auditing them is part of the method, not an optional afterthought.</p></div><div class="transcript"><h3>Slide 8 — Distant supervision and related signals</h3><p>Distant supervision might infer company–investor relations from financial databases even when text mentions are noisy. Transfer learning can act as a weak signal when a general pretrained model is fine-tuned on a small domain set. These patterns expand label volume but still require quality checks before production training.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Weak supervision replaces full hand labeling with noisy, incomplete, or heuristic signals. Advantages include cost, scale, and coverage when gold labels are scarce. Sources range from rules and distant databases to pretrained models; the next part shows how to combine them into usable training labels.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part covers programmatic labeling with Snorkel-style labeling functions, heuristic rules, and data programming that outputs probabilistic labels for training.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-06-weak-supervision-techniques/index.html" data-next-label="Continue to Techniques in weak supervision"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-05-weak-supervision-intro",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "What is the primary goal of weak supervision?",
+      "choices": [
+        "Train using noisy, incomplete, or heuristic signals instead of only full hand labels",
+        "Require every training row to have expert gold labels",
+        "Eliminate all need for validation or gold checks",
+        "Replace storage systems with labeling platforms"
+      ],
+      "answer_index": 0,
+      "explain": "Section 11.5 defines weak supervision as using imperfect signals to reduce full hand labeling."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Heuristic labels always match true ground truth and need no auditing.",
+      "answer": false,
+      "explain": "Heuristic and distant labels are informative but imperfect and must be managed for noise."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which is a common source of weak supervision?",
+      "choices": [
+        "Domain heuristic rules or distant databases",
+        "Perfect human labels for every item only",
+        "Deleting all unlabeled data",
+        "Random coin flips with no domain signal"
+      ],
+      "answer_index": 0,
+      "explain": "Heuristics and distant supervision are central sources discussed in Section 11.5."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name two advantages of weak supervision.",
+      "rubric": "Cost-effectiveness, scalability/speed, or coverage when gold labels are scarce.",
+      "sample_answer": "Lower labeling cost and ability to scale labels when clean gold sets are scarce."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Incomplete labeling means only a subset of the data has labels.",
+      "answer": true,
+      "explain": "Section 11.5 lists incomplete labels as a key weak-supervision characteristic."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

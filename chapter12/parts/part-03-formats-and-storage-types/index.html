@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formats and storage types — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 3/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>Formats and storage types</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 3 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-databases-and-cloud-storage/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-distributed-systems/index.html" title="Distributed systems overview">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>Explain why Parquet suits columnar analytics workloads</li>
+<li>Contrast Avro row encoding with ORC for Hive-style warehouses</li>
+<li>Distinguish object versus block storage models and use cases</li>
+<li>Apply Examples 12.3–12.6 to format and media choices</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.3</span>
+    <h3>Example 12.3 — Parquet Columnar Analytics Format</h3>
+    <p>Explain why Parquet columnar layout cuts I/O for analytical scans.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example3/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.4</span>
+    <h3>Example 12.4 — Avro and ORC for Streams and Hive</h3>
+    <p>Choose Avro for stream writes vs ORC for Hive read-heavy warehouses.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example4/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.5</span>
+    <h3>Example 12.5 — Object Storage for Unstructured Archives</h3>
+    <p>Assign unstructured archives and lakehouse files to object storage.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example5/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.6</span>
+    <h3>Example 12.6 — Block Storage for Low-Latency Databases</h3>
+    <p>Use block storage for low-latency transactional database workloads.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example6/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — Formats and storage types</h3><p>Choosing a database is only half the storage decision. Columnar formats and object versus block media determine how analytics and low-latency services perform. This part covers Parquet, Avro, ORC, and when object or block storage fits.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to explain why Parquet suits columnar analytics; contrast Avro row encoding with ORC for Hive-style warehouses; distinguish object and block storage models; and apply Examples 12.3 through 12.6 to format and media choices.</p></div><div class="transcript"><h3>Slide 3 — Why storage formats matter</h3><p>For efficiently storing large datasets in distributed systems or cloud platforms, formats such as Parquet, Avro, and ORC are widely used. Format choice affects compression, schema evolution, and how much data a query must read from disk or object storage.</p></div><div class="transcript"><h3>Slide 4 — Example 12.3 — Parquet Columnar Analytics Format</h3><p>Example 12.3 highlights Parquet for analytical scans. Parquet stores data by column with compression and encoding suited to Spark and Hadoop analytics, so queries read only needed columns and cut input and output. The example 3 module for this chapter summarizes that columnar analytics pattern.</p></div><div class="transcript"><h3>Slide 5 — Example 12.4 — Avro and ORC for Streams and Hive</h3><p>Example 12.4 contrasts Avro row encoding with ORC columnar Hive storage. Avro is a row-oriented format common in Kafka-style streaming with schema evolution; ORC is a columnar format optimized for Hive and other read-heavy Hadoop warehouses. The example 4 module for this chapter frames that contrast.</p></div><div class="transcript"><h3>Slide 6 — Object storage model</h3><p>Object storage systems, such as Amazon S3 or Google Cloud Storage, treat data as objects in a flat namespace. This model is highly scalable and suitable for unstructured data such as videos, images, and backups. Object storage is optimized for large-scale archiving and retrieval over an HTTP-style API rather than block device semantics.</p></div><div class="transcript"><h3>Slide 7 — Example 12.5 — Object Storage for Unstructured Archives</h3><p>Example 12.5 places object storage in large unstructured workloads. Object stores keep objects in a flat namespace with high durability, fitting media, backups, and lakehouse files that grow without block-device provisioning. The example 5 module for this chapter covers that archive pattern.</p></div><div class="transcript"><h3>Slide 8 — Block storage and Example 12.6</h3><p>Block storage divides data into blocks and provides low-latency access, as with Amazon Elastic Block Store or Azure block volumes. It is ideal for transactional systems that need fast reads and writes, such as database applications. Example 12.6 shows block volumes attaching low-latency disks to virtual machines running transactional databases that need POSIX-like input and output rather than object get and put semantics. The example 6 module for this chapter summarizes that low-latency database case.</p></div><div class="transcript"><h3>Slide 9 — Putting formats and media together</h3><p>In practice, teams place lakehouse files, media, and backups on object storage and attach block volumes only where databases or virtual machines need low-latency block input and output. Columnar formats such as Parquet and ORC sit on object stores for analytics, while Avro often rides streaming buses before landing in lakes or warehouses.</p></div><div class="transcript"><h3>Slide 10 — Takeaways</h3><p>Parquet favors columnar analytics with selective column reads. Avro fits streaming with schema evolution; ORC fits read-heavy Hive warehouses. Object storage scales unstructured archives and lakehouse files; block storage serves low-latency transactional databases. Format and media choices should follow query and latency needs, not a single default.</p></div><div class="transcript"><h3>Slide 11 — Next</h3><p>The next part introduces distributed systems characteristics and concrete examples: HDFS partitioning and replication, Cassandra for multi-datacenter writes, and Kafka for real-time event streams.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-04-distributed-systems/index.html" data-next-label="Continue to Distributed systems overview"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-03-formats-and-storage-types",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Why does Parquet help analytical queries according to Example 12.3?",
+      "choices": [
+        "It stores data by column so queries can read only needed columns",
+        "It forces every query to scan every byte of every row always",
+        "It replaces all networks with USB drives",
+        "It removes the need for any compression"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.3 states Parquet is columnar with compression suited to Spark/Hadoop analytics."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Avro is described as a row-oriented format common in Kafka-style streaming with schema evolution.",
+      "answer": true,
+      "explain": "Example 12.4 contrasts Avro (row, streaming) with ORC (columnar, Hive warehouses)."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "Which storage type best fits unstructured media archives and lakehouse files that grow without block provisioning?",
+      "choices": [
+        "Object storage in a flat namespace",
+        "Only a single local floppy disk",
+        "Only in-memory registers with no durability",
+        "Only handwritten paper indexes"
+      ],
+      "answer_index": 0,
+      "explain": "Examples 12.5 and the object-storage subsection place unstructured archives on object stores."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "When is block storage preferred over object storage in Example 12.6?",
+      "rubric": "Mention low-latency / transactional databases / POSIX-like I/O on VMs.",
+      "sample_answer": "For low-latency transactional databases needing POSIX-like I/O on attached volumes."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "ORC is described as a columnar format optimized for Hive and other read-heavy Hadoop warehouses.",
+      "answer": true,
+      "explain": "Example 12.4 positions ORC for Hive-style read-heavy warehouses."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

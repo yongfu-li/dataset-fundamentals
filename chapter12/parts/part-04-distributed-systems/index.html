@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distributed systems overview — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter12/index.html">Chapter 12</a><span class="here">Part 4/10</span></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="eyebrow">Chapter 12 · Guided part</div>
+    
+<section class="hero">
+  <h1>Distributed systems overview</h1>
+  <div class="clip-meta">
+    <span class="pill">~7 min</span>
+    <span class="pill pill-muted">Chapter 12</span>
+    <span class="pill pill-muted">Part 4 of 10</span>
+  </div>
+  <nav class="clip-toolbar" aria-label="Part actions and navigation">
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-03-formats-and-storage-types/index.html">← Previous</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-05-cap-sharding-consistency/index.html" title="CAP, sharding, and consistency">Next →</a>
+  </nav>
+</section>
+
+<section class="video-panel" aria-label="Part video">
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="video/clip.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" hidden>
+      Video not available yet. Download the PPTX/PDF and continue with the quiz.
+    </div>
+  </div>
+</section>
+
+<h2>Learning objectives</h2>
+<ul class='objectives'>
+<li>List key distributed-system characteristics (partitioning, replication, fault tolerance)</li>
+<li>Explain how HDFS illustrates block partitioning and replication</li>
+<li>Position Cassandra for write-heavy multi-datacenter applications</li>
+<li>Describe Kafka as a durable partitioned event log for real-time streams</li>
+</ul>
+
+
+
+
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.7</span>
+    <h3>Example 12.7 — HDFS Partitioning and Replication</h3>
+    <p>Describe HDFS block splitting, replication, and fault tolerance.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example7/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.8</span>
+    <h3>Example 12.8 — Cassandra for Multi-Datacenter Writes</h3>
+    <p>Justify Cassandra for multi-datacenter write-heavy availability.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example8/index.html">View files and result</a>
+</article>
+
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:12.9</span>
+    <h3>Example 12.9 — Kafka for Real-Time Event Streams</h3>
+    <p>Position Kafka as a durable partitioned backbone for real-time feeds.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter12/example9/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
+
+<details class="panel" data-persist="slides">
+  <summary>Slides overview</summary>
+  <div class="panel-body"><p>Slides not found.</p></div>
+</details>
+
+
+<details class="panel" data-persist="transcript">
+  <summary>Transcript</summary>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 12 — Distributed systems overview</h3><p>Single-node disks cannot hold petabyte corpora. Distributed systems partition and replicate data across machines. This part introduces distributed characteristics and concrete examples: HDFS, Cassandra, and Kafka for streams.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, learners should be able to list key distributed-system characteristics such as partitioning, replication, and fault tolerance; explain how HDFS illustrates block partitioning and replication; position Cassandra for write-heavy multi-datacenter apps; and describe Kafka as a durable partitioned event log.</p></div><div class="transcript"><h3>Slide 3 — Why distributed systems</h3><p>Distributed systems sit at the heart of scalable data management. They enable data to be stored, processed, and queried across multiple machines so large datasets can be handled efficiently. Chapter 9 introduced streaming collection from an acquisition angle; here the focus is storage layout, consistency, and operational trade-offs once data already live in the platform.</p></div><div class="transcript"><h3>Slide 4 — Key characteristics</h3><p>Distributed systems aim for high availability, fault tolerance, and horizontal scalability. Core characteristics include data partitioning across nodes; replication for redundancy; consistency models from strong to eventual; coordination among nodes; fault tolerance when components fail; and scaling out by adding nodes without sacrificing performance.</p></div><div class="transcript"><h3>Slide 5 — Example 12.7 — HDFS Partitioning and Replication</h3><p>Example 12.7 walks through HDFS blocks as a distributed-file pattern. HDFS splits large files into blocks, often around 128 megabytes, places replicas on multiple nodes, and keeps serving data when a node fails, illustrating partitioning, replication, and horizontal scale. The example 7 module for this chapter summarizes that pattern.</p></div><div class="transcript"><h3>Slide 6 — Example 12.8 — Cassandra for Multi-Datacenter Writes</h3><p>Example 12.8 positions Cassandra for write-heavy global apps. Apache Cassandra is a distributed NoSQL store built for high write throughput and multi-datacenter availability when horizontal scale matters more than single-key ACID transactions. The example 8 module for this chapter frames that write-oriented design.</p></div><div class="transcript"><h3>Slide 7 — Example 12.9 — Kafka for Real-Time Event Streams</h3><p>Example 12.9 uses Kafka as the streaming backbone. Apache Kafka ingests and buffers event streams with durable, partitioned logs so analytics and services can consume the same feed at scale. The example 9 module for this chapter covers that event-stream role.</p></div><div class="transcript"><h3>Slide 8 — Patterns that recur</h3><p>Together, HDFS, Cassandra, and Kafka illustrate partitioning, replication, and streaming patterns that recur throughout later distributed-system topics. File blocks, write-optimized tablet stores, and durable logs are complementary layers rather than competing single answers for every workload.</p></div><div class="transcript"><h3>Slide 9 — Takeaways</h3><p>Distributed systems store and process data across nodes with partitioning, replication, coordination, and fault tolerance. HDFS shows block placement and replica recovery. Cassandra targets multi-datacenter write scale. Kafka provides durable partitioned logs for real-time consumers. These patterns prepare the CAP and consistency discussion that follows.</p></div><div class="transcript"><h3>Slide 10 — Next</h3><p>The next part covers the CAP theorem, sharding and replication patterns, and when strong versus eventual consistency is appropriate for the workload.</p></div></div>
+</details>
+
+
+<section class="quiz-section" id="quiz">
+  <div id="quiz-root" data-next-href="../part-05-cap-sharding-consistency/index.html" data-next-label="Continue to CAP, sharding, and consistency"></div>
+  <script id="quiz-data" type="application/json">{
+  "part_id": "part-04-distributed-systems",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which characteristic means splitting data across multiple nodes to handle large datasets?",
+      "choices": [
+        "Data partitioning",
+        "Only single-node vertical upgrades forever",
+        "Only deleting all replicas",
+        "Only disabling fault tolerance"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.2.6 lists data partitioning as splitting data across nodes."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "HDFS places replicas on multiple nodes so data can still be served when a node fails.",
+      "answer": true,
+      "explain": "Example 12.7 illustrates partitioning, replication, and continued service after node failure."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "According to Example 12.8, Cassandra is built primarily for which priority?",
+      "choices": [
+        "High write throughput and multi-datacenter availability",
+        "Only single-key ACID on one laptop",
+        "Only print-queue management",
+        "Only offline tape labeling"
+      ],
+      "answer_index": 0,
+      "explain": "Example 12.8 emphasizes write throughput and multi-datacenter availability over single-key ACID."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "What does Kafka provide so many consumers can share the same event feed?",
+      "rubric": "Mention durable partitioned logs / ingest and buffer event streams.",
+      "sample_answer": "Durable, partitioned event logs that ingest and buffer streams for many consumers."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "Horizontal scalability means adding nodes to increase capacity without sacrificing performance as the design goal.",
+      "answer": true,
+      "explain": "Section 12.2.6 lists scalability as adding nodes to handle increased load."
+    }
+  ]
+}
+</script>
+  <script src="../../../assets/quiz.js"></script>
+</section>
+
+  </main>
+  <footer class="site-footer">Lecture companion for Fundamental of Dataset: Collection, Annotation, and Management</footer>
+  
+  <script src="../../../assets/site.js"></script>
+</body>
+</html>

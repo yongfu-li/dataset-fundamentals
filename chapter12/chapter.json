@@ -1,0 +1,123 @@
+{
+  "chapter": 12,
+  "title": "Chapter 12 — Scalable Data Management",
+  "slug": "chapter12",
+  "objectives": [
+    "Define scalable data management and explain elasticity, efficiency, and resilience",
+    "Compare databases, object storage, and lakehouse formats for large datasets",
+    "Describe distributed systems patterns including HDFS, Cassandra, and Kafka",
+    "Apply CAP theorem, sharding, and consistency models to storage design choices",
+    "Use dataset versioning tools such as DVC, Pachyderm, Delta Lake, and Iceberg at scale",
+    "Explain data lineage techniques, tools, benefits, and cross-platform gaps",
+    "Recognize scalable architectures in streaming media, analytics, and healthcare imaging",
+    "Identify emerging trends including serverless compute, graph stores, and streaming platforms"
+  ],
+  "parts": [
+    {
+      "id": "part-01-introduction-to-scalable-management",
+      "section": "sec:12.1",
+      "title": "Introduction to scalable data management",
+      "slug": "introduction-to-scalable-management",
+      "estimate_min": 6,
+      "examples": [],
+      "path": "parts/part-01-introduction-to-scalable-management/",
+      "bridge_in": "Chapters 9 through 11 covered advanced collection, synthetic companions, and annotation at scale. This chapter asks how organizations store, distribute, and operate datasets when volume and concurrency outgrow single-node workflows. This opening part defines scalable data management, key principles, and the challenges that drive distributed designs."
+    },
+    {
+      "id": "part-02-databases-and-cloud-storage",
+      "section": "sec:12.2.1",
+      "title": "Databases and cloud storage",
+      "slug": "databases-and-cloud-storage",
+      "estimate_min": 7,
+      "examples": ["eg:12.1", "eg:12.2"],
+      "path": "parts/part-02-databases-and-cloud-storage/",
+      "bridge_in": "Principles alone do not pick a store. Teams need concrete database and storage families for web, mobile, IoT, and analytics workloads. This part surveys database types, NoSQL use cases, and cloud object storage across major providers.",
+      "split_reason": "Section 12.2 is split across parts 02–05."
+    },
+    {
+      "id": "part-03-formats-and-storage-types",
+      "section": "sec:12.2.3",
+      "title": "Formats and storage types",
+      "slug": "formats-and-storage-types",
+      "estimate_min": 7,
+      "examples": ["eg:12.3", "eg:12.4", "eg:12.5", "eg:12.6"],
+      "path": "parts/part-03-formats-and-storage-types/",
+      "bridge_in": "Choosing a database is only half the storage decision. Columnar formats and object versus block media determine how analytics and low-latency services perform. This part covers Parquet, Avro, ORC, and when object or block storage fits.",
+      "split_reason": "Continuation of sec:12.2 after databases and cloud storage."
+    },
+    {
+      "id": "part-04-distributed-systems",
+      "section": "sec:12.2.5",
+      "title": "Distributed systems overview",
+      "slug": "distributed-systems",
+      "estimate_min": 7,
+      "examples": ["eg:12.7", "eg:12.8", "eg:12.9"],
+      "path": "parts/part-04-distributed-systems/",
+      "bridge_in": "Single-node disks cannot hold petabyte corpora. Distributed systems partition and replicate data across machines. This part introduces distributed characteristics and concrete examples: HDFS, Cassandra, and Kafka for streams.",
+      "split_reason": "Continuation of sec:12.2 after formats and storage types."
+    },
+    {
+      "id": "part-05-cap-sharding-consistency",
+      "section": "sec:12.2.7",
+      "title": "CAP, sharding, and consistency",
+      "slug": "cap-sharding-consistency",
+      "estimate_min": 7,
+      "examples": ["eg:12.10", "eg:12.11", "eg:12.13"],
+      "path": "parts/part-05-cap-sharding-consistency/",
+      "bridge_in": "Distribution introduces trade-offs among consistency, availability, and partition tolerance. This part covers the CAP theorem, sharding and replication patterns, and when strong versus eventual consistency is appropriate.",
+      "split_reason": "Continuation of sec:12.2 after distributed systems overview."
+    },
+    {
+      "id": "part-06-dataset-versioning-tools",
+      "section": "sec:12.3.1",
+      "title": "Dataset versioning tools",
+      "slug": "dataset-versioning-tools",
+      "estimate_min": 7,
+      "examples": ["eg:12.14", "eg:12.15", "eg:12.16", "eg:12.17"],
+      "path": "parts/part-06-dataset-versioning-tools/",
+      "bridge_in": "Chapter 8 covered team-scale documentation and Git-oriented version control. At platform scale, versioning must track large binaries and lakehouse tables. This part surveys DVC remotes, Pachyderm, Delta Lake time travel, and Iceberg snapshots.",
+      "split_reason": "Section 12.3 is split across parts 06–07."
+    },
+    {
+      "id": "part-07-versioning-benefits-challenges",
+      "section": "sec:12.3.3",
+      "title": "Versioning benefits and challenges",
+      "slug": "versioning-benefits-challenges",
+      "estimate_min": 6,
+      "examples": ["eg:12.18"],
+      "path": "parts/part-07-versioning-benefits-challenges/",
+      "bridge_in": "Tools only help if teams understand why versioning matters and where it fails. This part covers rollback and reproducibility benefits, then storage cost, metadata complexity, and collaboration challenges at scale.",
+      "split_reason": "Continuation of sec:12.3 after versioning tools."
+    },
+    {
+      "id": "part-08-data-lineage-tracking",
+      "section": "sec:12.4",
+      "title": "Data lineage tracking",
+      "slug": "data-lineage-tracking",
+      "estimate_min": 7,
+      "examples": ["eg:12.19", "eg:12.20", "eg:12.21", "eg:12.22"],
+      "path": "parts/part-08-data-lineage-tracking/",
+      "bridge_in": "Versioning records what changed; lineage records how data moved and transformed. This part defines provenance, metadata and automated capture techniques, visualization for debugging, and cross-platform lineage gaps."
+    },
+    {
+      "id": "part-09-case-studies",
+      "section": "sec:12.5",
+      "title": "Practical applications and case studies",
+      "slug": "case-studies",
+      "estimate_min": 6,
+      "examples": ["eg:12.23", "eg:12.24", "eg:12.25"],
+      "path": "parts/part-09-case-studies/",
+      "bridge_in": "Storage theory becomes concrete in production architectures. This part walks scalable patterns for streaming media, real-time analytics pipelines, and healthcare imaging at volume."
+    },
+    {
+      "id": "part-10-emerging-trends",
+      "section": "sec:12.6",
+      "title": "Emerging trends",
+      "slug": "emerging-trends",
+      "estimate_min": 7,
+      "examples": ["eg:12.26", "eg:12.27", "eg:12.28", "eg:12.29"],
+      "path": "parts/part-10-emerging-trends/",
+      "bridge_in": "The chapter closes by looking ahead. This final part surveys serverless compute over object storage, graph and time-series specialty stores, and high-throughput messaging platforms that shape the next generation of scalable pipelines."
+    }
+  ]
+}

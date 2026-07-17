@@ -1,0 +1,54 @@
+{
+  "part_id": "part-07-versioning-benefits-challenges",
+  "title": "Check your understanding",
+  "passing_score": 0.7,
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "prompt": "Which distinctive scale benefit does Section 12.3.3 emphasize?",
+      "choices": [
+        "Pin training to a lakehouse snapshot without re-copying petabytes",
+        "Only printing paper changelogs for every row",
+        "Deleting all history after each successful run",
+        "Avoiding any rollback capability"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.3.3 lists snapshot pinning without petabyte re-copy among distinctive scale gains."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "prompt": "Example 12.18 recommends rebuilding the entire feature table from scratch after every corrupt preprocessing job.",
+      "answer": false,
+      "explain": "Example 12.18 rolls back to the last good snapshot and reruns from a known state."
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "prompt": "What storage practice helps manage version history cost at petabyte scale?",
+      "choices": [
+        "Store diffs via delta/snapshot formats, tier cold snapshots, and expire unused history",
+        "Keep unlimited full copies of every petabyte table forever",
+        "Disable all snapshots to save nothing",
+        "Store only the latest corrupt overwrite"
+      ],
+      "answer_index": 0,
+      "explain": "Section 12.3.4 discusses diffs, tiering cold snapshots, and expiring unused history."
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "prompt": "Name one concurrency challenge when evolving schemas on a shared lakehouse table.",
+      "rubric": "Mention coordinated metadata, compatible readers, or deciding when a breaking change needs a new table identity.",
+      "sample_answer": "Coordinating metadata and readers, or deciding when a break needs a new table identity."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "prompt": "General commit hygiene and changelog discipline still belong primarily in Chapter 8, while Chapter 12 focuses on lakehouse-scale overhead and concurrency.",
+      "answer": true,
+      "explain": "Section 12.3.4 explicitly places general versioning discipline in Chapter 8."
+    }
+  ]
+}
