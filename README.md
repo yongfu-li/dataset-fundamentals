@@ -6,6 +6,7 @@ Open learning platform for *Fundamental of Dataset: Collection, Annotation, and 
 |------|----------------|
 | **Lectures** | Chapter learning paths: short video parts, bridge text, quizzes, downloadable decks |
 | **Tools** | Browser labs along the dataset workflow (collect → clean → document → license) |
+| **Project** | Guided raw → ready path: protect, prepare, document, and package a release kit |
 | **Examples** | Packaged modules with notes, data files, and expected results |
 | **Community** | Reader stories and feedback |
 
