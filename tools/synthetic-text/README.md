@@ -1,7 +1,7 @@
 # Synthetic text generator
 
 Browser lab for **Chapter 10 §10.5** — rule-based **synthetic text** (templates,
-noise, tiny Markov). No model training and no LLM API.
+EDA, noise, mixup, bootstrap, Markov). No model training and no LLM API.
 
 **Live path:** `lectures/tools/synthetic-text/index.html` (after `build_site.py`)
 
@@ -11,15 +11,27 @@ Image / audio / video generators are planned as sibling tools (see root `TOOLS.m
 ## Learning objectives
 
 - Expand scarce text with templates and slot banks (LLM-style *concept*, local rules)
-- Apply light noise or a bigram Markov model on seed lines
+- Apply **EDA**, word/char noise, **mixup**, **bootstrap**, or bigram/trigram **Markov**
 - Read uniqueness / duplicate stats and fidelity–privacy caveats
 - Export `synthetic-texts.json` / `.csv` plus a reproducible `generation-recipe`
 
+## Methods
+
+| Method | Needs | What it does |
+|--------|-------|----------------|
+| Template / slot fill | templates | Expand `{product}`-style banks |
+| Noise on seeds | seeds | Synonym / typo / drop (light) |
+| EDA | seeds | Synonym, insert, swap, delete (Wei & Zou–style) |
+| Character / keyboard noise | seeds | Adjacent-key and transpose typos |
+| Bootstrap resample | seeds | Draw seeds with replacement (§10.3 link) |
+| Sentence mixup | seeds | Splice halves of two seeds |
+| Markov bigram / trigram | seeds | Local n-gram continuation |
+
 ## Workflow
 
-1. **Learn** — `review-templates` → `support-tickets` → `seed-reviews` (noise / Markov)
+1. **Learn** — `review-templates` → `support-tickets` → `seed-reviews` (try EDA, mixup, Markov)
 2. **Apply** — upload CSV/JSON with a `text` column (or JSON `texts` / `items[].text`)
-3. **See** — highlighted slots in the preview list
+3. **See** — highlighted slots / mixup halves in the preview list
 4. **Export** — texts + recipe (same seed reproduces the draw)
 
 ## Upload rules
@@ -54,6 +66,6 @@ synthetic-text/
 - [ ] Loads under `http://` and `file://`
 - [ ] `review-templates` highlights slot fills
 - [ ] Same seed + method reproduces the same texts
-- [ ] `seed-reviews` works for noise and Markov
+- [ ] `seed-reviews` works for noise, EDA, char noise, bootstrap, mixup, Markov
 - [ ] Upload CSV with `text` column; generate; export JSON/CSV/recipe
 - [ ] Caveats visible in preview and recipe Markdown

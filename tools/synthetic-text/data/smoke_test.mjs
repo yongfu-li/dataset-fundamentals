@@ -60,11 +60,26 @@ try {
   const p = Lib.loadPreset("seed-reviews");
   const n = Lib.generate(p, { method: "noise", count: 5, seed: 3, noiseIntensity: 0.8 });
   check("noise count", n.items.length === 5);
+  const eda = Lib.generate(p, { method: "eda", count: 5, seed: 4, noiseIntensity: 0.7 });
+  check("eda count", eda.items.length === 5);
+  const ch = Lib.generate(p, { method: "char_noise", count: 5, seed: 5, noiseIntensity: 0.9 });
+  check("char_noise count", ch.items.length === 5);
+  const boot = Lib.generate(p, { method: "bootstrap", count: 20, seed: 6 });
+  check("bootstrap from seeds", boot.items.every((it) => p.seedTexts.indexOf(it.text) !== -1));
+  const mix = Lib.generate(p, { method: "mixup", count: 5, seed: 7 });
+  check("mixup count", mix.items.length === 5);
+  check(
+    "mixup has parts",
+    mix.items.some((it) => (it.parts || []).some((part) => part.type === "slot"))
+  );
   const m = Lib.generate(p, { method: "markov", count: 5, seed: 11 });
   check("markov count", m.items.length === 5);
   check("markov non-empty", m.items.every((it) => it.text.trim().length > 0));
+  const m3 = Lib.generate(p, { method: "markov3", count: 5, seed: 12 });
+  check("markov3 count", m3.items.length === 5);
+  check("methods list", Array.isArray(Lib.METHODS) && Lib.METHODS.length >= 8);
 } catch (e) {
-  check("noise/markov", false, e.message);
+  check("seed methods", false, e.message);
 }
 
 try {

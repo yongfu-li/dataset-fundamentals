@@ -16,6 +16,15 @@ consent, purpose, harm, and fairness to a **proceed / revise / stop** outcome.
 1. **Marketing list for partners** — purpose creep and re-consent
 2. **Automated hiring screen** — opacity, bias, human oversight
 3. **Health-app secondary research** — sensitivity, de-identification, opt-in
+4. **Pretrial risk score** — liberty stakes, contestability, historical skew
+5. **Campus facial analysis** — necessity, purpose creep, notice
+6. **Scraped social posts dataset** — public ≠ consent; minors; annotator welfare
+7. **Deletion vs model training** — full-lifecycle deletion and residual model risk
+8. **Smart speaker always-listening** — ambient sensing and opt-in
+9. **Kids' learning app analytics** — child data and advertising
+10. **Auto insurance telematics** — coercive tracking and proxy pricing
+11. **Workplace productivity monitoring** — surprise surveillance and power imbalance
+12. **Cross-border user data transfer** — jurisdiction, minimization, access control
 
 ## Book anchors
 

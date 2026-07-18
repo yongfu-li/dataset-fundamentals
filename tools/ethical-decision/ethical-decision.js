@@ -52,7 +52,7 @@
       '<details class="eth-panel eth-guide">' +
       "<summary>Learn → apply</summary>" +
       "<ol>" +
-      "<li><strong>Pick a scenario</strong> — marketing partners, hiring screen, or health-app research.</li>" +
+      "<li><strong>Pick a scenario</strong> — twelve cases spanning marketing, hiring, health, justice, cameras, scraping, deletion, IoT, kids’ apps, insurance, workplace monitoring, and cross-border transfer.</li>" +
       "<li><strong>Answer</strong> — each choice branches the tree; use Back to reconsider.</li>" +
       "<li><strong>Read the outcome</strong> — verdict, rationale, ethical lenses, next steps.</li>" +
       "<li><strong>Export</strong> — keep the decision trail for your audit notes.</li>" +

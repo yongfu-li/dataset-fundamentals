@@ -152,7 +152,7 @@
       '<div class="stx-presets">' +
       cards +
       "</div>" +
-      '<label class="stx-upload">Upload seed CSV/JSON (for noise / Markov)' +
+      '<label class="stx-upload">Upload seed CSV/JSON (for seed-based methods)' +
       '<input type="file" id="stx-file" accept=".csv,.json,text/csv,application/json" />' +
       "</label>" +
       (message.text
@@ -168,20 +168,22 @@
 
   function renderControls() {
     if (!session) return "";
-    const methods = [
+    const methods = Lib.METHODS || [
       ["template", "Template / slot fill"],
       ["noise", "Noise on seeds"],
       ["markov", "Tiny Markov (bigram)"],
     ];
     const opts = methods
       .map(function (pair) {
+        const id = pair.id || pair[0];
+        const label = pair.label || pair[1];
         return (
           '<option value="' +
-          pair[0] +
+          id +
           '"' +
-          (method === pair[0] ? " selected" : "") +
+          (method === id ? " selected" : "") +
           ">" +
-          pair[1] +
+          label +
           "</option>"
         );
       })
@@ -194,6 +196,8 @@
       (session.templates && session.templates.length
         ? session.templates.length + " templates"
         : "0 templates");
+    const intensityOn =
+      method === "noise" || method === "eda" || method === "char_noise";
     return (
       '<section class="stx-panel">' +
       "<h2>2 · Generation controls</h2>" +
@@ -212,10 +216,10 @@
       '<label>Seed<input id="stx-seed" type="number" value="' +
       esc(seed) +
       '" /></label>' +
-      '<label>Noise intensity<input id="stx-noise" type="range" min="0" max="1" step="0.05" value="' +
+      '<label>Intensity<input id="stx-noise" type="range" min="0" max="1" step="0.05" value="' +
       esc(noiseIntensity) +
       '" ' +
-      (method === "noise" ? "" : "disabled") +
+      (intensityOn ? "" : "disabled") +
       " /><span id=\"stx-noise-val\">" +
       esc(noiseIntensity) +
       "</span></label>" +
@@ -264,6 +268,24 @@
             : "") +
           (it.seed
             ? '<div class="stx-meta-line">from seed: <code>' + esc(it.seed) + "</code></div>"
+            : "") +
+          (it.seedA
+            ? '<div class="stx-meta-line">mix A: <code>' +
+              esc(it.seedA) +
+              "</code> · B: <code>" +
+              esc(it.seedB) +
+              "</code></div>"
+            : "") +
+          (it.ops && it.ops.length
+            ? '<div class="stx-meta-line">ops: <code>' +
+              esc(
+                it.ops
+                  .map(function (o) {
+                    return o.op;
+                  })
+                  .join(", ")
+              ) +
+              "</code></div>"
             : "") +
           "</li>"
         );
