@@ -224,6 +224,7 @@
       caveats: [
         "Video here is a short frame strip—not a production codec pipeline.",
         "Temporal consistency of labels (tracks) is not handled—teaching demo only.",
+        "Frame-diff / flow / fidelity views are teaching-grade diagnostics, not production CV metrics.",
         "Keep held-out evaluation clips unaugmented.",
       ],
     };

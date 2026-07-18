@@ -63,6 +63,92 @@
     return out;
   }
 
+  function concatSamples(parts) {
+    let n = 0;
+    for (let i = 0; i < parts.length; i++) n += parts[i].length;
+    const out = new Float32Array(n);
+    let o = 0;
+    for (let i = 0; i < parts.length; i++) {
+      out.set(parts[i], o);
+      o += parts[i].length;
+    }
+    return out;
+  }
+
+  /** Short major-key melody with harmonics (teaching “music” preset). */
+  function musicSnippet() {
+    const notes = [
+      { f: 261.63, d: 0.28 }, // C4
+      { f: 329.63, d: 0.28 }, // E4
+      { f: 392.0, d: 0.28 }, // G4
+      { f: 523.25, d: 0.45 }, // C5
+      { f: 392.0, d: 0.22 },
+      { f: 329.63, d: 0.22 },
+      { f: 261.63, d: 0.4 },
+    ];
+    const parts = [];
+    notes.forEach(function (note) {
+      const n = Math.floor(SR * note.d);
+      const buf = new Float32Array(n);
+      for (let i = 0; i < n; i++) {
+        const t = i / SR;
+        const env =
+          Math.min(1, i / (0.015 * SR)) * Math.min(1, (n - i) / (0.06 * SR));
+        // soft square-ish stack (melody) + quiet fifth
+        const s =
+          Math.sin(2 * Math.PI * note.f * t) +
+          0.35 * Math.sin(2 * Math.PI * note.f * 2 * t) +
+          0.18 * Math.sin(2 * Math.PI * note.f * 3 * t) +
+          0.12 * Math.sin(2 * Math.PI * note.f * 1.5 * t);
+        buf[i] = s * 0.12 * env;
+      }
+      parts.push(buf);
+    });
+    return concatSamples(parts);
+  }
+
+  /**
+   * Formant-style vowel sequence (synthetic voice—not a real recording).
+   * Privacy-safe teaching preset for pitch / noise / reverse demos.
+   */
+  function formantVoice() {
+    // [F0, F1, F2, F3, duration]
+    const vowels = [
+      { f0: 140, f1: 700, f2: 1200, f3: 2500, d: 0.35 }, // ah
+      { f0: 155, f1: 300, f2: 2200, f3: 3000, d: 0.32 }, // ee
+      { f0: 130, f1: 400, f2: 800, f3: 2300, d: 0.38 }, // oo
+      { f0: 148, f1: 600, f2: 1400, f3: 2600, d: 0.45 }, // uh / ah
+    ];
+    const parts = [];
+    vowels.forEach(function (v, vi) {
+      const n = Math.floor(SR * v.d);
+      const buf = new Float32Array(n);
+      for (let i = 0; i < n; i++) {
+        const t = i / SR;
+        const env =
+          Math.min(1, i / (0.04 * SR)) * Math.min(1, (n - i) / (0.08 * SR));
+        // slight F0 glide
+        const f0 = v.f0 * (1 + 0.04 * Math.sin(2 * Math.PI * 2.2 * t + vi));
+        let s = 0;
+        // buzz source = summed harmonics
+        for (let h = 1; h <= 12; h++) {
+          const fh = f0 * h;
+          let amp = 0.18 / h;
+          // formant resonances (simple peaks)
+          amp *= 1 + 4 * Math.exp(-Math.pow((fh - v.f1) / 120, 2));
+          amp *= 1 + 3 * Math.exp(-Math.pow((fh - v.f2) / 180, 2));
+          amp *= 1 + 2 * Math.exp(-Math.pow((fh - v.f3) / 250, 2));
+          s += Math.sin(2 * Math.PI * fh * t) * amp;
+        }
+        buf[i] = s * 0.08 * env;
+      }
+      // short silence between vowels
+      const gap = new Float32Array(Math.floor(SR * 0.06));
+      parts.push(buf, gap);
+    });
+    return concatSamples(parts);
+  }
+
   function cloneSamples(s) {
     return new Float32Array(s);
   }
@@ -155,6 +241,18 @@
         description: "Toy dual tone—not real speech; privacy-safe preset.",
         samples: dualTone(1.1),
       },
+      {
+        id: "music",
+        title: "Music snippet",
+        description: "Short major melody with harmonics—rich spectrogram / MFCC.",
+        samples: musicSnippet(),
+      },
+      {
+        id: "voice",
+        title: "Synthetic voice (formants)",
+        description: "Vowel sequence (ah–ee–oo)—not a real recording; privacy-safe.",
+        samples: formantVoice(),
+      },
     ];
   };
 
@@ -218,7 +316,8 @@
       items: items,
       caveats: [
         "Rule-based audio transforms only—no TTS or generative audio model.",
-        "Presets are synthetic tones, not real speech recordings.",
+        "Music and voice presets are procedural (melody / formants)—not real recordings or a licensed vocalist.",
+        "Spectrogram / MFCC views are teaching-grade, not a full ASR pipeline.",
         "Augment training clips; keep evaluation audio clean.",
       ],
     };

@@ -1,6 +1,6 @@
 # Media augmentation lab
 
-Combined **audio** + **video** (frame-strip) augmentation for **Chapter 10**.
+Combined **audio** + **video** (frame-strip) augmentation with a **Compare · analyze** panel for **Chapter 10**.
 No TTS, no generative video models—browser Web Audio + canvas frames only.
 
 **Live path:** `lectures/tools/media-augmentation/index.html` (after `build_site.py`)
@@ -10,24 +10,25 @@ Siblings: [`../text-augmentation/`](../text-augmentation/),
 
 ## Why one tool
 
-Audio and video share the same teaching job (preview → transform → export + recipe)
-and are thin alone on a static site. Tabs keep the UIs separate without two hub cards.
+Audio and video share the same teaching job (preview → transform → analyze fidelity → export + recipe).
 
 ## Audio
 
-Presets: beep, chirp, noise burst, dual-tone (not real speech).  
+Presets: beep, chirp, noise, dual-tone, **music snippet**, **synthetic formant voice** (not real recordings).  
 Methods: gain, reverse, noise, pitch/resample, fade, trim, random pipeline.  
+Analyze: RMS/peak meters, spectrogram, mel energies, MFCC (mean).  
 Export: `augmented-audio.zip` (WAV + recipe).
 
 ## Video
 
-Presets: bouncing ball, color pulse, scrolling bar (short frame strips).  
+Presets: bouncing ball, color pulse, scrolling bar.  
 Methods: flip H, grayscale, brightness, noise, reverse order, frame drop, pipeline.  
+Analyze: luma histogram, temporal frame-diff heat, fidelity (1−MAE), flow lite.  
 Export: `augmented-video-frames.zip` (PNG frames + recipe)—not a full MP4 pipeline.
 
 ## Scope note
 
-Does **not** cover time series, geospatial, or graph augmentation (different operators).
+Does **not** cover time series, geospatial, or graph augmentation. Analysis views are teaching-grade, not production ASR/CV.
 
 ## Book anchors
 
@@ -35,7 +36,7 @@ Does **not** cover time series, geospatial, or graph augmentation (different ope
 
 ## QA
 
-- [ ] Audio play works; reverse is audible
-- [ ] Video strip shows flipped / reversed frames
-- [ ] Same seed reproduces ops lists
-- [ ] ZIPs open with recipe JSON
+- [ ] Music / voice presets play; spectrogram updates on pitch
+- [ ] MFCC / mel bars differ after noise or pitch
+- [ ] Video frame-diff / fidelity react to reverse & brightness
+- [ ] Same seed reproduces ops lists; ZIPs include recipe

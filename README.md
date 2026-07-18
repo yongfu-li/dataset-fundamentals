@@ -1,8 +1,13 @@
-# Lectures
+# Dataset Fundamentals
 
-Companion lecture parts, slides, and quizzes for *Fundamental of Dataset: Collection, Annotation, and Management*.
+Open learning platform for *Fundamental of Dataset: Collection, Annotation, and Management*.
 
-Each chapter is a **learning path**: short video clips with bridge descriptions between them, per-clip quizzes, and a downloadable full PPT deck.
+| Area | What you get |
+|------|----------------|
+| **Lectures** | Chapter learning paths: short video parts, bridge text, quizzes, downloadable decks |
+| **Tools** | Browser labs along the dataset workflow (collect → clean → document → license) |
+| **Examples** | Packaged modules with notes, data files, and expected results |
+| **Community** | Reader stories and feedback |
 
 **Interactive tools** (by workflow): [Sampling](tools/sampling/index.html) → [Consent & PII scrubber](tools/pii-scrubber/index.html) · [De-id risk](tools/deid-risk/index.html) · [Ethical decision](tools/ethical-decision/index.html) → [Image annotation](tools/image-annotation/index.html) · [Text annotation](tools/text-annotation/index.html) · [IAA](tools/iaa/index.html) → [Schema / format](tools/schema-format/index.html) · [EDA](tools/eda-dashboard/index.html) · [Cleaning](tools/cleaning/index.html) · [Scaling / encoding](tools/scaling-encoding/index.html) · [Class imbalance](tools/class-imbalance/index.html) · [Train/test split](tools/train-test-split/index.html) → [Representation](tools/representation/index.html) · [Fairness](tools/fairness/index.html) → [Datasheet](tools/datasheet/index.html) · [Metadata](tools/metadata-checker/index.html) · [Version timeline](tools/version-timeline/index.html). See [all tools](tools/index.html).
 
