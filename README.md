@@ -12,8 +12,6 @@
 Readers and students usually **browse the site** or clone this public repo. Authors edit content here (or via the parent monorepo checkout), rebuild the HTML site, and push; the parent repo only stores a pinned submodule commit.
 
 ## Table of contents
-
-- [Role in the course](#role-in-the-course)
 - [Contents](#contents)
 - [Browse or clone](#browse-or-clone)
 - [Consume from the parent](#consume-from-the-parent)
@@ -22,23 +20,6 @@ Readers and students usually **browse the site** or clone this public repo. Auth
 - [Interactive tools](#interactive-tools)
 - [Analytics (GA4)](#analytics-ga4)
 - [License](#license)
-
-## Role in the course
-
-| Repo | Visibility | Responsibility |
-|------|------------|----------------|
-| [`Fundamental-of-Dataset-Collection-Annotation-and-Management`](https://github.com/yongfu-li/Fundamental-of-Dataset-Collection-Annotation-and-Management) | **Private** | Springer manuscript (`author/`), figures, build scripts, agent skills |
-| **dataset-fundamentals** (this repo) | **Public** | Lectures, tools, project path, examples, community — pinned at one commit under `lectures/` |
-
-A submodule stores a **path + commit**, not a full copy of history inside the parent. That matches how course sites and shared teaching assets are often attached beside a private manuscript.
-
-| Area | What you get |
-|------|----------------|
-| **Lectures** | Chapter learning paths: short video parts, bridge text, quizzes, downloadable decks |
-| **Tools** | Browser labs along the dataset workflow (collect → clean → document → license) |
-| **Project** | Guided raw → ready path: protect, prepare, document, and package a release kit |
-| **Examples** | Packaged modules with notes, data files, and expected results |
-| **Community** | Reader stories and feedback |
 
 ## Contents
 
