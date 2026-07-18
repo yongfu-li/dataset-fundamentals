@@ -1,4 +1,4 @@
-﻿/* Export augmented texts + recipe (window.SynthTextLib). */
+/* Export augmented texts + recipe (window.SynthTextLib). */
 (function (global) {
   "use strict";
   const SynthTextLib = global.SynthTextLib || (global.SynthTextLib = {});

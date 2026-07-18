@@ -1,4 +1,4 @@
-﻿/* Text augmentation lab — Chapter 10 §10.5 (classic script, file:// safe). */
+/* Text augmentation lab — Chapter 10 §10.5 (classic script, file:// safe). */
 (function () {
   "use strict";
   const Lib = window.SynthTextLib;

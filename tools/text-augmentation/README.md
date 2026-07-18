@@ -1,4 +1,4 @@
-﻿# Text augmentation lab
+# Text augmentation lab
 
 Browser lab for **Chapter 10 §10.5** — rule-based **text augmentation** (templates,
 EDA, noise, mixup, bootstrap, Markov). No model training and no LLM API.
