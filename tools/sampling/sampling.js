@@ -720,6 +720,14 @@ if (window.DatasetToolsReport) {
   });
 }
 
+let resizeTimer = 0;
+window.addEventListener("resize", function () {
+  window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(function () {
+    if (lastResult) updateVisuals();
+  }, 180);
+});
+
 render();
 loadPresetById("employee-roster");
 })();

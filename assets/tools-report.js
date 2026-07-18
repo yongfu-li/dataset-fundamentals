@@ -74,18 +74,29 @@
 
   /** Logical CSS-pixel size for a chart canvas (HiDPI-aware). */
   function logicalSize(canvas) {
+    const nativeW = Number(canvas.getAttribute("data-native-w"));
+    const nativeH = Number(canvas.getAttribute("data-native-h"));
     let w = Number(canvas.getAttribute("data-logical-w"));
     let h = Number(canvas.getAttribute("data-logical-h"));
-    if (w && h) return { w: w, h: h };
-    if (canvas._lw && canvas._lh) return { w: canvas._lw, h: canvas._lh };
-    const attrW = Number(canvas.getAttribute("width"));
-    const attrH = Number(canvas.getAttribute("height"));
-    if (attrW && attrH) return { w: attrW, h: attrH };
-    const rect = canvas.getBoundingClientRect();
-    if (rect.width >= 40 && rect.height >= 40) {
-      return { w: Math.round(rect.width), h: Math.round(rect.height) };
+    if (canvas._lw && canvas._lh) {
+      w = canvas._lw;
+      h = canvas._lh;
     }
-    return { w: canvas.width || 0, h: canvas.height || 0 };
+    if (!w || !h) {
+      const attrW = Number(canvas.getAttribute("width"));
+      const attrH = Number(canvas.getAttribute("height"));
+      if (attrW && attrH && attrW <= 1400) {
+        w = attrW;
+        h = attrH;
+      } else {
+        const rect = canvas.getBoundingClientRect();
+        w = Math.round(rect.width) || 560;
+        h = Math.round(rect.height) || 360;
+      }
+    }
+    if (nativeW) w = Math.max(w, nativeW);
+    if (nativeH) h = Math.max(h, nativeH);
+    return { w: w, h: h };
   }
 
   /** High-res PNG: redraw at export scale when possible, else crisp upscale. */

@@ -21,10 +21,12 @@ Export: `augmented-audio.zip` (WAV + recipe).
 
 ## Video
 
-Presets: bouncing ball, color pulse, scrolling bar.  
+Presets: **street traffic**, **warehouse conveyor**, **checkout scan**, **parking approach**, **clinic hallway**, plus bouncing-ball control.  
 Methods: flip H, grayscale, brightness, noise, reverse order, frame drop, pipeline.  
-Analyze: luma histogram, temporal frame-diff heat, fidelity (1−MAE), flow lite.  
-Export: `augmented-video-frames.zip` (PNG frames + recipe)—not a full MP4 pipeline.
+Analyze: mid-frame thumbs, luma + RGB histograms, frame-diff heat (axes), flow lite (axes), temporal motion energy, PSNR/SSIM curves + fidelity meter.  
+Playback: canvas clip loop + per-variant **WebM** download; ZIP includes `clips/*.webm` + PNG frames.  
+**Browser support:** WebM encode/download is **Chromium-only** (Chrome, Edge, Brave, …). Canvas Play and PNG export work more widely.  
+Export: `augmented-video.zip` (WebM + PNG + recipe).
 
 ## Scope note
 

@@ -160,27 +160,56 @@
    * Prepare a crisp HiDPI (or export-scale) canvas and return logical draw size.
    * Chart code must use returned width/height (not canvas.width) for layout.
    * tools-report.js sets canvas._trExportScale during PNG export.
+   *
+   * On screen, logical size follows the laid-out CSS width so labels stay
+   * readable; backing store is logical × devicePixelRatio.
    */
   Axis.beginChart = function (canvas, fallbackW, fallbackH) {
     if (!canvas) return null;
-    let logicalW = Number(canvas.getAttribute("data-logical-w"));
-    let logicalH = Number(canvas.getAttribute("data-logical-h"));
-    if (!logicalW || !logicalH) {
-      logicalW =
-        fallbackW ||
-        Number(canvas.getAttribute("width")) ||
-        Math.round(canvas.clientWidth) ||
-        560;
-      logicalH =
-        fallbackH ||
-        Number(canvas.getAttribute("height")) ||
-        Math.round(canvas.clientHeight) ||
-        360;
-      canvas.setAttribute("data-logical-w", String(logicalW));
-      canvas.setAttribute("data-logical-h", String(logicalH));
+    const fbW = fallbackW || 560;
+    const fbH = fallbackH || 360;
+    const aspect = fbH / fbW;
+    const exportScale = canvas._trExportScale;
+
+    if (!canvas.getAttribute("data-native-w")) {
+      const attrW = Number(canvas.getAttribute("width")) || fbW;
+      const attrH = Number(canvas.getAttribute("height")) || fbH;
+      if (attrW > 0 && attrW <= 1400) {
+        canvas.setAttribute("data-native-w", String(attrW));
+        canvas.setAttribute("data-native-h", String(attrH));
+      } else {
+        canvas.setAttribute("data-native-w", String(fbW));
+        canvas.setAttribute("data-native-h", String(fbH));
+      }
     }
 
-    const exportScale = canvas._trExportScale;
+    let logicalW;
+    let logicalH;
+    if (exportScale) {
+      const nativeW = Number(canvas.getAttribute("data-native-w")) || fbW;
+      const nativeH = Number(canvas.getAttribute("data-native-h")) || fbH;
+      const laidW = Number(canvas.getAttribute("data-logical-w")) || nativeW;
+      const laidH = Number(canvas.getAttribute("data-logical-h")) || nativeH;
+      logicalW = Math.max(laidW, nativeW);
+      logicalH = Math.max(laidH, nativeH);
+    } else {
+      const laidOut = Math.round(canvas.clientWidth || 0);
+      const parentW = canvas.parentElement
+        ? Math.round(canvas.parentElement.clientWidth || 0)
+        : 0;
+      const cssW = laidOut >= 200 ? laidOut : parentW >= 200 ? parentW : 0;
+      if (cssW) {
+        logicalW = Math.max(320, Math.min(1200, cssW));
+        logicalH = Math.round(logicalW * aspect);
+      } else {
+        logicalW = Number(canvas.getAttribute("data-native-w")) || fbW;
+        logicalH = Number(canvas.getAttribute("data-native-h")) || fbH;
+      }
+      canvas.setAttribute("data-logical-w", String(logicalW));
+      canvas.setAttribute("data-logical-h", String(logicalH));
+      canvas.style.height = logicalH + "px";
+    }
+
     const dpr = exportScale
       ? exportScale
       : Math.min(

@@ -186,9 +186,16 @@
     downloadBlob("augmented-audio.zip", new Blob([buildStoreZip(files)], { type: "application/zip" }));
   };
 
-  MediaAugLib.downloadVideoZip = function (meta, result) {
+  MediaAugLib.downloadVideoZip = function (meta, result, opts) {
+    opts = opts || {};
+    const includeWebm = opts.includeWebm !== false;
+    const fps = opts.fps || 8;
+    const onProgress = opts.onProgress || function () {};
+
     const files = [];
     const recipe = MediaAugLib.buildRecipe(meta, result);
+    recipe.clipFormat = includeWebm ? "webm+png-frames" : "png-frames";
+    recipe.fps = fps;
     files.push({
       name: "augmentation-recipe.json",
       bytes: new TextEncoder().encode(JSON.stringify(recipe, null, 2)),
@@ -196,9 +203,16 @@
     files.push({
       name: "README.txt",
       bytes: new TextEncoder().encode(
-        "Frame-strip export (not a full video file).\nEach variant has PNG frames in order.\n"
+        "Media augmentation export\n" +
+          "- clips/*.webm — playable short clips (Chromium-based browsers only: Chrome, Edge, Brave, …)\n" +
+          "- video/<id>/frame-*.png — frame strips for datasets (all browsers)\n" +
+          "- FPS ≈ " +
+          fps +
+          "\n" +
+          "If WebM encoding failed, this ZIP may contain PNG frames only.\n"
       ),
     });
+
     result.items.forEach(function (it) {
       (it.thumbs || []).forEach(function (url, fi) {
         files.push({
@@ -207,7 +221,52 @@
         });
       });
     });
-    downloadBlob("augmented-video-frames.zip", new Blob([buildStoreZip(files)], { type: "application/zip" }));
+
+    function finish() {
+      downloadBlob("augmented-video.zip", new Blob([buildStoreZip(files)], { type: "application/zip" }));
+    }
+
+    if (!includeWebm || typeof MediaAugLib.encodeWebM !== "function") {
+      finish();
+      return Promise.resolve();
+    }
+
+    const jobs = [];
+    if (meta && meta.frames && meta.frames.length) {
+      jobs.push({ id: "original", frames: meta.frames });
+    }
+    result.items.forEach(function (it) {
+      jobs.push({ id: it.id, frames: it.frames });
+    });
+
+    let chain = Promise.resolve();
+    jobs.forEach(function (job, ji) {
+      chain = chain.then(function () {
+        onProgress("Encoding " + job.id + " (" + (ji + 1) + "/" + jobs.length + ")…");
+        return MediaAugLib.encodeWebM(job.frames, { fps: fps }).then(function (blob) {
+          return MediaAugLib.blobToUint8Array(blob).then(function (bytes) {
+            files.push({ name: "clips/" + job.id + ".webm", bytes: bytes });
+          });
+        });
+      });
+    });
+
+    return chain
+      .then(function () {
+        onProgress("Building ZIP…");
+        finish();
+        onProgress("");
+      })
+      .catch(function (err) {
+        // Still deliver PNG frames if WebM encoding fails mid-way
+        try {
+          finish();
+        } catch (e) {
+          /* ignore */
+        }
+        onProgress("");
+        return Promise.reject(err);
+      });
   };
 
   MediaAugLib.playSamples = function (samples, sampleRate) {

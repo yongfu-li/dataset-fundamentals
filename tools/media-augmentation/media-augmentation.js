@@ -32,6 +32,12 @@
 
   function showMessage(text, kind) {
     message = { text: text, kind: kind || "ok" };
+    const el = root.querySelector(".med-msg");
+    if (el) {
+      el.className = "med-msg med-msg-" + message.kind;
+      el.textContent = message.text;
+      el.hidden = !message.text;
+    }
   }
 
   function runAudio() {
@@ -108,7 +114,7 @@
       "<summary>Practical guide</summary>" +
       "<ol>" +
       "<li><strong>Audio</strong> — try <em>Music</em> or <em>Synthetic voice</em>; pitch / reverse; inspect spectrogram &amp; MFCC.</li>" +
-      "<li><strong>Video</strong> — reverse or frame-drop; compare histogram, frame-diff, fidelity, flow lite.</li>" +
+      "<li><strong>Video</strong> — try street / warehouse / parking; <em>Play clip</em> on each variant; export WebM + PNG ZIP (<strong>WebM: Chromium browsers only</strong>).</li>" +
       "<li><strong>Export</strong> — keep <code>augmentation-recipe.*</code> with the media ZIP.</li>" +
       "</ol>" +
       "</details>"
@@ -163,7 +169,14 @@
     return (
       '<section class="med-panel"><h2>1 · Video preset (frame strip)</h2><div class="med-presets">' +
       cards +
-      "</div></section>"
+      "</div>" +
+      '<div class="med-clip-box">' +
+      '<canvas id="med-v-play-orig" class="med-clip" width="320" height="200"></canvas>' +
+      '<div class="med-clip-actions">' +
+      '<button type="button" class="btn btn-secondary" id="med-v-play-orig-btn">Play original clip</button>' +
+      '<button type="button" class="btn btn-ghost" id="med-v-stop">Stop</button>' +
+      '<button type="button" class="btn btn-ghost" id="med-v-dl-orig">Download original.webm</button>' +
+      "</div></div></section>"
     );
   }
 
@@ -203,9 +216,13 @@
       "</span></label>" +
       "</div>" +
       '<button type="button" class="btn" id="med-run">Generate</button>' +
-      (message.text
-        ? '<p class="med-msg med-msg-' + esc(message.kind) + '" role="status">' + esc(message.text) + "</p>"
-        : "") +
+      '<p class="med-msg med-msg-' +
+      esc(message.kind || "ok") +
+      '" role="status"' +
+      (message.text ? "" : " hidden") +
+      ">" +
+      esc(message.text) +
+      "</p>" +
       "</section>"
     );
   }
@@ -299,17 +316,30 @@
   function renderVideoPreview() {
     if (!videoResult) return "";
     const blocks = videoResult.items
-      .map(function (it) {
+      .map(function (it, idx) {
         const strip = (it.thumbs || [])
           .map(function (u) {
             return '<img src="' + esc(u) + '" alt="" />';
           })
           .join("");
         return (
-          '<div class="med-variant"><strong>' +
+          '<div class="med-variant">' +
+          "<strong>" +
           esc(it.id) +
           "</strong> · " +
           esc(it.ops.join(" → ")) +
+          '<div class="med-clip-box">' +
+          '<canvas class="med-clip" data-vplay-canvas="' +
+          idx +
+          '" width="320" height="200"></canvas>' +
+          '<div class="med-clip-actions">' +
+          '<button type="button" class="btn btn-secondary" data-vplay="' +
+          idx +
+          '">Play clip</button>' +
+          '<button type="button" class="btn btn-ghost" data-vdl="' +
+          idx +
+          '">Download .webm</button>' +
+          "</div></div>" +
           '<div class="med-strip">' +
           strip +
           "</div></div>"
@@ -317,7 +347,9 @@
       })
       .join("");
     return (
-      '<section class="med-panel" data-figure="Video frame strips"><h2>3 · Preview</h2>' +
+      '<section class="med-panel" data-figure="Video clips"><h2>3 · Preview · playable clips</h2>' +
+      '<p class="med-hint">Each variant is its own short clip (not one merged video). Play to see the transform; ZIP includes <code>.webm</code> + PNG frames.</p>' +
+      '<p class="med-warn"><strong>WebM support:</strong> Download / ZIP WebM encoding is supported only in <strong>Chromium-based browsers</strong> (Chrome, Edge, Brave, Opera). Firefox and Safari may play the canvas preview but will not encode <code>.webm</code>—use PNG frames from the ZIP instead.</p>' +
       blocks +
       '<ul class="med-caveats">' +
       videoResult.caveats
@@ -335,24 +367,38 @@
       '<section class="med-panel" data-figure="Video analysis">' +
       "<h2>4 · Compare · analyze</h2>" +
       variantPicker(videoResult) +
-      '<canvas id="med-v-fid" width="420" height="56"></canvas>' +
+      '<canvas id="med-v-fid" width="560" height="56"></canvas>' +
       '<div class="med-compare">' +
       '<div><h3>Original</h3>' +
-      '<canvas id="med-v-hist-o" width="280" height="90"></canvas>' +
-      '<p class="med-cap">Luma histogram (mid frame)</p>' +
-      '<canvas id="med-v-diff-o" class="med-spec" width="280" height="100"></canvas>' +
-      '<p class="med-cap">Frame-diff heat (temporal)</p>' +
-      '<canvas id="med-v-flow-o" class="med-spec" width="280" height="100"></canvas>' +
-      '<p class="med-cap">Flow lite (first→mid)</p></div>' +
+      '<canvas id="med-v-thumb-o" width="320" height="160"></canvas>' +
+      '<p class="med-cap">Mid frame preview</p>' +
+      '<canvas id="med-v-hist-o" width="320" height="150"></canvas>' +
+      '<p class="med-cap">Luma histogram — Y: relative count, X: luma bin</p>' +
+      '<canvas id="med-v-rgb-o" width="320" height="150"></canvas>' +
+      '<p class="med-cap">RGB channel histograms</p>' +
+      '<canvas id="med-v-diff-o" class="med-spec" width="320" height="160"></canvas>' +
+      '<p class="med-cap">Frame-diff heat — mean |Δ| over time</p>' +
+      '<canvas id="med-v-flow-o" class="med-spec" width="320" height="160"></canvas>' +
+      '<p class="med-cap">Flow lite — first → mid (arrows = block motion)</p>' +
+      '<canvas id="med-v-energy-o" width="320" height="150"></canvas>' +
+      '<p class="med-cap">Temporal motion energy per frame pair</p></div>' +
       '<div><h3>Augmented</h3>' +
-      '<canvas id="med-v-hist-a" width="280" height="90"></canvas>' +
-      '<p class="med-cap">Luma histogram (mid frame)</p>' +
-      '<canvas id="med-v-diff-a" class="med-spec" width="280" height="100"></canvas>' +
-      '<p class="med-cap">Frame-diff heat (temporal)</p>' +
-      '<canvas id="med-v-flow-a" class="med-spec" width="280" height="100"></canvas>' +
-      '<p class="med-cap">Flow lite (first→mid)</p></div>' +
+      '<canvas id="med-v-thumb-a" width="320" height="160"></canvas>' +
+      '<p class="med-cap">Mid frame preview</p>' +
+      '<canvas id="med-v-hist-a" width="320" height="150"></canvas>' +
+      '<p class="med-cap">Luma histogram — Y: relative count, X: luma bin</p>' +
+      '<canvas id="med-v-rgb-a" width="320" height="150"></canvas>' +
+      '<p class="med-cap">RGB channel histograms</p>' +
+      '<canvas id="med-v-diff-a" class="med-spec" width="320" height="160"></canvas>' +
+      '<p class="med-cap">Frame-diff heat — mean |Δ| over time</p>' +
+      '<canvas id="med-v-flow-a" class="med-spec" width="320" height="160"></canvas>' +
+      '<p class="med-cap">Flow lite — first → mid (arrows = block motion)</p>' +
+      '<canvas id="med-v-energy-a" width="320" height="150"></canvas>' +
+      '<p class="med-cap">Temporal motion energy per frame pair</p></div>' +
       "</div>" +
-      '<p class="med-hint">Reverse / drop change frame-diff and flow arrows; brightness / noise reshape the histogram; fidelity drops when pixels diverge.</p>' +
+      '<canvas id="med-v-curves" width="560" height="160"></canvas>' +
+      '<p class="med-cap">Per-frame SSIM (green) and scaled PSNR (amber) vs original</p>' +
+      '<p class="med-hint">Reverse / drop change frame-diff, flow, and temporal energy; brightness / noise reshape histograms and drop PSNR/SSIM.</p>' +
       "</section>"
     );
   }
@@ -364,10 +410,14 @@
       '<section class="med-panel"><h2>5 · Export</h2><div class="deck-links">' +
       (tab === "audio"
         ? '<button type="button" class="btn" id="med-zip">Download augmented-audio.zip</button>'
-        : '<button type="button" class="btn" id="med-zip">Download augmented-video-frames.zip</button>') +
+        : '<button type="button" class="btn" id="med-zip">Download augmented-video.zip (WebM + PNG)</button>') +
       '<button type="button" class="btn btn-secondary" id="med-recipe">Download augmentation-recipe.json</button>' +
       '<button type="button" class="btn btn-ghost" id="med-recipe-md">Download augmentation-recipe.md</button>' +
-      "</div></section>"
+      "</div>" +
+      (tab === "video"
+        ? '<p class="med-warn">WebM clips in the ZIP require a <strong>Chromium-based browser</strong>. PNG frame strips are included for all browsers.</p>'
+        : "") +
+      "</section>"
     );
   }
 
@@ -435,15 +485,24 @@
     };
     const fid = Lib.videoFidelity(orig, aug);
     if (el("med-v-fid")) Lib.drawFidelityMeter(el("med-v-fid"), fid);
+    if (el("med-v-thumb-o")) Lib.drawFrameThumb(el("med-v-thumb-o"), midFrame(orig), "Original mid frame");
+    if (el("med-v-thumb-a")) Lib.drawFrameThumb(el("med-v-thumb-a"), midFrame(aug), "Augmented mid frame");
     if (el("med-v-hist-o")) Lib.drawRgbHistogram(el("med-v-hist-o"), midFrame(orig));
     if (el("med-v-hist-a")) Lib.drawRgbHistogram(el("med-v-hist-a"), midFrame(aug));
+    if (el("med-v-rgb-o")) Lib.drawRgbChannelHist(el("med-v-rgb-o"), midFrame(orig));
+    if (el("med-v-rgb-a")) Lib.drawRgbChannelHist(el("med-v-rgb-a"), midFrame(aug));
     if (el("med-v-diff-o")) Lib.drawFrameDiff(el("med-v-diff-o"), orig);
     if (el("med-v-diff-a")) Lib.drawFrameDiff(el("med-v-diff-a"), aug);
     if (el("med-v-flow-o")) Lib.drawFlowLite(el("med-v-flow-o"), orig[0], midFrame(orig));
     if (el("med-v-flow-a")) Lib.drawFlowLite(el("med-v-flow-a"), aug[0], midFrame(aug));
+    if (el("med-v-energy-o")) Lib.drawTemporalEnergy(el("med-v-energy-o"), orig, { label: "Original temporal |Δ|" });
+    if (el("med-v-energy-a"))
+      Lib.drawTemporalEnergy(el("med-v-energy-a"), aug, { label: "Augmented temporal |Δ|", color: "#b86a00" });
+    if (el("med-v-curves")) Lib.drawFidelityCurves(el("med-v-curves"), fid);
   }
 
   function renderAll() {
+    if (Lib.stopClipPlayback) Lib.stopClipPlayback();
     root.innerHTML =
       renderIntro() +
       renderTabs() +
@@ -460,7 +519,25 @@
       });
       paintAudioAnalyze();
     }
-    if (tab === "video" && videoResult) paintVideoAnalyze();
+    if (tab === "video" && videoResult) {
+      paintVideoAnalyze();
+      // Show first frame of each clip canvas
+      root.querySelectorAll("[data-vplay-canvas]").forEach(function (cv) {
+        const idx = Number(cv.getAttribute("data-vplay-canvas"));
+        const fr = videoResult.items[idx] && videoResult.items[idx].frames;
+        if (fr && fr[0]) {
+          cv.width = fr[0].width;
+          cv.height = fr[0].height;
+          cv.getContext("2d").drawImage(fr[0], 0, 0);
+        }
+      });
+      const origCv = document.getElementById("med-v-play-orig");
+      if (origCv && videoSession && videoSession.frames[0]) {
+        origCv.width = videoSession.frames[0].width;
+        origCv.height = videoSession.frames[0].height;
+        origCv.getContext("2d").drawImage(videoSession.frames[0], 0, 0);
+      }
+    }
   }
 
   function syncFromForm() {
@@ -562,11 +639,104 @@
         }
       });
     });
+
+    function playOnCanvas(canvas, frames) {
+      if (!Lib.playFrameClip) throw new Error("Playback module missing.");
+      Lib.playFrameClip(canvas, frames, { fps: 8, loop: true });
+    }
+
+    const vPlayOrig = document.getElementById("med-v-play-orig-btn");
+    if (vPlayOrig) {
+      vPlayOrig.addEventListener("click", function () {
+        try {
+          const cv = document.getElementById("med-v-play-orig");
+          playOnCanvas(cv, videoSession.frames);
+          showMessage("Playing original clip (loop). Click Stop to end.", "ok");
+        } catch (err) {
+          showMessage(err.message || String(err), "error");
+          renderAll();
+        }
+      });
+    }
+    const vStop = document.getElementById("med-v-stop");
+    if (vStop) {
+      vStop.addEventListener("click", function () {
+        if (Lib.stopClipPlayback) Lib.stopClipPlayback();
+        showMessage("Playback stopped.", "ok");
+      });
+    }
+    const vDlOrig = document.getElementById("med-v-dl-orig");
+    if (vDlOrig) {
+      vDlOrig.addEventListener("click", function () {
+        showMessage("Encoding original.webm…", "ok");
+        Lib.downloadWebM(videoSession.frames, "original-" + (videoSession.id || "clip") + ".webm", { fps: 8 })
+          .then(function () {
+            showMessage("Downloaded original WebM clip.", "ok");
+            renderAll();
+          })
+          .catch(function (err) {
+            showMessage(err.message || String(err), "error");
+            renderAll();
+          });
+      });
+    }
+    root.querySelectorAll("[data-vplay]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const idx = Number(btn.getAttribute("data-vplay"));
+        try {
+          const cv = root.querySelector('[data-vplay-canvas="' + idx + '"]');
+          playOnCanvas(cv, videoResult.items[idx].frames);
+          showMessage("Playing " + videoResult.items[idx].id + " (loop).", "ok");
+        } catch (err) {
+          showMessage(err.message || String(err), "error");
+          renderAll();
+        }
+      });
+    });
+    root.querySelectorAll("[data-vdl]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const idx = Number(btn.getAttribute("data-vdl"));
+        const it = videoResult.items[idx];
+        showMessage("Encoding " + it.id + ".webm…", "ok");
+        Lib.downloadWebM(it.frames, it.id + ".webm", { fps: 8 })
+          .then(function () {
+            showMessage("Downloaded " + it.id + ".webm", "ok");
+            renderAll();
+          })
+          .catch(function (err) {
+            showMessage(err.message || String(err), "error");
+            renderAll();
+          });
+      });
+    });
+
     const zip = document.getElementById("med-zip");
     if (zip) {
       zip.addEventListener("click", function () {
-        if (tab === "audio") Lib.downloadAudioZip(audioSession, audioResult);
-        else Lib.downloadVideoZip(videoSession, videoResult);
+        if (tab === "audio") {
+          Lib.downloadAudioZip(audioSession, audioResult);
+          return;
+        }
+        showMessage("Encoding WebM clips for ZIP (may take a few seconds)…", "ok");
+        const p = Lib.downloadVideoZip(videoSession, videoResult, {
+          includeWebm: true,
+          fps: 8,
+          onProgress: function (msg) {
+            if (msg) showMessage(msg, "ok");
+          },
+        });
+        if (p && p.then) {
+          p.then(function () {
+            showMessage("Downloaded augmented-video.zip (WebM + PNG frames).", "ok");
+            renderAll();
+          }).catch(function (err) {
+            showMessage(
+              "ZIP saved with PNG frames. WebM note: " + (err.message || String(err)),
+              "error"
+            );
+            renderAll();
+          });
+        }
       });
     }
     const recipe = document.getElementById("med-recipe");

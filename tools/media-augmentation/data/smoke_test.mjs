@@ -16,6 +16,7 @@ function makeCtx() {
       this.font = "12px sans-serif";
       this.textAlign = "left";
       this.textBaseline = "alphabetic";
+      this.globalAlpha = 1;
       this._data = new Uint8ClampedArray(c.width * c.height * 4);
       for (let i = 0; i < this._data.length; i += 4) {
         this._data[i] = 30;
@@ -35,6 +36,10 @@ function makeCtx() {
     rotate() {}
     save() {}
     restore() {}
+    ellipse() {}
+    arcTo() {}
+    closePath() {}
+    strokeRect() {}
     createLinearGradient() {
       return { addColorStop() {} };
     }
@@ -98,6 +103,7 @@ function makeCtx() {
     "lib/video.js",
     "lib/analyze-audio.js",
     "lib/analyze-video.js",
+    "lib/playback.js",
     "lib/export.js",
   ]) {
     vm.runInContext(readFileSync(join(root, f), "utf8"), ctx);
@@ -148,15 +154,25 @@ try {
 
 try {
   const vp = Lib.makeVideoPresets();
-  check("video presets", vp.length >= 3);
+  check("video presets", vp.length >= 6);
+  check(
+    "realistic scenes",
+    vp.some((p) => p.id === "street-traffic") && vp.some((p) => p.id === "warehouse-conveyor")
+  );
   const v = Lib.augmentVideo(vp[0].frames, { method: "flip_h", count: 2, seed: 2 });
   check("video count", v.items.length === 2 && v.items[0].thumbs.length > 0);
   const rev = Lib.augmentVideo(vp[0].frames, { method: "reverse", count: 1, seed: 4 });
   check("video reverse", rev.items[0].ops[0] === "reverse");
   const fid = Lib.videoFidelity(vp[0].frames, v.items[0].frames);
   check("fidelity", fid.score >= 0 && fid.score <= 1 && fid.nCompared > 0);
+  check("psnr+ssim", fid.psnr > 0 && fid.ssim >= 0 && fid.ssim <= 1 && fid.perFrame.length > 0);
+  const energy = Lib.temporalMotionEnergy(vp[0].frames);
+  check("temporal energy", energy.length === vp[0].frames.length - 1);
   const hist = Lib.frameHistogram(vp[0].frames[0], 32);
   check("histogram", hist.length === 32);
+  const rgb = Lib.rgbHistograms(vp[0].frames[0], 24);
+  check("rgb hist", rgb.r.length === 24 && rgb.g.length === 24);
+  check("playback api", typeof Lib.playFrameClip === "function" && typeof Lib.encodeWebM === "function");
   const recipe = Lib.buildRecipe(vp[0], v);
   check("recipe", recipe.format === "media-augmentation-recipe");
 } catch (e) {
