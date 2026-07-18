@@ -18,7 +18,6 @@ Readers and students usually **browse the site** or clone this public repo. Auth
 - [Author: publish or update](#author-publish-or-update)
 - [Chapter landings](#chapter-landings)
 - [Interactive tools](#interactive-tools)
-- [Analytics (GA4)](#analytics-ga4)
 - [License](#license)
 
 ## Contents
@@ -118,16 +117,6 @@ git push
 ## Interactive tools
 
 By workflow: [Sampling](tools/sampling/index.html) → [Consent & PII scrubber](tools/pii-scrubber/index.html) · [De-id risk](tools/deid-risk/index.html) · [Ethical decision](tools/ethical-decision/index.html) → [Image annotation](tools/image-annotation/index.html) · [Text annotation](tools/text-annotation/index.html) · [IAA](tools/iaa/index.html) → [Schema / format](tools/schema-format/index.html) · [EDA](tools/eda-dashboard/index.html) · [Cleaning](tools/cleaning/index.html) · [Scaling / encoding](tools/scaling-encoding/index.html) · [Class imbalance](tools/class-imbalance/index.html) · [Train/test split](tools/train-test-split/index.html) → [Representation](tools/representation/index.html) · [Fairness](tools/fairness/index.html) → [Datasheet](tools/datasheet/index.html) · [Metadata](tools/metadata-checker/index.html) · [Version timeline](tools/version-timeline/index.html). See [all tools](tools/index.html).
-
-## Analytics (GA4)
-
-1. Sign in at [analytics.google.com](https://analytics.google.com) as the owner in [`site.json`](site.json).
-2. Create a GA4 property + **Web** data stream for the GitHub Pages URL.
-3. Copy the Measurement ID (`G-XXXXXXXX`) into [`site.json`](site.json) → `ga4_measurement_id`.
-4. Rebuild from the parent: `python .cursor/skills/book-slides/scripts/build_site.py lectures/`
-5. In GA4 → Admin → Data streams → Enhanced measurement: leave engagement on; HTML5 lecture videos use custom events (`video_start`, `video_progress`, `video_complete`).
-
-The dashboard is only at analytics.google.com. Readers see a short footer note when GA4 is enabled—no admin page on this site.
 
 ## License
 
