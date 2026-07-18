@@ -91,6 +91,7 @@
       '<a href="../text-augmentation/index.html">text</a> and ' +
       '<a href="../image-augmentation/index.html">image</a> augmentation.</p>' +
       '<p class="med-hint">Music &amp; voice presets are procedural (melody / formants)—not licensed recordings. Time series / geo / graphs need different operators.</p>' +
+      '<p class="med-warn"><strong>Browser note:</strong> WebM clip download / ZIP encoding is supported only in <strong>Chromium-based browsers</strong> (Chrome, Edge, Brave, Opera). Canvas <em>Play clip</em> works more widely; PNG frame export works everywhere.</p>' +
       "</section>"
     );
   }
