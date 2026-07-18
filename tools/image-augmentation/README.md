@@ -8,6 +8,27 @@ color jitter, crop, noise, blur). No GAN / diffusion training.
 Sibling: [`../text-augmentation/`](../text-augmentation/) · label boxes with
 [`../image-annotation/`](../image-annotation/).
 
+## Sample scenes
+
+Six drawn teaching photos (PNG data URIs, `file://` safe)—not camera RAW, but
+more realistic than flat shape demos:
+
+| Preset | Contents |
+|--------|----------|
+| `street-day` | Road, car, pedestrian, sign |
+| `product-desk` | Packshot on wood desk |
+| `warehouse-shelf` | Boxes on racks + forklift |
+| `outdoor-path` | Path, hills, tree |
+| `storefront` | Shop facade / sidewalk |
+| `receipt-scan` | Document scan with stain |
+
+Regenerate:
+
+```bash
+cd lectures/tools/image-augmentation/data
+python make_images.py
+```
+
 ## Learning objectives
 
 - See how geometric and photometric transforms create new training *views*

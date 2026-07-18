@@ -1,104 +1,121 @@
-/* Procedural preset images (window.ImgAugPresets). */
+/* Load realistic preset scenes from ImgAugImages (data URIs). */
 (function (global) {
   "use strict";
 
-  function drawShapes(ctx, w, h) {
-    ctx.fillStyle = "#e8f0ec";
-    ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = "#0f6b5c";
-    ctx.fillRect(24, 40, 90, 60);
-    ctx.fillStyle = "#b86a00";
-    ctx.beginPath();
-    ctx.arc(170, 70, 36, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#3d5a80";
-    ctx.beginPath();
-    ctx.moveTo(80, 150);
-    ctx.lineTo(140, 100);
-    ctx.lineTo(200, 150);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#1c2421";
-    ctx.font = "bold 16px sans-serif";
-    ctx.fillText("shapes", 20, 24);
+  function loadFromDataUri(dataUri, done, fail) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      canvas.getContext("2d").drawImage(img, 0, 0);
+      done(canvas, img.width, img.height);
+    };
+    img.onerror = function () {
+      fail(new Error("Could not decode preset image."));
+    };
+    img.src = dataUri;
   }
 
-  function drawGradientCard(ctx, w, h) {
-    const g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, "#0f6b5c");
-    g.addColorStop(1, "#f4a261");
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
-    ctx.fillRect(28, 48, w - 56, h - 96);
-    ctx.fillStyle = "#1c2421";
-    ctx.font = "bold 20px sans-serif";
-    ctx.fillText("card", 48, 100);
-    ctx.font = "14px sans-serif";
-    ctx.fillText("augment me", 48, 128);
-  }
-
-  function drawIconGrid(ctx, w, h) {
-    ctx.fillStyle = "#f7f9f8";
-    ctx.fillRect(0, 0, w, h);
-    const colors = ["#0f6b5c", "#a33b3b", "#3d5a80", "#b86a00"];
-    let i = 0;
-    for (let y = 20; y < h - 20; y += 70) {
-      for (let x = 20; x < w - 20; x += 70) {
-        ctx.fillStyle = colors[i % colors.length];
-        ctx.fillRect(x, y, 50, 50);
-        ctx.strokeStyle = "#1c2421";
-        ctx.strokeRect(x, y, 50, 50);
-        i++;
-      }
-    }
-  }
-
-  function makePreset(id, title, description, drawer, w, h) {
-    const canvas = document.createElement("canvas");
-    canvas.width = w || 240;
-    canvas.height = h || 180;
-    drawer(canvas.getContext("2d"), canvas.width, canvas.height);
+  function presetFromMeta(meta, canvas) {
     return {
-      id: id,
-      title: title,
-      description: description,
-      bookAnchors: ["§10.6", "eg:10.16"],
+      id: meta.id,
+      title: meta.title,
+      description: meta.description,
+      bookAnchors: meta.bookAnchors || ["§10.6", "eg:10.16"],
       canvas: canvas,
       dataUrl: canvas.toDataURL("image/png"),
-      source: "preset:" + id,
+      source: "preset:" + meta.id,
+      width: canvas.width,
+      height: canvas.height,
     };
   }
 
+  /** Fallback if images-bundle failed to load. */
+  function drawFallback(ctx, w, h) {
+    ctx.fillStyle = "#dde5ea";
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = "#0f6b5c";
+    ctx.fillRect(40, 80, 120, 70);
+    ctx.fillStyle = "#1c2421";
+    ctx.font = "16px sans-serif";
+    ctx.fillText("fallback scene", 40, 40);
+  }
+
   global.ImgAugPresets = {
-    list: function () {
-      return [
-        makePreset(
-          "shapes",
-          "Shapes scene",
-          "Simple colored shapes—easy to see flip / rotate / crop effects.",
-          drawShapes
-        ),
-        makePreset(
-          "gradient-card",
-          "Gradient card",
-          "Smooth gradient + panel—good for color jitter and brightness.",
-          drawGradientCard
-        ),
-        makePreset(
-          "icon-grid",
-          "Icon grid",
-          "Repeated tiles—noise and blur show clearly.",
-          drawIconGrid,
-          260,
-          200
-        ),
-      ];
+    listMeta: function () {
+      const bag = global.ImgAugImages || {};
+      const ids = Object.keys(bag);
+      if (!ids.length) {
+        return [
+          {
+            id: "fallback",
+            title: "Fallback scene",
+            description: "Bundle missing—run data/make_images.py.",
+            dataUri: null,
+          },
+        ];
+      }
+      return ids.map(function (id) {
+        return bag[id];
+      });
     },
-    load: function (id) {
-      const all = this.list();
-      for (let i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
-      throw new Error("Unknown preset: " + id);
+
+    /** Async load all presets into canvases; callback(err, presetsArray). */
+    loadAll: function (callback) {
+      const metas = this.listMeta();
+      const out = [];
+      let pending = metas.length;
+      if (!pending) {
+        callback(new Error("No presets"), []);
+        return;
+      }
+      metas.forEach(function (meta, idx) {
+        function finish(canvas) {
+          out[idx] = presetFromMeta(meta, canvas);
+          pending -= 1;
+          if (pending === 0) callback(null, out);
+        }
+        if (meta.dataUri) {
+          loadFromDataUri(
+            meta.dataUri,
+            function (canvas) {
+              finish(canvas);
+            },
+            function () {
+              const c = document.createElement("canvas");
+              c.width = 320;
+              c.height = 220;
+              drawFallback(c.getContext("2d"), c.width, c.height);
+              finish(c);
+            }
+          );
+        } else {
+          const c = document.createElement("canvas");
+          c.width = 320;
+          c.height = 220;
+          drawFallback(c.getContext("2d"), c.width, c.height);
+          finish(c);
+        }
+      });
+    },
+
+    load: function (id, callback) {
+      const bag = global.ImgAugImages || {};
+      const meta = bag[id];
+      if (!meta || !meta.dataUri) {
+        callback(new Error("Unknown preset: " + id));
+        return;
+      }
+      loadFromDataUri(
+        meta.dataUri,
+        function (canvas) {
+          callback(null, presetFromMeta(meta, canvas));
+        },
+        function (err) {
+          callback(err);
+        }
+      );
     },
   };
 })(typeof window !== "undefined" ? window : globalThis);

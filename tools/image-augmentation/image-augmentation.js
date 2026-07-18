@@ -8,6 +8,7 @@
     return;
   }
 
+  let presetList = [];
   let session = null;
   let method = "random_pipeline";
   let count = 4;
@@ -15,6 +16,7 @@
   let intensity = 0.45;
   let result = null;
   let message = { text: "", kind: "" };
+  let ready = false;
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -45,15 +47,19 @@
     }
   }
 
-  function loadPreset(id) {
-    try {
-      session = Presets.load(id);
-      result = null;
-      runAugment();
-      showMessage("Loaded '" + session.title + "'.", "ok");
-    } catch (err) {
-      showMessage(err.message || String(err), "error");
+  function selectPreset(id) {
+    const found = presetList.filter(function (p) {
+      return p.id === id;
+    })[0];
+    if (!found) {
+      showMessage("Unknown preset: " + id, "error");
+      renderAll();
+      return;
     }
+    session = found;
+    result = null;
+    runAugment();
+    showMessage("Loaded '" + session.title + "'.", "ok");
     renderAll();
   }
 
@@ -115,7 +121,7 @@
       '<section class="ima-intro">' +
       "<h1>Image augmentation lab</h1>" +
       '<p class="lead">Create new <em>views</em> of the same image with flips, crops, color jitter, and noise—no generative model. Export variants plus a reproducible recipe.</p>' +
-      '<p class="ima-cross">Book: Chapter 10 · <code>eg:10.16</code> CV augmentation spirit · pairs with ' +
+      '<p class="ima-cross">Book: Chapter 10 · <code>eg:10.16</code> · pairs with ' +
       '<a href="../image-annotation/index.html">image annotation</a> and ' +
       '<a href="../text-augmentation/index.html">text augmentation</a>.</p>' +
       "</section>"
@@ -127,18 +133,23 @@
       '<details class="ima-panel ima-guide" open>' +
       "<summary>Practical guide</summary>" +
       "<ol>" +
-      "<li><strong>Learn</strong> — try <code>shapes</code>, then <code>random pipeline</code>.</li>" +
-      "<li><strong>Apply</strong> — upload a PNG/JPEG (resized to max 480px side).</li>" +
+      "<li><strong>Learn</strong> — try street / product / warehouse scenes, then <code>random pipeline</code>.</li>" +
+      "<li><strong>Apply</strong> — upload your own PNG/JPEG (max 480px side).</li>" +
       "<li><strong>See</strong> — original vs augmented grid.</li>" +
       "<li><strong>Export</strong> — ZIP of PNGs + <code>augmentation-recipe.*</code>.</li>" +
       "</ol>" +
-      '<p class="ima-hint">Augmentation expands training diversity. Do not augment the held-out test set. Bounding boxes would need the same geometric transforms in a full labeling pipeline.</p>' +
+      '<p class="ima-hint">Scenes are drawn teaching photos (not camera RAW). Augment training images only—keep the test set clean.</p>' +
       "</details>"
     );
   }
 
   function renderPresets() {
-    const cards = Presets.list()
+    if (!ready) {
+      return (
+        '<section class="ima-panel"><h2>1 · Preset or upload</h2><p class="ima-hint">Loading scenes…</p></section>'
+      );
+    }
+    const cards = presetList
       .map(function (p) {
         const active = session && session.id === p.id ? " is-active" : "";
         return (
@@ -149,7 +160,7 @@
           '">' +
           '<img src="' +
           esc(p.dataUrl) +
-          '" alt="" width="120" height="90" />' +
+          '" alt="" width="140" height="93" />' +
           "<strong>" +
           esc(p.title) +
           "</strong>" +
@@ -294,7 +305,7 @@
   function bind() {
     root.querySelectorAll("[data-preset]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        loadPreset(btn.getAttribute("data-preset"));
+        selectPreset(btn.getAttribute("data-preset"));
       });
     });
     const file = document.getElementById("ima-file");
@@ -343,5 +354,17 @@
     }
   }
 
-  loadPreset("shapes");
+  showMessage("Loading realistic scenes…", "ok");
+  renderAll();
+  Presets.loadAll(function (err, list) {
+    if (err || !list || !list.length) {
+      showMessage(err ? err.message : "No presets loaded.", "error");
+      ready = true;
+      renderAll();
+      return;
+    }
+    presetList = list;
+    ready = true;
+    selectPreset(list[0].id);
+  });
 })();

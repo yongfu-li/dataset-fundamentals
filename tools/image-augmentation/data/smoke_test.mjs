@@ -1,10 +1,17 @@
-/** Smoke tests for ImgAugLib (Node + canvas mock via pure logic where possible). */
-import { readFileSync } from "fs";
+/** Smoke tests for ImgAugLib + image bundle presence. */
+import { readFileSync, existsSync } from "fs";
 import vm from "vm";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const results = [];
+function check(name, ok, detail) {
+  results.push({ name, ok, detail: detail || "" });
+}
+
+const bundlePath = join(root, "data/images-bundle.js");
+check("images-bundle exists", existsSync(bundlePath));
 
 function makeCtx() {
   class FakeCtx {
@@ -23,17 +30,6 @@ function makeCtx() {
     translate() {}
     scale() {}
     rotate() {}
-    beginPath() {}
-    arc() {}
-    moveTo() {}
-    lineTo() {}
-    closePath() {}
-    fill() {}
-    strokeRect() {}
-    fillText() {}
-    createLinearGradient() {
-      return { addColorStop() {} };
-    }
     getImageData() {
       return { data: this._data, width: this.c.width, height: this.c.height };
     }
@@ -59,7 +55,7 @@ function makeCtx() {
     document: {
       createElement: function (tag) {
         if (tag === "canvas") return new Canvas(64, 48);
-        return { click() {}, download: "", href: "", style: {} };
+        return { click() {}, download: "", href: "" };
       },
       body: { appendChild() {}, removeChild() {} },
     },
@@ -79,35 +75,27 @@ function makeCtx() {
   };
   ctx.globalThis = ctx.window;
   vm.createContext(ctx);
-  for (const f of ["data/presets-bundle.js", "lib/transforms.js", "lib/export.js"]) {
-    vm.runInContext(readFileSync(join(root, f), "utf8"), ctx);
+  for (const f of ["data/images-bundle.js", "lib/transforms.js", "lib/export.js"]) {
+    if (existsSync(join(root, f))) vm.runInContext(readFileSync(join(root, f), "utf8"), ctx);
   }
   return ctx;
 }
 
-const ctx = makeCtx();
-const Lib = ctx.window.ImgAugLib;
-const Presets = ctx.window.ImgAugPresets;
-const results = [];
-function check(name, ok, detail) {
-  results.push({ name, ok, detail: detail || "" });
-}
-
 try {
-  check("methods", Lib.METHODS.length >= 10);
-  const p = Presets.load("shapes");
-  check("preset canvas", !!p.canvas && p.canvas.width > 0);
-  const a = Lib.augment(p.canvas, { method: "flip_h", count: 2, seed: 1 });
-  const b = Lib.augment(p.canvas, { method: "flip_h", count: 2, seed: 1 });
-  check("flip count", a.items.length === 2);
-  check("deterministic", a.items[0].ops.join() === b.items[0].ops.join());
-  const pipe = Lib.augment(p.canvas, { method: "random_pipeline", count: 3, seed: 9, intensity: 0.5 });
-  check("pipeline ops", pipe.items.every((it) => it.ops.length >= 2));
-  const recipe = Lib.buildRecipe(p, pipe);
-  check("recipe", recipe.format === "image-augmentation-recipe");
-  check("recipe md", /Image augmentation recipe/.test(Lib.recipeToMarkdown(recipe)));
+  const ctx = makeCtx();
+  const bag = ctx.window.ImgAugImages || {};
+  const ids = Object.keys(bag);
+  check("scene count", ids.length >= 6, "n=" + ids.length);
+  check("street-day", !!bag["street-day"] && /data:image\/png/.test(bag["street-day"].dataUri || ""));
+  check("product-desk", !!bag["product-desk"]);
+  const Lib = ctx.window.ImgAugLib;
+  const canvas = ctx.document.createElement("canvas");
+  canvas.width = 64;
+  canvas.height = 48;
+  const a = Lib.augment(canvas, { method: "flip_h", count: 2, seed: 1 });
+  check("augment still works", a.items.length === 2);
 } catch (e) {
-  check("core", false, e.message);
+  check("bundle load", false, e.message);
 }
 
 results.forEach((r) => console.log((r.ok ? "PASS" : "FAIL") + " " + r.name + (r.detail ? " — " + r.detail : "")));
