@@ -389,6 +389,7 @@
       '<button type="button" id="ds-export-md" class="ds-primary">Download datasheet.md</button>' +
       '<button type="button" id="ds-export-json" class="ds-secondary">Download datasheet-metadata.json</button>' +
       '<button type="button" id="ds-export-license" class="ds-secondary">Download ' + esc(licenseHint.filename) + "</button>" +
+      '<button type="button" id="ds-send-metadata" class="ds-secondary">Send to metadata checker →</button>' +
       "</div>" +
       '<p class="ds-hint" id="ds-export-hint">Release bundle: <code>datasheet.md</code> + <code>datasheet-metadata.json</code> + <code>' +
       esc(licenseHint.filename) +
@@ -398,7 +399,7 @@
       esc(licenseHint.spdx) +
       "). " +
       fullNote +
-      "</p>" +
+      " Or send the metadata JSON straight to the completeness checker.</p>" +
       "</section>"
     );
   }
@@ -431,6 +432,24 @@
     });
     on("ds-export-license", "click", function () {
       Lib.downloadLicense(exportState());
+    });
+    on("ds-send-metadata", "click", function () {
+      if (!window.DatasetToolsHandoff) {
+        showMessage("Handoff helper missing — check tools-handoff.js.", "error");
+        renderAll();
+        return;
+      }
+      try {
+        const meta = Lib.buildMetadataPayload(exportState());
+        window.DatasetToolsHandoff.writeMetadata("datasheet", meta, {
+          from: "datasheet",
+          templateId: templateId,
+        });
+        window.location.href = "../metadata-checker/index.html?from=datasheet";
+      } catch (err) {
+        showMessage(err.message || String(err), "error");
+        renderAll();
+      }
     });
   }
 

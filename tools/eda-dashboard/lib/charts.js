@@ -12,12 +12,26 @@
   const ACCENT2 = "#b45309";
 
   function clear(canvas) {
-    if (!canvas) return;
+    if (!canvas) return null;
+    const Axis = global.DatasetToolsAxis;
+    if (Axis && Axis.beginChart) {
+      const surface = Axis.beginChart(canvas);
+      return surface ? surface.ctx : null;
+    }
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return null;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas._lw = canvas.width;
+    canvas._lh = canvas.height;
+    return ctx;
+  }
+
+  function size(canvas) {
+    const Axis = global.DatasetToolsAxis;
+    if (Axis && Axis.chartSize) return Axis.chartSize(canvas);
+    return { width: canvas._lw || canvas.width, height: canvas._lh || canvas.height };
   }
 
   function niceMax(value) {
@@ -41,10 +55,10 @@
     const plot = {
       left: pad.l,
       top: pad.t,
-      right: canvas.width - pad.r,
-      bottom: canvas.height - pad.b,
-      width: canvas.width - pad.l - pad.r,
-      height: canvas.height - pad.t - pad.b,
+      right: size(canvas).width - pad.r,
+      bottom: size(canvas).height - pad.b,
+      width: size(canvas).width - pad.l - pad.r,
+      height: size(canvas).height - pad.t - pad.b,
     };
     const maxC = Math.max.apply(
       null,
@@ -109,10 +123,10 @@
     const plot = {
       left: pad.l,
       top: pad.t,
-      right: canvas.width - pad.r,
-      bottom: canvas.height - pad.b,
-      width: canvas.width - pad.l - pad.r,
-      height: canvas.height - pad.t - pad.b,
+      right: size(canvas).width - pad.r,
+      bottom: size(canvas).height - pad.b,
+      width: size(canvas).width - pad.l - pad.r,
+      height: size(canvas).height - pad.t - pad.b,
     };
     const maxC = Math.max.apply(
       null,
@@ -178,10 +192,10 @@
     const plot = {
       left: pad.l,
       top: pad.t,
-      right: canvas.width - pad.r,
-      bottom: canvas.height - pad.b,
-      width: canvas.width - pad.l - pad.r,
-      height: canvas.height - pad.t - pad.b,
+      right: size(canvas).width - pad.r,
+      bottom: size(canvas).height - pad.b,
+      width: size(canvas).width - pad.l - pad.r,
+      height: size(canvas).height - pad.t - pad.b,
     };
     let minX = pts[0].x;
     let maxX = pts[0].x;
@@ -232,7 +246,7 @@
     if (Axis) {
       Axis.drawFrame(ctx, plot);
       Axis.drawYLabel(ctx, plot, yLabel || "y");
-      Axis.drawXLabel(ctx, plot, canvas.height, xLabel || "x");
+      Axis.drawXLabel(ctx, plot, size(canvas).height, xLabel || "x");
     } else {
       ctx.strokeStyle = AXIS_C;
       ctx.lineWidth = 1.5;
@@ -247,7 +261,7 @@
     const cols = corr.columns;
     const n = cols.length;
     const pad = { t: 28, r: 16, b: 70, l: 70 };
-    const size = Math.min(canvas.width - pad.l - pad.r, canvas.height - pad.t - pad.b);
+    const size = Math.min(size(canvas).width - pad.l - pad.r, size(canvas).height - pad.t - pad.b);
     const cell = size / n;
     ctx.fillStyle = TEXT;
     ctx.font = "600 13px " + FONT;
@@ -301,10 +315,10 @@
     const plot = {
       left: pad.l,
       top: pad.t,
-      right: canvas.width - pad.r,
-      bottom: canvas.height - pad.b,
-      width: canvas.width - pad.l - pad.r,
-      height: canvas.height - pad.t - pad.b,
+      right: size(canvas).width - pad.r,
+      bottom: size(canvas).height - pad.b,
+      width: size(canvas).width - pad.l - pad.r,
+      height: size(canvas).height - pad.t - pad.b,
     };
     let lo = Math.min(box.whiskerLo, box.min);
     let hi = Math.max(box.whiskerHi, box.max);

@@ -5,18 +5,32 @@
   const Axis = global.DatasetToolsAxis;
 
   function clearCanvas(canvas) {
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.beginChart) {
+      const surface = AxisApi.beginChart(canvas);
+      return surface ? surface.ctx : null;
+    }
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas._lw = canvas.width;
+    canvas._lh = canvas.height;
+    return ctx;
+  }
+
+  function size(canvas) {
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.chartSize) return AxisApi.chartSize(canvas);
+    return { width: canvas._lw || canvas.width, height: canvas._lh || canvas.height };
   }
 
   ImbalanceLib.drawClassBars = function (canvas, counts, opts) {
     const o = opts || {};
     clearCanvas(canvas);
     const ctx = canvas.getContext("2d");
-    const w = canvas.width;
-    const h = canvas.height;
+    const w = size(canvas).width;
+    const h = size(canvas).height;
     const pad = { t: 28, r: 16, b: 40, l: 52 };
     const plot = { left: pad.l, right: w - pad.r, top: pad.t, bottom: h - pad.b };
     const labels = ["Negative (0)", "Positive (1)"];
@@ -52,8 +66,8 @@
     const o = opts || {};
     clearCanvas(canvas);
     const ctx = canvas.getContext("2d");
-    const w = canvas.width;
-    const h = canvas.height;
+    const w = size(canvas).width;
+    const h = size(canvas).height;
     const pad = { t: 28, r: 16, b: 48, l: 52 };
     const plot = { left: pad.l, right: w - pad.r, top: pad.t, bottom: h - pad.b };
     const keys = ["accuracy", "precision", "recall", "f1"];

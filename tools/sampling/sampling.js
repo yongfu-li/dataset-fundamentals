@@ -445,13 +445,28 @@ function pickCompareColumn() {
   return best ?? dataset.columns.find((c) => !skip.has(c)) ?? null;
 }
 
+function beginChart(canvas, fallbackW, fallbackH) {
+  const Axis = window.DatasetToolsAxis;
+  if (Axis && Axis.beginChart) {
+    return Axis.beginChart(canvas, fallbackW, fallbackH);
+  }
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+  const w = fallbackW || canvas.width;
+  const h = fallbackH || canvas.height;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  return { ctx: ctx, width: w, height: h, dpr: 1 };
+}
+
 function clearVisuals() {
   const scatter = /** @type {HTMLCanvasElement | null} */ (document.getElementById("scatter-canvas"));
   const bars = /** @type {HTMLCanvasElement | null} */ (document.getElementById("bar-canvas"));
   [scatter, bars].forEach((canvas) => {
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    beginChart(canvas, 560, 360);
   });
   document.getElementById("scatter-wrap")?.classList.add("sp-disabled");
   const callouts = document.getElementById("bias-callouts");
@@ -505,11 +520,11 @@ function drawScatter() {
   }
   wrap.classList.remove("sp-disabled");
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-  const w = canvas.width;
-  const h = canvas.height;
-  ctx.clearRect(0, 0, w, h);
+  const surface = beginChart(canvas, 560, 360);
+  if (!surface) return;
+  const ctx = surface.ctx;
+  const w = surface.width;
+  const h = surface.height;
 
   const plottableRows = dataset.rows.filter(
     (row) => Number.isFinite(Number(row[mapping.x])) && Number.isFinite(Number(row[mapping.y])),
@@ -595,11 +610,11 @@ function drawScatter() {
 function drawBars(dist, column) {
   const canvas = /** @type {HTMLCanvasElement | null} */ (document.getElementById("bar-canvas"));
   if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-  const w = canvas.width;
-  const h = canvas.height;
-  ctx.clearRect(0, 0, w, h);
+  const surface = beginChart(canvas, 560, 360);
+  if (!surface) return;
+  const ctx = surface.ctx;
+  const w = surface.width;
+  const h = surface.height;
   if (!column) return;
 
   const { labels, populationPct, samplePct } = dist;
@@ -697,6 +712,12 @@ function showMessage(msg, kind) {
   const el = document.getElementById("validation-messages");
   if (!el) return;
   el.innerHTML = `<p class="sp-msg ${kind}">${esc(msg)}</p>`;
+}
+
+if (window.DatasetToolsReport) {
+  window.DatasetToolsReport.registerRedraw(function () {
+    if (lastResult) updateVisuals();
+  });
 }
 
 render();

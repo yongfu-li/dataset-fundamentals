@@ -72,29 +72,48 @@
     document.body.removeChild(a);
   }
 
-  /** High-res PNG from an on-screen canvas (3× crisp upscale of current bitmap). */
+  /** Logical CSS-pixel size for a chart canvas (HiDPI-aware). */
+  function logicalSize(canvas) {
+    let w = Number(canvas.getAttribute("data-logical-w"));
+    let h = Number(canvas.getAttribute("data-logical-h"));
+    if (w && h) return { w: w, h: h };
+    if (canvas._lw && canvas._lh) return { w: canvas._lw, h: canvas._lh };
+    const attrW = Number(canvas.getAttribute("width"));
+    const attrH = Number(canvas.getAttribute("height"));
+    if (attrW && attrH) return { w: attrW, h: attrH };
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width >= 40 && rect.height >= 40) {
+      return { w: Math.round(rect.width), h: Math.round(rect.height) };
+    }
+    return { w: canvas.width || 0, h: canvas.height || 0 };
+  }
+
+  /** High-res PNG: redraw at export scale when possible, else crisp upscale. */
   function canvasToPngBlob(canvas, scale, done) {
     const s = scale || SCALE;
-    const w = canvas.width;
-    const h = canvas.height;
+    const logical = logicalSize(canvas);
+    const w = logical.w;
+    const h = logical.h;
     if (!w || !h) {
       done(null);
       return;
     }
 
-    // Prefer redraw-at-scale when a hook is registered (true vector-ish quality).
+    // Prefer redraw-at-scale when a hook is registered (true crisp quality).
     const redraw = Report._redrawers.slice();
     if (redraw.length) {
       const backup = {
-        width: canvas.width,
-        height: canvas.height,
         cssW: canvas.style.width,
         cssH: canvas.style.height,
+        exportScale: canvas._trExportScale,
       };
       const targetId = canvas.id;
       try {
+        canvas.setAttribute("data-logical-w", String(w));
+        canvas.setAttribute("data-logical-h", String(h));
         canvas.style.width = w + "px";
         canvas.style.height = h + "px";
+        canvas._trExportScale = s;
         canvas.width = Math.round(w * s);
         canvas.height = Math.round(h * s);
         redraw.forEach(function (fn) {
@@ -106,8 +125,8 @@
         });
         canvas.toBlob(
           function (blob) {
-            canvas.width = backup.width;
-            canvas.height = backup.height;
+            if (backup.exportScale == null) delete canvas._trExportScale;
+            else canvas._trExportScale = backup.exportScale;
             canvas.style.width = backup.cssW;
             canvas.style.height = backup.cssH;
             redraw.forEach(function (fn) {
@@ -123,8 +142,8 @@
         );
         return;
       } catch (err) {
-        canvas.width = backup.width;
-        canvas.height = backup.height;
+        if (backup.exportScale == null) delete canvas._trExportScale;
+        else canvas._trExportScale = backup.exportScale;
         canvas.style.width = backup.cssW;
         canvas.style.height = backup.cssH;
       }

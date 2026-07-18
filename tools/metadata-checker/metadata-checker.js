@@ -32,6 +32,35 @@
     report = Lib.scoreCard(card);
   }
 
+  function tryHandoffFromDatasheet() {
+    const Handoff = window.DatasetToolsHandoff;
+    if (!Handoff || Handoff.queryFrom() !== "datasheet") return false;
+    const payload = Handoff.consume("datasheet");
+    if (!payload || !payload.metadata) return false;
+    try {
+      loadData({
+        card: Lib.normalizeCard(payload.metadata, "datasheet-handoff"),
+        source: "datasheet-handoff",
+        description: "Received from datasheet / data-card builder",
+      });
+      Handoff.stripQuery();
+      showMessage(
+        "Scored datasheet handoff: " +
+          report.score_pct +
+          "% (" +
+          report.grade +
+          "). " +
+          report.remediation.length +
+          " item(s) need attention.",
+        report.score_pct >= 75 ? "ok" : "warn"
+      );
+      return true;
+    } catch (err) {
+      showMessage(err.message || String(err), "error");
+      return false;
+    }
+  }
+
   function loadPreset(id) {
     try {
       loadData(Lib.loadPreset(id));
@@ -219,5 +248,6 @@
     }
   }
 
+  tryHandoffFromDatasheet();
   renderAll();
 })();

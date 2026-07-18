@@ -62,6 +62,41 @@
     groupThresholds = {};
   }
 
+  function tryHandoffFromRepresentation() {
+    const Handoff = window.DatasetToolsHandoff;
+    if (!Handoff || Handoff.queryFrom() !== "representation") return false;
+    const payload = Handoff.consume("representation");
+    if (!payload || !payload.table || !payload.table.rows || !payload.table.columns) {
+      return false;
+    }
+    const table = payload.table;
+    const hints = payload.hints || {};
+    dataset = {
+      rows: table.rows.map(function (r) {
+        return Object.assign({}, r);
+      }),
+      columns: table.columns.slice(),
+      source: table.name || "representation-handoff",
+      description: hints.description || "Received from representation auditor",
+      defaultMapping: hints.mapping || {},
+    };
+    mapping = Lib.suggestMapping(dataset.columns, dataset.defaultMapping || {});
+    resetThresholdState();
+    recompute();
+    Handoff.stripQuery();
+    const ready = mappingReady();
+    showMessage(
+      "Loaded from representation auditor (" +
+        dataset.rows.length +
+        " rows)." +
+        (ready
+          ? " Threshold meters use the carried column mapping."
+          : " Confirm group / label / score mapping below."),
+      ready ? "ok" : "warn"
+    );
+    return true;
+  }
+
   function loadPreset(id) {
     try {
       const data = Lib.loadPreset(id);
@@ -513,5 +548,6 @@
       drawCharts();
     });
   }
+  tryHandoffFromRepresentation();
   renderAll();
 })();

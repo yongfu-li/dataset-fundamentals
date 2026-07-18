@@ -26,12 +26,26 @@
   }
 
   function clear(canvas) {
-    if (!canvas) return;
+    if (!canvas) return null;
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.beginChart) {
+      const surface = AxisApi.beginChart(canvas);
+      return surface ? surface.ctx : null;
+    }
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return null;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas._lw = canvas.width;
+    canvas._lh = canvas.height;
+    return ctx;
+  }
+
+  function size(canvas) {
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.chartSize) return AxisApi.chartSize(canvas);
+    return { width: canvas._lw || canvas.width, height: canvas._lh || canvas.height };
   }
 
   function formatPct(value) {
@@ -51,7 +65,7 @@
     if (!ctx) return;
     opts = opts || {};
 
-    const plot = { left: 110, right: canvas.width - 48, top: 48, bottom: canvas.height - 36 };
+    const plot = { left: 110, right: size(canvas).width - 48, top: 48, bottom: size(canvas).height - 36 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
 
@@ -135,7 +149,7 @@
     if (!ctx) return;
     opts = opts || {};
 
-    const plot = { left: 110, right: canvas.width - 48, top: 36, bottom: canvas.height - 36 };
+    const plot = { left: 110, right: size(canvas).width - 48, top: 36, bottom: size(canvas).height - 36 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
 

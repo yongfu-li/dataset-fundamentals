@@ -515,6 +515,12 @@
     }
   }
 
+  if (window.DatasetToolsReport) {
+    window.DatasetToolsReport.registerRedraw(function () {
+      drawCharts();
+    });
+  }
+
   if (window.ImbalancePresets && window.ImbalancePresets["fraud-rare"]) {
     loadPreset("fraud-rare");
   } else {

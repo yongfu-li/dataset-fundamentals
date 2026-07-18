@@ -275,21 +275,21 @@
       variantPicker(audioResult) +
       '<div class="med-compare">' +
       '<div><h3>Original</h3>' +
-      '<canvas id="med-a-meter-o" width="360" height="64"></canvas>' +
-      '<canvas id="med-a-spec-o" class="med-spec" width="360" height="120"></canvas>' +
-      '<p class="med-cap">Spectrogram</p>' +
-      '<canvas id="med-a-mel-o" width="360" height="72"></canvas>' +
-      '<p class="med-cap">Mel energies</p>' +
-      '<canvas id="med-a-mfcc-o" width="360" height="72"></canvas>' +
-      '<p class="med-cap">MFCC (mean)</p></div>' +
+      '<canvas id="med-a-meter-o" width="400" height="64"></canvas>' +
+      '<canvas id="med-a-spec-o" class="med-spec" width="400" height="180"></canvas>' +
+      '<p class="med-cap">Spectrogram — Y: frequency (Hz), X: time (s)</p>' +
+      '<canvas id="med-a-mel-o" width="400" height="140"></canvas>' +
+      '<p class="med-cap">Mel energies — Y: log energy, X: mel bin</p>' +
+      '<canvas id="med-a-mfcc-o" width="400" height="140"></canvas>' +
+      '<p class="med-cap">MFCC (mean) — Y: coefficient value, X: coeff index</p></div>' +
       '<div><h3>Augmented</h3>' +
-      '<canvas id="med-a-meter-a" width="360" height="64"></canvas>' +
-      '<canvas id="med-a-spec-a" class="med-spec" width="360" height="120"></canvas>' +
-      '<p class="med-cap">Spectrogram</p>' +
-      '<canvas id="med-a-mel-a" width="360" height="72"></canvas>' +
-      '<p class="med-cap">Mel energies</p>' +
-      '<canvas id="med-a-mfcc-a" width="360" height="72"></canvas>' +
-      '<p class="med-cap">MFCC (mean)</p></div>' +
+      '<canvas id="med-a-meter-a" width="400" height="64"></canvas>' +
+      '<canvas id="med-a-spec-a" class="med-spec" width="400" height="180"></canvas>' +
+      '<p class="med-cap">Spectrogram — Y: frequency (Hz), X: time (s)</p>' +
+      '<canvas id="med-a-mel-a" width="400" height="140"></canvas>' +
+      '<p class="med-cap">Mel energies — Y: log energy, X: mel bin</p>' +
+      '<canvas id="med-a-mfcc-a" width="400" height="140"></canvas>' +
+      '<p class="med-cap">MFCC (mean) — Y: coefficient value, X: coeff index</p></div>' +
       "</div>" +
       '<p class="med-hint">Pitch shifts the spectrogram; noise fills the band; reverse flips time. MFCC bars move when the spectrum shape changes.</p>' +
       "</section>"
@@ -382,14 +382,44 @@
     };
     if (el("med-a-meter-o")) Lib.drawMeters(el("med-a-meter-o"), mo);
     if (el("med-a-meter-a")) Lib.drawMeters(el("med-a-meter-a"), ma);
-    if (el("med-a-spec-o")) Lib.drawSpectrogram(el("med-a-spec-o"), orig);
-    if (el("med-a-spec-a")) Lib.drawSpectrogram(el("med-a-spec-a"), aug);
+    if (el("med-a-spec-o")) Lib.drawSpectrogram(el("med-a-spec-o"), orig, { sampleRate: Lib.AUDIO_SR });
+    if (el("med-a-spec-a")) Lib.drawSpectrogram(el("med-a-spec-a"), aug, { sampleRate: Lib.AUDIO_SR });
     const fo = Lib.computeMelMfcc(orig);
     const fa = Lib.computeMelMfcc(aug);
-    if (el("med-a-mel-o")) Lib.drawBarChart(el("med-a-mel-o"), fo.mel, { color: "#0f6b5c" });
-    if (el("med-a-mel-a")) Lib.drawBarChart(el("med-a-mel-a"), fa.mel, { color: "#0f6b5c" });
-    if (el("med-a-mfcc-o")) Lib.drawBarChart(el("med-a-mfcc-o"), fo.mfcc, { color: "#3d5a80", zeroBaseline: true });
-    if (el("med-a-mfcc-a")) Lib.drawBarChart(el("med-a-mfcc-a"), fa.mfcc, { color: "#3d5a80", zeroBaseline: true });
+    if (el("med-a-mel-o"))
+      Lib.drawBarChart(el("med-a-mel-o"), fo.mel, {
+        color: "#0f6b5c",
+        yLabel: "Log energy",
+        xLabel: "Mel bin",
+        title: "Mel filterbank",
+        xTickEvery: 5,
+      });
+    if (el("med-a-mel-a"))
+      Lib.drawBarChart(el("med-a-mel-a"), fa.mel, {
+        color: "#0f6b5c",
+        yLabel: "Log energy",
+        xLabel: "Mel bin",
+        title: "Mel filterbank",
+        xTickEvery: 5,
+      });
+    if (el("med-a-mfcc-o"))
+      Lib.drawBarChart(el("med-a-mfcc-o"), fo.mfcc, {
+        color: "#3d5a80",
+        zeroBaseline: true,
+        yLabel: "MFCC value",
+        xLabel: "Coeff index",
+        title: "MFCC (c0…c12)",
+        xTickEvery: 2,
+      });
+    if (el("med-a-mfcc-a"))
+      Lib.drawBarChart(el("med-a-mfcc-a"), fa.mfcc, {
+        color: "#3d5a80",
+        zeroBaseline: true,
+        yLabel: "MFCC value",
+        xLabel: "Coeff index",
+        title: "MFCC (c0…c12)",
+        xTickEvery: 2,
+      });
   }
 
   function midFrame(frames) {

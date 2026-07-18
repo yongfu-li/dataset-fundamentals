@@ -160,27 +160,33 @@
     return text[0] || columns[0] || "";
   }
 
-  function tryHandoffFromEda() {
+  function tryHandoffFromUpstream() {
     const Handoff = window.DatasetToolsHandoff;
-    let from = null;
-    try {
-      from = new URLSearchParams(window.location.search).get("from");
-    } catch (err) {
-      from = null;
-    }
-    if (from !== "eda" || !Handoff) return false;
-    const payload = Handoff.read("eda-dashboard");
+    if (!Handoff) return false;
+    const from = Handoff.queryFrom();
+    const sourceMap = {
+      eda: "eda-dashboard",
+      pii: "pii-scrubber",
+      deid: "deid-risk",
+    };
+    if (!from || !sourceMap[from]) return false;
+    const payload = Handoff.consume(sourceMap[from]);
     if (!payload || !payload.table || !payload.table.rows || !payload.table.columns) {
       return false;
     }
     const table = payload.table;
     const hints = payload.hints || {};
+    const labelMap = {
+      eda: "EDA dashboard",
+      pii: "PII scrubber",
+      deid: "de-id risk checker",
+    };
     original = {
       rows: table.rows.map(function (r) {
         return Object.assign({}, r);
       }),
       columns: table.columns.slice(),
-      source: table.name || "eda-handoff",
+      source: table.name || from + "-handoff",
       idColumn: null,
     };
     steps = [];
@@ -189,16 +195,9 @@
     const focus = hints.focusColumns || {};
     if (focus.outlier && focus.outlier.length) chartColumn = focus.outlier[0];
     else if (focus.missing && focus.missing.length) chartColumn = focus.missing[0];
-    Handoff.clear();
-    try {
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState({}, "", window.location.pathname);
-      }
-    } catch (err) {
-      /* ignore */
-    }
+    Handoff.stripQuery();
     showMessage(
-      "Loaded from EDA dashboard (" + original.rows.length + " rows, " +
+      "Loaded from " + (labelMap[from] || from) + " (" + original.rows.length + " rows, " +
         original.columns.length + " columns). Inspect issues, then apply fixes.",
       "ok"
     );
@@ -705,15 +704,15 @@
       const rows = currentRows();
       const columns = currentColumns();
       try {
-        window.DatasetToolsHandoff.write({
-          source: "cleaning",
-          table: {
+        window.DatasetToolsHandoff.writeTable(
+          "cleaning",
+          {
             name: original.source || "cleaned",
             columns: columns,
             rows: rows,
           },
-          hints: { from: "cleaning" },
-        });
+          { from: "cleaning" }
+        );
         window.location.href = "../scaling-encoding/index.html?from=cleaning";
       } catch (err) {
         showMessage(err.message || String(err), "error");
@@ -791,7 +790,7 @@
     });
   }
 
-  tryHandoffFromEda();
+  tryHandoffFromUpstream();
   if (window.DatasetToolsReport) {
     window.DatasetToolsReport.registerRedraw(function () {
       if (original) drawCharts();

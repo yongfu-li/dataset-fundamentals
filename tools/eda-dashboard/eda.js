@@ -942,16 +942,16 @@
       }),
     };
     try {
-      Handoff.write({
-        source: "eda-dashboard",
-        table: {
+      Handoff.writeTable(
+        "eda-dashboard",
+        {
           name: session.name || "eda-view",
           columns: session.columns.slice(),
           rows: viewRows.map(function (r) {
             return Object.assign({}, r);
           }),
         },
-        hints: {
+        {
           rowFilter: iss.missing.length || iss.duplicates || iss.inconsistencies.length || iss.outliers.length
             ? "any"
             : "all",
@@ -959,8 +959,8 @@
           issues: iss,
           bookAnchors: session.bookAnchors || [],
           findings: findings,
-        },
-      });
+        }
+      );
       window.location.href = "../cleaning/index.html?from=eda";
     } catch (err) {
       showMessage(err.message || String(err), "error");

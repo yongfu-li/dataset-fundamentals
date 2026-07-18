@@ -486,7 +486,7 @@
       '<div class="rp-op-row">' +
       '<button type="button" id="rp-export-json" class="rp-primary">Download representation-gap.json</button>' +
       '<button type="button" id="rp-export-md" class="rp-secondary">Download representation-gap.md</button>' +
-      '<a class="rp-link-btn" href="../fairness/index.html">Open fairness meter →</a>' +
+      '<button type="button" id="rp-send-fairness" class="rp-secondary">Send to fairness meter →</button>' +
       "</div></section>"
     );
   }
@@ -556,6 +556,39 @@
     if (em) {
       em.addEventListener("click", function () {
         Lib.downloadMarkdown(dataset.source, mapping, gapReport, perfReport);
+      });
+    }
+    const sendFf = document.getElementById("rp-send-fairness");
+    if (sendFf) {
+      sendFf.addEventListener("click", function () {
+        if (!dataset || !window.DatasetToolsHandoff) {
+          showMessage(
+            !window.DatasetToolsHandoff ? "Handoff helper missing." : "Load a dataset first.",
+            !window.DatasetToolsHandoff ? "error" : "warn"
+          );
+          renderAll();
+          return;
+        }
+        try {
+          window.DatasetToolsHandoff.writeTable(
+            "representation",
+            {
+              name: dataset.source || "representation",
+              columns: dataset.columns.slice(),
+              rows: dataset.rows,
+            },
+            {
+              from: "representation",
+              mapping: Object.assign({}, mapping),
+              population: Object.assign({}, population),
+              description: dataset.description || "",
+            }
+          );
+          window.location.href = "../fairness/index.html?from=representation";
+        } catch (err) {
+          showMessage(err.message || String(err), "error");
+          renderAll();
+        }
       });
     }
   }

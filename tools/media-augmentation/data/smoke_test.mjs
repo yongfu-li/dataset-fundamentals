@@ -14,6 +14,8 @@ function makeCtx() {
       this.strokeStyle = "#000";
       this.lineWidth = 1;
       this.font = "12px sans-serif";
+      this.textAlign = "left";
+      this.textBaseline = "alphabetic";
       this._data = new Uint8ClampedArray(c.width * c.height * 4);
       for (let i = 0; i < this._data.length; i += 4) {
         this._data[i] = 30;
@@ -30,6 +32,9 @@ function makeCtx() {
     drawImage() {}
     translate() {}
     scale() {}
+    rotate() {}
+    save() {}
+    restore() {}
     createLinearGradient() {
       return { addColorStop() {} };
     }
@@ -58,13 +63,14 @@ function makeCtx() {
     return "data:image/png;base64,AAAA";
   };
 
+  const doc = {
+    createElement: (tag) => (tag === "canvas" ? new Canvas(64, 48) : { click() {}, download: "", href: "" }),
+    body: { appendChild() {}, removeChild() {} },
+  };
   const ctx = {
     window: {},
     console,
-    document: {
-      createElement: (tag) => (tag === "canvas" ? new Canvas(64, 48) : { click() {}, download: "", href: "" }),
-      body: { appendChild() {}, removeChild() {} },
-    },
+    document: doc,
     ImageData: function (w, h) {
       return { width: w, height: h, data: new Uint8ClampedArray(w * h * 4) };
     },
@@ -96,10 +102,10 @@ function makeCtx() {
   ]) {
     vm.runInContext(readFileSync(join(root, f), "utf8"), ctx);
   }
-  return ctx.window.MediaAugLib;
+  return { Lib: ctx.window.MediaAugLib, document: doc, Canvas };
 }
 
-const Lib = makeCtx();
+const { Lib, document, Canvas } = makeCtx();
 const results = [];
 function check(name, ok, detail) {
   results.push({ name, ok, detail: detail || "" });
@@ -126,6 +132,16 @@ try {
   check("spectrogram", spec.nFrames >= 1 && spec.matrix[0].length === spec.nFreq);
   const feats = Lib.computeMelMfcc(music.samples);
   check("mel+mfcc", feats.mel.length === 26 && feats.mfcc.length === 13);
+  const cSpec = new Canvas(400, 180);
+  Lib.drawSpectrogram(cSpec, music.samples, { sampleRate: Lib.AUDIO_SR });
+  check("draw spectrogram axes", true);
+  const cMfcc = new Canvas(400, 140);
+  Lib.drawBarChart(cMfcc, feats.mfcc, {
+    zeroBaseline: true,
+    yLabel: "MFCC value",
+    xLabel: "Coeff index",
+  });
+  check("draw mfcc axes", true);
 } catch (e) {
   check("audio", false, e.message);
 }

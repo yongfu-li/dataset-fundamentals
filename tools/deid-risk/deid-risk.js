@@ -60,6 +60,37 @@
     }
   }
 
+  function tryHandoffFromPii() {
+    const Handoff = window.DatasetToolsHandoff;
+    if (!Handoff || Handoff.queryFrom() !== "pii") return false;
+    const payload = Handoff.consume("pii-scrubber");
+    if (!payload || !payload.table || !payload.table.rows || !payload.table.columns) {
+      return false;
+    }
+    const table = payload.table;
+    session = {
+      id: "pii-handoff",
+      title: table.name || "From PII scrubber",
+      source: "pii-handoff",
+      rows: table.rows.map(function (r) {
+        return Object.assign({}, r);
+      }),
+      columns: table.columns.slice(),
+      quasiDefaults: Lib.inferQuasiColumns(table.columns),
+    };
+    quasiCols = session.quasiDefaults.slice();
+    zipMode = "exact";
+    ageMode = "exact";
+    recompute();
+    Handoff.stripQuery();
+    showMessage(
+      "Loaded from PII scrubber (" + session.rows.length + " rows). Choose quasi-identifiers and re-check k.",
+      analysis && analysis.passes ? "ok" : "warn"
+    );
+    if (analysis) showMessage(Lib.describeRisk(analysis), analysis.passes ? "ok" : "warn");
+    return true;
+  }
+
   function loadPreset(id) {
     try {
       session = Lib.loadPreset(id);
@@ -319,6 +350,7 @@
       '<button type="button" class="btn" id="deid-export-json">Download deid-risk-report.json</button>' +
       '<button type="button" class="btn btn-secondary" id="deid-export-md">Download deid-risk-report.md</button>' +
       '<button type="button" class="btn btn-secondary" id="deid-export-csv">Download generalized table CSV</button>' +
+      '<button type="button" class="btn btn-secondary" id="deid-send-cleaning">Send to cleaning →</button>' +
       '<a class="btn btn-ghost" href="../pii-scrubber/index.html">← Consent &amp; PII scrubber</a>' +
       "</div>" +
       "</section>"
@@ -425,10 +457,54 @@
         Lib.downloadTableCsv(workingRows, session.columns, "deid-generalized.csv");
       });
     }
+    const sendCleaning = document.getElementById("deid-send-cleaning");
+    if (sendCleaning) {
+      sendCleaning.addEventListener("click", function () {
+        if (!session || !workingRows || !window.DatasetToolsHandoff) {
+          showMessage(
+            !window.DatasetToolsHandoff ? "Handoff helper missing." : "Run analysis first.",
+            !window.DatasetToolsHandoff ? "error" : "warn"
+          );
+          renderAll();
+          return;
+        }
+        try {
+          const cols = Lib.collectColumns(workingRows);
+          window.DatasetToolsHandoff.writeTable(
+            "deid-risk",
+            {
+              name: (session.title || "deid") + "-generalized",
+              columns: cols,
+              rows: workingRows,
+            },
+            {
+              from: "deid",
+              quasiCols: quasiCols.slice(),
+              targetK: targetK,
+              passes: analysis ? analysis.passes : null,
+            }
+          );
+          window.location.href = "../cleaning/index.html?from=deid";
+        } catch (err) {
+          showMessage(err.message || String(err), "error");
+          renderAll();
+        }
+      });
+    }
   }
 
-  if (window.DeidPresets && window.DeidPresets["hospital-quasi"]) {
-    loadPreset("hospital-quasi");
+  if (window.DatasetToolsReport) {
+    window.DatasetToolsReport.registerRedraw(function () {
+      drawCharts();
+    });
+  }
+
+  if (!tryHandoffFromPii()) {
+    if (window.DeidPresets && window.DeidPresets["hospital-quasi"]) {
+      loadPreset("hospital-quasi");
+    } else {
+      renderAll();
+    }
   } else {
     renderAll();
   }

@@ -106,13 +106,15 @@
   };
 
   MediaAugLib.drawRgbHistogram = function (canvas, frame) {
-    const ctx = canvas.getContext("2d");
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.fillStyle = "#f7f9f8";
-    ctx.fillRect(0, 0, w, h);
     const hist = MediaAugLib.frameHistogram(frame, 32);
-    MediaAugLib.drawBarChart(canvas, hist, { color: "#3d5a80", zeroBaseline: true });
+    MediaAugLib.drawBarChart(canvas, hist, {
+      color: "#3d5a80",
+      zeroBaseline: true,
+      yLabel: "Relative count",
+      xLabel: "Luma bin (0=dark … 31=bright)",
+      title: "Luma histogram",
+      xTickEvery: 8,
+    });
   };
 
   /**

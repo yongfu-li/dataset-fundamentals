@@ -411,10 +411,16 @@
       (blocked ? " disabled title=\"Confirm consent first\"" : "") +
       ">Download redacted CSV</button>" +
       '<button type="button" class="btn btn-secondary" id="pii-export-log">Download scrub-log.json</button>' +
+      '<button type="button" class="btn btn-secondary" id="pii-send-deid"' +
+      (blocked ? " disabled title=\"Confirm consent first\"" : "") +
+      ">Send to de-id risk →</button>" +
+      '<button type="button" class="btn btn-secondary" id="pii-send-cleaning"' +
+      (blocked ? " disabled title=\"Confirm consent first\"" : "") +
+      ">Send to cleaning →</button>" +
       "</div>" +
       (blocked
         ? '<p class="pii-gate-note">Export of redacted CSV is locked until the consent checkbox is checked (teaching gate).</p>'
-        : '<p class="pii-hint">The scrub log records purpose, retention, policy, dropped columns, and each redaction—your §3.x audit trail.</p>') +
+        : '<p class="pii-hint">The scrub log records purpose, retention, policy, dropped columns, and each redaction—your §3.x audit trail. Handoff sends the redacted table (no re-upload).</p>') +
       "</section>"
     );
   }
@@ -515,6 +521,53 @@
         Lib.download("scrub-log.json", JSON.stringify(audit, null, 2), "application/json");
         showMessage("Downloaded scrub-log.json.", "ok");
         renderAll();
+      });
+    }
+
+    function sendRedacted(target, fromParam, href) {
+      if (!consentOk || !scrubbed || !window.DatasetToolsHandoff) {
+        showMessage(
+          !window.DatasetToolsHandoff
+            ? "Handoff helper missing."
+            : "Confirm consent before sending redacted data.",
+          !window.DatasetToolsHandoff ? "error" : "warn"
+        );
+        renderAll();
+        return;
+      }
+      try {
+        window.DatasetToolsHandoff.writeTable(
+          "pii-scrubber",
+          {
+            name: (session && session.title) || "redacted",
+            columns: scrubbed.columns,
+            rows: scrubbed.rows,
+          },
+          {
+            from: "pii",
+            purpose: purpose,
+            policy: policy,
+            dropColumns: dropColumns.slice(),
+            target: target,
+          }
+        );
+        window.location.href = href + "?from=" + fromParam;
+      } catch (err) {
+        showMessage(err.message || String(err), "error");
+        renderAll();
+      }
+    }
+
+    const sendDeid = document.getElementById("pii-send-deid");
+    if (sendDeid) {
+      sendDeid.addEventListener("click", function () {
+        sendRedacted("deid-risk", "pii", "../deid-risk/index.html");
+      });
+    }
+    const sendCleaning = document.getElementById("pii-send-cleaning");
+    if (sendCleaning) {
+      sendCleaning.addEventListener("click", function () {
+        sendRedacted("cleaning", "pii", "../cleaning/index.html");
       });
     }
   }

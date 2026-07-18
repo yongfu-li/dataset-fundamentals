@@ -11,12 +11,26 @@
   const CURRENT = "#0f6b5c";
 
   function clear(canvas) {
-    if (!canvas) return;
+    if (!canvas) return null;
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.beginChart) {
+      const surface = AxisApi.beginChart(canvas);
+      return surface ? surface.ctx : null;
+    }
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return null;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas._lw = canvas.width;
+    canvas._lh = canvas.height;
+    return ctx;
+  }
+
+  function size(canvas) {
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.chartSize) return AxisApi.chartSize(canvas);
+    return { width: canvas._lw || canvas.width, height: canvas._lh || canvas.height };
   }
 
   function formatNumber(value) {
@@ -104,9 +118,9 @@
     if (!ctx) return;
     const plot = {
       left: 64,
-      right: canvas.width - 20,
+      right: size(canvas).width - 20,
       top: 58,
-      bottom: canvas.height - 54,
+      bottom: size(canvas).height - 54,
     };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
@@ -150,7 +164,7 @@
     ctx.fillText(formatNumber(last.hi), plot.right, plot.bottom + 17);
     ctx.fillStyle = TEXT;
     ctx.font = "600 12px " + FONT;
-    ctx.fillText(column + " (value ranges)", plot.left + plot.width / 2, canvas.height - 10);
+    ctx.fillText(column + " (value ranges)", plot.left + plot.width / 2, size(canvas).height - 10);
     ctx.textAlign = "left";
     drawLegend(ctx, plot.left, 25, "Original data", "Current data");
   }
@@ -185,9 +199,9 @@
     const shown = labels.slice(0, 8);
     const plot = {
       left: 135,
-      right: canvas.width - 48,
+      right: size(canvas).width - 48,
       top: 54,
-      bottom: canvas.height - 38,
+      bottom: size(canvas).height - 38,
     };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
@@ -255,7 +269,7 @@
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
     ctx.font = "600 12px " + FONT;
-    ctx.fillText("Number of records", plot.left + plot.width / 2, canvas.height - 7);
+    ctx.fillText("Number of records", plot.left + plot.width / 2, size(canvas).height - 7);
     ctx.save();
     ctx.translate(15, plot.top + plot.height / 2);
     ctx.rotate(-Math.PI / 2);

@@ -155,4 +155,69 @@
     ctx.fillText(label, (plot.left + plot.right) / 2, canvasHeight - 8);
     ctx.restore();
   };
+
+  /**
+   * Prepare a crisp HiDPI (or export-scale) canvas and return logical draw size.
+   * Chart code must use returned width/height (not canvas.width) for layout.
+   * tools-report.js sets canvas._trExportScale during PNG export.
+   */
+  Axis.beginChart = function (canvas, fallbackW, fallbackH) {
+    if (!canvas) return null;
+    let logicalW = Number(canvas.getAttribute("data-logical-w"));
+    let logicalH = Number(canvas.getAttribute("data-logical-h"));
+    if (!logicalW || !logicalH) {
+      logicalW =
+        fallbackW ||
+        Number(canvas.getAttribute("width")) ||
+        Math.round(canvas.clientWidth) ||
+        560;
+      logicalH =
+        fallbackH ||
+        Number(canvas.getAttribute("height")) ||
+        Math.round(canvas.clientHeight) ||
+        360;
+      canvas.setAttribute("data-logical-w", String(logicalW));
+      canvas.setAttribute("data-logical-h", String(logicalH));
+    }
+
+    const exportScale = canvas._trExportScale;
+    const dpr = exportScale
+      ? exportScale
+      : Math.min(
+          Math.max(
+            typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1,
+            1
+          ),
+          3
+        );
+
+    const bw = Math.round(logicalW * dpr);
+    const bh = Math.round(logicalH * dpr);
+    if (canvas.width !== bw || canvas.height !== bh) {
+      canvas.width = bw;
+      canvas.height = bh;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, logicalW, logicalH);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, logicalW, logicalH);
+    ctx.imageSmoothingEnabled = true;
+    if ("imageSmoothingQuality" in ctx) ctx.imageSmoothingQuality = "high";
+
+    canvas._lw = logicalW;
+    canvas._lh = logicalH;
+    return { ctx: ctx, width: logicalW, height: logicalH, dpr: dpr };
+  };
+
+  /** Logical chart size after beginChart (falls back to bitmap size). */
+  Axis.chartSize = function (canvas) {
+    if (!canvas) return { width: 0, height: 0 };
+    return {
+      width: canvas._lw || Number(canvas.getAttribute("data-logical-w")) || canvas.width,
+      height: canvas._lh || Number(canvas.getAttribute("data-logical-h")) || canvas.height,
+    };
+  };
 })(typeof window !== "undefined" ? window : globalThis);

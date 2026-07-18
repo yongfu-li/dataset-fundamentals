@@ -29,12 +29,26 @@
   }
 
   function clear(canvas) {
-    if (!canvas) return;
+    if (!canvas) return null;
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.beginChart) {
+      const surface = AxisApi.beginChart(canvas);
+      return surface ? surface.ctx : null;
+    }
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return null;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas._lw = canvas.width;
+    canvas._lh = canvas.height;
+    return ctx;
+  }
+
+  function size(canvas) {
+    const AxisApi = global.DatasetToolsAxis;
+    if (AxisApi && AxisApi.chartSize) return AxisApi.chartSize(canvas);
+    return { width: canvas._lw || canvas.width, height: canvas._lh || canvas.height };
   }
 
   function formatNumber(value) {
@@ -65,7 +79,7 @@
     if (!ctx) return;
     opts = opts || {};
     const asPercent = opts.asPercent !== false;
-    const plot = { left: 120, right: canvas.width - 52, top: 42, bottom: canvas.height - 40 };
+    const plot = { left: 120, right: size(canvas).width - 52, top: 42, bottom: size(canvas).height - 40 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
     const maxVal = niceMax(
@@ -114,7 +128,7 @@
     ctx.font = "600 12px " + FONT;
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
-    ctx.fillText(opts.xLabel || (asPercent ? "Rate (%)" : "Value"), plot.left + plot.width / 2, canvas.height - 8);
+    ctx.fillText(opts.xLabel || (asPercent ? "Rate (%)" : "Value"), plot.left + plot.width / 2, size(canvas).height - 8);
     ctx.textAlign = "left";
     ctx.fillText(opts.title || "Rates by group", plot.left, 22);
   }
@@ -131,7 +145,7 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const rule = typeof threshold === "number" ? threshold : 0.8;
-    const plot = { left: 120, right: canvas.width - 40, top: 42, bottom: canvas.height - 40 };
+    const plot = { left: 120, right: size(canvas).width - 40, top: 42, bottom: size(canvas).height - 40 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
     const maxVal = niceMax(
@@ -192,7 +206,7 @@
     ctx.font = "600 12px " + FONT;
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
-    ctx.fillText("Disparate-impact ratio (vs highest-rate group)", plot.left + plot.width / 2, canvas.height - 8);
+    ctx.fillText("Disparate-impact ratio (vs highest-rate group)", plot.left + plot.width / 2, size(canvas).height - 8);
     ctx.textAlign = "left";
     ctx.fillText("Disparate impact (§7.3)", plot.left, 22);
   }
@@ -207,7 +221,7 @@
     if (!canvas || !groups || !groups.length) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const plot = { left: 120, right: canvas.width - 48, top: 48, bottom: canvas.height - 40 };
+    const plot = { left: 120, right: size(canvas).width - 48, top: 48, bottom: size(canvas).height - 40 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
     const maxVal = 1;
@@ -259,7 +273,7 @@
     ctx.font = "600 12px " + FONT;
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
-    ctx.fillText("Error rates by group", plot.left + plot.width / 2, canvas.height - 8);
+    ctx.fillText("Error rates by group", plot.left + plot.width / 2, size(canvas).height - 8);
     ctx.textAlign = "left";
     ctx.fillText("Equal opportunity / equalized odds (§7.5)", plot.left, 14);
   }
@@ -276,7 +290,7 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     // Room for title (row 1) + legend (row 2) above the plot
-    const plot = { left: 56, right: canvas.width - 24, top: 64, bottom: canvas.height - 44 };
+    const plot = { left: 56, right: size(canvas).width - 24, top: 64, bottom: size(canvas).height - 44 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
 
@@ -365,7 +379,7 @@
     ctx.fillStyle = TEXT;
     ctx.font = "600 12px " + FONT;
     ctx.textAlign = "center";
-    ctx.fillText("Decision threshold", plot.left + plot.width / 2, canvas.height - 8);
+    ctx.fillText("Decision threshold", plot.left + plot.width / 2, size(canvas).height - 8);
     ctx.save();
     ctx.translate(14, plot.top + plot.height / 2);
     ctx.rotate(-Math.PI / 2);
@@ -385,7 +399,7 @@
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     // Room for title (row 1) + group legend (row 2) above the plot
-    const plot = { left: 48, right: canvas.width - 20, top: 64, bottom: canvas.height - 40 };
+    const plot = { left: 48, right: size(canvas).width - 20, top: 64, bottom: size(canvas).height - 40 };
     plot.width = plot.right - plot.left;
     plot.height = plot.bottom - plot.top;
     const bins = dist.groups[0].counts.length;
@@ -476,7 +490,7 @@
     ctx.fillStyle = TEXT;
     ctx.font = "600 12px " + FONT;
     ctx.textAlign = "center";
-    ctx.fillText("Model score", plot.left + plot.width / 2, canvas.height - 8);
+    ctx.fillText("Model score", plot.left + plot.width / 2, size(canvas).height - 8);
     ctx.save();
     ctx.translate(14, plot.top + plot.height / 2);
     ctx.rotate(-Math.PI / 2);

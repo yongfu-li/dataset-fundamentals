@@ -182,51 +182,149 @@
   };
 
   function heatColor(t) {
-    // dark → teal → yellow
+    // dark → teal → yellow (readable teaching palette)
     t = Math.max(0, Math.min(1, t));
-    const r = Math.floor(20 + t * 200);
-    const g = Math.floor(40 + t * 180);
-    const b = Math.floor(50 + (1 - t) * 80);
+    const r = Math.floor(15 + t * 210);
+    const g = Math.floor(35 + t * 190);
+    const b = Math.floor(55 + (1 - t) * 70);
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
+  function formatHz(hz) {
+    if (hz >= 1000) return (hz / 1000).toFixed(hz % 1000 === 0 ? 0 : 1) + "k";
+    return String(Math.round(hz));
+  }
+
+  function formatNum(v) {
+    if (!isFinite(v)) return "—";
+    const a = Math.abs(v);
+    if (a >= 100) return v.toFixed(0);
+    if (a >= 10) return v.toFixed(1);
+    if (a >= 1) return v.toFixed(2);
+    return v.toFixed(2);
+  }
+
+  /**
+   * Spectrogram with frequency (Hz) Y-axis and time (s) X-axis.
+   * opts: { sampleRate, fftSize, hop, maxDisplayHz }
+   */
   MediaAugLib.drawSpectrogram = function (canvas, samples, opts) {
+    opts = opts || {};
     const ctx = canvas.getContext("2d");
-    const w = canvas.width;
-    const h = canvas.height;
+    const W = canvas.width;
+    const H = canvas.height;
+    const sampleRate = opts.sampleRate || MediaAugLib.AUDIO_SR || 22050;
+    const padL = 44;
+    const padR = 8;
+    const padT = 14;
+    const padB = 28;
+    const plotW = W - padL - padR;
+    const plotH = H - padT - padB;
+
+    ctx.fillStyle = "#f7f9f8";
+    ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = "#1c2421";
-    ctx.fillRect(0, 0, w, h);
+    ctx.fillRect(padL, padT, plotW, plotH);
+
     const spec = MediaAugLib.computeSpectrogram(samples, opts);
-    let max = 1e-12;
+    const nyquist = sampleRate / 2;
+    const maxHz = Math.min(opts.maxDisplayHz || 8000, nyquist);
+    const maxBin = Math.max(1, Math.min(spec.nFreq - 1, Math.floor((maxHz / nyquist) * spec.nFreq)));
+
+    // Percentile-ish scale over displayed band (avoids empty-looking plots)
+    const vals = [];
     for (let f = 0; f < spec.nFrames; f++) {
-      for (let k = 0; k < spec.nFreq; k++) {
-        const v = Math.log10(spec.matrix[f][k]);
-        if (v > max) max = v;
-      }
+      for (let k = 1; k <= maxBin; k++) vals.push(Math.log10(spec.matrix[f][k]));
     }
-    const min = max - 4;
-    const cellW = w / Math.max(1, spec.nFrames);
-    const cellH = h / Math.max(1, spec.nFreq);
+    vals.sort(function (a, b) {
+      return a - b;
+    });
+    const p10 = vals[Math.floor(vals.length * 0.1)] || -6;
+    const p98 = vals[Math.floor(vals.length * 0.98)] || -1;
+    const min = p10;
+    const max = Math.max(p98, p10 + 0.5);
+
+    const cellW = plotW / Math.max(1, spec.nFrames);
+    const cellH = plotH / Math.max(1, maxBin);
     for (let f = 0; f < spec.nFrames; f++) {
-      for (let k = 0; k < spec.nFreq; k++) {
+      for (let k = 1; k <= maxBin; k++) {
         const v = Math.log10(spec.matrix[f][k]);
         const t = (v - min) / (max - min || 1);
         ctx.fillStyle = heatColor(t);
-        // low freq at bottom
-        ctx.fillRect(f * cellW, h - (k + 1) * cellH, cellW + 0.5, cellH + 0.5);
+        ctx.fillRect(padL + f * cellW, padT + plotH - k * cellH, cellW + 0.5, cellH + 0.5);
       }
     }
+
+    // Axes
+    ctx.strokeStyle = "#5b6b7c";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, padT + plotH);
+    ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.stroke();
+
+    ctx.fillStyle = "#5b6b7c";
+    ctx.font = "10px sans-serif";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    const yTicks = [0, 0.25, 0.5, 0.75, 1];
+    yTicks.forEach(function (u) {
+      const hz = u * maxHz;
+      const y = padT + plotH - u * plotH;
+      ctx.strokeStyle = "rgba(91,107,124,0.35)";
+      ctx.beginPath();
+      ctx.moveTo(padL, y);
+      ctx.lineTo(padL + plotW, y);
+      ctx.stroke();
+      ctx.fillStyle = "#5b6b7c";
+      ctx.fillText(formatHz(hz), padL - 4, y);
+    });
+    ctx.save();
+    ctx.translate(11, padT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = "center";
+    ctx.fillText("Frequency (Hz)", 0, 0);
+    ctx.restore();
+
+    const dur = samples.length / sampleRate;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    const xTicks = [0, 0.5, 1];
+    xTicks.forEach(function (u) {
+      if (u > 1) return;
+      const t = u * dur;
+      const x = padL + u * plotW;
+      ctx.fillStyle = "#5b6b7c";
+      ctx.fillText(t.toFixed(2) + "s", x, padT + plotH + 4);
+    });
+    ctx.fillText("Time (s)", padL + plotW / 2, H - 12);
+    ctx.textAlign = "left";
+    ctx.fillText("0–" + formatHz(maxHz) + " · log magnitude", padL, 3);
   };
 
+  /**
+   * Bar chart with labeled axes.
+   * opts: { color, zeroBaseline, yLabel, xLabel, xTickEvery, valueFormatter }
+   */
   MediaAugLib.drawBarChart = function (canvas, values, opts) {
     opts = opts || {};
     const ctx = canvas.getContext("2d");
-    const w = canvas.width;
-    const h = canvas.height;
+    const W = canvas.width;
+    const H = canvas.height;
+    const padL = 44;
+    const padR = 8;
+    const padT = 14;
+    const padB = 28;
+    const plotW = W - padL - padR;
+    const plotH = H - padT - padB;
+
     ctx.fillStyle = "#f7f9f8";
-    ctx.fillRect(0, 0, w, h);
+    ctx.fillRect(0, 0, W, H);
+
     const n = values.length;
     if (!n) return;
+
     let min = values[0];
     let max = values[0];
     for (let i = 1; i < n; i++) {
@@ -237,15 +335,78 @@
       min = Math.min(0, min);
       max = Math.max(0, max);
     }
+    // pad range slightly
+    const pad = (max - min) * 0.08 || 0.1;
+    min -= pad;
+    max += pad;
     const span = max - min || 1;
+
+    // grid + axes
+    ctx.strokeStyle = "#d5ddd8";
+    ctx.fillStyle = "#5b6b7c";
+    ctx.font = "10px sans-serif";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    for (let g = 0; g <= 4; g++) {
+      const u = g / 4;
+      const y = padT + plotH - u * plotH;
+      const val = min + u * span;
+      ctx.beginPath();
+      ctx.moveTo(padL, y);
+      ctx.lineTo(padL + plotW, y);
+      ctx.stroke();
+      ctx.fillText(formatNum(val), padL - 4, y);
+    }
+
+    if (opts.zeroBaseline && min < 0 && max > 0) {
+      const zy = padT + plotH - ((0 - min) / span) * plotH;
+      ctx.strokeStyle = "#5b6b7c";
+      ctx.beginPath();
+      ctx.moveTo(padL, zy);
+      ctx.lineTo(padL + plotW, zy);
+      ctx.stroke();
+    }
+
     const gap = 2;
-    const barW = Math.max(1, (w - gap * (n + 1)) / n);
+    const barW = Math.max(1, (plotW - gap * (n + 1)) / n);
+    const zeroY = opts.zeroBaseline
+      ? padT + plotH - ((0 - min) / span) * plotH
+      : padT + plotH;
     ctx.fillStyle = opts.color || "#0f6b5c";
     for (let i = 0; i < n; i++) {
-      const t = (values[i] - min) / span;
-      const bh = Math.max(1, t * (h - 8));
-      ctx.fillRect(gap + i * (barW + gap), h - bh - 4, barW, bh);
+      const yVal = padT + plotH - ((values[i] - min) / span) * plotH;
+      const x = padL + gap + i * (barW + gap);
+      const top = Math.min(yVal, zeroY);
+      const bot = Math.max(yVal, zeroY);
+      ctx.fillRect(x, top, barW, Math.max(1, bot - top));
     }
+
+    ctx.strokeStyle = "#5b6b7c";
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, padT + plotH);
+    ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(11, padT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#5b6b7c";
+    ctx.fillText(opts.yLabel || "Value", 0, 0);
+    ctx.restore();
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    const every = opts.xTickEvery || Math.max(1, Math.ceil(n / 6));
+    for (let i = 0; i < n; i += every) {
+      const x = padL + gap + i * (barW + gap) + barW / 2;
+      ctx.fillText(String(i), x, padT + plotH + 3);
+    }
+    ctx.fillText(opts.xLabel || "Index", padL + plotW / 2, H - 12);
+    ctx.textAlign = "left";
+    ctx.fillText(opts.title || "", padL, 3);
   };
 
   MediaAugLib.drawMeters = function (canvas, meters) {
@@ -263,7 +424,6 @@
       ctx.fillStyle = color;
       ctx.fillRect(70, y + 2, Math.max(0, Math.min(1, val01)) * (w - 80), 12);
     }
-    // map dB roughly -60..0 → 0..1
     const rms01 = Math.max(0, Math.min(1, (meters.rmsDb + 60) / 60));
     const peak01 = Math.max(0, Math.min(1, (meters.peakDb + 60) / 60));
     bar(8, "RMS", rms01, "#0f6b5c");
