@@ -382,14 +382,93 @@
     };
   }
 
+  const FALLBACK_SEEDS = [
+    "The package arrived early and the product works perfectly.",
+    "Battery life is okay but not as long as the listing claimed.",
+    "Terrible support — three emails and still no reply.",
+    "Love the design; checkout was smooth.",
+    "It does what it says. Nothing special.",
+    "Broken on arrival. Returning tomorrow.",
+    "Great value for a student laptop.",
+    "Mixed feelings: camera is excellent, speakers are weak.",
+    "Setup took five minutes with the printed guide.",
+    "Shipping was slow but the item matched the photos.",
+    "The fabric feels soft and the stitching looks careful.",
+    "App crashes when I open the settings menu.",
+    "Customer service refunded me within two days.",
+    "Perfect gift for someone who works from home.",
+    "Color is darker than the website preview.",
+  ];
+
   function needSeeds(seeds, min, label) {
     if (!seeds || seeds.length < min) {
-      throw new Error(label + " needs at least " + min + " seed line" + (min === 1 ? "" : "s") + ".");
+      throw new Error(
+        label +
+          " needs at least " +
+          min +
+          " seed line" +
+          (min === 1 ? "" : "s") +
+          ". Load seed-reviews, upload CSV/JSON, or pick a template preset."
+      );
     }
+  }
+
+  function uniqTexts(list) {
+    const out = [];
+    const seen = {};
+    (list || []).forEach(function (t) {
+      const s = String(t == null ? "" : t).trim();
+      if (!s) return;
+      const k = s.toLowerCase();
+      if (seen[k]) return;
+      seen[k] = 1;
+      out.push(s);
+    });
+    return out;
+  }
+
+  /**
+   * Guarantee enough seed lines for seed-based methods.
+   * Order: session seeds → template fills → seed-reviews preset → built-in fallback.
+   */
+  function ensureSeedTexts(session, seedNum, minNeeded) {
+    minNeeded = Math.max(1, minNeeded || 1);
+    let seeds = uniqTexts(session.seedTexts);
+
+    if (seeds.length < minNeeded && (session.templates || []).length) {
+      const fillRng = mulberry32((Number(seedNum) ^ 0x9e3779b9) >>> 0);
+      const slots = session.slots || {};
+      const templates = session.templates;
+      let guard = 0;
+      while (seeds.length < Math.max(minNeeded, 6) && guard++ < 40) {
+        const g = fillTemplate(fillRng, pick(fillRng, templates), slots);
+        seeds = uniqTexts(seeds.concat([g.text]));
+      }
+    }
+
+    if (seeds.length < minNeeded) {
+      const bag = global.SynthTextPresets || {};
+      const shared = bag["seed-reviews"] && bag["seed-reviews"].seedTexts;
+      if (shared && shared.length) seeds = uniqTexts(seeds.concat(shared));
+    }
+
+    if (seeds.length < minNeeded) {
+      seeds = uniqTexts(seeds.concat(FALLBACK_SEEDS));
+    }
+
+    session.seedTexts = seeds;
+    return seeds;
   }
 
   function intensityApplies(method) {
     return method === "noise" || method === "eda" || method === "char_noise";
+  }
+
+  function methodMinSeeds(method) {
+    if (method === "template") return 0;
+    if (method === "mixup") return 2;
+    if (method === "markov" || method === "markov3") return 3;
+    return 1;
   }
 
   SynthTextLib.METHODS = [
@@ -403,6 +482,9 @@
     { id: "markov3", label: "Markov trigram", needs: "seeds" },
   ];
 
+  SynthTextLib.ensureSeedTexts = ensureSeedTexts;
+  SynthTextLib.FALLBACK_SEEDS = FALLBACK_SEEDS;
+
   SynthTextLib.generate = function (session, opts) {
     const method = opts.method || session.method || "template";
     const count = Math.max(1, Math.min(100, Number(opts.count) || 10));
@@ -411,7 +493,12 @@
     const intensity = Math.max(0, Math.min(1, Number(opts.noiseIntensity) || 0.5));
     const rng = mulberry32(seedNum);
     const items = [];
-    const seeds = session.seedTexts || [];
+    const minSeeds = methodMinSeeds(method);
+    let seeds = session.seedTexts || [];
+    if (method !== "template") {
+      seeds = ensureSeedTexts(session, seedNum, minSeeds);
+      needSeeds(seeds, minSeeds, "This method");
+    }
 
     if (method === "template") {
       const templates = session.templates || [];
@@ -428,7 +515,6 @@
         });
       }
     } else if (method === "noise") {
-      needSeeds(seeds, 1, "Noise");
       for (let i = 0; i < count; i++) {
         const src = pick(rng, seeds);
         const g = applyNoise(rng, src, intensity);
@@ -442,7 +528,6 @@
         });
       }
     } else if (method === "eda") {
-      needSeeds(seeds, 1, "EDA");
       for (let i = 0; i < count; i++) {
         const src = pick(rng, seeds);
         const g = applyEda(rng, src, intensity);
@@ -456,7 +541,6 @@
         });
       }
     } else if (method === "char_noise") {
-      needSeeds(seeds, 1, "Character noise");
       for (let i = 0; i < count; i++) {
         const src = pick(rng, seeds);
         const g = applyCharNoise(rng, src, intensity);
@@ -470,7 +554,6 @@
         });
       }
     } else if (method === "bootstrap") {
-      needSeeds(seeds, 1, "Bootstrap");
       for (let i = 0; i < count; i++) {
         const g = bootstrapSample(rng, seeds);
         items.push({
@@ -482,7 +565,6 @@
         });
       }
     } else if (method === "mixup") {
-      needSeeds(seeds, 2, "Mixup");
       for (let i = 0; i < count; i++) {
         const g = mixupSample(rng, seeds);
         items.push({
@@ -495,7 +577,6 @@
         });
       }
     } else if (method === "markov" || method === "markov3") {
-      needSeeds(seeds, 3, "Markov");
       const order = method === "markov3" ? 2 : 1;
       const model = buildMarkov(seeds, order);
       for (let i = 0; i < count; i++) {

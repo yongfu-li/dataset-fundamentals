@@ -29,7 +29,7 @@ Image / audio / video generators are planned as sibling tools (see root `TOOLS.m
 
 ## Workflow
 
-1. **Learn** — `review-templates` → `support-tickets` → `seed-reviews` (try EDA, mixup, Markov)
+1. **Learn** — try all presets: reviews, tickets, seeds, headlines, survey, incidents, medical (toy)
 2. **Apply** — upload CSV/JSON with a `text` column (or JSON `texts` / `items[].text`)
 3. **See** — highlighted slots / mixup halves in the preview list
 4. **Export** — texts + recipe (same seed reproduces the draw)

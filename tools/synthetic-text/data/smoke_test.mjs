@@ -40,7 +40,20 @@ function check(name, ok, detail) {
 }
 
 try {
+  const ids = Lib.listPresets().map((p) => p.id);
+  check("preset count", ids.length >= 7, "n=" + ids.length);
+  ["news-headlines", "survey-responses", "incident-logs", "medical-notes"].forEach(function (id) {
+    const p = Lib.loadPreset(id);
+    const g = Lib.generate(p, { method: "template", count: 4, seed: 5 });
+    check(id + " template", g.items.length === 4 && p.seedTexts.length >= 8);
+  });
+} catch (e) {
+  check("new presets", false, e.message);
+}
+
+try {
   const p = Lib.loadPreset("review-templates");
+  check("review-templates has seeds", p.seedTexts.length >= 1);
   const a = Lib.generate(p, { method: "template", count: 8, seed: 7 });
   const b = Lib.generate(p, { method: "template", count: 8, seed: 7 });
   check("template count", a.items.length === 8);
@@ -50,10 +63,22 @@ try {
   );
   check(
     "has slot parts",
-    a.items.some((it) => (it.parts || []).some((p) => p.type === "slot"))
+    a.items.some((it) => (it.parts || []).some((part) => part.type === "slot"))
   );
+  const edaOnTmpl = Lib.generate(p, { method: "eda", count: 4, seed: 9, noiseIntensity: 0.6 });
+  check("eda on review-templates", edaOnTmpl.items.length === 4);
 } catch (e) {
-  check("template", false, e.message);
+  check("template/eda", false, e.message);
+}
+
+try {
+  const empty = { id: "empty", title: "Empty", templates: [], slots: {}, seedTexts: [] };
+  const n = Lib.generate(empty, { method: "noise", count: 3, seed: 2, noiseIntensity: 0.5 });
+  check("noise on empty uses fallback", n.items.length === 3 && empty.seedTexts.length >= 1);
+  const e = Lib.generate({ id: "e2", templates: [], slots: {}, seedTexts: [] }, { method: "eda", count: 2, seed: 3, noiseIntensity: 0.5 });
+  check("eda on empty uses fallback", e.items.length === 2);
+} catch (err) {
+  check("fallback seeds", false, err.message);
 }
 
 try {

@@ -32,14 +32,25 @@
   function runGenerate() {
     if (!session) return;
     try {
+      if (method !== "template" && Lib.ensureSeedTexts) {
+        Lib.ensureSeedTexts(session, seed, method === "mixup" ? 2 : method === "markov" || method === "markov3" ? 3 : 1);
+      }
       result = Lib.generate(session, {
         method: method,
         count: count,
         seed: seed,
         noiseIntensity: noiseIntensity,
       });
+      const nSeeds = (session.seedTexts && session.seedTexts.length) || 0;
       showMessage(
-        "Generated " + result.items.length + " lines (" + result.method + ", seed " + result.seed + ").",
+        "Generated " +
+          result.items.length +
+          " lines (" +
+          result.method +
+          ", seed " +
+          result.seed +
+          (method !== "template" ? ", " + nSeeds + " source seeds" : "") +
+          ").",
         "ok"
       );
     } catch (err) {
@@ -52,9 +63,19 @@
     try {
       session = Lib.loadPreset(id);
       method = session.method || "template";
+      if (Lib.ensureSeedTexts) {
+        Lib.ensureSeedTexts(session, seed, 3);
+      }
       result = null;
       runGenerate();
-      showMessage("Loaded '" + session.title + "'.", "ok");
+      showMessage(
+        "Loaded '" +
+          session.title +
+          "' (" +
+          ((session.seedTexts && session.seedTexts.length) || 0) +
+          " seeds).",
+        "ok"
+      );
     } catch (err) {
       showMessage(err.message || String(err), "error");
     }
@@ -373,6 +394,7 @@
     if (methodEl) {
       methodEl.addEventListener("change", function () {
         syncFromForm();
+        runGenerate();
         renderAll();
       });
     }
