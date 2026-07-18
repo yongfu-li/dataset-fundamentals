@@ -1,0 +1,480 @@
+#!/usr/bin/env python3
+"""Generate scenario trees for Ethical decision tree tool."""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+OUT = Path(__file__).resolve().parent / "scenarios-bundle.js"
+
+
+def marketing_partners() -> dict:
+    return {
+        "id": "marketing-partners",
+        "title": "Marketing list for 'partners'",
+        "summary": "A product team wants to share customer emails with advertising partners.",
+        "context": (
+            "Your company collected emails at signup 'to send product updates.' "
+            "Growth now asks to share the list with advertising partners for lookalike audiences. "
+            "No names of partners were in the original notice."
+        ),
+        "bookAnchors": ["§3.9", "sec:3.9"],
+        "teachingFocus": "purpose-consent",
+        "start": "purpose",
+        "nodes": {
+            "purpose": {
+                "type": "question",
+                "prompt": "Is partner advertising within the purpose subjects were told?",
+                "hint": "Purpose limitation: new uses need a fresh, specific basis.",
+                "choices": [
+                    {
+                        "id": "purpose-yes",
+                        "label": "Yes — 'product updates' covers partners",
+                        "next": "outcome-stop-purpose",
+                    },
+                    {
+                        "id": "purpose-no",
+                        "label": "No — partners were not disclosed",
+                        "next": "consent",
+                    },
+                ],
+            },
+            "consent": {
+                "type": "question",
+                "prompt": "Can you get a clear, opt-in consent for partner sharing before any transfer?",
+                "hint": "Autonomy and informed consent beat buried terms.",
+                "choices": [
+                    {
+                        "id": "consent-yes",
+                        "label": "Yes — re-consent with named partners and an easy opt-out",
+                        "next": "harm",
+                    },
+                    {
+                        "id": "consent-dark",
+                        "label": "Pre-checked box in updated Terms is enough",
+                        "next": "outcome-revise-consent",
+                    },
+                    {
+                        "id": "consent-no",
+                        "label": "No realistic path to re-consent",
+                        "next": "outcome-stop-consent",
+                    },
+                ],
+            },
+            "harm": {
+                "type": "question",
+                "prompt": "Could sharing create meaningful harm (spam, profiling, discrimination) for some customers?",
+                "hint": "Non-maleficence and justice ask who bears the downside.",
+                "choices": [
+                    {
+                        "id": "harm-low",
+                        "label": "Low residual risk after minimization and contracts",
+                        "next": "outcome-proceed",
+                    },
+                    {
+                        "id": "harm-high",
+                        "label": "High or uneven risk we cannot mitigate well",
+                        "next": "outcome-stop-harm",
+                    },
+                    {
+                        "id": "harm-unknown",
+                        "label": "We have not assessed who is harmed",
+                        "next": "outcome-revise-impact",
+                    },
+                ],
+            },
+            "outcome-stop-purpose": {
+                "type": "outcome",
+                "verdict": "stop",
+                "title": "Stop — purpose creep",
+                "rationale": (
+                    "Treating partner ads as 'product updates' stretches the original purpose. "
+                    "Proceeding without a new lawful/ethical basis fails purpose limitation."
+                ),
+                "lenses": ["rights-based", "accountability"],
+                "nextSteps": [
+                    "Rewrite the collection notice for new signups",
+                    "Do not transfer the existing list for partner ads",
+                ],
+            },
+            "outcome-revise-consent": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — consent must be informed and freely given",
+                "rationale": (
+                    "Pre-checked boxes and buried Terms changes are weak autonomy. "
+                    "Design an affirmative opt-in that names partners and uses."
+                ),
+                "lenses": ["autonomy", "transparency"],
+                "nextSteps": [
+                    "Send a clear re-consent campaign",
+                    "Default to no share until opt-in",
+                ],
+            },
+            "outcome-stop-consent": {
+                "type": "outcome",
+                "verdict": "stop",
+                "title": "Stop — no valid consent path",
+                "rationale": (
+                    "Without a workable re-consent path, partner sharing on this list is not ethically justified."
+                ),
+                "lenses": ["rights-based", "non-maleficence"],
+                "nextSteps": [
+                    "Build a new opt-in cohort going forward",
+                    "Document the decision not to transfer legacy emails",
+                ],
+            },
+            "outcome-revise-impact": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — finish an impact check first",
+                "rationale": (
+                    "Utilitarian and justice lenses need evidence about who benefits and who is burdened. "
+                    "Pause transfers until a short impact review exists."
+                ),
+                "lenses": ["utilitarian", "justice"],
+                "nextSteps": [
+                    "Map stakeholder groups and residual risks",
+                    "Return to this tree after the review",
+                ],
+            },
+            "outcome-stop-harm": {
+                "type": "outcome",
+                "verdict": "stop",
+                "title": "Stop — harm outweighs benefit",
+                "rationale": (
+                    "If residual harm is high or uneven and mitigations are weak, non-maleficence "
+                    "and justice support refusing the share."
+                ),
+                "lenses": ["non-maleficence", "justice"],
+                "nextSteps": [
+                    "Propose less identifying alternatives (aggregated cohorts)",
+                    "Escalate to ethics / privacy review",
+                ],
+            },
+            "outcome-proceed": {
+                "type": "outcome",
+                "verdict": "proceed",
+                "title": "Proceed with safeguards",
+                "rationale": (
+                    "Purpose is fixed via re-consent, residual harm is low after minimization, "
+                    "and contracts limit downstream use. Still keep an audit trail."
+                ),
+                "lenses": ["utilitarian", "accountability"],
+                "nextSteps": [
+                    "Minimize fields shared (email hash if possible)",
+                    "Log purpose, consent evidence, and retention",
+                    "Revisit if partners or uses change",
+                ],
+            },
+        },
+    }
+
+
+def hiring_score() -> dict:
+    return {
+        "id": "hiring-score",
+        "title": "Automated hiring screen",
+        "summary": "HR wants a model that ranks applicants using résumé text and a third-party 'risk' score.",
+        "context": (
+            "A vendor sells a 'workforce reliability' score built from public web and court-adjacent data. "
+            "HR proposes using it to auto-reject the bottom 30% of applicants before human review."
+        ),
+        "bookAnchors": ["§3.9", "sec:3.9", "eg:3.33"],
+        "teachingFocus": "fairness-harm",
+        "start": "stakeholder",
+        "nodes": {
+            "stakeholder": {
+                "type": "question",
+                "prompt": "Have affected people (candidates, recruiters, legal) been involved before launch?",
+                "hint": "Virtue and justice stress who sits at the table.",
+                "choices": [
+                    {
+                        "id": "stake-yes",
+                        "label": "Yes — review with HR, legal, and candidate advocates",
+                        "next": "explain",
+                    },
+                    {
+                        "id": "stake-no",
+                        "label": "No — vendor demo only",
+                        "next": "outcome-revise-stake",
+                    },
+                ],
+            },
+            "explain": {
+                "type": "question",
+                "prompt": "Can you explain to a rejected candidate what drove the score in plain language?",
+                "hint": "Transparency and accountability.",
+                "choices": [
+                    {
+                        "id": "explain-yes",
+                        "label": "Yes — features and thresholds are documentable",
+                        "next": "bias",
+                    },
+                    {
+                        "id": "explain-no",
+                        "label": "No — vendor treats the score as a black box",
+                        "next": "outcome-stop-blackbox",
+                    },
+                ],
+            },
+            "bias": {
+                "type": "question",
+                "prompt": "Have you checked whether auto-rejects fall unevenly across protected or vulnerable groups?",
+                "hint": "Fairness / justice lens; links to Chapter 7 metrics later.",
+                "choices": [
+                    {
+                        "id": "bias-ok",
+                        "label": "Checked — gaps within agreed tolerance; human review remains",
+                        "next": "outcome-proceed-hire",
+                    },
+                    {
+                        "id": "bias-bad",
+                        "label": "Large gaps or no measurement yet",
+                        "next": "outcome-stop-bias",
+                    },
+                    {
+                        "id": "bias-human",
+                        "label": "Use as advisory flag only — never auto-reject",
+                        "next": "outcome-revise-advisory",
+                    },
+                ],
+            },
+            "outcome-revise-stake": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — bring stakeholders in first",
+                "rationale": (
+                    "Launching a high-stakes screen from a vendor demo alone skips accountability "
+                    "and justice. Pause for a structured review."
+                ),
+                "lenses": ["virtue", "justice"],
+                "nextSteps": [
+                    "Schedule a cross-functional review",
+                    "Document who can override the score",
+                ],
+            },
+            "outcome-stop-blackbox": {
+                "type": "outcome",
+                "verdict": "stop",
+                "title": "Stop — unexplained high-stakes decisions",
+                "rationale": (
+                    "Rights-based and accountability lenses reject opaque auto-rejection that "
+                    "candidates cannot contest."
+                ),
+                "lenses": ["rights-based", "transparency"],
+                "nextSteps": [
+                    "Require explainability from the vendor",
+                    "Do not auto-reject until contestability exists",
+                ],
+            },
+            "outcome-stop-bias": {
+                "type": "outcome",
+                "verdict": "stop",
+                "title": "Stop — unfair impact unaddressed",
+                "rationale": (
+                    "Deploying auto-reject with large unmeasured or unmitigated group gaps "
+                    "fails fairness and non-maleficence."
+                ),
+                "lenses": ["justice", "non-maleficence"],
+                "nextSteps": [
+                    "Run a bias audit before any automation",
+                    "Consider the fairness meter tools in Chapter 7",
+                ],
+            },
+            "outcome-revise-advisory": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — advisory use only",
+                "rationale": (
+                    "Keeping a human in the loop reduces autonomy harms while you learn "
+                    "whether the score adds value."
+                ),
+                "lenses": ["virtue", "utilitarian"],
+                "nextSteps": [
+                    "Show score as a flag, not a gate",
+                    "Log overrides and re-evaluate quarterly",
+                ],
+            },
+            "outcome-proceed-hire": {
+                "type": "outcome",
+                "verdict": "proceed",
+                "title": "Proceed with narrow automation",
+                "rationale": (
+                    "Stakeholders were consulted, explanations exist, measured gaps are within "
+                    "tolerance, and humans remain in the loop for edge cases."
+                ),
+                "lenses": ["utilitarian", "accountability"],
+                "nextSteps": [
+                    "Publish a candidate-facing explanation",
+                    "Monitor group outcomes and complaint rates",
+                    "Keep a kill switch for the auto-reject rule",
+                ],
+            },
+        },
+    }
+
+
+def health_secondary() -> dict:
+    return {
+        "id": "health-secondary",
+        "title": "Health-app secondary research",
+        "summary": "A wellness app wants to reuse wearable data for a university research partnership.",
+        "context": (
+            "Users consented to 'improve the app and personalize tips.' Research affairs proposes "
+            "sharing de-identified step and heart-rate streams with a university lab."
+        ),
+        "bookAnchors": ["§3.9", "sec:3.9"],
+        "teachingFocus": "secondary-use",
+        "start": "sensitive",
+        "nodes": {
+            "sensitive": {
+                "type": "question",
+                "prompt": "Is this data sensitive enough that secondary research needs a fresh ethical review?",
+                "hint": "Health-adjacent data often does — even when 'de-identified.'",
+                "choices": [
+                    {
+                        "id": "sens-yes",
+                        "label": "Yes — treat as sensitive / special-category adjacent",
+                        "next": "deid",
+                    },
+                    {
+                        "id": "sens-no",
+                        "label": "No — steps are not really health data",
+                        "next": "outcome-revise-sensitive",
+                    },
+                ],
+            },
+            "deid": {
+                "type": "question",
+                "prompt": "Have you checked re-identification risk (quasi-identifiers), not only stripped names?",
+                "hint": "Pairs with the de-identification risk checker.",
+                "choices": [
+                    {
+                        "id": "deid-yes",
+                        "label": "Yes — k-anonymity / QI review done; residual risk documented",
+                        "next": "benefit",
+                    },
+                    {
+                        "id": "deid-no",
+                        "label": "We only removed names and emails",
+                        "next": "outcome-revise-deid",
+                    },
+                ],
+            },
+            "benefit": {
+                "type": "question",
+                "prompt": "Do expected research benefits and user expectations justify the residual risk?",
+                "hint": "Utilitarian vs rights-based trade-off with transparency.",
+                "choices": [
+                    {
+                        "id": "ben-yes",
+                        "label": "Yes — with IRB/ethics sign-off and clear user notice",
+                        "next": "outcome-proceed-health",
+                    },
+                    {
+                        "id": "ben-optin",
+                        "label": "Only if users opt in to research separately",
+                        "next": "outcome-revise-optin",
+                    },
+                    {
+                        "id": "ben-no",
+                        "label": "Benefits are speculative; users would be surprised",
+                        "next": "outcome-stop-health",
+                    },
+                ],
+            },
+            "outcome-revise-sensitive": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — do not downplay sensitivity",
+                "rationale": (
+                    "Wearable physiology often warrants health-grade caution. Reclassify the data "
+                    "and restart the review."
+                ),
+                "lenses": ["non-maleficence", "rights-based"],
+                "nextSteps": [
+                    "Consult privacy / clinical advisors",
+                    "Return to the sensitivity question with that framing",
+                ],
+            },
+            "outcome-revise-deid": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — check quasi-identifiers",
+                "rationale": (
+                    "Name removal alone is not anonymization. Run a k-anonymity-style check "
+                    "before any external share."
+                ),
+                "lenses": ["accountability", "non-maleficence"],
+                "nextSteps": [
+                    "Use the De-identification risk checker",
+                    "Document residual risk before partnering",
+                ],
+            },
+            "outcome-revise-optin": {
+                "type": "outcome",
+                "verdict": "revise",
+                "title": "Revise — separate research consent",
+                "rationale": (
+                    "Autonomy is stronger when research is an explicit choice, not buried under "
+                    "'improve the app.'"
+                ),
+                "lenses": ["autonomy", "transparency"],
+                "nextSteps": [
+                    "Add a research opt-in",
+                    "Share only the opted-in cohort",
+                ],
+            },
+            "outcome-stop-health": {
+                "type": "outcome",
+                "verdict": "stop",
+                "title": "Stop — surprise secondary use",
+                "rationale": (
+                    "If users would reasonably be surprised and benefits are weak, rights-based "
+                    "and virtue lenses support refusing the share."
+                ),
+                "lenses": ["rights-based", "virtue"],
+                "nextSteps": [
+                    "Keep data internal to product improvement",
+                    "Revisit only with a redesigned consent and stronger public benefit case",
+                ],
+            },
+            "outcome-proceed-health": {
+                "type": "outcome",
+                "verdict": "proceed",
+                "title": "Proceed under review",
+                "rationale": (
+                    "Sensitivity acknowledged, re-identification reviewed, ethics sign-off and "
+                    "user notice in place — proceed with monitoring."
+                ),
+                "lenses": ["utilitarian", "accountability"],
+                "nextSteps": [
+                    "Execute a data-use agreement with the lab",
+                    "Set retention and destruction dates",
+                    "Publish a short transparency note for users",
+                ],
+            },
+        },
+    }
+
+
+def main() -> None:
+    scenarios = {
+        "marketing-partners": marketing_partners(),
+        "hiring-score": hiring_score(),
+        "health-secondary": health_secondary(),
+    }
+    body = (
+        "/* Auto-generated by make_scenarios.py — do not edit by hand. */\n"
+        "(function (global) {\n"
+        '  "use strict";\n'
+        f"  global.EthicalScenarios = {json.dumps(scenarios, indent=2)};\n"
+        "})(typeof window !== 'undefined' ? window : globalThis);\n"
+    )
+    OUT.write_text(body, encoding="utf-8")
+    print(f"Wrote {OUT} ({len(scenarios)} scenarios)")
+
+
+if __name__ == "__main__":
+    main()
