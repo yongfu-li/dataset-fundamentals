@@ -2,7 +2,9 @@
 window.IaaPresets = {
   "ner-org-pilot": {
     "name": "ner-org-pilot",
-    "description": "NER ORG pilot (100 spans). Ambiguous subsidiaries vs parent brands drive \u03ba \u2248 0.35 \u2014 stop and revise guidelines (eg:4.31).",
+    "mode": "category",
+    "modality": "text",
+    "description": "NER ORG pilot (100 token labels). Ambiguous subsidiaries vs parent brands drive \u03ba \u2248 0.35 \u2014 stop and revise guidelines (eg:4.31).",
     "defaultMapping": {
       "id": "id",
       "text": "text",
@@ -616,7 +618,9 @@ window.IaaPresets = {
   },
   "sentiment-calibrated": {
     "name": "sentiment-calibrated",
-    "description": "Sentiment labels after a calibration round (\u03ba \u2248 0.88). Shows what 'ready to scale' agreement looks like.",
+    "mode": "category",
+    "modality": "text",
+    "description": "Document sentiment after calibration (\u03ba \u2248 0.88). Shows what 'ready to scale' agreement looks like.",
     "defaultMapping": {
       "id": "id",
       "text": "text",
@@ -1230,6 +1234,8 @@ window.IaaPresets = {
   },
   "toxicity-3class": {
     "name": "toxicity-3class",
+    "mode": "category",
+    "modality": "text",
     "description": "Toxicity labels with three raters (toxic / borderline / clean). Cohen \u03ba(A,B) \u2248 0.67; enable rater C for Fleiss \u03ba.",
     "defaultMapping": {
       "id": "id",
@@ -1940,6 +1946,3228 @@ window.IaaPresets = {
         "annotator_a": "borderline",
         "annotator_b": "borderline",
         "annotator_c": "clean"
+      }
+    ]
+  },
+  "intent-routing": {
+    "name": "intent-routing",
+    "mode": "category",
+    "modality": "text",
+    "description": "Chatbot intent labels (5 classes). Near-miss refund\u2194billing keeps \u03ba \u2248 0.66 \u2014 schema clarity matters beyond binary tags.",
+    "defaultMapping": {
+      "id": "id",
+      "text": "text",
+      "raterA": "annotator_a",
+      "raterB": "annotator_b"
+    },
+    "teachingFocus": "multiclass",
+    "expectedKappa": 0.6597,
+    "rows": [
+      {
+        "id": "I001",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I002",
+        "text": "Where is my package?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I003",
+        "text": "The app will not open on Android.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I004",
+        "text": "Can I change my payment method?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I005",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I006",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I007",
+        "text": "Where is my package?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I008",
+        "text": "The app will not open on Android.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I009",
+        "text": "Can I change my payment method?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I010",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I011",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I012",
+        "text": "Where is my package?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I013",
+        "text": "The app will not open on Android.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I014",
+        "text": "Can I change my payment method?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I015",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I016",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I017",
+        "text": "Where is my package?",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I018",
+        "text": "The app will not open on Android.",
+        "annotator_a": "refund",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I019",
+        "text": "Can I change my payment method?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I020",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I021",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I022",
+        "text": "Where is my package?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I023",
+        "text": "The app will not open on Android.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I024",
+        "text": "Can I change my payment method?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I025",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I026",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I027",
+        "text": "Where is my package?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I028",
+        "text": "The app will not open on Android.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I029",
+        "text": "Can I change my payment method?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I030",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I031",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I032",
+        "text": "Where is my package?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I033",
+        "text": "The app will not open on Android.",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I034",
+        "text": "Can I change my payment method?",
+        "annotator_a": "shipping",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I035",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I036",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I037",
+        "text": "Where is my package?",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I038",
+        "text": "The app will not open on Android.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I039",
+        "text": "Can I change my payment method?",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I040",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I041",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I042",
+        "text": "Where is my package?",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I043",
+        "text": "The app will not open on Android.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I044",
+        "text": "Can I change my payment method?",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I045",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I046",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I047",
+        "text": "Where is my package?",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I048",
+        "text": "The app will not open on Android.",
+        "annotator_a": "tech_support",
+        "annotator_b": "tech_support"
+      },
+      {
+        "id": "I049",
+        "text": "Can I change my payment method?",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I050",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I051",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I052",
+        "text": "Where is my package?",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I053",
+        "text": "The app will not open on Android.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I054",
+        "text": "Can I change my payment method?",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I055",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I056",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I057",
+        "text": "Where is my package?",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I058",
+        "text": "The app will not open on Android.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I059",
+        "text": "Can I change my payment method?",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I060",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "billing",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I061",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I062",
+        "text": "Where is my package?",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I063",
+        "text": "The app will not open on Android.",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I064",
+        "text": "Can I change my payment method?",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I065",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I066",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I067",
+        "text": "Where is my package?",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I068",
+        "text": "The app will not open on Android.",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I069",
+        "text": "Can I change my payment method?",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I070",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "other",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I071",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I072",
+        "text": "Where is my package?",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I073",
+        "text": "The app will not open on Android.",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I074",
+        "text": "Can I change my payment method?",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I075",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I076",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I077",
+        "text": "Where is my package?",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I078",
+        "text": "The app will not open on Android.",
+        "annotator_a": "refund",
+        "annotator_b": "billing"
+      },
+      {
+        "id": "I079",
+        "text": "Can I change my payment method?",
+        "annotator_a": "billing",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I080",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "billing",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I081",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "billing",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I082",
+        "text": "Where is my package?",
+        "annotator_a": "billing",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I083",
+        "text": "The app will not open on Android.",
+        "annotator_a": "billing",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I084",
+        "text": "Can I change my payment method?",
+        "annotator_a": "billing",
+        "annotator_b": "refund"
+      },
+      {
+        "id": "I085",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "shipping",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I086",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "shipping",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I087",
+        "text": "Where is my package?",
+        "annotator_a": "shipping",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I088",
+        "text": "The app will not open on Android.",
+        "annotator_a": "shipping",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I089",
+        "text": "Can I change my payment method?",
+        "annotator_a": "shipping",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I090",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "tech_support",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I091",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "tech_support",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I092",
+        "text": "Where is my package?",
+        "annotator_a": "tech_support",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I093",
+        "text": "The app will not open on Android.",
+        "annotator_a": "tech_support",
+        "annotator_b": "other"
+      },
+      {
+        "id": "I094",
+        "text": "Can I change my payment method?",
+        "annotator_a": "other",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I095",
+        "text": "Thanks for the newsletter.",
+        "annotator_a": "other",
+        "annotator_b": "shipping"
+      },
+      {
+        "id": "I096",
+        "text": "I was charged twice for one order.",
+        "annotator_a": "other",
+        "annotator_b": "shipping"
+      }
+    ]
+  },
+  "ner-spans-pilot": {
+    "name": "ner-spans-pilot",
+    "mode": "spans",
+    "modality": "text",
+    "description": "NER character spans with boundary drift. Exact-match F1 \u2248 0.55; IoU\u22650.5 F1 \u2248 0.69 \u2014 soft match forgives partial overlaps.",
+    "defaultMapping": {
+      "id": "id",
+      "text": "text",
+      "raterA": "spans_a",
+      "raterB": "spans_b"
+    },
+    "defaultOptions": {
+      "iouThreshold": 0.5,
+      "requireLabel": true,
+      "spanMatch": "iou"
+    },
+    "teachingFocus": "boundary-iou",
+    "expectedF1": 0.6897,
+    "rows": [
+      {
+        "id": "NS001",
+        "text": "Acme Labs opened a Berlin office.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS002",
+        "text": "Parent brand Acme absorbed Nova Soft yesterday.",
+        "spans_a": [
+          {
+            "start": 13,
+            "end": 17,
+            "label": "ORG"
+          },
+          {
+            "start": 27,
+            "end": 36,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 13,
+            "end": 17,
+            "label": "ORG"
+          },
+          {
+            "start": 27,
+            "end": 31,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS003",
+        "text": "The subsidiary reported Q3 revenue.",
+        "spans_a": [
+          {
+            "start": 4,
+            "end": 14,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": []
+      },
+      {
+        "id": "NS004",
+        "text": "She works at a consulting firm downtown.",
+        "spans_a": [],
+        "spans_b": []
+      },
+      {
+        "id": "NS005",
+        "text": "Nova Soft is now an Acme division.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS006",
+        "text": "Regulators fined the holding company.",
+        "spans_a": [],
+        "spans_b": [
+          {
+            "start": 21,
+            "end": 36,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS007",
+        "text": "Acme Cloud announced a price cut.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 4,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS008",
+        "text": "The board of Acme Holdings met in June.",
+        "spans_a": [
+          {
+            "start": 13,
+            "end": 26,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 13,
+            "end": 17,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS009",
+        "text": "Berlin and Paris hosted the summit.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 6,
+            "label": "LOC"
+          },
+          {
+            "start": 11,
+            "end": 16,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 6,
+            "label": "LOC"
+          },
+          {
+            "start": 11,
+            "end": 16,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NS010",
+        "text": "Contact Jane Doe at Acme for quotes.",
+        "spans_a": [
+          {
+            "start": 8,
+            "end": 16,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 8,
+            "end": 12,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS011",
+        "text": "SoftCorp merged with DataNest last year.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 21,
+            "end": 29,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 21,
+            "end": 29,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS012",
+        "text": "The CEO of Orbit Labs resigned.",
+        "spans_a": [
+          {
+            "start": 11,
+            "end": 21,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 11,
+            "end": 16,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS013",
+        "text": "Acme Labs opened a Berlin office.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS014",
+        "text": "Parent brand Acme absorbed Nova Soft yesterday.",
+        "spans_a": [
+          {
+            "start": 13,
+            "end": 17,
+            "label": "ORG"
+          },
+          {
+            "start": 27,
+            "end": 36,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 13,
+            "end": 17,
+            "label": "ORG"
+          },
+          {
+            "start": 27,
+            "end": 31,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS015",
+        "text": "The subsidiary reported Q3 revenue.",
+        "spans_a": [
+          {
+            "start": 4,
+            "end": 14,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": []
+      },
+      {
+        "id": "NS016",
+        "text": "She works at a consulting firm downtown.",
+        "spans_a": [],
+        "spans_b": []
+      },
+      {
+        "id": "NS017",
+        "text": "Nova Soft is now an Acme division.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS018",
+        "text": "Regulators fined the holding company.",
+        "spans_a": [],
+        "spans_b": [
+          {
+            "start": 21,
+            "end": 36,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS019",
+        "text": "Acme Cloud announced a price cut.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 4,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS020",
+        "text": "The board of Acme Holdings met in June.",
+        "spans_a": [
+          {
+            "start": 13,
+            "end": 26,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 13,
+            "end": 17,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS021",
+        "text": "Berlin and Paris hosted the summit.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 6,
+            "label": "LOC"
+          },
+          {
+            "start": 11,
+            "end": 16,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 6,
+            "label": "LOC"
+          },
+          {
+            "start": 11,
+            "end": 16,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NS022",
+        "text": "Contact Jane Doe at Acme for quotes.",
+        "spans_a": [
+          {
+            "start": 8,
+            "end": 16,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 8,
+            "end": 12,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS023",
+        "text": "SoftCorp merged with DataNest last year.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 21,
+            "end": 29,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 21,
+            "end": 29,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NS024",
+        "text": "The CEO of Orbit Labs resigned.",
+        "spans_a": [
+          {
+            "start": 11,
+            "end": 21,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 11,
+            "end": 16,
+            "label": "ORG"
+          }
+        ]
+      }
+    ]
+  },
+  "ner-spans-calibrated": {
+    "name": "ner-spans-calibrated",
+    "mode": "spans",
+    "modality": "text",
+    "description": "NER spans after boundary calibration (IoU\u22650.5 F1 \u2248 0.92). Toggle exact match to see residual boundary misses.",
+    "defaultMapping": {
+      "id": "id",
+      "text": "text",
+      "raterA": "spans_a",
+      "raterB": "spans_b"
+    },
+    "defaultOptions": {
+      "iouThreshold": 0.5,
+      "requireLabel": true,
+      "spanMatch": "iou"
+    },
+    "teachingFocus": "high-entity-f1",
+    "expectedF1": 0.9167,
+    "rows": [
+      {
+        "id": "NC001",
+        "text": "Acme Labs hired two engineers in Berlin.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 33,
+            "end": 39,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 33,
+            "end": 39,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC002",
+        "text": "Jane Doe spoke with Sam Lee yesterday.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "label": "PER"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "label": "PER"
+          }
+        ]
+      },
+      {
+        "id": "NC003",
+        "text": "Orbit Labs and DataNest signed a deal.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NC004",
+        "text": "No entities appear in this short note.",
+        "spans_a": [],
+        "spans_b": []
+      },
+      {
+        "id": "NC005",
+        "text": "Paris hosted the Acme summit.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 5,
+            "label": "LOC"
+          },
+          {
+            "start": 17,
+            "end": 21,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 5,
+            "label": "LOC"
+          },
+          {
+            "start": 17,
+            "end": 21,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NC006",
+        "text": "SoftCorp opened an office near Tokyo.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC007",
+        "text": "Visit New York City this spring.",
+        "spans_a": [
+          {
+            "start": 5,
+            "end": 18,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 5,
+            "end": 13,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC008",
+        "text": "Contact support at help@acme.test.",
+        "spans_a": [
+          {
+            "start": 20,
+            "end": 33,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 20,
+            "end": 33,
+            "label": "MISC"
+          }
+        ]
+      },
+      {
+        "id": "NC009",
+        "text": "Acme Labs hired two engineers in Berlin.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 33,
+            "end": 39,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 33,
+            "end": 39,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC010",
+        "text": "Jane Doe spoke with Sam Lee yesterday.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "label": "PER"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "label": "PER"
+          }
+        ]
+      },
+      {
+        "id": "NC011",
+        "text": "Orbit Labs and DataNest signed a deal.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NC012",
+        "text": "No entities appear in this short note.",
+        "spans_a": [],
+        "spans_b": []
+      },
+      {
+        "id": "NC013",
+        "text": "Paris hosted the Acme summit.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 5,
+            "label": "LOC"
+          },
+          {
+            "start": 17,
+            "end": 21,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 5,
+            "label": "LOC"
+          },
+          {
+            "start": 17,
+            "end": 21,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NC014",
+        "text": "SoftCorp opened an office near Tokyo.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC015",
+        "text": "Visit New York City this spring.",
+        "spans_a": [
+          {
+            "start": 5,
+            "end": 18,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 5,
+            "end": 13,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC016",
+        "text": "Contact support at help@acme.test.",
+        "spans_a": [
+          {
+            "start": 20,
+            "end": 33,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 20,
+            "end": 33,
+            "label": "MISC"
+          }
+        ]
+      },
+      {
+        "id": "NC017",
+        "text": "Acme Labs hired two engineers in Berlin.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 33,
+            "end": 39,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 9,
+            "label": "ORG"
+          },
+          {
+            "start": 33,
+            "end": 39,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC018",
+        "text": "Jane Doe spoke with Sam Lee yesterday.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "label": "PER"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "PER"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "label": "PER"
+          }
+        ]
+      },
+      {
+        "id": "NC019",
+        "text": "Orbit Labs and DataNest signed a deal.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 10,
+            "label": "ORG"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NC020",
+        "text": "No entities appear in this short note.",
+        "spans_a": [],
+        "spans_b": []
+      },
+      {
+        "id": "NC021",
+        "text": "Paris hosted the Acme summit.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 5,
+            "label": "LOC"
+          },
+          {
+            "start": 17,
+            "end": 21,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 5,
+            "label": "LOC"
+          },
+          {
+            "start": 17,
+            "end": 21,
+            "label": "ORG"
+          }
+        ]
+      },
+      {
+        "id": "NC022",
+        "text": "SoftCorp opened an office near Tokyo.",
+        "spans_a": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 0,
+            "end": 8,
+            "label": "ORG"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC023",
+        "text": "Visit New York City this spring.",
+        "spans_a": [
+          {
+            "start": 5,
+            "end": 18,
+            "label": "LOC"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 5,
+            "end": 13,
+            "label": "LOC"
+          }
+        ]
+      },
+      {
+        "id": "NC024",
+        "text": "Contact support at help@acme.test.",
+        "spans_a": [
+          {
+            "start": 20,
+            "end": 33,
+            "label": "ORG"
+          }
+        ],
+        "spans_b": [
+          {
+            "start": 20,
+            "end": 33,
+            "label": "MISC"
+          }
+        ]
+      }
+    ]
+  },
+  "audio-diarization": {
+    "name": "audio-diarization",
+    "mode": "spans",
+    "modality": "audio",
+    "description": "Speaker time segments (seconds). Same IoU span matcher as NER \u2014 F1 \u2248 0.86 under IoU\u22650.5 with label match (speaker ID).",
+    "defaultMapping": {
+      "id": "id",
+      "text": "utterance",
+      "raterA": "segments_a",
+      "raterB": "segments_b"
+    },
+    "defaultOptions": {
+      "iouThreshold": 0.5,
+      "requireLabel": true,
+      "spanMatch": "iou"
+    },
+    "teachingFocus": "audio-segments",
+    "expectedF1": 0.8571,
+    "rows": [
+      {
+        "id": "AD001",
+        "utterance": "call-01 greeting",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 2.4,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 2.5,
+            "label": "SPEAKER_A"
+          }
+        ]
+      },
+      {
+        "id": "AD002",
+        "utterance": "call-01 question",
+        "segments_a": [
+          {
+            "start": 2.5,
+            "end": 5.0,
+            "label": "SPEAKER_B"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 2.6,
+            "end": 4.8,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD003",
+        "utterance": "call-02 overlap",
+        "segments_a": [
+          {
+            "start": 1.0,
+            "end": 3.0,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 2.5,
+            "end": 4.0,
+            "label": "SPEAKER_B"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 1.0,
+            "end": 2.8,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 2.8,
+            "end": 4.2,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD004",
+        "utterance": "call-03 missed turn",
+        "segments_a": [
+          {
+            "start": 0.5,
+            "end": 1.5,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.5,
+            "end": 1.5,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 1.6,
+            "end": 2.2,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD005",
+        "utterance": "call-04 label swap",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 1.2,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 1.2,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD006",
+        "utterance": "call-05 silence",
+        "segments_a": [],
+        "segments_b": []
+      },
+      {
+        "id": "AD007",
+        "utterance": "call-06 long turn",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 8.0,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.2,
+            "end": 7.5,
+            "label": "SPEAKER_A"
+          }
+        ]
+      },
+      {
+        "id": "AD008",
+        "utterance": "call-07 three speakers",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 1.0,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 1.1,
+            "end": 2.0,
+            "label": "SPEAKER_B"
+          },
+          {
+            "start": 2.1,
+            "end": 3.0,
+            "label": "SPEAKER_C"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 1.0,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 1.1,
+            "end": 2.0,
+            "label": "SPEAKER_B"
+          },
+          {
+            "start": 2.0,
+            "end": 3.1,
+            "label": "SPEAKER_C"
+          }
+        ]
+      },
+      {
+        "id": "AD009",
+        "utterance": "call-01 greeting",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 2.4,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 2.5,
+            "label": "SPEAKER_A"
+          }
+        ]
+      },
+      {
+        "id": "AD010",
+        "utterance": "call-01 question",
+        "segments_a": [
+          {
+            "start": 2.5,
+            "end": 5.0,
+            "label": "SPEAKER_B"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 2.6,
+            "end": 4.8,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD011",
+        "utterance": "call-02 overlap",
+        "segments_a": [
+          {
+            "start": 1.0,
+            "end": 3.0,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 2.5,
+            "end": 4.0,
+            "label": "SPEAKER_B"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 1.0,
+            "end": 2.8,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 2.8,
+            "end": 4.2,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD012",
+        "utterance": "call-03 missed turn",
+        "segments_a": [
+          {
+            "start": 0.5,
+            "end": 1.5,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.5,
+            "end": 1.5,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 1.6,
+            "end": 2.2,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD013",
+        "utterance": "call-04 label swap",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 1.2,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 1.2,
+            "label": "SPEAKER_B"
+          }
+        ]
+      },
+      {
+        "id": "AD014",
+        "utterance": "call-05 silence",
+        "segments_a": [],
+        "segments_b": []
+      },
+      {
+        "id": "AD015",
+        "utterance": "call-06 long turn",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 8.0,
+            "label": "SPEAKER_A"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.2,
+            "end": 7.5,
+            "label": "SPEAKER_A"
+          }
+        ]
+      },
+      {
+        "id": "AD016",
+        "utterance": "call-07 three speakers",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 1.0,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 1.1,
+            "end": 2.0,
+            "label": "SPEAKER_B"
+          },
+          {
+            "start": 2.1,
+            "end": 3.0,
+            "label": "SPEAKER_C"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 1.0,
+            "label": "SPEAKER_A"
+          },
+          {
+            "start": 1.1,
+            "end": 2.0,
+            "label": "SPEAKER_B"
+          },
+          {
+            "start": 2.0,
+            "end": 3.1,
+            "label": "SPEAKER_C"
+          }
+        ]
+      }
+    ]
+  },
+  "video-action-segments": {
+    "name": "video-action-segments",
+    "mode": "spans",
+    "modality": "video",
+    "description": "Video action intervals (seconds). Temporal IoU matching \u2014 F1 \u2248 0.82; label mismatches (run\u2194walk) count as FP/FN when require-label is on.",
+    "defaultMapping": {
+      "id": "id",
+      "text": "clip",
+      "raterA": "segments_a",
+      "raterB": "segments_b"
+    },
+    "defaultOptions": {
+      "iouThreshold": 0.5,
+      "requireLabel": true,
+      "spanMatch": "iou"
+    },
+    "teachingFocus": "video-temporal",
+    "expectedF1": 0.8235,
+    "rows": [
+      {
+        "id": "VA001",
+        "clip": "clip-pour coffee",
+        "segments_a": [
+          {
+            "start": 1.0,
+            "end": 3.5,
+            "label": "pour"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 1.1,
+            "end": 3.4,
+            "label": "pour"
+          }
+        ]
+      },
+      {
+        "id": "VA002",
+        "clip": "clip-open door",
+        "segments_a": [
+          {
+            "start": 0.5,
+            "end": 2.0,
+            "label": "open_door"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.5,
+            "end": 1.6,
+            "label": "open_door"
+          }
+        ]
+      },
+      {
+        "id": "VA003",
+        "clip": "clip-two actions",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 1.5,
+            "label": "walk"
+          },
+          {
+            "start": 1.6,
+            "end": 3.0,
+            "label": "sit"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 1.4,
+            "label": "walk"
+          },
+          {
+            "start": 1.7,
+            "end": 3.1,
+            "label": "sit"
+          }
+        ]
+      },
+      {
+        "id": "VA004",
+        "clip": "clip-missed wave",
+        "segments_a": [
+          {
+            "start": 2.0,
+            "end": 2.8,
+            "label": "wave"
+          }
+        ],
+        "segments_b": []
+      },
+      {
+        "id": "VA005",
+        "clip": "clip-label confusion",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 2.0,
+            "label": "run"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 2.0,
+            "label": "walk"
+          }
+        ]
+      },
+      {
+        "id": "VA006",
+        "clip": "clip-idle",
+        "segments_a": [],
+        "segments_b": []
+      },
+      {
+        "id": "VA007",
+        "clip": "clip-long cook",
+        "segments_a": [
+          {
+            "start": 5.0,
+            "end": 20.0,
+            "label": "cook"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 4.5,
+            "end": 19.0,
+            "label": "cook"
+          }
+        ]
+      },
+      {
+        "id": "VA008",
+        "clip": "clip-pick place",
+        "segments_a": [
+          {
+            "start": 0.2,
+            "end": 1.0,
+            "label": "pick"
+          },
+          {
+            "start": 1.1,
+            "end": 2.0,
+            "label": "place"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.2,
+            "end": 1.0,
+            "label": "pick"
+          },
+          {
+            "start": 1.0,
+            "end": 2.1,
+            "label": "place"
+          }
+        ]
+      },
+      {
+        "id": "VA009",
+        "clip": "clip-pour coffee",
+        "segments_a": [
+          {
+            "start": 1.0,
+            "end": 3.5,
+            "label": "pour"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 1.1,
+            "end": 3.4,
+            "label": "pour"
+          }
+        ]
+      },
+      {
+        "id": "VA010",
+        "clip": "clip-open door",
+        "segments_a": [
+          {
+            "start": 0.5,
+            "end": 2.0,
+            "label": "open_door"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.5,
+            "end": 1.6,
+            "label": "open_door"
+          }
+        ]
+      },
+      {
+        "id": "VA011",
+        "clip": "clip-two actions",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 1.5,
+            "label": "walk"
+          },
+          {
+            "start": 1.6,
+            "end": 3.0,
+            "label": "sit"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 1.4,
+            "label": "walk"
+          },
+          {
+            "start": 1.7,
+            "end": 3.1,
+            "label": "sit"
+          }
+        ]
+      },
+      {
+        "id": "VA012",
+        "clip": "clip-missed wave",
+        "segments_a": [
+          {
+            "start": 2.0,
+            "end": 2.8,
+            "label": "wave"
+          }
+        ],
+        "segments_b": []
+      },
+      {
+        "id": "VA013",
+        "clip": "clip-label confusion",
+        "segments_a": [
+          {
+            "start": 0.0,
+            "end": 2.0,
+            "label": "run"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.0,
+            "end": 2.0,
+            "label": "walk"
+          }
+        ]
+      },
+      {
+        "id": "VA014",
+        "clip": "clip-idle",
+        "segments_a": [],
+        "segments_b": []
+      },
+      {
+        "id": "VA015",
+        "clip": "clip-long cook",
+        "segments_a": [
+          {
+            "start": 5.0,
+            "end": 20.0,
+            "label": "cook"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 4.5,
+            "end": 19.0,
+            "label": "cook"
+          }
+        ]
+      },
+      {
+        "id": "VA016",
+        "clip": "clip-pick place",
+        "segments_a": [
+          {
+            "start": 0.2,
+            "end": 1.0,
+            "label": "pick"
+          },
+          {
+            "start": 1.1,
+            "end": 2.0,
+            "label": "place"
+          }
+        ],
+        "segments_b": [
+          {
+            "start": 0.2,
+            "end": 1.0,
+            "label": "pick"
+          },
+          {
+            "start": 1.0,
+            "end": 2.1,
+            "label": "place"
+          }
+        ]
+      }
+    ]
+  },
+  "vision-boxes-pilot": {
+    "name": "vision-boxes-pilot",
+    "mode": "boxes",
+    "modality": "image",
+    "description": "Object boxes with loose/tight disagreements. F1 \u2248 0.56 at IoU\u22650.5; \u2248 0.67 at IoU\u22650.3 \u2014 threshold is a policy choice.",
+    "defaultMapping": {
+      "id": "id",
+      "text": "image",
+      "raterA": "boxes_a",
+      "raterB": "boxes_b"
+    },
+    "defaultOptions": {
+      "iouThreshold": 0.5,
+      "requireLabel": true
+    },
+    "teachingFocus": "box-iou",
+    "expectedF1": 0.5556,
+    "rows": [
+      {
+        "id": "VB001",
+        "image": "street-car",
+        "boxes_a": [
+          {
+            "x": 40,
+            "y": 60,
+            "w": 80,
+            "h": 50,
+            "label": "car"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 42,
+            "y": 62,
+            "w": 76,
+            "h": 48,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB002",
+        "image": "street-ped",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 20,
+            "w": 30,
+            "h": 70,
+            "label": "person"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 8,
+            "y": 18,
+            "w": 40,
+            "h": 80,
+            "label": "person"
+          }
+        ]
+      },
+      {
+        "id": "VB003",
+        "image": "loose-box",
+        "boxes_a": [
+          {
+            "x": 100,
+            "y": 100,
+            "w": 40,
+            "h": 40,
+            "label": "sign"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 90,
+            "y": 90,
+            "w": 70,
+            "h": 70,
+            "label": "sign"
+          }
+        ]
+      },
+      {
+        "id": "VB004",
+        "image": "missed-bike",
+        "boxes_a": [
+          {
+            "x": 200,
+            "y": 150,
+            "w": 50,
+            "h": 40,
+            "label": "bike"
+          }
+        ],
+        "boxes_b": []
+      },
+      {
+        "id": "VB005",
+        "image": "extra-box",
+        "boxes_a": [],
+        "boxes_b": [
+          {
+            "x": 5,
+            "y": 5,
+            "w": 20,
+            "h": 20,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB006",
+        "image": "two-cars",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 40,
+            "w": 60,
+            "h": 40,
+            "label": "car"
+          },
+          {
+            "x": 120,
+            "y": 45,
+            "w": 55,
+            "h": 38,
+            "label": "car"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 12,
+            "y": 42,
+            "w": 58,
+            "h": 38,
+            "label": "car"
+          },
+          {
+            "x": 118,
+            "y": 44,
+            "w": 60,
+            "h": 40,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB007",
+        "image": "class-swap",
+        "boxes_a": [
+          {
+            "x": 50,
+            "y": 50,
+            "w": 40,
+            "h": 40,
+            "label": "truck"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 52,
+            "y": 52,
+            "w": 38,
+            "h": 38,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB008",
+        "image": "tiny-iou",
+        "boxes_a": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 50,
+            "h": 50,
+            "label": "dog"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 40,
+            "y": 40,
+            "w": 50,
+            "h": 50,
+            "label": "dog"
+          }
+        ]
+      },
+      {
+        "id": "VB009",
+        "image": "empty-frame",
+        "boxes_a": [],
+        "boxes_b": []
+      },
+      {
+        "id": "VB010",
+        "image": "bus-tight",
+        "boxes_a": [
+          {
+            "x": 30,
+            "y": 80,
+            "w": 120,
+            "h": 60,
+            "label": "bus"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 32,
+            "y": 82,
+            "w": 115,
+            "h": 58,
+            "label": "bus"
+          }
+        ]
+      },
+      {
+        "id": "VB011",
+        "image": "street-car",
+        "boxes_a": [
+          {
+            "x": 40,
+            "y": 60,
+            "w": 80,
+            "h": 50,
+            "label": "car"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 42,
+            "y": 62,
+            "w": 76,
+            "h": 48,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB012",
+        "image": "street-ped",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 20,
+            "w": 30,
+            "h": 70,
+            "label": "person"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 8,
+            "y": 18,
+            "w": 40,
+            "h": 80,
+            "label": "person"
+          }
+        ]
+      },
+      {
+        "id": "VB013",
+        "image": "loose-box",
+        "boxes_a": [
+          {
+            "x": 100,
+            "y": 100,
+            "w": 40,
+            "h": 40,
+            "label": "sign"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 90,
+            "y": 90,
+            "w": 70,
+            "h": 70,
+            "label": "sign"
+          }
+        ]
+      },
+      {
+        "id": "VB014",
+        "image": "missed-bike",
+        "boxes_a": [
+          {
+            "x": 200,
+            "y": 150,
+            "w": 50,
+            "h": 40,
+            "label": "bike"
+          }
+        ],
+        "boxes_b": []
+      },
+      {
+        "id": "VB015",
+        "image": "extra-box",
+        "boxes_a": [],
+        "boxes_b": [
+          {
+            "x": 5,
+            "y": 5,
+            "w": 20,
+            "h": 20,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB016",
+        "image": "two-cars",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 40,
+            "w": 60,
+            "h": 40,
+            "label": "car"
+          },
+          {
+            "x": 120,
+            "y": 45,
+            "w": 55,
+            "h": 38,
+            "label": "car"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 12,
+            "y": 42,
+            "w": 58,
+            "h": 38,
+            "label": "car"
+          },
+          {
+            "x": 118,
+            "y": 44,
+            "w": 60,
+            "h": 40,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB017",
+        "image": "class-swap",
+        "boxes_a": [
+          {
+            "x": 50,
+            "y": 50,
+            "w": 40,
+            "h": 40,
+            "label": "truck"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 52,
+            "y": 52,
+            "w": 38,
+            "h": 38,
+            "label": "car"
+          }
+        ]
+      },
+      {
+        "id": "VB018",
+        "image": "tiny-iou",
+        "boxes_a": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 50,
+            "h": 50,
+            "label": "dog"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 40,
+            "y": 40,
+            "w": 50,
+            "h": 50,
+            "label": "dog"
+          }
+        ]
+      },
+      {
+        "id": "VB019",
+        "image": "empty-frame",
+        "boxes_a": [],
+        "boxes_b": []
+      },
+      {
+        "id": "VB020",
+        "image": "bus-tight",
+        "boxes_a": [
+          {
+            "x": 30,
+            "y": 80,
+            "w": 120,
+            "h": 60,
+            "label": "bus"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 32,
+            "y": 82,
+            "w": 115,
+            "h": 58,
+            "label": "bus"
+          }
+        ]
+      }
+    ]
+  },
+  "vision-boxes-calibrated": {
+    "name": "vision-boxes-calibrated",
+    "mode": "boxes",
+    "modality": "image",
+    "description": "Calibrated bounding boxes (IoU\u22650.5 F1 \u2248 0.86). Contrast with the pilot to show guideline impact.",
+    "defaultMapping": {
+      "id": "id",
+      "text": "image",
+      "raterA": "boxes_a",
+      "raterB": "boxes_b"
+    },
+    "defaultOptions": {
+      "iouThreshold": 0.5,
+      "requireLabel": true
+    },
+    "teachingFocus": "high-box-f1",
+    "expectedF1": 0.8571,
+    "rows": [
+      {
+        "id": "VC001",
+        "image": "park-bench",
+        "boxes_a": [
+          {
+            "x": 20,
+            "y": 40,
+            "w": 80,
+            "h": 40,
+            "label": "bench"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 22,
+            "y": 41,
+            "w": 78,
+            "h": 39,
+            "label": "bench"
+          }
+        ]
+      },
+      {
+        "id": "VC002",
+        "image": "park-dog",
+        "boxes_a": [
+          {
+            "x": 100,
+            "y": 90,
+            "w": 45,
+            "h": 35,
+            "label": "dog"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 101,
+            "y": 91,
+            "w": 44,
+            "h": 34,
+            "label": "dog"
+          }
+        ]
+      },
+      {
+        "id": "VC003",
+        "image": "desk-laptop",
+        "boxes_a": [
+          {
+            "x": 50,
+            "y": 60,
+            "w": 70,
+            "h": 45,
+            "label": "laptop"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 50,
+            "y": 60,
+            "w": 70,
+            "h": 45,
+            "label": "laptop"
+          }
+        ]
+      },
+      {
+        "id": "VC004",
+        "image": "desk-mug",
+        "boxes_a": [
+          {
+            "x": 140,
+            "y": 80,
+            "w": 25,
+            "h": 30,
+            "label": "mug"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 141,
+            "y": 81,
+            "w": 24,
+            "h": 29,
+            "label": "mug"
+          }
+        ]
+      },
+      {
+        "id": "VC005",
+        "image": "empty",
+        "boxes_a": [],
+        "boxes_b": []
+      },
+      {
+        "id": "VC006",
+        "image": "two-people",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 20,
+            "w": 35,
+            "h": 90,
+            "label": "person"
+          },
+          {
+            "x": 60,
+            "y": 25,
+            "w": 32,
+            "h": 88,
+            "label": "person"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 11,
+            "y": 21,
+            "w": 34,
+            "h": 89,
+            "label": "person"
+          },
+          {
+            "x": 61,
+            "y": 26,
+            "w": 31,
+            "h": 87,
+            "label": "person"
+          }
+        ]
+      },
+      {
+        "id": "VC007",
+        "image": "partial-overlap",
+        "boxes_a": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 60,
+            "h": 60,
+            "label": "box"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 20,
+            "y": 20,
+            "w": 60,
+            "h": 60,
+            "label": "box"
+          }
+        ]
+      },
+      {
+        "id": "VC008",
+        "image": "park-bench",
+        "boxes_a": [
+          {
+            "x": 20,
+            "y": 40,
+            "w": 80,
+            "h": 40,
+            "label": "bench"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 22,
+            "y": 41,
+            "w": 78,
+            "h": 39,
+            "label": "bench"
+          }
+        ]
+      },
+      {
+        "id": "VC009",
+        "image": "park-dog",
+        "boxes_a": [
+          {
+            "x": 100,
+            "y": 90,
+            "w": 45,
+            "h": 35,
+            "label": "dog"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 101,
+            "y": 91,
+            "w": 44,
+            "h": 34,
+            "label": "dog"
+          }
+        ]
+      },
+      {
+        "id": "VC010",
+        "image": "desk-laptop",
+        "boxes_a": [
+          {
+            "x": 50,
+            "y": 60,
+            "w": 70,
+            "h": 45,
+            "label": "laptop"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 50,
+            "y": 60,
+            "w": 70,
+            "h": 45,
+            "label": "laptop"
+          }
+        ]
+      },
+      {
+        "id": "VC011",
+        "image": "desk-mug",
+        "boxes_a": [
+          {
+            "x": 140,
+            "y": 80,
+            "w": 25,
+            "h": 30,
+            "label": "mug"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 141,
+            "y": 81,
+            "w": 24,
+            "h": 29,
+            "label": "mug"
+          }
+        ]
+      },
+      {
+        "id": "VC012",
+        "image": "empty",
+        "boxes_a": [],
+        "boxes_b": []
+      },
+      {
+        "id": "VC013",
+        "image": "two-people",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 20,
+            "w": 35,
+            "h": 90,
+            "label": "person"
+          },
+          {
+            "x": 60,
+            "y": 25,
+            "w": 32,
+            "h": 88,
+            "label": "person"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 11,
+            "y": 21,
+            "w": 34,
+            "h": 89,
+            "label": "person"
+          },
+          {
+            "x": 61,
+            "y": 26,
+            "w": 31,
+            "h": 87,
+            "label": "person"
+          }
+        ]
+      },
+      {
+        "id": "VC014",
+        "image": "partial-overlap",
+        "boxes_a": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 60,
+            "h": 60,
+            "label": "box"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 20,
+            "y": 20,
+            "w": 60,
+            "h": 60,
+            "label": "box"
+          }
+        ]
+      },
+      {
+        "id": "VC015",
+        "image": "park-bench",
+        "boxes_a": [
+          {
+            "x": 20,
+            "y": 40,
+            "w": 80,
+            "h": 40,
+            "label": "bench"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 22,
+            "y": 41,
+            "w": 78,
+            "h": 39,
+            "label": "bench"
+          }
+        ]
+      },
+      {
+        "id": "VC016",
+        "image": "park-dog",
+        "boxes_a": [
+          {
+            "x": 100,
+            "y": 90,
+            "w": 45,
+            "h": 35,
+            "label": "dog"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 101,
+            "y": 91,
+            "w": 44,
+            "h": 34,
+            "label": "dog"
+          }
+        ]
+      },
+      {
+        "id": "VC017",
+        "image": "desk-laptop",
+        "boxes_a": [
+          {
+            "x": 50,
+            "y": 60,
+            "w": 70,
+            "h": 45,
+            "label": "laptop"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 50,
+            "y": 60,
+            "w": 70,
+            "h": 45,
+            "label": "laptop"
+          }
+        ]
+      },
+      {
+        "id": "VC018",
+        "image": "desk-mug",
+        "boxes_a": [
+          {
+            "x": 140,
+            "y": 80,
+            "w": 25,
+            "h": 30,
+            "label": "mug"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 141,
+            "y": 81,
+            "w": 24,
+            "h": 29,
+            "label": "mug"
+          }
+        ]
+      },
+      {
+        "id": "VC019",
+        "image": "empty",
+        "boxes_a": [],
+        "boxes_b": []
+      },
+      {
+        "id": "VC020",
+        "image": "two-people",
+        "boxes_a": [
+          {
+            "x": 10,
+            "y": 20,
+            "w": 35,
+            "h": 90,
+            "label": "person"
+          },
+          {
+            "x": 60,
+            "y": 25,
+            "w": 32,
+            "h": 88,
+            "label": "person"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 11,
+            "y": 21,
+            "w": 34,
+            "h": 89,
+            "label": "person"
+          },
+          {
+            "x": 61,
+            "y": 26,
+            "w": 31,
+            "h": 87,
+            "label": "person"
+          }
+        ]
+      },
+      {
+        "id": "VC021",
+        "image": "partial-overlap",
+        "boxes_a": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 60,
+            "h": 60,
+            "label": "box"
+          }
+        ],
+        "boxes_b": [
+          {
+            "x": 20,
+            "y": 20,
+            "w": 60,
+            "h": 60,
+            "label": "box"
+          }
+        ]
       }
     ]
   }

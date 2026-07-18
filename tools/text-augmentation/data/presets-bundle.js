@@ -1,4 +1,4 @@
-/* Synthetic text presets — Chapter 10 §10.5 (rule-based, no LLM). */
+﻿/* Text augmentation presets — Chapter 10 §10.5 (rule-based, no LLM). */
 window.SynthTextPresets = {
   "review-templates": {
     id: "review-templates",
@@ -133,7 +133,7 @@ window.SynthTextPresets = {
     description:
       "Short real-looking seeds for noise, EDA, mixup, or Markov. No neural net—just local rules.",
     method: "noise",
-    teachingFocus: "Noise and Markov show how synthetic text can still leak phrasing from seeds.",
+    teachingFocus: "Noise and Markov show how Augmented text can still leak phrasing from seeds.",
     bookAnchors: ["§10.5", "§10.2"],
     templates: [],
     slots: {},

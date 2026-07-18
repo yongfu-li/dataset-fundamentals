@@ -1,4 +1,4 @@
-/* Rule-based text synthesis (window.SynthTextLib). No training / no LLM. */
+﻿/* Rule-based text synthesis (window.SynthTextLib). No training / no LLM. */
 (function (global) {
   "use strict";
   const SynthTextLib = global.SynthTextLib || (global.SynthTextLib = {});
@@ -609,7 +609,7 @@
       stats: stats,
       caveats: [
         "Rule-based synthesis only—no neural net or LLM API on this site.",
-        "Synthetic text can still memorize or leak rare phrases from seeds.",
+        "Augmented text can still memorize or leak rare phrases from seeds.",
         "Bootstrap copies seeds exactly (with replacement)—useful for §10.3 sampling demos, not for privacy.",
         "Validate utility and privacy before mixing into a production training set.",
       ],

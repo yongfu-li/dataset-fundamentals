@@ -180,7 +180,7 @@
       title: "Uploaded seeds",
       description: "Your seed corpus for noise or Markov generation.",
       method: "noise",
-      teachingFocus: "Private seeds can still leak through synthetic copies—treat exports carefully.",
+      teachingFocus: "Private seeds can still leak through augmented copies—treat exports carefully.",
       bookAnchors: ["§10.5", "§10.2"],
       templates: [],
       slots: {},

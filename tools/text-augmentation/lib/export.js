@@ -1,4 +1,4 @@
-/* Export synthetic texts + recipe (window.SynthTextLib). */
+﻿/* Export augmented texts + recipe (window.SynthTextLib). */
 (function (global) {
   "use strict";
   const SynthTextLib = global.SynthTextLib || (global.SynthTextLib = {});
@@ -25,10 +25,10 @@
 
   SynthTextLib.buildRecipe = function (session, result) {
     return {
-      format: "synthetic-text-recipe",
+      format: "text-augmentation-recipe",
       version: 1,
       exportedAt: new Date().toISOString(),
-      tool: "Synthetic text generator",
+      tool: "Text augmentation lab",
       source: session.source || session.name || "session",
       bookAnchors: session.bookAnchors || ["§10.5"],
       method: result.method,
@@ -45,7 +45,7 @@
 
   SynthTextLib.recipeToMarkdown = function (recipe) {
     const lines = [
-      "# Synthetic text generation recipe",
+      "# Text augmentation recipe",
       "",
       "- Source: `" + recipe.source + "`",
       "- Method: `" + recipe.method + "`",
@@ -69,7 +69,7 @@
 
   SynthTextLib.downloadTextsJson = function (session, result) {
     const payload = {
-      format: "synthetic-texts",
+      format: "augmented-texts",
       version: 1,
       exportedAt: new Date().toISOString(),
       source: session.source,
@@ -79,7 +79,7 @@
         return { id: it.id, text: it.text, method: it.method };
       }),
     };
-    download("synthetic-texts.json", JSON.stringify(payload, null, 2), "application/json");
+    download("augmented-texts.json", JSON.stringify(payload, null, 2), "application/json");
   };
 
   SynthTextLib.downloadTextsCsv = function (result) {
@@ -87,7 +87,7 @@
     result.items.forEach(function (it) {
       lines.push([csvEscape(it.id), csvEscape(it.text), csvEscape(it.method)].join(","));
     });
-    download("synthetic-texts.csv", lines.join("\n") + "\n", "text/csv");
+    download("augmented-texts.csv", lines.join("\n") + "\n", "text/csv");
   };
 
   SynthTextLib.downloadRecipeJson = function (recipe) {

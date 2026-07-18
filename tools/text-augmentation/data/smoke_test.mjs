@@ -1,4 +1,4 @@
-/** Smoke tests for SynthTextLib. */
+﻿/** Smoke tests for SynthTextLib. */
 import { readFileSync } from "fs";
 import vm from "vm";
 import { join, dirname } from "path";
@@ -112,8 +112,8 @@ try {
   check("csv seeds", up.seedTexts.length === 2);
   const g = Lib.generate(up, { method: "noise", count: 3, seed: 1 });
   const recipe = Lib.buildRecipe(up, g);
-  check("recipe format", recipe.format === "synthetic-text-recipe");
-  check("recipe md", /Synthetic text generation recipe/.test(Lib.recipeToMarkdown(recipe)));
+  check("recipe format", recipe.format === "text-augmentation-recipe");
+  check("recipe md", /Text augmentation recipe/.test(Lib.recipeToMarkdown(recipe)));
 } catch (e) {
   check("upload", false, e.message);
 }

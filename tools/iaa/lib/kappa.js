@@ -208,10 +208,10 @@
   }
 
   /**
-   * Full report from mapped rows.
+   * Category-label report (document/token class labels).
    * mapping: { id?, text?, raterA, raterB, raterC? }
    */
-  function computeReport(rows, mapping) {
+  function computeCategoryReport(rows, mapping) {
     const pairs = [];
     const fleissItems = [];
     const items = [];
@@ -264,6 +264,7 @@
     });
 
     return {
+      mode: "category",
       skipped: skipped,
       items: items,
       disagreements: disagreements,
@@ -271,14 +272,32 @@
       contingency: cohen.contingency,
       fleiss: fleiss,
       hasThirdRater: hasC,
+      entity: null,
     };
   }
 
-  IaaLib.FORMULAS = FORMULAS;
+  /**
+   * Full report — category labels, or span/box entity matching.
+   * options: { mode, iouThreshold, requireLabel, spanMatch }
+   */
+  function computeReport(rows, mapping, options) {
+    const opts = options || {};
+    const mode = opts.mode || "category";
+    if (mode === "spans" || mode === "boxes") {
+      if (typeof IaaLib.computeEntityReport !== "function") {
+        throw new Error("Entity match library not loaded (lib/match.js).");
+      }
+      return IaaLib.computeEntityReport(rows, mapping, opts);
+    }
+    return computeCategoryReport(rows, mapping);
+  }
+
+  IaaLib.FORMULAS = Object.assign(IaaLib.FORMULAS || {}, FORMULAS);
   IaaLib.BANDS = BANDS;
   IaaLib.interpretKappa = interpretKappa;
   IaaLib.contingency = contingency;
   IaaLib.cohensKappa = cohensKappa;
   IaaLib.fleissKappa = fleissKappa;
+  IaaLib.computeCategoryReport = computeCategoryReport;
   IaaLib.computeReport = computeReport;
 })(typeof window !== "undefined" ? window : globalThis);

@@ -1,4 +1,4 @@
-/* Synthetic text generator — Chapter 10 §10.5 (classic script, file:// safe). */
+﻿/* Text augmentation lab — Chapter 10 §10.5 (classic script, file:// safe). */
 (function () {
   "use strict";
   const Lib = window.SynthTextLib;
@@ -120,10 +120,11 @@
   function renderIntro() {
     return (
       '<section class="stx-intro">' +
-      "<h1>Synthetic text generator</h1>" +
-      '<p class="lead">Create synthetic text with templates, noise, or a tiny Markov model—no training and no LLM API. Preview samples, then export texts plus a generation recipe.</p>' +
-      '<p class="stx-cross">Book: Chapter 10 §10.5 (LLM synthesis concepts) · pairs with ' +
-      '<a href="../text-annotation/index.html">text annotation</a> for labeling exports.</p>' +
+      "<h1>Text augmentation lab</h1>" +
+      '<p class="lead">Augment text with templates, noise, or a tiny Markov model—no training and no LLM API. Preview samples, then export texts plus a generation recipe.</p>' +
+      '<p class="stx-cross">Book: Chapter 10 · pairs with ' +
+      '<a href="../text-annotation/index.html">text annotation</a> and ' +
+      '<a href="../image-augmentation/index.html">image augmentation</a>.</p>' +
       "</section>"
     );
   }
@@ -136,7 +137,7 @@
       "<li><strong>Learn</strong> — try <code>review-templates</code>, then <code>seed-reviews</code> with noise or Markov.</li>" +
       "<li><strong>Apply</strong> — upload your own seed CSV/JSON (<code>text</code> column) for noise/Markov.</li>" +
       "<li><strong>See</strong> — highlighted slots show what was filled; uniqueness flags exact duplicates.</li>" +
-      "<li><strong>Export</strong> — <code>synthetic-texts.*</code> + <code>generation-recipe.*</code> for the audit trail.</li>" +
+      "<li><strong>Export</strong> — <code>augmented-texts.*</code> + <code>generation-recipe.*</code> for the audit trail.</li>" +
       "</ol>" +
       '<p class="stx-hint">Outputs are pedagogical stand-ins for LLM-generated text. Validate fidelity and privacy before any real training mix.</p>' +
       "</details>"
@@ -313,7 +314,7 @@
       })
       .join("");
     return (
-      '<section class="stx-panel" data-figure="Synthetic text samples">' +
+      '<section class="stx-panel" data-figure="Augmented text samples">' +
       "<h2>3 · Preview</h2>" +
       '<div class="stx-stats">' +
       "<span><strong>" +
@@ -349,8 +350,8 @@
       '<section class="stx-panel">' +
       "<h2>4 · Export</h2>" +
       '<div class="deck-links">' +
-      '<button type="button" class="btn" id="stx-ex-json">Download synthetic-texts.json</button>' +
-      '<button type="button" class="btn btn-secondary" id="stx-ex-csv">Download synthetic-texts.csv</button>' +
+      '<button type="button" class="btn" id="stx-ex-json">Download augmented-texts.json</button>' +
+      '<button type="button" class="btn btn-secondary" id="stx-ex-csv">Download augmented-texts.csv</button>' +
       '<button type="button" class="btn btn-secondary" id="stx-ex-recipe">Download generation-recipe.json</button>' +
       '<button type="button" class="btn btn-ghost" id="stx-ex-recipe-md">Download generation-recipe.md</button>' +
       '<a class="btn btn-ghost" href="../text-annotation/index.html">Label with text annotation →</a>' +

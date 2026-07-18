@@ -141,12 +141,31 @@
       source: id,
       description: p.description || "",
       defaultMapping: p.defaultMapping || {},
+      defaultOptions: p.defaultOptions || {},
+      mode: p.mode || "category",
+      modality: p.modality || "text",
       teachingFocus: p.teachingFocus || "",
       expectedKappa: p.expectedKappa,
+      expectedF1: p.expectedF1,
     };
   }
 
-  function suggestMapping(columns, defaults) {
+  function inferModeFromColumns(columns) {
+    const lower = columns.map(function (c) {
+      return c.toLowerCase();
+    });
+    function hasAny(keys) {
+      return keys.some(function (k) {
+        return lower.indexOf(k) >= 0;
+      });
+    }
+    if (hasAny(["boxes_a", "boxes_b", "bboxes_a", "bboxes_b", "annotations_a"])) return "boxes";
+    if (hasAny(["spans_a", "spans_b", "segments_a", "segments_b", "entities_a", "entities_b"]))
+      return "spans";
+    return "category";
+  }
+
+  function suggestMapping(columns, defaults, mode) {
     const lower = {};
     columns.forEach(function (c) {
       lower[c.toLowerCase()] = c;
@@ -159,23 +178,49 @@
       return null;
     }
     const d = defaults || {};
+    const m = mode || inferModeFromColumns(columns);
+    let raterAKeys;
+    let raterBKeys;
+    if (m === "boxes") {
+      raterAKeys = ["boxes_a", "bboxes_a", "annotations_a", "annotator_a", "rater_a"];
+      raterBKeys = ["boxes_b", "bboxes_b", "annotations_b", "annotator_b", "rater_b"];
+    } else if (m === "spans") {
+      raterAKeys = [
+        "spans_a",
+        "segments_a",
+        "entities_a",
+        "annotator_a",
+        "rater_a",
+        "label_a",
+      ];
+      raterBKeys = [
+        "spans_b",
+        "segments_b",
+        "entities_b",
+        "annotator_b",
+        "rater_b",
+        "label_b",
+      ];
+    } else {
+      raterAKeys = ["annotator_a", "rater_a", "label_a", "annotator1", "rater1", "a"];
+      raterBKeys = ["annotator_b", "rater_b", "label_b", "annotator2", "rater2", "b"];
+    }
     return {
-      id: pick(["id", "item_id", "span_id", "uid"], d.id),
-      text: pick(["text", "span", "sentence", "content", "utterance"], d.text),
-      raterA: pick(
-        ["annotator_a", "rater_a", "label_a", "annotator1", "rater1", "a"],
-        d.raterA
+      id: pick(["id", "item_id", "span_id", "uid", "image_id", "clip_id"], d.id),
+      text: pick(
+        ["text", "span", "sentence", "content", "utterance", "image", "clip", "scene"],
+        d.text
       ),
-      raterB: pick(
-        ["annotator_b", "rater_b", "label_b", "annotator2", "rater2", "b"],
-        d.raterB
-      ),
+      raterA: pick(raterAKeys, d.raterA),
+      raterB: pick(raterBKeys, d.raterB),
       raterC: pick(
         ["annotator_c", "rater_c", "label_c", "annotator3", "rater3", "c"],
         d.raterC
       ),
     };
   }
+
+  IaaLib.inferModeFromColumns = inferModeFromColumns;
 
   IaaLib.MAX_ROWS = MAX_ROWS;
   IaaLib.MAX_BYTES = MAX_BYTES;
