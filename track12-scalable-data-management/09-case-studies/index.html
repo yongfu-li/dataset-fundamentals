@@ -7425,7 +7425,7 @@
 
   subgraph WarmTier ["2. Warm Tier (Lakehouse &amp; Analytics)"]
     StandardS3[("Standard Object Store (S3 / GCS)&lt;br/&gt;Latency: 20 - 50 ms&lt;br/&gt;Cost: $0.023 / GB-mo")]
-    AnalyticsQuery["Batch Trino / Spark Analytical Jobs"]
+    AnalyticsQuery["Batch Trino / Spark Analytical Jobs ([Zaharia et al., 2016](#ref-zaharia2016))"]
   end
 
   subgraph ColdTier ["3. Cold &amp; Glacier Tier (Compliance &amp; Raw Archives)"]
@@ -7576,7 +7576,7 @@ f^* \approx \frac{0.023 - 0.0036}{0.03} \approx 0.646\text{ accesses per month}
 <li><strong>Access Decay:</strong> Geospatial features are accessed with extreme temporal skew: <span class="arithmatex">\(94\%\)</span> of all model inference lookups target data generated within the last 48 hours. Features older than 6 months are queried only during annual model retraining or regulatory audits.</li>
 <li><strong>Architecture:</strong> Uber deploys a 3-tier fabric:</li>
 <li><strong>Hot:</strong> In-memory Redis clusters serving sub-5ms feature lookups to real-time dispatch models.</li>
-<li><strong>Warm:</strong> HDFS / Apache Iceberg Parquet tables serving daily batch retraining jobs via Apache Spark.</li>
+<li><strong>Warm:</strong> HDFS (<a href="#ref-shvachko2010">Shvachko et al., 2010</a>) / Apache Iceberg Parquet tables serving daily batch retraining jobs via Apache Spark.</li>
 <li><strong>Cold:</strong> Automated lifecycle archiving to AWS S3 Glacier, yielding over <strong><span class="arithmatex">\(\$18\text{M}\)</span> in annual infrastructure savings</strong>.</li>
 </ol>
 <hr />
@@ -7603,7 +7603,7 @@ f^* \approx \frac{0.023 - 0.0036}{0.03} \approx 0.646\text{ accesses per month}
 <p>How does Netflix's Keystone event pipeline sustain 1+ trillion events daily without data loss during regional cloud data center outages?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Keystone deploys <strong>Active-Active Cross-Region Kafka Mirroring and Anycast Routing</strong>:
+<p><strong>Answer:</strong> Keystone deploys <strong>Active-Active Cross-Region Kafka Mirroring and Anycast Routing</strong> (<a href="#ref-wang2015">Wang et al., 2015</a>):
 1. Client applications emit events to localized edge proxy fleets via BGP Anycast routing.
 2. Events are written to local Apache Kafka clusters distributed across three AWS regions.
 3. Kafka MirrorMaker replicates events asynchronously across regions.

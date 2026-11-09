@@ -7438,7 +7438,7 @@
 </blockquote>
 <hr />
 <h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>The choice of data serialization format and physical storage fabric defines the floor of operational query latency and storage cost (<a href="#ref-abadi2008">Abadi et al., 2008</a>). In analytical machine learning pipelines, datasets routinely feature hundreds of attributes (features, embeddings, labels), yet any specific model training run typically queries only a small subset (<span class="arithmatex">\(k \ll d\)</span>) of these columns.</p>
+<p>The choice of data serialization format and physical storage fabric defines the floor of operational query latency and storage cost (<a href="#ref-abadi2008">Abadi et al., 2008</a>). In analytical machine learning pipelines, datasets routinely feature hundreds of attributes (features, embeddings, labels), yet any specific model training run typically queries only a small subset (<span class="arithmatex">\(k \ll d\)</span>) of these columns, whether partitioned across distributed file systems like HDFS (<a href="#ref-shvachko2010">Shvachko et al., 2010</a>) or cloud object storage.</p>
 <pre class="mermaid"><code>flowchart LR
   subgraph RowStore ["Row-Oriented Layout (CSV / JSON / Avro)"]
     R0["Row 0: [ID: 1, Age: 25, Label: 1]"]
@@ -7450,7 +7450,7 @@
     ScanAll["Scans 100% of bytes&lt;br/&gt;Reads ID, Age, Label off disk"]
   end
 
-  subgraph ColStore ["Columnar Layout (Parquet / ORC)"]
+  subgraph ColStore ["Columnar Layout (Parquet ([Vohra, 2016](#ref-vohra2016)) / ORC)"]
     C_ID[("Col ID: [1, 2, 3]")]
     C_Age[("Col Age: [25, 42, 19]")]
     C_Lab[("Col Label: [1, 0, 1]")]

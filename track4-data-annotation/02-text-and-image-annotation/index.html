@@ -7488,7 +7488,7 @@
 <h3 id="1-spatial-bounding-geometries">1. Spatial Bounding Geometries</h3>
 <p>In computer vision, 2D object localization is parameterized under multiple coordinate conventions:</p>
 <ol>
-<li><strong>Corner Coordinate Form (Pascal VOC)</strong>:</li>
+<li><strong>Corner Coordinate Form (Pascal VOC)</strong> [<a href="#ref-everingham2010">Everingham2010</a>]:</li>
 </ol>
 <div class="arithmatex">\[
 B_{\text{corner}} = [x_{\min}, y_{\min}, x_{\max}, y_{\max}] \in \mathbb{R}^4, \quad \text{where } x_{\max} &gt; x_{\min}, \; y_{\max} &gt; y_{\min}
@@ -7665,7 +7665,7 @@ B_{\text{yolo}} = \left[\frac{x_c}{W}, \frac{y_c}{H}, \frac{w}{W}, \frac{h}{H}\r
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Topological Coordinate Consistency</strong>: Never mix Pascal VOC <code>[x1, y1, x2, y2]</code> with YOLO normalized <code>[xc, yc, w, h]</code> without validation assertions.</li>
+<li><strong>Topological Coordinate Consistency</strong>: Never mix Pascal VOC <code>[x1, y1, x2, y2]</code> [<a href="#ref-everingham2010">Everingham2010</a>] with YOLO normalized <code>[xc, yc, w, h]</code> without validation assertions, applying tools like LabelMe [<a href="#ref-russell2008">Russell2008</a>] and evaluating with Boundary IoU [<a href="#ref-cheng2021">Cheng2021</a>].</li>
 <li><strong>Deterministic Polygon Area</strong>: Apply Green's Theorem to verify non-self-intersecting vertex coordinates during ingestion.</li>
 <li><strong>Exact Unicode Offsets</strong>: In NLP annotation, calculate span offsets against raw unicode code-points rather than regex word splits to prevent alignment drift.</li>
 <li><strong>COCO RLE Compression</strong>: Store high-resolution segmentation masks as column-major RLEs to reduce cloud database footprint by <span class="arithmatex">\(&gt; 90\%\)</span>.</li>
