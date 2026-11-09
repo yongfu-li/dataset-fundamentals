@@ -6944,30 +6944,30 @@
 <div id="quizApp" class="noc-sim-container">
   <!-- Registration Step -->
   <div id="stepRegistration">
-    <h3 style="margin-top:0;">Candidate Registration &amp; Tier Selection</h3>
-    <p style="color:var(--md-default-fg-color--lighter); font-size:0.92rem;">
+    <h3 style="margin-top:0; color:#f8fafc;">Candidate Registration &amp; Tier Selection</h3>
+    <p style="color:#94a3b8; font-size:0.92rem;">
       Enter your candidate details and select your assessment track. Upon completion, your score, IP, location, and verification credentials are automatically generated, saved to your local session registry, and ready for publication to the official GitHub ledger.
     </p>
 
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; margin:1.25rem 0;">
       <div>
-        <label style="font-weight:600; font-size:0.85rem; display:block; margin-bottom:0.35rem;">Candidate Full Name *</label>
+        <label style="font-weight:600; font-size:0.85rem; display:block; margin-bottom:0.35rem; color:#e2e8f0;">Candidate Full Name *</label>
         <input type="text" id="candidateName" class="noc-sim-select" style="width:100%; box-sizing:border-box;" placeholder="e.g. Dr. Ada Lovelace" value="Dataset Engineer">
       </div>
       <div>
-        <label style="font-weight:600; font-size:0.85rem; display:block; margin-bottom:0.35rem;">Candidate Email Address *</label>
+        <label style="font-weight:600; font-size:0.85rem; display:block; margin-bottom:0.35rem; color:#e2e8f0;">Candidate Email Address *</label>
         <input type="email" id="candidateEmail" class="noc-sim-select" style="width:100%; box-sizing:border-box;" placeholder="e.g. ada@university.edu" value="engineer@data-consortium.org">
       </div>
       <div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
-          <label style="font-weight:600; font-size:0.85rem;">Location / Institution *</label>
+          <label style="font-weight:600; font-size:0.85rem; color:#e2e8f0;">Location / Institution *</label>
           <button type="button" id="btnDetectGps" onclick="requestBrowserGpsLocation()" style="background:rgba(56, 189, 248, 0.1); border:1px solid rgba(56, 189, 248, 0.35); border-radius:4px; color:#38bdf8; font-size:0.75rem; cursor:pointer; padding:2px 7px;">📍 Exact GPS</button>
         </div>
         <input type="text" id="candidateLocation" class="noc-sim-select" style="width:100%; box-sizing:border-box;" placeholder="Detecting location..." value="" oninput="updateGeoHUD()">
         <span id="locDetectHint" style="font-size:0.73rem; color:#94a3b8; display:block; margin-top:0.25rem;">Auto-detecting... (edit anytime if using a VPN or proxy)</span>
       </div>
       <div>
-        <label style="font-weight:600; font-size:0.85rem; display:block; margin-bottom:0.35rem;">Assessment Track</label>
+        <label style="font-weight:600; font-size:0.85rem; display:block; margin-bottom:0.35rem; color:#e2e8f0;">Assessment Track</label>
         <select id="assessmentMode" class="noc-sim-select" style="width:100%; box-sizing:border-box;">
           <option value="full">Comprehensive Certification (12 Questions - Tiers 1, 2, 3)</option>
           <option value="tier1_sprint">Fundamentals Sprint (4 Questions - Tier 1: Ch. 1–4)</option>
@@ -6976,7 +6976,7 @@
       </div>
     </div>
 
-    <div style="font-size:0.8rem; color:#64748b; margin-bottom:1.15rem; display:flex; align-items:center; gap:0.4rem;">
+    <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:1.15rem; display:flex; align-items:center; gap:0.4rem;">
       <span>🔒</span>
       <span><strong>Automated Verification:</strong> Your verified exam score, client IP, and location are registered with a cryptographic SHA-256 hash upon completion.</span>
     </div>
@@ -6988,21 +6988,21 @@
 
   <!-- Quiz Screen -->
   <div id="stepQuiz" style="display:none;">
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid var(--tcl-border);">
-      <div style="font-size:0.85rem; font-weight:600; color:var(--tcl-blue-600);" id="quizProgress">Question 1 of 12</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.1);">
+      <div style="font-size:0.85rem; font-weight:600; color:#38bdf8;" id="quizProgress">Question 1 of 12</div>
       <div style="display:flex; gap:1rem; align-items:center;">
-        <span id="quizTimer" style="font-family:'JetBrains Mono', monospace; font-size:0.9rem; font-weight:700; color:var(--tcl-heading);">⏱️ 45s</span>
-        <span id="quizScore" style="font-size:0.85rem; font-weight:700; color:var(--tcl-blue-600);">Score: 0 pts</span>
+        <span id="quizTimer" style="font-family:'JetBrains Mono', monospace; font-size:0.9rem; font-weight:700; color:#f8fafc;">⏱️ 45s</span>
+        <span id="quizScore" style="font-size:0.85rem; font-weight:700; color:#38bdf8;">Score: 0 pts</span>
       </div>
     </div>
 
     <div style="margin-bottom:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
       <span class="noc-track-badge" id="quizModuleBadge">Track 1</span>
       <span class="noc-track-badge" id="quizTierBadge">Tier 1</span>
-      <span class="noc-track-badge" id="quizPtsBadge" style="background:rgba(37, 99, 235, 0.1); color:var(--tcl-blue-600);">+100 pts</span>
+      <span class="noc-track-badge" id="quizPtsBadge" style="background:rgba(56, 189, 248, 0.15); color:#38bdf8;">+100 pts</span>
     </div>
 
-    <h3 id="quizQuestionText" style="font-size:1.15rem; line-height:1.5; margin-bottom:1.25rem; color:var(--tcl-heading);"></h3>
+    <h3 id="quizQuestionText" style="font-size:1.15rem; line-height:1.5; margin-bottom:1.25rem; color:#f8fafc !important;"></h3>
 
     <div id="quizOptions" style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;"></div>
 
@@ -7810,10 +7810,15 @@ function loadQuestion(idx) {
     const btn = document.createElement("button");
     btn.className = "noc-sim-select";
     btn.style.textAlign = "left";
-    btn.style.padding = "0.75rem 1rem";
+    btn.style.padding = "0.85rem 1.15rem";
     btn.style.cursor = "pointer";
     btn.style.width = "100%";
     btn.style.fontSize = "0.92rem";
+    btn.style.lineHeight = "1.5";
+    btn.style.background = "#1e293b";
+    btn.style.color = "#f8fafc";
+    btn.style.border = "1px solid #334155";
+    btn.style.borderRadius = "8px";
     btn.style.transition = "all 0.15s ease";
     btn.innerHTML = `<strong>${String.fromCharCode(65 + oIdx)}.</strong> ${opt}`;
     btn.onclick = () => checkAnswer(oIdx);
@@ -7856,11 +7861,13 @@ function checkAnswer(selectedIdx) {
     optionBtns[i].onclick = null;
     optionBtns[i].style.cursor = "default";
     if (i === q.answer) {
-      optionBtns[i].style.background = "rgba(34, 197, 94, 0.15)";
+      optionBtns[i].style.background = "rgba(34, 197, 94, 0.2)";
       optionBtns[i].style.borderColor = "#22c55e";
+      optionBtns[i].style.color = "#86efac";
     } else if (i === selectedIdx && !isCorrect) {
-      optionBtns[i].style.background = "rgba(239, 68, 68, 0.15)";
+      optionBtns[i].style.background = "rgba(239, 68, 68, 0.2)";
       optionBtns[i].style.borderColor = "#ef4444";
+      optionBtns[i].style.color = "#fca5a5";
     }
   }
 
@@ -7868,14 +7875,14 @@ function checkAnswer(selectedIdx) {
   const fb = document.getElementById("quizFeedback");
   fb.style.display = "block";
   if (isCorrect) {
-    fb.style.background = "rgba(34, 197, 94, 0.1)";
-    fb.style.border = "1px solid rgba(34, 197, 94, 0.3)";
-    fb.style.color = "#166534";
+    fb.style.background = "rgba(34, 197, 94, 0.15)";
+    fb.style.border = "1px solid rgba(34, 197, 94, 0.4)";
+    fb.style.color = "#86efac";
     fb.innerHTML = `<strong>✓ Correct!</strong> ${q.explanation}`;
   } else {
-    fb.style.background = "rgba(239, 68, 68, 0.1)";
-    fb.style.border = "1px solid rgba(239, 68, 68, 0.3)";
-    fb.style.color = "#991b1b";
+    fb.style.background = "rgba(239, 68, 68, 0.15)";
+    fb.style.border = "1px solid rgba(239, 68, 68, 0.4)";
+    fb.style.color = "#fca5a5";
     fb.innerHTML = `<strong>✗ Incorrect.</strong> The correct answer is <strong>${String.fromCharCode(65 + q.answer)}</strong>.<br>${q.explanation}`;
   }
 
