@@ -45,17 +45,11 @@
     
     
       
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+3:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Source Sans 3";--md-code-font:"Roboto Mono"}</style>
-      
     
     
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     
-      <link rel="stylesheet" href="assets/css/custom.css">
+      <link rel="stylesheet" href="stylesheets/extra.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -63,6 +57,85 @@
 
     
     
+  <script>
+    (function () {
+      // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM
+      const shadowCss = `
+        /* Node labels and typography */
+        .nodeLabel, .nodeLabel p, .nodeLabel span,
+        .label, .label span, .label div, .label text,
+        .cluster text, .cluster span, text, tspan, .flowchartTitleText {
+          color: var(--md-mermaid-label-fg-color, #0f172a) !important;
+          fill: var(--md-mermaid-label-fg-color, #0f172a) !important;
+          font-family: 'Inter', -apple-system, sans-serif !important;
+          font-weight: 600 !important;
+        }
+
+        /* Node shapes */
+        .node rect, .node circle, .node ellipse, .node polygon,
+        .node path:not(.flowchart-link) {
+          fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
+          stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
+          stroke-width: 1.75px !important;
+        }
+
+        /* Connecting paths, lines & arrows */
+        .edgePath .path, .flowchart-link, .relation, .transition {
+          stroke: var(--md-mermaid-edge-color, #334155) !important;
+          stroke-width: 1.75px !important;
+        }
+        marker path, .marker, .arrowheadPath,
+        .arrowMarkerPath {
+          fill: var(--md-mermaid-edge-color, #334155) !important;
+          stroke: var(--md-mermaid-edge-color, #334155) !important;
+        }
+
+        /* Clusters / Subgraphs */
+        .cluster rect {
+          fill: var(--md-default-bg-color--lighter, rgba(127, 127, 127, 0.08)) !important;
+          stroke: var(--md-default-fg-color--lighter, #94a3b8) !important;
+        }
+
+        /* Edge labels */
+        .edgeLabel, .edgeLabel rect, .edgeLabel p {
+          background-color: var(--md-default-bg-color, #ffffff) !important;
+          fill: var(--md-default-bg-color, #ffffff) !important;
+          color: var(--md-mermaid-label-fg-color, #0f172a) !important;
+        }
+      `;
+
+      function injectStyle(shadow) {
+        if (!shadow) return;
+        let styleTag = shadow.querySelector('#noc-mermaid-shadow-style');
+        if (!styleTag) {
+          styleTag = document.createElement('style');
+          styleTag.id = 'noc-mermaid-shadow-style';
+          shadow.appendChild(styleTag);
+        }
+        if (styleTag.textContent !== shadowCss) {
+          styleTag.textContent = shadowCss;
+        }
+      }
+
+      // Intercept attachShadow at the earliest stage before bundle.min.js initializes
+      if (!window.__noc_attachShadow_intercepted) {
+        window.__noc_attachShadow_intercepted = true;
+        const origAttach = Element.prototype.attachShadow;
+        Element.prototype.attachShadow = function (init) {
+          const shadow = origAttach.call(this, { mode: 'open' });
+          
+          // Apply styling whenever DOM tree inside shadow root changes
+          const observer = new MutationObserver(() => injectStyle(shadow));
+          observer.observe(shadow, { childList: true, subtree: true });
+          
+          // Initial application pass
+          setTimeout(() => injectStyle(shadow), 0);
+          return shadow;
+        };
+      }
+    })();
+  </script>
+
   </head>
   
   
@@ -73,7 +146,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -129,7 +202,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -139,7 +212,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -968,13 +1041,13 @@
     An interactive, scholarly curriculum bridging theoretical dataset collection, human-in-the-loop annotation, data cleaning heuristics, algorithmic fairness, and reproducible open science. Grounded in the 13-chapter Springer monograph by <strong>Yongfu Li</strong> and <strong>Dingjuan Chua</strong>.
   </p>
   <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-    <a href="textbook/" class="noc-sim-btn" style="background: #0f766e;">📖 Read Official Textbook (13 Chaps)</a>
-    <a href="tracks/" class="noc-sim-btn" style="background: #2563eb;">📚 All 13 Curriculum Tracks</a>
-    <a href="https://yongfu-li.github.io/dataset-fundamentals/assets/book.pdf" target="_blank" class="noc-sim-btn" style="background: #ea580c;">📥 Download Monograph PDF</a>
-    <a href="tools/" class="noc-sim-btn secondary">🔬 Interactive Data Studio (21+ Labs)</a>
-    <a href="quiz/" class="noc-sim-btn secondary">🎯 Certification Exam</a>
-    <a href="leaderboard/" class="noc-sim-btn secondary">🏆 Hall of Fame</a>
-    <a href="glossary/" class="noc-sim-btn secondary">📖 Dataset Glossary</a>
+    <a href="textbook/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">📖 Read Official Textbook (13 Chaps)</a>
+    <a href="tracks/" class="noc-sim-btn" style="text-decoration: none; background: #7c3aed;">📚 All 13 Curriculum Tracks</a>
+    <a href="https://yongfu-li.github.io/dataset-fundamentals/assets/book.pdf" target="_blank" class="noc-sim-btn" style="text-decoration: none; background: #0284c7;">📥 Download Monograph PDF</a>
+    <a href="tools/" class="noc-sim-btn" style="text-decoration: none; background: #059669;">🔬 Interactive Data Studio (21+ Labs)</a>
+    <a href="quiz/" class="noc-sim-btn secondary" style="text-decoration: none;">🎯 Certification Exam</a>
+    <a href="leaderboard/" class="noc-sim-btn secondary" style="text-decoration: none;">🏆 Hall of Fame</a>
+    <a href="glossary/" class="noc-sim-btn secondary" style="text-decoration: none;">📖 Dataset Glossary</a>
   </div>
 </div>
 
@@ -1000,18 +1073,22 @@
 <hr />
 <h2 id="official-open-textbook-13-chapters">📖 Official Open Textbook (13 Chapters)</h2>
 <p>Explore the definitive monograph <strong>"Fundamental of Dataset: Collection, Annotation, and Management"</strong>, formatted in Springer Nature <code>svmono</code> layout.</p>
-<div class="noc-book-banner">
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.35), rgba(15, 23, 42, 0.65)); border: 1px solid rgba(59, 130, 246, 0.5); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
   <div>
-    <div style="font-weight: 700; color: var(--noc-primary); font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 700; color: #93c5fd; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
       <span>📘 Camera-Ready Monograph PDF Available</span>
     </div>
-    <div style="font-size: 0.92rem; color: var(--noc-text-muted); margin-top: 6px; max-width: 820px; line-height: 1.5;">
-      Formatted in Springer Nature <code>svmono</code> layout. Covers mathematical sampling error, power analysis, privacy metrics ($k$-anonymity, $l$-diversity, $t$-closeness), inter-annotator agreement (Cohen's $\kappa$, Fleiss' $\kappa$, Krippendorff's $\alpha$), EDA covariance structures, algorithmic fairness tradeoffs, synthetic data generation, DVC lineage tracking, and high-throughput columnar storage (Parquet, Arrow).
+    <div style="font-size: 0.92rem; color: #e2e8f0; margin-top: 6px; max-width: 820px; line-height: 1.5;">
+      Formatted in Springer Nature <code>svmono</code> layout (266 camera-ready pages). Covers mathematical sampling error, power analysis, privacy metrics ($k$-anonymity, $l$-diversity, $t$-closeness), inter-annotator agreement (Cohen's $\kappa$, Fleiss' $\kappa$, Krippendorff's $\alpha$), EDA covariance structures, algorithmic fairness tradeoffs, synthetic data generation, DVC lineage tracking, and high-throughput columnar storage (Parquet, Arrow).
     </div>
   </div>
   <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-    <a href="textbook/" class="noc-sim-btn" style="background: #0f766e;">Read Online Textbook →</a>
-    <a href="https://yongfu-li.github.io/dataset-fundamentals/assets/book.pdf" target="_blank" class="noc-sim-btn secondary">Download PDF (svmono) ↓</a>
+    <a href="textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none;">
+      <span>Read Online Textbook →</span>
+    </a>
+    <a href="https://yongfu-li.github.io/dataset-fundamentals/assets/book.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #0284c7; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none;">
+      <span>Download PDF (svmono) ↓</span>
+    </a>
   </div>
 </div>
 
@@ -1020,7 +1097,7 @@
 <div class="noc-tracks-grid">
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Orientation • Track 1</span>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">Part I • Ch 1</span>
       <div class="noc-track-title">Introduction to Datasets</div>
       <div class="noc-track-desc">
         Taxonomy of structured, semi-structured, and unstructured data. Core quality dimensions: accuracy, completeness, consistency, timeliness, and relevance.
@@ -1031,7 +1108,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Methods • Track 2</span>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.2);">Part I • Ch 2</span>
       <div class="noc-track-title">Fundamentals of Data Collection</div>
       <div class="noc-track-desc">
         Sampling theory and error estimation. Simple random, stratified, and cluster sampling. Power analysis and real-world population coverage.
@@ -1042,7 +1119,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Governance • Track 3</span>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">Part I • Ch 3</span>
       <div class="noc-track-title">Ethics and Privacy in Data Work</div>
       <div class="noc-track-desc">
         Regulatory compliance under GDPR, HIPAA, and CCPA. Mathematical anonymity: $k$-anonymity, $l$-diversity, $t$-closeness, and differential privacy ($\epsilon, \delta$).
@@ -1053,7 +1130,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Methods • Track 4</span>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">Part II • Ch 4</span>
       <div class="noc-track-title">Data Annotation &amp; Agreement</div>
       <div class="noc-track-desc">
         Human-in-the-loop annotation pipelines. Inter-Annotator Agreement (IAA) metrics: Cohen's $\kappa$, Fleiss' $\kappa$, and Krippendorff's $\alpha$.
@@ -1064,7 +1141,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Methods • Track 5</span>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2);">Part II • Ch 5</span>
       <div class="noc-track-title">Data Cleaning &amp; Preprocessing</div>
       <div class="noc-track-desc">
         Handling missing data (MCAR, MAR, MNAR). Outlier detection via Z-score and IQR. Class imbalance resampling (SMOTE, undersampling).
@@ -1075,7 +1152,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Analysis • Track 6</span>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">Part II • Ch 6</span>
       <div class="noc-track-title">Exploratory Data Analysis (EDA)</div>
       <div class="noc-track-desc">
         Univariate, bivariate, and multivariate inspection. Covariance structures, Pearson/Spearman correlation matrices, and dimensionality reduction.
@@ -1086,7 +1163,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Governance • Track 7</span>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">Part II • Ch 7</span>
       <div class="noc-track-title">Dataset Bias &amp; Fairness</div>
       <div class="noc-track-desc">
         Representational, historical, and measurement bias. Mathematical fairness criteria: Disparate Impact Ratio, Equalized Odds, and Demographic Parity.
@@ -1097,7 +1174,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Operations • Track 8</span>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">Part III • Ch 8</span>
       <div class="noc-track-title">Documentation &amp; Version Control</div>
       <div class="noc-track-desc">
         Standardized metadata schemas and Datasheets for Datasets. Version control for large datasets using Git LFS and Data Version Control (DVC).
@@ -1108,7 +1185,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Advanced • Track 9</span>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.2);">Part IV • Ch 9</span>
       <div class="noc-track-title">Advanced Data Collection</div>
       <div class="noc-track-desc">
         Ethical web crawling, Robots.txt compliance, sliding-window API rate limits, and real-time IoT telemetry pipelines.
@@ -1119,7 +1196,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Advanced • Track 10</span>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2);">Part IV • Ch 10</span>
       <div class="noc-track-title">Synthetic Data Generation</div>
       <div class="noc-track-desc">
         Augmentation heuristics, Generative Adversarial Networks (GANs), Diffusion models, and privacy-preserving synthetic record generation.
@@ -1130,7 +1207,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Advanced • Track 11</span>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">Part IV • Ch 11</span>
       <div class="noc-track-title">Advanced Annotation Techniques</div>
       <div class="noc-track-desc">
         Active learning query heuristics (uncertainty sampling, query-by-committee), weak supervision (Snorkel), and automated labeling audit.
@@ -1141,7 +1218,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Operations • Track 12</span>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">Part V • Ch 12</span>
       <div class="noc-track-title">Scalable Data Management</div>
       <div class="noc-track-desc">
         The CAP theorem in distributed storage. Columnar formats (Parquet, ORC, Feather) vs. row stores. Data lakes and cloud object stores (S3).
@@ -1152,7 +1229,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Synthesis • Track 13</span>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2);">Part V • Ch 13</span>
       <div class="noc-track-title">Reproducibility &amp; Open Science</div>
       <div class="noc-track-desc">
         The FAIR data principles (Findable, Accessible, Interoperable, Reusable). Open science licensing (Creative Commons, Open Data Commons), and data DOIs.
@@ -1168,7 +1245,7 @@
 <div class="noc-tracks-grid">
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Collection • Ch. 2</span>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.2);">Collection • Ch. 2</span>
       <div class="noc-track-title">Sampling Techniques Visualizer</div>
       <div class="noc-track-desc">
         Interactively simulate Simple Random, Stratified, and Cluster sampling. Observe standard error convergence curves across population sizes.
@@ -1179,7 +1256,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Privacy • Ch. 3</span>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">Privacy • Ch. 3</span>
       <div class="noc-track-title">De-Identification &amp; $k$-Anonymity Checker</div>
       <div class="noc-track-desc">
         Test quasi-identifiers, identify equivalence classes, and calculate $k$-anonymity and $l$-diversity risk on real patient demographic records.
@@ -1190,7 +1267,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Annotation • Ch. 4</span>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">Annotation • Ch. 4</span>
       <div class="noc-track-title">Inter-Annotator Agreement (IAA) Calculator</div>
       <div class="noc-track-desc">
         Upload multi-annotator matrices and instantly compute Cohen's $\kappa$, Fleiss' $\kappa$, and Krippendorff's $\alpha$ with chance agreement correction.
@@ -1201,7 +1278,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Analysis • Ch. 6</span>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">Analysis • Ch. 6</span>
       <div class="noc-track-title">Exploratory Data Analysis (EDA) Dashboard</div>
       <div class="noc-track-desc">
         Upload CSVs for instant automated profiling: distribution histograms, missingness heatmaps, Pearson correlations, and Simpson's Paradox detector.
@@ -1212,7 +1289,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Fairness • Ch. 7</span>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">Fairness • Ch. 7</span>
       <div class="noc-track-title">Algorithmic Bias &amp; Fairness Meter</div>
       <div class="noc-track-desc">
         Audit predictive models across protected attributes. Measure Disparate Impact, Demographic Parity, and Equalized Odds frontiers in real time.
@@ -1223,7 +1300,7 @@
 
   <div class="noc-track-card">
     <div>
-      <span class="noc-track-badge">Governance • Ch. 8</span>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">Governance • Ch. 8</span>
       <div class="noc-track-title">Datasheets for Datasets Builder</div>
       <div class="noc-track-desc">
         Generate industry-standard Gebru et al. documentation cards. Export publication-ready Markdown, JSON metadata, and print-ready PDF reports.
@@ -1237,9 +1314,9 @@
 <h2 id="certified-architecture-assessment">🎯 Certified Architecture &amp; Assessment</h2>
 <p>Put your knowledge to the test with our 3-tier <strong>Comprehensive Certification Exam</strong>, covering physical collection, annotation reliability, statistical cleaning, algorithmic fairness, and cloud data architectures.</p>
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-  <a href="quiz/" class="noc-sim-btn" style="background: #0f766e;">Take Certification Exam →</a>
-  <a href="leaderboard/" class="noc-sim-btn secondary">View Hall of Fame Leaderboard →</a>
-  <a href="glossary/" class="noc-sim-btn secondary">Browse 100+ Term Glossary →</a>
+  <a href="quiz/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Take Certification Exam →</a>
+  <a href="leaderboard/" class="noc-sim-btn secondary" style="text-decoration: none;">View Hall of Fame Leaderboard →</a>
+  <a href="glossary/" class="noc-sim-btn secondary" style="text-decoration: none;">Browse 100+ Term Glossary →</a>
 </div>
 
 
