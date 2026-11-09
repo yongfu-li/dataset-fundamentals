@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7297,25 +7399,24 @@
   class Glacier,AuditDaemon amber;</code></pre>
 <h3 id="the-mathematics-of-multi-tier-storage-optimization">The Mathematics of Multi-Tier Storage Optimization</h3>
 <p>Consider an enterprise data repository of total capacity <span class="arithmatex">\(V = \sum_{k=1}^K V_k\)</span> divided across <span class="arithmatex">\(K\)</span> distinct storage tiers (<span class="arithmatex">\(k = 1\)</span>: Hot, <span class="arithmatex">\(k = 2\)</span>: Warm, <span class="arithmatex">\(k = 3\)</span>: Cold) (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>). Each tier <span class="arithmatex">\(k\)</span> is characterized by:
-- Storage capacity unit cost: <span class="arithmatex">\(c_k^{    ext{cap}}\)</span> ($/GB-month)
-- Access transaction unit cost: <span class="arithmatex">\(c_k^{  ext{acc}}\)</span> ($/1,000 GET requests)
-- Data egress/retrieval unit cost: <span class="arithmatex">\(c_k^{   ext{ret}}\)</span> ($/GB transferred)
-- Base retrieval latency: $ au_k$ (seconds)</p>
+- Storage capacity unit cost: <span class="arithmatex">\(c_k^{\text{cap}}\)</span> ($/GB-month)
+- Access transaction unit cost: <span class="arithmatex">\(c_k^{\text{acc}}\)</span> ($/1,000 GET requests)
+- Data egress/retrieval unit cost: <span class="arithmatex">\(c_k^{\text{ret}}\)</span> ($/GB transferred)
+- Base retrieval latency: <span class="arithmatex">\(\tau_k\)</span> (seconds)</p>
 <p>The monthly Total Cost of Ownership (TCO) across all <span class="arithmatex">\(K\)</span> tiers is:</p>
-<div class="arithmatex">\[  ext{TCO} = \sum_{k=1}^K \left( c_k^{    ext{cap}} \cdot V_k + c_k^{ ext{acc}} \cdot Q_k + c_k^{ ext{ret}} \cdot X_k 
-ight)\]</div>
+<div class="arithmatex">\[\text{TCO} = \sum_{k=1}^K \left( c_k^{\text{cap}} \cdot V_k + c_k^{\text{acc}} \cdot Q_k + c_k^{\text{ret}} \cdot X_k \right)\]</div>
 <p>where <span class="arithmatex">\(Q_k\)</span> is the monthly query request volume and <span class="arithmatex">\(X_k\)</span> is the retrieved volume in tier <span class="arithmatex">\(k\)</span>.</p>
 <h4 id="break-even-access-frequency-for-tier-migration">Break-Even Access Frequency for Tier Migration</h4>
-<p>Migrating an inactive dataset of size <span class="arithmatex">\(S\)</span> from Hot tier (<span class="arithmatex">\(k=1\)</span>) to Cold tier (<span class="arithmatex">\(k=2\)</span>) reduces static capacity costs by <span class="arithmatex">\((c_1^{   ext{cap}} - c_2^{   ext{cap}}) \cdot S\)</span>, but introduces a penalty of <span class="arithmatex">\(c_2^{ ext{ret}} \cdot S + c_2^{   ext{acc}}\)</span> every time the dataset is accessed. The break-even monthly access frequency <span class="arithmatex">\(f^*\)</span> below which tier demotion is strictly cost-positive is:</p>
-<div class="arithmatex">\[f^* &lt; rac{c_1^{  ext{cap}} - c_2^{   ext{cap}}}{c_2^{    ext{ret}} + rac{c_2^{  ext{acc}}}{S}}\]</div>
-<p>For AWS S3 Standard (<span class="arithmatex">\(c_1^{ ext{cap}} = \$0.023\)</span>) versus Glacier Flexible Retrieval (<span class="arithmatex">\(c_2^{ ext{cap}} = \$0.0036\)</span>, <span class="arithmatex">\(c_2^{   ext{ret}} = \$0.03\)</span>/GB):</p>
-<div class="arithmatex">\[f^* pprox rac{0.023 - 0.0036}{0.03} pprox 0.646    ext{ accesses per month}\]</div>
+<p>Migrating an inactive dataset of size <span class="arithmatex">\(S\)</span> from Hot tier (<span class="arithmatex">\(k=1\)</span>) to Cold tier (<span class="arithmatex">\(k=2\)</span>) reduces static capacity costs by <span class="arithmatex">\((c_1^{\text{cap}} - c_2^{\text{cap}}) \cdot S\)</span>, but introduces a penalty of <span class="arithmatex">\(c_2^{\text{ret}} \cdot S + c_2^{\text{acc}}\)</span> every time the dataset is accessed. The break-even monthly access frequency <span class="arithmatex">\(f^*\)</span> below which tier demotion is strictly cost-positive is:</p>
+<div class="arithmatex">\[f^* &lt; \frac{c_1^{\text{cap}} - c_2^{\text{cap}}}{c_2^{\text{ret}} + \frac{c_2^{\text{acc}}}{S}}\]</div>
+<p>For AWS S3 Standard (<span class="arithmatex">\(c_1^{\text{cap}} = \$0.023\)</span>) versus Glacier Flexible Retrieval (<span class="arithmatex">\(c_2^{\text{cap}} = \$0.0036\)</span>, <span class="arithmatex">\(c_2^{\text{ret}} = \$0.03\)</span>/GB):</p>
+<div class="arithmatex">\[f^* \approx \frac{0.023 - 0.0036}{0.03} \approx 0.646\text{ accesses per month}\]</div>
 <p>If a benchmark dataset is retrieved less than once every 46 days, maintaining it in S3 Standard is financially irrational.</p>
 <h4 id="expected-access-latency-under-tier-partitioning">Expected Access Latency Under Tier Partitioning</h4>
-<p>Let <span class="arithmatex">\(p_k = rac{Q_k}{\sum Q_j}\)</span> represent the empirical probability of a query targeting tier <span class="arithmatex">\(k\)</span>. The expected query response time across the enterprise is:</p>
-<div class="arithmatex">\[\mathbb{E}[T_{    ext{access}}] = \sum_{k=1}^K p_k \cdot  au_k\]</div>
-<p>Under Pareto access distributions (where <span class="arithmatex">\(80\%\)</span> of queries access the newest <span class="arithmatex">\(20\%\)</span> of data in the Hot tier), <span class="arithmatex">\(\mathbb{E}[T_{   ext{access}}]\)</span> remains bounded within sub-second thresholds while slashing aggregate storage costs by over <strong><span class="arithmatex">\(75\%\)</span></strong>:</p>
-<div class="arithmatex">\[\eta_{    ext{tier}} = 1 - rac{\sum_{k=1}^K c_k^{    ext{cap}} V_k}{c_1^{    ext{cap}} \sum_{k=1}^K V_k}\]</div>
+<p>Let <span class="arithmatex">\(p_k = \frac{Q_k}{\sum Q_j}\)</span> represent the empirical probability of a query targeting tier <span class="arithmatex">\(k\)</span>. The expected query response time across the enterprise is:</p>
+<div class="arithmatex">\[\mathbb{E}[T_{\text{access}}] = \sum_{k=1}^K p_k \cdot \tau_k\]</div>
+<p>Under Pareto access distributions (where <span class="arithmatex">\(80\%\)</span> of queries access the newest <span class="arithmatex">\(20\%\)</span> of data in the Hot tier), <span class="arithmatex">\(\mathbb{E}[T_{\text{access}}]\)</span> remains bounded within sub-second thresholds while slashing aggregate storage costs by over <strong><span class="arithmatex">\(75\%\)</span></strong>:</p>
+<div class="arithmatex">\[\eta_{\text{tier}} = 1 - \frac{\sum_{k=1}^K c_k^{\text{cap}} V_k}{c_1^{\text{cap}} \sum_{k=1}^K V_k}\]</div>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements an enterprise storage tier optimizer that calculates TCO, evaluates break-even migration boundaries, and asserts financial savings:</p>
@@ -7404,12 +7505,12 @@ ight)\]</div>
 <h2 id="empirical-case-study-global-ride-sharing-telemetry-fabric-uber-michelangelo">🔬 Empirical Case Study: Global Ride-Sharing Telemetry Fabric (Uber Michelangelo)</h2>
 <p>At Uber, the <strong>Michelangelo ML Platform</strong> manages petabytes of real-time geospatial trips, driver location telemetry, and dynamic pricing models (<a href="#ref-hermann2017">Hermann &amp; Balso, 2017</a>):</p>
 <ol>
-<li><strong>Volume Profile:</strong> Over <strong><span class="arithmatex">\(100  ext{ Petabytes}\)</span> of historical GPS pings</strong> and fare data across millions of daily rides.</li>
+<li><strong>Volume Profile:</strong> Over <strong><span class="arithmatex">\(100\text{ Petabytes}\)</span> of historical GPS pings</strong> and fare data across millions of daily rides.</li>
 <li><strong>Access Decay:</strong> Geospatial features are accessed with extreme temporal skew: <span class="arithmatex">\(94\%\)</span> of all model inference lookups target data generated within the last 48 hours. Features older than 6 months are queried only during annual model retraining or regulatory audits.</li>
 <li><strong>Architecture:</strong> Uber deploys a 3-tier fabric:</li>
 <li><strong>Hot:</strong> In-memory Redis clusters serving sub-5ms feature lookups to real-time dispatch models.</li>
 <li><strong>Warm:</strong> HDFS / Apache Iceberg Parquet tables serving daily batch retraining jobs via Apache Spark.</li>
-<li><strong>Cold:</strong> Automated lifecycle archiving to AWS S3 Glacier, yielding over <strong><span class="arithmatex">\(\$18   ext{M}\)</span> in annual infrastructure savings</strong>.</li>
+<li><strong>Cold:</strong> Automated lifecycle archiving to AWS S3 Glacier, yielding over <strong><span class="arithmatex">\(\$18\text{M}\)</span> in annual infrastructure savings</strong>.</li>
 </ol>
 <hr />
 <h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
@@ -7531,6 +7632,8 @@ ight)\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

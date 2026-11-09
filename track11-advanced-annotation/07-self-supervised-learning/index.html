@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7293,23 +7395,17 @@
 <hr />
 <h3 id="2-mathematical-formalism-the-infonce-contrastive-objective">2. Mathematical Formalism: The InfoNCE Contrastive Objective</h3>
 <p>In contrastive learning frameworks such as SimCLR, a minibatch of <span class="arithmatex">\(N\)</span> images is augmented into <span class="arithmatex">\(2N\)</span> views. For a given positive pair <span class="arithmatex">\((i, j)\)</span> derived from the same original image, the <strong>Normalized Temperature-scaled Cross-Entropy (InfoNCE)</strong> loss is defined as:</p>
-<p>$<span class="arithmatex">\(\mathcal{L}_{i, j} = -\log rac{\exp\left( rac{  ext{sim}(\mathbf{z}_i, \mathbf{z}_j)}{  au} 
-ight)}{\sum_{k=1}^{2N} \mathbb{I}(k 
-eq i) \exp\left( rac{  ext{sim}(\mathbf{z}_i, \mathbf{z}_k)}{  au} 
-ight)}\)</span>$
+<p>$<span class="arithmatex">\(\mathcal{L}_{i, j} = -\log \frac{\exp\left( \frac{\text{sim}(\mathbf{z}_i, \mathbf{z}_j)}{\tau} \right)}{\sum_{k=1}^{2N} \mathbb{I}(k  \neq i) \exp\left( \frac{\text{sim}(\mathbf{z}_i, \mathbf{z}_k)}{\tau} \right)}\)</span>$
 where:
 - <span class="arithmatex">\(\mathbf{z}_i = g(\mathbf{h}_i) / \|\mathbf{z}_i\|_2\)</span> is the normalized projection vector.
-- $ ext{sim}(\mathbf{u}, \mathbf{v}) = \mathbf{u}^  op \mathbf{v}$ is the cosine similarity.
-- $ au &gt; 0$ is the temperature parameter controlling penalty sharpness.</p>
+- <span class="arithmatex">\(\text{sim}(\mathbf{u}, \mathbf{v}) = \mathbf{u}^\top \mathbf{v}\)</span> is the cosine similarity.
+- <span class="arithmatex">\(\tau &gt; 0\)</span> is the temperature parameter controlling penalty sharpness.</p>
 <h4 id="geometric-invariants-alignment-and-uniformity">Geometric Invariants: Alignment and Uniformity</h4>
 <p>Wang &amp; Isola (<a href="#ref-wang2020">2020</a>) proved that optimizing the InfoNCE loss asymptotically satisfies two fundamental geometric properties on the unit hypersphere <span class="arithmatex">\(\mathcal{S}^{d-1}\)</span>:
 1. <strong>Alignment:</strong> Positive pairs map to nearby points:
-   $<span class="arithmatex">\(\mathcal{L}_{  ext{align}} = \mathbb{E}_{(x, y) \sim p_{   ext{pos}}}\left[ \|\mathbf{z}_x - \mathbf{z}_y\|^2 
-ight]   o 0\)</span>$
+   $<span class="arithmatex">\(\mathcal{L}_{\text{align}} = \mathbb{E}_{(x, y) \sim p_{\text{pos}}}\left[ \|\mathbf{z}_x - \mathbf{z}_y\|^2 \right] \to 0\)</span>$
 2. <strong>Uniformity:</strong> Features preserve maximal information by distributing uniformly across the entire hypersphere:
-   $<span class="arithmatex">\(\mathcal{L}_{  ext{uniform}} = \log \mathbb{E}_{x, y \stackrel{    ext{i.i.d.}}{\sim} p_{  ext{data}}}\left[ \exp\left( -2 \|\mathbf{z}_x - \mathbf{z}_y\|^2 
-ight) 
-ight]   o   ext{constant}\)</span>$</p>
+   $<span class="arithmatex">\(\mathcal{L}_{\text{uniform}} = \log \mathbb{E}_{x, y \stackrel{\text{i.i.d.}}{\sim} p_{\text{data}}}\left[ \exp\left( -2 \|\mathbf{z}_x - \mathbf{z}_y\|^2 \right) \right] \to \text{constant}\)</span>$</p>
 <hr />
 <h2 id="production-implementation-vectorized-infonce-loss-engine">💻 Production Implementation: Vectorized InfoNCE Loss Engine</h2>
 <p>The following Python script implements the InfoNCE contrastive loss function using PyTorch/NumPy matrix operations, verifying alignment and negative-sample separation.</p>
@@ -7539,6 +7635,8 @@ ight]   o   ext{constant}\)</span>$</p>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6390,6 +6409,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6451,6 +6498,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7106,6 +7181,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7341,11 +7443,10 @@
     class QBC,CoreSet,BALD,QueriedBatch green;</code></pre>
 <hr />
 <h3 id="1-query-by-committee-qbc">1. Query-by-Committee (QBC)</h3>
-<p>In <strong>Query-by-Committee</strong>, a committee of distinct hypotheses <span class="arithmatex">\(\mathcal{C} = \{ heta^{(1)}, \dots,  heta^{(C)}\}\)</span> is sampled from the current version space (<a href="#ref-freund1997">Freund et al., 1997</a>). The algorithm queries instances where committee members disagree most sharply:</p>
+<p>In <strong>Query-by-Committee</strong>, a committee of distinct hypotheses <span class="arithmatex">\(\mathcal{C} = \{\theta^{(1)}, \dots, \theta^{(C)}\}\)</span> is sampled from the current version space (<a href="#ref-freund1997">Freund et al., 1997</a>). The algorithm queries instances where committee members disagree most sharply:</p>
 <h4 id="vote-entropy-formulation">Vote Entropy Formulation</h4>
-<p>Let <span class="arithmatex">\(V(y \mid x) = \sum_{c=1}^C \mathbb{I}(f_{  heta^{(c)}}(x) = y)\)</span> be the number of committee votes for class <span class="arithmatex">\(y\)</span>:
-$<span class="arithmatex">\(x_{   ext{QBC}}^* = rg\max_{x \in \mathcal{U}} \left( -\sum_{y \in \mathcal{Y}} rac{V(y \mid x)}{C} \log_2 rac{V(y \mid x)}{C} 
-ight)\)</span>$</p>
+<p>Let <span class="arithmatex">\(V(y \mid x) = \sum_{c=1}^C \mathbb{I}(f_{\theta^{(c)}}(x) = y)\)</span> be the number of committee votes for class <span class="arithmatex">\(y\)</span>:
+$<span class="arithmatex">\(x_{\text{QBC}}^* = \arg\max_{x \in \mathcal{U}} \left( -\sum_{y \in \mathcal{Y}} \frac{V(y \mid x)}{C} \log_2 \frac{V(y \mid x)}{C} \right)\)</span>$</p>
 <hr />
 <h3 id="2-geometric-core-set-active-learning-sener-savarese-2018">2. Geometric Core-Set Active Learning (Sener &amp; Savarese, 2018)</h3>
 <p>Rather than evaluating classification margins, the <strong>Core-Set</strong> approach treats active learning as a geometric <strong>minimax facility location problem</strong> over penultimate feature representations <span class="arithmatex">\(\phi(x) \in \mathbb{R}^d\)</span>:</p>
@@ -7358,7 +7459,7 @@ where <span class="arithmatex">\(\Delta\)</span> is Euclidean distance.</p>
    - For every unlabeled point <span class="arithmatex">\(i \in \mathcal{U} \setminus \mathbf{s}\)</span>, compute distance to closest labeled or selected point:
      $<span class="arithmatex">\(d_i = \min_{j \in \mathcal{L} \cup \mathbf{s}} \|\phi(x_i) - \phi(x_j)\|_2\)</span>$
    - Select point with the maximum distance:
-     $<span class="arithmatex">\(u^* = rg\max_{i} d_i\)</span>$
+     $<span class="arithmatex">\(u^* = \arg\max_{i} d_i\)</span>$
    - Add <span class="arithmatex">\(u^*\)</span> to <span class="arithmatex">\(\mathbf{s}\)</span>.</p>
 <p>This guarantees that the queried batch forms a <strong><span class="arithmatex">\(\delta\)</span>-cover</strong> of the entire unlabeled manifold, completely eliminating batch redundancy.</p>
 <hr />
@@ -7594,6 +7695,8 @@ $<span class="arithmatex">\(\mathcal{I}(y; \mathbf{w} \mid x, \mathcal{D}) = \ma
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

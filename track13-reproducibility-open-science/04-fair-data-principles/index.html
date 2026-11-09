@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7305,20 +7407,18 @@
   class R1,R2,R3 purple;</code></pre>
 <h3 id="mathematical-formalization-of-the-fair-compliance-metric">Mathematical Formalization of the FAIR Compliance Metric</h3>
 <p>The FAIR framework encompasses 15 granular principles divided across the four primary pillars: <span class="arithmatex">\(\mathcal{P} = \{F, A, I, R\}\)</span> (<a href="#ref-boeckhout2018">Boeckhout et al., 2018</a>). Let <span class="arithmatex">\(M_p\)</span> denote the set of evaluation metrics within pillar <span class="arithmatex">\(p\)</span>, and let <span class="arithmatex">\(v(m) \in [0, 1]\)</span> represent the normalized compliance score for metric <span class="arithmatex">\(m \in M_p\)</span>. </p>
-<p>The <strong>Composite FAIR Compliance Score</strong> <span class="arithmatex">\(S_{    ext{FAIR}} \in [0, 1]\)</span> is defined as:</p>
-<div class="arithmatex">\[S_{   ext{FAIR}} = \sum_{p \in \{F, A, I, R\}} \omega_p \left( rac{1}{|M_p|} \sum_{m \in M_p} v(m) 
-ight)\]</div>
+<p>The <strong>Composite FAIR Compliance Score</strong> <span class="arithmatex">\(S_{\text{FAIR}} \in [0, 1]\)</span> is defined as:</p>
+<div class="arithmatex">\[S_{\text{FAIR}} = \sum_{p \in \{F, A, I, R\}} \omega_p \left( \frac{1}{|M_p|} \sum_{m \in M_p} v(m) \right)\]</div>
 <p>where <span class="arithmatex">\(\omega_p \ge 0\)</span> are pillar importance weights satisfying <span class="arithmatex">\(\sum_{p \in \mathcal{P}} \omega_p = 1\)</span>. By default, equal pillar weights <span class="arithmatex">\(\omega_F = \omega_A = \omega_I = \omega_R = 0.25\)</span> are assigned.</p>
 <h4 id="persistent-identifier-pid-resolution-reliability">Persistent Identifier (PID) Resolution Reliability</h4>
-<p>A dataset's findability and accessibility depend on the unbroken resolution path of its Persistent Identifier (PID), such as a Digital Object Identifier (DOI). Let a PID resolution chain require <span class="arithmatex">\(h\)</span> resolution hops (e.g., DNS lookup, DOI proxy redirect, repository handle resolution, metadata landing page redirect). If hop <span class="arithmatex">\(i\)</span> possesses failure probability <span class="arithmatex">\(p_{  ext{fail}}^{(i)}\)</span>, the end-to-end resolution probability is:</p>
-<div class="arithmatex">\[\Pr[  ext{Resolve}(PID)] = \prod_{i=1}^h \left( 1 - p_{   ext{fail}}^{(i)} 
-ight)\]</div>
-<p>For high-availability institutional repositories with 99.9% uptime per hop (<span class="arithmatex">\(p_{    ext{fail}} = 10^{-3}\)</span>) across <span class="arithmatex">\(h = 4\)</span> hops:</p>
-<div class="arithmatex">\[\Pr[  ext{Resolve}] = (1 - 10^{-3})^4 pprox 0.9960 \quad (99.60\%    ext{ availability})\]</div>
+<p>A dataset's findability and accessibility depend on the unbroken resolution path of its Persistent Identifier (PID), such as a Digital Object Identifier (DOI). Let a PID resolution chain require <span class="arithmatex">\(h\)</span> resolution hops (e.g., DNS lookup, DOI proxy redirect, repository handle resolution, metadata landing page redirect). If hop <span class="arithmatex">\(i\)</span> possesses failure probability <span class="arithmatex">\(p_{\text{fail}}^{(i)}\)</span>, the end-to-end resolution probability is:</p>
+<div class="arithmatex">\[\Pr[\text{Resolve}(PID)] = \prod_{i=1}^h \left( 1 - p_{\text{fail}}^{(i)} \right)\]</div>
+<p>For high-availability institutional repositories with 99.9% uptime per hop (<span class="arithmatex">\(p_{\text{fail}} = 10^{-3}\)</span>) across <span class="arithmatex">\(h = 4\)</span> hops:</p>
+<div class="arithmatex">\[\Pr[\text{Resolve}] = (1 - 10^{-3})^4 \approx 0.9960 \quad (99.60\%\text{ availability})\]</div>
 <h4 id="machine-actionability-ratio">Machine-Actionability Ratio</h4>
 <p>Machine-actionability quantifies the fraction of dataset consumption operations executable without human intervention (<a href="#ref-carroll2020">Carroll et al., 2020</a>):</p>
-<div class="arithmatex">\[\mathcal{R}_{ ext{auto}} = rac{|\mathcal{T}_{    ext{automated}}|}{|\mathcal{T}_{    ext{automated}}| + |\mathcal{T}_{   ext{manual}}|}\]</div>
-<p>where <span class="arithmatex">\(\mathcal{T}_{    ext{automated}}\)</span> encompasses API metadata queries, programmatic HTTP chunk downloads, and automated checksum validations, while <span class="arithmatex">\(\mathcal{T}_{  ext{manual}}\)</span> denotes mandatory human steps (e.g., manual web form fills, CAPTCHAs, or proprietary binary decompression).</p>
+<div class="arithmatex">\[\mathcal{R}_{\text{auto}} = \frac{|\mathcal{T}_{\text{automated}}|}{|\mathcal{T}_{\text{automated}}| + |\mathcal{T}_{\text{manual}}|}\]</div>
+<p>where <span class="arithmatex">\(\mathcal{T}_{\text{automated}}\)</span> encompasses API metadata queries, programmatic HTTP chunk downloads, and automated checksum validations, while <span class="arithmatex">\(\mathcal{T}_{\text{manual}}\)</span> denotes mandatory human steps (e.g., manual web form fills, CAPTCHAs, or proprietary binary decompression).</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script evaluates FAIR maturity scores across the 15 Wilkinson principles and asserts machine-actionability compliance:</p>
@@ -7396,7 +7496,7 @@ ight)\]</div>
 <ol>
 <li><strong>The Challenge:</strong> Historical species observation data was fragmented across hundreds of regional museums, botanical gardens, and academic spreadsheets, utilizing conflicting Latin taxonomies and proprietary coordinates.</li>
 <li><strong>The FAIR Transformation:</strong> GBIF adopted the <strong>Darwin Core standard</strong> (Darwin Core Archive / DwC-A) and assigned persistent DOIs to every combined dataset snapshot (<a href="#ref-wilkinson2016">Wilkinson et al., 2016</a>).</li>
-<li><strong>The Empirical Impact:</strong> Over <strong><span class="arithmatex">\(2.5    ext{ Billion}\)</span> species occurrence records</strong> are now queryable via standardized REST APIs with complete machine-actionability. Over <span class="arithmatex">\(1,200\)</span> peer-reviewed ecology papers annually cite GBIF DOIs, ensuring that any historical biodiversity study can be reproduced down to the exact specimen accession number.</li>
+<li><strong>The Empirical Impact:</strong> Over <strong><span class="arithmatex">\(2.5\text{ Billion}\)</span> species occurrence records</strong> are now queryable via standardized REST APIs with complete machine-actionability. Over <span class="arithmatex">\(1,200\)</span> peer-reviewed ecology papers annually cite GBIF DOIs, ensuring that any historical biodiversity study can be reproduced down to the exact specimen accession number.</li>
 </ol>
 <hr />
 <h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
@@ -7517,6 +7617,8 @@ ight)\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

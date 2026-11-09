@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7322,26 +7424,23 @@
 2. <strong>Results Reproducibility:</strong> Obtaining statistically concordant measurements when following published experimental procedures with an independent software implementation.
 3. <strong>Inferential Reproducibility:</strong> Drawing statistically robust conclusions from independent experimental replications or distinct population cohorts.</p>
 <h4 id="statistical-power-replication-probability">Statistical Power &amp; Replication Probability</h4>
-<p>Let an initial study test null hypothesis <span class="arithmatex">\(H_0:     heta = 0\)</span> against <span class="arithmatex">\(H_1:     heta = \delta &gt; 0\)</span> at significance level <span class="arithmatex">\(lpha\)</span> (typically <span class="arithmatex">\(lpha = 0.05\)</span>) with sample size <span class="arithmatex">\(n_1\)</span>. Under true effect size <span class="arithmatex">\(\delta\)</span> and statistical power <span class="arithmatex">\(1 - eta\)</span>, the test statistic <span class="arithmatex">\(Z_1 \sim \mathcal{N}(\delta \sqrt{n_1}, 1)\)</span> yields a statistically significant discovery if <span class="arithmatex">\(Z_1 \ge z_{1-lpha/2}\)</span>.</p>
+<p>Let an initial study test null hypothesis <span class="arithmatex">\(H_0: \theta = 0\)</span> against <span class="arithmatex">\(H_1: \theta = \delta &gt; 0\)</span> at significance level <span class="arithmatex">\(\alpha\)</span> (typically <span class="arithmatex">\(\alpha = 0.05\)</span>) with sample size <span class="arithmatex">\(n_1\)</span>. Under true effect size <span class="arithmatex">\(\delta\)</span> and statistical power <span class="arithmatex">\(1 - \beta\)</span>, the test statistic <span class="arithmatex">\(Z_1 \sim \mathcal{N}(\delta \sqrt{n_1}, 1)\)</span> yields a statistically significant discovery if <span class="arithmatex">\(Z_1 \ge z_{1-\alpha/2}\)</span>.</p>
 <p>When an independent laboratory attempts an exact replication study with sample size <span class="arithmatex">\(n_2\)</span>, the replication test statistic is <span class="arithmatex">\(Z_2 \sim \mathcal{N}(\delta \sqrt{n_2}, 1)\)</span>. The conditional probability of replicating the discovery given that the initial experiment rejected <span class="arithmatex">\(H_0\)</span> is:</p>
-<div class="arithmatex">\[\Pr[  ext{Replicate } Z_2 \ge z_{1-lpha/2} \mid Z_1 \ge z_{1-lpha/2}] = \Phi\left( rac{\delta \sqrt{n_2} - z_{1-lpha/2}}{\sqrt{1}} 
-ight)\]</div>
-<p>If an initial experiment was barely powered at <span class="arithmatex">\(1 - eta = 0.50\)</span> (common in high-dimensional genomic and computer vision benchmarks), the probability that a faithful replication reaches significance is <strong>only <span class="arithmatex">\(50\%\)</span></strong>, even if the underlying scientific effect is completely real (<a href="#ref-nosek2015">Nosek et al., 2015</a>).</p>
+<div class="arithmatex">\[\Pr[\text{Replicate } Z_2 \ge z_{1-\alpha/2} \mid Z_1 \ge z_{1-\alpha/2}] = \Phi\left( \frac{\delta \sqrt{n_2} - z_{1-\alpha/2}}{\sqrt{1}} \right)\]</div>
+<p>If an initial experiment was barely powered at <span class="arithmatex">\(1 - \beta = 0.50\)</span> (common in high-dimensional genomic and computer vision benchmarks), the probability that a faithful replication reaches significance is <strong>only <span class="arithmatex">\(50\%\)</span></strong>, even if the underlying scientific effect is completely real (<a href="#ref-nosek2015">Nosek et al., 2015</a>).</p>
 <h4 id="false-discovery-rate-fdr-under-publication-bias">False Discovery Rate (FDR) under Publication Bias</h4>
 <p>Let <span class="arithmatex">\(\pi_0\)</span> denote the prior probability that an evaluated hypothesis is false (<span class="arithmatex">\(H_0\)</span> is true), and let <span class="arithmatex">\(\gamma \in [0, 1]\)</span> represent the selective publication filter (the probability that a non-significant result is published). The False Discovery Rate (FDR) of published scientific literature is defined as:</p>
-<div class="arithmatex">\[  ext{FDR} = rac{lpha \pi_0}{lpha \pi_0 + (1 - eta)(1 - \pi_0) + \gamma eta (1 - \pi_0)}\]</div>
-<p>Under strong publication bias where negative results remain unpublished (<span class="arithmatex">\(\gamma    o 0\)</span>):</p>
-<div class="arithmatex">\[  ext{FDR}_{\gamma=0} = rac{lpha \pi_0}{lpha \pi_0 + (1 - eta)(1 - \pi_0)}\]</div>
-<p>If <span class="arithmatex">\(90\%\)</span> of tested hypotheses are null (<span class="arithmatex">\(\pi_0 = 0.90\)</span>), <span class="arithmatex">\(lpha = 0.05\)</span>, and power <span class="arithmatex">\(1 - eta = 0.60\)</span>:</p>
-<div class="arithmatex">\[  ext{FDR} = rac{0.05    imes 0.90}{(0.05    imes 0.90) + (0.60  imes 0.10)} = rac{0.045}{0.045 + 0.060} = rac{0.045}{0.105} pprox 42.86\%\]</div>
+<div class="arithmatex">\[\text{FDR} = \frac{\alpha \pi_0}{\alpha \pi_0 + (1 - \beta)(1 - \pi_0) + \gamma \beta (1 - \pi_0)}\]</div>
+<p>Under strong publication bias where negative results remain unpublished (<span class="arithmatex">\(\gamma \to 0\)</span>):</p>
+<div class="arithmatex">\[\text{FDR}_{\gamma=0} = \frac{\alpha \pi_0}{\alpha \pi_0 + (1 - \beta)(1 - \pi_0)}\]</div>
+<p>If <span class="arithmatex">\(90\%\)</span> of tested hypotheses are null (<span class="arithmatex">\(\pi_0 = 0.90\)</span>), <span class="arithmatex">\(\alpha = 0.05\)</span>, and power <span class="arithmatex">\(1 - \beta = 0.60\)</span>:</p>
+<div class="arithmatex">\[\text{FDR} = \frac{0.05 \times 0.90}{(0.05 \times 0.90) + (0.60 \times 0.10)} = \frac{0.045}{0.045 + 0.060} = \frac{0.045}{0.105} \approx 42.86\%\]</div>
 <p>Nearly <strong><span class="arithmatex">\(43\%\)</span> of claimed discoveries in the literature are statistical false alarms</strong>, underscoring why open raw datasets and deterministic analysis code are indispensable for post-publication audits.</p>
 <h4 id="hoeffding-empirical-replication-concentration-bound">Hoeffding Empirical Replication Concentration Bound</h4>
-<p>For bounded metric outputs <span class="arithmatex">\(X_i \in [a, b]\)</span> evaluated on an independent validation benchmark of size <span class="arithmatex">\(n\)</span>, Hoeffding's inequality guarantees that the sample mean <span class="arithmatex">\(\hat{\mu}_n = rac{1}{n} \sum_{i=1}^n X_i\)</span> concentrates around true expectation <span class="arithmatex">\(\mu\)</span>:</p>
-<div class="arithmatex">\[\Pr\left[ |\hat{\mu}_n - \mu| \ge \epsilon 
-ight] \le 2\exp\left( - rac{2 n \epsilon^2}{(b - a)^2} 
-ight)\]</div>
+<p>For bounded metric outputs <span class="arithmatex">\(X_i \in [a, b]\)</span> evaluated on an independent validation benchmark of size <span class="arithmatex">\(n\)</span>, Hoeffding's inequality guarantees that the sample mean <span class="arithmatex">\(\hat{\mu}_n = \frac{1}{n} \sum_{i=1}^n X_i\)</span> concentrates around true expectation <span class="arithmatex">\(\mu\)</span>:</p>
+<div class="arithmatex">\[\Pr\left[ |\hat{\mu}_n - \mu| \ge \epsilon \right] \le 2\exp\left( - \frac{2 n \epsilon^2}{(b - a)^2} \right)\]</div>
 <p>Solving for the required replication benchmark size <span class="arithmatex">\(n\)</span> given error tolerance <span class="arithmatex">\(\epsilon\)</span> and significance <span class="arithmatex">\(\delta\)</span>:</p>
-<div class="arithmatex">\[n \ge rac{(b - a)^2 \ln(2/\delta)}{2 \epsilon^2}\]</div>
+<div class="arithmatex">\[n \ge \frac{(b - a)^2 \ln(2/\delta)}{2 \epsilon^2}\]</div>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements statistical power and False Discovery Rate (FDR) modeling under variable publication filters and empirical sample sizes, verified with rigorous assertions:</p>
@@ -7536,6 +7635,8 @@ ight)\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7300,18 +7402,17 @@
   class SchemaOrg,Croissant blue;
   class ParquetCatalog,ChecksumCatalog green;</code></pre>
 <h3 id="the-mathematics-of-metadata-completeness-semantic-entropy">The Mathematics of Metadata Completeness &amp; Semantic Entropy</h3>
-<p>Let an open science dataset <span class="arithmatex">\(D\)</span> be described across <span class="arithmatex">\(K\)</span> standardized metadata attributes <span class="arithmatex">\(\{m_1, m_2, \dots, m_K\}\)</span>, each assigned an importance weight <span class="arithmatex">\(w_k &gt; 0\)</span> such that <span class="arithmatex">\(\sum_{k=1}^K w_k = 1\)</span>. The <strong>Weighted Metadata Completeness Index</strong> <span class="arithmatex">\(\mathcal{C}_{ ext{meta}}(D) \in [0, 1]\)</span> is defined as:</p>
-<div class="arithmatex">\[\mathcal{C}_{ ext{meta}}(D) = \sum_{k=1}^K w_k \cdot \mathbb{I}(m_k 
-eq \emptyset)\]</div>
+<p>Let an open science dataset <span class="arithmatex">\(D\)</span> be described across <span class="arithmatex">\(K\)</span> standardized metadata attributes <span class="arithmatex">\(\{m_1, m_2, \dots, m_K\}\)</span>, each assigned an importance weight <span class="arithmatex">\(w_k &gt; 0\)</span> such that <span class="arithmatex">\(\sum_{k=1}^K w_k = 1\)</span>. The <strong>Weighted Metadata Completeness Index</strong> <span class="arithmatex">\(\mathcal{C}_{\text{meta}}(D) \in [0, 1]\)</span> is defined as:</p>
+<div class="arithmatex">\[\mathcal{C}_{\text{meta}}(D) = \sum_{k=1}^K w_k \cdot \mathbb{I}(m_k  \neq \emptyset)\]</div>
 <p>where <span class="arithmatex">\(\mathbb{I}(\cdot)\)</span> is the indicator function denoting whether attribute <span class="arithmatex">\(m_k\)</span> is populated with valid schema conforming content.</p>
 <h4 id="shannon-documentation-entropy">Shannon Documentation Entropy</h4>
 <p>To measure the balance of information across distinct documentation facets (provenance, ethics, statistics, technical schema), let <span class="arithmatex">\(p(f_j)\)</span> denote the normalized byte-volume distribution across documentation facets <span class="arithmatex">\(j \in \{1, \dots, F\}\)</span>:</p>
-<div class="arithmatex">\[H_{   ext{doc}}(D) = - \sum_{j=1}^F p(f_j) \log_2 p(f_j)\]</div>
-<p>Maximizing <span class="arithmatex">\(H_{ ext{doc}}(D)    o \log_2 F\)</span> prevents documentation asymmetry (e.g., where a dataset possesses deep technical schema details but zero sociotechnical or ethical provenance documentation).</p>
+<div class="arithmatex">\[H_{\text{doc}}(D) = - \sum_{j=1}^F p(f_j) \log_2 p(f_j)\]</div>
+<p>Maximizing <span class="arithmatex">\(H_{\text{doc}}(D) \to \log_2 F\)</span> prevents documentation asymmetry (e.g., where a dataset possesses deep technical schema details but zero sociotechnical or ethical provenance documentation).</p>
 <h4 id="semantic-interoperability-jaccard-distance">Semantic Interoperability Jaccard Distance</h4>
-<p>When harmonizing two independently documented datasets <span class="arithmatex">\(D_A\)</span> and <span class="arithmatex">\(D_B\)</span> across schema attribute sets <span class="arithmatex">\(\mathcal{A}(D_A)\)</span> and <span class="arithmatex">\(\mathcal{A}(D_B)\)</span>, the semantic interoperability distance <span class="arithmatex">\(d_{  ext{interop}}\)</span> is given by the Jaccard distance:</p>
-<div class="arithmatex">\[d_{   ext{interop}}(D_A, D_B) = 1 - rac{|\mathcal{A}(D_A) \cap \mathcal{A}(D_B)|}{|\mathcal{A}(D_A) \cup \mathcal{A}(D_B)|}\]</div>
-<p>Datasets adhering to standardized metadata ontologies (e.g., Croissant) maintain <span class="arithmatex">\(d_{   ext{interop}}   o 0\)</span>, enabling automated cross-platform pipelining.</p>
+<p>When harmonizing two independently documented datasets <span class="arithmatex">\(D_A\)</span> and <span class="arithmatex">\(D_B\)</span> across schema attribute sets <span class="arithmatex">\(\mathcal{A}(D_A)\)</span> and <span class="arithmatex">\(\mathcal{A}(D_B)\)</span>, the semantic interoperability distance <span class="arithmatex">\(d_{\text{interop}}\)</span> is given by the Jaccard distance:</p>
+<div class="arithmatex">\[d_{\text{interop}}(D_A, D_B) = 1 - \frac{|\mathcal{A}(D_A) \cap \mathcal{A}(D_B)|}{|\mathcal{A}(D_A) \cup \mathcal{A}(D_B)|}\]</div>
+<p>Datasets adhering to standardized metadata ontologies (e.g., Croissant) maintain <span class="arithmatex">\(d_{\text{interop}} \to 0\)</span>, enabling automated cross-platform pipelining.</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script validates a machine-actionable Croissant / Schema.org metadata manifest and evaluates documentation completeness and semantic entropy:</p>
@@ -7540,6 +7641,8 @@ eq \emptyset)\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

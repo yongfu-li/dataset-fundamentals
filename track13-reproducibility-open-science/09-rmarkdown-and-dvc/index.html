@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7302,17 +7404,14 @@
 <h3 id="the-mathematics-of-dual-tracking-content-addressable-storage">The Mathematics of Dual-Tracking Content-Addressable Storage</h3>
 <p>In the dual-tracking architecture, Git versions the lightweight content pointer <span class="arithmatex">\(p\)</span>, while DVC versions the heavy binary payload <span class="arithmatex">\(B\)</span> in an immutable content-addressable storage (CAS) fabric (<a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</p>
 <h4 id="the-synchrony-state-predicate">The Synchrony State Predicate</h4>
-<p>Let <span class="arithmatex">\(h_{    ext{git}}(t)\)</span> denote the cryptographic hash recorded in Git at commit timestamp <span class="arithmatex">\(t\)</span>, and let <span class="arithmatex">\(\mathcal{H}_{ ext{blob}}(B_{  ext{remote}})\)</span> denote the content digest of the physical payload stored in remote object storage. The <strong>Synchrony State Predicate</strong> <span class="arithmatex">\(\mathcal{S}_{  ext{sync}}(t) \in \{0, 1\}\)</span> evaluates:</p>
-<div class="arithmatex">\[\mathcal{S}_{ ext{sync}}(t) = \mathbb{I}\left( h_{    ext{git}}(t) = \mathcal{H}_{    ext{SHA-256}}\left( B_{ ext{remote}}(t) 
-ight) 
-ight)\]</div>
-<p>If <span class="arithmatex">\(\mathcal{S}_{   ext{sync}}(t) = 1\)</span>, the computational document is mathematically guaranteed to execute against the exact bitwise payload utilized during the author's original analysis.</p>
+<p>Let <span class="arithmatex">\(h_{\text{git}}(t)\)</span> denote the cryptographic hash recorded in Git at commit timestamp <span class="arithmatex">\(t\)</span>, and let <span class="arithmatex">\(\mathcal{H}_{\text{blob}}(B_{\text{remote}})\)</span> denote the content digest of the physical payload stored in remote object storage. The <strong>Synchrony State Predicate</strong> <span class="arithmatex">\(\mathcal{S}_{\text{sync}}(t) \in \{0, 1\}\)</span> evaluates:</p>
+<div class="arithmatex">\[\mathcal{S}_{\text{sync}}(t) = \mathbb{I}\left( h_{\text{git}}(t) = \mathcal{H}_{\text{SHA-256}}\left( B_{\text{remote}}(t) \right) \right)\]</div>
+<p>If <span class="arithmatex">\(\mathcal{S}_{\text{sync}}(t) = 1\)</span>, the computational document is mathematically guaranteed to execute against the exact bitwise payload utilized during the author's original analysis.</p>
 <h4 id="deduplication-efficiency-across-literate-revisions">Deduplication Efficiency Across Literate Revisions</h4>
-<p>Consider an interactive notebook tracking <span class="arithmatex">\(K\)</span> revisions of an evolving empirical benchmark dataset. Let <span class="arithmatex">\(\mathcal{B}_k\)</span> denote the set of chunks comprising revision <span class="arithmatex">\(k\)</span>. The global deduplication ratio <span class="arithmatex">\(\eta_{    ext{dedup}}\)</span> across <span class="arithmatex">\(K\)</span> revisions is:</p>
-<div class="arithmatex">\[\eta_{    ext{dedup}} = 1 - rac{\left| igcup_{k=1}^K \mathcal{B}_k 
-ight|}{\sum_{k=1}^K |\mathcal{B}_k|}\]</div>
+<p>Consider an interactive notebook tracking <span class="arithmatex">\(K\)</span> revisions of an evolving empirical benchmark dataset. Let <span class="arithmatex">\(\mathcal{B}_k\)</span> denote the set of chunks comprising revision <span class="arithmatex">\(k\)</span>. The global deduplication ratio <span class="arithmatex">\(\eta_{\text{dedup}}\)</span> across <span class="arithmatex">\(K\)</span> revisions is:</p>
+<div class="arithmatex">\[\eta_{\text{dedup}} = 1 - \frac{\left| \bigcup_{k=1}^K \mathcal{B}_k \right|}{\sum_{k=1}^K |\mathcal{B}_k|}\]</div>
 <p>For an incremental edit affecting only fraction <span class="arithmatex">\(\delta \ll 1\)</span> of dataset chunks, DVC achieves asymptotic deduplication:</p>
-<div class="arithmatex">\[\lim_{K   o \infty} \eta_{    ext{dedup}} = 1 - \delta\]</div>
+<div class="arithmatex">\[\lim_{K \to \infty} \eta_{\text{dedup}} = 1 - \delta\]</div>
 <p>slashing object storage replication costs from naive <span class="arithmatex">\(\mathcal{O}(K \cdot |B|)\)</span> to <span class="arithmatex">\(\mathcal{O}(|B| + K \cdot \delta \cdot |B|)\)</span>.</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
@@ -7400,7 +7499,7 @@ ight|}{\sum_{k=1}^K |\mathcal{B}_k|}\]</div>
 <h2 id="empirical-case-study-climate-modeling-cmip6-computational-notebooks">🔬 Empirical Case Study: Climate Modeling &amp; CMIP6 Computational Notebooks</h2>
 <p>In global climate change modeling:</p>
 <ol>
-<li><strong>The Challenge:</strong> The <strong>Coupled Model Intercomparison Project (CMIP6)</strong> generates over <strong><span class="arithmatex">\(40    ext{ Petabytes}\)</span> of simulation outputs</strong> predicting sea level rise and ocean temperatures under varied IPCC carbon emission scenarios (<a href="#ref-eyring2016">Eyring et al., 2016</a>).</li>
+<li><strong>The Challenge:</strong> The <strong>Coupled Model Intercomparison Project (CMIP6)</strong> generates over <strong><span class="arithmatex">\(40\text{ Petabytes}\)</span> of simulation outputs</strong> predicting sea level rise and ocean temperatures under varied IPCC carbon emission scenarios (<a href="#ref-eyring2016">Eyring et al., 2016</a>).</li>
 <li><strong>The Friction:</strong> Climate researchers previously shared static PDF reports where figures could not be inspected or recalculated from raw NetCDF files.</li>
 <li><strong>The Solution:</strong> The climate science community deployed <strong>Pangeo notebooks and DVC-backed cloud storage</strong> (<a href="#ref-rule2019">Rule et al., 2019</a>). Every IPCC report chapter is now accompanied by reproducible Quarto and Jupyter notebooks that stream chunked zarr arrays directly from cloud object stores. Peer reviewers can recompute global mean surface temperature graphs in real time directly inside their web browsers.</li>
 </ol>
@@ -7523,6 +7622,8 @@ ight|}{\sum_{k=1}^K |\mathcal{B}_k|}\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

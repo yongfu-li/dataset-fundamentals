@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7305,26 +7407,24 @@
   class Control1,Control2,Control3 green;</code></pre>
 <h3 id="the-mathematics-of-floating-point-non-associativity">The Mathematics of Floating-Point Non-Associativity</h3>
 <p>IEEE 754 standard floating-point addition <span class="arithmatex">\(\oplus\)</span> is <strong>commutative</strong> (<span class="arithmatex">\(x \oplus y = y \oplus x\)</span>), but fundamentally <strong>non-associative</strong> (<a href="#ref-higham2002">Higham, 2002</a>):</p>
-<div class="arithmatex">\[(x \oplus y) \oplus z 
-eq x \oplus (y \oplus z)\]</div>
-<p>Let $   ext{fl}(x + y) = (x + y)(1 + \delta)$ with <span class="arithmatex">\(|\delta| \le \epsilon_{ ext{mach}}\)</span>, where machine epsilon <span class="arithmatex">\(\epsilon_{  ext{mach}} = 2^{-24} pprox 5.96    imes 10^{-8}\)</span> for single-precision IEEE 754 <code>float32</code>.</p>
+<div class="arithmatex">\[(x \oplus y) \oplus z  \neq x \oplus (y \oplus z)\]</div>
+<p>Let <span class="arithmatex">\(\text{fl}(x + y) = (x + y)(1 + \delta)\)</span> with <span class="arithmatex">\(|\delta| \le \epsilon_{\text{mach}}\)</span>, where machine epsilon <span class="arithmatex">\(\epsilon_{\text{mach}} = 2^{-24} \approx 5.96 \times 10^{-8}\)</span> for single-precision IEEE 754 <code>float32</code>.</p>
 <h4 id="error-propagation-in-parallel-reductions">Error Propagation in Parallel Reductions</h4>
 <p>When computing the sum of <span class="arithmatex">\(n\)</span> floating-point numbers <span class="arithmatex">\(S = \sum_{i=1}^n x_i\)</span> across parallel GPU execution threads, the reduction tree topology depends on the dynamic arrival time of warp threads executing atomic additions (<code>atomicAdd</code>). For naive recursive summation, the accumulated roundoff error bound is:</p>
-<div class="arithmatex">\[|E_{  ext{naive}}| \le (n - 1) \epsilon_{ ext{mach}} \sum_{i=1}^n |x_i| + \mathcal{O}(\epsilon_{  ext{mach}}^2)\]</div>
+<div class="arithmatex">\[|E_{\text{naive}}| \le (n - 1) \epsilon_{\text{mach}} \sum_{i=1}^n |x_i| + \mathcal{O}(\epsilon_{\text{mach}}^2)\]</div>
 <p>By contrast, <strong>Kahan Compensated Summation</strong> tracks the lost low-order bits using a running compensation variable <span class="arithmatex">\(c_i\)</span>:</p>
-<div class="arithmatex">\[egin{aligned}
+<div class="arithmatex">\[\begin{aligned}
 y_i &amp;= x_i - c_{i-1} \
 t_i &amp;= S_{i-1} + y_i \
 c_i &amp;= (t_i - S_{i-1}) - y_i \
 S_i &amp;= t_i
 \end{aligned}\]</div>
 <p>The Kahan summation error bound collapses the linear dependence on <span class="arithmatex">\(n\)</span> down to an invariant threshold:</p>
-<div class="arithmatex">\[|E_{  ext{Kahan}}| \le \left( 2 \epsilon_{    ext{mach}} + \mathcal{O}(n \epsilon_{   ext{mach}}^2) 
-ight) \sum_{i=1}^n |x_i|\]</div>
+<div class="arithmatex">\[|E_{\text{Kahan}}| \le \left( 2 \epsilon_{\text{mach}} + \mathcal{O}(n \epsilon_{\text{mach}}^2) \right) \sum_{i=1}^n |x_i|\]</div>
 <p>In deep neural networks trained with stochastic gradient descent (SGD) over <span class="arithmatex">\(T = 10^5\)</span> steps, a microscopic single-step floating-point variance <span class="arithmatex">\(\Delta g_t \sim 10^{-7}\)</span> in backpropagated gradients compounds through nonlinear activation functions, eventually pushing optimizer trajectories into completely different loss basins (<a href="#ref-sculley2015">Sculley et al., 2015</a>).</p>
 <h4 id="reproducibility-checklist-compliance-index">Reproducibility Checklist Compliance Index</h4>
-<p>To objectively quantify adherence to reproducibility best practices, we define the <strong>Reproducibility Checklist Index</strong> <span class="arithmatex">\(\mathcal{I}_{   ext{rep}} \in [0, 1]\)</span> across <span class="arithmatex">\(K\)</span> standard reporting criteria (<a href="#ref-pineau2021">Pineau et al., 2021</a>):</p>
-<div class="arithmatex">\[\mathcal{I}_{ ext{rep}} = rac{\sum_{k=1}^K w_k \cdot \mathbb{I}( ext{Criterion}_k =  ext{Satisfied})}{\sum_{k=1}^K w_k}\]</div>
+<p>To objectively quantify adherence to reproducibility best practices, we define the <strong>Reproducibility Checklist Index</strong> <span class="arithmatex">\(\mathcal{I}_{\text{rep}} \in [0, 1]\)</span> across <span class="arithmatex">\(K\)</span> standard reporting criteria (<a href="#ref-pineau2021">Pineau et al., 2021</a>):</p>
+<div class="arithmatex">\[\mathcal{I}_{\text{rep}} = \frac{\sum_{k=1}^K w_k \cdot \mathbb{I}(\text{Criterion}_k = \text{Satisfied})}{\sum_{k=1}^K w_k}\]</div>
 <p>where criteria encompass: (1) specification of exact random seeds, (2) compute infrastructure description, (3) dataset split hashes, (4) hyperparameters tuning bounds, and (5) code repository preservation.</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
@@ -7547,6 +7647,8 @@ ight) \sum_{i=1}^n |x_i|\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

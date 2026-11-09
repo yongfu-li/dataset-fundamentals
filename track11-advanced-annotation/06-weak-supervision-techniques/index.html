@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6345,6 +6364,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6406,6 +6453,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7061,6 +7136,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7230,8 +7332,8 @@
 </blockquote>
 <hr />
 <h2 id="conceptual-overview-the-label-aggregation-problem">🎯 Conceptual Overview &amp; The Label Aggregation Problem</h2>
-<p>In programmatic weak supervision, evaluating <span class="arithmatex">\(m\)</span> labeling functions across <span class="arithmatex">\(n\)</span> instances produces a sparse, noisy label matrix <span class="arithmatex">\(oldsymbol{\Lambda} \in \{-1, 0, +1\}^{n    imes m}\)</span>. Simple majority voting across active LFs fails because labeling functions have <strong>unknown and widely varying accuracies</strong>, exhibit <strong>correlated errors</strong> (e.g. two regex LFs sharing common keywords), and have <strong>varying coverage</strong> (<a href="#ref-ratner2016">Ratner et al., 2016</a>).</p>
-<p>The central breakthrough of modern weak supervision is the <strong>Generative Label Model</strong>: an unsupervised probabilistic model that learns the true underlying accuracies <span class="arithmatex">\(oldsymbol{  heta}\)</span> of each labeling function <strong>without requiring a single ground truth label</strong>, by observing cross-LF agreements and co-occurrences.</p>
+<p>In programmatic weak supervision, evaluating <span class="arithmatex">\(m\)</span> labeling functions across <span class="arithmatex">\(n\)</span> instances produces a sparse, noisy label matrix <span class="arithmatex">\(\boldsymbol{\Lambda} \in \{-1, 0, +1\}^{n \times m}\)</span>. Simple majority voting across active LFs fails because labeling functions have <strong>unknown and widely varying accuracies</strong>, exhibit <strong>correlated errors</strong> (e.g. two regex LFs sharing common keywords), and have <strong>varying coverage</strong> (<a href="#ref-ratner2016">Ratner et al., 2016</a>).</p>
+<p>The central breakthrough of modern weak supervision is the <strong>Generative Label Model</strong>: an unsupervised probabilistic model that learns the true underlying accuracies <span class="arithmatex">\(\boldsymbol{\theta}\)</span> of each labeling function <strong>without requiring a single ground truth label</strong>, by observing cross-LF agreements and co-occurrences.</p>
 <pre class="mermaid"><code>graph TD
     NoisyMatrix["Noisy Label Matrix Lambda (n x m)"] --&gt; CovarianceEst["Step 1: Compute Empirical Covariance Sigma_Lambda"]
     CovarianceEst --&gt; MatrixCompletion["Step 2: Matrix Completion / Graphical Model Optimization"]
@@ -7245,27 +7347,23 @@
     class MatrixCompletion,Accuracies,PosteriorProb,SoftLabels green;</code></pre>
 <hr />
 <h3 id="1-mathematical-formalism-the-factor-graph-model">1. Mathematical Formalism: The Factor Graph Model</h3>
-<p>Let <span class="arithmatex">\(Y \in \{-1, +1\}\)</span> denote the latent unobserved ground truth label of an instance, and let <span class="arithmatex">\(oldsymbol{\Lambda} = (\Lambda_1, \dots, \Lambda_m) \in \{-1, 0, +1\}^m\)</span> denote the observed votes. We model the joint distribution as a log-linear Markov Random Field (factor graph) (<a href="#ref-ratner2019">Ratner et al., 2019</a>):</p>
-<p>$<span class="arithmatex">\(P_{oldsymbol{    heta}}(oldsymbol{\Lambda}, Y) = rac{1}{Z_{oldsymbol{ heta}}} \exp\left( \sum_{j=1}^m     heta_j \, \Lambda_j Y + \sum_{j &lt; k}    heta_{jk} \, \Lambda_j \Lambda_k 
-ight)\)</span>$
+<p>Let <span class="arithmatex">\(Y \in \{-1, +1\}\)</span> denote the latent unobserved ground truth label of an instance, and let <span class="arithmatex">\(\boldsymbol{\Lambda} = (\Lambda_1, \dots, \Lambda_m) \in \{-1, 0, +1\}^m\)</span> denote the observed votes. We model the joint distribution as a log-linear Markov Random Field (factor graph) (<a href="#ref-ratner2019">Ratner et al., 2019</a>):</p>
+<p>$<span class="arithmatex">\(P_{\boldsymbol{\theta}}(\boldsymbol{\Lambda}, Y) = \frac{1}{Z_{\boldsymbol{\theta}}} \exp\left( \sum_{j=1}^m \theta_j \, \Lambda_j Y + \sum_{j &lt; k} \theta_{jk} \, \Lambda_j \Lambda_k \right)\)</span>$
 where:
-- $ heta_j$ reflects the intrinsic accuracy of labeling function <span class="arithmatex">\(j\)</span> ($ heta_j &gt; 0$ means LF is more accurate than random guessing).
-- $ heta_{jk}$ models pairwise correlations or dependencies between LFs <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(k\)</span>.
-- <span class="arithmatex">\(Z_{oldsymbol{   heta}} = \sum_{oldsymbol{\Lambda}, Y} \exp(\dots)\)</span> is the partition function.</p>
+- <span class="arithmatex">\(\theta_j\)</span> reflects the intrinsic accuracy of labeling function <span class="arithmatex">\(j\)</span> (<span class="arithmatex">\(\theta_j &gt; 0\)</span> means LF is more accurate than random guessing).
+- <span class="arithmatex">\(\theta_{jk}\)</span> models pairwise correlations or dependencies between LFs <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(k\)</span>.
+- <span class="arithmatex">\(Z_{\boldsymbol{\theta}} = \sum_{\boldsymbol{\Lambda}, Y} \exp(\dots)\)</span> is the partition function.</p>
 <hr />
 <h3 id="2-parameter-estimation-via-covariance-matching">2. Parameter Estimation via Covariance Matching</h3>
 <p>Under the conditional independence assumption (given <span class="arithmatex">\(Y\)</span>, LFs make conditionally independent errors), Ratner et al. (<a href="#ref-ratner2019">2019</a>) proved that LF accuracies can be solved in closed form through <strong>matrix completion on the empirical covariance</strong>:</p>
-<p>Let <span class="arithmatex">\(oldsymbol{\Sigma}_{oldsymbol{\Lambda}} = \mathbb{E}[oldsymbol{\Lambda} oldsymbol{\Lambda}^ op] - \mathbb{E}[oldsymbol{\Lambda}]\mathbb{E}[oldsymbol{\Lambda}]^   op\)</span> be the <span class="arithmatex">\(m   imes m\)</span> empirical covariance matrix of the observed label votes.
-Because <span class="arithmatex">\(Y\)</span> is a latent variable with variance $    ext{Var}(Y) = 1$:
-$<span class="arithmatex">\(oldsymbol{\Sigma}_{oldsymbol{\Lambda}} = \mathbf{z} \mathbf{z}^ op + \mathbf{\Omega}\)</span>$
-where <span class="arithmatex">\(z_j =    ext{Cov}(\Lambda_j, Y)\)</span> captures the correlation of LF <span class="arithmatex">\(j\)</span> with the unobserved ground truth, and <span class="arithmatex">\(\mathbf{\Omega}\)</span> is a diagonal matrix of noise variances.</p>
-<p>By solving this rank-1 matrix completion problem over the off-diagonal elements of <span class="arithmatex">\(oldsymbol{\Sigma}_{oldsymbol{\Lambda}}\)</span>, the vector <span class="arithmatex">\(\mathbf{z}\)</span> is identified up to a sign flip:
-$<span class="arithmatex">\(z_j z_k = (oldsymbol{\Sigma}_{oldsymbol{\Lambda}})_{jk} \quad orall j 
-eq k \implies z_j = \sqrt{rac{(oldsymbol{\Sigma}_{oldsymbol{\Lambda}})_{jk} (oldsymbol{\Sigma}_{oldsymbol{\Lambda}})_{j\ell}}{(oldsymbol{\Sigma}_{oldsymbol{\Lambda}})_{k\ell}}}\)</span>$
-Once <span class="arithmatex">\(\mathbf{z}\)</span> is estimated, the posterior probability $ ilde{y}<em _Lambda__ij="\Lambda_{ij" j:="j:">i = P(Y_i = 1 \mid oldsymbol{\Lambda}_i)$ is computed directly via Bayes' rule:
-$$  ilde{y}_i = rac{P(Y_i = 1) \prod</em> 
-eq 0} P(\Lambda_{ij} \mid Y_i = 1)}{\sum_{y \in {-1, +1}} P(Y_i = y) \prod_{j: \Lambda_{ij} 
-eq 0} P(\Lambda_{ij} \mid Y_i = y)}$$</p>
+<p>Let <span class="arithmatex">\(\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}} = \mathbb{E}[\boldsymbol{\Lambda} \boldsymbol{\Lambda}^\top] - \mathbb{E}[\boldsymbol{\Lambda}]\mathbb{E}[\boldsymbol{\Lambda}]^\top\)</span> be the <span class="arithmatex">\(m \times m\)</span> empirical covariance matrix of the observed label votes.
+Because <span class="arithmatex">\(Y\)</span> is a latent variable with variance <span class="arithmatex">\(\text{Var}(Y) = 1\)</span>:
+$<span class="arithmatex">\(\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}} = \mathbf{z} \mathbf{z}^\top + \mathbf{\Omega}\)</span>$
+where <span class="arithmatex">\(z_j = \text{Cov}(\Lambda_j, Y)\)</span> captures the correlation of LF <span class="arithmatex">\(j\)</span> with the unobserved ground truth, and <span class="arithmatex">\(\mathbf{\Omega}\)</span> is a diagonal matrix of noise variances.</p>
+<p>By solving this rank-1 matrix completion problem over the off-diagonal elements of <span class="arithmatex">\(\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}}\)</span>, the vector <span class="arithmatex">\(\mathbf{z}\)</span> is identified up to a sign flip:
+$<span class="arithmatex">\(z_j z_k = (\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}})_{jk} \quad \forall j  \neq k \implies z_j = \sqrt{\frac{(\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}})_{jk} (\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}})_{j\ell}}{(\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}})_{k\ell}}}\)</span>$
+Once <span class="arithmatex">\(\mathbf{z}\)</span> is estimated, the posterior probability <span class="arithmatex">\(\tilde{y}_i = P(Y_i = 1 \mid \boldsymbol{\Lambda}_i)\)</span> is computed directly via Bayes' rule:
+$<span class="arithmatex">\(\tilde{y}_i = \frac{P(Y_i = 1) \prod_{j: \Lambda_{ij}  \neq 0} P(\Lambda_{ij} \mid Y_i = 1)}{\sum_{y \in \{-1, +1\}} P(Y_i = y) \prod_{j: \Lambda_{ij}  \neq 0} P(\Lambda_{ij} \mid Y_i = y)}\)</span>$</p>
 <hr />
 <h2 id="production-implementation-minimal-covariance-matching-label-model">💻 Production Implementation: Minimal Covariance-Matching Label Model</h2>
 <p>The following Python script implements a self-contained Generative Label Model using covariance matching, inferring individual LF accuracy parameters and estimating probabilistic soft labels.</p>
@@ -7518,6 +7616,8 @@ eq 0} P(\Lambda_{ij} \mid Y_i = y)}$$</p>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

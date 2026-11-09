@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7266,8 +7368,8 @@
 <h2 id="conceptual-overview-the-human-capital-spectrum">🎯 Conceptual Overview &amp; The Human Capital Spectrum</h2>
 <p>When human annotations are required, data managers must choose the workforce composition along a continuum of expertise and expense (<a href="#ref-snow2008">Snow et al., 2008</a>):
 1. <strong>Generalist Lay Crowd (MTurk, Clickworker):</strong> Massive concurrency, low cost per label (<span class="arithmatex">\(\$0.02 - \$0.20\)</span>), but high variance, random noise, and lack of specialized domain training.
-2. <strong>Dedicated In-House Annotators:</strong> Trained on explicit task guidelines, consistent reliability, moderate cost (<span class="arithmatex">\(\$15 - \$35 /    ext{hour}\)</span>).
-3. <strong>Certified Domain Specialists (Radiologists, Patent Attorneys, Actuaries):</strong> Gold-standard domain accuracy, but severely constrained availability and high hourly expense (<span class="arithmatex">\(\$150 - \$500 /     ext{hour}\)</span>).</p>
+2. <strong>Dedicated In-House Annotators:</strong> Trained on explicit task guidelines, consistent reliability, moderate cost (<span class="arithmatex">\(\$15 - \$35 / \text{hour}\)</span>).
+3. <strong>Certified Domain Specialists (Radiologists, Patent Attorneys, Actuaries):</strong> Gold-standard domain accuracy, but severely constrained availability and high hourly expense (<span class="arithmatex">\(\$150 - \$500 / \text{hour}\)</span>).</p>
 <pre class="mermaid"><code>graph LR
     Workforce["Workforce Allocation Strategy"] --&gt; Crowd["Lay Crowd Workers&lt;br/&gt;(Low Cost, High Throughput, High Variance)"]
     Workforce --&gt; InHouse["Trained Annotators&lt;br/&gt;(Moderate Cost, High Consistency)"]
@@ -7284,28 +7386,26 @@
 <hr />
 <h3 id="1-mathematical-formalism-inter-rater-reliability-krippendorffs-alpha">1. Mathematical Formalism: Inter-Rater Reliability &amp; Krippendorff's Alpha</h3>
 <p>To evaluate whether annotators are in meaningful scientific consensus or merely guessing, simple percent agreement is misleading because it does not account for agreements occurring purely by chance (<a href="#ref-artstein2008">Artstein &amp; Poesio, 2008</a>).</p>
-<p><strong>Krippendorff's Alpha (<span class="arithmatex">\(lpha\)</span>)</strong> is the universal agreement statistic capable of handling multiple raters, missing observations, and arbitrary metric levels (nominal, ordinal, interval):</p>
-<p>$<span class="arithmatex">\(lpha = 1 - rac{D_o}{D_e}\)</span>$
+<p><strong>Krippendorff's Alpha (<span class="arithmatex">\(\alpha\)</span>)</strong> is the universal agreement statistic capable of handling multiple raters, missing observations, and arbitrary metric levels (nominal, ordinal, interval):</p>
+<p>$<span class="arithmatex">\(\alpha = 1 - \frac{D_o}{D_e}\)</span>$
 where:
 - <span class="arithmatex">\(D_o\)</span> is the observed disagreement among annotators across instances:
-  $<span class="arithmatex">\(D_o = rac{1}{n} \sum_{i=1}^n \sum_{c} \sum_{k} rac{r_{ic} \, r_{ik}}{m_i (m_i - 1)} \, \delta^2(c, k)\)</span>$
+  $<span class="arithmatex">\(D_o = \frac{1}{n} \sum_{i=1}^n \sum_{c} \sum_{k} \frac{r_{ic} \, r_{ik}}{m_i (m_i - 1)} \, \delta^2(c, k)\)</span>$
 - <span class="arithmatex">\(D_e\)</span> is the expected disagreement attributable to chance:
-  $<span class="arithmatex">\(D_e = rac{1}{n(n - 1)} \sum_{c} \sum_{k} n_c \, n_k \, \delta^2(c, k)\)</span>$
-- <span class="arithmatex">\(\delta^2(c, k)\)</span> is the metric difference function (for nominal labels: <span class="arithmatex">\(\delta^2(c, k) = 0\)</span> if <span class="arithmatex">\(c=k\)</span>, and <span class="arithmatex">\(1\)</span> if <span class="arithmatex">\(c 
-eq k\)</span>).</p>
+  $<span class="arithmatex">\(D_e = \frac{1}{n(n - 1)} \sum_{c} \sum_{k} n_c \, n_k \, \delta^2(c, k)\)</span>$
+- <span class="arithmatex">\(\delta^2(c, k)\)</span> is the metric difference function (for nominal labels: <span class="arithmatex">\(\delta^2(c, k) = 0\)</span> if <span class="arithmatex">\(c=k\)</span>, and <span class="arithmatex">\(1\)</span> if <span class="arithmatex">\(c  \neq k\)</span>).</p>
 <h4 id="standard-krippendorff-scientific-interpretations">Standard Krippendorff Scientific Interpretations:</h4>
 <ul>
-<li><span class="arithmatex">\(lpha \ge 0.80\)</span>: Highly reliable data suitable for high-stakes medical/legal research.</li>
-<li><span class="arithmatex">\(0.67 \le lpha &lt; 0.80\)</span>: Moderate agreement allowing tentative conclusions.</li>
-<li><span class="arithmatex">\(lpha &lt; 0.67\)</span>: Unreliable data; indicates ambiguous guidelines or unqualified raters.</li>
+<li><span class="arithmatex">\(\alpha \ge 0.80\)</span>: Highly reliable data suitable for high-stakes medical/legal research.</li>
+<li><span class="arithmatex">\(0.67 \le \alpha &lt; 0.80\)</span>: Moderate agreement allowing tentative conclusions.</li>
+<li><span class="arithmatex">\(\alpha &lt; 0.67\)</span>: Unreliable data; indicates ambiguous guidelines or unqualified raters.</li>
 </ul>
 <hr />
 <h3 id="2-the-crowd-vs-expert-economic-optimization-model">2. The Crowd vs. Expert Economic Optimization Model</h3>
-<p>Let <span class="arithmatex">\(N\)</span> be the total target instances. Suppose a fraction <span class="arithmatex">\(p\)</span> of instances can be reliably labeled by majority voting across <span class="arithmatex">\(R\)</span> redundant crowd workers at cost <span class="arithmatex">\(c_{   ext{crowd}}\)</span>, while the remaining ambiguous fraction <span class="arithmatex">\((1 - p)\)</span> must be routed to experts at cost <span class="arithmatex">\(c_{   ext{expert}}\)</span>:</p>
-<div class="arithmatex">\[  ext{Total Cost} = N \cdot \left( p \cdot R \cdot c_{    ext{crowd}} + (1 - p) \cdot c_{ ext{expert}} 
-ight)$$
-$$  ext{subject to} \quad lpha_{   ext{blended}} \ge lpha_{   ext{target}}\]</div>
-<p>When <span class="arithmatex">\(c_{   ext{expert}} / c_{  ext{crowd}} pprox 100\)</span> (e.g. $200/hr radiologist vs $0.10/hit crowd worker), filtering even <span class="arithmatex">\(70\%\)</span> of routine normal cases to the crowd reduces total annotation spend by <strong>over <span class="arithmatex">\(65\%\)</span></strong> while preserving expert precision on complex pathologies.</p>
+<p>Let <span class="arithmatex">\(N\)</span> be the total target instances. Suppose a fraction <span class="arithmatex">\(p\)</span> of instances can be reliably labeled by majority voting across <span class="arithmatex">\(R\)</span> redundant crowd workers at cost <span class="arithmatex">\(c_{\text{crowd}}\)</span>, while the remaining ambiguous fraction <span class="arithmatex">\((1 - p)\)</span> must be routed to experts at cost <span class="arithmatex">\(c_{\text{expert}}\)</span>:</p>
+<div class="arithmatex">\[\text{Total Cost} = N \cdot \left( p \cdot R \cdot c_{\text{crowd}} + (1 - p) \cdot c_{\text{expert}} \right)$$
+$$\text{subject to} \quad \alpha_{\text{blended}} \ge \alpha_{\text{target}}\]</div>
+<p>When <span class="arithmatex">\(c_{\text{expert}} / c_{\text{crowd}} \approx 100\)</span> (e.g. $200/hr radiologist vs $0.10/hit crowd worker), filtering even <span class="arithmatex">\(70\%\)</span> of routine normal cases to the crowd reduces total annotation spend by <strong>over <span class="arithmatex">\(65\%\)</span></strong> while preserving expert precision on complex pathologies.</p>
 <hr />
 <h2 id="production-implementation-krippendorffs-alpha-inter-annotator-agreement-engine">💻 Production Implementation: Krippendorff's Alpha Inter-Annotator Agreement Engine</h2>
 <p>The following Python script implements Krippendorff's Alpha for nominal categories, computing observed versus chance disagreement across multiple annotators with missing entries.</p>
@@ -7558,6 +7658,8 @@ $$  ext{subject to} \quad lpha_{   ext{blended}} \ge lpha_{   ext{target}}\]</
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

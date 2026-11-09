@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6401,6 +6420,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6462,6 +6509,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7117,6 +7192,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7372,26 +7474,23 @@
 <h3 id="storage-engine-mechanics-b-trees-vs-log-structured-merge-lsm-trees">Storage Engine Mechanics: B+ Trees vs. Log-Structured Merge (LSM) Trees</h3>
 <p>The core performance determinant of any database is its fundamental storage structure:</p>
 <h4 id="1-b-trees-read-optimized-in-place-updates">1. B+ Trees (Read-Optimized, In-Place Updates)</h4>
-<p>B+ Trees organize data into fixed-size pages (typically <span class="arithmatex">\(4  ext{ KB} - 16   ext{ KB}\)</span>). Mutations require <strong>in-place overwrites</strong>:
+<p>B+ Trees organize data into fixed-size pages (typically <span class="arithmatex">\(4\text{ KB} - 16\text{ KB}\)</span>). Mutations require <strong>in-place overwrites</strong>:
 - <strong>Read Complexity:</strong> <span class="arithmatex">\(\mathcal{O}(\log_B N)\)</span>, where <span class="arithmatex">\(B\)</span> is the fanout factor (often <span class="arithmatex">\(100 - 1000\)</span>).
-- <strong>Write Penalty:</strong> Writing a small <span class="arithmatex">\(100   ext{ byte}\)</span> record requires reading and rewriting an entire <span class="arithmatex">\(16 ext{ KB}\)</span> page to disk, creating heavy <strong>write amplification</strong> and random disk I/O.</p>
+- <strong>Write Penalty:</strong> Writing a small <span class="arithmatex">\(100\text{ byte}\)</span> record requires reading and rewriting an entire <span class="arithmatex">\(16\text{ KB}\)</span> page to disk, creating heavy <strong>write amplification</strong> and random disk I/O.</p>
 <h4 id="2-log-structured-merge-lsm-trees-write-optimized-sequential-appends">2. Log-Structured Merge (LSM) Trees (Write-Optimized, Sequential Appends)</h4>
 <p>Introduced by O'Neil et al. (<a href="#ref-oneil1996">1996</a>), LSM-trees transform random writes into sequential appends through a tiered hierarchy.</p>
 <h3 id="mathematical-foundations-of-storage-amplification-bloom-filters">Mathematical Foundations of Storage Amplification &amp; Bloom Filters</h3>
 <h4 id="1-write-amplification-factor-w_a">1. Write Amplification Factor (<span class="arithmatex">\(W_A\)</span>)</h4>
-<p>Let <span class="arithmatex">\(T\)</span> denote the sizing ratio between adjacent levels (typically <span class="arithmatex">\(T pprox 10\)</span>) and <span class="arithmatex">\(L\)</span> denote the maximum level depth in leveled compaction. The total write amplification is bounded by:
-$<span class="arithmatex">\(W_A = rac{   ext{Total Bytes Written to Underlying Storage}}{    ext{Total Logical Bytes Submitted by Application}} = \mathcal{O}(T \cdot L)\)</span>$
+<p>Let <span class="arithmatex">\(T\)</span> denote the sizing ratio between adjacent levels (typically <span class="arithmatex">\(T \approx 10\)</span>) and <span class="arithmatex">\(L\)</span> denote the maximum level depth in leveled compaction. The total write amplification is bounded by:
+$<span class="arithmatex">\(W_A = \frac{\text{Total Bytes Written to Underlying Storage}}{\text{Total Logical Bytes Submitted by Application}} = \mathcal{O}(T \cdot L)\)</span>$
 In B-trees, random update write amplification frequently exceeds <span class="arithmatex">\(50 - 100\)</span>, whereas optimized LSM-trees maintain predictable sequential write rates.</p>
 <h4 id="2-bloom-filter-false-positive-rate-mathematics">2. Bloom Filter False Positive Rate Mathematics</h4>
 <p>To prevent disk seek penalties during point reads, each SSTable stores a Bloom filter of <span class="arithmatex">\(m\)</span> bits indexing <span class="arithmatex">\(n\)</span> inserted keys using <span class="arithmatex">\(k\)</span> independent hash functions (<a href="#ref-bloom1970">Bloom, 1970</a>). The probability of a false positive <span class="arithmatex">\(p\)</span> is derived as:
-$<span class="arithmatex">\(p = \left( 1 - \left( 1 - rac{1}{m} 
-ight)^{k n} 
-ight)^k pprox \left( 1 - e^{-k n / m} 
-ight)^k\)</span>$</p>
+$<span class="arithmatex">\(p = \left( 1 - \left( 1 - \frac{1}{m} \right)^{k n} \right)^k \approx \left( 1 - e^{-k n / m} \right)^k\)</span>$</p>
 <p>Minimizing <span class="arithmatex">\(p\)</span> with respect to the number of hash functions <span class="arithmatex">\(k\)</span> yields:
-$<span class="arithmatex">\(k_{   ext{optimal}} = rac{m}{n} \ln 2 pprox 0.693 \cdot rac{m}{n}\)</span>$
-$<span class="arithmatex">\(p_{\min} = 2^{-k_{    ext{optimal}}} pprox (0.6185)^{m / n}\)</span>$
-Allocating <span class="arithmatex">\(m / n = 10  ext{ bits per key}\)</span> with <span class="arithmatex">\(k = 7\)</span> hashes guarantees a false positive rate <span class="arithmatex">\(p &lt; 0.0082\)</span> (<span class="arithmatex">\(&lt; 1\%\)</span>), eliminating over <span class="arithmatex">\(99\%\)</span> of non-existent key disk reads.</p>
+$<span class="arithmatex">\(k_{\text{optimal}} = \frac{m}{n} \ln 2 \approx 0.693 \cdot \frac{m}{n}\)</span>$
+$<span class="arithmatex">\(p_{\min} = 2^{-k_{\text{optimal}}} \approx (0.6185)^{m / n}\)</span>$
+Allocating <span class="arithmatex">\(m / n = 10\text{ bits per key}\)</span> with <span class="arithmatex">\(k = 7\)</span> hashes guarantees a false positive rate <span class="arithmatex">\(p &lt; 0.0082\)</span> (<span class="arithmatex">\(&lt; 1\%\)</span>), eliminating over <span class="arithmatex">\(99\%\)</span> of non-existent key disk reads.</p>
 <hr />
 <h2 id="production-implementation-in-memory-lsm-tree-engine">💻 Production Implementation: In-Memory LSM-Tree Engine</h2>
 <p>The following typed Python implementation illustrates the core components of an LSM-Tree: an append-only WAL, an in-memory sorted MemTable, immutable SSTable flushes, and Bloom filter acceleration with verified false-positive bounds.</p>
@@ -7517,9 +7616,9 @@ Allocating <span class="arithmatex">\(m / n = 10  ext{ bits per key}\)</span> wi
 <li><strong>The Peak Concurrency Challenge:</strong> Global shopping traffic surges unpredictably, creating localized hot partitions and billions of concurrent transactions.</li>
 <li><strong>The Architecture:</strong> DynamoDB decouples storage nodes from stateless request routers. Partition keys are hashed onto a distributed storage ring, with data replicated synchronously across three Availability Zones using Paxos consensus.</li>
 <li><strong>The Quantitative Outcome:</strong> During Prime Day 2023, DynamoDB handled:</li>
-<li><strong>Peak Traffic:</strong> Sustained <strong><span class="arithmatex">\(126 ext{ Million requests per second}\)</span></strong>.</li>
+<li><strong>Peak Traffic:</strong> Sustained <strong><span class="arithmatex">\(126\text{ Million requests per second}\)</span></strong>.</li>
 <li><strong>Total Daily Requests:</strong> Trillions of API invocations across double-digit petabytes of data.</li>
-<li><strong>Latency SLA:</strong> Single-digit millisecond median (<span class="arithmatex">\(&lt; 2 ext{ ms}\)</span>) and 99.9th percentile (<span class="arithmatex">\(&lt; 10 ext{ ms}\)</span>) performance.</li>
+<li><strong>Latency SLA:</strong> Single-digit millisecond median (<span class="arithmatex">\(&lt; 2\text{ ms}\)</span>) and 99.9th percentile (<span class="arithmatex">\(&lt; 10\text{ ms}\)</span>) performance.</li>
 </ol>
 <table>
 <thead>
@@ -7537,8 +7636,8 @@ Allocating <span class="arithmatex">\(m / n = 10  ext{ bits per key}\)</span> wi
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Concurrency Ceiling</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(\sim 20,000 - 50,000   ext{ IOPS}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 125,000,000  ext{ requests/sec}\)</span></strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\sim 20,000 - 50,000\text{ IOPS}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 125,000,000\text{ requests/sec}\)</span></strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Partition Maintenance</strong></td>
@@ -7547,7 +7646,7 @@ Allocating <span class="arithmatex">\(m / n = 10  ext{ bits per key}\)</span> wi
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Failover Downtime</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(30 - 120 ext{ seconds}\)</span> failover promotion</td>
+<td style="text-align: left;"><span class="arithmatex">\(30 - 120\text{ seconds}\)</span> failover promotion</td>
 <td style="text-align: left;">Zero-downtime leader leases via Paxos</td>
 </tr>
 </tbody>
@@ -7671,6 +7770,8 @@ Allocating <span class="arithmatex">\(m / n = 10  ext{ bits per key}\)</span> wi
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6384,6 +6403,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6445,6 +6492,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7100,6 +7175,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7309,7 +7411,7 @@
 <hr />
 <h2 id="conceptual-overview-the-active-query-loop">🎯 Conceptual Overview &amp; The Active Query Loop</h2>
 <p>The foundational hypothesis of <strong>Active Learning (AL)</strong> is that a machine learning algorithm can achieve higher accuracy with significantly fewer labeled training instances if it is granted the autonomy to choose the data points from which it learns (<a href="#ref-settles2012">Settles, 2012</a>). </p>
-<p>In an active query loop, a statistical model trained on an initial small labeled seed set <span class="arithmatex">\(\mathcal{L}\)</span> continuously evaluates an unlabeled pool <span class="arithmatex">\(\mathcal{U}\)</span>, scores each candidate instance according to an acquisition utility function <span class="arithmatex">\(lpha(x)\)</span>, and requests labels from a human oracle only for the most informative instances.</p>
+<p>In an active query loop, a statistical model trained on an initial small labeled seed set <span class="arithmatex">\(\mathcal{L}\)</span> continuously evaluates an unlabeled pool <span class="arithmatex">\(\mathcal{U}\)</span>, scores each candidate instance according to an acquisition utility function <span class="arithmatex">\(\alpha(x)\)</span>, and requests labels from a human oracle only for the most informative instances.</p>
 <pre class="mermaid"><code>graph TD
     Seed["Labeled Seed Set L (Small initial sample)"] --&gt; Train["Train Estimator f_theta"]
     Train --&gt; Evaluate["Evaluate Unlabeled Pool U"]
@@ -7333,19 +7435,15 @@
 <p>When model posterior probabilities <span class="arithmatex">\(P(y \mid x)\)</span> are well-calibrated, <strong>Uncertainty Sampling</strong> queries instances whose class membership is most ambiguous (<a href="#ref-lewis1994">Lewis &amp; Gale, 1994</a>):</p>
 <h4 id="1-least-confident-sampling">1. Least Confident Sampling</h4>
 <p>Queries the instance whose most probable class label has the lowest confidence:
-$<span class="arithmatex">\(x_{   ext{LC}}^* = rg\max_{x \in \mathcal{U}} \left( 1 - \max_{y \in \mathcal{Y}} P(y \mid x) 
-ight) = rg\min_{x \in \mathcal{U}} \max_{y \in \mathcal{Y}} P(y \mid x)\)</span>$
+$<span class="arithmatex">\(x_{\text{LC}}^* = \arg\max_{x \in \mathcal{U}} \left( 1 - \max_{y \in \mathcal{Y}} P(y \mid x) \right) = \arg\min_{x \in \mathcal{U}} \max_{y \in \mathcal{Y}} P(y \mid x)\)</span>$
 For binary classification, this prioritizes instances closest to <span class="arithmatex">\(P = 0.5\)</span>. In multi-class settings (<span class="arithmatex">\(K &gt; 2\)</span>), it discards information about the distribution over non-maximal classes.</p>
 <h4 id="2-margin-sampling-smallest-margin">2. Margin Sampling (Smallest Margin)</h4>
 <p>Queries the instance with the smallest difference between the two most probable classes <span class="arithmatex">\(\hat{y}_1\)</span> and <span class="arithmatex">\(\hat{y}_2\)</span>:
-$<span class="arithmatex">\(x_{   ext{Margin}}^* = rg\min_{x \in \mathcal{U}} \left( P(\hat{y}_1 \mid x) - P(\hat{y}_2 \mid x) 
-ight)\)</span>$
-where <span class="arithmatex">\(\hat{y}_1 = rg\max_y P(y \mid x)\)</span> and <span class="arithmatex">\(\hat{y}_2 = rg\max_{y 
-eq \hat{y}_1} P(y \mid x)\)</span>. Margin sampling directly targets instances located on the decision boundary separating the top two competing hypotheses.</p>
+$<span class="arithmatex">\(x_{\text{Margin}}^* = \arg\min_{x \in \mathcal{U}} \left( P(\hat{y}_1 \mid x) - P(\hat{y}_2 \mid x) \right)\)</span>$
+where <span class="arithmatex">\(\hat{y}_1 = \arg\max_y P(y \mid x)\)</span> and <span class="arithmatex">\(\hat{y}_2 = \arg\max_{y  \neq \hat{y}_1} P(y \mid x)\)</span>. Margin sampling directly targets instances located on the decision boundary separating the top two competing hypotheses.</p>
 <h4 id="3-shannon-entropy-sampling">3. Shannon Entropy Sampling</h4>
 <p>Evaluates the entire posterior distribution across all <span class="arithmatex">\(K\)</span> classes using information entropy:
-$<span class="arithmatex">\(x_{   ext{Entropy}}^* = rg\max_{x \in \mathcal{U}} \mathcal{H}(Y \mid x) = rg\max_{x \in \mathcal{U}} \left( -\sum_{k=1}^K P(y_k \mid x) \log_2 P(y_k \mid x) 
-ight)\)</span>$
+$<span class="arithmatex">\(x_{\text{Entropy}}^* = \arg\max_{x \in \mathcal{U}} \mathcal{H}(Y \mid x) = \arg\max_{x \in \mathcal{U}} \left( -\sum_{k=1}^K P(y_k \mid x) \log_2 P(y_k \mid x) \right)\)</span>$
 Entropy reaches its theoretical maximum (<span class="arithmatex">\(\log_2 K\)</span>) when the model is completely uniform (<span class="arithmatex">\(P(y_k) = 1/K\)</span> for all <span class="arithmatex">\(k\)</span>), providing the most holistic information-theoretic measure of uncertainty.</p>
 <hr />
 <h2 id="production-implementation-vectorized-uncertainty-query-engine">💻 Production Implementation: Vectorized Uncertainty Query Engine</h2>
@@ -7434,7 +7532,7 @@ Entropy reaches its theoretical maximum (<span class="arithmatex">\(\log_2 K\)</
 <ol>
 <li><strong>The Ingestion Dilemma:</strong> A cancer research consortium sought to train an oncology NER pipeline to identify rare metastatic site mentions across 200,000 clinical records.</li>
 <li><strong>The Active Strategy:</strong> The team implemented Shannon Entropy uncertainty sampling on a Bidirectional LSTM-CRF model. At each iteration, the model evaluated token-level transition margins and queried physicians only for documents containing high-ambiguity anatomical sequences.</li>
-<li><strong>The Result:</strong> The actively trained model reached an <strong>F1-score of <span class="arithmatex">\(0.884\)</span> using only 2,400 physician-annotated reports</strong>, whereas a passively trained model required <strong>12,000 reports</strong> to achieve the identical score. Active learning delivered a <strong><span class="arithmatex">\(5   imes\)</span> cost reduction</strong>, saving the research institute over $2.4 million in clinical consulting fees.</li>
+<li><strong>The Result:</strong> The actively trained model reached an <strong>F1-score of <span class="arithmatex">\(0.884\)</span> using only 2,400 physician-annotated reports</strong>, whereas a passively trained model required <strong>12,000 reports</strong> to achieve the identical score. Active learning delivered a <strong><span class="arithmatex">\(5\times\)</span> cost reduction</strong>, saving the research institute over $2.4 million in clinical consulting fees.</li>
 </ol>
 <table>
 <thead>
@@ -7576,6 +7674,8 @@ Entropy reaches its theoretical maximum (<span class="arithmatex">\(\log_2 K\)</
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

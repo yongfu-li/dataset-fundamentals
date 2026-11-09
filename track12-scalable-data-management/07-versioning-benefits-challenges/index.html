@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7324,30 +7426,24 @@
   class GDPRReq,TombstoneTable amber;
   class VacuumJob purple;</code></pre>
 <h3 id="the-mathematics-of-small-file-query-degradation">The Mathematics of Small-File Query Degradation</h3>
-<p>When scanning a dataset of total volume <span class="arithmatex">\(V\)</span> partitioned into <span class="arithmatex">\(N\)</span> files, cloud object stores (e.g., AWS S3, Google Cloud Storage) impose a fixed per-request HTTPS handshake and metadata resolution latency <span class="arithmatex">\(t_{    ext{req}} pprox 15 - 40    ext{ ms}\)</span> (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>). The total query scan time <span class="arithmatex">\(T_{  ext{scan}}\)</span> across <span class="arithmatex">\(N\)</span> files with available network aggregate bandwidth <span class="arithmatex">\(B\)</span> is:</p>
-<div class="arithmatex">\[T_{   ext{scan}} = \sum_{i=1}^N \left( t_{    ext{req}} + rac{S_i}{B_{   ext{stream}}} 
-ight) = N \cdot t_{ ext{req}} + rac{V}{B_{ ext{stream}}}\]</div>
-<p>If <span class="arithmatex">\(V = 100 ext{ GB}\)</span> is stored as <span class="arithmatex">\(N = 100,000\)</span> micro-files of size <span class="arithmatex">\(S_i = 1   ext{ MB}\)</span>, the HTTP overhead alone contributes:</p>
-<div class="arithmatex">\[T_{   ext{overhead}} = 100,000    imes 0.025  ext{ s} = 2,500 ext{ seconds } (pprox 41.6 ext{ minutes})\]</div>
-<p>even if network bandwidth <span class="arithmatex">\(B_{  ext{stream}} = 1    ext{ GB/s}\)</span> would otherwise transfer <span class="arithmatex">\(100   ext{ GB}\)</span> in just <span class="arithmatex">\(100  ext{ seconds}\)</span>. </p>
+<p>When scanning a dataset of total volume <span class="arithmatex">\(V\)</span> partitioned into <span class="arithmatex">\(N\)</span> files, cloud object stores (e.g., AWS S3, Google Cloud Storage) impose a fixed per-request HTTPS handshake and metadata resolution latency <span class="arithmatex">\(t_{\text{req}} \approx 15 - 40\text{ ms}\)</span> (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>). The total query scan time <span class="arithmatex">\(T_{\text{scan}}\)</span> across <span class="arithmatex">\(N\)</span> files with available network aggregate bandwidth <span class="arithmatex">\(B\)</span> is:</p>
+<div class="arithmatex">\[T_{\text{scan}} = \sum_{i=1}^N \left( t_{\text{req}} + \frac{S_i}{B_{\text{stream}}} \right) = N \cdot t_{\text{req}} + \frac{V}{B_{\text{stream}}}\]</div>
+<p>If <span class="arithmatex">\(V = 100\text{ GB}\)</span> is stored as <span class="arithmatex">\(N = 100,000\)</span> micro-files of size <span class="arithmatex">\(S_i = 1\text{ MB}\)</span>, the HTTP overhead alone contributes:</p>
+<div class="arithmatex">\[T_{\text{overhead}} = 100,000 \times 0.025\text{ s} = 2,500\text{ seconds } (\approx 41.6\text{ minutes})\]</div>
+<p>even if network bandwidth <span class="arithmatex">\(B_{\text{stream}} = 1\text{ GB/s}\)</span> would otherwise transfer <span class="arithmatex">\(100\text{ GB}\)</span> in just <span class="arithmatex">\(100\text{ seconds}\)</span>. </p>
 <h4 id="optimal-compaction-bin-packing-formula">Optimal Compaction Bin-Packing Formula</h4>
-<p>Compaction merges <span class="arithmatex">\(N_{  ext{small}}\)</span> files into <span class="arithmatex">\(M = \lceil V / S_{ ext{target}} 
-ceil\)</span> consolidated blocks, where <span class="arithmatex">\(S_{   ext{target}} pprox 128 ext{ MB} - 512  ext{ MB}\)</span> maximizes Parquet row-group dictionary encoding and compression. The query scan speedup factor <span class="arithmatex">\(\mathcal{S}_{ ext{compaction}}\)</span> is:</p>
-<div class="arithmatex">\[\mathcal{S}_{ ext{compaction}} = rac{N_{ ext{small}} \cdot t_{   ext{req}} + rac{V}{B_{ ext{stream}}}}{\left\lceil rac{V}{S_{  ext{target}}} 
-ight
-ceil \cdot t_{  ext{req}} + rac{V}{B_{ ext{stream}}}}\]</div>
-<p>For <span class="arithmatex">\(S_{    ext{target}} = 256  ext{ MB}\)</span>, <span class="arithmatex">\(M = 400\)</span> files, slashing <span class="arithmatex">\(T_{   ext{overhead}}\)</span> from <span class="arithmatex">\(2,500 ext{ s}\)</span> down to <span class="arithmatex">\(10    ext{ s}\)</span>—a <strong><span class="arithmatex">\(25    imes\)</span> end-to-end query speedup</strong>.</p>
+<p>Compaction merges <span class="arithmatex">\(N_{\text{small}}\)</span> files into <span class="arithmatex">\(M = \lceil V / S_{\text{target}} \lceil\)</span> consolidated blocks, where <span class="arithmatex">\(S_{\text{target}} \approx 128\text{ MB} - 512\text{ MB}\)</span> maximizes Parquet row-group dictionary encoding and compression. The query scan speedup factor <span class="arithmatex">\(\mathcal{S}_{\text{compaction}}\)</span> is:</p>
+<div class="arithmatex">\[\mathcal{S}_{\text{compaction}} = \frac{N_{\text{small}} \cdot t_{\text{req}} + \frac{V}{B_{\text{stream}}}}{\left\lceil \frac{V}{S_{\text{target}}} \right\lceil \cdot t_{\text{req}} + \frac{V}{B_{\text{stream}}}}\]</div>
+<p>For <span class="arithmatex">\(S_{\text{target}} = 256\text{ MB}\)</span>, <span class="arithmatex">\(M = 400\)</span> files, slashing <span class="arithmatex">\(T_{\text{overhead}}\)</span> from <span class="arithmatex">\(2,500\text{ s}\)</span> down to <span class="arithmatex">\(10\text{ s}\)</span>—a <strong><span class="arithmatex">\(25\times\)</span> end-to-end query speedup</strong>.</p>
 <h4 id="the-s3-api-cost-explosion-equation">The S3 API Cost Explosion Equation</h4>
-<p>Object storage pricing models charge for both static byte storage (<span class="arithmatex">\(C_{ ext{storage}}\)</span> per GB-month) and HTTP API requests (<span class="arithmatex">\(C_{    ext{PUT}}\)</span> per 1,000 requests, <span class="arithmatex">\(C_{ ext{GET}}\)</span> per 10,000 requests):</p>
-<div class="arithmatex">\[C_{   ext{monthly}} = C_{ ext{storage}} \cdot V + C_{ ext{PUT}} \cdot \left(rac{\lambda_{    ext{ingest}}}{S_{   ext{micro}}}
-ight) + C_{ ext{GET}} \cdot \left(Q \cdot N
-ight)\]</div>
-<p>When <span class="arithmatex">\(S_{   ext{micro}}\)</span> is small (<span class="arithmatex">\(&lt; 100   ext{ KB}\)</span>), API request charges often exceed static storage costs by over <strong><span class="arithmatex">\(300\%\)</span></strong> (<a href="#ref-hermann2017">Hermann et al., 2017</a>).</p>
+<p>Object storage pricing models charge for both static byte storage (<span class="arithmatex">\(C_{\text{storage}}\)</span> per GB-month) and HTTP API requests (<span class="arithmatex">\(C_{\text{PUT}}\)</span> per 1,000 requests, <span class="arithmatex">\(C_{\text{GET}}\)</span> per 10,000 requests):</p>
+<div class="arithmatex">\[C_{\text{monthly}} = C_{\text{storage}} \cdot V + C_{\text{PUT}} \cdot \left(\frac{\lambda_{\text{ingest}}}{S_{\text{micro}}}\right) + C_{\text{GET}} \cdot \left(Q \cdot N\right)\]</div>
+<p>When <span class="arithmatex">\(S_{\text{micro}}\)</span> is small (<span class="arithmatex">\(&lt; 100\text{ KB}\)</span>), API request charges often exceed static storage costs by over <strong><span class="arithmatex">\(300\%\)</span></strong> (<a href="#ref-hermann2017">Hermann et al., 2017</a>).</p>
 <h4 id="the-gdpr-erasure-write-amplification-dilemma">The GDPR Erasure Write Amplification Dilemma</h4>
-<p>Under GDPR Article 17, when a user requests deletion of their record <span class="arithmatex">\(r^*\)</span>, an immutable append-only dataset cannot execute an in-place delete. The system must locate the target partition file of size <span class="arithmatex">\(S_{   ext{file}}\)</span>, read it into memory, purge the record, and write a new file version. The write amplification factor <span class="arithmatex">\(\Omega_{  ext{GDPR}}\)</span> is defined as:</p>
-<div class="arithmatex">\[\Omega_{  ext{GDPR}} = rac{S_{   ext{file}}}{S_{ ext{record}}}\]</div>
-<p>For a <span class="arithmatex">\(500  ext{-byte}\)</span> user record residing in a <span class="arithmatex">\(256  ext{ MB}\)</span> Parquet block:</p>
-<div class="arithmatex">\[\Omega_{  ext{GDPR}} = rac{256   imes 10^6   ext{ bytes}}{500    ext{ bytes}} = 512,000\]</div>
+<p>Under GDPR Article 17, when a user requests deletion of their record <span class="arithmatex">\(r^*\)</span>, an immutable append-only dataset cannot execute an in-place delete. The system must locate the target partition file of size <span class="arithmatex">\(S_{\text{file}}\)</span>, read it into memory, purge the record, and write a new file version. The write amplification factor <span class="arithmatex">\(\Omega_{\text{GDPR}}\)</span> is defined as:</p>
+<div class="arithmatex">\[\Omega_{\text{GDPR}} = \frac{S_{\text{file}}}{S_{\text{record}}}\]</div>
+<p>For a <span class="arithmatex">\(500\text{-byte}\)</span> user record residing in a <span class="arithmatex">\(256\text{ MB}\)</span> Parquet block:</p>
+<div class="arithmatex">\[\Omega_{\text{GDPR}} = \frac{256 \times 10^6\text{ bytes}}{500\text{ bytes}} = 512,000\]</div>
 <p>To prevent constant rewriting, production architectures deploy <strong>tombstone deletion vectors</strong> (Delta Lake / Apache Iceberg), deferring physical file compaction to asynchronous scheduled batch cleanup jobs (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>).</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
@@ -7432,7 +7528,7 @@ ight)\]</div>
 <ol>
 <li><strong>The Compliance Conflict:</strong> Hospitals training clinical risk models on longitudinal patient trajectories must comply with <strong>HIPAA de-identification</strong> standards and <strong>GDPR right-to-be-forgotten</strong> mandates. When a patient revokes research consent, their historical vitals and lab panels must be excised across all historical training splits.</li>
 <li><strong>The Naive Failure:</strong> An early clinical genomics platform attempted to re-serialize their entire historical 80 Terabyte dataset on every patient withdrawal. After receiving 45 consent revocation notices in a single month, cloud data rewriting charges exceeded <strong><span class="arithmatex">\(\$72,000\)</span></strong> and continuous background I/O halted model development.</li>
-<li><strong>The Architectural Solution:</strong> The engineering team transitioned to <strong>deletion vector tombstones</strong> managed by Delta Lake. Deletions are appended as bitmap masks in sub-second metadata operations. Physical Parquet rewrites are consolidated into an automated bi-monthly batch compaction job, reducing write amplification from <span class="arithmatex">\(500,000    imes\)</span> down to an amortized factor of <span class="arithmatex">\(1.15  imes\)</span>.</li>
+<li><strong>The Architectural Solution:</strong> The engineering team transitioned to <strong>deletion vector tombstones</strong> managed by Delta Lake. Deletions are appended as bitmap masks in sub-second metadata operations. Physical Parquet rewrites are consolidated into an automated bi-monthly batch compaction job, reducing write amplification from <span class="arithmatex">\(500,000\times\)</span> down to an amortized factor of <span class="arithmatex">\(1.15\times\)</span>.</li>
 </ol>
 <hr />
 <h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
@@ -7553,6 +7649,8 @@ ight)\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

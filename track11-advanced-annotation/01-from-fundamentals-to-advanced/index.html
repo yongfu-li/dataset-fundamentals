@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6345,6 +6364,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6406,6 +6453,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7061,6 +7136,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7296,16 +7398,14 @@
 <hr />
 <h3 id="2-mathematical-formalism-sample-complexity-label-efficiency-ratio">2. Mathematical Formalism: Sample Complexity &amp; Label Efficiency Ratio</h3>
 <p>In classical Probably Approximately Correct (PAC) learning under passive random sampling, achieving generalization error <span class="arithmatex">\(\le \epsilon\)</span> with probability <span class="arithmatex">\(\ge 1 - \delta\)</span> requires sample complexity:
-$<span class="arithmatex">\(N_{   ext{passive}} = \mathcal{O}\left( rac{d}{\epsilon} \ln rac{1}{\epsilon} + rac{1}{\epsilon} \ln rac{1}{\delta} 
-ight)\)</span>$
+$<span class="arithmatex">\(N_{\text{passive}} = \mathcal{O}\left( \frac{d}{\epsilon} \ln \frac{1}{\epsilon} + \frac{1}{\epsilon} \ln \frac{1}{\delta} \right)\)</span>$
 where <span class="arithmatex">\(d\)</span> is the Vapnik-Chervonenkis (VC) dimension of the hypothesis class <span class="arithmatex">\(\mathcal{H}\)</span>.</p>
-<p>Under <strong>Active Learning</strong>, when the hypothesis space satisfies favorable geometric boundary properties (governed by the Alexander capacity parameter $  heta$), the sample complexity scales <strong>logarithmically</strong> in <span class="arithmatex">\(1/\epsilon\)</span>:
-$<span class="arithmatex">\(N_{   ext{active}} = \mathcal{O}\left( d \cdot    heta \cdot \ln rac{1}{\epsilon} 
-ight)\)</span>$
+<p>Under <strong>Active Learning</strong>, when the hypothesis space satisfies favorable geometric boundary properties (governed by the Alexander capacity parameter <span class="arithmatex">\(\theta\)</span>), the sample complexity scales <strong>logarithmically</strong> in <span class="arithmatex">\(1/\epsilon\)</span>:
+$<span class="arithmatex">\(N_{\text{active}} = \mathcal{O}\left( d \cdot \theta \cdot \ln \frac{1}{\epsilon} \right)\)</span>$
 This yields an exponential reduction in the required number of human annotations.</p>
 <p>We quantify this advantage via the <strong>Label Efficiency Ratio (LER)</strong>:
-$$  ext{LER}(lpha) = rac{N_{  ext{passive}}(lpha)}{N_{   ext{advanced}}(lpha)}$$
-where <span class="arithmatex">\(N(lpha)\)</span> is the number of labeled instances required to achieve target validation accuracy <span class="arithmatex">\(lpha\)</span>. An $    ext{LER} = 5.0$ indicates that the advanced strategy achieves target accuracy using only <span class="arithmatex">\(20\%\)</span> of the human labeling effort.</p>
+$<span class="arithmatex">\(\text{LER}(\alpha) = \frac{N_{\text{passive}}(\alpha)}{N_{\text{advanced}}(\alpha)}\)</span>$
+where <span class="arithmatex">\(N(\alpha)\)</span> is the number of labeled instances required to achieve target validation accuracy <span class="arithmatex">\(\alpha\)</span>. An <span class="arithmatex">\(\text{LER} = 5.0\)</span> indicates that the advanced strategy achieves target accuracy using only <span class="arithmatex">\(20\%\)</span> of the human labeling effort.</p>
 <hr />
 <h2 id="production-implementation-label-efficiency-benchmark-suite">💻 Production Implementation: Label Efficiency Benchmark Suite</h2>
 <p>The following Python script simulates learning curves under passive random sampling versus active uncertainty sampling on a binary classification dataset, computing the empirical Label Efficiency Ratio.</p>
@@ -7551,6 +7651,8 @@ where <span class="arithmatex">\(N(lpha)\)</span> is the number of labeled inst
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

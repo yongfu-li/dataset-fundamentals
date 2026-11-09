@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7300,23 +7402,20 @@
   class Pass green;
   class Fail amber;</code></pre>
 <h3 id="the-mathematics-of-statistical-data-drift-testing">The Mathematics of Statistical Data Drift Testing</h3>
-<p>Continuous data testing evaluates whether a newly ingested batch <span class="arithmatex">\(B_{   ext{new}} = \{y_1, \dots, y_m\}\)</span> originates from the same empirical distribution as the baseline validation reference <span class="arithmatex">\(B_{  ext{ref}} = \{x_1, \dots, x_n\}\)</span>.</p>
+<p>Continuous data testing evaluates whether a newly ingested batch <span class="arithmatex">\(B_{\text{new}} = \{y_1, \dots, y_m\}\)</span> originates from the same empirical distribution as the baseline validation reference <span class="arithmatex">\(B_{\text{ref}} = \{x_1, \dots, x_n\}\)</span>.</p>
 <h4 id="two-sample-kolmogorov-smirnov-ks-test">Two-Sample Kolmogorov-Smirnov (KS) Test</h4>
-<p>Let <span class="arithmatex">\(F_{1, n}(t) = rac{1}{n} \sum_{i=1}^n \mathbb{I}(x_i \le t)\)</span> and <span class="arithmatex">\(F_{2, m}(t) = rac{1}{m} \sum_{j=1}^m \mathbb{I}(y_j \le t)\)</span> represent the empirical cumulative distribution functions (ECDF) of the reference and incoming batches. The two-sample KS test statistic <span class="arithmatex">\(D_{n, m}\)</span> is defined as the supremum distance:</p>
-<div class="arithmatex">\[D_{n, m} = \sup_{t \in \mathbb{R}} \left| F_{1, n}(t) - F_{2, m}(t) 
-ight|\]</div>
-<p>At significance level <span class="arithmatex">\(lpha\)</span> (e.g., <span class="arithmatex">\(lpha = 0.01\)</span>), the null hypothesis of identical distributions <span class="arithmatex">\(H_0: F_1 = F_2\)</span> is rejected if:</p>
-<div class="arithmatex">\[D_{n, m} &gt; c(lpha) \sqrt{rac{n + m}{n \cdot m}}, \quad  ext{where } c(lpha) = \sqrt{-rac{1}{2}\ln\left(rac{lpha}{2}
-ight)}\]</div>
-<p>For <span class="arithmatex">\(lpha = 0.01\)</span>, <span class="arithmatex">\(c(0.01) = \sqrt{-rac{1}{2}\ln(0.005)} pprox 1.628\)</span>.</p>
+<p>Let <span class="arithmatex">\(F_{1, n}(t) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}(x_i \le t)\)</span> and <span class="arithmatex">\(F_{2, m}(t) = \frac{1}{m} \sum_{j=1}^m \mathbb{I}(y_j \le t)\)</span> represent the empirical cumulative distribution functions (ECDF) of the reference and incoming batches. The two-sample KS test statistic <span class="arithmatex">\(D_{n, m}\)</span> is defined as the supremum distance:</p>
+<div class="arithmatex">\[D_{n, m} = \sup_{t \in \mathbb{R}} \left| F_{1, n}(t) - F_{2, m}(t) \right|\]</div>
+<p>At significance level <span class="arithmatex">\(\alpha\)</span> (e.g., <span class="arithmatex">\(\alpha = 0.01\)</span>), the null hypothesis of identical distributions <span class="arithmatex">\(H_0: F_1 = F_2\)</span> is rejected if:</p>
+<div class="arithmatex">\[D_{n, m} &gt; c(\alpha) \sqrt{\frac{n + m}{n \cdot m}}, \quad \text{where } c(\alpha) = \sqrt{-\frac{1}{2}\ln\left(\frac{\alpha}{2}\right)}\]</div>
+<p>For <span class="arithmatex">\(\alpha = 0.01\)</span>, <span class="arithmatex">\(c(0.01) = \sqrt{-\frac{1}{2}\ln(0.005)} \approx 1.628\)</span>.</p>
 <h4 id="population-stability-index-psi">Population Stability Index (PSI)</h4>
 <p>For continuous features partitioned into <span class="arithmatex">\(K\)</span> quantile bins, let <span class="arithmatex">\(P_k\)</span> denote the proportion of samples falling into bin <span class="arithmatex">\(k\)</span> in the baseline population, and let <span class="arithmatex">\(Q_k\)</span> denote the proportion in the new batch. The <strong>Population Stability Index (PSI)</strong> is:</p>
-<div class="arithmatex">\[  ext{PSI} = \sum_{k=1}^K (P_k - Q_k) \ln\left( rac{P_k}{Q_k} 
-ight)\]</div>
-<p>Mathematically, PSI represents the symmetric Kullback-Leibler divergence <span class="arithmatex">\(D_{   ext{KL}}(P \parallel Q) + D_{   ext{KL}}(Q \parallel P)\)</span> over the binned probability vectors. Production thresholds dictate:
-- $ ext{PSI} &lt; 0.10$: Negligible shift; auto-approve CI merge.
-- <span class="arithmatex">\(0.10 \le     ext{PSI} &lt; 0.25\)</span>: Moderate drift; generate diagnostic warnings.
-- $ ext{PSI} \ge 0.25$: Severe covariate shift; fail CI gate and block model deployment.</p>
+<div class="arithmatex">\[\text{PSI} = \sum_{k=1}^K (P_k - Q_k) \ln\left( \frac{P_k}{Q_k} \right)\]</div>
+<p>Mathematically, PSI represents the symmetric Kullback-Leibler divergence <span class="arithmatex">\(D_{\text{KL}}(P \parallel Q) + D_{\text{KL}}(Q \parallel P)\)</span> over the binned probability vectors. Production thresholds dictate:
+- <span class="arithmatex">\(\text{PSI} &lt; 0.10\)</span>: Negligible shift; auto-approve CI merge.
+- <span class="arithmatex">\(0.10 \le \text{PSI} &lt; 0.25\)</span>: Moderate drift; generate diagnostic warnings.
+- <span class="arithmatex">\(\text{PSI} \ge 0.25\)</span>: Severe covariate shift; fail CI gate and block model deployment.</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script implements a production CDI statistical test harness computing two-sample KS statistics and PSI drift metrics with automated threshold assertion:</p>
@@ -7524,6 +7623,8 @@ ight)\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

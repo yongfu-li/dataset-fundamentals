@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6384,6 +6403,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6445,6 +6492,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7100,6 +7175,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7356,37 +7458,37 @@
 <tr>
 <td style="text-align: left;"><strong>L1 CPU Cache</strong></td>
 <td style="text-align: left;">64 KB / core</td>
-<td style="text-align: left;"><span class="arithmatex">\(0.5    ext{ ns}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.5\text{ ns}\)</span></td>
 <td style="text-align: left;">1 second</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>L3 Shared Cache</strong></td>
 <td style="text-align: left;">32 - 128 MB</td>
-<td style="text-align: left;"><span class="arithmatex">\(15   ext{ ns}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(15\text{ ns}\)</span></td>
 <td style="text-align: left;">30 seconds</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>DRAM Main Memory</strong></td>
 <td style="text-align: left;">64 - 1024 GB</td>
-<td style="text-align: left;"><span class="arithmatex">\(100 ext{ ns}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(100\text{ ns}\)</span></td>
 <td style="text-align: left;">3.3 minutes</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>NVMe PCIe SSD</strong></td>
 <td style="text-align: left;">1 - 30 TB</td>
-<td style="text-align: left;"><span class="arithmatex">\(100    ext{ }\mu   ext{s}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(100\text{ }\mu\text{s}\)</span></td>
 <td style="text-align: left;">2.3 days</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Mechanical HDD</strong></td>
 <td style="text-align: left;">4 - 24 TB</td>
-<td style="text-align: left;"><span class="arithmatex">\(10 ext{ ms}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(10\text{ ms}\)</span></td>
 <td style="text-align: left;">8 months</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Cloud Object Store</strong></td>
 <td style="text-align: left;">Petabytes to Exabytes</td>
-<td style="text-align: left;"><span class="arithmatex">\(50 - 150    ext{ ms}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(50 - 150\text{ ms}\)</span></td>
 <td style="text-align: left;">3 to 10 years</td>
 </tr>
 </tbody>
@@ -7397,23 +7499,17 @@
 <h4 id="1-littles-law">1. Little's Law</h4>
 <p>For any stable queuing system operating in steady state, the average number of concurrent requests or in-flight data items <span class="arithmatex">\(L\)</span> equals the long-term average arrival rate <span class="arithmatex">\(\lambda\)</span> multiplied by the average latency <span class="arithmatex">\(W\)</span> spent in the system (<a href="#ref-little1961">Little, 1961</a>):
 $<span class="arithmatex">\(L = \lambda \cdot W\)</span>$</p>
-<p>If an ingestion pipeline receives <span class="arithmatex">\(\lambda = 100,000    ext{ records/sec}\)</span> and downstream validation/commit latency is <span class="arithmatex">\(W = 0.05    ext{ sec}\)</span>, the system must maintain an in-flight concurrency buffer of:
-$<span class="arithmatex">\(L = 100,000   imes 0.05 = 5,000   ext{ concurrent records}\)</span>$</p>
+<p>If an ingestion pipeline receives <span class="arithmatex">\(\lambda = 100,000\text{ records/sec}\)</span> and downstream validation/commit latency is <span class="arithmatex">\(W = 0.05\text{ sec}\)</span>, the system must maintain an in-flight concurrency buffer of:
+$<span class="arithmatex">\(L = 100,000 \times 0.05 = 5,000\text{ concurrent records}\)</span>$</p>
 <h4 id="2-mm1-queuing-response-time-and-saturation">2. M/M/1 Queuing Response Time and Saturation</h4>
-<p>Under Markovian arrival rate <span class="arithmatex">\(\lambda\)</span> and single-worker service rate <span class="arithmatex">\(\mu\)</span> (with utilization $
-ho = rac{\lambda}{\mu} &lt; 1$), the expected residence time <span class="arithmatex">\(W\)</span> and queue length <span class="arithmatex">\(L_q\)</span> diverge asymptotically as $
-ho  o 1$:
-$<span class="arithmatex">\(W = rac{1}{\mu - \lambda} = rac{1}{\mu(1 - 
-ho)}\)</span>$
-$<span class="arithmatex">\(L_q = rac{
-ho^2}{1 - 
-ho}\)</span>$</p>
-<p>When utilization $
-ho$ exceeds <span class="arithmatex">\(0.90\)</span>, queue delays increase tenfold, requiring horizontal worker sharding to maintain latency SLAs.</p>
+<p>Under Markovian arrival rate <span class="arithmatex">\(\lambda\)</span> and single-worker service rate <span class="arithmatex">\(\mu\)</span> (with utilization <span class="arithmatex">\(\rho = \frac{\lambda}{\mu} &lt; 1\)</span>), the expected residence time <span class="arithmatex">\(W\)</span> and queue length <span class="arithmatex">\(L_q\)</span> diverge asymptotically as <span class="arithmatex">\(\rho \to 1\)</span>:
+$<span class="arithmatex">\(W = \frac{1}{\mu - \lambda} = \frac{1}{\mu(1 - \rho)}\)</span>$
+$<span class="arithmatex">\(L_q = \frac{\rho^2}{1 - \rho}\)</span>$</p>
+<p>When utilization <span class="arithmatex">\(\rho\)</span> exceeds <span class="arithmatex">\(0.90\)</span>, queue delays increase tenfold, requiring horizontal worker sharding to maintain latency SLAs.</p>
 <h4 id="3-amdahls-law-vs-gustafsons-law">3. Amdahl's Law vs. Gustafson's Law</h4>
 <p>When parallelizing data operations across <span class="arithmatex">\(s\)</span> distributed nodes, let <span class="arithmatex">\(p\)</span> denote the fraction of the workload that is strictly parallelizable, while <span class="arithmatex">\((1 - p)\)</span> is inherently serial. The theoretical speedup <span class="arithmatex">\(S(s)\)</span> is bounded by <strong>Amdahl's Law</strong> (<a href="#ref-amdahl1967">Amdahl, 1967</a>):
-$<span class="arithmatex">\(S(s) = rac{1}{(1 - p) + rac{p}{s}}\)</span>$</p>
-<p>As <span class="arithmatex">\(s   o \infty\)</span>, the maximum speedup asymptotically approaches $rac{1}{1 - p}$. Even if <span class="arithmatex">\(95\%\)</span> of an ETL pipeline is parallelizable (<span class="arithmatex">\(p = 0.95\)</span>), the maximum speedup across an infinite cluster is strictly capped at <span class="arithmatex">\(20   imes\)</span>.</p>
+$<span class="arithmatex">\(S(s) = \frac{1}{(1 - p) + \frac{p}{s}}\)</span>$</p>
+<p>As <span class="arithmatex">\(s \to \infty\)</span>, the maximum speedup asymptotically approaches <span class="arithmatex">\(\frac{1}{1 - p}\)</span>. Even if <span class="arithmatex">\(95\%\)</span> of an ETL pipeline is parallelizable (<span class="arithmatex">\(p = 0.95\)</span>), the maximum speedup across an infinite cluster is strictly capped at <span class="arithmatex">\(20\times\)</span>.</p>
 <p>Conversely, <strong>Gustafson's Law</strong> (<a href="#ref-gustafson1988">Gustafson, 1988</a>) assumes that problem size scales to fill available capacity:
 $<span class="arithmatex">\(S(s) = s - (s - 1)(1 - p)\)</span>$
 Under Gustafson's perspective, scalable data management succeeds by increasing dataset volume proportionally with node count while holding execution latency constant.</p>
@@ -7505,10 +7601,10 @@ Under Gustafson's perspective, scalable data management succeeds by increasing d
 <h2 id="empirical-case-study-cern-worldwide-lhc-computing-grid-wlcg">🔬 Empirical Case Study: CERN Worldwide LHC Computing Grid (WLCG)</h2>
 <p>At the European Organization for Nuclear Research (CERN), the <strong>Large Hadron Collider (LHC)</strong> produces over <strong>1 billion proton-proton collisions per second</strong> across four detector experiments (ATLAS, CMS, ALICE, LHCb).</p>
 <ol>
-<li><strong>The Ingestion Dilemma:</strong> Detector digitizers capture raw collision telemetry at <span class="arithmatex">\(40    ext{ Terabytes per second}\)</span>. Streaming this raw volume directly to persistent storage is physically impossible.</li>
+<li><strong>The Ingestion Dilemma:</strong> Detector digitizers capture raw collision telemetry at <span class="arithmatex">\(40\text{ Terabytes per second}\)</span>. Streaming this raw volume directly to persistent storage is physically impossible.</li>
 <li><strong>The Tiered Processing Architecture:</strong> CERN deploys a multi-tier hierarchical filtering topology:</li>
-<li><strong>Level-1 Hardware Trigger (FPGAs/ASICs):</strong> Filters raw events from <span class="arithmatex">\(40    ext{ MHz}\)</span> down to <span class="arithmatex">\(100 ext{ kHz}\)</span> in under <span class="arithmatex">\(3.2    ext{ }\mu   ext{s}\)</span>.</li>
-<li><strong>High-Level Trigger (HLT, GPU/CPU Clusters):</strong> Further reduces the event stream to <span class="arithmatex">\(1 ext{ kHz}\)</span> (<span class="arithmatex">\(1  ext{ GB/sec}\)</span> sustained write rate).</li>
+<li><strong>Level-1 Hardware Trigger (FPGAs/ASICs):</strong> Filters raw events from <span class="arithmatex">\(40\text{ MHz}\)</span> down to <span class="arithmatex">\(100\text{ kHz}\)</span> in under <span class="arithmatex">\(3.2\text{ }\mu\text{s}\)</span>.</li>
+<li><strong>High-Level Trigger (HLT, GPU/CPU Clusters):</strong> Further reduces the event stream to <span class="arithmatex">\(1\text{ kHz}\)</span> (<span class="arithmatex">\(1\text{ GB/sec}\)</span> sustained write rate).</li>
 <li><strong>WLCG Tier Structure:</strong> Distributes over <strong>50 Petabytes of collision data annually</strong> across 170 computing centers in 42 countries.</li>
 </ol>
 <table>
@@ -7522,18 +7618,18 @@ Under Gustafson's perspective, scalable data management succeeds by increasing d
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Ingestion Bandwidth</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(2 - 10 ext{ GB/sec}\)</span> (Saturates PCI bus)</td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(40   ext{ TB/sec}\)</span> raw $ o$ <span class="arithmatex">\(1   ext{ GB/sec}\)</span> filtered</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(2 - 10\text{ GB/sec}\)</span> (Saturates PCI bus)</td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(40\text{ TB/sec}\)</span> raw <span class="arithmatex">\(\to\)</span> <span class="arithmatex">\(1\text{ GB/sec}\)</span> filtered</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Global Storage Footprint</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(&lt; 5   ext{ Petabytes}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 1,000   ext{ Petabytes (1 Exabyte)}\)</span> distributed</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(&lt; 5\text{ Petabytes}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 1,000\text{ Petabytes (1 Exabyte)}\)</span> distributed</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Fault Isolation</strong></td>
 <td style="text-align: left;">Single-point controller failure risk</td>
-<td style="text-align: left;">Autonomous regional failover (Tier 0 $   o$ Tier 1 $ o$ Tier 2)</td>
+<td style="text-align: left;">Autonomous regional failover (Tier 0 <span class="arithmatex">\(\to\)</span> Tier 1 <span class="arithmatex">\(\to\)</span> Tier 2)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Batch Analytical Throughput</strong></td>
@@ -7661,6 +7757,8 @@ Under Gustafson's perspective, scalable data management succeeds by increasing d
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

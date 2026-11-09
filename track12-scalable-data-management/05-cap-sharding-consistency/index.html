@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7328,14 +7430,12 @@
 6. This directly violates Linearizable Consistency (<span class="arithmatex">\(C\)</span>). Therefore, <strong>no distributed system can guarantee both Consistency and Availability during a network partition</strong>.</p>
 <h3 id="consistent-hashing-tunable-quorum-mathematics">Consistent Hashing &amp; Tunable Quorum Mathematics</h3>
 <h4 id="1-chernoff-load-balancing-bound-with-virtual-nodes">1. Chernoff Load Balancing Bound with Virtual Nodes</h4>
-<p>Standard modular hashing (<span class="arithmatex">\(k \pmod N\)</span>) reshuffles <span class="arithmatex">\(O(K)\)</span> keys upon node membership changes. Consistent hashing maps keys and physical nodes to a continuous ring <span class="arithmatex">\([0, 2^{32} - 1]\)</span> using <span class="arithmatex">\(V\)</span> virtual nodes per physical machine (<a href="#ref-karger1997">Karger et al., 1997</a>). The probability of any node exceeding <span class="arithmatex">\((1 + \epsilon)\)</span> times the average load <span class="arithmatex">\(ar{L} = rac{K}{N}\)</span> is bounded by Chernoff inequality:
-$<span class="arithmatex">\(\Pr\left[ \max_{i} L_i &gt; (1 + \epsilon) rac{K}{N} 
-ight] \le N \cdot \exp\left( -rac{\epsilon^2 K}{3 N} 
-ight)\)</span>$
-Setting <span class="arithmatex">\(V \ge 100\)</span> virtual nodes reduces load variance <span class="arithmatex">\(\sigma^2   o 0\)</span> and eliminates hot spots.</p>
+<p>Standard modular hashing (<span class="arithmatex">\(k \pmod N\)</span>) reshuffles <span class="arithmatex">\(O(K)\)</span> keys upon node membership changes. Consistent hashing maps keys and physical nodes to a continuous ring <span class="arithmatex">\([0, 2^{32} - 1]\)</span> using <span class="arithmatex">\(V\)</span> virtual nodes per physical machine (<a href="#ref-karger1997">Karger et al., 1997</a>). The probability of any node exceeding <span class="arithmatex">\((1 + \epsilon)\)</span> times the average load <span class="arithmatex">\(\bar{L} = \frac{K}{N}\)</span> is bounded by Chernoff inequality:
+$<span class="arithmatex">\(\Pr\left[ \max_{i} L_i &gt; (1 + \epsilon) \frac{K}{N} \right] \le N \cdot \exp\left( -\frac{\epsilon^2 K}{3 N} \right)\)</span>$
+Setting <span class="arithmatex">\(V \ge 100\)</span> virtual nodes reduces load variance <span class="arithmatex">\(\sigma^2 \to 0\)</span> and eliminates hot spots.</p>
 <h4 id="2-tunable-quorum-mathematics">2. Tunable Quorum Mathematics</h4>
 <p>For a cluster replicating data across <span class="arithmatex">\(N\)</span> nodes, let <span class="arithmatex">\(W\)</span> denote the write quorum (acknowledgments required to commit) and <span class="arithmatex">\(R\)</span> denote the read quorum (nodes queried on read):
-$<span class="arithmatex">\(|Q_R \cap Q_W| = R + W - N \ge 1 \implies     ext{Strong Linearizable Consistency}\)</span>$
+$<span class="arithmatex">\(|Q_R \cap Q_W| = R + W - N \ge 1 \implies \text{Strong Linearizable Consistency}\)</span>$
 By the Pigeonhole Principle, the read set and write set must overlap by at least one node containing the latest timestamped mutation.</p>
 <hr />
 <h2 id="production-implementation-consistent-hash-ring-quorum-engine">💻 Production Implementation: Consistent Hash Ring &amp; Quorum Engine</h2>
@@ -7458,13 +7558,13 @@ By the Pigeonhole Principle, the read set and write set must overlap by at least
 <h2 id="empirical-case-study-discord-migration-to-scylladb">🔬 Empirical Case Study: Discord Migration to ScyllaDB</h2>
 <p>In 2022, <strong>Discord</strong> was ingesting billions of chat messages daily into a 177-node Apache Cassandra cluster holding trillions of messages across petabytes of storage.</p>
 <ol>
-<li><strong>The Compaction &amp; GC Crisis:</strong> Because Cassandra runs on the JVM, garbage collection pauses frequently spiked to several seconds. Furthermore, SSTable compactions struggled to keep pace with message insertion velocity, causing disk read amplification to exceed <span class="arithmatex">\(80    imes\)</span>.</li>
+<li><strong>The Compaction &amp; GC Crisis:</strong> Because Cassandra runs on the JVM, garbage collection pauses frequently spiked to several seconds. Furthermore, SSTable compactions struggled to keep pace with message insertion velocity, causing disk read amplification to exceed <span class="arithmatex">\(80\times\)</span>.</li>
 <li><strong>The Architectural Fix:</strong> Discord migrated from Cassandra to <strong>ScyllaDB</strong> (a C++ rewrite of Cassandra implementing thread-per-core asynchronous architecture without garbage collection):</li>
 <li>Consistent hash partitioning remained compatible.</li>
 <li>P99 latencies dropped by an order of magnitude.</li>
 <li><strong>The Quantitative Results:</strong></li>
 <li><strong>Cluster Size:</strong> Node count dropped from <strong>177 Cassandra nodes to 72 ScyllaDB nodes</strong> (<span class="arithmatex">\(60\%\)</span> hardware reduction).</li>
-<li><strong>Tail Latency:</strong> P99 read latencies fell from <strong><span class="arithmatex">\(40 - 120 ext{ ms}\)</span> down to <span class="arithmatex">\(4 - 5    ext{ ms}\)</span></strong> under sustained peak loads.</li>
+<li><strong>Tail Latency:</strong> P99 read latencies fell from <strong><span class="arithmatex">\(40 - 120\text{ ms}\)</span> down to <span class="arithmatex">\(4 - 5\text{ ms}\)</span></strong> under sustained peak loads.</li>
 </ol>
 <table>
 <thead>
@@ -7482,13 +7582,13 @@ By the Pigeonhole Principle, the read set and write set must overlap by at least
 </tr>
 <tr>
 <td style="text-align: left;"><strong>P99 Read Latency</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(40 - 120  ext{ ms}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(4 - 5    ext{ ms}\)</span> (<span class="arithmatex">\(15  imes - 24   imes\)</span> faster)</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(40 - 120\text{ ms}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(4 - 5\text{ ms}\)</span> (<span class="arithmatex">\(15\times - 24\times\)</span> faster)</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Garbage Collection Pauses</strong></td>
-<td style="text-align: left;">Frequent <span class="arithmatex">\(1 - 3    ext{ sec}\)</span> STW spikes</td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(0    ext{ ms}\)</span> (Deterministic C++ memory)</strong></td>
+<td style="text-align: left;">Frequent <span class="arithmatex">\(1 - 3\text{ sec}\)</span> STW spikes</td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0\text{ ms}\)</span> (Deterministic C++ memory)</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Compaction CPU Overhead</strong></td>
@@ -7615,6 +7715,8 @@ By the Pigeonhole Principle, the read set and write set must overlap by at least
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7288,7 +7390,7 @@
 <h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
 <p>The boundary separating relational data warehouses, cloud data lakes, and vector similarity engines has dissolved into unified <strong>Data Lakehouse</strong> and <strong>Data Intelligence Architectures</strong> (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>; <a href="#ref-nambiar2022">Nambiar &amp; Mundra, 2022</a>). Three foundational paradigm shifts define contemporary scalable data engineering:
 1. <strong>ACID Transactions over Cloud Object Stores:</strong> Enabling snapshot isolation, multi-version optimistic concurrency control (OCC), and historical time travel directly on raw Parquet files.
-2. <strong>Dense Vector Indexes at Scale:</strong> Efficient nearest-neighbor search (<span class="arithmatex">\(k ext{-NN}\)</span>) over billion-scale embedding vectors via Hierarchical Navigable Small World (HNSW) graphs and Product Quantization (<a href="#ref-malkov2018">Malkov &amp; Yashunin, 2018</a>).
+2. <strong>Dense Vector Indexes at Scale:</strong> Efficient nearest-neighbor search (<span class="arithmatex">\(k\text{-NN}\)</span>) over billion-scale embedding vectors via Hierarchical Navigable Small World (HNSW) graphs and Product Quantization (<a href="#ref-malkov2018">Malkov &amp; Yashunin, 2018</a>).
 3. <strong>Decentralized Data Mesh:</strong> Treating domain-specific data pipelines as autonomous products exposed via standardized data contracts (<a href="#ref-dehghani2022">Dehghani, 2022</a>).</p>
 <pre class="mermaid"><code>flowchart TD
   subgraph LakehouseCore ["1. Unified ACID Storage Fabric (Delta Lake / Iceberg)"]
@@ -7324,35 +7426,29 @@
   class SQLQuery,LLMServing,MeshContract blue;</code></pre>
 <h3 id="the-mathematics-of-optimistic-concurrency-control-occ">The Mathematics of Optimistic Concurrency Control (OCC)</h3>
 <p>Lakehouse systems achieve ACID transaction serializability over fundamentally non-transactional cloud storage using Optimistic Concurrency Control (OCC) (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>). A transaction <span class="arithmatex">\(T_i\)</span> proceeds through three phases: Read, Validate, and Write.</p>
-<p>Let <span class="arithmatex">\(T_i\)</span> read snapshot version <span class="arithmatex">\(V_{    ext{start}}\)</span>, with read file set <span class="arithmatex">\(\mathcal{R}(T_i)\)</span> and proposed write file set <span class="arithmatex">\(\mathcal{W}(T_i)\)</span>. When <span class="arithmatex">\(T_i\)</span> attempts to commit at current version <span class="arithmatex">\(V_{   ext{commit}} &gt; V_{  ext{start}}\)</span>, the system evaluates the <strong>Validation Predicate</strong>:</p>
-<div class="arithmatex">\[  ext{Validate}(T_i) = \left[ \mathcal{R}(T_i) \cap \left( igcup_{V = V_{    ext{start}} + 1}^{V_{   ext{commit}}} \mathcal{W}_{ ext{committed}}(V) 
-ight) = \emptyset 
-ight]\]</div>
+<p>Let <span class="arithmatex">\(T_i\)</span> read snapshot version <span class="arithmatex">\(V_{\text{start}}\)</span>, with read file set <span class="arithmatex">\(\mathcal{R}(T_i)\)</span> and proposed write file set <span class="arithmatex">\(\mathcal{W}(T_i)\)</span>. When <span class="arithmatex">\(T_i\)</span> attempts to commit at current version <span class="arithmatex">\(V_{\text{commit}} &gt; V_{\text{start}}\)</span>, the system evaluates the <strong>Validation Predicate</strong>:</p>
+<div class="arithmatex">\[\text{Validate}(T_i) = \left[ \mathcal{R}(T_i) \cap \left( \bigcup_{V = V_{\text{start}} + 1}^{V_{\text{commit}}} \mathcal{W}_{\text{committed}}(V) \right) = \emptyset \right]\]</div>
 <ul>
-<li>If the intersection is empty, no overlapping files were mutated by concurrently committed transactions; <span class="arithmatex">\(T_i\)</span> commits atomically by appending commit record <span class="arithmatex">\(V_{  ext{commit}} + 1\)</span>.</li>
+<li>If the intersection is empty, no overlapping files were mutated by concurrently committed transactions; <span class="arithmatex">\(T_i\)</span> commits atomically by appending commit record <span class="arithmatex">\(V_{\text{commit}} + 1\)</span>.</li>
 <li>If an overlap exists, <span class="arithmatex">\(T_i\)</span> aborts and retries with an updated read snapshot.</li>
 </ul>
 <h4 id="time-travel-snapshot-selection-function">Time Travel Snapshot Selection Function</h4>
 <p>Because historical commits are immutable append-only logs, a time travel query targeting timestamp <span class="arithmatex">\(t\)</span> reconstructs dataset state <span class="arithmatex">\(\mathcal{D}(t)\)</span> through snapshot evaluation:</p>
-<div class="arithmatex">\[\mathcal{D}(t) = \left\{ f \in \mathcal{F} \mid   ext{commit\_time}(  ext{Add}(f)) \le t \land \left(     ext{commit\_time}(  ext{Remove}(f)) &gt; t \lor    ext{Remove}(f) = \emptyset 
-ight) 
-ight\}\]</div>
+<div class="arithmatex">\[\mathcal{D}(t) = \left\{ f \in \mathcal{F} \mid \text{commit\_time}(\text{Add}(f)) \le t \land \left( \text{commit\_time}(\text{Remove}(f)) &gt; t \lor \text{Remove}(f) = \emptyset \right) \right\}\]</div>
 <p>This deterministic state selection provides <span class="arithmatex">\(100\%\)</span> bitwise-reproducible training sets without maintaining physical duplicate copies.</p>
 <h4 id="hierarchical-navigable-small-world-hnsw-search-complexity">Hierarchical Navigable Small World (HNSW) Search Complexity</h4>
 <p>For vector similarity search over <span class="arithmatex">\(N\)</span> dense vectors in dimension <span class="arithmatex">\(d\)</span>, naive brute-force exact search scales as <span class="arithmatex">\(\mathcal{O}(N \cdot d)\)</span>. HNSW organizes vectors into a multi-layer hierarchical graph with exponentially decaying link probabilities (<a href="#ref-malkov2018">Malkov &amp; Yashunin, 2018</a>):</p>
-<div class="arithmatex">\[p(    ext{layer } \ell) = e^{-\ell / m_L}\]</div>
+<div class="arithmatex">\[p(\text{layer } \ell) = e^{-\ell / m_L}\]</div>
 <p>The query search time complexity collapses from linear to logarithmic:</p>
-<div class="arithmatex">\[T_{   ext{HNSW}} = \mathcal{O}(\log N \cdot d)\]</div>
+<div class="arithmatex">\[T_{\text{HNSW}} = \mathcal{O}(\log N \cdot d)\]</div>
 <h4 id="product-quantization-pq-compression-bounds">Product Quantization (PQ) Compression Bounds</h4>
 <p>To store billions of vectors in RAM, Product Quantization decomposes <span class="arithmatex">\(d\)</span>-dimensional space into <span class="arithmatex">\(M\)</span> orthogonal subspaces of dimension <span class="arithmatex">\(d^* = d / M\)</span>. Each subspace is quantized into <span class="arithmatex">\(K\)</span> centroids using <span class="arithmatex">\(k\)</span>-means:</p>
 <div class="arithmatex">\[\mathbf{x} = [\mathbf{u}_1 \,\|\, \mathbf{u}_2 \,\|\, \dots \,\|\, \mathbf{u}_M], \quad \mathbf{u}_m \in \mathbb{R}^{d^*}\]</div>
 <p>Every vector is encoded into an <span class="arithmatex">\(M\)</span>-byte index:</p>
-<div class="arithmatex">\[\mathbf{c}_x = \left[ rg\min_{k} \|\mathbf{u}_1 - \mathbf{q}_{1, k}\|, \dots, rg\min_{k} \|\mathbf{u}_M - \mathbf{q}_{M, k}\| 
-ight]\]</div>
+<div class="arithmatex">\[\mathbf{c}_x = \left[ \arg\min_{k} \|\mathbf{u}_1 - \mathbf{q}_{1, k}\|, \dots, \arg\min_{k} \|\mathbf{u}_M - \mathbf{q}_{M, k}\| \right]\]</div>
 <p>The compression ratio is:</p>
-<div class="arithmatex">\[\mathcal{C}_{ ext{PQ}} = rac{d   imes 32 ext{ bits}}{M   imes \lceil \log_2 K 
-ceil    ext{ bits}} = rac{32 d}{M \cdot 8} = rac{4d}{M}\]</div>
-<p>For <span class="arithmatex">\(d = 768\)</span> and <span class="arithmatex">\(M = 96\)</span>, PQ provides an exact <strong><span class="arithmatex">\(32  imes\)</span> memory reduction</strong>, enabling a 1-billion-vector index (<span class="arithmatex">\(3 ext{ TB}\)</span> uncompressed) to reside within just <strong><span class="arithmatex">\(96 ext{ GB}\)</span> of RAM</strong> with <span class="arithmatex">\(&gt; 95\%\)</span> recall@10 (<a href="#ref-johnson2021">Johnson et al., 2021</a>).</p>
+<div class="arithmatex">\[\mathcal{C}_{\text{PQ}} = \frac{d \times 32\text{ bits}}{M \times \lceil \log_2 K \lceil\text{ bits}} = \frac{32 d}{M \cdot 8} = \frac{4d}{M}\]</div>
+<p>For <span class="arithmatex">\(d = 768\)</span> and <span class="arithmatex">\(M = 96\)</span>, PQ provides an exact <strong><span class="arithmatex">\(32\times\)</span> memory reduction</strong>, enabling a 1-billion-vector index (<span class="arithmatex">\(3\text{ TB}\)</span> uncompressed) to reside within just <strong><span class="arithmatex">\(96\text{ GB}\)</span> of RAM</strong> with <span class="arithmatex">\(&gt; 95\%\)</span> recall@10 (<a href="#ref-johnson2021">Johnson et al., 2021</a>).</p>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements an OCC Lakehouse transaction engine and Product Quantization encoder with mathematical assertions:</p>
@@ -7450,9 +7546,9 @@ ceil    ext{ bits}} = rac{32 d}{M \cdot 8} = rac{4d}{M}\]</div>
 <h2 id="empirical-case-study-real-time-multimodal-retrieval-pinterest-visual-search">🔬 Empirical Case Study: Real-Time Multimodal Retrieval (Pinterest Visual Search)</h2>
 <p>At Pinterest, visual search and recommendation systems query billions of image embeddings in real time:</p>
 <ol>
-<li><strong>Scale Dilemma:</strong> The catalog contains over <strong><span class="arithmatex">\(5    ext{ Billion}\)</span> visual pins</strong>, each represented by a 512-dimensional continuous feature vector. Storing raw float32 embeddings requires <strong><span class="arithmatex">\(10.24 ext{ Terabytes}\)</span> of GPU/host RAM</strong>.</li>
-<li><strong>Retrieval SLA:</strong> User mobile queries require Top-100 nearest neighbor visual retrieval within <strong><span class="arithmatex">\(12    ext{ milliseconds}\)</span></strong> at 150,000 queries per second.</li>
-<li><strong>Architectural Solution:</strong> Pinterest deployed <strong>HNSW graphs paired with Asymmetric Distance Product Quantization (ADPQ)</strong>. By compressing 512-d float vectors into 64-byte quantized codebooks, the entire 5-billion-vector index was compressed from <span class="arithmatex">\(10.2 ext{ TB}\)</span> into <strong><span class="arithmatex">\(320   ext{ GB}\)</span> of RAM</strong>, easily fitting on a compact cluster of 4 memory-optimized instances while sustaining sub-8ms p99 query latency.</li>
+<li><strong>Scale Dilemma:</strong> The catalog contains over <strong><span class="arithmatex">\(5\text{ Billion}\)</span> visual pins</strong>, each represented by a 512-dimensional continuous feature vector. Storing raw float32 embeddings requires <strong><span class="arithmatex">\(10.24\text{ Terabytes}\)</span> of GPU/host RAM</strong>.</li>
+<li><strong>Retrieval SLA:</strong> User mobile queries require Top-100 nearest neighbor visual retrieval within <strong><span class="arithmatex">\(12\text{ milliseconds}\)</span></strong> at 150,000 queries per second.</li>
+<li><strong>Architectural Solution:</strong> Pinterest deployed <strong>HNSW graphs paired with Asymmetric Distance Product Quantization (ADPQ)</strong>. By compressing 512-d float vectors into 64-byte quantized codebooks, the entire 5-billion-vector index was compressed from <span class="arithmatex">\(10.2\text{ TB}\)</span> into <strong><span class="arithmatex">\(320\text{ GB}\)</span> of RAM</strong>, easily fitting on a compact cluster of 4 memory-optimized instances while sustaining sub-8ms p99 query latency.</li>
 </ol>
 <hr />
 <h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
@@ -7573,6 +7669,8 @@ ceil    ext{ bits}} = rac{32 d}{M \cdot 8} = rac{4d}{M}\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

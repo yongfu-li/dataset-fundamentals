@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6356,6 +6375,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6417,6 +6464,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7072,6 +7147,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7286,22 +7388,20 @@
 <li>
 <p><strong>Narrow Dependencies (Pipelined Execution):</strong>
    Each partition of the parent dataset is consumed by at most one partition of the child dataset:
-   $<span class="arithmatex">\(\mathcal{P}_{  ext{child}}^{(i)} = f\left(\mathcal{P}_{    ext{parent}}^{(i)}
-ight)\)</span>$
+   $<span class="arithmatex">\(\mathcal{P}_{\text{child}}^{(i)} = f\left(\mathcal{P}_{\text{parent}}^{(i)}\right)\)</span>$
    Narrow transformations execute entirely in local worker memory without network transfer.</p>
 </li>
 <li>
 <p><strong>Wide Dependencies (Shuffle Execution):</strong>
    Multiple child partitions depend on data distributed across all parent partitions:
-   $<span class="arithmatex">\(\mathcal{P}_{  ext{child}}^{(k)} = igcup_{i=1}^M \left\{ x \in \mathcal{P}_{  ext{parent}}^{(i)} \;\middle|\; h(  ext{key}(x)) \equiv k \pmod K 
-ight\}\)</span>$
+   $<span class="arithmatex">\(\mathcal{P}_{\text{child}}^{(k)} = \bigcup_{i=1}^M \left\{ x \in \mathcal{P}_{\text{parent}}^{(i)} \;\middle|\; h(\text{key}(x)) \equiv k \pmod K \right\}\)</span>$
    Wide transformations force an <strong>all-to-all network shuffle barrier</strong>.</p>
 </li>
 </ol>
 <h3 id="the-all-to-all-shuffle-bottleneck">The All-to-All Shuffle Bottleneck</h3>
-<p>In a cluster with <span class="arithmatex">\(M\)</span> map tasks and <span class="arithmatex">\(R\)</span> reduce tasks, an unoptimized shuffle generates <span class="arithmatex">\(M   imes R\)</span> intermediate files and network connections. The total network serialization and transmission complexity is:
-$$  ext{Shuffle Complexity} = \mathcal{O}(M \cdot R \cdot ar{B})$$
-where <span class="arithmatex">\(ar{B}\)</span> is the average partition payload size.</p>
+<p>In a cluster with <span class="arithmatex">\(M\)</span> map tasks and <span class="arithmatex">\(R\)</span> reduce tasks, an unoptimized shuffle generates <span class="arithmatex">\(M \times R\)</span> intermediate files and network connections. The total network serialization and transmission complexity is:
+$<span class="arithmatex">\(\text{Shuffle Complexity} = \mathcal{O}(M \cdot R \cdot \bar{B})\)</span>$
+where <span class="arithmatex">\(\bar{B}\)</span> is the average partition payload size.</p>
 <h3 id="fault-tolerance-via-deterministic-lineage">Fault Tolerance via Deterministic Lineage</h3>
 <p>Rather than replicating intermediate in-memory data states across physical nodes (which would incur <span class="arithmatex">\(200\% - 300\%\)</span> network write overhead), frameworks like Apache Spark leverage <strong>Deterministic Lineage Graphs</strong>:
 $<span class="arithmatex">\(\mathcal{D}_k = T_k(T_{k-1}(\dots T_1(\mathcal{D}_0)))\)</span>$
@@ -7423,7 +7523,7 @@ If worker node <span class="arithmatex">\(j\)</span> crashes and loses partition
 <li>Lineage graphs eliminated the need to replicate intermediate join states.</li>
 <li>Pipelined memory execution avoided intermediate disk writes.</li>
 <li><strong>The Quantitative Results:</strong></li>
-<li><strong>Job Execution Latency:</strong> Recommendation matrix factorization runtimes fell from <strong><span class="arithmatex">\(7.5   ext{ hours}\)</span> to <span class="arithmatex">\(42 ext{ minutes}\)</span></strong> (<span class="arithmatex">\(10.7 imes\)</span> speedup).</li>
+<li><strong>Job Execution Latency:</strong> Recommendation matrix factorization runtimes fell from <strong><span class="arithmatex">\(7.5\text{ hours}\)</span> to <span class="arithmatex">\(42\text{ minutes}\)</span></strong> (<span class="arithmatex">\(10.7\times\)</span> speedup).</li>
 <li><strong>Compute Footprint:</strong> Total EC2 compute cluster instances were reduced by <strong><span class="arithmatex">\(45\%\)</span></strong>, yielding millions of dollars in annual cloud infrastructure savings.</li>
 </ol>
 <table>
@@ -7442,8 +7542,8 @@ If worker node <span class="arithmatex">\(j\)</span> crashes and loses partition
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Iterative Algorithm Speed</strong></td>
-<td style="text-align: left;">Disk I/O bound (<span class="arithmatex">\(1 imes\)</span> baseline)</td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(10 imes - 100  imes\)</span> faster in-memory</strong></td>
+<td style="text-align: left;">Disk I/O bound (<span class="arithmatex">\(1\times\)</span> baseline)</td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(10\times - 100\times\)</span> faster in-memory</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Fault Recovery Model</strong></td>
@@ -7452,7 +7552,7 @@ If worker node <span class="arithmatex">\(j\)</span> crashes and loses partition
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Execution Topology</strong></td>
-<td style="text-align: left;">Rigid 2-stage (Map $ o$ Reduce)</td>
+<td style="text-align: left;">Rigid 2-stage (Map <span class="arithmatex">\(\to\)</span> Reduce)</td>
 <td style="text-align: left;">Arbitrary multi-stage Directed Acyclic Graph</td>
 </tr>
 </tbody>
@@ -7575,6 +7675,8 @@ If worker node <span class="arithmatex">\(j\)</span> crashes and loses partition
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

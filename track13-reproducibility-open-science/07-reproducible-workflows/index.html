@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6362,6 +6381,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6423,6 +6470,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7078,6 +7153,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7301,18 +7403,16 @@
 <h3 id="the-mathematics-of-workflow-dag-scheduling-memoization">The Mathematics of Workflow DAG Scheduling &amp; Memoization</h3>
 <p>A computational workflow is represented as a directed acyclic graph <span class="arithmatex">\(G = (V, E)\)</span>, where each vertex <span class="arithmatex">\(v \in V\)</span> represents a containerized task process, and each directed edge <span class="arithmatex">\((u, v) \in E\)</span> indicates that process <span class="arithmatex">\(v\)</span> consumes output artifacts produced by process <span class="arithmatex">\(u\)</span> (<a href="#ref-koster2012">Köster &amp; Rahmann, 2012</a>).</p>
 <h4 id="workflow-makespan-under-parallel-execution">Workflow Makespan under Parallel Execution</h4>
-<p>Let <span class="arithmatex">\(t(v)\)</span> denote the execution duration of task <span class="arithmatex">\(v\)</span>, and let <span class="arithmatex">\(\mathcal{P}\)</span> denote the set of all directed paths from any entry source node to terminal sink nodes in <span class="arithmatex">\(G\)</span>. The minimal possible execution time (the <strong>makespan</strong> <span class="arithmatex">\(T_{   ext{makespan}}\)</span>) under infinite parallel worker cores is bounded by the critical path:</p>
-<div class="arithmatex">\[T_{   ext{makespan}} = \max_{p \in \mathcal{P}} \sum_{v \in p} t(v)\]</div>
+<p>Let <span class="arithmatex">\(t(v)\)</span> denote the execution duration of task <span class="arithmatex">\(v\)</span>, and let <span class="arithmatex">\(\mathcal{P}\)</span> denote the set of all directed paths from any entry source node to terminal sink nodes in <span class="arithmatex">\(G\)</span>. The minimal possible execution time (the <strong>makespan</strong> <span class="arithmatex">\(T_{\text{makespan}}\)</span>) under infinite parallel worker cores is bounded by the critical path:</p>
+<div class="arithmatex">\[T_{\text{makespan}} = \max_{p \in \mathcal{P}} \sum_{v \in p} t(v)\]</div>
 <p>Under finite parallel compute resources <span class="arithmatex">\(P\)</span>, Amdahl's Law and Brent's Scheduling Lemma bound total execution time <span class="arithmatex">\(T_P\)</span>:</p>
-<div class="arithmatex">\[rac{\sum_{v \in V} t(v)}{P} \le T_P \le T_{  ext{makespan}} + rac{\sum_{v \in V} t(v) - T_{ ext{makespan}}}{P}\]</div>
+<div class="arithmatex">\[\frac{\sum_{v \in V} t(v)}{P} \le T_P \le T_{\text{makespan}} + \frac{\sum_{v \in V} t(v) - T_{\text{makespan}}}{P}\]</div>
 <h4 id="content-addressed-task-caching-memoization">Content-Addressed Task Caching (Memoization)</h4>
-<p>Workflow engines eliminate redundant computation through cryptographic memoization. The deterministic cache key <span class="arithmatex">\(\mathcal{H}_{  ext{task}}(v)\)</span> for task <span class="arithmatex">\(v\)</span> is computed as:</p>
-<div class="arithmatex">\[\mathcal{H}_{ ext{task}}(v) =     ext{SHA-256}\left(  ext{Code}(v) \,\|\,     ext{EnvDigest}(v) \,\|\,    ext{Params}(v) \,\|\, igoplus_{u \in   ext{Parents}(v)} \mathcal{H}_{  ext{task}}(u) 
-ight)\]</div>
-<p>If an execution run finds <span class="arithmatex">\(\mathcal{H}_{    ext{task}}(v)\)</span> in the global cache store, task <span class="arithmatex">\(v\)</span> is bypassed and its historical outputs are retrieved instantaneously. The empirical speedup factor <span class="arithmatex">\(\mathcal{S}_{    ext{cache}}\)</span> is:</p>
-<div class="arithmatex">\[\mathcal{S}_{ ext{cache}} = rac{\sum_{v \in V} t(v)}{\sum_{v \in V} t(v) \cdot \mathbb{I}\left(\mathcal{H}_{ ext{task}}(v) 
-otin    ext{Cache}
-ight)}\]</div>
+<p>Workflow engines eliminate redundant computation through cryptographic memoization. The deterministic cache key <span class="arithmatex">\(\mathcal{H}_{\text{task}}(v)\)</span> for task <span class="arithmatex">\(v\)</span> is computed as:</p>
+<div class="arithmatex">\[\mathcal{H}_{\text{task}}(v) = \text{SHA-256}\left( \text{Code}(v) \,\|\, \text{EnvDigest}(v) \,\|\, \text{Params}(v) \,\|\, \bigoplus_{u \in \text{Parents}(v)} \mathcal{H}_{\text{task}}(u) \right)\]</div>
+<p>If an execution run finds <span class="arithmatex">\(\mathcal{H}_{\text{task}}(v)\)</span> in the global cache store, task <span class="arithmatex">\(v\)</span> is bypassed and its historical outputs are retrieved instantaneously. The empirical speedup factor <span class="arithmatex">\(\mathcal{S}_{\text{cache}}\)</span> is:</p>
+<div class="arithmatex">\[\mathcal{S}_{\text{cache}} = \frac{\sum_{v \in V} t(v)}{\sum_{v \in V} t(v) \cdot \mathbb{I}\left(\mathcal{H}_{\text{task}}(v) 
+otin \text{Cache}\right)}\]</div>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script simulates a declarative workflow DAG engine with content-addressed task memoization, critical path calculation, and caching speedup verification:</p>
@@ -7408,7 +7508,7 @@ ight)}\]</div>
 <h2 id="empirical-case-study-the-1000-genomes-project-nf-core-pipelines">🔬 Empirical Case Study: The 1000 Genomes Project &amp; nf-core Pipelines</h2>
 <p>In high-throughput genomic data processing:</p>
 <ol>
-<li><strong>The Scale:</strong> The <strong>1000 Genomes Project</strong> sequenced human genetic variation across 2,504 individuals, generating over <strong><span class="arithmatex">\(200   ext{ Terabytes}\)</span> of raw FASTQ files</strong>.</li>
+<li><strong>The Scale:</strong> The <strong>1000 Genomes Project</strong> sequenced human genetic variation across 2,504 individuals, generating over <strong><span class="arithmatex">\(200\text{ Terabytes}\)</span> of raw FASTQ files</strong>.</li>
 <li><strong>The Fragility:</strong> Early bespoke shell scripts failed unpredictably across differing cluster node architectures, leading to corrupt intermediate BAM alignments and irreproducible variant calls.</li>
 <li><strong>The Workflow Resolution:</strong> The international bioinformatics consortium migrated to <strong>Nextflow and the community-curated nf-core repository</strong> (<a href="#ref-ditommaso2017">Di Tommaso et al., 2017</a>). By encapsulating every bioinformatics tool into pinned Docker and Singularity containers with strict content-addressed caching, independent laboratories reproduced identical variant calls with bitwise concordance across AWS, Google Cloud, and on-premise OpenStack supercomputers.</li>
 </ol>
@@ -7531,6 +7631,8 @@ ight)}\]</div>
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

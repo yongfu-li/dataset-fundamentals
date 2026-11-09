@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7322,32 +7424,31 @@
   class SeekCol green;</code></pre>
 <h3 id="the-mathematical-advantage-of-columnar-projection">The Mathematical Advantage of Columnar Projection</h3>
 <p>Consider a dataset containing <span class="arithmatex">\(N\)</span> rows and <span class="arithmatex">\(D\)</span> columns, where the average serialized width of column <span class="arithmatex">\(j\)</span> is <span class="arithmatex">\(w_j\)</span> bytes. The total size of the dataset is:
-$$  ext{Total Size} = N \sum_{j=1}^{D} w_j$$</p>
+$<span class="arithmatex">\(\text{Total Size} = N \sum_{j=1}^{D} w_j\)</span>$</p>
 <p>When executing an analytical query that requires only a subset of columns <span class="arithmatex">\(\mathcal{Q} \subseteq \{1, \dots, D\}\)</span> with cardinality <span class="arithmatex">\(k = |\mathcal{Q}| \ll D\)</span>:</p>
 <ol>
 <li>
 <p><strong>Row-Oriented I/O:</strong> The disk controller must read every byte of every row sequentially into memory, resulting in I/O volume:
-   $$   ext{I/O}<em j="1">{  ext{Row}} = N \sum</em> w_j$$}^{D</p>
+   $<span class="arithmatex">\(\text{I/O}_{\text{Row}} = N \sum_{j=1}^{D} w_j\)</span>$</p>
 </li>
 <li>
 <p><strong>Columnar-Oriented I/O (Projection Pushdown):</strong> The storage engine seeks directly to the byte offsets containing only the requested columns <span class="arithmatex">\(\mathcal{Q}\)</span>:
-   $$   ext{I/O}<em _in="\in" _mathcal_Q="\mathcal{Q" j="j">{  ext{Columnar}} = N \sum</em> w_j$$}</p>
+   $<span class="arithmatex">\(\text{I/O}_{\text{Columnar}} = N \sum_{j \in \mathcal{Q}} w_j\)</span>$</p>
 </li>
 <li>
-<p><strong>Theoretical I/O Reduction Ratio (<span class="arithmatex">\(R_{  ext{I/O}}\)</span>):</strong>
-   $<span class="arithmatex">\(R_{    ext{I/O}} = rac{\sum_{j \in \mathcal{Q}} w_j}{\sum_{j=1}^{D} w_j}\)</span>$
-   In tabular feature stores with 100 columns where 4 features are queried, <span class="arithmatex">\(R_{    ext{I/O}} pprox 0.04\)</span>—an immediate <strong><span class="arithmatex">\(96\%\)</span> reduction in disk and network transfer</strong>.</p>
+<p><strong>Theoretical I/O Reduction Ratio (<span class="arithmatex">\(R_{\text{I/O}}\)</span>):</strong>
+   $<span class="arithmatex">\(R_{\text{I/O}} = \frac{\sum_{j \in \mathcal{Q}} w_j}{\sum_{j=1}^{D} w_j}\)</span>$
+   In tabular feature stores with 100 columns where 4 features are queried, <span class="arithmatex">\(R_{\text{I/O}} \approx 0.04\)</span>—an immediate <strong><span class="arithmatex">\(96\%\)</span> reduction in disk and network transfer</strong>.</p>
 </li>
 </ol>
 <h3 id="information-theoretic-encoding-predicate-pushdown-mechanics">Information-Theoretic Encoding &amp; Predicate Pushdown Mechanics</h3>
 <h4 id="1-dictionary-encoding-entropy">1. Dictionary Encoding Entropy</h4>
 <p>When a categorical string column contains <span class="arithmatex">\(K\)</span> unique symbols with empirical distribution <span class="arithmatex">\(p_1, \dots, p_K\)</span>, the theoretical minimum bits required per value is given by Shannon entropy (<a href="#ref-zukowski2006">Zukowski et al., 2006</a>):
 $<span class="arithmatex">\(H(X) = -\sum_{k=1}^K p_k \log_2 p_k\)</span>$
-Dictionary encoding maps strings to compact integer keys of width <span class="arithmatex">\(b = \lceil \log_2 K 
-ceil\)</span> bits, achieving a compression factor of $rac{w_{ ext{raw}}}{b / 8} pprox 10 imes - 30   imes$.</p>
+Dictionary encoding maps strings to compact integer keys of width <span class="arithmatex">\(b = \lceil \log_2 K \lceil\)</span> bits, achieving a compression factor of <span class="arithmatex">\(\frac{w_{\text{raw}}}{b / 8} \approx 10\times - 30\times\)</span>.</p>
 <h4 id="2-predicate-pushdown-minmax-row-group-skipping">2. Predicate Pushdown (Min/Max Row Group Skipping)</h4>
-<p>Parquet files group data into <strong>Row Groups</strong> (typically <span class="arithmatex">\(128    ext{ MB} - 512  ext{ MB}\)</span>). Each row group header stores the <span class="arithmatex">\(\min(c_j)\)</span> and <span class="arithmatex">\(\max(c_j)\)</span> for every column. For a filter condition $ au_{\min} \le X_j \le   au_{\max}$, the row group is pruned in <span class="arithmatex">\(O(1)\)</span> time if:
-$<span class="arithmatex">\(\max(X_j) &lt;   au_{\min} \quad \lor \quad \min(X_j) &gt;  au_{\max}\)</span>$</p>
+<p>Parquet files group data into <strong>Row Groups</strong> (typically <span class="arithmatex">\(128\text{ MB} - 512\text{ MB}\)</span>). Each row group header stores the <span class="arithmatex">\(\min(c_j)\)</span> and <span class="arithmatex">\(\max(c_j)\)</span> for every column. For a filter condition <span class="arithmatex">\(\tau_{\min} \le X_j \le \tau_{\max}\)</span>, the row group is pruned in <span class="arithmatex">\(O(1)\)</span> time if:
+$<span class="arithmatex">\(\max(X_j) &lt; \tau_{\min} \quad \lor \quad \min(X_j) &gt; \tau_{\max}\)</span>$</p>
 <hr />
 <h2 id="production-implementation-columnar-projection-pushdown">💻 Production Implementation: Columnar Projection &amp; Pushdown</h2>
 <p>The following typed Python program demonstrates dictionary compression, row group metadata indexing, and predicate pushdown skipping.</p>
@@ -7479,8 +7580,8 @@ $<span class="arithmatex">\(\max(X_j) &lt;   au_{\min} \quad \lor \quad \min(X_j
 <li><strong>Optimized:</strong> Apache Parquet with Snappy/ZSTD compression and dictionary encoding.</li>
 <li><strong>The Query Suite:</strong> 99 standard TPC-DS decision support queries were executed via Apache Spark.</li>
 <li><strong>The Quantitative Results:</strong></li>
-<li><strong>Storage Footprint:</strong> The raw <span class="arithmatex">\(100    ext{ TB}\)</span> CSV dataset compressed down to <strong><span class="arithmatex">\(11.9    ext{ TB}\)</span> in Parquet</strong> (<span class="arithmatex">\(8.4    imes\)</span> physical footprint reduction).</li>
-<li><strong>Query Execution Speed:</strong> Overall benchmark completion time dropped from <span class="arithmatex">\(19.4    ext{ hours}\)</span> (CSV) to <strong><span class="arithmatex">\(1.37   ext{ hours}\)</span> (Parquet)</strong>—an overall <strong><span class="arithmatex">\(14.2 imes\)</span> speedup</strong>.</li>
+<li><strong>Storage Footprint:</strong> The raw <span class="arithmatex">\(100\text{ TB}\)</span> CSV dataset compressed down to <strong><span class="arithmatex">\(11.9\text{ TB}\)</span> in Parquet</strong> (<span class="arithmatex">\(8.4\times\)</span> physical footprint reduction).</li>
+<li><strong>Query Execution Speed:</strong> Overall benchmark completion time dropped from <span class="arithmatex">\(19.4\text{ hours}\)</span> (CSV) to <strong><span class="arithmatex">\(1.37\text{ hours}\)</span> (Parquet)</strong>—an overall <strong><span class="arithmatex">\(14.2\times\)</span> speedup</strong>.</li>
 <li><strong>Cloud Transfer Costs:</strong> Network egress charges decreased by <span class="arithmatex">\(92\%\)</span> because queries only scanned projected columns.</li>
 </ol>
 <table>
@@ -7495,27 +7596,27 @@ $<span class="arithmatex">\(\max(X_j) &lt;   au_{\min} \quad \lor \quad \min(X_j
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Physical Storage Size</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(100.0    ext{ TB}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(11.9 ext{ TB}\)</span></strong></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(8.4    imes\)</span> Reduction</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(100.0\text{ TB}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(11.9\text{ TB}\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(8.4\times\)</span> Reduction</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>TPC-DS Total Runtime</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(19.4  ext{ hours}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(1.37  ext{ hours}\)</span></strong></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(14.2    imes\)</span> Faster</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(19.4\text{ hours}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(1.37\text{ hours}\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(14.2\times\)</span> Faster</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Data Scanned per Query</strong></td>
 <td style="text-align: left;"><span class="arithmatex">\(100\%\)</span> of row bytes</td>
 <td style="text-align: left;"><strong><span class="arithmatex">\(4.8\%\)</span> of columnar bytes</strong></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(20.8   imes\)</span> Less I/O</strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(20.8\times\)</span> Less I/O</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Annual Storage Cost ($/mo)</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(\$2,300 /    ext{month}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(\$273 /    ext{month}\)</span></strong></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(\$24,324 ext{ Saved / yr}\)</span></strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\$2,300 / \text{month}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(\$273 / \text{month}\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(\$24,324\text{ Saved / yr}\)</span></strong></td>
 </tr>
 </tbody>
 </table>
@@ -7637,6 +7738,8 @@ $<span class="arithmatex">\(\max(X_j) &lt;   au_{\min} \quad \lor \quad \min(X_j
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

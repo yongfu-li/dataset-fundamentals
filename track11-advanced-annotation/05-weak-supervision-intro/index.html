@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6384,6 +6403,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6445,6 +6492,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7100,6 +7175,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7331,41 +7433,32 @@
     class LF1,LF2,LF3,NoisyMatrix,GenerativeModel,ProbLabels,DeepClassifier green;</code></pre>
 <hr />
 <h3 id="1-the-typology-of-programmatic-labeling-functions-lfs">1. The Typology of Programmatic Labeling Functions (LFs)</h3>
-<p>A labeling function <span class="arithmatex">\(\lambda_j: \mathcal{X}     o \mathcal{Y} \cup \{0\}\)</span> inspects an instance <span class="arithmatex">\(x\)</span> and either outputs a candidate label <span class="arithmatex">\(y \in \{-1, +1\}\)</span> or <strong>abstains</strong> (<span class="arithmatex">\(0\)</span>):</p>
+<p>A labeling function <span class="arithmatex">\(\lambda_j: \mathcal{X} \to \mathcal{Y} \cup \{0\}\)</span> inspects an instance <span class="arithmatex">\(x\)</span> and either outputs a candidate label <span class="arithmatex">\(y \in \{-1, +1\}\)</span> or <strong>abstains</strong> (<span class="arithmatex">\(0\)</span>):</p>
 <ol>
-<li><strong>Pattern Matching &amp; Regular Expressions:</strong> Evaluates domain syntax (e.g. matching clinical phrases like <code>"shows evidence of infiltration"</code> $    o$ Positive).</li>
-<li><strong>Distant Supervision:</strong> Aligns instances with external relational databases or knowledge graphs (e.g. if document mentions <code>CEO(Tim Cook, Apple)</code> from Wikidata $   o$ Label as Corporate Leadership relation) (<a href="#ref-mintz2009">Mintz et al., 2009</a>).</li>
-<li><strong>Domain Heuristics:</strong> Enforces business logic rules (e.g. if <code>transaction_amount &gt; $10,000</code> and <code>foreign_country == True</code> $ o$ Audit Flag).</li>
+<li><strong>Pattern Matching &amp; Regular Expressions:</strong> Evaluates domain syntax (e.g. matching clinical phrases like <code>"shows evidence of infiltration"</code> <span class="arithmatex">\(\to\)</span> Positive).</li>
+<li><strong>Distant Supervision:</strong> Aligns instances with external relational databases or knowledge graphs (e.g. if document mentions <code>CEO(Tim Cook, Apple)</code> from Wikidata <span class="arithmatex">\(\to\)</span> Label as Corporate Leadership relation) (<a href="#ref-mintz2009">Mintz et al., 2009</a>).</li>
+<li><strong>Domain Heuristics:</strong> Enforces business logic rules (e.g. if <code>transaction_amount &gt; $10,000</code> and <code>foreign_country == True</code> <span class="arithmatex">\(\to\)</span> Audit Flag).</li>
 <li><strong>Third-Party Model Predictions:</strong> Wraps existing legacy classifiers, Spacy NER tags, or zero-shot prompt evaluations.</li>
 </ol>
 <hr />
 <h3 id="2-mathematical-formalism-coverage-overlap-and-conflict-metrics">2. Mathematical Formalism: Coverage, Overlap, and Conflict Metrics</h3>
 <p>Let <span class="arithmatex">\(m\)</span> labeling functions be evaluated across <span class="arithmatex">\(n\)</span> unlabeled records, producing the <strong>Noisy Label Matrix</strong>:
-$<span class="arithmatex">\(oldsymbol{\Lambda} \in \{-1, 0, +1\}^{n  imes m}\)</span>$
+$<span class="arithmatex">\(\boldsymbol{\Lambda} \in \{-1, 0, +1\}^{n \times m}\)</span>$
 where <span class="arithmatex">\(\Lambda_{i, j} = 0\)</span> indicates that function <span class="arithmatex">\(\lambda_j\)</span> abstained on record <span class="arithmatex">\(i\)</span>.</p>
 <p>We characterize the quality of labeling functions via three structural metrics:</p>
 <h4 id="1-coverage">1. Coverage</h4>
 <p>The fraction of the dataset where <span class="arithmatex">\(\lambda_j\)</span> outputs a non-abstain vote:
-$$  ext{Coverage}(\lambda_j) = rac{1}{n} \sum_{i=1}^n \mathbb{I}\left( \Lambda_{i, j} 
-eq 0 
-ight)$$</p>
+$<span class="arithmatex">\(\text{Coverage}(\lambda_j) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}\left( \Lambda_{i, j}  \neq 0 \right)\)</span>$</p>
 <h4 id="2-overlap">2. Overlap</h4>
-<p>The fraction of instances where <span class="arithmatex">\(\lambda_j\)</span> and at least one other labeling function <span class="arithmatex">\(\lambda_k\)</span> (<span class="arithmatex">\(k 
-eq j\)</span>) both vote:
-$$  ext{Overlap}(\lambda_j) = rac{1}{n} \sum_{i=1}^n \mathbb{I}\left( \Lambda_{i, j} 
-eq 0 \wedge \exists k 
-eq j: \Lambda_{i, k} 
-eq 0 
-ight)$$</p>
+<p>The fraction of instances where <span class="arithmatex">\(\lambda_j\)</span> and at least one other labeling function <span class="arithmatex">\(\lambda_k\)</span> (<span class="arithmatex">\(k  \neq j\)</span>) both vote:
+$<span class="arithmatex">\(\text{Overlap}(\lambda_j) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}\left( \Lambda_{i, j}  \neq 0 \wedge \exists k  \neq j: \Lambda_{i, k}  \neq 0 \right)\)</span>$</p>
 <h4 id="3-conflict-rate">3. Conflict Rate</h4>
 <p>The fraction of instances where <span class="arithmatex">\(\lambda_j\)</span> disagrees with at least one other active labeling function:
-$$  ext{Conflict}(\lambda_j) = rac{1}{n} \sum_{i=1}^n \mathbb{I}\left( \exists k 
-eq j: \Lambda_{i, j} \cdot \Lambda_{i, k} = -1 
-ight)$$
+$<span class="arithmatex">\(\text{Conflict}(\lambda_j) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}\left( \exists k  \neq j: \Lambda_{i, j} \cdot \Lambda_{i, k} = -1 \right)\)</span>$
 High conflict rates reveal areas of semantic ambiguity requiring statistical label aggregation.</p>
 <hr />
 <h2 id="production-implementation-snorkel-style-labeling-function-engine">💻 Production Implementation: Snorkel-Style Labeling Function Engine</h2>
-<p>The following Python script implements a lightweight, pure-Python weak supervision framework, applying multiple labeling functions, computing the label matrix <span class="arithmatex">\(oldsymbol{\Lambda}\)</span>, and auditing coverage and conflict statistics.</p>
+<p>The following Python script implements a lightweight, pure-Python weak supervision framework, applying multiple labeling functions, computing the label matrix <span class="arithmatex">\(\boldsymbol{\Lambda}\)</span>, and auditing coverage and conflict statistics.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">Lightweight Programmatic Weak Supervision Engine (Snorkel Architecture).</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">"""</span>
@@ -7390,11 +7483,11 @@ High conflict rates reveal areas of semantic ambiguity requiring statistical lab
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="nd">@labeling_function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"lf_great_keyword"</span><span class="p">)</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">lf_great_keyword</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">return</span> <span class="n">POSITIVE</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(great|excellent|love|amazing)"</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span> <span class="k">else</span> <span class="n">ABSTAIN</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">return</span> <span class="n">POSITIVE</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(great|excellent|love|amazing)\b"</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span> <span class="k">else</span> <span class="n">ABSTAIN</span>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="nd">@labeling_function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"lf_bad_keyword"</span><span class="p">)</span>
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">def</span><span class="w"> </span><span class="nf">lf_bad_keyword</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">return</span> <span class="n">NEGATIVE</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(terrible|awful|hate|worst|poor)"</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span> <span class="k">else</span> <span class="n">ABSTAIN</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">return</span> <span class="n">NEGATIVE</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(terrible|awful|hate|worst|poor)\b"</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span> <span class="k">else</span> <span class="n">ABSTAIN</span>
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="nd">@labeling_function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"lf_short_positive"</span><span class="p">)</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">def</span><span class="w"> </span><span class="nf">lf_short_positive</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -7622,6 +7715,8 @@ High conflict rates reveal areas of semantic ambiguity requiring statistical lab
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7310,14 +7412,13 @@
 <h4 id="symmetric-multi-modal-cross-entropy-objective">Symmetric Multi-Modal Cross-Entropy Objective</h4>
 <p>Given a batch of <span class="arithmatex">\(N\)</span> (image, text) pairs <span class="arithmatex">\((I_1, T_1), \dots, (I_N, T_N)\)</span>, visual encoder <span class="arithmatex">\(f_I\)</span> and text encoder <span class="arithmatex">\(f_T\)</span> produce normalized feature vectors <span class="arithmatex">\(\mathbf{v}_i = f_I(I_i) / \|f_I(I_i)\|\)</span> and <span class="arithmatex">\(\mathbf{u}_i = f_T(T_i) / \|f_T(T_i)\|\)</span>.</p>
 <p>The model jointly minimizes the symmetric cross-entropy across image-to-text and text-to-image projections:
-$<span class="arithmatex">\(\mathcal{L} = rac{1}{2} \left( \mathcal{L}_{ ext{image}  o   ext{text}} + \mathcal{L}_{  ext{text}   o   ext{image}} 
-ight)\)</span>$
-$<span class="arithmatex">\(\mathcal{L}_{ ext{image}  o   ext{text}} = -rac{1}{N} \sum_{i=1}^N \log rac{\exp(\mathbf{v}_i^  op \mathbf{u}_i /   au)}{\sum_{j=1}^N \exp(\mathbf{v}_i^    op \mathbf{u}_j /   au)}\)</span>$</p>
+$<span class="arithmatex">\(\mathcal{L} = \frac{1}{2} \left( \mathcal{L}_{\text{image}\to\text{text}} + \mathcal{L}_{\text{text}\to\text{image}} \right)\)</span>$
+$<span class="arithmatex">\(\mathcal{L}_{\text{image}\to\text{text}} = -\frac{1}{N} \sum_{i=1}^N \log \frac{\exp(\mathbf{v}_i^\top \mathbf{u}_i / \tau)}{\sum_{j=1}^N \exp(\mathbf{v}_i^\top \mathbf{u}_j / \tau)}\)</span>$</p>
 <h4 id="zero-shot-classification">Zero-Shot Classification</h4>
 <p>To classify an image into <span class="arithmatex">\(K\)</span> target categories without training a classifier, one constructs text prompt embeddings:
-$<span class="arithmatex">\(\mathbf{t}_k = f_T(   ext{"a photo of a "} +  ext{class}_k)\)</span>$
+$<span class="arithmatex">\(\mathbf{t}_k = f_T(\text{"a photo of a "} + \text{class}_k)\)</span>$
 The predicted class is:
-$<span class="arithmatex">\(\hat{y} = rg\max_{k \in \{1, \dots, K\}} \mathbf{v}^ op \mathbf{t}_k\)</span>$</p>
+$<span class="arithmatex">\(\hat{y} = \arg\max_{k \in \{1, \dots, K\}} \mathbf{v}^\top \mathbf{t}_k\)</span>$</p>
 <hr />
 <h3 id="2-speech-self-supervision-wav2vec-20-baevski-et-al-2020">2. Speech Self-Supervision: Wav2Vec 2.0 (Baevski et al., 2020)</h3>
 <p>In automated speech recognition (ASR), transcribing thousands of hours of audio is cost-prohibitive. <strong>Wav2Vec 2.0</strong> encodes raw audio waveforms into latent feature vectors, masks spans of audio representations in the temporal axis, and solves a contrastive task against quantized representations derived via Gumbel-Softmax vector quantization:
@@ -7400,10 +7501,10 @@ $<span class="arithmatex">\(\hat{y} = rg\max_{k \in \{1, \dots, K\}} \mathbf{v}
 </span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-memorial-sloan-kettering-gigapixel-whole-slide-pathology">🔬 Empirical Case Study: Memorial Sloan Kettering Gigapixel Whole-Slide Pathology</h2>
-<p>In histopathology, biopsy glass slides are digitized into <strong>Whole Slide Images (WSIs)</strong> spanning up to <strong><span class="arithmatex">\(100,000   imes 100,000\)</span> pixels</strong> per patient (<a href="#ref-campanella2019">Campanella et al., 2019</a>).</p>
+<p>In histopathology, biopsy glass slides are digitized into <strong>Whole Slide Images (WSIs)</strong> spanning up to <strong><span class="arithmatex">\(100,000 \times 100,000\)</span> pixels</strong> per patient (<a href="#ref-campanella2019">Campanella et al., 2019</a>).</p>
 <ol>
 <li><strong>The Pixel Impossibility:</strong> A single lymph node WSI contains billions of pixels. Pathologists can annotate only small regions of interest, and pixel-level tumor contouring is prohibitively slow (<span class="arithmatex">\(30-45\)</span> minutes per slide).</li>
-<li><strong>The Self-Supervised Revolution:</strong> MSK researchers partitioned 40,000 un-annotated whole slides into <strong>millions of <span class="arithmatex">\(256     imes 256\)</span> micro-patches</strong>, pretraining a Vision Transformer using self-supervised contrastive learning (DINO/MoCo).</li>
+<li><strong>The Self-Supervised Revolution:</strong> MSK researchers partitioned 40,000 un-annotated whole slides into <strong>millions of <span class="arithmatex">\(256 \times 256\)</span> micro-patches</strong>, pretraining a Vision Transformer using self-supervised contrastive learning (DINO/MoCo).</li>
 <li><strong>The Clinical Outcome:</strong> When transferred to clinical metastasis detection, the self-supervised encoder achieved an <strong>AUROC of <span class="arithmatex">\(0.991\)</span> with zero manual pixel-level bounding boxes</strong>, using only slide-level clinical diagnosis labels. The pipeline was cleared by the FDA as the first commercial AI application for digital pathology.</li>
 </ol>
 <table>
@@ -7548,6 +7649,8 @@ $<span class="arithmatex">\(\hat{y} = rg\max_{k \in \{1, \dots, K\}} \mathbf{v}
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       

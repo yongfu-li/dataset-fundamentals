@@ -504,6 +504,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../papers/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Landmark Papers Map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../glossary/" class="md-tabs__link">
         
   
@@ -6373,6 +6392,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/active-learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Learning Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6434,6 +6481,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/pipeline-builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Pipeline Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7089,6 +7164,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Landmark Papers Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../glossary/" class="md-nav__link">
         
   
@@ -7310,20 +7412,20 @@
 <hr />
 <h3 id="1-mathematical-formalism-cascade-cost-and-accuracy-expectation">1. Mathematical Formalism: Cascade Cost and Accuracy Expectation</h3>
 <p>Let <span class="arithmatex">\(N\)</span> be the total number of candidate instances. The cascade routing engine partitions the dataset into three disjoint subsets:
-- <span class="arithmatex">\(S_{  ext{weak}}\)</span>: Fraction <span class="arithmatex">\(p_{  ext{weak}}\)</span> labeled automatically by high-confidence weak supervision at cost <span class="arithmatex">\(c_{  ext{weak}} pprox 0\)</span>.
-- <span class="arithmatex">\(S_{  ext{crowd}}\)</span>: Fraction <span class="arithmatex">\(p_{ ext{crowd}}\)</span> routed to crowd consensus at cost <span class="arithmatex">\(c_{ ext{crowd}}\)</span>.
-- <span class="arithmatex">\(S_{  ext{expert}}\)</span>: Fraction <span class="arithmatex">\(p_{    ext{expert}} = 1 - p_{  ext{weak}} - p_{    ext{crowd}}\)</span> escalated to domain experts at cost <span class="arithmatex">\(c_{   ext{expert}}\)</span>.</p>
+- <span class="arithmatex">\(S_{\text{weak}}\)</span>: Fraction <span class="arithmatex">\(p_{\text{weak}}\)</span> labeled automatically by high-confidence weak supervision at cost <span class="arithmatex">\(c_{\text{weak}} \approx 0\)</span>.
+- <span class="arithmatex">\(S_{\text{crowd}}\)</span>: Fraction <span class="arithmatex">\(p_{\text{crowd}}\)</span> routed to crowd consensus at cost <span class="arithmatex">\(c_{\text{crowd}}\)</span>.
+- <span class="arithmatex">\(S_{\text{expert}}\)</span>: Fraction <span class="arithmatex">\(p_{\text{expert}} = 1 - p_{\text{weak}} - p_{\text{crowd}}\)</span> escalated to domain experts at cost <span class="arithmatex">\(c_{\text{expert}}\)</span>.</p>
 <h4 id="expected-cost-per-instance">Expected Cost per Instance</h4>
-<div class="arithmatex">\[\mathbb{E}[   ext{Cost}] = p_{    ext{weak}} \cdot c_{    ext{weak}} + p_{    ext{crowd}} \cdot c_{   ext{crowd}} + p_{   ext{expert}} \cdot c_{  ext{expert}}\]</div>
+<div class="arithmatex">\[\mathbb{E}[\text{Cost}] = p_{\text{weak}} \cdot c_{\text{weak}} + p_{\text{crowd}} \cdot c_{\text{crowd}} + p_{\text{expert}} \cdot c_{\text{expert}}\]</div>
 <h4 id="expected-system-accuracy">Expected System Accuracy</h4>
-<div class="arithmatex">\[\mathbb{E}[   ext{Accuracy}] = p_{    ext{weak}} \cdot    ext{Acc}_{  ext{weak}} + p_{    ext{crowd}} \cdot   ext{Acc}_{  ext{crowd}} + p_{   ext{expert}} \cdot  ext{Acc}_{  ext{expert}}\]</div>
-<p>Because <span class="arithmatex">\(c_{    ext{expert}} \gg c_{    ext{crowd}} \gg c_{ ext{weak}}\)</span>, the optimization objective is to maximize <span class="arithmatex">\(p_{ ext{weak}}\)</span> and <span class="arithmatex">\(p_{    ext{crowd}}\)</span> subject to maintaining <span class="arithmatex">\(\mathbb{E}[    ext{Accuracy}] \ge 1 - \epsilon\)</span>. In typical enterprise deployments, tuning triage thresholds achieves <strong><span class="arithmatex">\(&gt;98\%\)</span> expert-level accuracy at less than <span class="arithmatex">\(10\%\)</span> of full expert labeling cost</strong>.</p>
+<div class="arithmatex">\[\mathbb{E}[\text{Accuracy}] = p_{\text{weak}} \cdot \text{Acc}_{\text{weak}} + p_{\text{crowd}} \cdot \text{Acc}_{\text{crowd}} + p_{\text{expert}} \cdot \text{Acc}_{\text{expert}}\]</div>
+<p>Because <span class="arithmatex">\(c_{\text{expert}} \gg c_{\text{crowd}} \gg c_{\text{weak}}\)</span>, the optimization objective is to maximize <span class="arithmatex">\(p_{\text{weak}}\)</span> and <span class="arithmatex">\(p_{\text{crowd}}\)</span> subject to maintaining <span class="arithmatex">\(\mathbb{E}[\text{Accuracy}] \ge 1 - \epsilon\)</span>. In typical enterprise deployments, tuning triage thresholds achieves <strong><span class="arithmatex">\(&gt;98\%\)</span> expert-level accuracy at less than <span class="arithmatex">\(10\%\)</span> of full expert labeling cost</strong>.</p>
 <hr />
 <h3 id="2-architectural-design-principles-for-hybrid-cascades">2. Architectural Design Principles for Hybrid Cascades</h3>
 <ol>
 <li><strong>Deterministic Escalation Contracts:</strong> An instance is escalated to a higher tier if and only if:</li>
 <li>Weak supervision labeling functions produce an unresolvable tie (<span class="arithmatex">\(\sum \Lambda_{i, j} = 0\)</span>).</li>
-<li>Model prediction entropy exceeds threshold $   au_{    ext{entropy}} \ge 0.85$.</li>
+<li>Model prediction entropy exceeds threshold <span class="arithmatex">\(\tau_{\text{entropy}} \ge 0.85\)</span>.</li>
 <li>Inter-annotator crowd disagreement yields an agreement score <span class="arithmatex">\(\kappa &lt; 0.60\)</span>.</li>
 <li><strong>Continuous Active Feedback:</strong> When experts adjudicate difficult cases in Tier 4, their decisions do not merely enter the dataset—they are analyzed to synthesize <strong>new programmatic labeling functions</strong>, permanently expanding Tier 1 coverage for future iterations.</li>
 </ol>
@@ -7580,6 +7682,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
       
