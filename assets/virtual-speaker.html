@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Virtual Speaker — Dataset Fundamentals</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes mouth-talk {
+      0%, 100% { d: path("M 88 126 Q 100 128 112 126"); }
+      50% { d: path("M 88 124 Q 100 138 112 124"); }
+    }
+    @keyframes eye-blink {
+      0%, 90%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.1); }
+    }
+    @keyframes gentle-sway {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(0.8deg); }
+    }
+    @keyframes soundwave {
+      0%, 100% { height: 6px; }
+      50% { height: 26px; }
+    }
+    .mouth-speaking { animation: mouth-talk 0.22s ease-in-out infinite; }
+    .eyes-blinking { animation: eye-blink 4s infinite; transform-origin: center 95px; }
+    .speaker-sway { animation: gentle-sway 3s ease-in-out infinite; transform-origin: bottom center; }
+    .wave-bar-1 { animation: soundwave 0.5s ease-in-out infinite; }
+    .wave-bar-2 { animation: soundwave 0.7s ease-in-out infinite 0.15s; }
+    .wave-bar-3 { animation: soundwave 0.4s ease-in-out infinite 0.3s; }
+    .wave-bar-4 { animation: soundwave 0.6s ease-in-out infinite 0.1s; }
+  </style>
+</head>
+<body class="bg-[#070a12] text-slate-100 font-sans min-h-screen p-4 md:p-8 select-none">
+
+  <!-- Header -->
+  <header class="max-w-5xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-5">
+    <div>
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-400 text-xs font-semibold tracking-wide uppercase mb-2">
+        <span>🎙️ Manga Virtual Speaker Prototype</span>
+        <span>•</span>
+        <span>Curriculum Delivery System</span>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+        Virtual Lecturer: <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-400">Dr. Nova &amp; Kaito</span>
+      </h1>
+      <p class="text-slate-400 text-sm mt-1">
+        Manga-inspired AI avatars delivering the <em>Dataset Fundamentals</em> curriculum via synchronized audio, expressive visual poses, and Socratic dialogues.
+      </p>
+    </div>
+
+    <!-- Mode Toggle: Solo Lecture vs Duo Manga Dialogue -->
+    <div class="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 text-xs">
+      <button id="btnSolo" onclick="setLectureMode('solo')" class="px-3 py-1.5 rounded-lg font-bold transition-all bg-cyan-600 text-white shadow-md shadow-cyan-950">
+        Solo Keynote
+      </button>
+      <button id="btnDuo" onclick="setLectureMode('duo')" class="px-3 py-1.5 rounded-lg font-bold transition-all text-slate-400 hover:text-slate-200">
+        Manga Socratic Duo
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Showcase Grid -->
+  <main class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- Left: Virtual Speaker Studio (5 cols) -->
+    <div class="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden backdrop-blur-sm">
+      
+      <!-- Top Speaker Status Pill -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
+          <span class="font-mono text-xs font-bold text-slate-200" id="speakerName">Dr. Nova (Data Architect)</span>
+        </div>
+        <span id="poseBadge" class="text-xs font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">
+          Pose: Teaching
+        </span>
+      </div>
+
+      <!-- Manga Avatar Graphic Arena -->
+      <div class="flex-1 flex flex-col items-center justify-center my-4 relative min-h-[300px]">
+        <!-- Hologram Backdrop Grid -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-950/30 via-transparent to-transparent pointer-events-none"></div>
+
+        <!-- Speaker Avatar (SVG) -->
+        <div id="speakerAvatar" class="speaker-sway relative">
+          <svg width="220" height="260" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Aura Halo -->
+            <circle cx="100" cy="100" r="75" fill="url(#haloGrad)" opacity="0.25"/>
+
+            <!-- Hair Back (Anime Long Bob / Cyber Violet) -->
+            <path d="M 50 110 C 35 150 45 190 55 210 C 70 190 75 160 70 120 Z" fill="#6366f1"/>
+            <path d="M 150 110 C 165 150 155 190 145 210 C 130 190 125 160 130 120 Z" fill="#6366f1"/>
+
+            <!-- Torso / High-Collar Cyber Lab Coat -->
+            <path d="M 60 180 L 40 240 L 160 240 L 140 180 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+            <path d="M 75 180 L 100 215 L 125 180" stroke="#38bdf8" stroke-width="3" fill="#1e293b"/>
+            <!-- Lab Coat Lapels -->
+            <path d="M 70 180 L 60 240 L 95 240 L 85 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+            <path d="M 130 180 L 140 240 L 105 240 L 115 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- Tech Badge on Chest -->
+            <rect x="70" y="210" width="18" height="10" rx="3" fill="#0284c7"/>
+            <circle cx="75" cy="215" r="2" fill="#38bdf8"/>
+
+            <!-- Neck -->
+            <rect x="90" y="145" width="20" height="35" rx="5" fill="#fcd34d" opacity="0.9"/>
+            <path d="M 90 160 Q 100 168 110 160" stroke="#d97706" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+            <!-- Face Contour -->
+            <path d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z" fill="#fef3c7"/>
+
+            <!-- Blush Spots (Manga Style) -->
+            <ellipse cx="78" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3"/>
+            <ellipse cx="122" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3"/>
+
+            <!-- Eyes (Manga Large Expressive Eyes) -->
+            <g id="avatarEyes" class="eyes-blinking">
+              <!-- Left Eye -->
+              <ellipse cx="80" cy="100" rx="9" ry="11" fill="#0f172a"/>
+              <ellipse cx="80" cy="100" rx="7" ry="9" fill="#0284c7"/>
+              <circle cx="78" cy="96" r="3.5" fill="#ffffff"/>
+              <circle cx="83" cy="103" r="1.5" fill="#ffffff"/>
+              <!-- Eyelash / Brow -->
+              <path d="M 70 88 Q 80 84 90 89" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              
+              <!-- Right Eye -->
+              <ellipse cx="120" cy="100" rx="9" ry="11" fill="#0f172a"/>
+              <ellipse cx="120" cy="100" rx="7" ry="9" fill="#0284c7"/>
+              <circle cx="118" cy="96" r="3.5" fill="#ffffff"/>
+              <circle cx="123" cy="103" r="1.5" fill="#ffffff"/>
+              <!-- Eyelash / Brow -->
+              <path d="M 110 89 Q 120 84 130 88" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </g>
+
+            <!-- Cyber Tech Monocle / AR Eyepiece (Manga Scientist Touch) -->
+            <circle cx="120" cy="100" r="14" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.8"/>
+            <line x1="134" y1="100" x2="148" y2="92" stroke="#38bdf8" stroke-width="1.5"/>
+            <circle cx="120" cy="100" r="12" fill="#38bdf8" opacity="0.15"/>
+
+            <!-- Nose -->
+            <path d="M 100 110 L 98 116 L 101 116" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+            <!-- Mouth (Morphs between resting and talking) -->
+            <path id="avatarMouth" d="M 92 128 Q 100 132 108 128" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+            <!-- Bangs / Front Hair (Manga Layered) -->
+            <path d="M 60 75 Q 85 95 90 120 Q 95 85 100 65 Q 105 85 115 118 Q 120 90 140 75 C 130 50 70 50 60 75 Z" fill="#818cf8"/>
+            <!-- Hair Highlight Streak -->
+            <path d="M 75 65 Q 100 75 125 65" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+
+            <!-- Soundwave Graphic Indicators -->
+            <g id="soundwaveGroup" class="opacity-0 transition-opacity duration-300">
+              <rect x="25" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-1"/>
+              <rect x="31" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2"/>
+              <rect x="37" y="102" width="3" height="8" rx="1.5" fill="#38bdf8" class="wave-bar-3"/>
+              
+              <rect x="160" y="102" width="3" height="8" rx="1.5" fill="#38bdf8" class="wave-bar-3"/>
+              <rect x="166" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2"/>
+              <rect x="172" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-4"/>
+            </g>
+
+            <!-- Defs -->
+            <defs>
+              <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Playback & Audio Controls -->
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-3">
+        <div class="flex items-center justify-between mb-2.5">
+          <div class="flex items-center gap-2">
+            <button id="btnPlaySpeech" onclick="toggleSpeech()" class="px-3.5 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-cyan-900/40">
+              <span id="playIcon">▶</span>
+              <span id="playText">Speak Aloud</span>
+            </button>
+            <button onclick="stopSpeech()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+              ⏹ Stop
+            </button>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <span class="text-xs text-slate-500 font-mono">Pose:</span>
+            <select id="poseSelect" onchange="changePose(this.value)" class="bg-slate-900 border border-slate-700 text-cyan-400 text-xs rounded px-2 py-1 font-mono">
+              <option value="teaching">Teaching</option>
+              <option value="thinking">Deep Thought</option>
+              <option value="warning">Warning / Risk</option>
+              <option value="excited">Eureka!</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Teleprompter / Current Line -->
+        <div class="text-xs text-slate-400 font-mono flex items-center justify-between border-t border-slate-900 pt-2">
+          <span>Voice: <strong class="text-slate-300">Neural TTS (English)</strong></span>
+          <span id="charCount" class="text-slate-500">Audio Synced</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Integrated Lecture Presentation Canvas (7 cols) -->
+    <div class="lg:col-span-7 flex flex-col gap-4">
+
+      <!-- Simulated Slide Canvas with Avatar PiP (Picture-in-Picture) -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+        <!-- Top Cyan Accent Bar -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-600"></div>
+
+        <div>
+          <!-- Category Pill -->
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-bold text-cyan-400 tracking-wider">
+              ◆ CHAPTER 1 • PART 1: INTRODUCTION TO DATASETS
+            </span>
+            <span class="text-xs font-mono text-slate-500">Slide 9 / 15</span>
+          </div>
+
+          <!-- Slide Title -->
+          <h2 id="slideTitle" class="text-xl md:text-2xl font-bold text-white mb-4">
+            The Law of Data Quality Cascades
+          </h2>
+
+          <!-- Slide Content Area (Dual Mode: Solo Points or Manga Socratic Dialogue) -->
+          <div id="slideContent" class="space-y-3 text-sm">
+            <!-- Bullet 1 -->
+            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Non-Linear Error Amplification:</strong>
+                <span class="text-slate-300">Early collection noise does not stay contained; it compounds exponentially across downstream pipeline stages.</span>
+              </div>
+            </div>
+
+            <!-- Bullet 2 -->
+            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Sensor Telemetry Drift:</strong>
+                <span class="text-slate-300">A tiny 20ms timestamp jitter shifts LiDAR spatial coordinates by 0.56 meters, creating ghost obstacles in autonomous vehicles.</span>
+              </div>
+            </div>
+
+            <!-- Bullet 3 -->
+            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Model Overfitting Trap:</strong>
+                <span class="text-slate-300">Downstream neural models exploit subtle collection bugs as predictive signals, triggering catastrophic failures in the ICU.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Speech Subtitle Bar / Live Captioning -->
+        <div class="mt-4 p-3.5 bg-slate-950 border border-slate-800 rounded-xl relative">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span id="captionSpeaker" class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wide">
+              Dr. Nova:
+            </span>
+          </div>
+          <p id="captionText" class="text-sm text-slate-200 leading-relaxed font-sans italic">
+            "Remember everyone: you cannot fix dirty data by simply training a deeper neural network. A minor sensor drift at ingestion compounds into catastrophic failure!"
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Feature Card: Why Manga / Virtual Speakers Excel in Data Science -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <h3 class="text-xs font-mono font-bold tracking-wider uppercase text-slate-300 mb-2 flex items-center gap-1.5">
+          <span>💡 Three Pedagogical Superpowers of Virtual Manga Speakers</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+            <strong class="text-sky-400 block mb-0.5">1. Socratic Relatability</strong>
+            <span class="text-slate-400 text-xs">The junior apprentice asks the exact questions the student is thinking, preventing cognitive overload.</span>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+            <strong class="text-amber-400 block mb-0.5">2. Emotional Memory Anchors</strong>
+            <span class="text-slate-400 text-xs">Shocked or panicked character reactions create visual anchors for critical failure modes (e.g. data cascades).</span>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+            <strong class="text-emerald-400 block mb-0.5">3. Multi-Voice Pipeline</strong>
+            <span class="text-slate-400 text-xs">Integrates directly into our TTS audio and video scripts via Azure/Edge-TTS neural voices.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    let isSpeaking = false;
+    let currentMode = 'solo';
+
+    const dialogues = {
+      solo: {
+        speaker: "Dr. Nova (Data Architect)",
+        badge: "Pose: Teaching",
+        title: "The Law of Data Quality Cascades",
+        text: "In production machine learning systems, early collection errors do not stay contained. They compound non-linearly across downstream stages. Hardware telemetry drift or missing sensor readings compound through arbitrary imputation. Even subtle collection artifacts can trigger catastrophic failure during deployment.",
+        contentHtml: `
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
+            <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+            <div>
+              <strong class="text-cyan-400">Non-Linear Error Amplification:</strong>
+              <span class="text-slate-300">Early collection noise does not stay contained; it compounds exponentially across downstream pipeline stages.</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
+            <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+            <div>
+              <strong class="text-cyan-400">Sensor Telemetry Drift:</strong>
+              <span class="text-slate-300">A tiny 20ms timestamp jitter shifts LiDAR spatial coordinates by 0.56 meters, creating ghost obstacles in autonomous vehicles.</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
+            <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+            <div>
+              <strong class="text-cyan-400">Model Overfitting Trap:</strong>
+              <span class="text-slate-300">Downstream neural models exploit subtle collection bugs as predictive signals, triggering catastrophic failures in the ICU.</span>
+            </div>
+          </div>
+        `
+      },
+      duo: {
+        speaker: "Manga Dialogue (Dr. Nova & Kaito)",
+        badge: "Pose: Socratic Debate",
+        title: "Socratic Debate: Can a Bigger Model Fix Dirty Data?",
+        text: "Kaito asks: But Dr. Nova, if our medical sensors have a little bit of noise, can't we just scale up our transformer to twenty billion parameters? Dr. Nova replies: Absolutely not, Kaito! As Sambasivan proved, the model will simply overfit to the noise artifact, mistaking uncalibrated sensor drift for patient biomarkers!",
+        contentHtml: `
+          <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+            <div>
+              <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+              <span class="text-slate-200">"Wait, Dr. Nova! If our bedside ICU monitor has a tiny 20ms timestamp jitter, can't we just throw a 100-layer Transformer at it to smooth it out?"</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+            <div class="w-7 h-7 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+            <div>
+              <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+              <span class="text-slate-200">"Never! That's the classic model-centric fallacy! The deeper your neural net, the more aggressively it will memorize the 20ms jitter as a spurious shortcut!"</span>
+            </div>
+          </div>
+          <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+            <span>💡</span>
+            <span><strong>Core Takeaway:</strong> Model capacity amplifies data artifacts rather than fixing them.</span>
+          </div>
+        `
+      }
+    };
+
+    function setLectureMode(mode) {
+      currentMode = mode;
+      stopSpeech();
+
+      const btnSolo = document.getElementById('btnSolo');
+      const btnDuo = document.getElementById('btnDuo');
+
+      if (mode === 'solo') {
+        btnSolo.className = "px-3 py-1.5 rounded-lg font-bold transition-all bg-cyan-600 text-white shadow-md shadow-cyan-950";
+        btnDuo.className = "px-3 py-1.5 rounded-lg font-bold transition-all text-slate-400 hover:text-slate-200";
+      } else {
+        btnDuo.className = "px-3 py-1.5 rounded-lg font-bold transition-all bg-indigo-600 text-white shadow-md shadow-indigo-950";
+        btnSolo.className = "px-3 py-1.5 rounded-lg font-bold transition-all text-slate-400 hover:text-slate-200";
+      }
+
+      const d = dialogues[mode];
+      document.getElementById('speakerName').innerText = d.speaker;
+      document.getElementById('poseBadge').innerText = d.badge;
+      document.getElementById('slideTitle').innerText = d.title;
+      document.getElementById('slideContent').innerHTML = d.contentHtml;
+      document.getElementById('captionSpeaker').innerText = mode === 'solo' ? "Dr. Nova:" : "Dialogue:";
+      document.getElementById('captionText').innerText = `"${d.text}"`;
+    }
+
+    function changePose(pose) {
+      const badge = document.getElementById('poseBadge');
+      badge.innerText = `Pose: ${pose.charAt(0).toUpperCase() + pose.slice(1)}`;
+      const mouth = document.getElementById('avatarMouth');
+
+      if (pose === 'warning') {
+        mouth.setAttribute('d', 'M 92 132 Q 100 126 108 132'); // downturn
+        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-red-950 text-red-400 border border-red-800";
+      } else if (pose === 'excited') {
+        mouth.setAttribute('d', 'M 90 124 Q 100 140 110 124'); // big smile
+        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800";
+      } else if (pose === 'thinking') {
+        mouth.setAttribute('d', 'M 94 128 L 106 128'); // flat straight line
+        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-amber-950 text-amber-400 border border-amber-800";
+      } else {
+        mouth.setAttribute('d', 'M 92 128 Q 100 132 108 128');
+        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800";
+      }
+    }
+
+    function toggleSpeech() {
+      if (isSpeaking) {
+        stopSpeech();
+        return;
+      }
+      startSpeech();
+    }
+
+    function startSpeech() {
+      if (!('speechSynthesis' in window)) {
+        alert("Web Speech API is not supported in this browser. Visual animation will still play!");
+        animateTalking(true);
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const textToSpeak = dialogues[currentMode].text;
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.rate = 1.0;
+      utterance.pitch = currentMode === 'solo' ? 1.05 : 1.0;
+
+      // Select natural female English voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Aria') || v.name.includes('Jenny')));
+      if (preferred) utterance.voice = preferred;
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        animateTalking(true);
+        document.getElementById('playText').innerText = "Pause Audio";
+        document.getElementById('playIcon').innerText = "⏸";
+      };
+
+      utterance.onend = () => {
+        stopSpeech();
+      };
+
+      utterance.onerror = () => {
+        stopSpeech();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      isSpeaking = false;
+      animateTalking(false);
+      document.getElementById('playText').innerText = "Speak Aloud";
+      document.getElementById('playIcon').innerText = "▶";
+    }
+
+    function animateTalking(speaking) {
+      const mouth = document.getElementById('avatarMouth');
+      const soundwaves = document.getElementById('soundwaveGroup');
+      if (speaking) {
+        mouth.classList.add('mouth-speaking');
+        soundwaves.classList.remove('opacity-0');
+      } else {
+        mouth.classList.remove('mouth-speaking');
+        soundwaves.classList.add('opacity-0');
+      }
+    }
+
+    // Initialize voices if async loaded
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {};
+    }
+  </script>
+
+</body>
+</html>
