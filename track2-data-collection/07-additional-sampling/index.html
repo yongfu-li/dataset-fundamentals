@@ -7419,15 +7419,21 @@
 <h3 id="a-the-algorithm-inclusion-probability">A. The Algorithm &amp; Inclusion Probability</h3>
 <p>For population size <span class="arithmatex">\(N\)</span> and target sample size <span class="arithmatex">\(n\)</span>:
 1. Calculate the sampling interval (stride):</p>
-<div class="arithmatex">\[k = \left\lfloor \frac{N}{n} \right\rfloor\]</div>
+<div class="arithmatex">\[
+k = \left\lfloor \frac{N}{n} \right\rfloor
+\]</div>
 <ol>
 <li>Draw a uniform random start seed:</li>
 </ol>
-<div class="arithmatex">\[r \sim \text{Uniform}\left(\{1, 2, \dots, k\}\right)\]</div>
+<div class="arithmatex">\[
+r \sim \text{Uniform}\left(\{1, 2, \dots, k\}\right)
+\]</div>
 <ol>
 <li>The sampled set <span class="arithmatex">\(\mathcal{S}\)</span> is deterministically generated as:</li>
 </ol>
-<div class="arithmatex">\[\mathcal{S} = \left\{ r, \, r + k, \, r + 2k, \, \dots, \, r + (n - 1)k \right\}\]</div>
+<div class="arithmatex">\[
+\mathcal{S} = \left\{ r, \, r + k, \, r + 2k, \, \dots, \, r + (n - 1)k \right\}
+\]</div>
 <p>Because the random start <span class="arithmatex">\(r\)</span> is drawn with probability <span class="arithmatex">\(\frac{1}{k}\)</span>, every unit has an equal first-order inclusion probability <span class="arithmatex">\(\pi_i = \frac{1}{k} \approx \frac{n}{N}\)</span>.</p>
 <pre class="mermaid"><code>flowchart LR
     Start["Random Start r = 4&lt;br/&gt;(Drawn from 1..k)"] --&gt; U4["Unit 4 (Sampled)"]
@@ -7443,9 +7449,13 @@
     class U4,U14,U24,U34,UN green;</code></pre>
 <h3 id="b-the-periodicity-trap-spectral-resonance">B. The Periodicity Trap (Spectral Resonance)</h3>
 <p>The critical danger in systematic sampling is <strong>periodicity in the frame</strong>. If the ordered population exhibits an underlying cyclic frequency <span class="arithmatex">\(P\)</span> that resonates with the stride <span class="arithmatex">\(k\)</span> (i.e., <span class="arithmatex">\(\gcd(k, P) &gt; 1\)</span>):</p>
-<div class="arithmatex">\[y_i = \mu + A \cdot \sin\left(\frac{2\pi i}{P}\right) + \epsilon_i\]</div>
+<div class="arithmatex">\[
+y_i = \mu + A \cdot \sin\left(\frac{2\pi i}{P}\right) + \epsilon_i
+\]</div>
 <p>If <span class="arithmatex">\(k = P\)</span>, the systematic draw samples the exact same phase of the cycle for all <span class="arithmatex">\(n\)</span> observations (e.g., sampling hospital admissions every 7th day, capturing only Sunday weekend lows). This induces severe, undetectable estimation bias:</p>
-<div class="arithmatex">\[\text{Bias}(\bar{y}_{\text{sys}}) = A \cdot \sin\left(\frac{2\pi r}{P}\right)\]</div>
+<div class="arithmatex">\[
+\text{Bias}(\bar{y}_{\text{sys}}) = A \cdot \sin\left(\frac{2\pi r}{P}\right)
+\]</div>
 <blockquote>
 <p>[!CAUTION]
 <strong>Defensive Engineering Rule</strong>: Before running a systematic draw over an ordered database, always verify whether sorting order contains hidden periodicity (e.g., day of week, machine rack IDs). When in doubt, apply a pseudo-random permutation (shuffle) to the indices before sampling.</p>
@@ -7478,12 +7488,16 @@
 <h3 id="a-convenience-sampling">A. Convenience Sampling</h3>
 <p>Convenience sampling recruits units based solely on accessibility: walk-up intercepts, social media banner clicks, or student volunteers.</p>
 <p>The inclusion probability is governed by unobserved self-selection functions:</p>
-<div class="arithmatex">\[\pi_i = P(i \in \mathcal{S}) = f(\text{Proximity}_i, \text{Motivation}_i, \text{TechAffinity}_i)\]</div>
+<div class="arithmatex">\[
+\pi_i = P(i \in \mathcal{S}) = f(\text{Proximity}_i, \text{Motivation}_i, \text{TechAffinity}_i)
+\]</div>
 <p>Because highly motivated or proximate individuals dominate the sample, convenience samples cannot estimate population prevalence. They are valid only for <strong>instrument pre-testing, usability debugging, and early feasibility pilots</strong>.</p>
 <h3 id="b-snowball-network-referral-sampling-homophily-bias">B. Snowball (Network Referral) Sampling &amp; Homophily Bias</h3>
 <p>Snowball sampling begins with a small set of verified seed participants (<span class="arithmatex">\(v_1, \dots, v_s \in \mathcal{V}\)</span>), who recruit eligible peers from their social networks.</p>
 <p>While effective for reaching marginalized communities (e.g., gig economy delivery drivers), snowball samples are distorted by <strong>Network Homophily</strong> [<a href="#ref-mcpherson2001">McPherson2001</a>]:</p>
-<div class="arithmatex">\[P\left(e_{ij} \in \mathcal{E} \mid y_i = y_j\right) \gg P\left(e_{ij} \in \mathcal{E} \mid y_i \neq y_j\right)\]</div>
+<div class="arithmatex">\[
+P\left(e_{ij} \in \mathcal{E} \mid y_i = y_j\right) \gg P\left(e_{ij} \in \mathcal{E} \mid y_i \neq y_j\right)
+\]</div>
 <p>Seeds recruit peers who share their language, geographical sub-zone, income bracket, and employment platform.</p>
 <pre class="mermaid"><code>flowchart LR
     Seed["Seed Driver A&lt;br/&gt;(App: FoodSwift)"] --&gt; P1["Peer B (FoodSwift)"]
@@ -7497,7 +7511,9 @@
     class Seed blue;
     class P1,P2,P3,P4 green;</code></pre>
 <p>To correct for degree bias and homophily in snowball designs, researchers use <strong>Respondent-Driven Sampling (RDS)</strong> [<a href="#ref-heckathorn1997">Heckathorn1997</a>], modeling the recruitment chain as a Markov process and weighting observations inversely by personal network degree <span class="arithmatex">\(d_i\)</span>:</p>
-<div class="arithmatex">\[\hat{\bar{Y}}_{\text{RDS}} = \frac{\sum_{i \in \mathcal{S}} \frac{y_i}{d_i}}{\sum_{i \in \mathcal{S}} \frac{1}{d_i}}\]</div>
+<div class="arithmatex">\[
+\hat{\bar{Y}}_{\text{RDS}} = \frac{\sum_{i \in \mathcal{S}} \frac{y_i}{d_i}}{\sum_{i \in \mathcal{S}} \frac{1}{d_i}}
+\]</div>
 <hr />
 <h2 id="3-comprehensive-sampling-taxonomy-selection-matrix">3. Comprehensive Sampling Taxonomy &amp; Selection Matrix</h2>
 <table>
@@ -7576,11 +7592,11 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-kish1965"></a><strong>[Kish1965]</strong> Kish, L. (1965). <em>Survey sampling</em>. John Wiley &amp; Sons.</li>
-<li><a id="ref-heckathorn1997"></a><strong>[Heckathorn1997]</strong> Heckathorn, D. D. (1997). <em>Respondent-driven sampling: A new approach to the study of hidden populations</em>. Social Problems, 44(2), 174–199. DOI: <a href="https://doi.org/10.2307/3096941">10.2307/3096941</a></li>
-<li><a id="ref-mcpherson2001"></a><strong>[McPherson2001]</strong> McPherson, M., Smith-Lovin, L., &amp; Cook, J. M. (2001). <em>Birds of a feather: Homophily in social networks</em>. Annual Review of Sociology, 27(1), 415–444. DOI: <a href="https://doi.org/10.1146/annurev.soc.27.1.415">10.1146/annurev.soc.27.1.415</a></li>
-</ul>
+<ol>
+<li><a id="ref-kish1965"></a><strong>[Kish1965]</strong> L. Kish, <em>Survey sampling</em>, John Wiley &amp; Sons, 1965. <a href="https://doi.org/10.1002/bimj.19680100122">DOI: 10.1002/bimj.19680100122</a>.</li>
+<li><a id="ref-heckathorn1997"></a><strong>[Heckathorn1997]</strong> D. D. Heckathorn, "Respondent-driven Sampling: A New Approach to the Study of Hidden Populations," <em>Social Problems</em>, vol. 44, no. 2, pp. 174–199, 1997. <a href="https://doi.org/10.1525/sp.1997.44.2.03x0221m">DOI: 10.1525/sp.1997.44.2.03x0221m</a>.</li>
+<li><a id="ref-mcpherson2001"></a><strong>[McPherson2001]</strong> M. McPherson, L. Smith-Lovin, and J. M. Cook, "Birds of a Feather: Homophily in Social Networks," <em>Annual Review of Sociology</em>, vol. 27, no. 1, pp. 415–444, 2001. <a href="https://doi.org/10.1146/annurev.soc.27.1.415">DOI: 10.1146/annurev.soc.27.1.415</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../06-probability-sampling/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.6 Probability Sampling</a>

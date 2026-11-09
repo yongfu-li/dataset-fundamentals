@@ -3485,10 +3485,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7316,10 +7316,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7391,10 +7391,14 @@
 <h3 id="2-intersectional-subgroup-disaggregation">2. Intersectional Subgroup Disaggregation</h3>
 <p>Reporting a single global accuracy metric (e.g., "Model achieves 94% accuracy") commits the <strong>ecological fallacy</strong>: strong average performance often conceals systemic failures on marginalized intersectional groups.</p>
 <h4 id="intersectional-evaluation-geometry">Intersectional Evaluation Geometry</h4>
-<p>Let individuals possess multiple protected characteristics (e.g., Race <span class="arithmatex">\(\mathcal{R} = \{\text{Black}, \text{White}\}\)</span>, Gender <span class="arithmatex">\(\mathcal{G} = \{\text{Female}, \text{Male}\}\)</span>). An intersectional evaluation evaluates all Cartesian product sub-populations:
-$<span class="arithmatex">\(\mathcal{S} = \mathcal{R} \times \mathcal{G} = \{ (\text{Black}, \text{Female}), (\text{Black}, \text{Male}), (\text{White}, \text{Female}), (\text{White}, \text{Male}) \}\)</span>$
-The engineering objective is not merely maximizing average accuracy <span class="arithmatex">\(\bar{\mu}\)</span>, but maximizing the <strong>Minimax Subgroup Performance</strong>:
-$<span class="arithmatex">\(\max_\theta \min_{s \in \mathcal{S}} \text{Accuracy}_s(\theta)\)</span>$</p>
+<p>Let individuals possess multiple protected characteristics (e.g., Race <span class="arithmatex">\(\mathcal{R} = \{\text{Black}, \text{White}\}\)</span>, Gender <span class="arithmatex">\(\mathcal{G} = \{\text{Female}, \text{Male}\}\)</span>). An intersectional evaluation evaluates all Cartesian product sub-populations:</p>
+<div class="arithmatex">\[
+\mathcal{S} = \mathcal{R} \times \mathcal{G} = \{ (\text{Black}, \text{Female}), (\text{Black}, \text{Male}), (\text{White}, \text{Female}), (\text{White}, \text{Male}) \}
+\]</div>
+<p>The engineering objective is not merely maximizing average accuracy <span class="arithmatex">\(\bar{\mu}\)</span>, but maximizing the <strong>Minimax Subgroup Performance</strong>:</p>
+<div class="arithmatex">\[
+\max_\theta \min_{s \in \mathcal{S}} \text{Accuracy}_s(\theta)
+\]</div>
 <hr />
 <h2 id="production-implementation-intersectional-subgroup-performance-auditor">💻 Production Implementation: Intersectional Subgroup Performance Auditor</h2>
 <p>Below is a self-contained Python script computing intersectional metric frames across Cartesian demographic slices, identifying hidden performance deficits.</p>
@@ -7492,9 +7496,11 @@ $<span class="arithmatex">\(\max_\theta \min_{s \in \mathcal{S}} \text{Accuracy}
 <h2 id="empirical-case-study-commercial-automated-speech-recognition-asr">🔬 Empirical Case Study: Commercial Automated Speech Recognition (ASR)</h2>
 <p>In a study published in the <em>Proceedings of the National Academy of Sciences</em> (<a href="#ref-koenecke2020">Koenecke et al., 2020</a>):
 1. <strong>The Commercial Benchmark:</strong> Researchers evaluated speech-to-text APIs from five technology vendors (Amazon, Apple, Google, IBM, Microsoft) across <span class="arithmatex">\(100\)</span> hours of audio.
-2. <strong>The Racial Disparity:</strong> Across all five systems, the average <strong>Word Error Rate (WER)</strong> was nearly double for Black speakers compared to White speakers:
-   $<span class="arithmatex">\(\text{WER}_{\text{White}} = 18.0\% \quad \text{vs} \quad \text{WER}_{\text{Black}} = 35.0\%\)</span>$
-   For Black male speakers speaking African American Vernacular English (AAVE), error rates exceeded <span class="arithmatex">\(41\%\)</span>.
+2. <strong>The Racial Disparity:</strong> Across all five systems, the average <strong>Word Error Rate (WER)</strong> was nearly double for Black speakers compared to White speakers:</p>
+<div class="arithmatex">\[
+\text{WER}_{\text{White}} = 18.0\% \quad \text{vs} \quad \text{WER}_{\text{Black}} = 35.0\%
+\]</div>
+<p>For Black male speakers speaking African American Vernacular English (AAVE), error rates exceeded <span class="arithmatex">\(41\%\)</span>.
 3. <strong>The Root Cause:</strong> Audio training corpora were dominated by standard broadcasting American English. Implementing Datasheet disclosures forced vendors to audit training audio dialect representation.</p>
 <table>
 <thead>
@@ -7551,13 +7557,13 @@ $<span class="arithmatex">\(\max_\theta \min_{s \in \mathcal{S}} \text{Accuracy}
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-gebru2021"></a><strong>Gebru, T., Morgenstern, J., Vecchione, B., et al.</strong> (2021). Datasheets for datasets. <em>Communications of the ACM</em>, 64(12), 86–92.</li>
-<li><a id="ref-mitchell2019"></a><strong>Mitchell, M., Wu, S., Zaldivar, A., et al.</strong> (2019). Model cards for model reporting. In <em>Proceedings of the Conference on Fairness, Accountability, and Transparency</em> (pp. 220–229).</li>
-<li><a id="ref-koenecke2020"></a><strong>Koenecke, A., Nam, A., Lake, E., et al.</strong> (2020). Racial disparities in automated speech recognition. <em>Proceedings of the National Academy of Sciences</em>, 117(14), 7684–7689.</li>
-<li><a id="ref-crenshaw1989"></a><strong>Crenshaw, K.</strong> (1989). Demarginalizing the intersection of race and sex: A black feminist critique of antidiscrimination doctrine, feminist theory and antiracist politics. <em>University of Chicago Legal Forum</em>, 1989(1), 139–167.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, Dec. 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>
+<li><a id="ref-mitchell2019"></a><strong>[Mitchell2019]</strong> M. Mitchell et al., "Model Cards for Model Reporting," in <em>Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT</em> '19)*, Jan. 2019, pp. 220–229. <a href="https://doi.org/10.1145/3287560.3287596">DOI: 10.1145/3287560.3287596</a>.</li>
+<li><a id="ref-koenecke2020"></a><strong>[Koenecke2020]</strong> A. Koenecke et al., "Racial Disparities in Automated Speech Recognition," <em>Proceedings of the National Academy of Sciences</em>, vol. 117, no. 14, pp. 7684–7689, 2020. <a href="https://doi.org/10.1073/pnas.1915768117">DOI: 10.1073/pnas.1915768117</a>.</li>
+<li><a id="ref-crenshaw1989"></a><strong>[Crenshaw1989]</strong> K. Crenshaw, "Demarginalizing the Intersection of Race and Sex: A Black Feminist Critique of Antidiscrimination Doctrine, Feminist Theory and Antiracist Politics," <em>University of Chicago Legal Forum</em>, vol. 1989, no. 1, pp. 139–167. <a href="https://doi.org/10.4324/9780429500480-5">DOI: 10.4324/9780429500480-5</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../07-mitigating-bias/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.7 Mitigating Bias in Datasets</a>

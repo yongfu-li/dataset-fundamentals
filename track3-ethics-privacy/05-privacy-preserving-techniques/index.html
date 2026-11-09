@@ -7595,9 +7595,13 @@
 <h3 id="a-mathematical-formulation">A. Mathematical Formulation</h3>
 <p>Let <span class="arithmatex">\(T(A_1, \dots, A_m, S_1, \dots, S_p)\)</span> be a table where <span class="arithmatex">\(QI = \{A_1, \dots, A_m\}\)</span> denotes the set of quasi-identifiers and <span class="arithmatex">\(S\)</span> denotes sensitive attributes. </p>
 <p>An <strong>Equivalence Class</strong> <span class="arithmatex">\([t]_{QI}\)</span> is the subset of records sharing identical quasi-identifier values:</p>
-<div class="arithmatex">\[[t]_{QI} = \left\{ r \in T \mid \forall A_j \in QI, \; r[A_j] = t[A_j] \right\}\]</div>
+<div class="arithmatex">\[
+[t]_{QI} = \left\{ r \in T \mid \forall A_j \in QI, \; r[A_j] = t[A_j] \right\}
+\]</div>
 <p>A table <span class="arithmatex">\(T\)</span> satisfies <strong><span class="arithmatex">\(k\)</span>-Anonymity</strong> if and only if every equivalence class contains at least <span class="arithmatex">\(k\)</span> distinct records:</p>
-<div class="arithmatex">\[\min_{t \in T} \left| [t]_{QI} \right| \ge k\]</div>
+<div class="arithmatex">\[
+\min_{t \in T} \left| [t]_{QI} \right| \ge k
+\]</div>
 <pre class="mermaid"><code>flowchart LR
     subgraph Raw ["Raw Microdata (Re-identifiable)"]
         R1["ZIP: 02138, Age: 29, Male -&gt; Diabetes"]
@@ -7631,11 +7635,15 @@
 <h3 id="a-l-diversity">A. l-Diversity</h3>
 <p>An equivalence class <span class="arithmatex">\([t]_{QI}\)</span> satisfies <strong><span class="arithmatex">\(l\)</span>-Diversity</strong> if it contains at least <span class="arithmatex">\(l\)</span> "well-represented" values for each sensitive attribute <span class="arithmatex">\(S\)</span>.
 - <strong>Distinct <span class="arithmatex">\(l\)</span>-Diversity</strong>: The number of unique sensitive values in each equivalence class must be at least <span class="arithmatex">\(l\)</span>:</p>
-<div class="arithmatex">\[\left| \text{Unique}\left(\{r[S] \mid r \in [t]_{QI}\}\right) \right| \ge l\]</div>
+<div class="arithmatex">\[
+\left| \text{Unique}\left(\{r[S] \mid r \in [t]_{QI}\}\right) \right| \ge l
+\]</div>
 <ul>
 <li><strong>Entropy <span class="arithmatex">\(l\)</span>-Diversity</strong>: Enforces that sensitive values are distributed uniformly across the equivalence class:</li>
 </ul>
-<div class="arithmatex">\[-\sum_{s \in \mathcal{S}} p(s) \log_2 p(s) \ge \log_2(l)\]</div>
+<div class="arithmatex">\[
+-\sum_{s \in \mathcal{S}} p(s) \log_2 p(s) \ge \log_2(l)
+\]</div>
 <h3 id="b-the-skewness-similarity-attack-on-l-diversity">B. The Skewness &amp; Similarity Attack on l-Diversity</h3>
 <p>Even an <span class="arithmatex">\(l\)</span>-diverse table remains vulnerable to <strong>Semantic Similarity Attacks</strong>. If an equivalence class contains <span class="arithmatex">\(l = 3\)</span> sensitive values: <code>{Gastric Ulcer, Gastritis, Stomach Cancer}</code>, an adversary discovers with certainty that the subject suffers from a severe gastrointestinal illness.</p>
 <h3 id="c-t-closeness-the-earth-movers-distance">C. t-Closeness &amp; The Earth Mover's Distance</h3>
@@ -7643,9 +7651,13 @@
 <blockquote>
 <p>An equivalence class <span class="arithmatex">\([t]_{QI}\)</span> satisfies <strong><span class="arithmatex">\(t\)</span>-Closeness</strong> if the distance between the marginal probability distribution of the sensitive attribute within the equivalence class (<span class="arithmatex">\(P\)</span>) and the global distribution across the entire table (<span class="arithmatex">\(Q\)</span>) does not exceed threshold <span class="arithmatex">\(t\)</span>:</p>
 </blockquote>
-<div class="arithmatex">\[\mathcal{D}[P, Q] \le t\]</div>
+<div class="arithmatex">\[
+\mathcal{D}[P, Q] \le t
+\]</div>
 <p>Where the statistical distance <span class="arithmatex">\(\mathcal{D}[P, Q]\)</span> is measured via the <strong>Earth Mover's Distance (Wasserstein Metric)</strong>:</p>
-<div class="arithmatex">\[\mathcal{D}[P, Q] = \frac{1}{m - 1} \sum_{i=1}^{m-1} \left| F_P(v_i) - F_Q(v_i) \right|\]</div>
+<div class="arithmatex">\[
+\mathcal{D}[P, Q] = \frac{1}{m - 1} \sum_{i=1}^{m-1} \left| F_P(v_i) - F_Q(v_i) \right|
+\]</div>
 <p>Where <span class="arithmatex">\(F_P\)</span> and <span class="arithmatex">\(F_Q\)</span> are cumulative distribution functions over ordered sensitive categories <span class="arithmatex">\(v_1 &lt; v_2 &lt; \dots &lt; v_m\)</span>.</p>
 <hr />
 <h2 id="3-differential-privacy-dp-cryptographic-formalism">3. Differential Privacy (DP): Cryptographic Formalism</h2>
@@ -7680,18 +7692,26 @@
     class Ratio green;</code></pre>
 <h3 id="a-the-formal-definition">A. The Formal Definition</h3>
 <p>A randomized query mechanism <span class="arithmatex">\(\mathcal{M}\)</span> satisfies <strong><span class="arithmatex">\((\epsilon, \delta)\)</span>-Differential Privacy</strong> if for all neighboring datasets <span class="arithmatex">\(D_1, D_2 \in \mathcal{D}\)</span> differing on at most one individual record (<span class="arithmatex">\(\|D_1 \Delta D_2\| \le 1\)</span>), and for all query output subsets <span class="arithmatex">\(\mathcal{S} \subseteq \text{Range}(\mathcal{M})\)</span>:</p>
-<div class="arithmatex">\[\mathbb{P}\left[\mathcal{M}(D_1) \in \mathcal{S}\right] \le \exp(\epsilon) \cdot \mathbb{P}\left[\mathcal{M}(D_2) \in \mathcal{S}\right] + \delta\]</div>
+<div class="arithmatex">\[
+\mathbb{P}\left[\mathcal{M}(D_1) \in \mathcal{S}\right] \le \exp(\epsilon) \cdot \mathbb{P}\left[\mathcal{M}(D_2) \in \mathcal{S}\right] + \delta
+\]</div>
 <ul>
 <li><strong><span class="arithmatex">\(\epsilon\)</span> (Privacy Budget)</strong>: Governs the maximum statistical leakage. As <span class="arithmatex">\(\epsilon \to 0\)</span>, privacy approaches perfection (pure noise), but utility drops. In production systems, <span class="arithmatex">\(\epsilon \in [0.1, 2.0]\)</span> is considered strong privacy; <span class="arithmatex">\(\epsilon &gt; 10\)</span> provides minimal protection.</li>
 <li><strong><span class="arithmatex">\(\delta\)</span> (Failure Probability)</strong>: The probability that <span class="arithmatex">\(\epsilon\)</span>-DP fails. Typically set to <span class="arithmatex">\(\delta \ll \frac{1}{N}\)</span> (e.g., <span class="arithmatex">\(10^{-6}\)</span>). When <span class="arithmatex">\(\delta = 0\)</span>, it is referred to as <strong>Pure <span class="arithmatex">\(\epsilon\)</span>-Differential Privacy</strong>.</li>
 </ul>
 <h3 id="b-the-laplace-mechanism">B. The Laplace Mechanism</h3>
 <p>For a numerical query function <span class="arithmatex">\(f: \mathcal{D} \to \mathbb{R}^d\)</span>, its <strong><span class="arithmatex">\(L_1\)</span> Global Sensitivity</strong> <span class="arithmatex">\(\Delta f\)</span> measures the maximum change induced by adding or removing any single individual:</p>
-<div class="arithmatex">\[\Delta f = \max_{\|D_1 \Delta D_2\| \le 1} \|f(D_1) - f(D_2)\|_1\]</div>
+<div class="arithmatex">\[
+\Delta f = \max_{\|D_1 \Delta D_2\| \le 1} \|f(D_1) - f(D_2)\|_1
+\]</div>
 <p>The <strong>Laplace Mechanism</strong> achieves pure <span class="arithmatex">\(\epsilon\)</span>-DP by injecting calibrated noise drawn from a zero-mean Laplace distribution:</p>
-<div class="arithmatex">\[\mathcal{M}_{\text{Lap}}(D) = f(D) + \mathbf{Y}, \quad Y_i \stackrel{\text{i.i.d.}}{\sim} \text{Laplace}\left(0, \frac{\Delta f}{\epsilon}\right)\]</div>
+<div class="arithmatex">\[
+\mathcal{M}_{\text{Lap}}(D) = f(D) + \mathbf{Y}, \quad Y_i \stackrel{\text{i.i.d.}}{\sim} \text{Laplace}\left(0, \frac{\Delta f}{\epsilon}\right)
+\]</div>
 <p>Where the Laplace probability density function is:</p>
-<div class="arithmatex">\[\text{Lap}(y \mid b) = \frac{1}{2b} \exp\left(-\frac{|y|}{b}\right), \quad b = \frac{\Delta f}{\epsilon}\]</div>
+<div class="arithmatex">\[
+\text{Lap}(y \mid b) = \frac{1}{2b} \exp\left(-\frac{|y|}{b}\right), \quad b = \frac{\Delta f}{\epsilon}
+\]</div>
 <hr />
 <h2 id="4-federated-learning-fl-decentralized-model-ingestion">4. Federated Learning (FL): Decentralized Model Ingestion</h2>
 <p>When centralizing sensitive records is legally or ethically prohibited (e.g., clinical hospital networks, on-device mobile keystroke prediction), engineers deploy <strong>Federated Learning</strong> [<a href="#ref-mcmahan2017">McMahan2017</a>, <a href="#ref-li2020">Li2020</a>].</p>
@@ -7718,8 +7738,12 @@
     Note over Server: Federated Averaging (FedAvg): θ_{t+1} = Σ (n_k / n) θ_k</code></pre>
 <h3 id="the-fedavg-objective">The FedAvg Objective</h3>
 <p>The global optimization problem aggregates loss functions across <span class="arithmatex">\(K\)</span> decentralized nodes without collecting their data:</p>
-<div class="arithmatex">\[\min_{\boldsymbol{\theta}} F(\boldsymbol{\theta}) = \sum_{k=1}^K \frac{n_k}{n} F_k(\boldsymbol{\theta})\]</div>
-<div class="arithmatex">\[\boldsymbol{\theta}^{(t+1)} \leftarrow \sum_{k=1}^K \frac{n_k}{n} \boldsymbol{\theta}_k^{(t)}\]</div>
+<div class="arithmatex">\[
+\min_{\boldsymbol{\theta}} F(\boldsymbol{\theta}) = \sum_{k=1}^K \frac{n_k}{n} F_k(\boldsymbol{\theta})
+\]</div>
+<div class="arithmatex">\[
+\boldsymbol{\theta}^{(t+1)} \leftarrow \sum_{k=1}^K \frac{n_k}{n} \boldsymbol{\theta}_k^{(t)}
+\]</div>
 <blockquote>
 <p>[!WARNING]
 <strong>Gradient Inversion Risk</strong>: Federated learning alone is <strong>not a complete privacy guarantee</strong>. Malicious central coordinators can execute <em>Deep Leakage from Gradients (DLG)</em>, solving optimization problems to reconstruct original private training images from raw gradient vectors <span class="arithmatex">\(\nabla \boldsymbol{\theta}\)</span>. Production FL pipelines must combine <strong>Secure Aggregation (SecAgg)</strong> and <strong>Local Differential Privacy (LDP)</strong>.</p>
@@ -7802,14 +7826,14 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-sweeney2002"></a><strong>[Sweeney2002]</strong> Sweeney, L. (2002). <em>k-anonymity: A model for protecting privacy</em>. International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 10(5), 557–570. DOI: <a href="https://doi.org/10.1142/S0218488502001648">10.1142/S0218488502001648</a></li>
-<li><a id="ref-machanavajjhala2007"></a><strong>[Machanavajjhala2007]</strong> Machanavajjhala, A., Kifer, D., Gehrke, J., &amp; Venkitasubramaniam, M. (2007). <em>l-diversity: Privacy beyond k-anonymity</em>. ACM Transactions on Knowledge Discovery from Data (TKDD), 1(1), Article 3. DOI: <a href="https://doi.org/10.1145/1217299.1217302">10.1145/1217299.1217302</a></li>
-<li><a id="ref-li2007"></a><strong>[Li2007]</strong> Li, N., Li, T., &amp; Venkatasubramanian, S. (2007). <em>t-Closeness: Privacy beyond k-anonymity and l-diversity</em>. In 2007 IEEE 23rd International Conference on Data Engineering (ICDE), 106–115. DOI: <a href="https://doi.org/10.1109/ICDE.2007.367856">10.1109/ICDE.2007.367856</a></li>
-<li><a id="ref-dwork2006"></a><strong>[Dwork2006]</strong> Dwork, C. (2006). <em>Differential privacy</em>. In Automata, Languages and Programming (ICALP), Lecture Notes in Computer Science, 4052, 1–12. Springer. DOI: <a href="https://doi.org/10.1007/11787006_1">10.1007/11787006_1</a></li>
-<li><a id="ref-mcmahan2017"></a><strong>[McMahan2017]</strong> McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017). <em>Communication-efficient learning of deep networks from decentralized data</em>. In Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS), PMLR 54, 1273–1282.</li>
-<li><a id="ref-li2020"></a><strong>[Li2020]</strong> Li, T., Sahu, A. K., Talwalkar, A., &amp; Smith, V. (2020). <em>Federated learning: Challenges, methods, and future directions</em>. IEEE Signal Processing Magazine, 37(3), 50–60. DOI: <a href="https://doi.org/10.1109/MSP.2020.2975749">10.1109/MSP.2020.2975749</a></li>
-</ul>
+<ol>
+<li><a id="ref-sweeney2002"></a><strong>[Sweeney2002]</strong> L. Sweeney, "k-anonymity: A Model for Protecting Privacy," <em>International Journal of Uncertainty</em>, Fuzziness and Knowledge-Based Systems, vol. 10, no. 5, pp. 557–570, 2002. <a href="https://doi.org/10.1142/S0218488502001648">DOI: 10.1142/S0218488502001648</a>.</li>
+<li><a id="ref-machanavajjhala2007"></a><strong>[Machanavajjhala2007]</strong> A. Machanavajjhala, D. Kifer, J. Gehrke, and M. Venkitasubramaniam, "l-diversity: Privacy beyond k-anonymity," <em>ACM Transactions on Knowledge Discovery from Data (TKDD)</em>, vol. 1, no. 1, art. no. 3, 2007. <a href="https://doi.org/10.1145/1217299.1217302">DOI: 10.1145/1217299.1217302</a>.</li>
+<li><a id="ref-li2007"></a><strong>[Li2007]</strong> N. Li, T. Li, and S. Venkatasubramanian, "t-closeness: Privacy Beyond k-anonymity and l-diversity," <em>In 2007 IEEE 23rd International Conference on Data Engineering (ICDE)</em>, 106–115. <a href="https://doi.org/10.1109/ICDE.2007.367856">DOI: 10.1109/ICDE.2007.367856</a>.</li>
+<li><a id="ref-dwork2006"></a><strong>[Dwork2006]</strong> C. Dwork, F. McSherry, K. Nissim, and A. Smith, "Calibrating Noise to Sensitivity in Private Data Analysis," in <em>Theory of Cryptography Conference</em>, pp. 265–284, 2006. <a href="https://doi.org/10.1007/11787006_1">DOI: 10.1007/11787006_1</a>.</li>
+<li><a id="ref-mcmahan2017"></a><strong>[McMahan2017]</strong> B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, "Communication-efficient Learning of Deep Networks from Decentralized Data," in <em>Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS)</em>, PMLR vol. 54, pp. 1273–1282, 2017. <a href="https://doi.org/10.48550/arXiv.1602.05629">DOI: 10.48550/arXiv.1602.05629</a>.</li>
+<li><a id="ref-li2020"></a><strong>[Li2020]</strong> T. Li, A. K. Sahu, A. Talwalkar, and V. Smith, "Federated Learning: Challenges, Methods, and Future Directions," <em>IEEE Signal Processing Magazine</em>, vol. 37, no. 3, pp. 50–60, 2020. <a href="https://doi.org/10.1109/MSP.2020.2975749">DOI: 10.1109/MSP.2020.2975749</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../04-data-privacy-principles/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.4 Data Privacy Principles</a>

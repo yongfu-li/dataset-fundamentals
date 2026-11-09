@@ -7640,9 +7640,13 @@
 <h2 id="2-mathematical-formalization-of-structural-archetypes">2. Mathematical Formalization of Structural Archetypes</h2>
 <h3 id="21-structured-tabular-relations">2.1 Structured Tabular Relations</h3>
 <p>Formally, a <strong>structured dataset</strong> is defined as an empirical relation <span class="arithmatex">\(R\)</span> over a fixed schema relation signature <span class="arithmatex">\(\mathcal{S} = (A_1: \mathcal{F}_1, A_2: \mathcal{F}_2, \dots, A_M: \mathcal{F}_M)\)</span>, where each attribute <span class="arithmatex">\(A_j\)</span> draws values strictly from a defined domain <span class="arithmatex">\(\mathcal{F}_j\)</span>:</p>
-<div class="arithmatex">\[R \subseteq \mathcal{F}_1 \times \mathcal{F}_2 \times \dots \times \mathcal{F}_M\]</div>
+<div class="arithmatex">\[
+R \subseteq \mathcal{F}_1 \times \mathcal{F}_2 \times \dots \times \mathcal{F}_M
+\]</div>
 <p>Every observation <span class="arithmatex">\(\mathbf{r}_i \in R\)</span> is an ordered <span class="arithmatex">\(M\)</span>-tuple <span class="arithmatex">\(\mathbf{r}_i = (v_{i1}, v_{i2}, \dots, v_{iM})\)</span> such that:</p>
-<div class="arithmatex">\[\forall j \in \{1, \dots, M\}, \quad v_{ij} \in \mathcal{F}_j \cup \{\text{NULL}\}\]</div>
+<div class="arithmatex">\[
+\forall j \in \{1, \dots, M\}, \quad v_{ij} \in \mathcal{F}_j \cup \{\text{NULL}\}
+\]</div>
 <p>Structured datasets satisfy <strong>Relational Invariance</strong>:
 1. <strong>Column Homogeneity</strong>: For any two tuples <span class="arithmatex">\(\mathbf{r}_i, \mathbf{r}_k \in R\)</span>, attribute <span class="arithmatex">\(A_j\)</span> maintains an identical physical memory layout and type constraint (<span class="arithmatex">\(\text{type}(v_{ij}) = \text{type}(v_{kj})\)</span>).
 2. <strong>First Normal Form (<span class="arithmatex">\(1\text{NF}\)</span>)</strong>: Attribute domains contain only atomic, indivisible values; repeating groups or unindexed nested arrays are prohibited.</p>
@@ -7688,22 +7692,30 @@
     class Root,Edge2,Item1,Item2 blue;
     class Edge1,Edge4,CustID,CustName green;
     class Edge3 amber;</code></pre>
-<p>Semi-structured datasets employ <strong>Schema-on-Read</strong>:
-$<span class="arithmatex">\(\text{Query}(T, \pi) = \{ \nu(u) \mid u \in V, \text{Path}(v_0 \to u) = \pi \}\)</span>$
-Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attribute absent in <code>Item [0]</code>. Semi-structured formats handle sparse, heterogeneously evolving attributes without costly relational schema migrations.</p>
+<p>Semi-structured datasets employ <strong>Schema-on-Read</strong>:</p>
+<div class="arithmatex">\[
+\text{Query}(T, \pi) = \{ \nu(u) \mid u \in V, \text{Path}(v_0 \to u) = \pi \}
+\]</div>
+<p>Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attribute absent in <code>Item [0]</code>. Semi-structured formats handle sparse, heterogeneously evolving attributes without costly relational schema migrations.</p>
 <h3 id="23-unstructured-multimodal-manifolds">2.3 Unstructured Multimodal Manifolds</h3>
 <p><strong>Unstructured datasets</strong> lack explicit schema markers or field tags. Instead, each observation <span class="arithmatex">\(\mathbf{x} \in \mathcal{X}\)</span> exists as a raw physical signal digitized into high-dimensional coordinate tensors:</p>
 <ol>
-<li><strong>Digital Images (2D/3D Tensor)</strong>:
-   $<span class="arithmatex">\(\mathbf{I} \in \mathbb{R}^{H \times W \times C}, \quad I_{h, w, c} \in [0, 255] \subset \mathbb{N}\)</span>$
-   where <span class="arithmatex">\(H, W\)</span> represent spatial pixel resolution and <span class="arithmatex">\(C \in \{1, 3\}\)</span> denotes color channels.</li>
-<li><strong>Acoustic Audio (1D Continuous Signal)</strong>:
-   $<span class="arithmatex">\(\mathbf{s} \in \mathbb{R}^{T \cdot F_s}, \quad s[n] = s(n / F_s)\)</span>$
-   where <span class="arithmatex">\(F_s\)</span> is the sampling rate (e.g., <span class="arithmatex">\(44.1\text{ kHz}\)</span>) over duration <span class="arithmatex">\(T\)</span> seconds.</li>
-<li><strong>Natural Language Corpus</strong>:
-   $<span class="arithmatex">\(\mathbf{w} = (w_1, w_2, \dots, w_L), \quad w_k \in \mathcal{V}\)</span>$
-   where <span class="arithmatex">\(\mathcal{V}\)</span> is a discrete vocabulary token lexicon (<span class="arithmatex">\(|\mathcal{V}| \approx 32{,}000 - 100{,}000\)</span>) and <span class="arithmatex">\(L\)</span> is sequence length.</li>
+<li><strong>Digital Images (2D/3D Tensor)</strong>:</li>
 </ol>
+<div class="arithmatex">\[
+\mathbf{I} \in \mathbb{R}^{H \times W \times C}, \quad I_{h, w, c} \in [0, 255] \subset \mathbb{N}
+\]</div>
+<p>where <span class="arithmatex">\(H, W\)</span> represent spatial pixel resolution and <span class="arithmatex">\(C \in \{1, 3\}\)</span> denotes color channels.
+2. <strong>Acoustic Audio (1D Continuous Signal)</strong>:</p>
+<div class="arithmatex">\[
+\mathbf{s} \in \mathbb{R}^{T \cdot F_s}, \quad s[n] = s(n / F_s)
+\]</div>
+<p>where <span class="arithmatex">\(F_s\)</span> is the sampling rate (e.g., <span class="arithmatex">\(44.1\text{ kHz}\)</span>) over duration <span class="arithmatex">\(T\)</span> seconds.
+3. <strong>Natural Language Corpus</strong>:</p>
+<div class="arithmatex">\[
+\mathbf{w} = (w_1, w_2, \dots, w_L), \quad w_k \in \mathcal{V}
+\]</div>
+<p>where <span class="arithmatex">\(\mathcal{V}\)</span> is a discrete vocabulary token lexicon (<span class="arithmatex">\(|\mathcal{V}| \approx 32{,}000 - 100{,}000\)</span>) and <span class="arithmatex">\(L\)</span> is sequence length.</p>
 <p>Because raw signals exhibit high ambient dimension but low intrinsic manifold dimension, learning systems must construct a parameterized feature embedding map <span class="arithmatex">\(f_\theta: \mathcal{X} \to \mathbb{R}^d\)</span> (<span class="arithmatex">\(d \ll D\)</span>) to extract semantically structured representations <a href="#ref-deng2009">[Deng2009]</a>.</p>
 <hr />
 <h2 id="3-temporal-dynamics-static-snapshots-vs-dynamic-streaming">3. Temporal Dynamics: Static Snapshots vs. Dynamic Streaming</h2>
@@ -7722,25 +7734,41 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
     Note over Lake: Static Historic Snapshot Partition&lt;br/&gt;year=2026/month=11/day=09/</code></pre>
 <h3 id="31-static-datasets-deterministic-immutable">3.1 Static Datasets: Deterministic &amp; Immutable</h3>
 <p>A <strong>static dataset</strong> <span class="arithmatex">\(\mathcal{D}_{static}\)</span> is an immutable, bounded collection captured over a closed temporal interval <span class="arithmatex">\([t_{start}, t_{end}]\)</span>:</p>
-<div class="arithmatex">\[\mathcal{D}_{static} = \{\mathbf{x}_i\}_{i=1}^N \sim \mathcal{P}(X)\]</div>
+<div class="arithmatex">\[
+\mathcal{D}_{static} = \{\mathbf{x}_i\}_{i=1}^N \sim \mathcal{P}(X)
+\]</div>
 <ul>
 <li><strong>Reproducibility Guarantee</strong>: Every experiment run over <span class="arithmatex">\(\mathcal{D}_{static}\)</span> yields identical summary statistics, facilitating deterministic peer review.</li>
-<li><strong>Vulnerability to Covariate Shift</strong>: As calendar time progresses <span class="arithmatex">\(t \gg t_{end}\)</span>, real-world phenomena undergo distribution drift:
-  $<span class="arithmatex">\(\mathcal{P}_{production, t}(X) \neq \mathcal{P}_{static}(X)\)</span>$
-  causing model degradation despite perfect benchmark performance.</li>
+<li><strong>Vulnerability to Covariate Shift</strong>: As calendar time progresses <span class="arithmatex">\(t \gg t_{end}\)</span>, real-world phenomena undergo distribution drift:</li>
 </ul>
+<div class="arithmatex">\[
+\mathcal{P}_{production, t}(X) \neq \mathcal{P}_{static}(X)
+\]</div>
+<p>causing model degradation despite perfect benchmark performance.</p>
 <h3 id="32-dynamic-streaming-datasets-unbounded-non-stationary">3.2 Dynamic Streaming Datasets: Unbounded &amp; Non-Stationary</h3>
 <p>A <strong>dynamic dataset</strong> is an open-ended sequence of timestamped tuples arriving continuously in real time:</p>
-<div class="arithmatex">\[\mathcal{S} = \big( (\mathbf{x}_1, t_1), (\mathbf{x}_2, t_2), \dots, (\mathbf{x}_k, t_k), \dots \big), \quad t_k \le t_{k+1}\]</div>
+<div class="arithmatex">\[
+\mathcal{S} = \big( (\mathbf{x}_1, t_1), (\mathbf{x}_2, t_2), \dots, (\mathbf{x}_k, t_k), \dots \big), \quad t_k \le t_{k+1}
+\]</div>
 <p>To analyze dynamic streams, stream processors construct <strong>Temporal Windows</strong> <span class="arithmatex">\(W\)</span>:
-1. <strong>Tumbling Windows</strong>: Non-overlapping, contiguous time buckets:
-   $<span class="arithmatex">\(W_k = [k \cdot \Delta t, (k+1) \cdot \Delta t)\)</span>$
-2. <strong>Sliding Windows</strong>: Overlapping time buckets advancing by step <span class="arithmatex">\(\delta &lt; \Delta t\)</span>:
-   $<span class="arithmatex">\(W_k = [k \cdot \delta, k \cdot \delta + \Delta t)\)</span>$
-3. <strong>Session Windows</strong>: Dynamically sized windows bounded by gaps of inactivity <span class="arithmatex">\(\Delta t_{idle} &gt; \theta_{gap}\)</span>.</p>
+1. <strong>Tumbling Windows</strong>: Non-overlapping, contiguous time buckets:</p>
+<div class="arithmatex">\[
+W_k = [k \cdot \Delta t, (k+1) \cdot \Delta t)
+\]</div>
+<ol>
+<li><strong>Sliding Windows</strong>: Overlapping time buckets advancing by step <span class="arithmatex">\(\delta &lt; \Delta t\)</span>:</li>
+</ol>
+<div class="arithmatex">\[
+W_k = [k \cdot \delta, k \cdot \delta + \Delta t)
+\]</div>
+<ol>
+<li><strong>Session Windows</strong>: Dynamically sized windows bounded by gaps of inactivity <span class="arithmatex">\(\Delta t_{idle} &gt; \theta_{gap}\)</span>.</li>
+</ol>
 <h4 id="the-late-arrival-problem-watermarks">The Late Arrival Problem &amp; Watermarks</h4>
 <p>In distributed networks, transmission latency induces out-of-order events: an event generated at event-time <span class="arithmatex">\(t_{event}\)</span> arrives at processing-time <span class="arithmatex">\(t_{proc} &gt; t_{event}\)</span>. Stream engines implement a <strong>watermark function</strong> <span class="arithmatex">\(W(t)\)</span> establishing an acceptable latency threshold <span class="arithmatex">\(\tau_{lag}\)</span>:</p>
-<div class="arithmatex">\[\text{Watermark}(t) = \max_{e \in \text{Observed}} (t_{event}(e)) - \tau_{lag}\]</div>
+<div class="arithmatex">\[
+\text{Watermark}(t) = \max_{e \in \text{Observed}} (t_{event}(e)) - \tau_{lag}
+\]</div>
 <p>Any incoming event with <span class="arithmatex">\(t_{event} &lt; W(t)\)</span> is flagged as <strong>dropped late data</strong> or redirected to a dead-letter compensation queue <a href="#ref-babcock2002">[Babcock2002]</a>.</p>
 <hr />
 <h2 id="4-real-world-case-studies">4. Real-World Case Studies</h2>
@@ -7767,8 +7795,12 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 <h3 id="case-study-b-high-frequency-limit-order-book-lob-dynamics">Case Study B: High-Frequency Limit Order Book (LOB) Dynamics</h3>
 <p>In algorithmic market microstructure, order book updates arrive via Financial Information eXchange (FIX) UDP multicast feeds at microsecond resolution:</p>
 <ul>
-<li><strong>The Data Stream</strong>: Every record is a dynamic tuple:
-  $<span class="arithmatex">\((\text{timestamp}_{epoch\_ns}, \text{symbol}, \text{side} \in \{\text{BID}, \text{ASK}\}, \text{price}, \text{volume}, \text{order\_type})\)</span>$</li>
+<li><strong>The Data Stream</strong>: Every record is a dynamic tuple:</li>
+</ul>
+<div class="arithmatex">\[
+(\text{timestamp}_{epoch\_ns}, \text{symbol}, \text{side} \in \{\text{BID}, \text{ASK}\}, \text{price}, \text{volume}, \text{order\_type})
+\]</div>
+<ul>
 <li><strong>The Engineering Trap</strong>: Treating this data as a static batch causes severe <strong>lookahead bias</strong> during strategy training. A model must never access state <span class="arithmatex">\(S_{t+\delta}\)</span> when predicting at time <span class="arithmatex">\(t\)</span>. Pipeline engineers store data strictly in order-level dynamic replay logs and simulate historical tick playback with nanosecond clock synchronization.</li>
 </ul>
 <hr />
@@ -8912,111 +8944,106 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">EmailStr</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># =====================================================================</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># 1. Semi-Structured Domain Schema (Pydantic V2 Contract)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># =====================================================================</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">OrderItem</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">sku</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Quantity must be strictly positive"</span><span class="p">)</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">unit_price_usd</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomerOrderEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">customer_id</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">customer_email</span><span class="p">:</span> <span class="n">EmailStr</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OrderItem</span><span class="p">]</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">user_notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># =====================================================================</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1"># 2. Semi-Structured JSON Payload Normalizer</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="c1"># =====================================================================</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">def</span><span class="w"> </span><span class="nf">ingest_and_flatten_orders</span><span class="p">(</span><span class="n">raw_json_records</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="sd">    Validates semi-structured payloads against Pydantic contract and</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="sd">    flattens hierarchical nested arrays into a vectorized tabular DataFrame.</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="sd">    """</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">flattened_rows</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># 1. Semi-Structured Domain Schema (Pydantic V2 Contract)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">class</span><span class="w"> </span><span class="nc">OrderItem</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">sku</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Quantity must be strictly positive"</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">unit_price_usd</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomerOrderEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">customer_id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">customer_email</span><span class="p">:</span> <span class="n">EmailStr</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OrderItem</span><span class="p">]</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">user_notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># 2. Semi-Structured JSON Payload Normalizer</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">def</span><span class="w"> </span><span class="nf">ingest_and_flatten_orders</span><span class="p">(</span><span class="n">raw_json_records</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="sd">    Validates semi-structured payloads against Pydantic contract and</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="sd">    flattens hierarchical nested arrays into a vectorized tabular DataFrame.</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="sd">    """</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">flattened_rows</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">raw_json_records</span><span class="p">:</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="n">validated_order</span> <span class="o">=</span> <span class="n">CustomerOrderEvent</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">raw_json_records</span><span class="p">:</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">validated_order</span> <span class="o">=</span> <span class="n">CustomerOrderEvent</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="c1"># Calculate order summary</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="n">total_items</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">quantity</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="n">total_value</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">quantity</span> <span class="o">*</span> <span class="n">it</span><span class="o">.</span><span class="n">unit_price_usd</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="n">flattened_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">order_id</span><span class="p">,</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">customer_id</span><span class="p">,</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">customer_email</span><span class="p">,</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>            <span class="s2">"total_items"</span><span class="p">:</span> <span class="n">total_items</span><span class="p">,</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>            <span class="s2">"total_order_usd"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">total_value</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>            <span class="s2">"has_custom_notes"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">user_notes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>            <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="p">})</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="c1"># Materialize into Polars Arrow-native memory table</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">flattened_rows</span><span class="p">,</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="n">schema</span><span class="o">=</span><span class="p">{</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">,</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">,</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">,</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>            <span class="s2">"total_items"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int32</span><span class="p">,</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>            <span class="s2">"total_order_usd"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">,</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>            <span class="s2">"has_custom_notes"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Boolean</span><span class="p">,</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>            <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Datetime</span><span class="p">(</span><span class="s2">"ms"</span><span class="p">,</span> <span class="s2">"UTC"</span><span class="p">),</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="p">}</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="p">)</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="k">return</span> <span class="n">df</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="c1"># =====================================================================</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="c1"># 3. Dynamic Tumbling Window Ingestion Processor</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="c1"># =====================================================================</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_dynamic_tumbling_window</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">window_interval</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"1h"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="sd">    Applies dynamic time-window aggregation over the flattened stream.</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="sd">    """</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="n">aggregated_window</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">"timestamp"</span><span class="p">)</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="o">.</span><span class="n">group_by_dynamic</span><span class="p">(</span><span class="s2">"timestamp"</span><span class="p">,</span> <span class="n">every</span><span class="o">=</span><span class="n">window_interval</span><span class="p">)</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="o">.</span><span class="n">agg</span><span class="p">([</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"order_velocity"</span><span class="p">),</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"total_order_usd"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"gross_merchandise_value"</span><span class="p">),</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">"total_order_usd"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"average_order_value"</span><span class="p">),</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">n_unique</span><span class="p">(</span><span class="s2">"customer_id"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"unique_purchasers"</span><span class="p">),</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>        <span class="p">])</span>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="p">)</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="k">return</span> <span class="n">aggregated_window</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="n">sample_raw_feed</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>        <span class="p">{</span>
-</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="s2">"ORD-101"</span><span class="p">,</span>
-</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">901</span><span class="p">,</span>
-</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="s2">"buyer1@example.com"</span><span class="p">,</span>
-</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>            <span class="s2">"items"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"GPU-H100"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"unit_price_usd"</span><span class="p">:</span> <span class="mf">32000.0</span><span class="p">}],</span>
-</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>            <span class="s2">"user_notes"</span><span class="p">:</span> <span class="s2">"Urgent enterprise delivery"</span>
-</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>        <span class="p">},</span>
-</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>        <span class="p">{</span>
-</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="s2">"ORD-102"</span><span class="p">,</span>
-</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">902</span><span class="p">,</span>
-</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="s2">"buyer2@example.com"</span><span class="p">,</span>
-</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>            <span class="s2">"items"</span><span class="p">:</span> <span class="p">[</span>
-</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>                <span class="p">{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"RAM-DDR5-64G"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"unit_price_usd"</span><span class="p">:</span> <span class="mf">150.0</span><span class="p">},</span>
-</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>                <span class="p">{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"SSD-NVME-4TB"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"unit_price_usd"</span><span class="p">:</span> <span class="mf">320.0</span><span class="p">}</span>
-</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>            <span class="p">]</span>
-</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>        <span class="p">}</span>
-</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="p">]</span>
-</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>
-</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">structured_table</span> <span class="o">=</span> <span class="n">ingest_and_flatten_orders</span><span class="p">(</span><span class="n">sample_raw_feed</span><span class="p">)</span>
-</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Flattened Columnar Structured Relation:"</span><span class="p">)</span>
-</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">structured_table</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="c1"># Calculate order summary</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">total_items</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">quantity</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="n">total_value</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">quantity</span> <span class="o">*</span> <span class="n">it</span><span class="o">.</span><span class="n">unit_price_usd</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="n">flattened_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">order_id</span><span class="p">,</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">customer_id</span><span class="p">,</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">customer_email</span><span class="p">,</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>            <span class="s2">"total_items"</span><span class="p">:</span> <span class="n">total_items</span><span class="p">,</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="s2">"total_order_usd"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">total_value</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>            <span class="s2">"has_custom_notes"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">user_notes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>            <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">validated_order</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="p">})</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="c1"># Materialize into Polars Arrow-native memory table</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="n">flattened_rows</span><span class="p">,</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="n">schema</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">,</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int64</span><span class="p">,</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Utf8</span><span class="p">,</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>            <span class="s2">"total_items"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Int32</span><span class="p">,</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>            <span class="s2">"total_order_usd"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">,</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>            <span class="s2">"has_custom_notes"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Boolean</span><span class="p">,</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>            <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">Datetime</span><span class="p">(</span><span class="s2">"ms"</span><span class="p">,</span> <span class="s2">"UTC"</span><span class="p">),</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="p">}</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="p">)</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="k">return</span> <span class="n">df</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="c1"># 3. Dynamic Tumbling Window Ingestion Processor</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_dynamic_tumbling_window</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">window_interval</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"1h"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="sd">    Applies dynamic time-window aggregation over the flattened stream.</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="sd">    """</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="n">aggregated_window</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>        <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">"timestamp"</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="o">.</span><span class="n">group_by_dynamic</span><span class="p">(</span><span class="s2">"timestamp"</span><span class="p">,</span> <span class="n">every</span><span class="o">=</span><span class="n">window_interval</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="o">.</span><span class="n">agg</span><span class="p">([</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"order_velocity"</span><span class="p">),</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">"total_order_usd"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"gross_merchandise_value"</span><span class="p">),</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">"total_order_usd"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"average_order_value"</span><span class="p">),</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>            <span class="n">pl</span><span class="o">.</span><span class="n">n_unique</span><span class="p">(</span><span class="s2">"customer_id"</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"unique_purchasers"</span><span class="p">),</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="p">])</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="p">)</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="k">return</span> <span class="n">aggregated_window</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">sample_raw_feed</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="p">{</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="s2">"ORD-101"</span><span class="p">,</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">901</span><span class="p">,</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="s2">"buyer1@example.com"</span><span class="p">,</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>            <span class="s2">"items"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"GPU-H100"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"unit_price_usd"</span><span class="p">:</span> <span class="mf">32000.0</span><span class="p">}],</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>            <span class="s2">"user_notes"</span><span class="p">:</span> <span class="s2">"Urgent enterprise delivery"</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>        <span class="p">},</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>        <span class="p">{</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>            <span class="s2">"order_id"</span><span class="p">:</span> <span class="s2">"ORD-102"</span><span class="p">,</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>            <span class="s2">"customer_id"</span><span class="p">:</span> <span class="mi">902</span><span class="p">,</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>            <span class="s2">"customer_email"</span><span class="p">:</span> <span class="s2">"buyer2@example.com"</span><span class="p">,</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>            <span class="s2">"items"</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>                <span class="p">{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"RAM-DDR5-64G"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"unit_price_usd"</span><span class="p">:</span> <span class="mf">150.0</span><span class="p">},</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>                <span class="p">{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"SSD-NVME-4TB"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"unit_price_usd"</span><span class="p">:</span> <span class="mf">320.0</span><span class="p">}</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>            <span class="p">]</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="p">}</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="p">]</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="n">structured_table</span> <span class="o">=</span> <span class="n">ingest_and_flatten_orders</span><span class="p">(</span><span class="n">sample_raw_feed</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Flattened Columnar Structured Relation:"</span><span class="p">)</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">structured_table</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
@@ -9025,10 +9052,10 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 <li><a id="ref-chapman2020"></a><strong>[Chapman2020]</strong> A. Chapman et al., "Dataset Search: A Survey," <em>The VLDB Journal</em>, vol. 29, no. 1, pp. 251–272, Jan. 2020. <a href="https://doi.org/10.1007/s00778-019-00564-x">DOI: 10.1007/s00778-019-00564-x</a>.</li>
 <li><a id="ref-abiteboul1997"></a><strong>[Abiteboul1997]</strong> S. Abiteboul, "Querying Semi-Structured Data," in <em>Proceedings of the 6th International Conference on Database Theory (ICDT '97)</em>, 1997, pp. 1–18. <a href="https://doi.org/10.1007/3-540-62222-5_33">DOI: 10.1007/3-540-62222-5_33</a>.</li>
 <li><a id="ref-babcock2002"></a><strong>[Babcock2002]</strong> B. Babcock, S. Babu, M. Datar, R. Motwani, and J. Widom, "Models and Issues in Data Stream Systems," in <em>Proceedings of the 21st ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS '02)</em>, June 2002, pp. 1–16. <a href="https://doi.org/10.1145/543613.543615">DOI: 10.1145/543613.543615</a>.</li>
-<li><a id="ref-deng2009"></a><strong>[Deng2009]</strong> J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, "ImageNet: A Large-Scale Hierarchical Image Database," in <em>IEEE CVPR</em>, June 2009, pp. 248–255. <a href="https://doi.org/10.1109/CVPR.2009.5206848">DOI: 10.1109/CVPR.2009.5206848</a>.</li>
+<li><a id="ref-deng2009"></a><strong>[Deng2009]</strong> J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, "ImageNet: A Large-Scale Hierarchical Image Database," in <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, June 2009, pp. 248–255. <a href="https://doi.org/10.1109/CVPR.2009.5206848">DOI: 10.1109/CVPR.2009.5206848</a>.</li>
 <li><a id="ref-pang2008"></a><strong>[Pang2008]</strong> B. Pang and L. Lee, "Opinion Mining and Sentiment Analysis," <em>Foundations and Trends in Information Retrieval</em>, vol. 2, no. 1–2, pp. 1–135, 2008. <a href="https://doi.org/10.1561/1500000011">DOI: 10.1561/1500000011</a>.</li>
 <li><a id="ref-atzori2010"></a><strong>[Atzori2010]</strong> L. Atzori, A. Iera, and G. Morabito, "The Internet of Things: A Survey," <em>Computer Networks</em>, vol. 54, no. 15, pp. 2787–2805, Oct. 2010. <a href="https://doi.org/10.1016/j.comnet.2010.05.010">DOI: 10.1016/j.comnet.2010.05.010</a>.</li>
-<li><a id="ref-johnson2016"></a><strong>[Johnson2016]</strong> A. E. W. Johnson et al., "MIMIC-III, a Freely Accessible Critical Care Database," <em>Scientific Data</em>, vol. 3, p. 160035, May 2016. <a href="https://doi.org/10.1038/sdata.2016.35">DOI: 10.1038/sdata.2016.35</a>.</li>
+<li><a id="ref-johnson2016"></a><strong>[Johnson2016]</strong> A. E. W. Johnson et al., "MIMIC-III, a Freely Accessible Critical Care Database," <em>Scientific Data</em>, vol. 3, no. 1, p. 160035, May 2016. <a href="https://doi.org/10.1038/sdata.2016.35">DOI: 10.1038/sdata.2016.35</a>.</li>
 </ol>
 <hr />
 <h2 id="summary-next-steps">🎯 Summary &amp; Next Steps</h2>

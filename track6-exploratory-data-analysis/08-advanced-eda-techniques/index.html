@@ -3084,10 +3084,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7372,10 +7372,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7437,36 +7437,56 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-principal-component-analysis-pca-the-biplot-geometry">1. Principal Component Analysis (PCA) &amp; The Biplot Geometry</h3>
-<p>Given centered data matrix <span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span> (<span class="arithmatex">\(\frac{1}{n} \mathbf{1}^\top \mathbf{X} = \mathbf{0}\)</span>), PCA seeks an orthogonal projection matrix <span class="arithmatex">\(\mathbf{V} \in \mathbb{R}^{d \times k}\)</span> (<span class="arithmatex">\(k \ll d\)</span>) maximizing projected variance:
-$<span class="arithmatex">\(\max_{\mathbf{v}_1} \frac{1}{n} \mathbf{v}_1^\top \mathbf{X}^\top \mathbf{X} \mathbf{v}_1 \quad \text{subject to } \mathbf{v}_1^\top \mathbf{v}_1 = 1\)</span>$
-The solution corresponds to the eigendecomposition of sample covariance matrix <span class="arithmatex">\(\mathbf{S}\)</span>:
-$<span class="arithmatex">\(\mathbf{S} = \frac{1}{n - 1} \mathbf{X}^\top \mathbf{X} = \mathbf{V} \boldsymbol{\Lambda} \mathbf{V}^\top\)</span>$
-where <span class="arithmatex">\(\boldsymbol{\Lambda} = \text{diag}(\lambda_1, \dots, \lambda_d)\)</span> with eigenvalues sorted <span class="arithmatex">\(\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_d \ge 0\)</span>.</p>
+<p>Given centered data matrix <span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span> (<span class="arithmatex">\(\frac{1}{n} \mathbf{1}^\top \mathbf{X} = \mathbf{0}\)</span>), PCA seeks an orthogonal projection matrix <span class="arithmatex">\(\mathbf{V} \in \mathbb{R}^{d \times k}\)</span> (<span class="arithmatex">\(k \ll d\)</span>) maximizing projected variance:</p>
+<div class="arithmatex">\[
+\max_{\mathbf{v}_1} \frac{1}{n} \mathbf{v}_1^\top \mathbf{X}^\top \mathbf{X} \mathbf{v}_1 \quad \text{subject to } \mathbf{v}_1^\top \mathbf{v}_1 = 1
+\]</div>
+<p>The solution corresponds to the eigendecomposition of sample covariance matrix <span class="arithmatex">\(\mathbf{S}\)</span>:</p>
+<div class="arithmatex">\[
+\mathbf{S} = \frac{1}{n - 1} \mathbf{X}^\top \mathbf{X} = \mathbf{V} \boldsymbol{\Lambda} \mathbf{V}^\top
+\]</div>
+<p>where <span class="arithmatex">\(\boldsymbol{\Lambda} = \text{diag}(\lambda_1, \dots, \lambda_d)\)</span> with eigenvalues sorted <span class="arithmatex">\(\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_d \ge 0\)</span>.</p>
 <ul>
-<li><strong>Explained Variance Ratio:</strong> The fraction of total dataset variance captured by principal component <span class="arithmatex">\(j\)</span> is:
-  $<span class="arithmatex">\(\text{EVR}_j = \frac{\lambda_j}{\sum_{m=1}^d \lambda_m}\)</span>$</li>
+<li><strong>Explained Variance Ratio:</strong> The fraction of total dataset variance captured by principal component <span class="arithmatex">\(j\)</span> is:</li>
+</ul>
+<div class="arithmatex">\[
+\text{EVR}_j = \frac{\lambda_j}{\sum_{m=1}^d \lambda_m}
+\]</div>
+<ul>
 <li><strong>Kaiser-Guttman Stopping Criterion:</strong> Retain only components with eigenvalues <span class="arithmatex">\(\lambda_j &gt; 1.0\)</span> (accounting for more variance than an average single standardized variable).</li>
 </ul>
 <h4 id="the-pca-biplot">The PCA Biplot</h4>
 <p>A PCA biplot overlays observation scores <span class="arithmatex">\(\mathbf{T} = \mathbf{X} \mathbf{V}_{1:2}\)</span> and variable loading vectors <span class="arithmatex">\(\mathbf{v}_j\)</span> on the identical 2D plane:
 1. The length of a loading vector indicates how strongly the variable contributes to the principal subspace.
-2. The cosine of the angle <span class="arithmatex">\(\theta_{jk}\)</span> between two loading vectors approximates their correlation:
-   $<span class="arithmatex">\(\cos(\theta_{jk}) \approx r_{jk}\)</span>$
-   - Acute angle (<span class="arithmatex">\(\theta &lt; 90^\circ\)</span>): Positive correlation.
-   - Orthogonal (<span class="arithmatex">\(\theta = 90^\circ\)</span>): Zero correlation / independence.
-   - Obtuse angle (<span class="arithmatex">\(\theta &gt; 90^\circ\)</span>): Negative correlation.</p>
+2. The cosine of the angle <span class="arithmatex">\(\theta_{jk}\)</span> between two loading vectors approximates their correlation:</p>
+<div class="arithmatex">\[
+\cos(\theta_{jk}) \approx r_{jk}
+\]</div>
+<ul>
+<li>Acute angle (<span class="arithmatex">\(\theta &lt; 90^\circ\)</span>): Positive correlation.</li>
+<li>Orthogonal (<span class="arithmatex">\(\theta = 90^\circ\)</span>): Zero correlation / independence.</li>
+<li>Obtuse angle (<span class="arithmatex">\(\theta &gt; 90^\circ\)</span>): Negative correlation.</li>
+</ul>
 <hr />
 <h3 id="2-t-distributed-stochastic-neighbor-embedding-t-sne">2. t-Distributed Stochastic Neighbor Embedding (t-SNE)</h3>
 <p>PCA fails when data lies along non-linear manifolds (e.g., Swiss roll or intertwined clusters). <strong>t-SNE</strong> converts Euclidean distances into conditional probabilities representing neighborhood affinities (<a href="#ref-vandermaaten2008">van der Maaten &amp; Hinton, 2008</a>):</p>
 <h4 id="high-dimensional-probabilities">High-Dimensional Probabilities</h4>
-<div class="arithmatex">\[p_{j \mid i} = \frac{\exp(-\|\mathbf{x}_i - \mathbf{x}_j\|^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(-\|\mathbf{x}_i - \mathbf{x}_k\|^2 / 2\sigma_i^2)}, \quad p_{ij} = \frac{p_{j \mid i} + p_{i \mid j}}{2n}$$
-where bandwidth $\sigma_i$ is determined via binary search to satisfy a user-specified **Perplexity**:
-$$\text{Perp}(P_i) = 2^{H(P_i)} = 2^{-\sum_j p_{j \mid i} \log_2 p_{j \mid i}}\]</div>
+<div class="arithmatex">\[
+p_{j \mid i} = \frac{\exp(-\|\mathbf{x}_i - \mathbf{x}_j\|^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(-\|\mathbf{x}_i - \mathbf{x}_k\|^2 / 2\sigma_i^2)}, \quad p_{ij} = \frac{p_{j \mid i} + p_{i \mid j}}{2n}
+\]</div>
+<p>where bandwidth <span class="arithmatex">\(\sigma_i\)</span> is determined via binary search to satisfy a user-specified <strong>Perplexity</strong>:</p>
+<div class="arithmatex">\[
+\text{Perp}(P_i) = 2^{H(P_i)} = 2^{-\sum_j p_{j \mid i} \log_2 p_{j \mid i}}
+\]</div>
 <h4 id="the-crowding-problem-student-t-kernel">The Crowding Problem &amp; Student-<span class="arithmatex">\(t\)</span> Kernel</h4>
-<p>In low-dimensional target space <span class="arithmatex">\(\mathbb{R}^2\)</span>, volume scales as <span class="arithmatex">\(r^2\)</span> rather than <span class="arithmatex">\(r^d\)</span>, causing moderate distances to compress ("crowd") into the center. t-SNE resolves this by adopting a heavy-tailed <strong>Student-<span class="arithmatex">\(t\)</span> distribution with 1 degree of freedom (Cauchy distribution)</strong>:
-$<span class="arithmatex">\(q_{ij} = \frac{(1 + \|\mathbf{y}_i - \mathbf{y}_j\|^2)^{-1}}{\sum_{k} \sum_{l \neq k} (1 + \|\mathbf{y}_k - \mathbf{y}_l\|^2)^{-1}}\)</span>$
-The embedding coordinates <span class="arithmatex">\(\mathbf{y}_i\)</span> are optimized by minimizing the Kullback-Leibler divergence:
-$<span class="arithmatex">\(\mathcal{L}_{\text{t-SNE}} = \text{KL}(P \parallel Q) = \sum_{i \neq j} p_{ij} \log \frac{p_{ij}}{q_{ij}}\)</span>$</p>
+<p>In low-dimensional target space <span class="arithmatex">\(\mathbb{R}^2\)</span>, volume scales as <span class="arithmatex">\(r^2\)</span> rather than <span class="arithmatex">\(r^d\)</span>, causing moderate distances to compress ("crowd") into the center. t-SNE resolves this by adopting a heavy-tailed <strong>Student-<span class="arithmatex">\(t\)</span> distribution with 1 degree of freedom (Cauchy distribution)</strong>:</p>
+<div class="arithmatex">\[
+q_{ij} = \frac{(1 + \|\mathbf{y}_i - \mathbf{y}_j\|^2)^{-1}}{\sum_{k} \sum_{l \neq k} (1 + \|\mathbf{y}_k - \mathbf{y}_l\|^2)^{-1}}
+\]</div>
+<p>The embedding coordinates <span class="arithmatex">\(\mathbf{y}_i\)</span> are optimized by minimizing the Kullback-Leibler divergence:</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\text{t-SNE}} = \text{KL}(P \parallel Q) = \sum_{i \neq j} p_{ij} \log \frac{p_{ij}}{q_{ij}}
+\]</div>
 <hr />
 <h2 id="production-implementation-pca-spectral-engine-biplot-geometry">💻 Production Implementation: PCA Spectral Engine &amp; Biplot Geometry</h2>
 <p>Below is an executable script computing singular value decompositions, eigenvalue scree profiles, and verifying loading vector angle-correlation correspondence.</p>
@@ -7536,44 +7556,43 @@ $<span class="arithmatex">\(\mathcal{L}_{\text{t-SNE}} = \text{KL}(P \parallel Q
 </span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>                    <span class="p">})</span>
 </span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
 </span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="c1"># Synthesize multivariate continuous variables with known covariance</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    <span class="c1"># x1 and x2 are highly correlated (r ~ 0.9)</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">*</span> <span class="mf">0.85</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>
-</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="c1"># x3 is negatively correlated with x1 (r ~ -0.7)</span>
-</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="n">x3</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">*</span> <span class="mf">0.70</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>
-</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="c1"># x4 is orthogonal noise</span>
-</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>    <span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>
-</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="n">df_synth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"x1"</span><span class="p">:</span> <span class="n">x1</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">:</span> <span class="n">x2</span><span class="p">,</span> <span class="s2">"x3"</span><span class="p">:</span> <span class="n">x3</span><span class="p">,</span> <span class="s2">"x4"</span><span class="p">:</span> <span class="n">x4</span><span class="p">})</span>
-</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"x1"</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">,</span> <span class="s2">"x3"</span><span class="p">,</span> <span class="s2">"x4"</span><span class="p">]</span>
-</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>
-</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>    <span class="n">profiler</span> <span class="o">=</span> <span class="n">PCABiplotProfiler</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    <span class="n">scores</span><span class="p">,</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">profiler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_synth</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">)</span>
-</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>
-</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== 1. PCA Spectral Summary ==="</span><span class="p">)</span>
-</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">30</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>
-</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="c1"># Verify Biplot Cosine Angle corresponds to true Pearson correlation</span>
-</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="n">true_corr</span> <span class="o">=</span> <span class="n">df_synth</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>    <span class="n">biplot_angles</span> <span class="o">=</span> <span class="n">profiler</span><span class="o">.</span><span class="n">get_loading_angles</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span>
-</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>
-</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== 2. Biplot Geometry vs. True Correlation Comparison ==="</span><span class="p">)</span>
-</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">biplot_angles</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>        <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">cos_ang</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"feature_1"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"feature_2"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"biplot_cos_angle"</span><span class="p">]</span>
-</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        <span class="n">actual_r</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">true_corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
-</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pairs (</span><span class="si">{</span><span class="n">f1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">f2</span><span class="si">}</span><span class="s2">): Biplot Cos(θ) = </span><span class="si">{</span><span class="n">cos_ang</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}</span><span class="s2"> | Actual Pearson r = </span><span class="si">{</span><span class="n">actual_r</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>    <span class="c1"># Synthesize multivariate continuous variables with known covariance</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="c1"># x1 and x2 are highly correlated (r ~ 0.9)</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">*</span> <span class="mf">0.85</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    <span class="c1"># x3 is negatively correlated with x1 (r ~ -0.7)</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="n">x3</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">*</span> <span class="mf">0.70</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="c1"># x4 is orthogonal noise</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>    <span class="n">df_synth</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"x1"</span><span class="p">:</span> <span class="n">x1</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">:</span> <span class="n">x2</span><span class="p">,</span> <span class="s2">"x3"</span><span class="p">:</span> <span class="n">x3</span><span class="p">,</span> <span class="s2">"x4"</span><span class="p">:</span> <span class="n">x4</span><span class="p">})</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"x1"</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">,</span> <span class="s2">"x3"</span><span class="p">,</span> <span class="s2">"x4"</span><span class="p">]</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>    <span class="n">profiler</span> <span class="o">=</span> <span class="n">PCABiplotProfiler</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>    <span class="n">scores</span><span class="p">,</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">profiler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_synth</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">)</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== 1. PCA Spectral Summary ==="</span><span class="p">)</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">30</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="c1"># Verify Biplot Cosine Angle corresponds to true Pearson correlation</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="n">true_corr</span> <span class="o">=</span> <span class="n">df_synth</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="n">biplot_angles</span> <span class="o">=</span> <span class="n">profiler</span><span class="o">.</span><span class="n">get_loading_angles</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== 2. Biplot Geometry vs. True Correlation Comparison ==="</span><span class="p">)</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">biplot_angles</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>        <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">cos_ang</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"feature_1"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"feature_2"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"biplot_cos_angle"</span><span class="p">]</span>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>        <span class="n">actual_r</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">true_corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pairs (</span><span class="si">{</span><span class="n">f1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">f2</span><span class="si">}</span><span class="s2">): Biplot Cos(θ) = </span><span class="si">{</span><span class="n">cos_ang</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}</span><span class="s2"> | Actual Pearson r = </span><span class="si">{</span><span class="n">actual_r</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-single-cell-rna-genomics-manifold-separation">🔬 Empirical Case Study: Single-Cell RNA Genomics Manifold Separation</h2>
@@ -7628,13 +7647,13 @@ $<span class="arithmatex">\(\mathcal{L}_{\text{t-SNE}} = \text{KL}(P \parallel Q
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-jolliffe2002"></a><strong>Jolliffe, I. T.</strong> (2002). <em>Principal Component Analysis</em>. Springer-Verlag, New York.</li>
-<li><a id="ref-vandermaaten2008"></a><strong>van der Maaten, L., &amp; Hinton, G.</strong> (2008). Visualizing data using t-SNE. <em>Journal of Machine Learning Research</em>, 9(86), 2579–2605.</li>
-<li><a id="ref-mcinnes2018"></a><strong>McInnes, L., Healy, J., &amp; Melville, J.</strong> (2018). Umap: Uniform manifold approximation and projection for dimension reduction. <em>arXiv preprint arXiv:1802.03426</em>.</li>
-<li><a id="ref-gabriel1971"></a><strong>Gabriel, K. R.</strong> (1971). The biplot graphic display of matrices with application to principal component analysis. <em>Biometrika</em>, 58(3), 453–467.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-jolliffe2002"></a><strong>[Jolliffe2002]</strong> I. T. Jolliffe, <em>Principal Component Analysis</em>, Springer-Verlag, New York, 2002. <a href="https://doi.org/10.1007/978-1-4757-1904-8_7">DOI: 10.1007/978-1-4757-1904-8_7</a>.</li>
+<li><a id="ref-vandermaaten2008"></a><strong>[Vandermaaten2008]</strong> L. van der Maaten and G. Hinton, "Visualizing data using t-SNE," <em>Journal of Machine Learning Research</em>, vol. 9, no. 86, pp. 2579–2605, 2008. <a href="https://doi.org/10.1007/s10994-011-5273-4">DOI: 10.1007/s10994-011-5273-4</a>.</li>
+<li><a id="ref-mcinnes2018"></a><strong>[Mcinnes2018]</strong> L. McInnes, J. Healy, and J. Melville, "Umap: Uniform Manifold Approximation and Projection for Dimension Reduction," <em>arXiv preprint 1802.03426</em>, 2018. <a href="https://doi.org/10.21105/joss.00861">DOI: 10.21105/joss.00861</a>.</li>
+<li><a id="ref-gabriel1971"></a><strong>[Gabriel1971]</strong> K. R. Gabriel, "The Biplot Graphic Display of Matrices with Application to Principal Component Analysis," <em>Biometrika</em>, vol. 58, no. 3, pp. 453–467, 1971. <a href="https://doi.org/10.1093/biomet/58.3.453">DOI: 10.1093/biomet/58.3.453</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../07-eda-workflow-and-tools/" class="noc-sim-btn secondary" style="text-decoration: none;">← 6.7 EDA Workflow & Tools</a>

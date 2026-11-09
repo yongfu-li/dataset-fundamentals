@@ -7413,11 +7413,15 @@
     class Drift,PacketLoss purple;</code></pre>
 <h3 id="a-human-cognitive-fatigue-transcription-error">A. Human Cognitive Fatigue &amp; Transcription Error</h3>
 <p>When human operators manually enter data (e.g., nurses transcribing lab values, associates auditing warehouse stock), the error rate <span class="arithmatex">\(\epsilon_{\text{human}}(t)\)</span> increases monotonically with continuous shift duration <span class="arithmatex">\(t\)</span>:</p>
-<div class="arithmatex">\[\epsilon_{\text{human}}(t) = \epsilon_0 \cdot \left(1 + \beta \cdot t\right) + \mathbf{1}_{\{\text{distraction}\}} \cdot \delta_{\text{spike}}\]</div>
+<div class="arithmatex">\[
+\epsilon_{\text{human}}(t) = \epsilon_0 \cdot \left(1 + \beta \cdot t\right) + \mathbf{1}_{\{\text{distraction}\}} \cdot \delta_{\text{spike}}
+\]</div>
 <p>Where <span class="arithmatex">\(\epsilon_0\)</span> is baseline entry error (<span class="arithmatex">\(1\text{--}3\%\)</span>) and <span class="arithmatex">\(\beta\)</span> is the cognitive fatigue coefficient. Furthermore, human errors cluster around <strong>semantic boundary conditions</strong>: transposing digits (<code>12</code> vs <code>21</code>), skipping trailing zeros (<code>$150</code> vs <code>$1500</code>), or omitting optional notes.</p>
 <h3 id="b-automated-sensor-drift-systematic-decay">B. Automated Sensor Drift &amp; Systematic Decay</h3>
 <p>Automated sensors (e.g., thermocouples, atmospheric gas detectors) do not experience cognitive fatigue, but their measurement error accumulates deterministically over operating time <span class="arithmatex">\(t\)</span> due to physical wear, particulate accumulation, and battery depletion:</p>
-<div class="arithmatex">\[x_{\text{observed}}(t) = x_{\text{true}}(t) + \alpha_{\text{drift}} \cdot t + \epsilon_{\text{white}}, \quad \epsilon_{\text{white}} \sim \mathcal{N}(0, \sigma^2)\]</div>
+<div class="arithmatex">\[
+x_{\text{observed}}(t) = x_{\text{true}}(t) + \alpha_{\text{drift}} \cdot t + \epsilon_{\text{white}}, \quad \epsilon_{\text{white}} \sim \mathcal{N}(0, \sigma^2)
+\]</div>
 <p>Without periodic recalibration schedules, an automated system will faithfully log millions of highly precise, perfectly uniform, <strong>completely false measurements</strong>.</p>
 <hr />
 <h2 id="2-multi-dimensional-trade-off-comparison">2. Multi-Dimensional Trade-Off Comparison</h2>
@@ -7512,10 +7516,10 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-atzori2010"></a><strong>[Atzori2010]</strong> Atzori, L., Iera, A., &amp; Morabito, G. (2010). <em>The Internet of Things: A survey</em>. Computer Networks, 54(15), 2787–2805. DOI: <a href="https://doi.org/10.1016/j.comnet.2010.05.010">10.1016/j.comnet.2010.05.010</a></li>
-<li><a id="ref-wang1996"></a><strong>[Wang1996]</strong> Wang, R. Y., &amp; Strong, D. M. (1996). <em>Beyond accuracy: What data quality means to data consumers</em>. Journal of Management Information Systems, 12(4), 5–33. DOI: <a href="https://doi.org/10.1080/07421222.1996.11518099">10.1080/07421222.1996.11518099</a></li>
-</ul>
+<ol>
+<li><a id="ref-atzori2010"></a><strong>[Atzori2010]</strong> L. Atzori, A. Iera, and G. Morabito, "The Internet of Things: A Survey," <em>Computer Networks</em>, vol. 54, no. 15, pp. 2787–2805, Oct. 2010. <a href="https://doi.org/10.1016/j.comnet.2010.05.010">DOI: 10.1016/j.comnet.2010.05.010</a>.</li>
+<li><a id="ref-wang1996"></a><strong>[Wang1996]</strong> R. Y. Wang and D. M. Strong, "Beyond Accuracy: What Data Quality Means to Data Consumers," <em>Journal of Management Information Systems</em>, vol. 12, no. 4, pp. 5–33, Mar. 1996. <a href="https://doi.org/10.1080/07421222.1996.11518099">DOI: 10.1080/07421222.1996.11518099</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../04-apis-for-collection/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.4 APIs for Collection</a>

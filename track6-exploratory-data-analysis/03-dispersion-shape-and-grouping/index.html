@@ -2977,10 +2977,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7438,10 +7438,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7500,13 +7500,19 @@
 <h3 id="1-estimators-of-dispersion-bessels-correction">1. Estimators of Dispersion &amp; Bessel's Correction</h3>
 <p>Let sample <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_n)\)</span> with mean <span class="arithmatex">\(\bar{x}\)</span>.</p>
 <h4 id="sample-variance-and-bessels-correction">Sample Variance and Bessel's Correction</h4>
-<p>The naive plug-in sample variance underestimates population variance <span class="arithmatex">\(\sigma^2\)</span> because deviations are measured from the empirical sample mean <span class="arithmatex">\(\bar{x}\)</span> rather than the true latent mean <span class="arithmatex">\(\mu\)</span>:
-$<span class="arithmatex">\(\mathbb{E}\left[\frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2\right] = \frac{n-1}{n} \sigma^2\)</span>$
-To obtain an unbiased estimator (<span class="arithmatex">\(\mathbb{E}[s^2] = \sigma^2\)</span>), <strong>Bessel's correction</strong> scales by <span class="arithmatex">\(\frac{n}{n-1}\)</span>:
-$<span class="arithmatex">\(s^2 = \frac{1}{n - 1} \sum_{i=1}^n (x_i - \bar{x})^2\)</span>$</p>
+<p>The naive plug-in sample variance underestimates population variance <span class="arithmatex">\(\sigma^2\)</span> because deviations are measured from the empirical sample mean <span class="arithmatex">\(\bar{x}\)</span> rather than the true latent mean <span class="arithmatex">\(\mu\)</span>:</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[\frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2\right] = \frac{n-1}{n} \sigma^2
+\]</div>
+<p>To obtain an unbiased estimator (<span class="arithmatex">\(\mathbb{E}[s^2] = \sigma^2\)</span>), <strong>Bessel's correction</strong> scales by <span class="arithmatex">\(\frac{n}{n-1}\)</span>:</p>
+<div class="arithmatex">\[
+s^2 = \frac{1}{n - 1} \sum_{i=1}^n (x_i - \bar{x})^2
+\]</div>
 <h4 id="scale-free-dispersion-coefficient-of-variation-cv">Scale-Free Dispersion: Coefficient of Variation (CV)</h4>
-<p>When comparing dispersion across variables measured in disparate physical units (e.g., patient weight in kilograms vs. systolic blood pressure in mmHg):
-$<span class="arithmatex">\(\text{CV} = \frac{s}{\bar{x}} \quad (\text{dimensionless ratio})\)</span>$</p>
+<p>When comparing dispersion across variables measured in disparate physical units (e.g., patient weight in kilograms vs. systolic blood pressure in mmHg):</p>
+<div class="arithmatex">\[
+\text{CV} = \frac{s}{\bar{x}} \quad (\text{dimensionless ratio})
+\]</div>
 <h4 id="non-parametric-dispersion-mad-and-iqr">Non-Parametric Dispersion: MAD and IQR</h4>
 <ul>
 <li><strong>Interquartile Range (IQR):</strong> <span class="arithmatex">\(\text{IQR} = Q_3 - Q_1 = F^{-1}(0.75) - F^{-1}(0.25)\)</span> (Breakdown point <span class="arithmatex">\(\epsilon^* = 25\%\)</span>).</li>
@@ -7516,29 +7522,47 @@ $<span class="arithmatex">\(\text{CV} = \frac{s}{\bar{x}} \quad (\text{dimension
 <h3 id="2-distributional-shape-higher-central-moments">2. Distributional Shape: Higher Central Moments</h3>
 <p>The <span class="arithmatex">\(k\)</span>-th central moment of random variable <span class="arithmatex">\(X\)</span> is <span class="arithmatex">\(\mu_k = \mathbb{E}[(X - \mu)^k]\)</span>.</p>
 <h4 id="skewness-3textrd-standardized-moment">Skewness (<span class="arithmatex">\(3^{\text{rd}}\)</span> Standardized Moment)</h4>
-<p>Quantifies distributional asymmetry about the mean:
-$<span class="arithmatex">\(\gamma_1 = \mathbb{E}\left[\left(\frac{X - \mu}{\sigma}\right)^3\right] = \frac{\mu_3}{\sigma^3}\)</span>$
-In finite samples, the unbiased <strong>Fisher-Pearson standardized skewness</strong> coefficient is:
-$<span class="arithmatex">\(G_1 = \frac{\sqrt{n(n - 1)}}{n - 2} \left[ \frac{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^3}{\left(\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2\right)^{3/2}} \right]\)</span>$
-- <span class="arithmatex">\(G_1 = 0\)</span>: Symmetric distribution (e.g., Gaussian, Student's <span class="arithmatex">\(t\)</span>).
-- <span class="arithmatex">\(G_1 &gt; 0\)</span>: Positive / Right-skewed (tail stretches toward <span class="arithmatex">\(+\infty\)</span>, typical of income, latency).
-- <span class="arithmatex">\(G_1 &lt; 0\)</span>: Negative / Left-skewed (tail stretches toward <span class="arithmatex">\(-\infty\)</span>, typical of human lifespan, exam scores).</p>
+<p>Quantifies distributional asymmetry about the mean:</p>
+<div class="arithmatex">\[
+\gamma_1 = \mathbb{E}\left[\left(\frac{X - \mu}{\sigma}\right)^3\right] = \frac{\mu_3}{\sigma^3}
+\]</div>
+<p>In finite samples, the unbiased <strong>Fisher-Pearson standardized skewness</strong> coefficient is:</p>
+<div class="arithmatex">\[
+G_1 = \frac{\sqrt{n(n - 1)}}{n - 2} \left[ \frac{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^3}{\left(\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2\right)^{3/2}} \right]
+\]</div>
+<ul>
+<li><span class="arithmatex">\(G_1 = 0\)</span>: Symmetric distribution (e.g., Gaussian, Student's <span class="arithmatex">\(t\)</span>).</li>
+<li><span class="arithmatex">\(G_1 &gt; 0\)</span>: Positive / Right-skewed (tail stretches toward <span class="arithmatex">\(+\infty\)</span>, typical of income, latency).</li>
+<li><span class="arithmatex">\(G_1 &lt; 0\)</span>: Negative / Left-skewed (tail stretches toward <span class="arithmatex">\(-\infty\)</span>, typical of human lifespan, exam scores).</li>
+</ul>
 <h4 id="kurtosis-and-excess-kurtosis-4textth-standardized-moment">Kurtosis and Excess Kurtosis (<span class="arithmatex">\(4^{\text{th}}\)</span> Standardized Moment)</h4>
-<p>Measures the propensity to produce extreme outliers relative to a Gaussian distribution:
-$<span class="arithmatex">\(\beta_2 = \mathbb{E}\left[\left(\frac{X - \mu}{\sigma}\right)^4\right] = \frac{\mu_4}{\sigma^4}\)</span>$
-<strong>Excess Kurtosis</strong> subtracts 3 (the baseline kurtosis of a normal distribution):
-$<span class="arithmatex">\(\kappa = \beta_2 - 3\)</span>$
-The sample unbiased excess kurtosis is calculated as:
-$<span class="arithmatex">\(G_2 = \frac{n - 1}{(n - 2)(n - 3)} \left[ (n + 1) g_2 + 6 \right], \quad g_2 = \frac{\frac{1}{n}\sum (x_i - \bar{x})^4}{\left(\frac{1}{n}\sum (x_i - \bar{x})^2\right)^2} - 3\)</span>$
-- <span class="arithmatex">\(\kappa &gt; 0\)</span> (<strong>Leptokurtic</strong>): Fat tails and sharp central peak; extreme outliers occur vastly more often than predicted by Gaussian statistics (e.g., financial market returns, network DDoS traffic).
-- <span class="arithmatex">\(\kappa = 0\)</span> (<strong>Mesokurtic</strong>): Gaussian distribution.
-- <span class="arithmatex">\(\kappa &lt; 0\)</span> (<strong>Platykurtic</strong>): Thin tails and flat shoulders (e.g., uniform distribution <span class="arithmatex">\(\kappa = -1.2\)</span>).</p>
+<p>Measures the propensity to produce extreme outliers relative to a Gaussian distribution:</p>
+<div class="arithmatex">\[
+\beta_2 = \mathbb{E}\left[\left(\frac{X - \mu}{\sigma}\right)^4\right] = \frac{\mu_4}{\sigma^4}
+\]</div>
+<p><strong>Excess Kurtosis</strong> subtracts 3 (the baseline kurtosis of a normal distribution):</p>
+<div class="arithmatex">\[
+\kappa = \beta_2 - 3
+\]</div>
+<p>The sample unbiased excess kurtosis is calculated as:</p>
+<div class="arithmatex">\[
+G_2 = \frac{n - 1}{(n - 2)(n - 3)} \left[ (n + 1) g_2 + 6 \right], \quad g_2 = \frac{\frac{1}{n}\sum (x_i - \bar{x})^4}{\left(\frac{1}{n}\sum (x_i - \bar{x})^2\right)^2} - 3
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\kappa &gt; 0\)</span> (<strong>Leptokurtic</strong>): Fat tails and sharp central peak; extreme outliers occur vastly more often than predicted by Gaussian statistics (e.g., financial market returns, network DDoS traffic).</li>
+<li><span class="arithmatex">\(\kappa = 0\)</span> (<strong>Mesokurtic</strong>): Gaussian distribution.</li>
+<li><span class="arithmatex">\(\kappa &lt; 0\)</span> (<strong>Platykurtic</strong>): Thin tails and flat shoulders (e.g., uniform distribution <span class="arithmatex">\(\kappa = -1.2\)</span>).</li>
+</ul>
 <hr />
 <h3 id="3-stratification-and-the-law-of-total-variance-eves-law">3. Stratification and the Law of Total Variance (Eve's Law)</h3>
-<p>When analyzing heterogeneous datasets partitioned across categorical groups <span class="arithmatex">\(G \in \{1, \dots, K\}\)</span>, the global variance decomposes into within-group and between-group components:
-$<span class="arithmatex">\(\text{Var}(Y) = \underbrace{\mathbb{E}[\text{Var}(Y \mid G)]}_{\text{Within-Group Variance (Unexplained)}} + \underbrace{\text{Var}(\mathbb{E}[Y \mid G])}_{\text{Between-Group Variance (Explained)}}\)</span>$
-$<span class="arithmatex">\(\sigma_{\text{total}}^2 = \sum_{k=1}^K p_k \sigma_k^2 + \sum_{k=1}^K p_k (\mu_k - \bar{\mu})^2\)</span>$
-where <span class="arithmatex">\(p_k = \frac{n_k}{n}\)</span> is the group proportion, <span class="arithmatex">\(\mu_k\)</span> is the group conditional mean, and <span class="arithmatex">\(\sigma_k^2\)</span> is the group conditional variance. If between-group variance dominates, conditioning on group <span class="arithmatex">\(G\)</span> is essential for predictive modeling.</p>
+<p>When analyzing heterogeneous datasets partitioned across categorical groups <span class="arithmatex">\(G \in \{1, \dots, K\}\)</span>, the global variance decomposes into within-group and between-group components:</p>
+<div class="arithmatex">\[
+\text{Var}(Y) = \underbrace{\mathbb{E}[\text{Var}(Y \mid G)]}_{\text{Within-Group Variance (Unexplained)}} + \underbrace{\text{Var}(\mathbb{E}[Y \mid G])}_{\text{Between-Group Variance (Explained)}}
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{total}}^2 = \sum_{k=1}^K p_k \sigma_k^2 + \sum_{k=1}^K p_k (\mu_k - \bar{\mu})^2
+\]</div>
+<p>where <span class="arithmatex">\(p_k = \frac{n_k}{n}\)</span> is the group proportion, <span class="arithmatex">\(\mu_k\)</span> is the group conditional mean, and <span class="arithmatex">\(\sigma_k^2\)</span> is the group conditional variance. If between-group variance dominates, conditioning on group <span class="arithmatex">\(G\)</span> is essential for predictive modeling.</p>
 <hr />
 <h2 id="production-implementation-high-order-moment-variance-decomposition-suite">💻 Production Implementation: High-Order Moment &amp; Variance Decomposition Suite</h2>
 <p>Below is an executable Python script calculating unbiased moments, robust order statistics, and Eve's Law variance decomposition across stratified customer cohorts.</p>
@@ -7705,13 +7729,13 @@ where <span class="arithmatex">\(p_k = \frac{n_k}{n}\)</span> is the group propo
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-fisher1930"></a><strong>Fisher, R. A.</strong> (1930). The moments of the distribution for normal samples of measures of departure from normality. <em>Proceedings of the Royal Society of London. Series A</em>, 130(812), 16–28.</li>
-<li><a id="ref-joanes1998"></a><strong>Joanes, D. N., &amp; Gill, C. A.</strong> (1998). Comparing measures of sample skewness and kurtosis. <em>Journal of the Royal Statistical Society: Series D (The Statistician)</em>, 47(1), 183–189.</li>
-<li><a id="ref-mandelbrot1963"></a><strong>Mandelbrot, B.</strong> (1963). The variation of certain speculative prices. <em>The Journal of Business</em>, 36(4), 394–419.</li>
-<li><a id="ref-taleb2020"></a><strong>Taleb, N. N.</strong> (2020). <em>Statistical Consequences of Fat Tails: Real World Preasymptotics, Epistemology, and Applications</em>. STEM Academic Press.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-fisher1930"></a><strong>[Fisher1930]</strong> R. A. Fisher, "The Moments of the Distribution for Normal Samples of Measures of Departure from Normality," <em>Proceedings of the Royal Society of London. Series A</em>, vol. 130, no. 812, pp. 16–28, 1930. <a href="https://doi.org/10.1098/rspa.1930.0185">DOI: 10.1098/rspa.1930.0185</a>.</li>
+<li><a id="ref-joanes1998"></a><strong>[Joanes1998]</strong> D. N. Joanes and C. A. Gill, "Comparing Measures of Sample Skewness and Kurtosis," <em>Journal of the Royal Statistical Society: Series D (The Statistician)</em>, vol. 47, no. 1, pp. 183–189, 1998. <a href="https://doi.org/10.1111/1467-9884.00122">DOI: 10.1111/1467-9884.00122</a>.</li>
+<li><a id="ref-mandelbrot1963"></a><strong>[Mandelbrot1963]</strong> B. Mandelbrot, "The Variation of Certain Speculative Prices," <em>The Journal of Business</em>, vol. 36, no. 4, pp. 394–419, 1963. <a href="https://doi.org/10.1086/294632">DOI: 10.1086/294632</a>.</li>
+<li><a id="ref-taleb2020"></a><strong>[Taleb2020]</strong> N. N. Taleb, <em>Statistical Consequences of Fat Tails: Real World Preasymptotics, Epistemology, and Applications</em>, STEM Academic Press, 2020. <a href="https://doi.org/10.1016/j.ijforecast.2019.12.004">DOI: 10.1016/j.ijforecast.2019.12.004</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../02-types-and-central-tendency/" class="noc-sim-btn secondary" style="text-decoration: none;">← 6.2 Data Types & Central Tendency</a>

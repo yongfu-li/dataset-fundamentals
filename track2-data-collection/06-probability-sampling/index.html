@@ -7472,31 +7472,49 @@
 <h2 id="1-mathematical-foundations-of-probability-sampling">1. Mathematical Foundations of Probability Sampling</h2>
 <p>Let <span class="arithmatex">\(\mathcal{U} = \{1, 2, \dots, N\}\)</span> denote a finite population of size <span class="arithmatex">\(N\)</span>. A sampling design assigns a probability <span class="arithmatex">\(P(\mathcal{S})\)</span> to every possible subset <span class="arithmatex">\(\mathcal{S} \subset \mathcal{U}\)</span>.</p>
 <p>The <strong>first-order inclusion probability</strong> for unit <span class="arithmatex">\(i\)</span> is:</p>
-<div class="arithmatex">\[\pi_i = \sum_{\mathcal{S} \ni i} P(\mathcal{S})\]</div>
+<div class="arithmatex">\[
+\pi_i = \sum_{\mathcal{S} \ni i} P(\mathcal{S})
+\]</div>
 <p>Under the foundational <strong>Horvitz-Thompson Estimator</strong> [<a href="#ref-horvitz1952">Horvitz1952</a>], the unbiased estimator of the population total <span class="arithmatex">\(Y = \sum_{i=1}^N y_i\)</span> is weighted inversely by inclusion probability:</p>
-<div class="arithmatex">\[\hat{Y}_{\text{HT}} = \sum_{i \in \mathcal{S}} \frac{y_i}{\pi_i}\]</div>
+<div class="arithmatex">\[
+\hat{Y}_{\text{HT}} = \sum_{i \in \mathcal{S}} \frac{y_i}{\pi_i}
+\]</div>
 <p>If inclusion probabilities are unknown or zero for certain sub-populations (e.g., offline citizens), <span class="arithmatex">\(\hat{Y}_{\text{HT}}\)</span> cannot be computed, and external statistical validity collapses.</p>
 <hr />
 <h2 id="2-simple-random-sampling-srs-sample-size-determination">2. Simple Random Sampling (SRS) &amp; Sample Size Determination</h2>
 <p>In Simple Random Sampling without replacement (<span class="arithmatex">\(\text{SRSWOR}\)</span>), every subset of size <span class="arithmatex">\(n\)</span> has equal probability of selection: <span class="arithmatex">\(P(\mathcal{S}) = \binom{N}{n}^{-1}\)</span>. Hence, <span class="arithmatex">\(\pi_i = \frac{n}{N}\)</span> for all <span class="arithmatex">\(i\)</span>.</p>
 <h3 id="a-estimator-variance-finite-population-correction-fpc">A. Estimator Variance &amp; Finite Population Correction (FPC)</h3>
 <p>The sample mean estimator is <span class="arithmatex">\(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)</span>. Its variance is:</p>
-<div class="arithmatex">\[\text{Var}(\bar{y}) = \frac{\sigma^2}{n} \cdot \left(\frac{N - n}{N - 1}\right) \approx \frac{s^2}{n} \cdot \left(1 - \frac{n}{N}\right)\]</div>
+<div class="arithmatex">\[
+\text{Var}(\bar{y}) = \frac{\sigma^2}{n} \cdot \left(\frac{N - n}{N - 1}\right) \approx \frac{s^2}{n} \cdot \left(1 - \frac{n}{N}\right)
+\]</div>
 <p>Where <span class="arithmatex">\(\left(1 - \frac{n}{N}\right)\)</span> is the <strong>Finite Population Correction (FPC)</strong> factor. When the sampling fraction <span class="arithmatex">\(\frac{n}{N} &lt; 0.05\)</span>, the FPC approaches <span class="arithmatex">\(1.0\)</span> and can be omitted.</p>
 <h3 id="b-sample-size-determination-cochrans-formula">B. Sample Size Determination (Cochran's Formula)</h3>
 <p>To achieve a desired margin of error <span class="arithmatex">\(e\)</span> at confidence level <span class="arithmatex">\(1 - \alpha\)</span> (with critical value <span class="arithmatex">\(Z_{\alpha/2}\)</span>):</p>
-<div class="arithmatex">\[n_0 = \frac{Z_{\alpha/2}^2 \cdot p(1 - p)}{e^2} \quad (\text{Categorical Proportion})\]</div>
-<div class="arithmatex">\[n_0 = \frac{Z_{\alpha/2}^2 \cdot \sigma^2}{e^2} \quad (\text{Continuous Metric})\]</div>
+<div class="arithmatex">\[
+n_0 = \frac{Z_{\alpha/2}^2 \cdot p(1 - p)}{e^2} \quad (\text{Categorical Proportion})
+\]</div>
+<div class="arithmatex">\[
+n_0 = \frac{Z_{\alpha/2}^2 \cdot \sigma^2}{e^2} \quad (\text{Continuous Metric})
+\]</div>
 <p>Adjusting for a finite population <span class="arithmatex">\(N\)</span>:</p>
-<div class="arithmatex">\[n = \frac{n_0}{1 + \frac{n_0 - 1}{N}}\]</div>
+<div class="arithmatex">\[
+n = \frac{n_0}{1 + \frac{n_0 - 1}{N}}
+\]</div>
 <p>For a <span class="arithmatex">\(95\%\)</span> confidence level (<span class="arithmatex">\(Z = 1.96\)</span>) and <span class="arithmatex">\(e = 0.03\)</span> margin of error on an unknown proportion (<span class="arithmatex">\(p = 0.5\)</span> for maximum variance):</p>
-<div class="arithmatex">\[n_0 = \frac{(1.96)^2 \cdot (0.25)}{(0.03)^2} = \frac{0.9604}{0.0009} \approx 1{,}067 \text{ observations}\]</div>
+<div class="arithmatex">\[
+n_0 = \frac{(1.96)^2 \cdot (0.25)}{(0.03)^2} = \frac{0.9604}{0.0009} \approx 1{,}067 \text{ observations}
+\]</div>
 <hr />
 <h2 id="3-stratified-random-sampling-neyman-optimal-allocation">3. Stratified Random Sampling &amp; Neyman Optimal Allocation</h2>
 <p>When a population is heterogeneous across subgroups but homogeneous within them, <strong>Stratified Sampling</strong> partitions <span class="arithmatex">\(\mathcal{U}\)</span> into <span class="arithmatex">\(H\)</span> disjoint strata <span class="arithmatex">\(\mathcal{U}_1, \dots, \mathcal{U}_H\)</span> (<span class="arithmatex">\(\sum N_h = N\)</span>), drawing independent random samples of size <span class="arithmatex">\(n_h\)</span> (<span class="arithmatex">\(\sum n_h = n\)</span>) from each stratum.</p>
 <p>The stratified mean estimator is:</p>
-<div class="arithmatex">\[\bar{y}_{\text{st}} = \sum_{h=1}^H W_h \bar{y}_h, \quad W_h = \frac{N_h}{N}\]</div>
-<div class="arithmatex">\[\text{Var}(\bar{y}_{\text{st}}) = \sum_{h=1}^H W_h^2 \cdot \frac{S_h^2}{n_h} \cdot \left(1 - \frac{n_h}{N_h}\right)\]</div>
+<div class="arithmatex">\[
+\bar{y}_{\text{st}} = \sum_{h=1}^H W_h \bar{y}_h, \quad W_h = \frac{N_h}{N}
+\]</div>
+<div class="arithmatex">\[
+\text{Var}(\bar{y}_{\text{st}}) = \sum_{h=1}^H W_h^2 \cdot \frac{S_h^2}{n_h} \cdot \left(1 - \frac{n_h}{N_h}\right)
+\]</div>
 <pre class="mermaid"><code>flowchart TD
     Pop["Heterogeneous Population N = 10,000"] --&gt; S1["Stratum 1: Desktop Users (N1 = 6,000, S1 = 12.4)"]
     Pop --&gt; S2["Stratum 2: Mobile iOS (N2 = 3,000, S2 = 28.1)"]
@@ -7522,7 +7540,9 @@
 <li><strong>Proportional Allocation</strong>: <span class="arithmatex">\(n_h = n \cdot W_h\)</span>. Samples each stratum strictly by its population share.</li>
 <li><strong>Neyman Optimal Allocation</strong>: Minimizes sample variance <span class="arithmatex">\(\text{Var}(\bar{y}_{\text{st}})\)</span> for a fixed total sample size <span class="arithmatex">\(n\)</span> by allocating more samples to strata that are larger <strong>or have higher internal variance <span class="arithmatex">\(S_h\)</span></strong>:</li>
 </ol>
-<div class="arithmatex">\[n_h = n \cdot \frac{N_h S_h}{\sum_{k=1}^H N_k S_k}\]</div>
+<div class="arithmatex">\[
+n_h = n \cdot \frac{N_h S_h}{\sum_{k=1}^H N_k S_k}
+\]</div>
 <blockquote>
 <p>[!TIP]
 <strong>Why Stratification Beats SRS</strong>: Stratified sampling <strong>never</strong> has a higher variance than simple random sampling (<span class="arithmatex">\(\text{Var}(\bar{y}_{\text{st}}) \le \text{Var}_{\text{srs}}(\bar{y})\)</span>). The variance reduction is directly proportional to the between-strata differences in means.</p>
@@ -7533,15 +7553,23 @@
 <p>While operationally economical, cluster sampling suffers from <strong>positive intra-cluster correlation</strong>: units within the same cluster tend to resemble one another.</p>
 <h3 id="the-design-effect-deff-kishs-formulation">The Design Effect (Deff) &amp; Kish's Formulation</h3>
 <p>The penalty for cluster sampling relative to SRS is quantified by the <strong>Design Effect (<span class="arithmatex">\(\text{Deff}\)</span>)</strong> [<a href="#ref-kish1965">Kish1965</a>]:</p>
-<div class="arithmatex">\[\text{Deff} = \frac{\text{Var}_{\text{cluster}}(\bar{y})}{\text{Var}_{\text{srs}}(\bar{y})} = 1 + (m - 1) \cdot \rho\]</div>
+<div class="arithmatex">\[
+\text{Deff} = \frac{\text{Var}_{\text{cluster}}(\bar{y})}{\text{Var}_{\text{srs}}(\bar{y})} = 1 + (m - 1) \cdot \rho
+\]</div>
 <p>Where:
 - <span class="arithmatex">\(m\)</span> is the average cluster size.
 - <span class="arithmatex">\(\rho\)</span> is the <strong>Intra-Class Correlation Coefficient (ICC)</strong>:</p>
-<div class="arithmatex">\[\rho = \frac{\sigma_{\text{between}}^2}{\sigma_{\text{between}}^2 + \sigma_{\text{within}}^2}\]</div>
+<div class="arithmatex">\[
+\rho = \frac{\sigma_{\text{between}}^2}{\sigma_{\text{between}}^2 + \sigma_{\text{within}}^2}
+\]</div>
 <p>The <strong>Effective Sample Size (<span class="arithmatex">\(n_{\text{eff}}\)</span>)</strong> is:</p>
-<div class="arithmatex">\[n_{\text{eff}} = \frac{n}{\text{Deff}} = \frac{n}{1 + (m - 1)\rho}\]</div>
+<div class="arithmatex">\[
+n_{\text{eff}} = \frac{n}{\text{Deff}} = \frac{n}{1 + (m - 1)\rho}
+\]</div>
 <p>If <span class="arithmatex">\(m = 100\)</span> students per school and <span class="arithmatex">\(\rho = 0.10\)</span>, <span class="arithmatex">\(\text{Deff} = 1 + 99(0.10) = 10.9\)</span>. A sample of <span class="arithmatex">\(n = 1{,}000\)</span> clustered students yields the statistical precision of only:</p>
-<div class="arithmatex">\[n_{\text{eff}} = \frac{1{,}000}{10.9} \approx 92 \text{ independent observations!}\]</div>
+<div class="arithmatex">\[
+n_{\text{eff}} = \frac{1{,}000}{10.9} \approx 92 \text{ independent observations!}
+\]</div>
 <hr />
 <h2 id="5-architectural-decision-framework">5. Architectural Decision Framework</h2>
 <p>Use this flowchart to select the mathematically optimal probability design:</p>
@@ -7585,12 +7613,12 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-neyman1934"></a><strong>[Neyman1934]</strong> Neyman, J. (1934). <em>On the two different aspects of the representative method: The method of stratified sampling and the method of purposive selection</em>. Journal of the Royal Statistical Society, 97(4), 558–625. DOI: <a href="https://doi.org/10.2307/2342192">10.2307/2342192</a></li>
-<li><a id="ref-cochran1977"></a><strong>[Cochran1977]</strong> Cochran, W. G. (1977). <em>Sampling techniques</em> (3rd ed.). John Wiley &amp; Sons.</li>
-<li><a id="ref-kish1965"></a><strong>[Kish1965]</strong> Kish, L. (1965). <em>Survey sampling</em>. John Wiley &amp; Sons.</li>
-<li><a id="ref-horvitz1952"></a><strong>[Horvitz1952]</strong> Horvitz, D. G., &amp; Thompson, D. J. (1952). <em>A generalization of sampling without replacement from a finite universe</em>. Journal of the American Statistical Association, 47(260), 663–685. DOI: <a href="https://doi.org/10.1080/01621459.1952.10483446">10.1080/01621459.1952.10483446</a></li>
-</ul>
+<ol>
+<li><a id="ref-neyman1934"></a><strong>[Neyman1934]</strong> J. Neyman, "On the Two Different Aspects of the Representative Method: The Method of Stratified Sampling and the Method of Purposive Selection," <em>Journal of the Royal Statistical Society</em>, vol. 97, no. 4, pp. 558–625, 1934. <a href="https://doi.org/10.2307/2342192">DOI: 10.2307/2342192</a>.</li>
+<li><a id="ref-cochran1977"></a><strong>[Cochran1977]</strong> W. G. Cochran, <em>Sampling techniques</em>, (3rd ed.). John Wiley &amp; Sons, 1977. <a href="https://doi.org/10.1002/9780470891056">DOI: 10.1002/9780470891056</a>.</li>
+<li><a id="ref-kish1965"></a><strong>[Kish1965]</strong> L. Kish, <em>Survey sampling</em>, John Wiley &amp; Sons, 1965. <a href="https://doi.org/10.1002/bimj.19680100122">DOI: 10.1002/bimj.19680100122</a>.</li>
+<li><a id="ref-horvitz1952"></a><strong>[Horvitz1952]</strong> D. G. Horvitz and D. J. Thompson, "A Generalization of Sampling Without Replacement from a Finite Universe," <em>Journal of the American Statistical Association</em>, vol. 47, no. 260, pp. 663–685, 1952. <a href="https://doi.org/10.1080/01621459.1952.10483446">DOI: 10.1080/01621459.1952.10483446</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../05-manual-vs-automated/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.5 Manual vs Automated</a>

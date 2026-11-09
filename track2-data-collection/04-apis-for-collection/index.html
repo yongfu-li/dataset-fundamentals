@@ -7406,7 +7406,9 @@
 - Bucket capacity: <span class="arithmatex">\(C\)</span> tokens.
 - Refill rate: <span class="arithmatex">\(r\)</span> tokens per second.
 - Available tokens at time <span class="arithmatex">\(t\)</span>:</p>
-<div class="arithmatex">\[B(t) = \min\left(C, B(t_0) + r \cdot (t - t_0)\right)\]</div>
+<div class="arithmatex">\[
+B(t) = \min\left(C, B(t_0) + r \cdot (t - t_0)\right)
+\]</div>
 <p>If <span class="arithmatex">\(B(t) \ge 1\)</span>, the request is dispatched and <span class="arithmatex">\(B(t) \leftarrow B(t) - 1\)</span>; if <span class="arithmatex">\(B(t) &lt; 1\)</span>, the client must sleep for <span class="arithmatex">\(\Delta t = \frac{1 - B(t)}{r}\)</span> seconds.</p>
 <h3 id="b-standard-rate-limit-response-headers">B. Standard Rate Limit Response Headers</h3>
 <p>Production APIs communicate rate limit telemetry in response headers:</p>
@@ -7424,8 +7426,12 @@
 <h2 id="2-exponential-backoff-with-full-jitter">2. Exponential Backoff with Full Jitter</h2>
 <p>When an API responds with <code>429 Too Many Requests</code> or <code>503 Service Unavailable</code>, naive retry loops (e.g., retrying every 2 seconds) induce <strong>thundering herd collisions</strong> that overwhelm recovering servers. </p>
 <p>The industry standard [<a href="#ref-decandia2007">DeCandia2007</a>] is <strong>Exponential Backoff with Full Jitter</strong>:</p>
-<div class="arithmatex">\[T_{\text{backoff}}(\text{attempt}) = \min\left(T_{\max}, T_{\text{base}} \cdot 2^{\text{attempt}}\right)\]</div>
-<div class="arithmatex">\[T_{\text{sleep}} \sim \text{Uniform}\left(0, T_{\text{backoff}}(\text{attempt})\right)\]</div>
+<div class="arithmatex">\[
+T_{\text{backoff}}(\text{attempt}) = \min\left(T_{\max}, T_{\text{base}} \cdot 2^{\text{attempt}}\right)
+\]</div>
+<div class="arithmatex">\[
+T_{\text{sleep}} \sim \text{Uniform}\left(0, T_{\text{backoff}}(\text{attempt})\right)
+\]</div>
 <p>Where <span class="arithmatex">\(T_{\text{base}} = 1.0\text{ s}\)</span>, <span class="arithmatex">\(T_{\max} = 60.0\text{ s}\)</span>, and the randomization interval spreads retries uniformly across the backoff window.</p>
 <pre class="mermaid"><code>sequenceDiagram
     autonumber
@@ -7555,10 +7561,10 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-fielding2000"></a><strong>[Fielding2000]</strong> Fielding, R. T. (2000). <em>Architectural Styles and the Design of Network-based Software Architectures</em>. Doctoral Dissertation, University of California, Irvine.</li>
-<li><a id="ref-decandia2007"></a><strong>[DeCandia2007]</strong> DeCandia, G., Hastorun, D., Jampani, M., et al. (2007). <em>Dynamo: Amazon's highly available key-value store</em>. ACM SIGOPS Operating Systems Review, 41(6), 205–220. DOI: <a href="https://doi.org/10.1145/1323293.1294281">10.1145/1323293.1294281</a></li>
-</ul>
+<ol>
+<li><a id="ref-fielding2000"></a><strong>[Fielding2000]</strong> R. T. Fielding, "Architectural Styles and the Design of Network-based Software Architectures," <em>Doctoral Dissertation</em>, University of California, Irvine, 2000. <a href="https://doi.org/10.1016/j.jss.2016.01.039">DOI: 10.1016/j.jss.2016.01.039</a>.</li>
+<li><a id="ref-decandia2007"></a><strong>[DeCandia2007]</strong> G. DeCandia et al., "Dynamo: Amazon's Highly Available Key-Value Store," in <em>Proceedings of the 21st ACM SIGOPS Symposium on Operating Systems Principles (SOSP '07)</em>, Oct. 2007, pp. 205–220. <a href="https://doi.org/10.1145/1294261.1294281">DOI: 10.1145/1294261.1294281</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../03-surveys-and-scraping/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.3 Surveys & Scraping</a>

@@ -3429,10 +3429,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7316,10 +7316,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7389,23 +7389,31 @@ Let group base rate be <span class="arithmatex">\(p_a = \Pr(Y = 1 \mid A = a)\)<
 Let False Positive Rate be <span class="arithmatex">\(\text{FPR}_a = \Pr(\hat{Y} = 1 \mid Y = 0, A = a)\)</span>.
 Let False Negative Rate be <span class="arithmatex">\(\text{FNR}_a = \Pr(\hat{Y} = 0 \mid Y = 1, A = a)\)</span>.
 Let Positive Predictive Value (Calibration / PPV) be <span class="arithmatex">\(v_a = \Pr(Y = 1 \mid \hat{Y} = 1, A = a)\)</span>.</p>
-<p>By Bayes' Rule, the False Discovery Rate (<span class="arithmatex">\(\text{FDR}_a = 1 - v_a\)</span>) can be expressed explicitly as a function of error rates and base rates:
-$<span class="arithmatex">\(\text{FDR}_a = \Pr(Y = 0 \mid \hat{Y} = 1, A = a) = \frac{\text{FPR}_a (1 - p_a)}{\text{FPR}_a (1 - p_a) + (1 - \text{FNR}_a) p_a}\)</span>$
-Rearranging terms yields the exact structural link:
-$<span class="arithmatex">\(\text{FPR}_a = \frac{p_a}{1 - p_a} \cdot \frac{1 - v_a}{v_a} \cdot (1 - \text{FNR}_a)\)</span>$</p>
+<p>By Bayes' Rule, the False Discovery Rate (<span class="arithmatex">\(\text{FDR}_a = 1 - v_a\)</span>) can be expressed explicitly as a function of error rates and base rates:</p>
+<div class="arithmatex">\[
+\text{FDR}_a = \Pr(Y = 0 \mid \hat{Y} = 1, A = a) = \frac{\text{FPR}_a (1 - p_a)}{\text{FPR}_a (1 - p_a) + (1 - \text{FNR}_a) p_a}
+\]</div>
+<p>Rearranging terms yields the exact structural link:</p>
+<div class="arithmatex">\[
+\text{FPR}_a = \frac{p_a}{1 - p_a} \cdot \frac{1 - v_a}{v_a} \cdot (1 - \text{FNR}_a)
+\]</div>
 <h4 id="the-impossibility-result">The Impossibility Result</h4>
 <p>Suppose we enforce:
 1. <strong>Equal Predictive Value (Calibration):</strong> <span class="arithmatex">\(v_0 = v_1 = v\)</span>
 2. <strong>Equal False Negative Rates:</strong> <span class="arithmatex">\(\text{FNR}_0 = \text{FNR}_1 = \text{FNR}\)</span></p>
-<p>Then the ratio of False Positive Rates between Group 0 and Group 1 is:
-$<span class="arithmatex">\(\frac{\text{FPR}_0}{\text{FPR}_1} = \frac{\frac{p_0}{1 - p_0}}{\frac{p_1}{1 - p_1}} = \frac{\text{Odds}(Y = 1 \mid A = 0)}{\text{Odds}(Y = 1 \mid A = 1)}\)</span>$</p>
+<p>Then the ratio of False Positive Rates between Group 0 and Group 1 is:</p>
+<div class="arithmatex">\[
+\frac{\text{FPR}_0}{\text{FPR}_1} = \frac{\frac{p_0}{1 - p_0}}{\frac{p_1}{1 - p_1}} = \frac{\text{Odds}(Y = 1 \mid A = 0)}{\text{Odds}(Y = 1 \mid A = 1)}
+\]</div>
 <p><strong>Conclusion:</strong> If Group 0 has a lower base rate than Group 1 (<span class="arithmatex">\(p_0 &lt; p_1\)</span>), then <span class="arithmatex">\(\text{FPR}_0\)</span> <strong>must strictly be smaller than</strong> <span class="arithmatex">\(\text{FPR}_1\)</span>. It is mathematically impossible for <span class="arithmatex">\(\text{FPR}_0 = \text{FPR}_1\)</span> unless:
 - Base rates are equal (<span class="arithmatex">\(p_0 = p_1\)</span>), OR
 - The classifier achieves perfect zero-error accuracy (<span class="arithmatex">\(\text{FPR} = \text{FNR} = 0\)</span>).</p>
 <hr />
 <h3 id="2-the-fairness-accuracy-pareto-frontier">2. The Fairness-Accuracy Pareto Frontier</h3>
-<p>Every fairness constraint represents a restriction on the unconstrained risk minimization objective. Let <span class="arithmatex">\(\mathcal{H}\)</span> be the complete hypothesis space, and <span class="arithmatex">\(\mathcal{H}_{\text{fair}} \subset \mathcal{H}\)</span> be the subset satisfying a specific fairness constraint (e.g., <span class="arithmatex">\(|\Delta_{\text{SP}}| \le \epsilon\)</span>):
-$<span class="arithmatex">\(\mathcal{R}_{\text{fair}}^* = \min_{h \in \mathcal{H}_{\text{fair}}} \mathcal{R}_{\text{emp}}(h) \ge \min_{h \in \mathcal{H}} \mathcal{R}_{\text{emp}}(h) = \mathcal{R}_{\text{unconstrained}}^*\)</span>$</p>
+<p>Every fairness constraint represents a restriction on the unconstrained risk minimization objective. Let <span class="arithmatex">\(\mathcal{H}\)</span> be the complete hypothesis space, and <span class="arithmatex">\(\mathcal{H}_{\text{fair}} \subset \mathcal{H}\)</span> be the subset satisfying a specific fairness constraint (e.g., <span class="arithmatex">\(|\Delta_{\text{SP}}| \le \epsilon\)</span>):</p>
+<div class="arithmatex">\[
+\mathcal{R}_{\text{fair}}^* = \min_{h \in \mathcal{H}_{\text{fair}}} \mathcal{R}_{\text{emp}}(h) \ge \min_{h \in \mathcal{H}} \mathcal{R}_{\text{emp}}(h) = \mathcal{R}_{\text{unconstrained}}^*
+\]</div>
 <p>Engineering teams must map the <strong>Fairness-Accuracy Pareto Frontier</strong>: tracing how much marginal predictive accuracy must be surrendered to gain each unit of demographic disparity reduction.</p>
 <hr />
 <h2 id="production-implementation-numerical-proof-of-the-impossibility-theorem">💻 Production Implementation: Numerical Proof of the Impossibility Theorem</h2>
@@ -7483,12 +7491,12 @@ $<span class="arithmatex">\(\mathcal{R}_{\text{fair}}^* = \min_{h \in \mathcal{H
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-kleinberg2016"></a><strong>Kleinberg, J., Mullainathan, S., &amp; Raghavan, M.</strong> (2016). Inherent trade-offs in the fair determination of risk scores. <em>arXiv preprint arXiv:1609.05807</em>.</li>
-<li><a id="ref-chouldechova2017"></a><strong>Chouldechova, A.</strong> (2017). Fair prediction with disparate impact: A study of bias in recidivism prediction instruments. <em>Big Data</em>, 5(2), 153–163.</li>
-<li><a id="ref-corbett2017"></a><strong>Corbett-Davies, S., Pierson, E., Feller, A., Goel, S., &amp; Huq, A.</strong> (2017). Algorithmic decision making and the cost of fairness. In <em>Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em> (pp. 797–806).</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-kleinberg2016"></a><strong>[Kleinberg2016]</strong> J. Kleinberg, S. Mullainathan, and M. Raghavan, "Inherent Trade-offs in the FAIR Determination of Risk Scores," <em>arXiv preprint 1609.05807</em>, 2016. <a href="https://doi.org/10.48550/arXiv.1609.05807">DOI: 10.48550/arXiv.1609.05807</a>.</li>
+<li><a id="ref-chouldechova2017"></a><strong>[Chouldechova2017]</strong> A. Chouldechova, "FAIR Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2, pp. 153–163, 2017. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a>.</li>
+<li><a id="ref-corbett2017"></a><strong>[Corbett2017]</strong> S. Corbett-Davies, E. Pierson, A. Feller, S. Goel, and A. Huq, "Algorithmic Decision Making and the Cost of Fairness," in <em>Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, pp. 797–806, 2017. <a href="https://doi.org/10.1145/3097983.3098095">DOI: 10.1145/3097983.3098095</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../05-impacts-of-dataset-bias/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.5 Impacts of Dataset Bias</a>

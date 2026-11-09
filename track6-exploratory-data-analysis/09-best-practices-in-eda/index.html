@@ -3123,10 +3123,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7394,10 +7394,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7466,35 +7466,55 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  [5. Volume, 3D Curvature]                ──► 3D pseudo-projections (Severe perceptual error)
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  [6. Color Saturation &amp; Shading]          ──► Heatmaps, Chloropleths (Least accurate for quantitative values)
 </span></code></pre></div>
-<p>By Stevens' Power Law of psychophysics, perceived sensation <span class="arithmatex">\(S\)</span> relates to physical stimulus intensity <span class="arithmatex">\(I\)</span> via:
-$<span class="arithmatex">\(S = k \cdot I^\beta\)</span>$
-- For linear length: <span class="arithmatex">\(\beta \approx 0.9 - 1.1\)</span> (nearly unbiased).
-- For area: <span class="arithmatex">\(\beta \approx 0.6 - 0.9\)</span> (observers systematically underestimate relative differences in circle and bubble sizes).
-- For volume: <span class="arithmatex">\(\beta \approx 0.5 - 0.7\)</span> (observers severely misjudge 3D chart volumes).</p>
+<p>By Stevens' Power Law of psychophysics, perceived sensation <span class="arithmatex">\(S\)</span> relates to physical stimulus intensity <span class="arithmatex">\(I\)</span> via:</p>
+<div class="arithmatex">\[
+S = k \cdot I^\beta
+\]</div>
+<ul>
+<li>For linear length: <span class="arithmatex">\(\beta \approx 0.9 - 1.1\)</span> (nearly unbiased).</li>
+<li>For area: <span class="arithmatex">\(\beta \approx 0.6 - 0.9\)</span> (observers systematically underestimate relative differences in circle and bubble sizes).</li>
+<li>For volume: <span class="arithmatex">\(\beta \approx 0.5 - 0.7\)</span> (observers severely misjudge 3D chart volumes).</li>
+</ul>
 <hr />
 <h3 id="2-tuftes-metrics-data-ink-ratio-and-the-lie-factor">2. Tufte's Metrics: Data-Ink Ratio and the Lie Factor</h3>
 <p>Edward Tufte (<a href="#ref-tufte1983">1983</a>) formalized quantitative standards for visual integrity:</p>
 <h4 id="the-data-ink-ratio">The Data-Ink Ratio</h4>
-<p>$<span class="arithmatex">\(\text{Data-Ink Ratio} = \frac{\text{Data-Ink}}{\text{Total Ink Used to Print the Graphic}} = 1.0 - \text{Proportion of Chartjunk}\)</span>$
-Good design maximizes data-ink by removing superfluous background grids, heavy borders, redundant labels, and faux-3D extrusions.</p>
+<div class="arithmatex">\[
+\text{Data-Ink Ratio} = \frac{\text{Data-Ink}}{\text{Total Ink Used to Print the Graphic}} = 1.0 - \text{Proportion of Chartjunk}
+\]</div>
+<p>Good design maximizes data-ink by removing superfluous background grids, heavy borders, redundant labels, and faux-3D extrusions.</p>
 <h4 id="the-lie-factor-lf">The Lie Factor (LF)</h4>
-<p>Quantifies whether graphic dimensions truthfully reflect empirical quantities:
-$<span class="arithmatex">\(\text{Lie Factor} = \frac{\text{Size of Effect Shown in Graphic}}{\text{Size of Effect in Data}} = \frac{\frac{|d_{\text{graphic}, 2} - d_{\text{graphic}, 1}|}{d_{\text{graphic}, 1}}}{\frac{|v_{\text{data}, 2} - v_{\text{data}, 1}|}{v_{\text{data}, 1}}}\)</span>$
-- <span class="arithmatex">\(\text{LF} = 1.0\)</span>: Truthful representation.
-- <span class="arithmatex">\(\text{LF} &gt; 1.05\)</span>: Exaggerates empirical reality (e.g., truncating axes to manufacture false dramatic increases).
-- <span class="arithmatex">\(\text{LF} &lt; 0.95\)</span>: Subdues or masks empirical trends.</p>
+<p>Quantifies whether graphic dimensions truthfully reflect empirical quantities:</p>
+<div class="arithmatex">\[
+\text{Lie Factor} = \frac{\text{Size of Effect Shown in Graphic}}{\text{Size of Effect in Data}} = \frac{\frac{|d_{\text{graphic}, 2} - d_{\text{graphic}, 1}|}{d_{\text{graphic}, 1}}}{\frac{|v_{\text{data}, 2} - v_{\text{data}, 1}|}{v_{\text{data}, 1}}}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\text{LF} = 1.0\)</span>: Truthful representation.</li>
+<li><span class="arithmatex">\(\text{LF} &gt; 1.05\)</span>: Exaggerates empirical reality (e.g., truncating axes to manufacture false dramatic increases).</li>
+<li><span class="arithmatex">\(\text{LF} &lt; 0.95\)</span>: Subdues or masks empirical trends.</li>
+</ul>
 <hr />
 <h3 id="3-epistemological-hygiene-multiplicity-and-fdr-control">3. Epistemological Hygiene: Multiplicity and FDR Control</h3>
-<p>When conducting unconstrained exploratory data analysis, an analyst may inspect hundreds or thousands of cross-tabulations and scatter plots. Testing <span class="arithmatex">\(m\)</span> independent hypotheses at significance level <span class="arithmatex">\(\alpha = 0.05\)</span> causes the <strong>Family-Wise Error Rate (FWER)</strong> to explode:
-$<span class="arithmatex">\(\alpha_{\text{family}} = 1 - (1 - \alpha)^m\)</span>$
-For <span class="arithmatex">\(m = 100\)</span> exploratory checks, <span class="arithmatex">\(\alpha_{\text{family}} = 1 - (0.95)^{100} \approx 99.4\%\)</span>. A spurious "statistically significant" correlation is virtually guaranteed to emerge by chance alone.</p>
+<p>When conducting unconstrained exploratory data analysis, an analyst may inspect hundreds or thousands of cross-tabulations and scatter plots. Testing <span class="arithmatex">\(m\)</span> independent hypotheses at significance level <span class="arithmatex">\(\alpha = 0.05\)</span> causes the <strong>Family-Wise Error Rate (FWER)</strong> to explode:</p>
+<div class="arithmatex">\[
+\alpha_{\text{family}} = 1 - (1 - \alpha)^m
+\]</div>
+<p>For <span class="arithmatex">\(m = 100\)</span> exploratory checks, <span class="arithmatex">\(\alpha_{\text{family}} = 1 - (0.95)^{100} \approx 99.4\%\)</span>. A spurious "statistically significant" correlation is virtually guaranteed to emerge by chance alone.</p>
 <h4 id="the-benjamini-hochberg-bh-false-discovery-rate-procedure">The Benjamini-Hochberg (BH) False Discovery Rate Procedure</h4>
 <p>To separate true discoveries from exploratory noise, control the <strong>False Discovery Rate (FDR)</strong> <span class="arithmatex">\(\mathbb{E}[V / R]\)</span> at target level <span class="arithmatex">\(Q^* \in (0, 1)\)</span>:
-1. Compute and sort all <span class="arithmatex">\(m\)</span> <span class="arithmatex">\(p\)</span>-values in ascending order:
-   $<span class="arithmatex">\(p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}\)</span>$
-2. Find the largest integer <span class="arithmatex">\(k\)</span> satisfying:
-   $<span class="arithmatex">\(p_{(k)} \le \frac{k}{m} \cdot Q^*\)</span>$
-3. Reject the null hypothesis for all <span class="arithmatex">\(H_{(i)}\)</span> where <span class="arithmatex">\(i \le k\)</span>.</p>
+1. Compute and sort all <span class="arithmatex">\(m\)</span> <span class="arithmatex">\(p\)</span>-values in ascending order:</p>
+<div class="arithmatex">\[
+p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}
+\]</div>
+<ol>
+<li>Find the largest integer <span class="arithmatex">\(k\)</span> satisfying:</li>
+</ol>
+<div class="arithmatex">\[
+p_{(k)} \le \frac{k}{m} \cdot Q^*
+\]</div>
+<ol>
+<li>Reject the null hypothesis for all <span class="arithmatex">\(H_{(i)}\)</span> where <span class="arithmatex">\(i \le k\)</span>.</li>
+</ol>
 <hr />
 <h2 id="production-implementation-lie-factor-auditor-fdr-multiplicity-controller">💻 Production Implementation: Lie Factor Auditor &amp; FDR Multiplicity Controller</h2>
 <p>Below is an executable script evaluating graphical Lie Factors and implementing the Benjamini-Hochberg False Discovery Rate correction over exploratory correlation scans.</p>
@@ -7617,13 +7637,13 @@ For <span class="arithmatex">\(m = 100\)</span> exploratory checks, <span class=
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-cleveland1984"></a><strong>Cleveland, W. S., &amp; McGill, R.</strong> (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. <em>Journal of the American Statistical Association</em>, 79(387), 531–554.</li>
-<li><a id="ref-tufte1983"></a><strong>Tufte, E. R.</strong> (1983). <em>The Visual Display of Quantitative Information</em>. Graphics Press, Cheshire, Connecticut.</li>
-<li><a id="ref-benjamini1995"></a><strong>Benjamini, Y., &amp; Hochberg, Y.</strong> (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, 57(1), 289–300.</li>
-<li><a id="ref-ioannidis2005"></a><strong>Ioannidis, J. P.</strong> (2005). Why most published research findings are false. <em>PLoS Medicine</em>, 2(8), e124.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-cleveland1984"></a><strong>[Cleveland1984]</strong> W. S. Cleveland and R. McGill, "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods," <em>Journal of the American Statistical Association</em>, vol. 79, no. 387, pp. 531–554, 1984. <a href="https://doi.org/10.1080/01621459.1984.10478080">DOI: 10.1080/01621459.1984.10478080</a>.</li>
+<li><a id="ref-tufte1983"></a><strong>[Tufte1983]</strong> E. R. Tufte, <em>The Visual Display of Quantitative Information</em>, Graphics Press, Cheshire, Connecticut, 1983.</li>
+<li><a id="ref-benjamini1995"></a><strong>[Benjamini1995]</strong> Y. Benjamini and Y. Hochberg, "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing," <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, vol. 57, no. 1, pp. 289–300, 1995. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">DOI: 10.1111/j.2517-6161.1995.tb02031.x</a>.</li>
+<li><a id="ref-ioannidis2005"></a><strong>[Ioannidis2005]</strong> J. P. Ioannidis, "Why Most Published Research Findings Are False," <em>PLoS Medicine</em>, vol. 2, no. 8, e124, 2005. <a href="https://doi.org/10.1371/journal.pmed.0020124">DOI: 10.1371/journal.pmed.0020124</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../08-advanced-eda-techniques/" class="noc-sim-btn secondary" style="text-decoration: none;">← 6.8 Advanced EDA Techniques</a>

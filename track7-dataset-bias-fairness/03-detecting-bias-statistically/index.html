@@ -3412,10 +3412,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7450,10 +7450,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7519,35 +7519,55 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-independence-demographic-statistical-parity">1. Independence (Demographic / Statistical Parity)</h3>
-<p>Requires that the model's positive classification rate is statistically independent of sensitive group membership:
-$<span class="arithmatex">\(\hat{Y} \perp A \iff \Pr(\hat{Y} = 1 \mid A = 0) = \Pr(\hat{Y} = 1 \mid A = 1)\)</span>$</p>
+<p>Requires that the model's positive classification rate is statistically independent of sensitive group membership:</p>
+<div class="arithmatex">\[
+\hat{Y} \perp A \iff \Pr(\hat{Y} = 1 \mid A = 0) = \Pr(\hat{Y} = 1 \mid A = 1)
+\]</div>
 <h4 id="disparate-impact-di-ratio-the-eeoc-four-fifths-rule">Disparate Impact (DI) Ratio &amp; The EEOC Four-Fifths Rule</h4>
-<p>Under the US Equal Employment Opportunity Commission (EEOC) Uniform Guidelines, an employment or lending process is scrutinized for illegal disparate impact if the selection rate for a protected class is less than <strong>four-fifths (<span class="arithmatex">\(80\%\)</span>)</strong> of the rate for the highest group:
-$<span class="arithmatex">\(\text{DI} = \frac{\Pr(\hat{Y} = 1 \mid A = 0)}{\Pr(\hat{Y} = 1 \mid A = 1)} \ge 0.80\)</span>$</p>
+<p>Under the US Equal Employment Opportunity Commission (EEOC) Uniform Guidelines, an employment or lending process is scrutinized for illegal disparate impact if the selection rate for a protected class is less than <strong>four-fifths (<span class="arithmatex">\(80\%\)</span>)</strong> of the rate for the highest group:</p>
+<div class="arithmatex">\[
+\text{DI} = \frac{\Pr(\hat{Y} = 1 \mid A = 0)}{\Pr(\hat{Y} = 1 \mid A = 1)} \ge 0.80
+\]</div>
 <h4 id="statistical-parity-difference-spd">Statistical Parity Difference (SPD)</h4>
-<p>Measures the absolute difference in acceptance probabilities:
-$<span class="arithmatex">\(\Delta_{\text{SP}} = \Pr(\hat{Y} = 1 \mid A = 0) - \Pr(\hat{Y} = 1 \mid A = 1)\)</span>$
-Fairness demands <span class="arithmatex">\(\Delta_{\text{SP}} \in [-\epsilon, +\epsilon]\)</span>, where <span class="arithmatex">\(\epsilon \approx 0.05\)</span>.</p>
+<p>Measures the absolute difference in acceptance probabilities:</p>
+<div class="arithmatex">\[
+\Delta_{\text{SP}} = \Pr(\hat{Y} = 1 \mid A = 0) - \Pr(\hat{Y} = 1 \mid A = 1)
+\]</div>
+<p>Fairness demands <span class="arithmatex">\(\Delta_{\text{SP}} \in [-\epsilon, +\epsilon]\)</span>, where <span class="arithmatex">\(\epsilon \approx 0.05\)</span>.</p>
 <hr />
 <h3 id="2-separation-equalized-odds-equality-of-opportunity">2. Separation (Equalized Odds &amp; Equality of Opportunity)</h3>
-<p>Demographic parity ignores true qualification base rates, potentially penalizing qualified minority applicants. <strong>Separation</strong> conditions predictions on the true underlying state <span class="arithmatex">\(Y\)</span> (<a href="#ref-hardt2016">Hardt et al., 2016</a>):
-$<span class="arithmatex">\(\hat{Y} \perp A \mid Y\)</span>$</p>
+<p>Demographic parity ignores true qualification base rates, potentially penalizing qualified minority applicants. <strong>Separation</strong> conditions predictions on the true underlying state <span class="arithmatex">\(Y\)</span> (<a href="#ref-hardt2016">Hardt et al., 2016</a>):</p>
+<div class="arithmatex">\[
+\hat{Y} \perp A \mid Y
+\]</div>
 <h4 id="equalized-odds">Equalized Odds</h4>
 <p>Demands that both the True Positive Rate (TPR) and False Positive Rate (FPR) are identical across groups:
-1. <strong>Equal False Positive Rates:</strong>
-   $<span class="arithmatex">\(\Pr(\hat{Y} = 1 \mid Y = 0, A = 0) = \Pr(\hat{Y} = 1 \mid Y = 0, A = 1) \quad (\text{FPR}_0 = \text{FPR}_1)\)</span>$
-2. <strong>Equal True Positive Rates:</strong>
-   $<span class="arithmatex">\(\Pr(\hat{Y} = 1 \mid Y = 1, A = 0) = \Pr(\hat{Y} = 1 \mid Y = 1, A = 1) \quad (\text{TPR}_0 = \text{TPR}_1)\)</span>$</p>
+1. <strong>Equal False Positive Rates:</strong></p>
+<div class="arithmatex">\[
+\Pr(\hat{Y} = 1 \mid Y = 0, A = 0) = \Pr(\hat{Y} = 1 \mid Y = 0, A = 1) \quad (\text{FPR}_0 = \text{FPR}_1)
+\]</div>
+<ol>
+<li><strong>Equal True Positive Rates:</strong></li>
+</ol>
+<div class="arithmatex">\[
+\Pr(\hat{Y} = 1 \mid Y = 1, A = 0) = \Pr(\hat{Y} = 1 \mid Y = 1, A = 1) \quad (\text{TPR}_0 = \text{TPR}_1)
+\]</div>
 <h4 id="equality-of-opportunity-hardt-et-al-2016">Equality of Opportunity (Hardt et al., 2016)</h4>
-<p>In positive-reward settings (e.g., loan approvals, job offers), the primary moral imperative is not penalizing qualified applicants. <strong>Equality of Opportunity</strong> relaxes separation by requiring parity solely on the True Positive Rate:
-$<span class="arithmatex">\(\text{TPR}_0 = \text{TPR}_1 \iff \Pr(\hat{Y} = 1 \mid Y = 1, A = 0) = \Pr(\hat{Y} = 1 \mid Y = 1, A = 1)\)</span>$</p>
+<p>In positive-reward settings (e.g., loan approvals, job offers), the primary moral imperative is not penalizing qualified applicants. <strong>Equality of Opportunity</strong> relaxes separation by requiring parity solely on the True Positive Rate:</p>
+<div class="arithmatex">\[
+\text{TPR}_0 = \text{TPR}_1 \iff \Pr(\hat{Y} = 1 \mid Y = 1, A = 0) = \Pr(\hat{Y} = 1 \mid Y = 1, A = 1)
+\]</div>
 <hr />
 <h3 id="3-sufficiency-predictive-parity-calibration-within-groups">3. Sufficiency (Predictive Parity &amp; Calibration within Groups)</h3>
-<p>Demands that given a model prediction or risk score, the probability of the true positive outcome is identical across demographic groups:
-$<span class="arithmatex">\(Y \perp A \mid \hat{Y}\)</span>$</p>
+<p>Demands that given a model prediction or risk score, the probability of the true positive outcome is identical across demographic groups:</p>
+<div class="arithmatex">\[
+Y \perp A \mid \hat{Y}
+\]</div>
 <h4 id="predictive-parity-equal-positive-predictive-value-ppv">Predictive Parity (Equal Positive Predictive Value / PPV)</h4>
-<p>$<span class="arithmatex">\(\Pr(Y = 1 \mid \hat{Y} = 1, A = 0) = \Pr(Y = 1 \mid \hat{Y} = 1, A = 1)\)</span>$
-If a risk score of <span class="arithmatex">\(0.85\)</span> means an <span class="arithmatex">\(85\%\)</span> likelihood of loan default for Group 1, it must mean an identical <span class="arithmatex">\(85\%\)</span> default likelihood for Group 0.</p>
+<div class="arithmatex">\[
+\Pr(Y = 1 \mid \hat{Y} = 1, A = 0) = \Pr(Y = 1 \mid \hat{Y} = 1, A = 1)
+\]</div>
+<p>If a risk score of <span class="arithmatex">\(0.85\)</span> means an <span class="arithmatex">\(85\%\)</span> likelihood of loan default for Group 1, it must mean an identical <span class="arithmatex">\(85\%\)</span> default likelihood for Group 0.</p>
 <hr />
 <h2 id="production-implementation-comprehensive-statistical-fairness-audit-suite">💻 Production Implementation: Comprehensive Statistical Fairness Audit Suite</h2>
 <p>Below is an executable Python class that computes Demographic Parity, Disparate Impact, Equalized Odds, Equality of Opportunity, and Predictive Parity from confusion matrices.</p>
@@ -7660,9 +7680,11 @@ If a risk score of <span class="arithmatex">\(0.85\)</span> means an <span class
 <h2 id="empirical-case-study-financial-lending-underwriting">🔬 Empirical Case Study: Financial Lending Underwriting</h2>
 <p>In an empirical audit of <strong>LendingClub Microloan Approval Decisions</strong>:
 1. <strong>Demographic Parity Violation:</strong> Model approvals yielded <span class="arithmatex">\(\Pr(\hat{Y} = 1 \mid A = 0) = 0.38\)</span> for minority applicants versus <span class="arithmatex">\(0.54\)</span> for majority applicants (<span class="arithmatex">\(\text{DI} = 0.704\)</span>, violating the <span class="arithmatex">\(80\%\)</span> EEOC rule).
-2. <strong>Equality of Opportunity Discovery:</strong> Restricting evaluation to applicants who successfully repaid loans (<span class="arithmatex">\(Y = 1\)</span>) showed a stark gap:
-   $<span class="arithmatex">\(\text{TPR}_{\text{majority}} = 0.88, \quad \text{TPR}_{\text{minority}} = 0.62 \quad (\Delta_{\text{EO}} = 0.26)\)</span>$
-   Over a quarter of creditworthy minority applicants were denied loans compared to equally creditworthy majority applicants.
+2. <strong>Equality of Opportunity Discovery:</strong> Restricting evaluation to applicants who successfully repaid loans (<span class="arithmatex">\(Y = 1\)</span>) showed a stark gap:</p>
+<div class="arithmatex">\[
+\text{TPR}_{\text{majority}} = 0.88, \quad \text{TPR}_{\text{minority}} = 0.62 \quad (\Delta_{\text{EO}} = 0.26)
+\]</div>
+<p>Over a quarter of creditworthy minority applicants were denied loans compared to equally creditworthy majority applicants.
 3. <strong>Threshold Calibration:</strong> Decoupling classification thresholds by group achieved Equality of Opportunity (<span class="arithmatex">\(\text{TPR}_0 = \text{TPR}_1 = 0.85\)</span>), increasing credit access for qualified minority borrowers by <span class="arithmatex">\(37\%\)</span> without increasing bank loan loss defaults.</p>
 <hr />
 <h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
@@ -7677,12 +7699,12 @@ If a risk score of <span class="arithmatex">\(0.85\)</span> means an <span class
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-hardt2016"></a><strong>Hardt, M., Price, E., &amp; Srebro, N.</strong> (2016). Equality of opportunity in supervised learning. <em>Advances in Neural Information Processing Systems</em>, 29, 3315–3323.</li>
-<li><a id="ref-dwork2012"></a><strong>Dwork, C., Hardt, M., Pitassi, T., Reingold, O., &amp; Zemel, R.</strong> (2012). Fairness through awareness. In <em>Proceedings of the 3rd Innovations in Theoretical Computer Science Conference</em> (pp. 214–226).</li>
-<li><a id="ref-barocas2019"></a><strong>Barocas, S., Hardt, M., &amp; Narayanan, A.</strong> (2019). <em>Fairness and Machine Learning: Limitations and Opportunities</em>. MIT Press.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> M. Hardt, E. Price, and N. Srebro, "Equality of Opportunity in Supervised Learning," in <em>Advances in Neural Information Processing Systems (NeurIPS '16)</em>, vol. 29, 2016, pp. 3315–3323.</li>
+<li><a id="ref-dwork2012"></a><strong>[Dwork2012]</strong> C. Dwork, M. Hardt, T. Pitassi, O. Reingold, and R. Zemel, "Fairness Through Awareness," in <em>Proceedings of the 3rd Innovations in Theoretical Computer Science Conference</em>, pp. 214–226, 2012. <a href="https://doi.org/10.1145/2090236.2090255">DOI: 10.1145/2090236.2090255</a>.</li>
+<li><a id="ref-barocas2019"></a><strong>[Barocas2019]</strong> S. Barocas, M. Hardt, and A. Narayanan, <em>Fairness and Machine Learning: Limitations and Opportunities</em>, MIT Press, 2019. <a href="https://doi.org/10.7551/mitpress/11649.001.0001">DOI: 10.7551/mitpress/11649.001.0001</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../02-types-of-dataset-bias/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.2 Types of Dataset Bias</a>

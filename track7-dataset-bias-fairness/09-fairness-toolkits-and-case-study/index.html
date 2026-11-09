@@ -3513,10 +3513,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7316,10 +7316,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7386,14 +7386,22 @@
 <h3 id="1-mathematical-formulation-of-the-reductions-approach">1. Mathematical Formulation of the Reductions Approach</h3>
 <p>Let hypothesis <span class="arithmatex">\(h \in \mathcal{H}\)</span> map <span class="arithmatex">\(\mathbf{x} \in \mathcal{X}\)</span> to <span class="arithmatex">\(\hat{y} \in \{0, 1\}\)</span>. We wish to minimize empirical error <span class="arithmatex">\(\text{err}(h) = \mathbb{E}[\mathbb{I}(h(\mathbf{X}) \neq Y)]\)</span> subject to a vector of linear fairness constraints <span class="arithmatex">\(\mathbf{C} \boldsymbol{\mu}(h) \le \mathbf{c}\)</span>, where <span class="arithmatex">\(\boldsymbol{\mu}(h)\)</span> denotes conditional expectations (e.g., False Positive Rates or Positive Selection Rates across groups).</p>
 <h4 id="lagrangian-formulation">Lagrangian Formulation</h4>
-<p>$<span class="arithmatex">\(\mathcal{L}(h, \boldsymbol{\lambda}) = \text{err}(h) + \boldsymbol{\lambda}^\top (\mathbf{C} \boldsymbol{\mu}(h) - \mathbf{c})\)</span>$
-where <span class="arithmatex">\(\boldsymbol{\lambda} \in \mathbb{R}_+^m\)</span> represents the dual Lagrange multipliers.</p>
+<div class="arithmatex">\[
+\mathcal{L}(h, \boldsymbol{\lambda}) = \text{err}(h) + \boldsymbol{\lambda}^\top (\mathbf{C} \boldsymbol{\mu}(h) - \mathbf{c})
+\]</div>
+<p>where <span class="arithmatex">\(\boldsymbol{\lambda} \in \mathbb{R}_+^m\)</span> represents the dual Lagrange multipliers.</p>
 <h4 id="exponentiated-gradient-saddle-point-dynamics">Exponentiated Gradient Saddle-Point Dynamics</h4>
 <p>The game is played over <span class="arithmatex">\(T\)</span> iterations:
-1. <strong>Auditor Step (Dual Update):</strong> Updates weights <span class="arithmatex">\(\boldsymbol{\lambda}_t\)</span> using multiplicative weights (exponentiated gradient):
-   $<span class="arithmatex">\(\lambda_{t+1, j} = \frac{\lambda_{t, j} \exp\left(\eta \cdot (\mathbf{C} \boldsymbol{\mu}(h_t) - \mathbf{c})_j\right)}{\sum_{k} \lambda_{t, k} \exp\left(\eta \cdot (\mathbf{C} \boldsymbol{\mu}(h_t) - \mathbf{c})_k\right)}\)</span>$
-2. <strong>Learner Step (Primal Update):</strong> Finds an unconstrained base classifier <span class="arithmatex">\(h_{t+1}\)</span> minimizing the re-weighted cost surface:
-   $<span class="arithmatex">\(h_{t+1} = \arg\min_{h \in \mathcal{H}} \mathcal{L}(h, \boldsymbol{\lambda}_t)\)</span>$</p>
+1. <strong>Auditor Step (Dual Update):</strong> Updates weights <span class="arithmatex">\(\boldsymbol{\lambda}_t\)</span> using multiplicative weights (exponentiated gradient):</p>
+<div class="arithmatex">\[
+\lambda_{t+1, j} = \frac{\lambda_{t, j} \exp\left(\eta \cdot (\mathbf{C} \boldsymbol{\mu}(h_t) - \mathbf{c})_j\right)}{\sum_{k} \lambda_{t, k} \exp\left(\eta \cdot (\mathbf{C} \boldsymbol{\mu}(h_t) - \mathbf{c})_k\right)}
+\]</div>
+<ol>
+<li><strong>Learner Step (Primal Update):</strong> Finds an unconstrained base classifier <span class="arithmatex">\(h_{t+1}\)</span> minimizing the re-weighted cost surface:</li>
+</ol>
+<div class="arithmatex">\[
+h_{t+1} = \arg\min_{h \in \mathcal{H}} \mathcal{L}(h, \boldsymbol{\lambda}_t)
+\]</div>
 <p>The final fair predictor is a mixture distribution over the generated classifiers <span class="arithmatex">\(\{h_1, \dots, h_T\}\)</span>, guaranteeing <span class="arithmatex">\(\epsilon\)</span>-fairness with <span class="arithmatex">\(\mathcal{O}(1/\sqrt{T})\)</span> convergence.</p>
 <hr />
 <h2 id="production-implementation-fairlearn-in-processing-reductions-engine">💻 Production Implementation: Fairlearn In-Processing Reductions Engine</h2>
@@ -7538,12 +7546,12 @@ where <span class="arithmatex">\(\boldsymbol{\lambda} \in \mathbb{R}_+^m\)</span
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-agarwal2018"></a><strong>Agarwal, A., Beygelzimer, A., Dudik, M., Langford, J., &amp; Wallach, H.</strong> (2018). A reductions approach to fair classification. In <em>International Conference on Machine Learning</em> (pp. 60–69). PMLR.</li>
-<li><a id="ref-kohavi1996"></a><strong>Kohavi, R.</strong> (1996). Scaling up the accuracy of naive-bayes classifiers: a decision-tree hybrid. In <em>KDD</em> (Vol. 96, pp. 202–207).</li>
-<li><a id="ref-dudik2020"></a><strong>Dudik, M., Langford, J., &amp; Zhou, Z.</strong> (2020). <em>Fairlearn: A Python package for assessing and improving fairness in AI</em>. https://fairlearn.org.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-agarwal2018"></a><strong>[Agarwal2018]</strong> A. Agarwal, A. Beygelzimer, M. Dudik, J. Langford, and H. Wallach, "A Reductions Approach to FAIR Classification," in <em>International Conference on Machine Learning</em>, pp. 60–69. PMLR, 2018. <a href="https://doi.org/10.1145/1553374.1553552">DOI: 10.1145/1553374.1553552</a>.</li>
+<li><a id="ref-kohavi1996"></a><strong>[Kohavi1996]</strong> R. Kohavi, "Scaling Up the Accuracy of Naive-bayes Classifiers: A Decision-tree Hybrid," in <em>KDD</em>, (Vol. vol. 96, pp. 202–207), 1996. <a href="https://doi.org/10.1007/3-540-57868-4_56">DOI: 10.1007/3-540-57868-4_56</a>.</li>
+<li><a id="ref-dudik2020"></a><strong>[Dudik2020]</strong> M. Dudik, J. Langford, and Z. Zhou, "Fairlearn: A Python Package for Assessing and Improving Fairness in AI,", 2020.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../08-best-practices-for-fairness/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.8 Best Practices for Fairness</a>

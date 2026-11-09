@@ -7517,15 +7517,23 @@
 <h3 id="a-mathematical-definition-of-an-empirical-sample">A. Mathematical Definition of an Empirical Sample</h3>
 <p>Let <span class="arithmatex">\(\mathcal{X}\)</span> denote the <span class="arithmatex">\(M\)</span>-dimensional <strong>instance space</strong> (feature space) and <span class="arithmatex">\(\mathcal{Y}\)</span> denote the <strong>target space</strong> (label or outcome space). </p>
 <p>A dataset <span class="arithmatex">\(\mathcal{D}_N\)</span> of sample size <span class="arithmatex">\(N\)</span> is an ordered sequence of paired observations:</p>
-<div class="arithmatex">\[\mathcal{D}_N = \left\{ (\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \dots, (\mathbf{x}_N, y_N) \right\} \subset (\mathcal{X} \times \mathcal{Y})^N\]</div>
+<div class="arithmatex">\[
+\mathcal{D}_N = \left\{ (\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \dots, (\mathbf{x}_N, y_N) \right\} \subset (\mathcal{X} \times \mathcal{Y})^N
+\]</div>
 <p>Under the canonical statistical learning assumption [<a href="#ref-vapnik1998">Vapnik1998</a>], each individual observation <span class="arithmatex">\((\mathbf{x}_i, y_i)\)</span> is assumed to be independently and identically distributed (<span class="arithmatex">\(i.i.d.\)</span>) according to a fixed but unknown joint Borel probability measure <span class="arithmatex">\(\mathcal{P}_{X, Y}\)</span> over <span class="arithmatex">\(\mathcal{X} \times \mathcal{Y}\)</span>:</p>
-<div class="arithmatex">\[(\mathbf{x}_i, y_i) \stackrel{\text{i.i.d.}}{\sim} \mathcal{P}_{X, Y}\]</div>
+<div class="arithmatex">\[
+(\mathbf{x}_i, y_i) \stackrel{\text{i.i.d.}}{\sim} \mathcal{P}_{X, Y}
+\]</div>
 <p>The empirical risk minimization (ERM) objective in modern data science seeks to find an optimal hypothesis function <span class="arithmatex">\(h^*: \mathcal{X} \to \mathcal{Y}\)</span> by minimizing empirical loss over <span class="arithmatex">\(\mathcal{D}_N\)</span>:</p>
-<div class="arithmatex">\[\mathcal{R}_{emp}(h) = \frac{1}{N} \sum_{i=1}^N \mathcal{L}\left(h(\mathbf{x}_i), y_i\right)\]</div>
+<div class="arithmatex">\[
+\mathcal{R}_{emp}(h) = \frac{1}{N} \sum_{i=1}^N \mathcal{L}\left(h(\mathbf{x}_i), y_i\right)
+\]</div>
 <p>If <span class="arithmatex">\(\mathcal{D}_N\)</span> is corrupted by systematic collection bias, measurement error, or undocumented covariate shift, the empirical risk <span class="arithmatex">\(\mathcal{R}_{emp}(h)\)</span> diverges asymptotically from the true generalization risk <span class="arithmatex">\(\mathcal{R}_{true}(h) = \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{P}}[\mathcal{L}(h(\mathbf{x}), y)]\)</span>. No amount of deep learning parameter scaling can repair a model trained on structurally flawed data.</p>
 <h3 id="b-the-attribute-space-feature-schema">B. The Attribute Space &amp; Feature Schema</h3>
 <p>Each observation <span class="arithmatex">\(\mathbf{x}_i\)</span> is represented as a structured vector of <span class="arithmatex">\(M\)</span> attributes or fields:</p>
-<div class="arithmatex">\[\mathbf{x}_i = \begin{bmatrix} x_{i, 1} \\ x_{i, 2} \\ \vdots \\ x_{i, M} \end{bmatrix} \in \mathcal{F}_1 \times \mathcal{F}_2 \times \dots \times \mathcal{F}_M\]</div>
+<div class="arithmatex">\[
+\mathbf{x}_i = \begin{bmatrix} x_{i, 1} \\ x_{i, 2} \\ \vdots \\ x_{i, M} \end{bmatrix} \in \mathcal{F}_1 \times \mathcal{F}_2 \times \dots \times \mathcal{F}_M
+\]</div>
 <p>Where each attribute domain <span class="arithmatex">\(\mathcal{F}_j\)</span> defines the valid algebraic state space for column <span class="arithmatex">\(j\)</span>:</p>
 <ol>
 <li><strong>Continuous Metric Variables</strong>: <span class="arithmatex">\(\mathcal{F}_j \subseteq \mathbb{R}\)</span> (e.g., patient blood pressure, ambient temperature in Kelvin, sensor acceleration in <span class="arithmatex">\(\text{m/s}^2\)</span>).</li>
@@ -7628,7 +7636,9 @@
   class D purple;
   class E red;</code></pre>
 <p>Mathematically, let <span class="arithmatex">\(\epsilon_k\)</span> represent the error or noise introduced at pipeline stage <span class="arithmatex">\(k \in \{1, 2, \dots, K\}\)</span> with sensitivity weight <span class="arithmatex">\(w_k\)</span>. Because downstream machine learning models actively seek non-linear feature combinations that minimize empirical loss, downstream prediction error is non-linear and compounding:</p>
-<div class="arithmatex">\[\text{Error}_{final} \ge \sum_{k=1}^K w_k \cdot \|\epsilon_k\|_2^2 + \sum_{j \neq k} \Gamma_{jk} \cdot (\epsilon_j \odot \epsilon_k)\]</div>
+<div class="arithmatex">\[
+\text{Error}_{final} \ge \sum_{k=1}^K w_k \cdot \|\epsilon_k\|_2^2 + \sum_{j \neq k} \Gamma_{jk} \cdot (\epsilon_j \odot \epsilon_k)
+\]</div>
 <p>Where <span class="arithmatex">\(\Gamma_{jk}\)</span> represents the cross-stage coupling matrix. A seemingly negligible <span class="arithmatex">\(0.5\%\)</span> rounding error in raw medical sensor telemetry can cause a downstream gradient-boosted decision tree to split on artifactual step-functions, completely destroying clinical recall on high-risk patient subgroups.</p>
 <hr />
 <h2 id="4-real-world-case-studies-when-datasets-fail-in-silicon-life">4. Real-World Case Studies: When Datasets Fail in Silicon &amp; Life</h2>

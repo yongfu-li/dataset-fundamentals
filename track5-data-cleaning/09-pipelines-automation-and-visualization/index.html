@@ -2677,10 +2677,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7360,10 +7360,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7433,32 +7433,50 @@
 <h3 id="1-the-mathematics-of-data-leakage">1. The Mathematics of Data Leakage</h3>
 <p>Let dataset <span class="arithmatex">\(\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^n\)</span> partitioned into training set <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span> and test set <span class="arithmatex">\(\mathcal{D}_{\text{test}}\)</span>. Let <span class="arithmatex">\(\hat{\theta} \in \Theta\)</span> denote parameters of a preprocessing transformation <span class="arithmatex">\(T_{\hat{\theta}}(\mathbf{x})\)</span> (such as mean imputation <span class="arithmatex">\(\hat{\mu}\)</span>, scaling variance <span class="arithmatex">\(\hat{\sigma}^2\)</span>, or target encoding priors).</p>
 <h4 id="global-preprocessing-hazard">Global Preprocessing Hazard</h4>
-<p>If <span class="arithmatex">\(\hat{\theta}\)</span> is computed over the entire dataset <span class="arithmatex">\(\mathcal{D}\)</span>:
-$<span class="arithmatex">\(\hat{\theta} = g(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})\)</span>$
-The mutual information between test labels and training representations is non-zero:
-$<span class="arithmatex">\(I(\hat{\theta}; \mathcal{D}_{\text{test}}) &gt; 0\)</span>$
-This structural dependency underestimates the true generalization risk:
-$<span class="arithmatex">\(\mathbb{E}_{\mathcal{D}_{\text{test}}} [\mathcal{R}_{\text{emp}}(\hat{h})] \ll \mathcal{R}_{\text{true}}(\hat{h})\)</span>$
-yielding catastrophic model collapse when deployed to live production streams.</p>
+<p>If <span class="arithmatex">\(\hat{\theta}\)</span> is computed over the entire dataset <span class="arithmatex">\(\mathcal{D}\)</span>:</p>
+<div class="arithmatex">\[
+\hat{\theta} = g(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})
+\]</div>
+<p>The mutual information between test labels and training representations is non-zero:</p>
+<div class="arithmatex">\[
+I(\hat{\theta}; \mathcal{D}_{\text{test}}) &gt; 0
+\]</div>
+<p>This structural dependency underestimates the true generalization risk:</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\mathcal{D}_{\text{test}}} [\mathcal{R}_{\text{emp}}(\hat{h})] \ll \mathcal{R}_{\text{true}}(\hat{h})
+\]</div>
+<p>yielding catastrophic model collapse when deployed to live production streams.</p>
 <h4 id="strict-functional-pipeline-formulation">Strict Functional Pipeline Formulation</h4>
-<p>To guarantee uncorrupted statistical estimation, preprocessing must be encapsulated as a composite function:
-$<span class="arithmatex">\(F(\mathbf{x}) = (f_L \circ f_{L-1} \circ \dots \circ f_1)(\mathbf{x})\)</span>$
-where the parameters of each stage <span class="arithmatex">\(\theta_l\)</span> are conditioned strictly on the preceding stage's output on training partitions:
-$<span class="arithmatex">\(\theta_l = \text{fit}(f_{l-1}(\dots f_1(\mathcal{D}_{\text{train}})))\)</span>$</p>
+<p>To guarantee uncorrupted statistical estimation, preprocessing must be encapsulated as a composite function:</p>
+<div class="arithmatex">\[
+F(\mathbf{x}) = (f_L \circ f_{L-1} \circ \dots \circ f_1)(\mathbf{x})
+\]</div>
+<p>where the parameters of each stage <span class="arithmatex">\(\theta_l\)</span> are conditioned strictly on the preceding stage's output on training partitions:</p>
+<div class="arithmatex">\[
+\theta_l = \text{fit}(f_{l-1}(\dots f_1(\mathcal{D}_{\text{train}})))
+\]</div>
 <hr />
 <h3 id="2-automated-deep-feature-synthesis-dfs">2. Automated Deep Feature Synthesis (DFS)</h3>
 <p>Manual feature engineering on relational databases is labor-intensive. <strong>Deep Feature Synthesis</strong> (<a href="#ref-kanter2015">Kanter &amp; Veeramachaneni, 2015</a>) automates feature generation by traversing entity-relationship paths:
 1. <strong>Forward Relationships (<span class="arithmatex">\(1 \to 1\)</span> or <span class="arithmatex">\(N \to 1\)</span>):</strong> Direct entity transfer (e.g., copying merchant category to a transaction).
-2. <strong>Backward Relationships (<span class="arithmatex">\(1 \to N\)</span>):</strong> Aggregation primitives <span class="arithmatex">\(\bigoplus\)</span> applied over associated child entities:
-   $<span class="arithmatex">\(\phi_{\text{agg}}(E_i) = \bigoplus_{e_j \in \text{Rel}(E_i)} f(e_j), \quad \bigoplus \in \{\text{MEAN}, \text{SUM}, \text{MIN}, \text{MAX}, \text{SKEW}, \text{COUNT}\}\)</span>$</p>
+2. <strong>Backward Relationships (<span class="arithmatex">\(1 \to N\)</span>):</strong> Aggregation primitives <span class="arithmatex">\(\bigoplus\)</span> applied over associated child entities:</p>
+<div class="arithmatex">\[
+\phi_{\text{agg}}(E_i) = \bigoplus_{e_j \in \text{Rel}(E_i)} f(e_j), \quad \bigoplus \in \{\text{MEAN}, \text{SUM}, \text{MIN}, \text{MAX}, \text{SKEW}, \text{COUNT}\}
+\]</div>
 <hr />
 <h3 id="3-missingness-matrix-and-correlation-diagnostics">3. Missingness Matrix and Correlation Diagnostics</h3>
-<p>Visual diagnostics detect patterns that summary statistics obscure. Let missingness indicator matrix <span class="arithmatex">\(\mathbf{M} \in \{0, 1\}^{n \times d}\)</span>:
-$<span class="arithmatex">\(M_{ij} = \begin{cases} 1 &amp; \text{if } X_{ij} \text{ is missing} \\ 0 &amp; \text{if } X_{ij} \text{ is observed} \end{cases}\)</span>$
-The <strong>Missingness Nullity Correlation</strong> between variable <span class="arithmatex">\(j\)</span> and variable <span class="arithmatex">\(k\)</span> is given by Pearson's phi coefficient:
-$<span class="arithmatex">\(r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - \bar{M}_j)(M_{ik} - \bar{M}_k)}{\sqrt{\sum_{i=1}^n (M_{ij} - \bar{M}_j)^2 \sum_{i=1}^n (M_{ik} - \bar{M}_k)^2}}\)</span>$
-- <span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to +1\)</span>: Variables are systematically missing together (e.g., lab tests ordered as a joint battery).
-- <span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to -1\)</span>: Missingness in one variable implies the presence of the other (e.g., conditional screening questionnaires).</p>
+<p>Visual diagnostics detect patterns that summary statistics obscure. Let missingness indicator matrix <span class="arithmatex">\(\mathbf{M} \in \{0, 1\}^{n \times d}\)</span>:</p>
+<div class="arithmatex">\[
+M_{ij} = \begin{cases} 1 &amp; \text{if } X_{ij} \text{ is missing} \\ 0 &amp; \text{if } X_{ij} \text{ is observed} \end{cases}
+\]</div>
+<p>The <strong>Missingness Nullity Correlation</strong> between variable <span class="arithmatex">\(j\)</span> and variable <span class="arithmatex">\(k\)</span> is given by Pearson's phi coefficient:</p>
+<div class="arithmatex">\[
+r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - \bar{M}_j)(M_{ik} - \bar{M}_k)}{\sqrt{\sum_{i=1}^n (M_{ij} - \bar{M}_j)^2 \sum_{i=1}^n (M_{ik} - \bar{M}_k)^2}}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to +1\)</span>: Variables are systematically missing together (e.g., lab tests ordered as a joint battery).</li>
+<li><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to -1\)</span>: Missingness in one variable implies the presence of the other (e.g., conditional screening questionnaires).</li>
+</ul>
 <hr />
 <h2 id="production-implementation-leak-free-scikit-learn-pipeline-diagnostic-suite">💻 Production Implementation: Leak-Free Scikit-Learn Pipeline &amp; Diagnostic Suite</h2>
 <p>Below is a self-contained, production-grade script that executes a leak-free <code>ColumnTransformer</code> pipeline with cross-validation and evaluates the nullity correlation matrix.</p>
@@ -7630,12 +7648,12 @@ $<span class="arithmatex">\(r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - 
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pip<span class="w"> </span>install<span class="w"> </span>scikit-learn<span class="w"> </span>missingno<span class="w"> </span>featuretools
 </span></code></pre></div>
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-kanter2015"></a><strong>Kanter, J. M., &amp; Veeramachaneni, K.</strong> (2015). Deep feature synthesis: Towards automating data science endeavors. In <em>2015 IEEE International Conference on Data Science and Advanced Analytics (DSAA)</em> (pp. 1–10). IEEE.</li>
-<li><a id="ref-bilalli2017"></a><strong>Bilalli, B., Abelló, A., &amp; Aluja-Banet, T.</strong> (2017). On the predictive power of meta-features in OpenML. <em>International Journal of Applied Mathematics and Computer Science</em>, 27(4), 697–712.</li>
-<li><a id="ref-feurer2015"></a><strong>Feurer, M., Klein, A., Eggensperger, K., et al.</strong> (2015). Efficient and robust automated machine learning. <em>Advances in Neural Information Processing Systems</em>, 28, 2962–2970.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-kanter2015"></a><strong>[Kanter2015]</strong> J. M. Kanter and K. Veeramachaneni, "Deep Feature Synthesis: Towards Automating Data Science Endeavors," in <em>2015 IEEE International Conference on Data Science and Advanced Analytics (DSAA)</em>, pp. 1–10. IEEE. <a href="https://doi.org/10.1109/DSAA.2015.7344858">DOI: 10.1109/DSAA.2015.7344858</a>.</li>
+<li><a id="ref-bilalli2017"></a><strong>[Bilalli2017]</strong> B. Bilalli, A. Abelló, and T. Aluja-Banet, "On the Predictive Power of Meta-features in Openml," <em>International Journal of Applied Mathematics and Computer Science</em>, vol. 27, no. 4, pp. 697–712, 2017. <a href="https://doi.org/10.1515/amcs-2017-0049">DOI: 10.1515/amcs-2017-0049</a>.</li>
+<li><a id="ref-feurer2015"></a><strong>[Feurer2015]</strong> M. Feurer et al., "Efficient and Robust Automated Machine Learning," <em>Advances in Neural Information Processing Systems</em>, vol. 28, pp. 2962–2970, 2015. <a href="https://doi.org/10.5555/2969442.2969573">DOI: 10.5555/2969442.2969573</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../08-python-cleaning-tools/" class="noc-sim-btn secondary" style="text-decoration: none;">← 5.8 Python Tools</a>

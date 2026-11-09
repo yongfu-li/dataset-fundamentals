@@ -3485,10 +3485,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7372,10 +7372,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7440,13 +7440,19 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-pre-processing-sample-re-weighting-kamiran-calders-2012">1. Pre-Processing: Sample Re-weighting (Kamiran &amp; Calders, 2012)</h3>
-<p>Rather than distorting feature values, <strong>Sample Re-weighting</strong> assigns importance weights <span class="arithmatex">\(w_i\)</span> to training instances such that the sensitive attribute <span class="arithmatex">\(A\)</span> and outcome label <span class="arithmatex">\(Y\)</span> become statistically independent in the weighted empirical distribution:
-$<span class="arithmatex">\(\Pr_w(A = a, Y = y) = \Pr(A = a) \cdot \Pr(Y = y)\)</span>$</p>
+<p>Rather than distorting feature values, <strong>Sample Re-weighting</strong> assigns importance weights <span class="arithmatex">\(w_i\)</span> to training instances such that the sensitive attribute <span class="arithmatex">\(A\)</span> and outcome label <span class="arithmatex">\(Y\)</span> become statistically independent in the weighted empirical distribution:</p>
+<div class="arithmatex">\[
+\Pr_w(A = a, Y = y) = \Pr(A = a) \cdot \Pr(Y = y)
+\]</div>
 <h4 id="mathematical-weight-derivation">Mathematical Weight Derivation</h4>
-<p>For each subgroup cell <span class="arithmatex">\((a, y) \in \{0, 1\} \times \{0, 1\}\)</span>:
-$<span class="arithmatex">\(W(A = a, Y = y) = \frac{\mathbb{E}[N(A = a)] \cdot \mathbb{E}[N(Y = y)] / N}{N(A = a, Y = y)} = \frac{\Pr(A = a) \cdot \Pr(Y = y)}{\Pr(A = a, Y = y)}\)</span>$
-- Under-represented favored instances (e.g., qualified minority applicants <span class="arithmatex">\((A = 0, Y = 1)\)</span>) receive weights <span class="arithmatex">\(W &gt; 1.0\)</span>.
-- Over-represented favored instances (e.g., qualified majority applicants <span class="arithmatex">\((A = 1, Y = 1)\)</span>) receive weights <span class="arithmatex">\(W &lt; 1.0\)</span>.</p>
+<p>For each subgroup cell <span class="arithmatex">\((a, y) \in \{0, 1\} \times \{0, 1\}\)</span>:</p>
+<div class="arithmatex">\[
+W(A = a, Y = y) = \frac{\mathbb{E}[N(A = a)] \cdot \mathbb{E}[N(Y = y)] / N}{N(A = a, Y = y)} = \frac{\Pr(A = a) \cdot \Pr(Y = y)}{\Pr(A = a, Y = y)}
+\]</div>
+<ul>
+<li>Under-represented favored instances (e.g., qualified minority applicants <span class="arithmatex">\((A = 0, Y = 1)\)</span>) receive weights <span class="arithmatex">\(W &gt; 1.0\)</span>.</li>
+<li>Over-represented favored instances (e.g., qualified majority applicants <span class="arithmatex">\((A = 1, Y = 1)\)</span>) receive weights <span class="arithmatex">\(W &lt; 1.0\)</span>.</li>
+</ul>
 <p>Fitting standard loss estimators under sample weights <span class="arithmatex">\(w_i\)</span> eliminates statistical parity disparities at zero inference latency.</p>
 <hr />
 <h3 id="2-in-processing-adversarial-debiasing-zhang-et-al-2018">2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)</h3>
@@ -7454,8 +7460,10 @@ $<span class="arithmatex">\(W(A = a, Y = y) = \frac{\mathbb{E}[N(A = a)] \cdot \
 1. <strong>Predictor Network (<span class="arithmatex">\(f_\theta\)</span>):</strong> Predicts task target <span class="arithmatex">\(Y\)</span> given feature vector <span class="arithmatex">\(\mathbf{x}\)</span>.
 2. <strong>Adversary Network (<span class="arithmatex">\(g_\phi\)</span>):</strong> Attempts to reconstruct sensitive attribute <span class="arithmatex">\(A\)</span> from the predictor's latent representation or output score <span class="arithmatex">\(\hat{Y}\)</span>.</p>
 <h4 id="objective-function">Objective Function</h4>
-<p>$<span class="arithmatex">\(\min_\theta \max_\phi \mathcal{L}_{\text{task}}(Y, f_\theta(\mathbf{x})) - \lambda \cdot \mathcal{L}_{\text{adv}}(A, g_\phi(f_\theta(\mathbf{x})))\)</span>$
-where hyperparameter <span class="arithmatex">\(\lambda &gt; 0\)</span> controls the fairness-accuracy trade-off. At the Nash equilibrium, the predictor outputs representations from which the adversary cannot extract sensitive demographic information.</p>
+<div class="arithmatex">\[
+\min_\theta \max_\phi \mathcal{L}_{\text{task}}(Y, f_\theta(\mathbf{x})) - \lambda \cdot \mathcal{L}_{\text{adv}}(A, g_\phi(f_\theta(\mathbf{x})))
+\]</div>
+<p>where hyperparameter <span class="arithmatex">\(\lambda &gt; 0\)</span> controls the fairness-accuracy trade-off. At the Nash equilibrium, the predictor outputs representations from which the adversary cannot extract sensitive demographic information.</p>
 <hr />
 <h3 id="3-comparison-of-mitigation-approaches">3. Comparison of Mitigation Approaches</h3>
 <table>
@@ -7647,13 +7655,13 @@ where hyperparameter <span class="arithmatex">\(\lambda &gt; 0\)</span> controls
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-kamiran2012"></a><strong>Kamiran, F., &amp; Calders, T.</strong> (2012). Data preprocessing techniques for classification without discrimination. <em>Knowledge and Information Systems</em>, 33(1), 1–33.</li>
-<li><a id="ref-feldman2015"></a><strong>Feldman, M., Friedler, S. A., Moeller, J., Scheidegger, C., &amp; Venkatasubramanian, S.</strong> (2015). Certifying and removing disparate impact. In <em>Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em> (pp. 259–268).</li>
-<li><a id="ref-agarwal2018"></a><strong>Agarwal, A., Beygelzimer, A., Dudik, M., Langford, J., &amp; Wallach, H.</strong> (2018). A reductions approach to fair classification. In <em>International Conference on Machine Learning</em> (pp. 60–69). PMLR.</li>
-<li><a id="ref-zhang2018"></a><strong>Zhang, B. H., Lemoine, B., &amp; Mitchell, M.</strong> (2018). Mitigating unwanted biases with adversarial learning. In <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society</em> (pp. 335–340).</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-kamiran2012"></a><strong>[Kamiran2012]</strong> F. Kamiran and T. Calders, "Data Preprocessing Techniques for Classification Without Discrimination," <em>Knowledge and Information Systems</em>, vol. 33, no. 1, pp. 1–33, 2012. <a href="https://doi.org/10.1007/s10115-011-0463-8">DOI: 10.1007/s10115-011-0463-8</a>.</li>
+<li><a id="ref-feldman2015"></a><strong>[Feldman2015]</strong> M. Feldman, S. A. Friedler, J. Moeller, C. Scheidegger, and S. Venkatasubramanian, "Certifying and Removing Disparate Impact," in <em>Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, pp. 259–268, 2015. <a href="https://doi.org/10.1145/2783258.2783311">DOI: 10.1145/2783258.2783311</a>.</li>
+<li><a id="ref-agarwal2018"></a><strong>[Agarwal2018]</strong> A. Agarwal, A. Beygelzimer, M. Dudik, J. Langford, and H. Wallach, "A Reductions Approach to FAIR Classification," in <em>International Conference on Machine Learning</em>, pp. 60–69. PMLR, 2018. <a href="https://doi.org/10.1145/1553374.1553552">DOI: 10.1145/1553374.1553552</a>.</li>
+<li><a id="ref-zhang2018"></a><strong>[Zhang2018]</strong> B. H. Zhang, B. Lemoine, and M. Mitchell, "Mitigating Unwanted Biases with Adversarial Learning," in <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society</em>, pp. 335–340. <a href="https://doi.org/10.1145/3278721.3278779">DOI: 10.1145/3278721.3278779</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../06-fairness-definitions-and-tradeoffs/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.6 Fairness Definitions & Trade-offs</a>

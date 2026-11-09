@@ -3005,10 +3005,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7438,10 +7438,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7503,25 +7503,41 @@
 <hr />
 <h3 id="1-univariate-geometries-histograms-kde-and-ecdfs">1. Univariate Geometries: Histograms, KDE, and ECDFs</h3>
 <h4 id="the-histogram-binning-dilemma">The Histogram Binning Dilemma</h4>
-<p>Given continuous sample <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_n)\)</span>, dividing the range into bins of width <span class="arithmatex">\(h\)</span> involves an asymptotic Mean Integrated Squared Error (MISE) tradeoff:
-$<span class="arithmatex">\(\text{MISE}(h) = \mathcal{O}(n^{-1} h^{-1}) + \mathcal{O}(h^2)\)</span>$
-- Over-smoothing (<span class="arithmatex">\(h \to \infty\)</span>): High bias, masks bimodal mixtures.
-- Under-smoothing (<span class="arithmatex">\(h \to 0\)</span>): High variance, produces spiky sample noise.</p>
-<p>The optimal, outlier-resistant bin width is given by the <strong>Freedman-Diaconis Rule</strong> (<a href="#ref-freedman1981">1981</a>):
-$<span class="arithmatex">\(h_{\text{FD}} = 2 \cdot \frac{\text{IQR}(\mathbf{x})}{n^{1/3}}\)</span>$
-which scales inversely with the cube root of sample size and resists extreme tail outliers.</p>
+<p>Given continuous sample <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_n)\)</span>, dividing the range into bins of width <span class="arithmatex">\(h\)</span> involves an asymptotic Mean Integrated Squared Error (MISE) tradeoff:</p>
+<div class="arithmatex">\[
+\text{MISE}(h) = \mathcal{O}(n^{-1} h^{-1}) + \mathcal{O}(h^2)
+\]</div>
+<ul>
+<li>Over-smoothing (<span class="arithmatex">\(h \to \infty\)</span>): High bias, masks bimodal mixtures.</li>
+<li>Under-smoothing (<span class="arithmatex">\(h \to 0\)</span>): High variance, produces spiky sample noise.</li>
+</ul>
+<p>The optimal, outlier-resistant bin width is given by the <strong>Freedman-Diaconis Rule</strong> (<a href="#ref-freedman1981">1981</a>):</p>
+<div class="arithmatex">\[
+h_{\text{FD}} = 2 \cdot \frac{\text{IQR}(\mathbf{x})}{n^{1/3}}
+\]</div>
+<p>which scales inversely with the cube root of sample size and resists extreme tail outliers.</p>
 <h4 id="kernel-density-estimation-kde">Kernel Density Estimation (KDE)</h4>
-<p>To eliminate arbitrary bin boundary cutoffs, KDE smooths probability mass continuously:
-$<span class="arithmatex">\(\hat{f}_h(x) = \frac{1}{n h} \sum_{i=1}^n K\left(\frac{x - x_i}{h}\right)\)</span>$
-where <span class="arithmatex">\(K(u)\)</span> is a symmetric standard normal kernel <span class="arithmatex">\(K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\)</span>. <strong>Silverman's Rule of Thumb</strong> provides the optimal bandwidth minimizing asymptotic MISE for unimodal densities:
-$<span class="arithmatex">\(h^* = 0.9 \cdot \min\left(s, \; \frac{\text{IQR}}{1.34}\right) \cdot n^{-1/5}\)</span>$</p>
+<p>To eliminate arbitrary bin boundary cutoffs, KDE smooths probability mass continuously:</p>
+<div class="arithmatex">\[
+\hat{f}_h(x) = \frac{1}{n h} \sum_{i=1}^n K\left(\frac{x - x_i}{h}\right)
+\]</div>
+<p>where <span class="arithmatex">\(K(u)\)</span> is a symmetric standard normal kernel <span class="arithmatex">\(K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\)</span>. <strong>Silverman's Rule of Thumb</strong> provides the optimal bandwidth minimizing asymptotic MISE for unimodal densities:</p>
+<div class="arithmatex">\[
+h^* = 0.9 \cdot \min\left(s, \; \frac{\text{IQR}}{1.34}\right) \cdot n^{-1/5}
+\]</div>
 <h4 id="empirical-cumulative-distribution-function-ecdf">Empirical Cumulative Distribution Function (ECDF)</h4>
-<p>Unlike histograms and KDEs, the ECDF requires zero tuning parameters or bandwidth choices:
-$<span class="arithmatex">\(F_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}(x_i \le x)\)</span>$
-By the <strong>Glivenko-Cantelli Theorem</strong>, <span class="arithmatex">\(F_n(x)\)</span> converges uniformly almost surely to the true latent CDF <span class="arithmatex">\(F(x)\)</span>:
-$<span class="arithmatex">\(\sup_{x \in \mathbb{R}} |F_n(x) - F(x)| \xrightarrow{\text{a.s.}} 0 \quad \text{as } n \to \infty\)</span>$
-Exact non-parametric <span class="arithmatex">\(1 - \alpha\)</span> confidence envelopes are constructed using the <strong>Dvoretzky-Kiefer-Wolfowitz (DKW) Inequality</strong>:
-$<span class="arithmatex">\(\epsilon = \sqrt{\frac{\ln(2 / \alpha)}{2n}}, \quad L(x) = \max(0, F_n(x) - \epsilon), \quad U(x) = \min(1, F_n(x) + \epsilon)\)</span>$</p>
+<p>Unlike histograms and KDEs, the ECDF requires zero tuning parameters or bandwidth choices:</p>
+<div class="arithmatex">\[
+F_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}(x_i \le x)
+\]</div>
+<p>By the <strong>Glivenko-Cantelli Theorem</strong>, <span class="arithmatex">\(F_n(x)\)</span> converges uniformly almost surely to the true latent CDF <span class="arithmatex">\(F(x)\)</span>:</p>
+<div class="arithmatex">\[
+\sup_{x \in \mathbb{R}} |F_n(x) - F(x)| \xrightarrow{\text{a.s.}} 0 \quad \text{as } n \to \infty
+\]</div>
+<p>Exact non-parametric <span class="arithmatex">\(1 - \alpha\)</span> confidence envelopes are constructed using the <strong>Dvoretzky-Kiefer-Wolfowitz (DKW) Inequality</strong>:</p>
+<div class="arithmatex">\[
+\epsilon = \sqrt{\frac{\ln(2 / \alpha)}{2n}}, \quad L(x) = \max(0, F_n(x) - \epsilon), \quad U(x) = \min(1, F_n(x) + \epsilon)
+\]</div>
 <hr />
 <h3 id="2-bivariate-association-linear-vs-monotonic-metrics">2. Bivariate Association: Linear vs. Monotonic Metrics</h3>
 <p>Let paired observations <span class="arithmatex">\(\{ (x_i, y_i) \}_{i=1}^n\)</span>.</p>
@@ -7534,17 +7550,25 @@ $<span class="arithmatex">\(\epsilon = \sqrt{\frac{\ln(2 / \alpha)}{2n}}, \quad 
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  *                                 * * *                                          * * * *
 </span></code></pre></div>
 <h4 id="1-pearson-correlation-coefficient-r">1. Pearson Correlation Coefficient (<span class="arithmatex">\(r\)</span>)</h4>
-<p>Measures strictly linear co-variation:
-$<span class="arithmatex">\(r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}}\)</span>$
-- <em>Failure Mode:</em> A single extreme bivariate outlier can inflate <span class="arithmatex">\(r\)</span> from <span class="arithmatex">\(0.0\)</span> to <span class="arithmatex">\(0.95\)</span> or depress <span class="arithmatex">\(r\)</span> to <span class="arithmatex">\(0.0\)</span>. Pearson <span class="arithmatex">\(r\)</span> is blind to nonlinear relationships (e.g., <span class="arithmatex">\(y = x^2 \implies r \approx 0\)</span>).</p>
+<p>Measures strictly linear co-variation:</p>
+<div class="arithmatex">\[
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}}
+\]</div>
+<ul>
+<li><em>Failure Mode:</em> A single extreme bivariate outlier can inflate <span class="arithmatex">\(r\)</span> from <span class="arithmatex">\(0.0\)</span> to <span class="arithmatex">\(0.95\)</span> or depress <span class="arithmatex">\(r\)</span> to <span class="arithmatex">\(0.0\)</span>. Pearson <span class="arithmatex">\(r\)</span> is blind to nonlinear relationships (e.g., <span class="arithmatex">\(y = x^2 \implies r \approx 0\)</span>).</li>
+</ul>
 <h4 id="2-spearman-rank-correlation-rho">2. Spearman Rank Correlation (<span class="arithmatex">\(\rho\)</span>)</h4>
-<p>Computes Pearson correlation over empirical ranks <span class="arithmatex">\(R(x_i), R(y_i)\)</span>:
-$<span class="arithmatex">\(\rho = 1 - \frac{6 \sum_{i=1}^n d_i^2}{n(n^2 - 1)}, \quad d_i = R(x_i) - R(y_i)\)</span>$
-Measures arbitrary monotonic relationships (<span class="arithmatex">\(y = e^x \implies \rho = 1.0\)</span> while <span class="arithmatex">\(r &lt; 1.0\)</span>) and is resistant to univariate tail extremes.</p>
+<p>Computes Pearson correlation over empirical ranks <span class="arithmatex">\(R(x_i), R(y_i)\)</span>:</p>
+<div class="arithmatex">\[
+\rho = 1 - \frac{6 \sum_{i=1}^n d_i^2}{n(n^2 - 1)}, \quad d_i = R(x_i) - R(y_i)
+\]</div>
+<p>Measures arbitrary monotonic relationships (<span class="arithmatex">\(y = e^x \implies \rho = 1.0\)</span> while <span class="arithmatex">\(r &lt; 1.0\)</span>) and is resistant to univariate tail extremes.</p>
 <h4 id="3-kendalls-tau-tau">3. Kendall's Tau (<span class="arithmatex">\(\tau\)</span>)</h4>
-<p>Evaluates the proportion of <strong>concordant pairs</strong> (<span class="arithmatex">\(x_i &gt; x_j \wedge y_i &gt; y_j\)</span>) versus <strong>discordant pairs</strong> (<span class="arithmatex">\(x_i &gt; x_j \wedge y_i &lt; y_j\)</span>):
-$<span class="arithmatex">\(\tau = \frac{C - D}{\frac{1}{2} n(n - 1)}\)</span>$
-Kendall's <span class="arithmatex">\(\tau\)</span> converges faster to asymptotic normality and provides direct probabilistic interpretation: <span class="arithmatex">\(\tau = \Pr(\text{Concordance}) - \Pr(\text{Discordance})\)</span>.</p>
+<p>Evaluates the proportion of <strong>concordant pairs</strong> (<span class="arithmatex">\(x_i &gt; x_j \wedge y_i &gt; y_j\)</span>) versus <strong>discordant pairs</strong> (<span class="arithmatex">\(x_i &gt; x_j \wedge y_i &lt; y_j\)</span>):</p>
+<div class="arithmatex">\[
+\tau = \frac{C - D}{\frac{1}{2} n(n - 1)}
+\]</div>
+<p>Kendall's <span class="arithmatex">\(\tau\)</span> converges faster to asymptotic normality and provides direct probabilistic interpretation: <span class="arithmatex">\(\tau = \Pr(\text{Concordance}) - \Pr(\text{Discordance})\)</span>.</p>
 <hr />
 <h2 id="production-implementation-ecdf-with-dkw-bands-correlation-diagnostics">💻 Production Implementation: ECDF with DKW Bands &amp; Correlation Diagnostics</h2>
 <p>Below is a complete Python module calculating Freedman-Diaconis binning, ECDF with Dvoretzky-Kiefer-Wolfowitz confidence bands, and a comparative correlation matrix.</p>
@@ -7692,13 +7716,13 @@ Kendall's <span class="arithmatex">\(\tau\)</span> converges faster to asymptoti
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-freedman1981"></a><strong>Freedman, D., &amp; Diaconis, P.</strong> (1981). On the histogram as a density estimator: <span class="arithmatex">\(L_2\)</span> theory. <em>Zeitschrift für Wahrscheinlichkeitstheorie und verwandte Gebiete</em>, 57(4), 453–476.</li>
-<li><a id="ref-silverman1986"></a><strong>Silverman, B. W.</strong> (1986). <em>Density Estimation for Statistics and Data Analysis</em>. Chapman &amp; Hall, London.</li>
-<li><a id="ref-cleveland1993"></a><strong>Cleveland, W. S.</strong> (1993). <em>Visualizing Data</em>. Hobart Press.</li>
-<li><a id="ref-massart1990"></a><strong>Massart, P.</strong> (1990). The tight constant in the Dvoretzky-Kiefer-Wolfowitz inequality. <em>The Annals of Probability</em>, 1269–1283.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-freedman1981"></a><strong>[Freedman1981]</strong> D. Freedman and P. Diaconis, "On the Histogram as a Density Estimator: <span class="arithmatex">\(l_2\)</span> Theory," <em>Zeitschrift für Wahrscheinlichkeitstheorie und verwandte Gebiete</em>, vol. 57, no. 4, pp. 453–476, 1981. <a href="https://doi.org/10.1007/bf01025868">DOI: 10.1007/bf01025868</a>.</li>
+<li><a id="ref-silverman1986"></a><strong>[Silverman1986]</strong> B. W. Silverman, "Density Estimation for Statistics and Data Analysis," <em>Chapman &amp; Hall</em>, London, 1986. <a href="https://doi.org/10.1002/bimj.4710300745">DOI: 10.1002/bimj.4710300745</a>.</li>
+<li><a id="ref-cleveland1993"></a><strong>[Cleveland1993]</strong> W. S. Cleveland, <em>Visualizing Data</em>, Hobart Press, Summit, New Jersey, 1993. <a href="https://doi.org/10.1002/sim.4780141212">DOI: 10.1002/sim.4780141212</a>.</li>
+<li><a id="ref-massart1990"></a><strong>[Massart1990]</strong> P. Massart, "The Tight Constant in the Dvoretzky-kiefer-wolfowitz Inequality," <em>The Annals of Probability</em>, 1269–1283, 1990. <a href="https://doi.org/10.1214/aop/1176990746">DOI: 10.1214/aop/1176990746</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../03-dispersion-shape-and-grouping/" class="noc-sim-btn secondary" style="text-decoration: none;">← 6.3 Dispersion, Shape & Grouping</a>

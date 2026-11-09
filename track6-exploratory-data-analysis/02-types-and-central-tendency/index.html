@@ -2943,10 +2943,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7426,10 +7426,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7508,8 +7508,10 @@
 <h3 id="2-mathematical-formulations-of-location-estimators">2. Mathematical Formulations of Location Estimators</h3>
 <p>Let sample <span class="arithmatex">\(\mathbf{x} = (x_1, x_2, \dots, x_n) \in \mathbb{R}^n\)</span> with sorted order statistics <span class="arithmatex">\(x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}\)</span>.</p>
 <h4 id="arithmetic-mean">Arithmetic Mean</h4>
-<p>$<span class="arithmatex">\(\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i = \arg\min_{\mu \in \mathbb{R}} \sum_{i=1}^n (x_i - \mu)^2\)</span>$
-The arithmetic mean minimizes <span class="arithmatex">\(L_2\)</span> squared Euclidean error. It has a finite-sample breakdown point of <span class="arithmatex">\(\epsilon^* = \frac{1}{n}\)</span>, meaning a single corrupted point <span class="arithmatex">\(x \to \infty\)</span> pulls <span class="arithmatex">\(\bar{x} \to \infty\)</span>.</p>
+<div class="arithmatex">\[
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i = \arg\min_{\mu \in \mathbb{R}} \sum_{i=1}^n (x_i - \mu)^2
+\]</div>
+<p>The arithmetic mean minimizes <span class="arithmatex">\(L_2\)</span> squared Euclidean error. It has a finite-sample breakdown point of <span class="arithmatex">\(\epsilon^* = \frac{1}{n}\)</span>, meaning a single corrupted point <span class="arithmatex">\(x \to \infty\)</span> pulls <span class="arithmatex">\(\bar{x} \to \infty\)</span>.</p>
 <h4 id="sample-median">Sample Median</h4>
 <p>$<span class="arithmatex">\(\tilde{x} = \begin{cases} 
 x_{\left(\frac{n+1}{2}\right)} &amp; \text{if } n \text{ is odd} \\ 
@@ -7517,18 +7519,26 @@ x_{\left(\frac{n+1}{2}\right)} &amp; \text{if } n \text{ is odd} \\
 \end{cases} = \arg\min_{m \in \mathbb{R}} \sum_{i=1}^n |x_i - m|\)</span>$
 The sample median minimizes <span class="arithmatex">\(L_1\)</span> absolute error and achieves the optimal breakdown point <span class="arithmatex">\(\epsilon^* = 0.50\)</span> (<span class="arithmatex">\(50\%\)</span>).</p>
 <h4 id="geometric-mean-x_i-0">Geometric Mean (<span class="arithmatex">\(x_i &gt; 0\)</span>)</h4>
-<p>$<span class="arithmatex">\(\bar{x}_G = \left(\prod_{i=1}^n x_i\right)^{1/n} = \exp\left(\frac{1}{n} \sum_{i=1}^n \ln x_i\right)\)</span>$
-The geometric mean represents the central tendency of compounding quantities, portfolio returns, and multi-scale sensor ratios.</p>
+<div class="arithmatex">\[
+\bar{x}_G = \left(\prod_{i=1}^n x_i\right)^{1/n} = \exp\left(\frac{1}{n} \sum_{i=1}^n \ln x_i\right)
+\]</div>
+<p>The geometric mean represents the central tendency of compounding quantities, portfolio returns, and multi-scale sensor ratios.</p>
 <h4 id="harmonic-mean-x_i-0">Harmonic Mean (<span class="arithmatex">\(x_i &gt; 0\)</span>)</h4>
-<p>$<span class="arithmatex">\(\bar{x}_H = \frac{n}{\sum_{i=1}^n \frac{1}{x_i}} = \left(\frac{1}{n} \sum_{i=1}^n x_i^{-1}\right)^{-1}\)</span>$
-The harmonic mean is the correct estimator for rates, velocities, and ratios where units are expressed as <span class="arithmatex">\(y / x\)</span> (e.g., bits per second, machine learning <span class="arithmatex">\(F_1\)</span> score balancing precision and recall).</p>
+<div class="arithmatex">\[
+\bar{x}_H = \frac{n}{\sum_{i=1}^n \frac{1}{x_i}} = \left(\frac{1}{n} \sum_{i=1}^n x_i^{-1}\right)^{-1}
+\]</div>
+<p>The harmonic mean is the correct estimator for rates, velocities, and ratios where units are expressed as <span class="arithmatex">\(y / x\)</span> (e.g., bits per second, machine learning <span class="arithmatex">\(F_1\)</span> score balancing precision and recall).</p>
 <h4 id="the-arithmetic-geometric-harmonic-agh-inequality">The Arithmetic-Geometric-Harmonic (AGH) Inequality</h4>
-<p>For any positive non-identical real numbers <span class="arithmatex">\(x_i &gt; 0\)</span>:
-$<span class="arithmatex">\(\bar{x}_H \le \bar{x}_G \le \bar{x}\)</span>$
-with equality holding if and only if <span class="arithmatex">\(x_1 = x_2 = \dots = x_n\)</span>.</p>
+<p>For any positive non-identical real numbers <span class="arithmatex">\(x_i &gt; 0\)</span>:</p>
+<div class="arithmatex">\[
+\bar{x}_H \le \bar{x}_G \le \bar{x}
+\]</div>
+<p>with equality holding if and only if <span class="arithmatex">\(x_1 = x_2 = \dots = x_n\)</span>.</p>
 <h4 id="truncated-trimmed-mean">Truncated (Trimmed) Mean</h4>
-<p>To balance statistical efficiency under Gaussians with robustness under heavy tails, the <span class="arithmatex">\(\alpha\)</span>-trimmed mean discards the upper and lower <span class="arithmatex">\(\alpha \cdot n\)</span> order statistics (<span class="arithmatex">\(0 &lt; \alpha &lt; 0.5\)</span>):
-$<span class="arithmatex">\(\bar{x}_\alpha = \frac{1}{n - 2\lfloor \alpha n \rfloor} \sum_{i=\lfloor \alpha n \rfloor + 1}^{n - \lfloor \alpha n \rfloor} x_{(i)}\)</span>$</p>
+<p>To balance statistical efficiency under Gaussians with robustness under heavy tails, the <span class="arithmatex">\(\alpha\)</span>-trimmed mean discards the upper and lower <span class="arithmatex">\(\alpha \cdot n\)</span> order statistics (<span class="arithmatex">\(0 &lt; \alpha &lt; 0.5\)</span>):</p>
+<div class="arithmatex">\[
+\bar{x}_\alpha = \frac{1}{n - 2\lfloor \alpha n \rfloor} \sum_{i=\lfloor \alpha n \rfloor + 1}^{n - \lfloor \alpha n \rfloor} x_{(i)}
+\]</div>
 <hr />
 <h2 id="production-implementation-location-scale-estimator-benchmark">💻 Production Implementation: Location &amp; Scale Estimator Benchmark</h2>
 <p>Below is an executable script evaluating Arithmetic, Geometric, Harmonic, Median, and Trimmed means across varying corruption levels, validating breakdown thresholds and scale preservation.</p>
@@ -7610,12 +7620,20 @@ $<span class="arithmatex">\(\bar{x}_\alpha = \frac{1}{n - 2\lfloor \alpha n \rfl
 <h2 id="empirical-case-study-computational-network-throughput-server-scaling">🔬 Empirical Case Study: Computational Network Throughput &amp; Server Scaling</h2>
 <p>In a <strong>High-Frequency Microservice Architecture Benchmark</strong>:
 1. <strong>The Arithmetic Mean Fallacy on Rates:</strong> Three sequential data processing microservices operate at throughput speeds of <span class="arithmatex">\(10\text{ MB/s}\)</span>, <span class="arithmatex">\(50\text{ MB/s}\)</span>, and <span class="arithmatex">\(100\text{ MB/s}\)</span>.
-   - The platform team naively computed the Arithmetic Mean:
-     $<span class="arithmatex">\(\bar{x} = \frac{10 + 50 + 100}{3} = 53.33\text{ MB/s}\)</span>$
-   - When deploying load balancers sized for <span class="arithmatex">\(53.33\text{ MB/s}\)</span>, pipelines experienced severe buffer overflows and dropped packets.
-   - The mathematically correct throughput for serial pipe transmission is the <strong>Harmonic Mean</strong>:
-     $<span class="arithmatex">\(\bar{x}_H = \frac{3}{\frac{1}{10} + \frac{1}{50} + \frac{1}{100}} = \frac{3}{0.10 + 0.02 + 0.01} = \frac{3}{0.13} \approx 23.08\text{ MB/s}\)</span>$
-2. <strong>Server Infrastructure Sizing Impact:</strong> Sizing for <span class="arithmatex">\(53.33\text{ MB/s}\)</span> over-estimated actual network throughput by <span class="arithmatex">\(131\%\)</span>, masking the critical bottleneck (<span class="arithmatex">\(10\text{ MB/s}\)</span>).</p>
+   - The platform team naively computed the Arithmetic Mean:</p>
+<div class="arithmatex">\[
+\bar{x} = \frac{10 + 50 + 100}{3} = 53.33\text{ MB/s}
+\]</div>
+<ul>
+<li>When deploying load balancers sized for <span class="arithmatex">\(53.33\text{ MB/s}\)</span>, pipelines experienced severe buffer overflows and dropped packets.</li>
+<li>The mathematically correct throughput for serial pipe transmission is the <strong>Harmonic Mean</strong>:</li>
+</ul>
+<div class="arithmatex">\[
+\bar{x}_H = \frac{3}{\frac{1}{10} + \frac{1}{50} + \frac{1}{100}} = \frac{3}{0.10 + 0.02 + 0.01} = \frac{3}{0.13} \approx 23.08\text{ MB/s}
+\]</div>
+<ol>
+<li><strong>Server Infrastructure Sizing Impact:</strong> Sizing for <span class="arithmatex">\(53.33\text{ MB/s}\)</span> over-estimated actual network throughput by <span class="arithmatex">\(131\%\)</span>, masking the critical bottleneck (<span class="arithmatex">\(10\text{ MB/s}\)</span>).</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -7670,13 +7688,13 @@ $<span class="arithmatex">\(\bar{x}_\alpha = \frac{1}{n - 2\lfloor \alpha n \rfl
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-stevens1946"></a><strong>Stevens, S. S.</strong> (1946). On the theory of scales of measurement. <em>Science</em>, 103(2684), 677–680.</li>
-<li><a id="ref-tukey1977"></a><strong>Tukey, J. W.</strong> (1977). <em>Exploratory Data Analysis</em>. Addison-Wesley.</li>
-<li><a id="ref-huber2004"></a><strong>Huber, P. J.</strong> (2004). <em>Robust Statistics</em>. John Wiley &amp; Sons.</li>
-<li><a id="ref-mosteller1977"></a><strong>Mosteller, F., &amp; Tukey, J. W.</strong> (1977). <em>Data Analysis and Regression: A Second Course in Statistics</em>. Addison-Wesley.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-stevens1946"></a><strong>[Stevens1946]</strong> S. S. Stevens, "On the Theory of Scales of Measurement," <em>Science</em>, vol. 103, no. 2684, pp. 677–680, 1946. <a href="https://doi.org/10.1126/science.103.2684.677">DOI: 10.1126/science.103.2684.677</a>.</li>
+<li><a id="ref-tukey1977"></a><strong>[Tukey1977]</strong> J. W. Tukey, <em>Exploratory Data Analysis</em>, Addison-Wesley, Reading, MA, 1977.</li>
+<li><a id="ref-huber2004"></a><strong>[Huber2004]</strong> P. J. Huber, <em>Robust Statistics</em>, John Wiley &amp; Sons, 2004. <a href="https://doi.org/10.1007/978-3-642-04898-2_594">DOI: 10.1007/978-3-642-04898-2_594</a>.</li>
+<li><a id="ref-mosteller1977"></a><strong>[Mosteller1977]</strong> F. Mosteller and J. W. Tukey, <em>Data Analysis and Regression: A Second Course in Statistics</em>, Addison-Wesley, 1977. <a href="https://doi.org/10.2307/2346739">DOI: 10.2307/2346739</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../01-introduction-to-eda/" class="noc-sim-btn secondary" style="text-decoration: none;">← 6.1 Introduction to EDA</a>

@@ -3300,10 +3300,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7338,10 +7338,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7402,16 +7402,24 @@
     class Data,Model,Impact blue;</code></pre>
 <hr />
 <h3 id="1-the-socio-technical-feedback-dynamical-system">1. The Socio-Technical Feedback Dynamical System</h3>
-<p>Let <span class="arithmatex">\(X_t\)</span> denote the observed empirical distribution at time step <span class="arithmatex">\(t\)</span>. When an algorithmic system allocates enforcement, monitoring, or credit based on model <span class="arithmatex">\(f_{\theta_t}\)</span>, the observation process at <span class="arithmatex">\(t + 1\)</span> becomes conditionally dependent on the model's own past decisions:
-$<span class="arithmatex">\(\Pr(X_{t+1} \mid X_t, f_{\theta_t}) \neq \Pr(X_{t+1} \mid X_t)\)</span>$</p>
+<p>Let <span class="arithmatex">\(X_t\)</span> denote the observed empirical distribution at time step <span class="arithmatex">\(t\)</span>. When an algorithmic system allocates enforcement, monitoring, or credit based on model <span class="arithmatex">\(f_{\theta_t}\)</span>, the observation process at <span class="arithmatex">\(t + 1\)</span> becomes conditionally dependent on the model's own past decisions:</p>
+<div class="arithmatex">\[
+\Pr(X_{t+1} \mid X_t, f_{\theta_t}) \neq \Pr(X_{t+1} \mid X_t)
+\]</div>
 <h4 id="the-predictive-policing-runaway-loop-lum-isaac-2016">The Predictive Policing Runaway Loop (Lum &amp; Isaac, 2016)</h4>
-<p>Consider two geographic districts <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> with identical underlying crime incidence <span class="arithmatex">\(\lambda_A = \lambda_B\)</span>. Suppose historical dispatch records contain a modest <span class="arithmatex">\(5\%\)</span> over-policing measurement bias in District <span class="arithmatex">\(A\)</span>:
-$<span class="arithmatex">\(\hat{\lambda}_A(0) = 1.05 \cdot \lambda_A, \quad \hat{\lambda}_B(0) = \lambda_B\)</span>$
-1. The dispatch optimization model routes more patrol units to District <span class="arithmatex">\(A\)</span>.
-2. Increased surveillance detects more low-level infractions in District <span class="arithmatex">\(A\)</span>, while offenses in under-policed District <span class="arithmatex">\(B\)</span> go unobserved.
-3. At iteration <span class="arithmatex">\(t + 1\)</span>, the model ingests the new arrest data:
-   $<span class="arithmatex">\(\hat{\lambda}_A(t + 1) = \hat{\lambda}_A(t) + \eta \cdot \text{Patrols}_A(t)\)</span>$
-Over dozens of iterations, the algorithm concentrates nearly <span class="arithmatex">\(100\%\)</span> of resources in District <span class="arithmatex">\(A\)</span>, manufacturing a massive synthetic crime wave from pure sampling bias.</p>
+<p>Consider two geographic districts <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> with identical underlying crime incidence <span class="arithmatex">\(\lambda_A = \lambda_B\)</span>. Suppose historical dispatch records contain a modest <span class="arithmatex">\(5\%\)</span> over-policing measurement bias in District <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[
+\hat{\lambda}_A(0) = 1.05 \cdot \lambda_A, \quad \hat{\lambda}_B(0) = \lambda_B
+\]</div>
+<ol>
+<li>The dispatch optimization model routes more patrol units to District <span class="arithmatex">\(A\)</span>.</li>
+<li>Increased surveillance detects more low-level infractions in District <span class="arithmatex">\(A\)</span>, while offenses in under-policed District <span class="arithmatex">\(B\)</span> go unobserved.</li>
+<li>At iteration <span class="arithmatex">\(t + 1\)</span>, the model ingests the new arrest data:</li>
+</ol>
+<div class="arithmatex">\[
+\hat{\lambda}_A(t + 1) = \hat{\lambda}_A(t) + \eta \cdot \text{Patrols}_A(t)
+\]</div>
+<p>Over dozens of iterations, the algorithm concentrates nearly <span class="arithmatex">\(100\%\)</span> of resources in District <span class="arithmatex">\(A\)</span>, manufacturing a massive synthetic crime wave from pure sampling bias.</p>
 <hr />
 <h3 id="2-legal-protections-disparate-treatment-vs-disparate-impact">2. Legal Protections: Disparate Treatment vs. Disparate Impact</h3>
 <p>Under legal doctrine (e.g., US Title VII of the Civil Rights Act, Equal Credit Opportunity Act, EU AI Act Article 10), discrimination is classified into two distinct legal standards:</p>
@@ -7581,13 +7589,13 @@ Over dozens of iterations, the algorithm concentrates nearly <span class="arithm
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-barocas2019"></a><strong>Barocas, S., Hardt, M., &amp; Narayanan, A.</strong> (2019). <em>Fairness and Machine Learning: Limitations and Opportunities</em>. MIT Press.</li>
-<li><a id="ref-buolamwini2018"></a><strong>Buolamwini, J., &amp; Gebru, T.</strong> (2018). Gender shades: Intersectional accuracy disparities in commercial gender classification. In <em>Conference on Fairness, Accountability and Transparency</em> (pp. 77–91). PMLR.</li>
-<li><a id="ref-lum2016"></a><strong>Lum, K., &amp; Isaac, W.</strong> (2016). To predict and serve? <em>Significance</em>, 13(5), 14–19.</li>
-<li><a id="ref-crawford2017"></a><strong>Crawford, K.</strong> (2017). The trouble with bias. <em>Keynote at NeurIPS 2017</em>, Long Beach, California.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-barocas2019"></a><strong>[Barocas2019]</strong> S. Barocas, M. Hardt, and A. Narayanan, <em>Fairness and Machine Learning: Limitations and Opportunities</em>, MIT Press, 2019. <a href="https://doi.org/10.7551/mitpress/11649.001.0001">DOI: 10.7551/mitpress/11649.001.0001</a>.</li>
+<li><a id="ref-buolamwini2018"></a><strong>[Buolamwini2018]</strong> J. Buolamwini and T. Gebru, "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification," in <em>Proceedings of the 1st Conference on Fairness, Accountability and Transparency (PMLR)</em>, vol. 81, 2018, pp. 77–91.</li>
+<li><a id="ref-lum2016"></a><strong>[Lum2016]</strong> K. Lum and W. Isaac, "To Predict and Serve?" <em>Significance</em>, vol. 13, no. 5, pp. 14–19, 2016. <a href="https://doi.org/10.1111/j.1740-9713.2016.00960.x">DOI: 10.1111/j.1740-9713.2016.00960.x</a>.</li>
+<li><a id="ref-crawford2017"></a><strong>[Crawford2017]</strong> K. Crawford, "The Trouble with Bias," <em>Keynote at NeurIPS 2017</em>, Long Beach, California.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../" class="noc-sim-btn secondary" style="text-decoration: none;">← Track 7 Overview</a>

@@ -7550,20 +7550,30 @@
 <h2 id="2-mathematical-formalization-of-sources">2. Mathematical Formalization of Sources</h2>
 <h3 id="a-primary-data-generation">A. Primary Data Generation</h3>
 <p>Primary data generation models an empirical sampling apparatus operating directly on the physical universe:</p>
-<div class="arithmatex">\[\mathcal{D}_{\text{prim}} = \left\{ (\mathbf{x}_i, y_i) \sim \mathcal{P}_{\text{target}} \mid i = 1, \dots, n \right\}\]</div>
+<div class="arithmatex">\[
+\mathcal{D}_{\text{prim}} = \left\{ (\mathbf{x}_i, y_i) \sim \mathcal{P}_{\text{target}} \mid i = 1, \dots, n \right\}
+\]</div>
 <p>Because the research or engineering team specifies the instrument <span class="arithmatex">\(\mathcal{I}_{\text{prim}}\)</span>, inclusion criteria <span class="arithmatex">\(\mathcal{C}_{\text{inc}}\)</span>, and measurement intervals <span class="arithmatex">\(\Delta t\)</span>, the data consumer has complete knowledge of the <strong>measurement operator</strong>:</p>
-<div class="arithmatex">\[\mathbf{x}_i = \mathcal{M}_{\text{known}}(\mathbf{x}^*_i) + \boldsymbol{\epsilon}_i, \quad \boldsymbol{\epsilon}_i \sim \mathcal{N}(0, \Sigma_{\text{calibrated}})\]</div>
+<div class="arithmatex">\[
+\mathbf{x}_i = \mathcal{M}_{\text{known}}(\mathbf{x}^*_i) + \boldsymbol{\epsilon}_i, \quad \boldsymbol{\epsilon}_i \sim \mathcal{N}(0, \Sigma_{\text{calibrated}})
+\]</div>
 <h3 id="b-secondary-data-distribution-shift">B. Secondary Data &amp; Distribution Shift</h3>
 <p>Secondary datasets are sampled from a historical distribution <span class="arithmatex">\(\mathcal{P}_{\text{historical}}\)</span> that almost certainly diverges from the current target domain <span class="arithmatex">\(\mathcal{P}_{\text{target}}\)</span>:</p>
-<div class="arithmatex">\[\mathcal{P}_{\text{historical}}(X, Y) \neq \mathcal{P}_{\text{target}}(X, Y)\]</div>
+<div class="arithmatex">\[
+\mathcal{P}_{\text{historical}}(X, Y) \neq \mathcal{P}_{\text{target}}(X, Y)
+\]</div>
 <p>This introduces two distinct forms of statistical shift:
 1. <strong>Covariate Shift</strong>: <span class="arithmatex">\(P_{\text{hist}}(X) \neq P_{\text{target}}(X)\)</span>, but conditional probabilities remain invariant: <span class="arithmatex">\(P_{\text{hist}}(Y \mid X) = P_{\text{target}}(Y \mid X)\)</span>.
 2. <strong>Concept Drift</strong>: The underlying relationship changes: <span class="arithmatex">\(P_{\text{hist}}(Y \mid X) \neq P_{\text{target}}(Y \mid X)\)</span> (e.g., consumer spending behavior before vs. after high inflation).</p>
 <h3 id="c-real-time-streaming-telemetry">C. Real-Time Streaming Telemetry</h3>
 <p>A real-time data stream is an unbounded, time-ordered sequence of tuples:</p>
-<div class="arithmatex">\[\mathcal{S} = \langle (\mathbf{x}_1, t_1), (\mathbf{x}_2, t_2), \dots, (\mathbf{x}_k, t_k), \dots \rangle, \quad t_1 \le t_2 \le \dots \le t_k\]</div>
+<div class="arithmatex">\[
+\mathcal{S} = \langle (\mathbf{x}_1, t_1), (\mathbf{x}_2, t_2), \dots, (\mathbf{x}_k, t_k), \dots \rangle, \quad t_1 \le t_2 \le \dots \le t_k
+\]</div>
 <p>In streaming systems, the information value of record <span class="arithmatex">\(\mathbf{x}_i\)</span> degrades exponentially with arrival delay [<a href="#ref-babcock2002">Babcock2002</a>]:</p>
-<div class="arithmatex">\[\text{Value}(t) = V_0 \cdot \exp\left(-\lambda_{\text{decay}} \cdot (t - t_{\text{event}})\right)\]</div>
+<div class="arithmatex">\[
+\text{Value}(t) = V_0 \cdot \exp\left(-\lambda_{\text{decay}} \cdot (t - t_{\text{event}})\right)
+\]</div>
 <p>Where <span class="arithmatex">\(\lambda_{\text{decay}}\)</span> is the obsolescence rate parameter. For high-frequency algorithmic trading, <span class="arithmatex">\(\lambda \approx 10^3\text{ s}^{-1}\)</span>; for climate anomaly detection, <span class="arithmatex">\(\lambda \approx 10^{-5}\text{ s}^{-1}\)</span>.</p>
 <hr />
 <h2 id="3-deep-dive-into-source-trade-offs-case-studies">3. Deep Dive into Source Trade-Offs &amp; Case Studies</h2>
@@ -7680,13 +7690,13 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-gandomi2015"></a><strong>[Gandomi2015]</strong> Gandomi, A., &amp; Haider, M. (2015). <em>Beyond the hype: Big data concepts, methods, and analytics</em>. International Journal of Information Management, 35(2), 137–144. DOI: <a href="https://doi.org/10.1016/j.ijinfomgt.2014.10.007">10.1016/j.ijinfomgt.2014.10.007</a></li>
-<li><a id="ref-babcock2002"></a><strong>[Babcock2002]</strong> Babcock, B., Babu, S., Datar, M., Motwani, R., &amp; Widom, J. (2002). <em>Models and issues in data stream systems</em>. In Proceedings of the 21st ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS), 1–16. DOI: <a href="https://doi.org/10.1145/543613.543615">10.1145/543613.543615</a></li>
-<li><a id="ref-johnson2016"></a><strong>[Johnson2016]</strong> Johnson, A. E. W., Pollard, T. J., Shen, L., et al. (2016). <em>MIMIC-III, a freely accessible critical care database</em>. Scientific Data, 3, Article 160035. DOI: <a href="https://doi.org/10.1038/sdata.2016.35">10.1038/sdata.2016.35</a></li>
-<li><a id="ref-openshaw1984"></a><strong>[Openshaw1984]</strong> Openshaw, S. (1984). <em>The Modifiable Areal Unit Problem</em>. Concepts and Techniques in Modern Geography (CATMOG), 38, Geo Books.</li>
-<li><a id="ref-chapman2020"></a><strong>[Chapman2020]</strong> Chapman, A., Simperl, E., Koesten, L., et al. (2020). <em>Dataset search: A survey</em>. The VLDB Journal, 29(1), 251–272. DOI: <a href="https://doi.org/10.1007/s00778-019-00564-x">10.1007/s00778-019-00564-x</a></li>
-</ul>
+<ol>
+<li><a id="ref-gandomi2015"></a><strong>[Gandomi2015]</strong> A. Gandomi and M. Haider, "Beyond the Hype: Big Data Concepts, Methods, and Analytics," <em>International Journal of Information Management</em>, vol. 35, no. 2, pp. 137–144, Apr. 2015. <a href="https://doi.org/10.1016/j.ijinfomgt.2014.10.007">DOI: 10.1016/j.ijinfomgt.2014.10.007</a>.</li>
+<li><a id="ref-babcock2002"></a><strong>[Babcock2002]</strong> B. Babcock, S. Babu, M. Datar, R. Motwani, and J. Widom, "Models and Issues in Data Stream Systems," in <em>Proceedings of the 21st ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS '02)</em>, June 2002, pp. 1–16. <a href="https://doi.org/10.1145/543613.543615">DOI: 10.1145/543613.543615</a>.</li>
+<li><a id="ref-johnson2016"></a><strong>[Johnson2016]</strong> A. E. W. Johnson et al., "MIMIC-III, a Freely Accessible Critical Care Database," <em>Scientific Data</em>, vol. 3, no. 1, p. 160035, May 2016. <a href="https://doi.org/10.1038/sdata.2016.35">DOI: 10.1038/sdata.2016.35</a>.</li>
+<li><a id="ref-openshaw1984"></a><strong>[Openshaw1984]</strong> S. Openshaw, <em>The Modifiable Areal Unit Problem</em>, Concepts and Techniques in Modern Geography (CATMOG), 38, Geo Books, 1984. <a href="https://doi.org/10.4135/9781412939591.n780">DOI: 10.4135/9781412939591.n780</a>.</li>
+<li><a id="ref-chapman2020"></a><strong>[Chapman2020]</strong> A. Chapman et al., "Dataset Search: A Survey," <em>The VLDB Journal</em>, vol. 29, no. 1, pp. 251–272, Jan. 2020. <a href="https://doi.org/10.1007/s00778-019-00564-x">DOI: 10.1007/s00778-019-00564-x</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../01-introduction-to-data-collection/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.1 Collection Lifecycle</a>

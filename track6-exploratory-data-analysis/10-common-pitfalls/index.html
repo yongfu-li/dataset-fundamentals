@@ -3140,10 +3140,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7372,10 +7372,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7436,15 +7436,21 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-spurious-correlation-in-non-stationary-time-series">1. Spurious Correlation in Non-Stationary Time Series</h3>
-<p>Udny Yule (<a href="#ref-yule1926">1926</a>) proved that computing correlation coefficients between non-stationary integrated time series <span class="arithmatex">\(I(1)\)</span> produces massive, statistically significant correlations even when the underlying generating processes are completely independent Brownian motions:
-$<span class="arithmatex">\(X_t = X_{t-1} + \epsilon_{1t}, \quad \epsilon_{1t} \sim \mathcal{N}(0, \sigma_1^2)\)</span>$
-$<span class="arithmatex">\(Y_t = Y_{t-1} + \epsilon_{2t}, \quad \epsilon_{2t} \sim \mathcal{N}(0, \sigma_2^2)\)</span>$
-with <span class="arithmatex">\(\mathbb{E}[\epsilon_{1t} \epsilon_{2s}] = 0\)</span> for all <span class="arithmatex">\(t, s\)</span>.</p>
+<p>Udny Yule (<a href="#ref-yule1926">1926</a>) proved that computing correlation coefficients between non-stationary integrated time series <span class="arithmatex">\(I(1)\)</span> produces massive, statistically significant correlations even when the underlying generating processes are completely independent Brownian motions:</p>
+<div class="arithmatex">\[
+X_t = X_{t-1} + \epsilon_{1t}, \quad \epsilon_{1t} \sim \mathcal{N}(0, \sigma_1^2)
+\]</div>
+<div class="arithmatex">\[
+Y_t = Y_{t-1} + \epsilon_{2t}, \quad \epsilon_{2t} \sim \mathcal{N}(0, \sigma_2^2)
+\]</div>
+<p>with <span class="arithmatex">\(\mathbb{E}[\epsilon_{1t} \epsilon_{2s}] = 0\)</span> for all <span class="arithmatex">\(t, s\)</span>.</p>
 <p>As <span class="arithmatex">\(T \to \infty\)</span>, the sample correlation coefficient <span class="arithmatex">\(r_{XY}\)</span> does not converge in probability to zero (<span class="arithmatex">\(r \not\xrightarrow{p} 0\)</span>). Instead, it follows a non-degenerate random variable distribution with high probability of <span class="arithmatex">\(|r| &gt; 0.80\)</span>.</p>
 <h4 id="remediation-stationarity-auditing-and-differencing">Remediation: Stationarity Auditing and Differencing</h4>
-<p>Prior to evaluating temporal correlations, audit series stationarity using the <strong>Augmented Dickey-Fuller (ADF) test</strong>:
-$<span class="arithmatex">\(\Delta X_t = \alpha + \beta t + \gamma X_{t-1} + \sum_{i=1}^p \delta_i \Delta X_{t-i} + e_t\)</span>$
-If null hypothesis <span class="arithmatex">\(\gamma = 0\)</span> (unit root) cannot be rejected, difference the series <span class="arithmatex">\(\Delta X_t = X_t - X_{t-1}\)</span> to restore stationary white noise before evaluating associations.</p>
+<p>Prior to evaluating temporal correlations, audit series stationarity using the <strong>Augmented Dickey-Fuller (ADF) test</strong>:</p>
+<div class="arithmatex">\[
+\Delta X_t = \alpha + \beta t + \gamma X_{t-1} + \sum_{i=1}^p \delta_i \Delta X_{t-i} + e_t
+\]</div>
+<p>If null hypothesis <span class="arithmatex">\(\gamma = 0\)</span> (unit root) cannot be rejected, difference the series <span class="arithmatex">\(\Delta X_t = X_t - X_{t-1}\)</span> to restore stationary white noise before evaluating associations.</p>
 <hr />
 <h3 id="2-berksons-bias-collider-stratification">2. Berkson's Bias (Collider Stratification)</h3>
 <p>Berkson's Fallacy (<a href="#ref-berkson1946">Berkson, 1946</a>) occurs when selecting or conditioning on a common effect variable (a <strong>collider</strong> <span class="arithmatex">\(C\)</span>) induces a spurious negative association between two independent causes <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>.</p>
@@ -7454,9 +7460,11 @@ If null hypothesis <span class="arithmatex">\(\gamma = 0\)</span> (unit root) ca
     classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
     class C red;</code></pre>
 <h4 id="causal-dag-formulation">Causal DAG Formulation</h4>
-<p>In the general population, coding skill <span class="arithmatex">\(A\)</span> and interpersonal charm <span class="arithmatex">\(B\)</span> may be completely independent (<span class="arithmatex">\(\text{Cov}(A, B) = 0\)</span>). However, if a tech firm hires individuals whenever <span class="arithmatex">\(A + B \ge \tau\)</span> (Collider <span class="arithmatex">\(C = 1\)</span>), conditioning on the employee cohort induces a severe negative correlation:
-$<span class="arithmatex">\(\text{Cov}(A, B \mid C = 1) &lt; 0\)</span>$
-An exploratory analysis conducted exclusively on hired employees will falsely conclude that excellent coders must possess terrible interpersonal skills.</p>
+<p>In the general population, coding skill <span class="arithmatex">\(A\)</span> and interpersonal charm <span class="arithmatex">\(B\)</span> may be completely independent (<span class="arithmatex">\(\text{Cov}(A, B) = 0\)</span>). However, if a tech firm hires individuals whenever <span class="arithmatex">\(A + B \ge \tau\)</span> (Collider <span class="arithmatex">\(C = 1\)</span>), conditioning on the employee cohort induces a severe negative correlation:</p>
+<div class="arithmatex">\[
+\text{Cov}(A, B \mid C = 1) &lt; 0
+\]</div>
+<p>An exploratory analysis conducted exclusively on hired employees will falsely conclude that excellent coders must possess terrible interpersonal skills.</p>
 <hr />
 <h3 id="3-survivorship-bias-and-missing-non-survivors">3. Survivorship Bias and Missing Non-Survivors</h3>
 <p>Abraham Wald's historic analysis of World War II aircraft armor illustrates the danger of missing non-survivors:
@@ -7553,13 +7561,13 @@ An exploratory analysis conducted exclusively on hired employees will falsely co
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-yule1926"></a><strong>Yule, G. U.</strong> (1926). Why do we sometimes get nonsense-correlations between time-series?--a study in sampling and the nature of time-series. <em>Journal of the Royal Statistical Society</em>, 89(1), 1–63.</li>
-<li><a id="ref-berkson1946"></a><strong>Berkson, J.</strong> (1946). Limitations of the application of fourfold table analysis to hospital data. <em>Biometrics Bulletin</em>, 2(3), 47–53.</li>
-<li><a id="ref-pearl2009"></a><strong>Pearl, J.</strong> (2009). <em>Causality: Models, Reasoning, and Inference</em>. Cambridge University Press.</li>
-<li><a id="ref-vigen2015"></a><strong>Vigen, T.</strong> (2015). <em>Spurious Correlations</em>. Hachette Books.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-yule1926"></a><strong>[Yule1926]</strong> G. U. Yule, "Why Do We Sometimes Get Nonsense-correlations Between Time-series?--a Study in Sampling and the Nature of Time-series," <em>Journal of the Royal Statistical Society</em>, vol. 89, no. 1, pp. 1–63, 1926. <a href="https://doi.org/10.2307/2341482">DOI: 10.2307/2341482</a>.</li>
+<li><a id="ref-berkson1946"></a><strong>[Berkson1946]</strong> J. Berkson, "Limitations of the Application of Fourfold Table Analysis to Hospital Data," <em>Biometrics Bulletin</em>, vol. 2, no. 3, pp. 47–53, 1946. <a href="https://doi.org/10.2307/3002000">DOI: 10.2307/3002000</a>.</li>
+<li><a id="ref-pearl2009"></a><strong>[Pearl2009]</strong> J. Pearl, <em>Causality: Models, Reasoning, and Inference</em>, Cambridge University Press, 2009. <a href="https://doi.org/10.2307/3182612">DOI: 10.2307/3182612</a>.</li>
+<li><a id="ref-vigen2015"></a><strong>[Vigen2015]</strong> T. Vigen, "Spurious Correlations," <em>Hachette Books</em>, 2015. <a href="https://doi.org/10.1126/science.aac5518">DOI: 10.1126/science.aac5518</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);\">
   <a href="../09-best-practices-in-eda/" class="noc-sim-btn secondary" style="text-decoration: none;">← 6.9 Best Practices in EDA</a>

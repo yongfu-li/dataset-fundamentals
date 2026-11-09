@@ -7576,7 +7576,9 @@
 <p>A common engineering misconception is that simply removing protected attributes (e.g., dropping <code>race</code>, <code>gender</code>, <code>religion</code>) guarantees an unbiased model. This approach is called <strong>Fairness through Unawareness</strong>, and it <strong>fails completely in practice</strong>.</p>
 <h3 id="the-proxy-variable-mechanism">The Proxy Variable Mechanism</h3>
 <p>Modern high-dimensional datasets contain redundant correlations. Even if sensitive attribute <span class="arithmatex">\(A\)</span> is deleted, other features <span class="arithmatex">\(\mathbf{X}_{\text{proxy}}\)</span> serve as high-fidelity reconstructed proxies:</p>
-<div class="arithmatex">\[I(\mathbf{X}_{\text{proxy}}; A) \gg 0\]</div>
+<div class="arithmatex">\[
+I(\mathbf{X}_{\text{proxy}}; A) \gg 0
+\]</div>
 <pre class="mermaid"><code>flowchart LR
     subgraph Dropped ["Protected Attribute (Dropped)"]
         Race["Race / Ethnicity (A)"]
@@ -7609,12 +7611,18 @@
 <p>To audit whether a dataset and model treat demographic groups equitably, data science relies on three mathematically distinct families of fairness criteria (developed fully in Track 7):</p>
 <h3 id="a-demographic-parity-independence">A. Demographic Parity (Independence)</h3>
 <p>Demographic Parity requires that the positive prediction rate <span class="arithmatex">\(\hat{Y} = 1\)</span> (e.g., receiving a loan, passing a job screen) be identical across protected groups <span class="arithmatex">\(A \in \{0, 1\}\)</span>:</p>
-<div class="arithmatex">\[P(\hat{Y} = 1 \mid A = 0) = P(\hat{Y} = 1 \mid A = 1)\]</div>
+<div class="arithmatex">\[
+P(\hat{Y} = 1 \mid A = 0) = P(\hat{Y} = 1 \mid A = 1)
+\]</div>
 <p>Under the US Equal Employment Opportunity Commission (EEOC) <strong>Four-Fifths (80%) Rule</strong>, a selection rate difference violates the <strong>Disparate Impact Ratio (DIR)</strong> if:</p>
-<div class="arithmatex">\[\text{DIR} = \frac{P(\hat{Y} = 1 \mid A = \text{unprivileged})}{P(\hat{Y} = 1 \mid A = \text{privileged})} &lt; 0.80\]</div>
+<div class="arithmatex">\[
+\text{DIR} = \frac{P(\hat{Y} = 1 \mid A = \text{unprivileged})}{P(\hat{Y} = 1 \mid A = \text{privileged})} &lt; 0.80
+\]</div>
 <h3 id="b-equalized-odds-equal-opportunity-separation">B. Equalized Odds &amp; Equal Opportunity (Separation)</h3>
 <p>Introduced by Hardt et al. [<a href="#ref-hardt2016">Hardt2016</a>], <strong>Equalized Odds</strong> requires that predictor <span class="arithmatex">\(\hat{Y}\)</span> and protected attribute <span class="arithmatex">\(A\)</span> be conditionally independent given true outcome <span class="arithmatex">\(Y\)</span>:</p>
-<div class="arithmatex">\[P(\hat{Y} = 1 \mid A = 0, Y = y) = P(\hat{Y} = 1 \mid A = 1, Y = y), \quad \forall y \in \{0, 1\}\]</div>
+<div class="arithmatex">\[
+P(\hat{Y} = 1 \mid A = 0, Y = y) = P(\hat{Y} = 1 \mid A = 1, Y = y), \quad \forall y \in \{0, 1\}
+\]</div>
 <p>This mandates equality across both <strong>False Positive Rates (FPR)</strong> and <strong>True Positive Rates (TPR)</strong>:
 - <span class="arithmatex">\(\text{FPR}_0 = \text{FPR}_1\)</span>: Equal chance of false accusation.
 - <span class="arithmatex">\(\text{TPR}_0 = \text{TPR}_1\)</span>: Equal chance of deserving individuals getting approved (Equal Opportunity).</p>
@@ -7675,16 +7683,16 @@
 </ol>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
-<ul>
-<li><a id="ref-barocas2016"></a><strong>[Barocas2016]</strong> Barocas, S., &amp; Selbst, A. D. (2016). <em>Big data's disparate impact</em>. California Law Review, 104, 671–732. DOI: <a href="https://doi.org/10.15779/Z38BG31">10.15779/Z38BG31</a></li>
-<li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> Hardt, M., Price, E., &amp; Srebro, N. (2016). <em>Equality of opportunity in supervised learning</em>. Advances in Neural Information Processing Systems (NeurIPS 2016), 29, 3315–3323.</li>
-<li><a id="ref-buolamwini2018"></a><strong>[Buolamwini2018]</strong> Buolamwini, J., &amp; Gebru, T. (2018). <em>Gender shades: Intersectional accuracy disparities in commercial gender classification</em>. In Conference on Fairness, Accountability and Transparency (FAT* '18), PMLR 81, 77–91.</li>
-<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> Angwin, J., Larson, J., Mattu, S., &amp; Kirchner, L. (2016). <em>Machine Bias: There's software used across the country to predict future criminals. And it's biased against blacks</em>. ProPublica.</li>
-<li><a id="ref-mehrabi2021"></a><strong>[Mehrabi2021]</strong> Mehrabi, N., Morstatter, F., Saxena, N., et al. (2021). <em>A survey on bias and fairness in machine learning</em>. ACM Computing Surveys, 54(6), Article 115, 1–35. DOI: <a href="https://doi.org/10.1145/3457607">10.1145/3457607</a></li>
-<li><a id="ref-obermeyer2019"></a><strong>[Obermeyer2019]</strong> Obermeyer, Z., Powers, B., Vogeli, C., &amp; Mullainathan, S. (2019). <em>Dissecting racial bias in an algorithm used to manage the health of populations</em>. Science, 366(6464), 447–453. DOI: <a href="https://doi.org/10.1126/science.aax2342">10.1126/science.aax2342</a></li>
-<li><a id="ref-dastin2018"></a><strong>[Dastin2018]</strong> Dastin, J. (2018). <em>Amazon scraps secret AI recruiting tool that showed bias against women</em>. Reuters.</li>
-<li><a id="ref-oneil2016"></a><strong>[O'Neil2016]</strong> O'Neil, C. (2016). <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>. Crown Publishing Group.</li>
-</ul>
+<ol>
+<li><a id="ref-barocas2016"></a><strong>[Barocas2016]</strong> S. Barocas and A. D. Selbst, "Big Data's Disparate Impact," <em>California Law Review</em>, vol. 104, pp. 671–732, 2016. <a href="https://doi.org/10.15779/Z38BG31">DOI: 10.15779/Z38BG31</a>.</li>
+<li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> M. Hardt, E. Price, and N. Srebro, "Equality of Opportunity in Supervised Learning," in <em>Advances in Neural Information Processing Systems (NeurIPS '16)</em>, vol. 29, 2016, pp. 3315–3323.</li>
+<li><a id="ref-buolamwini2018"></a><strong>[Buolamwini2018]</strong> J. Buolamwini and T. Gebru, "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification," in <em>Proceedings of the 1st Conference on Fairness, Accountability and Transparency (PMLR)</em>, vol. 81, 2018, pp. 77–91.</li>
+<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> J. Angwin, J. Larson, S. Mattu, and L. Kirchner, "Machine Bias: There's Software Used Across the Country to Predict Future Criminals. and It's Biased Against Blacks," <em>ProPublica</em>, 2016. <a href="https://doi.org/10.1201/9781003278290-37">DOI: 10.1201/9781003278290-37</a>.</li>
+<li><a id="ref-mehrabi2021"></a><strong>[Mehrabi2021]</strong> N. Mehrabi et al., "A Survey on Bias and Fairness in Machine Learning," <em>ACM Computing Surveys</em>, vol. 54, no. 6, pp. 1–35, July 2021. <a href="https://doi.org/10.1145/3457607">DOI: 10.1145/3457607</a>.</li>
+<li><a id="ref-obermeyer2019"></a><strong>[Obermeyer2019]</strong> Z. Obermeyer, B. Powers, C. Vogeli, and S. Mullainathan, "Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations," <em>Science</em>, vol. 366, no. 6464, pp. 447–453, 2019. <a href="https://doi.org/10.1126/science.aax2342">DOI: 10.1126/science.aax2342</a>.</li>
+<li><a id="ref-dastin2018"></a><strong>[Dastin2018]</strong> J. Dastin, "Amazon Scraps Secret AI Recruiting Tool That Showed Bias Against Women," <em>Reuters</em>, 2018.</li>
+<li><a id="ref-oneil2016"></a><strong>[Oneil2016]</strong> C. O'Neil, <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>, Crown Publishing Group, 2016. <a href="https://doi.org/10.1057/s11369-017-0027-3">DOI: 10.1057/s11369-017-0027-3</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../05-privacy-preserving-techniques/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.5 Privacy-Preserving Techniques</a>

@@ -7192,8 +7192,12 @@
 <h2 id="key-engineering-concepts-illustrated">🔬 Key Engineering Concepts Illustrated</h2>
 <ol>
 <li><strong>Token-Bucket Throttling</strong>: The server maintains a bucket of capacity <span class="arithmatex">\(B\)</span> that refills at a continuous rate of <span class="arithmatex">\(r\)</span> tokens/second. A burst of requests can consume all available tokens, after which incoming requests trigger <code>429 Too Many Requests</code>.</li>
-<li><strong>Exponential Backoff with Full Jitter</strong>: Rather than retrying immediately (which can cause a thundering herd failure), clients compute sleep duration:
-   $<span class="arithmatex">\(t_{\text{sleep}} \sim \text{Uniform}\left(0, \min(t_{\max}, t_0 \cdot 2^{\text{retries}})\right)\)</span>$</li>
+<li><strong>Exponential Backoff with Full Jitter</strong>: Rather than retrying immediately (which can cause a thundering herd failure), clients compute sleep duration:</li>
+</ol>
+<div class="arithmatex">\[
+t_{\text{sleep}} \sim \text{Uniform}\left(0, \min(t_{\max}, t_0 \cdot 2^{\text{retries}})\right)
+\]</div>
+<ol>
 <li><strong>Cursor-Based vs. Offset-Limit Pagination</strong>: Cursor pagination guarantees stable iteration without skipping or duplicating records even when records are continuously inserted into the live database.</li>
 </ol>
 

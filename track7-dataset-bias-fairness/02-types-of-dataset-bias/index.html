@@ -3339,10 +3339,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7360,10 +7360,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7423,23 +7423,33 @@
 <hr />
 <h3 id="1-mathematical-formalisms-of-the-five-core-biases">1. Mathematical Formalisms of the Five Core Biases</h3>
 <h4 id="1-historical-bias-world-state-inequity">1. Historical Bias (World-State Inequity)</h4>
-<p>Occurs when data collection, feature encoding, and sampling are mathematically flawless, yet the underlying ground truth reflects entrenched historical disparities:
-$<span class="arithmatex">\(\Pr(Y = 1 \mid \mathbf{X}) \neq \Pr(Y^* = 1 \mid \mathbf{X})\)</span>$
-<em>Example:</em> Training an automated recruitment screener on 1990–2010 tech executive resumes. Because women held <span class="arithmatex">\(&lt; 5\%\)</span> of executive roles historically, an unbiased estimator will faithfully learn to penalize female candidates even if female candidates possess identical technical merit.</p>
+<p>Occurs when data collection, feature encoding, and sampling are mathematically flawless, yet the underlying ground truth reflects entrenched historical disparities:</p>
+<div class="arithmatex">\[
+\Pr(Y = 1 \mid \mathbf{X}) \neq \Pr(Y^* = 1 \mid \mathbf{X})
+\]</div>
+<p><em>Example:</em> Training an automated recruitment screener on 1990–2010 tech executive resumes. Because women held <span class="arithmatex">\(&lt; 5\%\)</span> of executive roles historically, an unbiased estimator will faithfully learn to penalize female candidates even if female candidates possess identical technical merit.</p>
 <h4 id="2-representation-bias-sampling-frame-imbalance">2. Representation Bias (Sampling Frame Imbalance)</h4>
-<p>Occurs when the sampling selection mechanism <span class="arithmatex">\(S \in \{0, 1\}\)</span> depends on the protected attribute <span class="arithmatex">\(A\)</span>:
-$<span class="arithmatex">\(\Pr(S = 1 \mid A = 0) \ll \Pr(S = 1 \mid A = 1)\)</span>$
-By PAC learning bounds, the generalization error <span class="arithmatex">\(\epsilon_0\)</span> on the minority group scales inversely with its effective sample size <span class="arithmatex">\(n_0 = n \cdot \Pr(A = 0)\)</span>:
-$<span class="arithmatex">\(\epsilon_0 \propto \sqrt{\frac{d \log(n_0) + \log(1/\delta)}{n_0}}\)</span>$
-When minority groups comprise a tiny fraction of the dataset, models exhibit significantly worse generalization and higher variance on them.</p>
+<p>Occurs when the sampling selection mechanism <span class="arithmatex">\(S \in \{0, 1\}\)</span> depends on the protected attribute <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[
+\Pr(S = 1 \mid A = 0) \ll \Pr(S = 1 \mid A = 1)
+\]</div>
+<p>By PAC learning bounds, the generalization error <span class="arithmatex">\(\epsilon_0\)</span> on the minority group scales inversely with its effective sample size <span class="arithmatex">\(n_0 = n \cdot \Pr(A = 0)\)</span>:</p>
+<div class="arithmatex">\[
+\epsilon_0 \propto \sqrt{\frac{d \log(n_0) + \log(1/\delta)}{n_0}}
+\]</div>
+<p>When minority groups comprise a tiny fraction of the dataset, models exhibit significantly worse generalization and higher variance on them.</p>
 <h4 id="3-measurement-bias-the-proxy-divergence-problem">3. Measurement Bias (The Proxy Divergence Problem)</h4>
-<p>In machine learning, target constructs of interest <span class="arithmatex">\(Y^*\)</span> (e.g., patient health, employee productivity, creditworthiness) cannot be measured directly. Engineers substitute an observable proxy variable <span class="arithmatex">\(Y_{\text{proxy}}\)</span>. Measurement bias occurs when the proxy error is non-ignorable and conditioned on protected group membership:
-$<span class="arithmatex">\(\mathbb{E}[Y_{\text{proxy}} \mid Y^*, A = 0] \neq \mathbb{E}[Y_{\text{proxy}} \mid Y^*, A = 1]\)</span>$
-<em>Example:</em> Substituting <strong>Healthcare Expenditure</strong> (<span class="arithmatex">\(Y_{\text{proxy}}\)</span>) for <strong>True Illness Severity</strong> (<span class="arithmatex">\(Y^*\)</span>). Because low-income minority patients face insurance barriers and receive less expensive clinical interventions, two patients with identical chronic illness severity generate disparate expenditure figures.</p>
+<p>In machine learning, target constructs of interest <span class="arithmatex">\(Y^*\)</span> (e.g., patient health, employee productivity, creditworthiness) cannot be measured directly. Engineers substitute an observable proxy variable <span class="arithmatex">\(Y_{\text{proxy}}\)</span>. Measurement bias occurs when the proxy error is non-ignorable and conditioned on protected group membership:</p>
+<div class="arithmatex">\[
+\mathbb{E}[Y_{\text{proxy}} \mid Y^*, A = 0] \neq \mathbb{E}[Y_{\text{proxy}} \mid Y^*, A = 1]
+\]</div>
+<p><em>Example:</em> Substituting <strong>Healthcare Expenditure</strong> (<span class="arithmatex">\(Y_{\text{proxy}}\)</span>) for <strong>True Illness Severity</strong> (<span class="arithmatex">\(Y^*\)</span>). Because low-income minority patients face insurance barriers and receive less expensive clinical interventions, two patients with identical chronic illness severity generate disparate expenditure figures.</p>
 <h4 id="4-aggregation-bias-homogenization-distortion">4. Aggregation Bias (Homogenization Distortion)</h4>
-<p>Occurs when a single uniform global mapping <span class="arithmatex">\(f: \mathbf{X} \to Y\)</span> is fitted to heterogeneous sub-populations where distinct generating functions govern each group:
-$<span class="arithmatex">\(f_0(\mathbf{x}) \neq f_1(\mathbf{x})\)</span>$
-Minimizing global empirical risk <span class="arithmatex">\(\mathcal{R}_{\text{emp}}(f)\)</span> optimizes almost exclusively for the majority group, producing systemic miscalibration on minority subgroups (a mathematical manifestation of Simpson's Paradox).</p>
+<p>Occurs when a single uniform global mapping <span class="arithmatex">\(f: \mathbf{X} \to Y\)</span> is fitted to heterogeneous sub-populations where distinct generating functions govern each group:</p>
+<div class="arithmatex">\[
+f_0(\mathbf{x}) \neq f_1(\mathbf{x})
+\]</div>
+<p>Minimizing global empirical risk <span class="arithmatex">\(\mathcal{R}_{\text{emp}}(f)\)</span> optimizes almost exclusively for the majority group, producing systemic miscalibration on minority subgroups (a mathematical manifestation of Simpson's Paradox).</p>
 <hr />
 <h2 id="production-implementation-measurement-proxy-divergence-simulator">💻 Production Implementation: Measurement Proxy Divergence Simulator</h2>
 <p>Below is an executable Python script simulating the Obermeyer et al. healthcare proxy failure, demonstrating how substituting clinical spending for clinical illness severity introduces massive racial disparity.</p>
@@ -7563,12 +7573,12 @@ Minimizing global empirical risk <span class="arithmatex">\(\mathcal{R}_{\text{e
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-suresh2021"></a><strong>Suresh, H., &amp; Guttag, J.</strong> (2021). A framework for understanding sources of harm throughout the machine learning life cycle. <em>ACM Conference on Equity and Access in Algorithms, Mechanisms, and Optimization</em>, 1–9.</li>
-<li><a id="ref-obermeyer2019"></a><strong>Obermeyer, Z., Powers, B., Vogeli, C., &amp; Mullainathan, S.</strong> (2019). Dissecting racial bias in an algorithm used to manage the health of populations. <em>Science</em>, 366(6464), 447–453.</li>
-<li><a id="ref-danks2017"></a><strong>Danks, D., &amp; London, A. J.</strong> (2017). Algorithmic bias in autonomous systems. In <em>Proceedings of the 26th International Joint Conference on Artificial Intelligence</em> (pp. 4691–4697).</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-suresh2021"></a><strong>[Suresh2021]</strong> H. Suresh and J. Guttag, "A Framework for Understanding Sources of Harm Throughout the Machine Learning Life Cycle," <em>ACM Conference on Equity and Access in Algorithms, Mechanisms, and Optimization</em>, 1–9, 2021. <a href="https://doi.org/10.1145/3465416.3483305">DOI: 10.1145/3465416.3483305</a>.</li>
+<li><a id="ref-obermeyer2019"></a><strong>[Obermeyer2019]</strong> Z. Obermeyer, B. Powers, C. Vogeli, and S. Mullainathan, "Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations," <em>Science</em>, vol. 366, no. 6464, pp. 447–453, 2019. <a href="https://doi.org/10.1126/science.aax2342">DOI: 10.1126/science.aax2342</a>.</li>
+<li><a id="ref-danks2017"></a><strong>[Danks2017]</strong> D. Danks and A. J. London, "Algorithmic Bias in Autonomous Systems," in <em>Proceedings of the 26th International Joint Conference on Artificial Intelligence</em>, pp. 4691–4697, 2017. <a href="https://doi.org/10.24963/ijcai.2017/654">DOI: 10.24963/ijcai.2017/654</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../01-introduction-to-bias-and-fairness/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.1 Introduction to Bias & Fairness</a>

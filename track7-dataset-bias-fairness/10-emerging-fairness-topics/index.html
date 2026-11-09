@@ -3563,10 +3563,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7360,10 +7360,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7435,9 +7435,11 @@
 <h3 id="1-counterfactual-fairness-kusner-et-al-2017">1. Counterfactual Fairness (Kusner et al., 2017)</h3>
 <p>Let a Structural Causal Model (SCM) be defined by endogenous variables <span class="arithmatex">\(\mathbf{V}\)</span>, exogenous background variables <span class="arithmatex">\(\mathbf{U} \sim P(\mathbf{U})\)</span>, and structural equations <span class="arithmatex">\(\mathbf{V}_j = f_j(\text{Parents}(\mathbf{V}_j), \mathbf{U}_j)\)</span> (<a href="#ref-pearl2009">Pearl, 2009</a>).</p>
 <h4 id="definition-of-counterfactual-fairness">Definition of Counterfactual Fairness</h4>
-<p>Predictor <span class="arithmatex">\(\hat{Y}\)</span> is <strong>counterfactually fair</strong> if for every individual with observed features <span class="arithmatex">\(\mathbf{X} = \mathbf{x}\)</span> and demographic attribute <span class="arithmatex">\(A = a\)</span>:
-$<span class="arithmatex">\(\Pr(\hat{Y}_{A \leftarrow a'}(\mathbf{U}) = 1 \mid \mathbf{X} = \mathbf{x}, A = a) = \Pr(\hat{Y}_{A \leftarrow a}(\mathbf{U}) = 1 \mid \mathbf{X} = \mathbf{x}, A = a)\)</span>$
-for all possible alternate attributes <span class="arithmatex">\(a'\)</span> and all outcomes.</p>
+<p>Predictor <span class="arithmatex">\(\hat{Y}\)</span> is <strong>counterfactually fair</strong> if for every individual with observed features <span class="arithmatex">\(\mathbf{X} = \mathbf{x}\)</span> and demographic attribute <span class="arithmatex">\(A = a\)</span>:</p>
+<div class="arithmatex">\[
+\Pr(\hat{Y}_{A \leftarrow a'}(\mathbf{U}) = 1 \mid \mathbf{X} = \mathbf{x}, A = a) = \Pr(\hat{Y}_{A \leftarrow a}(\mathbf{U}) = 1 \mid \mathbf{X} = \mathbf{x}, A = a)
+\]</div>
+<p>for all possible alternate attributes <span class="arithmatex">\(a'\)</span> and all outcomes.</p>
 <pre class="mermaid"><code>graph TD
     U["Exogenous Latent Ability U"] --&gt; GPA["College GPA"]
     U --&gt; LSAT["Law School Admission Test (LSAT)"]
@@ -7449,21 +7451,27 @@ for all possible alternate attributes <span class="arithmatex">\(a'\)</span> and
     class U purple;
     class A red;</code></pre>
 <h4 id="theorem-kusner-et-al-2017">Theorem (Kusner et al., 2017)</h4>
-<p><span class="arithmatex">\(\hat{Y}\)</span> is counterfactually fair if it is expressed purely as a function of the exogenous variables <span class="arithmatex">\(\mathbf{U}\)</span> and non-descendants of <span class="arithmatex">\(A\)</span> in the causal DAG:
-$<span class="arithmatex">\(\hat{Y} = g(\mathbf{U})\)</span>$
-If a model directly uses features causally downstream from <span class="arithmatex">\(A\)</span> (such as <code>GPA</code> influenced by systemic resource disparities <span class="arithmatex">\(A \to \text{GPA}\)</span>), the model inherently propagates discriminatory signal, even if <span class="arithmatex">\(A\)</span> itself is hidden.</p>
+<p><span class="arithmatex">\(\hat{Y}\)</span> is counterfactually fair if it is expressed purely as a function of the exogenous variables <span class="arithmatex">\(\mathbf{U}\)</span> and non-descendants of <span class="arithmatex">\(A\)</span> in the causal DAG:</p>
+<div class="arithmatex">\[
+\hat{Y} = g(\mathbf{U})
+\]</div>
+<p>If a model directly uses features causally downstream from <span class="arithmatex">\(A\)</span> (such as <code>GPA</code> influenced by systemic resource disparities <span class="arithmatex">\(A \to \text{GPA}\)</span>), the model inherently propagates discriminatory signal, even if <span class="arithmatex">\(A\)</span> itself is hidden.</p>
 <hr />
 <h3 id="2-multi-group-fairness-fairness-gerrymandering">2. Multi-Group Fairness &amp; Fairness Gerrymandering</h3>
 <p>Michael Kearns et al. (<a href="#ref-kearns2018">2018</a>) proved that an algorithm can satisfy Demographic Parity and Equalized Odds across individual protected attributes in isolation (e.g., Fair by Race, and Fair by Gender), while exhibiting severe illegal discrimination against <strong>intersectional combinations</strong> (e.g., Black Elderly Women). This pathology is known as <strong>Fairness Gerrymandering</strong>.</p>
-<p><strong>Minimax Multi-Group Optimization</strong> enforces fairness across a rich hypothesis class of subgroup indicator functions <span class="arithmatex">\(\mathcal{G}\)</span>:
-$<span class="arithmatex">\(\max_{g \in \mathcal{G}} |\Pr(\hat{Y} = 1 \mid g(\mathbf{X}) = 1) - \Pr(\hat{Y} = 1)| \le \gamma\)</span>$</p>
+<p><strong>Minimax Multi-Group Optimization</strong> enforces fairness across a rich hypothesis class of subgroup indicator functions <span class="arithmatex">\(\mathcal{G}\)</span>:</p>
+<div class="arithmatex">\[
+\max_{g \in \mathcal{G}} |\Pr(\hat{Y} = 1 \mid g(\mathbf{X}) = 1) - \Pr(\hat{Y} = 1)| \le \gamma
+\]</div>
 <hr />
 <h3 id="3-the-differential-privacy-vs-fairness-conflict">3. The Differential Privacy vs. Fairness Conflict</h3>
 <p>Differential Privacy (DP) guarantees mathematical confidentiality by injecting calibrated noise <span class="arithmatex">\(\sigma \propto \frac{\Delta}{\epsilon \cdot n}\)</span>.
 However, when dataset populations are imbalanced (<span class="arithmatex">\(n_{\text{minority}} \ll n_{\text{majority}}\)</span>):
-- The relative noise-to-signal ratio for the minority group is vastly higher:
-  $<span class="arithmatex">\(\frac{\sigma}{n_{\text{minority}}} \gg \frac{\sigma}{n_{\text{majority}}}\)</span>$
-Cummings et al. (<a href="#ref-cummings2019">2019</a>) demonstrated that <strong>enforcing strict Differential Privacy systematically degrades predictive accuracy disproportionately on protected minority subgroups</strong>, creating an acute engineering trade-off between individual privacy and collective algorithmic fairness.</p>
+- The relative noise-to-signal ratio for the minority group is vastly higher:</p>
+<div class="arithmatex">\[
+\frac{\sigma}{n_{\text{minority}}} \gg \frac{\sigma}{n_{\text{majority}}}
+\]</div>
+<p>Cummings et al. (<a href="#ref-cummings2019">2019</a>) demonstrated that <strong>enforcing strict Differential Privacy systematically degrades predictive accuracy disproportionately on protected minority subgroups</strong>, creating an acute engineering trade-off between individual privacy and collective algorithmic fairness.</p>
 <hr />
 <h2 id="production-implementation-counterfactual-causal-scm-evaluator">💻 Production Implementation: Counterfactual Causal SCM Evaluator</h2>
 <p>Below is an executable Python script simulating a Structural Causal Model for Law School admissions, verifying whether a predictive model satisfies Counterfactual Fairness via do-calculus intervention.</p>
@@ -7572,13 +7580,13 @@ Cummings et al. (<a href="#ref-cummings2019">2019</a>) demonstrated that <strong
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-kusner2017"></a><strong>Kusner, M. J., Loftus, J., Russell, C., &amp; Silva, R.</strong> (2017). Counterfactual fairness. <em>Advances in Neural Information Processing Systems</em>, 30, 4066–4076.</li>
-<li><a id="ref-kearns2018"></a><strong>Kearns, M., Neel, S., Roth, A., &amp; Wu, Z. S.</strong> (2018). Preventing fairness gerrymandering: Auditing and learning for subgroup fairness. In <em>International Conference on Machine Learning</em> (pp. 2564–2572). PMLR.</li>
-<li><a id="ref-cummings2019"></a><strong>Cummings, R., Gupta, V., Liang, D., &amp; Wortman Vaughan, J.</strong> (2019). On the compatibility of differential privacy and fairness. <em>arXiv preprint arXiv:1905.02237</em>.</li>
-<li><a id="ref-pearl2009"></a><strong>Pearl, J.</strong> (2009). <em>Causality: Models, Reasoning, and Inference</em>. Cambridge University Press.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-kusner2017"></a><strong>[Kusner2017]</strong> M. J. Kusner, J. Loftus, C. Russell, and R. Silva, "Counterfactual fairness," <em>Advances in Neural Information Processing Systems</em>, vol. 30, pp. 4066–4076, 2017. <a href="https://doi.org/10.48550/arXiv.1703.06856">DOI: 10.48550/arXiv.1703.06856</a>.</li>
+<li><a id="ref-kearns2018"></a><strong>[Kearns2018]</strong> M. Kearns, S. Neel, A. Roth, and Z. S. Wu, "Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness," in <em>International Conference on Machine Learning</em>, pp. 2564–2572. PMLR, 2018. <a href="https://doi.org/10.1145/3287560.3287592">DOI: 10.1145/3287560.3287592</a>.</li>
+<li><a id="ref-cummings2019"></a><strong>[Cummings2019]</strong> R. Cummings, V. Gupta, D. Liang, and J. Wortman Vaughan, "On the Compatibility of Differential Privacy and Fairness," <em>arXiv preprint 1905.02237</em>, 2019. <a href="https://doi.org/10.1561/978-1-63828-477-220251023">DOI: 10.1561/978-1-63828-477-220251023</a>.</li>
+<li><a id="ref-pearl2009"></a><strong>[Pearl2009]</strong> J. Pearl, <em>Causality: Models, Reasoning, and Inference</em>, Cambridge University Press, 2009. <a href="https://doi.org/10.2307/3182612">DOI: 10.2307/3182612</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../09-fairness-toolkits-and-case-study/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.9 Fairness Toolkits & Case Studies</a>
