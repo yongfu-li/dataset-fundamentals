@@ -1,125 +1,71 @@
-# dataset-fundamentals
+# Dataset Fundamentals Learning Hub (`yongfu-li/dataset-fundamentals`)
 
-[![GitHub](https://img.shields.io/badge/GitHub-dataset--fundamentals-181717?logo=github)](https://github.com/yongfu-li/dataset-fundamentals)
+[![Live Learning Hub](https://img.shields.io/badge/Live%20Platform-yongfu--li.github.io%2Fdataset--fundamentals-0f766e?style=flat&logo=githubpages)](https://yongfu-li.github.io/dataset-fundamentals/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-green?logo=creativecommons&logoColor=white)](LICENSE)
-[![Role](https://img.shields.io/badge/role-Git%20submodule-orange)](https://github.com/yongfu-li/Fundamental-of-Dataset-Collection-Annotation-and-Management)
+[![Role](https://img.shields.io/badge/role-Open%20Learning%20Platform-orange)](https://yongfu-li.github.io/dataset-fundamentals/)
 [![Parent](https://img.shields.io/badge/parent-book%20monorepo%20(private)-0A9EDC)](https://github.com/yongfu-li/Fundamental-of-Dataset-Collection-Annotation-and-Management)
-[![Site](https://img.shields.io/badge/site-GitHub%20Pages-222?logo=githubpages)](https://yongfu-li.github.io/dataset-fundamentals/)
-[![Domain](https://img.shields.io/badge/domain-teaching%20%2F%20open%20lectures-purple)](https://yongfu-li.github.io/dataset-fundamentals/)
 
-**dataset-fundamentals** is the open learning platform for *Fundamental of Dataset: Collection, Annotation, and Management*. It is consumed as a **Git submodule** at `lectures/` inside the private book monorepo, and published as a static site on [GitHub Pages](https://yongfu-li.github.io/dataset-fundamentals/).
+An open-source, interactive curriculum and laboratory bridging theoretical dataset collection, human-in-the-loop annotation, data cleaning heuristics, algorithmic fairness, and reproducible open science. Grounded in the 13-chapter Springer Nature monograph by **Yongfu Li** and **Dingjuan Chua**.
 
-Readers and students usually **browse the site** or clone this public repo. Authors edit content here (or via the parent monorepo checkout), rebuild the HTML site, and push; the parent repo only stores a pinned submodule commit.
+---
 
-## Table of contents
-- [Contents](#contents)
-- [Browse or clone](#browse-or-clone)
-- [Consume from the parent](#consume-from-the-parent)
-- [Author: publish or update](#author-publish-or-update)
-- [Chapter landings](#chapter-landings)
-- [Interactive tools](#interactive-tools)
-- [License](#license)
+## 🚀 Live Platform Navigation
 
-## Contents
+- **Learning Hub Portal**: [https://yongfu-li.github.io/dataset-fundamentals/](https://yongfu-li.github.io/dataset-fundamentals/)
+- **Official Textbook Hub**: [https://yongfu-li.github.io/dataset-fundamentals/textbook/](https://yongfu-li.github.io/dataset-fundamentals/textbook/)
+- **13 Curriculum Tracks**: [https://yongfu-li.github.io/dataset-fundamentals/tracks/](https://yongfu-li.github.io/dataset-fundamentals/tracks/)
+- **Interactive Data Studio (21+ Labs)**: [https://yongfu-li.github.io/dataset-fundamentals/tools/](https://yongfu-li.github.io/dataset-fundamentals/tools/)
+- **Certification & Exam**: [https://yongfu-li.github.io/dataset-fundamentals/quiz/](https://yongfu-li.github.io/dataset-fundamentals/quiz/)
+- **Hall of Fame & Verification**: [https://yongfu-li.github.io/dataset-fundamentals/leaderboard/](https://yongfu-li.github.io/dataset-fundamentals/leaderboard/)
+- **Dataset Architecture Glossary**: [https://yongfu-li.github.io/dataset-fundamentals/glossary/](https://yongfu-li.github.io/dataset-fundamentals/glossary/)
 
-```text
-dataset-fundamentals/
-├── index.html           # course home (generated)
-├── chapter1/ … chapter13/
-│   ├── index.html       # chapter learning path
-│   ├── chapter.json
-│   ├── slides.md / .pptx / .pdf
-│   └── parts/part-NN-slug/
-├── tools/               # browser labs
-├── project/             # guided release kit
-├── modules/             # packaged examples
-├── community/
-├── site.json            # GA4 and site metadata
-├── LICENSE              # CC BY 4.0
-└── README.md
-```
+---
 
-Videos are optional media under each part’s `video/` folder. Generate with the `book-slides` TTS/ffmpeg helpers in the parent monorepo when ready.
+## 📚 Curriculum Structure
 
-## Browse or clone
+- **Track 1: Introduction to Datasets**: Records, attributes, data quality dimensions (accuracy, completeness, consistency, timeliness, relevance), and structure taxonomy.
+- **Track 2: Fundamentals of Data Collection**: Sampling error mathematics, simple random vs. stratified vs. cluster sampling, power analysis, and population coverage.
+- **Track 3: Ethics & Privacy in Data Work**: Regulatory compliance (GDPR, HIPAA, CCPA), $k$-anonymity, $l$-diversity, $t$-closeness, and differential privacy ($\epsilon, \delta$).
+- **Track 4: Data Annotation & Agreement**: Human-in-the-loop annotation pipelines, multi-label bounding boxes, and Inter-Annotator Agreement (Cohen's $\kappa$, Fleiss' $\kappa$, Krippendorff's $\alpha$).
+- **Track 5: Data Cleaning & Preprocessing**: Missingness mechanisms (MCAR, MAR, MNAR), outlier detection (Z-scores, IQR), feature scaling, and class imbalance (SMOTE).
+- **Track 6: Exploratory Data Analysis (EDA)**: Univariate/multivariate inspection, covariance structures, Pearson/Spearman correlation matrices, PCA dimensionality reduction, and Simpson's Paradox.
+- **Track 7: Dataset Bias and Fairness**: Representation vs. historical bias, Disparate Impact Ratio (80% rule), Equalized Odds, and Demographic Parity frontiers.
+- **Track 8: Dataset Documentation & Versioning**: Gebru et al. Datasheets for Datasets, semantic versioning, and Data Version Control (DVC).
+- **Track 9: Advanced Data Collection Techniques**: Web crawling ethics, Robots.txt compliance, API rate limits, sliding window backoff, and IoT telemetry streams.
+- **Track 10: Synthetic Data Generation**: Rule-based media augmentation, text paraphrasing, Generative Adversarial Networks (GANs), and Diffusion models.
+- **Track 11: Advanced Annotation Techniques**: Active learning query heuristics (uncertainty sampling, QBC), weak supervision (Snorkel), and label aggregation under noisy workers.
+- **Track 12: Scalable Data Management**: CAP theorem, Columnar storage (Apache Parquet, Arrow, ORC), partitioning, and cloud data lakes (S3).
+- **Track 13: Reproducibility & Open Science**: FAIR data principles, open science licensing (Creative Commons CC BY / CC0, ODC-By), and persistent identifiers (DOIs).
 
-- **Site:** [https://yongfu-li.github.io/dataset-fundamentals/](https://yongfu-li.github.io/dataset-fundamentals/)
-- **Clone this repo alone:**
+---
 
+## 🛠️ Local Development & Build
+
+### 1. Preview Local Server
 ```bash
-git clone https://github.com/yongfu-li/dataset-fundamentals.git
-cd dataset-fundamentals
+# In the parent monorepo:
+mkdocs serve
+# Server will start at http://127.0.0.1:8000
 ```
 
-Open `index.html` locally, or use GitHub Pages above.
-
-## Consume from the parent
-
-From a clone of the **private** book monorepo (lists this repo in `.gitmodules`):
-
+### 2. Build Static Site
 ```bash
-git clone --recurse-submodules \
-  git@github.com:yongfu-li/Fundamental-of-Dataset-Collection-Annotation-and-Management.git
-# or, if already cloned without submodules:
-git submodule update --init --recursive
-
-ls lectures
-cat lectures/LICENSE
+mkdocs build --strict
+# Compiles into site/
 ```
 
-Working tree path in the parent: `lectures/` → this repository at a pinned commit.
+---
 
-## Author: publish or update
+## 🤝 Role in the Course
 
-Edit and rebuild inside the parent monorepo (recommended) or in a standalone clone of this repo.
+| Repo | Visibility | Responsibility |
+|------|------------|----------------|
+| **Parent Monorepo** ([`Fundamental-of-Dataset-...`](https://github.com/yongfu-li/Fundamental-of-Dataset-Collection-Annotation-and-Management)) | **Private** | Springer `svmono` manuscript (`author/`), figures (`images/`), build tooling |
+| **This Repo** ([`dataset-fundamentals`](https://github.com/yongfu-li/dataset-fundamentals)) | **Public** | Web platform, interactive labs, video lectures, and GitHub Pages host |
 
-```bash
-# from the private parent checkout
-cd lectures
-# … edit chapter sources / tools …
-# rebuild HTML from the parent:
-cd ..
-python .cursor/skills/book-slides/scripts/build_site.py lectures/
+---
 
-cd lectures
-git add -A
-git commit -m "Update lecture site"
-git push origin main
-```
+## 📄 License
 
-Then bump the pin in the **parent**:
-
-```bash
-cd /path/to/Fundamental-of-Dataset-Collection-Annotation-and-Management
-git add lectures
-git commit -m "Bump lectures submodule"
-git push
-```
-
-## Chapter landings
-
-| Chapter | Landing |
-|---------|---------|
-| 1 — Introduction to Datasets | [chapter1](chapter1/pages/index.md) |
-| 2 — Fundamentals of Data Collection | [chapter2](chapter2/pages/index.md) |
-| 3 — Ethics and Privacy in Data Work | [chapter3](chapter3/pages/index.md) |
-| 4 — Data Annotation | [chapter4](chapter4/pages/index.md) |
-| 5 — Data Cleaning and Preprocessing | [chapter5](chapter5/pages/index.md) |
-| 6 — Exploratory Data Analysis (EDA) | [chapter6](chapter6/pages/index.md) |
-| 7 — Dataset Bias and Fairness | [chapter7](chapter7/pages/index.md) |
-| 8 — Dataset Documentation and Version Control | [chapter8](chapter8/pages/index.md) |
-| 9 — Advanced Data Collection Techniques | [chapter9](chapter9/pages/index.md) |
-| 10 — Synthetic Data Generation | [chapter10](chapter10/pages/index.md) |
-| 11 — Advanced Annotation Techniques | [chapter11](chapter11/pages/index.md) |
-| 12 — Scalable Data Management | [chapter12](chapter12/pages/index.md) |
-| 13 — Reproducibility and Open Science | [chapter13](chapter13/pages/index.md) |
-
-## Interactive tools
-
-By workflow: [Sampling](tools/sampling/index.html) → [Consent & PII scrubber](tools/pii-scrubber/index.html) · [De-id risk](tools/deid-risk/index.html) · [Ethical decision](tools/ethical-decision/index.html) → [Image annotation](tools/image-annotation/index.html) · [Text annotation](tools/text-annotation/index.html) · [IAA](tools/iaa/index.html) → [Schema / format](tools/schema-format/index.html) · [EDA](tools/eda-dashboard/index.html) · [Cleaning](tools/cleaning/index.html) · [Scaling / encoding](tools/scaling-encoding/index.html) · [Class imbalance](tools/class-imbalance/index.html) · [Train/test split](tools/train-test-split/index.html) → [Representation](tools/representation/index.html) · [Fairness](tools/fairness/index.html) → [Datasheet](tools/datasheet/index.html) · [Metadata](tools/metadata-checker/index.html) · [Version timeline](tools/version-timeline/index.html). See [all tools](tools/index.html).
-
-## License
-
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — see [`LICENSE`](LICENSE).
-
-The Springer book manuscript in the private parent repository is **not** covered by this license.
+- Public teaching platform and interactive tools: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — see [`LICENSE`](LICENSE).
+- The Springer Nature book manuscript in the private parent repository is **not** covered by this license.
