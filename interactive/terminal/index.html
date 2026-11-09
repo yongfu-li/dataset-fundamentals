@@ -76,7 +76,7 @@
         .loopText {
           color: var(--md-mermaid-label-fg-color, #0f172a);
           fill: var(--md-mermaid-label-fg-color, #0f172a);
-          font-family: 'Inter', -apple-system, sans-serif !important;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
           font-weight: 600 !important;
           font-size: 13.5px !important;
           line-height: 1.35 !important;
@@ -86,8 +86,9 @@
         text:not([fill]):not([style*="fill"]),
         tspan:not([fill]):not([style*="fill"]) {
           fill: var(--md-mermaid-label-fg-color, #0f172a);
-          font-family: 'Inter', -apple-system, sans-serif !important;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
           font-weight: 600 !important;
+          font-size: 13.5px !important;
         }
 
         /* Child text elements inside node labels MUST inherit color from parent */
@@ -148,7 +149,9 @@
         .nodeLabel, .label, foreignObject div {
           text-align: center !important;
           word-wrap: break-word !important;
+          white-space: normal !important;
           box-sizing: border-box !important;
+          padding: 2px 4px !important;
         }
 
         /* Connecting paths, lines & arrows */
@@ -166,6 +169,7 @@
         .cluster rect {
           fill: var(--md-default-bg-color--lighter, rgba(127, 127, 127, 0.08)) !important;
           stroke: var(--md-default-fg-color--lighter, #94a3b8) !important;
+          stroke-width: 1.5px !important;
         }
 
         /* Edge labels */
@@ -6948,6 +6952,25 @@
 
 
 <h1 id="web-data-engineering-terminal-interactive-telemetry-workbench">💻 Web Data Engineering Terminal &amp; Interactive Telemetry Workbench</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Unified Monograph Terminal Reference: Data Engineering &amp; Telemetry Workbench</span>
+    </div>
+    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
+      Directly executes analytical workflows spanning all 13 curriculum tracks: vectorized transformations, missingness imputation, algorithmic fairness audits, $k$-anonymity de-identification, and DVC pipeline lineage graphs.
+    </div>
+  </div>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <a href="../../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
+      <span>Monograph Hub →</span>
+    </a>
+    <a href="../../tools/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(30, 41, 59, 0.85); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
+      <span>Data Studio Hub (21 Tools) →</span>
+    </a>
+  </div>
+</div>
+
 <div class="noc-hero">
   <div class="noc-track-badge">⚡ Pure Browser-Native • Zero Installation Required</div>
   <h1>Web Data Engineering Terminal &amp; Interactive Telemetry Workbench</h1>
@@ -6964,113 +6987,149 @@
 </div>
 
 <hr />
-<!-- TERMINAL WINDOW -->
-<div class="noc-term-window" id="termWindow">
-  <div class="noc-term-header">
-    <div class="noc-term-dots">
-      <span class="noc-term-dot red" title="Clear Buffer" onclick="termClear()"></span>
-      <span class="noc-term-dot yellow" title="Reset Session" onclick="termReset()"></span>
-      <span class="noc-term-dot green" title="Maximize / Fullscreen" onclick="toggleTermFullscreen()"></span>
+<!-- WORKBENCH RESPONSIVE CONTAINER (STACKED BY DEFAULT, TOGGLEABLE TO SPLIT) -->
+<div class="noc-workbench-layout" id="workbenchLayout">
+
+  <!-- TERMINAL WINDOW -->
+  <div class="noc-term-window" id="termWindow">
+    <div class="noc-term-header">
+      <div class="noc-term-dots">
+        <span class="noc-term-dot red" title="Clear Screen Buffer (Ctrl+L)" onclick="termClear()"></span>
+        <span class="noc-term-dot yellow" title="Reset Session to Clean State" onclick="termReset()"></span>
+        <span class="noc-term-dot green" title="Maximize / Fullscreen" onclick="toggleTermFullscreen()"></span>
+      </div>
+      <div class="noc-term-title">
+        <span>🖥️ <span id="termUserHost">guest@dataset-lab</span>: <span id="termPwdTitle">/workspace</span> (bash)</span>
+      </div>
+      <div class="noc-term-controls">
+        <button class="noc-term-btn" title="Decrease Font Size (A-)" onclick="termAdjustFontSize(-1)">A−</button>
+        <button class="noc-term-btn" title="Increase Font Size (A+)" onclick="termAdjustFontSize(1)">A+</button>
+        <button class="noc-term-btn" id="termLayoutBtn" title="Toggle Split / Stacked Layout" onclick="toggleWorkbenchLayout()">◫ Split View</button>
+        <button class="noc-term-btn" id="termFullscreenBtn" title="Toggle Fullscreen Mode" onclick="toggleTermFullscreen()">⛶ Expand</button>
+        <span class="noc-term-vt" style="font-size:0.72rem; color:#64748b; margin-left:0.25rem;">VT100</span>
+      </div>
     </div>
-    <div class="noc-term-title">
-      <span>🖥️ <span id="termUserHost">guest@dataset-lab</span>: <span id="termPwdTitle">/workspace</span> (bash)</span>
+
+    <!-- Quick Command Launcher Toolbar -->
+    <div class="noc-term-toolbar">
+      <span style="font-size:0.76rem; color:#94a3b8; font-weight:700; margin-right:0.2rem; flex-shrink:0;">⚡ Quick Runs:</span>
+      <button class="noc-term-pill" onclick="quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12')">📊 data-sample (Normal)</button>
+      <button class="noc-term-pill" onclick="quickRun('data-sample --dist lognormal --n 800 --skew 1.8')">📈 data-sample (Skewed)</button>
+      <button class="noc-term-pill accent" onclick="quickRun('data-clean --input /workspace/datasets/customers.csv --impute mean --outliers iqr')">🧹 data-clean (Impute+IQR)</button>
+      <button class="noc-term-pill" onclick="quickRun('data-audit --input /workspace/datasets/customers.csv --pii')">🔍 data-audit (5D+PII)</button>
+      <button class="noc-term-pill accent" onclick="quickRun('data-fairness --input /workspace/datasets/credit_risk.csv --sensitive gender')">⚖️ data-fairness (DIR)</button>
+      <button class="noc-term-pill accent" onclick="quickRun('data-iaa --annotators /workspace/datasets/iaa_matrix.json')">🤝 data-iaa (Fleiss κ)</button>
+      <button class="noc-term-pill purple" onclick="quickRun('data-anonymize --input /workspace/datasets/patients.csv --k 5 --epsilon 0.8')">🛡️ data-anonymize (k=5)</button>
+      <button class="noc-term-pill" onclick="quickRun('data-convert --from csv --to parquet /workspace/datasets/customers.csv')">📦 data-convert (Parquet)</button>
+      <button class="noc-term-pill" onclick="quickRun('dvc dag /workspace/pipelines/dvc.yaml')">🌲 dvc dag Lineage</button>
+      <button class="noc-term-pill" onclick="quickRun('data-datasheet --input /workspace/datasets/customers.csv')">📋 data-datasheet</button>
+      <button class="noc-term-pill" onclick="quickRun('data-handoff --status')">🔄 data-handoff (Sync)</button>
+      <button class="noc-term-pill purple" onclick="quickRun('grade-capstone')">🎓 grade-capstone</button>
+      <button class="noc-term-pill" onclick="quickRun('cat /workspace/README.md')">📄 cat README.md</button>
+      <button class="noc-term-pill" onclick="quickRun('tree /workspace')">📁 tree /workspace</button>
+      <button class="noc-term-pill" onclick="quickRun('clear')">🧹 clear</button>
+      <button class="noc-term-pill" onclick="quickRun('help')">❓ help</button>
     </div>
-    <div class="noc-term-controls">
-      <button class="noc-term-btn" title="Decrease Font Size (A-)" onclick="termAdjustFontSize(-1)">A−</button>
-      <button class="noc-term-btn" title="Increase Font Size (A+)" onclick="termAdjustFontSize(1)">A+</button>
-      <button class="noc-term-btn" id="termFullscreenBtn" title="Toggle Fullscreen Mode" onclick="toggleTermFullscreen()">⛶ Expand</button>
-      <span class="noc-term-vt" style="font-size:0.72rem; color:#64748b; margin-left:0.25rem;">VT100</span>
+
+    <!-- Terminal Display Body -->
+    <div id="termBody" class="noc-term-body" onclick="document.getElementById('termInput').focus()">
+      <div id="termOutput"></div>
+      <div class="noc-term-input-line">
+        <span class="noc-term-prompt" id="termPrompt">guest@dataset-lab:/workspace$ </span>
+        <input type="text" id="termInput" class="noc-term-input" autocomplete="off" spellcheck="false" autofocus />
+      </div>
     </div>
   </div>
 
-  <!-- Quick Command Launcher Toolbar -->
-  <div class="noc-term-toolbar">
-    <span style="font-size:0.76rem; color:#94a3b8; font-weight:700; margin-right:0.2rem; flex-shrink:0;">⚡ Quick Runs:</span>
-    <button class="noc-term-pill" onclick="quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12')">📊 data-sample (Normal)</button>
-    <button class="noc-term-pill" onclick="quickRun('data-sample --dist lognormal --n 800 --skew 1.8')">📈 data-sample (Skewed)</button>
-    <button class="noc-term-pill" onclick="quickRun('data-audit --input /workspace/datasets/customers.csv')">🔍 data-audit Quality</button>
-    <button class="noc-term-pill accent" onclick="quickRun('data-fairness --input /workspace/datasets/credit_risk.csv --sensitive gender')">⚖️ data-fairness (DI)</button>
-    <button class="noc-term-pill accent" onclick="quickRun('data-iaa --annotators /workspace/datasets/iaa_matrix.json')">🤝 data-iaa (Fleiss κ)</button>
-    <button class="noc-term-pill purple" onclick="quickRun('data-anonymize --input /workspace/datasets/patients.csv --k 5 --epsilon 0.8')">🛡️ data-anonymize (k=5)</button>
-    <button class="noc-term-pill" onclick="quickRun('dvc dag /workspace/pipelines/dvc.yaml')">🌲 dvc dag Lineage</button>
-    <button class="noc-term-pill purple" onclick="quickRun('grade-capstone')">🎓 grade-capstone</button>
-    <button class="noc-term-pill" onclick="quickRun('cat /workspace/README.md')">📄 cat README.md</button>
-    <button class="noc-term-pill" onclick="quickRun('tree /workspace')">📁 tree /workspace</button>
-    <button class="noc-term-pill" onclick="quickRun('clear')">🧹 clear</button>
-    <button class="noc-term-pill" onclick="quickRun('help')">❓ help</button>
-  </div>
+  <!-- LIVE INTERACTIVE VISUALIZER WINDOW -->
+  <div class="noc-viz-window" id="vizWindow">
+    <div class="noc-viz-header">
+      <div style="font-weight:700; font-size:0.88rem; color:#93c5fd; display:flex; align-items:center; gap:6px;">
+        <span>📊 Live Telemetry &amp; Dataset Visualizer</span>
+        <span id="vizActiveLabel" style="font-size:0.75rem; color:#34d399; background:rgba(16,185,129,0.15); padding:2px 8px; border-radius:4px; font-weight:600;">ACTIVE</span>
+      </div>
 
-  <!-- Terminal Display Body -->
-  <div id="termBody" class="noc-term-body" onclick="document.getElementById('termInput').focus()">
-    <div id="termOutput"></div>
-    <div class="noc-term-input-line">
-      <span class="noc-term-prompt" id="termPrompt">guest@dataset-lab:/workspace$ </span>
-      <input type="text" id="termInput" class="noc-term-input" autocomplete="off" spellcheck="false" autofocus />
+      <!-- View Switcher Tabs -->
+      <div class="noc-viz-tabs">
+        <button id="tabDistribution" class="noc-viz-tab active" onclick="switchVizView('distribution')">📊 Distribution</button>
+        <button id="tabRadar" class="noc-viz-tab" onclick="switchVizView('radar')">🔍 Quality Radar</button>
+        <button id="tabFairness" class="noc-viz-tab" onclick="switchVizView('fairness')">⚖️ Fairness ROC</button>
+        <button id="tabDvc" class="noc-viz-tab" onclick="switchVizView('dvc')">🌲 DVC Pipeline</button>
+      </div>
+    </div>
+
+    <div class="noc-viz-body">
+      <canvas id="nocVizCanvas" class="noc-viz-canvas" width="820" height="380"></canvas>
+
+      <!-- Live Telemetry HUD (Theme-Adaptive & High-Contrast) -->
+      <div class="noc-viz-hud">
+        <div><b>Active Dataset:</b> <span id="hudDataset" style="color:#38bdf8;">/workspace/datasets/customers.csv</span></div>
+        <div><b>Records (N):</b> <span id="hudRecords" style="color:#34d399;">1,000</span></div>
+        <div><b>Memory Footprint:</b> <span id="hudMemory" style="color:#c084fc;">184.2 KB (Arrow)</span></div>
+        <div><b>Quality DQI:</b> <span id="hudDqi" style="color:#38bdf8;">89.4 / 100</span></div>
+        <div><b>Fairness Metric:</b> <span id="hudFairness" style="color:#4ade80;">DI = 0.88 (Compliant)</span></div>
+        <div><b>Pipeline Lineage:</b> <span id="hudLineage" style="color:#fbbf24;">Git: e722d2b (Linked)</span></div>
+      </div>
     </div>
   </div>
+
 </div>
 
-<!-- LIVE INTERACTIVE VISUALIZER WINDOW -->
-<div class="noc-viz-window">
-  <div class="noc-viz-header">
-    <div style="font-weight:700; font-size:0.88rem; color:#93c5fd; display:flex; align-items:center; gap:6px;">
-      <span>📊 Live Telemetry &amp; Dataset Architecture Visualizer</span>
-      <span id="vizActiveLabel" style="font-size:0.75rem; color:#34d399; background:rgba(16,185,129,0.15); padding:2px 8px; border-radius:4px; font-weight:600;">ACTIVE</span>
-    </div>
-
-    <!-- View Switcher Tabs -->
-    <div class="noc-viz-tabs">
-      <button id="tabDistribution" class="noc-viz-tab active" onclick="switchVizView('distribution')">📊 Distribution &amp; Histogram</button>
-      <button id="tabRadar" class="noc-viz-tab" onclick="switchVizView('radar')">🔍 Data Quality Radar</button>
-      <button id="tabFairness" class="noc-viz-tab" onclick="switchVizView('fairness')">⚖️ Algorithmic Fairness ROC</button>
-      <button id="tabDvc" class="noc-viz-tab" onclick="switchVizView('dvc')">🌲 DVC Pipeline DAG</button>
-    </div>
-  </div>
-
-  <div class="noc-viz-body">
-    <canvas id="nocVizCanvas" class="noc-viz-canvas" width="820" height="380"></canvas>
-
-    <!-- Live Telemetry HUD -->
-    <div class="noc-viz-hud">
-      <div><b>Active Dataset:</b> <span id="hudDataset" style="color:#38bdf8;">/workspace/datasets/customers.csv</span></div>
-      <div><b>Records (N):</b> <span id="hudRecords" style="color:#34d399;">1,000</span></div>
-      <div><b>Memory Footprint:</b> <span id="hudMemory" style="color:#a78bfa;">184.2 KB (Arrow)</span></div>
-      <div><b>Quality DQI:</b> <span id="hudDqi" style="color:#38bdf8;">89.4 / 100</span></div>
-      <div><b>Fairness Metric:</b> <span id="hudFairness" style="color:#4ade80;">DI = 0.88 (Compliant)</span></div>
-    </div>
-  </div>
-</div>
+<!-- Polyfill roundRect for environments missing native canvas roundRect -->
+<script>
+if (typeof CanvasRenderingContext2D !== 'undefined' && !CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+    if (typeof r === 'undefined') r = 5;
+    if (typeof r === 'number') r = [r, r, r, r];
+    const [tl, tr, br, bl] = r;
+    this.beginPath();
+    this.moveTo(x + tl, y);
+    this.lineTo(x + w - tr, y);
+    this.quadraticCurveTo(x + w, y, x + w, y + tr);
+    this.lineTo(x + w, y + h - br);
+    this.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+    this.lineTo(x + bl, y + h);
+    this.quadraticCurveTo(x, y + h, x, y + h - bl);
+    this.lineTo(x, y + tl);
+    this.quadraticCurveTo(x, y, x + tl, y);
+    this.closePath();
+    return this;
+  };
+}
+</script>
 
 <script>
 // ============================================================================
-// Virtual Filesystem (VFS)
+// Virtual Filesystem (VFS) with Full In-Memory State
 // ============================================================================
 const VFS = {
   "/workspace": {
     type: "dir",
-    children: ["README.md", "datasets", "pipelines", "schemas", "scripts"]
+    children: ["README.md", "datasets", "pipelines", "schemas", "scripts", "data"]
   },
   "/workspace/README.md": {
     type: "file",
-    content: `# Dataset Fundamentals Interactive Terminal
-Welcome to the pure in-browser Data Engineering & Auditing Workbench.
+    content: `# Dataset Fundamentals Interactive Terminal & Workbench
+Welcome to the pure browser-native Data Engineering & Auditing Workbench.
 All commands run locally inside your browser with zero server latency.
 
 Type 'help' to review available data engineering commands:
-  • data-sample      Generate statistical synthetic distributions
-  • data-clean       Missing value imputation and outlier removal
-  • data-audit       Audit 5 quality dimensions & compute DQI
-  • data-fairness    Evaluate demographic parity & disparate impact
-  • data-iaa         Compute Cohen / Fleiss Inter-Annotator Agreement
-  • data-anonymize   k-Anonymity & Differential Privacy noise injection
-  • data-convert     Parquet, Arrow, CSV physical format conversion
-  • dvc              Data Version Control DAG & lineage inspector
-  • grade-capstone   Automated multi-track certification grader
+  • data-sample      Generate statistical synthetic distributions (Gaussian, Lognormal, Poisson, Uniform)
+  • data-clean       Missing value imputation, outlier detection (Tukey IQR), and deduplication
+  • data-audit       Audit 5 quality dimensions (Accuracy, Completeness, Consistency, Timeliness, Relevance) + PII
+  • data-fairness    Evaluate demographic parity, disparate impact ratio (DIR), and equal opportunity
+  • data-iaa         Compute Cohen's / Fleiss' Inter-Annotator Agreement & Krippendorff's alpha
+  • data-anonymize   k-Anonymity quasi-identifier generalization & Differential Privacy Laplace noise
+  • data-convert     Parquet, Arrow Feather, CSV physical columnar serialization & compression
+  • data-datasheet   Generate Gebru et al. Datasheets for Datasets documentation contracts
+  • data-handoff     Import/Export active datasets to/from the 21 Data Studio Hub interactive tools
+  • dvc              Data Version Control DAG lineage graphs, pipeline inspection & hash proofs
+  • grade-capstone   Automated multi-track practical exam and certification grader
 `
   },
   "/workspace/datasets": {
     type: "dir",
-    children: ["customers.csv", "clinical_trials.csv", "credit_risk.csv", "patients.csv", "iaa_matrix.json"]
+    children: ["customers.csv", "clinical_trials.csv", "credit_risk.csv", "patients.csv", "iaa_matrix.json", "cleaned.csv"]
   },
   "/workspace/datasets/customers.csv": {
     type: "file",
@@ -7079,7 +7138,10 @@ Type 'help' to review available data engineering commands:
 1002,2024-02-01,180.00,Silver,0
 1003,2024-02-14,1240.25,Diamond,1
 1004,2024-03-01,89.00,Bronze,0
-1005,2024-03-22,650.00,Gold,1`
+1005,2024-03-22,650.00,Gold,1
+1006,2024-04-10,null,Bronze,0
+1007,2024-04-18,310.40,Silver,0
+1008,2024-05-01,8900.00,Platinum,1`
   },
   "/workspace/datasets/clinical_trials.csv": {
     type: "file",
@@ -7097,14 +7159,19 @@ APP-01,Male,85000,740,1
 APP-02,Female,82000,735,1
 APP-03,Female,64000,680,1
 APP-04,Male,45000,610,0
-APP-05,Female,52000,650,0`
+APP-05,Female,52000,650,0
+APP-06,Male,91000,780,1
+APP-07,Female,48000,620,0
+APP-08,Male,76000,710,1`
   },
   "/workspace/datasets/patients.csv": {
     type: "file",
     content: `patient_id,name,ssn,age,zip_code,diagnosis
 PAT-001,Eleanor Vance,982-12-4091,54,02138,Arrhythmia
 PAT-002,Marcus Holloway,847-55-1029,29,94107,Type 2 Diabetes
-PAT-003,Sarah Chen,319-84-7720,68,10001,Hypertension`
+PAT-003,Sarah Chen,319-84-7720,68,10001,Hypertension
+PAT-004,David Ross,415-32-9011,52,02139,Arrhythmia
+PAT-005,Amina Diallo,552-44-8832,31,94103,Type 2 Diabetes`
   },
   "/workspace/datasets/iaa_matrix.json": {
     type: "file",
@@ -7116,8 +7183,23 @@ PAT-003,Sarah Chen,319-84-7720,68,10001,Hypertension`
     "fleiss_kappa": 0.814,
     "cohen_pairwise_avg": 0.826,
     "krippendorff_alpha": 0.809
-  }
+  },
+  "disputed_items": [
+    {"item_id": 14, "ratings": ["Positive", "Neutral", "Positive"], "resolved": "Positive"},
+    {"item_id": 38, "ratings": ["Negative", "Neutral", "Negative"], "resolved": "Negative"}
+  ]
 }`
+  },
+  "/workspace/datasets/cleaned.csv": {
+    type: "file",
+    content: `customer_id,signup_date,monthly_spend,tier,churn_flag,is_outlier
+1001,2024-01-15,429.50,Platinum,0,false
+1002,2024-02-01,180.00,Silver,0,false
+1003,2024-02-14,1240.25,Diamond,1,false
+1004,2024-03-01,89.00,Bronze,0,false
+1005,2024-03-22,650.00,Gold,1,false
+1006,2024-04-10,488.75,Bronze,0,false
+1007,2024-04-18,310.40,Silver,0,false`
   },
   "/workspace/pipelines": {
     type: "dir",
@@ -7136,44 +7218,134 @@ PAT-003,Sarah Chen,319-84-7720,68,10001,Hypertension`
     cmd: python scripts/clean.py
     deps:
       - /workspace/data/raw_staged.parquet
+      - /workspace/pipelines/params.yaml
     outs:
       - /workspace/data/curated_features.parquet
   train:
     cmd: python scripts/train.py
     deps:
       - /workspace/data/curated_features.parquet
+      - /workspace/pipelines/params.yaml
     outs:
-      - /workspace/models/churn_rf.joblib`
+      - /workspace/data/models.joblib`
+  },
+  "/workspace/pipelines/params.yaml": {
+    type: "file",
+    content: `data_cleaning:
+  impute_strategy: "mean"
+  outlier_threshold_iqr: 1.5
+  drop_null_threshold: 0.20
+
+model_training:
+  algorithm: "RandomForestClassifier"
+  n_estimators: 150
+  max_depth: 8
+  learning_rate: 0.05
+  random_state: 42
+
+fairness_guardrails:
+  disparate_impact_min: 0.80
+  statistical_parity_max_diff: 0.10`
   },
   "/workspace/schemas": {
     type: "dir",
-    children: ["customer_contract.json"]
+    children: ["customer_contract.json", "datasheet.md"]
   },
   "/workspace/schemas/customer_contract.json": {
     type: "file",
     content: `{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CustomerSchemaContract",
   "type": "object",
   "properties": {
     "customer_id": { "type": "integer" },
+    "signup_date": { "type": "string", "format": "date" },
     "monthly_spend": { "type": "number", "minimum": 0 },
-    "tier": { "type": "string", "enum": ["Bronze", "Silver", "Gold", "Platinum", "Diamond"] }
+    "tier": { "type": "string", "enum": ["Bronze", "Silver", "Gold", "Platinum", "Diamond"] },
+    "churn_flag": { "type": "integer", "enum": [0, 1] }
   },
-  "required": ["customer_id", "monthly_spend", "tier"]
+  "required": ["customer_id", "signup_date", "monthly_spend", "tier", "churn_flag"]
 }`
+  },
+  "/workspace/schemas/datasheet.md": {
+    type: "file",
+    content: `# Datasheet for Customers Dataset
+Based on Gebru et al. (2021) "Datasheets for Datasets".
+
+## Motivation
+- **Purpose**: Predictive modeling of customer lifetime value and churn risk.
+- **Creator**: Dataset Engineering Operations Team.
+
+## Composition
+- **Instances**: 1,000 synthetic transaction records.
+- **Attributes**: Customer ID, signup date, monthly spend ($), membership tier, churn flag.
+- **Sensitive Features**: None. Protected under synthetic GDPR non-PII declaration.
+
+## Preprocessing
+- Missing value imputation via column means.
+- Outliers filtered via Tukey 1.5 * IQR fences.
+`
   },
   "/workspace/scripts": {
     type: "dir",
-    children: ["clean.py", "audit.py"]
+    children: ["clean.py", "audit.py", "train.py"]
   },
   "/workspace/scripts/clean.py": {
     type: "file",
     content: `import polars as pl
 
 df = pl.read_csv('/workspace/datasets/customers.csv')
+# Filter negative spends and impute missing with column mean
 clean_df = df.filter(pl.col('monthly_spend') > 0).fill_null(strategy='mean')
 clean_df.write_parquet('/workspace/data/curated_features.parquet')
-print('Pipeline executed: Parquet written successfully.')`
+print('Pipeline clean: Curated Parquet generated successfully.')`
+  },
+  "/workspace/scripts/audit.py": {
+    type: "file",
+    content: `import polars as pl
+import sys
+
+def audit_dataset(filepath):
+    print(f"Auditing quality contract for: {filepath}")
+    df = pl.read_csv(filepath)
+    null_counts = df.null_count()
+    row_count = df.height
+    print(f"Total Rows: {row_count}, Columns: {df.width}")
+    print("Null distribution per column:")
+    for col in df.columns:
+        nulls = df[col].null_count()
+        pct = (nulls / row_count) * 100
+        print(f"  - {col}: {nulls} nulls ({pct:.1f}%)")
+    print("DQI Audit complete: Contract compliant (Composite 89.4/100).")
+
+if __name__ == "__main__":
+    audit_dataset(sys.argv[1] if len(sys.argv) > 1 else "/workspace/datasets/customers.csv")`
+  },
+  "/workspace/scripts/train.py": {
+    type: "file",
+    content: `import polars as pl
+import joblib
+
+print("Training Churn RandomForest on /workspace/data/curated_features.parquet...")
+# Simulated scikit-learn model fitting
+print("Model trained: ROC-AUC = 0.892, Accuracy = 91.4%")
+print("Saved model checkpoint: /workspace/data/models.joblib")`
+  },
+  "/workspace/data": {
+    type: "dir",
+    children: ["raw_staged.parquet", "curated_features.parquet", "models.joblib"]
+  },
+  "/workspace/data/raw_staged.parquet": {
+    type: "file",
+    content: `[Binary Apache Parquet Table: 1,000 rows x 5 columns | Snappy compressed | Dictionary encoded]`
+  },
+  "/workspace/data/curated_features.parquet": {
+    type: "file",
+    content: `[Binary Apache Parquet Table: 994 rows x 5 columns | Cleaned, Imputed, Normalized]`
+  },
+  "/workspace/data/models.joblib": {
+    type: "file",
+    content: `[Binary Joblib Model Checkpoint: RandomForestClassifier(n_estimators=150, max_depth=8)]`
   }
 };
 
@@ -7182,17 +7354,19 @@ let cmdHistory = [];
 let historyIndex = -1;
 let currentFontSize = 13;
 let activeVizView = "distribution";
+let isSplitLayout = false;
 
 // Current simulation data state
 let currentSamples = [];
-let currentDqi = { acc: 92, comp: 88, cons: 85, time: 94, rel: 90 };
-let currentFairness = { di: 0.88, eopp: 0.92, statParityDiff: 0.06 };
+let currentDqi = { acc: 94, comp: 89, cons: 86, time: 96, rel: 92 };
+let currentFairness = { di: 0.884, eopp: 0.92, statParityDiff: 0.058 };
 
 // ============================================================================
 // Terminal Core Engine
 // ============================================================================
 function termPrint(html, isErr = false) {
   const out = document.getElementById('termOutput');
+  if (!out) return;
   const div = document.createElement('div');
   div.style.lineHeight = '1.45';
   div.style.marginBottom = '4px';
@@ -7200,46 +7374,107 @@ function termPrint(html, isErr = false) {
   div.innerHTML = html;
   out.appendChild(div);
   const body = document.getElementById('termBody');
-  body.scrollTop = body.scrollHeight;
+  if (body) body.scrollTop = body.scrollHeight;
 }
 
 function termClear() {
-  document.getElementById('termOutput').innerHTML = '';
+  const out = document.getElementById('termOutput');
+  if (out) out.innerHTML = '';
 }
 
 function termReset() {
   termClear();
   currentPwd = "/workspace";
-  document.getElementById('termPwdTitle').innerText = currentPwd;
-  document.getElementById('termPrompt').innerText = `guest@dataset-lab:${currentPwd}$ `;
-  termPrint('<span style="color:#38bdf8; font-weight:bold;">✨ Session reset to initial clean state. Virtual filesystem mounted at /workspace.</span>');
-  termPrint('<span style="color:#94a3b8;">Type <span style="color:#4ade80; font-weight:bold;">help</span> to inspect available data engineering tools.</span>');
+  const title = document.getElementById('termPwdTitle');
+  if (title) title.innerText = currentPwd;
+  const prompt = document.getElementById('termPrompt');
+  if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
+  termPrint('<span style="color:#38bdf8; font-weight:bold;">✨ Session initialized. Virtual filesystem mounted at /workspace.</span>');
+  termPrint('<span style="color:#94a3b8;">Type <span style="color:#4ade80; font-weight:bold;">help</span> to inspect data engineering tools. Tab autocompletes commands &amp; files.</span>');
   quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12');
 }
 
 function termAdjustFontSize(delta) {
-  currentFontSize = Math.max(10, Math.min(20, currentFontSize + delta));
-  document.getElementById('termBody').style.fontSize = currentFontSize + 'px';
-  document.getElementById('termInput').style.fontSize = currentFontSize + 'px';
+  currentFontSize = Math.max(10, Math.min(22, currentFontSize + delta));
+  const body = document.getElementById('termBody');
+  const inp = document.getElementById('termInput');
+  if (body) body.style.fontSize = currentFontSize + 'px';
+  if (inp) inp.style.fontSize = currentFontSize + 'px';
+}
+
+function toggleWorkbenchLayout() {
+  const layout = document.getElementById('workbenchLayout');
+  const btn = document.getElementById('termLayoutBtn');
+  if (!layout) return;
+  isSplitLayout = !isSplitLayout;
+  if (isSplitLayout) {
+    layout.classList.add('split-view');
+    if (btn) btn.innerText = '▤ Stacked View';
+  } else {
+    layout.classList.remove('split-view');
+    if (btn) btn.innerText = '◫ Split View';
+  }
+  setTimeout(renderViz, 60);
 }
 
 function toggleTermFullscreen() {
   const win = document.getElementById('termWindow');
   const btn = document.getElementById('termFullscreenBtn');
+  if (!win) return;
   if (win.classList.contains('noc-term-fullscreen')) {
     win.classList.remove('noc-term-fullscreen');
-    btn.innerText = '⛶ Expand';
+    if (btn) btn.innerText = '⛶ Expand';
   } else {
     win.classList.add('noc-term-fullscreen');
-    btn.innerText = '⛶ Minimize';
+    if (btn) btn.innerText = '⛶ Minimize';
   }
+  setTimeout(renderViz, 60);
 }
 
 function quickRun(cmdStr) {
   const inp = document.getElementById('termInput');
-  inp.value = cmdStr;
+  if (inp) inp.value = cmdStr;
   executeCommand(cmdStr);
-  inp.value = '';
+  if (inp) inp.value = '';
+}
+
+// ============================================================================
+// Path Normalizer & VFS Operations
+// ============================================================================
+function normalizePath(rawPath) {
+  if (!rawPath || rawPath === '~' || rawPath === '/workspace/~') return '/workspace';
+
+  let target = rawPath.trim();
+  if (target === '.') return currentPwd;
+  if (target.startsWith('~/')) target = '/workspace/' + target.slice(2);
+
+  // If not absolute, prepend currentPwd
+  if (!target.startsWith('/')) {
+    target = (currentPwd === '/' ? '' : currentPwd) + '/' + target;
+  }
+
+  // Resolve . and ..
+  const parts = target.split('/').filter(Boolean);
+  const stack = [];
+  for (const part of parts) {
+    if (part === '.') continue;
+    if (part === '..') {
+      if (stack.length > 0) stack.pop();
+    } else {
+      stack.push(part);
+    }
+  }
+  const result = '/' + stack.join('/');
+  return result === '' ? '/' : result;
+}
+
+function resolvePath(p) {
+  return normalizePath(p);
+}
+
+function getVfsNode(path) {
+  const norm = normalizePath(path);
+  return { node: VFS[norm] || null, path: norm };
 }
 
 // ============================================================================
@@ -7247,7 +7482,10 @@ function quickRun(cmdStr) {
 // ============================================================================
 function executeCommand(rawCmd) {
   const trimmed = rawCmd.trim();
-  if (!trimmed) return;
+  if (!trimmed) {
+    termPrint(`<span style="color:#64748b;">guest@dataset-lab:${currentPwd}$</span>`);
+    return;
+  }
 
   cmdHistory.push(trimmed);
   historyIndex = cmdHistory.length;
@@ -7274,17 +7512,49 @@ function executeCommand(rawCmd) {
       cmdCd(args[0]);
       break;
     case 'ls':
+    case 'dir':
       cmdLs(args);
       break;
     case 'cat':
     case 'more':
-      cmdCat(args[0]);
+    case 'less':
+      cmdCat(args);
+      break;
+    case 'head':
+      cmdHead(args);
+      break;
+    case 'tail':
+      cmdTail(args);
+      break;
+    case 'wc':
+      cmdWc(args);
+      break;
+    case 'grep':
+      cmdGrep(args);
       break;
     case 'tree':
       cmdTree(args[0]);
       break;
+    case 'touch':
+      cmdTouch(args[0]);
+      break;
+    case 'mkdir':
+      cmdMkdir(args[0]);
+      break;
+    case 'rm':
+      cmdRm(args);
+      break;
+    case 'echo':
+      cmdEcho(args);
+      break;
+    case 'history':
+      cmdHistoryList();
+      break;
     case 'data-sample':
       cmdDataSample(args);
+      break;
+    case 'data-clean':
+      cmdDataClean(args);
       break;
     case 'data-audit':
       cmdDataAudit(args);
@@ -7301,6 +7571,12 @@ function executeCommand(rawCmd) {
     case 'data-convert':
       cmdDataConvert(args);
       break;
+    case 'data-datasheet':
+      cmdDataDatasheet(args);
+      break;
+    case 'data-handoff':
+      cmdDataHandoff(args);
+      break;
     case 'dvc':
       cmdDvc(args);
       break;
@@ -7311,110 +7587,200 @@ function executeCommand(rawCmd) {
       termPrint(`<span style="color:#94a3b8;">${new Date().toUTCString()}</span>`);
       break;
     case 'whoami':
-      termPrint('<span style="color:#4ade80;">guest</span> (Dataset Research Fellow)');
+      termPrint('<span style="color:#4ade80;">guest</span> (Dataset Engineering Fellow • Spring 2026)');
       break;
     case 'env':
-      termPrint('<span style="color:#94a3b8;">SHELL=/bin/bash<br/>USER=guest<br/>DATASET_BACKEND=Polars-Arrow-v1.0<br/>VFS_ROOT=/workspace<br/>COLORTERM=truecolor</span>');
+      termPrint('<span style="color:#94a3b8;">SHELL=/bin/bash<br/>USER=guest<br/>DATASET_BACKEND=Polars-Arrow-v1.0<br/>VFS_ROOT=/workspace<br/>COLORTERM=truecolor<br/>TERM=xterm-256color</span>');
       break;
     default:
-      termPrint(`bash: command not found: <span style="color:#f87171;">${escapeHtml(cmd)}</span>. Type <span style="color:#38bdf8;">help</span> for reference.`, true);
+      termPrint(`bash: command not found: <span style="color:#f87171;">${escapeHtml(cmd)}</span>. Type <span style="color:#38bdf8;">help</span> for available commands.`, true);
   }
 }
 
 function escapeHtml(s) {
+  if (typeof s !== 'string') s = String(s);
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 // ============================================================================
-// Command Implementations
+// Core Help and Standard Unix Commands
 // ============================================================================
 function cmdHelp() {
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold; margin-bottom:4px;">🌟 Dataset Fundamentals Interactive Terminal (v1.0-WebASM)</div>
-<div style="color:#94a3b8; margin-bottom:8px;">Standard Unix commands &amp; Dataset Engineering toolchain:</div>
-<table style="width:100%; border-collapse:collapse; font-size:0.82rem; color:#cbd5e1;">
-  <tr><td style="color:#4ade80; width:170px;">data-sample</td><td>Sample distributions: <code>--dist &lt;gaussian|lognormal|poisson&gt; --n 1000</code></td></tr>
-  <tr><td style="color:#4ade80;">data-audit</td><td>Audit 5 quality dimensions: <code>--input /workspace/datasets/customers.csv</code></td></tr>
-  <tr><td style="color:#4ade80;">data-fairness</td><td>Evaluate demographic parity &amp; disparate impact: <code>--sensitive gender</code></td></tr>
-  <tr><td style="color:#4ade80;">data-iaa</td><td>Inter-annotator agreement: <code>--annotators &lt;file.json&gt;</code> (Fleiss' κ)</td></tr>
-  <tr><td style="color:#4ade80;">data-anonymize</td><td>k-Anonymity &amp; DP noise: <code>--k 5 --epsilon 0.8</code></td></tr>
-  <tr><td style="color:#4ade80;">data-convert</td><td>Format migration: <code>--from csv --to parquet &lt;input&gt;</code></td></tr>
-  <tr><td style="color:#4ade80;">dvc &lt;dag|status|diff&gt;</td><td>Data Version Control pipeline and lineage operations</td></tr>
-  <tr><td style="color:#4ade80;">grade-capstone</td><td>Run automated validation tests across all 13 curriculum tracks</td></tr>
-  <tr><td style="color:#38bdf8;">ls [-la] [dir]</td><td>List directory contents</td></tr>
-  <tr><td style="color:#38bdf8;">cd [dir]</td><td>Change directory (e.g. <code>cd datasets</code>, <code>cd ..</code>)</td></tr>
-  <tr><td style="color:#38bdf8;">cat &lt;file&gt;</td><td>Print file contents</td></tr>
-  <tr><td style="color:#38bdf8;">tree [dir]</td><td>Print visual directory tree</td></tr>
-  <tr><td style="color:#38bdf8;">clear</td><td>Clear terminal screen buffer</td></tr>
+<div style="color:#38bdf8; font-weight:bold; margin-bottom:6px;">🌟 Web Data Engineering Terminal &amp; Interactive Telemetry Workbench</div>
+<div style="color:#94a3b8; margin-bottom:8px;">Standard Unix utilities &amp; Curriculum CLI Data Toolchain:</div>
+<table style="width:100%; border-collapse:collapse; font-size:0.81rem; color:#cbd5e1; line-height:1.6;">
+  <tr><td style="color:#4ade80; width:180px; font-weight:bold;">data-sample</td><td>Sample distributions: <code>--dist &lt;gaussian|lognormal|poisson|uniform&gt; --n 1000</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-clean</td><td>Imputation &amp; Tukey IQR fences: <code>--input &lt;file&gt; --impute mean --outliers iqr</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-audit</td><td>5-Dimension quality &amp; PII audit: <code>--input &lt;file&gt; --pii</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-fairness</td><td>Evaluate disparate impact ratio &amp; ROC: <code>--sensitive gender</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-iaa</td><td>Inter-annotator agreement: <code>--annotators &lt;file.json&gt;</code> (Fleiss' κ)</td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-anonymize</td><td>k-Anonymity &amp; DP Laplace noise: <code>--k 5 --epsilon 0.8</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-convert</td><td>Physical columnar migration: <code>--from csv --to parquet &lt;file&gt;</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-datasheet</td><td>Generate Gebru et al. Datasheets for Datasets contract</td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">data-handoff</td><td>Bidirectional handoff with Data Studio Hub (21 Tools): <code>--import|--export|--status</code></td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">dvc &lt;dag|status|repro&gt;</td><td>Data Version Control pipeline graphs &amp; cryptographic content hashes</td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">grade-capstone</td><td>Execute automated grading across all 13 curriculum tracks</td></tr>
+  <tr><td style="color:#38bdf8;">ls [-l|-la|-a] [dir]</td><td>List directory contents with permissions &amp; byte sizes</td></tr>
+  <tr><td style="color:#38bdf8;">cd [dir]</td><td>Change directory (supports <code>cd datasets</code>, <code>cd ..</code>, <code>cd ~</code>)</td></tr>
+  <tr><td style="color:#38bdf8;">cat &lt;file&gt;...</td><td>Print complete file contents</td></tr>
+  <tr><td style="color:#38bdf8;">head [-n N] &lt;file&gt;</td><td>Display first N lines of dataset (default 10)</td></tr>
+  <tr><td style="color:#38bdf8;">tail [-n N] &lt;file&gt;</td><td>Display last N lines of dataset (default 10)</td></tr>
+  <tr><td style="color:#38bdf8;">grep [-i] &lt;pat&gt; &lt;file&gt;</td><td>Search matching lines in file</td></tr>
+  <tr><td style="color:#38bdf8;">wc [-l] &lt;file&gt;</td><td>Count lines, words, and characters</td></tr>
+  <tr><td style="color:#38bdf8;">tree [dir]</td><td>Visual ASCII directory tree representation</td></tr>
+  <tr><td style="color:#38bdf8;">clear / cls</td><td>Clear screen buffer (or press Ctrl+L)</td></tr>
 </table>
 `);
 }
 
-function resolvePath(p) {
-  if (!p || p === '.') return currentPwd;
-  if (p === '..') {
-    if (currentPwd === '/workspace') return '/workspace';
-    const parts = currentPwd.split('/').filter(Boolean);
-    parts.pop();
-    return '/' + parts.join('/');
-  }
-  if (p.startsWith('/')) return p;
-  return (currentPwd === '/' ? '' : currentPwd) + '/' + p;
-}
-
 function cmdCd(target) {
-  const next = resolvePath(target || '/workspace');
-  if (VFS[next] && VFS[next].type === 'dir') {
-    currentPwd = next;
-    document.getElementById('termPwdTitle').innerText = currentPwd;
-    document.getElementById('termPrompt').innerText = `guest@dataset-lab:${currentPwd}$ `;
+  const norm = normalizePath(target || '/workspace');
+  if (VFS[norm] && VFS[norm].type === 'dir') {
+    currentPwd = norm;
+    const title = document.getElementById('termPwdTitle');
+    if (title) title.innerText = currentPwd;
+    const prompt = document.getElementById('termPrompt');
+    if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
   } else {
-    termPrint(`cd: no such file or directory: ${target}`, true);
+    termPrint(`cd: no such file or directory: ${target || '/workspace'}`, true);
   }
 }
 
 function cmdLs(args) {
-  const dirNode = VFS[currentPwd];
-  if (!dirNode || dirNode.type !== 'dir') {
-    termPrint('ls: cannot access directory', true);
+  let targetDir = currentPwd;
+  let isLong = false;
+  let showAll = false;
+
+  for (const arg of args) {
+    if (arg === '-l') isLong = true;
+    else if (arg === '-la' || arg === '-al') { isLong = true; showAll = true; }
+    else if (arg === '-a') showAll = true;
+    else if (!arg.startsWith('-')) targetDir = normalizePath(arg);
+  }
+
+  const { node, path } = getVfsNode(targetDir);
+  if (!node) {
+    termPrint(`ls: cannot access '${targetDir}': No such file or directory`, true);
     return;
   }
-  const isLong = args.includes('-l') || args.includes('-la');
+  if (node.type === 'file') {
+    termPrint(`<div><span style="color:#f8fafc;">${targetDir.split('/').pop()}</span></div>`);
+    return;
+  }
+
+  const children = showAll ? ['.', '..', ...node.children] : node.children;
   if (isLong) {
-    let out = '<div style="color:#94a3b8; font-size:0.8rem;">total ' + dirNode.children.length + '</div>';
-    dirNode.children.forEach(c => {
-      const full = resolvePath(c);
-      const isD = VFS[full] && VFS[full].type === 'dir';
+    let out = `<div style="color:#94a3b8; font-size:0.8rem; margin-bottom:4px;">total ${children.length}</div>`;
+    children.forEach(c => {
+      let isD = false;
+      let size = 1024;
+      if (c === '.' || c === '..') {
+        isD = true;
+        size = 4096;
+      } else {
+        const full = path === '/' ? '/' + c : path + '/' + c;
+        isD = VFS[full] && VFS[full].type === 'dir';
+        size = isD ? 4096 : (VFS[full]?.content?.length || 512);
+      }
       const perms = isD ? 'drwxr-xr-x' : '-rw-r--r--';
-      const size = isD ? '4096' : (VFS[full]?.content?.length || 1024);
-      out += `<div><span style="color:#64748b;">${perms}  1 guest guest  ${size.toString().padStart(6)} Nov 09 09:30</span>  <span style="color:${isD ? '#38bdf8; font-weight:bold;' : '#f8fafc'};">${c}${isD ? '/' : ''}</span></div>`;
+      out += `<div><span style="color:#64748b;">${perms}  1 guest guest  ${size.toString().padStart(6)} Nov 09 09:30</span>  <span style="color:${isD ? '#38bdf8; font-weight:bold;' : '#f8fafc'};">${c}${isD && c !== '.' && c !== '..' ? '/' : ''}</span></div>`;
     });
     termPrint(out);
   } else {
-    const list = dirNode.children.map(c => {
-      const full = resolvePath(c);
-      const isD = VFS[full] && VFS[full].type === 'dir';
-      return `<span style="color:${isD ? '#38bdf8; font-weight:bold;' : '#f8fafc'}; margin-right:16px;">${c}${isD ? '/' : ''}</span>`;
+    const list = children.map(c => {
+      let isD = false;
+      if (c === '.' || c === '..') isD = true;
+      else {
+        const full = path === '/' ? '/' + c : path + '/' + c;
+        isD = VFS[full] && VFS[full].type === 'dir';
+      }
+      return `<span style="color:${isD ? '#38bdf8; font-weight:bold;' : '#f8fafc'}; margin-right:16px;">${c}${isD && c !== '.' && c !== '..' ? '/' : ''}</span>`;
     }).join('');
     termPrint(`<div>${list}</div>`);
   }
 }
 
-function cmdCat(file) {
-  if (!file) {
+function cmdCat(args) {
+  if (!args || args.length === 0) {
     termPrint('cat: missing file operand', true);
     return;
   }
-  const full = resolvePath(file);
-  if (VFS[full] && VFS[full].type === 'file') {
-    termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(VFS[full].content)}</pre>`);
+  for (const file of args) {
+    const { node, path } = getVfsNode(file);
+    if (!node) {
+      termPrint(`cat: ${file}: No such file or directory`, true);
+    } else if (node.type === 'dir') {
+      termPrint(`cat: ${file}: Is a directory`, true);
+    } else {
+      termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(node.content)}</pre>`);
+    }
+  }
+}
+
+function cmdHead(args) {
+  let count = 10;
+  let file = null;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '-n' && args[i+1]) { count = parseInt(args[++i]) || 10; }
+    else if (!args[i].startsWith('-')) file = args[i];
+  }
+  if (!file) { termPrint('head: missing file operand', true); return; }
+  const { node } = getVfsNode(file);
+  if (!node || node.type !== 'file') { termPrint(`head: cannot open '${file}': No such file`, true); return; }
+  const lines = node.content.split('\n').slice(0, count).join('\n');
+  termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(lines)}</pre>`);
+}
+
+function cmdTail(args) {
+  let count = 10;
+  let file = null;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '-n' && args[i+1]) { count = parseInt(args[++i]) || 10; }
+    else if (!args[i].startsWith('-')) file = args[i];
+  }
+  if (!file) { termPrint('tail: missing file operand', true); return; }
+  const { node } = getVfsNode(file);
+  if (!node || node.type !== 'file') { termPrint(`tail: cannot open '${file}': No such file`, true); return; }
+  const lines = node.content.split('\n').slice(-count).join('\n');
+  termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(lines)}</pre>`);
+}
+
+function cmdWc(args) {
+  let file = args.find(a => !a.startsWith('-'));
+  if (!file) { termPrint('wc: missing file operand', true); return; }
+  const { node } = getVfsNode(file);
+  if (!node || node.type !== 'file') { termPrint(`wc: '${file}': No such file`, true); return; }
+  const lines = node.content.split('\n').length;
+  const words = node.content.trim().split(/\s+/).filter(Boolean).length;
+  const bytes = new Blob([node.content]).size;
+  termPrint(`<span style="color:#cbd5e1; font-family:monospace;">${lines.toString().padStart(6)} ${words.toString().padStart(6)} ${bytes.toString().padStart(7)} ${file}</span>`);
+}
+
+function cmdGrep(args) {
+  let ignoreCase = args.includes('-i');
+  let nonFlags = args.filter(a => !a.startsWith('-'));
+  if (nonFlags.length < 2) { termPrint('grep: usage: grep [-i] <pattern> <file>', true); return; }
+  const pat = nonFlags[0];
+  const file = nonFlags[1];
+  const { node } = getVfsNode(file);
+  if (!node || node.type !== 'file') { termPrint(`grep: ${file}: No such file`, true); return; }
+  const lines = node.content.split('\n');
+  const regex = new RegExp(pat, ignoreCase ? 'i' : '');
+  const matches = lines.filter(l => regex.test(l));
+  if (matches.length === 0) {
+    termPrint(`<span style="color:#94a3b8;">No matching lines found for pattern: '${pat}'</span>`);
   } else {
-    termPrint(`cat: ${file}: No such file or directory`, true);
+    const formatted = matches.map(l => {
+      const highlighted = l.replace(regex, m => `<span style="color:#f43f5e; font-weight:bold;">${escapeHtml(m)}</span>`);
+      return `<div>${highlighted}</div>`;
+    }).join('');
+    termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1;">${formatted}</div>`);
   }
 }
 
 function cmdTree(dir) {
-  const target = resolvePath(dir || '/workspace');
+  const target = normalizePath(dir || '/workspace');
   let output = `<span style="color:#38bdf8; font-weight:bold;">${target}</span>\n`;
 
   function buildTree(path, prefix = '') {
@@ -7422,7 +7788,7 @@ function cmdTree(dir) {
     if (!node || node.type !== 'dir') return;
     node.children.forEach((c, idx) => {
       const isLast = idx === node.children.length - 1;
-      const full = path + '/' + c;
+      const full = path === '/' ? '/' + c : path + '/' + c;
       const isD = VFS[full] && VFS[full].type === 'dir';
       output += `${prefix}${isLast ? '└── ' : '├── '}<span style="color:${isD ? '#38bdf8; font-weight:bold;' : '#f8fafc'};">${c}${isD ? '/' : ''}</span>\n`;
       if (isD) {
@@ -7434,31 +7800,117 @@ function cmdTree(dir) {
   termPrint(`<pre style="margin:4px 0; font-family:monospace; font-size:0.8rem; line-height:1.4;">${output}</pre>`);
 }
 
+function cmdTouch(path) {
+  if (!path) { termPrint('touch: missing file operand', true); return; }
+  const norm = normalizePath(path);
+  const parent = norm.substring(0, norm.lastIndexOf('/')) || '/';
+  const name = norm.split('/').pop();
+  if (VFS[norm]) {
+    termPrint(`touch: updated timestamp on '${norm}'`);
+    return;
+  }
+  if (!VFS[parent] || VFS[parent].type !== 'dir') {
+    termPrint(`touch: cannot touch '${norm}': No such parent directory`, true);
+    return;
+  }
+  VFS[norm] = { type: 'file', content: '' };
+  if (!VFS[parent].children.includes(name)) VFS[parent].children.push(name);
+  termPrint(`<span style="color:#4ade80;">Created empty file:</span> <span style="color:#38bdf8;">${norm}</span>`);
+}
+
+function cmdMkdir(dir) {
+  if (!dir) { termPrint('mkdir: missing operand', true); return; }
+  const norm = normalizePath(dir);
+  if (VFS[norm]) { termPrint(`mkdir: cannot create directory '${norm}': File exists`, true); return; }
+  const parent = norm.substring(0, norm.lastIndexOf('/')) || '/';
+  const name = norm.split('/').pop();
+  if (!VFS[parent] || VFS[parent].type !== 'dir') {
+    termPrint(`mkdir: cannot create directory '${norm}': No such parent directory`, true);
+    return;
+  }
+  VFS[norm] = { type: 'dir', children: [] };
+  if (!VFS[parent].children.includes(name)) VFS[parent].children.push(name);
+  termPrint(`<span style="color:#4ade80;">Created directory:</span> <span style="color:#38bdf8;">${norm}</span>`);
+}
+
+function cmdRm(args) {
+  let recursive = args.includes('-r') || args.includes('-rf');
+  let target = args.find(a => !a.startsWith('-'));
+  if (!target) { termPrint('rm: missing operand', true); return; }
+  const norm = normalizePath(target);
+  if (!VFS[norm]) { termPrint(`rm: cannot remove '${target}': No such file or directory`, true); return; }
+  if (VFS[norm].type === 'dir' && !recursive) {
+    termPrint(`rm: cannot remove '${target}': Is a directory (use -r)`, true);
+    return;
+  }
+  const parent = norm.substring(0, norm.lastIndexOf('/')) || '/';
+  const name = norm.split('/').pop();
+  delete VFS[norm];
+  if (VFS[parent] && VFS[parent].children) {
+    VFS[parent].children = VFS[parent].children.filter(c => c !== name);
+  }
+  termPrint(`<span style="color:#f59e0b;">Removed:</span> ${norm}`);
+}
+
+function cmdEcho(args) {
+  const line = args.join(' ');
+  const redirIdx = line.indexOf('>');
+  if (redirIdx !== -1) {
+    const text = line.substring(0, redirIdx).trim().replace(/^["']|["']$/g, '');
+    const file = line.substring(redirIdx + 1).trim();
+    if (!file) { termPrint('bash: syntax error near unexpected token \'newline\'', true); return; }
+    const norm = normalizePath(file);
+    const parent = norm.substring(0, norm.lastIndexOf('/')) || '/';
+    const name = norm.split('/').pop();
+    if (!VFS[parent] || VFS[parent].type !== 'dir') {
+      termPrint(`bash: ${file}: No such parent directory`, true);
+      return;
+    }
+    VFS[norm] = { type: 'file', content: text + '\n' };
+    if (!VFS[parent].children.includes(name)) VFS[parent].children.push(name);
+    termPrint(`<span style="color:#4ade80;">Redirected output to:</span> ${norm}`);
+  } else {
+    termPrint(`<div>${escapeHtml(line.replace(/^["']|["']$/g, ''))}</div>`);
+  }
+}
+
+function cmdHistoryList() {
+  const lines = cmdHistory.map((cmd, i) => `  <span style="color:#64748b;">${(i+1).toString().padStart(4)}</span>  ${escapeHtml(cmd)}`).join('<br/>');
+  termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1;">${lines}</div>`);
+}
+
 // ============================================================================
-// Data Engineering Tool Commands
+// Specialized Data Engineering Tool Implementations
 // ============================================================================
 function cmdDataSample(args) {
   let dist = 'gaussian';
   let n = 1000;
   let mean = 75.0;
   let std = 12.0;
+  let skewParam = 1.8;
 
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--dist' && args[i+1]) dist = args[++i];
-    if (args[i] === '--n' && args[i+1]) n = parseInt(args[++i]);
-    if (args[i] === '--mean' && args[i+1]) mean = parseFloat(args[++i]);
-    if (args[i] === '--std' && args[i+1]) std = parseFloat(args[++i]);
+    if (args[i] === '--dist' && args[i+1]) dist = args[++i].toLowerCase();
+    if (args[i] === '--n' && args[i+1]) n = Math.max(50, Math.min(10000, parseInt(args[++i]) || 1000));
+    if (args[i] === '--mean' && args[i+1]) mean = parseFloat(args[++i]) || 75.0;
+    if (args[i] === '--std' && args[i+1]) std = parseFloat(args[++i]) || 12.0;
+    if (args[i] === '--skew' && args[i+1]) skewParam = parseFloat(args[++i]) || 1.8;
   }
 
   currentSamples = [];
   for (let i = 0; i < n; i++) {
-    const u1 = Math.random();
-    const u2 = Math.random();
-    const z = Math.sqrt(-2.0 * Math.log(u1 || 0.001)) * Math.cos(2.0 * Math.PI * u2);
+    const u1 = Math.random() || 0.0001;
+    const u2 = Math.random() || 0.0001;
+    const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+
     if (dist === 'lognormal') {
-      currentSamples.push(Math.exp(3.8 + 0.55 * z));
+      currentSamples.push(Math.exp(3.8 + (skewParam * 0.28) * z));
     } else if (dist === 'poisson') {
       currentSamples.push(Math.max(0, Math.round(mean + Math.sqrt(mean) * z)));
+    } else if (dist === 'uniform') {
+      currentSamples.push((mean - std * 1.732) + Math.random() * (std * 3.464));
+    } else if (dist === 'exponential') {
+      currentSamples.push(-Math.log(u1) * (mean / 1.5));
     } else { // gaussian
       currentSamples.push(mean + std * z);
     }
@@ -7472,9 +7924,20 @@ function cmdDataSample(args) {
   const q3 = currentSamples[Math.floor(n*0.75)];
   const skew = (currentSamples.reduce((a,b)=>a+((b-m)/s)**3,0)/n).toFixed(2);
 
+  // Generate in VFS
+  let csvContent = 'id,value,distribution\n';
+  currentSamples.slice(0, 10).forEach((v, idx) => {
+    csvContent += `${idx+1},${v.toFixed(3)},${dist}\n`;
+  });
+  csvContent += `... [${n-10} more records]\n`;
+  VFS['/workspace/datasets/sample.csv'] = { type: 'file', content: csvContent };
+  if (!VFS['/workspace/datasets'].children.includes('sample.csv')) {
+    VFS['/workspace/datasets'].children.push('sample.csv');
+  }
+
   termPrint(`
 <div style="color:#4ade80; font-weight:bold;">🚀 [data-sample] Generated ${n} records via ${dist.toUpperCase()} distribution:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
   • <b>Moments:</b> Mean = <span style="color:#38bdf8;">${m.toFixed(2)}</span>, StdDev = <span style="color:#38bdf8;">${s.toFixed(2)}</span>, Skewness = <span style="color:#f59e0b;">${skew}</span><br/>
   • <b>Quantiles:</b> Q1 = ${q1.toFixed(2)}, Median (Q2) = <span style="color:#4ade80;">${q2.toFixed(2)}</span>, Q3 = ${q3.toFixed(2)}, IQR = ${(q3-q1).toFixed(2)}<br/>
   • <b>Output File:</b> <span style="color:#38bdf8;">/workspace/datasets/sample.csv</span> (Vectorized Arrow In-Memory)<br/>
@@ -7482,75 +7945,136 @@ function cmdDataSample(args) {
 </div>
 `);
 
-  document.getElementById('hudDataset').innerText = '/workspace/datasets/sample.csv';
-  document.getElementById('hudRecords').innerText = n.toLocaleString();
-  document.getElementById('hudMemory').innerText = ((n * 16) / 1024).toFixed(1) + ' KB (Arrow)';
-
+  updateHud('/workspace/datasets/sample.csv', n, ((n * 16) / 1024).toFixed(1) + ' KB (Arrow)', '96.2 / 100', 'DI = 0.94 (Compliant)');
   switchVizView('distribution');
+}
+
+function cmdDataClean(args) {
+  let file = '/workspace/datasets/customers.csv';
+  let impute = 'mean';
+  let outliers = 'iqr';
+  let dropDupes = true;
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--input' && args[i+1]) file = args[++i];
+    if (args[i] === '--impute' && args[i+1]) impute = args[++i];
+    if (args[i] === '--outliers' && args[i+1]) outliers = args[++i];
+    if (args[i] === '--drop-duplicates') dropDupes = true;
+  }
+
+  const { node } = getVfsNode(file);
+  const rawRows = node ? node.content.split('\n').filter(Boolean).length - 1 : 1000;
+  const rows = rawRows >= 50 ? rawRows : 1000;
+
+  // Imputation & Outlier Calculations
+  const nullCount = 6;
+  const outlierCount = 4;
+  const duplicateCount = 3;
+  const cleanRows = rows - outlierCount - duplicateCount;
+
+  // Update Data Quality Scores
+  currentDqi = { acc: 98, comp: 99, cons: 96, time: 98, rel: 97 };
+  const composite = ((currentDqi.acc*0.3) + (currentDqi.comp*0.25) + (currentDqi.cons*0.25) + (currentDqi.time*0.1) + (currentDqi.rel*0.1)).toFixed(1);
+
+  termPrint(`
+<div style="color:#34d399; font-weight:bold;">🧹 [data-clean] Executing Automated Sanitization Pipeline:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Target Dataset: <span style="color:#38bdf8;">${file}</span> (${rows} raw records)<br/>
+  • <b>1. Missingness Imputation:</b> ${nullCount} null cells resolved via strategy: <span style="color:#fbbf24;">${impute.toUpperCase()}</span><br/>
+  • <b>2. Outlier Fencing:</b> ${outlierCount} extreme anomalies capped via <span style="color:#fbbf24;">Tukey IQR [Q1-1.5*IQR, Q3+1.5*IQR]</span><br/>
+  • <b>3. Deduplication:</b> ${duplicateCount} duplicate primary keys removed<br/>
+  • <b>4. Contract Validation:</b> Passed against <code>/workspace/schemas/customer_contract.json</code><br/>
+  -------------------------------------------------------------<br/>
+  • Sanitized Artifact: <span style="color:#4ade80;">/workspace/datasets/cleaned.csv</span> (${cleanRows} verified rows)<br/>
+  • Parquet Output: <span style="color:#38bdf8;">/workspace/data/curated_features.parquet</span> (Snappy compressed)<br/>
+  • <span style="color:#4ade80; font-weight:bold;">Composite Quality Index (DQI): ${composite} / 100.0 (GRADE: A+)</span>
+</div>
+`);
+
+  updateHud('/workspace/datasets/cleaned.csv', cleanRows, '142.0 KB (Curated)', `${composite} / 100`, 'DI = 0.92 (Compliant)');
+  switchVizView('radar');
 }
 
 function cmdDataAudit(args) {
   let file = '/workspace/datasets/customers.csv';
+  let checkPii = false;
+
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--input' && args[i+1]) file = args[++i];
+    if (args[i] === '--pii') checkPii = true;
   }
 
   currentDqi = { acc: 94, comp: 89, cons: 86, time: 96, rel: 92 };
   const composite = ((currentDqi.acc*0.3) + (currentDqi.comp*0.25) + (currentDqi.cons*0.25) + (currentDqi.time*0.1) + (currentDqi.rel*0.1)).toFixed(1);
 
+  let piiSection = checkPii ? `
+  • <b>PII Scanner:</b> 2 columns flagged (SSN pattern detected in patients.csv, IP in logs)<br/>
+  • <b>GDPR Art. 9 Risk:</b> Medium (Direct identifiers require SHA-256 pseudonymization)<br/>` : '';
+
   termPrint(`
 <div style="color:#38bdf8; font-weight:bold;">🔍 [data-audit] 5-Dimensional Quality Assessment Report:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
   • Target Asset: <span style="color:#38bdf8;">${file}</span><br/>
   • 1. <b>Accuracy:</b> <span style="color:#4ade80;">94.0%</span> (0 implausible values detected)<br/>
   • 2. <b>Completeness:</b> <span style="color:#f59e0b;">89.0%</span> (11% nulls in secondary contact fields)<br/>
   • 3. <b>Consistency:</b> <span style="color:#f59e0b;">86.0%</span> (Mixed ISO-8601 timestamps normalized)<br/>
   • 4. <b>Timeliness:</b> <span style="color:#4ade80;">96.0%</span> (Max record age: 14 days, below 90d SLA)<br/>
   • 5. <b>Relevance:</b> <span style="color:#4ade80;">92.0%</span> (High mutual information with target churn)<br/>
+  ${piiSection}
   -------------------------------------------------------------<br/>
   <span style="font-weight:bold; color:#4ade80;">🏆 Composite Data Quality Index (DQI): ${composite} / 100.0 (GRADE: A-)</span><br/>
   • Status: <span style="background:rgba(16,185,129,0.2); color:#4ade80; padding:2px 6px; border-radius:4px; font-weight:bold;">PRODUCTION APPROVED</span>
 </div>
 `);
 
-  document.getElementById('hudDqi').innerText = `${composite} / 100`;
+  updateHud(file, 1000, '184.2 KB (Arrow)', `${composite} / 100`, 'DI = 0.88 (Compliant)');
   switchVizView('radar');
 }
 
 function cmdDataFairness(args) {
   let sens = 'gender';
+  let file = '/workspace/datasets/credit_risk.csv';
+
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--sensitive' && args[i+1]) sens = args[++i];
+    if (args[i] === '--input' && args[i+1]) file = args[++i];
   }
+
+  currentFairness = { di: 0.884, eopp: 0.92, statParityDiff: 0.058 };
 
   termPrint(`
 <div style="color:#a855f7; font-weight:bold;">⚖️ [data-fairness] Algorithmic Fairness &amp; Bias Evaluation:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
-  • Sensitive Attribute: <span style="color:#38bdf8;">${sens}</span><br/>
-  • Unprivileged Group: Female | Privileged Group: Male<br/>
-  • <b>Disparate Impact Ratio (DIR):</b> <span style="color:#4ade80; font-weight:bold;">0.884</span> (Passes EEOC 80% / 4/5ths Rule: DIR &ge; 0.80)<br/>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Asset Evaluated: <span style="color:#38bdf8;">${file}</span><br/>
+  • Sensitive Attribute: <span style="color:#38bdf8;">${sens}</span> (Unprivileged: Female | Privileged: Male)<br/>
+  • <b>Disparate Impact Ratio (DIR):</b> <span style="color:#4ade80; font-weight:bold;">0.884</span> (EEOC 80% Rule: Compliant: DIR &ge; 0.80)<br/>
   • <b>Statistical Parity Difference:</b> <span style="color:#38bdf8;">-0.058</span> (Within acceptable [-0.10, +0.10] tolerance)<br/>
-  • <b>Equal Opportunity Difference:</b> <span style="color:#4ade80;">-0.024</span> (True positive rate difference)<br/>
+  • <b>Equal Opportunity Difference:</b> <span style="color:#4ade80;">-0.024</span> (TPR gap across protected classes)<br/>
   • <b>Average Odds Difference:</b> <span style="color:#4ade80;">-0.019</span><br/>
   -------------------------------------------------------------<br/>
-  <span style="color:#4ade80; font-weight:bold;">✅ Fairness Compliance Verdict: NO SEVERE SYSTEMIC BIAS DETECTED</span>
+  <span style="color:#4ade80; font-weight:bold;">✅ Fairness Compliance Verdict: NO UNLAWFUL ADVERSE IMPACT DETECTED</span>
 </div>
 `);
 
-  document.getElementById('hudFairness').innerText = 'DI = 0.88 (Compliant)';
+  updateHud(file, 800, '94.0 KB (Arrow)', '91.2 / 100', 'DI = 0.88 (Compliant)');
   switchVizView('fairness');
 }
 
 function cmdDataIaa(args) {
+  let file = '/workspace/datasets/iaa_matrix.json';
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--annotators' && args[i+1]) file = args[++i];
+  }
+
   termPrint(`
 <div style="color:#38bdf8; font-weight:bold;">🤝 [data-iaa] Inter-Annotator Agreement (IAA) Reliability Analysis:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
-  • Input Annotations: <span style="color:#38bdf8;">/workspace/datasets/iaa_matrix.json</span> (50 items, 3 annotators)<br/>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Input Annotations: <span style="color:#38bdf8;">${file}</span> (50 items, 3 independent raters)<br/>
   • <b>Fleiss' Kappa (κ):</b> <span style="color:#4ade80; font-weight:bold;">0.814</span> (Landis &amp; Koch: "Almost Perfect Agreement")<br/>
-  • <b>Cohen's Pairwise Mean (κ_avg):</b> <span style="color:#4ade80;">0.826</span><br/>
+  • <b>Cohen's Pairwise Mean (κ_avg):</b> <span style="color:#4ade80;">0.826</span> (Pairwise inter-rater correlation)<br/>
   • <b>Krippendorff's Alpha (α):</b> <span style="color:#4ade80; font-weight:bold;">0.809</span> (Reliable for high-stakes clinical decisions)<br/>
-  • <b>Disputed Items:</b> Item #14 (Ambiguous sarcasm), Item #38 (Mixed polarity)<br/>
-  • Recommendation: Merge majority vote; route 2 disputed items to expert tie-breaker.
+  • <b>Disputed Items:</b> Item #14 (Ambiguous tone), Item #38 (Mixed sentiment polarity)<br/>
+  • Consensus Protocol: Majority voting applied; disputed items flagged for senior adjudicator.
 </div>
 `);
 }
@@ -7558,23 +8082,29 @@ function cmdDataIaa(args) {
 function cmdDataAnonymize(args) {
   let k = 5;
   let eps = 0.8;
+  let file = '/workspace/datasets/patients.csv';
+
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--k' && args[i+1]) k = parseInt(args[++i]);
-    if (args[i] === '--epsilon' && args[i+1]) eps = parseFloat(args[++i]);
+    if (args[i] === '--k' && args[i+1]) k = parseInt(args[++i]) || 5;
+    if (args[i] === '--epsilon' && args[i+1]) eps = parseFloat(args[++i]) || 0.8;
+    if (args[i] === '--input' && args[i+1]) file = args[++i];
   }
 
   termPrint(`
 <div style="color:#f59e0b; font-weight:bold;">🛡️ [data-anonymize] Privacy Engineering &amp; De-Identification Protocol:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Source Table: <span style="color:#38bdf8;">${file}</span><br/>
   • <b>Direct Identifiers:</b> Redacted via SHA-256 salted hash (SSN, Full Name)<br/>
-  • <b>k-Anonymity (k=${k}):</b> Quasi-identifiers (Age, Zip Code) generalized into equivalence classes<br/>
-    &nbsp;&nbsp;- Age binned to 10-year intervals (e.g. [50-59], [20-29])<br/>
+  • <b>k-Anonymity (k=${k}):</b> Quasi-identifiers generalized into equivalence classes<br/>
+    &nbsp;&nbsp;- Age binned into 10-year brackets (e.g. [50-59], [20-29])<br/>
     &nbsp;&nbsp;- Zip Code truncated to 3-digit prefix (e.g. 021**, 941**)<br/>
   • <b>Differential Privacy (ε=${eps}):</b> Calibrated Laplace noise injected into continuous aggregations<br/>
   • Output: <span style="color:#38bdf8;">/workspace/datasets/anonymized_patients.parquet</span><br/>
-  • Compliance Verification: <span style="color:#4ade80; font-weight:bold;">HIPAA Safe Harbor &amp; GDPR Art. 25 Compatible</span>
+  • Compliance Verification: <span style="color:#4ade80; font-weight:bold;">HIPAA Safe Harbor (§164.514) &amp; GDPR Art. 25 Compatible</span>
 </div>
 `);
+
+  updateHud('/workspace/datasets/anonymized_patients.parquet', 500, '68.0 KB (Parquet)', '95.0 / 100', 'k=5 Anonymized');
 }
 
 function cmdDataConvert(args) {
@@ -7583,40 +8113,131 @@ function cmdDataConvert(args) {
   let file = '/workspace/datasets/customers.csv';
 
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--from' && args[i+1]) fromFmt = args[++i];
-    if (args[i] === '--to' && args[i+1]) toFmt = args[++i];
+    if (args[i] === '--from' && args[i+1]) fromFmt = args[++i].toLowerCase();
+    if (args[i] === '--to' && args[i+1]) toFmt = args[++i].toLowerCase();
     if (!args[i].startsWith('--')) file = args[i];
   }
 
   termPrint(`
 <div style="color:#38bdf8; font-weight:bold;">📦 [data-convert] Columnar Physical Format Serialization Engine:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
-  • Ingested: <span style="color:#f59e0b;">${file}</span> (${fromFmt.toUpperCase()})<br/>
-  • Encoding: Dictionary Encoding on categoricals + Snappy Block Compression<br/>
-  • Generated: <span style="color:#4ade80;">/workspace/data/converted_table.${toFmt}</span><br/>
-  • <b>Storage Reduction:</b> 1,024 KB &rarr; <span style="color:#4ade80; font-weight:bold;">214 KB (4.78x compression)</span><br/>
-  • <b>Analytical Query Acceleration:</b> Estimated <span style="color:#38bdf8; font-weight:bold;">6.2x speedup</span> via Projection Pushdown.
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Ingested Table: <span style="color:#f59e0b;">${file}</span> (${fromFmt.toUpperCase()})<br/>
+  • Columnar Encoding: Dictionary Encoding on strings + Snappy Block Compression<br/>
+  • Generated Target: <span style="color:#4ade80;">/workspace/data/converted_table.${toFmt}</span><br/>
+  • <b>Storage Reduction:</b> 1,024 KB &rarr; <span style="color:#4ade80; font-weight:bold;">214 KB (4.78x compression ratio)</span><br/>
+  • <b>Query Acceleration:</b> Estimated <span style="color:#38bdf8; font-weight:bold;">6.2x analytical speedup</span> via Projection Pushdown.
+</div>
+`);
+
+  updateHud(`/workspace/data/converted_table.${toFmt}`, 1000, `214.0 KB (${toFmt.toUpperCase()})`, '94.0 / 100', 'DI = 0.88');
+}
+
+function cmdDataDatasheet(args) {
+  let file = '/workspace/datasets/customers.csv';
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--input' && args[i+1]) file = args[++i];
+  }
+
+  termPrint(`
+<div style="color:#38bdf8; font-weight:bold;">📋 [data-datasheet] Generated Gebru et al. Dataset Contract:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Target Dataset: <span style="color:#38bdf8;">${file}</span><br/>
+  • <b>1. Motivation:</b> Customer churn prediction with ethical algorithmic fairness guardrails<br/>
+  • <b>2. Composition:</b> 1,000 synthetic records, 5 core features, zero real-world personal data<br/>
+  • <b>3. Collection Process:</b> Synthetically sampled with calibrated covariance matrices<br/>
+  • <b>4. Preprocessing:</b> Imputed column means, Tukey IQR outlier bounds applied<br/>
+  • <b>5. Recommended Uses:</b> Training benchmark models and demographic parity audits<br/>
+  • Contract Artifact Saved: <span style="color:#4ade80;">/workspace/schemas/datasheet.md</span>
 </div>
 `);
 }
 
-function cmdDvc(args) {
-  termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">🌲 [DVC] Data Version Control &amp; DAG Execution Graph:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1;">
-  Stage: <b>ingest</b> &rarr; [raw_staged.parquet] (hash: <span style="color:#64748b;">3b7f1a...</span>)<br/>
-  &nbsp;&nbsp;└── Stage: <b>clean</b> &rarr; [curated_features.parquet] (hash: <span style="color:#64748b;">8d29c0...</span>)<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Stage: <b>train</b> &rarr; [churn_rf.joblib] (hash: <span style="color:#64748b;">e491fa...</span>)<br/>
-  -------------------------------------------------------------<br/>
-  Lineage Integrity: <span style="color:#4ade80; font-weight:bold;">100% REPRODUCIBLE (Git commit e722d2b linked)</span><br/>
-  Visualizer: Lineage graph rendered in active workbench tab.
+function cmdDataHandoff(args) {
+  const isImport = args.includes('--import');
+  const isExport = args.includes('--export');
+
+  let handoffData = null;
+  try {
+    const raw = sessionStorage.getItem("dsetools:handoff:v1");
+    if (raw) handoffData = JSON.parse(raw);
+  } catch (e) {}
+
+  if (isImport) {
+    if (handoffData && handoffData.table) {
+      termPrint(`<span style="color:#4ade80;">🔄 [data-handoff] Successfully imported active dataset from Data Studio Hub:</span>`);
+      termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1;">• Source: ${handoffData.source || 'interactive-tool'}<br/>• Staged to: <span style="color:#38bdf8;">/workspace/datasets/handoff.csv</span></div>`);
+      VFS['/workspace/datasets/handoff.csv'] = { type: 'file', content: JSON.stringify(handoffData.table) };
+    } else {
+      termPrint('<span style="color:#fbbf24;">⚠️ [data-handoff] No active dataset found in sessionStorage. Launch any tool from Data Studio Hub to handoff data.</span>');
+    }
+  } else if (isExport) {
+    try {
+      const payload = {
+        format: "tool-handoff",
+        version: 1,
+        source: "terminal",
+        table: { dataset: "/workspace/datasets/customers.csv", records: 1000 }
+      };
+      sessionStorage.setItem("dsetools:handoff:v1", JSON.stringify(payload));
+      termPrint('<span style="color:#4ade80;">✅ [data-handoff] Exported active terminal session to sessionStorage! Any Data Studio tool can now consume this dataset.</span>');
+    } catch (e) {
+      termPrint('data-handoff: export failed', true);
+    }
+  } else {
+    termPrint(`
+<div style="color:#38bdf8; font-weight:bold;">🔄 [data-handoff] Inter-Tool Ecosystem Synchronization Status:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • <b>SessionStorage Pipeline:</b> ${handoffData ? '<span style="color:#4ade80;">CONNECTED (Data Ready)</span>' : '<span style="color:#94a3b8;">IDLE</span>'}<br/>
+  • <b>Active Source:</b> ${handoffData?.source || 'None (Open a Data Studio Hub tool to bridge)'}<br/>
+  • Commands: <code>data-handoff --import</code> to pull table, <code>data-handoff --export</code> to broadcast session.
 </div>
 `);
+  }
+}
+
+function cmdDvc(args) {
+  const sub = args[0] || 'dag';
+
+  if (sub === 'status') {
+    termPrint(`
+<div style="color:#38bdf8; font-weight:bold;">🌲 [DVC] Pipeline Integrity &amp; Checksum Audit:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  • Configuration: <code>/workspace/pipelines/dvc.yaml</code><br/>
+  • Stage <b>ingest</b>: <span style="color:#4ade80;">UP TO DATE</span> (hash: 3b7f1a8c9e20)<br/>
+  • Stage <b>clean</b>:  <span style="color:#4ade80;">UP TO DATE</span> (hash: 8d29c011f421)<br/>
+  • Stage <b>train</b>:  <span style="color:#4ade80;">UP TO DATE</span> (hash: e491fa33b005)<br/>
+  • Data Lineage: Git commit <code>e722d2b</code> linked. Zero data drift detected.
+</div>
+`);
+  } else if (sub === 'repro') {
+    termPrint(`
+<div style="color:#fbbf24; font-weight:bold;">🌲 [DVC] Reproducing pipeline execution DAG:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  Running stage 'ingest': python scripts/ingest.py &rarr; [raw_staged.parquet]<br/>
+  Running stage 'clean':  python scripts/clean.py &rarr; [curated_features.parquet]<br/>
+  Running stage 'train':  python scripts/train.py &rarr; [models.joblib]<br/>
+  <span style="color:#4ade80; font-weight:bold;">Pipeline reproduced cleanly in 0.42s (Cached).</span>
+</div>
+`);
+  } else {
+    // dag
+    termPrint(`
+<div style="color:#38bdf8; font-weight:bold;">🌲 [DVC] Data Version Control &amp; DAG Execution Graph:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+  Stage: <b>ingest</b> &rarr; [raw_staged.parquet] (hash: <span style="color:#64748b;">3b7f1a...</span>)<br/>
+  &nbsp;&nbsp;└── Stage: <b>clean</b> &rarr; [curated_features.parquet] (hash: <span style="color:#64748b;">8d29c0...</span>)<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Stage: <b>train</b> &rarr; [models.joblib] (hash: <span style="color:#64748b;">e491fa...</span>)<br/>
+  -------------------------------------------------------------<br/>
+  Lineage Integrity: <span style="color:#4ade80; font-weight:bold;">100% REPRODUCIBLE (Git commit e722d2b linked)</span><br/>
+  Visualizer: Interactive DAG graph rendered in workbench tab.
+</div>
+`);
+  }
   switchVizView('dvc');
 }
 
 function cmdGradeCapstone() {
-  termPrint('<div style="color:#f59e0b; font-weight:bold;">🎓 Initiating Automated Capstone Examination &amp; Verification Protocol...</div>');
+  termPrint('<div style="color:#fbbf24; font-weight:bold;">🎓 Initiating Automated Capstone Examination &amp; Verification Protocol...</div>');
 
   const tracks = [
     "Track 1: Introduction to Datasets & Architecture",
@@ -7636,7 +8257,7 @@ function cmdGradeCapstone() {
 
   let delay = 0;
   tracks.forEach((t, idx) => {
-    delay += 80;
+    delay += 75;
     setTimeout(() => {
       termPrint(`<span style="color:#64748b;">[PASS]</span> <span style="color:#cbd5e1;">${t}</span> ... <span style="color:#4ade80; font-weight:bold;">100% VERIFIED</span>`);
       if (idx === tracks.length - 1) {
@@ -7647,7 +8268,7 @@ function cmdGradeCapstone() {
   <div style="color:#cbd5e1; font-size:0.82rem; margin-top:4px;">
     Candidate has proven rigorous practical and theoretical competence across all 13 core domains.<br/>
     <b>Verification Token:</b> <span style="color:#38bdf8; font-family:monospace;">DATA-ENG-SPRING-2026-TOKEN-9F82A4</span><br/>
-    <b>Status:</b> Ready for Monograph Hall of Fame induction!
+    <b>Status:</b> Eligible for Hall of Fame induction!
   </div>
 </div>
 `);
@@ -7658,8 +8279,54 @@ function cmdGradeCapstone() {
 }
 
 // ============================================================================
-// Interactive Visualizer Canvas (Dual Engine)
+// Live Telemetry HUD Updates
 // ============================================================================
+function updateHud(dataset, records, memory, dqi, fairness) {
+  if (dataset) {
+    const el = document.getElementById('hudDataset');
+    if (el) el.innerText = dataset;
+  }
+  if (records !== undefined) {
+    const el = document.getElementById('hudRecords');
+    if (el) el.innerText = Number(records).toLocaleString();
+  }
+  if (memory) {
+    const el = document.getElementById('hudMemory');
+    if (el) el.innerText = memory;
+  }
+  if (dqi) {
+    const el = document.getElementById('hudDqi');
+    if (el) el.innerText = dqi;
+  }
+  if (fairness) {
+    const el = document.getElementById('hudFairness');
+    if (el) el.innerText = fairness;
+  }
+}
+
+// ============================================================================
+// Interactive Visualizer Canvas (High-DPI Retina Ready)
+// ============================================================================
+function getCanvasCtx(canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = rect.width || 820;
+  const displayHeight = rect.height || 380;
+
+  const targetW = Math.round(displayWidth * dpr);
+  const targetH = Math.round(displayHeight * dpr);
+
+  if (canvas.width !== targetW || canvas.height !== targetH) {
+    canvas.width = targetW;
+    canvas.height = targetH;
+  }
+
+  const ctx = canvas.getContext('2d');
+  ctx.resetTransform?.();
+  ctx.scale(dpr, dpr);
+  return { ctx, width: displayWidth, height: displayHeight };
+}
+
 function switchVizView(view) {
   activeVizView = view;
   const tabs = ['tabDistribution', 'tabRadar', 'tabFairness', 'tabDvc'];
@@ -7678,32 +8345,35 @@ function switchVizView(view) {
   const activeBtn = document.getElementById(viewMap[view]);
   if (activeBtn) activeBtn.classList.add('active');
 
+  const label = document.getElementById('vizActiveLabel');
+  if (label) label.innerText = view.toUpperCase();
+
   renderViz();
 }
 
 function renderViz() {
   const canvas = document.getElementById('nocVizCanvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const { ctx, width, height } = getCanvasCtx(canvas);
+  ctx.clearRect(0, 0, width, height);
 
   if (activeVizView === 'distribution') {
-    renderDistributionView(ctx, canvas);
+    renderDistributionView(ctx, width, height);
   } else if (activeVizView === 'radar') {
-    renderRadarView(ctx, canvas);
+    renderRadarView(ctx, width, height);
   } else if (activeVizView === 'fairness') {
-    renderFairnessView(ctx, canvas);
+    renderFairnessView(ctx, width, height);
   } else if (activeVizView === 'dvc') {
-    renderDvcView(ctx, canvas);
+    renderDvcView(ctx, width, height);
   }
 }
 
-function renderDistributionView(ctx, canvas) {
+function renderDistributionView(ctx, width, height) {
   if (currentSamples.length === 0) {
-    // Generate default sample
     for (let i = 0; i < 600; i++) {
-      const u1 = Math.random(), u2 = Math.random();
-      const z = Math.sqrt(-2.0 * Math.log(u1||0.001)) * Math.cos(2.0 * Math.PI * u2);
+      const u1 = Math.random() || 0.001;
+      const u2 = Math.random() || 0.001;
+      const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
       currentSamples.push(75 + 12 * z);
     }
     currentSamples.sort((a,b)=>a-b);
@@ -7712,82 +8382,84 @@ function renderDistributionView(ctx, canvas) {
   const numBins = 28;
   const minVal = currentSamples[0];
   const maxVal = currentSamples[currentSamples.length - 1];
-  const binWidth = (maxVal - minVal) / numBins;
+  const range = Math.max(0.001, maxVal - minVal);
+  const binWidth = range / numBins;
   const bins = new Array(numBins).fill(0);
 
   currentSamples.forEach(v => {
     let idx = Math.floor((v - minVal) / binWidth);
     if (idx >= numBins) idx = numBins - 1;
+    if (idx < 0) idx = 0;
     bins[idx]++;
   });
 
   const maxFreq = Math.max(...bins, 1);
-  const w = canvas.width / numBins;
+  const w = width / numBins;
 
-  // Background grid
+  // Background Grid Lines
   ctx.strokeStyle = '#1e293b';
   ctx.lineWidth = 1;
-  for (let y = 40; y < canvas.height - 40; y += 40) {
+  for (let y = 40; y < height - 40; y += 40) {
     ctx.beginPath();
     ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
+    ctx.lineTo(width, y);
     ctx.stroke();
   }
 
-  // Draw histogram bars
+  // Draw Histogram Bars
   for (let i = 0; i < numBins; i++) {
-    const h = (bins[i] / maxFreq) * (canvas.height - 90);
+    const h = (bins[i] / maxFreq) * (height - 90);
     const x = i * w;
-    const y = canvas.height - h - 40;
+    const y = height - h - 40;
 
-    const grad = ctx.createLinearGradient(x, y, x, canvas.height - 40);
+    const grad = ctx.createLinearGradient(x, y, x, height - 40);
     grad.addColorStop(0, '#38bdf8');
     grad.addColorStop(1, '#1e3a8a');
 
     ctx.fillStyle = grad;
-    ctx.fillRect(x + 2, y, w - 4, h);
+    ctx.fillRect(x + 2, y, Math.max(1, w - 4), h);
     ctx.strokeStyle = '#60a5fa';
-    ctx.strokeRect(x + 2, y, w - 4, h);
+    ctx.strokeRect(x + 2, y, Math.max(1, w - 4), h);
   }
 
   // Title & Labels
   ctx.fillStyle = '#94a3b8';
   ctx.font = '12px Inter, sans-serif';
   ctx.fillText('Histogram & Empirical PDF Density', 20, 26);
-  ctx.fillText('Min: ' + minVal.toFixed(1), 20, canvas.height - 15);
-  ctx.fillText('Max: ' + maxVal.toFixed(1), canvas.width - 90, canvas.height - 15);
+  ctx.fillText('Min: ' + minVal.toFixed(1), 20, height - 15);
+  ctx.fillText('Max: ' + maxVal.toFixed(1), Math.max(20, width - 90), height - 15);
 
-  // Mean & Median markers
+  // Mean & Median Markers
   const mean = currentSamples.reduce((a,b)=>a+b,0)/currentSamples.length;
   const median = currentSamples[Math.floor(currentSamples.length/2)];
-  const meanX = ((mean - minVal) / (maxVal - minVal)) * canvas.width;
-  const medX = ((median - minVal) / (maxVal - minVal)) * canvas.width;
+  const meanX = ((mean - minVal) / range) * width;
+  const medX = ((median - minVal) / range) * width;
 
   ctx.strokeStyle = '#f43f5e';
   ctx.lineWidth = 2;
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
   ctx.moveTo(meanX, 35);
-  ctx.lineTo(meanX, canvas.height - 40);
+  ctx.lineTo(meanX, height - 40);
   ctx.stroke();
 
   ctx.strokeStyle = '#4ade80';
   ctx.beginPath();
   ctx.moveTo(medX, 35);
-  ctx.lineTo(medX, canvas.height - 40);
+  ctx.lineTo(medX, height - 40);
   ctx.stroke();
   ctx.setLineDash([]);
 
   ctx.fillStyle = '#f43f5e';
-  ctx.fillText('Mean (' + mean.toFixed(1) + ')', meanX + 4, 50);
+  ctx.fillText('Mean (' + mean.toFixed(1) + ')', Math.min(width - 90, meanX + 6), 50);
   ctx.fillStyle = '#4ade80';
-  ctx.fillText('Median (' + median.toFixed(1) + ')', medX + 4, 68);
+  ctx.fillText('Median (' + median.toFixed(1) + ')', Math.min(width - 90, medX + 6), 68);
 }
 
-function renderRadarView(ctx, canvas) {
-  const cx = canvas.width / 2;
-  const cy = canvas.height / 2;
-  const radius = 130;
+function renderRadarView(ctx, width, height) {
+  const cx = width / 2;
+  const cy = height / 2;
+  const radius = Math.min(130, Math.min(width, height) / 2 - 35);
   const dims = [
     { label: "Accuracy", val: currentDqi.acc },
     { label: "Completeness", val: currentDqi.comp },
@@ -7797,7 +8469,7 @@ function renderRadarView(ctx, canvas) {
   ];
   const count = dims.length;
 
-  // Concentric radar webs
+  // Concentric Radar Webs
   ctx.strokeStyle = '#334155';
   ctx.lineWidth = 1;
   for (let r = 0.25; r <= 1.0; r += 0.25) {
@@ -7813,8 +8485,8 @@ function renderRadarView(ctx, canvas) {
     ctx.stroke();
   }
 
-  // Axis spokes & labels
-  ctx.font = '12px Inter, sans-serif';
+  // Axis Spokes & Labels
+  ctx.font = '11px Inter, sans-serif';
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
     const x = cx + Math.cos(angle) * radius;
@@ -7843,106 +8515,115 @@ function renderRadarView(ctx, canvas) {
     else ctx.lineTo(x, y);
   }
   ctx.closePath();
-  ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+  ctx.fillStyle = 'rgba(56, 189, 248, 0.28)';
   ctx.fill();
   ctx.strokeStyle = '#38bdf8';
   ctx.lineWidth = 2.5;
   ctx.stroke();
 }
 
-function renderFairnessView(ctx, canvas) {
+function renderFairnessView(ctx, width, height) {
   // Title
   ctx.fillStyle = '#cbd5e1';
-  ctx.font = '13px Inter, sans-serif';
-  ctx.fillText('Algorithmic Disparity & ROC Curves (Privileged vs Unprivileged)', 30, 30);
+  ctx.font = '12px Inter, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Algorithmic Disparity & ROC Curves (Privileged vs Unprivileged)', 25, 26);
 
   // Axes
+  const padLeft = 65;
+  const padBottom = 45;
+  const padRight = 35;
+  const padTop = 45;
+
   ctx.strokeStyle = '#334155';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.moveTo(70, 50);
-  ctx.lineTo(70, canvas.height - 50);
-  ctx.lineTo(canvas.width - 50, canvas.height - 50);
+  ctx.moveTo(padLeft, padTop);
+  ctx.lineTo(padLeft, height - padBottom);
+  ctx.lineTo(width - padRight, height - padBottom);
   ctx.stroke();
 
   // Labels
   ctx.fillStyle = '#94a3b8';
-  ctx.font = '11px Inter, sans-serif';
-  ctx.fillText('False Positive Rate (FPR)', canvas.width / 2 - 40, canvas.height - 20);
+  ctx.font = '10px Inter, sans-serif';
+  ctx.fillText('False Positive Rate (FPR)', width / 2 - 40, height - 15);
   ctx.save();
-  ctx.translate(25, canvas.height / 2 + 40);
+  ctx.translate(20, height / 2 + 35);
   ctx.rotate(-Math.PI / 2);
   ctx.fillText('True Positive Rate (TPR)', 0, 0);
   ctx.restore();
 
-  // Diagonal random guess line
+  // Diagonal Random Guess Line
   ctx.strokeStyle = '#475569';
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
-  ctx.moveTo(70, canvas.height - 50);
-  ctx.lineTo(canvas.width - 50, 50);
+  ctx.moveTo(padLeft, height - padBottom);
+  ctx.lineTo(width - padRight, padTop);
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // Privileged Group Curve (Male)
+  // Privileged Curve
   ctx.strokeStyle = '#38bdf8';
   ctx.lineWidth = 2.5;
   ctx.beginPath();
-  ctx.moveTo(70, canvas.height - 50);
-  ctx.bezierCurveTo(90, 80, 240, 60, canvas.width - 50, 50);
+  ctx.moveTo(padLeft, height - padBottom);
+  ctx.bezierCurveTo(padLeft + 40, padTop + 30, width / 2, padTop + 10, width - padRight, padTop);
   ctx.stroke();
 
-  // Unprivileged Group Curve (Female)
+  // Unprivileged Curve
   ctx.strokeStyle = '#f59e0b';
   ctx.lineWidth = 2.5;
   ctx.beginPath();
-  ctx.moveTo(70, canvas.height - 50);
-  ctx.bezierCurveTo(110, 110, 280, 75, canvas.width - 50, 50);
+  ctx.moveTo(padLeft, height - padBottom);
+  ctx.bezierCurveTo(padLeft + 60, padTop + 65, width / 2 + 30, padTop + 30, width - padRight, padTop);
   ctx.stroke();
 
   // Legend
+  const legendX = Math.max(padLeft + 20, width - 230);
   ctx.fillStyle = '#38bdf8';
-  ctx.fillText('— Privileged Group (AUC = 0.89)', canvas.width - 240, 80);
+  ctx.fillText('— Privileged Group (AUC = 0.89)', legendX, 70);
   ctx.fillStyle = '#f59e0b';
-  ctx.fillText('— Unprivileged Group (AUC = 0.86)', canvas.width - 240, 100);
+  ctx.fillText('— Unprivileged Group (AUC = 0.86)', legendX, 88);
   ctx.fillStyle = '#4ade80';
-  ctx.fillText('Disparate Impact: 0.88 (Compliant)', canvas.width - 240, 125);
+  ctx.fillText('Disparate Impact: 0.88 (EEOC 80% Pass)', legendX, 110);
 }
 
-function renderDvcView(ctx, canvas) {
+function renderDvcView(ctx, width, height) {
   ctx.fillStyle = '#cbd5e1';
-  ctx.font = '13px Inter, sans-serif';
-  ctx.fillText('DVC Content-Addressable Pipeline Lineage Graph', 30, 30);
+  ctx.font = '12px Inter, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('DVC Content-Addressable Pipeline Lineage Graph', 25, 26);
 
+  const step = (width - 120) / 3;
   const nodes = [
-    { id: "raw", name: "raw_staged.parquet", type: "data", x: 140, y: 190 },
-    { id: "clean", name: "clean.py (stage)", type: "code", x: 340, y: 190 },
-    { id: "features", name: "curated_features.parquet", type: "data", x: 540, y: 190 },
-    { id: "train", name: "train.py (stage)", type: "code", x: 700, y: 190 }
+    { id: "raw", name: "raw_staged.parquet", type: "data", x: 60, y: height / 2 },
+    { id: "clean", name: "clean.py (stage)", type: "code", x: 60 + step, y: height / 2 },
+    { id: "features", name: "curated_features", type: "data", x: 60 + step * 2, y: height / 2 },
+    { id: "train", name: "train.py (stage)", type: "code", x: 60 + step * 3, y: height / 2 }
   ];
 
-  // Draw connecting arrows
+  // Draw Connecting Arrows
   ctx.strokeStyle = '#3b82f6';
   ctx.lineWidth = 2;
   for (let i = 0; i < nodes.length - 1; i++) {
     const n1 = nodes[i];
     const n2 = nodes[i+1];
     ctx.beginPath();
-    ctx.moveTo(n1.x + 60, n1.y);
-    ctx.lineTo(n2.x - 60, n2.y);
+    ctx.moveTo(n1.x + 48, n1.y);
+    ctx.lineTo(n2.x - 48, n2.y);
     ctx.stroke();
 
     // Arrowhead
     ctx.fillStyle = '#3b82f6';
     ctx.beginPath();
-    ctx.moveTo(n2.x - 60, n2.y);
-    ctx.lineTo(n2.x - 68, n2.y - 5);
-    ctx.lineTo(n2.x - 68, n2.y + 5);
+    ctx.moveTo(n2.x - 48, n2.y);
+    ctx.lineTo(n2.x - 56, n2.y - 5);
+    ctx.lineTo(n2.x - 56, n2.y + 5);
     ctx.closePath();
     ctx.fill();
   }
 
-  // Draw node boxes
+  // Draw Node Boxes
   nodes.forEach(n => {
     const isData = n.type === 'data';
     ctx.fillStyle = isData ? '#1e293b' : '#0f172a';
@@ -7950,24 +8631,24 @@ function renderDvcView(ctx, canvas) {
     ctx.lineWidth = 2;
 
     ctx.beginPath();
-    ctx.roundRect(n.x - 60, n.y - 30, 120, 60, 8);
+    ctx.roundRect(n.x - 48, n.y - 25, 96, 50, 6);
     ctx.fill();
     ctx.stroke();
 
     ctx.fillStyle = '#f8fafc';
-    ctx.font = '11px Inter, sans-serif';
+    ctx.font = '10px Inter, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(n.name, n.x, n.y);
+    ctx.fillText(n.name, n.x, n.y - 2);
     ctx.fillStyle = isData ? '#38bdf8' : '#a855f7';
-    ctx.font = '9px Inter, sans-serif';
-    ctx.fillText(isData ? 'DVC ARTIFACT' : 'STAGE DAG', n.x, n.y + 16);
+    ctx.font = '8px Inter, sans-serif';
+    ctx.fillText(isData ? 'DVC ARTIFACT' : 'STAGE DAG', n.x, n.y + 12);
   });
 }
 
 // ============================================================================
-// Event Listeners & Bootstrapping
+// Event Listeners, Autocomplete & Workbench Initialization
 // ============================================================================
-document.addEventListener('DOMContentLoaded', () => {
+function initTerminalWorkbench() {
   const inp = document.getElementById('termInput');
   if (inp) {
     inp.addEventListener('keydown', (e) => {
@@ -7992,21 +8673,59 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
       } else if (e.key === 'Tab') {
         e.preventDefault();
-        // Simple autocomplete
-        const tokens = inp.value.split(' ');
+        const val = inp.value;
+        const tokens = val.split(' ');
         const last = tokens[tokens.length - 1];
-        const candidates = ['data-sample', 'data-clean', 'data-audit', 'data-fairness', 'data-iaa', 'data-anonymize', 'data-convert', 'dvc', 'grade-capstone', 'clear', 'help', 'tree', 'ls', 'cat', 'pwd'];
-        const match = candidates.find(c => c.startsWith(last));
-        if (match) {
-          tokens[tokens.length - 1] = match;
-          inp.value = tokens.join(' ') + ' ';
+
+        if (tokens.length === 1) {
+          // Autocomplete commands
+          const candidates = [
+            'data-sample', 'data-clean', 'data-audit', 'data-fairness', 
+            'data-iaa', 'data-anonymize', 'data-convert', 'data-datasheet',
+            'data-handoff', 'dvc', 'grade-capstone', 'clear', 'help', 
+            'tree', 'ls', 'cat', 'pwd', 'head', 'tail', 'wc', 'grep', 'mkdir', 'touch'
+          ];
+          const match = candidates.find(c => c.startsWith(last));
+          if (match) {
+            tokens[0] = match;
+            inp.value = tokens.join(' ') + ' ';
+          }
+        } else {
+          // Autocomplete files / directories in currentPwd or typed path
+          const currNode = VFS[currentPwd];
+          if (currNode && currNode.children) {
+            const match = currNode.children.find(c => c.startsWith(last));
+            if (match) {
+              const isDir = VFS[currentPwd + '/' + match]?.type === 'dir';
+              tokens[tokens.length - 1] = match + (isDir ? '/' : '');
+              inp.value = tokens.join(' ');
+            }
+          }
         }
+      } else if (e.ctrlKey && (e.key === 'l' || e.key === 'L')) {
+        e.preventDefault();
+        termClear();
+      } else if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
+        e.preventDefault();
+        termPrint(`<span style="color:#64748b;">guest@dataset-lab:${currentPwd}$</span> ${escapeHtml(inp.value)}^C`);
+        inp.value = '';
       }
     });
   }
 
+  window.addEventListener('resize', () => {
+    renderViz();
+  });
+
   termReset();
-});
+}
+
+// Safe bootstrap for both static and single-page navigation
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTerminalWorkbench);
+} else {
+  initTerminalWorkbench();
+}
 </script>
 
 
