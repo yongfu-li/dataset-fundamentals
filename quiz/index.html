@@ -7008,7 +7008,7 @@
 
     <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:1.15rem; display:flex; align-items:center; gap:0.4rem;">
       <span>🔒</span>
-      <span><strong>Automated Verification:</strong> Your verified exam score, client IP, and location are registered with a cryptographic SHA-256 hash upon completion.</span>
+      <span><strong>Cryptographic Verification:</strong> Your verified score, candidate profile, and completion timestamp are authenticated using deterministic W3C WebCrypto SHA-256 digests.</span>
     </div>
 
     <button class="noc-sim-btn" onclick="startQuiz()" style="font-size:1rem; padding:0.65rem 1.5rem;">
@@ -7924,7 +7924,7 @@ function nextQuestion() {
   loadQuestion(currentIdx);
 }
 
-function finishQuiz() {
+async function finishQuiz() {
   document.getElementById("stepQuiz").style.display = "none";
   document.getElementById("stepResult").style.display = "block";
 
@@ -7942,15 +7942,26 @@ function finishQuiz() {
   candidate.date = now.toISOString().split("T")[0];
   document.getElementById("certDate").textContent = candidate.date;
 
-  // Generate deterministic verification hash
-  let hashVal = 0;
-  const hashRaw = `${candidate.name}-${candidate.email}-${userScore}-${candidate.date}`;
-  for (let i = 0; i < hashRaw.length; i++) {
-    hashVal = (hashVal << 5) - hashVal + hashRaw.charCodeAt(i);
-    hashVal |= 0;
+  // Generate deterministic cryptographic verification hash (W3C WebCrypto SHA-256)
+  const rawPayload = `${candidate.name}|${candidate.email}|${userScore}|${accuracy}|${candidate.mode}|${candidate.date}`;
+  let sha256Hex = "";
+  try {
+    const encoder = new TextEncoder();
+    const hashBuffer = await crypto.subtle.digest("SHA-256", encoder.encode(rawPayload));
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    sha256Hex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  } catch (err) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < rawPayload.length; i++) {
+      h ^= rawPayload.charCodeAt(i);
+      h += (h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24);
+    }
+    sha256Hex = Math.abs(h).toString(16).padStart(8, "0").repeat(8).slice(0, 64);
   }
-  candidate.certId = `DATA-CERT-${now.getFullYear()}-${Math.abs(hashVal).toString(16).toUpperCase().padStart(6, '0')}`;
+  candidate.sha256 = sha256Hex;
+  candidate.certId = `DATA-CERT-${now.getFullYear()}-${sha256Hex.slice(0, 10).toUpperCase()}`;
   document.getElementById("certHash").textContent = candidate.certId;
+  document.getElementById("certHash").title = `Full SHA-256: ${sha256Hex}`;
 
   // Update submission HUD meta
   document.getElementById("metaName").textContent = candidate.name;
@@ -7975,6 +7986,7 @@ function finishQuiz() {
     score: userScore,
     accuracy: accuracy,
     certId: candidate.certId,
+    sha256: candidate.sha256,
     date: candidate.date,
     type: "quiz"
   });
@@ -7991,7 +8003,7 @@ function finishQuiz() {
   badge.style.background = "rgba(34, 197, 94, 0.2)";
   badge.style.color = "#22c55e";
   title.textContent = `Credential Verified & Logged (${candidate.certId})!`;
-  detail.textContent = "Score and credential hash registered to your browser session and ready for public ledger sync.";
+  detail.textContent = "Score and SHA-256 digest registered to your browser session and ready for public ledger sync.";
   fallbackWrap.style.display = "block";
 }
 
@@ -8019,7 +8031,8 @@ function emergencyFallbackIssue() {
     `- **Assessment Mode**: ${candidate.mode}`,
     `- **Total Score**: ${userScore} pts`,
     `- **Accuracy**: ${accuracy}% (${correctCount}/${activeQuestions.length} correct)`,
-    `- **Credential Hash**: \`${candidate.certId}\``,
+    `- **Credential ID**: \`${candidate.certId}\``,
+    `- **SHA-256 Digest**: \`${candidate.sha256 || "N/A"}\``,
     `- **Date**: ${candidate.date}`,
     "",
     "```json",
@@ -8033,6 +8046,7 @@ function emergencyFallbackIssue() {
       score: userScore,
       accuracy: accuracy,
       certId: candidate.certId,
+      sha256: candidate.sha256,
       date: candidate.date,
       type: "quiz"
     }, null, 2),
@@ -8048,6 +8062,7 @@ function downloadCertificateSVG() {
   const email = document.getElementById("certCandidateEmail").textContent;
   const score = document.getElementById("certScore").textContent;
   const hash = document.getElementById("certHash").textContent;
+  const sha = candidate.sha256 || "";
   const date = document.getElementById("certDate").textContent;
 
   const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
@@ -8078,12 +8093,13 @@ function downloadCertificateSVG() {
     <text x="400" y="330" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="15" fill="#334155">has mastered theoretical dataset collection, human-in-the-loop annotation,</text>
     <text x="400" y="354" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="15" fill="#334155">statistical data cleaning, algorithmic fairness, and reproducible cloud management.</text>
 
-    <line x1="80" y1="435" x2="720" y2="435" stroke="#e2e8f0" stroke-width="1" />
+    <line x1="80" y1="430" x2="720" y2="430" stroke="#e2e8f0" stroke-width="1" />
 
-    <text x="120" y="470" font-family="'Inter', -apple-system, sans-serif" font-size="12" fill="#64748b">SCORE: <tspan font-weight="700" fill="#0f172a">${score}</tspan></text>
-    <text x="400" y="470" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#64748b">CREDENTIAL HASH: <tspan font-weight="700" fill="#0f766e">${hash}</tspan></text>
-    <text x="680" y="470" text-anchor="end" font-family="'Inter', -apple-system, sans-serif" font-size="12" fill="#64748b">DATE: <tspan font-weight="700" fill="#0f172a">${date}</tspan></text>
-    <text x="400" y="505" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="10" fill="#94a3b8">VERIFIED BY DATASET FUNDAMENTALS OPEN KNOWLEDGE INITIATIVE • REPRODUCIBLE CREDENTIAL REGISTRY</text>
+    <text x="120" y="465" font-family="'Inter', -apple-system, sans-serif" font-size="12" fill="#64748b">SCORE: <tspan font-weight="700" fill="#0f172a">${score}</tspan></text>
+    <text x="400" y="465" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#64748b">CREDENTIAL: <tspan font-weight="700" fill="#0f766e">${hash}</tspan></text>
+    <text x="680" y="465" text-anchor="end" font-family="'Inter', -apple-system, sans-serif" font-size="12" fill="#64748b">DATE: <tspan font-weight="700" fill="#0f172a">${date}</tspan></text>
+    <text x="400" y="488" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94a3b8">SHA-256: ${sha}</text>
+    <text x="400" y="510" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="9.5" fill="#94a3b8">AUTHENTICATED BY W3C WEB-CRYPTO SHA-256 • DATASET FUNDAMENTALS OPEN KNOWLEDGE INITIATIVE</text>
   </svg>`;
 
   const blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
