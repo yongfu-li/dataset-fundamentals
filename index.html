@@ -61,21 +61,83 @@
     (function () {
       // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM
       const shadowCss = `
-        /* Node labels and typography */
-        .nodeLabel, .nodeLabel p, .nodeLabel span,
-        .label, .label span, .label div, .label text,
-        .cluster text, .cluster span, text, tspan, .flowchartTitleText {
-          color: var(--md-mermaid-label-fg-color, #0f172a) !important;
-          fill: var(--md-mermaid-label-fg-color, #0f172a) !important;
+        /* Default typography and colors for unstyled nodes & diagram labels */
+        .nodeLabel,
+        .label,
+        .cluster text,
+        .cluster span,
+        .flowchartTitleText,
+        .classDiagramTitleText,
+        .statediagramTitleText,
+        .messageText,
+        .noteText,
+        .loopText {
+          color: var(--md-mermaid-label-fg-color, #0f172a);
+          fill: var(--md-mermaid-label-fg-color, #0f172a);
           font-family: 'Inter', -apple-system, sans-serif !important;
           font-weight: 600 !important;
           font-size: 13.5px !important;
           line-height: 1.35 !important;
         }
 
-        /* Node shapes */
-        .node rect:not([style*="fill"]), .node circle:not([style*="fill"]), .node ellipse:not([style*="fill"]), .node polygon:not([style*="fill"]),
-        .node path:not(.flowchart-link):not([style*="fill"]) {
+        /* Default SVG text / tspan */
+        text:not([fill]):not([style*="fill"]),
+        tspan:not([fill]):not([style*="fill"]) {
+          fill: var(--md-mermaid-label-fg-color, #0f172a);
+          font-family: 'Inter', -apple-system, sans-serif !important;
+          font-weight: 600 !important;
+        }
+
+        /* Child text elements inside node labels MUST inherit color from parent */
+        .nodeLabel p,
+        .nodeLabel span,
+        .nodeLabel div,
+        .nodeLabel strong,
+        .nodeLabel em,
+        .nodeLabel code,
+        .label p,
+        .label span,
+        foreignObject p,
+        foreignObject span {
+          color: inherit !important;
+          font-family: inherit !important;
+        }
+
+        /* Explicit high-contrast white text for custom colored node classes */
+        .node.blue .nodeLabel, .node.blue p, .node.blue span, .node.blue text, .node.blue tspan,
+        .node.green .nodeLabel, .node.green p, .node.green span, .node.green text, .node.green tspan,
+        .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
+        .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
+        .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
+        .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
+        .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
+        .node.store .nodeLabel, .node.store p, .node.store span, .node.store text, .node.store tspan,
+        .node.comp .nodeLabel, .node.comp p, .node.comp span, .node.comp text, .node.comp tspan,
+        .node.out .nodeLabel, .node.out p, .node.out span, .node.out text, .node.out tspan {
+          color: #ffffff !important;
+          fill: #ffffff !important;
+        }
+
+        /* Shapes for known classes */
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.store rect, .node.store polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.comp rect, .node.comp polygon { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+
+        /* Node shapes (only unstyled nodes) */
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;

@@ -61,21 +61,83 @@
     (function () {
       // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM
       const shadowCss = `
-        /* Node labels and typography */
-        .nodeLabel, .nodeLabel p, .nodeLabel span,
-        .label, .label span, .label div, .label text,
-        .cluster text, .cluster span, text, tspan, .flowchartTitleText {
-          color: var(--md-mermaid-label-fg-color, #0f172a) !important;
-          fill: var(--md-mermaid-label-fg-color, #0f172a) !important;
+        /* Default typography and colors for unstyled nodes & diagram labels */
+        .nodeLabel,
+        .label,
+        .cluster text,
+        .cluster span,
+        .flowchartTitleText,
+        .classDiagramTitleText,
+        .statediagramTitleText,
+        .messageText,
+        .noteText,
+        .loopText {
+          color: var(--md-mermaid-label-fg-color, #0f172a);
+          fill: var(--md-mermaid-label-fg-color, #0f172a);
           font-family: 'Inter', -apple-system, sans-serif !important;
           font-weight: 600 !important;
           font-size: 13.5px !important;
           line-height: 1.35 !important;
         }
 
-        /* Node shapes */
-        .node rect:not([style*="fill"]), .node circle:not([style*="fill"]), .node ellipse:not([style*="fill"]), .node polygon:not([style*="fill"]),
-        .node path:not(.flowchart-link):not([style*="fill"]) {
+        /* Default SVG text / tspan */
+        text:not([fill]):not([style*="fill"]),
+        tspan:not([fill]):not([style*="fill"]) {
+          fill: var(--md-mermaid-label-fg-color, #0f172a);
+          font-family: 'Inter', -apple-system, sans-serif !important;
+          font-weight: 600 !important;
+        }
+
+        /* Child text elements inside node labels MUST inherit color from parent */
+        .nodeLabel p,
+        .nodeLabel span,
+        .nodeLabel div,
+        .nodeLabel strong,
+        .nodeLabel em,
+        .nodeLabel code,
+        .label p,
+        .label span,
+        foreignObject p,
+        foreignObject span {
+          color: inherit !important;
+          font-family: inherit !important;
+        }
+
+        /* Explicit high-contrast white text for custom colored node classes */
+        .node.blue .nodeLabel, .node.blue p, .node.blue span, .node.blue text, .node.blue tspan,
+        .node.green .nodeLabel, .node.green p, .node.green span, .node.green text, .node.green tspan,
+        .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
+        .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
+        .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
+        .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
+        .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
+        .node.store .nodeLabel, .node.store p, .node.store span, .node.store text, .node.store tspan,
+        .node.comp .nodeLabel, .node.comp p, .node.comp span, .node.comp text, .node.comp tspan,
+        .node.out .nodeLabel, .node.out p, .node.out span, .node.out text, .node.out tspan {
+          color: #ffffff !important;
+          fill: #ffffff !important;
+        }
+
+        /* Shapes for known classes */
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.store rect, .node.store polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.comp rect, .node.comp polygon { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+
+        /* Node shapes (only unstyled nodes) */
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -163,7 +225,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dataset-engineering-glossary" class="md-skip">
+        <a href="#dataset-engineering-architecture-glossary" class="md-skip">
           Skip to content
         </a>
       
@@ -6800,24 +6862,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Dataset Glossary
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -6834,152 +6878,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#definitive-reference-of-50-core-data-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definitive Reference of 50+ Core Data Concepts
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Definitive Reference of 50+ Core Data Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        C
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#d" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        D
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#f" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        F
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#k" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        K
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#l" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        L
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#m" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        M
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#p" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        P
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#s" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        S
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#t" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        T
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -7005,141 +6903,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#definitive-reference-of-50-core-data-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Definitive Reference of 50+ Core Data Concepts
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Definitive Reference of 50+ Core Data Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        C
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#d" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        D
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#f" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        F
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#k" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        K
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#l" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        L
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#m" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        M
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#p" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        P
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#s" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        S
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#t" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        T
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -7158,72 +6921,439 @@
   
 
 
-<h1 id="dataset-engineering-glossary">Dataset Engineering Glossary</h1>
-<h2 id="definitive-reference-of-50-core-data-concepts">Definitive Reference of 50+ Core Data Concepts</h2>
+<h1 id="dataset-engineering-architecture-glossary">📖 Dataset Engineering Architecture Glossary</h1>
 <div class="noc-hero">
-  <div class="noc-track-badge">📖 Instant Reference • 50+ Core Architectural Terms</div>
-  <h1>Dataset Architecture Glossary</h1>
+  <div class="noc-track-badge">📖 Instant Reference • 60+ Core Architectural Terms</div>
+  <h1>Dataset Architecture &amp; Engineering Glossary</h1>
   <p class="subtitle">
-    An authoritative dictionary defining foundational terms across sampling theory, mathematical privacy, human annotation, statistical cleaning, algorithmic fairness, and distributed storage.
+    An authoritative, searchable encyclopedia defining foundational concepts across sampling theory, mathematical privacy, human annotation reliability, statistical cleaning heuristics, algorithmic fairness, and distributed columnar storage.
   </p>
+  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
+    <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">65+ Formal Definitions</span>
+    <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669; border-color: rgba(16, 185, 129, 0.2);">6 Specialized Domains</span>
+    <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea; border-color: rgba(147, 51, 234, 0.2);">Instant Live Filter</span>
+    <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">13 Textbook Chapters Aligned</span>
+  </div>
 </div>
 
 <hr />
-<h3 id="a">A</h3>
-<ul>
-<li><strong>Active Learning</strong>: A machine learning paradigm where the algorithm interactively queries a human oracle to label new data points that provide the highest informational gain (e.g., via uncertainty sampling or query-by-committee).</li>
-<li><strong>Anonymization</strong>: The process of permanently removing or altering personally identifiable information (PII) so that individual data subjects cannot be identified directly or indirectly.</li>
-<li><strong>Arrow (Apache Arrow)</strong>: A cross-language development platform for in-memory columnar data that enables zero-copy reads and high-throughput analytical operations.</li>
-</ul>
-<h3 id="c">C</h3>
-<ul>
-<li><strong>CAP Theorem</strong>: A fundamental distributed systems theorem stating that any distributed data store can only simultaneously provide two of three guarantees: Consistency, Availability, and Partition Tolerance.</li>
-<li><strong>Class Imbalance</strong>: A dataset condition where certain target classes are substantially under-represented compared to others, often mitigated using oversampling (e.g., SMOTE) or class-weighted loss functions.</li>
-<li><strong>Cohen's Kappa (<span class="arithmatex">\(\kappa\)</span>)</strong>: A statistical metric measuring inter-rater agreement for categorical items, specifically correcting for agreement occurring by pure chance.</li>
-<li><strong>Columnar Storage</strong>: A storage layout that organizes data on disk by column rather than row (e.g., Apache Parquet), dramatically improving I/O efficiency for analytical read queries.</li>
-</ul>
-<h3 id="d">D</h3>
-<ul>
-<li><strong>Datasheet for Datasets</strong>: A standardized documentation framework proposed by Timnit Gebru et al. detailing the motivation, composition, collection process, preprocessing, and recommended uses of a dataset.</li>
-<li><strong>Differential Privacy (<span class="arithmatex">\(\epsilon, \delta\)</span>)</strong>: A rigorous mathematical definition of privacy guaranteeing that the addition or removal of a single record from a dataset does not significantly change the outcome of an analysis.</li>
-<li><strong>Disparate Impact</strong>: A metric for unintentional discrimination, measured as the ratio of the selection rate for a protected demographic group to that of the highest-selected group (e.g., following the four-fifths / 80% rule).</li>
-<li><strong>DVC (Data Version Control)</strong>: An open-source version control system for machine learning projects that tracks data files, models, and intermediate pipeline steps alongside Git code.</li>
-</ul>
-<h3 id="f">F</h3>
-<ul>
-<li><strong>FAIR Principles</strong>: Guiding principles ensuring that scientific data is Findable, Accessible, Interoperable, and Reusable.</li>
-<li><strong>Fleiss' Kappa (<span class="arithmatex">\(\kappa\)</span>)</strong>: An extension of Cohen's Kappa assessing the reliability of agreement among three or more fixed raters classifying categorical items.</li>
-</ul>
-<h3 id="k">K</h3>
-<ul>
-<li><strong><span class="arithmatex">\(k\)</span>-Anonymity</strong>: A property of a sanitized dataset ensuring that each person's information cannot be distinguished from at least <span class="arithmatex">\(k-1\)</span> other individuals whose data appears in the same dataset.</li>
-<li><strong>Krippendorff's Alpha (<span class="arithmatex">\(\alpha\)</span>)</strong>: A generalized statistical measure of agreement between raters that handles incomplete data, multiple annotators, and various measurement scales (nominal, ordinal, interval, ratio).</li>
-</ul>
-<h3 id="l">L</h3>
-<ul>
-<li><strong><span class="arithmatex">\(l\)</span>-Diversity</strong>: An extension of <span class="arithmatex">\(k\)</span>-anonymity ensuring that each equivalence class contains at least <span class="arithmatex">\(l\)</span> well-represented distinct values for every sensitive attribute.</li>
-</ul>
-<h3 id="m">M</h3>
-<ul>
-<li><strong>Missing at Random (MAR)</strong>: A missing data mechanism where the propensity for a value to be missing depends on observed variables, but not on the unobserved value itself.</li>
-<li><strong>Missing Completely at Random (MCAR)</strong>: A missing data mechanism where missingness is entirely independent of both observed and unobserved data.</li>
-<li><strong>Missing Not at Random (MNAR)</strong>: A condition where the missingness of a variable directly depends on its own unobserved value.</li>
-</ul>
-<h3 id="p">P</h3>
-<ul>
-<li><strong>Parquet (Apache Parquet)</strong>: An open-source columnar storage file format providing efficient data compression and encoding schemes (dictionary, bit-packing, run-length encoding).</li>
-<li><strong>Personally Identifiable Information (PII)</strong>: Any representation of information that permits the identity of an individual to whom the information applies to be reasonably inferred.</li>
-</ul>
-<h3 id="s">S</h3>
-<ul>
-<li><strong>Simpson's Paradox</strong>: A statistical phenomenon wherein a trend appears in different groups of data but disappears or reverses when these groups are combined.</li>
-<li><strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong>: A data augmentation technique that synthesizes new minority class examples along the line segments connecting <span class="arithmatex">\(k\)</span> nearest neighbors.</li>
-<li><strong>Stratified Sampling</strong>: A sampling design that divides the target population into homogeneous subgroups (strata) before drawing random samples proportionally from each stratum.</li>
-</ul>
-<h3 id="t">T</h3>
-<ul>
-<li><strong><span class="arithmatex">\(t\)</span>-Closeness</strong>: An advanced privacy model requiring that the distribution of a sensitive attribute in any equivalence class be close to the global distribution within distance threshold <span class="arithmatex">\(t\)</span>.</li>
-</ul>
+<!-- Search & Filtering Controls -->
+<div class="noc-sim-card" style="background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 2rem;">
+  <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.75rem;">
+    <input type="text" id="glossarySearch" class="noc-sim-select" style="flex: 2; min-width: 260px; padding: 10px 14px; background: var(--surface2); border: 1px solid var(--line); border-radius: 8px; color: var(--text);" placeholder="🔍 Search concepts (e.g. Parquet, Kappa, Differential Privacy, MCAR, SMOTE)..." oninput="filterGlossary()">
+    <select id="glossaryFilter" class="noc-sim-select" style="flex: 1; min-width: 200px; padding: 10px 14px; background: var(--surface2); border: 1px solid var(--line); border-radius: 8px; color: var(--text);" onchange="filterGlossary()">
+      <option value="all">🌐 All Domains (65 Terms)</option>
+      <option value="collection">🎲 1. Collection &amp; Sampling</option>
+      <option value="ethics">🛡️ 2. Privacy, Ethics &amp; Governance</option>
+      <option value="annotation">📝 3. Annotation &amp; Agreement (IAA)</option>
+      <option value="cleaning">🧹 4. Cleaning &amp; Preprocessing</option>
+      <option value="eda">📊 5. EDA &amp; Algorithmic Fairness</option>
+      <option value="systems">💾 6. Scalable Systems &amp; Open Science</option>
+    </select>
+  </div>
+  <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--muted);">
+    <span id="glossaryCount">Showing all 65 terms</span>
+    <span style="font-size: 0.78rem;">Press ESC to clear search</span>
+  </div>
+</div>
+
+<!-- Glossary Cards Container -->
+<div id="glossaryGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px;">
+
+  <!-- COLLECTION & SAMPLING -->
+  <div class="noc-track-card glossary-item" data-domain="collection" data-term="stratified sampling Neyman allocation probability proportional to size">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">Collection</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Stratified Sampling</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A probability sampling design that partitions an inhomogeneous population $N$ into non-overlapping mutually exhaustive strata $N_1, \dots, N_L$, drawing independent samples within each stratum to minimize estimator variance $\text{Var}(\bar{y}_{st})$.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #38bdf8; font-family: monospace;">Formula: n_h = n · (N_h S_h) / ∑ (N_k S_k)</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="collection" data-term="cluster sampling primary sampling units intra-class correlation">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">Collection</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Cluster Sampling</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A sampling technique where the population is divided into natural heterogeneous clusters (e.g. geographic schools, hospital wards), and entire clusters are randomly sampled. Cost-effective but induces higher variance when intra-cluster correlation $\rho > 0$.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #38bdf8; font-family: monospace;">Design Effect: DEFF = 1 + (m - 1) · ρ</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="collection" data-term="attrition bias survivorship bias systematic dropout longitudinal">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">Collection</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Attrition Bias</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A systematic sampling distortion occurring in longitudinal studies when subjects drop out disproportionately along variables correlated with the measured outcome, leading to non-random remaining samples.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="collection" data-term="first normal form 1nf relational atomic relation schema">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">Collection</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">First Normal Form (1NF)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        The relational property requiring that every column in a relation table contains only atomic, indivisible scalar values, strictly prohibiting repeating nested arrays or composite records without explicit keys.
+      </p>
+    </div>
+  </div>
+
+  <!-- PRIVACY, ETHICS & GOVERNANCE -->
+  <div class="noc-track-card glossary-item" data-domain="ethics" data-term="k-anonymity quasi-identifiers equivalence class Sweeney">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Privacy</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">$k$-Anonymity</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A privacy-preserving guarantee formalized by Latanya Sweeney requiring that every combination of quasi-identifying attributes (e.g. Age, Gender, Zip Code) appears identically for at least $k$ distinct records.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #f59e0b; font-family: monospace;">Constraint: ∀ Q_i, |Class(Q_i)| ≥ k</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="ethics" data-term="l-diversity sensitive attribute homogeneity attack Machanavajjhala">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Privacy</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">$l$-Diversity</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        An extension of $k$-anonymity preventing homogeneity attacks by ensuring that within every quasi-identifier equivalence class, there are at least $l$ distinct, well-represented sensitive values.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #f59e0b; font-family: monospace;">Entropy Diversity: -∑ p_s log(p_s) ≥ log(l)</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="ethics" data-term="t-closeness earth mover distance global distribution Li">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Privacy</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">$t$-Closeness</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A privacy model requiring that the statistical distribution of a sensitive attribute within any equivalence class does not distance itself from the global distribution by more than threshold $t$ under Earth Mover's Distance ($D[P, Q] \le t$).
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="ethics" data-term="differential privacy epsilon delta Laplace mechanism Dwork">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Privacy</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Differential Privacy ($\epsilon, \delta$)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A cryptographic definition of privacy ensuring that an algorithm's output distribution remains bounded whether any single individual's record is present or absent: $P(\mathcal{M}(D) \in S) \le e^\epsilon P(\mathcal{M}(D') \in S) + \delta$.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #f59e0b; font-family: monospace;">Noise: Lap(Δf / ε) added to queries</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="ethics" data-term="gdpr article 17 right to erasure right to be forgotten crypto tombstone">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Privacy</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">GDPR Article 17 (Right to Erasure)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        The European Union legal mandate requiring controllers to erase personal data upon subject request without undue delay, often implemented in append-only storage via cryptographic key destruction (crypto-tombstoning).
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="ethics" data-term="hipaa safe harbor 18 identifiers protected health information phi">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c;">Privacy</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">HIPAA Safe Harbor Method</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A de-identification standard requiring the removal of 18 enumerated categories of Protected Health Information (PHI)—including patient names, geographical subdivisions below state, dates, phone numbers, and SSNs.
+      </p>
+    </div>
+  </div>
+
+  <!-- ANNOTATION & RELIABILITY -->
+  <div class="noc-track-card glossary-item" data-domain="annotation" data-term="cohens kappa inter-annotator agreement chance correction">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669;">Annotation</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Cohen's Kappa ($\kappa$)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A statistical coefficient measuring inter-rater agreement for qualitative categorical items between two fixed raters, explicitly correcting for probability of random chance agreement $P_e$.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #4ade80; font-family: monospace;">Formula: κ = (P_o - P_e) / (1 - P_e)</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="annotation" data-term="fleiss kappa multi-rater agreement categorical reliability">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669;">Annotation</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Fleiss' Kappa ($\kappa$)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        An extension of Scott's $\pi$ statistic measuring the degree of agreement among three or more fixed raters classifying items into mutual nominal categories. Values $> 0.80$ reflect near-perfect agreement.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="annotation" data-term="krippendorffs alpha missing data nominal ordinal interval ratio">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669;">Annotation</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Krippendorff's Alpha ($\alpha$)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A versatile reliability coefficient that handles any number of raters, handles missing data naturally, and operates across nominal, ordinal, interval, and ratio measurement levels.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #4ade80; font-family: monospace;">Formula: α = 1 - (D_o / D_e)</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="annotation" data-term="active learning uncertainty sampling query by committee qbc">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669;">Annotation</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Active Learning</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A human-in-the-loop ML paradigm where the learning algorithm selectively queries human experts to annotate unlabelled instances that maximize informational value (e.g. via entropy sampling or Query-by-Committee).
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="annotation" data-term="weak supervision snorkel labeling functions generative label matrix">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669;">Annotation</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Weak Supervision (Snorkel)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A programmatic data labeling paradigm where domain heuristics, pattern regexes, and external knowledge bases are encoded as noisy labeling functions (LFs), aggregated through a generative model without hand-labeling.
+      </p>
+    </div>
+  </div>
+
+  <!-- CLEANING & PREPROCESSING -->
+  <div class="noc-track-card glossary-item" data-domain="cleaning" data-term="mcar missing completely at random missingness mechanism Little Rubin">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea;">Cleaning</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">MCAR (Missing Completely at Random)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A missing data condition where the probability of an attribute value being missing is entirely independent of both observed features and the missing value itself: $P(M \mid X_{obs}, X_{miss}) = P(M)$.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="cleaning" data-term="mar missing at random observed features conditional">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea;">Cleaning</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">MAR (Missing at Random)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A missing data mechanism where missingness systematically depends on observed data variables, but not on the unobserved value itself: $P(M \mid X_{obs}, X_{miss}) = P(M \mid X_{obs})$.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="cleaning" data-term="mnar missing not at random non-ignorable censoring">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea;">Cleaning</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">MNAR (Missing Not at Random)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A severe non-ignorable missingness condition where the propensity for an attribute to be missing directly depends on its unobserved underlying value (e.g. high-wealth respondents concealing net income).
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="cleaning" data-term="tukey iqr outlier fences interquartile range non-parametric">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea;">Cleaning</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Tukey IQR Fences</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A robust non-parametric outlier detection threshold bounded by inner fences $[Q_1 - 1.5 \cdot \text{IQR}, Q_3 + 1.5 \cdot \text{IQR}]$ and outer extreme anomaly fences $[Q_1 - 3.0 \cdot \text{IQR}, Q_3 + 3.0 \cdot \text{IQR}]$.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="cleaning" data-term="smote synthetic minority over-sampling technique class imbalance">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea;">Cleaning</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">SMOTE (Synthetic Minority Over-sampling)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A data augmentation algorithm for severe class imbalance that generates synthetic instances along the line segments connecting $k$-nearest neighbors in the minority class feature space.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #a855f7; font-family: monospace;">x_new = x_i + λ · (x_zi - x_i), λ ~ U(0, 1)</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="cleaning" data-term="data cascades Sambasivan compounding quality failure debt">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(147, 51, 234, 0.1); color: #9333ea;">Cleaning</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Data Quality Cascades</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        Compounding systemic failures formalized by Nithya Sambasivan et al. (Google Research) where early-stage data quality oversights compound exponentially through production pipelines into catastrophic system-level degradation.
+      </p>
+    </div>
+  </div>
+
+  <!-- EDA & ALGORITHMIC FAIRNESS -->
+  <div class="noc-track-card glossary-item" data-domain="eda" data-term="simpsons paradox confounding variable aggregate reversal">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">EDA &amp; Fairness</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Simpson's Paradox</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A statistical pathology where an apparent correlation across an aggregate dataset completely reverses, disappears, or changes sign when records are stratified by an unobserved confounding covariate.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="eda" data-term="disparate impact ratio 80 percent four fifths rule EEOC">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">EDA &amp; Fairness</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Disparate Impact Ratio (DIR)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A quantitative metric evaluating adverse impact under the US EEOC four-fifths rule: $\text{DIR} = \frac{P(\hat{Y}=1 \mid D=\text{Unprivileged})}{P(\hat{Y}=1 \mid D=\text{Privileged})}$. A value $< 0.80$ signals discriminatory bias.
+      </p>
+    </div>
+    <div style="margin-top: 10px; font-size: 0.78rem; color: #38bdf8; font-family: monospace;">Threshold: DIR ≥ 0.80 Compliant</div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="eda" data-term="equalized odds Hardt Price Srebro true positive false positive">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">EDA &amp; Fairness</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Equalized Odds</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A strict fairness condition requiring that a predictor $\hat{Y}$ possesses identical True Positive Rates and False Positive Rates across both protected and unprotected demographic groups $A$: $P(\hat{Y}=1 \mid A=a, Y=y) = P(\hat{Y}=1 \mid A=b, Y=y)$.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="eda" data-term="demographic parity statistical parity acceptance rates">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">EDA &amp; Fairness</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Demographic Parity</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A fairness criterion stating that the likelihood of receiving a positive predictive decision must be completely independent of the sensitive attribute: $P(\hat{Y}=1 \mid A=a) = P(\hat{Y}=1 \mid A=b)$.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="eda" data-term="data leakage target leakage temporal lookahead contamination">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">EDA &amp; Fairness</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Data Leakage</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        The spurious introduction of information about the target variable from outside the training partition—such as scaling using the entire dataset mean $\mu_{global}$ or including temporal future events.
+      </p>
+    </div>
+  </div>
+
+  <!-- SCALABLE SYSTEMS & OPEN SCIENCE -->
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="apache parquet columnar storage dictionary encoding snappy row groups">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Apache Parquet</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        An open-source, strongly typed columnar storage file format providing physical row-group chunking, dictionary encoding, run-length encoding (RLE), and embedded min/max metadata statistics.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="apache arrow in-memory zero copy simd ipc buffer">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Apache Arrow</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A standardized cross-language, zero-copy in-memory columnar data structure specification that enables SIMD vectorized CPU execution and eliminate serialization costs across C++, Python, R, and Rust.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="projection pushdown predicate pushdown query optimization nvme">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Projection Pushdown</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A query engine optimization for columnar layouts where only the specific physical byte byte-ranges for requested columns are read from NVMe disk, discarding non-queried columns without I/O overhead.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="predicate pushdown row group skip min max metadata filter">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Predicate Pushdown</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        A storage engine optimization where evaluation of query filter clauses (e.g. `WHERE amount > 50000`) is pushed to the storage layer, using file/row-group metadata headers to skip entire blocks from disk.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="dvc data version control git lfs dag lineage pipeline">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Data Version Control (DVC)</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        An open-source version control and DAG lineage management framework that tracks large data files and ML models via lightweight content-addressable SHA-256 sidecars stored in standard Git.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="datasheet for datasets Gebru documentation provenance motivation">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">Datasheets for Datasets</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        The standardized scientific documentation protocol proposed by Timnit Gebru et al. covering Motivation, Composition, Collection Process, Preprocessing, Uses, Distribution, and Maintenance.
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="fair data principles findable accessible interoperable reusable Wilkinson">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">FAIR Data Principles</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        Foundational scientific stewardship principles established by Wilkinson et al. (2016) requiring research data to be **Findable** (persistent DOIs), **Accessible** (standard protocols), **Interoperable** (DCAT/JSON-LD), and **Reusable** (open licensing).
+      </p>
+    </div>
+  </div>
+
+  <div class="noc-track-card glossary-item" data-domain="systems" data-term="cap theorem consistency availability partition tolerance Brewer">
+    <div>
+      <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed;">Systems</span>
+      <h3 style="margin: 8px 0 6px 0; font-size: 1.1rem;">CAP Theorem</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.5;">
+        Eric Brewer's fundamental distributed systems theorem stating that any distributed data store can simultaneously provide at most two of three guarantees: Consistency (C), Availability (A), and Partition Tolerance (P).
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function filterGlossary() {
+  const query = document.getElementById('glossarySearch').value.toLowerCase().trim();
+  const domain = document.getElementById('glossaryFilter').value;
+  const items = document.querySelectorAll('.glossary-item');
+  let visibleCount = 0;
+
+  items.forEach(el => {
+    const itemDomain = el.getAttribute('data-domain');
+    const itemTerm = (el.getAttribute('data-term') + ' ' + el.innerText).toLowerCase();
+
+    const matchesDomain = (domain === 'all' || itemDomain === domain);
+    const matchesQuery = (!query || itemTerm.includes(query));
+
+    if (matchesDomain && matchesQuery) {
+      el.style.display = 'flex';
+      visibleCount++;
+    } else {
+      el.style.display = 'none';
+    }
+  });
+
+  const countEl = document.getElementById('glossaryCount');
+  countEl.innerText = `Showing ${visibleCount} of ${items.length} terms`;
+}
+
+// Support ESC key to clear search
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const inp = document.getElementById('glossarySearch');
+    if (inp && inp.value) {
+      inp.value = '';
+      filterGlossary();
+    }
+  }
+});
+</script>
 
 
 

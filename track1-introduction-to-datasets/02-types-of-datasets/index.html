@@ -63,21 +63,83 @@
     (function () {
       // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM
       const shadowCss = `
-        /* Node labels and typography */
-        .nodeLabel, .nodeLabel p, .nodeLabel span,
-        .label, .label span, .label div, .label text,
-        .cluster text, .cluster span, text, tspan, .flowchartTitleText {
-          color: var(--md-mermaid-label-fg-color, #0f172a) !important;
-          fill: var(--md-mermaid-label-fg-color, #0f172a) !important;
+        /* Default typography and colors for unstyled nodes & diagram labels */
+        .nodeLabel,
+        .label,
+        .cluster text,
+        .cluster span,
+        .flowchartTitleText,
+        .classDiagramTitleText,
+        .statediagramTitleText,
+        .messageText,
+        .noteText,
+        .loopText {
+          color: var(--md-mermaid-label-fg-color, #0f172a);
+          fill: var(--md-mermaid-label-fg-color, #0f172a);
           font-family: 'Inter', -apple-system, sans-serif !important;
           font-weight: 600 !important;
           font-size: 13.5px !important;
           line-height: 1.35 !important;
         }
 
-        /* Node shapes */
-        .node rect:not([style*="fill"]), .node circle:not([style*="fill"]), .node ellipse:not([style*="fill"]), .node polygon:not([style*="fill"]),
-        .node path:not(.flowchart-link):not([style*="fill"]) {
+        /* Default SVG text / tspan */
+        text:not([fill]):not([style*="fill"]),
+        tspan:not([fill]):not([style*="fill"]) {
+          fill: var(--md-mermaid-label-fg-color, #0f172a);
+          font-family: 'Inter', -apple-system, sans-serif !important;
+          font-weight: 600 !important;
+        }
+
+        /* Child text elements inside node labels MUST inherit color from parent */
+        .nodeLabel p,
+        .nodeLabel span,
+        .nodeLabel div,
+        .nodeLabel strong,
+        .nodeLabel em,
+        .nodeLabel code,
+        .label p,
+        .label span,
+        foreignObject p,
+        foreignObject span {
+          color: inherit !important;
+          font-family: inherit !important;
+        }
+
+        /* Explicit high-contrast white text for custom colored node classes */
+        .node.blue .nodeLabel, .node.blue p, .node.blue span, .node.blue text, .node.blue tspan,
+        .node.green .nodeLabel, .node.green p, .node.green span, .node.green text, .node.green tspan,
+        .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
+        .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
+        .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
+        .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
+        .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
+        .node.store .nodeLabel, .node.store p, .node.store span, .node.store text, .node.store tspan,
+        .node.comp .nodeLabel, .node.comp p, .node.comp span, .node.comp text, .node.comp tspan,
+        .node.out .nodeLabel, .node.out p, .node.out span, .node.out text, .node.out tspan {
+          color: #ffffff !important;
+          fill: #ffffff !important;
+        }
+
+        /* Shapes for known classes */
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.store rect, .node.store polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.comp rect, .node.comp polygon { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+
+        /* Node shapes (only unstyled nodes) */
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7576,65 +7638,81 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 <hr />
 <h2 id="5-in-browser-interactive-taxonomy-streaming-simulator">5. 🔬 In-Browser Interactive Taxonomy &amp; Streaming Simulator</h2>
 <p>Explore how different structural representations transform raw records, inspect JSON schema-on-read trees, and observe real-time dynamic streaming window aggregation below:</p>
-<div class="noc-sim-card" style="background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin: 24px 0; color: #f8fafc;">
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+<div class="noc-sim-card" style="background: #0a0e17; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; margin: 24px 0; color: #f8fafc; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); max-width: 100%; box-sizing: border-box; overflow: hidden;">
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 14px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
     <div>
-      <h3 style="margin: 0; color: #38bdf8; font-size: 1.25rem;">🔬 Multi-Structure &amp; Stream Ingestion Inspector</h3>
-      <span style="font-size: 0.85rem; color: #94a3b8;">Compare relational tuples, semi-structured JSON trees, and live streaming window buffers.</span>
+      <h3 style="margin: 0; color: #38bdf8; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+        <span>🔬 Multi-Structure &amp; Stream Ingestion Inspector</span>
+      </h3>
+      <span style="font-size: 0.84rem; color: #94a3b8;">Compare relational tuples, semi-structured JSON trees, and live streaming window buffers.</span>
     </div>
-    <div style="display: flex; gap: 8px;">
-      <button id="btnTabStruct" onclick="selectTypeTab('structured')" style="background: #2563eb; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer;">1. Structured</button>
-      <button id="btnTabSemi" onclick="selectTypeTab('semistruct')" style="background: #334155; color: #cbd5e1; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer;">2. Semi-Structured</button>
-      <button id="btnTabUnstruct" onclick="selectTypeTab('unstruct')" style="background: #334155; color: #cbd5e1; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer;">3. Unstructured</button>
-      <button id="btnTabStream" onclick="selectTypeTab('streaming')" style="background: #334155; color: #cbd5e1; border: none; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer;">4. Live Stream ⚡</button>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <button id="btnTabStruct" onclick="selectTypeTab('structured')" style="background: #2563eb; color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">1. Structured</button>
+      <button id="btnTabSemi" onclick="selectTypeTab('semistruct')" style="background: #334155; color: #cbd5e1; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">2. Semi-Structured</button>
+      <button id="btnTabUnstruct" onclick="selectTypeTab('unstruct')" style="background: #334155; color: #cbd5e1; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">3. Unstructured</button>
+      <button id="btnTabStream" onclick="selectTypeTab('streaming')" style="background: #334155; color: #cbd5e1; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.2s;">4. Live Stream ⚡</button>
     </div>
   </div>
 
   <!-- VIEW 1: STRUCTURED -->
   <div id="viewStructured" style="display: block;">
-    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
-      <div>
-        <span style="font-size: 0.82rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Relational Schema: <code>customers_relational</code></span>
-        <div style="overflow-x: auto; margin-top: 8px;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; font-family: monospace;">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <div style="flex: 1 1 360px; min-width: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Relational Schema: <code style="background:#1e293b; color:#38bdf8; padding:2px 6px; border-radius:4px; font-size:0.78rem;">customers_relational</code></span>
+          <div style="display: flex; gap: 4px; font-size: 0.74rem;">
+            <button onclick="filterStructRows('all')" style="background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 2px 8px; border-radius: 4px; cursor: pointer;">All</button>
+            <button onclick="filterStructRows('spend400')" style="background: #1e293b; border: 1px solid #334155; color: #38bdf8; padding: 2px 8px; border-radius: 4px; cursor: pointer;">Spend &gt; $400</button>
+            <button onclick="filterStructRows('platinum')" style="background: #1e293b; border: 1px solid #334155; color: #4ade80; padding: 2px 8px; border-radius: 4px; cursor: pointer;">Platinum</button>
+          </div>
+        </div>
+        <div class="noc-sim-table-wrap" style="overflow-x: auto; width: 100%; border: 1px solid #334155; border-radius: 8px; background: #090d16;">
+          <table class="noc-sim-table" style="width: 100%; border-collapse: collapse; font-size: 0.82rem; font-family: monospace; margin: 0 !important; background: #090d16; color: #e2e8f0;">
             <thead>
-              <tr style="background: #1e293b; color: #38bdf8; text-align: left;">
-                <th style="padding: 8px; border: 1px solid #334155;">customer_id (Int64)</th>
-                <th style="padding: 8px; border: 1px solid #334155;">email (Utf8)</th>
-                <th style="padding: 8px; border: 1px solid #334155;">spend_usd (Float64)</th>
-                <th style="padding: 8px; border: 1px solid #334155;">tier (Categorical)</th>
+              <tr style="background: #1e293b; color: #38bdf8; text-align: left; border-bottom: 1px solid #334155;">
+                <th style="padding: 10px 12px; border: 1px solid #334155; background: #1e293b; color: #38bdf8; font-weight: 600; white-space: nowrap;">customer_id <span style="color: #64748b; font-size: 0.72rem;">(Int64)</span></th>
+                <th style="padding: 10px 12px; border: 1px solid #334155; background: #1e293b; color: #38bdf8; font-weight: 600; white-space: nowrap;">email <span style="color: #64748b; font-size: 0.72rem;">(Utf8)</span></th>
+                <th style="padding: 10px 12px; border: 1px solid #334155; background: #1e293b; color: #38bdf8; font-weight: 600; white-space: nowrap;">spend_usd <span style="color: #64748b; font-size: 0.72rem;">(Float64)</span></th>
+                <th style="padding: 10px 12px; border: 1px solid #334155; background: #1e293b; color: #38bdf8; font-weight: 600; white-space: nowrap;">tier <span style="color: #64748b; font-size: 0.72rem;">(Categorical)</span></th>
               </tr>
             </thead>
-            <tbody>
-              <tr style="border-bottom: 1px solid #334155;">
-                <td style="padding: 8px; border: 1px solid #334155;">1001</td>
-                <td style="padding: 8px; border: 1px solid #334155;">alex@datacamp.org</td>
-                <td style="padding: 8px; border: 1px solid #334155;">$429.50</td>
-                <td style="padding: 8px; border: 1px solid #334155; color: #4ade80;">Platinum</td>
+            <tbody id="structTableBody">
+              <tr id="row1001" style="border-bottom: 1px solid #334155; background: #0f172a;">
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a; color: #f8fafc; font-weight: 600;">1001</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a; color: #94a3b8;">alex@datacamp.org</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a; color: #38bdf8; font-weight: 600;">$429.50</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a;"><span style="background: rgba(74, 222, 128, 0.15); color: #4ade80; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(74, 222, 128, 0.3);">Platinum</span></td>
               </tr>
-              <tr style="border-bottom: 1px solid #334155;">
-                <td style="padding: 8px; border: 1px solid #334155;">1002</td>
-                <td style="padding: 8px; border: 1px solid #334155;">priya@biotech.io</td>
-                <td style="padding: 8px; border: 1px solid #334155;">$180.00</td>
-                <td style="padding: 8px; border: 1px solid #334155; color: #60a5fa;">Silver</td>
+              <tr id="row1002" style="border-bottom: 1px solid #334155; background: #0b1120;">
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0b1120; color: #f8fafc; font-weight: 600;">1002</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0b1120; color: #94a3b8;">priya@biotech.io</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0b1120; color: #38bdf8; font-weight: 600;">$180.00</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0b1120;"><span style="background: rgba(96, 165, 250, 0.15); color: #60a5fa; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(96, 165, 250, 0.3);">Silver</span></td>
               </tr>
-              <tr style="border-bottom: 1px solid #334155;">
-                <td style="padding: 8px; border: 1px solid #334155;">1003</td>
-                <td style="padding: 8px; border: 1px solid #334155;">chen@quant.ai</td>
-                <td style="padding: 8px; border: 1px solid #334155;">$1,240.25</td>
-                <td style="padding: 8px; border: 1px solid #334155; color: #f43f5e;">Diamond</td>
+              <tr id="row1003" style="border-bottom: 1px solid #334155; background: #0f172a;">
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a; color: #f8fafc; font-weight: 600;">1003</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a; color: #94a3b8;">chen@quant.ai</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a; color: #38bdf8; font-weight: 600;">$1,240.25</td>
+                <td style="padding: 8px 12px; border: 1px solid #334155; background: #0f172a;"><span style="background: rgba(244, 63, 94, 0.15); color: #f43f5e; padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(244, 63, 94, 0.3);">Diamond</span></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div style="background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155;">
-        <span style="font-size: 0.8rem; font-weight: 700; color: #38bdf8;">Architectural Metrics</span>
-        <div style="margin-top: 10px; font-size: 0.85rem; line-height: 1.8;">
-          <div>• <b>Schema Enforcement:</b> Strict (Write-Time)</div>
-          <div>• <b>Null Sparsity:</b> 0.00% (High Density)</div>
-          <div>• <b>Compression Ratio:</b> 4.2x (Columnar Parquet)</div>
-          <div>• <b>Query Complexity:</b> $\mathcal{O}(1)$ projection</div>
+      <div style="flex: 1 1 240px; min-width: 0; background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
+            <span>📊 Architectural Metrics</span>
+          </span>
+          <div style="margin-top: 10px; font-size: 0.82rem; line-height: 1.8; color: #cbd5e1;">
+            <div>• <b style="color: #f1f5f9;">Schema Enforcement:</b> <span style="color: #4ade80;">Strict (Write-Time)</span></div>
+            <div>• <b style="color: #f1f5f9;">Null Sparsity:</b> <span style="color: #38bdf8;">0.00% (High Density)</span></div>
+            <div>• <b style="color: #f1f5f9;">Compression:</b> <span style="color: #fbbf24;">4.2× (Columnar Parquet)</span></div>
+            <div>• <b style="color: #f1f5f9;">Query Complexity:</b> <span style="color: #c084fc; font-family: monospace;">$\mathcal{O}(1)$ projection</span></div>
+          </div>
+        </div>
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #334155; font-size: 0.75rem; color: #94a3b8;">
+          Optimized for vectorized SIMD arithmetic and predicate pushdowns.
         </div>
       </div>
     </div>
@@ -7642,28 +7720,35 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 
   <!-- VIEW 2: SEMI-STRUCTURED -->
   <div id="viewSemi" style="display: none;">
-    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;">
-      <div>
-        <span style="font-size: 0.82rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Self-Describing JSON Payload:</span>
-        <pre style="background: #020617; border: 1px solid #334155; border-radius: 8px; padding: 12px; font-size: 0.82rem; color: #38bdf8; max-height: 220px; overflow-y: auto;"><code>{
-  "order_id": "ORD-2026-991",
-  "customer": { "id": 1001, "tier": "Platinum" },
-  "items": [
-    { "sku": "GPU-H100", "qty": 2, "price": 32000 },
-    { "sku": "CABLE-IB-800G", "qty": 4, "opt": { "color": "blue" } }
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <div style="flex: 1 1 340px; min-width: 0;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Self-Describing JSON Payload (Schema-on-Read):</span>
+        <pre style="background: #020617; border: 1px solid #334155; border-radius: 8px; padding: 12px; font-size: 0.82rem; color: #38bdf8; max-height: 220px; overflow-y: auto; margin-top: 8px; font-family: monospace;"><code>{
+  <span style="color:#94a3b8;">"order_id":</span> <span style="color:#4ade80;">"ORD-2026-991"</span>,
+  <span style="color:#94a3b8;">"customer":</span> { <span style="color:#94a3b8;">"id":</span> <span style="color:#fbbf24;">1001</span>, <span style="color:#94a3b8;">"tier":</span> <span style="color:#4ade80;">"Platinum"</span> },
+  <span style="color:#94a3b8;">"items":</span> [
+    { <span style="color:#94a3b8;">"sku":</span> <span style="color:#4ade80;">"GPU-H100"</span>, <span style="color:#94a3b8;">"qty":</span> <span style="color:#fbbf24;">2</span>, <span style="color:#94a3b8;">"price":</span> <span style="color:#fbbf24;">32000</span> },
+    { <span style="color:#94a3b8;">"sku":</span> <span style="color:#4ade80;">"CABLE-IB-800G"</span>, <span style="color:#94a3b8;">"qty":</span> <span style="color:#fbbf24;">4</span>, <span style="color:#94a3b8;">"opt":</span> { <span style="color:#94a3b8;">"color":</span> <span style="color:#4ade80;">"blue"</span> } }
   ],
-  "telemetry": { "ip": "192.168.1.4", "retry_count": null }
+  <span style="color:#94a3b8;">"telemetry":</span> { <span style="color:#94a3b8;">"ip":</span> <span style="color:#4ade80;">"192.168.1.4"</span>, <span style="color:#94a3b8;">"retry_count":</span> <span style="color:#f43f5e;">null</span> }
 }</code></pre>
       </div>
-      <div style="background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155;">
-        <span style="font-size: 0.8rem; font-weight: 700; color: #38bdf8;">JSON Tree Parser</span>
-        <div style="margin-top: 8px; font-size: 0.82rem;">
-          <label>Query JSONPath:</label>
-          <input type="text" id="jsonPathInput" value="$.items[*].sku" style="width: 100%; background: #0f172a; border: 1px solid #475569; color: #fff; padding: 6px; border-radius: 4px; margin-top: 4px; font-family: monospace;" oninput="runJsonPathQuery()">
-          <div style="margin-top: 10px; font-weight: 600; color: #94a3b8;">Evaluated Output:</div>
-          <div id="jsonPathOutput" style="background: #0f172a; padding: 6px; border-radius: 4px; font-family: monospace; color: #4ade80; margin-top: 4px; font-size: 0.8rem;">
-            ["GPU-H100", "CABLE-IB-800G"]
+      <div style="flex: 1 1 260px; min-width: 0; background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155; display: flex; flex-direction: column;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em;">JSON Tree Parser</span>
+        <div style="margin-top: 8px; font-size: 0.82rem; flex: 1;">
+          <label style="color: #cbd5e1; font-size: 0.78rem; font-weight: 600;">Query JSONPath Expression:</label>
+          <div style="display: flex; gap: 4px; margin: 4px 0 6px; flex-wrap: wrap;">
+            <button onclick="runJsonPathQuery('$.items[*].sku')" style="background: #0f172a; border: 1px solid #475569; color: #38bdf8; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; cursor: pointer;">$.items[*].sku</button>
+            <button onclick="runJsonPathQuery('$.customer.tier')" style="background: #0f172a; border: 1px solid #475569; color: #4ade80; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; cursor: pointer;">$.customer.tier</button>
+            <button onclick="runJsonPathQuery('$.telemetry.ip')" style="background: #0f172a; border: 1px solid #475569; color: #fbbf24; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; cursor: pointer;">$.telemetry.ip</button>
           </div>
+          <input type="text" id="jsonPathInput" value="$.items[*].sku" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid #475569; color: #ffffff; padding: 7px 10px; border-radius: 5px; font-family: monospace; font-size: 0.82rem;" oninput="runJsonPathQuery()">
+          <div style="margin-top: 10px; font-weight: 600; color: #94a3b8; font-size: 0.78rem;">Evaluated Subtree Output:</div>
+          <div id="jsonPathOutput" style="background: #020617; border: 1px solid #334155; padding: 8px 10px; border-radius: 6px; font-family: monospace; color: #4ade80; margin-top: 4px; font-size: 0.8rem; min-height: 48px; white-space: pre-wrap;">
+["GPU-H100", "CABLE-IB-800G"]</div>
+        </div>
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #334155; font-size: 0.75rem; color: #94a3b8;">
+          • Late-binding parsing allows polymorphic schemas without ALTER TABLE locks.
         </div>
       </div>
     </div>
@@ -7671,22 +7756,31 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 
   <!-- VIEW 3: UNSTRUCTURED -->
   <div id="viewUnstruct" style="display: none;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-      <div style="background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155;">
-        <span style="font-size: 0.82rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Raw Signal: Clinical ICU Note</span>
-        <p style="background: #020617; border: 1px solid #334155; border-radius: 6px; padding: 12px; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; margin-top: 8px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <div style="flex: 1 1 300px; min-width: 0; background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Raw Signal (Continuous Text / Waveform):</span>
+          <div style="display: flex; gap: 4px; font-size: 0.74rem;">
+            <button onclick="setUnstructPreset('icu')" id="btnUnstructICU" style="background: #2563eb; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; cursor: pointer;">ICU Note</button>
+            <button onclick="setUnstructPreset('review')" id="btnUnstructRev" style="background: #0f172a; border: 1px solid #475569; color: #cbd5e1; padding: 2px 8px; border-radius: 4px; cursor: pointer;">Review</button>
+          </div>
+        </div>
+        <p id="unstructTextDisplay" style="background: #020617; border: 1px solid #334155; border-radius: 6px; padding: 12px; font-size: 0.83rem; color: #e2e8f0; line-height: 1.6; margin: 0; flex: 1;">
           "Patient 447 presented at 03:14 with acute dyspnea and bilateral pulmonary rales. Administered 40mg IV Furosemide. SpO2 rebounded from 88% to 96% on 2L nasal cannula."
         </p>
       </div>
-      <div style="background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155;">
-        <span style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; text-transform: uppercase;">Vector Embedding Extraction ($d = 4$)</span>
-        <div style="margin-top: 12px; font-family: monospace; font-size: 0.85rem; background: #020617; padding: 10px; border-radius: 6px; border: 1px solid #334155;">
-          <div>$\mathbf{z}_{clinical} = [$</div>
-          <div style="padding-left: 16px; color: #38bdf8;">+0.742, &nbsp;/* Cardiac/Pulmonary */</div>
-          <div style="padding-left: 16px; color: #4ade80;">-0.128, &nbsp;/* Acuity Severity */</div>
-          <div style="padding-left: 16px; color: #f59e0b;">+0.891, &nbsp;/* Diuretic Intervention */</div>
-          <div style="padding-left: 16px; color: #a855f7;">+0.045 &nbsp;/* Discharge Readiness */</div>
-          <div>$]$</div>
+      <div style="flex: 1 1 280px; min-width: 0; background: #1e293b; padding: 16px; border-radius: 8px; border: 1px solid #334155; display: flex; flex-direction: column;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em;">Dense Embedding Projection ($d = 4$)</span>
+        <div id="unstructVectorBox" style="margin-top: 8px; font-family: monospace; font-size: 0.82rem; background: #020617; padding: 10px 14px; border-radius: 6px; border: 1px solid #334155; flex: 1;">
+          <div style="color:#94a3b8;">$\mathbf{z}_{clinical} = [$</div>
+          <div id="vecDim1" style="padding-left: 16px; color: #38bdf8;">+0.742, &nbsp;/* Cardiac/Pulmonary */</div>
+          <div id="vecDim2" style="padding-left: 16px; color: #4ade80;">-0.128, &nbsp;/* Acuity Severity */</div>
+          <div id="vecDim3" style="padding-left: 16px; color: #f59e0b;">+0.891, &nbsp;/* Diuretic Intervention */</div>
+          <div id="vecDim4" style="padding-left: 16px; color: #c084fc;">+0.045 &nbsp;/* Discharge Readiness */</div>
+          <div style="color:#94a3b8;">$]$</div>
+        </div>
+        <div style="margin-top: 10px; font-size: 0.75rem; color: #94a3b8;">
+          • Metric: Cosine similarity $\cos(\theta) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \|\mathbf{v}\|_2}$ over metric manifold.
         </div>
       </div>
     </div>
@@ -7694,23 +7788,30 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 
   <!-- VIEW 4: STREAMING -->
   <div id="viewStream" style="display: none;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-      <span style="font-size: 0.85rem; color: #94a3b8;">Simulating High-Frequency IoT Sensor Events:</span>
-      <div style="display: flex; gap: 8px;">
-        <button id="btnStreamToggle" onclick="toggleStreamSimulation()" style="background: #10b981; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">▶ Start Stream</button>
-        <button onclick="clearStreamLog()" style="background: #475569; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer;">🧹 Clear</button>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+      <span style="font-size: 0.84rem; color: #94a3b8;">High-Frequency IoT Telemetry Ingestion ($\Delta t = 450\text{ms}$):</span>
+      <div style="display: flex; gap: 6px;">
+        <button id="btnStreamToggle" onclick="toggleStreamSimulation()" style="background: #10b981; color: #ffffff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">▶ Start Stream</button>
+        <button onclick="injectStreamBurst()" style="background: #2563eb; color: #ffffff; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">⚡ Burst</button>
+        <button onclick="clearStreamLog()" style="background: #475569; color: #ffffff; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer;">🧹 Clear</button>
       </div>
     </div>
-    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px;">
-      <div id="streamEventLog" style="background: #020617; border: 1px solid #334155; border-radius: 8px; height: 160px; overflow-y: auto; padding: 8px; font-family: monospace; font-size: 0.8rem; color: #38bdf8;">
-        <div style="color: #64748b;">// Awaiting stream inception. Click 'Start Stream' above...</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <div id="streamEventLog" style="flex: 1 1 340px; min-width: 0; background: #020617; border: 1px solid #334155; border-radius: 8px; height: 180px; overflow-y: auto; padding: 10px; font-family: monospace; font-size: 0.8rem; color: #38bdf8;">
+        <div style="color: #64748b;">// Awaiting stream inception. Click '▶ Start Stream' above to ingest sensor telemetry...</div>
       </div>
-      <div style="background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid #334155;">
-        <span style="font-size: 0.78rem; font-weight: 700; color: #38bdf8;">Tumbling Window (Δt = 3s)</span>
-        <div style="margin-top: 8px; font-size: 0.82rem;">
-          <div>• Events in Window: <span id="winCount" style="color: #4ade80; font-weight: bold;">0</span></div>
-          <div>• Window Mean Temp: <span id="winMean" style="color: #38bdf8; font-weight: bold;">0.00 °C</span></div>
-          <div>• High Temp Alarm: <span id="winAlarm" style="color: #64748b; font-weight: bold;">OFF</span></div>
+      <div style="flex: 1 1 240px; min-width: 0; background: #1e293b; padding: 14px; border-radius: 8px; border: 1px solid #334155; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em;">Tumbling Window (Δt = 3s)</span>
+          <div style="margin-top: 8px; font-size: 0.82rem; line-height: 1.8; color: #cbd5e1;">
+            <div>• Events in Window: <span id="winCount" style="color: #4ade80; font-weight: bold;">0</span></div>
+            <div>• Window Mean Temp: <span id="winMean" style="color: #38bdf8; font-weight: bold;">0.00 °C</span></div>
+            <div>• High Temp Alarm: <span id="winAlarm" style="background: rgba(100,116,139,0.2); color: #94a3b8; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.75rem;">OFF</span></div>
+            <div>• Watermark SLA: <span style="color: #a855f7; font-weight: bold;">250 ms bound</span></div>
+          </div>
+        </div>
+        <div style="margin-top: 10px; font-size: 0.74rem; color: #94a3b8; border-top: 1px solid #334155; padding-top: 8px;">
+          Window evaluates strictly on ingestion without lookahead bias.
         </div>
       </div>
     </div>
@@ -7719,54 +7820,157 @@ Notice that node <code>Item [1]</code> possesses a <code>'discount'</code> attri
 
 <script>
 function selectTypeTab(tab) {
-  const tabs = ['Structured', 'Semi', 'Unstruct', 'Stream'];
-  const viewMap = {
+  const views = {
     'structured': 'viewStructured',
     'semistruct': 'viewSemi',
     'unstruct': 'viewUnstruct',
     'streaming': 'viewStream'
   };
-  const btnMap = {
+  const buttons = {
     'structured': 'btnTabStruct',
     'semistruct': 'btnTabSemi',
     'unstruct': 'btnTabUnstruct',
     'streaming': 'btnTabStream'
   };
 
-  Object.keys(viewMap).forEach(key => {
-    const el = document.getElementById(viewMap[key]);
-    const btn = document.getElementById(btnMap[key]);
+  Object.keys(views).forEach(key => {
+    const el = document.getElementById(views[key]);
+    const btn = document.getElementById(buttons[key]);
     if (key === tab) {
-      if (el) elstyle.display = 'block';
+      if (el) el.style.display = 'block';
       if (btn) {
-        btnstyle.background = '#2563eb';
-        btnstyle.color = '#ffffff';
+        btn.style.background = '#2563eb';
+        btn.style.color = '#ffffff';
       }
     } else {
-      if (el) elstyle.display = 'none';
+      if (el) el.style.display = 'none';
       if (btn) {
-        btnstyle.background = '#334155';
-        btnstyle.color = '#cbd5e1';
+        btn.style.background = '#334155';
+        btn.style.color = '#cbd5e1';
       }
     }
   });
+
+  // Re-trigger KaTeX rendering if available
+  if (typeof renderMathInElement === 'function') {
+    const target = document.getElementById(views[tab]);
+    if (target) {
+      renderMathInElement(target, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  }
 }
 
-function runJsonPathQuery() {
-  const q = document.getElementById('jsonPathInput').value.trim();
+function filterStructRows(filter) {
+  const r1 = document.getElementById('row1001');
+  const r2 = document.getElementById('row1002');
+  const r3 = document.getElementById('row1003');
+  if (!r1 || !r2 || !r3) return;
+
+  if (filter === 'all') {
+    r1.style.display = '';
+    r2.style.display = '';
+    r3.style.display = '';
+  } else if (filter === 'spend400') {
+    r1.style.display = '';
+    r2.style.display = 'none';
+    r3.style.display = '';
+  } else if (filter === 'platinum') {
+    r1.style.display = '';
+    r2.style.display = 'none';
+    r3.style.display = 'none';
+  }
+}
+
+function runJsonPathQuery(presetQuery) {
+  const input = document.getElementById('jsonPathInput');
+  if (presetQuery) {
+    input.value = presetQuery;
+  }
+  const q = input.value.trim();
   const out = document.getElementById('jsonPathOutput');
-  if (q.includes('sku')) {
-    out.innerText = '["GPU-H100", "CABLE-IB-800G"]';
-    outstyle.color = '#4ade80';
-  } else if (q.includes('price')) {
-    out.innerText = '[32000]';
-    outstyle.color = '#4ade80';
-  } else if (q.includes('tier') || q.includes('customer')) {
-    out.innerText = '{"id": 1001, "tier": "Platinum"}';
-    outstyle.color = '#4ade80';
+  const payload = {
+    "order_id": "ORD-2026-991",
+    "customer": { "id": 1001, "tier": "Platinum" },
+    "items": [
+      { "sku": "GPU-H100", "qty": 2, "price": 32000 },
+      { "sku": "CABLE-IB-800G", "qty": 4, "opt": { "color": "blue" } }
+    ],
+    "telemetry": { "ip": "192.168.1.4", "retry_count": null }
+  };
+
+  try {
+    let result;
+    if (q === '$' || q === '') {
+      result = payload;
+    } else if (q.includes('items[*].sku') || q === 'sku') {
+      result = payload.items.map(i => i.sku);
+    } else if (q.includes('items[*].price')) {
+      result = payload.items.map(i => i.price);
+    } else if (q.includes('items[0]')) {
+      result = q.includes('sku') ? payload.items[0].sku : (q.includes('price') ? payload.items[0].price : payload.items[0]);
+    } else if (q.includes('items[1]')) {
+      result = q.includes('sku') ? payload.items[1].sku : (q.includes('opt') ? payload.items[1].opt : payload.items[1]);
+    } else if (q.includes('customer.tier') || q === '$.tier') {
+      result = payload.customer.tier;
+    } else if (q.includes('customer.id')) {
+      result = payload.customer.id;
+    } else if (q.includes('customer')) {
+      result = payload.customer;
+    } else if (q.includes('telemetry.ip') || q.includes('ip')) {
+      result = payload.telemetry.ip;
+    } else if (q.includes('telemetry')) {
+      result = payload.telemetry;
+    } else if (q.includes('order_id')) {
+      result = payload.order_id;
+    } else if (q.includes('items')) {
+      result = payload.items;
+    } else {
+      result = "/* Path match: null (Key not found in schema) */";
+    }
+
+    out.innerText = typeof result === 'object' ? JSON.stringify(result, null, 2) : String(result);
+    out.style.color = (typeof result === 'string' && result.includes('null')) ? '#94a3b8' : '#4ade80';
+  } catch (err) {
+    out.innerText = '/* Invalid JSONPath expression */';
+    out.style.color = '#f43f5e';
+  }
+}
+
+function setUnstructPreset(preset) {
+  const textEl = document.getElementById('unstructTextDisplay');
+  const d1 = document.getElementById('vecDim1');
+  const d2 = document.getElementById('vecDim2');
+  const d3 = document.getElementById('vecDim3');
+  const d4 = document.getElementById('vecDim4');
+  const btnICU = document.getElementById('btnUnstructICU');
+  const btnRev = document.getElementById('btnUnstructRev');
+
+  if (preset === 'icu') {
+    textEl.innerText = '"Patient 447 presented at 03:14 with acute dyspnea and bilateral pulmonary rales. Administered 40mg IV Furosemide. SpO2 rebounded from 88% to 96% on 2L nasal cannula."';
+    d1.innerHTML = '+0.742, &nbsp;/* Cardiac/Pulmonary */';
+    d2.innerHTML = '-0.128, &nbsp;/* Acuity Severity */';
+    d3.innerHTML = '+0.891, &nbsp;/* Diuretic Intervention */';
+    d4.innerHTML = '+0.045 &nbsp;/* Discharge Readiness */';
+    btnICU.style.background = '#2563eb';
+    btnICU.style.color = '#fff';
+    btnRev.style.background = '#0f172a';
+    btnRev.style.color = '#cbd5e1';
   } else {
-    out.innerText = '/* Valid JSON match or null */';
-    outstyle.color = '#94a3b8';
+    textEl.innerText = '"Outstanding enterprise throughput! The dual-stack PCIe gen 5 interconnect completely eliminated memory thrashing during batch inference on our 70B parameter model."';
+    d1.innerHTML = '+0.912, &nbsp;/* Hardware Architecture */';
+    d2.innerHTML = '+0.845, &nbsp;/* Positive Sentiment */';
+    d3.innerHTML = '-0.034, &nbsp;/* Price Sensitivity */';
+    d4.innerHTML = '+0.680 &nbsp;/* Enterprise Intent */';
+    btnRev.style.background = '#2563eb';
+    btnRev.style.color = '#fff';
+    btnICU.style.background = '#0f172a';
+    btnICU.style.color = '#cbd5e1';
   }
 }
 
@@ -7779,51 +7983,73 @@ function toggleStreamSimulation() {
     clearInterval(streamTimer);
     streamTimer = null;
     btn.innerText = '▶ Resume Stream';
-    btnstyle.background = '#10b981';
+    btn.style.background = '#10b981';
   } else {
     btn.innerText = '⏸ Pause Stream';
-    btnstyle.background = '#f59e0b';
+    btn.style.background = '#f59e0b';
     streamTimer = setInterval(generateStreamTick, 450);
+  }
+}
+
+function injectStreamBurst() {
+  for (let i = 0; i < 3; i++) {
+    setTimeout(generateStreamTick, i * 80);
   }
 }
 
 function generateStreamTick() {
   const log = document.getElementById('streamEventLog');
+  if (!log) return;
   const temp = (68.0 + (Math.random() * 18 - 8)).toFixed(2);
   const now = new Date().toISOString().split('T')[1].replace('Z','');
   const devId = 'sensor-' + Math.floor(Math.random() * 4 + 1);
 
   streamEvents.push(parseFloat(temp));
-  if (streamEvents.length > 25) streamEvents.shift();
+  if (streamEvents.length > 30) streamEvents.shift();
 
   const isHot = parseFloat(temp) > 74.0;
   const line = document.createElement('div');
-  line.innerHTML = `<span style="color:#64748b;">[${now}]</span> <span style="color:#38bdf8;">${devId}</span>: temp=<span style="color:${isHot ? '#f43f5e' : '#4ade80'}; font-weight:bold;">${temp}°C</span> ${isHot ? '🔥' : ''}`;
+  line.style.padding = '2px 0';
+  line.innerHTML = `<span style="color:#64748b;">[${now}]</span> <span style="color:#38bdf8; font-weight:600;">${devId}</span>: temp=<span style="color:${isHot ? '#f43f5e' : '#4ade80'}; font-weight:bold;">${temp}°C</span> ${isHot ? '<span style="color:#f43f5e; font-weight:bold;">🔥 ALARM</span>' : ''}`;
   log.appendChild(line);
   log.scrollTop = log.scrollHeight;
 
-  // Window metrics
+  // Tumbling window metrics (last 6 events)
   const win = streamEvents.slice(-6);
   const count = win.length;
   const avg = (win.reduce((a, b) => a + b, 0) / count).toFixed(2);
-  document.getElementById('winCount').innerText = count;
-  document.getElementById('winMean').innerText = avg + ' °C';
+  const countEl = document.getElementById('winCount');
+  const meanEl = document.getElementById('winMean');
   const alarmEl = document.getElementById('winAlarm');
-  if (parseFloat(avg) > 72.0) {
-    alarmEl.innerText = 'TRIGGERED';
-    alarmElstyle.color = '#f43f5e';
-  } else {
-    alarmEl.innerText = 'NORMAL';
-    alarmElstyle.color = '#4ade80';
+  if (countEl) countEl.innerText = count;
+  if (meanEl) meanEl.innerText = avg + ' °C';
+  if (alarmEl) {
+    if (parseFloat(avg) > 72.0) {
+      alarmEl.innerText = 'TRIGGERED 🔥';
+      alarmEl.style.background = 'rgba(244, 63, 94, 0.2)';
+      alarmEl.style.color = '#f43f5e';
+    } else {
+      alarmEl.innerText = 'NORMAL';
+      alarmEl.style.background = 'rgba(74, 222, 128, 0.15)';
+      alarmEl.style.color = '#4ade80';
+    }
   }
 }
 
 function clearStreamLog() {
-  document.getElementById('streamEventLog').innerHTML = '';
+  const log = document.getElementById('streamEventLog');
+  if (log) log.innerHTML = '<div style="color: #64748b;">// Buffer cleared. Click \'Start Stream\' to begin telemetry generation...</div>';
   streamEvents = [];
-  document.getElementById('winCount').innerText = '0';
-  document.getElementById('winMean').innerText = '0.00 °C';
-  document.getElementById('winAlarm').innerText = 'NORMAL';
+  const countEl = document.getElementById('winCount');
+  const meanEl = document.getElementById('winMean');
+  const alarmEl = document.getElementById('winAlarm');
+  if (countEl) countEl.innerText = '0';
+  if (meanEl) meanEl.innerText = '0.00 °C';
+  if (alarmEl) {
+    alarmEl.innerText = 'OFF';
+    alarmEl.style.background = 'rgba(100,116,139,0.2)';
+    alarmEl.style.color = '#94a3b8';
+  }
 }
 </script>
 
