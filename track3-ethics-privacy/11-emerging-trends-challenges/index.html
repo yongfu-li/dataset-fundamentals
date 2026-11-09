@@ -7495,7 +7495,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Differential Privacy Guarantees in Large Language Models</p>
-<p>Fine-tuning a 70B parameter LLM with Differential Privacy (DP-SGD) requires substantial gradient clipping (<span class="arithmatex">\(C\)</span>) and noise addition (<span class="arithmatex">\(\sigma\)</span>). If hyperparameter budgets are miscalibrated, the model either memorizes sensitive training data (insufficient <span class="arithmatex">\(\epsilon\)</span>) or collapses into unintelligible gibberish (excessive noise destroying downstream perplexity).</p>
+<p>Fine-tuning a 70B parameter LLM with Differential Privacy (DP-SGD) requires substantial gradient clipping (<span class="arithmatex">\(C\)</span>) and noise addition (<span class="arithmatex">\(\sigma\)</span>) grounded in DP-SGD foundations [<a href="#ref-abadi2016">Abadi2016</a>] and differential privacy guarantees [<a href="#ref-dwork2014">Dwork2014</a>]. If hyperparameter budgets are miscalibrated, the model either memorizes sensitive training data (insufficient <span class="arithmatex">\(\epsilon\)</span>) or collapses into unintelligible gibberish (excessive noise destroying downstream perplexity).</p>
 </div>
 <h2 id="2-mathematical-formalization-of-emerging-generative-attacks">2. Mathematical Formalization of Emerging Generative Attacks</h2>
 <h3 id="1-training-data-memorization-extraction-likelihood">1. Training Data Memorization &amp; Extraction Likelihood</h3>
@@ -7523,7 +7523,7 @@ C_{\text{memo}} \le \mathcal{O}\left( \frac{P \cdot b_{\text{precision}}}{\log_2
 \]</div>
 <p>If distance <span class="arithmatex">\(\min_{\mathbf{x}_{\text{train}} \in \mathcal{D}} \|\mathbf{x}_{\text{synth}} - \mathbf{x}_{\text{train}}\|_2 \to 0\)</span>, the synthetic data generates zero identity deniability.</p>
 <h3 id="5-geopolitical-data-sovereignty-constraint">5. Geopolitical Data Sovereignty Constraint</h3>
-<p>National frameworks (EU GDPR Schrems II, China PIPL, India DPDP) mandate that personal data cannot exit physical geopolitical territories without rigorous legal equivalency:</p>
+<p>National frameworks (EU GDPR Schrems II [<a href="#ref-voigt2017">Voigt2017</a>], China PIPL, India DPDP) mandate that personal data cannot exit physical geopolitical territories without rigorous legal equivalency:</p>
 <div class="arithmatex">\[
 \forall r_i \in \mathcal{D}_k, \quad \text{GeoLocation}\left(\text{Storage}(r_i)\right) \subseteq \text{Territory}(\mathcal{J}_k)
 \]</div>

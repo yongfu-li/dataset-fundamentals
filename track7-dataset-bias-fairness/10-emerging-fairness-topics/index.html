@@ -7490,14 +7490,14 @@
   A -. Counterfactual Check .-&gt; Intervention
   Intervention -. Must Not Influence .-&gt; Y_hat</code></pre>
 <hr />
-<h3 id="1-structural-causal-models-counterfactual-fairness-kusner-et-al-2017">1. Structural Causal Models &amp; Counterfactual Fairness (Kusner et al., 2017)</h3>
+<h3 id="1-structural-causal-models-counterfactual-fairness-kusner-et-al-2017">1. Structural Causal Models &amp; Counterfactual Fairness (<a href="#ref-kusner2017">Kusner et al., 2017</a>)</h3>
 <p>A Structural Causal Model (SCM) is defined as a 3-tuple <span class="arithmatex">\(\mathcal{M} = \langle \mathcal{U}, \mathcal{V}, \mathcal{F} \rangle\)</span>, where <span class="arithmatex">\(\mathcal{U}\)</span> is a set of exogenous background variables distributed according to <span class="arithmatex">\(\mathcal{P}(\mathcal{U})\)</span>, <span class="arithmatex">\(\mathcal{V}\)</span> is a set of endogenous observable variables, and <span class="arithmatex">\(\mathcal{F} = \{f_1, \dots, f_m\}\)</span> is a set of deterministic structural equations (<a href="#ref-pearl2009">Pearl, 2009</a>):</p>
 <div class="arithmatex">\[V_i := f_i(\text{PA}_i, U_i), \quad V_i \in \mathcal{V}, \quad U_i \in \mathcal{U}\]</div>
 <p>where <span class="arithmatex">\(\text{PA}_i \subset \mathcal{V} \setminus \{V_i\}\)</span> denotes the direct causal parents of <span class="arithmatex">\(V_i\)</span>.</p>
 <h4 id="counterfactual-fairness-definition">Counterfactual Fairness Definition</h4>
 <p>A predictor <span class="arithmatex">\(\hat{Y} = f(X, A)\)</span> is <strong>counterfactually fair</strong> if for any context <span class="arithmatex">\(X = x\)</span> and <span class="arithmatex">\(A = a\)</span>:</p>
 <div class="arithmatex">\[\mathbb{P}\left(\hat{Y}_{A \leftarrow a}(\mathcal{U}) = 1 \;\middle|\; X = x, A = a\right) = \mathbb{P}\left(\hat{Y}_{A \leftarrow a'}(\mathcal{U}) = 1 \;\middle|\; X = x, A = a\right), \quad \forall a, a' \in \mathcal{A}\]</div>
-<p>In plain terms: an algorithmic decision is counterfactually fair if an individual would have received the exact same decision had they belonged to a different demographic group, holding constant their latent exogenous factors <span class="arithmatex">\(\mathcal{U}\)</span>.</p>
+<p>In plain terms: an algorithmic decision is counterfactually fair if an individual would have received the exact same decision had they belonged to a different demographic group, holding constant their latent exogenous factors <span class="arithmatex">\(\mathcal{U}\)</span>. Balancing these trade-offs exposes the inframarginality cost of fairness (<a href="#ref-corbett2017">Corbett-Davies et al., 2017</a>), while individual recourse is computed via diverse counterfactual generation (<a href="#ref-mothilal2020">Mothilal et al., 2020</a>).</p>
 <h4 id="the-three-step-causal-inference-procedure">The Three-Step Causal Inference Procedure</h4>
 <ol>
 <li><strong>Abduction:</strong> Compute the posterior distribution over latent background factors given evidence:
@@ -7506,7 +7506,7 @@
 <li><strong>Prediction:</strong> Compute the expected prediction <span class="arithmatex">\(\hat{Y}\)</span> on modified model <span class="arithmatex">\(\mathcal{M}_{a'}\)</span> using the posterior distribution of <span class="arithmatex">\(\mathcal{U}\)</span>.</li>
 </ol>
 <hr />
-<h3 id="2-differential-privacy-vs-fairness-conflict-cummings-et-al-2019">2. Differential Privacy vs. Fairness Conflict (Cummings et al., 2019)</h3>
+<h3 id="2-differential-privacy-vs-fairness-conflict-cummings-et-al-2019">2. Differential Privacy vs. Fairness Conflict (<a href="#ref-cummings2019">Cummings et al., 2019</a>)</h3>
 <p>A randomized algorithm <span class="arithmatex">\(\mathcal{M}\)</span> satisfies <span class="arithmatex">\((\epsilon, \delta)\)</span>-Differential Privacy (DP) if for all neighboring datasets <span class="arithmatex">\(D \sim D'\)</span> differing by a single individual (<a href="#ref-dwork2012">Dwork et al., 2012</a>):</p>
 <div class="arithmatex">\[\mathbb{P}(\mathcal{M}(D) \in \mathcal{S}) \le e^\epsilon \cdot \mathbb{P}(\mathcal{M}(D') \in \mathcal{S}) + \delta\]</div>
 <p>When training machine learning models under Differential Privacy (e.g., DP-SGD with Gaussian noise injection <span class="arithmatex">\(\sigma = \frac{\Delta_2 \sqrt{2 \ln(1.25/\delta)}}{\epsilon}\)</span>), minority demographic subgroups with smaller sample sizes <span class="arithmatex">\(n_{\text{minority}} \ll n_{\text{majority}}\)</span> experience <strong>disproportionately severe utility degradation</strong>:</p>
@@ -7610,7 +7610,7 @@
 </span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Pearlian Counterfactual Fairness successfully verified: latent-factored predictions remain 100</span><span class="si">% i</span><span class="s2">nvariant under protected interventions."</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h2 id="empirical-case-study-law-school-admissions-benchmark-kusner-et-al-2017">🔬 Empirical Case Study: Law School Admissions Benchmark (Kusner et al., 2017)</h2>
+<h2 id="empirical-case-study-law-school-admissions-benchmark-kusner-et-al-2017">🔬 Empirical Case Study: Law School Admissions Benchmark (<a href="#ref-kusner2017">Kusner et al., 2017</a>)</h2>
 <p>On the <strong>Law School Admissions Council (LSAC) Benchmark</strong> (<span class="arithmatex">\(N = 21,790\)</span> applicants):
 1. <strong>The Causal Problem:</strong>
    - Both Grade Point Average (GPA) and Law School Admission Test (LSAT) scores exhibited direct statistical dependency on race (<span class="arithmatex">\(A\)</span>) due to historical socioeconomic disparities.
@@ -7659,6 +7659,7 @@ Under standard <span class="arithmatex">\((\epsilon, \delta)\)</span>-DP, noise 
 <li><a id="ref-veale2017"></a><strong>[Veale2017]</strong> M. Veale and R. Binns, "Fairer machine learning in the real world: Mitigating discrimination without collecting sensitive data," <em>Big Data &amp; Society</em>, vol. 4, no. 2, pp. 1–17, 2017. <a href="https://doi.org/10.1177/2053951717743530">DOI: 10.1177/2053951717743530</a>.</li>
 <li><a id="ref-coston2020"></a><strong>[Coston2020]</strong> A. Coston, A. Mishler, E. H. Kennedy, and A. Chouldechova, "Counterfactual Risk Assessments, Evaluation, and Fairness," in <em>Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency (FAccT)</em>, pp. 582–593, 2020. <a href="https://doi.org/10.1145/3351095.3372851">DOI: 10.1145/3351095.3372851</a>.</li>
 <li><a id="ref-mothilal2020"></a><strong>[Mothilal2020]</strong> R. K. Mothilal, A. Sharma, and C. Tan, "Explaining Machine Learning Classifiers through Diverse Counterfactual Explanations," in <em>Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency (FAccT)</em>, pp. 607–617, 2020. <a href="https://doi.org/10.1145/3351095.3372850">DOI: 10.1145/3351095.3372850</a>.</li>
+<li><a id="ref-cummings2019"></a><strong>[Cummings2019]</strong> R. Cummings, V. Gupta, D. Liang, and J. Wortman Vaughan, "On the Compatibility of Differential Privacy and Fairness," <em>arXiv preprint 1905.02237</em>, 2019. <a href="https://doi.org/10.1561/978-1-63828-477-220251023">DOI: 10.1561/978-1-63828-477-220251023</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

@@ -7570,10 +7570,10 @@
 <hr />
 <h3 id="foundational-contrastive-learning-architectures">Foundational Contrastive Learning Architectures</h3>
 <ol>
-<li><strong>SimCLR (Chen et al., 2020):</strong> Demonstrates that simple contrastive learning with strong stochastic augmentations (random crop, Gaussian blur, color distortion) and a non-linear projection head matches supervised ImageNet pretraining (<a href="#ref-chen2020">Chen et al., 2020</a>).</li>
-<li><strong>MoCo (Momentum Contrast) (He et al., 2020):</strong> Decouples contrastive dictionary batch size from GPU memory by maintaining a dynamic memory queue and updating a momentum-averaged target encoder (<a href="#ref-he2020">He et al., 2020</a>).</li>
-<li><strong>SwAV (Caron et al., 2020):</strong> Eliminates pairwise negative sample comparisons by mapping representations to learnable cluster prototypes via the Sinkhorn-Knopp algorithm (<a href="#ref-caron2020">Caron et al., 2020</a>).</li>
-<li><strong>BYOL (Grill et al., 2020):</strong> Achieves state-of-the-art representations without any negative pairs by combining an online network with a target network using an asymmetric predictor architecture (<a href="#ref-grill2020">Grill et al., 2020</a>).</li>
+<li><strong>SimCLR (<a href="#ref-chen2020">Chen et al., 2020</a>):</strong> Demonstrates that simple contrastive learning with strong stochastic augmentations (random crop, Gaussian blur, color distortion) and a non-linear projection head matches supervised ImageNet pretraining (<a href="#ref-chen2020">Chen et al., 2020</a>).</li>
+<li><strong>MoCo (Momentum Contrast) (<a href="#ref-he2020">He et al., 2020</a>):</strong> Decouples contrastive dictionary batch size from GPU memory by maintaining a dynamic memory queue and updating a momentum-averaged target encoder (<a href="#ref-he2020">He et al., 2020</a>).</li>
+<li><strong>SwAV (<a href="#ref-caron2020">Caron et al., 2020</a>):</strong> Eliminates pairwise negative sample comparisons by mapping representations to learnable cluster prototypes via the Sinkhorn-Knopp algorithm (<a href="#ref-caron2020">Caron et al., 2020</a>).</li>
+<li><strong>BYOL (<a href="#ref-grill2020">Grill et al., 2020</a>):</strong> Achieves state-of-the-art representations without any negative pairs by combining an online network with a target network using an asymmetric predictor architecture (<a href="#ref-grill2020">Grill et al., 2020</a>).</li>
 </ol>
 <hr />
 <div class="admonition tip">
@@ -7585,7 +7585,7 @@
 <p>If data augmentation is too weak (e.g., minor color tint without spatial cropping), the neural network learns trivial low-level statistical shortcuts (e.g., matching average background pixel brightness or border padding) rather than semantic object geometry.</p>
 </div>
 <h2 id="mathematical-formulations-of-contrastive-objectives-manifold-geometry">🧮 Mathematical Formulations of Contrastive Objectives &amp; Manifold Geometry</h2>
-<h3 id="1-the-infonce-loss-oord-et-al-2018">1. The InfoNCE Loss (Oord et al., 2018)</h3>
+<h3 id="1-the-infonce-loss-oord-et-al-2018">1. The InfoNCE Loss (<a href="#ref-oord2018">Oord et al., 2018</a>)</h3>
 <p>Given an anchor representation <span class="arithmatex">\(\mathbf{z}_i\)</span>, a positive pair <span class="arithmatex">\(\mathbf{z}_j\)</span> (derived from the same underlying instance), and a set of <span class="arithmatex">\(K\)</span> negative samples <span class="arithmatex">\(\{\mathbf{z}_k\}_{k=1}^K\)</span>, the <strong>InfoNCE Loss</strong> is:</p>
 <div class="arithmatex">\[
 \mathcal{L}_{\text{InfoNCE}} = -\ln \frac{\exp\left( \frac{\text{sim}(\mathbf{z}_i, \mathbf{z}_j)}{\tau} \right)}{\exp\left( \frac{\text{sim}(\mathbf{z}_i, \mathbf{z}_j)}{\tau} \right) + \sum_{k=1}^K \exp\left( \frac{\text{sim}(\mathbf{z}_i, \mathbf{z}_k)}{\tau} \right)}
@@ -7597,7 +7597,7 @@
 I(X; Y) \ge \ln(K + 1) - \mathcal{L}_{\text{InfoNCE}}
 \]</div>
 <p>As the number of negative samples <span class="arithmatex">\(K \to \infty\)</span>, the representation captures maximal shared semantic information while discarding task-irrelevant augmentations.</p>
-<h3 id="3-alignment-and-uniformity-wang-isola-2020">3. Alignment and Uniformity (Wang &amp; Isola, 2020)</h3>
+<h3 id="3-alignment-and-uniformity-wang-isola-2020">3. Alignment and Uniformity (<a href="#ref-wang2020">Wang &amp; Isola, 2020</a>)</h3>
 <p>Wang &amp; Isola proved that contrastive learning optimizes two fundamental geometric properties on the unit hypersphere <span class="arithmatex">\(\mathcal{S}^{d-1}\)</span>:</p>
 <h4 id="alignment-metric-positive-closeness">Alignment Metric (Positive Closeness)</h4>
 <p>Positive pairs must map to nearby points on the hypersphere:</p>
@@ -7757,7 +7757,7 @@ $<span class="arithmatex">\(\mathcal{L}_{\text{uniform}} = \ln \mathbb{E}_{x, y 
 </details>
 <details class="question">
 <summary>Self-Assessment: Masked Autoencoders (MAE) vs. Contrastive Learning</summary>
-<p>Why do Masked Autoencoders (He et al., 2022) mask an extremely high ratio (<span class="arithmatex">\(75\%\)</span>) of image patches during Vision Transformer (ViT) pre-training, whereas BERT masks only <span class="arithmatex">\(15\%\)</span> of text tokens?</p>
+<p>Why do Masked Autoencoders (<a href="#ref-he2022">He et al., 2022</a>) mask an extremely high ratio (<span class="arithmatex">\(75\%\)</span>) of image patches during Vision Transformer (ViT) pre-training, whereas BERT masks only <span class="arithmatex">\(15\%\)</span> of text tokens?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong> Images exhibit <strong>massive spatial redundancy</strong> compared to natural language.</p>
@@ -7773,6 +7773,7 @@ $<span class="arithmatex">\(\mathcal{L}_{\text{uniform}} = \ln \mathbb{E}_{x, y 
 <li><a id="ref-wang2020"></a><strong>[Wang2020]</strong> T. Wang and P. Isola, "Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere," in <em>International Conference on Machine Learning (ICML)</em>, PMLR, pp. 9929–9939, 2020. <a href="https://doi.org/10.48550/arXiv.2005.10242">DOI: 10.48550/arXiv.2005.10242</a>.</li>
 <li><a id="ref-caron2020"></a><strong>[Caron2020]</strong> M. Caron, I. Misra, J. Mairal, P. Goyal, P. Bojanowski, and A. Joulin, "Unsupervised Learning of Visual Features by Contrasting Cluster Assignments," in <em>Advances in Neural Information Processing Systems (NeurIPS 2020)</em>, vol. 33, pp. 9912–9924, 2020. <a href="https://doi.org/10.48550/arXiv.2006.09882">DOI: 10.48550/arXiv.2006.09882</a>.</li>
 <li><a id="ref-grill2020"></a><strong>[Grill2020]</strong> J. B. Grill, F. Strub, F. Altché, C. Tallec, P. Richemond, E. Buchatskaya, C. Doersch, B. Avila Pires, Z. Guo, M. Gheshlaghi Azar, et al., "Bootstrap Your Own Latent - A New Approach to Self-Supervised Learning," in <em>Advances in Neural Information Processing Systems (NeurIPS 2020)</em>, vol. 33, pp. 21271–21284, 2020. <a href="https://doi.org/10.48550/arXiv.2006.07733">DOI: 10.48550/arXiv.2006.07733</a>.</li>
+<li><a id="ref-he2022"></a><strong>[He2022]</strong> K. He, X. Chen, S. Xie, Y. Li, P. Dollár, and R. Girshick, "Masked Autoencoders Are Scalable Vision Learners," in <em>CVPR 2022</em>, pp. 16000–16009. <a href="https://doi.org/10.1109/CVPR52688.2022.01553">DOI: 10.1109/CVPR52688.2022.01553</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

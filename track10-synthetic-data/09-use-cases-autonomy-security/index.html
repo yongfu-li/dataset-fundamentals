@@ -7540,7 +7540,7 @@
 <p>Simulating LiDAR by simply casting geometric rays against 3D polygons fails to capture physical atmospheric backscatter, wet road specular reflection drops, and pulse return attenuation. Models trained on clean synthetic LiDAR crash when encountering real-world road spray.</p>
 </div>
 <h2 id="mathematical-formulations-of-sim-to-real-transfer-sensor-simulation">🧮 Mathematical Formulations of Sim-to-Real Transfer &amp; Sensor Simulation</h2>
-<h3 id="1-domain-randomization-generalization-bound-tobin-et-al-2017">1. Domain Randomization Generalization Bound (Tobin et al., 2017)</h3>
+<h3 id="1-domain-randomization-generalization-bound-tobin-et-al-2017">1. Domain Randomization Generalization Bound (<a href="#ref-tobin2017">Tobin et al., 2017</a>)</h3>
 <p>Let <span class="arithmatex">\(\Xi\)</span> denote the space of simulated environment parameters (lighting, textures, camera poses) drawn from distribution <span class="arithmatex">\(p(\boldsymbol{\xi})\)</span>. The expected risk across randomized simulations is:</p>
 <div class="arithmatex">\[
 \mathcal{R}_{\text{sim}}(f) = \mathbb{E}_{\boldsymbol{\xi} \sim p(\boldsymbol{\xi})}\left[ \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{D}_{\text{sim}}(\boldsymbol{\xi})}\left[ \mathcal{L}(f(\mathbf{x}), y) \right] \right]
@@ -7560,7 +7560,7 @@
 <div class="arithmatex">\[
 \mathbf{I}_{\text{sensor}} = \alpha \cdot \mathbf{I}_{\text{sim}} + \boldsymbol{\eta}_{\text{read}} + \boldsymbol{\eta}_{\text{shot}}, \quad \boldsymbol{\eta}_{\text{read}} \sim \mathcal{N}(0, \sigma_{\text{read}}^2), \quad \boldsymbol{\eta}_{\text{shot}} \sim \mathcal{P}(\lambda_{\text{shot}})
 \]</div>
-<h3 id="4-maximum-mean-discrepancy-mmd-reality-gate-gretton-et-al-2012">4. Maximum Mean Discrepancy (MMD) Reality Gate (Gretton et al., 2012)</h3>
+<h3 id="4-maximum-mean-discrepancy-mmd-reality-gate-gretton-et-al-2012">4. Maximum Mean Discrepancy (MMD) Reality Gate (<a href="#ref-gretton2012">Gretton et al., 2012</a>)</h3>
 <p>To evaluate the Sim-to-Real distribution gap, we measure the <strong>Maximum Mean Discrepancy (MMD)</strong> in a Reproducing Kernel Hilbert Space <span class="arithmatex">\(\mathcal{H}_k\)</span> with radial basis kernel <span class="arithmatex">\(k(\mathbf{x}, \mathbf{x}') = \exp(-\gamma \|\mathbf{x} - \mathbf{x}'\|_2^2)\)</span>:</p>
 <div class="arithmatex">\[
 \text{MMD}^2(\mathcal{D}_{\text{sim}}, \mathcal{D}_{\text{real}}) = \frac{1}{n^2} \sum_{i, j=1}^n k(\mathbf{x}_i^{\text{sim}}, \mathbf{x}_j^{\text{sim}}) - \frac{2}{n m} \sum_{i=1}^n \sum_{j=1}^m k(\mathbf{x}_i^{\text{sim}}, \mathbf{x}_j^{\text{real}}) + \frac{1}{m^2} \sum_{i, j=1}^m k(\mathbf{x}_i^{\text{real}}, \mathbf{x}_j^{\text{real}})

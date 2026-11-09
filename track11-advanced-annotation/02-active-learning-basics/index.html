@@ -4771,13 +4771,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-margin-sampling-smallest-margin" class="md-nav__link">
+  <a href="#2-margin-sampling-and-geometric-diversity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Margin Sampling (Smallest Margin)
+        2. Margin Sampling and Geometric Diversity
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Margin Sampling and Geometric Diversity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#margin-sampling-smallest-margin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Margin Sampling (Smallest Margin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -7350,13 +7367,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-margin-sampling-smallest-margin" class="md-nav__link">
+  <a href="#2-margin-sampling-and-geometric-diversity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Margin Sampling (Smallest Margin)
+        2. Margin Sampling and Geometric Diversity
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Margin Sampling and Geometric Diversity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#margin-sampling-smallest-margin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Margin Sampling (Smallest Margin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -7553,7 +7587,9 @@
 \mathbf{x}_{\text{LC}}^* = \arg\max_{\mathbf{x} \in \mathcal{U}} \left( 1 - \max_{y \in \mathcal{Y}} P(y \mid \mathbf{x}) \right) = \arg\min_{\mathbf{x} \in \mathcal{U}} \max_{y \in \mathcal{Y}} P(y \mid \mathbf{x})
 \]</div>
 <p>For binary classification, this prioritizes instances closest to decision boundary <span class="arithmatex">\(P = 0.5\)</span>. In multi-class settings (<span class="arithmatex">\(K &gt; 2\)</span>), it discards information regarding the distribution over non-maximal classes.</p>
-<h3 id="2-margin-sampling-smallest-margin">2. Margin Sampling (Smallest Margin)</h3>
+<h3 id="2-margin-sampling-and-geometric-diversity">2. Margin Sampling and Geometric Diversity</h3>
+<p>While margin sampling identifies ambiguous boundary candidates, geometric diversity approaches like Core-Set Selection minimize the maximum representation radius across the unlabelled dataset (<a href="#ref-sener2018">Sener &amp; Savarese, 2018</a>).</p>
+<h4 id="margin-sampling-smallest-margin">Margin Sampling (Smallest Margin)</h4>
 <p>Queries the instance with the smallest difference between the two highest predicted class probabilities <span class="arithmatex">\(\hat{y}_1\)</span> and <span class="arithmatex">\(\hat{y}_2\)</span>:</p>
 <div class="arithmatex">\[
 \mathbf{x}_{\text{Margin}}^* = \arg\min_{\mathbf{x} \in \mathcal{U}} \left( P(\hat{y}_1 \mid \mathbf{x}) - P(\hat{y}_2 \mid \mathbf{x}) \right)
@@ -7565,8 +7601,8 @@
 \mathbf{x}_{\text{Entropy}}^* = \arg\max_{\mathbf{x} \in \mathcal{U}} \mathcal{H}(Y \mid \mathbf{x}) = \arg\max_{\mathbf{x} \in \mathcal{U}} \left( -\sum_{k=1}^K P(y_k \mid \mathbf{x}) \log_2 P(y_k \mid \mathbf{x}) \right)
 \]</div>
 <p>Entropy reaches its theoretical maximum (<span class="arithmatex">\(\log_2 K\)</span>) when the model is completely uniform (<span class="arithmatex">\(P(y_k) = 1/K\)</span> for all <span class="arithmatex">\(k\)</span>), providing the most holistic information-theoretic measure of uncertainty (<a href="#ref-settles2012">Settles, 2012</a>).</p>
-<h3 id="4-bayesian-active-learning-by-disagreement-bald-gal-et-al-2017">4. Bayesian Active Learning by Disagreement (BALD) (Gal et al., 2017)</h3>
-<p>In deep learning, predictive probabilities can suffer from overconfidence. BALD decouples <strong>aleatoric noise</strong> (data ambiguity) from <strong>epistemic uncertainty</strong> (model ignorance) by computing the mutual information between the label and model parameters <span class="arithmatex">\(\mathbf{w}\)</span> using Monte Carlo Dropout:</p>
+<h3 id="4-bayesian-active-learning-by-disagreement-bald-gal-et-al-2017">4. Bayesian Active Learning by Disagreement (BALD) (<a href="#ref-gal2017">Gal et al., 2017</a>)</h3>
+<p>In deep learning, predictive probabilities can suffer from overconfidence. BALD decouples <strong>aleatoric noise</strong> (data ambiguity) from <strong>epistemic uncertainty</strong> (model ignorance) by computing the mutual information between the label and model parameters <span class="arithmatex">\(\mathbf{w}\)</span> (<a href="#ref-houlsby2011">Houlsby et al., 2011</a>) using Monte Carlo Dropout:</p>
 <div class="arithmatex">\[
 \mathcal{I}(y; \mathbf{w} \mid \mathbf{x}) = \mathcal{H}\left( \mathbb{E}_{\mathbf{w} \sim q(\mathbf{w})}[p(y \mid \mathbf{x}, \mathbf{w})] \right) - \mathbb{E}_{\mathbf{w} \sim q(\mathbf{w})}\left[ \mathcal{H}(p(y \mid \mathbf{x}, \mathbf{w})) \right]
 \]</div>
@@ -7711,7 +7747,7 @@
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <details class="question">
 <summary>Self-Assessment: Stream-Based Selective Sampling Utility Function</summary>
-<p>In stream-based selective sampling (Cohn et al., 1994), an IoT sensor stream emits observation <span class="arithmatex">\(x_t\)</span>. The classifier predicts <span class="arithmatex">\(P(y=1 \mid x_t) = 0.52\)</span>. Under uncertainty threshold <span class="arithmatex">\(\tau = 0.05\)</span>, does the edge device query the human annotator?</p>
+<p>In stream-based selective sampling (<a href="#ref-cohn1994">Cohn et al., 1994</a>), an IoT sensor stream emits observation <span class="arithmatex">\(x_t\)</span>. The classifier predicts <span class="arithmatex">\(P(y=1 \mid x_t) = 0.52\)</span>. Under uncertainty threshold <span class="arithmatex">\(\tau = 0.05\)</span>, does the edge device query the human annotator?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong> In binary classification, maximum uncertainty occurs at <span class="arithmatex">\(P = 0.50\)</span>.
@@ -7722,7 +7758,7 @@ Because the margin <span class="arithmatex">\(0.02 \le \tau = 0.05\)</span>, the
 </details>
 <details class="question">
 <summary>Self-Assessment: Membership Query Synthesis Vulnerability</summary>
-<p>In Membership Query Synthesis (Angluin, 1988), the learner generates arbitrary synthetic coordinates in instance space <span class="arithmatex">\(\mathcal{X}\)</span> and asks a human to label them. Why did this approach fail when applied to human text and image annotation?</p>
+<p>In Membership Query Synthesis (<a href="#ref-angluin1988">Angluin, 1988</a>), the learner generates arbitrary synthetic coordinates in instance space <span class="arithmatex">\(\mathcal{X}\)</span> and asks a human to label them. Why did this approach fail when applied to human text and image annotation?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong> In high-dimensional spaces (e.g., <span class="arithmatex">\(28 \times 28\)</span> image pixels), a synthetic coordinate generated by the algorithm almost universally looks like unnatural visual static or gibberish.</p>
@@ -7739,6 +7775,8 @@ Because the margin <span class="arithmatex">\(0.02 \le \tau = 0.05\)</span>, the
 <li><a id="ref-sener2018"></a><strong>[Sener2018]</strong> O. Sener and S. Savarese, "Active Learning for Convolutional Neural Networks: A Core-Set Approach," in <em>International Conference on Learning Representations (ICLR)</em>, 2018. <a href="https://doi.org/10.48550/arXiv.1708.00489">DOI: 10.48550/arXiv.1708.00489</a>.</li>
 <li><a id="ref-houlsby2011"></a><strong>[Houlsby2011]</strong> N. Houlsby, F. Huszár, Z. Ghahramani, and J. M. Hernández-Lobato, "Bayesian Active Learning for Classification and Preference Learning," <em>arXiv preprint arXiv:1112.5745</em>, 2011. <a href="https://doi.org/10.48550/arXiv.1112.5745">DOI: 10.48550/arXiv.1112.5745</a>.</li>
 <li><a id="ref-althoff2020"></a><strong>[Althoff2020]</strong> M. Althoff, M. Koschi, and S. Manzinger, "CommonRoad: Composable Benchmarks for Motion Planning on Roads," in <em>IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 719–726, 2020. <a href="https://doi.org/10.1109/IV47402.2020.9304713">DOI: 10.1109/IV47402.2020.9304713</a>.</li>
+<li><a id="ref-cohn1994"></a><strong>[Cohn1994]</strong> D. A. Cohn, L. E. Atlas, and R. E. Ladner, "Improving generalization with active learning," <em>Machine Learning</em>, vol. 15, no. 2, pp. 201–221, 1994. <a href="https://doi.org/10.1007/BF00993277">DOI: 10.1007/BF00993277</a>.</li>
+<li><a id="ref-angluin1988"></a><strong>[Angluin1988]</strong> D. Angluin and P. Laird, "Learning from Noisy Examples," <em>Machine Learning</em>, vol. 2, no. 4, pp. 343–370, 1988. <a href="https://doi.org/10.1007/BF00116827">DOI: 10.1007/BF00116827</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

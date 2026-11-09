@@ -3408,15 +3408,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-in-processing-adversarial-debiasing-zhang-et-al-2018" class="md-nav__link">
+  <a href="#2-in-processing-decision-boundary-covariance-and-adversarial-debiasing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)
+        2. In-Processing: Decision Boundary Covariance and Adversarial Debiasing
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)">
+    <nav class="md-nav" aria-label="2. In-Processing: Decision Boundary Covariance and Adversarial Debiasing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7334,15 +7334,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-in-processing-adversarial-debiasing-zhang-et-al-2018" class="md-nav__link">
+  <a href="#2-in-processing-decision-boundary-covariance-and-adversarial-debiasing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)
+        2. In-Processing: Decision Boundary Covariance and Adversarial Debiasing
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)">
+    <nav class="md-nav" aria-label="2. In-Processing: Decision Boundary Covariance and Adversarial Debiasing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7502,30 +7502,31 @@
   InProc --&gt; PostProc
   PostProc --&gt; Deploy</code></pre>
 <hr />
-<h3 id="1-pre-processing-sample-re-weighting-kamiran-calders-2012">1. Pre-Processing: Sample Re-weighting (Kamiran &amp; Calders, 2012)</h3>
+<h3 id="1-pre-processing-sample-re-weighting-kamiran-calders-2012">1. Pre-Processing: Sample Re-weighting (<a href="#ref-kamiran2012">Kamiran &amp; Calders, 2012</a>)</h3>
 <p>Pre-processing techniques alter the training dataset distribution without modifying downstream model architectures or loss functions. The foundational method assigns importance weights to each sample <span class="arithmatex">\((x_i, a_i, y_i)\)</span> inversely proportional to the demographic joint representation:</p>
 <div class="arithmatex">\[W(A = a, Y = y) = \frac{\mathbb{P}(A = a) \cdot \mathbb{P}(Y = y)}{\mathbb{P}(A = a, Y = y)}\]</div>
 <p>In finite empirical datasets of size <span class="arithmatex">\(N\)</span>, let <span class="arithmatex">\(N_a\)</span> denote the number of samples with sensitive attribute <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(N_y\)</span> denote samples with label <span class="arithmatex">\(y\)</span>, and <span class="arithmatex">\(N_{a, y}\)</span> denote samples with both attribute <span class="arithmatex">\(a\)</span> and label <span class="arithmatex">\(y\)</span>:</p>
 <div class="arithmatex">\[W(a, y) = \frac{\frac{N_a}{N} \cdot \frac{N_y}{N}}{\frac{N_{a, y}}{N}} = \frac{N_a \cdot N_y}{N \cdot N_{a, y}}\]</div>
 <p>Under these sample weights, the empirical joint distribution matches statistical independence:</p>
 <div class="arithmatex">\[\mathbb{E}_W \left[ \mathbb{I}(A = a \wedge Y = y) \right] = \mathbb{P}_W(A = a) \cdot \mathbb{P}_W(Y = y)\]</div>
-<h4 id="optimized-pre-processing-calmon-et-al-2017">Optimized Pre-Processing (Calmon et al., 2017)</h4>
+<h4 id="optimized-pre-processing-calmon-et-al-2017">Optimized Pre-Processing (<a href="#ref-calmon2017">Calmon et al., 2017</a>)</h4>
 <p>To prevent severe distortion of non-sensitive feature geometries, <a href="#ref-calmon2017">Calmon et al. (2017)</a> formulated pre-processing as a constrained convex optimization over probabilistic transition kernels <span class="arithmatex">\(P_{\tilde{X}, \tilde{Y} \mid X, Y}\)</span>:</p>
 <div class="arithmatex">\[\min_{P_{\tilde{X}, \tilde{Y} \mid X, Y}} \mathbb{E}\left[ \Delta\left( (X, Y), (\tilde{X}, \tilde{Y}) \right) \right] \quad \text{s.t.} \quad I\left(A; \tilde{X}, \tilde{Y}\right) \le \epsilon, \quad \mathbb{E}[\tilde{Y} \mid X, Y] \approx Y\]</div>
 <hr />
-<h3 id="2-in-processing-adversarial-debiasing-zhang-et-al-2018">2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)</h3>
+<h3 id="2-in-processing-decision-boundary-covariance-and-adversarial-debiasing">2. In-Processing: Decision Boundary Covariance and Adversarial Debiasing</h3>
+<p>In-processing methods constrain decision boundary covariance directly (<a href="#ref-zafar2017">Zafar et al., 2017</a>) or deploy adversarial debiasing minimax games (<a href="#ref-zhang2018">Zhang et al., 2018</a>):</p>
 <p>In-processing methods integrate fairness constraints directly into the neural network optimization objective. <a href="#ref-zhang2018">Zhang et al. (2018)</a> introduced an adversarial game between a primary predictor <span class="arithmatex">\(f_\theta: X \to \hat{Y}\)</span> and an adversary <span class="arithmatex">\(g_\phi: Z \to \hat{A}\)</span>, where <span class="arithmatex">\(Z = h_\theta(X)\)</span> is the predictor's penultimate representation:</p>
 <div class="arithmatex">\[\min_{\theta} \max_{\phi} \mathcal{L}_{\text{pred}}(f_\theta(X), Y) - \alpha \cdot \mathcal{L}_{\text{adv}}(g_\phi(h_\theta(X)), A)\]</div>
 <p>To ensure stable convergence without gradient cancellation, the predictor's parameters <span class="arithmatex">\(\theta\)</span> are updated by projecting the primary gradient orthogonal to the adversary's gradient:</p>
 <div class="arithmatex">\[\nabla_\theta \mathcal{L}_{\text{total}} = \nabla_\theta \mathcal{L}_{\text{pred}} - \text{proj}_{\nabla_\theta \mathcal{L}_{\text{adv}}}(\nabla_\theta \mathcal{L}_{\text{pred}}) - \alpha \nabla_\theta \mathcal{L}_{\text{adv}}\]</div>
 <p>where the projection operator is defined as:</p>
 <div class="arithmatex">\[\text{proj}_u(v) = \frac{v^T u}{\|u\|_2^2} u\]</div>
-<h4 id="the-reductions-framework-agarwal-et-al-2018">The Reductions Framework (Agarwal et al., 2018)</h4>
+<h4 id="the-reductions-framework-agarwal-et-al-2018">The Reductions Framework (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>)</h4>
 <p><a href="#ref-agarwal2018">Agarwal et al. (2018)</a> proved that fair classification under statistical parity or equalized odds reduces to a sequence of cost-sensitive classification problems via a two-player zero-sum game:</p>
 <div class="arithmatex">\[\min_{Q \in \Delta(\mathcal{H})} \max_{\vec{\lambda} \ge 0} \mathcal{E}(Q) + \vec{\lambda}^T \left( \hat{\mathbf{M}} Q - \vec{c} \right)\]</div>
 <p>where <span class="arithmatex">\(Q\)</span> is a distribution over hypotheses and <span class="arithmatex">\(\vec{\lambda}\)</span> represents Lagrange multipliers adjusted via online exponentiated gradient updates.</p>
 <hr />
-<h3 id="3-post-processing-group-specific-threshold-tuning-hardt-et-al-2016">3. Post-Processing: Group-Specific Threshold Tuning (Hardt et al., 2016)</h3>
+<h3 id="3-post-processing-group-specific-threshold-tuning-hardt-et-al-2016">3. Post-Processing: Group-Specific Threshold Tuning (<a href="#ref-hardt2016">Hardt et al., 2016</a>)</h3>
 <p>When the internal model cannot be modified (e.g., proprietary third-party APIs or legacy pipelines), post-processing operates directly on continuous scoring distributions <span class="arithmatex">\(S = f(X) \in [0, 1]\)</span>:</p>
 <div class="arithmatex">\[\hat{Y} = \mathbb{I}(S \ge \tau_A)\]</div>
 <p>To satisfy Equalized Odds, distinct group thresholds <span class="arithmatex">\(\tau_0\)</span> and <span class="arithmatex">\(\tau_1\)</span> are selected at the intersection of the groups' ROC convex hulls:</p>

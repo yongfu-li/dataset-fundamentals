@@ -7523,7 +7523,7 @@
 <p>Generating financial portfolio return trajectories using independent marginal models destroys cross-asset correlation structures. In simulated stress tests, correlated assets appear diversified, causing catastrophic risk underestimation during market shocks.</p>
 </div>
 <h2 id="mathematical-formulations-of-tabular-utility-privacy-risk">🧮 Mathematical Formulations of Tabular Utility &amp; Privacy Risk</h2>
-<h3 id="1-mode-specific-normalization-formulation-xu-et-al-2019">1. Mode-Specific Normalization Formulation (Xu et al., 2019)</h3>
+<h3 id="1-mode-specific-normalization-formulation-xu-et-al-2019">1. Mode-Specific Normalization Formulation (<a href="#ref-xu2019">Xu et al., 2019</a>)</h3>
 <p>For continuous column <span class="arithmatex">\(C_j\)</span>, a Variational Gaussian Mixture fits <span class="arithmatex">\(K\)</span> modes with means <span class="arithmatex">\(\eta_k\)</span> and variances <span class="arithmatex">\(\sigma_k^2\)</span>:</p>
 <div class="arithmatex">\[
 P(c_{i, j}) = \sum_{k=1}^K \pi_k \, \mathcal{N}(c_{i, j}; \eta_k, \sigma_k^2)
@@ -7538,7 +7538,7 @@ v_{i, j} = \frac{c_{i, j} - \eta_{k^*}}{4 \sigma_{k^*}} \in [-1, 1]
 \Delta_{\text{TSTR}} = \left| \mathcal{R}_{\text{real}}(\hat{f}_{\text{real}}) - \mathcal{R}_{\text{real}}(\hat{f}_{\text{synth}}) \right|
 \]</div>
 <p>where <span class="arithmatex">\(\mathcal{R}_{\text{real}}(f) = \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{D}_{\text{real, test}}}[\mathcal{L}(f(\mathbf{x}), y)]\)</span>. A gap <span class="arithmatex">\(\Delta_{\text{TSTR}} \le 0.03\)</span> confirms statistical utility equivalence.</p>
-<h3 id="3-membership-inference-attack-mia-advantage-shokri-et-al-2017">3. Membership Inference Attack (MIA) Advantage (Shokri et al., 2017)</h3>
+<h3 id="3-membership-inference-attack-mia-advantage-shokri-et-al-2017">3. Membership Inference Attack (MIA) Advantage (<a href="#ref-shokri2017">Shokri et al., 2017</a>)</h3>
 <p>To ensure privacy protection, synthetic data must resist membership inference attacks. An adversary training a shadow discriminator to predict whether record <span class="arithmatex">\(\mathbf{x}\)</span> was part of the private training set <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span> possesses <strong>MIA Advantage</strong>:</p>
 <div class="arithmatex">\[
 \text{Adv}_{\text{MIA}} = 2 \cdot \left| \mathbb{P}[\text{Adversary}(\mathbf{x}) = 1 \mid \mathbf{x} \in \mathcal{D}_{\text{train}}] - \mathbb{P}[\text{Adversary}(\mathbf{x}) = 1 \mid \mathbf{x} \notin \mathcal{D}_{\text{train}}] \right|

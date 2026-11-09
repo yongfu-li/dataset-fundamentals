@@ -7483,7 +7483,7 @@
 <hr />
 <h2 id="conceptual-overview-the-quality-cost-trade-off">🎯 Conceptual Overview &amp; The Quality-Cost Trade-Off</h2>
 <p>Every data engineering organization encounters a fundamental dilemma when planning dataset labeling: <strong>Crowdsourced Lay Annotators</strong> (Amazon Mechanical Turk, Prolific, Scale AI) offer massive parallelism and low financial cost (<span class="arithmatex">\(\sim \$0.02 - \$0.10/\text{item}\)</span>), but suffer from noise, adversarial spammers, and cognitive fatigue (<a href="#ref-snow2008">Snow et al., 2008</a>; <a href="#ref-ipeirotis2010">Ipeirotis et al., 2010</a>). Conversely, <strong>Certified Domain Experts</strong> (radiologists, patent attorneys, linguistic phoneticians) produce gold-standard annotations (<span class="arithmatex">\(&gt; 98\%\)</span> accuracy), but are prohibitively expensive (<span class="arithmatex">\(\sim \$50 - \$250/\text{hour}\)</span>) and form severe operational bottlenecks (<a href="#ref-dawid1979">Dawid &amp; Skene, 1979</a>; <a href="#ref-raykar2010">Raykar et al., 2010</a>).</p>
-<p>To resolve this trade-off, data systems employ <strong>Latent Worker Modeling</strong> grounded in the classical <strong>Dawid-Skene Algorithm</strong> (<a href="#ref-dawid1979">Dawid &amp; Skene, 1979</a>) and <strong>Repeated Labeling Strategies</strong> (<a href="#ref-sheng2008">Sheng et al., 2008</a>), mathematically recovering expert-level gold consensus labels from ensembles of noisy crowd annotators.</p>
+<p>To resolve this trade-off, data systems employ <strong>Latent Worker Modeling</strong> grounded in the classical <strong>Dawid-Skene Algorithm</strong> (<a href="#ref-dawid1979">Dawid &amp; Skene, 1979</a>), <strong>Multidimensional Wisdom of Crowds</strong> (<a href="#ref-welinder2010">Welinder et al., 2010</a>), and <strong>Repeated Labeling Strategies</strong> (<a href="#ref-sheng2008">Sheng et al., 2008</a>), mathematically recovering expert-level gold consensus labels from ensembles of noisy crowd annotators.</p>
 <pre class="mermaid"><code>flowchart LR
   subgraph DataDistribution ["1. Instance Dispatch"]
     RawItems["Unlabeled Items U&lt;br/&gt;N = 50,000 Tasks"]
@@ -7588,7 +7588,7 @@ T_{i, j} = \frac{p_j \prod_{m \in \mathcal{A}(i)} \pi_{j, L_{i, m}}^{(m)}}{\sum_
 \hat{\pi}_{j, k}^{(m)} = \frac{\sum_{i \in \mathcal{I}(m)} T_{i, j} \cdot \mathbb{I}(L_{i, m} = k)}{\sum_{i \in \mathcal{I}(m)} T_{i, j}}, \quad \hat{p}_j = \frac{1}{N} \sum_{i=1}^N T_{i, j}
 \]</div>
 <p>The algorithm alternates between the E-step and M-step until parameters converge (<span class="arithmatex">\(|\boldsymbol{\pi}^{(t+1)} - \boldsymbol{\pi}^{(t)}\|_\infty \le \epsilon\)</span>).</p>
-<h3 id="4-cost-accuracy-optimal-repeated-allocation-sheng-et-al-2008">4. Cost-Accuracy Optimal Repeated Allocation (Sheng et al., 2008)</h3>
+<h3 id="4-cost-accuracy-optimal-repeated-allocation-sheng-et-al-2008">4. Cost-Accuracy Optimal Repeated Allocation (<a href="#ref-sheng2008">Sheng et al., 2008</a>)</h3>
 <p>Let <span class="arithmatex">\(c_{\text{crowd}}\)</span> and <span class="arithmatex">\(c_{\text{expert}}\)</span> be the unit costs of crowd and expert labels. When crowd workers have individual accuracy <span class="arithmatex">\(p \in (0.6, 0.9)\)</span>, querying <span class="arithmatex">\(k\)</span> independent crowd workers produces majority consensus accuracy:</p>
 <div class="arithmatex">\[
 \mathbb{P}[\text{Consensus Correct}] = \sum_{j=\lceil k/2 \rceil}^k \binom{k}{j} p^j (1 - p)^{k - j}

@@ -7594,7 +7594,7 @@
 N_{\text{passive}}(\epsilon, \delta) = \mathcal{O}\left( \frac{d}{\epsilon} \ln \frac{1}{\epsilon} + \frac{1}{\epsilon} \ln \frac{1}{\delta} \right)
 \]</div>
 <p>Sample requirements grow inversely with target error <span class="arithmatex">\(\epsilon\)</span>, requiring tens of thousands of expensive annotations for fine-grained generalization.</p>
-<h3 id="2-active-learning-logarithmic-sample-complexity-cohn-et-al-1996">2. Active Learning Logarithmic Sample Complexity (Cohn et al., 1996)</h3>
+<h3 id="2-active-learning-logarithmic-sample-complexity-cohn-et-al-1996">2. Active Learning Logarithmic Sample Complexity (<a href="#ref-cohn1996">Cohn et al., 1996</a>)</h3>
 <p>When the hypothesis boundary satisfies favorable geometric properties (governed by the Alexander capacity parameter <span class="arithmatex">\(\theta\)</span>), the active query sample complexity scales <strong>logarithmically</strong> in <span class="arithmatex">\(1/\epsilon\)</span>:</p>
 <div class="arithmatex">\[
 N_{\text{active}}(\epsilon, \delta) = \mathcal{O}\left( d \cdot \theta \cdot \ln \frac{1}{\epsilon} + \ln \frac{1}{\delta} \right)
@@ -7613,7 +7613,7 @@ N_{\text{active}}(\epsilon, \delta) = \mathcal{O}\left( d \cdot \theta \cdot \ln
 \]</div>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
-<p>The following production script implements an empirical Label Efficiency Benchmark, comparing active uncertainty sampling against uniform passive random sampling on a synthetic high-dimensional classification task:</p>
+<p>The following production script implements an empirical Label Efficiency Benchmark, comparing active uncertainty sampling and core-set coverage (<a href="#ref-sener2018">Sener &amp; Savarese, 2018</a>) against uniform passive random sampling on a synthetic high-dimensional classification task:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>

@@ -7536,7 +7536,7 @@
 <hr />
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: Core-Set Selection for Batch Active Learning</p>
-<p>When querying batches of <span class="arithmatex">\(B = 1,000\)</span> instances simultaneously, naive ranking queries 1,000 nearly identical instances located around the same boundary point. Deploy <strong>Core-Set Selection</strong> (Sener &amp; Savarese, 2018): solve the <span class="arithmatex">\(k\)</span>-Center problem in feature space to ensure the batch covers the entire unlabelled manifold diversely.</p>
+<p>When querying batches of <span class="arithmatex">\(B = 1,000\)</span> instances simultaneously, naive ranking queries 1,000 nearly identical instances located around the same boundary point. Deploy <strong>Core-Set Selection</strong> (<a href="#ref-sener2018">Sener &amp; Savarese, 2018</a>): solve the <span class="arithmatex">\(k\)</span>-Center problem in feature space to ensure the batch covers the entire unlabelled manifold diversely.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Active Learning in Severe Class Imbalance</p>
@@ -7554,13 +7554,13 @@
 <div class="arithmatex">\[
 \Delta_{\text{perf}}(t) = \frac{1}{W} \sum_{j=0}^{W-1} \left( V_{t - j} - V_{t - j - 1} \right) \le \tau_{\text{stop}}
 \]</div>
-<h3 id="3-model-prediction-stability-stopping-criterion-bloodgood-vijay-shanker-2009">3. Model Prediction Stability Stopping Criterion (Bloodgood &amp; Vijay-Shanker, 2009)</h3>
+<h3 id="3-model-prediction-stability-stopping-criterion-bloodgood-vijay-shanker-2009">3. Model Prediction Stability Stopping Criterion (<a href="#ref-bloodgood2009">Bloodgood &amp; Vijay-Shanker, 2009</a>)</h3>
 <p>Independent of validation labels, model convergence is evaluated by computing the <strong>Classification Stability Index</strong> <span class="arithmatex">\(S_t\)</span> over a large held-out unlabeled evaluation set <span class="arithmatex">\(\mathcal{U}_{\text{eval}}\)</span> between consecutive model checkpoints <span class="arithmatex">\(f_t\)</span> and <span class="arithmatex">\(f_{t-1}\)</span>:</p>
 <div class="arithmatex">\[
 S_t = \frac{1}{|\mathcal{U}_{\text{eval}}|} \sum_{\mathbf{x} \in \mathcal{U}_{\text{eval}}} \mathbb{I}\left( \arg\max_y f_t(\mathbf{x}) = \arg\max_y f_{t-1}(\mathbf{x}) \right)
 \]</div>
 <p>When <span class="arithmatex">\(S_t \ge 0.99\)</span> across consecutive rounds, model decision boundaries have converged, and active querying is automatically terminated.</p>
-<h3 id="4-noisy-oracle-quality-compensation-formulation-sheng-et-al-2008">4. Noisy Oracle Quality Compensation Formulation (Sheng et al., 2008)</h3>
+<h3 id="4-noisy-oracle-quality-compensation-formulation-sheng-et-al-2008">4. Noisy Oracle Quality Compensation Formulation (<a href="#ref-sheng2008">Sheng et al., 2008</a>)</h3>
 <p>For a human labeler with subjective error rate <span class="arithmatex">\(e \in (0, 0.5)\)</span>, the expected error rate under <span class="arithmatex">\(k\)</span> independent repeated annotations with majority voting is governed by the Binomial tail distribution:</p>
 <div class="arithmatex">\[
 \text{Error}(k, e) = \sum_{j=\lceil k/2 \rceil}^k \binom{k}{j} e^j (1 - e)^{k - j}
@@ -7716,7 +7716,7 @@ This minimax facility location formulation guarantees geometric coverage, preven
 </details>
 <details class="question">
 <summary>Self-Assessment: Technology-Assisted Review (TAR) in Legal E-Discovery</summary>
-<p>Why did the US Federal Courts (Moore v. Publicis Groupe, 2012) officially endorse Continuous Active Learning (CAL / TAR 2.0) for electronic document discovery?</p>
+<p>Why did the US Federal Courts (<a href="#ref-publicis2012">Moore v. Publicis Groupe, 2012</a>) officially endorse Continuous Active Learning (CAL / TAR 2.0) for electronic document discovery?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong> In litigation involving millions of corporate emails, manual human review costs millions of dollars.</p>
@@ -7732,6 +7732,8 @@ This minimax facility location formulation guarantees geometric coverage, preven
 <li><a id="ref-citovsky2021"></a><strong>[Citovsky2021]</strong> G. Citovsky, G. DeSalvo, C. Gentile, T. Karydas, A. Rostamizadeh, K. S. Kumar, "Batch Active Learning at Scale," in <em>Advances in Neural Information Processing Systems (NeurIPS 2021)</em>, vol. 34, pp. 11933–11944, 2021. <a href="https://doi.org/10.48550/arXiv.2106.09646">DOI: 10.48550/arXiv.2106.09646</a>.</li>
 <li><a id="ref-sheng2008"></a><strong>[Sheng2008]</strong> V. S. Sheng, F. Provost, and P. G. Ipeirotis, "Get Another Label? Improving Data Quality and Data Mining Using Multiple, Noisy Labelers," in <em>Proceedings of the 14th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, pp. 614–622, 2008. <a href="https://doi.org/10.1145/1401890.1401965">DOI: 10.1145/1401890.1401965</a>.</li>
 <li><a id="ref-ash2020"></a><strong>[Ash2020]</strong> J. T. Ash, C. Zhang, A. Krishnamurthy, J. Langford, and A. Agarwal, "Deep Batch Active Learning by Diverse, Uncertain Gradient Lower Bounds," in <em>International Conference on Learning Representations (ICLR)</em>, 2020. <a href="https://doi.org/10.48550/arXiv.1906.03671">DOI: 10.48550/arXiv.1906.03671</a>.</li>
+<li><a id="ref-publicis2012"></a><strong>[Publicis2012]</strong> <em>Monique Da Silva Moore v. Publicis Groupe</em>, 287 F.R.D. 182 (S.D.N.Y. 2012) (Judicial recognition of computer-assisted review in legal discovery).</li>
+<li><a id="ref-sener2018"></a><strong>[Sener2018]</strong> O. Sener and S. Savarese, "Active Learning for Convolutional Neural Networks: A Core-set Approach," in <em>ICLR 2018</em>. <a href="https://doi.org/10.48550/arXiv.1708.00489">DOI: 10.48550/arXiv.1708.00489</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

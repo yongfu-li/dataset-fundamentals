@@ -7469,7 +7469,7 @@
 <p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<p>When a data breach occurs, its fallout radiates across multiple societal layers: financial liability, regulatory penalties, loss of brand equity, and severe individual identity harm [<a href="#ref-romanosky2016">Romanosky2016</a>, <a href="#ref-voigt2017">Voigt2017</a>].</p>
+<p>When a data breach occurs, its fallout radiates across multiple societal layers: financial liability, regulatory penalties, loss of brand equity, and severe individual identity harm [<a href="#ref-romanosky2016">Romanosky2016</a>, <a href="#ref-voigt2017">Voigt2017</a>, <a href="#ref-kabanov2021">Kabanov2021</a>], with average organizational breach response expenditures reaching millions of dollars annually [<a href="#ref-ponemon2023">Ponemon2023</a>].</p>
 <p>Modern security engineering operates under the axiom of <strong>Assumed Breach</strong>: defensive perimeters will eventually be penetrated. Consequently, data systems must be architected around <strong>Defense-in-Depth</strong> and <strong>Zero Trust Architecture (ZTA)</strong>, ensuring that the compromise of a single credential or service endpoint does not lead to total dataset compromise [<a href="#ref-nist2020">NIST2020</a>, <a href="#ref-saltzer1975">Saltzer1975</a>].</p>
 <hr />
 <h2 id="1-multi-layered-defense-in-depth-architecture">1. Multi-Layered Defense-in-Depth Architecture</h2>
@@ -7635,7 +7635,7 @@ P(\text{Compromise}) = (0.05)^4 = 6.25 \times 10^{-6}
 <p>An ETL ingestion worker needs to append daily raw clickstream events to an Amazon S3 analytical bucket. The DevOps engineer attaches an IAM policy containing <code>"Action": "s3:*"</code> and <code>"Resource": "*"</code>. Why is this an architectural violation, and what is the blast radius remediation?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> This violates the <strong>Principle of Least Privilege (Saltzer &amp; Schroeder, 1975)</strong>.</p>
+<p><strong>Answer:</strong> This violates the <strong>Principle of Least Privilege</strong> (<a href="#ref-saltzer1975">Saltzer &amp; Schroeder, 1975</a>).</p>
 <p>Granting <code>"s3:*"</code> gives the worker permission to read, overwrite, and permanently delete historical analytical tables across all company buckets. If an adversary compromises the worker via an unpatched Python dependency, the blast radius is <span class="arithmatex">\(100\%\)</span> of the data lake.</p>
 <p>Remediation requires restricting the IAM policy strictly to append permissions on the specific ingestion prefix:
 <code>"Action": ["s3:PutObject"]</code>, <code>"Resource": "arn:aws:s3:::data-lake-prod/ingest/clickstream/*"</code>. The worker cannot read past data or delete records.</p>

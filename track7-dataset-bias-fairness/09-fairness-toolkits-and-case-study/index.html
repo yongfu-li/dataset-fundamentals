@@ -7417,7 +7417,7 @@
 <hr />
 <h2 id="conceptual-overview-the-reductions-framework">🎯 Conceptual Overview &amp; The Reductions Framework</h2>
 <p>Modern industrial fairness engineering leverages specialized open-source auditing toolkits—chiefly <strong>Microsoft Fairlearn</strong> (<a href="#ref-weerts2023">Weerts et al., 2023</a>) and <strong>IBM AI Fairness 360 (AIF360)</strong> (<a href="#ref-bellamy2019">Bellamy et al., 2019</a>). Rather than creating custom ad-hoc loss functions for each classifier architecture, the standard industry approach employs the <strong>Reductions Framework</strong> (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>).</p>
-<p>The reductions framework reformulates constrained fair classification as a two-player zero-sum game between:
+<p>Grounded in statistical definitions of disparate impact (<a href="#ref-barocas2016">Barocas &amp; Selbst, 2016</a>), disparate impact certification (<a href="#ref-feldman2015">Feldman et al., 2015</a>), and Equalized Odds (<a href="#ref-hardt2016">Hardt et al., 2016</a>), the reductions framework reformulates constrained fair classification as a two-player zero-sum game between:
 1. <strong>A Primal Player (The Learner):</strong> Finds an unconstrained cost-sensitive hypothesis <span class="arithmatex">\(h \in \mathcal{H}\)</span> minimizing weighted empirical risk.
 2. <strong>A Dual Player (The Auditor):</strong> Adjusts Lagrange multipliers <span class="arithmatex">\(\vec{\lambda} \in \mathbb{R}_+^K\)</span> via exponentiated gradient updates to penalize demographic group violations.</p>
 <pre class="mermaid"><code>flowchart TD

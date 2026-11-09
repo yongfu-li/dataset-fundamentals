@@ -7535,11 +7535,11 @@
 <hr />
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: Self-Instruct Task Generation Protocols</p>
-<p>Generate synthetic NLP instruction tuning datasets using <strong>Self-Instruct</strong> (Wang et al., 2022): seed an LLM with 100 human-written tasks, prompt it to brainstorm new instruction-input-output triplets, and filter candidates via automated ROUGE-L similarity pruning to enforce novelty.</p>
+<p>Generate synthetic NLP instruction tuning datasets using <strong>Self-Instruct</strong> (<a href="#ref-wang2022">Wang et al., 2022</a>): seed an LLM with 100 human-written tasks, prompt it to brainstorm new instruction-input-output triplets, and filter candidates via automated ROUGE-L similarity pruning to enforce novelty.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Uncurated Synthetic LLM Distillation</p>
-<p>Distilling large teacher models into smaller student models using uncurated synthetic outputs transfers hallucinations, syllogistic logical fallacies, and subtle bias blind spots into the student model weights. Always apply automated consistency filters.</p>
+<p>Distilling large teacher models into smaller student models using uncurated synthetic outputs transfers hallucinations, syllogistic logical fallacies, and subtle bias blind spots into the student model weights, eventually triggering recursive model collapse (<a href="#ref-shumailov2024">Shumailov et al., 2024</a>). Always apply automated consistency filters.</p>
 </div>
 <h2 id="mathematical-formulations-of-autoregressive-synthesis">🧮 Mathematical Formulations of Autoregressive Synthesis</h2>
 <h3 id="1-autoregressive-joint-factorization">1. Autoregressive Joint Factorization</h3>
@@ -7717,7 +7717,7 @@ P_\tau(x_t = v \mid x_{&lt;t}) = \frac{\exp(z_{t, v} / \tau)}{\sum_{j \in \mathc
 </details>
 <details class="question">
 <summary>Self-Assessment: Constitutional AI and Self-Critique Loops</summary>
-<p>In Anthropic's Constitutional AI framework (Bai et al., 2022), explain the two-phase loop: <strong>Critique and Revision</strong>.</p>
+<p>In Anthropic's Constitutional AI framework (<a href="#ref-bai2022">Bai et al., 2022</a>), explain the two-phase loop: <strong>Critique and Revision</strong>.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong>
@@ -7735,6 +7735,8 @@ This self-correction loop generates millions of safe, aligned synthetic training
 <li><a id="ref-touvron2023"></a><strong>[Touvron2023]</strong> H. Touvron, L. Martin, K. Stone, P. Albert, A. Almahairi, Y. Babaei, N. Bashlykov, S. Batra, P. Bhargava, S. Bhosale, et al., "Llama 2: Open Foundation and Fine-Tuned Chat Models," <em>arXiv preprint arXiv:2307.09288</em>, 2023. <a href="https://doi.org/10.48550/arXiv.2307.09288">DOI: 10.48550/arXiv.2307.09288</a>.</li>
 <li><a id="ref-meng2024"></a><strong>[Meng2024]</strong> C. Meng, R. Silva, S. R. Bowman, and J. Thorne, "Best Practices and Lessons Learned on Synthetic Data for Language Models," <em>arXiv preprint arXiv:2404.07503</em>, 2024. <a href="https://doi.org/10.48550/arXiv.2404.07503">DOI: 10.48550/arXiv.2404.07503</a>.</li>
 <li><a id="ref-shumailov2024"></a><strong>[Shumailov2024]</strong> I. Shumailov, Z. Shumaylov, Y. Zhao, N. Papernot, R. Anderson, and Y. Gal, "AI Models Collapse When Trained on Recursively Generated Data," <em>Nature</em>, vol. 631, no. 8022, pp. 755–759, 2024. <a href="https://doi.org/10.1038/s41586-024-07566-y">DOI: 10.1038/s41586-024-07566-y</a>.</li>
+<li><a id="ref-wang2022"></a><strong>[Wang2022]</strong> Y. Wang et al., "Self-instruct: Aligning Language Models with Self-generated Instructions," in <em>ACL 2023</em>, pp. 13484–13508, 2022. <a href="https://doi.org/10.48550/arXiv.2203.11171">DOI: 10.48550/arXiv.2203.11171</a>.</li>
+<li><a id="ref-bai2022"></a><strong>[Bai2022]</strong> Y. Bai et al., "Constitutional AI: Harmlessness from AI Feedback,", 2022. <a href="https://doi.org/10.2139/ssrn.5464597">DOI: 10.2139/ssrn.5464597</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

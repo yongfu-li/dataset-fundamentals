@@ -7493,7 +7493,7 @@
   subgraph AcquisitionParadigms ["2. Advanced Acquisition Strategies"]
     CoreSet["Core-Set (k-Center Greedy)&lt;br/&gt;Minimizes Covering Radius Delta"]
     QBC["Query-By-Committee (QBC)&lt;br/&gt;Ensemble Consensus Disagreement"]
-    BADGE["BADGE (Ash et al., 2020)&lt;br/&gt;k-Means++ on Hallucinated Gradients"]
+    BADGE["BADGE ([Ash et al., 2020](#ref-ash2020))&lt;br/&gt;k-Means++ on Hallucinated Gradients"]
   end
 
   subgraph HybridBalancing ["3. Uncertainty-Diversity Hybrid Gate"]
@@ -7531,13 +7531,13 @@
 <h3 id="core-advanced-query-methodologies">Core Advanced Query Methodologies</h3>
 <ol>
 <li><strong>Core-Set Selection (Geometric k-Center):</strong> Formulates active batch selection as finding a subset of points <span class="arithmatex">\(\mathbf{s} \subseteq \mathcal{U}\)</span> that minimizes the maximum Euclidean distance from any unlabeled point to its nearest labeled neighbor, bounding empirical risk via Lipschitz continuity (<a href="#ref-sener2018">Sener &amp; Savarese, 2018</a>).</li>
-<li><strong>Query-By-Committee (QBC):</strong> Maintains an ensemble or "committee" of distinct models <span class="arithmatex">\(\mathcal{C} = \{f_1, \dots, f_M\}\)</span> trained on different bootstraps or architectures; queries points where the committee members exhibit maximal prediction disagreement (<a href="#ref-seung1992">Seung et al., 1992</a>).</li>
+<li><strong>Query-By-Committee (QBC):</strong> Maintains an ensemble or "committee" of distinct models to evaluate consensus variance (<a href="#ref-beluch2018">Beluch et al., 2018</a>) <span class="arithmatex">\(\mathcal{C} = \{f_1, \dots, f_M\}\)</span> trained on different bootstraps or architectures; queries points where the committee members exhibit maximal prediction disagreement (<a href="#ref-seung1992">Seung et al., 1992</a>).</li>
 <li><strong>BADGE (Batch Active Learning by Diverse Gradient Embeddings):</strong> Computes hallucinated gradient embeddings for the final classification layer, then applies <span class="arithmatex">\(k\)</span>-Means++ initialization to simultaneously select points with high model gradient magnitude (uncertainty) and diverse feature directions (coverage) (<a href="#ref-ash2020">Ash et al., 2020</a>).</li>
 </ol>
 <hr />
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: BALD (Bayesian Active Learning by Disagreement)</p>
-<p>In deep learning active learning, standard softmax confidence is notoriously uncalibrated and overconfident. Deploy <strong>Monte Carlo Dropout</strong> to approximate deep Gaussian processes and compute <strong>BALD</strong>:
+<p>In deep learning active learning, standard softmax confidence is notoriously uncalibrated and overconfident. Deploy <strong>Monte Carlo Dropout</strong> to approximate deep Gaussian processes and quantify epistemic uncertainty (<a href="#ref-gal2017">Gal et al., 2017</a>) and compute <strong>BALD</strong>:
 $<span class="arithmatex">\(\mathcal{I}(y; \mathbf{w} \mid x, \mathcal{D}) = \mathcal{H}(y \mid x, \mathcal{D}) - \mathbb{E}_{p(\mathbf{w} \mid \mathcal{D})}[\mathcal{H}(y \mid x, \mathbf{w})]\)</span>$
 BALD identifies points where model parameters disagree, eliminating noisy outliers that fool single models.</p>
 </div>
@@ -7546,7 +7546,7 @@ BALD identifies points where model parameters disagree, eliminating noisy outlie
 <p>Pure Shannon Entropy sampling (<span class="arithmatex">\(\arg\max \mathcal{H}(p)\)</span>) is attracted to corrupted data points, unclassifiable artifacts, and extreme outliers because they naturally produce flat softmax probabilities (<span class="arithmatex">\(1/K\)</span>). Combine uncertainty with <strong>Diversity / Representative Sampling</strong> (e.g., Core-Set or BADGE).</p>
 </div>
 <h2 id="mathematical-formulations-of-geometric-ensemble-active-learning">🧮 Mathematical Formulations of Geometric &amp; Ensemble Active Learning</h2>
-<h3 id="1-the-core-set-k-center-greedy-objective-sener-savarese-2018">1. The Core-Set k-Center Greedy Objective (Sener &amp; Savarese, 2018)</h3>
+<h3 id="1-the-core-set-k-center-greedy-objective-sener-savarese-2018">1. The Core-Set k-Center Greedy Objective (<a href="#ref-sener2018">Sener &amp; Savarese, 2018</a>)</h3>
 <p>Let <span class="arithmatex">\(\mathcal{L}\)</span> denote the currently labeled set and <span class="arithmatex">\(\mathbf{s}\)</span> be the candidate batch of size <span class="arithmatex">\(b\)</span> selected from unlabeled pool <span class="arithmatex">\(\mathcal{U}\)</span>. The <strong>Core-Set Formulation</strong> minimizes the covering radius <span class="arithmatex">\(\delta\)</span>:</p>
 <div class="arithmatex">\[
 \min_{\mathbf{s} \subseteq \mathcal{U}, \, |\mathbf{s}| = b} \max_{i \in \mathcal{U}} \min_{j \in \mathbf{s} \cup \mathcal{L}} \|\mathbf{x}_i - \mathbf{x}_j\|_2

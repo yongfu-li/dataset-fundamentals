@@ -7529,7 +7529,7 @@
 <hr />
 <h3 id="key-architectural-approaches-to-representation-transfer">Key Architectural Approaches to Representation Transfer</h3>
 <ol>
-<li><strong>Masked Autoencoders (MAE):</strong> Masks a high percentage (<span class="arithmatex">\(75\%\)</span>) of input image patches, training an asymmetric Vision Transformer to reconstruct missing pixel values from the small remaining subset, developing rich volumetric and geometric understanding (<a href="#ref-he2022">He et al., 2022</a>).</li>
+<li><strong>Masked Autoencoders (MAE):</strong> Adapting the masked token pre-training paradigm of BERT (<a href="#ref-devlin2019">Devlin et al., 2019</a>) to continuous 2D image pixel grids, MAE masks a high percentage (<span class="arithmatex">\(75\%\)</span>) of input image patches, training an asymmetric Vision Transformer to reconstruct missing pixel values from the small remaining subset, developing rich volumetric and geometric understanding (<a href="#ref-he2022">He et al., 2022</a>).</li>
 <li><strong>DINOv2 (Vision Foundation Models):</strong> Combines discriminative patch-level and image-level contrastive losses to produce embeddings so powerful that simple linear probes outperform complex supervised models on segmentation and depth estimation (<a href="#ref-oquab2023">Oquab et al., 2023</a>).</li>
 <li><strong>Contrastive Language-Image Pretraining (CLIP):</strong> Learns joint multimodal representations by predicting which caption matches which image across 400 million pairs, enabling zero-shot classification on novel categories (<a href="#ref-radford2021">Radford et al., 2021</a>).</li>
 </ol>
@@ -7548,12 +7548,12 @@
 <div class="arithmatex">\[
 \min_{\mathbf{W}, \mathbf{b}} \quad \frac{1}{N_{\text{target}}} \sum_{i=1}^{N_{\text{target}}} \mathcal{L}_{\text{CE}}\left( \text{Softmax}\left( \mathbf{W} f_{\boldsymbol{\theta}^*}(\mathbf{x}_i) + \mathbf{b} \right), \, y_i \right) + \frac{\lambda}{2} \|\mathbf{W}\|_F^2
 \]</div>
-<h3 id="2-masked-autoencoder-mae-reconstruction-loss-he-et-al-2022">2. Masked Autoencoder (MAE) Reconstruction Loss (He et al., 2022)</h3>
+<h3 id="2-masked-autoencoder-mae-reconstruction-loss-he-et-al-2022">2. Masked Autoencoder (MAE) Reconstruction Loss (<a href="#ref-he2022">He et al., 2022</a>)</h3>
 <p>For input image patches <span class="arithmatex">\(\mathbf{x} = (\mathbf{x}_1, \dots, \mathbf{x}_P)\)</span> where subset <span class="arithmatex">\(\mathcal{M} \subset \{1, \dots, P\}\)</span> (<span class="arithmatex">\(|\mathcal{M}| = 0.75 P\)</span>) is masked, the encoder-decoder network reconstructs pixel values exclusively on masked patches:</p>
 <div class="arithmatex">\[
 \mathcal{L}_{\text{MAE}} = \frac{1}{|\mathcal{M}|} \sum_{p \in \mathcal{M}} \|\mathbf{x}_p - \text{Decoder}(\text{Encoder}(\mathbf{x}_{\setminus \mathcal{M}}))_p\|_2^2
 \]</div>
-<h3 id="3-ben-david-domain-adaptation-generalization-bound-ben-david-et-al-2010">3. Ben-David Domain Adaptation Generalization Bound (Ben-David et al., 2010)</h3>
+<h3 id="3-ben-david-domain-adaptation-generalization-bound-ben-david-et-al-2010">3. Ben-David Domain Adaptation Generalization Bound (<a href="#ref-bendaivid2010">Ben-David et al., 2010</a>)</h3>
 <p>When transferring a self-supervised encoder pretrained on source domain <span class="arithmatex">\(\mathcal{S}\)</span> to target domain <span class="arithmatex">\(\mathcal{T}\)</span>, the target risk <span class="arithmatex">\(\mathcal{R}_{\mathcal{T}}(f)\)</span> is bounded by source risk, <span class="arithmatex">\(\mathcal{H}\Delta\mathcal{H}\)</span>-divergence, and ideal joint error <span class="arithmatex">\(\lambda^*\)</span>:</p>
 <div class="arithmatex">\[
 \mathcal{R}_{\mathcal{T}}(f) \le \mathcal{R}_{\mathcal{S}}(f) + \frac{1}{2} d_{\mathcal{H}\Delta\mathcal{H}}(\mathcal{S}, \mathcal{T}) + \lambda^*

@@ -7471,7 +7471,7 @@
 1. <strong>Consistency (Linearizability, <span class="arithmatex">\(C\)</span>):</strong> Every read operation returns the value of the most recent write.
 2. <strong>Availability (<span class="arithmatex">\(A\)</span>):</strong> Every non-failing node returns a non-error response for every received request.
 3. <strong>Partition Tolerance (<span class="arithmatex">\(P\)</span>):</strong> The network may drop or delay arbitrary messages between nodes without system collapse.</p>
-<p><strong>Formal Proof by Contradiction (Gilbert &amp; Lynch, 2002):</strong>
+<p><strong>Formal Proof by Contradiction</strong> (<a href="#ref-gilbert2002">Gilbert &amp; Lynch, 2002</a>):
 1. Assume a distributed system <span class="arithmatex">\(\mathcal{S}\)</span> exists that guarantees <span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(A\)</span>, and <span class="arithmatex">\(P\)</span> simultaneously across two disjoint partitions <span class="arithmatex">\(G_1\)</span> and <span class="arithmatex">\(G_2\)</span>.
 2. Suppose a network partition occurs such that no message sent from <span class="arithmatex">\(G_1\)</span> can reach <span class="arithmatex">\(G_2\)</span> (satisfying <span class="arithmatex">\(P\)</span>).
 3. A client issues a write request <span class="arithmatex">\(w(v_1)\)</span> to node <span class="arithmatex">\(N_1 \in G_1\)</span>. By Availability (<span class="arithmatex">\(A\)</span>), <span class="arithmatex">\(N_1\)</span> must accept and commit the write without waiting indefinitely for <span class="arithmatex">\(G_2\)</span>.

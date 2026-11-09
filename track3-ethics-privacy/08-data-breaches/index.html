@@ -7561,14 +7561,14 @@
 <hr />
 <p>A <strong>Data Breach</strong> is defined under NIST SP 800-61 as an incident involving the unauthorized acquisition, access, disclosure, or destruction of sensitive personal records or confidential corporate intellectual property.</p>
 <p>In data engineering pipelines, breaches are rarely caused by cinematic Hollywood-style cryptographic cracking. Instead, breaches occur because of <strong>unpatched internet-facing software dependencies, misconfigured cloud storage permissions, lateral third-party vendor movement, and prolonged attacker dwell times</strong> [<a href="#ref-kabanov2021">Kabanov2021</a>, <a href="#ref-harrell2017">Harrell2017</a>].</p>
-<p>When an organization collects millions of sensitive identity attributes, security technical debt ceases to be a routine IT backlog item—it becomes an existential ethical and legal failure [<a href="#ref-romanosky2016">Romanosky2016</a>].</p>
+<p>When an organization collects millions of sensitive identity attributes, security technical debt ceases to be a routine IT backlog item—it becomes an existential ethical and legal failure under regulatory compliance frameworks such as the GDPR [<a href="#ref-voigt2017">Voigt2017</a>, <a href="#ref-romanosky2016">Romanosky2016</a>].</p>
 <hr />
 <h2 id="1-the-anatomy-of-attack-vectors-in-data-infrastructure">1. The Anatomy of Attack Vectors in Data Infrastructure</h2>
 <pre class="mermaid"><code>flowchart LR
     Threat["Threat Actor / Adversary"] --&gt; V1["Vector 1: Unpatched Internet Dependencies&lt;br/&gt;(e.g., Apache Struts CVE-2017-5638)"]
     Threat --&gt; V2["Vector 2: Third-Party Supply Chain&lt;br/&gt;(HVAC / SaaS credentials)"]
     Threat --&gt; V3["Vector 3: Cloud Misconfigurations&lt;br/&gt;(Public S3 Buckets / Open Elasticsearch)"]
-    Threat --&gt; V4["Vector 4: Credential Stuffing &amp; Phishing&lt;br/&gt;(Compromised engineer VPN)"]
+    Threat --&gt; V4["Vector 4: Credential Stuffing &amp; Linkage Attacks&lt;br/&gt;(Re-identification [[Sweeney2002](#ref-sweeney2002)])"]
 
     V1 &amp; V2 &amp; V3 &amp; V4 --&gt; Infiltrate["Network Infiltration &amp; Privilege Escalation"]
     Infiltrate --&gt; Dwell["Undetected Dwell Period (Median: 200+ Days)"]
