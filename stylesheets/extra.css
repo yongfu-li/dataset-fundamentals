@@ -1357,13 +1357,42 @@ body, .md-typeset {
 }
 
 /* NoC Interactive Simulator Controls & Frame */
-.noc-sim-container {
-  background: var(--tcl-surface-card);
-  border: 1px solid var(--tcl-border);
+.noc-sim-container,
+.noc-sim-card {
+  background: #0a0e17;
+  color: #f1f5f9;
+  border: 1px solid #1e293b;
   border-radius: 14px;
   padding: 1.5rem;
   margin: 1.75rem 0;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container,
+[data-md-color-scheme="default"] .noc-sim-card {
+  background: #0a0e17;
+  color: #f1f5f9;
+  border: 1px solid #1e293b;
+}
+
+[data-md-color-scheme="slate"] .noc-sim-container,
+[data-md-color-scheme="slate"] .noc-sim-card {
+  background: #070a12;
+  color: #f1f5f9;
+  border: 1px solid #1e293b;
+}
+
+.md-typeset .noc-sim-container p,
+.md-typeset .noc-sim-container li,
+.md-typeset .noc-sim-card p,
+.md-typeset .noc-sim-card li {
+  color: #f1f5f9 !important;
+}
+
+.noc-sim-container label,
+.noc-sim-card label {
+  color: #cbd5e1 !important;
 }
 
 .noc-sim-controls {
@@ -1373,7 +1402,7 @@ body, .md-typeset {
   align-items: center;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--tcl-border);
+  border-bottom: 1px solid #334155;
 }
 
 .noc-sim-btn {
@@ -1389,10 +1418,12 @@ body, .md-typeset {
   align-items: center;
   gap: 6px;
   transition: background 0.15s ease, transform 0.1s ease;
+  text-decoration: none !important;
 }
 
 .noc-sim-btn:hover {
   background: #1d4ed8;
+  color: #ffffff !important;
   transform: translateY(-1px);
 }
 
@@ -1406,13 +1437,50 @@ body, .md-typeset {
 
 .noc-sim-btn.secondary {
   background: transparent;
-  color: var(--tcl-heading) !important;
+  color: var(--tcl-heading);
   border: 1px solid var(--tcl-border);
+  text-decoration: none !important;
 }
 
 .noc-sim-btn.secondary:hover {
   background: var(--tcl-surface);
   border-color: var(--tcl-border-hover);
+}
+
+/* Secondary Buttons Inside Dark Simulator Containers */
+.noc-sim-container .noc-sim-btn.secondary,
+.noc-sim-card .noc-sim-btn.secondary,
+.noc-term-window .noc-sim-btn.secondary {
+  background: rgba(30, 41, 59, 0.6) !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #475569 !important;
+}
+
+.noc-sim-container .noc-sim-btn.secondary:hover,
+.noc-sim-card .noc-sim-btn.secondary:hover,
+.noc-term-window .noc-sim-btn.secondary:hover {
+  background: #1e293b !important;
+  border-color: #94a3b8 !important;
+  color: #ffffff !important;
+}
+
+/* Secondary Danger / Noise Buttons inside Simulators */
+.noc-sim-container .noc-sim-btn.secondary[style*="color:#f87171"],
+.noc-sim-container .noc-sim-btn.secondary[style*="color: #f87171"],
+.noc-sim-card .noc-sim-btn.secondary[style*="color:#f87171"],
+.noc-sim-card .noc-sim-btn.secondary[style*="color: #f87171"] {
+  background: rgba(248, 113, 113, 0.12) !important;
+  color: #f87171 !important;
+  border: 1px solid #f87171 !important;
+}
+
+.noc-sim-container .noc-sim-btn.secondary[style*="color:#f87171"]:hover,
+.noc-sim-container .noc-sim-btn.secondary[style*="color: #f87171"]:hover,
+.noc-sim-card .noc-sim-btn.secondary[style*="color:#f87171"]:hover,
+.noc-sim-card .noc-sim-btn.secondary[style*="color: #f87171"]:hover {
+  background: rgba(239, 68, 68, 0.28) !important;
+  color: #fca5a5 !important;
+  border-color: #fca5a5 !important;
 }
 
 .noc-sim-select {
@@ -1796,6 +1864,157 @@ canvas#nocCanvas {
 [data-md-color-scheme="default"] span[style*="color: #94a3b8"],
 [data-md-color-scheme="default"] div[style*="color: #94a3b8"] {
   color: #334155 !important; /* Slate 700 - 7.5:1 contrast */
+}
+
+/* ==========================================================================
+   Dark Container High-Contrast Preservation (Simulators, Terminals, Consoles)
+   Overrides light-mode inline color darkening inside dark simulation cards,
+   terminals, and code workbenches so all text remains luminous and legible.
+   ========================================================================== */
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card h3[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-sim-card h3[style*="color: #38bdf8"],
+[data-md-color-scheme="default"] .noc-term-window span[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-term-window div[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-viz-window span[style*="color:#38bdf8"],
+[data-md-color-scheme="default"] .noc-viz-window div[style*="color:#38bdf8"] {
+  color: #38bdf8 !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #94a3b8"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #94a3b8"],
+[data-md-color-scheme="default"] .noc-term-window span[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-term-window div[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-viz-window span[style*="color:#94a3b8"],
+[data-md-color-scheme="default"] .noc-viz-window div[style*="color:#94a3b8"] {
+  color: #cbd5e1 !important; /* Luminous Slate 300 - 13:1 contrast on dark background */
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #cbd5e1"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #cbd5e1"],
+[data-md-color-scheme="default"] .noc-term-window span[style*="color:#cbd5e1"],
+[data-md-color-scheme="default"] .noc-term-window div[style*="color:#cbd5e1"] {
+  color: #cbd5e1 !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #e2e8f0"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #e2e8f0"] {
+  color: #e2e8f0 !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#34d399"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#34d399"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#34d399"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #34d399"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #34d399"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #34d399"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#34d399"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#34d399"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#34d399"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #34d399"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #34d399"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #34d399"] {
+  color: #34d399 !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#4ade80"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#4ade80"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#4ade80"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #4ade80"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #4ade80"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #4ade80"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#4ade80"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#4ade80"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#4ade80"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #4ade80"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #4ade80"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #4ade80"] {
+  color: #4ade80 !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#f87171"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#f87171"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#f87171"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color: #f87171"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color: #f87171"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color: #f87171"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#f87171"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#f87171"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#f87171"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color: #f87171"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color: #f87171"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color: #f87171"] {
+  color: #f87171 !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#60a5fa"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#60a5fa"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#60a5fa"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#60a5fa"] {
+  color: #60a5fa !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#c084fc"],
+[data-md-color-scheme="default"] .noc-sim-container div[style*="color:#c084fc"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#c084fc"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#c084fc"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#a855f7"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#a855f7"] {
+  color: #c084fc !important;
+}
+
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#fb923c"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#fb923c"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#fb923c"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#fb923c"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#fb923c"],
+[data-md-color-scheme="default"] .noc-sim-container span[style*="color:#f59e0b"],
+[data-md-color-scheme="default"] .noc-sim-container strong[style*="color:#f59e0b"],
+[data-md-color-scheme="default"] .noc-sim-card span[style*="color:#f59e0b"],
+[data-md-color-scheme="default"] .noc-sim-card strong[style*="color:#f59e0b"],
+[data-md-color-scheme="default"] .noc-sim-card div[style*="color:#f59e0b"] {
+  color: #f59e0b !important;
 }
 
 /* Dark Mode Remaps (Convert dark slate inline text to luminous readable tones) */
@@ -2279,3 +2498,103 @@ canvas#nocCanvas {
   background: rgba(148, 163, 184, 0.4) !important;
   border-radius: 4px !important;
 }
+
+/* ============================================================================
+   Interactive Tools Design System & Theme Adapter
+   ============================================================================ */
+:root,
+[data-md-color-scheme="default"] {
+  --surface: #ffffff;
+  --surface2: #f8fafc;
+  --surface3: #f1f5f9;
+  --line: #e2e8f0;
+  --muted: #64748b;
+  --text: #0f172a;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: rgba(37, 99, 235, 0.1);
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --display: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --warn: #f59e0b;
+  --warn-light: rgba(245, 158, 11, 0.15);
+  --danger: #ef4444;
+  --danger-light: rgba(239, 68, 68, 0.15);
+  --success: #10b981;
+  --success-light: rgba(16, 185, 129, 0.15);
+}
+
+[data-md-color-scheme="slate"] {
+  --surface: #0f172a;
+  --surface2: #1e293b;
+  --surface3: #334155;
+  --line: #334155;
+  --muted: #94a3b8;
+  --text: #f8fafc;
+  --accent: #38bdf8;
+  --accent-hover: #0284c7;
+  --accent-light: rgba(56, 189, 248, 0.15);
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --display: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --warn: #f59e0b;
+  --warn-light: rgba(245, 158, 11, 0.2);
+  --danger: #f87171;
+  --danger-light: rgba(248, 113, 113, 0.2);
+  --success: #34d399;
+  --success-light: rgba(52, 211, 153, 0.2);
+}
+
+/* Tool Component Refinements for Material for MkDocs */
+.cl-panel,
+.tool-panel {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text) !important;
+}
+
+.cl-panel input,
+.cl-panel select,
+.cl-panel textarea,
+.tool-panel input,
+.tool-panel select {
+  background: var(--surface2) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--text) !important;
+  border-radius: 6px !important;
+  font-family: var(--display) !important;
+}
+
+.cl-panel button,
+.tool-panel button {
+  font-family: var(--display) !important;
+  border-radius: 6px !important;
+}
+
+/* Tool Grid Cards on Tools Hub */
+.noc-tool-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.noc-tool-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+[data-md-color-scheme="slate"] .noc-tool-card:hover {
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.12);
+}
+
