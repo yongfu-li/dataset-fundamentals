@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7025,6 +7027,8 @@
       <button class="noc-term-pill" onclick="quickRun('data-datasheet --input /workspace/datasets/customers.csv')">📋 data-datasheet</button>
       <button class="noc-term-pill" onclick="quickRun('data-handoff --status')">🔄 data-handoff (Sync)</button>
       <button class="noc-term-pill purple" onclick="quickRun('grade-capstone')">🎓 grade-capstone</button>
+      <button class="noc-term-pill purple" onclick="quickRun('python scripts/pipeline_types.py')">🐍 python pipeline_types.py</button>
+      <button class="noc-term-pill" onclick="quickRun('python scripts/clean.py')">🐍 python clean.py</button>
       <button class="noc-term-pill" onclick="quickRun('cat /workspace/README.md')">📄 cat README.md</button>
       <button class="noc-term-pill" onclick="quickRun('tree /workspace')">📁 tree /workspace</button>
       <button class="noc-term-pill" onclick="quickRun('clear')">🧹 clear</button>
@@ -7288,7 +7292,42 @@ Based on Gebru et al. (2021) "Datasheets for Datasets".
   },
   "/workspace/scripts": {
     type: "dir",
-    children: ["clean.py", "audit.py", "train.py"]
+    children: ["pipeline_types.py", "clean.py", "audit.py", "train.py"]
+  },
+  "/workspace/scripts/pipeline_types.py": {
+    type: "file",
+    content: `"""
+Dataset Structural Transformation & Stream Ingestion Pipeline
+Demonstrating Schema-on-Read JSON flattening into vectorized Polars Columnar Storage.
+"""
+from __future__ import annotations
+import polars as pl
+from pydantic import BaseModel, Field, EmailStr
+
+class OrderItem(BaseModel):
+    sku: str
+    quantity: int = Field(gt=0)
+    unit_price_usd: float = Field(ge=0.0)
+
+class CustomerOrderEvent(BaseModel):
+    order_id: str
+    customer_id: int
+    customer_email: EmailStr
+    items: list[OrderItem]
+
+sample_feed = [
+    {"order_id": "ORD-101", "customer_id": 901, "customer_email": "buyer1@example.com", "items": [{"sku": "GPU-H100", "quantity": 1, "unit_price_usd": 32000.0}]},
+    {"order_id": "ORD-102", "customer_id": 902, "customer_email": "buyer2@example.com", "items": [{"sku": "RAM-DDR5-64G", "quantity": 4, "unit_price_usd": 150.0}, {"sku": "SSD-NVME-4TB", "quantity": 2, "unit_price_usd": 320.0}]}
+]
+
+print("Validating Pydantic V2 Schemas & Materializing Polars Arrow Table...")
+# Flattening and projecting
+df = pl.DataFrame([
+    {"order_id": "ORD-101", "customer_id": 901, "customer_email": "buyer1@example.com", "total_items": 1, "total_order_usd": 32000.0},
+    {"order_id": "ORD-102", "customer_id": 902, "customer_email": "buyer2@example.com", "total_items": 6, "total_order_usd": 1240.0}
+])
+print("Flattened Columnar Structured Relation:")
+print(df)`
   },
   "/workspace/scripts/clean.py": {
     type: "file",
@@ -7355,6 +7394,7 @@ let historyIndex = -1;
 let currentFontSize = 13;
 let activeVizView = "distribution";
 let isSplitLayout = false;
+let isPythonRepl = false;
 
 // Current simulation data state
 let currentSamples = [];
@@ -7382,8 +7422,52 @@ function termClear() {
   if (out) out.innerHTML = '';
 }
 
+function checkPendingCodeExecution() {
+  try {
+    const pending = sessionStorage.getItem("dataset_terminal_exec");
+    if (pending) {
+      sessionStorage.removeItem("dataset_terminal_exec");
+      const payload = JSON.parse(pending);
+      if (payload && payload.code) {
+        const fname = payload.file || 'run_script.py';
+        const fullPath = '/workspace/scripts/' + fname;
+
+        // Ensure scripts directory exists
+        if (!VFS['/workspace/scripts']) {
+          VFS['/workspace/scripts'] = { type: 'dir', children: [] };
+          if (!VFS['/workspace'].children.includes('scripts')) {
+            VFS['/workspace'].children.push('scripts');
+          }
+        }
+
+        // Mount script into VFS
+        VFS[fullPath] = { type: 'file', content: payload.code };
+        if (!VFS['/workspace/scripts'].children.includes(fname)) {
+          VFS['/workspace/scripts'].children.push(fname);
+        }
+
+        termPrint(`
+<div style="background:rgba(37,99,235,0.15); border:1px solid #3b82f6; border-radius:8px; padding:10px 14px; margin:8px 0;">
+  <div style="color:#60a5fa; font-weight:bold; font-size:0.9rem;">🚀 [Terminal Code Bridge] Linked from: ${escapeHtml(payload.title || 'Curriculum')}</div>
+  <div style="color:#cbd5e1; font-size:0.8rem; margin-top:2px;">Mounted live code snippet to: <span style="color:#38bdf8; font-family:monospace;">${fullPath}</span></div>
+</div>
+`);
+        // Auto-execute the python command in bash
+        setTimeout(() => {
+          executeCommand(`python ${fullPath}`);
+        }, 150);
+        return true;
+      }
+    }
+  } catch (e) {
+    console.error("Error processing pending code bridge:", e);
+  }
+  return false;
+}
+
 function termReset() {
   termClear();
+  isPythonRepl = false;
   currentPwd = "/workspace";
   const title = document.getElementById('termPwdTitle');
   if (title) title.innerText = currentPwd;
@@ -7391,7 +7475,10 @@ function termReset() {
   if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
   termPrint('<span style="color:#38bdf8; font-weight:bold;">✨ Session initialized. Virtual filesystem mounted at /workspace.</span>');
   termPrint('<span style="color:#94a3b8;">Type <span style="color:#4ade80; font-weight:bold;">help</span> to inspect data engineering tools. Tab autocompletes commands &amp; files.</span>');
-  quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12');
+
+  if (!checkPendingCodeExecution()) {
+    quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12');
+  }
 }
 
 function termAdjustFontSize(delta) {
@@ -7483,12 +7570,25 @@ function getVfsNode(path) {
 function executeCommand(rawCmd) {
   const trimmed = rawCmd.trim();
   if (!trimmed) {
-    termPrint(`<span style="color:#64748b;">guest@dataset-lab:${currentPwd}$</span>`);
+    termPrint(`<span style="color:#64748b;">${isPythonRepl ? '>>>' : 'guest@dataset-lab:' + currentPwd + '$'}</span>`);
     return;
   }
 
   cmdHistory.push(trimmed);
   historyIndex = cmdHistory.length;
+
+  if (isPythonRepl) {
+    termPrint(`<span style="color:#64748b;">&gt;&gt;&gt;</span> <span style="color:#f8fafc; font-weight:bold;">${escapeHtml(trimmed)}</span>`);
+    if (trimmed === 'exit()' || trimmed === 'quit()' || trimmed === 'exit') {
+      isPythonRepl = false;
+      termPrint('<span style="color:#94a3b8;">[Exited Python 3.12.2 environment. Returned to bash.]</span>');
+      const prompt = document.getElementById('termPrompt');
+      if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
+      return;
+    }
+    handlePythonReplInput(trimmed);
+    return;
+  }
 
   termPrint(`<span style="color:#64748b;">guest@dataset-lab:${currentPwd}$</span> <span style="color:#f8fafc; font-weight:bold;">${escapeHtml(trimmed)}</span>`);
 
@@ -7497,6 +7597,10 @@ function executeCommand(rawCmd) {
   const args = parts.slice(1).map(p => p.replace(/^["']|["']$/g, ''));
 
   switch (cmd) {
+    case 'python':
+    case 'python3':
+      cmdPython(args);
+      break;
     case 'help':
     case '?':
       cmdHelp();
@@ -7620,6 +7724,7 @@ function cmdHelp() {
   <tr><td style="color:#4ade80; font-weight:bold;">data-datasheet</td><td>Generate Gebru et al. Datasheets for Datasets contract</td></tr>
   <tr><td style="color:#4ade80; font-weight:bold;">data-handoff</td><td>Bidirectional handoff with Data Studio Hub (21 Tools): <code>--import|--export|--status</code></td></tr>
   <tr><td style="color:#4ade80; font-weight:bold;">dvc &lt;dag|status|repro&gt;</td><td>Data Version Control pipeline graphs &amp; cryptographic content hashes</td></tr>
+  <tr><td style="color:#4ade80; font-weight:bold;">python &lt;file.py&gt;</td><td>Execute Python 3.12 / Polars script (or type <code>python</code> for interactive REPL)</td></tr>
   <tr><td style="color:#4ade80; font-weight:bold;">grade-capstone</td><td>Execute automated grading across all 13 curriculum tracks</td></tr>
   <tr><td style="color:#38bdf8;">ls [-l|-la|-a] [dir]</td><td>List directory contents with permissions &amp; byte sizes</td></tr>
   <tr><td style="color:#38bdf8;">cd [dir]</td><td>Change directory (supports <code>cd datasets</code>, <code>cd ..</code>, <code>cd ~</code>)</td></tr>
@@ -8279,6 +8384,187 @@ function cmdGradeCapstone() {
 }
 
 // ============================================================================
+// Python Execution Engine & Interactive REPL
+// ============================================================================
+function cmdPython(args) {
+  if (args.length === 0) {
+    isPythonRepl = true;
+    termPrint('<span style="color:#38bdf8; font-weight:bold;">Python 3.12.2 (vfs-polars-arrow:browser-wasm, Nov 09 2026, 09:30:00)</span>');
+    termPrint('<span style="color:#94a3b8;">[Polars 1.20, PyArrow 17.0, Pydantic V2.8, DuckDB 1.1 runtime]</span>');
+    termPrint('<span style="color:#64748b;">Type "help", "copyright", "credits" or "license" for more information.</span>');
+    termPrint('<span style="color:#cbd5e1;">Type <span style="color:#f59e0b; font-weight:bold;">exit()</span> or <span style="color:#f59e0b; font-weight:bold;">quit()</span> to return to bash shell.</span>');
+    const prompt = document.getElementById('termPrompt');
+    if (prompt) prompt.innerText = '>>> ';
+    return;
+  }
+
+  if (args[0] === '-V' || args[0] === '--version') {
+    termPrint('Python 3.12.2');
+    return;
+  }
+
+  if (args[0] === '-c') {
+    const code = args.slice(1).join(' ');
+    runPythonScript(code, '<stdin>');
+    return;
+  }
+
+  const targetPath = normalizePath(args[0]);
+  const { node } = getVfsNode(targetPath);
+  if (!node) {
+    termPrint(`<span style="color:#f87171;">python3: can't open file '${escapeHtml(args[0])}': [Errno 2] No such file or directory</span>`, true);
+    return;
+  }
+  if (node.type === 'dir') {
+    termPrint(`<span style="color:#f87171;">python3: [Errno 21] Is a directory: '${escapeHtml(args[0])}'</span>`, true);
+    return;
+  }
+
+  runPythonScript(node.content, targetPath);
+}
+
+function handlePythonReplInput(input) {
+  const trimmed = input.trim();
+  if (!trimmed) return;
+  if (trimmed === 'help()' || trimmed === 'help') {
+    termPrint('<span style="color:#38bdf8;">Interactive Python REPL with built-in Polars/Arrow kernel. Try:</span>');
+    termPrint('<span style="color:#cbd5e1;">• <code>import polars as pl</code><br/>• <code>df = pl.DataFrame({"a": [1, 2, 3], "b": [10.5, 20.0, 30.5]})</code><br/>• <code>df.select(pl.col("a") * 2)</code><br/>• <code>exit()</code> to return to bash shell</span>');
+    return;
+  }
+
+  if (trimmed.startsWith('import ') || trimmed.startsWith('from ')) {
+    // Silent success, like real Python
+    return;
+  }
+
+  if (trimmed === 'pl.__version__' || trimmed === 'polars.__version__') {
+    termPrint("<span style='color:#a5f3fc;'>'1.20.0'</span>");
+    return;
+  }
+  if (trimmed === 'pa.__version__' || trimmed === 'pyarrow.__version__') {
+    termPrint("<span style='color:#a5f3fc;'>'17.0.0'</span>");
+    return;
+  }
+  if (trimmed === 'df' || trimmed === 'print(df)') {
+    termPrint(`
+<div style="font-family:monospace; font-size:0.8rem; color:#cbd5e1; line-height:1.4;">
+shape: (2, 5)<br/>
+┌──────────┬─────────────┬────────────────────┬─────────────┬─────────────────┐<br/>
+│ order_id ┆ customer_id ┆ customer_email     ┆ total_items ┆ total_order_usd │<br/>
+│ ---      ┆ ---         ┆ ---                ┆ ---         ┆ ---             │<br/>
+│ str      ┆ i64         ┆ str                ┆ i64         ┆ f64             │<br/>
+╞══════════╪═════════════╪════════════════════╪═════════════╪═════════════════╡<br/>
+│ ORD-101  ┆ 901         ┆ buyer1@example.com ┆ 1           ┆ 32000.0         │<br/>
+│ ORD-102  ┆ 902         ┆ buyer2@example.com ┆ 6           ┆ 1240.0          │<br/>
+└──────────┴─────────────┴────────────────────┴─────────────┴─────────────────┘
+</div>
+`);
+    return;
+  }
+
+  if (trimmed.startsWith('print(') && trimmed.endsWith(')')) {
+    const inner = trimmed.slice(6, -1).trim();
+    if ((inner.startsWith('"') && inner.endsWith('"')) || (inner.startsWith("'") && inner.endsWith("'"))) {
+      termPrint(escapeHtml(inner.slice(1, -1)));
+      return;
+    }
+  }
+
+  // Safe arithmetic evaluator
+  if (/^[0-9\.\s\+\-\*\/\%\(\)]+$/.test(trimmed)) {
+    try {
+      const res = Function(`'use strict'; return (${trimmed})`)();
+      termPrint(`<span style="color:#a5f3fc;">${res}</span>`);
+      return;
+    } catch(e) {}
+  }
+
+  // Simulated python statement execution
+  termPrint(`<span style="color:#94a3b8;">[Statement evaluated in in-memory kernel]</span>`);
+}
+
+function runPythonScript(code, fullPath) {
+  termPrint(`
+<div style="color:#38bdf8; font-weight:bold; margin-bottom:4px;">
+  🐍 [Python 3.12 Engine] Running <code>${escapeHtml(fullPath)}</code>:
+</div>
+`);
+
+  // Detect script characteristics and render structured output
+  const lowerCode = code.toLowerCase();
+
+  if (lowerCode.includes('customerorderevent') || lowerCode.includes('orderitem') || lowerCode.includes('pipeline_types') || lowerCode.includes('ingest_and_flatten_orders')) {
+    termPrint(`
+<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+  <span style="color:#4ade80;">✔ [Pydantic V2]</span> Contract validation passed (2/2 records validated).<br/>
+  <span style="color:#4ade80;">✔ [Polars Vectorized]</span> Materialized zero-copy Arrow columnar memory table.<br/>
+  <br/>
+  <span style="color:#f8fafc; font-weight:bold;">Flattened Columnar Structured Relation:</span><br/>
+  <span style="color:#94a3b8;">shape: (2, 7)</span><br/>
+  <pre style="margin:4px 0; background:rgba(15,23,42,0.6); padding:8px; border-radius:6px; border:1px solid #334155; color:#cbd5e1; overflow-x:auto;">
+┌──────────┬─────────────┬────────────────────┬─────────────┬─────────────────┬──────────────────┬─────────────────────────┐
+│ order_id ┆ customer_id ┆ customer_email     ┆ total_items ┆ total_order_usd ┆ has_custom_notes ┆ timestamp               │
+│ ---      ┆ ---         ┆ ---                ┆ ---         ┆ ---             ┆ ---              ┆ ---                     │
+│ str      ┆ i64         ┆ str                ┆ i32         ┆ f64             ┆ bool             ┆ datetime[ms, UTC]       │
+╞══════════╪═════════════╪════════════════════╪═════════════╪═════════════════╪══════════════════╪═════════════════════════╡
+│ ORD-101  ┆ 901         ┆ buyer1@example.com ┆ 1           ┆ 32000.00        ┆ true             ┆ 2026-11-09 09:30:14 UTC │
+│ ORD-102  ┆ 902         ┆ buyer2@example.com ┆ 6           ┆ 1240.00         ┆ false            ┆ 2026-11-09 09:30:15 UTC │
+└──────────┴─────────────┴────────────────────┴─────────────┴─────────────────┴──────────────────┴─────────────────────────┘</pre>
+  <span style="color:#34d399; font-weight:bold;">✨ Pipeline finished cleanly in 0.048s (SIMD Vectorized).</span>
+</div>
+`);
+    updateHud("orders_stream.parquet", 2, "14.2 KB (Arrow RAM)", "99.8 / 100", "DI = 1.00");
+    return;
+  }
+
+  if (lowerCode.includes('clean.py') || (lowerCode.includes('impute') && lowerCode.includes('outlier'))) {
+    termPrint(`
+<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+  <span style="color:#38bdf8;">[Pipeline Stage: Clean]</span> Ingesting <code>/workspace/datasets/customers.csv</code><br/>
+  • Imputation: Mean strategy applied to 'monthly_spend' (filled 1 missing cell with $488.75)<br/>
+  • Outlier Detection: Tukey IQR bounds [-$1235.88, $2389.12] &rarr; Flagged 1 anomaly ($8900.00)<br/>
+  • Export Target: <span style="color:#4ade80;">/workspace/data/curated_features.parquet</span><br/>
+  <span style="color:#34d399; font-weight:bold;">✔ Pipeline finished in 0.032s. Output: 8 rows, 6 columns.</span>
+</div>
+`);
+    updateHud("/workspace/data/curated_features.parquet", 8, "24.5 KB (Parquet)", "98.5 / 100", "DI = 0.94");
+    return;
+  }
+
+  // General Python script simulation
+  const lines = code.split('\n');
+  const printOutputs = [];
+  lines.forEach(line => {
+    const m = line.match(/^\s*print\((.*)\)\s*$/);
+    if (m) {
+      let content = m[1].trim();
+      if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'"))) {
+        printOutputs.push(content.slice(1, -1));
+      } else if (content) {
+        printOutputs.push(content);
+      }
+    }
+  });
+
+  if (printOutputs.length > 0) {
+    let out = '<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">';
+    printOutputs.forEach(p => {
+      out += `<div>${escapeHtml(p)}</div>`;
+    });
+    out += '<div style="color:#34d399; font-weight:bold; margin-top:4px;">✔ Process exited with code 0.</div></div>';
+    termPrint(out);
+  } else {
+    termPrint(`
+<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+  <span style="color:#4ade80;">✔ Python compilation succeeded.</span><br/>
+  <span style="color:#94a3b8;">Executed ${lines.length} lines of code. No unhandled exceptions.</span><br/>
+  <span style="color:#34d399; font-weight:bold;">✔ Process exited with code 0 (elapsed: 0.021s).</span>
+</div>
+`);
+  }
+}
+
+// ============================================================================
 // Live Telemetry HUD Updates
 // ============================================================================
 function updateHud(dataset, records, memory, dqi, fairness) {
@@ -8682,7 +8968,7 @@ function initTerminalWorkbench() {
           const candidates = [
             'data-sample', 'data-clean', 'data-audit', 'data-fairness', 
             'data-iaa', 'data-anonymize', 'data-convert', 'data-datasheet',
-            'data-handoff', 'dvc', 'grade-capstone', 'clear', 'help', 
+            'data-handoff', 'dvc', 'grade-capstone', 'python', 'python3', 'clear', 'help', 
             'tree', 'ls', 'cat', 'pwd', 'head', 'tail', 'wc', 'grep', 'mkdir', 'touch'
           ];
           const match = candidates.find(c => c.startsWith(last));
@@ -8821,6 +9107,8 @@ if (document.readyState === 'loading') {
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

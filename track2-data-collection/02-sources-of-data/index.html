@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#22-sources-of-data" class="md-skip">
+        <a href="#22-data-sources-primary-secondary-real-time-streaming-ingestion" class="md-skip">
           Skip to content
         </a>
       
@@ -1230,22 +1232,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-orthogonality-of-data-source-vs-data-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Orthogonality of Data Source vs. Data Structure
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-formalization-of-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Formalization of Sources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Formalization of Sources">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-sources-of-data" class="md-nav__link">
+  <a href="#a-primary-data-generation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Sources of data
+        A. Primary Data Generation
       
     </span>
   </a>
@@ -1253,10 +1266,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#b-secondary-data-distribution-shift" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
+        B. Secondary Data &amp; Distribution Shift
       
     </span>
   </a>
@@ -1264,87 +1277,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#where-do-records-come-from" class="md-nav__link">
+  <a href="#c-real-time-streaming-telemetry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where do records come from?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#primary-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Primary data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-22-primary-collection-in-a-clinical-monitoring-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.2 — Primary collection in a clinical monitoring study
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#secondary-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Secondary data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-23-secondary-census-extract-for-store-siting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.3 — Secondary census extract for store siting
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#real-time-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real-time data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        C. Real-Time Streaming Telemetry
       
     </span>
   </a>
@@ -1357,10 +1293,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-deep-dive-into-source-trade-offs-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. Deep Dive into Source Trade-Offs &amp; Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Deep Dive into Source Trade-Offs &amp; Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-primary-clinical-trial-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Primary Clinical Trial Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-secondary-census-ingestion-the-modifiable-areal-unit-problem-maup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Secondary Census Ingestion: The Modifiable Areal Unit Problem (MAUP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-real-time-cold-chain-iot-sensor-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Real-Time Cold-Chain IoT Sensor Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-multi-source-decision-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Multi-Source Decision Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7133,22 +7152,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-orthogonality-of-data-source-vs-data-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Orthogonality of Data Source vs. Data Structure
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-formalization-of-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Formalization of Sources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Formalization of Sources">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-sources-of-data" class="md-nav__link">
+  <a href="#a-primary-data-generation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Sources of data
+        A. Primary Data Generation
       
     </span>
   </a>
@@ -7156,10 +7186,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#b-secondary-data-distribution-shift" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
+        B. Secondary Data &amp; Distribution Shift
       
     </span>
   </a>
@@ -7167,87 +7197,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#where-do-records-come-from" class="md-nav__link">
+  <a href="#c-real-time-streaming-telemetry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where do records come from?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#primary-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Primary data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-22-primary-collection-in-a-clinical-monitoring-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.2 — Primary collection in a clinical monitoring study
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#secondary-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Secondary data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-23-secondary-census-extract-for-store-siting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.3 — Secondary census extract for store siting
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#real-time-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real-time data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        C. Real-Time Streaming Telemetry
       
     </span>
   </a>
@@ -7260,10 +7213,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-deep-dive-into-source-trade-offs-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. Deep Dive into Source Trade-Offs &amp; Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Deep Dive into Source Trade-Offs &amp; Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-primary-clinical-trial-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Primary Clinical Trial Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-secondary-census-ingestion-the-modifiable-areal-unit-problem-maup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Secondary Census Ingestion: The Modifiable Areal Unit Problem (MAUP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-real-time-cold-chain-iot-sensor-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Real-Time Cold-Chain IoT Sensor Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-multi-source-decision-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Multi-Source Decision Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7290,58 +7326,241 @@
   
 
 
-<h1 id="22-sources-of-data">2.2 Sources of data</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="22-data-sources-primary-secondary-real-time-streaming-ingestion">2.2 Data Sources: Primary, Secondary &amp; Real-Time Streaming Ingestion</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 2 (sec:2.2)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 2: Fundamentals of Data Collection</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 2: Fundamentals of Data Collection (§2.2: Origin & Ingestion Sources)</strong> in the official Springer Nature monograph, analyzing primary clinical protocols, secondary census curation, and streaming sensor architectures.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 2 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~12 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>A collection plan starts with purpose; the next decision is where records originate. This part contrasts primary data measured for the current study, secondary archives reused from others, and real-time streams that keep refreshing.</p>
-<h3 id="chapter-2-sources-of-data">Chapter 2 — Sources of data</h3>
-<p>A collection plan starts with purpose; the next decision is where records originate. This part contrasts primary data measured for the current study, secondary archives reused from others, and real-time streams that keep refreshing.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should distinguish primary, secondary, and real-time source types, summarize the strengths and risks of each, and explain why source choice and structure choice are orthogonal planning decisions.</p>
-<h3 id="where-do-records-come-from">Where do records come from?</h3>
-<p>Chapter 1 classified datasets by structure and temporal behavior. This section answers a different question: where do the records come from? It helps to distinguish primary data collected for the current objective, secondary data reused from prior studies or agencies, and real-time streams that refresh with little delay. A source choice and a structure choice are independent: a primary survey can yield a structured table, and a secondary archive can hold unstructured text.</p>
-<h3 id="primary-data">Primary data</h3>
-<p>Primary data are measured directly for the present study through surveys, experiments, interviews, or observation. Because the instrument is designed around the question at hand, primary data are often more relevant than reused extracts, and the team retains control over sampling, wording, and quality checks. The trade-off is time, cost, and the risk of human bias during interviews or observation.</p>
-<h3 id="example-22-primary-collection-in-a-clinical-monitoring-study">Example 2.2 — Primary collection in a clinical monitoring study</h3>
-<p>Example 2.2 shows a primary clinical protocol designed around a recovery question. A hospital study of post-operative recovery may collect vital signs every four hours from bedside monitors and nurse-entered pain scores. The protocol defines devices, recording intervals, and inclusion criteria so that another ward could reproduce the same table structure. Open the example 2 module to review how primary collection buys relevance and control.</p>
-<h3 id="secondary-data">Secondary data</h3>
-<p>Secondary data were previously collected, processed, and published by others: academic papers, government reports, statistical agencies, or open repositories. They are attractive when budgets are tight or when historical coverage matters, because the expensive fieldwork has already been paid for. Challenges include schema mismatch, incomplete provenance, and biases from the original purpose that travel silently into the new analysis.</p>
-<h3 id="example-23-secondary-census-extract-for-store-siting">Example 2.3 — Secondary census extract for store siting</h3>
-<p>Example 2.3 shows a secondary reuse path that looks cheaper until schema mismatch appears. A retailer considering new store locations downloads a public census extract with neighborhood income and age distributions. The download is fast and free, but the age bins and geographic units do not match the retailer's catchment polygons, so analysts must re-aggregate before the table answers the siting question. Try the example 3 module to see how secondary data shifts cost from fieldwork to curation.</p>
-<h3 id="real-time-data">Real-time data</h3>
-<p>Real-time data are collected and made available with minimal delay, often through IoT sensors, streaming APIs, or social and analytics feeds. Such feeds usually produce dynamic datasets: records keep arriving, so latency, ordering, and retention become first-class design constraints. They enable immediate action in monitoring and alerting, but the pipeline must handle volume, missing packets, and clock drift before the stream becomes a trustworthy analytical table.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Primary sources buy relevance and control at the price of cost and time. Secondary sources buy speed and scale at the price of fit and provenance checks. Real-time sources buy timeliness at the price of infrastructure and integration discipline. Match the source class to the decision timeline and the evidence standard the study requires.</p>
-<h3 id="next">Next</h3>
-<p>Complete the quiz, then continue to the next part on surveys, observation, and web scraping—the instruments that turn a source choice into measurable records.</p>
+<p>While Chapter 1 classified datasets by their <strong>internal structure</strong> (structured, semi-structured, unstructured) and <strong>temporal behavior</strong> (static vs. dynamic), data collection requires answering an orthogonal operational question: <strong>Where do the records originate?</strong></p>
+<p>A data engineering program must evaluate three distinct source archetypes: <strong>Primary Data</strong> (directly measured for the objective), <strong>Secondary Data</strong> (reused from external archives), and <strong>Real-Time Streaming Telemetry</strong> (continuous feeds). </p>
+<p>Choosing the wrong source archetype introduces structural debt: primary collection where secondary assets suffice wastes months of fieldwork, while naively adopting secondary assets without provenance audits invites silent target leakage and distribution shifts [<a href="#ref-gandomi2015">Gandomi2015</a>, <a href="#ref-chapman2020">Chapman2020</a>].</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-the-orthogonality-of-data-source-vs-data-structure">1. The Orthogonality of Data Source vs. Data Structure</h2>
+<p>A fundamental principle of dataset architecture is that <strong>source origin and structural format are independent design decisions</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Source Origin (Where from?) ⊥ Data Structure (How formatted?)
+</span></code></pre></div>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Origins ["Data Source Archetypes"]
+        P["Primary Data&lt;br/&gt;(Bespoke experiments, surveys)"]
+        S["Secondary Data&lt;br/&gt;(Government open portals, papers)"]
+        R["Real-Time Streams&lt;br/&gt;(IoT sensors, market tickers)"]
+    end
+
+    subgraph Formats ["Structural Representations"]
+        Tab["Structured Tables&lt;br/&gt;(Parquet, CSV, Relational SQL)"]
+        Doc["Semi-Structured Documents&lt;br/&gt;(JSON, XML, Protocol Buffers)"]
+        Blob["Unstructured Binary Blobs&lt;br/&gt;(Audio, Video, Sensor Waveforms)"]
+    end
+
+    P --&gt;|Clinical Intake Form| Tab
+    P --&gt;|Doctor Free-Text Notes| Blob
+    S --&gt;|Census Bureau Demographics| Tab
+    S --&gt;|ArXiv Research Corpus| Doc
+    R --&gt;|Weather Station Telemetry| Tab
+    R --&gt;|CCTV Security Feed| Blob
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class P,S,R blue;
+    class Tab,Doc,Blob green;</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Source Class</th>
+<th style="text-align: left;">Formal Notation</th>
+<th style="text-align: left;">Acquisition Latency</th>
+<th style="text-align: left;">Schema Control</th>
+<th style="text-align: left;">Provenance Risk</th>
+<th style="text-align: left;">Marginal Cost per Record</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Primary</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\mathcal{S}_{\text{prim}} = f(\text{Experiment})\)</span></td>
+<td style="text-align: left;">Weeks to Months</td>
+<td style="text-align: left;">Complete (<span class="arithmatex">\(100\%\)</span>)</td>
+<td style="text-align: left;">Negligible (Direct audit)</td>
+<td style="text-align: left;">High (<span class="arithmatex">\(\mathcal{O}(N)\)</span> fieldwork)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Secondary</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\mathcal{S}_{\text{sec}} = \text{Extract}(\text{Archive})\)</span></td>
+<td style="text-align: left;">Minutes to Hours</td>
+<td style="text-align: left;">Zero (Fixed schema)</td>
+<td style="text-align: left;">High (Undocumented biases)</td>
+<td style="text-align: left;">Near-Zero (<span class="arithmatex">\(\mathcal{O}(1)\)</span> download)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Real-Time</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\mathcal{S}_{\text{stream}}(t) = \{\mathbf{x}_i \mid t_i \in [t - \Delta, t]\}\)</span></td>
+<td style="text-align: left;">Milliseconds to Seconds</td>
+<td style="text-align: left;">High to Moderate</td>
+<td style="text-align: left;">Moderate (Sensor drift)</td>
+<td style="text-align: left;">Infrastructure (<span class="arithmatex">\(\mathcal{O}(\text{Rate})\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-mathematical-formalization-of-sources">2. Mathematical Formalization of Sources</h2>
+<h3 id="a-primary-data-generation">A. Primary Data Generation</h3>
+<p>Primary data generation models an empirical sampling apparatus operating directly on the physical universe:</p>
+<div class="arithmatex">\[\mathcal{D}_{\text{prim}} = \left\{ (\mathbf{x}_i, y_i) \sim \mathcal{P}_{\text{target}} \mid i = 1, \dots, n \right\}\]</div>
+<p>Because the research or engineering team specifies the instrument <span class="arithmatex">\(\mathcal{I}_{\text{prim}}\)</span>, inclusion criteria <span class="arithmatex">\(\mathcal{C}_{\text{inc}}\)</span>, and measurement intervals <span class="arithmatex">\(\Delta t\)</span>, the data consumer has complete knowledge of the <strong>measurement operator</strong>:</p>
+<div class="arithmatex">\[\mathbf{x}_i = \mathcal{M}_{\text{known}}(\mathbf{x}^*_i) + \boldsymbol{\epsilon}_i, \quad \boldsymbol{\epsilon}_i \sim \mathcal{N}(0, \Sigma_{\text{calibrated}})\]</div>
+<h3 id="b-secondary-data-distribution-shift">B. Secondary Data &amp; Distribution Shift</h3>
+<p>Secondary datasets are sampled from a historical distribution <span class="arithmatex">\(\mathcal{P}_{\text{historical}}\)</span> that almost certainly diverges from the current target domain <span class="arithmatex">\(\mathcal{P}_{\text{target}}\)</span>:</p>
+<div class="arithmatex">\[\mathcal{P}_{\text{historical}}(X, Y) \neq \mathcal{P}_{\text{target}}(X, Y)\]</div>
+<p>This introduces two distinct forms of statistical shift:
+1. <strong>Covariate Shift</strong>: <span class="arithmatex">\(P_{\text{hist}}(X) \neq P_{\text{target}}(X)\)</span>, but conditional probabilities remain invariant: <span class="arithmatex">\(P_{\text{hist}}(Y \mid X) = P_{\text{target}}(Y \mid X)\)</span>.
+2. <strong>Concept Drift</strong>: The underlying relationship changes: <span class="arithmatex">\(P_{\text{hist}}(Y \mid X) \neq P_{\text{target}}(Y \mid X)\)</span> (e.g., consumer spending behavior before vs. after high inflation).</p>
+<h3 id="c-real-time-streaming-telemetry">C. Real-Time Streaming Telemetry</h3>
+<p>A real-time data stream is an unbounded, time-ordered sequence of tuples:</p>
+<div class="arithmatex">\[\mathcal{S} = \langle (\mathbf{x}_1, t_1), (\mathbf{x}_2, t_2), \dots, (\mathbf{x}_k, t_k), \dots \rangle, \quad t_1 \le t_2 \le \dots \le t_k\]</div>
+<p>In streaming systems, the information value of record <span class="arithmatex">\(\mathbf{x}_i\)</span> degrades exponentially with arrival delay [<a href="#ref-babcock2002">Babcock2002</a>]:</p>
+<div class="arithmatex">\[\text{Value}(t) = V_0 \cdot \exp\left(-\lambda_{\text{decay}} \cdot (t - t_{\text{event}})\right)\]</div>
+<p>Where <span class="arithmatex">\(\lambda_{\text{decay}}\)</span> is the obsolescence rate parameter. For high-frequency algorithmic trading, <span class="arithmatex">\(\lambda \approx 10^3\text{ s}^{-1}\)</span>; for climate anomaly detection, <span class="arithmatex">\(\lambda \approx 10^{-5}\text{ s}^{-1}\)</span>.</p>
+<hr />
+<h2 id="3-deep-dive-into-source-trade-offs-case-studies">3. Deep Dive into Source Trade-Offs &amp; Case Studies</h2>
+<h3 id="31-primary-clinical-trial-monitoring">3.1 Primary Clinical Trial Monitoring</h3>
+<p>In clinical intensive care research (e.g., MIMIC-IV [<a href="#ref-johnson2016">Johnson2016</a>]), vital signs such as arterial blood pressure and heart rate are collected directly from bedside ICU telemetry monitors.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant Patient as Intensive Care Patient
+    participant Monitor as Bedside Telemetry Monitor
+    participant Ingestion as Ingestion Gateway (HL7 / FHIR)
+    participant Storage as Immutable Research Store (Parquet)
+
+    Patient-&gt;&gt;Monitor: Continuous physiological analog signals
+    Monitor-&gt;&gt;Monitor: A/D conversion &amp; 1-second sampling
+    Monitor-&gt;&gt;Ingestion: Encrypted TLS HL7 payload
+    Ingestion-&gt;&gt;Ingestion: De-identification &amp; range validation
+    Ingestion-&gt;&gt;Storage: Append validated batch (ZSTD)</code></pre>
+<p><strong>Trade-Offs</strong>:
+- <em>Advantage</em>: The team controls sensor calibration schedules, patient consent flows, and exact sampling rates (<span class="arithmatex">\(100\text{ Hz}\)</span>).
+- <em>Cost</em>: High infrastructure overhead, stringent ethical compliance requirements (HIPAA Safe Harbor, GDPR Art. 9), and significant expense per monitored bed.</p>
+<h3 id="32-secondary-census-ingestion-the-modifiable-areal-unit-problem-maup">3.2 Secondary Census Ingestion: The Modifiable Areal Unit Problem (MAUP)</h3>
+<p>A retail logistics company downloaded open census tables to determine where to construct a regional fulfillment hub. The census provided demographic income stratified by census tracts (<span class="arithmatex">\(1{,}200\)</span> to <span class="arithmatex">\(8{,}000\)</span> residents).</p>
+<p>However, the retailer's logistical catchment zones were defined by <strong>30-minute delivery drive-time polygons</strong>, which cut across tract borders arbitrarily. </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌───────────────── Census Tract A ($85k median) ────────────────┐
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│                                                               │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│       ┌────────────── 30-Min Drive Catchment ─────────────┐   │
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│       │                                                   │   │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>└───────┼───────────────────────────────────────────────────┼───┘
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        │   Tract B ($32k median)                           │
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        └───────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p>Because demographic aggregates cannot be split uniformly across non-conforming polygons without introducing <strong>ecological fallacies</strong> and the <strong>Modifiable Areal Unit Problem (MAUP)</strong> [<a href="#ref-openshaw1984">Openshaw1984</a>], the engineering team was forced to purchase expensive secondary parcel-level data and execute spatial interpolation algorithms (Voronoi tessellation and areal weighting).</p>
+<h3 id="33-real-time-cold-chain-iot-sensor-ingestion">3.3 Real-Time Cold-Chain IoT Sensor Ingestion</h3>
+<p>A pharmaceutical cold-chain logistics network streams temperature and humidity readings every <span class="arithmatex">\(30\)</span> seconds from thousands of refrigerated vaccine containers:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">TelemetryPacket</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">device_uuid</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">timestamp_utc</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">temperature_celsius</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">relative_humidity_pct</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">battery_millivolts</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">firmware_version</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_invariants</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="sd">"""Enforce domain invariants before database ingestion."""</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="c1"># Temperature sensor physical limits: -90C (dry ice) to +60C</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="o">-</span><span class="mf">90.0</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature_celsius</span> <span class="o">&lt;=</span> <span class="mf">60.0</span><span class="p">):</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            <span class="k">return</span> <span class="kc">False</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_humidity_pct</span> <span class="o">&lt;=</span> <span class="mf">100.0</span><span class="p">):</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="k">return</span> <span class="kc">False</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">battery_millivolts</span> <span class="o">&lt;</span> <span class="mi">2500</span><span class="p">:</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>            <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># Low voltage induces ADC sensor read errors</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="k">return</span> <span class="kc">True</span>
+</span></code></pre></div>
+<p>In continuous streaming environments, <strong>out-of-order packets and clock skew</strong> are ubiquitous:
+- Sensors lose cellular connectivity inside cargo holds and dump buffered packets upon reconnecting.
+- The ingestion pipeline must employ <strong>sliding event-time watermarking</strong> rather than naive processing-time ingestion to prevent temporal corruption of moving averages.</p>
+<hr />
+<h2 id="4-multi-source-decision-matrix">4. Multi-Source Decision Matrix</h2>
+<p>When planning a data collection campaign, consult the following decision matrix:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Project Constraint</th>
+<th style="text-align: left;">Recommended Source</th>
+<th style="text-align: left;">Required Engineering Defenses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Strict regulatory hypothesis testing</strong> (e.g., FDA drug approval, clinical diagnosis)</td>
+<td style="text-align: left;"><strong>Primary Data</strong></td>
+<td style="text-align: left;">Standardized operating protocols, double-entry audit, pre-registered statistical analysis plans.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Constrained budget &amp; rapid prototyping</strong> (e.g., baseline market sizing, macro trends)</td>
+<td style="text-align: left;"><strong>Secondary Data</strong></td>
+<td style="text-align: left;">Schema mapping transformations, provenance verification, distribution shift testing.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sub-second alerting &amp; operational intervention</strong> (e.g., fraud detection, anomaly monitoring)</td>
+<td style="text-align: left;"><strong>Real-Time Streaming</strong></td>
+<td style="text-align: left;">Watermarking, deduplication buffers, exponential backoff, circuit-breaker backpressure.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Comprehensive multimodal intelligence</strong> (e.g., smart city management, renewable grid dispatch)</td>
+<td style="text-align: left;"><strong>Hybrid Multi-Source</strong></td>
+<td style="text-align: left;">Master Entity Resolution (MER), synchronized temporal joining, unified spatial coordinate frames.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Explore hands-on multi-source ingestion tools:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Multi-Source Ingestion Tools</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Test streaming telemetry filters and evaluate sampling allocations:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/api-collector/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Ingestion Simulator</a>
+    <a href="../tools/sampling/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Technique Visualizer</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of sources of data.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Source Independence</strong>: Source origin (primary/secondary/streaming) is completely orthogonal to data representation (tables/JSON/blobs).</li>
+<li><strong>Secondary Data Tax</strong>: Secondary data saves fieldwork costs but introduces a hidden "curation tax" (resolving schema mismatches, MAUP spatial misalignments, and undocumented distribution shifts).</li>
+<li><strong>Streaming Invariants</strong>: Real-time streams require event-time watermarking and physical invariant screening to filter out-of-order packets and failing sensor batteries.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-gandomi2015"></a><strong>[Gandomi2015]</strong> Gandomi, A., &amp; Haider, M. (2015). <em>Beyond the hype: Big data concepts, methods, and analytics</em>. International Journal of Information Management, 35(2), 137–144. DOI: <a href="https://doi.org/10.1016/j.ijinfomgt.2014.10.007">10.1016/j.ijinfomgt.2014.10.007</a></li>
+<li><a id="ref-babcock2002"></a><strong>[Babcock2002]</strong> Babcock, B., Babu, S., Datar, M., Motwani, R., &amp; Widom, J. (2002). <em>Models and issues in data stream systems</em>. In Proceedings of the 21st ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS), 1–16. DOI: <a href="https://doi.org/10.1145/543613.543615">10.1145/543613.543615</a></li>
+<li><a id="ref-johnson2016"></a><strong>[Johnson2016]</strong> Johnson, A. E. W., Pollard, T. J., Shen, L., et al. (2016). <em>MIMIC-III, a freely accessible critical care database</em>. Scientific Data, 3, Article 160035. DOI: <a href="https://doi.org/10.1038/sdata.2016.35">10.1038/sdata.2016.35</a></li>
+<li><a id="ref-openshaw1984"></a><strong>[Openshaw1984]</strong> Openshaw, S. (1984). <em>The Modifiable Areal Unit Problem</em>. Concepts and Techniques in Modern Geography (CATMOG), 38, Geo Books.</li>
+<li><a id="ref-chapman2020"></a><strong>[Chapman2020]</strong> Chapman, A., Simperl, E., Koesten, L., et al. (2020). <em>Dataset search: A survey</em>. The VLDB Journal, 29(1), 251–272. DOI: <a href="https://doi.org/10.1007/s00778-019-00564-x">10.1007/s00778-019-00564-x</a></li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 2 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="01-introduction-to-data-collection.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.1 Collection Lifecycle</a>
+  <a href="03-surveys-and-scraping.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Surveys & Web Scraping (2.3) →</a>
 </div>
 
 
@@ -7437,6 +7656,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

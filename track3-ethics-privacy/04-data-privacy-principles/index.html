@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#34-data-privacy-principles" class="md-skip">
+        <a href="#34-data-privacy-principles-informed-consent-quasi-identifiers-privacy-by-design" class="md-skip">
           Skip to content
         </a>
       
@@ -1631,132 +1633,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-information-taxonomy-direct-vs-quasi-identifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Information Taxonomy: Direct vs. Quasi-Identifiers
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. Information Taxonomy: Direct vs. Quasi-Identifiers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-data-privacy-principles" class="md-nav__link">
+  <a href="#the-sweeney-re-identification-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Data privacy principles
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#from-rights-to-management-practice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        From rights to management practice
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#three-core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Three core concepts
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#informed-consent-in-healthcare" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Informed consent in healthcare
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-311-consent-for-healthcare-data-uses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.11 — Consent for healthcare data uses
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#privacy-by-design" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Privacy by Design
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-312-privacy-by-design-in-a-health-app" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.12 — Privacy by Design in a health app
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gdpr-and-hipaa-as-anchors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GDPR and HIPAA as anchors
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        The Sweeney Re-Identification Theorem
       
     </span>
   </a>
@@ -1769,10 +1661,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-informed-consent-as-an-architectural-contract" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Informed Consent as an Architectural Contract
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Informed Consent as an Architectural Contract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-unbundling-requirement-in-clinical-care-vs-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Unbundling Requirement in Clinical Care vs. Research
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cavoukians-7-foundational-principles-of-privacy-by-design-pbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cavoukian's 7 Foundational Principles of Privacy by Design (PbD)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-statutory-anchors-gdpr-vs-hipaa-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Statutory Anchors: GDPR vs. HIPAA at a Glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7144,132 +7108,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-information-taxonomy-direct-vs-quasi-identifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Information Taxonomy: Direct vs. Quasi-Identifiers
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. Information Taxonomy: Direct vs. Quasi-Identifiers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-data-privacy-principles" class="md-nav__link">
+  <a href="#the-sweeney-re-identification-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Data privacy principles
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#from-rights-to-management-practice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        From rights to management practice
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#three-core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Three core concepts
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#informed-consent-in-healthcare" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Informed consent in healthcare
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-311-consent-for-healthcare-data-uses" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.11 — Consent for healthcare data uses
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#privacy-by-design" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Privacy by Design
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-312-privacy-by-design-in-a-health-app" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.12 — Privacy by Design in a health app
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gdpr-and-hipaa-as-anchors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GDPR and HIPAA as anchors
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        The Sweeney Re-Identification Theorem
       
     </span>
   </a>
@@ -7282,10 +7136,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-informed-consent-as-an-architectural-contract" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Informed Consent as an Architectural Contract
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Informed Consent as an Architectural Contract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-unbundling-requirement-in-clinical-care-vs-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Unbundling Requirement in Clinical Care vs. Research
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cavoukians-7-foundational-principles-of-privacy-by-design-pbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cavoukian's 7 Foundational Principles of Privacy by Design (PbD)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-statutory-anchors-gdpr-vs-hipaa-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Statutory Anchors: GDPR vs. HIPAA at a Glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7312,68 +7238,174 @@
   
 
 
-<h1 id="34-data-privacy-principles">3.4 Data privacy principles</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="34-data-privacy-principles-informed-consent-quasi-identifiers-privacy-by-design">3.4 Data Privacy Principles: Informed Consent, Quasi-Identifiers &amp; Privacy by Design</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 3 (sec:3.3)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.3: Data Privacy Management)</strong> in the official Springer Nature monograph, covering Sweeney's re-identification theorem, Cavoukian's Privacy by Design axioms, and clinical consent contracts.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~12 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Ethical principles set the bar; privacy principles show how to implement individual control in a pipeline. This part operationalizes informed consent, anonymization, and Privacy by Design, then previews GDPR and HIPAA as enforceable anchors.</p>
-<h3 id="chapter-3-data-privacy-principles">Chapter 3 — Data privacy principles</h3>
-<p>Privacy as a right becomes privacy as practice through agreements, representations, and design defaults. This part operationalizes informed consent, anonymization, and Privacy by Design, then previews GDPR and HIPAA as enforceable anchors.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should define data privacy in pipeline terms, contrast three core privacy-management concepts, and read GDPR versus HIPAA as planning maps—not compliance manuals.</p>
-<h3 id="from-rights-to-management-practice">From rights to management practice</h3>
-<p>Section 3.1 defined privacy as individuals' control over personal data. This section asks which agreements and defaults make that control enforceable. Personal data includes names and addresses but also behavioral logs, health and location streams, and biometrics. Ethics still decides whether a use should proceed; privacy principles constrain how permitted uses are implemented.</p>
-<h3 id="three-core-concepts">Three core concepts</h3>
-<p>Informed consent requires freely given, specific, informed agreement—with a real withdrawal path. Anonymization reduces linkability for secondary use, but re-identification via auxiliary data remains a failure mode. Privacy by Design embeds protections into architecture from the start rather than bolting privacy on after launch.</p>
-<h3 id="informed-consent-in-healthcare">Informed consent in healthcare</h3>
-<p>Informed consent is the operational counterpart of respect for autonomy. Example 3.11 shows a clinic that wants to reuse treatment records for research: care consent must be separated from research consent, secondary uses explained plainly, and refusal must not affect treatment. Bundling research into a general intake form fails the standard.</p>
-<h3 id="example-311-consent-for-healthcare-data-uses">Example 3.11 — Consent for healthcare data uses</h3>
-<p>Example 3.11 is the clinical consent bar. Open the example 11 module for this chapter to compare bundled versus purpose-specific consent flows. Section 3.4 later develops technical controls when de-identification alone is insufficient.</p>
-<h3 id="privacy-by-design">Privacy by Design</h3>
-<p>Privacy by Design means minimization, protective defaults, and user controls before partner sharing is enabled. Example 3.12 shows a health app that should not demand financial fields just in case, should default to local retention where feasible, and should expose clear sharing and deletion controls before any partner sync.</p>
-<h3 id="example-312-privacy-by-design-in-a-health-app">Example 3.12 — Privacy by Design in a health app</h3>
-<p>Example 3.12 pairs with the autonomy vignette in Example 3.6 but focuses on architecture defaults. Try the example 12 module to review minimization and control patterns. Consent, de-identification, and design-time safeguards work together—none substitutes for the others.</p>
-<h3 id="gdpr-and-hipaa-as-anchors">GDPR and HIPAA as anchors</h3>
-<p>The GDPR governs personal data of people in the EU and EEA with extraterritorial reach for targeting or monitoring. It emphasizes lawfulness, purpose limitation, minimization, accountability, and data-subject rights. HIPAA concentrates parallel duties on protected health information held by US covered entities and business associates. Section 3.6 expands scope, rights, and penalties.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Privacy management is more than notices. Consent must be meaningful; anonymization is a goal, not a guarantee; Privacy by Design belongs in architecture. GDPR and HIPAA illustrate how principles become enforceable duties.</p>
-<h3 id="next">Next</h3>
-<p>Pause for the quiz, then continue to privacy-preserving techniques—anonymization, encryption, differential privacy, and federated learning.</p>
+<p>While ethical frameworks establish our normative duties, <strong>Data Privacy Principles</strong> translate those duties into concrete engineering requirements: which fields can be collected, what consent contracts are legally binding, and how system defaults must be architected [<a href="#ref-cavoukian2010">Cavoukian2010</a>, <a href="#ref-voigt2017">Voigt2017</a>].</p>
+<p>In modern data systems, privacy failures rarely stem from malicious actors; they arise because software architects assume that simply stripping direct names and email addresses renders a dataset "anonymous." </p>
+<p>Understanding the mathematical distinction between <strong>Direct Identifiers</strong>, <strong>Quasi-Identifiers</strong>, and <strong>Sensitive Attributes</strong> is essential for building legally compliant and privacy-preserving data architectures.</p>
+<hr />
+<h2 id="1-information-taxonomy-direct-vs-quasi-identifiers">1. Information Taxonomy: Direct vs. Quasi-Identifiers</h2>
+<p>In privacy engineering, attributes within a dataset <span class="arithmatex">\(\mathcal{D}\)</span> are classified into three distinct structural categories:</p>
+<pre class="mermaid"><code>flowchart TD
+    Data["Raw Dataset Schema D"] --&gt; Direct["1. Direct Identifiers (D_id)"]
+    Data --&gt; Quasi["2. Quasi-Identifiers (Q_id)"]
+    Data --&gt; Sensitive["3. Sensitive Attributes (S_attr)"]
+    Data --&gt; NonSens["4. Insensitive Attributes (Z)"]
+
+    Direct --&gt; Ex1["SSN, Full Name, Email, MAC Address"]
+    Quasi --&gt; Ex2["5-Digit ZIP, Birthdate, Gender, Job Title"]
+    Sensitive --&gt; Ex3["Medical Diagnosis, Salary, Criminal Record"]
+    NonSens --&gt; Ex4["Favorite Color, Browser Brand"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
+
+    class Data blue;
+    class Direct,Ex1 red;
+    class Quasi,Ex2 amber;
+    class Sensitive,Ex3 purple;
+    class NonSens,Ex4 green;</code></pre>
+<ol>
+<li><strong>Direct Identifiers (<span class="arithmatex">\(\mathcal{D}_{\text{id}}\)</span>)</strong>: Attributes that uniquely identify an individual in isolation with zero auxiliary data (e.g., Social Security Number, National Identity ID, biometrics, personal email address).</li>
+<li><strong>Quasi-Identifiers (<span class="arithmatex">\(\mathcal{Q}_{\text{id}}\)</span>)</strong>: Attributes that do not single out a person individually, but when combined with external public datasets (voter registries, land titles, social media), <strong>uniquely re-identify the data subject</strong>.</li>
+<li><strong>Sensitive Attributes (<span class="arithmatex">\(\mathcal{S}_{\text{attr}}\)</span>)</strong>: High-stakes confidential attributes that subjects wish to keep private (e.g., oncology diagnosis, annual compensation, religion).</li>
+</ol>
+<h3 id="the-sweeney-re-identification-theorem">The Sweeney Re-Identification Theorem</h3>
+<p>In a landmark empirical proof, Dr. Latanya Sweeney [<a href="#ref-sweeney2000">Sweeney2000</a>] demonstrated that removing direct identifiers provides virtually zero mathematical protection against re-identification:</p>
+<div class="arithmatex">\[\mathbf{Q} = \left(\text{5-Digit ZIP Code}, \; \text{Gender}, \; \text{Full Date of Birth}\right)\]</div>
+<blockquote>
+<p>[!CAUTION]
+<strong>Sweeney's <span class="arithmatex">\(87\%\)</span> Rule</strong>: Under the 1990 US Census demographic distribution, <strong><span class="arithmatex">\(87\%\)</span> of all individuals in the United States are uniquely identified</strong> by the simple 3-attribute quasi-identifier vector <span class="arithmatex">\((\text{ZIP}, \text{Gender}, \text{DoB})\)</span>. </p>
+<p>Sweeney proved this vulnerability by purchasing the voter registration list for Cambridge, Massachusetts (<span class="arithmatex">\(N = 54{,}805\)</span>), joining it against supposedly "anonymized" state employee health records, and publicly extracting the confidential medical diagnosis and prescriptions of the state governor.</p>
+</blockquote>
+<hr />
+<h2 id="2-informed-consent-as-an-architectural-contract">2. Informed Consent as an Architectural Contract</h2>
+<p>Informed consent is the operational implementation of <strong>Respect for Autonomy</strong> (Section 3.2). Under modern data protection law (GDPR Article 7), valid consent must satisfy four non-negotiable legal criteria:</p>
+<pre class="mermaid"><code>flowchart LR
+    C1["1. Freely Given&lt;br/&gt;(Zero coercion, no bundling)"] --&gt; Valid{"Valid Legal Consent"}
+    C2["2. Specific&lt;br/&gt;(Granular purpose limits)"] --&gt; Valid
+    C3["3. Informed&lt;br/&gt;(Plain language notice)"] --&gt; Valid
+    C4["4. Unambiguous&lt;br/&gt;(Affirmative user action)"] --&gt; Valid
+
+    Valid --&gt; Execute["Lawful Ingestion Permitted"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class C1,C2,C3,C4 blue;
+    class Valid amber;
+    class Execute green;</code></pre>
+<h3 id="the-unbundling-requirement-in-clinical-care-vs-research">The Unbundling Requirement in Clinical Care vs. Research</h3>
+<p>A recurring compliance violation occurs when organizations bundle primary service delivery with secondary research permissions:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>❌ Illegal Bundled Consent (GDPR Art. 7(4) Failure):
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>"By enrolling in our clinic, you consent to emergency treatment AND grant our 
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>corporate partners irrevocable rights to use your biometric telemetry for ML research."
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>✅ Lawful Unbundled Consent Architecture:
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>[Check 1 - Required]  I consent to clinical diagnostic triage and EHR storage.
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>[Check 2 - Optional]  I consent to secondary de-identified telemetry reuse for university research.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>[Notice]              Refusal of Check 2 will NOT affect your medical care.
+</span></code></pre></div>
+<p>Furthermore, consent must be <strong>as easy to withdraw as it was to grant</strong> (GDPR Art. 7(3)), requiring automated deletion APIs that purge user records from downstream data lakes.</p>
+<hr />
+<h2 id="3-cavoukians-7-foundational-principles-of-privacy-by-design-pbd">3. Cavoukian's 7 Foundational Principles of Privacy by Design (PbD)</h2>
+<p>Developed by Dr. Ann Cavoukian [<a href="#ref-cavoukian2010">Cavoukian2010</a>] and codified into European law under GDPR Article 25 ("Data Protection by Design and by Default"), <strong>Privacy by Design</strong> mandates that privacy cannot be bolted on after deployment; it must be an intrinsic engineering property of the system architecture:</p>
+<pre class="mermaid"><code>flowchart TD
+    PbD["Privacy by Design (7 Axioms)"]
+
+    PbD --&gt; P1["1. Proactive, Not Reactive&lt;br/&gt;Anticipate breaches before they occur"]
+    PbD --&gt; P2["2. Privacy as the Default&lt;br/&gt;Zero action required by user to protect privacy"]
+    PbD --&gt; P3["3. Embedded into Design&lt;br/&gt;Core architectural invariant, not an add-on"]
+    PbD --&gt; P4["4. Positive-Sum (Full Functionality)&lt;br/&gt;Reject false trade-offs (Privacy vs Security)"]
+    PbD --&gt; P5["5. End-to-End Security&lt;br/&gt;Lifecycle protection from ingestion to deletion"]
+    PbD --&gt; P6["6. Visibility &amp; Transparency&lt;br/&gt;Independent verification and open auditing"]
+    PbD --&gt; P7["7. Respect for User Privacy&lt;br/&gt;User-centric consent, notifications &amp; controls"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class PbD blue;
+    class P1,P2,P3,P4,P5,P6,P7 green;</code></pre>
+<hr />
+<h2 id="4-statutory-anchors-gdpr-vs-hipaa-at-a-glance">4. Statutory Anchors: GDPR vs. HIPAA at a Glance</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Regulatory Instrument</th>
+<th style="text-align: left;">Jurisdiction &amp; Scope</th>
+<th style="text-align: left;">Protected Class of Information</th>
+<th style="text-align: left;">De-Identification Standard</th>
+<th style="text-align: left;">Statutory Penalty Ceiling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>EU GDPR</strong></td>
+<td style="text-align: left;">European Union / Global extraterritorial reach for EU residents</td>
+<td style="text-align: left;">Any personal data identifiable directly or via quasi-identifiers (<span class="arithmatex">\(\mathcal{D}_{\text{id}} \cup \mathcal{Q}_{\text{id}}\)</span>)</td>
+<td style="text-align: left;">Irreversible anonymization (data falls outside GDPR only if re-identification is impossible)</td>
+<td style="text-align: left;"><strong>€20 Million or <span class="arithmatex">\(4\%\)</span> of global annual turnover</strong> (whichever is higher)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>US HIPAA</strong></td>
+<td style="text-align: left;">United States covered entities and healthcare business associates</td>
+<td style="text-align: left;">Protected Health Information (PHI) created or received by healthcare entities</td>
+<td style="text-align: left;"><strong>Safe Harbor</strong> (Strip 18 designated identifiers) OR <strong>Expert Determination</strong></td>
+<td style="text-align: left;">Up to <strong>$1.9 Million per violation category per year</strong> + criminal liability</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Test quasi-identifier re-identification risks and scrub PII live in your browser:</p>
 <div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Laboratory Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Try this lesson's concept hands-on in your browser:</p>
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: De-Identification &amp; PII Scrubbing Lab</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate linkage attacks over quasi-identifier tuples and test automated PII regex redaction:</p>
   <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href='../tools/pii-scrubber/index.html' class='noc-sim-btn' style='background:#059669; text-decoration:none;'>🛠️ Try Consent & PII scrubber</a>
+    <a href="../tools/deid-risk/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch De-ID Risk Checker</a>
+    <a href="../tools/pii-scrubber/index.html" class="noc-sim-btn" style="background:#ea580c; text-decoration:none;">🛠️ Consent &amp; PII Scrubber</a>
   </div>
 </div>
 
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of data privacy principles.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Quasi-Identifier Vulnerability</strong>: Stripping names is insufficient; <span class="arithmatex">\(87\%\)</span> of the population can be re-identified by the combination of ZIP, gender, and birthdate.</li>
+<li><strong>Unbundled Consent</strong>: Secondary research and commercial sharing permissions must never be bundled into primary service terms.</li>
+<li><strong>Privacy by Default</strong>: Architect systems so that maximum privacy settings are active automatically without requiring user configuration.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-sweeney2000"></a><strong>[Sweeney2000]</strong> Sweeney, L. (2000). <em>Simple demographics, often combined, frequently identify individuals</em>. Carnegie Mellon University, Data Privacy Working Paper 3.</li>
+<li><a id="ref-cavoukian2010"></a><strong>[Cavoukian2010]</strong> Cavoukian, A. (2010). <em>Privacy by Design: The 7 foundational principles</em>. Information and Privacy Commissioner of Ontario.</li>
+<li><a id="ref-voigt2017"></a><strong>[Voigt2017]</strong> Voigt, P., &amp; Von dem Bussche, A. (2017). <em>The EU General Data Protection Regulation (GDPR): A Practical Guide</em>. Springer. DOI: <a href="https://doi.org/10.1007/978-3-319-57959-7">10.1007/978-3-319-57959-7</a></li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 3 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="03-utility-dilemmas-consequences.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.3 Utility Dilemmas</a>
+  <a href="05-privacy-preserving-techniques.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Privacy-Preserving Techniques (3.5) →</a>
 </div>
 
 
@@ -7469,6 +7501,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

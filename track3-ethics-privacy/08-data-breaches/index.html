@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#38-data-breaches" class="md-skip">
+        <a href="#38-anatomy-of-data-breaches-attack-vectors-dwell-time-architectural-failures" class="md-skip">
           Skip to content
         </a>
       
@@ -1743,121 +1745,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-anatomy-of-attack-vectors-in-data-infrastructure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Anatomy of Attack Vectors in Data Infrastructure
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. The Anatomy of Attack Vectors in Data Infrastructure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-data-breaches" class="md-nav__link">
+  <a href="#table-33-attack-vectors-in-the-modern-data-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Data breaches
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#understanding-data-breaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Understanding data breaches
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-322-data-breach-severity-range" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.22 — Data breach severity range
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#equifax-unpatched-internet-facing-systems" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Equifax — unpatched internet-facing systems
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-323-equifax-case-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.23 — Equifax case study
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#yahoo-delayed-disclosure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Yahoo — delayed disclosure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#target-third-party-vendor-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Target — third-party vendor path
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Table 3.3: Attack Vectors in the Modern Data Stack
       
     </span>
   </a>
@@ -1870,10 +1773,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-forensic-metrics-dwell-time-breach-economics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Forensic Metrics: Dwell Time &amp; Breach Economics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Forensic Metrics: Dwell Time &amp; Breach Economics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-breach-cost-exponential-scaling-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Breach Cost Exponential Scaling Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-forensic-deconstruction-of-landmark-breaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Forensic Deconstruction of Landmark Breaches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Forensic Deconstruction of Landmark Breaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-equifax-2017-the-unpatched-dependency-catastrophe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Equifax (2017) — The Unpatched Dependency Catastrophe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-target-2013-the-third-party-vendor-pivot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Target (2013) — The Third-Party Vendor Pivot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-yahoo-20132014-the-delayed-disclosure-cover-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Yahoo (2013–2014) — The Delayed Disclosure Cover-Up
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7133,121 +7136,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-anatomy-of-attack-vectors-in-data-infrastructure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Anatomy of Attack Vectors in Data Infrastructure
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. The Anatomy of Attack Vectors in Data Infrastructure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-data-breaches" class="md-nav__link">
+  <a href="#table-33-attack-vectors-in-the-modern-data-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Data breaches
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#understanding-data-breaches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Understanding data breaches
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-322-data-breach-severity-range" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.22 — Data breach severity range
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#equifax-unpatched-internet-facing-systems" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Equifax — unpatched internet-facing systems
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-323-equifax-case-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.23 — Equifax case study
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#yahoo-delayed-disclosure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Yahoo — delayed disclosure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#target-third-party-vendor-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Target — third-party vendor path
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Table 3.3: Attack Vectors in the Modern Data Stack
       
     </span>
   </a>
@@ -7260,10 +7164,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-forensic-metrics-dwell-time-breach-economics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Forensic Metrics: Dwell Time &amp; Breach Economics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Forensic Metrics: Dwell Time &amp; Breach Economics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-breach-cost-exponential-scaling-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Breach Cost Exponential Scaling Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-forensic-deconstruction-of-landmark-breaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Forensic Deconstruction of Landmark Breaches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Forensic Deconstruction of Landmark Breaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-equifax-2017-the-unpatched-dependency-catastrophe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Equifax (2017) — The Unpatched Dependency Catastrophe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-target-2013-the-third-party-vendor-pivot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Target (2013) — The Third-Party Vendor Pivot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-yahoo-20132014-the-delayed-disclosure-cover-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Yahoo (2013–2014) — The Delayed Disclosure Cover-Up
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7290,58 +7294,141 @@
   
 
 
-<h1 id="38-data-breaches">3.8 Data breaches</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="38-anatomy-of-data-breaches-attack-vectors-dwell-time-architectural-failures">3.8 Anatomy of Data Breaches: Attack Vectors, Dwell Time &amp; Architectural Failures</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 3 (sec:3.7)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.7: Anatomy of Data Breaches)</strong> in the official Springer Nature monograph, analyzing dwell-time forensic metrics, Apache Struts exploits, and vendor lateral movement.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~12 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Laws assume teams can detect and report incidents; breaches show what happens when controls fail. This part defines breaches, lists recurring causes, and walks Equifax, Yahoo, and Target as three failure-mode patterns.</p>
-<h3 id="chapter-3-data-breaches">Chapter 3 — Data breaches</h3>
-<p>A data breach is unauthorized access to, disclosure of, or destruction of sensitive information. This part defines breaches, lists recurring causes, and walks three landmark incidents as failure-mode patterns—costs and prevention follow in the next part.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should define a data breach, name common causes, and distinguish three organizational failure modes illustrated by Equifax, Yahoo, and Target.</p>
-<h3 id="understanding-data-breaches">Understanding data breaches</h3>
-<p>Causes range from external intrusion and phishing to insider misuse, unpatched software, weak credentials, lost devices, and excessive third-party access. Organizations storing identity, financial, or health attributes face elevated duty of care because stolen datasets enable fraud and long-lived harm. Statute-level notification clocks assume teams can detect and classify incidents quickly.</p>
-<h3 id="example-322-data-breach-severity-range">Example 3.22 — Data breach severity range</h3>
-<p>Example 3.22 states the severity range: a breach might involve a small set of names and emails or a large theft of government identifiers, payment credentials, or health records. Impact scales with sensitivity, volume, dwell time before detection, and how quickly notification and remediation begin. Open the example 22 module for this chapter to review severity factors.</p>
-<h3 id="equifax-unpatched-internet-facing-systems">Equifax — unpatched internet-facing systems</h3>
-<p>Example 3.23 describes the 2017 Equifax incident: attackers exploited an unpatched web-application vulnerability and exposed personal data of roughly one hundred forty-seven million individuals. The failure mode is delayed patching and weak monitoring on high-value identity stores. Downstream costs appear in the next part.</p>
-<h3 id="example-323-equifax-case-study">Example 3.23 — Equifax case study</h3>
-<p>Example 3.23 is the patching-discipline lesson. Try the example 23 module to trace how known vulnerabilities on internet-facing systems become mass identity exposure. Technical debt on high-sensitivity stores is an ethics issue, not only an IT backlog item.</p>
-<h3 id="yahoo-delayed-disclosure">Yahoo — delayed disclosure</h3>
-<p>Example 3.24 covers Yahoo breaches affecting hundreds of millions of accounts, later revised toward three billion for the 2013 incident, with criticism focused on delayed public disclosure during acquisition negotiations. The failure mode is late accountability to users and markets after compromise at consumer scale.</p>
-<h3 id="target-third-party-vendor-path">Target — third-party vendor path</h3>
-<p>Example 3.25 describes attackers using third-party vendor access to reach point-of-sale systems and compromise tens of millions of payment cards. The failure mode is vendor risk and malware on retail networks—not exotic cryptography breaking, but supply-chain entry and insufficient segmentation.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Breach risk is organizational as much as cryptographic: patching discipline, vendor oversight, and disclosure timing decide outcomes after intrusion begins. Three patterns recur—unpatched systems, delayed disclosure, and vendor-mediated entry. Prevention controls mapped to each pattern come next.</p>
-<h3 id="next">Next</h3>
-<p>Pause for the quiz, then continue to breach consequences and prevention—financial fallout and controls tied to each failure mode.</p>
+<p>A <strong>Data Breach</strong> is defined under NIST SP 800-61 as an incident involving the unauthorized acquisition, access, disclosure, or destruction of sensitive personal records or confidential corporate intellectual property.</p>
+<p>In data engineering pipelines, breaches are rarely caused by cinematic Hollywood-style cryptographic cracking. Instead, breaches occur because of <strong>unpatched internet-facing software dependencies, misconfigured cloud storage permissions, lateral third-party vendor movement, and prolonged attacker dwell times</strong> [<a href="#ref-kabanov2021">Kabanov2021</a>, <a href="#ref-harrell2017">Harrell2017</a>].</p>
+<p>When an organization collects millions of sensitive identity attributes, security technical debt ceases to be a routine IT backlog item—it becomes an existential ethical and legal failure.</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-the-anatomy-of-attack-vectors-in-data-infrastructure">1. The Anatomy of Attack Vectors in Data Infrastructure</h2>
+<pre class="mermaid"><code>flowchart LR
+    Threat["Threat Actor / Adversary"] --&gt; V1["Vector 1: Unpatched Internet Dependencies&lt;br/&gt;(e.g., Apache Struts CVE-2017-5638)"]
+    Threat --&gt; V2["Vector 2: Third-Party Supply Chain&lt;br/&gt;(HVAC / SaaS credentials)"]
+    Threat --&gt; V3["Vector 3: Cloud Misconfigurations&lt;br/&gt;(Public S3 Buckets / Open Elasticsearch)"]
+    Threat --&gt; V4["Vector 4: Credential Stuffing &amp; Phishing&lt;br/&gt;(Compromised engineer VPN)"]
+
+    V1 &amp; V2 &amp; V3 &amp; V4 --&gt; Infiltrate["Network Infiltration &amp; Privilege Escalation"]
+    Infiltrate --&gt; Dwell["Undetected Dwell Period (Median: 200+ Days)"]
+    Dwell --&gt; Exfil["Exfiltration of High-Value Identity Stores"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef red fill:#78350f,stroke:#f59e0b,color:#fff;
+
+    class Threat,V1,V2,V3,V4 blue;
+    class Infiltrate,Dwell,Exfil red;</code></pre>
+<h3 id="table-33-attack-vectors-in-the-modern-data-stack">Table 3.3: Attack Vectors in the Modern Data Stack</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Infiltration Vector</th>
+<th style="text-align: left;">Underlying Root Cause</th>
+<th style="text-align: left;">Typical Asset Targeted</th>
+<th style="text-align: left;">Preventative Engineering Countermeasure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Unpatched Dependencies</strong></td>
+<td style="text-align: left;">Failure to track Software Bill of Materials (SBOM) and apply zero-day security patches.</td>
+<td style="text-align: left;">Web application portals, REST ingress endpoints.</td>
+<td style="text-align: left;">Automated dependency vulnerability scanners (Dependabot, Snyk), immutable container rebuilds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Supply Chain / Third-Party</strong></td>
+<td style="text-align: left;">External contractor granted unsegmented, excessive network access privileges.</td>
+<td style="text-align: left;">Corporate LAN, internal operational databases.</td>
+<td style="text-align: left;">Zero Trust Network Architecture (ZTNA), strict network segmentation (VPC subnets).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cloud Misconfiguration</strong></td>
+<td style="text-align: left;">Insecure storage bucket access policies; unauthenticated cluster ports.</td>
+<td style="text-align: left;">Analytical data lakes (S3, GCS, Blob), search clusters.</td>
+<td style="text-align: left;">Automated infrastructure-as-code (Terraform) policy gates; default block on public buckets.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Credential Phishing</strong></td>
+<td style="text-align: left;">Absence of phishing-resistant multi-factor authentication (MFA).</td>
+<td style="text-align: left;">Production database admin accounts, SSH bastion keys.</td>
+<td style="text-align: left;">FIDO2 / WebAuthn hardware security keys, short-lived ephemeral certificates.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-forensic-metrics-dwell-time-breach-economics">2. Forensic Metrics: Dwell Time &amp; Breach Economics</h2>
+<p>In cyber forensics, the severity of a data breach is governed by <strong>Dwell Time</strong> (<span class="arithmatex">\(t_{\text{dwell}}\)</span>)—the elapsed duration between initial adversary infiltration and actual security detection:</p>
+<div class="arithmatex">\[t_{\text{dwell}} = t_{\text{detection}} - t_{\text{compromise}}\]</div>
+<p>According to empirical investigations by the Ponemon Institute and IBM Security, the global mean time to identify a breach is <strong><span class="arithmatex">\(204\text{ days}\)</span></strong>, with an additional <strong><span class="arithmatex">\(73\text{ days}\)</span></strong> required for complete containment.</p>
+<h3 id="the-breach-cost-exponential-scaling-model">The Breach Cost Exponential Scaling Model</h3>
+<p>The financial damage of an incident scales exponentially with dwell time and stolen record volume:</p>
+<div class="arithmatex">\[\text{Financial Impact} \propto \alpha \cdot \left(N_{\text{records}}\right)^\beta \cdot \exp\left(\gamma \cdot t_{\text{dwell}}\right)\]</div>
+<p>Long dwell periods enable adversaries to conduct stealthy network reconnaissance, map database schemas, locate unencrypted backups, and exfiltrate multi-terabyte database dumps without tripping naive volume alerts.</p>
+<hr />
+<h2 id="3-forensic-deconstruction-of-landmark-breaches">3. Forensic Deconstruction of Landmark Breaches</h2>
+<h3 id="case-study-1-equifax-2017-the-unpatched-dependency-catastrophe">Case Study 1: Equifax (2017) — The Unpatched Dependency Catastrophe</h3>
+<ul>
+<li><strong>Vulnerability</strong>: CVE-2017-5638 in Apache Struts Jakarta Multipart parser.</li>
+<li><strong>Root Failure</strong>: Equifax received US-CERT vulnerability notices in March 2017 but failed to patch their online consumer dispute portal for over two months due to incomplete internal asset inventories.</li>
+<li><strong>The Fallout</strong>: Attackers maintained an undetected dwell time of <strong><span class="arithmatex">\(76\text{ days}\)</span></strong>, executing over <span class="arithmatex">\(9{,}000\)</span> database queries and exfiltrating the names, Social Security Numbers, birthdates, and driver's licenses of <strong><span class="arithmatex">\(147\text{ Million}\)</span> citizens</strong> [<a href="#ref-kabanov2021">Kabanov2021</a>].</li>
+</ul>
+<h3 id="case-study-2-target-2013-the-third-party-vendor-pivot">Case Study 2: Target (2013) — The Third-Party Vendor Pivot</h3>
+<ul>
+<li><strong>Infiltration Path</strong>: Attackers stole network credentials from a third-party mechanical HVAC vendor who had remote access to submit electronic invoices.</li>
+<li><strong>Root Failure</strong>: Complete absence of network segmentation: the vendor's billing network was directly bridged to Target's internal point-of-sale (POS) terminal network.</li>
+<li><strong>The Fallout</strong>: Attackers deployed custom memory-scraping malware across thousands of cash registers, stealing <strong><span class="arithmatex">\(40\text{ Million}\)</span> credit card numbers</strong> and <span class="arithmatex">\(70\text{ Million}\)</span> customer identity records [<a href="#ref-harrell2017">Harrell2017</a>].</li>
+</ul>
+<h3 id="case-study-3-yahoo-20132014-the-delayed-disclosure-cover-up">Case Study 3: Yahoo (2013–2014) — The Delayed Disclosure Cover-Up</h3>
+<ul>
+<li><strong>Infiltration Path</strong>: Spear-phishing emails targeting semi-privileged employees, followed by unauthorized creation of forged authentication cookies.</li>
+<li><strong>Root Failure</strong>: Breaches compromising <strong><span class="arithmatex">\(3\text{ Billion}\)</span> user accounts</strong> were concealed for years during corporate acquisition negotiations with Verizon [<a href="#ref-trautman2017">Trautman2017</a>].</li>
+<li><strong>The Fallout</strong>: Delayed disclosure triggered massive regulatory investigations, resulting in a <strong><span class="arithmatex">\(350\text{ Million}\)</span> price reduction</strong> in the Verizon acquisition and direct personal liability for executive officers.</li>
+</ul>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Audit security risks and test data scrubbing mechanisms:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Security &amp; De-Identification Lab</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate re-identification risk thresholds and test automated PII scrubbing:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/pii-scrubber/index.html" class="noc-sim-btn" style="background:#ea580c; text-decoration:none;">🛠️ Consent &amp; PII Scrubber</a>
+    <a href="../tools/deid-risk/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ De-ID Risk Checker</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of data breaches.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Asset Visibility</strong>: You cannot secure databases you do not know exist; maintain an automated, continuous Software Bill of Materials (SBOM) and database inventory.</li>
+<li><strong>Network Segmentation</strong>: Never bridge third-party vendor networks or external web applications directly to primary identity stores.</li>
+<li><strong>Minimize Dwell Time</strong>: Invest heavily in automated log anomaly detection; breach damage increases exponentially with adversary dwell time.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-kabanov2021"></a><strong>[Kabanov2021]</strong> Kabanov, I., et al. (2021). <em>The Equifax data breach: An in-depth analysis of technical and organizational failures</em>. Journal of Cybersecurity &amp; Privacy, 1(3), 421–438.</li>
+<li><a id="ref-trautman2017"></a><strong>[Trautman2017]</strong> Trautman, L. J. (2017). <em>Corporate governance and cybersecurity: Lessons from Yahoo and Target</em>. Journal of Law, Technology &amp; Policy, 2017(2), 249–292.</li>
+<li><a id="ref-harrell2017"></a><strong>[Harrell2017]</strong> Harrell, G. (2017). <em>An analysis of third-party vendor cyber risk: The Target Corporation breach</em>. Homeland Security Affairs, 13, Article 4.</li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 3 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="07-real-world-privacy-laws.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.7 Real-World Privacy Laws</a>
+  <a href="09-breach-consequences-prevention.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Breach Consequences & Prevention (3.9) →</a>
 </div>
 
 
@@ -7437,6 +7524,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

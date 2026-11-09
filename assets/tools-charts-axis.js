@@ -4,9 +4,52 @@
   "use strict";
   const Axis = (global.DatasetToolsAxis = global.DatasetToolsAxis || {});
 
-  Axis.AXIS = "#1c2421";
-  Axis.LABEL = "#1c2421";
-  Axis.GRID = "rgba(28, 36, 33, 0.18)";
+  Axis.isDark = function () {
+    if (typeof document === "undefined") return false;
+    const bodyScheme = document.body ? document.body.getAttribute("data-md-color-scheme") : null;
+    const docScheme = document.documentElement ? document.documentElement.getAttribute("data-md-color-scheme") : null;
+    return bodyScheme === "slate" || docScheme === "slate";
+  };
+
+  Axis.colors = function () {
+    const dark = Axis.isDark();
+    return {
+      axis: dark ? "#94a3b8" : "#1c2421",
+      label: dark ? "#e2e8f0" : "#1c2421",
+      grid: dark ? "rgba(148, 163, 184, 0.15)" : "rgba(28, 36, 33, 0.18)",
+      bg: dark ? "#0d1117" : "#ffffff",
+    };
+  };
+
+  Object.defineProperty(Axis, "AXIS", {
+    get: function () {
+      return Axis.colors().axis;
+    },
+    set: function () {},
+    configurable: true,
+  });
+  Object.defineProperty(Axis, "LABEL", {
+    get: function () {
+      return Axis.colors().label;
+    },
+    set: function () {},
+    configurable: true,
+  });
+  Object.defineProperty(Axis, "GRID", {
+    get: function () {
+      return Axis.colors().grid;
+    },
+    set: function () {},
+    configurable: true,
+  });
+  Object.defineProperty(Axis, "BG", {
+    get: function () {
+      return Axis.colors().bg;
+    },
+    set: function () {},
+    configurable: true,
+  });
+
   Axis.FONT = "Source Sans 3, Arial, sans-serif";
 
   Axis.formatTick = function (value) {
@@ -231,7 +274,7 @@
     if (!ctx) return null;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, logicalW, logicalH);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = exportScale ? "#ffffff" : Axis.BG;
     ctx.fillRect(0, 0, logicalW, logicalH);
     ctx.imageSmoothingEnabled = true;
     if ("imageSmoothingQuality" in ctx) ctx.imageSmoothingQuality = "high";
@@ -249,4 +292,42 @@
       height: canvas._lh || Number(canvas.getAttribute("data-logical-h")) || canvas.height,
     };
   };
+
+  // Re-render registered tool charts automatically on theme toggle
+  if (typeof window !== "undefined" && typeof MutationObserver !== "undefined") {
+    let timer = null;
+    const triggerRedraws = function () {
+      if (global.DatasetToolsReport && Array.isArray(global.DatasetToolsReport._redrawers)) {
+        global.DatasetToolsReport._redrawers.forEach(function (fn) {
+          try {
+            fn();
+          } catch (e) {
+            /* ignore */
+          }
+        });
+      }
+    };
+    const observer = new MutationObserver(function (mutations) {
+      for (let i = 0; i < mutations.length; i++) {
+        if (mutations[i].attributeName === "data-md-color-scheme") {
+          clearTimeout(timer);
+          timer = setTimeout(triggerRedraws, 50);
+          break;
+        }
+      }
+    });
+    const startObserving = function () {
+      if (document.body) {
+        observer.observe(document.body, { attributes: true, attributeFilter: ["data-md-color-scheme"] });
+      }
+      if (document.documentElement) {
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-md-color-scheme"] });
+      }
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", startObserving);
+    } else {
+      startObserving();
+    }
+  }
 })(typeof window !== "undefined" ? window : globalThis);

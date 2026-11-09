@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#24-apis-for-collection" class="md-skip">
+        <a href="#24-programmatic-api-ingestion-rate-limits-fault-tolerant-clients" class="md-skip">
           Skip to content
         </a>
       
@@ -1286,22 +1288,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-anatomy-of-api-rate-limiting-algorithms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Anatomy of API Rate-Limiting Algorithms
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. The Anatomy of API Rate-Limiting Algorithms">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-apis-for-collection" class="md-nav__link">
+  <a href="#a-the-token-bucket-formulation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — APIs for collection
+        A. The Token Bucket Formulation
       
     </span>
   </a>
@@ -1309,87 +1311,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#b-standard-rate-limit-response-headers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-is-an-api-for-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is an API for collection?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#request-parse-append" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Request, parse, append
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-27-fetching-a-public-weather-api-record" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.7 — Fetching a public weather API record
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rate-limits-and-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rate limits and keys
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-apis-beat-scraping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When APIs beat scraping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        B. Standard Rate Limit Response Headers
       
     </span>
   </a>
@@ -1402,10 +1327,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-exponential-backoff-with-full-jitter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Exponential Backoff with Full Jitter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pagination-architectures-offset-vs-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pagination Architectures: Offset vs. Cursor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-production-python-ingestion-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Production Python Ingestion Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7122,22 +7102,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-anatomy-of-api-rate-limiting-algorithms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Anatomy of API Rate-Limiting Algorithms
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. The Anatomy of API Rate-Limiting Algorithms">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-apis-for-collection" class="md-nav__link">
+  <a href="#a-the-token-bucket-formulation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — APIs for collection
+        A. The Token Bucket Formulation
       
     </span>
   </a>
@@ -7145,87 +7125,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#b-standard-rate-limit-response-headers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-is-an-api-for-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is an API for collection?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#request-parse-append" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Request, parse, append
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-27-fetching-a-public-weather-api-record" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.7 — Fetching a public weather API record
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rate-limits-and-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rate limits and keys
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-apis-beat-scraping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When APIs beat scraping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        B. Standard Rate Limit Response Headers
       
     </span>
   </a>
@@ -7238,10 +7141,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-exponential-backoff-with-full-jitter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Exponential Backoff with Full Jitter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pagination-architectures-offset-vs-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Pagination Architectures: Offset vs. Cursor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-production-python-ingestion-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Production Python Ingestion Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7268,56 +7226,213 @@
   
 
 
-<h1 id="24-apis-for-collection">2.4 APIs for collection</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="24-programmatic-api-ingestion-rate-limits-fault-tolerant-clients">2.4 Programmatic API Ingestion, Rate Limits &amp; Fault-Tolerant Clients</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 2 (sec:2.3.4)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 2: Fundamentals of Data Collection</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 2: Fundamentals of Data Collection (§2.3.4 &amp; §2.7.3: REST Protocols &amp; Quotas)</strong> in the official Springer Nature monograph, covering token-bucket throttling, cursor pagination, and exponential jitter backoff.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 2 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~6 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~12 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>When a provider exposes structured endpoints, APIs are usually preferable to scraping. This part shows how a programmatic weather request becomes one appendable row and why rate limits and keys are part of the collection design.</p>
-<h3 id="chapter-2-apis-for-collection">Chapter 2 — APIs for collection</h3>
-<p>When a provider exposes structured endpoints, APIs are usually preferable to scraping. This part shows how a programmatic weather request becomes one appendable row and why rate limits and keys are part of the collection design.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should explain how APIs differ from scraping as a collection method, describe a minimal request-and-store pattern for JSON feeds, and recognize rate limits and authentication as design constraints rather than afterthoughts.</p>
-<h3 id="what-is-an-api-for-collection">What is an API for collection?</h3>
-<p>Application Programming Interfaces provide structured access to service data, often as JSON or XML payloads that integrate cleanly into pipelines. Relative to scraping, APIs are usually more reliable and explicitly intended for programmatic use, including near-real-time feeds for finance, weather, or social platforms. The trade-off is usage quotas and incomplete coverage of a site's full content.</p>
-<h3 id="request-parse-append">Request, parse, append</h3>
-<p>A typical API collection job follows a short loop. Authenticate if required, issue a request with explicit parameters such as city or date range, parse the structured response fields, and append one row per call to a growing store. Error handling and timeouts belong in the same script so that transient failures do not corrupt the table silently.</p>
-<h3 id="example-27-fetching-a-public-weather-api-record">Example 2.7 — Fetching a public weather API record</h3>
-<p>Example 2.7 shows a minimal request pattern that returns a JSON record suitable for appending to a collection table. A collection job can request the current conditions for a city and store fields such as temperature, humidity, and observed time as one row per call. Rate limits and authentication keys must be handled so that the job remains within the provider's terms. Open the example 7 module to inspect the Python listing and sample payload fields.</p>
-<h3 id="rate-limits-and-keys">Rate limits and keys</h3>
-<p>API access is governed by contracts, not by page layout. Providers set rate limits, require keys, and may cap daily volume. Collection design must include backoff when quotas are reached, secure storage of credentials, and logging that separates successful rows from throttled calls. Treating these constraints as part of the protocol prevents loss of access mid-campaign.</p>
-<h3 id="when-apis-beat-scraping">When APIs beat scraping</h3>
-<p>Prefer APIs when a provider exposes them: schemas are clearer, access rules are documented, and pipelines are less brittle than HTML selectors. Scraping remains a fallback when public content exists but no endpoint is offered, subject to the policy constraints covered in the previous part. Each of these methods can still be executed manually or automatically; that axis is the subject of the next part.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>APIs trade scraping flexibility for structure and clearer access rules. A minimal job requests, parses JSON fields, and appends rows. Rate limits and keys are collection-design decisions, not deployment details.</p>
-<h3 id="next">Next</h3>
-<p>Complete the quiz, then continue to the next part on manual versus automated collection—who or what executes the same method.</p>
+<p>Where web scraping reverse-engineers presentation markup, <strong>Application Programming Interfaces (APIs)</strong> provide formal, programmatic contracts designed specifically for machine-to-machine data exchange [<a href="#ref-fielding2000">Fielding2000</a>].</p>
+<p>However, building a production dataset collection pipeline over public or partner APIs involves far more than issuing a single <code>requests.get()</code> call. Real-world API collection is constrained by <strong>strict rate-limiting algorithms, pagination bounds, transient network partitions, and credential lifecycle governance</strong>.</p>
+<p>A resilient collection pipeline must be engineered as a fault-tolerant state machine that prevents data loss, duplicate ingestion, or IP bans.</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-the-anatomy-of-api-rate-limiting-algorithms">1. The Anatomy of API Rate-Limiting Algorithms</h2>
+<p>Service providers protect their backend infrastructure from denial-of-service degradation using algorithmic rate limiters. Data engineers must understand the mathematics behind these limiters to optimize ingestion throughput without triggering <strong>HTTP 429 (Too Many Requests)</strong> penalties.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph TokenBucket ["Token Bucket Algorithm (Burst-Tolerant)"]
+        Inflow["Inflow: Constant rate r (tokens/sec)"] --&gt; Bucket[("Bucket Capacity C&lt;br/&gt;Current Tokens: B(t)")]
+        Bucket --&gt;|Consume 1 Token per Request| Out["HTTP Request Dispatched"]
+        Bucket --&gt;|"B(t) = 0 (Empty)"| Throttled["Block / Sleep until Token Arrives"]
+    end
+
+    subgraph LeakyBucket ["Leaky Bucket Algorithm (Smooth Egress)"]
+        Requests["Bursty Requests Inflow"] --&gt; Queue["Buffer Queue (Size Q)"]
+        Queue --&gt;|Leak at constant rate r| Egress["Smooth HTTP Requests Dispatched"]
+    end
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
+
+    class Inflow,Bucket,Requests,Queue blue;
+    class Out,Egress green;
+    class Throttled red;</code></pre>
+<h3 id="a-the-token-bucket-formulation">A. The Token Bucket Formulation</h3>
+<p>The token bucket algorithm allows short bursts of requests while enforcing a strict long-term average rate:
+- Bucket capacity: <span class="arithmatex">\(C\)</span> tokens.
+- Refill rate: <span class="arithmatex">\(r\)</span> tokens per second.
+- Available tokens at time <span class="arithmatex">\(t\)</span>:</p>
+<div class="arithmatex">\[B(t) = \min\left(C, B(t_0) + r \cdot (t - t_0)\right)\]</div>
+<p>If <span class="arithmatex">\(B(t) \ge 1\)</span>, the request is dispatched and <span class="arithmatex">\(B(t) \leftarrow B(t) - 1\)</span>; if <span class="arithmatex">\(B(t) &lt; 1\)</span>, the client must sleep for <span class="arithmatex">\(\Delta t = \frac{1 - B(t)}{r}\)</span> seconds.</p>
+<h3 id="b-standard-rate-limit-response-headers">B. Standard Rate Limit Response Headers</h3>
+<p>Production APIs communicate rate limit telemetry in response headers:</p>
+<div class="language-http highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">429</span> <span class="ne">Too Many Requests</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">Date</span><span class="o">:</span> <span class="l">Mon, 09 Nov 2026 06:45:00 GMT</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">X-RateLimit-Limit</span><span class="o">:</span> <span class="l">1000</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">X-RateLimit-Remaining</span><span class="o">:</span> <span class="l">0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="na">X-RateLimit-Reset</span><span class="o">:</span> <span class="l">1762670760</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="na">Retry-After</span><span class="o">:</span> <span class="l">60</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">{</span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rate_limit_exceeded"</span><span class="p">,</span><span class="w"> </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hourly quota depleted"</span><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="2-exponential-backoff-with-full-jitter">2. Exponential Backoff with Full Jitter</h2>
+<p>When an API responds with <code>429 Too Many Requests</code> or <code>503 Service Unavailable</code>, naive retry loops (e.g., retrying every 2 seconds) induce <strong>thundering herd collisions</strong> that overwhelm recovering servers. </p>
+<p>The industry standard [<a href="#ref-decandia2007">DeCandia2007</a>] is <strong>Exponential Backoff with Full Jitter</strong>:</p>
+<div class="arithmatex">\[T_{\text{backoff}}(\text{attempt}) = \min\left(T_{\max}, T_{\text{base}} \cdot 2^{\text{attempt}}\right)\]</div>
+<div class="arithmatex">\[T_{\text{sleep}} \sim \text{Uniform}\left(0, T_{\text{backoff}}(\text{attempt})\right)\]</div>
+<p>Where <span class="arithmatex">\(T_{\text{base}} = 1.0\text{ s}\)</span>, <span class="arithmatex">\(T_{\max} = 60.0\text{ s}\)</span>, and the randomization interval spreads retries uniformly across the backoff window.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant Collector as Dataset Collector
+    participant API as External Server API
+
+    Collector-&gt;&gt;API: GET /v1/records?page=1
+    API--&gt;&gt;Collector: 200 OK (50 records)
+    Collector-&gt;&gt;API: GET /v1/records?page=2
+    API--&gt;&gt;Collector: 429 Too Many Requests (Retry-After: 4s)
+    Note over Collector: Calculate Backoff: Uniform(0, min(60, 1.0 * 2^1))
+    Collector-&gt;&gt;Collector: Sleep 3.42s (Full Jitter)
+    Collector-&gt;&gt;API: GET /v1/records?page=2 (Retry #1)
+    API--&gt;&gt;Collector: 200 OK (50 records)</code></pre>
+<hr />
+<h2 id="3-pagination-architectures-offset-vs-cursor">3. Pagination Architectures: Offset vs. Cursor</h2>
+<p>Harvesting multi-million-record datasets requires traversing paginated endpoints. Choosing the wrong pagination model creates severe data corruption:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Pagination Strategy</th>
+<th style="text-align: left;">Request Signature</th>
+<th style="text-align: left;">Underlying Database Query</th>
+<th style="text-align: left;">Critical Vulnerability</th>
+<th style="text-align: left;">Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Offset-Based</strong></td>
+<td style="text-align: left;"><code>?offset=10000&amp;limit=100</code></td>
+<td style="text-align: left;"><code>SELECT * FROM tbl OFFSET 10000 LIMIT 100</code></td>
+<td style="text-align: left;"><strong>Missing / Duplicate Records</strong>: If a record is inserted during crawling, records shift down, causing duplicate reads. <span class="arithmatex">\(\mathcal{O}(N)\)</span> database scans.</td>
+<td style="text-align: left;">Small, static datasets (<span class="arithmatex">\(&lt; 10^4\)</span> records)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cursor / Keyset</strong></td>
+<td style="text-align: left;"><code>?cursor=eyJpZCI6MTA0OTJ9</code></td>
+<td style="text-align: left;"><code>SELECT * FROM tbl WHERE id &gt; 10492 ORDER BY id ASC LIMIT 100</code></td>
+<td style="text-align: left;"><strong>Requires Ordered Indexed Key</strong>: Inability to jump to arbitrary page numbers.</td>
+<td style="text-align: left;">Massive, high-velocity streaming datasets (<span class="arithmatex">\(&gt; 10^6\)</span> records)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-production-python-ingestion-engine">4. Production Python Ingestion Engine</h2>
+<p>Below is a production-grade Python collection client incorporating connection pooling, token-bucket throttling, cursor pagination, and exponential backoff:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">ResilientAPICollector</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>            <span class="s2">"Accept"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            <span class="s2">"User-Agent"</span><span class="p">:</span> <span class="s2">"DatasetConsortiumResearch/2.0"</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="p">})</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_execute_with_backoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">        </span><span class="sd">"""Dispatches HTTP GET with Exponential Backoff and Full Jitter."""</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">):</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>                <span class="c1"># Check for rate limit or server errors</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">429</span> <span class="ow">or</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                    <span class="n">retry_after</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Retry-After"</span><span class="p">)</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>                    <span class="n">base_delay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">retry_after</span><span class="p">)</span> <span class="k">if</span> <span class="n">retry_after</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">))</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                    <span class="n">jitter_sleep</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">base_delay</span><span class="p">)</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">jitter_sleep</span><span class="p">)</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                    <span class="k">continue</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>            <span class="k">except</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Timeout</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>                <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Fatal API connection failure after </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2"> attempts: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">))</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Exceeded maximum retry budget."</span><span class="p">)</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">harvest_all_records</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">        </span><span class="sd">"""Harvests records using cursor-based pagination."""</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>        <span class="n">cursor</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"limit"</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>            <span class="k">if</span> <span class="n">cursor</span><span class="p">:</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                <span class="n">params</span><span class="p">[</span><span class="s2">"starting_after"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cursor</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>            <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute_with_backoff</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="p">[])</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>                <span class="k">break</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>                <span class="k">yield</span> <span class="n">record</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"has_more"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>                <span class="k">break</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>            <span class="n">cursor</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">"id"</span><span class="p">]</span>  <span class="c1"># Set cursor to last record ID</span>
+</span></code></pre></div>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Test API rate limiters and error-recovery behaviors in the interactive browser sandbox:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: API Throttling &amp; Quota Simulator</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate token-bucket refill rates, explore HTTP 429 retry-after headers, and view live backoff jitter curves:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/api-collector/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch API Collector Simulator</a>
+    <a href="../interactive/terminal/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">💻 Open Web Data Terminal</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of apis for collection.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Contracts over Scraping</strong>: APIs provide documented schemas and legal authorization; always prioritize official endpoints over brittle HTML parsers.</li>
+<li><strong>Never Retry Naively</strong>: Always pair exponential backoff with full jitter to avoid causing self-inflicted denial-of-service stampedes.</li>
+<li><strong>Cursor over Offset</strong>: For datasets exceeding <span class="arithmatex">\(10^4\)</span> records or active transaction feeds, enforce keyset/cursor pagination to prevent missing and duplicate records.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-fielding2000"></a><strong>[Fielding2000]</strong> Fielding, R. T. (2000). <em>Architectural Styles and the Design of Network-based Software Architectures</em>. Doctoral Dissertation, University of California, Irvine.</li>
+<li><a id="ref-decandia2007"></a><strong>[DeCandia2007]</strong> DeCandia, G., Hastorun, D., Jampani, M., et al. (2007). <em>Dynamo: Amazon's highly available key-value store</em>. ACM SIGOPS Operating Systems Review, 41(6), 205–220. DOI: <a href="https://doi.org/10.1145/1323293.1294281">10.1145/1323293.1294281</a></li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 2 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="03-surveys-and-scraping.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.3 Surveys & Scraping</a>
+  <a href="05-manual-vs-automated.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Manual vs Automated (2.5) →</a>
 </div>
 
 
@@ -7413,6 +7528,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#26-probability-sampling" class="md-skip">
+        <a href="#26-probability-sampling-theory-simple-random-stratified-cluster-derivations" class="md-skip">
           Skip to content
         </a>
       
@@ -1342,22 +1344,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-mathematical-foundations-of-probability-sampling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Mathematical Foundations of Probability Sampling
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-simple-random-sampling-srs-sample-size-determination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Simple Random Sampling (SRS) &amp; Sample Size Determination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Simple Random Sampling (SRS) &amp; Sample Size Determination">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-probability-sampling" class="md-nav__link">
+  <a href="#a-estimator-variance-finite-population-correction-fpc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Probability sampling
+        A. Estimator Variance &amp; Finite Population Correction (FPC)
       
     </span>
   </a>
@@ -1365,98 +1378,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#b-sample-size-determination-cochrans-formula" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-sampling-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why sampling matters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#simple-random-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Simple random sampling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-210-simple-random-draw-from-an-employee-roster" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.10 — Simple random draw from an employee roster
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stratified-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stratified sampling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-211-stratified-sample-of-cart-abandoners" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.11 — Stratified sample of cart abandoners
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cluster-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster sampling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        B. Sample Size Determination (Cochran's Formula)
       
     </span>
   </a>
@@ -1469,10 +1394,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-stratified-random-sampling-neyman-optimal-allocation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. Stratified Random Sampling &amp; Neyman Optimal Allocation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Stratified Random Sampling &amp; Neyman Optimal Allocation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allocation-strategies-proportional-vs-neyman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation Strategies: Proportional vs. Neyman
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cluster-sampling-the-design-effect-deff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cluster Sampling &amp; The Design Effect (Deff)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cluster Sampling &amp; The Design Effect (Deff)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-design-effect-deff-kishs-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Design Effect (Deff) &amp; Kish's Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architectural-decision-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architectural Decision Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7133,22 +7147,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-mathematical-foundations-of-probability-sampling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Mathematical Foundations of Probability Sampling
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-simple-random-sampling-srs-sample-size-determination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Simple Random Sampling (SRS) &amp; Sample Size Determination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Simple Random Sampling (SRS) &amp; Sample Size Determination">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-probability-sampling" class="md-nav__link">
+  <a href="#a-estimator-variance-finite-population-correction-fpc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Probability sampling
+        A. Estimator Variance &amp; Finite Population Correction (FPC)
       
     </span>
   </a>
@@ -7156,98 +7181,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#b-sample-size-determination-cochrans-formula" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-sampling-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why sampling matters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#simple-random-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Simple random sampling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-210-simple-random-draw-from-an-employee-roster" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.10 — Simple random draw from an employee roster
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stratified-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stratified sampling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-211-stratified-sample-of-cart-abandoners" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.11 — Stratified sample of cart abandoners
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cluster-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster sampling
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        B. Sample Size Determination (Cochran's Formula)
       
     </span>
   </a>
@@ -7260,10 +7197,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-stratified-random-sampling-neyman-optimal-allocation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. Stratified Random Sampling &amp; Neyman Optimal Allocation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Stratified Random Sampling &amp; Neyman Optimal Allocation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allocation-strategies-proportional-vs-neyman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocation Strategies: Proportional vs. Neyman
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cluster-sampling-the-design-effect-deff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cluster Sampling &amp; The Design Effect (Deff)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cluster Sampling &amp; The Design Effect (Deff)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-design-effect-deff-kishs-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Design Effect (Deff) &amp; Kish's Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architectural-decision-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architectural Decision Framework
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7290,66 +7316,155 @@
   
 
 
-<h1 id="26-probability-sampling">2.6 Probability sampling</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="26-probability-sampling-theory-simple-random-stratified-cluster-derivations">2.6 Probability Sampling Theory: Simple Random, Stratified &amp; Cluster Derivations</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 2 (sec:2.5)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 2: Fundamentals of Data Collection</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 2: Fundamentals of Data Collection (§2.5: Probability Sampling Foundations)</strong> in the official Springer Nature monograph, detailing Horvitz-Thompson estimation, Neyman optimal allocation, and cluster design effects.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 2 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Collection instruments gather answers; sampling decides whose answers count for inference. This part introduces simple random, stratified, and cluster designs and when each fits a usable frame.</p>
-<h3 id="chapter-2-probability-sampling">Chapter 2 — Probability sampling</h3>
-<p>Collection instruments gather answers; sampling decides whose answers count for inference. This part introduces simple random, stratified, and cluster designs and when each fits a usable frame.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should explain why sampling underpins generalization, describe simple random, stratified, and cluster probability designs, and match each design to a typical population and logistics profile.</p>
-<h3 id="why-sampling-matters">Why sampling matters</h3>
-<p>Sampling lets researchers learn about a population from a manageable subset of cases. A well-chosen sample supports generalization; a poorly chosen one quietly embeds bias into every downstream model and report. This part covers three probability designs that appear repeatedly in practice: simple random, stratified, and cluster sampling. Each assumes a usable sampling frame unless noted otherwise.</p>
-<h3 id="simple-random-sampling">Simple random sampling</h3>
-<p>In simple random sampling, each population member has an equal chance of selection. The method reduces selection bias when a complete frame exists and when the sample is large enough to support the desired margin of error. Operationally, teams build a complete list, draw units with a random process, and invite participation. Its practical limits are incomplete frames and non-response: people who ignore invitations may differ systematically from those who answer.</p>
-<h3 id="example-210-simple-random-draw-from-an-employee-roster">Example 2.10 — Simple random draw from an employee roster</h3>
-<p>Example 2.10 shows a clean frame case. A firm with two thousand employees on a complete human-resources roster wants feedback on a new benefits portal. Analysts draw two hundred employee identifiers uniformly at random and invite those people by email. If response is high, portal satisfaction can be generalized to the workforce, but non-respondents may still differ from respondents. Open the example 10 module to review the draw mechanics.</p>
-<h3 id="stratified-sampling">Stratified sampling</h3>
-<p>Stratified sampling first partitions the population into meaningful subgroups—strata such as age bands, regions, or device classes—then draws a random sample within each stratum. The design improves precision when subgroups differ on the outcome of interest and guarantees representation of smaller but important segments. Costs include planning complexity and the need for prior knowledge to define strata correctly.</p>
-<h3 id="example-211-stratified-sample-of-cart-abandoners">Example 2.11 — Stratified sample of cart abandoners</h3>
-<p>Example 2.11 mirrors the retail cart-abandonment study from the chapter opener. Analysts divide recent abandoners into mobile and desktop strata, then draw random samples of equal size from each. The design ensures that device-specific checkout friction is visible even if one device class is rarer in the population. Try the example 11 module to see how stratification protects rare segments.</p>
-<h3 id="cluster-sampling">Cluster sampling</h3>
-<p>Cluster sampling selects groups of units—schools, clinics, city blocks—and then observes all or some members inside chosen clusters. It is attractive when individual frames are unavailable or when travel costs make visiting scattered individuals impractical. Clusters can be efficient, yet they often reduce precision when units inside a cluster are similar. Prefer clusters that still reflect population diversity when logistics dominate.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Use random sampling when the population is relatively homogeneous and a complete list exists. Use stratified sampling when key subgroups must appear in sufficient numbers. Use cluster sampling when logistics dominate and entire sites can be visited as units. Non-probability options for weak frames appear in the next part.</p>
-<h3 id="next">Next</h3>
-<p>Complete the quiz, then continue to the next part on additional sampling techniques—systematic draws and non-probability designs when access, not inference, is the binding constraint.</p>
+<p>Collection instruments gather measurements, but <strong>sampling theory determines whose measurements enter the dataset and what statistical claims can be generalized to the broader population</strong> [<a href="#ref-cochran1977">Cochran1977</a>].</p>
+<p>In machine learning and data science, engineers frequently draw samples opportunistically (e.g., whichever records arrive first in a database query). However, non-probability draws systematically corrupt empirical risk estimates. </p>
+<p>To guarantee unbiased estimators, dataset collection must satisfy the formal requirements of <strong>Probability Sampling</strong>: every unit in the target population <span class="arithmatex">\(\mathcal{U}\)</span> must have a strictly positive, mathematically calculable inclusion probability <span class="arithmatex">\(\pi_i = P(i \in \mathcal{S}) &gt; 0\)</span> [<a href="#ref-neyman1934">Neyman1934</a>].</p>
+<hr />
+<h2 id="1-mathematical-foundations-of-probability-sampling">1. Mathematical Foundations of Probability Sampling</h2>
+<p>Let <span class="arithmatex">\(\mathcal{U} = \{1, 2, \dots, N\}\)</span> denote a finite population of size <span class="arithmatex">\(N\)</span>. A sampling design assigns a probability <span class="arithmatex">\(P(\mathcal{S})\)</span> to every possible subset <span class="arithmatex">\(\mathcal{S} \subset \mathcal{U}\)</span>.</p>
+<p>The <strong>first-order inclusion probability</strong> for unit <span class="arithmatex">\(i\)</span> is:</p>
+<div class="arithmatex">\[\pi_i = \sum_{\mathcal{S} \ni i} P(\mathcal{S})\]</div>
+<p>Under the foundational <strong>Horvitz-Thompson Estimator</strong> [<a href="#ref-horvitz1952">Horvitz1952</a>], the unbiased estimator of the population total <span class="arithmatex">\(Y = \sum_{i=1}^N y_i\)</span> is weighted inversely by inclusion probability:</p>
+<div class="arithmatex">\[\hat{Y}_{\text{HT}} = \sum_{i \in \mathcal{S}} \frac{y_i}{\pi_i}\]</div>
+<p>If inclusion probabilities are unknown or zero for certain sub-populations (e.g., offline citizens), <span class="arithmatex">\(\hat{Y}_{\text{HT}}\)</span> cannot be computed, and external statistical validity collapses.</p>
+<hr />
+<h2 id="2-simple-random-sampling-srs-sample-size-determination">2. Simple Random Sampling (SRS) &amp; Sample Size Determination</h2>
+<p>In Simple Random Sampling without replacement (<span class="arithmatex">\(\text{SRSWOR}\)</span>), every subset of size <span class="arithmatex">\(n\)</span> has equal probability of selection: <span class="arithmatex">\(P(\mathcal{S}) = \binom{N}{n}^{-1}\)</span>. Hence, <span class="arithmatex">\(\pi_i = \frac{n}{N}\)</span> for all <span class="arithmatex">\(i\)</span>.</p>
+<h3 id="a-estimator-variance-finite-population-correction-fpc">A. Estimator Variance &amp; Finite Population Correction (FPC)</h3>
+<p>The sample mean estimator is <span class="arithmatex">\(\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\)</span>. Its variance is:</p>
+<div class="arithmatex">\[\text{Var}(\bar{y}) = \frac{\sigma^2}{n} \cdot \left(\frac{N - n}{N - 1}\right) \approx \frac{s^2}{n} \cdot \left(1 - \frac{n}{N}\right)\]</div>
+<p>Where <span class="arithmatex">\(\left(1 - \frac{n}{N}\right)\)</span> is the <strong>Finite Population Correction (FPC)</strong> factor. When the sampling fraction <span class="arithmatex">\(\frac{n}{N} &lt; 0.05\)</span>, the FPC approaches <span class="arithmatex">\(1.0\)</span> and can be omitted.</p>
+<h3 id="b-sample-size-determination-cochrans-formula">B. Sample Size Determination (Cochran's Formula)</h3>
+<p>To achieve a desired margin of error <span class="arithmatex">\(e\)</span> at confidence level <span class="arithmatex">\(1 - \alpha\)</span> (with critical value <span class="arithmatex">\(Z_{\alpha/2}\)</span>):</p>
+<div class="arithmatex">\[n_0 = \frac{Z_{\alpha/2}^2 \cdot p(1 - p)}{e^2} \quad (\text{Categorical Proportion})\]</div>
+<div class="arithmatex">\[n_0 = \frac{Z_{\alpha/2}^2 \cdot \sigma^2}{e^2} \quad (\text{Continuous Metric})\]</div>
+<p>Adjusting for a finite population <span class="arithmatex">\(N\)</span>:</p>
+<div class="arithmatex">\[n = \frac{n_0}{1 + \frac{n_0 - 1}{N}}\]</div>
+<p>For a <span class="arithmatex">\(95\%\)</span> confidence level (<span class="arithmatex">\(Z = 1.96\)</span>) and <span class="arithmatex">\(e = 0.03\)</span> margin of error on an unknown proportion (<span class="arithmatex">\(p = 0.5\)</span> for maximum variance):</p>
+<div class="arithmatex">\[n_0 = \frac{(1.96)^2 \cdot (0.25)}{(0.03)^2} = \frac{0.9604}{0.0009} \approx 1{,}067 \text{ observations}\]</div>
+<hr />
+<h2 id="3-stratified-random-sampling-neyman-optimal-allocation">3. Stratified Random Sampling &amp; Neyman Optimal Allocation</h2>
+<p>When a population is heterogeneous across subgroups but homogeneous within them, <strong>Stratified Sampling</strong> partitions <span class="arithmatex">\(\mathcal{U}\)</span> into <span class="arithmatex">\(H\)</span> disjoint strata <span class="arithmatex">\(\mathcal{U}_1, \dots, \mathcal{U}_H\)</span> (<span class="arithmatex">\(\sum N_h = N\)</span>), drawing independent random samples of size <span class="arithmatex">\(n_h\)</span> (<span class="arithmatex">\(\sum n_h = n\)</span>) from each stratum.</p>
+<p>The stratified mean estimator is:</p>
+<div class="arithmatex">\[\bar{y}_{\text{st}} = \sum_{h=1}^H W_h \bar{y}_h, \quad W_h = \frac{N_h}{N}\]</div>
+<div class="arithmatex">\[\text{Var}(\bar{y}_{\text{st}}) = \sum_{h=1}^H W_h^2 \cdot \frac{S_h^2}{n_h} \cdot \left(1 - \frac{n_h}{N_h}\right)\]</div>
+<pre class="mermaid"><code>flowchart TD
+    Pop["Heterogeneous Population N = 10,000"] --&gt; S1["Stratum 1: Desktop Users (N1 = 6,000, S1 = 12.4)"]
+    Pop --&gt; S2["Stratum 2: Mobile iOS (N2 = 3,000, S2 = 28.1)"]
+    Pop --&gt; S3["Stratum 3: Mobile Android (N3 = 1,000, S3 = 41.5)"]
+
+    S1 --&gt; Draw1["Draw n1 (Neyman Allocation)"]
+    S2 --&gt; Draw2["Draw n2 (Neyman Allocation)"]
+    S3 --&gt; Draw3["Draw n3 (Neyman Allocation)"]
+
+    Draw1 &amp; Draw2 &amp; Draw3 --&gt; Aggregate["Stratified Sample (n = 1,000)&lt;br/&gt;Variance minimized!"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class Pop blue;
+    class S1,S2,S3 amber;
+    class Draw1,Draw2,Draw3 purple;
+    class Aggregate green;</code></pre>
+<h3 id="allocation-strategies-proportional-vs-neyman">Allocation Strategies: Proportional vs. Neyman</h3>
+<ol>
+<li><strong>Proportional Allocation</strong>: <span class="arithmatex">\(n_h = n \cdot W_h\)</span>. Samples each stratum strictly by its population share.</li>
+<li><strong>Neyman Optimal Allocation</strong>: Minimizes sample variance <span class="arithmatex">\(\text{Var}(\bar{y}_{\text{st}})\)</span> for a fixed total sample size <span class="arithmatex">\(n\)</span> by allocating more samples to strata that are larger <strong>or have higher internal variance <span class="arithmatex">\(S_h\)</span></strong>:</li>
+</ol>
+<div class="arithmatex">\[n_h = n \cdot \frac{N_h S_h}{\sum_{k=1}^H N_k S_k}\]</div>
+<blockquote>
+<p>[!TIP]
+<strong>Why Stratification Beats SRS</strong>: Stratified sampling <strong>never</strong> has a higher variance than simple random sampling (<span class="arithmatex">\(\text{Var}(\bar{y}_{\text{st}}) \le \text{Var}_{\text{srs}}(\bar{y})\)</span>). The variance reduction is directly proportional to the between-strata differences in means.</p>
+</blockquote>
+<hr />
+<h2 id="4-cluster-sampling-the-design-effect-deff">4. Cluster Sampling &amp; The Design Effect (Deff)</h2>
+<p>When individual population frames are unavailable or geographically scattered (e.g., inspecting hospital wards, schools, or smart meters), <strong>Cluster Sampling</strong> selects <span class="arithmatex">\(k\)</span> clusters out of <span class="arithmatex">\(K\)</span> total clusters and measures units within the chosen clusters.</p>
+<p>While operationally economical, cluster sampling suffers from <strong>positive intra-cluster correlation</strong>: units within the same cluster tend to resemble one another.</p>
+<h3 id="the-design-effect-deff-kishs-formulation">The Design Effect (Deff) &amp; Kish's Formulation</h3>
+<p>The penalty for cluster sampling relative to SRS is quantified by the <strong>Design Effect (<span class="arithmatex">\(\text{Deff}\)</span>)</strong> [<a href="#ref-kish1965">Kish1965</a>]:</p>
+<div class="arithmatex">\[\text{Deff} = \frac{\text{Var}_{\text{cluster}}(\bar{y})}{\text{Var}_{\text{srs}}(\bar{y})} = 1 + (m - 1) \cdot \rho\]</div>
+<p>Where:
+- <span class="arithmatex">\(m\)</span> is the average cluster size.
+- <span class="arithmatex">\(\rho\)</span> is the <strong>Intra-Class Correlation Coefficient (ICC)</strong>:</p>
+<div class="arithmatex">\[\rho = \frac{\sigma_{\text{between}}^2}{\sigma_{\text{between}}^2 + \sigma_{\text{within}}^2}\]</div>
+<p>The <strong>Effective Sample Size (<span class="arithmatex">\(n_{\text{eff}}\)</span>)</strong> is:</p>
+<div class="arithmatex">\[n_{\text{eff}} = \frac{n}{\text{Deff}} = \frac{n}{1 + (m - 1)\rho}\]</div>
+<p>If <span class="arithmatex">\(m = 100\)</span> students per school and <span class="arithmatex">\(\rho = 0.10\)</span>, <span class="arithmatex">\(\text{Deff} = 1 + 99(0.10) = 10.9\)</span>. A sample of <span class="arithmatex">\(n = 1{,}000\)</span> clustered students yields the statistical precision of only:</p>
+<div class="arithmatex">\[n_{\text{eff}} = \frac{1{,}000}{10.9} \approx 92 \text{ independent observations!}\]</div>
+<hr />
+<h2 id="5-architectural-decision-framework">5. Architectural Decision Framework</h2>
+<p>Use this flowchart to select the mathematically optimal probability design:</p>
+<pre class="mermaid"><code>flowchart TD
+    Frame{"Complete Individual Sampling Frame Available?"}
+
+    Frame --&gt;|Yes| Subgroups{"Subgroups have high variance or need guaranteed representation?"}
+    Frame --&gt;|No / Costly| Clusters{"Are population units naturally grouped into accessible clusters?"}
+
+    Subgroups --&gt;|"Yes (Heterogeneous)"| Strat["Stratified Random Sampling&lt;br/&gt;(Apply Neyman Allocation)"]
+    Subgroups --&gt;|"No (Homogeneous)"| SRS["Simple Random Sampling&lt;br/&gt;(Calculate Cochran's n)"]
+
+    Clusters --&gt;|Yes| Clust["Cluster Sampling&lt;br/&gt;(Audit ICC and Deff bounds)"]
+    Clusters --&gt;|No| NonProb["Multi-Stage Systematic Sampling&lt;br/&gt;(Or Non-Probability with Explicit Caveats)"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+
+    class Frame,Subgroups,Clusters blue;
+    class Strat,SRS green;
+    class Clust,NonProb amber;</code></pre>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Simulate probability sampling distributions and test Neyman allocations live in your browser:</p>
 <div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Laboratory Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Try this lesson's concept hands-on in your browser:</p>
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Sampling Technique Visualizer</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Draw random, stratified, and cluster samples from synthetic populations, visualize standard error convergence, and compute Kish's Design Effect:</p>
   <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href='../tools/sampling/index.html' class='noc-sim-btn' style='background:#059669; text-decoration:none;'>🛠️ Try sampling tool</a>
+    <a href="../tools/sampling/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Launch Sampling Technique Visualizer</a>
+    <a href="../tools/api-collector/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Ingestion Simulator</a>
   </div>
 </div>
 
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of probability sampling.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Probability Sampling Invariant</strong>: Unbiased empirical estimators require non-zero, known inclusion probabilities <span class="arithmatex">\(\pi_i &gt; 0\)</span> for all units.</li>
+<li><strong>Neyman Allocation Efficiency</strong>: In stratified sampling, sample more heavily from strata with higher standard deviation <span class="arithmatex">\(S_h\)</span> to minimize total estimation variance.</li>
+<li><strong>The Cluster Inflation Penalty</strong>: High intra-class correlation (<span class="arithmatex">\(\rho &gt; 0\)</span>) causes cluster sampling to drastically inflate variance; always compute Kish's <span class="arithmatex">\(\text{Deff}\)</span> to establish effective sample size.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-neyman1934"></a><strong>[Neyman1934]</strong> Neyman, J. (1934). <em>On the two different aspects of the representative method: The method of stratified sampling and the method of purposive selection</em>. Journal of the Royal Statistical Society, 97(4), 558–625. DOI: <a href="https://doi.org/10.2307/2342192">10.2307/2342192</a></li>
+<li><a id="ref-cochran1977"></a><strong>[Cochran1977]</strong> Cochran, W. G. (1977). <em>Sampling techniques</em> (3rd ed.). John Wiley &amp; Sons.</li>
+<li><a id="ref-kish1965"></a><strong>[Kish1965]</strong> Kish, L. (1965). <em>Survey sampling</em>. John Wiley &amp; Sons.</li>
+<li><a id="ref-horvitz1952"></a><strong>[Horvitz1952]</strong> Horvitz, D. G., &amp; Thompson, D. J. (1952). <em>A generalization of sampling without replacement from a finite universe</em>. Journal of the American Statistical Association, 47(260), 663–685. DOI: <a href="https://doi.org/10.1080/01621459.1952.10483446">10.1080/01621459.1952.10483446</a></li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 2 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="05-manual-vs-automated.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.5 Manual vs Automated</a>
+  <a href="07-additional-sampling.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Additional Sampling (2.7) →</a>
 </div>
 
 
@@ -7445,6 +7560,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

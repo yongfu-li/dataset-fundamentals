@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7323,10 +7325,10 @@
 <hr />
 <h2 id="1-the-physical-storage-serialization-dilemma">1. The Physical Storage Serialization Dilemma</h2>
 <p>Choosing a physical storage serialization format is not an aesthetic choice—it dictates the operational latency, memory footprint, network bandwidth, and hardware I/O efficiency of every downstream training pipeline and analytical query engine <a href="#ref-chapman2020">[Chapman2020]</a>.</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     Raw["Dataset Ingestion Engine"] --&gt; Choice{"Physical Storage Layout"}
 
-    Choice --&gt;|"Row-Oriented (OLTP)"| Row["Row-Wise Physical Layout&lt;br/&gt;(CSV, JSONL, SQLite,&lt;br/&gt;Postgres Heap)"]
+    Choice --&gt;|"Row-Oriented (OLTP)"| Row["Row-Wise Physical Layout&lt;br/&gt;(CSV, JSONL, SQLite, Postgres Heap)"]
     Choice --&gt;|"Column-Oriented (OLAP)"| Col["Column-Wise Physical Layout&lt;br/&gt;(Apache Parquet, Arrow, ORC)"]
     Choice --&gt;|"Tensor / N-D Array"| Sci["Hierarchical Scientific Chunks&lt;br/&gt;(HDF5, Zarr, NetCDF4)"]
 
@@ -7335,8 +7337,8 @@
     Sci --&gt; SciUse["Optimal for N-D Slices&lt;br/&gt;Climate, Physics &amp; Imaging"]
 
     classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
-    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
     classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
 
     class Raw,Choice blue;
     class Row,Col,Sci amber;
@@ -7347,18 +7349,24 @@
 <h3 id="21-the-disk-page-layout-architecture">2.1 The Disk Page Layout Architecture</h3>
 <p>Modern NVMe solid-state storage devices read data in fixed physical blocks (typically <span class="arithmatex">\(4\text{ KB}\)</span> physical pages). The physical layout of bytes within those pages governs I/O throughput:</p>
 <pre class="mermaid"><code>flowchart TD
-    subgraph RowLayout["Row-Oriented Layout (CSV / SQLite)"]
+    subgraph RowLayout ["Row-Oriented Layout (CSV / SQLite)"]
         R1["Row 1: [ID_1, Date_1, Amount_1, Notes_1]"]
         R2["Row 2: [ID_2, Date_2, Amount_2, Notes_2]"]
         R3["Row 3: [ID_3, Date_3, Amount_3, Notes_3]"]
     end
 
-    subgraph ColLayout["Columnar Layout (Apache Parquet / Arrow)"]
+    subgraph ColLayout ["Columnar Layout (Apache Parquet / Arrow)"]
         C1["Column 'ID': [ID_1, ID_2, ID_3]"]
         C2["Column 'Date': [Date_1, Date_2, Date_3]"]
         C3["Column 'Amount': [Amount_1, Amount_2, Amount_3]"]
         C4["Column 'Notes': [Notes_1, Notes_2, Notes_3]"]
-    end</code></pre>
+    end
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+
+    class R1,R2,R3 amber;
+    class C1,C2,C3,C4 blue;</code></pre>
 <p>Suppose a machine learning model computes the average transaction value across <span class="arithmatex">\(N = 10^7\)</span> records:</p>
 <div class="arithmatex">\[\mu = \frac{1}{N} \sum_{i=1}^N \text{Amount}_i\]</div>
 <ul>
@@ -7805,6 +7813,8 @@ setTimeout(runStorageBenchmark, 100);
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

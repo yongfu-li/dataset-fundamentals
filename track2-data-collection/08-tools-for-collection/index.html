@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#28-tools-for-data-collection" class="md-skip">
+        <a href="#28-modern-collection-tooling-stacks-survey-engines-headless-drivers-scrapy-pipelines" class="md-skip">
           Skip to content
         </a>
       
@@ -1398,121 +1400,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-web-extraction-technology-stack-comparison" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Web Extraction Technology Stack Comparison
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-industrial-web-scraping-architecture-scrapy-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Industrial Web Scraping Architecture: Scrapy Middleware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Industrial Web Scraping Architecture: Scrapy Middleware">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-tools-for-data-collection" class="md-nav__link">
+  <a href="#essential-middleware-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Tools for data collection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tools-implement-earlier-choices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tools implement earlier choices
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#survey-platforms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Survey platforms
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-216-choosing-a-form-builder-for-the-wi-fi-survey" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.16 — Choosing a form builder for the Wi-Fi survey
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#web-scraping-stacks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Web scraping stacks
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-217-static-parser-vs-browser-driver-for-catalog-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.17 — Static parser vs browser driver for catalog pages
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api-clients-and-schedulers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API clients and schedulers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Essential Middleware Components
       
     </span>
   </a>
@@ -1525,10 +1439,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-scholarly-case-study-the-cirdc-large-scale-metadata-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. Scholarly Case Study: The CIRDC Large-Scale Metadata Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7133,121 +7080,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-web-extraction-technology-stack-comparison" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Web Extraction Technology Stack Comparison
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-industrial-web-scraping-architecture-scrapy-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Industrial Web Scraping Architecture: Scrapy Middleware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Industrial Web Scraping Architecture: Scrapy Middleware">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-tools-for-data-collection" class="md-nav__link">
+  <a href="#essential-middleware-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Tools for data collection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tools-implement-earlier-choices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tools implement earlier choices
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#survey-platforms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Survey platforms
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-216-choosing-a-form-builder-for-the-wi-fi-survey" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.16 — Choosing a form builder for the Wi-Fi survey
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#web-scraping-stacks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Web scraping stacks
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-217-static-parser-vs-browser-driver-for-catalog-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.17 — Static parser vs browser driver for catalog pages
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#api-clients-and-schedulers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API clients and schedulers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Essential Middleware Components
       
     </span>
   </a>
@@ -7260,10 +7119,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-scholarly-case-study-the-cirdc-large-scale-metadata-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. Scholarly Case Study: The CIRDC Large-Scale Metadata Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7290,58 +7182,187 @@
   
 
 
-<h1 id="28-tools-for-data-collection">2.8 Tools for data collection</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="28-modern-collection-tooling-stacks-survey-engines-headless-drivers-scrapy-pipelines">2.8 Modern Collection Tooling Stacks: Survey Engines, Headless Drivers &amp; Scrapy Pipelines</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 2 (sec:2.7)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 2: Fundamentals of Data Collection</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 2: Fundamentals of Data Collection (§2.7: Tooling &amp; Infrastructure Stacks)</strong> in the official Springer Nature monograph, covering Scrapy middleware architectures, headless browser footprints, and cross-repository validation pipelines.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 2 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~12 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Method choices become operational through platforms and libraries. This part maps survey form builders, scraping stacks, and API clients to the instruments already introduced—and stresses that tools encode workflow, not research design.</p>
-<h3 id="chapter-2-tools-for-data-collection">Chapter 2 — Tools for data collection</h3>
-<p>Method choices become operational through platforms and libraries. This part maps survey form builders, scraping stacks, and API clients to the instruments already introduced—and stresses that tools encode workflow, not research design.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should map survey platforms, scraping libraries, and API clients to the methods from earlier parts, justify tool choices using workflow requirements rather than brand familiarity, and recognize that platforms cannot fix poor instrument design.</p>
-<h3 id="tools-implement-earlier-choices">Tools implement earlier choices</h3>
-<p>The chapter already decided which method fits the question. This section asks which products and libraries implement that choice. Modern collection stacks typically combine survey platforms for human responses, scraping libraries for web content without APIs, and official API clients for structured feeds. Observation remains largely protocol- and people-driven; sensor tooling is deferred to later chapters on streaming architectures.</p>
-<h3 id="survey-platforms">Survey platforms</h3>
-<p>Survey platforms automate instrument design, distribution, and response storage once the questionnaire plan exists. Lightweight tools suit quick internal polls; conversational layouts emphasize engagement; full-featured platforms add branding, branching logic, and richer analytics. Strengths include low technical barriers, automatic tabular exports, and reusable templates. Limits echo the method-level risks: voluntary response bias, fatigue on long instruments, and poor item design that no platform can fix.</p>
-<h3 id="example-216-choosing-a-form-builder-for-the-wi-fi-survey">Example 2.16 — Choosing a form builder for the Wi-Fi survey</h3>
-<p>Example 2.16 shows a tool choice after the campus Wi-Fi instrument from an earlier example. The IT office needs branching so that only respondents who report failures see location follow-ups, plus a comma-separated export into the same warehouse as ticket logs. A full-featured survey platform is chosen over a bare email form because branching and export matter more than layout polish for this study. Open the example 16 module to compare requirements against platform capabilities.</p>
-<h3 id="web-scraping-stacks">Web scraping stacks</h3>
-<p>Scraping stacks extract fields from HTML when no API is offered. Large crawl graphs may use a framework designed for scalable spiders; static pages parse well with a lightweight HTML library; browser drivers are needed when content appears only after interaction. At scholarly scale, staged pipelines with cross-repository validation separate research-grade harvests from brittle personal scripts. Method-level trade-offs—fragility, robots policies, terms of service—remain those of scraping as a method.</p>
-<h3 id="example-217-static-parser-vs-browser-driver-for-catalog-pages">Example 2.17 — Static parser vs browser driver for catalog pages</h3>
-<p>Example 2.17 pairs a library choice with the course-catalog harvest from an earlier example. If course titles appear in the initial HTML, a static parser is enough and cheaper to run. If titles load only after clicking a term filter, the team switches to a browser driver, accepting slower jobs and a higher chance of anti-bot blocks. Try the example 17 module to decide which stack fits a given page behavior.</p>
-<h3 id="api-clients-and-schedulers">API clients and schedulers</h3>
-<p>API tools are the clients, keys, and schedulers that call endpoints introduced earlier. Relative to scraping stacks, they usually offer clearer contracts: authenticate, respect rate limits, parse JSON or XML fields, and append rows to a growing store. Operational polling loops must survive daily quotas—backing off when limits are reached rather than retrying aggressively. Survey platforms, scrapers, and API clients are implementations of earlier method choices, not substitutes for them.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Choose tools after methods and instruments are defined. Survey platforms encode branching and export workflows; scraping stacks match page behavior; API clients encode authentication and quota discipline. Even with good tools, collection still fails when quality, bias, or integration are ignored—topics for the final part.</p>
-<h3 id="next">Next</h3>
-<p>Complete the quiz, then continue to the final part on challenges and case studies—quality defects, channel bias, and how design questions reappear across domains.</p>
+<p>Choosing an empirical collection method is a scientific decision; selecting the <strong>software libraries and infrastructure products</strong> to execute that method is an engineering optimization problem.</p>
+<p>Modern data collection infrastructure spans three dominant tool classes:
+1. <strong>Survey &amp; Form Engines</strong>: Capturing human-entered structured responses with branching skip-logic and webhook integration.
+2. <strong>Web Scraping Stacks</strong>: Harvesting unstructured web content via static DOM parsers, asynchronous crawlers, and headless browser drivers.
+3. <strong>Programmatic API Clients</strong>: Calling structured REST and streaming endpoints under quota contracts.</p>
+<p>A common anti-pattern in dataset engineering is selecting tooling based on brand familiarity rather than architectural fitness (e.g., launching an expensive headless Chromium cluster to parse simple static HTML tables).</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-web-extraction-technology-stack-comparison">1. Web Extraction Technology Stack Comparison</h2>
+<p>The Python data engineering ecosystem provides distinct tiers of scraping technology, each representing a trade-off between <strong>client-side JavaScript execution capability</strong> and <strong>computational resource footprint</strong>:</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Tier1 ["Tier 1: Static Fast Parsers (Low Memory)"]
+        BS["BeautifulSoup4 / LXML"]
+        Req["HTTP Clients: Requests / HTTPX"]
+        Req --&gt; BS
+    end
+
+    subgraph Tier2 ["Tier 2: Asynchronous Distributed Crawlers"]
+        Scrapy["Scrapy / Twisted Architecture"]
+        Queue["Distributed Redis Task Queue"]
+        Scrapy --&gt; Queue
+    end
+
+    subgraph Tier3 ["Tier 3: Dynamic Headless Drivers (High Memory)"]
+        PW["Playwright (Chromium / WebKit)"]
+        Sel["Selenium WebDriver"]
+    end
+
+    Target{"Target Web Page Architecture"}
+    Target --&gt;|"Server-Side Rendered (SSR)"| Tier1
+    Target --&gt;|"Large Crawl Graph (&gt; 100k pages)"| Tier2
+    Target --&gt;|"Client-Side Single-Page App (SPA / React)"| Tier3
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+
+    class Target blue;
+    class BS,Req green;
+    class Scrapy,Queue amber;
+    class PW,Sel purple;</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tool Stack</th>
+<th style="text-align: left;">Rendering Engine</th>
+<th style="text-align: left;">Concurrency Model</th>
+<th style="text-align: left;">Memory Footprint per Worker</th>
+<th style="text-align: left;">SPA / Client-Side JS Execution</th>
+<th style="text-align: left;">Throughput (Pages / sec)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Requests + BeautifulSoup4 / LXML</strong></td>
+<td style="text-align: left;">None (Raw HTML text)</td>
+<td style="text-align: left;">ThreadPool / Synchronous</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sim 15\text{--}30\text{ MB}\)</span></td>
+<td style="text-align: left;">❌ No</td>
+<td style="text-align: left;">High (<span class="arithmatex">\(10^2\text{--}10^3\)</span>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>HTTPX + Selectolax</strong></td>
+<td style="text-align: left;">None (Modest-based C parser)</td>
+<td style="text-align: left;"><code>asyncio</code> Event Loop</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sim 20\text{--}40\text{ MB}\)</span></td>
+<td style="text-align: left;">❌ No</td>
+<td style="text-align: left;">Extreme (<span class="arithmatex">\(10^3\text{--}10^4\)</span>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Scrapy Framework</strong></td>
+<td style="text-align: left;">None (Twisted reactor)</td>
+<td style="text-align: left;">Asynchronous Event Loop</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sim 50\text{--}100\text{ MB}\)</span></td>
+<td style="text-align: left;">⚠️ Via Splash / Playwright plugin</td>
+<td style="text-align: left;">Very High (<span class="arithmatex">\(500\text{--}2{,}000\)</span>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Playwright / Puppeteer</strong></td>
+<td style="text-align: left;">Full Chromium / WebKit browser</td>
+<td style="text-align: left;">Process Pool / Browser Contexts</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sim 300\text{--}800\text{ MB}\)</span></td>
+<td style="text-align: left;">✅ Complete (Hydration &amp; Canvas)</td>
+<td style="text-align: left;">Low to Moderate (<span class="arithmatex">\(5\text{--}25\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!TIP]
+<strong>The Headless Tax</strong>: Running headless Chromium (Playwright/Selenium) requires <span class="arithmatex">\(\sim 30\times\)</span> more RAM and CPU than asynchronous C-accelerated parsers (LXML/Selectolax). Never deploy a headless browser unless the target data is dynamically injected by JavaScript execution or user interaction (e.g., clicking pagination buttons).</p>
+</blockquote>
+<hr />
+<h2 id="2-industrial-web-scraping-architecture-scrapy-middleware">2. Industrial Web Scraping Architecture: Scrapy Middleware</h2>
+<p>For large-scale dataset harvests (<span class="arithmatex">\(&gt; 10^5\)</span> pages), enterprise data teams deploy frameworks like <strong>Scrapy</strong> configured with defensive middleware:</p>
+<pre class="mermaid"><code>flowchart LR
+    Spiders["Scrapy Spiders"] --&gt; Engine["Scrapy Engine"]
+    Engine &lt;--&gt; DownloaderMiddleware["Downloader Middleware&lt;br/&gt;(Proxy Rotation + Auto-Throttle)"]
+    DownloaderMiddleware &lt;--&gt; Internet["Target Web Servers"]
+    Engine &lt;--&gt; SpiderMiddleware["Spider Middleware&lt;br/&gt;(DOM Validation)"]
+    SpiderMiddleware --&gt; ItemPipeline["Item Pipeline&lt;br/&gt;(Deduplication + Parquet Export)"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class Spiders,Engine,Internet blue;
+    class DownloaderMiddleware,SpiderMiddleware amber;
+    class ItemPipeline green;</code></pre>
+<h3 id="essential-middleware-components">Essential Middleware Components</h3>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of tools for data collection.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>AutoThrottle Extension</strong>: Dynamically adjusts crawl delay based on target server response latency to prevent server overload:</li>
+</ol>
+<div class="arithmatex">\[\text{Delay}_{\text{new}} = \alpha \cdot \text{Delay}_{\text{current}} + (1 - \alpha) \cdot \frac{\text{Latency}_{\text{response}}}{\text{TargetConcurrency}}\]</div>
+<ol>
+<li><strong>User-Agent &amp; IP Proxy Rotator</strong>: Distributes requests across verified egress gateways when harvesting public registry records.</li>
+<li><strong>RFC 9309 Compliance Filter</strong>: Discards URLs explicitly disallowed in <code>/robots.txt</code>.</li>
 </ol>
 <hr />
+<h2 id="3-scholarly-case-study-the-cirdc-large-scale-metadata-pipeline">3. Scholarly Case Study: The CIRDC Large-Scale Metadata Pipeline</h2>
+<p>The <strong>CIRDC (Cross-disciplinary Institutional Research Data Collection)</strong> project [<a href="#ref-zhang2024">Zhang2024</a>] illustrates how modern collection tools operate in research-grade pipelines:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌───────────────────────────────── The CIRDC 3-Stage Pipeline ─────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                                                                                              │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  Stage 1: Enumeration Index    Enumerate all IEEE Xplore publication numbers across journals.  │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                Split harvests into yearly query chunks (bypass 10k query cap).│
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                                                                                              │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  Stage 2: Hybrid Ingestion     HTTP Requests for structured JSON dumps where endpoints exist. │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                                Playwright headless drivers for dynamic paper landing pages.  │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                                                                                              │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  Stage 3: Cross-Validation     Reconcile scraped titles and DOIs against independent secondary │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                                registries (CrossRef and OpenAlex). Discrepancies trigger alert.│
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>└──────────────────────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p>By publishing their collection scripts alongside the dataset and implementing <strong>cross-repository validation</strong>, the authors ensured that the resulting millions of citation records were verified against secondary authorities, rather than relying on unvalidated scrapers.</p>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Test data collection tooling scripts and pipelines:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Collection Tooling Simulator</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate API backoff algorithms and examine scraping architectures in the web terminal:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/api-collector/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Collector Simulator</a>
+    <a href="../interactive/terminal/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">💻 Open Web Data Terminal</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Avoid the Headless Tax</strong>: Prefer asynchronous HTTP parsers (Requests/HTTPX + LXML) for server-side rendered pages; reserve Playwright for dynamic JavaScript apps.</li>
+<li><strong>Tools Do Not Fix Design</strong>: A feature-rich survey platform (Qualtrics/Typeform) cannot rescue an ambiguous, unvalidated questionnaire.</li>
+<li><strong>Cross-Repository Reconciliation</strong>: Research-grade web harvests should cross-validate scraped attributes against independent secondary databases to detect subtle parsing corruptions.</li>
+</ol>
+<hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-zhang2024"></a><strong>[Zhang2024]</strong> Zhang, L., et al. (2024). <em>CIRDC: A curated large-scale metadata corpus of cross-disciplinary institutional research publications</em>. Scientific Data, 11, Article 421. DOI: <a href="https://doi.org/10.1038/s41597-024-03254-4">10.1038/s41597-024-03254-4</a></li>
+<li><a id="ref-massimino2016"></a><strong>[Massimino2016]</strong> Massimino, P., et al. (2016). <em>Automated Web Data Extraction: A survey of tools and techniques</em>. ACM Computing Surveys, 48(4), 1–38. DOI: <a href="https://doi.org/10.1145/2843888">10.1145/2843888</a></li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 2 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="07-additional-sampling.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.7 Additional Sampling</a>
+  <a href="09-challenges-and-case-studies.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Challenges & Case Studies (2.9) →</a>
 </div>
 
 
@@ -7437,6 +7458,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

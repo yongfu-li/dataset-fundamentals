@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7357,23 +7359,31 @@
 <hr />
 <h2 id="1-formal-mathematical-foundations-what-is-a-dataset">1. Formal Mathematical Foundations: What is a Dataset?</h2>
 <p>In computer science and mathematical statistics, a dataset is not merely a file on disk or an arbitrary database dump. Formally, a dataset is a curated empirical sample drawn from an unobservable joint probability distribution over physical observations.</p>
-<pre class="mermaid"><code>graph LR
-  subgraph World["Physical Data-Generating Process"]
+<pre class="mermaid"><code>flowchart LR
+  subgraph World ["Physical Data-Generating Process"]
     Dist["Joint Probability Distribution&lt;br/&gt;P(X, Y) ∈ Ω"]
   end
 
-  subgraph Sample["Empirical Sampling"]
+  subgraph Sample ["Empirical Sampling"]
     Draw["i.i.d. Stochastic Sampling&lt;br/&gt;n = 1 ... N"]
   end
 
-  subgraph Dataset["Curated Dataset D"]
-    Matrix["Instance Feature Matrix&lt;br/&gt;X ∈ R^(N × M)"]
-    Targets["Ground Truth Labels&lt;br/&gt;Y ∈ R^N"]
+  subgraph Dataset ["Curated Dataset D"]
+    Matrix[("Instance Feature Matrix&lt;br/&gt;X ∈ ℝ^(N × M)")]
+    Targets[("Ground Truth Labels&lt;br/&gt;Y ∈ ℝ^N")]
   end
 
   Dist --&gt; Draw
   Draw --&gt; Matrix
-  Draw --&gt; Targets</code></pre>
+  Draw --&gt; Targets
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class Dist blue;
+  class Draw amber;
+  class Matrix,Targets green;</code></pre>
 <h3 id="a-mathematical-definition-of-an-empirical-sample">A. Mathematical Definition of an Empirical Sample</h3>
 <p>Let <span class="arithmatex">\(\mathcal{X}\)</span> denote the <span class="arithmatex">\(M\)</span>-dimensional <strong>instance space</strong> (feature space) and <span class="arithmatex">\(\mathcal{Y}\)</span> denote the <strong>target space</strong> (label or outcome space). </p>
 <p>A dataset <span class="arithmatex">\(\mathcal{D}_N\)</span> of sample size <span class="arithmatex">\(N\)</span> is an ordered sequence of paired observations:</p>
@@ -7397,26 +7407,34 @@
 <hr />
 <h2 id="2-records-vs-attributes-the-universal-structural-abstraction">2. Records vs. Attributes: The Universal Structural Abstraction</h2>
 <p>Regardless of whether data is stored in tabular CSV text files, relational SQL databases, columnar Apache Parquet stores, or document-oriented JSON stores, all data architectures reduce to two orthogonal dimensions:</p>
-<pre class="mermaid"><code>graph TD
-  subgraph Dimension1["Vertical Axis: Records (Observations / Rows)"]
-    R1["Record 1: Observation at t = 0&lt;br/&gt;(Patient 101 / Transaction 001)"]
-    R2["Record 2: Observation at t = 1&lt;br/&gt;(Patient 102 / Transaction 002)"]
-    RN["Record N: Observation at t = N-1&lt;br/&gt;(Patient 100+N / Transaction N)"]
+<pre class="mermaid"><code>flowchart LR
+  subgraph Dimension1 ["Vertical Axis: Records (Rows / Observations)"]
+    R1["Record 1 (t = 0)&lt;br/&gt;Patient 101 / Txn 001"]
+    R2["Record 2 (t = 1)&lt;br/&gt;Patient 102 / Txn 002"]
+    RN["Record N (t = N-1)&lt;br/&gt;Patient 100+N / Txn N"]
   end
 
-  subgraph Dimension2["Horizontal Axis: Attributes (Features / Columns)"]
-    A1["Attribute 1: Identifier (ID)"]
-    A2["Attribute 2: Timestamp (ISO-8601)"]
-    A3["Attribute 3: Numerical Measurement (R)"]
-    AM["Attribute M: Categorical Target (Y)"]
+  subgraph Cell ["2D Structured Matrix D ∈ ℝ^(N × M)"]
+    C["Observation Vector x_i&lt;br/&gt;Row-by-Column Intersection&lt;br/&gt;Instance × Attribute Space"]
   end
 
-  R1 --- A1
-  R1 --- A2
-  R1 --- A3
-  R1 --- AM
-  R2 --- A1
-  RN --- AM</code></pre>
+  subgraph Dimension2 ["Horizontal Axis: Attributes (Columns / Features)"]
+    A1["A1: Identifier (ID)"]
+    A2["A2: Timestamp (ISO-8601)"]
+    A3["A3: Numeric Metric (ℝ)"]
+    AM["AM: Target Class (Y)"]
+  end
+
+  Dimension1 --&gt;|Row Index i| Cell
+  Dimension2 --&gt;|Column Index j| Cell
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class R1,R2,RN blue;
+  class A1,A2,A3,AM amber;
+  class C green;</code></pre>
 <h3 id="table-11-terminology-across-computing-paradigms">Table 1.1: Terminology Across Computing Paradigms</h3>
 <table>
 <thead>
@@ -7464,15 +7482,21 @@
 <h2 id="3-the-law-of-data-quality-cascades">3. The Law of Data Quality Cascades</h2>
 <p>In production machine learning and data engineering pipelines, data does not remain static; it flows through multi-stage processing graphs consisting of ingestion, deduplication, imputation, normalization, feature encoding, and model inference.</p>
 <p>As formulated by Sambasivan et al. [<a href="#ref-sambasivan2021">Sambasivan2021</a>], modern systems suffer from <strong>Data Quality Cascades</strong>: <em>compounding events occurring across the data lifecycle that result in persistent negative downstream effects</em>.</p>
-<pre class="mermaid"><code>graph TD
-  A["1. Hardware &amp; Physical Ingestion&lt;br/&gt;(Sensor drift, dropped packets,&lt;br/&gt;dirty OCR)"] --&gt;|Compounding Noise| B["2. Data Preparation &amp; Cleaning&lt;br/&gt;(Arbitrary mean imputation,&lt;br/&gt;leakage)"]
-  B --&gt;|Amplified Bias| C["3. Annotation &amp; Labeling&lt;br/&gt;(Noisy annotators,&lt;br/&gt;Fleiss' κ &lt; 0.40)"]
+<pre class="mermaid"><code>flowchart TD
+  A["1. Hardware &amp; Physical Ingestion&lt;br/&gt;(Sensor drift, dropped packets, dirty OCR)"] --&gt;|Compounding Noise| B["2. Data Preparation &amp; Cleaning&lt;br/&gt;(Arbitrary mean imputation, leakage)"]
+  B --&gt;|Amplified Bias| C["3. Annotation &amp; Labeling&lt;br/&gt;(Noisy annotators, Fleiss' κ &lt; 0.40)"]
   C --&gt;|Spurious Correlation| D["4. Model Training &amp; Optimization&lt;br/&gt;(Overfitting to artifactual noise)"]
-  D --&gt;|Critical Failure| E["5. Production Deployment&lt;br/&gt;(Catastrophic collapse in&lt;br/&gt;clinical ICU / AV)"]
+  D --&gt;|Critical Failure| E["5. Production Deployment&lt;br/&gt;(Catastrophic collapse in clinical ICU / AV)"]
 
-  style A fill:#fee2e2,stroke:#ef4444,stroke-width:2px;
-  style C fill:#fef3c7,stroke:#f59e0b,stroke-width:2px;
-  style E fill:#f87171,stroke:#b91c1c,stroke-width:3px;</code></pre>
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+  classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
+
+  class A blue;
+  class B,C amber;
+  class D purple;
+  class E red;</code></pre>
 <p>Mathematically, let <span class="arithmatex">\(\epsilon_k\)</span> represent the error or noise introduced at pipeline stage <span class="arithmatex">\(k \in \{1, 2, \dots, K\}\)</span> with sensitivity weight <span class="arithmatex">\(w_k\)</span>. Because downstream machine learning models actively seek non-linear feature combinations that minimize empirical loss, downstream prediction error is non-linear and compounding:</p>
 <div class="arithmatex">\[\text{Error}_{final} \ge \sum_{k=1}^K w_k \cdot \|\epsilon_k\|_2^2 + \sum_{j \neq k} \Gamma_{jk} \cdot (\epsilon_j \odot \epsilon_k)\]</div>
 <p>Where <span class="arithmatex">\(\Gamma_{jk}\)</span> represents the cross-stage coupling matrix. A seemingly negligible <span class="arithmatex">\(0.5\%\)</span> rounding error in raw medical sensor telemetry can cause a downstream gradient-boosted decision tree to split on artifactual step-functions, completely destroying clinical recall on high-risk patient subgroups.</p>
@@ -7770,6 +7794,8 @@ function auditCurrentDataset() {
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

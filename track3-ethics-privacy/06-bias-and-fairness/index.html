@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#36-bias-and-fairness" class="md-skip">
+        <a href="#36-bias-algorithmic-fairness-harm-taxonomies-proxy-leakage-subgroup-disparity" class="md-skip">
           Skip to content
         </a>
       
@@ -1687,132 +1689,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-multi-stage-taxonomy-of-data-bias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Multi-Stage Taxonomy of Data Bias
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. The Multi-Stage Taxonomy of Data Bias">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-bias-and-fairness" class="md-nav__link">
+  <a href="#table-32-taxonomy-of-dataset-bias-mechanisms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Bias and fairness
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-bias-means-here" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What bias means here
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-317-bias-in-ai-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.17 — Bias in AI system
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#selection-bias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Selection bias
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-318-selection-bias-in-healthcare-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.18 — Selection bias in healthcare AI
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#algorithmic-bias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Algorithmic bias
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case-study-pointer-compas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Case study pointer — COMPAS
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mitigation-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mitigation checklist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Table 3.2: Taxonomy of Dataset Bias Mechanisms
       
     </span>
   </a>
@@ -1825,10 +1717,138 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-the-illusion-of-fairness-through-unawareness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. The Illusion of "Fairness through Unawareness"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Illusion of &#34;Fairness through Unawareness&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-proxy-variable-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Proxy Variable Mechanism
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mathematical-foundations-of-algorithmic-fairness-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mathematical Foundations of Algorithmic Fairness Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Mathematical Foundations of Algorithmic Fairness Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-demographic-parity-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Demographic Parity (Independence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-equalized-odds-equal-opportunity-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Equalized Odds &amp; Equal Opportunity (Separation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-landmark-case-studies-in-algorithmic-harm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Landmark Case Studies in Algorithmic Harm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Landmark Case Studies in Algorithmic Harm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-compas-recidivism-risk-disparity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The COMPAS Recidivism Risk Disparity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-automated-resume-screening-cultural-proxies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Automated Resume Screening &amp; Cultural Proxies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7144,132 +7164,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-multi-stage-taxonomy-of-data-bias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Multi-Stage Taxonomy of Data Bias
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. The Multi-Stage Taxonomy of Data Bias">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-bias-and-fairness" class="md-nav__link">
+  <a href="#table-32-taxonomy-of-dataset-bias-mechanisms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Bias and fairness
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-bias-means-here" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What bias means here
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-317-bias-in-ai-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.17 — Bias in AI system
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#selection-bias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Selection bias
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-318-selection-bias-in-healthcare-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.18 — Selection bias in healthcare AI
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#algorithmic-bias" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Algorithmic bias
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case-study-pointer-compas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Case study pointer — COMPAS
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mitigation-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mitigation checklist
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Table 3.2: Taxonomy of Dataset Bias Mechanisms
       
     </span>
   </a>
@@ -7282,10 +7192,138 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-the-illusion-of-fairness-through-unawareness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. The Illusion of "Fairness through Unawareness"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Illusion of &#34;Fairness through Unawareness&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-proxy-variable-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Proxy Variable Mechanism
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mathematical-foundations-of-algorithmic-fairness-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mathematical Foundations of Algorithmic Fairness Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Mathematical Foundations of Algorithmic Fairness Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-demographic-parity-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Demographic Parity (Independence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-equalized-odds-equal-opportunity-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Equalized Odds &amp; Equal Opportunity (Separation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-landmark-case-studies-in-algorithmic-harm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Landmark Case Studies in Algorithmic Harm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Landmark Case Studies in Algorithmic Harm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-compas-recidivism-risk-disparity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The COMPAS Recidivism Risk Disparity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-automated-resume-screening-cultural-proxies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Automated Resume Screening &amp; Cultural Proxies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7312,60 +7350,215 @@
   
 
 
-<h1 id="36-bias-and-fairness">3.6 Bias and fairness</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="36-bias-algorithmic-fairness-harm-taxonomies-proxy-leakage-subgroup-disparity">3.6 Bias &amp; Algorithmic Fairness: Harm Taxonomies, Proxy Leakage &amp; Subgroup Disparity</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 3 (sec:3.5)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.5: Bias and Fairness Foundations)</strong> in the official Springer Nature monograph, providing the ethical conceptual foundations that anchor the mathematical detection and mitigation toolkits in Chapter 7.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~12 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Privacy controls limit exposure; fairness asks whether outcomes systematically disadvantage groups once models deploy. This part introduces bias in data work, selection versus algorithmic bias, landmark case pointers, and a mitigation checklist—Chapter 7 develops metrics and tools in depth.</p>
-<h3 id="chapter-3-bias-and-fairness">Chapter 3 — Bias and fairness</h3>
-<p>Bias and fairness connect ethical principles to model outcomes once systems affect hiring, credit, healthcare, or public safety. This part gives a chapter-level overview; Chapter 7 is the authoritative home for taxonomies, metrics, tools, and mitigation pipelines.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should define bias in data work, distinguish selection from algorithmic bias, recognize two landmark case pointers, and list five mitigation habits at the ethics-chapter level.</p>
-<h3 id="what-bias-means-here">What bias means here</h3>
-<p>Bias means systematic deviations in collection, labeling, analysis, or modeling that yield unfair or inaccurate outcomes for some groups. Data are not neutral mirrors—they reflect institutions and power relations that already discriminate. Example 3.17 states the general risk: systems trained on biased data can disproportionately harm underrepresented or historically mistreated groups.</p>
-<h3 id="example-317-bias-in-ai-system">Example 3.17 — Bias in AI system</h3>
-<p>Example 3.17 highlights domains where errors change life chances—hiring, criminal justice, and healthcare—not only click-through rates. Open the example 17 module for this chapter to map harm pathways. Fairness was already a design constraint in Section 3.2; here we connect it to data and models.</p>
-<h3 id="selection-bias">Selection bias</h3>
-<p>Selection bias arises when training data are not representative of the population that will be scored, so error concentrates on underrepresented groups. Collection design in Chapter 2 is often where skew begins. Example 3.18 shows a diagnostic model trained mainly on one demographic slice—performance degrades for groups scarce in training.</p>
-<h3 id="example-318-selection-bias-in-healthcare-ai">Example 3.18 — Selection bias in healthcare AI</h3>
-<p>Example 3.18 relates to the non-maleficence vignette in Example 3.2: the model never saw a representative sample of the patients it will score. Try the example 18 module to review representation gaps before deployment.</p>
-<h3 id="algorithmic-bias">Algorithmic bias</h3>
-<p>Algorithmic bias arises from model design even when sampling looks balanced—features, objectives, and thresholds can still allocate error unevenly. Example 3.19 restates hiring rankers that reproduce gender or racial patterns via proxies even when protected attributes are omitted.</p>
-<h3 id="case-study-pointer-compas">Case study pointer — COMPAS</h3>
-<p>Example 3.20 points to COMPAS recidivism tools: disparate error rates across racial groups under common thresholds, reflecting disparities already present in historical justice data. The ethics lesson matches Example 3.8—overall accuracy is not a fairness certificate. Chapter 7 develops detection and impact analysis for this case.</p>
-<h3 id="mitigation-checklist">Mitigation checklist</h3>
-<p>Addressing bias requires better data, explicit fairness criteria, and continuous monitoring—not a single algorithmic patch. At this chapter's level: improve representation at collection and labeling time; audit subgroup error before release; choose and document a fairness criterion; apply mitigation matched to the failure mode; and include diverse review of requirements and features.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Fairness work is continuous governance after the principles in Section 3.2—not a one-time training fix. Selection and algorithmic bias are frequent entry points. Landmark cases illustrate mechanisms; Chapter 7 supplies measurement once you choose which fairness claim to defend.</p>
-<h3 id="next">Next</h3>
-<p>Pause for the quiz, then continue to real-world privacy laws—GDPR, HIPAA, CCPA, and selected other regimes.</p>
+<p>A dataset is not a passive or neutral mirror of reality. Datasets encode historical institutional power relations, systemic socioeconomic exclusions, and the subjective judgments of human annotators [<a href="#ref-barocas2016">Barocas2016</a>, <a href="#ref-mehrabi2021">Mehrabi2021</a>].</p>
+<p>When machine learning models are trained on biased data, they do not merely replicate human disparities—<strong>they automate, amplify, and scale discrimination under an aura of mathematical objectivity</strong> [<a href="#ref-oneil2016">O'Neil2016</a>].</p>
+<p>This section introduces the foundational taxonomy of data bias, proxy variables, and fairness metrics that structure the ethical audit of datasets, establishing the conceptual bridge to the formal algorithmic mitigation pipelines in Track 7.</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-the-multi-stage-taxonomy-of-data-bias">1. The Multi-Stage Taxonomy of Data Bias</h2>
+<p>Bias can contaminate a machine learning pipeline at six distinct points across the data engineering lifecycle:</p>
+<pre class="mermaid"><code>flowchart TD
+    W["Real-World State &amp; History"] --&gt;|1. Historical Bias| Pop["Underlying Population"]
+    Pop --&gt;|2. Representation / Selection Bias| Samp["Sampled Training Cohort"]
+    Samp --&gt;|3. Measurement / Proxy Bias| Feat["Engineered Attributes X"]
+    Samp --&gt;|4. Label / Annotation Bias| Target["Ground Truth Labels Y"]
+    Feat &amp; Target --&gt;|5. Aggregation Bias| Model["Trained ML Model"]
+    Model --&gt;|6. Evaluation Bias| Bench["Test Benchmark Evaluation"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class W,Pop,Samp blue;
+    class Feat,Target amber;
+    class Model purple;
+    class Bench green;</code></pre>
+<h3 id="table-32-taxonomy-of-dataset-bias-mechanisms">Table 3.2: Taxonomy of Dataset Bias Mechanisms</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bias Mechanism</th>
+<th style="text-align: left;">Lifecycle Stage</th>
+<th style="text-align: left;">Formal Definition</th>
+<th style="text-align: left;">Real-World Incident</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Historical Bias</strong></td>
+<td style="text-align: left;">Pre-collection</td>
+<td style="text-align: left;">Disparities existing in the physical world before any data is recorded.</td>
+<td style="text-align: left;">Arrest records reflecting historically segregated policing patterns rather than actual crime rates.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Representation Bias</strong></td>
+<td style="text-align: left;">Sampling (Track 2)</td>
+<td style="text-align: left;">Target population sub-groups are severely underrepresented in the sampling frame (<span class="arithmatex">\(P_{\text{sample}}(A) \ll P_{\text{pop}}(A)\)</span>).</td>
+<td style="text-align: left;"><em>Gender Shades</em> [<a href="#ref-buolamwini2018">Buolamwini2018</a>]: Computer vision benchmarks composed of <span class="arithmatex">\(79\%\)</span> light-skinned faces.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Measurement / Proxy Bias</strong></td>
+<td style="text-align: left;">Feature Engineering</td>
+<td style="text-align: left;">Selected numerical features fail to capture the true latent construct.</td>
+<td style="text-align: left;">Using healthcare expenditure as a proxy for illness severity [<a href="#ref-obermeyer2019">Obermeyer2019</a>].</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Label / Annotation Bias</strong></td>
+<td style="text-align: left;">Annotation (Track 4)</td>
+<td style="text-align: left;">Annotators project subjective cultural stereotypes into assigned ground-truth labels.</td>
+<td style="text-align: left;">Sentiment analysis models scoring African American Vernacular English (AAVE) as inherently "toxic."</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Aggregation Bias</strong></td>
+<td style="text-align: left;">Model Training</td>
+<td style="text-align: left;">A single global model assumes uniform conditional distributions across distinct sub-populations (<span class="arithmatex">\(P_A(Y \mid X) \neq P_B(Y \mid X)\)</span>).</td>
+<td style="text-align: left;">Clinical models failing on diabetic patients because HbA1c ranges differ by genetic ancestry.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Evaluation Bias</strong></td>
+<td style="text-align: left;">Model Auditing</td>
+<td style="text-align: left;">Test benchmark distributions fail to mirror production demographics.</td>
+<td style="text-align: left;">Facial recognition models reporting <span class="arithmatex">\(99\%\)</span> benchmark accuracy while failing at <span class="arithmatex">\(34\%\)</span> on darker-skinned females.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-the-illusion-of-fairness-through-unawareness">2. The Illusion of "Fairness through Unawareness"</h2>
+<p>A common engineering misconception is that simply removing protected attributes (e.g., dropping <code>race</code>, <code>gender</code>, <code>religion</code>) guarantees an unbiased model. This approach is called <strong>Fairness through Unawareness</strong>, and it <strong>fails completely in practice</strong>.</p>
+<h3 id="the-proxy-variable-mechanism">The Proxy Variable Mechanism</h3>
+<p>Modern high-dimensional datasets contain redundant correlations. Even if sensitive attribute <span class="arithmatex">\(A\)</span> is deleted, other features <span class="arithmatex">\(\mathbf{X}_{\text{proxy}}\)</span> serve as high-fidelity reconstructed proxies:</p>
+<div class="arithmatex">\[I(\mathbf{X}_{\text{proxy}}; A) \gg 0\]</div>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Dropped ["Protected Attribute (Dropped)"]
+        Race["Race / Ethnicity (A)"]
+    end
+
+    subgraph Proxies ["High-Fidelity Proxy Features (Retained in X)"]
+        ZIP["5-Digit ZIP Code (Redlining)"]
+        HBCU["College / University Attended"]
+        Name["First Name Phonetics"]
+        Browsing["Digital Browsing Geolocation"]
+    end
+
+    subgraph Outcome ["Algorithmic Output"]
+        Score["Mortgage Credit Underwriting Score Y_hat"]
+    end
+
+    Race -.-&gt;|High Mutual Information| Proxies
+    Proxies --&gt;|Trained on proxies| Score
+
+    classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+
+    class Race red;
+    class ZIP,HBCU,Name,Browsing amber;
+    class Score purple;</code></pre>
+<p>In the United States, due to decades of historical residential redlining, <strong>a 5-digit ZIP code combined with credit history predicts race with greater than <span class="arithmatex">\(85\%\)</span> statistical certainty</strong>. Dropping the race column does not remove racial disparity; it merely blinds data scientists to the fact that their model is discriminating.</p>
+<hr />
+<h2 id="3-mathematical-foundations-of-algorithmic-fairness-metrics">3. Mathematical Foundations of Algorithmic Fairness Metrics</h2>
+<p>To audit whether a dataset and model treat demographic groups equitably, data science relies on three mathematically distinct families of fairness criteria (developed fully in Track 7):</p>
+<h3 id="a-demographic-parity-independence">A. Demographic Parity (Independence)</h3>
+<p>Demographic Parity requires that the positive prediction rate <span class="arithmatex">\(\hat{Y} = 1\)</span> (e.g., receiving a loan, passing a job screen) be identical across protected groups <span class="arithmatex">\(A \in \{0, 1\}\)</span>:</p>
+<div class="arithmatex">\[P(\hat{Y} = 1 \mid A = 0) = P(\hat{Y} = 1 \mid A = 1)\]</div>
+<p>Under the US Equal Employment Opportunity Commission (EEOC) <strong>Four-Fifths (80%) Rule</strong>, a selection rate difference violates the <strong>Disparate Impact Ratio (DIR)</strong> if:</p>
+<div class="arithmatex">\[\text{DIR} = \frac{P(\hat{Y} = 1 \mid A = \text{unprivileged})}{P(\hat{Y} = 1 \mid A = \text{privileged})} &lt; 0.80\]</div>
+<h3 id="b-equalized-odds-equal-opportunity-separation">B. Equalized Odds &amp; Equal Opportunity (Separation)</h3>
+<p>Introduced by Hardt et al. [<a href="#ref-hardt2016">Hardt2016</a>], <strong>Equalized Odds</strong> requires that predictor <span class="arithmatex">\(\hat{Y}\)</span> and protected attribute <span class="arithmatex">\(A\)</span> be conditionally independent given true outcome <span class="arithmatex">\(Y\)</span>:</p>
+<div class="arithmatex">\[P(\hat{Y} = 1 \mid A = 0, Y = y) = P(\hat{Y} = 1 \mid A = 1, Y = y), \quad \forall y \in \{0, 1\}\]</div>
+<p>This mandates equality across both <strong>False Positive Rates (FPR)</strong> and <strong>True Positive Rates (TPR)</strong>:
+- <span class="arithmatex">\(\text{FPR}_0 = \text{FPR}_1\)</span>: Equal chance of false accusation.
+- <span class="arithmatex">\(\text{TPR}_0 = \text{TPR}_1\)</span>: Equal chance of deserving individuals getting approved (Equal Opportunity).</p>
+<blockquote>
+<p>[!WARNING]
+<strong>The Impossibility Theorem of Fairness</strong>: Kleinberg et al. (2016) and Chouldechova (2017) proved mathematically that <strong>Demographic Parity, Equalized Odds, and Predictive Parity (Calibration) are mutually incompatible</strong> whenever the base rate of the outcome differs between groups (<span class="arithmatex">\(P(Y=1 \mid A=0) \neq P(Y=1 \mid A=1)\)</span>). Engineers must make an explicit, value-driven choice regarding which fairness metric to prioritize.</p>
+</blockquote>
+<hr />
+<h2 id="4-landmark-case-studies-in-algorithmic-harm">4. Landmark Case Studies in Algorithmic Harm</h2>
+<h3 id="case-study-1-the-compas-recidivism-risk-disparity">Case Study 1: The COMPAS Recidivism Risk Disparity</h3>
+<p>In 2016, ProPublica audited the COMPAS (Correctional Offender Management Profiling for Alternative Sanctions) risk tool used across US criminal courts [<a href="#ref-angwin2016">Angwin2016</a>]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Demographic Subgroup</th>
+<th style="text-align: center;">False Positive Rate (FPR)<br><em>(Falsely labeled High Risk)</em></th>
+<th style="text-align: center;">False Negative Rate (FNR)<br><em>(Falsely labeled Low Risk)</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Black Defendants</strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(44.9\%\)</span></strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(28.0\%\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>White Defendants</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(23.5\%\)</span></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(47.7\%\)</span></strong></td>
+</tr>
+</tbody>
+</table>
+<p>While the algorithm was calibrated to have equal predictive validity across races (satisfying Predictive Parity), it severely violated <strong>Equalized Odds</strong>: Black defendants were almost twice as likely to be mistakenly flagged as high-risk flight dangers, while white defendants were almost twice as likely to be mistakenly labeled low risk.</p>
+<h3 id="case-study-2-automated-resume-screening-cultural-proxies">Case Study 2: Automated Resume Screening &amp; Cultural Proxies</h3>
+<p>In 2018, Amazon scrapped an experimental automated resume recruiting engine after discovering the model systematically downgraded female software candidates [<a href="#ref-dastin2018">Dastin2018</a>]. Because the model was trained on 10 years of historical tech hiring resumes submitted predominantly by men:
+- The model learned to penalize resumes containing the word <em>"women's"</em> (e.g., <em>"captain of women's chess club"</em>).
+- It downgraded graduates from all-women's colleges.
+- Even when explicit gender terms were scrubbed, the model identified masculine vocabulary proxies (<em>"executed"</em>, <em>"dominated"</em>).</p>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Test algorithmic fairness trade-offs and explore Disparate Impact live:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Fairness &amp; Disparity Workbench</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate decision thresholds, compute Disparate Impact Ratios, and visualize the Pareto tradeoff frontier:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/fairness/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Fairness &amp; Disparity Meter</a>
+    <a href="../tools/representation/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Subgroup Representation Visualizer</a>
+    <a href="../tools/ethical-decision/index.html" class="noc-sim-btn secondary" style="text-decoration:none;">🌳 Ethical Decision Tree</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of bias and fairness.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Unawareness Fails</strong>: Removing sensitive attributes does not prevent bias because correlated proxy features (ZIP codes, schools, syntax) allow models to reconstruct protected traits.</li>
+<li><strong>The Impossibility Theorem</strong>: You cannot satisfy Demographic Parity, Equalized Odds, and Calibration simultaneously when base rates differ; fairness requires an intentional policy decision.</li>
+<li><strong>Audit Subgroups</strong>: Never trust global accuracy metrics; always disaggregate error metrics across demographic subgroups prior to production deployment.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-barocas2016"></a><strong>[Barocas2016]</strong> Barocas, S., &amp; Selbst, A. D. (2016). <em>Big data's disparate impact</em>. California Law Review, 104, 671–732. DOI: <a href="https://doi.org/10.15779/Z38BG31">10.15779/Z38BG31</a></li>
+<li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> Hardt, M., Price, E., &amp; Srebro, N. (2016). <em>Equality of opportunity in supervised learning</em>. Advances in Neural Information Processing Systems (NeurIPS 2016), 29, 3315–3323.</li>
+<li><a id="ref-buolamwini2018"></a><strong>[Buolamwini2018]</strong> Buolamwini, J., &amp; Gebru, T. (2018). <em>Gender shades: Intersectional accuracy disparities in commercial gender classification</em>. In Conference on Fairness, Accountability and Transparency (FAT* '18), PMLR 81, 77–91.</li>
+<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> Angwin, J., Larson, J., Mattu, S., &amp; Kirchner, L. (2016). <em>Machine Bias: There's software used across the country to predict future criminals. And it's biased against blacks</em>. ProPublica.</li>
+<li><a id="ref-mehrabi2021"></a><strong>[Mehrabi2021]</strong> Mehrabi, N., Morstatter, F., Saxena, N., et al. (2021). <em>A survey on bias and fairness in machine learning</em>. ACM Computing Surveys, 54(6), Article 115, 1–35. DOI: <a href="https://doi.org/10.1145/3457607">10.1145/3457607</a></li>
+<li><a id="ref-obermeyer2019"></a><strong>[Obermeyer2019]</strong> Obermeyer, Z., Powers, B., Vogeli, C., &amp; Mullainathan, S. (2019). <em>Dissecting racial bias in an algorithm used to manage the health of populations</em>. Science, 366(6464), 447–453. DOI: <a href="https://doi.org/10.1126/science.aax2342">10.1126/science.aax2342</a></li>
+<li><a id="ref-dastin2018"></a><strong>[Dastin2018]</strong> Dastin, J. (2018). <em>Amazon scraps secret AI recruiting tool that showed bias against women</em>. Reuters.</li>
+<li><a id="ref-oneil2016"></a><strong>[O'Neil2016]</strong> O'Neil, C. (2016). <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>. Crown Publishing Group.</li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 3 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="05-privacy-preserving-techniques.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.5 Privacy-Preserving Techniques</a>
+  <a href="07-real-world-privacy-laws.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Real-World Privacy Laws (3.7) →</a>
 </div>
 
 
@@ -7461,6 +7654,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

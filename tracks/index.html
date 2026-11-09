@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7109,8 +7111,8 @@
 <hr />
 <h2 id="master-curriculum-architecture-roadmap">🗺️ Master Curriculum Architecture Roadmap</h2>
 <p>The 13 tracks form an end-to-end data engineering lifecycle spanning mathematical sampling foundations to scalable cloud lakehouses and open science:</p>
-<pre class="mermaid"><code>graph TD
-  subgraph Tier1["Tier 1: Foundations &amp; Data Ingestion"]
+<pre class="mermaid"><code>flowchart TD
+  subgraph Tier1 ["Tier 1: Foundations &amp; Data Ingestion"]
     T1["Track 1: Introduction to Datasets&lt;br/&gt;(Taxonomy &amp; Quality Dimensions)"]
     T2["Track 2: Data Collection Fundamentals&lt;br/&gt;(Sampling Theory &amp; Error Bounds)"]
     T3["Track 3: Ethics &amp; Privacy in Data&lt;br/&gt;(GDPR, k-Anonymity &amp; DP)"]
@@ -7118,21 +7120,21 @@
     T2 --&gt; T3
   end
 
-  subgraph Tier2["Tier 2: Human-in-the-Loop &amp; Quality Engineering"]
+  subgraph Tier2 ["Tier 2: Human-in-the-Loop &amp; Quality Engineering"]
     T4["Track 4: Data Annotation &amp; Agreement&lt;br/&gt;(Labeling Schemas &amp; Agreement Metrics)"]
     T5["Track 5: Data Cleaning &amp; Preprocessing&lt;br/&gt;(Imputation, Outliers &amp; SMOTE)"]
     T3 --&gt; T4
     T4 --&gt; T5
   end
 
-  subgraph Tier3["Tier 3: Exploratory Analysis &amp; Algorithmic Fairness"]
+  subgraph Tier3 ["Tier 3: Exploratory Analysis &amp; Algorithmic Fairness"]
     T6["Track 6: Exploratory Data Analysis&lt;br/&gt;(Covariance Matrices, PCA &amp; EDA)"]
     T7["Track 7: Dataset Bias and Fairness&lt;br/&gt;(Disparate Impact &amp; Equalized Odds)"]
     T5 --&gt; T6
     T6 --&gt; T7
   end
 
-  subgraph Tier4["Tier 4: Provenance, Synthesis &amp; Active Learning"]
+  subgraph Tier4 ["Tier 4: Provenance, Synthesis &amp; Active Learning"]
     T8["Track 8: Documentation &amp; Versioning&lt;br/&gt;(Datasheets &amp; DVC Lineage)"]
     T9["Track 9: Advanced Data Collection&lt;br/&gt;(Web Scraping &amp; Streaming Telemetry)"]
     T10["Track 10: Synthetic Data Generation&lt;br/&gt;(Augmentation, GANs &amp; Diffusion)"]
@@ -7143,12 +7145,24 @@
     T10 --&gt; T11
   end
 
-  subgraph Tier5["Tier 5: Scalable Systems &amp; Open Science"]
+  subgraph Tier5 ["Tier 5: Scalable Systems &amp; Open Science"]
     T12["Track 12: Scalable Data Management&lt;br/&gt;(CAP Theorem, Parquet &amp; S3 Lakes)"]
     T13["Track 13: Reproducibility &amp; Open Science&lt;br/&gt;(FAIR Principles, Licenses &amp; DOIs)"]
     T11 --&gt; T12
     T12 --&gt; T13
-  end</code></pre>
+  end
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+  classDef cyan fill:#0f766e,stroke:#14b8a6,color:#fff;
+
+  class T1,T2,T3 blue;
+  class T4,T5 green;
+  class T6,T7 amber;
+  class T8,T9,T10,T11 purple;
+  class T12,T13 cyan;</code></pre>
 <hr />
 <h2 id="all-13-curriculum-tracks">📚 All 13 Curriculum Tracks</h2>
 <div class="noc-tracks-grid">
@@ -7435,6 +7449,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../assets/js/katex.js"></script>
+      
+        <script src="../assets/js/code-runner.js"></script>
       
     
   </body>

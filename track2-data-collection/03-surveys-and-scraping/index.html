@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#23-surveys-observation-and-scraping" class="md-skip">
+        <a href="#23-acquisition-instruments-surveys-observational-protocols-web-scraping" class="md-skip">
           Skip to content
         </a>
       
@@ -1258,121 +1260,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-survey-methodology-non-response-bias-formulation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Survey Methodology &amp; Non-Response Bias Formulation
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. Survey Methodology &amp; Non-Response Bias Formulation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-surveys-observation-and-scraping" class="md-nav__link">
+  <a href="#a-the-non-response-bias-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Surveys, observation, and scraping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#choosing-a-collection-method" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing a collection method
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#surveys-and-questionnaires" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Surveys and questionnaires
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-25-campus-wi-fi-satisfaction-survey-plan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.5 — Campus Wi-Fi satisfaction survey plan
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#observation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#web-scraping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Web scraping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-26-choosing-scraping-for-public-course-catalogs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.6 — Choosing scraping for public course catalogs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        A. The Non-Response Bias Theorem
       
     </span>
   </a>
@@ -1385,10 +1288,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-web-scraping-engineering-dom-extraction-legal-etiquette" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Web Scraping Engineering: DOM Extraction &amp; Legal Etiquette
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Web Scraping Engineering: DOM Extraction &amp; Legal Etiquette">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-the-robots-exclusion-protocol-rfc-9309" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. The Robots Exclusion Protocol (RFC 9309)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-robust-dom-selectors-css-vs-xpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Robust DOM Selectors: CSS vs. XPath
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-method-trade-off-comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Method Trade-Off Comparison Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-engineering-case-study-multi-modal-collection-the-norpen-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Engineering Case Study: Multi-Modal Collection (The NorPEN Project)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7133,121 +7119,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-survey-methodology-non-response-bias-formulation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. Survey Methodology &amp; Non-Response Bias Formulation
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="1. Survey Methodology &amp; Non-Response Bias Formulation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-2-surveys-observation-and-scraping" class="md-nav__link">
+  <a href="#a-the-non-response-bias-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 2 — Surveys, observation, and scraping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#choosing-a-collection-method" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing a collection method
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#surveys-and-questionnaires" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Surveys and questionnaires
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-25-campus-wi-fi-satisfaction-survey-plan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.5 — Campus Wi-Fi satisfaction survey plan
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#observation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#web-scraping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Web scraping
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-26-choosing-scraping-for-public-course-catalogs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 2.6 — Choosing scraping for public course catalogs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        A. The Non-Response Bias Theorem
       
     </span>
   </a>
@@ -7260,10 +7147,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#2-web-scraping-engineering-dom-extraction-legal-etiquette" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        2. Web Scraping Engineering: DOM Extraction &amp; Legal Etiquette
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Web Scraping Engineering: DOM Extraction &amp; Legal Etiquette">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-the-robots-exclusion-protocol-rfc-9309" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. The Robots Exclusion Protocol (RFC 9309)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-robust-dom-selectors-css-vs-xpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Robust DOM Selectors: CSS vs. XPath
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-method-trade-off-comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Method Trade-Off Comparison Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-engineering-case-study-multi-modal-collection-the-norpen-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Engineering Case Study: Multi-Modal Collection (The NorPEN Project)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7290,58 +7260,203 @@
   
 
 
-<h1 id="23-surveys-observation-and-scraping">2.3 Surveys, observation, and scraping</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="23-acquisition-instruments-surveys-observational-protocols-web-scraping">2.3 Acquisition Instruments: Surveys, Observational Protocols &amp; Web Scraping</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 2 (sec:2.3)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 2: Fundamentals of Data Collection</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 2: Fundamentals of Data Collection (§2.3: Primary & Web Instruments)</strong> in the official Springer Nature monograph, covering survey psychometrics, robots.txt compliance, and DOM tree extraction.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 2 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~11 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Knowing a source type is not enough—you still need an instrument. This part covers surveys and questionnaires, field observation, and web scraping when no API exists, including the fragility and policy constraints scraping introduces.</p>
-<h3 id="chapter-2-surveys-observation-and-scraping">Chapter 2 — Surveys, observation, and scraping</h3>
-<p>Knowing a source type is not enough—you still need an instrument. This part covers surveys and questionnaires, field observation, and web scraping when no API exists, including the fragility and policy constraints scraping introduces.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should match surveys, observation, and scraping to typical research questions, name the main watch-outs for each method, and explain why instrument and sample planning precede platform choice.</p>
-<h3 id="choosing-a-collection-method">Choosing a collection method</h3>
-<p>Once source type is chosen, teams select concrete methods. Surveys and questionnaires gather structured responses from people. Observation captures behavior in context. Web scraping extracts content from pages that lack APIs. Mixed designs combine instruments when no single method answers both the what and the why. This part focuses on when each method fits; APIs are covered in the next part.</p>
-<h3 id="surveys-and-questionnaires">Surveys and questionnaires</h3>
-<p>Surveys remain a workhorse for collecting comparable answers from many respondents in market research, social science, and public-opinion work. Modes include online forms, face-to-face interviews, telephone contact, and postal questionnaires. Strengths include large sample reach, standardized wording, and quantifiable outputs. Weaknesses include socially desirable answering, low response rates without incentives, and shallow coverage of lived experience compared with interviews or observation.</p>
-<h3 id="example-25-campus-wi-fi-satisfaction-survey-plan">Example 2.5 — Campus Wi-Fi satisfaction survey plan</h3>
-<p>Example 2.5 shows a short instrument plan before any survey platform is chosen. An IT office wants to know which buildings have unreliable Wi-Fi. The plan specifies a five-minute online questionnaire for students and staff, stratified by building, with items on connection failures, peak-hour experience, and device type, plus an open comment box for locations the closed items miss. Open the example 5 module to see how the instrument and sample come before tool choice.</p>
-<h3 id="observation">Observation</h3>
-<p>Observation gathers data by watching behavior or events in their natural setting, which is valuable when researchers need context that questionnaires cannot elicit. Participant observation embeds the researcher in the activity; non-participant observation keeps distance for objectivity. Observation yields rich qualitative evidence, but it is time-consuming, vulnerable to observer bias, and often hard to generalize from small settings. Teams frequently combine observation with surveys so depth and breadth reinforce each other.</p>
-<h3 id="web-scraping">Web scraping</h3>
-<p>Web scraping uses programs to extract text, tables, or media from HTML pages. It is useful when a site exposes public content but no API, or when many pages must be harvested on a schedule. Scraping scales and automates collection across sites, yet it raises legal and ethical constraints, yields noisy or shifting schemas when page layouts change, and may trigger anti-bot defenses. Responsible projects document robots policies, throttle requests, and prefer APIs when providers offer them.</p>
-<h3 id="example-26-choosing-scraping-for-public-course-catalogs">Example 2.6 — Choosing scraping for public course catalogs</h3>
-<p>Example 2.6 stays at the decision level. A research team needs weekly snapshots of publicly listed university course titles and credit hours where no catalog API exists. They scrape the HTML timetable, store course code and title as structured rows, and re-check selectors after each term because layout changes routinely break the harvest. Try the example 6 module to review why scraping is a methods choice under fragility and policy constraints, not merely a coding exercise.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Surveys fit attitudes and self-report at scale; observation fits natural behavior in context; scraping fits public web content without APIs. Each method carries distinct bias and policy risks. Design the instrument and sampling plan first, then select platforms and libraries in a later part.</p>
-<h3 id="next">Next</h3>
-<p>Complete the quiz, then continue to the next part on APIs for collection—when structured endpoints are preferable to scraping.</p>
+<p>Selecting an empirical data source is only the first architectural step; data engineers and researchers must implement the <strong>measurement instrument</strong> that extracts observations from that source. </p>
+<p>When observing humans, the canonical instrument is the <strong>structured survey questionnaire</strong> or <strong>contextual observation protocol</strong>; when harvesting public web knowledge without programmatic endpoints, the instrument is a <strong>web crawler and DOM parser</strong>.</p>
+<p>Each instrument imposes distinct mathematical constraints on measurement fidelity, response bias, and schema durability.</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-survey-methodology-non-response-bias-formulation">1. Survey Methodology &amp; Non-Response Bias Formulation</h2>
+<p>Surveys remain the primary instrument for quantifying subjective human states: customer satisfaction, clinical pain scales, and public policy preferences.</p>
+<h3 id="a-the-non-response-bias-theorem">A. The Non-Response Bias Theorem</h3>
+<p>In any survey campaign where participation is voluntary, the observed sample mean <span class="arithmatex">\(\bar{y}_r\)</span> among respondents almost certainly diverges from the true population mean <span class="arithmatex">\(\bar{Y}\)</span>.</p>
+<p>Let <span class="arithmatex">\(N\)</span> denote total sampled units, <span class="arithmatex">\(r\)</span> denote respondents, and <span class="arithmatex">\(m = N - r\)</span> denote non-respondents. The <strong>Non-Response Bias</strong> is formally defined as [<a href="#ref-groves1998">Groves1998</a>]:</p>
+<div class="arithmatex">\[\text{Bias}(\bar{y}_r) = \bar{y}_r - \bar{Y} = \frac{m}{N}\left(\bar{y}_r - \bar{y}_m\right)\]</div>
+<p>Where:
+- <span class="arithmatex">\(\frac{m}{N}\)</span> is the <strong>Non-Response Rate</strong> (<span class="arithmatex">\(1 - \text{Response Rate}\)</span>).
+- <span class="arithmatex">\((\bar{y}_r - \bar{y}_m)\)</span> is the <strong>Contrast Vector</strong> between those who choose to answer and those who refuse or drop out.</p>
+<div class="arithmatex">\[\text{AAPOR Response Rate (RR1)} = \frac{C}{C + R + NC + O + e \cdot U}\]</div>
+<p>Where <span class="arithmatex">\(C\)</span> is completed interviews, <span class="arithmatex">\(R\)</span> is refusals, <span class="arithmatex">\(NC\)</span> is non-contacts, <span class="arithmatex">\(O\)</span> is others, and <span class="arithmatex">\(U\)</span> is unknown eligibility cases. </p>
+<blockquote>
+<p>[!WARNING]
+<strong>The High-N Fallacy</strong>: A survey with <span class="arithmatex">\(N = 100{,}000\)</span> responses but an <span class="arithmatex">\(m/N = 95\%\)</span> non-response rate produces massive, high-precision bias if respondents differ systematically from non-respondents (e.g., highly dissatisfied customers leaving angry reviews). A small, probability-sampled survey (<span class="arithmatex">\(n = 1{,}200\)</span>) with a <span class="arithmatex">\(75\%\)</span> response rate is statistically superior to an uncurated million-row voluntary internet poll.</p>
+</blockquote>
+<hr />
+<h2 id="2-web-scraping-engineering-dom-extraction-legal-etiquette">2. Web Scraping Engineering: DOM Extraction &amp; Legal Etiquette</h2>
+<p>When public data lacks official APIs, engineers deploy web scrapers to transform unstructured HTML into structured records.</p>
+<pre class="mermaid"><code>flowchart TD
+    Target["Target URL Queue"] --&gt; Robots{"Robots.txt Parser&lt;br/&gt;(RFC 9309 Audit)"}
+
+    Robots --&gt;|Disallow / Forbidden| Block["Abort &amp; Log Policy Block"]
+    Robots --&gt;|Allow| Throttler["Rate Throttler&lt;br/&gt;(Token Bucket + Jitter)"]
+
+    Throttler --&gt; Fetch["HTTP Client (GET / Headers)&lt;br/&gt;User-Agent: ResearchBot/1.0"]
+    Fetch --&gt; Status{"HTTP 200 OK?"}
+
+    Status --&gt;|429 / 503| Backoff["Exponential Backoff Retry"]
+    Backoff --&gt; Throttler
+
+    Status --&gt;|200 OK| DOM["HTML Parsing (LXML / Tree)"]
+    DOM --&gt; Extract["CSS / XPath Extraction"]
+    Extract --&gt; Valid{"Schema Invariants Met?"}
+
+    Valid --&gt;|Pass| Sink["Parquet / SQL Store"]
+    Valid --&gt;|"Fail (DOM Break)"| Alert["Alert: Layout Mutation Detected"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
+
+    class Target,Throttler,Fetch,DOM,Extract blue;
+    class Robots,Status,Valid,Sink green;
+    class Block,Backoff,Alert red;</code></pre>
+<h3 id="a-the-robots-exclusion-protocol-rfc-9309">A. The Robots Exclusion Protocol (RFC 9309)</h3>
+<p>Responsible automated collection must obey standard web crawling contracts:
+1. Parse <code>/robots.txt</code> before issuing any GET requests:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>User-agent: *
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Disallow: /admin/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Disallow: /private/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Crawl-delay: 5
+</span></code></pre></div>
+2. Identify the crawler clearly via the HTTP <code>User-Agent</code> header, including contact information and research institutional affiliation:
+   <div class="language-http highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">User-Agent: DataEngineeringResearchBot/2.0 (+https://data-consortium.org/bot; bot@data-consortium.org)</span>
+</span></code></pre></div></p>
+<h3 id="b-robust-dom-selectors-css-vs-xpath">B. Robust DOM Selectors: CSS vs. XPath</h3>
+<p>HTML documents are deeply nested Directed Acyclic Graphs (DOM trees). Scraping brittle presentation classes (e.g., <code>div.css-1a2b3c</code>) causes scrapers to fail upon minor UI updates.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Selector Mechanism</th>
+<th style="text-align: left;">Example Query</th>
+<th style="text-align: left;">Resiliency to Layout Redesign</th>
+<th style="text-align: left;">Typical Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>CSS Class / ID</strong></td>
+<td style="text-align: left;"><code>div.product-card &gt; span.price</code></td>
+<td style="text-align: left;">Low (Breaks on CSS re-bundling)</td>
+<td style="text-align: left;">Quick prototypes, static blog formats</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Semantic Attribute</strong></td>
+<td style="text-align: left;"><code>[data-testid="item-price"]</code></td>
+<td style="text-align: left;">High (Engineered for test hooks)</td>
+<td style="text-align: left;">Enterprise web applications (React/Vue)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>XPath Axes</strong></td>
+<td style="text-align: left;"><code>//tr[td[contains(.,'Course ID')]]/td[2]</code></td>
+<td style="text-align: left;">Very High (Relies on tabular invariants)</td>
+<td style="text-align: left;">Scientific tables, legacy government databases</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-method-trade-off-comparison-matrix">3. Method Trade-Off Comparison Matrix</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Collection Method</th>
+<th style="text-align: left;">Primary Data Modality</th>
+<th style="text-align: left;">Scalability Bound</th>
+<th style="text-align: left;">Dominant Error Vector</th>
+<th style="text-align: left;">Ethical &amp; Legal Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Surveys / Forms</strong></td>
+<td style="text-align: left;">Structured tabular responses</td>
+<td style="text-align: left;">Moderate (<span class="arithmatex">\(\mathcal{O}(10^3\text{--}10^5)\)</span>)</td>
+<td style="text-align: left;">Non-response bias, social desirability</td>
+<td style="text-align: left;">Consent validity, survey fatigue</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Field Observation</strong></td>
+<td style="text-align: left;">Unstructured video, logs, notes</td>
+<td style="text-align: left;">Low (<span class="arithmatex">\(\mathcal{O}(10^1\text{--}10^3)\)</span>)</td>
+<td style="text-align: left;">Observer bias, Hawthorne effect</td>
+<td style="text-align: left;">Privacy surveillance, covert observation</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Web Scraping</strong></td>
+<td style="text-align: left;">Semi-structured HTML <span class="arithmatex">\(\to\)</span> tables</td>
+<td style="text-align: left;">High (<span class="arithmatex">\(\mathcal{O}(10^5\text{--}10^7)\)</span>)</td>
+<td style="text-align: left;">Layout drift, anti-bot blocking</td>
+<td style="text-align: left;">Terms of Service breach, copyright exposure</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Official APIs</strong></td>
+<td style="text-align: left;">Structured JSON / XML</td>
+<td style="text-align: left;">High (<span class="arithmatex">\(\mathcal{O}(10^6\text{--}10^9)\)</span>)</td>
+<td style="text-align: left;">API pagination caps, schema versioning</td>
+<td style="text-align: left;">Key revocation, quota throttling</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-engineering-case-study-multi-modal-collection-the-norpen-project">4. Engineering Case Study: Multi-Modal Collection (The NorPEN Project)</h2>
+<p>In real-world empirical engineering, single-instrument collection is rarely adequate. The <strong>NorPEN</strong> energy dataset [<a href="#ref-vavouris2024">Vavouris2024</a>] exemplifies a multi-instrument acquisition architecture:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌──────────────────────────────── NorPEN Multi-Instrument Pipeline ────────────────────────────────┐
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                                                                                                   │
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│  [Instrument 1: IoT Meters]   ──────&gt; 1-Second Sub-Metered Electrical Load Time-Series             │
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│  [Instrument 2: Surveys]      ──────&gt; Semi-Structured Occupant Appliance Inventories              │
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│  [Instrument 3: Diaries]      ──────&gt; Qualitative Household Daily Routine Timestamps              │
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│  [Instrument 4: Web Scraping] ──────&gt; Hourly Solar Irradiance &amp; Ambient Temperature Covariates    │
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│                                                                                                   │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│                 Joined via Master Entity Resolution (HouseholdID + UTC Timestamp)                 │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>└───────────────────────────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p>By fusing high-frequency IoT sensor telemetry with qualitative occupant surveys, researchers can explain <em>why</em> unexpected power consumption spikes occur (e.g., anomalous meter reading explained by an unannounced appliance maintenance cycle noted in the survey), rather than treating real-world occupant behavior as noise or sensor error.</p>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Test your web scraping selectors and rate limiters hands-on:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Crawling &amp; Rate Throttling Workbench</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate API throttling, leaky bucket backoff, and examine robots exclusion trees:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/api-collector/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Collector &amp; Throttling Simulator</a>
+    <a href="../interactive/terminal/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">💻 Open Web Data Terminal</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of surveys, observation, and scraping.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>Non-Response Math</strong>: Large sample size <span class="arithmatex">\(N\)</span> cannot compensate for a high non-response rate; bias is proportional to the non-respondent contrast <span class="arithmatex">\((\bar{y}_r - \bar{y}_m)\)</span>.</li>
+<li><strong>Selector Durability</strong>: Never bind web scrapers to generated CSS class hashes; target semantic data attributes (<code>data-testid</code>) or structural XPath axes.</li>
+<li><strong>Polite Crawling Architecture</strong>: Always implement RFC 9309 robots parsing, unique institutional User-Agents, and adaptive jittered rate throttling.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-groves1998"></a><strong>[Groves1998]</strong> Groves, R. M., &amp; Couper, M. P. (1998). <em>Nonresponse in household interview surveys</em>. John Wiley &amp; Sons. DOI: <a href="https://doi.org/10.1002/0471725225">10.1002/0471725225</a></li>
+<li><a id="ref-vavouris2024"></a><strong>[Vavouris2024]</strong> Vavouris, A., et al. (2024). <em>NorPEN: A multi-modal dataset of residential electricity consumption and occupant activities</em>. Scientific Data, 11, Article 184. DOI: <a href="https://doi.org/10.1038/s41597-024-03012-w">10.1038/s41597-024-03012-w</a></li>
+<li><a id="ref-massimino2016"></a><strong>[Massimino2016]</strong> Massimino, P., et al. (2016). <em>Automated Web Data Extraction: A survey of tools and techniques</em>. ACM Computing Surveys, 48(4), 1–38. DOI: <a href="https://doi.org/10.1145/2843888">10.1145/2843888</a></li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 2 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="02-sources-of-data.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 2.2 Data Sources</a>
+  <a href="04-apis-for-collection.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: APIs for Collection (2.4) →</a>
 </div>
 
 
@@ -7437,6 +7552,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

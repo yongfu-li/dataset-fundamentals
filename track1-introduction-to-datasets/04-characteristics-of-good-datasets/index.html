@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7371,7 +7373,7 @@
 <p>If transaction <span class="arithmatex">\(T_2\)</span> was accidentally keyed with an extra trailing zero (intended value <span class="arithmatex">\(\$1{,}500.00\)</span>), the sample mean <span class="arithmatex">\(\bar{x}\)</span> shifts from <span class="arithmatex">\(\$1{,}016.67\)</span> to <span class="arithmatex">\(\$5{,}516.67\)</span>—an error exceeding <span class="arithmatex">\(440\%\)</span>. Because <span class="arithmatex">\(\$15{,}000.00\)</span> remains a syntactically valid positive float, naive type checking fails to detect the defect. Detecting semantic inaccuracy requires <strong>parametric distribution auditing</strong> and <strong>extreme value screening</strong> (e.g., Mahalanobis distance or IQR fences).</p>
 <h3 id="22-missingness-mechanisms-mcar-mar-and-mnar">2.2 Missingness Mechanisms: MCAR, MAR, and MNAR</h3>
 <p>When attributes contain blank cells, data scientists cannot simply impute the mean or drop rows without diagnosing the underlying <strong>missingness mechanism</strong> <a href="#ref-little2019">[Little2019]</a>:</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     Missing["Observed Missing Attribute: M"] --&gt; MCAR["MCAR&lt;br/&gt;Missing Completely at Random"]
     Missing --&gt; MAR["MAR&lt;br/&gt;Missing at Random"]
     Missing --&gt; MNAR["MNAR&lt;br/&gt;Missing Not at Random"]
@@ -7382,11 +7384,13 @@
 
     classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
     classDef green fill:#064e3b,stroke:#10b981,color:#fff;
-    classDef red fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
 
     class Missing blue;
-    class MCAR,MAR,MNAR green;
-    class P1,P2,P3 red;</code></pre>
+    class MCAR,P1 green;
+    class MAR,P2 amber;
+    class MNAR,P3 red;</code></pre>
 <p>In healthcare data (e.g., MIMIC-IV), missing diagnostic attributes are almost never MCAR. A missing lab test indicates the physician determined the patient was healthy enough not to warrant the test. Dropping missing rows in this scenario severely biases downstream models toward critically ill patients.</p>
 <h3 id="23-consistency-violations-format-ambiguities-invariants">2.3 Consistency Violations: Format Ambiguities &amp; Invariants</h3>
 <p>A classic consistency breakdown is the <strong>date locale collision</strong>:
@@ -7397,18 +7401,26 @@
 <hr />
 <h2 id="3-metadata-engineering-the-fair-data-paradigm">3. Metadata Engineering &amp; The FAIR Data Paradigm</h2>
 <p>High-quality values are useless if consumers cannot interpret their physical meaning. <strong>Metadata</strong> provides the machine-readable provenance, schema definitions, coordinate datums, and licensing constraints that turn raw bits into scientific evidence <a href="#ref-wilkinson2016">[Wilkinson2016]</a>.</p>
-<pre class="mermaid"><code>graph LR
-    subgraph DatasetArtifact["Dataset Package (Self-Describing)"]
-        D["data.parquet&lt;br/&gt;(Physical Records)"]
-        M["metadata.json&lt;br/&gt;(Machine-Readable Schema)"]
-        R["README.md / Datasheet&lt;br/&gt;(Human-Readable Context)"]
+<pre class="mermaid"><code>flowchart LR
+    subgraph DatasetArtifact ["Dataset Package (Self-Describing)"]
+        D[("data.parquet&lt;br/&gt;Physical Records")]
+        M["metadata.json&lt;br/&gt;Machine-Readable Schema"]
+        R["README.md / Datasheet&lt;br/&gt;Human-Readable Context"]
     end
 
-    M --&gt; F["FAIR Verification Engine"]
-    F --&gt; Findable["Findable&lt;br/&gt;(Persistent DOI / PURL)"]
-    F --&gt; Accessible["Accessible&lt;br/&gt;(Standard Protocol HTTPS/S3)"]
-    F --&gt; Interoperable["Interoperable&lt;br/&gt;(W3C DCAT / JSON-LD)"]
-    F --&gt; Reusable["Reusable&lt;br/&gt;(Open License CC-BY / ODC-By)"]</code></pre>
+    M --&gt; F{"FAIR Verification Engine"}
+    F --&gt; Findable["Findable&lt;br/&gt;Persistent DOI / PURL"]
+    F --&gt; Accessible["Accessible&lt;br/&gt;Standard HTTPS / S3 Protocol"]
+    F --&gt; Interoperable["Interoperable&lt;br/&gt;W3C DCAT / JSON-LD"]
+    F --&gt; Reusable["Reusable&lt;br/&gt;Open CC-BY / ODC-By"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class D,M,R blue;
+    class F amber;
+    class Findable,Accessible,Interoperable,Reusable green;</code></pre>
 <h3 id="the-anatomy-of-a-production-metadata-sidecar">The Anatomy of a Production Metadata Sidecar</h3>
 <p>Production dataset repositories distribute metadata as a dedicated <strong>JSON-LD sidecar</strong> adhering to <code>Schema.org/Dataset</code> or <code>DCAT-AP</code>:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
@@ -7812,6 +7824,8 @@ setTimeout(auditQualityScores, 100);
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

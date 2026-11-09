@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -231,7 +233,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#33-utility-dilemmas-and-consequences" class="md-skip">
+        <a href="#33-the-utility-privacy-frontier-pareto-dilemmas-externalities" class="md-skip">
           Skip to content
         </a>
       
@@ -1603,22 +1605,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-mathematical-formulation-of-the-trade-off-frontier" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Mathematical Formulation of the Trade-Off Frontier
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-three-archetypal-ethical-dilemmas-in-data-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Three Archetypal Ethical Dilemmas in Data Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Three Archetypal Ethical Dilemmas in Data Practice">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-utility-dilemmas-and-consequences" class="md-nav__link">
+  <a href="#dilemma-1-epidemiological-surveillance-vs-individual-autonomy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Utility, dilemmas, and consequences
+        Dilemma 1: Epidemiological Surveillance vs. Individual Autonomy
       
     </span>
   </a>
@@ -1626,98 +1639,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#dilemma-2-institutional-predictive-accuracy-vs-community-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#balancing-utility-and-privacy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Balancing utility and privacy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-37-utilityprivacy-tension-in-personal-predictions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.7 — Utility–privacy tension in personal predictions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ethical-dilemmas-in-practice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ethical dilemmas in practice
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-38-dilemma-in-criminal-justice-risk-scores" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.8 — Dilemma in criminal justice risk scores
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consequences-of-neglecting-ethics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequences of neglecting ethics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-310-misuse-of-personal-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.10 — Misuse of personal data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Dilemma 2: Institutional Predictive Accuracy vs. Community Fairness
       
     </span>
   </a>
@@ -1730,10 +1655,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-the-consequences-of-neglecting-ethics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. The Consequences of Neglecting Ethics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7133,22 +7091,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#1-the-mathematical-formulation-of-the-trade-off-frontier" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        1. The Mathematical Formulation of the Trade-Off Frontier
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-three-archetypal-ethical-dilemmas-in-data-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Three Archetypal Ethical Dilemmas in Data Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Three Archetypal Ethical Dilemmas in Data Practice">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#chapter-3-utility-dilemmas-and-consequences" class="md-nav__link">
+  <a href="#dilemma-1-epidemiological-surveillance-vs-individual-autonomy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chapter 3 — Utility, dilemmas, and consequences
+        Dilemma 1: Epidemiological Surveillance vs. Individual Autonomy
       
     </span>
   </a>
@@ -7156,98 +7125,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#dilemma-2-institutional-predictive-accuracy-vs-community-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#balancing-utility-and-privacy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Balancing utility and privacy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-37-utilityprivacy-tension-in-personal-predictions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.7 — Utility–privacy tension in personal predictions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ethical-dilemmas-in-practice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ethical dilemmas in practice
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-38-dilemma-in-criminal-justice-risk-scores" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.8 — Dilemma in criminal justice risk scores
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consequences-of-neglecting-ethics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequences of neglecting ethics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-310-misuse-of-personal-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example 3.10 — Misuse of personal data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next
+        Dilemma 2: Institutional Predictive Accuracy vs. Community Fairness
       
     </span>
   </a>
@@ -7260,10 +7141,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-takeaways" class="md-nav__link">
+  <a href="#3-the-consequences-of-neglecting-ethics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Takeaways
+        3. The Consequences of Neglecting Ethics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7290,58 +7204,115 @@
   
 
 
-<h1 id="33-utility-dilemmas-and-consequences">3.3 Utility, dilemmas, and consequences</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<h1 id="33-the-utility-privacy-frontier-pareto-dilemmas-externalities">3.3 The Utility-Privacy Frontier: Pareto Dilemmas &amp; Externalities</h1>
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 3 (sec:3.2.2)</span>
+    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work</strong> in the Springer Nature monograph for rigorous formal analysis.
+    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.2.2 &amp; §3.2.3: Utility vs. Privacy Frontiers)</strong> in the official Springer Nature monograph, exploring Pareto tradeoff curves, criminal justice accuracy conflicts, and surveillance capitalism externalities.
     </div>
   </div>
-  <a href="../textbook/index.md" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+    <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~7 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~11 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Principles name what good practice should respect; real projects still face trade-offs when utility and privacy pull in opposite directions. This part covers the utility–privacy tension, ethical dilemmas when principles conflict, and the harms that follow when ethics is neglected.</p>
-<h3 id="chapter-3-utility-dilemmas-and-consequences">Chapter 3 — Utility, dilemmas, and consequences</h3>
-<p>Many projects create value only by using personal information—which creates standing tension between utility and privacy. This part covers that trade-off, dilemmas when principles conflict, and the individual and organizational harms that follow when ethics is neglected.</p>
-<h3 id="learning-objectives">Learning objectives</h3>
-<p>By the end of this part, you should explain the utility–privacy tension, describe two ethical dilemma patterns, and list consequences of ignoring ethics for people and organizations.</p>
-<h3 id="balancing-utility-and-privacy">Balancing utility and privacy</h3>
-<p>Personalized care, safer transport, or better public services can justify collection—yet the same pipelines can enable surveillance, exclusion, or secondary uses subjects never expected. Teams assess benefits and residual risks, prefer less identifying representations when analysis still works, and treat statutes as floors rather than ceilings. The ethical task is deciding whether proposed utility warrants the privacy burden at all.</p>
-<h3 id="example-37-utilityprivacy-tension-in-personal-predictions">Example 3.7 — Utility–privacy tension in personal predictions</h3>
-<p>Example 3.7 states the trade-off in prediction settings. Models that score health risk or creditworthiness can improve service allocation, but underlying histories are sensitive. Without minimization, access control, and purpose limits, the same features that raise utility become levers for harm. Open the example 7 module for this chapter to review the tension checklist.</p>
-<h3 id="ethical-dilemmas-in-practice">Ethical dilemmas in practice</h3>
-<p>Dilemmas arise when principles conflict or no option is clearly harm-free. Example 3.8 sketches criminal-justice risk scores: tools can appear useful for scheduling yet reproduce racial disparities in historical data—accuracy for the institution conflicts with fairness for affected communities. Example 3.9 returns to platform collection: fine-grained logging may enrich recommendations users never meaningfully agreed to share.</p>
-<h3 id="example-38-dilemma-in-criminal-justice-risk-scores">Example 3.8 — Dilemma in criminal justice risk scores</h3>
-<p>Example 3.8 is the justice-system conflict previewed again in the bias section and Chapter 7. More data alone does not dissolve the conflict; teams must ask who bears residual risk and whether limits can be monitored after launch. Try the example 8 module to compare institutional metrics with community harm.</p>
-<h3 id="consequences-of-neglecting-ethics">Consequences of neglecting ethics</h3>
-<p>Ignoring ethics produces privacy violations, discrimination, eroded trust, and reinforced inequality. Example 3.10 shows personal exposure after unauthorized use or leakage—fraud, harassment, and lasting harm for individuals, plus trust loss across the wider user base.</p>
-<h3 id="example-310-misuse-of-personal-data">Example 3.10 — Misuse of personal data</h3>
-<p>Example 3.10 connects ethical neglect to breach economics developed later in the chapter. Organizations also face fines, litigation, and reputational damage under regimes such as the GDPR. Ethical practice is both a moral and a sustainability requirement.</p>
-<h3 id="takeaways">Takeaways</h3>
-<p>Utility and privacy trade off by design—not by accident. Dilemmas need structured decision procedures, not silent defaults. Neglecting ethics harms people first and balance sheets second.</p>
-<h3 id="next">Next</h3>
-<p>Pause for the quiz, then continue to data privacy principles—consent, anonymization, and Privacy by Design as management practice.</p>
+<p>In data engineering, privacy protection and analytical utility exist in <strong>inherent mathematical tension</strong> [<a href="#ref-dwork2006">Dwork2006</a>, <a href="#ref-mittelstadt2016">Mittelstadt2016</a>].</p>
+<p>The most mathematically useful dataset is a completely unredacted, micro-level record containing raw identifiers, high-frequency continuous timestamps, and exact diagnostic codes. Conversely, the only completely private dataset is one filled entirely with random white noise, providing zero analytical utility.</p>
+<p>Engineering ethical data systems requires formalizing the <strong>Utility-Privacy Tradeoff Frontier</strong> and navigating the systemic dilemmas that arise when legitimate institutional goals conflict with individual civil liberties.</p>
 <hr />
-<h2 id="key-takeaways">💡 Key Takeaways</h2>
+<h2 id="1-the-mathematical-formulation-of-the-trade-off-frontier">1. The Mathematical Formulation of the Trade-Off Frontier</h2>
+<p>Let <span class="arithmatex">\(\mathcal{D}\)</span> denote the raw empirical dataset and <span class="arithmatex">\(\mathcal{M}(\mathcal{D})\)</span> denote a sanitized or privacy-transformed mechanism (e.g., via <span class="arithmatex">\(k\)</span>-anonymity generalization or differential privacy noise injection). </p>
+<p>The data architect solves a multi-objective optimization problem:</p>
+<div class="arithmatex">\[\max_{\mathcal{M}} \mathcal{U}\left(\mathcal{M}(\mathcal{D})\right) \quad \text{subject to} \quad \mathcal{R}_{\text{privacy}}\left(\mathcal{M}(\mathcal{D})\right) \le \epsilon\]</div>
+<p>Where:
+- <span class="arithmatex">\(\mathcal{U}\)</span> represents <strong>Analytical Utility</strong> (e.g., model accuracy <span class="arithmatex">\(R^2\)</span>, classification F1-score, or statistical query precision).
+- <span class="arithmatex">\(\mathcal{R}_{\text{privacy}}\)</span> represents <strong>Re-Identification / Leakage Risk</strong> (e.g., differential privacy budget <span class="arithmatex">\(\epsilon\)</span>, or mutual information <span class="arithmatex">\(I(\mathcal{M}(\mathcal{D}); \mathbf{S})\)</span> with sensitive attributes).</p>
+<pre class="mermaid"><code>graph LR
+    subgraph Frontier["The Pareto Frontier of Data Publishing"]
+        A["Point A: Raw Microdata&lt;br/&gt;Utility: 100%, Privacy Risk: High"]
+        B["Point B: Optimal Operating Point&lt;br/&gt;(e.g., ε = 1.0 DP / k = 10)&lt;br/&gt;Utility: 92%, Privacy Risk: Minimal"]
+        C["Point C: Over-Sanitized Data&lt;br/&gt;Utility: 15%, Privacy Risk: Zero"]
+    end
+
+    A --&gt;|Add Noise / Generalize| B
+    B --&gt;|Excessive Destruction| C</code></pre>
+<p>When an engineering team attempts to maximize analytical utility without constraints, they drive the system toward Point A, risking catastrophic identity leakage. When they apply naive, over-aggressive suppression, they push the system to Point C, rendering research inferences useless.</p>
+<hr />
+<h2 id="2-three-archetypal-ethical-dilemmas-in-data-practice">2. Three Archetypal Ethical Dilemmas in Data Practice</h2>
+<p>Ethical dilemmas emerge when a pipeline must balance competing values where no single choice is completely harm-free:</p>
+<pre class="mermaid"><code>flowchart TD
+    D1["Dilemma 1: Public Health Surveillance vs Autonomy&lt;br/&gt;(COVID-19 digital contact tracing vs unconsented location tracking)"]
+    D2["Dilemma 2: Institutional Accuracy vs Group Fairness&lt;br/&gt;(COMPAS recidivism risk: overall accuracy vs racial parity)"]
+    D3["Dilemma 3: Engagement Optimization vs Mental Health&lt;br/&gt;(Social media recommendation feeds: clicks vs addictive polarization)"]
+
+    classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+    classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+    classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+    class D1 blue;
+    class D2 amber;
+    class D3 green;</code></pre>
+<h3 id="dilemma-1-epidemiological-surveillance-vs-individual-autonomy">Dilemma 1: Epidemiological Surveillance vs. Individual Autonomy</h3>
+<p>During infectious disease crises, public health authorities can deploy automated cellular location tracking to reconstruct contagion transmission trees.
+- <em>The Utilitarian Argument</em>: Mandatory tracking prevents outbreaks, saves lives, and shortens community lockdowns.
+- <em>The Deontological Argument</em>: Tracking citizens' physical movements without explicit affirmative consent establishes unprecedented surveillance infrastructure that persists long after the health emergency resolves.</p>
+<h3 id="dilemma-2-institutional-predictive-accuracy-vs-community-fairness">Dilemma 2: Institutional Predictive Accuracy vs. Community Fairness</h3>
+<p>In criminal justice bail and sentencing algorithms (e.g., COMPAS [<a href="#ref-angwin2016">Angwin2016</a>]), an algorithm can be tuned to maximize overall predictive accuracy across the entire population, but this calibration forces the False Positive Rate for minority defendants to be twice as high as that for majority defendants.
+- <em>The Institutional View</em>: The algorithm is statistically calibrated and objective.
+- <em>The Civil Rights View</em>: Allocating disproportionate false-accusation errors to historically marginalized groups violates fundamental equal protection.</p>
+<hr />
+<h2 id="3-the-consequences-of-neglecting-ethics">3. The Consequences of Neglecting Ethics</h2>
+<p>When data teams treat ethical governance as an optional compliance hurdle, the resulting damage ripples across both micro-individual and macro-societal layers:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌──────────────────────────────── The Cascading Harm Hierarchy ────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                                                                                              │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  Level 1: Direct Human Harm      Identity theft, financial fraud, wrongful arrest,           │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                  loss of health insurance coverage, psychological trauma.    │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                                                                                              │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  Level 2: Enterprise Ruin        Class-action lawsuits, GDPR turnover fines, degraded        │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                                  market capitalization, executive criminal exposure.        │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                                                                                              │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  Level 3: Systemic Distortion    Erosion of institutional trust, algorithmic redlining,      │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                                  deepened societal polarization, surveillance capitalism.     │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>└──────────────────────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<p>Simulate the utility-privacy trade-off and explore ethical dilemma trees:</p>
+<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
+  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Dilemma &amp; Tradeoff Lab</div>
+  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate decision trade-offs, explore the Pareto frontier, and audit consent contracts:</p>
+  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+    <a href="../tools/ethical-decision/index.html" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🌳 Launch Ethical Decision Tree</a>
+    <a href="../tools/deid-risk/index.html" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ De-ID Risk Checker</a>
+    <a href="../tools/pii-scrubber/index.html" class="noc-sim-btn" style="background:#ea580c; text-decoration:none;">🛠️ Consent &amp; PII Scrubber</a>
+  </div>
+</div>
+
+<hr />
+<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Foundational Principle</strong>: Master the core definitions, trade-offs, and mathematical properties of utility, dilemmas, and consequences.</li>
-<li><strong>Quality Dimension</strong>: Understand how poor dataset preparation compounds downstream in machine learning pipelines.</li>
-<li><strong>Reproducibility</strong>: Always document metadata, versions, and experimental parameters to ensure verifiable data engineering.</li>
+<li><strong>The Pareto Frontier</strong>: Privacy and utility cannot be optimized simultaneously to <span class="arithmatex">\(100\%\)</span>; data architects must locate the Pareto-optimal operating point.</li>
+<li><strong>More Data Does Not Resolve Dilemmas</strong>: Adding more biased training data to an algorithmic dilemma only produces more precise, deeply entrenched disparities.</li>
+<li><strong>Accountability for Externalities</strong>: Teams are morally and legally answerable for the downstream societal externalities their datasets create.</li>
 </ol>
 <hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<ul>
+<li><a id="ref-dwork2006"></a><strong>[Dwork2006]</strong> Dwork, C. (2006). <em>Differential privacy</em>. In Automata, Languages and Programming (ICALP), Lecture Notes in Computer Science, 4052, 1–12. Springer. DOI: <a href="https://doi.org/10.1007/11787006_1">10.1007/11787006_1</a></li>
+<li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> Mittelstadt, B. D., Allo, P., Taddeo, M., et al. (2016). <em>The ethics of algorithms: Mapping the debate</em>. Big Data &amp; Society, 3(2), 1–21. DOI: <a href="https://doi.org/10.1177/2053951716679679">10.1177/2053951716679679</a></li>
+<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> Angwin, J., Larson, J., Mattu, S., &amp; Kirchner, L. (2016). <em>Machine Bias: There's software used across the country to predict future criminals. And it's biased against blacks</em>. ProPublica.</li>
+</ul>
+<hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="index.md" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 3 Overview</a>
-  <a href="../tools/index.md" class="noc-sim-btn" style="text-decoration: none; background: #059669;">Launch Interactive Data Studio →</a>
+  <a href="02-core-ethical-principles.html" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.2 Core Ethical Principles</a>
+  <a href="04-data-privacy-principles.html" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Data Privacy Principles (3.4) →</a>
 </div>
 
 
@@ -7437,6 +7408,8 @@
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>

@@ -112,6 +112,7 @@
         .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
         .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
         .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
+        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
         .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
         .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
         .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
@@ -123,11 +124,12 @@
         }
 
         /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
         .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
         .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
         .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
@@ -136,11 +138,11 @@
         .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
 
         /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
           fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
           stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
           stroke-width: 1.75px !important;
@@ -7228,16 +7230,18 @@
     Ingest["1. Ingestion &amp; Raw Staging&lt;br/&gt;(Bronze: Immutable Capture)"] --&gt; Clean["2. Cleaning &amp; Standardization&lt;br/&gt;(Silver: Schema Validation)"]
     Clean --&gt; Curate["3. Curated Feature Tables&lt;br/&gt;(Gold: DVC Lineage &amp; Versioning)"]
     Curate --&gt; Serve["4. Model Training &amp; Serving&lt;br/&gt;(RBAC Access &amp; Audit Logging)"]
-    Serve --&gt; Archive["5. Archival &amp; Retention&lt;br/&gt;(Cold Storage: S3 Glacier)"]
-    Archive --&gt; Purge["6. Cryptographic Erasure&lt;br/&gt;(GDPR Art. 17 Tombstoning)"]
+    Serve --&gt; Archive[("5. Archival &amp; Retention&lt;br/&gt;Cold Storage: S3 Glacier")]
+    Archive --&gt; Purge{{"6. Cryptographic Erasure&lt;br/&gt;GDPR Art. 17 Tombstoning"}}
 
     classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
     classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
     classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
     classDef red fill:#7f1d1d,stroke:#ef4444,color:#fff;
 
     class Ingest,Clean blue;
-    class Curate,Serve green;
+    class Curate green;
+    class Serve purple;
     class Archive amber;
     class Purge red;</code></pre>
 <p>Without systematic governance, pipelines succumb to <strong>Data Debt</strong> <a href="#ref-sculley2015">[Sculley2015]</a>: silent upstream modifications overwrite training sets, undocumented preprocessing steps make results irreproducible, and unmonitored personal data incurs severe legal penalties under international privacy statutes.</p>
@@ -7295,7 +7299,7 @@
 <hr />
 <h2 id="3-privacy-engineering-regulatory-compliance">3. Privacy Engineering &amp; Regulatory Compliance</h2>
 <p>Datasets containing human observations must comply with stringent regulatory frameworks:</p>
-<pre class="mermaid"><code>graph TD
+<pre class="mermaid"><code>flowchart TD
     Reg["Regulatory Frameworks"] --&gt; GDPR["GDPR (European Union)&lt;br/&gt;Consent &amp; Right to Erasure"]
     Reg --&gt; HIPAA["HIPAA (United States)&lt;br/&gt;PHI &amp; Safe Harbor Identifiers"]
     Reg --&gt; CCPA["CCPA / CPRA (California)&lt;br/&gt;Right to Know &amp; Opt-Out"]
@@ -7309,10 +7313,12 @@
     classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
     classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
     classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#fff;
 
     class Reg blue;
     class GDPR,HIPAA,CCPA amber;
-    class Tech,T1,T2,T3,T4 green;</code></pre>
+    class Tech purple;
+    class T1,T2,T3,T4 green;</code></pre>
 <h3 id="31-the-right-to-erasure-gdpr-article-17">3.1 The Right to Erasure (GDPR Article 17)</h3>
 <p>Under GDPR, data subjects have the right to demand the deletion of their personal data without undue delay. In immutable, append-only columnar storage (e.g., Parquet in S3), deleting a single user's record requires rewriting an entire <span class="arithmatex">\(512\text{ MB}\)</span> file.</p>
 <p>To solve this, modern data architectures deploy <strong>Cryptographic Erasure (Crypto-Tombstoning)</strong>: each individual subject's records are encrypted with a unique per-user key <span class="arithmatex">\(K_u\)</span>. When an erasure request arrives:</p>
@@ -7643,6 +7649,8 @@ setTimeout(updateRbacView, 100);
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/code-runner.js"></script>
       
     
   </body>
