@@ -5,7 +5,7 @@
 [![Role](https://img.shields.io/badge/role-Open%20Learning%20Platform-orange)](https://yongfu-li.github.io/dataset-fundamentals/)
 [![Parent](https://img.shields.io/badge/parent-book%20monorepo%20(private)-0A9EDC)](https://github.com/yongfu-li/Fundamental-of-Dataset-Collection-Annotation-and-Management)
 
-An open-source, interactive curriculum and laboratory bridging theoretical dataset collection, human-in-the-loop annotation, data cleaning heuristics, algorithmic fairness, and reproducible open science. Grounded in the 13-chapter Springer Nature monograph.
+An open-source, interactive curriculum and laboratory bridging theoretical dataset collection, human-in-the-loop annotation, data cleaning heuristics, algorithmic fairness, and reproducible open science. Grounded in 13 definitive textbook chapters, hands-on browser simulations, and verified data engineering research.
 
 ---
 
