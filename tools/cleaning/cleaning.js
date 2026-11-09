@@ -77,7 +77,7 @@
     const file = ev.target.files && ev.target.files[0];
     if (!file) return;
     if (file.size > Lib.MAX_BYTES) {
-      showMessage("File exceeds 2 MB limit.", "error");
+      showMessage("File exceeds 100 MB limit.", "error");
       renderAll();
       return;
     }
@@ -229,16 +229,19 @@
       renderLoader() +
       renderMessage() +
       (original
-        ? '<div class="cl-columns">' +
+        ? (Lib.Commercial ? Lib.Commercial.renderDQIScorecard(Lib.Commercial.calculateDQI(original.rows, original.columns), Lib.Commercial.calculateDQI(rows, columns)) : "") +
+          '<div class="cl-columns">' +
           '<div class="cl-col">' + renderIssues(profile) + renderChangeLog() + "</div>" +
           '<div class="cl-col">' + renderOps(rows, columns, profile) + renderStats(rows, columns) + "</div>" +
           "</div>" +
           renderCharts(rows, columns) +
+          (Lib.Commercial ? Lib.Commercial.renderSqlConsole() : "") +
           renderPreview(rows, columns) +
           renderExport()
         : "");
     bindEvents();
     drawCharts();
+    if (Lib.Commercial) bindSqlConsole();
   }
 
   function renderIntro() {
@@ -661,16 +664,126 @@
 
   function renderExport() {
     return (
-      '<section class="cl-panel"><h2>4 · Export</h2>' +
+      '<section class="cl-panel"><h2>4 · Commercial &amp; Pipeline Export</h2>' +
       '<div class="cl-op-row">' +
       '<button type="button" id="cl-export-csv" class="cl-primary">Download cleaned CSV</button>' +
+      '<button type="button" id="cl-export-python" class="cl-primary" style="background:#059669; border-color:#10b981;">🐍 Export Python (Pandas/Polars)</button>' +
+      '<button type="button" id="cl-export-sql" class="cl-secondary">📊 Export dbt / SQL Migration</button>' +
       '<button type="button" id="cl-export-log">Download change log (JSON)</button>' +
       '<button type="button" id="cl-send-scale" class="cl-primary">Send to scaling / encoding</button>' +
       "</div>" +
-      '<p class="cl-hint">The change log is your audit trail — good practice from §5.6 (document every transformation). ' +
-      "Next in the workflow: scale and encode features before splitting.</p>" +
+      '<p class="cl-hint">Exporting generates fully reproducible code pipelines (Python or dbt/SQL) encoding every transformation made in this session.</p>' +
       "</section>"
     );
+  }
+
+  function exportPythonPipeline() {
+    if (!original) {
+      showMessage("Load a dataset first.", "warn");
+      return;
+    }
+    if (window.CommercialCore && window.CommercialCore.audit) {
+      window.CommercialCore.audit.clear();
+      steps.forEach(function (s) {
+        window.CommercialCore.audit.logAction("Data Cleaning Workbench", s.log, {
+          description: s.log,
+        });
+      });
+      const pyScript = window.CommercialCore.audit.generatePythonScript(original.source || "dataset");
+      Lib.downloadText(
+        "pipeline_" + (original.source || "dataset").replace(/[^a-zA-Z0-9_]/g, "_") + ".py",
+        pyScript,
+        "text/x-python"
+      );
+      showMessage("Downloaded production Python (Pandas/Polars) cleaning pipeline.", "ok");
+    } else {
+      showMessage("Audit logger not loaded.", "error");
+    }
+  }
+
+  function exportSqlMigration() {
+    if (!original) {
+      showMessage("Load a dataset first.", "warn");
+      return;
+    }
+    if (window.CommercialCore && window.CommercialCore.audit) {
+      const sqlScript = window.CommercialCore.audit.generateSQLMigration(original.source || "dataset");
+      Lib.downloadText(
+        "clean_" + (original.source || "dataset").replace(/[^a-zA-Z0-9_]/g, "_") + ".sql",
+        sqlScript,
+        "application/sql"
+      );
+      showMessage("Downloaded dbt / SQL migration script.", "ok");
+    } else {
+      showMessage("Audit logger not loaded.", "error");
+    }
+  }
+
+  async function bindSqlConsole() {
+    const runBtn = document.getElementById("cl-run-sql");
+    const input = /** @type {HTMLTextAreaElement|null} */ (document.getElementById("cl-sql-input"));
+    const resultsDiv = document.getElementById("cl-sql-results");
+    const timer = document.getElementById("cl-sql-timer");
+    const aggPreset = document.getElementById("cl-sql-preset-agg");
+    const nullsPreset = document.getElementById("cl-sql-preset-nulls");
+
+    if (aggPreset && input) {
+      aggPreset.onclick = function () {
+        const cols = currentColumns();
+        const numCol = cols.find(function (c) { return Lib.isNumericColumn(currentRows(), c); }) || cols[0];
+        const catCol = cols.find(function (c) { return !Lib.isNumericColumn(currentRows(), c); }) || cols[0];
+        input.value = "SELECT " + catCol + ", COUNT(*) AS total_count, AVG(" + numCol + ") AS avg_val FROM dataset GROUP BY " + catCol + " ORDER BY total_count DESC LIMIT 10;";
+      };
+    }
+
+    if (nullsPreset && input) {
+      nullsPreset.onclick = function () {
+        const cols = currentColumns();
+        const firstCol = cols[0];
+        input.value = "SELECT * FROM dataset WHERE " + firstCol + " IS NULL OR " + firstCol + " = '' LIMIT 20;";
+      };
+    }
+
+    if (runBtn && input && resultsDiv) {
+      runBtn.onclick = async function () {
+        if (!original) {
+          resultsDiv.innerHTML = '<p class="cl-hint" style="color: #ef4444;">Please load a dataset first.</p>';
+          return;
+        }
+        resultsDiv.innerHTML = '<p class="cl-hint">Executing query across dataset...</p>';
+        try {
+          if (window.CommercialCore && window.CommercialCore.sql) {
+            await window.CommercialCore.sql.registerTable("dataset", currentColumns(), currentRows());
+            const queryResult = await window.CommercialCore.sql.query(input.value);
+
+            if (timer) {
+              timer.innerHTML = "⏱️ " + queryResult.elapsedMs + "ms (" + queryResult.engine + ") · " + queryResult.rowCount + " rows";
+            }
+
+            if (!queryResult.rows || !queryResult.rows.length) {
+              resultsDiv.innerHTML = '<p class="cl-hint">Query executed successfully (0 rows returned).</p>';
+              return;
+            }
+
+            const ths = queryResult.columns.map(function (c) { return "<th>" + esc(c) + "</th>"; }).join("");
+            const trs = queryResult.rows.slice(0, 50).map(function (r) {
+              return "<tr>" + queryResult.columns.map(function (c) { return "<td>" + esc(r[c]) + "</td>"; }).join("") + "</tr>";
+            }).join("");
+
+            resultsDiv.innerHTML =
+              '<table class="cl-stats" style="width: 100%; font-size: 0.85rem;">' +
+              "<thead><tr>" + ths + "</tr></thead>" +
+              "<tbody>" + trs + "</tbody>" +
+              "</table>" +
+              (queryResult.rows.length > 50 ? '<p class="cl-hint">Showing first 50 of ' + queryResult.rows.length + " rows.</p>" : "");
+          } else {
+            resultsDiv.innerHTML = '<p class="cl-hint" style="color: #ef4444;">Commercial SQL engine initializing.</p>';
+          }
+        } catch (err) {
+          resultsDiv.innerHTML = '<p class="cl-hint" style="color: #ef4444;">SQL Execution Error: ' + esc(err.message) + "</p>";
+        }
+      };
+    }
   }
 
   /* ---------- events ---------- */
@@ -694,6 +807,8 @@
     on("cl-undo", "click", undoStep);
     on("cl-reset", "click", resetAll);
     on("cl-export-csv", "click", exportCsv);
+    on("cl-export-python", "click", exportPythonPipeline);
+    on("cl-export-sql", "click", exportSqlMigration);
     on("cl-export-log", "click", exportLog);
     on("cl-send-scale", "click", function () {
       if (!original || !window.DatasetToolsHandoff) {

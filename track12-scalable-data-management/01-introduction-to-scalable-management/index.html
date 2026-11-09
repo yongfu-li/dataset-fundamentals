@@ -5069,15 +5069,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mathematical-foundations-scaling-limits-and-littles-law" class="md-nav__link">
+  <a href="#mathematical-foundations-scaling-limits-littles-law-and-queuing-dynamics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mathematical Foundations: Scaling Limits and Little's Law
+        Mathematical Foundations: Scaling Limits, Little's Law, and Queuing Dynamics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Mathematical Foundations: Scaling Limits and Little&#39;s Law">
+    <nav class="md-nav" aria-label="Mathematical Foundations: Scaling Limits, Little&#39;s Law, and Queuing Dynamics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5092,10 +5092,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-amdahls-law-vs-gustafsons-law" class="md-nav__link">
+  <a href="#2-mm1-queuing-response-time-and-saturation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Amdahl's Law vs. Gustafson's Law
+        2. M/M/1 Queuing Response Time and Saturation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-amdahls-law-vs-gustafsons-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Amdahl's Law vs. Gustafson's Law
       
     </span>
   </a>
@@ -5146,10 +5157,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7159,15 +7170,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mathematical-foundations-scaling-limits-and-littles-law" class="md-nav__link">
+  <a href="#mathematical-foundations-scaling-limits-littles-law-and-queuing-dynamics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mathematical Foundations: Scaling Limits and Little's Law
+        Mathematical Foundations: Scaling Limits, Little's Law, and Queuing Dynamics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Mathematical Foundations: Scaling Limits and Little&#39;s Law">
+    <nav class="md-nav" aria-label="Mathematical Foundations: Scaling Limits, Little&#39;s Law, and Queuing Dynamics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7182,10 +7193,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-amdahls-law-vs-gustafsons-law" class="md-nav__link">
+  <a href="#2-mm1-queuing-response-time-and-saturation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Amdahl's Law vs. Gustafson's Law
+        2. M/M/1 Queuing Response Time and Saturation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-amdahls-law-vs-gustafsons-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Amdahl's Law vs. Gustafson's Law
       
     </span>
   </a>
@@ -7236,10 +7258,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7287,21 +7309,40 @@
 <hr />
 <h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
 <p>Modern machine learning systems are fundamentally limited not by algorithmic complexity, but by the physical and architectural constraints of data ingestion, storage, and retrieval (<a href="#ref-dean2004">Dean &amp; Ghemawat, 2004</a>). While earlier chapters examined data collection, cleaning, synthetic generation, and manual annotation on bounded sample spaces, <strong>scalable data management</strong> addresses the operational challenges that emerge when dataset volume (<span class="arithmatex">\(V\)</span>), ingestion velocity (<span class="arithmatex">\(\lambda\)</span>), and query concurrency (<span class="arithmatex">\(Q\)</span>) outgrow single-server memory and storage fabrics.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+-------------------------------------------------------------------------------+
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|                    THE DISTRIBUTED DATA PLATFORM CONTINUUM                    |
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>+-------------------------------------------------------------------------------+
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|  Ingestion Tier      Storage &amp; Catalog Tier      Distributed Compute Tier     |
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>|                                                                               |
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>|  [IoT Streams]  --&gt;  +---------------------+  --&gt;  [Ray / PyTorch DDP]        |
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>|  [CDC / Kafka]  --&gt;  | Cloud Object Store  |  --&gt;  [Apache Spark / Trino]     |
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>|  [Web Crawlers] --&gt;  | (S3 / GCS / Ceph)   |  --&gt;  [Vector Databases]         |
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>|                      |  Metadata Catalog   |                                  |
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>|                      | (Iceberg / Delta)   |  --&gt;  Downstream ML Training /   |
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>|                      +---------------------+       Feature Store Ingestion    |
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>+-------------------------------------------------------------------------------+
-</span></code></pre></div>
+<pre class="mermaid"><code>flowchart LR
+  subgraph Ingest ["1. Ingestion Tier"]
+    IoT["IoT &amp; Telemetry Streams"]
+    CDC["CDC &amp; Message Brokers&lt;br/&gt;(Kafka / Pulsar)"]
+    Web["Web Crawlers &amp; APIs"]
+  end
+
+  subgraph Store ["2. Storage &amp; Metadata Catalog Tier"]
+    ObjectStore[("Cloud Object Store&lt;br/&gt;(S3 / GCS / Ceph)")]
+    Catalog[("ACID Metadata Catalog&lt;br/&gt;(Iceberg / Delta Lake)")]
+  end
+
+  subgraph Compute ["3. Distributed Compute Tier"]
+    Spark["Analytical Query Engines&lt;br/&gt;(Apache Spark / Trino)"]
+    Ray["Distributed ML Training&lt;br/&gt;(PyTorch DDP / Ray)"]
+    Vector["Vector Index Fabric&lt;br/&gt;(HNSW / Milvus)"]
+  end
+
+  Ingest --&gt; ObjectStore
+  ObjectStore &lt;--&gt; Catalog
+  Catalog --&gt; Spark
+  Catalog --&gt; Ray
+  Catalog --&gt; Vector
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#ffffff,stroke-width:2px;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#ffffff,stroke-width:2px;
+  classDef green fill:#064e3b,stroke:#10b981,color:#ffffff,stroke-width:2px;
+  classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#ffffff,stroke-width:2px;
+
+  class IoT,CDC,Web blue;
+  class ObjectStore,Catalog green;
+  class Spark,Ray,Vector purple;</code></pre>
 <h3 id="the-physical-storage-hierarchy-latency-numbers">The Physical Storage Hierarchy &amp; Latency Numbers</h3>
-<p>Scalable architecture begins with the physical realities of computer architecture. Latency differentials across memory tiers span six orders of magnitude:</p>
+<p>Scalable architecture begins with the physical realities of computer architecture (<a href="#ref-barroso2013">Barroso et al., 2013</a>). Latency differentials across memory tiers span six orders of magnitude:</p>
 <table>
 <thead>
 <tr>
@@ -7315,146 +7356,159 @@
 <tr>
 <td style="text-align: left;"><strong>L1 CPU Cache</strong></td>
 <td style="text-align: left;">64 KB / core</td>
-<td style="text-align: left;"><span class="arithmatex">\(0.5\text{ ns}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.5    ext{ ns}\)</span></td>
 <td style="text-align: left;">1 second</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>L3 Shared Cache</strong></td>
 <td style="text-align: left;">32 - 128 MB</td>
-<td style="text-align: left;"><span class="arithmatex">\(15\text{ ns}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(15   ext{ ns}\)</span></td>
 <td style="text-align: left;">30 seconds</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>DRAM Main Memory</strong></td>
 <td style="text-align: left;">64 - 1024 GB</td>
-<td style="text-align: left;"><span class="arithmatex">\(100\text{ ns}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(100 ext{ ns}\)</span></td>
 <td style="text-align: left;">3.3 minutes</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>NVMe PCIe SSD</strong></td>
 <td style="text-align: left;">1 - 30 TB</td>
-<td style="text-align: left;"><span class="arithmatex">\(100\text{ }\mu\text{s}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(100    ext{ }\mu   ext{s}\)</span></td>
 <td style="text-align: left;">2.3 days</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Mechanical HDD</strong></td>
 <td style="text-align: left;">4 - 24 TB</td>
-<td style="text-align: left;"><span class="arithmatex">\(10\text{ ms}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(10 ext{ ms}\)</span></td>
 <td style="text-align: left;">8 months</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Cloud Object Store</strong></td>
 <td style="text-align: left;">Petabytes to Exabytes</td>
-<td style="text-align: left;"><span class="arithmatex">\(50 - 150\text{ ms}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(50 - 150    ext{ ms}\)</span></td>
 <td style="text-align: left;">3 to 10 years</td>
 </tr>
 </tbody>
 </table>
 <p>Because deep learning gradient steps require throughputs exceeding gigabytes per second, distributed systems must decouple persistent storage (object stores) from ephemeral caching (local NVMe and DRAM caches) through tiered prefetching.</p>
-<h3 id="mathematical-foundations-scaling-limits-and-littles-law">Mathematical Foundations: Scaling Limits and Little's Law</h3>
-<p>Two complementary laws govern the theoretical boundaries of scaling computational and data pipelines:</p>
+<h3 id="mathematical-foundations-scaling-limits-littles-law-and-queuing-dynamics">Mathematical Foundations: Scaling Limits, Little's Law, and Queuing Dynamics</h3>
+<p>Four governing mathematical laws define the theoretical boundaries of scaling data pipelines:</p>
 <h4 id="1-littles-law">1. Little's Law</h4>
-<p>For any stable queuing system operating in steady state, the average number of concurrent requests or data items in the pipeline <span class="arithmatex">\(L\)</span> equals the long-term average arrival rate <span class="arithmatex">\(\lambda\)</span> multiplied by the average latency <span class="arithmatex">\(W\)</span> spent in the system (<a href="#ref-little1961">Little, 1961</a>):
+<p>For any stable queuing system operating in steady state, the average number of concurrent requests or in-flight data items <span class="arithmatex">\(L\)</span> equals the long-term average arrival rate <span class="arithmatex">\(\lambda\)</span> multiplied by the average latency <span class="arithmatex">\(W\)</span> spent in the system (<a href="#ref-little1961">Little, 1961</a>):
 $<span class="arithmatex">\(L = \lambda \cdot W\)</span>$</p>
-<p>If an ingestion pipeline receives <span class="arithmatex">\(\lambda = 100,000\text{ events/sec}\)</span> and downstream validation/commit latency is <span class="arithmatex">\(W = 0.05\text{ sec}\)</span>, the system must maintain an in-flight concurrency buffer of:
-$<span class="arithmatex">\(L = 100,000 \times 0.05 = 5,000\text{ concurrent records}\)</span>$</p>
-<h4 id="2-amdahls-law-vs-gustafsons-law">2. Amdahl's Law vs. Gustafson's Law</h4>
-<p>When parallelizing data operations across <span class="arithmatex">\(s\)</span> distributed nodes, let <span class="arithmatex">\(p\)</span> denote the fraction of the workload that is strictly parallelizable, while <span class="arithmatex">\((1 - p)\)</span> is inherently serial (e.g., global synchronization, leader coordinate commits). The theoretical speedup <span class="arithmatex">\(S(s)\)</span> is bounded by <strong>Amdahl's Law</strong> (<a href="#ref-amdahl1967">Amdahl, 1967</a>):
-$<span class="arithmatex">\(S(s) = \frac{1}{(1 - p) + \frac{p}{s}}\)</span>$</p>
-<p>As <span class="arithmatex">\(s \to \infty\)</span>, the maximum speedup asymptotically approaches <span class="arithmatex">\(\frac{1}{1 - p}\)</span>. Even if <span class="arithmatex">\(95\%\)</span> of an ETL pipeline is parallelizable (<span class="arithmatex">\(p = 0.95\)</span>), the maximum speedup across an infinite cluster is strictly capped at <span class="arithmatex">\(20\times\)</span>.</p>
-<p>Conversely, <strong>Gustafson's Law</strong> (<a href="#ref-gustafson1988">Gustafson, 1988</a>) assumes that as computing power expands, problem size scales to fill available capacity:
+<p>If an ingestion pipeline receives <span class="arithmatex">\(\lambda = 100,000    ext{ records/sec}\)</span> and downstream validation/commit latency is <span class="arithmatex">\(W = 0.05    ext{ sec}\)</span>, the system must maintain an in-flight concurrency buffer of:
+$<span class="arithmatex">\(L = 100,000   imes 0.05 = 5,000   ext{ concurrent records}\)</span>$</p>
+<h4 id="2-mm1-queuing-response-time-and-saturation">2. M/M/1 Queuing Response Time and Saturation</h4>
+<p>Under Markovian arrival rate <span class="arithmatex">\(\lambda\)</span> and single-worker service rate <span class="arithmatex">\(\mu\)</span> (with utilization $
+ho = rac{\lambda}{\mu} &lt; 1$), the expected residence time <span class="arithmatex">\(W\)</span> and queue length <span class="arithmatex">\(L_q\)</span> diverge asymptotically as $
+ho  o 1$:
+$<span class="arithmatex">\(W = rac{1}{\mu - \lambda} = rac{1}{\mu(1 - 
+ho)}\)</span>$
+$<span class="arithmatex">\(L_q = rac{
+ho^2}{1 - 
+ho}\)</span>$</p>
+<p>When utilization $
+ho$ exceeds <span class="arithmatex">\(0.90\)</span>, queue delays increase tenfold, requiring horizontal worker sharding to maintain latency SLAs.</p>
+<h4 id="3-amdahls-law-vs-gustafsons-law">3. Amdahl's Law vs. Gustafson's Law</h4>
+<p>When parallelizing data operations across <span class="arithmatex">\(s\)</span> distributed nodes, let <span class="arithmatex">\(p\)</span> denote the fraction of the workload that is strictly parallelizable, while <span class="arithmatex">\((1 - p)\)</span> is inherently serial. The theoretical speedup <span class="arithmatex">\(S(s)\)</span> is bounded by <strong>Amdahl's Law</strong> (<a href="#ref-amdahl1967">Amdahl, 1967</a>):
+$<span class="arithmatex">\(S(s) = rac{1}{(1 - p) + rac{p}{s}}\)</span>$</p>
+<p>As <span class="arithmatex">\(s   o \infty\)</span>, the maximum speedup asymptotically approaches $rac{1}{1 - p}$. Even if <span class="arithmatex">\(95\%\)</span> of an ETL pipeline is parallelizable (<span class="arithmatex">\(p = 0.95\)</span>), the maximum speedup across an infinite cluster is strictly capped at <span class="arithmatex">\(20   imes\)</span>.</p>
+<p>Conversely, <strong>Gustafson's Law</strong> (<a href="#ref-gustafson1988">Gustafson, 1988</a>) assumes that problem size scales to fill available capacity:
 $<span class="arithmatex">\(S(s) = s - (s - 1)(1 - p)\)</span>$
 Under Gustafson's perspective, scalable data management succeeds by increasing dataset volume proportionally with node count while holding execution latency constant.</p>
 <hr />
 <h2 id="production-implementation-scalability-queue-simulator">💻 Production Implementation: Scalability &amp; Queue Simulator</h2>
-<p>The following typed, self-contained Python module simulates a distributed ingestion pipeline, validates Little's Law, and computes theoretical Amdahl speedup limits.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">Scalable Data Management: Ingestion Queue &amp; Scaling Bounds Simulator</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">Validates Little's Law and computes theoretical parallel speedups.</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="sd">"""</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">PipelineMetrics</span><span class="p">:</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span>       <span class="c1"># lambda: records per second</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">service_latency</span><span class="p">:</span> <span class="nb">float</span>    <span class="c1"># W: mean processing time in seconds</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">concurrent_load</span><span class="p">:</span> <span class="nb">float</span>    <span class="c1"># L: average items in flight</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="n">theoretical_l</span><span class="p">:</span> <span class="nb">float</span>      <span class="c1"># Little's law expectation: lambda * W</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScalabilityEngine</span><span class="p">:</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="sd">"""Evaluates concurrency bounds, throughput, and Amdahl/Gustafson limits."""</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">verify_littles_law</span><span class="p">(</span><span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">service_latency</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PipelineMetrics</span><span class="p">:</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="sd">        Computes expected queue concurrency via Little's Law: L = lambda * W.</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="sd">        """</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="k">assert</span> <span class="n">arrival_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Arrival rate must be positive."</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="k">assert</span> <span class="n">service_latency</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Service latency must be positive."</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">expected_concurrency</span> <span class="o">=</span> <span class="n">arrival_rate</span> <span class="o">*</span> <span class="n">service_latency</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="k">return</span> <span class="n">PipelineMetrics</span><span class="p">(</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>            <span class="n">arrival_rate</span><span class="o">=</span><span class="n">arrival_rate</span><span class="p">,</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>            <span class="n">service_latency</span><span class="o">=</span><span class="n">service_latency</span><span class="p">,</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>            <span class="n">concurrent_load</span><span class="o">=</span><span class="n">expected_concurrency</span><span class="p">,</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>            <span class="n">theoretical_l</span><span class="o">=</span><span class="n">expected_concurrency</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>        <span class="p">)</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="sd">        Computes speedup under Amdahl's Law: S(s) = 1 / ((1 - p) + p / s).</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="sd">        """</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">parallel_fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Parallel fraction must be in [0, 1]."</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>        <span class="k">assert</span> <span class="n">nodes</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Node count must be at least 1."</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>        <span class="n">serial_fraction</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parallel_fraction</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>        <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">serial_fraction</span> <span class="o">+</span> <span class="p">(</span><span class="n">parallel_fraction</span> <span class="o">/</span> <span class="n">nodes</span><span class="p">))</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">gustafson_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="sd">        Computes scaled speedup under Gustafson's Law: S(s) = s - (s - 1) * (1 - p).</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="sd">        """</span>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">parallel_fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Parallel fraction must be in [0, 1]."</span>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>        <span class="k">assert</span> <span class="n">nodes</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Node count must be at least 1."</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>        <span class="n">serial_fraction</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parallel_fraction</span>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nodes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">serial_fraction</span><span class="p">)</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Executing ScalabilityEngine verification tests..."</span><span class="p">)</span>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="c1"># 1. Test Little's Law for 50,000 records/sec with 12ms latency</span>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="n">metrics</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">verify_littles_law</span><span class="p">(</span><span class="n">arrival_rate</span><span class="o">=</span><span class="mf">50_000.0</span><span class="p">,</span> <span class="n">service_latency</span><span class="o">=</span><span class="mf">0.012</span><span class="p">)</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"Little's Law mismatch: </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Little's Law: </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">arrival_rate</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> req/s @ </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">service_latency</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">ms -&gt; </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> in flight."</span><span class="p">)</span>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    <span class="c1"># 2. Test Amdahl's Law asymptotic limits</span>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    <span class="n">speedup_16</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>    <span class="n">speedup_inf</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>    <span class="k">assert</span> <span class="n">speedup_16</span> <span class="o">&lt;</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">"Amdahl speedup exceeded theoretical maximum for 16 nodes"</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">speedup_inf</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">),</span> <span class="s2">"Amdahl limit failed to converge to 1/(1-p)"</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Amdahl 90% parallel: 16 nodes = </span><span class="si">{</span><span class="n">speedup_16</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x, asymptotic ceiling = </span><span class="si">{</span><span class="n">speedup_inf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>    <span class="c1"># 3. Test Gustafson's Law scaled speedup</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="n">g_speedup</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">gustafson_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    <span class="k">assert</span> <span class="n">g_speedup</span> <span class="o">&gt;</span> <span class="n">speedup_16</span><span class="p">,</span> <span class="s2">"Gustafson speedup should exceed fixed-size Amdahl speedup"</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Gustafson 90% parallel: 16 nodes = </span><span class="si">{</span><span class="n">g_speedup</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x scaled speedup."</span><span class="p">)</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"All mathematical validation tests passed successfully!"</span><span class="p">)</span>
+<p>The following typed, self-contained Python module simulates a distributed ingestion pipeline, validates Little's Law, computes M/M/1 queuing saturation, and verifies theoretical Amdahl speedup limits.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">Scalable Data Management: Ingestion Queue &amp; Scaling Bounds Simulator</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Validates Little's Law, M/M/1 queue saturation, and parallel speedups.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">PipelineMetrics</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span>       <span class="c1"># lambda: records per second</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">service_rate</span><span class="p">:</span> <span class="nb">float</span>       <span class="c1"># mu: maximum processing capacity per second</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">utilization</span><span class="p">:</span> <span class="nb">float</span>        <span class="c1"># rho: lambda / mu</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">expected_latency</span><span class="p">:</span> <span class="nb">float</span>   <span class="c1"># W = 1 / (mu - lambda)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">concurrent_load</span><span class="p">:</span> <span class="nb">float</span>    <span class="c1"># L = lambda * W</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScalabilityEngine</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="sd">"""Evaluates concurrency bounds, throughput, and Amdahl/Gustafson limits."""</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_mm1_pipeline</span><span class="p">(</span><span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">service_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PipelineMetrics</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="sd">        Computes steady-state M/M/1 queuing metrics via Little's Law.</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="sd">        """</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="k">assert</span> <span class="n">arrival_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Arrival rate must be positive."</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">assert</span> <span class="n">service_rate</span> <span class="o">&gt;</span> <span class="n">arrival_rate</span><span class="p">,</span> <span class="s2">"System unstable: service rate must exceed arrival rate."</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="n">rho</span> <span class="o">=</span> <span class="n">arrival_rate</span> <span class="o">/</span> <span class="n">service_rate</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="n">expected_latency</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">service_rate</span> <span class="o">-</span> <span class="n">arrival_rate</span><span class="p">)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">concurrent_load</span> <span class="o">=</span> <span class="n">arrival_rate</span> <span class="o">*</span> <span class="n">expected_latency</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="k">return</span> <span class="n">PipelineMetrics</span><span class="p">(</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>            <span class="n">arrival_rate</span><span class="o">=</span><span class="n">arrival_rate</span><span class="p">,</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>            <span class="n">service_rate</span><span class="o">=</span><span class="n">service_rate</span><span class="p">,</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>            <span class="n">utilization</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>            <span class="n">expected_latency</span><span class="o">=</span><span class="n">expected_latency</span><span class="p">,</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="n">concurrent_load</span><span class="o">=</span><span class="n">concurrent_load</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">        </span><span class="sd">"""Computes speedup under Amdahl's Law: S(s) = 1 / ((1 - p) + p / s)."""</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">parallel_fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Parallel fraction must be in [0, 1]."</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="k">assert</span> <span class="n">nodes</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Node count must be at least 1."</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="n">serial_fraction</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parallel_fraction</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">serial_fraction</span> <span class="o">+</span> <span class="p">(</span><span class="n">parallel_fraction</span> <span class="o">/</span> <span class="n">nodes</span><span class="p">))</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">gustafson_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">        </span><span class="sd">"""Computes scaled speedup under Gustafson's Law: S(s) = s - (s - 1) * (1 - p)."""</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">parallel_fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Parallel fraction must be in [0, 1]."</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="k">assert</span> <span class="n">nodes</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Node count must be at least 1."</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">serial_fraction</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parallel_fraction</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nodes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">serial_fraction</span><span class="p">)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Executing ScalabilityEngine verification tests..."</span><span class="p">)</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="c1"># 1. Test M/M/1 Queuing and Little's Law (lambda=80k req/s, mu=100k req/s -&gt; rho=0.8)</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">metrics</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">evaluate_mm1_pipeline</span><span class="p">(</span><span class="n">arrival_rate</span><span class="o">=</span><span class="mf">80_000.0</span><span class="p">,</span> <span class="n">service_rate</span><span class="o">=</span><span class="mf">100_000.0</span><span class="p">)</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">utilization</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="s2">"Utilization mismatch"</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">expected_latency</span><span class="p">,</span> <span class="mf">0.00005</span><span class="p">),</span> <span class="s2">"Latency mismatch"</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="s2">"Little's Law load mismatch"</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ M/M/1 Queue: rho=</span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">utilization</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, W=</span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">expected_latency</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">ms, in-flight=</span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="c1"># 2. Test Amdahl's Law asymptotic limits</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">speedup_16</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="n">speedup_inf</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="k">assert</span> <span class="n">speedup_16</span> <span class="o">&lt;</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">"Amdahl speedup exceeded theoretical maximum for 16 nodes"</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">speedup_inf</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">),</span> <span class="s2">"Amdahl limit failed to converge to 1/(1-p)"</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Amdahl 90% parallel: 16 nodes = </span><span class="si">{</span><span class="n">speedup_16</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x, asymptotic ceiling = </span><span class="si">{</span><span class="n">speedup_inf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="c1"># 3. Test Gustafson's Law scaled speedup</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="n">g_speedup</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">gustafson_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="k">assert</span> <span class="n">g_speedup</span> <span class="o">&gt;</span> <span class="n">speedup_16</span><span class="p">,</span> <span class="s2">"Gustafson speedup should exceed fixed-size Amdahl speedup"</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Gustafson 90% parallel: 16 nodes = </span><span class="si">{</span><span class="n">g_speedup</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x scaled speedup."</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"All mathematical validation tests passed successfully!"</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-cern-worldwide-lhc-computing-grid-wlcg">🔬 Empirical Case Study: CERN Worldwide LHC Computing Grid (WLCG)</h2>
-<p>At the European Organization for Nuclear Research (CERN), the <strong>Large Hadron Collider (LHC)</strong> produces over <strong>1 billion proton-proton collisions per second</strong> across four detector experiments (ATLAS, CMS, ALICE, LHCb). </p>
+<p>At the European Organization for Nuclear Research (CERN), the <strong>Large Hadron Collider (LHC)</strong> produces over <strong>1 billion proton-proton collisions per second</strong> across four detector experiments (ATLAS, CMS, ALICE, LHCb).</p>
 <ol>
-<li><strong>The Ingestion Dilemma:</strong> Detector digitizers capture raw collision telemetry at <span class="arithmatex">\(40\text{ Terabytes per second}\)</span>. Streaming this raw volume directly to disk is physically and economically impossible.</li>
+<li><strong>The Ingestion Dilemma:</strong> Detector digitizers capture raw collision telemetry at <span class="arithmatex">\(40    ext{ Terabytes per second}\)</span>. Streaming this raw volume directly to persistent storage is physically impossible.</li>
 <li><strong>The Tiered Processing Architecture:</strong> CERN deploys a multi-tier hierarchical filtering topology:</li>
-<li><strong>Level-1 Hardware Trigger (FPGAs/ASICs):</strong> Filters raw events from <span class="arithmatex">\(40\text{ MHz}\)</span> down to <span class="arithmatex">\(100\text{ kHz}\)</span> in under <span class="arithmatex">\(3.2\text{ }\mu\text{s}\)</span>.</li>
-<li><strong>High-Level Trigger (HLT, GPU/CPU Clusters):</strong> Further reduces the event stream to <span class="arithmatex">\(1\text{ kHz}\)</span> (<span class="arithmatex">\(1\text{ GB/sec}\)</span> sustained write rate).</li>
+<li><strong>Level-1 Hardware Trigger (FPGAs/ASICs):</strong> Filters raw events from <span class="arithmatex">\(40    ext{ MHz}\)</span> down to <span class="arithmatex">\(100 ext{ kHz}\)</span> in under <span class="arithmatex">\(3.2    ext{ }\mu   ext{s}\)</span>.</li>
+<li><strong>High-Level Trigger (HLT, GPU/CPU Clusters):</strong> Further reduces the event stream to <span class="arithmatex">\(1 ext{ kHz}\)</span> (<span class="arithmatex">\(1  ext{ GB/sec}\)</span> sustained write rate).</li>
 <li><strong>WLCG Tier Structure:</strong> Distributes over <strong>50 Petabytes of collision data annually</strong> across 170 computing centers in 42 countries.</li>
 </ol>
 <table>
@@ -7468,18 +7522,18 @@ Under Gustafson's perspective, scalable data management succeeds by increasing d
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Ingestion Bandwidth</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(2 - 10\text{ GB/sec}\)</span> (Saturates PCI bus)</td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(40\text{ TB/sec}\)</span> raw <span class="arithmatex">\(\to\)</span> <span class="arithmatex">\(1\text{ GB/sec}\)</span> filtered</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(2 - 10 ext{ GB/sec}\)</span> (Saturates PCI bus)</td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(40   ext{ TB/sec}\)</span> raw $ o$ <span class="arithmatex">\(1   ext{ GB/sec}\)</span> filtered</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Global Storage Footprint</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(&lt; 5\text{ Petabytes}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 1,000\text{ Petabytes (1 Exabyte)}\)</span> distributed</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(&lt; 5   ext{ Petabytes}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 1,000   ext{ Petabytes (1 Exabyte)}\)</span> distributed</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Fault Isolation</strong></td>
 <td style="text-align: left;">Single-point controller failure risk</td>
-<td style="text-align: left;">Autonomous regional failover (Tier 0 <span class="arithmatex">\(\to\)</span> Tier 1 <span class="arithmatex">\(\to\)</span> Tier 2)</td>
+<td style="text-align: left;">Autonomous regional failover (Tier 0 $   o$ Tier 1 $ o$ Tier 2)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Batch Analytical Throughput</strong></td>
@@ -7501,20 +7555,20 @@ Under Gustafson's perspective, scalable data management succeeds by increasing d
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-dean2004"></a><strong>Dean, J., &amp; Ghemawat, S.</strong> (2004). MapReduce: Simplified data processing on large clusters. In <em>OSDI 2004</em> (pp. 137–150).</li>
-<li><a id="ref-little1961"></a><strong>Little, J. D.</strong> (1961). A proof for the queuing formula: <span class="arithmatex">\(L = \lambda W\)</span>. <em>Operations Research</em>, 9(3), 383–387.</li>
-<li><a id="ref-amdahl1967"></a><strong>Amdahl, G. M.</strong> (1967). Validity of the single processor approach to achieving large scale computing capabilities. In <em>AFIPS '67</em> (pp. 483–485).</li>
-<li><a id="ref-gustafson1988"></a><strong>Gustafson, J. L.</strong> (1988). Reevaluating Amdahl's law. <em>Communications of the ACM</em>, 31(5), 532–533.</li>
-<li><a id="ref-zaharia2016"></a><strong>Zaharia, M., Xin, R. S., Wendell, P., Das, T., Armbrust, M., Dave, A., ... &amp; Stoica, I.</strong> (2016). Apache Spark: A unified engine for big data processing. <em>Communications of the ACM</em>, 59(11), 56–65.</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-dean2004"></a><strong>[Dean2004]</strong> J. Dean and S. Ghemawat, "MapReduce: Simplified Data Processing on Large Clusters," in <em>Proceedings of the 6th Symposium on Operating System Design and Implementation (OSDI '04)</em>, Dec. 2004, pp. 137–150. <a href="https://doi.org/10.1145/1327452.1327492">DOI: 10.1145/1327452.1327492</a>.</li>
+<li><a id="ref-little1961"></a><strong>[Little1961]</strong> J. D. C. Little, "A Proof for the Queuing Formula: <span class="arithmatex">\(L = \lambda W\)</span>," <em>Operations Research</em>, vol. 9, no. 3, pp. 383–387, June 1961. <a href="https://doi.org/10.1287/opre.9.3.383">DOI: 10.1287/opre.9.3.383</a>.</li>
+<li><a id="ref-amdahl1967"></a><strong>[Amdahl1967]</strong> G. M. Amdahl, "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities," in <em>Proceedings of the April 18–20, 1967, Spring Joint Computer Conference (AFIPS '67)</em>, 1967, pp. 483–485. <a href="https://doi.org/10.1145/1465482.1465560">DOI: 10.1145/1465482.1465560</a>.</li>
+<li><a id="ref-gustafson1988"></a><strong>[Gustafson1988]</strong> J. L. Gustafson, "Reevaluating Amdahl's Law," <em>Communications of the ACM</em>, vol. 31, no. 5, pp. 532–533, May 1988. <a href="https://doi.org/10.1145/42411.42415">DOI: 10.1145/42411.42415</a>.</li>
+<li><a id="ref-zaharia2016"></a><strong>[Zaharia2016]</strong> M. Zaharia et al., "Apache Spark: A Unified Engine for Big Data Processing," <em>Communications of the ACM</em>, vol. 59, no. 11, pp. 56–65, Oct. 2016. <a href="https://doi.org/10.1145/2934664">DOI: 10.1145/2934664</a>.</li>
+<li><a id="ref-barroso2013"></a><strong>[Barroso2013]</strong> L. A. Barroso, J. Clidaras, and U. Hölzle, "The Datacenter as a Computer: An Introduction to the Design of Warehouse-Scale Machines," <em>Synthesis Lectures on Computer Architecture</em>, vol. 8, no. 3, pp. 1–154, 2013. <a href="https://doi.org/10.2200/S00516ED2V01Y201306CAC024">DOI: 10.2200/S00516ED2V01Y201306CAC024</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../" class="noc-sim-btn secondary" style="text-decoration: none;">← Track 12 Overview</a>
   <a href="../02-databases-and-cloud-storage/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Databases & Cloud Storage (12.2) →</a>
 </div>
-<p>\n</p>
 
 
 
@@ -7611,6 +7665,8 @@ Under Gustafson's perspective, scalable data management succeeds by increasing d
         <script src="../../assets/js/katex.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
+      
+        <script src="../../assets/js/commercial-core.js"></script>
       
     
   </body>

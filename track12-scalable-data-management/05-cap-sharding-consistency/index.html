@@ -5181,33 +5181,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#beyond-cap-the-pacelc-theorem" class="md-nav__link">
+  <a href="#consistent-hashing-tunable-quorum-mathematics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Beyond CAP: The PACELC Theorem
+        Consistent Hashing &amp; Tunable Quorum Mathematics
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consistent-hashing-tunable-quorums" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consistent Hashing &amp; Tunable Quorums
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Consistent Hashing &amp; Tunable Quorums">
+    <nav class="md-nav" aria-label="Consistent Hashing &amp; Tunable Quorum Mathematics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#consistent-hashing-karger-et-al-1997" class="md-nav__link">
+  <a href="#1-chernoff-load-balancing-bound-with-virtual-nodes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consistent Hashing (Karger et al., 1997)
+        1. Chernoff Load Balancing Bound with Virtual Nodes
       
     </span>
   </a>
@@ -5215,10 +5204,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tunable-quorum-mathematics" class="md-nav__link">
+  <a href="#2-tunable-quorum-mathematics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tunable Quorum Mathematics
+        2. Tunable Quorum Mathematics
       
     </span>
   </a>
@@ -5269,10 +5258,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7170,33 +7159,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#beyond-cap-the-pacelc-theorem" class="md-nav__link">
+  <a href="#consistent-hashing-tunable-quorum-mathematics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Beyond CAP: The PACELC Theorem
+        Consistent Hashing &amp; Tunable Quorum Mathematics
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consistent-hashing-tunable-quorums" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consistent Hashing &amp; Tunable Quorums
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Consistent Hashing &amp; Tunable Quorums">
+    <nav class="md-nav" aria-label="Consistent Hashing &amp; Tunable Quorum Mathematics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#consistent-hashing-karger-et-al-1997" class="md-nav__link">
+  <a href="#1-chernoff-load-balancing-bound-with-virtual-nodes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consistent Hashing (Karger et al., 1997)
+        1. Chernoff Load Balancing Bound with Virtual Nodes
       
     </span>
   </a>
@@ -7204,10 +7182,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#tunable-quorum-mathematics" class="md-nav__link">
+  <a href="#2-tunable-quorum-mathematics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tunable Quorum Mathematics
+        2. Tunable Quorum Mathematics
       
     </span>
   </a>
@@ -7258,10 +7236,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-scholarly-citations" class="md-nav__link">
+  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 References &amp; Scholarly Citations
+        📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7309,18 +7287,33 @@
 <hr />
 <h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
 <p>Every distributed dataset management platform operates over imperfect physical networks subject to packet loss, variable latency, and hardware crashes. The trade-offs between consistency, availability, and latency are formalized by two governing theoretical frameworks: the <strong>CAP Theorem</strong> (<a href="#ref-brewer2000">Brewer, 2000</a>; <a href="#ref-gilbert2002">Gilbert &amp; Lynch, 2002</a>) and the <strong>PACELC Theorem</strong> (<a href="#ref-abadi2012">Abadi, 2012</a>).</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                        THE CAP THEOREM TRILEMMA
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                               Consistency
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                                  /   \
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                                 /     \
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                                /  CP   \
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                         CA    / (HBase) \
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                      (RDBMS) /           \
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                             /             \
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>           Availability --------------------- Partition Tolerance
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                 AP
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                            (Cassandra)
-</span></code></pre></div>
+<pre class="mermaid"><code>flowchart TD
+  subgraph Trilemma ["The CAP Theorem Trilemma"]
+    CAP_C["Consistency (Linearizability)&lt;br/&gt;Atomic global read/write state"]
+    CAP_A["Availability&lt;br/&gt;Every non-failing node returns 200 OK"]
+    CAP_P["Partition Tolerance&lt;br/&gt;Network partitions &amp; packet drops"]
+  end
+
+  subgraph Archetypes ["Architectural Implementations"]
+    CP["CP Systems (HBase, Spanner)&lt;br/&gt;Sacrifice Availability to prevent split-brain"]
+    AP["AP Systems (Cassandra, Dynamo)&lt;br/&gt;Sacrifice Consistency to maintain writes"]
+    CA["CA Systems (Monolithic RDBMS)&lt;br/&gt;Only valid in non-distributed fabrics"]
+  end
+
+  CAP_C &amp; CAP_P --&gt; CP
+  CAP_A &amp; CAP_P --&gt; AP
+  CAP_C &amp; CAP_A --&gt; CA
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#ffffff,stroke-width:2px;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#ffffff,stroke-width:2px;
+  classDef green fill:#064e3b,stroke:#10b981,color:#ffffff,stroke-width:2px;
+  classDef purple fill:#4c1d95,stroke:#8b5cf6,color:#ffffff,stroke-width:2px;
+  classDef red fill:#7f1d1d,stroke:#ef4444,color:#ffffff,stroke-width:2px;
+
+  class CAP_C blue;
+  class CAP_A amber;
+  class CAP_P red;
+  class CP,AP,CA green;</code></pre>
 <h3 id="the-gilbert-lynch-proof-of-brewers-cap-theorem">The Gilbert &amp; Lynch Proof of Brewer's CAP Theorem</h3>
 <p>The CAP theorem states that a distributed read/write register can simultaneously guarantee at most two of the following three properties:
 1. <strong>Consistency (Linearizability, <span class="arithmatex">\(C\)</span>):</strong> Every read operation returns the value of the most recent write.
@@ -7333,159 +7326,145 @@
 4. Concurrently, a second client issues a read request <span class="arithmatex">\(r()\)</span> to node <span class="arithmatex">\(N_2 \in G_2\)</span>. By Availability (<span class="arithmatex">\(A\)</span>), <span class="arithmatex">\(N_2\)</span> must return a value.
 5. Because no messages can cross the partition boundary, <span class="arithmatex">\(N_2\)</span> has no knowledge of write <span class="arithmatex">\(w(v_1)\)</span> and returns the initial stale state <span class="arithmatex">\(v_0\)</span>.
 6. This directly violates Linearizable Consistency (<span class="arithmatex">\(C\)</span>). Therefore, <strong>no distributed system can guarantee both Consistency and Availability during a network partition</strong>.</p>
-<h3 id="beyond-cap-the-pacelc-theorem">Beyond CAP: The PACELC Theorem</h3>
-<p>Daniel Abadi (<a href="#ref-abadi2012">2012</a>) observed that CAP only describes system behavior during rare network partitions (<span class="arithmatex">\(P\)</span>). In the common normal state (<span class="arithmatex">\(E\)</span> for Else), systems must choose between <strong>Latency (<span class="arithmatex">\(L\)</span>)</strong> and <strong>Consistency (<span class="arithmatex">\(C\)</span>)</strong>:
-$<span class="arithmatex">\(\text{If } \mathbf{P} \text{ (Partition)} \implies \text{Choose } \mathbf{A} \text{ (Availability)} \lor \mathbf{C} \text{ (Consistency)}\)</span>$
-$<span class="arithmatex">\(\text{Else } \mathbf{E} \text{ (Normal)} \implies \text{Choose } \mathbf{L} \text{ (Latency)} \lor \mathbf{C} \text{ (Consistency)}\)</span>$</p>
-<ul>
-<li><strong>PA/EL Systems (e.g., DynamoDB, Cassandra):</strong> In partition, prioritize Availability; during normal operation, prioritize low Latency via asynchronous replication.</li>
-<li><strong>PC/EC Systems (e.g., Spanner, CockroachDB):</strong> In partition, prioritize Consistency; during normal operation, accept higher Latency via synchronous Paxos/Raft quorums.</li>
-</ul>
-<h3 id="consistent-hashing-tunable-quorums">Consistent Hashing &amp; Tunable Quorums</h3>
-<h4 id="consistent-hashing-karger-et-al-1997">Consistent Hashing (Karger et al., 1997)</h4>
-<p>Standard modular hashing (<span class="arithmatex">\(k \pmod N\)</span>) requires reshuffling <span class="arithmatex">\(O(K)\)</span> keys whenever a node is added or removed. Consistent hashing maps both keys and storage nodes onto a continuous circular ring <span class="arithmatex">\([0, 2^{32} - 1]\)</span>:
-- Adding or removing a node redistributes only <span class="arithmatex">\(K / N\)</span> keys on average.
-- <strong>Virtual Nodes (Vnodes):</strong> Each physical machine maps to <span class="arithmatex">\(V\)</span> virtual positions on the ring (typically <span class="arithmatex">\(V = 128 - 256\)</span>), ensuring uniform variance <span class="arithmatex">\(\sigma^2 \to 0\)</span> and eliminating hot spots.</p>
-<h4 id="tunable-quorum-mathematics">Tunable Quorum Mathematics</h4>
-<p>For a cluster replicating data across <span class="arithmatex">\(N\)</span> nodes, let <span class="arithmatex">\(W\)</span> denote the write quorum (number of nodes that must acknowledge a write) and <span class="arithmatex">\(R\)</span> denote the read quorum (number of nodes contacted on read):
-$<span class="arithmatex">\(R + W &gt; N \implies \text{Strong (Linearizable) Consistency}\)</span>$
+<h3 id="consistent-hashing-tunable-quorum-mathematics">Consistent Hashing &amp; Tunable Quorum Mathematics</h3>
+<h4 id="1-chernoff-load-balancing-bound-with-virtual-nodes">1. Chernoff Load Balancing Bound with Virtual Nodes</h4>
+<p>Standard modular hashing (<span class="arithmatex">\(k \pmod N\)</span>) reshuffles <span class="arithmatex">\(O(K)\)</span> keys upon node membership changes. Consistent hashing maps keys and physical nodes to a continuous ring <span class="arithmatex">\([0, 2^{32} - 1]\)</span> using <span class="arithmatex">\(V\)</span> virtual nodes per physical machine (<a href="#ref-karger1997">Karger et al., 1997</a>). The probability of any node exceeding <span class="arithmatex">\((1 + \epsilon)\)</span> times the average load <span class="arithmatex">\(ar{L} = rac{K}{N}\)</span> is bounded by Chernoff inequality:
+$<span class="arithmatex">\(\Pr\left[ \max_{i} L_i &gt; (1 + \epsilon) rac{K}{N} 
+ight] \le N \cdot \exp\left( -rac{\epsilon^2 K}{3 N} 
+ight)\)</span>$
+Setting <span class="arithmatex">\(V \ge 100\)</span> virtual nodes reduces load variance <span class="arithmatex">\(\sigma^2   o 0\)</span> and eliminates hot spots.</p>
+<h4 id="2-tunable-quorum-mathematics">2. Tunable Quorum Mathematics</h4>
+<p>For a cluster replicating data across <span class="arithmatex">\(N\)</span> nodes, let <span class="arithmatex">\(W\)</span> denote the write quorum (acknowledgments required to commit) and <span class="arithmatex">\(R\)</span> denote the read quorum (nodes queried on read):
+$<span class="arithmatex">\(|Q_R \cap Q_W| = R + W - N \ge 1 \implies     ext{Strong Linearizable Consistency}\)</span>$
 By the Pigeonhole Principle, the read set and write set must overlap by at least one node containing the latest timestamped mutation.</p>
 <hr />
 <h2 id="production-implementation-consistent-hash-ring-quorum-engine">💻 Production Implementation: Consistent Hash Ring &amp; Quorum Engine</h2>
 <p>The following typed Python program implements a complete Consistent Hash Ring with virtual nodes, key replication, and tunable quorum verification (<span class="arithmatex">\(R + W &gt; N\)</span>).</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">Consistent Hash Ring &amp; Tunable Quorum Consensus Simulator.</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">"""</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">bisect</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">ConsistentHashRing</span><span class="p">:</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="sd">"""Ring topology with virtual nodes for uniform partition distribution."""</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">replicas</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">vnodes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">replicas</span> <span class="o">=</span> <span class="n">replicas</span>      <span class="c1"># Replication factor N</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">vnodes</span> <span class="o">=</span> <span class="n">vnodes</span>          <span class="c1"># Virtual nodes per physical node</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>     <span class="c1"># Sorted list of virtual node hashes</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="p">)</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vnodes</span><span class="p">):</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>            <span class="n">vnode_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">:vnode_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>            <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">vnode_key</span><span class="p">)</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>            <span class="n">bisect</span><span class="o">.</span><span class="n">insort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">remove_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>            <span class="k">return</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ring</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">!=</span> <span class="n">node</span><span class="p">]</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">h</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span> <span class="o">!=</span> <span class="n">node</span><span class="p">}</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_preference_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">        </span><span class="sd">"""Returns N distinct physical nodes responsible for replicating key."""</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">:</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>            <span class="k">return</span> <span class="p">[]</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">)</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>        <span class="n">preference_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">idx</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">preference_list</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">replicas</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)):</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>            <span class="n">target_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]]</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>            <span class="k">if</span> <span class="n">target_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">preference_list</span><span class="p">:</span>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>                <span class="n">preference_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target_node</span><span class="p">)</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>            <span class="n">curr_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">curr_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">)</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>        <span class="k">return</span> <span class="n">preference_list</span>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="k">class</span><span class="w"> </span><span class="nc">DistributedStorageCluster</span><span class="p">:</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">    </span><span class="sd">"""Simulates multi-node key-value store with tunable R and W quorums."""</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring</span><span class="p">:</span> <span class="n">ConsistentHashRing</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">R</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ring</span> <span class="o">=</span> <span class="n">ring</span>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>  <span class="c1"># Replication factor</span>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">R</span>  <span class="c1"># Read quorum</span>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">W</span>  <span class="c1"># Write quorum</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># node -&gt; {key: (val, ver)}</span>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">        </span><span class="sd">"""Executes write requiring W node acknowledgments."""</span>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>        <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">get_preference_list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="s2">"Not enough physical nodes to satisfy replication factor"</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>        <span class="n">acks</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>            <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">:</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>            <span class="n">acks</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>            <span class="k">if</span> <span class="n">acks</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">:</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>                <span class="k">return</span> <span class="kc">True</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>        <span class="k">return</span> <span class="kc">False</span>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>
-</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="w">        </span><span class="sd">"""Executes read contacting R nodes and resolving highest version."""</span>
-</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>        <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">get_preference_list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>        <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">]:</span>
-</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>            <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
-</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">key</span><span class="p">])</span>
-</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>
-</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">responses</span><span class="p">:</span>
-</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>            <span class="k">return</span> <span class="kc">None</span>
-</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>        <span class="c1"># Return value with highest version number</span>
-</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>
-</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>
-</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Testing ConsistentHashRing &amp; Quorum Consensus..."</span><span class="p">)</span>
-</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>
-</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="c1"># 1. Initialize Ring with 4 physical nodes</span>
-</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>    <span class="n">ring</span> <span class="o">=</span> <span class="n">ConsistentHashRing</span><span class="p">(</span><span class="n">replicas</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">vnodes</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"node_A"</span><span class="p">,</span> <span class="s2">"node_B"</span><span class="p">,</span> <span class="s2">"node_C"</span><span class="p">,</span> <span class="s2">"node_D"</span><span class="p">]:</span>
-</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>        <span class="n">ring</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>
-</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>    <span class="n">pref</span> <span class="o">=</span> <span class="n">ring</span><span class="o">.</span><span class="n">get_preference_list</span><span class="p">(</span><span class="s2">"dataset:imagenet_v2"</span><span class="p">)</span>
-</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pref</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected 3 replicas, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pref</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">pref</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Replicas must be physically distinct nodes"</span>
-</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Preference list for 'dataset:imagenet_v2': </span><span class="si">{</span><span class="n">pref</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>
-</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>    <span class="c1"># 2. Test Tunable Quorum (N=3, W=2, R=2 -&gt; R + W = 4 &gt; 3: Strongly Consistent)</span>
-</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>    <span class="n">cluster</span> <span class="o">=</span> <span class="n">DistributedStorageCluster</span><span class="p">(</span><span class="n">ring</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>    <span class="n">success</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">,</span> <span class="s2">"vector_data_v1"</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>    <span class="k">assert</span> <span class="n">success</span><span class="p">,</span> <span class="s2">"Write quorum failed"</span>
-</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>
-</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>    <span class="c1"># Read back key</span>
-</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>    <span class="n">read_val</span><span class="p">,</span> <span class="n">ver</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">)</span>
-</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>    <span class="k">assert</span> <span class="n">read_val</span> <span class="o">==</span> <span class="s2">"vector_data_v1"</span> <span class="ow">and</span> <span class="n">ver</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Quorum read failed"</span>
-</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>
-</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>    <span class="c1"># Update key with higher version</span>
-</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>    <span class="n">cluster</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">,</span> <span class="s2">"vector_data_v2"</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>    <span class="n">read_val_2</span><span class="p">,</span> <span class="n">ver_2</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">)</span>
-</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>    <span class="k">assert</span> <span class="n">read_val_2</span> <span class="o">==</span> <span class="s2">"vector_data_v2"</span> <span class="ow">and</span> <span class="n">ver_2</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"Stale read encountered"</span>
-</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>
-</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Consistent hashing, virtual node distribution, and R + W &gt; N quorum verified!"</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">Consistent Hash Ring &amp; Tunable Quorum Consensus Simulator.</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">"""</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">bisect</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">ConsistentHashRing</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="sd">"""Ring topology with virtual nodes for uniform partition distribution."""</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">replicas</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">vnodes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">replicas</span> <span class="o">=</span> <span class="n">replicas</span>      <span class="c1"># Replication factor N</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">vnodes</span> <span class="o">=</span> <span class="n">vnodes</span>          <span class="c1"># Virtual nodes per physical node</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>     <span class="c1"># Sorted list of virtual node hashes</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vnodes</span><span class="p">):</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="n">vnode_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">:vnode_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">vnode_key</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="n">bisect</span><span class="o">.</span><span class="n">insort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">remove_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>            <span class="k">return</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ring</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">!=</span> <span class="n">node</span><span class="p">]</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">h</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span> <span class="o">!=</span> <span class="n">node</span><span class="p">}</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_preference_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="sd">"""Returns N distinct physical nodes responsible for replicating key."""</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">:</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="n">preference_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="n">curr_idx</span> <span class="o">=</span> <span class="n">idx</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">preference_list</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">replicas</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)):</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="n">target_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">[</span><span class="n">curr_idx</span><span class="p">]]</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>            <span class="k">if</span> <span class="n">target_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">preference_list</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>                <span class="n">preference_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target_node</span><span class="p">)</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="n">curr_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">curr_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="p">)</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="k">return</span> <span class="n">preference_list</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="k">class</span><span class="w"> </span><span class="nc">DistributedStorageCluster</span><span class="p">:</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="sd">"""Simulates multi-node key-value store with tunable R and W quorums."""</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ring</span><span class="p">:</span> <span class="n">ConsistentHashRing</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">R</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">ring</span> <span class="o">=</span> <span class="n">ring</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>  <span class="c1"># Replication factor</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">R</span> <span class="o">=</span> <span class="n">R</span>  <span class="c1"># Read quorum</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">W</span>  <span class="c1"># Write quorum</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">get_preference_list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="s2">"Not enough physical nodes to satisfy replication factor"</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="n">acks</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>            <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">:</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>            <span class="n">acks</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>            <span class="k">if</span> <span class="n">acks</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">:</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>                <span class="k">return</span> <span class="kc">True</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="k">return</span> <span class="kc">False</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">get_preference_list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">]:</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>            <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>                <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">key</span><span class="p">])</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">responses</span><span class="p">:</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Testing ConsistentHashRing &amp; Quorum Consensus..."</span><span class="p">)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="n">ring</span> <span class="o">=</span> <span class="n">ConsistentHashRing</span><span class="p">(</span><span class="n">replicas</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">vnodes</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"node_A"</span><span class="p">,</span> <span class="s2">"node_B"</span><span class="p">,</span> <span class="s2">"node_C"</span><span class="p">,</span> <span class="s2">"node_D"</span><span class="p">]:</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>        <span class="n">ring</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="n">pref</span> <span class="o">=</span> <span class="n">ring</span><span class="o">.</span><span class="n">get_preference_list</span><span class="p">(</span><span class="s2">"dataset:imagenet_v2"</span><span class="p">)</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pref</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected 3 replicas, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pref</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">pref</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"Replicas must be physically distinct nodes"</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="n">cluster</span> <span class="o">=</span> <span class="n">DistributedStorageCluster</span><span class="p">(</span><span class="n">ring</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="n">success</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">,</span> <span class="s2">"vector_data_v1"</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="k">assert</span> <span class="n">success</span><span class="p">,</span> <span class="s2">"Write quorum failed"</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="n">read_val</span><span class="p">,</span> <span class="n">ver</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">)</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>    <span class="k">assert</span> <span class="n">read_val</span> <span class="o">==</span> <span class="s2">"vector_data_v1"</span> <span class="ow">and</span> <span class="n">ver</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="n">cluster</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">,</span> <span class="s2">"vector_data_v2"</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="n">read_val_2</span><span class="p">,</span> <span class="n">ver_2</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"feature:embedding_1"</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="k">assert</span> <span class="n">read_val_2</span> <span class="o">==</span> <span class="s2">"vector_data_v2"</span> <span class="ow">and</span> <span class="n">ver_2</span> <span class="o">==</span> <span class="mi">2</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Consistent hashing, virtual node distribution, and R + W &gt; N quorum verified!"</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-discord-migration-to-scylladb">🔬 Empirical Case Study: Discord Migration to ScyllaDB</h2>
 <p>In 2022, <strong>Discord</strong> was ingesting billions of chat messages daily into a 177-node Apache Cassandra cluster holding trillions of messages across petabytes of storage.</p>
 <ol>
-<li><strong>The Compaction &amp; GC Crisis:</strong> Because Cassandra runs on the JVM, garbage collection pauses frequently spiked to several seconds. Furthermore, SSTable compactions struggled to keep pace with message insertion velocity, causing disk read amplification to exceed <span class="arithmatex">\(80\times\)</span>.</li>
+<li><strong>The Compaction &amp; GC Crisis:</strong> Because Cassandra runs on the JVM, garbage collection pauses frequently spiked to several seconds. Furthermore, SSTable compactions struggled to keep pace with message insertion velocity, causing disk read amplification to exceed <span class="arithmatex">\(80    imes\)</span>.</li>
 <li><strong>The Architectural Fix:</strong> Discord migrated from Cassandra to <strong>ScyllaDB</strong> (a C++ rewrite of Cassandra implementing thread-per-core asynchronous architecture without garbage collection):</li>
 <li>Consistent hash partitioning remained compatible.</li>
 <li>P99 latencies dropped by an order of magnitude.</li>
 <li><strong>The Quantitative Results:</strong></li>
 <li><strong>Cluster Size:</strong> Node count dropped from <strong>177 Cassandra nodes to 72 ScyllaDB nodes</strong> (<span class="arithmatex">\(60\%\)</span> hardware reduction).</li>
-<li><strong>Tail Latency:</strong> P99 read latencies fell from <strong><span class="arithmatex">\(40 - 120\text{ ms}\)</span> down to <span class="arithmatex">\(4 - 5\text{ ms}\)</span></strong> under sustained peak loads.</li>
+<li><strong>Tail Latency:</strong> P99 read latencies fell from <strong><span class="arithmatex">\(40 - 120 ext{ ms}\)</span> down to <span class="arithmatex">\(4 - 5    ext{ ms}\)</span></strong> under sustained peak loads.</li>
 </ol>
 <table>
 <thead>
@@ -7503,13 +7482,13 @@ By the Pigeonhole Principle, the read set and write set must overlap by at least
 </tr>
 <tr>
 <td style="text-align: left;"><strong>P99 Read Latency</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(40 - 120\text{ ms}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(4 - 5\text{ ms}\)</span> (<span class="arithmatex">\(15\times - 24\times\)</span> faster)</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(40 - 120  ext{ ms}\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(4 - 5    ext{ ms}\)</span> (<span class="arithmatex">\(15  imes - 24   imes\)</span> faster)</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Garbage Collection Pauses</strong></td>
-<td style="text-align: left;">Frequent <span class="arithmatex">\(1 - 3\text{ sec}\)</span> STW spikes</td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(0\text{ ms}\)</span> (Deterministic C++ memory)</strong></td>
+<td style="text-align: left;">Frequent <span class="arithmatex">\(1 - 3    ext{ sec}\)</span> STW spikes</td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0    ext{ ms}\)</span> (Deterministic C++ memory)</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Compaction CPU Overhead</strong></td>
@@ -7531,19 +7510,19 @@ By the Pigeonhole Principle, the read set and write set must overlap by at least
 </div>
 
 <hr />
-<h2 id="references-scholarly-citations">📚 References &amp; Scholarly Citations</h2>
-<ul>
-<li><a id="ref-brewer2000"></a><strong>Brewer, E. A.</strong> (2000). Towards robust distributed systems. In <em>PODC 2000</em> (Vol. 7).</li>
-<li><a id="ref-gilbert2002"></a><strong>Gilbert, S., &amp; Lynch, N.</strong> (2002). Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. <em>ACM SIGACT News</em>, 33(2), 51–59.</li>
-<li><a id="ref-abadi2012"></a><strong>Abadi, D. J.</strong> (2012). Consistency tradeoffs in modern distributed database system design: CAP is only part of the story. <em>Computer</em>, 45(2), 37–42.</li>
-<li><a id="ref-karger1997"></a><strong>Karger, D., Lehman, E., Leighton, T., Panigrahy, R., Levine, M., &amp; Lewin, D.</strong> (1997). Consistent hashing and random trees: Distributed caching protocols for relieving hot spots on the World Wide Web. In <em>STOC 1997</em> (pp. 655–664).</li>
-</ul>
+<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-brewer2000"></a><strong>[Brewer2000]</strong> E. A. Brewer, "Towards Robust Distributed Systems," in <em>Proceedings of the 19th Annual ACM Symposium on Principles of Distributed Computing (PODC '00)</em>, July 2000, vol. 7. <a href="https://doi.org/10.1145/343477.343502">DOI: 10.1145/343477.343502</a>.</li>
+<li><a id="ref-gilbert2002"></a><strong>[Gilbert2002]</strong> S. Gilbert and N. Lynch, "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services," <em>ACM SIGACT News</em>, vol. 33, no. 2, pp. 51–59, June 2002. <a href="https://doi.org/10.1145/564585.564601">DOI: 10.1145/564585.564601</a>.</li>
+<li><a id="ref-abadi2012"></a><strong>[Abadi2012]</strong> D. J. Abadi, "Consistency Tradeoffs in Modern Distributed Database System Design: CAP is Only Part of the Story," <em>Computer</em>, vol. 45, no. 2, pp. 37–42, Feb. 2012. <a href="https://doi.org/10.1109/MC.2012.33">DOI: 10.1109/MC.2012.33</a>.</li>
+<li><a id="ref-karger1997"></a><strong>[Karger1997]</strong> D. Karger et al., "Consistent Hashing and Random Trees: Distributed Caching Protocols for Relieving Hot Spots on the World Wide Web," in <em>Proceedings of the 29th Annual ACM Symposium on Theory of Computing (STOC '97)</em>, May 1997, pp. 655–664. <a href="https://doi.org/10.1145/258533.258660">DOI: 10.1145/258533.258660</a>.</li>
+<li><a id="ref-decandia2007"></a><strong>[DeCandia2007]</strong> G. DeCandia et al., "Dynamo: Amazon's Highly Available Key-Value Store," in <em>Proceedings of the 21st ACM SIGOPS Symposium on Operating Systems Principles (SOSP '07)</em>, Oct. 2007, pp. 205–220. <a href="https://doi.org/10.1145/1294261.1294281">DOI: 10.1145/1294261.1294281</a>.</li>
+</ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../04-distributed-systems/" class="noc-sim-btn secondary" style="text-decoration: none;">← 12.4 Distributed Systems</a>
   <a href="../06-dataset-versioning-tools/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Dataset Versioning Tools (12.6) →</a>
 </div>
-<p>\n</p>
 
 
 
@@ -7640,6 +7619,8 @@ By the Pigeonhole Principle, the read set and write set must overlap by at least
         <script src="../../assets/js/katex.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
+      
+        <script src="../../assets/js/commercial-core.js"></script>
       
     
   </body>

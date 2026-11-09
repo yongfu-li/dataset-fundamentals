@@ -4,8 +4,9 @@
   "use strict";
   const CleaningLib = global.CleaningLib || (global.CleaningLib = {});
 
-  const MAX_ROWS = 5000;
-  const MAX_BYTES = 2 * 1024 * 1024;
+  // Commercial Scale Limits (Up to 1,000,000 rows and 100 MB in-memory / streaming)
+  const MAX_ROWS = 1000000;
+  const MAX_BYTES = 100 * 1024 * 1024;
 
   function stripBom(text) {
     return text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;

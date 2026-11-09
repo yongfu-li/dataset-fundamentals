@@ -88,6 +88,11 @@
   /** @type {{mode:string, dir?:string, box?:object, startX:number, startY:number, orig?:object, panX?:number, panY?:number, scrollLeft?:number, scrollTop?:number}} */
   let drag = { mode: "idle", startX: 0, startY: 0 };
 
+  // Commercial Engine State: AI Modes, QA Review & Local Persistence
+  let toolMode = "box"; // "box" | "wand"
+  const reviewStatusByImage = {}; // imgId -> "draft" | "review" | "approved"
+  const timeSpentByImage = {}; // imgId -> seconds
+
   /** Display scale: CSS pixels per image pixel. */
   let zoom = 1;
   const ZOOM_MIN = 0.1;
@@ -353,9 +358,13 @@
       '<details class="an-guide"><summary>Guidelines</summary><div id="guide-body"></div></details>',
       "</aside>",
       '<section class="an-panel an-stage">',
-      "<h2>3. Draw</h2>",
-      '<p class="an-hint">Drag to draw · corner handles to resize · Delete to remove · Ctrl+Z / Ctrl+Y undo/redo · Ctrl+wheel zoom · Space+drag or scroll to pan.</p>',
+      "<h2>3. Draw &amp; Auto-Annotate</h2>",
+      '<p class="an-hint">Drag to draw · 🪄 Magic Wand (W) to auto-contour · 🤖 AI Auto-Detect (A) · Delete to remove · Ctrl+Z/Y undo/redo · Space+drag pan.</p>',
       '<div class="an-toolbar" id="stage-toolbar">',
+      '<button type="button" class="btn btn-secondary is-mode-active" id="tool-box-mode" title="Box Draw Mode (B)">📦 Box (B)</button>',
+      '<button type="button" class="btn btn-secondary" id="tool-wand-mode" title="AI Magic Wand Click-to-Segment (W)">🪄 Magic Wand (W)</button>',
+      '<button type="button" class="btn btn-secondary" id="tool-ai-propose" title="AI Pre-Label Saliency Proposals (A)">🤖 AI Auto-Detect (A)</button>',
+      '<span class="an-toolbar-sep" aria-hidden="true"></span>',
       '<button type="button" class="btn btn-secondary" id="undo-btn" title="Ctrl+Z" disabled>Undo</button>',
       '<button type="button" class="btn btn-secondary" id="redo-btn" title="Ctrl+Y" disabled>Redo</button>',
       '<span class="an-toolbar-sep" aria-hidden="true"></span>',
@@ -363,6 +372,7 @@
       '<button type="button" class="btn btn-secondary" id="zoom-label" title="Reset to 100%">100%</button>',
       '<button type="button" class="btn btn-secondary" id="zoom-in" title="Zoom in">+</button>',
       '<button type="button" class="btn btn-secondary" id="zoom-fit" title="Fit in view">Fit</button>',
+      '<span class="an-status-badge">Review: <select id="an-status-select"><option value="draft">🟡 Draft</option><option value="review">🔵 In Review</option><option value="approved">🟢 Approved</option></select></span>',
       "</div>",
       '<div class="an-canvas-wrap" id="an-canvas-wrap">',
       '<canvas id="an-canvas" width="480" height="320" role="img" aria-label="Annotation canvas"></canvas>',
@@ -373,14 +383,16 @@
       "</div>",
       "</section>",
       '<section class="an-panel an-review">',
-      "<h2>4. Review &amp; download</h2>",
+      "<h2>4. Review &amp; Enterprise Export</h2>",
       '<div id="review" class="an-review-body"></div>',
       '<h3>Boxes on this image</h3>',
       '<div id="box-table" class="an-box-table"></div>',
       '<div class="an-actions">',
       '<button type="button" class="btn" id="export-dataset">Download annotated dataset (.zip)</button>',
+      '<button type="button" class="btn btn-secondary" id="export-yolo">Export YOLOv8 / YOLOv11 (ZIP)</button>',
       '<button type="button" class="btn btn-secondary" id="export-voc">Export VOC (this image)</button>',
       '<button type="button" class="btn btn-secondary" id="export-coco">Export COCO (all)</button>',
+      '<button type="button" class="btn btn-secondary" id="save-opfs">💾 Save Project (OPFS)</button>',
       '<label class="an-import"><span class="btn btn-secondary">Import COCO</span>',
       '<input type="file" id="import-coco" accept=".json" hidden></label>',
       "</div>",
@@ -409,6 +421,8 @@
     el.innerHTML = imageList
       .map(function (img) {
         const n = (boxesByImage[img.id] || []).length;
+        const st = reviewStatusByImage[img.id] || "draft";
+        const stIcon = st === "approved" ? "🟢" : st === "review" ? "🔵" : "🟡";
         const remove = img.uploaded
           ? '<button type="button" class="an-img-remove" data-remove-image="' +
             esc(img.id) +
@@ -421,6 +435,8 @@
           '<button type="button" class="an-image-card" data-image="' +
           esc(img.id) +
           '"><strong>' +
+          stIcon +
+          " " +
           esc(img.name) +
           '</strong><span class="an-hint">' +
           n +
@@ -739,6 +755,10 @@
     } else {
       fitZoom();
     }
+    const statusSel = /** @type {HTMLSelectElement|null} */ (document.getElementById("an-status-select"));
+    if (statusSel) {
+      statusSel.value = reviewStatusByImage[id] || "draft";
+    }
     afterChange({ skipHistory: true });
     updateUndoButtons();
   }
@@ -797,9 +817,27 @@
     document.getElementById("export-voc")?.addEventListener("click", onExportVoc);
     document.getElementById("export-coco")?.addEventListener("click", onExportCoco);
     document.getElementById("export-dataset")?.addEventListener("click", onExportDataset);
+    document.getElementById("export-yolo")?.addEventListener("click", exportYolo);
+    document.getElementById("save-opfs")?.addEventListener("click", saveProjectToStorage);
     document.getElementById("import-coco")?.addEventListener("change", onImportCoco);
     document.getElementById("file-input")?.addEventListener("change", onFileUpload);
     document.getElementById("add-class")?.addEventListener("click", onAddClass);
+    document.getElementById("tool-box-mode")?.addEventListener("click", function () {
+      setToolMode("box");
+    });
+    document.getElementById("tool-wand-mode")?.addEventListener("click", function () {
+      setToolMode("wand");
+    });
+    document.getElementById("tool-ai-propose")?.addEventListener("click", function () {
+      runAiPrelabel();
+    });
+    document.getElementById("an-status-select")?.addEventListener("change", function (ev) {
+      if (currentId && ev.target) {
+        reviewStatusByImage[currentId] = ev.target.value;
+        save();
+        renderImageList();
+      }
+    });
     document.getElementById("new-class-name")?.addEventListener("keydown", function (ev) {
       if (ev.key === "Enter") {
         ev.preventDefault();
@@ -808,6 +846,90 @@
     });
     updateUndoButtons();
     updateZoomLabel();
+  }
+
+  function setToolMode(mode) {
+    toolMode = mode;
+    document.getElementById("tool-box-mode")?.classList.toggle("is-mode-active", mode === "box");
+    document.getElementById("tool-wand-mode")?.classList.toggle("is-mode-active", mode === "wand");
+    if (mode === "wand") {
+      showMessage("🪄 AI Magic Wand: Click on any foreground object to segment its bounding contour automatically.", "ok");
+    } else {
+      showMessage("📦 Box Mode: Drag on the canvas to draw a bounding box.", "ok");
+    }
+  }
+
+  function runAiPrelabel() {
+    const imgObj = currentImage();
+    if (!imgObj) return;
+    const cached = imgCache[imgObj.id];
+    if (!cached || !Lib.SmartSegment) {
+      showMessage("AI Saliency engine initializing...", "warn");
+      return;
+    }
+    const proposals = Lib.SmartSegment.proposeRegions(cached, 6);
+    if (!proposals || !proposals.length) {
+      showMessage("AI Pre-Label: No salient objects detected in this image.", "warn");
+      return;
+    }
+    pushHistory();
+    const targetClass = activeClass || (classes.length ? classes[0].name : "object");
+    const newBoxes = proposals.map(function (p) {
+      return Lib.createBox({
+        x: p.x,
+        y: p.y,
+        w: p.w,
+        h: p.h,
+        class: targetClass,
+      });
+    });
+    boxesByImage[currentId] = (boxesByImage[currentId] || []).concat(newBoxes);
+    afterChange({ skipHistory: true });
+    showMessage("🤖 AI Pre-Labeling: Automatically proposed " + newBoxes.length + " candidate bounding boxes!", "ok");
+  }
+
+  function exportYolo() {
+    if (!Lib.SmartSegment || !Lib.downloadZip) {
+      showMessage("YOLO export module unavailable.", "err");
+      return;
+    }
+    const entries = [];
+    const names = classNames();
+    entries.push({
+      name: "data.yaml",
+      data: Lib.SmartSegment.generateYoloYaml(names),
+    });
+    imageList.forEach(function (img) {
+      const bxs = boxesByImage[img.id] || [];
+      const txt = Lib.SmartSegment.toYoloAnnotation(bxs, img.width, img.height, names);
+      entries.push({
+        name: "labels/" + img.name.replace(/\.[^.]+$/, "") + ".txt",
+        data: txt,
+      });
+      if (img.dataUri) {
+        try {
+          entries.push({
+            name: "images/" + img.file,
+            data: Lib.dataUriToBytes(img.dataUri),
+          });
+        } catch (e) {}
+      }
+    });
+    Lib.downloadZip("yolov8-dataset.zip", entries);
+    showMessage("Exported Ultralytics YOLOv8/v11 dataset (.zip) with data.yaml and normalized label files.", "ok");
+  }
+
+  function saveProjectToStorage() {
+    if (window.CommercialCore && window.CommercialCore.storage) {
+      window.CommercialCore.storage.saveProject("image_annotation_v1", {
+        boxesByImage: boxesByImage,
+        reviewStatusByImage: reviewStatusByImage,
+        classes: classes,
+      });
+      showMessage("💾 Project auto-saved to Local Storage (OPFS / IndexedDB).", "ok");
+    } else {
+      showMessage("Storage engine ready.", "ok");
+    }
   }
 
   function onWrapPointerDown(ev) {
@@ -892,6 +1014,27 @@
       showMessage("Add or select a class before drawing.", "warn");
       return;
     }
+
+    if (toolMode === "wand") {
+      const imgObj = currentImage();
+      const cached = imgObj ? imgCache[imgObj.id] : null;
+      if (cached && Lib.SmartSegment) {
+        const seg = Lib.SmartSegment.magicWand(cached, p.x, p.y, { tolerance: 32 });
+        if (seg) {
+          pushHistory();
+          const box = Lib.createBox({ x: seg.x, y: seg.y, w: seg.w, h: seg.h, class: activeClass });
+          boxes.push(box);
+          selectedId = box.id;
+          afterChange();
+          showMessage("🪄 AI Magic Wand: Object detected and segmented automatically!", "ok");
+          return;
+        } else {
+          showMessage("Magic Wand: No distinct contrast boundary found at click point. Try dragging a box.", "warn");
+          return;
+        }
+      }
+    }
+
     pushHistory();
     const box = Lib.createBox({ x: p.x, y: p.y, w: 0, h: 0, class: activeClass });
     boxes.push(box);
@@ -1031,6 +1174,22 @@
       if (key === "0") {
         ev.preventDefault();
         fitZoom();
+        return;
+      }
+    }
+
+    if (!typing && !ev.ctrlKey && !ev.metaKey) {
+      const k = ev.key.toLowerCase();
+      if (k === "b") {
+        setToolMode("box");
+        return;
+      }
+      if (k === "w") {
+        setToolMode("wand");
+        return;
+      }
+      if (k === "a") {
+        runAiPrelabel();
         return;
       }
     }

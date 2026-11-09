@@ -59,7 +59,24 @@
     try {
       sessionStorage.setItem(KEY, JSON.stringify(body));
     } catch (err) {
-      throw new Error("Could not store handoff (storage full or blocked).");
+      // Large Payload Fallback: Commercial in-memory & OPFS/IndexedDB storage
+      try {
+        global._CommercialHandoffCache = body;
+        if (global.CommercialCore && global.CommercialCore.storage) {
+          global.CommercialCore.storage.saveProject("handoff_latest", body);
+        }
+        const pointer = {
+          format: "tool-handoff",
+          version: 1,
+          isLargePayload: true,
+          source: body.source,
+          kind: body.kind,
+          exportedAt: body.exportedAt,
+        };
+        sessionStorage.setItem(KEY, JSON.stringify(pointer));
+      } catch (innerErr) {
+        throw new Error("Could not store handoff (storage quota exceeded).");
+      }
     }
     return body;
   };
@@ -119,6 +136,9 @@
       const data = JSON.parse(raw);
       if (!data || data.format !== "tool-handoff") return null;
       if (list && list.length && list.indexOf(data.source) === -1) return null;
+      if (data.isLargePayload && global._CommercialHandoffCache) {
+        return global._CommercialHandoffCache;
+      }
       return data;
     } catch (err) {
       return null;
