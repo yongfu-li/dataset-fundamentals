@@ -450,6 +450,122 @@
     renderAll();
   }
 
+  function exportHuggingFace() {
+    if (!session) return;
+    Lib.downloadHuggingFaceJsonl({
+      mode: session.mode,
+      labels: session.labels,
+      items: session.items,
+      annotations: annotations,
+    });
+    showMessage("Downloaded text_annotations_hf.jsonl (Hugging Face Datasets format).", "ok");
+    renderAll();
+  }
+
+  function exportCoNLL() {
+    if (!session) return;
+    Lib.downloadCoNLL2003({
+      mode: session.mode,
+      labels: session.labels,
+      items: session.items,
+      annotations: annotations,
+    });
+    showMessage("Downloaded text_annotations_conll2003.txt (CoNLL-2003 BIO format).", "ok");
+    renderAll();
+  }
+
+  function exportSpaCy() {
+    if (!session) return;
+    Lib.downloadSpaCyJson({
+      mode: session.mode,
+      labels: session.labels,
+      items: session.items,
+      annotations: annotations,
+    });
+    showMessage("Downloaded text_annotations_spacy.json (SpaCy v3 format).", "ok");
+    renderAll();
+  }
+
+  function exportHfScript() {
+    Lib.downloadPythonHfScript();
+    showMessage("Downloaded train_ner_hf.py (Transformers PyTorch training script).", "ok");
+  }
+
+  function exportSpaCyScript() {
+    Lib.downloadPythonSpaCyScript();
+    showMessage("Downloaded train_ner_spacy.py (SpaCy v3 pipeline training script).", "ok");
+  }
+
+  function autoPrelabelAll() {
+    if (!session || !window.TextAnnRegexPrelabel) return;
+    const enabled = [];
+    if (!document.getElementById("ta-pre-per") || document.getElementById("ta-pre-per").checked) enabled.push("per");
+    if (!document.getElementById("ta-pre-org") || document.getElementById("ta-pre-org").checked) enabled.push("org");
+    if (!document.getElementById("ta-pre-loc") || document.getElementById("ta-pre-loc").checked) enabled.push("loc");
+    if (!document.getElementById("ta-pre-misc") || document.getElementById("ta-pre-misc").checked) enabled.push("misc");
+
+    const res = window.TextAnnRegexPrelabel.autoLabelSession(session, annotations, enabled);
+    annotations = res.annotations;
+    persist();
+    showMessage("⚡ Zero-Shot Pre-Labeling complete! Added " + res.totalAdded + " new entity spans across the dataset.", "ok");
+    renderAll();
+  }
+
+  function autoPrelabelCurrent() {
+    if (!session || !window.TextAnnRegexPrelabel) return;
+    const item = activeItem();
+    if (!item) return;
+
+    const enabled = [];
+    if (!document.getElementById("ta-pre-per") || document.getElementById("ta-pre-per").checked) enabled.push("per");
+    if (!document.getElementById("ta-pre-org") || document.getElementById("ta-pre-org").checked) enabled.push("org");
+    if (!document.getElementById("ta-pre-loc") || document.getElementById("ta-pre-loc").checked) enabled.push("loc");
+    if (!document.getElementById("ta-pre-misc") || document.getElementById("ta-pre-misc").checked) enabled.push("misc");
+
+    const matches = window.TextAnnRegexPrelabel.findMatches(item.text, enabled);
+    const existing = (annotations[item.id] && annotations[item.id].spans) || [];
+    const valid = matches.filter(function (m) {
+      return !existing.some(function (ex) { return m.start < ex.end && m.end > ex.start; });
+    });
+
+    if (valid.length > 0) {
+      const merged = existing.concat(valid);
+      merged.sort(function (a, b) { return a.start - b.start; });
+      annotations[item.id] = { spans: merged };
+      persist();
+      showMessage("Added " + valid.length + " entity spans to current item.", "ok");
+      renderAll();
+    } else {
+      showMessage("No new non-overlapping entities found for current item.", "warn");
+    }
+  }
+
+  function importHandoffTable(table) {
+    if (!table || !table.rows || !table.rows.length) return;
+    const textCol = table.columns.find(c => /text|sentence|content|review|comment|title/i.test(c)) || table.columns[0];
+    const idCol = table.columns.find(c => /^id$/i.test(c)) || null;
+    const newItems = table.rows.slice(0, 100).map(function (r, idx) {
+      return {
+        id: idCol && r[idCol] ? String(r[idCol]) : ("item_" + (idx + 1)),
+        text: String(r[textCol] || "")
+      };
+    });
+    session = {
+      mode: "ner",
+      labels: ["per", "org", "loc", "misc"],
+      items: newItems,
+      source: "handoff",
+      title: "Imported Pipeline Dataset (" + (table.name || "bus") + ")",
+      bookAnchors: ["Ch4 §4.2"],
+      teachingFocus: "Pre-annotate and label incoming text records."
+    };
+    annotations = {};
+    activeIndex = 0;
+    persist();
+    showMessage("Loaded " + newItems.length + " text records from pipeline handoff.", "ok");
+    renderAll();
+  }
+
   const root = document.getElementById("text-annotation-root");
   if (!root) return;
 
@@ -462,6 +578,35 @@
       (pendingUpload ? renderMapping() : "") +
       (session ? renderWorkspace() : "");
     bindEventsOnce();
+
+    if (window.DatasetToolsHandoff && window.DatasetToolsHandoff.mountBar) {
+      window.DatasetToolsHandoff.mountBar(root, {
+        currentTool: "text-annotation",
+        getTableData: function () {
+          if (!session) return null;
+          return {
+            source: "text-annotation",
+            annotations: annotations,
+            items: session.items,
+            mode: session.mode,
+            rows: session.items.map(function (it) {
+              const ann = annotations[it.id] || {};
+              return {
+                id: it.id,
+                text: it.text,
+                label: ann.label || (ann.spans ? ann.spans.map(function (s) { return s.label; }).join(";") : "")
+              };
+            }),
+            columns: ["id", "text", "label"]
+          };
+        },
+        onLoadData: function (payload) {
+          if (payload && payload.table && payload.table.rows) {
+            importHandoffTable(payload.table);
+          }
+        }
+      });
+    }
   }
 
   function renderIntro() {
@@ -592,8 +737,32 @@
       renderProgress(labeled) +
       renderNavigator(item) +
       (session.mode === "sentiment" ? renderSentiment(item) : renderNer(item)) +
+      renderPrelabel() +
       renderReview(flags) +
       renderExport()
+    );
+  }
+
+  function renderPrelabel() {
+    if (!session || session.mode !== "ner") return "";
+    return (
+      '<section class="ta-panel" style="border-left: 4px solid #3b82f6; background: rgba(59, 130, 246, 0.03);">' +
+      '<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">' +
+      '<h2 style="margin: 0; color: #60a5fa;">⚡ 4 · AI & Rule-Based Pre-Labeling (Zero-Shot)</h2>' +
+      '<span style="font-size: 0.78rem; background: rgba(59, 130, 246, 0.15); color: #93c5fd; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Regex & Heuristics</span>' +
+      '</div>' +
+      '<p style="margin-top: 6px; font-size: 0.88rem; color: #cbd5e1;">Rapidly bootstrap entity annotations across all unannotated texts using high-precision patterns without clobbering your manual work:</p>' +
+      '<div style="display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; font-size: 0.85rem;">' +
+      '<label style="display: flex; align-items: center; gap: 6px; cursor: pointer;"><input type="checkbox" id="ta-pre-per" checked> 👤 Person (PER)</label>' +
+      '<label style="display: flex; align-items: center; gap: 6px; cursor: pointer;"><input type="checkbox" id="ta-pre-org" checked> 🏢 Organization (ORG)</label>' +
+      '<label style="display: flex; align-items: center; gap: 6px; cursor: pointer;"><input type="checkbox" id="ta-pre-loc" checked> 📍 Location (LOC)</label>' +
+      '<label style="display: flex; align-items: center; gap: 6px; cursor: pointer;"><input type="checkbox" id="ta-pre-misc" checked> 🏷️ Misc (Email/Money/Date)</label>' +
+      '</div>' +
+      '<p class="ta-actions" style="margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">' +
+      '<button type="button" class="btn" id="ta-prelabel-all" style="background: #2563eb; color: #fff; font-weight: 700;">⚡ Auto-Prelabel Entire Dataset</button> ' +
+      '<button type="button" class="btn btn-secondary" id="ta-prelabel-curr">Prelabel Current Item Only</button>' +
+      '</p>' +
+      '</section>'
     );
   }
 
@@ -785,13 +954,21 @@
   function renderExport() {
     return (
       '<section class="ta-panel">' +
-      "<h2>6 · Export</h2>" +
-      "<p>Download labels for guideline review or to pair two raters in the IAA calculator.</p>" +
-      '<p class="ta-actions">' +
-      '<button type="button" class="btn" id="ta-export-json">Download text-annotations.json</button> ' +
-      '<button type="button" class="btn btn-secondary" id="ta-export-csv">Download text-annotations.csv</button>' +
-      "</p>" +
-      "</section>"
+      '<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">' +
+      '<h2 style="margin: 0;">6 · Commercial Export & Model Fine-Tuning</h2>' +
+      '<span style="font-size: 0.78rem; background: rgba(16, 185, 129, 0.15); color: #34d399; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Production Ready</span>' +
+      '</div>' +
+      '<p style="margin-top: 6px;">Download annotations formatted directly for Hugging Face Transformers, CoNLL benchmarks, and SpaCy training pipelines:</p>' +
+      '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 14px;">' +
+      '<button type="button" class="btn btn-secondary" id="ta-export-json">📄 Standard JSON</button>' +
+      '<button type="button" class="btn btn-secondary" id="ta-export-csv">📊 Tabular CSV</button>' +
+      '<button type="button" class="btn" id="ta-export-hf" style="background: #eab308; color: #0f172a; font-weight: 700;">🤗 Hugging Face (.jsonl)</button>' +
+      '<button type="button" class="btn" id="ta-export-conll" style="background: #0284c7; color: #fff; font-weight: 700;">🏷️ CoNLL-2003 BIO (.txt)</button>' +
+      '<button type="button" class="btn" id="ta-export-spacy" style="background: #0d9488; color: #fff; font-weight: 700;">🪐 SpaCy v3 Format (.json)</button>' +
+      '<button type="button" class="btn btn-secondary" id="ta-export-hf-script">🐍 Python HuggingFace Script</button>' +
+      '<button type="button" class="btn btn-secondary" id="ta-export-spacy-script">🐍 Python SpaCy Script</button>' +
+      '</div>' +
+      '</section>'
     );
   }
 
@@ -919,6 +1096,35 @@
     }
     if (closest(t, "#ta-export-csv")) {
       exportCsv();
+      return;
+    }
+    if (closest(t, "#ta-export-hf")) {
+      exportHuggingFace();
+      return;
+    }
+    if (closest(t, "#ta-export-conll")) {
+      exportCoNLL();
+      return;
+    }
+    if (closest(t, "#ta-export-spacy")) {
+      exportSpaCy();
+      return;
+    }
+    if (closest(t, "#ta-export-hf-script")) {
+      exportHfScript();
+      return;
+    }
+    if (closest(t, "#ta-export-spacy-script")) {
+      exportSpaCyScript();
+      return;
+    }
+    if (closest(t, "#ta-prelabel-all")) {
+      autoPrelabelAll();
+      return;
+    }
+    if (closest(t, "#ta-prelabel-curr")) {
+      autoPrelabelCurrent();
+      return;
     }
   }
 

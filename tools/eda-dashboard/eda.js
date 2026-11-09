@@ -199,6 +199,26 @@
     uniCol = scatterX = scatterY = groupCol = groupVal = controlZ = null;
   }
 
+  function importHandoffTable(table) {
+    if (!table || !table.rows || !table.columns) return;
+    session = {
+      id: "handoff",
+      name: table.name || "pipeline_handoff",
+      title: "Handoff Table: " + (table.name || "pipeline"),
+      description: "Imported via DatasetToolsHandoff bus.",
+      bookAnchors: ["§1.4", "§6.1"],
+      teachingFocus: "pipeline-handoff",
+      rows: table.rows,
+      columns: table.columns,
+      source: "pipeline-handoff",
+    };
+    resetViewState();
+    pickDefaults();
+    applyFilters();
+    showMessage("Loaded " + table.rows.length + " rows from pipeline handoff.", "ok");
+    renderAll();
+  }
+
   function loadPreset(id) {
     try {
       session = Lib.loadPreset(id);
@@ -275,6 +295,26 @@
       (session ? renderWorkspace() : "");
     bindEvents();
     if (session) drawCharts();
+
+    if (window.DatasetToolsHandoff && window.DatasetToolsHandoff.mountBar) {
+      window.DatasetToolsHandoff.mountBar(root, {
+        currentTool: "eda-dashboard",
+        getTableData: function () {
+          if (!session) return null;
+          return {
+            source: "eda-dashboard",
+            name: session.source || "eda_dataset",
+            columns: session.columns ? session.columns.slice() : [],
+            rows: (viewRows || session.rows || []).slice()
+          };
+        },
+        onLoadData: function (payload) {
+          if (payload && payload.table && payload.table.rows) {
+            importHandoffTable(payload.table);
+          }
+        }
+      });
+    }
   }
 
   function renderIntro() {
@@ -857,12 +897,17 @@
   function renderExport() {
     return (
       '<section class="eda-panel" id="eda-sec-export">' +
-      "<h2>14 · Export &amp; handoff</h2>" +
-      "<p>Download a summary / findings, or send the current view to the cleaning workbench.</p>" +
-      '<p class="eda-actions">' +
-      '<button type="button" class="btn" id="eda-export-json">Download eda-summary.json</button> ' +
-      '<button type="button" class="btn btn-secondary" id="eda-export-md">Download eda-findings.md</button> ' +
-      '<button type="button" class="btn" id="eda-send-cleaning">Send to cleaning workbench</button>' +
+      '<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">' +
+      '<h2 style="margin: 0;">14 · Export &amp; Automated Profiling</h2>' +
+      '<span style="font-size: 0.78rem; background: rgba(16, 185, 129, 0.15); color: #34d399; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Jupyter &amp; Python Ready</span>' +
+      '</div>' +
+      "<p style='margin-top: 6px;'>Download findings, synthesize an executable Jupyter Notebook (.ipynb), or dispatch the dataset to downstream workbenches:</p>" +
+      '<p class="eda-actions" style="display: flex; gap: 8px; flex-wrap: wrap;">' +
+      '<button type="button" class="btn btn-secondary" id="eda-export-json">📄 eda-summary.json</button> ' +
+      '<button type="button" class="btn btn-secondary" id="eda-export-md">📝 eda-findings.md</button> ' +
+      '<button type="button" class="btn" id="eda-export-ipynb" style="background: #ea580c; color: #fff; font-weight: 700;">📓 Jupyter Notebook (.ipynb)</button> ' +
+      '<button type="button" class="btn" id="eda-export-py" style="background: #2563eb; color: #fff; font-weight: 700;">🐍 Python Profiling Script (.py)</button> ' +
+      '<button type="button" class="btn btn-secondary" id="eda-send-cleaning">🧹 Send to Cleaning Workbench</button>' +
       "</p>" +
       "</section>"
     );
@@ -1146,6 +1191,26 @@
         syncFindingsFromDom();
         Lib.downloadFindings(sessionPayload(), findings);
         showMessage("Downloaded eda-findings.md.", "ok");
+        renderAll();
+      });
+    }
+    const eipynb = document.getElementById("eda-export-ipynb");
+    if (eipynb) {
+      eipynb.addEventListener("click", function () {
+        if (!session) return;
+        syncFindingsFromDom();
+        Lib.downloadJupyterNotebook(sessionPayload());
+        showMessage("Downloaded eda_report.ipynb (Executable Jupyter Notebook).", "ok");
+        renderAll();
+      });
+    }
+    const epy = document.getElementById("eda-export-py");
+    if (epy) {
+      epy.addEventListener("click", function () {
+        if (!session) return;
+        syncFindingsFromDom();
+        Lib.downloadPythonScript(sessionPayload());
+        showMessage("Downloaded run_eda_analysis.py (Standalone Python profiling script).", "ok");
         renderAll();
       });
     }

@@ -1151,6 +1151,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6415,6 +6426,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../tools/crowdsourcing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crowdsourcing & Quality Control QA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../tools/active-learning/" class="md-nav__link">
         
   
@@ -7359,6 +7398,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7774,6 +7824,26 @@ setTimeout(updateEdaSimulation, 100);
 </span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tukey Outliers Detected: </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">outliers_detected</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
+<hr />
+<h2 id="7-interactive-self-assessment-diagnostic-scenarios">7. Interactive Self-Assessment &amp; Diagnostic Scenarios</h2>
+<details class="question">
+<summary>Self-Assessment: Identifying Target Leakage in Feature Engineering</summary>
+<p>A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures 48 hours in advance. One of the features created is <code>oil_filter_replacement_count_next_7_days</code>, which achieves an astonishing 0.99 ROC-AUC during 5-fold cross-validation. When deployed live, model performance collapses to near random chance (0.52 ROC-AUC). What occurred?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Direct lookahead target leakage.
+The feature <code>oil_filter_replacement_count_next_7_days</code> uses information from the future that is unavailable at prediction time <span class="arithmatex">\(t_0\)</span>. In historical logs, technicians replaced oil filters immediately after gearbox failure alerts, embedding the target label into the input feature. When evaluated in cross-validation, the model memorized this future proxy. Always enforce strict temporal boundaries when generating rolling window aggregations.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Group-Based Splitting vs. Random Splitting</summary>
+<p>In a hospital chest X-ray classification dataset containing 100,000 scans from 25,000 unique patients, each patient has an average of 4 sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Identity contamination and patient-level data leakage.
+Random train-test splitting distributes scans from the <em>same patient</em> across both training and test sets. Deep convolutional networks easily learn idiosyncratic anatomical markers, implant signatures, or patient-specific radiograph hardware settings rather than generalized pathology patterns. The test set evaluates patient re-identification rather than clinical generalization. The split MUST be partitioned using <code>GroupKFold</code> grouped strictly by <code>patient_id</code>.</p>
+</details>
+</details>
 <h2 id="6-peer-reviewed-scholarly-references">6. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-tukey1977"></a><strong>[Tukey1977]</strong> J. W. Tukey, <em>Exploratory Data Analysis</em>, Addison-Wesley, Reading, MA, 1977.</li>
@@ -7889,6 +7959,8 @@ setTimeout(updateEdaSimulation, 100);
         <script src="../../assets/js/code-runner.js"></script>
       
         <script src="../../assets/js/commercial-core.js"></script>
+      
+        <script src="../../assets/js/tools-handoff.js"></script>
       
     
   </body>

@@ -1129,6 +1129,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6421,6 +6432,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../tools/crowdsourcing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crowdsourcing & Quality Control QA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../tools/active-learning/" class="md-nav__link">
         
   
@@ -7371,6 +7410,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7843,6 +7893,26 @@ setTimeout(auditQualityScores, 100);
 </span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Violations Detected: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">violations</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
+<hr />
+<h2 id="7-interactive-self-assessment-diagnostic-scenarios">7. Interactive Self-Assessment &amp; Diagnostic Scenarios</h2>
+<details class="question">
+<summary>Self-Assessment: Diagnosing Missing Data Mechanisms (MCAR vs. MAR vs. MNAR)</summary>
+<p>In an electronic healthcare dataset tracking patient blood glucose, 35% of outpatient glucose readings are missing. Statistical analysis reveals that missingness is heavily correlated with patient age and insurance type, but conditional on age and insurance, missingness is independent of the actual blood glucose level. Which missing data mechanism is this, and what is the appropriate remediation?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Missing at Random (MAR).
+Because the probability of missingness depends on observed covariates (age and insurance tier) but not on the unobserved glucose value itself, the data satisfies the MAR assumption. Listwise deletion would introduce demographic bias; instead, the team should use Multiple Imputation by Chained Equations (MICE) or supervised regression imputation conditioned on age and insurance features to maintain valid parameter variance.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Detecting Representation Imbalance in Computer Vision</summary>
+<p>A computer vision benchmark for dermatological lesion classification has a 92% Top-1 diagnostic accuracy across 100,000 clinical images. However, an audit reveals that 88% of training images were collected from Fitzpatrick skin types I and II (lighter skin), while only 3% represent skin types V and VI (darker skin). How does this structural representation disparity impact real-world clinical safety?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Severe subpopulation performance disparity and unacceptable false negative rates for underrepresented cohorts.
+High aggregate accuracy masks catastrophic failure modes in underrepresented demographic subgroups. Because empirical risk minimization weights each sample equally, the model optimizes loss on majority classes while incurring elevated error rates on minority subgroups. In clinical practice, this leads to delayed malignant melanoma diagnoses for patients with darker skin tones. Auditing datasets requires stratified subgroup evaluations and minimax fairness constraints.</p>
+</details>
+</details>
 <h2 id="6-peer-reviewed-scholarly-references">6. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-wang1996"></a><strong>[Wang1996]</strong> R. Y. Wang and D. M. Strong, "Beyond Accuracy: What Data Quality Means to Data Consumers," <em>Journal of Management Information Systems</em>, vol. 12, no. 4, pp. 5–33, Mar. 1996. <a href="https://doi.org/10.1080/07421222.1996.11518099">DOI: 10.1080/07421222.1996.11518099</a>.</li>
@@ -7959,6 +8029,8 @@ setTimeout(auditQualityScores, 100);
         <script src="../../assets/js/code-runner.js"></script>
       
         <script src="../../assets/js/commercial-core.js"></script>
+      
+        <script src="../../assets/js/tools-handoff.js"></script>
       
     
   </body>

@@ -1157,6 +1157,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#8-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6393,6 +6404,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../tools/crowdsourcing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crowdsourcing & Quality Control QA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../tools/active-learning/" class="md-nav__link">
         
   
@@ -7315,6 +7354,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#8-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7659,6 +7709,26 @@ setTimeout(runDecisionSimulation, 100);
 </span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="n">train_and_optimize_threshold</span><span class="p">(</span><span class="n">churn_df</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
+<hr />
+<h2 id="8-interactive-self-assessment-diagnostic-scenarios">8. Interactive Self-Assessment &amp; Diagnostic Scenarios</h2>
+<details class="question">
+<summary>Self-Assessment: The Re-Use Fallacy and Adaptive Overfitting on Public Benchmarks</summary>
+<p>In academic benchmark competitions (e.g., ImageNet, GLUE), the test set remains fixed for years while thousands of research groups submit models iteratively. Explain why adaptive overfitting occurs even if no single researcher has direct access to test labels.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Information leakage through aggregate test score feedback over multiple submission iterations.
+Even when individual test labels are concealed, repeatedly evaluating models on the same test set and using the scalar accuracy feedback to guide hyperparameter selection or model architecture search acts as an optimization loop over the test set. Over hundreds of iterations across the global research community, architectures are selected specifically for the idiosyncratic noise of that static test sample, causing performance degradation when evaluated against fresh replication sets (e.g., ImageNet-v2).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Temporal Domain Shift in Financial Fraud Detection</summary>
+<p>A credit card fraud detection model trained on transaction data from January through June experiences an exponential drop in precision by October, despite total transaction volumes and merchant distributions remaining constant. What statistical phenomenon explains this degradation, and how should dataset management mitigate it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Concept Drift (<span class="arithmatex">\(P(Y | X)\)</span> changes) driven by adversarial evasion tactics.
+Unlike natural image distributions where cat anatomy does not change, financial fraud is adversarial: fraudsters dynamically alter transaction amounts, IP geolocations, and merchant categories once existing patterns are blocked. Consequently, the conditional probability of fraud given transaction features <span class="arithmatex">\(P(Y | X)\)</span> shifts over time. The solution requires continuous rolling-window evaluation, concept drift tracking (e.g., ADWIN or Kolmogorov-Smirnov distance on feature streams), and scheduled weekly dataset retraining.</p>
+</details>
+</details>
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-vapnik1998"></a><strong>[Vapnik1998]</strong> V. N. Vapnik, <em>Statistical Learning Theory</em>, John Wiley &amp; Sons, New York, 1998.</li>
@@ -7774,6 +7844,8 @@ setTimeout(runDecisionSimulation, 100);
         <script src="../../assets/js/code-runner.js"></script>
       
         <script src="../../assets/js/commercial-core.js"></script>
+      
+        <script src="../../assets/js/tools-handoff.js"></script>
       
     
   </body>

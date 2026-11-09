@@ -1174,6 +1174,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6382,6 +6393,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../tools/crowdsourcing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crowdsourcing & Quality Control QA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../tools/active-learning/" class="md-nav__link">
         
   
@@ -7293,6 +7332,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Self-Assessment &amp; Diagnostic Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7663,6 +7713,26 @@ setTimeout(updateRbacView, 100);
 </span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">temp_dvc</span><span class="p">):</span> <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_dvc</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
+<hr />
+<h2 id="7-interactive-self-assessment-diagnostic-scenarios">7. Interactive Self-Assessment &amp; Diagnostic Scenarios</h2>
+<details class="question">
+<summary>Self-Assessment: Cryptographic Hash Verification in MLOps Auditing</summary>
+<p>An autonomous medical diagnostic model undergoes FDA regulatory audit. The company claims the model was trained on <code>mammography_clean_v3.parquet</code>. During the audit, the regulator discovers that the file <code>mammography_clean_v3.parquet</code> on the training cluster has a different SHA-256 hash than the file archived under that name in the compliance repository. What are the engineering consequences and how should the system be redesigned?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Complete invalidation of reproducibility audit; the model cannot be legally certified because training provenance is broken.
+In regulated environments, file names are meaningless because files can be overwritten or appended silently. The system must enforce immutable Content-Addressable Storage (CAS) where model metadata records store cryptographic hashes (e.g., <code>dvc.lock</code> containing <code>md5</code> or <code>sha256: 7f83b...</code>). The training pipeline must verify that the input hash matches the expected hash before executing training epochs, halting automatically on hash mismatch.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Machine Unlearning and Cascade Retraining Costs</summary>
+<p>A European user exercises their GDPR Right to Erasure, demanding immediate deletion of their 10,000 annotated voice telemetry clips. The voice clips were used to train an enterprise speech recognition foundation model costing $1,200,000 in GPU compute to train. How does dataset management architecture address this challenge without incurring a full $1.2M retraining cost?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Partitioned dataset sharding (SISA architecture: Sharded, Isolated, Sliced, Aggregated) or exact machine unlearning checkpoints.
+By partitioning training data into independent shards and ensembling sub-models, unlearning a specific user only requires retraining the single shard containing that user's data (reducing compute cost by a factor equal to the number of shards, e.g., 90%). Furthermore, dataset management systems must log exact sample indices per shard to verify cryptographic purge across raw logs, intermediate feature tables, and model parameter checkpoints.</p>
+</details>
+</details>
 <h2 id="6-peer-reviewed-scholarly-references">6. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-voigt2017"></a><strong>[Voigt2017]</strong> P. Voigt and A. Von dem Bussche, <em>The EU General Data Protection Regulation (GDPR): A Practical Guide</em>, 1st ed., Springer Cham, 2017. <a href="https://doi.org/10.1007/978-3-319-57959-7">DOI: 10.1007/978-3-319-57959-7</a>.</li>
@@ -7783,6 +7853,8 @@ setTimeout(updateRbacView, 100);
         <script src="../../assets/js/code-runner.js"></script>
       
         <script src="../../assets/js/commercial-core.js"></script>
+      
+        <script src="../../assets/js/tools-handoff.js"></script>
       
     
   </body>

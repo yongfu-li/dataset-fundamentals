@@ -19,6 +19,9 @@
       outputs: 1,
       defaultConfig: { source: "customer-orders", format: "csv" },
       process: (input, cfg) => {
+        if (cfg && cfg.customRows) {
+          return { rows: cfg.customRows, columns: cfg.customColumns || Object.keys(cfg.customRows[0]), log: `Ingested ${cfg.customRows.length} records from pipeline handoff.` };
+        }
         // Generates sample mock dataset if no parent
         const rows = [
           { id: "U101", age: 28, income: 55000, email: "alice@domain.com", city: "NYC", group: "A", churn: 0 },
@@ -300,6 +303,35 @@
       renderWires();
       document.getElementById("pipe-telemetry").innerText = "Workflow reset.";
     });
+
+    if (window.DatasetToolsHandoff && window.DatasetToolsHandoff.mountBar) {
+      window.DatasetToolsHandoff.mountBar(root, {
+        currentTool: "pipeline-builder",
+        getTableData: () => {
+          const last = nodes[nodes.length - 1];
+          if (last && last.lastResult && last.lastResult.rows) {
+            return {
+              name: "dag_pipeline_output",
+              columns: last.lastResult.columns || Object.keys(last.lastResult.rows[0]),
+              rows: last.lastResult.rows
+            };
+          }
+          return null;
+        },
+        onLoadData: (payload) => {
+          if (payload && payload.table && payload.table.rows) {
+            const ingestNode = nodes.find(n => n.type === "ingest");
+            if (ingestNode) {
+              ingestNode.config.customRows = payload.table.rows;
+              ingestNode.config.customColumns = payload.table.columns;
+              const tel = document.getElementById("pipe-telemetry");
+              if (tel) tel.innerText = `Loaded ${payload.table.rows.length} rows from pipeline handoff into Ingestion node.`;
+              runPipeline();
+            }
+          }
+        }
+      });
+    }
   }
 
   async function runPipeline() {
@@ -334,6 +366,14 @@
     if (selectedNodeId) {
       const sel = nodes.find((n) => n.id === selectedNodeId);
       if (sel) inspectNode(sel);
+    }
+
+    if (window.DatasetToolsHandoff && intermediate && intermediate.rows) {
+      window.DatasetToolsHandoff.writeTable("pipeline-builder", {
+        name: "dag_executed_dataset",
+        columns: intermediate.columns || Object.keys(intermediate.rows[0]),
+        rows: intermediate.rows
+      });
     }
   }
 
