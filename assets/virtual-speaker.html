@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manga Virtual Speaker — Dataset Fundamentals</title>
+  <title>Manga Virtual Speaker — Dataset Fundamentals (Chapter 1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b0f19;
+      color: #f8fafc;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
     @keyframes mouth-talk {
       0%, 100% { d: path("M 88 126 Q 100 128 112 126"); }
       50% { d: path("M 88 124 Q 100 138 112 124"); }
@@ -31,40 +42,56 @@
     .wave-bar-4 { animation: soundwave 0.6s ease-in-out infinite 0.1s; }
   </style>
 </head>
-<body class="bg-[#070a12] text-slate-100 font-sans min-h-screen p-4 md:p-8 select-none">
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen p-3 md:p-6 select-none antialiased">
 
-  <!-- Header -->
-  <header class="max-w-5xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-5">
+  <!-- Header aligned to OLED Midnight Design System -->
+  <header class="max-w-6xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-4 border-b border-[#1e293b] pb-4">
     <div>
-      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-400 text-xs font-semibold tracking-wide uppercase mb-2">
-        <span>🎙️ Manga Virtual Speaker Prototype</span>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-400 text-xs font-semibold tracking-wide uppercase mb-1.5 font-mono">
+        <span>🎙️ Chapter 1 Virtual Lecturer Studio</span>
         <span>•</span>
-        <span>Curriculum Delivery System</span>
+        <span>Dr. Nova &amp; Kaito</span>
       </div>
-      <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-        Virtual Lecturer: <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-400">Dr. Nova &amp; Kaito</span>
+      <h1 class="text-xl md:text-2xl font-extrabold text-white tracking-tight">
+        Interactive Lecture: <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-400">Chapter 1 Curriculum</span>
       </h1>
-      <p class="text-slate-400 text-sm mt-1">
-        Manga-inspired AI avatars delivering the <em>Dataset Fundamentals</em> curriculum via synchronized audio, expressive visual poses, and Socratic dialogues.
+      <p class="text-slate-400 text-xs md:text-sm mt-0.5">
+        Explore all 7 lessons of Chapter 1 with synchronized audio narration, animated manga lip-sync, and Socratic debates.
       </p>
     </div>
 
-    <!-- Mode Toggle: Solo Lecture vs Duo Manga Dialogue -->
-    <div class="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 text-xs">
-      <button id="btnSolo" onclick="setLectureMode('solo')" class="px-3 py-1.5 rounded-lg font-bold transition-all bg-cyan-600 text-white shadow-md shadow-cyan-950">
-        Solo Keynote
-      </button>
-      <button id="btnDuo" onclick="setLectureMode('duo')" class="px-3 py-1.5 rounded-lg font-bold transition-all text-slate-400 hover:text-slate-200">
-        Manga Socratic Duo
-      </button>
+    <!-- Chapter 1 Lesson Selector Dropdown -->
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="flex items-center gap-1.5 bg-[#111827] px-3 py-1.5 rounded-xl border border-[#1e293b] text-xs">
+        <label for="topicSelect" class="text-slate-400 font-mono">Lesson:</label>
+        <select id="topicSelect" onchange="changeTopic(this.value)" class="bg-[#0b0f19] border border-cyan-500/40 text-cyan-300 text-xs rounded-lg px-2.5 py-1 font-mono focus:outline-none focus:border-cyan-400">
+          <option value="part1">1.1 What is a Dataset &amp; Data Cascades</option>
+          <option value="part2">1.2 Types of Datasets (1NF to Streaming)</option>
+          <option value="part3">1.3 Dataset Formats (Row vs Columnar)</option>
+          <option value="part4">1.4 Quality Dimensions &amp; MCAR/MNAR</option>
+          <option value="part5">1.5 Exploratory Data Analysis &amp; Simpson's</option>
+          <option value="part6">1.6 Uses of Datasets &amp; Leakage Prevention</option>
+          <option value="part7">1.7 Dataset Lifecycle &amp; Crypto Erasure</option>
+        </select>
+      </div>
+
+      <!-- Mode Toggle: Solo vs Duo -->
+      <div class="flex items-center gap-1 bg-[#111827] p-1 rounded-xl border border-[#1e293b] text-xs">
+        <button id="btnSolo" onclick="setLectureMode('solo')" class="px-3 py-1.5 rounded-lg font-bold transition-all bg-cyan-600 text-white shadow-md shadow-cyan-950">
+          Solo Keynote
+        </button>
+        <button id="btnDuo" onclick="setLectureMode('duo')" class="px-3 py-1.5 rounded-lg font-bold transition-all text-slate-400 hover:text-slate-200">
+          Manga Socratic Duo
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Main Showcase Grid -->
-  <main class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+  <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5">
 
     <!-- Left: Virtual Speaker Studio (5 cols) -->
-    <div class="lg:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden backdrop-blur-sm">
+    <div class="lg:col-span-5 bg-[#111827] border border-[#1e293b] rounded-2xl p-5 flex flex-col justify-between shadow-2xl relative overflow-hidden">
       
       <!-- Top Speaker Status Pill -->
       <div class="flex items-center justify-between">
@@ -72,20 +99,19 @@
           <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
           <span class="font-mono text-xs font-bold text-slate-200" id="speakerName">Dr. Nova (Data Architect)</span>
         </div>
-        <span id="poseBadge" class="text-xs font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">
+        <span id="poseBadge" class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">
           Pose: Teaching
         </span>
       </div>
 
       <!-- Manga Avatar Graphic Arena -->
-      <div class="flex-1 flex flex-col items-center justify-center my-4 relative min-h-[300px]">
-        <!-- Hologram Backdrop Grid -->
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-950/30 via-transparent to-transparent pointer-events-none"></div>
+      <div class="flex-1 flex flex-col items-center justify-center my-3 relative min-h-[290px]">
+        <!-- Hologram Radial Glow -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-950/40 via-transparent to-transparent pointer-events-none"></div>
 
         <!-- Speaker Avatar (SVG) -->
         <div id="speakerAvatar" class="speaker-sway relative">
           <svg width="220" height="260" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Aura Halo -->
             <circle cx="100" cy="100" r="75" fill="url(#haloGrad)" opacity="0.25"/>
 
             <!-- Hair Back (Anime Long Bob / Cyber Violet) -->
@@ -95,7 +121,6 @@
             <!-- Torso / High-Collar Cyber Lab Coat -->
             <path d="M 60 180 L 40 240 L 160 240 L 140 180 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
             <path d="M 75 180 L 100 215 L 125 180" stroke="#38bdf8" stroke-width="3" fill="#1e293b"/>
-            <!-- Lab Coat Lapels -->
             <path d="M 70 180 L 60 240 L 95 240 L 85 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
             <path d="M 130 180 L 140 240 L 105 240 L 115 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
 
@@ -116,24 +141,20 @@
 
             <!-- Eyes (Manga Large Expressive Eyes) -->
             <g id="avatarEyes" class="eyes-blinking">
-              <!-- Left Eye -->
               <ellipse cx="80" cy="100" rx="9" ry="11" fill="#0f172a"/>
               <ellipse cx="80" cy="100" rx="7" ry="9" fill="#0284c7"/>
               <circle cx="78" cy="96" r="3.5" fill="#ffffff"/>
               <circle cx="83" cy="103" r="1.5" fill="#ffffff"/>
-              <!-- Eyelash / Brow -->
               <path d="M 70 88 Q 80 84 90 89" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
               
-              <!-- Right Eye -->
               <ellipse cx="120" cy="100" rx="9" ry="11" fill="#0f172a"/>
               <ellipse cx="120" cy="100" rx="7" ry="9" fill="#0284c7"/>
               <circle cx="118" cy="96" r="3.5" fill="#ffffff"/>
               <circle cx="123" cy="103" r="1.5" fill="#ffffff"/>
-              <!-- Eyelash / Brow -->
               <path d="M 110 89 Q 120 84 130 88" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
             </g>
 
-            <!-- Cyber Tech Monocle / AR Eyepiece (Manga Scientist Touch) -->
+            <!-- Cyber Tech Monocle / AR Eyepiece -->
             <circle cx="120" cy="100" r="14" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.8"/>
             <line x1="134" y1="100" x2="148" y2="92" stroke="#38bdf8" stroke-width="1.5"/>
             <circle cx="120" cy="100" r="12" fill="#38bdf8" opacity="0.15"/>
@@ -141,15 +162,14 @@
             <!-- Nose -->
             <path d="M 100 110 L 98 116 L 101 116" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 
-            <!-- Mouth (Morphs between resting and talking) -->
+            <!-- Mouth -->
             <path id="avatarMouth" d="M 92 128 Q 100 132 108 128" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" fill="none"/>
 
-            <!-- Bangs / Front Hair (Manga Layered) -->
+            <!-- Bangs / Front Hair -->
             <path d="M 60 75 Q 85 95 90 120 Q 95 85 100 65 Q 105 85 115 118 Q 120 90 140 75 C 130 50 70 50 60 75 Z" fill="#818cf8"/>
-            <!-- Hair Highlight Streak -->
             <path d="M 75 65 Q 100 75 125 65" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
 
-            <!-- Soundwave Graphic Indicators -->
+            <!-- Soundwave Equalizer Indicators -->
             <g id="soundwaveGroup" class="opacity-0 transition-opacity duration-300">
               <rect x="25" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-1"/>
               <rect x="31" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2"/>
@@ -160,7 +180,6 @@
               <rect x="172" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-4"/>
             </g>
 
-            <!-- Defs -->
             <defs>
               <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="#38bdf8"/>
@@ -172,21 +191,21 @@
       </div>
 
       <!-- Playback & Audio Controls -->
-      <div class="bg-slate-950 border border-slate-800 rounded-xl p-3">
-        <div class="flex items-center justify-between mb-2.5">
+      <div class="bg-[#0b0f19] border border-[#1e293b] rounded-xl p-3">
+        <div class="flex items-center justify-between mb-2">
           <div class="flex items-center gap-2">
-            <button id="btnPlaySpeech" onclick="toggleSpeech()" class="px-3.5 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-cyan-900/40">
+            <button id="btnPlaySpeech" onclick="toggleSpeech()" class="px-3.5 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-cyan-900/40 font-mono">
               <span id="playIcon">▶</span>
               <span id="playText">Speak Aloud</span>
             </button>
-            <button onclick="stopSpeech()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+            <button onclick="stopSpeech()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono">
               ⏹ Stop
             </button>
           </div>
 
-          <div class="flex items-center gap-1">
-            <span class="text-xs text-slate-500 font-mono">Pose:</span>
-            <select id="poseSelect" onchange="changePose(this.value)" class="bg-slate-900 border border-slate-700 text-cyan-400 text-xs rounded px-2 py-1 font-mono">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs text-slate-400 font-mono">Pose:</span>
+            <select id="poseSelect" onchange="changePose(this.value)" class="bg-[#111827] border border-[#1e293b] text-cyan-400 text-xs rounded px-2 py-1 font-mono">
               <option value="teaching">Teaching</option>
               <option value="thinking">Deep Thought</option>
               <option value="warning">Warning / Risk</option>
@@ -195,10 +214,9 @@
           </div>
         </div>
 
-        <!-- Teleprompter / Current Line -->
-        <div class="text-xs text-slate-400 font-mono flex items-center justify-between border-t border-slate-900 pt-2">
-          <span>Voice: <strong class="text-slate-300">Neural TTS (English)</strong></span>
-          <span id="charCount" class="text-slate-500">Audio Synced</span>
+        <div class="text-xs text-slate-400 font-mono flex items-center justify-between border-t border-[#1e293b] pt-2">
+          <span>Engine: <strong class="text-slate-200">Browser Speech Synthesis</strong></span>
+          <span id="charCount" class="text-slate-400">Lip-Sync Active</span>
         </div>
       </div>
 
@@ -207,88 +225,63 @@
     <!-- Right: Integrated Lecture Presentation Canvas (7 cols) -->
     <div class="lg:col-span-7 flex flex-col gap-4">
 
-      <!-- Simulated Slide Canvas with Avatar PiP (Picture-in-Picture) -->
-      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+      <!-- Simulated Slide Canvas with Obsidian Slate Layout -->
+      <div class="bg-[#111827] border border-[#1e293b] rounded-2xl p-5 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[380px]">
         <!-- Top Cyan Accent Bar -->
         <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-600"></div>
 
         <div>
-          <!-- Category Pill -->
+          <!-- Category Track Pill -->
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-mono font-bold text-cyan-400 tracking-wider">
-              ◆ CHAPTER 1 • PART 1: INTRODUCTION TO DATASETS
+            <span id="slideTrackBadge" class="text-xs font-mono font-bold text-cyan-400 tracking-wider">
+              ◆ CHAPTER 1 • PART 1: WHAT IS A DATASET
             </span>
-            <span class="text-xs font-mono text-slate-500">Slide 9 / 15</span>
+            <span id="slideIndexBadge" class="text-xs font-mono text-slate-500">Lesson 1 of 7</span>
           </div>
 
           <!-- Slide Title -->
-          <h2 id="slideTitle" class="text-xl md:text-2xl font-bold text-white mb-4">
+          <h2 id="slideTitle" class="text-xl md:text-2xl font-bold text-white mb-3">
             The Law of Data Quality Cascades
           </h2>
 
-          <!-- Slide Content Area (Dual Mode: Solo Points or Manga Socratic Dialogue) -->
-          <div id="slideContent" class="space-y-3 text-sm">
-            <!-- Bullet 1 -->
-            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
-              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
-              <div>
-                <strong class="text-cyan-400">Non-Linear Error Amplification:</strong>
-                <span class="text-slate-300">Early collection noise does not stay contained; it compounds exponentially across downstream pipeline stages.</span>
-              </div>
-            </div>
-
-            <!-- Bullet 2 -->
-            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
-              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
-              <div>
-                <strong class="text-cyan-400">Sensor Telemetry Drift:</strong>
-                <span class="text-slate-300">A tiny 20ms timestamp jitter shifts LiDAR spatial coordinates by 0.56 meters, creating ghost obstacles in autonomous vehicles.</span>
-              </div>
-            </div>
-
-            <!-- Bullet 3 -->
-            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
-              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
-              <div>
-                <strong class="text-cyan-400">Model Overfitting Trap:</strong>
-                <span class="text-slate-300">Downstream neural models exploit subtle collection bugs as predictive signals, triggering catastrophic failures in the ICU.</span>
-              </div>
-            </div>
+          <!-- Slide Content Area -->
+          <div id="slideContent" class="space-y-2.5 text-sm">
+            <!-- Injected by JavaScript -->
           </div>
         </div>
 
-        <!-- Speech Subtitle Bar / Live Captioning -->
-        <div class="mt-4 p-3.5 bg-slate-950 border border-slate-800 rounded-xl relative">
+        <!-- Subtitle Bar / Live Teleprompter Captioning -->
+        <div class="mt-4 p-3 bg-[#0b0f19] border border-[#1e293b] rounded-xl relative">
           <div class="flex items-center gap-2 mb-1">
             <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
             <span id="captionSpeaker" class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wide">
               Dr. Nova:
             </span>
           </div>
-          <p id="captionText" class="text-sm text-slate-200 leading-relaxed font-sans italic">
-            "Remember everyone: you cannot fix dirty data by simply training a deeper neural network. A minor sensor drift at ingestion compounds into catastrophic failure!"
+          <p id="captionText" class="text-xs md:text-sm text-slate-200 leading-relaxed font-sans italic">
+            "Remember everyone: you cannot fix dirty data by simply training a deeper neural network. Early collection errors compound exponentially downstream!"
           </p>
         </div>
 
       </div>
 
       <!-- Feature Card: Why Manga / Virtual Speakers Excel in Data Science -->
-      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-xl">
+      <div class="bg-[#111827] border border-[#1e293b] rounded-2xl p-4 shadow-xl">
         <h3 class="text-xs font-mono font-bold tracking-wider uppercase text-slate-300 mb-2 flex items-center gap-1.5">
-          <span>💡 Three Pedagogical Superpowers of Virtual Manga Speakers</span>
+          <span>💡 Pedagogical Advantages of Chapter 1 Socratic Lecturing</span>
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+          <div class="p-2.5 rounded-lg bg-[#0b0f19] border border-[#1e293b]">
             <strong class="text-sky-400 block mb-0.5">1. Socratic Relatability</strong>
-            <span class="text-slate-400 text-xs">The junior apprentice asks the exact questions the student is thinking, preventing cognitive overload.</span>
+            <span class="text-slate-400 text-xs">Kaito asks the exact questions students hesitate to ask, demystifying abstract mathematics.</span>
           </div>
-          <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+          <div class="p-2.5 rounded-lg bg-[#0b0f19] border border-[#1e293b]">
             <strong class="text-amber-400 block mb-0.5">2. Emotional Memory Anchors</strong>
-            <span class="text-slate-400 text-xs">Shocked or panicked character reactions create visual anchors for critical failure modes (e.g. data cascades).</span>
+            <span class="text-slate-400 text-xs">Shocked character expressions anchor key failure modes (e.g. data cascades, leakage).</span>
           </div>
-          <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
-            <strong class="text-emerald-400 block mb-0.5">3. Multi-Voice Pipeline</strong>
-            <span class="text-slate-400 text-xs">Integrates directly into our TTS audio and video scripts via Azure/Edge-TTS neural voices.</span>
+          <div class="p-2.5 rounded-lg bg-[#0b0f19] border border-[#1e293b]">
+            <strong class="text-emerald-400 block mb-0.5">3. Complete Curriculum</strong>
+            <span class="text-slate-400 text-xs">Covers all 7 lessons of Chapter 1 from empirical samples to GDPR cryptographic erasure.</span>
           </div>
         </div>
       </div>
@@ -297,67 +290,439 @@
 
   </main>
 
+  <!-- Complete Chapter 1 Curriculum Database (All 7 Lessons) -->
   <script>
     let isSpeaking = false;
+    let currentTopic = 'part1';
     let currentMode = 'solo';
 
-    const dialogues = {
-      solo: {
-        speaker: "Dr. Nova (Data Architect)",
-        badge: "Pose: Teaching",
-        title: "The Law of Data Quality Cascades",
-        text: "In production machine learning systems, early collection errors do not stay contained. They compound non-linearly across downstream stages. Hardware telemetry drift or missing sensor readings compound through arbitrary imputation. Even subtle collection artifacts can trigger catastrophic failure during deployment.",
-        contentHtml: `
-          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
-            <span class="text-cyan-400 font-bold mt-0.5">◆</span>
-            <div>
-              <strong class="text-cyan-400">Non-Linear Error Amplification:</strong>
-              <span class="text-slate-300">Early collection noise does not stay contained; it compounds exponentially across downstream pipeline stages.</span>
+    const curriculum = {
+      part1: {
+        badge: "◆ CHAPTER 1 • PART 1: WHAT IS A DATASET & DATA CASCADES",
+        index: "Lesson 1 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "teaching",
+          title: "The Law of Data Quality Cascades",
+          text: "In production machine learning systems, early collection errors do not stay contained. They compound non-linearly across downstream stages. Hardware telemetry drift or missing sensor readings compound through arbitrary imputation. Even subtle collection artifacts can trigger catastrophic failure during deployment.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Non-Linear Error Amplification:</strong>
+                <span class="text-slate-300">Early collection noise does not stay contained; it compounds exponentially across downstream pipeline stages.</span>
+              </div>
             </div>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
-            <span class="text-cyan-400 font-bold mt-0.5">◆</span>
-            <div>
-              <strong class="text-cyan-400">Sensor Telemetry Drift:</strong>
-              <span class="text-slate-300">A tiny 20ms timestamp jitter shifts LiDAR spatial coordinates by 0.56 meters, creating ghost obstacles in autonomous vehicles.</span>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Sensor Telemetry Drift:</strong>
+                <span class="text-slate-300">A tiny 20ms timestamp jitter shifts LiDAR spatial coordinates by 0.56 meters, creating ghost obstacles in autonomous vehicles.</span>
+              </div>
             </div>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-start gap-2.5">
-            <span class="text-cyan-400 font-bold mt-0.5">◆</span>
-            <div>
-              <strong class="text-cyan-400">Model Overfitting Trap:</strong>
-              <span class="text-slate-300">Downstream neural models exploit subtle collection bugs as predictive signals, triggering catastrophic failures in the ICU.</span>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Model Overfitting Trap:</strong>
+                <span class="text-slate-300">Downstream neural models exploit subtle collection bugs as predictive signals, triggering catastrophic failures in the ICU.</span>
+              </div>
             </div>
-          </div>
-        `
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "warning",
+          title: "Socratic Debate: Can a Bigger Model Fix Dirty Data?",
+          text: "Kaito asks: But Dr. Nova, if our bedside ICU monitor has a tiny 20ms timestamp jitter, can't we just throw a 100-layer Transformer at it to smooth it out? Dr. Nova replies: Never, Kaito! That is the classic model-centric fallacy. The deeper your neural net, the more aggressively it will memorize the jitter as a spurious shortcut!",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"Wait, Dr. Nova! If our bedside ICU monitor has a tiny 20ms jitter, can't we just throw a 100-layer Transformer at it to smooth it out?"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"Never! That's the classic model-centric fallacy! The deeper your neural net, the more aggressively it will memorize the 20ms jitter as a spurious shortcut!"</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> Model capacity amplifies data artifacts rather than fixing them.</span>
+            </div>
+          `
+        }
       },
-      duo: {
-        speaker: "Manga Dialogue (Dr. Nova & Kaito)",
-        badge: "Pose: Socratic Debate",
-        title: "Socratic Debate: Can a Bigger Model Fix Dirty Data?",
-        text: "Kaito asks: But Dr. Nova, if our medical sensors have a little bit of noise, can't we just scale up our transformer to twenty billion parameters? Dr. Nova replies: Absolutely not, Kaito! As Sambasivan proved, the model will simply overfit to the noise artifact, mistaking uncalibrated sensor drift for patient biomarkers!",
-        contentHtml: `
-          <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
-            <div class="w-7 h-7 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
-            <div>
-              <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
-              <span class="text-slate-200">"Wait, Dr. Nova! If our bedside ICU monitor has a tiny 20ms timestamp jitter, can't we just throw a 100-layer Transformer at it to smooth it out?"</span>
+
+      part2: {
+        badge: "◆ CHAPTER 1 • PART 2: TYPES OF DATASETS & STREAMING",
+        index: "Lesson 2 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "teaching",
+          title: "Structural Schemas: 1NF to Unstructured Manifolds",
+          text: "Datasets span two orthogonal axes: structural schemas and temporal dynamics. First normal form enforces scalar atomicity in relational tables. Hierarchical trees handle semi-structured JSON. Unstructured images and audio live as high-dimensional continuous manifolds. Temporally, static historical snapshots contrast with dynamic streaming event queues governed by watermarks.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">First Normal Form (1NF):</strong>
+                <span class="text-slate-300">Every cell in a relational dataset must contain an atomic scalar value, prohibiting repeating arrays or nested records.</span>
+              </div>
             </div>
-          </div>
-          <div class="p-3 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
-            <div class="w-7 h-7 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
-            <div>
-              <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
-              <span class="text-slate-200">"Never! That's the classic model-centric fallacy! The deeper your neural net, the more aggressively it will memorize the 20ms jitter as a spurious shortcut!"</span>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Continuous Manifolds:</strong>
+                <span class="text-slate-300">Unstructured text, images, and audio lack rigid schemas and must be embedded into metric vector spaces for algebraic modeling.</span>
+              </div>
             </div>
-          </div>
-          <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
-            <span>💡</span>
-            <span><strong>Core Takeaway:</strong> Model capacity amplifies data artifacts rather than fixing them.</span>
-          </div>
-        `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Streaming Watermarks:</strong>
+                <span class="text-slate-300">Real-time event queues track out-of-order event times using monotonic watermarks to bound processing latency.</span>
+              </div>
+            </div>
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "thinking",
+          title: "Socratic Debate: Why Can't We Store Everything in SQL?",
+          text: "Kaito asks: Dr. Nova, why do we need vector databases and embedding spaces? Can't we just store raw text paragraphs in a VARCHAR column in Postgres? Dr. Nova replies: You can store the raw bytes, Kaito, but Euclidean distance between words is completely undefined on strings! We must project unstructured tokens into dense semantic manifolds.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"Why do we need vector embeddings? Can't we just store customer feedback in a standard Postgres text column?"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"A database can store strings, but algorithms cannot calculate semantic similarity on raw characters! We project tokens into vector metric spaces so math can measure cosine similarity."</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> Unstructured data requires metric spaces to enable mathematical computation.</span>
+            </div>
+          `
+        }
+      },
+
+      part3: {
+        badge: "◆ CHAPTER 1 • PART 3: ROW STORES VS COLUMNAR STORAGE",
+        index: "Lesson 3 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "teaching",
+          title: "Physical Serialization: CSV vs Parquet & Arrow",
+          text: "Physical serialization layout dictates input-output efficiency. Textual CSV incurs heavy parsing penalties and lacks schema enforcement. Row stores excel at transactional inserts, while columnar formats like Apache Parquet and Apache Arrow dominate analytics. Parquet organizes data into row groups and column chunks, enabling predicate pushdown and dictionary compression that skips over ninety percent of disk reads.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">The Text Parsing Tax:</strong>
+                <span class="text-slate-300">CSV serializes numbers into variable-length text strings, forcing CPUs to waste cycles parsing ASCII into IEEE-754 floats.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Predicate Pushdown:</strong>
+                <span class="text-slate-300">Parquet headers store minimum and maximum statistics per column chunk, allowing query engines to skip entire row groups without touching disk.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Zero-Copy Memory (Arrow):</strong>
+                <span class="text-slate-300">Apache Arrow provides standardized in-memory columnar buffers, sharing datasets across Python, R, and Rust without serialization overhead.</span>
+              </div>
+            </div>
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "excited",
+          title: "Socratic Debate: Why Did My 50GB CSV Crash Pandas?",
+          text: "Kaito asks: Dr. Nova, my workstation has 64 gigabytes of RAM, but loading a 40 gigabyte CSV completely killed Python! Why? Dr. Nova replies: Because CSV stores uncompressed text! When Pandas parses text strings, object pointers and memory fragmentation cause a 4x memory explosion. In Parquet, columnar compression reduces that same file to 4 gigabytes with instant zero-copy loading!",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"My PC has 64GB of RAM, but loading a 40GB CSV triggered an Out-of-Memory crash! Why did it explode?"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"Because Python parses CSV text into heap objects, causing a 400% memory blowup! In Parquet, dictionary compression keeps that dataset under 4GB on disk and in memory!"</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> Columnar formats eliminate the text parsing tax and prevent memory blowups.</span>
+            </div>
+          `
+        }
+      },
+
+      part4: {
+        badge: "◆ CHAPTER 1 • PART 4: DATA QUALITY & MISSINGNESS",
+        index: "Lesson 4 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "warning",
+          title: "Quality Dimensions: Semantic Errors & MCAR/MNAR",
+          text: "Data quality requires five orthogonal dimensions: accuracy, completeness, consistency, timeliness, and relevance. Syntactic validation is insufficient; a transaction of fifteen thousand dollars is a valid float, yet represents an order-of-magnitude error. Furthermore, addressing missing data requires diagnosing the underlying mechanism: missing completely at random, missing at random, or missing not at random.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Syntactic vs Semantic Accuracy:</strong>
+                <span class="text-slate-300">Schema validators only verify data types; detecting semantic errors requires distribution auditing and Mahalanobis outlier fencing.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Missing Completely at Random (MCAR):</strong>
+                <span class="text-slate-300">Missingness is completely independent of both observed and unobserved variables, permitting simple listwise deletion without bias.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Missing Not at Random (MNAR):</strong>
+                <span class="text-slate-300">The unobserved value itself dictates its absence, such as high earners concealing income. Imputing with column means severely biases results.</span>
+              </div>
+            </div>
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "warning",
+          title: "Socratic Debate: Why Can't We Just Impute with the Mean?",
+          text: "Kaito asks: Dr. Nova, if our dataset has missing values, can't we just fill every null with the column mean to keep tensor shapes uniform? Dr. Nova replies: Absolutely not, Kaito! If high-income survey respondents intentionally conceal their salary, mean imputation treats them as average, completely crushing distribution variance and biasing downstream models!",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"Can't we just fill all missing cells with the column mean so our PyTorch tensors don't throw NaN errors?"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"That's a disastrous shortcut! If high earners conceal their income, that is Missing Not at Random. Imputing with the mean artificially deflates variance and poisons your model!"</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> Diagnosing the missingness mechanism must precede any imputation strategy.</span>
+            </div>
+          `
+        }
+      },
+
+      part5: {
+        badge: "◆ CHAPTER 1 • PART 5: EXPLORATORY DATA ANALYSIS",
+        index: "Lesson 5 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "teaching",
+          title: "The Four-Tier EDA Framework & Simpson's Paradox",
+          text: "Exploratory Data Analysis rejects the assumption that datasets arrive clean. First formalized by John Tukey, EDA is a forensic audit across four tiers: shape and memory invariants, distributional moments like skewness and kurtosis, non-parametric Tukey outlier fences, and bivariate associations. Analysts must guard against Simpson's paradox, where aggregate correlations completely invert upon cohort disaggregation.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Distributional Moments:</strong>
+                <span class="text-slate-300">Heavy positive right-skew causes sample means to diverge from medians, requiring log transforms before neural optimization.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Tukey's IQR Outlier Fences:</strong>
+                <span class="text-slate-300">Robust outlier detection calculates boundaries at 1.5 times the IQR beyond quartiles without assuming Gaussian normality.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Simpson's Paradox:</strong>
+                <span class="text-slate-300">An unobserved confounding variable can cause an overall positive correlation to reverse into a negative correlation across every subgroup.</span>
+              </div>
+            </div>
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "thinking",
+          title: "Socratic Debate: How Can a Treatment Win Overall but Lose Everywhere?",
+          text: "Kaito asks: Dr. Nova, how is it mathematically possible for Drug A to have a higher overall cure rate than Drug B, but perform worse in both mild and severe patient cohorts? Dr. Nova replies: Because of an unobserved confounding variable! Doctors assigned Drug A to mostly mild patients who naturally recover, masking the drug's true efficacy. Subgroup profiling unmasks the confounder!",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"How can Drug A have a higher overall cure rate, but perform worse than Drug B in both young and elderly patients?!"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"That is Simpson's Paradox! If doctors gave Drug A disproportionately to healthy patients, the aggregate rate is confounded by baseline health. Disaggregating cohorts reveals the truth!"</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> Never trust aggregate statistics without auditing for confounding variables across subgroups.</span>
+            </div>
+          `
+        }
+      },
+
+      part6: {
+        badge: "◆ CHAPTER 1 • PART 6: USES OF DATASETS & LEAKAGE",
+        index: "Lesson 6 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "teaching",
+          title: "Empirical Risk Minimization & Data Leakage Prevention",
+          text: "Supervised learning relies on Empirical Risk Minimization, approximating true risk by minimizing empirical loss over training observations. Models fail when training distributions diverge from production environments. Crucially, engineers must guard against data leakage, including target leakage and temporal contamination where future information infiltrates feature matrices.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Empirical Risk Minimization:</strong>
+                <span class="text-slate-300">Models optimize empirical loss on training sample D_N; if the training sample is unrepresentative, empirical risk diverges from true risk.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Target Leakage:</strong>
+                <span class="text-slate-300">Features inadvertently populated after the outcome occurred (e.g. account closure timestamps) give false 99% accuracy during testing.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Temporal Contamination:</strong>
+                <span class="text-slate-300">Random cross-validation shuffles future records into training sets. Time-series models must enforce chronological walk-forward splits.</span>
+              </div>
+            </div>
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "warning",
+          title: "Socratic Debate: Why Did Our 99% Accurate Model Fail in Production?",
+          text: "Kaito says: Dr. Nova, my credit default model achieved a 0.99 AUC score on test data, but when deployed to production today, it failed completely! Dr. Nova replies: Look at your feature schema, Kaito! You included 'Account Collection Date' as a feature. That column only gets filled AFTER a user defaults! You leaked the future target into the training data!",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"My default prediction model scored 99% AUC in cross-validation, but when launched today, it predicted random garbage!"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"You had classic target leakage! You included 'Collection Agency Fee', which only exists after someone defaults. At inference time, that feature is blank!"</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> A suspiciously perfect test metric almost always indicates target leakage.</span>
+            </div>
+          `
+        }
+      },
+
+      part7: {
+        badge: "◆ CHAPTER 1 • PART 7: DATASET MANAGEMENT & LINEAGE",
+        index: "Lesson 7 of 7",
+        solo: {
+          speaker: "Dr. Nova (Data Architect)",
+          pose: "teaching",
+          title: "Lifecycle Governance, Lineage & Cryptographic Erasure",
+          text: "Dataset management governs the entire lifecycle from ingestion to archival. Content-addressable storage using cryptographic hashing ensures immutable lineage tracking. In enterprise environments, role-based access control enforces column masking. Under GDPR Article 17, compliance with the Right to be Forgotten on immutable storage is achieved through cryptographic erasure, permanently destroying encryption keys.",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Content-Addressable Versioning:</strong>
+                <span class="text-slate-300">DVC and Git-LFS track dataset revisions via SHA-256 content hashes, guaranteeing exact reproducibility of ML experiments.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Dynamic RBAC Masking:</strong>
+                <span class="text-slate-300">Sensitive attributes like social security numbers are dynamically masked or tokenized based on user credentials.</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#0b0f19] border border-[#1e293b] flex items-start gap-2.5">
+              <span class="text-cyan-400 font-bold mt-0.5">◆</span>
+              <div>
+                <strong class="text-cyan-400">Cryptographic Erasure (Crypto-Shredding):</strong>
+                <span class="text-slate-300">GDPR Article 17 compliance on immutable WORM storage is satisfied by deleting individual encryption keys, rendering data unrecoverable.</span>
+              </div>
+            </div>
+          `
+        },
+        duo: {
+          speaker: "Dr. Nova & Kaito (Socratic Debate)",
+          pose: "excited",
+          title: "Socratic Debate: How Do We Delete Records on Immutable Storage?",
+          text: "Kaito asks: Dr. Nova, under GDPR, users have the right to demand their data be deleted, but our cloud archive is configured as Write Once Read Many immutable storage! How can we delete a record without violating storage invariants? Dr. Nova replies: Cryptographic erasure, Kaito! We encrypt each user's record with a unique key. When they request deletion, we destroy the key, mathematically obliterating the record forever!",
+          contentHtml: `
+            <div class="p-2.5 rounded-xl bg-indigo-950/40 border border-indigo-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">K</div>
+              <div>
+                <strong class="text-indigo-400 font-mono text-xs block">Kaito (Junior ML Engineer):</strong>
+                <span class="text-slate-200">"Under GDPR, a customer requested account deletion, but our backups are on immutable WORM storage where files can't be modified! How do we comply?"</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white flex-shrink-0">N</div>
+              <div>
+                <strong class="text-cyan-400 font-mono text-xs block">Dr. Nova (Senior Architect):</strong>
+                <span class="text-slate-200">"We use cryptographic erasure! Each customer's data is encrypted with a dedicated key in our HSM. To delete their data, we shred their key, rendering the ciphertext permanent noise!"</span>
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 flex items-center gap-2">
+              <span>💡</span>
+              <span><strong>Core Takeaway:</strong> Cryptographic shredding enables compliance on immutable storage systems.</span>
+            </div>
+          `
+        }
       }
     };
+
+    function changeTopic(topicKey) {
+      currentTopic = topicKey;
+      stopSpeech();
+      updateView();
+    }
 
     function setLectureMode(mode) {
       currentMode = mode;
@@ -374,13 +739,23 @@
         btnSolo.className = "px-3 py-1.5 rounded-lg font-bold transition-all text-slate-400 hover:text-slate-200";
       }
 
-      const d = dialogues[mode];
-      document.getElementById('speakerName').innerText = d.speaker;
-      document.getElementById('poseBadge').innerText = d.badge;
-      document.getElementById('slideTitle').innerText = d.title;
-      document.getElementById('slideContent').innerHTML = d.contentHtml;
-      document.getElementById('captionSpeaker').innerText = mode === 'solo' ? "Dr. Nova:" : "Dialogue:";
-      document.getElementById('captionText').innerText = `"${d.text}"`;
+      updateView();
+    }
+
+    function updateView() {
+      const topicData = curriculum[currentTopic];
+      const data = topicData[currentMode];
+
+      document.getElementById('slideTrackBadge').innerText = topicData.badge;
+      document.getElementById('slideIndexBadge').innerText = topicData.index;
+      document.getElementById('speakerName').innerText = data.speaker;
+      document.getElementById('slideTitle').innerText = data.title;
+      document.getElementById('slideContent').innerHTML = data.contentHtml;
+      document.getElementById('captionSpeaker').innerText = currentMode === 'solo' ? "Dr. Nova:" : "Dialogue:";
+      document.getElementById('captionText').innerText = `"${data.text}"`;
+
+      changePose(data.pose);
+      document.getElementById('poseSelect').value = data.pose;
     }
 
     function changePose(pose) {
@@ -389,17 +764,17 @@
       const mouth = document.getElementById('avatarMouth');
 
       if (pose === 'warning') {
-        mouth.setAttribute('d', 'M 92 132 Q 100 126 108 132'); // downturn
-        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-red-950 text-red-400 border border-red-800";
+        mouth.setAttribute('d', 'M 92 132 Q 100 126 108 132');
+        badge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-red-950 text-red-400 border border-red-800";
       } else if (pose === 'excited') {
-        mouth.setAttribute('d', 'M 90 124 Q 100 140 110 124'); // big smile
-        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800";
+        mouth.setAttribute('d', 'M 90 124 Q 100 140 110 124');
+        badge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800";
       } else if (pose === 'thinking') {
-        mouth.setAttribute('d', 'M 94 128 L 106 128'); // flat straight line
-        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-amber-950 text-amber-400 border border-amber-800";
+        mouth.setAttribute('d', 'M 94 128 L 106 128');
+        badge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-amber-950 text-amber-400 border border-amber-800";
       } else {
         mouth.setAttribute('d', 'M 92 128 Q 100 132 108 128');
-        badge.className = "text-[11px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800";
+        badge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800";
       }
     }
 
@@ -419,14 +794,13 @@
       }
 
       window.speechSynthesis.cancel();
-      const textToSpeak = dialogues[currentMode].text;
+      const textToSpeak = curriculum[currentTopic][currentMode].text;
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.rate = 1.0;
       utterance.pitch = currentMode === 'solo' ? 1.05 : 1.0;
 
-      // Select natural female English voice if available
       const voices = window.speechSynthesis.getVoices();
-      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Aria') || v.name.includes('Jenny')));
+      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Aria') || v.name.includes('Jenny') || v.name.includes('Zira')));
       if (preferred) utterance.voice = preferred;
 
       utterance.onstart = () => {
@@ -469,7 +843,17 @@
       }
     }
 
-    // Initialize voices if async loaded
+    // Support URL param e.g. ?topic=part4
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const topicParam = params.get('topic');
+      if (topicParam && curriculum[topicParam]) {
+        currentTopic = topicParam;
+        document.getElementById('topicSelect').value = topicParam;
+      }
+      updateView();
+    });
+
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = () => {};
     }
