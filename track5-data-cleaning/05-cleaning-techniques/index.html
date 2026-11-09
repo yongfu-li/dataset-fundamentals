@@ -2543,6 +2543,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-deduplication-record-linkage-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Deduplication &amp; Record Linkage Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7394,6 +7405,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-deduplication-record-linkage-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Deduplication &amp; Record Linkage Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7607,6 +7629,19 @@ T_C = \frac{5}{9}(T_F - 32)
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Uncalibrated Thresholding in Probabilistic Linkage</p>
 <p>Selecting an arbitrary match threshold (e.g., 0.50 probability) without empirical false-positive validation causes catastrophic identity mixing. Always calibrate upper and lower thresholds with human review for the intermediate uncertainty zone.</p>
 </div>
+<h3 id="decision-framework-deduplication-record-linkage-strategy">Decision Framework: Deduplication &amp; Record Linkage Strategy</h3>
+<pre class="mermaid"><code>flowchart TD
+    Start["Entity Resolution / Deduplication Task"] --&gt; Blocking["1. Candidate Blocking (e.g., Soundex, Canopies)"]
+    Blocking --&gt; Metric{"Attribute Similarity Metric"}
+    Metric -- "Typographical (Names, IDs)" --&gt; Levenshtein["Levenshtein / Jaro-Winkler Distance"]
+    Metric -- "Token / Set (Addresses, Bios)" --&gt; Jaccard["TF-IDF / Jaccard / Soft-Cosine"]
+    Metric -- "Acoustic / Phonetic" --&gt; Metaphone["Double Metaphone / NYSIIS"]
+    Levenshtein &amp; Jaccard &amp; Metaphone --&gt; MatchScore["Compute Fellegi-Sunter Match Weight"]
+    MatchScore --&gt; Threshold{"Score vs Decision Threshold"}
+    Threshold -- "Score &gt;= gamma_upper" --&gt; DefiniteMatch["Auto-Merge / Link Record"]
+    Threshold -- "gamma_lower &lt;= Score &lt; gamma_upper" --&gt; ClericalReview["Queue for Human Review"]
+    Threshold -- "Score &lt; gamma_lower" --&gt; NonMatch["Treat as Distinct Entity"]</code></pre>
+<hr />
 <h2 id="production-implementation-declarative-data-cleaning-engine">💻 Production Implementation: Declarative Data Cleaning Engine</h2>
 <p>The following production script implements declarative regex validation, NFKC Unicode normalization, Denial Constraint checking, and Hot-Deck donor imputation.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>

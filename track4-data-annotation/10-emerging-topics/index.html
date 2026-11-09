@@ -2304,10 +2304,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        🔬 Interactive Laboratory Workbench
       
     </span>
   </a>
@@ -7365,10 +7365,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        🔬 Interactive Laboratory Workbench
       
     </span>
   </a>
@@ -7470,6 +7470,14 @@
     class M1,M2,Pairwise amber;
     class DPO_Opt,AlignedModel green;</code></pre>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Reinforcement Learning from AI Feedback (RLAIF)</p>
+<p>When scaling human preference labeling for large language models, combine human evaluations with <strong>RLAIF (Constitutional AI)</strong>: deploy an advanced teacher LLM evaluating candidate responses against a formal constitution of safety and quality principles. Human raters audit a 5% sample to calibrate teacher alignment.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Self-Training Model Collapse</p>
+<p>Training an LLM iteratively on synthetic labels generated exclusively by itself causes <strong>Model Collapse</strong> (Shumailov et al., 2023): tails of the true underlying linguistic distribution vanish, and the model degenerates into repetitive, mode-collapsed outputs. Ground truth human anchor labels are mandatory.</p>
+</div>
 <h2 id="2-mathematical-formalization-of-llm-annotation-preference-models">2. Mathematical Formalization of LLM Annotation &amp; Preference Models</h2>
 <h3 id="1-the-bradley-terry-preference-model">1. The Bradley-Terry Preference Model</h3>
 <p>In RLHF and preference dataset curation, human or judge-model annotators compare pairs of candidate responses <span class="arithmatex">\((y_w, y_l)\)</span> given prompt <span class="arithmatex">\(x\)</span>. Under the <strong>Bradley-Terry Model</strong> [<a href="#ref-bradley1952">Bradley1952</a>], the probability that response <span class="arithmatex">\(y_w\)</span> is preferred over <span class="arithmatex">\(y_l\)</span> is parameterized by a latent scalar reward function <span class="arithmatex">\(r_\theta\)</span>:</p>
@@ -7564,14 +7572,13 @@ P_{\text{unbiased}}(y_A \succ y_B \mid x) = \frac{1}{2} \left( P_{\text{judge}}(
 </span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="n">test_generative_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="4-interactive-laboratory-workbench">4. 🔬 Interactive Laboratory Workbench</h2>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
 <div class="noc-sim-card">
   <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Launch RLHF & DPO Preference Studio</h4>
-  <p>Curate pairwise response comparisons, calculate Bradley-Terry reward scores, and simulate Direct Preference Optimization.</p>
-  <a href="../../tools/active-learning/" class="noc-sim-btn">Launch DPO Studio →</a>
+  <h4>Explore Text Annotation Workbench</h4>
+  <p>Simulate LLM-as-a-Judge preference ranking, test Constitutional AI rubrics, and inspect model alignment metrics.</p>
+  <a href="../../tools/text-annotation/" class="noc-sim-btn">Launch Text Annotation Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>

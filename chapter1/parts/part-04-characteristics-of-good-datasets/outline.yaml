@@ -65,12 +65,10 @@ slides:
   - Because the corrupted number remains a valid positive float
   - Catching semantic inaccuracy requires distribution auditing, Mahalanobis distance
     checks
-  notes: Syntactically valid values can still cause severe analytical catastrophes.
-    If a transaction ledger accidentally records fifteen thousand dollars instead
-    of fifteen hundred dollars, the sample mean shifts dramatically. Because the corrupted
-    number remains a valid positive float, naive schema validators cannot detect the
-    error. Catching semantic inaccuracy requires distribution auditing, Mahalanobis
-    distance checks, and interquartile range outlier fencing.
+  notes: |-
+    Dr. Nova: Syntactically valid values can still cause severe analytical catastrophes. If a transaction ledger accidentally records fifteen thousand dollars instead of fifteen hundred dollars, the sample mean shifts dramatically.
+    Kaito: But Dr. Nova, our SQL schema enforces positive floating-point types! Why didn't our schema validator catch that?
+    Dr. Nova: Because fifteen thousand is a perfectly valid positive float, Kaito! Syntactic validity does not guarantee semantic accuracy. Catching semantic inaccuracy requires distribution auditing, Mahalanobis distance checks, and interquartile range outlier fencing.
 - type: bullets
   title: 'Missingness Mechanisms: MCAR, MAR, and MNAR'
   bullets:
@@ -80,13 +78,10 @@ slides:
   - Missing not at random occurs when the missing value itself dictates its absence
   - Imputing without understanding these mechanisms introduces severe statistical
     bias
-  notes: When attributes contain missing cells, engineers must diagnose the underlying
-    missingness mechanism before imputing values. Missing completely at random occurs
-    when data drops due to transient, uncorrelated hardware faults. Missing at random
-    occurs when missingness depends on observed features, such as optional profile
-    fields. Missing not at random occurs when the missing value itself dictates its
-    absence, such as high earners concealing income. Imputing without understanding
-    these mechanisms introduces severe statistical bias.
+  notes: |-
+    Dr. Nova: When attributes contain missing cells, engineers must diagnose the underlying missingness mechanism before imputing values.
+    Kaito: Can't we just replace every null with the column mean or median to keep our tensor dimensions aligned?
+    Dr. Nova: That is a dangerous trap, Kaito! If data is missing completely at random from a network glitch, mean imputation preserves the expected value but shrinks variance. But if data is missing not at random, like high earners concealing income, mean imputation severely biases your entire distribution!
 - type: bullets
   title: Consistency Invariants and Format Ambiguities
   bullets:

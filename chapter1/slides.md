@@ -137,6 +137,15 @@ Date,Product,Quantity,Price,Total
 
 ---
 
+## Comic: The Perilous Journey of Record 402
+- Here we visualize the law of data quality cascades through an illustrated four-panel comic
+- In panel one
+- In panel two
+- In panel three, an exhausted crowd worker mislabels the corrupted record
+- By panel four
+
+---
+
 ## Real-World Case Studies: When Datasets Fail
 - Catastrophic consequences of data quality cascades appear across high-stakes industries
 - In clinical ICU sepsis prediction

@@ -34,7 +34,9 @@ The fourth tier investigates pairwise relationships across attribute dimensions.
 
 ## Slide 8 — The Pathological Pitfall: Simpson's Paradox
 
-During correlation analysis, analysts must guard against Simpson's paradox. In this counter-intuitive statistical phenomenon, an aggregate correlation across an entire dataset completely reverses when records are disaggregated into sub-populations. The reversal occurs when an unobserved confounding variable influences both feature assignment and outcome rates. Rigorous exploratory subgroup profiling exposes confounding factors early.
+Dr. Nova: During correlation analysis, analysts must guard against Simpson's paradox, where aggregate correlations completely invert upon disaggregation.
+Kaito: Wait, how can Treatment A be superior overall, but perform worse than Treatment B in both young and elderly subgroups?
+Dr. Nova: Because of an unobserved confounding variable, Kaito! In severe illness cohorts, doctors assigned the experimental drug much more frequently. The overall aggregate masked patient severity. Rigorous exploratory subgroup profiling exposes confounding factors before training models.
 
 ## Slide 9 — Example 1.20 — Household Income Distribution Profiling
 

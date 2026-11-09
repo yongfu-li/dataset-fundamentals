@@ -2666,6 +2666,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-continuous-data-drift-leakage-sentinel-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Continuous Data Drift &amp; Leakage Sentinel Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7360,6 +7371,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-continuous-data-drift-leakage-sentinel-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Continuous Data Drift &amp; Leakage Sentinel Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7525,6 +7547,18 @@ A <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> indicates significant
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Silent Schema Mutation</p>
 <p>Upstream database schema changes (e.g., altering an integer <code>user_id</code> to alphanumeric string, or changing a status string from lowercase to title case) can silently pass untyped pipelines, producing 100% NaN features downstream.</p>
 </div>
+<h3 id="decision-framework-continuous-data-drift-leakage-sentinel-architecture">Decision Framework: Continuous Data Drift &amp; Leakage Sentinel Architecture</h3>
+<pre class="mermaid"><code>flowchart TD
+    ProductionStream["Production Feature Stream"] --&gt; PipelineSplit["Strict Cross-Validation / Time-Split Boundary"]
+    PipelineSplit --&gt; FitOnlyTrain["Fit Imputers/Scalers on Training Fold ONLY"]
+    FitOnlyTrain --&gt; MonitorDrift["Continuous Drift Monitoring Sentinel"]
+    MonitorDrift --&gt; MetricCalc{"Calculate Statistical Drift"}
+    MetricCalc -- "Continuous Feature" --&gt; KSTest["Kolmogorov-Smirnov (KS) Test / Wasserstein"]
+    MetricCalc -- "Binned / Categorical" --&gt; PSICalc["Population Stability Index (PSI)"]
+    KSTest &amp; PSICalc --&gt; AlertCheck{"PSI &gt; 0.25 or p-value &lt; 0.01?"}
+    AlertCheck -- "Yes: Severe Drift" --&gt; CircuitBreaker["Trigger Retraining &amp; Fallback Circuit Breaker"]
+    AlertCheck -- "No: Stable" --&gt; ProductionInference["Proceed to Downstream Model Inference"]</code></pre>
+<hr />
 <h2 id="production-implementation-automated-data-leakage-sentinel">💻 Production Implementation: Automated Data Leakage Sentinel</h2>
 <p>The following production script implements an automated leakage audit suite, verifying zero train-test overlap, detecting causal target proxies via mutual information, and validating chronological split ordering.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>

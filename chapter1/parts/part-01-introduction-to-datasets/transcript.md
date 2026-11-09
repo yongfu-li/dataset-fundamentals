@@ -38,15 +38,21 @@ Tabular rows and columns are not the only medium for dataset representation. Exa
 
 ## Slide 9 — The Law of Data Quality Cascades
 
-Production machine learning systems execute multi-stage directed processing graphs. The law of data quality cascades establishes that early collection errors compound non-linearly across downstream stages. Hardware telemetry drift or missing sensor readings compound through arbitrary imputation. Noisy annotations mislead feature representation learning and model optimization. Even subtle collection artifacts can trigger catastrophic failure during production deployment.
+Dr. Nova: Production machine learning systems execute multi-stage directed processing graphs. The law of data quality cascades establishes that early collection errors compound non-linearly across downstream stages.
+Kaito: Wait Dr. Nova, can't we just scale up our transformer to twenty billion parameters to smooth out the noisy sensor readings?
+Dr. Nova: Absolutely not, Kaito! That is the classic model-centric fallacy. The deeper your neural network, the more aggressively it will memorize collection artifacts as spurious predictive shortcuts. Hardware telemetry drift and missing readings compound through arbitrary imputation, triggering catastrophic deployment failures.
 
 ## Slide 10 — Comic: The Perilous Journey of Record 402
 
-Here we visualize the law of data quality cascades through an illustrated four-panel comic strip. In panel one, an uncalibrated bedside sensor introduces a minor twenty-five millisecond desync. In panel two, an engineer naively plugs missing blood pressure with a default negative nine-nine-nine sentinel value. In panel three, an exhausted crowd worker mislabels the corrupted record. By panel four, the downstream machine learning model overfits to the artifact, triggering catastrophic triage failures in the clinical ICU.
+Dr. Nova: Here we visualize this compounding phenomenon through an illustrated four-panel comic strip tracking Record four-zero-two. In panel one, an uncalibrated bedside sensor introduces a minor twenty-five millisecond desync.
+Kaito: And then in panel two, an engineer naively plugs missing blood pressure with a negative nine-nine-nine sentinel value!
+Dr. Nova: Exactly. In panel three, an exhausted crowd worker mislabels the corrupted record. By panel four, the downstream neural model overfits to the artifact, triggering catastrophic triage failures in the clinical ICU.
 
 ## Slide 11 — Real-World Case Studies: When Datasets Fail
 
-Catastrophic consequences of data quality cascades appear across high-stakes industries. In clinical ICU sepsis prediction, models collapsed when deployed across new hospitals due to nurse logging frequency artifacts. In autonomous driving pipelines, twenty milliseconds of LiDAR and camera timing jitter produces over half a meter of spatial displacement. Such temporal misalignment creates ghost obstacles and emergency braking failures in road tests.
+Dr. Nova: Catastrophic consequences of data quality cascades appear across high-stakes industries. In clinical ICU sepsis prediction, models collapsed when deployed across new hospitals due to nurse logging frequency artifacts.
+Kaito: How does logging frequency fool a hospital model?
+Dr. Nova: Sicker patients had their vitals recorded every ten minutes, while stable patients were checked every four hours. The model learned logging frequency rather than real physiology. In autonomous driving, twenty milliseconds of LiDAR jitter creates half a meter of ghost obstacle displacement.
 
 ## Slide 12 — Interactive Schema and Quality Laboratory
 

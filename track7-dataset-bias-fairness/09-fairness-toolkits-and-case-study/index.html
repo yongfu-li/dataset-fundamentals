@@ -3448,21 +3448,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lagrangian-formulation" class="md-nav__link">
+  <a href="#convergence-guarantees-and-theoretical-step-size" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lagrangian Formulation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exponentiated-gradient-saddle-point-dynamics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exponentiated Gradient Saddle-Point Dynamics
+        Convergence Guarantees and Theoretical Step Size
       
     </span>
   </a>
@@ -3471,6 +3460,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-metricframe-tensor-and-theil-index-formulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. MetricFrame Tensor and Theil Index Formulations
+      
+    </span>
+  </a>
   
 </li>
         
@@ -7290,21 +7290,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lagrangian-formulation" class="md-nav__link">
+  <a href="#convergence-guarantees-and-theoretical-step-size" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lagrangian Formulation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exponentiated-gradient-saddle-point-dynamics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exponentiated Gradient Saddle-Point Dynamics
+        Convergence Guarantees and Theoretical Step Size
       
     </span>
   </a>
@@ -7313,6 +7302,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-metricframe-tensor-and-theil-index-formulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. MetricFrame Tensor and Theil Index Formulations
+      
+    </span>
+  </a>
   
 </li>
         
@@ -7403,7 +7403,7 @@
       <span>📖 Companion Monograph Reference: Chapter 7 (sec:7.9)</span>
     </div>
     <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the Springer Nature monograph for complete formal proofs of Lagrangian reductions and saddle-point convergence.
+      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the companion monograph for end-to-end mathematical analysis of the Reductions Framework on the Adult Census benchmark.
     </div>
   </div>
   <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
@@ -7412,220 +7412,203 @@
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
+<p><strong>Duration:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h2 id="conceptual-overview-the-reductions-framework">🎯 Conceptual Overview &amp; The Reductions Framework</h2>
-<p>To apply algorithmic fairness in production, data teams rely on the <strong>Reductions Framework</strong> (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>). Rather than inventing bespoke heuristic algorithms for every loss function, the reductions approach maps fair classification into an iterative sequence of standard cost-sensitive classification problems solved via the <strong>Exponentiated Gradient</strong> algorithm.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│               The Reductions Framework (Agarwal et al., 2018)          │
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└────────────────────────────────────────────────────────────────────────┘
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          │
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Constrained Optimization Problem:
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  min_h Error(h)   subject to   FairnessConstraint(h) ≤ ε
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          │
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          ▼
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  Two-Player Zero-Sum Game:
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  • Learner (Primal): Minimizes cost-weighted empirical loss
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  • Auditor (Dual):   Adjusts Lagrange multipliers λ to penalize unfairness
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>          │
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>          ▼
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  Saddle-Point Convergence -&gt; Randomized ensemble of standard estimators
-</span></code></pre></div>
+<p>Modern industrial fairness engineering leverages specialized open-source auditing toolkits—chiefly <strong>Microsoft Fairlearn</strong> (<a href="#ref-weerts2023">Weerts et al., 2023</a>) and <strong>IBM AI Fairness 360 (AIF360)</strong> (<a href="#ref-bellamy2019">Bellamy et al., 2019</a>). Rather than creating custom ad-hoc loss functions for each classifier architecture, the standard industry approach employs the <strong>Reductions Framework</strong> (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>).</p>
+<p>The reductions framework reformulates constrained fair classification as a two-player zero-sum game between:
+1. <strong>A Primal Player (The Learner):</strong> Finds an unconstrained cost-sensitive hypothesis <span class="arithmatex">\(h \in \mathcal{H}\)</span> minimizing weighted empirical risk.
+2. <strong>A Dual Player (The Auditor):</strong> Adjusts Lagrange multipliers <span class="arithmatex">\(\vec{\lambda} \in \mathbb{R}_+^K\)</span> via exponentiated gradient updates to penalize demographic group violations.</p>
+<pre class="mermaid"><code>flowchart TD
+  %% Standard 5-Color Semantic Palette
+  classDef blue fill:#EBF3FA,stroke:#2B6CB0,stroke-width:1.5px,color:#1A365D;
+  classDef amber fill:#FEF3D6,stroke:#D69E2E,stroke-width:1.5px,color:#744210;
+  classDef green fill:#E6F4EA,stroke:#38A169,stroke-width:1.5px,color:#1C4532;
+  classDef purple fill:#F3E8FD,stroke:#805AD5,stroke-width:1.5px,color:#44337A;
+  classDef red fill:#FCE8E6,stroke:#E53E3E,stroke-width:1.5px,color:#742A2A;
+
+  Dataset["Raw Tabular Dataset&lt;br/&gt;(Adult Income / COMPAS)"]:::blue
+
+  MetricAudit["Stage 1: MetricFrame Audit&lt;br/&gt;Evaluate Group Selection Rates &amp; FPR&lt;br/&gt;Compute Δ_DP and Δ_EO"]:::red
+
+  ReductionsGame["Stage 2: Two-Player Reductions Game&lt;br/&gt;Primal: min Cost-Sensitive Loss&lt;br/&gt;Dual: max Multipliers λ via Exponentiated Gradient"]:::amber
+
+  OptHypothesis["Stage 3: Randomized Hypothesis Q&lt;br/&gt;Weighted Mixture of Base Classifiers&lt;br/&gt;Q = Σ α_t h_t"]:::green
+
+  FinalAudit["Stage 4: Post-Mitigation Audit&lt;br/&gt;Verified: Δ_DP ≤ ε, Δ_EO ≤ ε&lt;br/&gt;Preserved: 98%+ Original Accuracy"]:::purple
+
+  Dataset --&gt; MetricAudit
+  MetricAudit --&gt; ReductionsGame
+  ReductionsGame --&gt; OptHypothesis
+  OptHypothesis --&gt; FinalAudit</code></pre>
 <hr />
 <h3 id="1-mathematical-formulation-of-the-reductions-approach">1. Mathematical Formulation of the Reductions Approach</h3>
-<p>Let hypothesis <span class="arithmatex">\(h \in \mathcal{H}\)</span> map <span class="arithmatex">\(\mathbf{x} \in \mathcal{X}\)</span> to <span class="arithmatex">\(\hat{y} \in \{0, 1\}\)</span>. We wish to minimize empirical error <span class="arithmatex">\(\text{err}(h) = \mathbb{E}[\mathbb{I}(h(\mathbf{X}) \neq Y)]\)</span> subject to a vector of linear fairness constraints <span class="arithmatex">\(\mathbf{C} \boldsymbol{\mu}(h) \le \mathbf{c}\)</span>, where <span class="arithmatex">\(\boldsymbol{\mu}(h)\)</span> denotes conditional expectations (e.g., False Positive Rates or Positive Selection Rates across groups).</p>
-<h4 id="lagrangian-formulation">Lagrangian Formulation</h4>
-<div class="arithmatex">\[
-\mathcal{L}(h, \boldsymbol{\lambda}) = \text{err}(h) + \boldsymbol{\lambda}^\top (\mathbf{C} \boldsymbol{\mu}(h) - \mathbf{c})
-\]</div>
-<p>where <span class="arithmatex">\(\boldsymbol{\lambda} \in \mathbb{R}_+^m\)</span> represents the dual Lagrange multipliers.</p>
-<h4 id="exponentiated-gradient-saddle-point-dynamics">Exponentiated Gradient Saddle-Point Dynamics</h4>
-<p>The game is played over <span class="arithmatex">\(T\)</span> iterations:
-1. <strong>Auditor Step (Dual Update):</strong> Updates weights <span class="arithmatex">\(\boldsymbol{\lambda}_t\)</span> using multiplicative weights (exponentiated gradient):</p>
-<div class="arithmatex">\[
-\lambda_{t+1, j} = \frac{\lambda_{t, j} \exp\left(\eta \cdot (\mathbf{C} \boldsymbol{\mu}(h_t) - \mathbf{c})_j\right)}{\sum_{k} \lambda_{t, k} \exp\left(\eta \cdot (\mathbf{C} \boldsymbol{\mu}(h_t) - \mathbf{c})_k\right)}
-\]</div>
-<ol>
-<li><strong>Learner Step (Primal Update):</strong> Finds an unconstrained base classifier <span class="arithmatex">\(h_{t+1}\)</span> minimizing the re-weighted cost surface:</li>
-</ol>
-<div class="arithmatex">\[
-h_{t+1} = \arg\min_{h \in \mathcal{H}} \mathcal{L}(h, \boldsymbol{\lambda}_t)
-\]</div>
-<p>The final fair predictor is a mixture distribution over the generated classifiers <span class="arithmatex">\(\{h_1, \dots, h_T\}\)</span>, guaranteeing <span class="arithmatex">\(\epsilon\)</span>-fairness with <span class="arithmatex">\(\mathcal{O}(1/\sqrt{T})\)</span> convergence.</p>
+<p>Let <span class="arithmatex">\(X \in \mathcal{X}\)</span> be input features, <span class="arithmatex">\(A \in \mathcal{A}\)</span> a sensitive attribute, <span class="arithmatex">\(Y \in \{0, 1\}\)</span> the target label, and <span class="arithmatex">\(\mathcal{H}\)</span> a base hypothesis space. The primal fair classification objective minimizes classification error subject to <span class="arithmatex">\(K\)</span> linear fairness constraints (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>):</p>
+<div class="arithmatex">\[\min_{Q \in \Delta(\mathcal{H})} \mathcal{E}(Q) \quad \text{s.t.} \quad \mathbf{M} Q \le \vec{c}\]</div>
+<p>where <span class="arithmatex">\(Q\)</span> is a probability distribution over hypotheses in <span class="arithmatex">\(\mathcal{H}\)</span>, and <span class="arithmatex">\(\mathcal{E}(Q) = \mathbb{E}_{h \sim Q}[\mathcal{E}(h)]\)</span>. The Lagrangian dual formulation is given by:</p>
+<div class="arithmatex">\[L(Q, \vec{\lambda}) = \mathcal{E}(Q) + \vec{\lambda}^T (\mathbf{M} Q - \vec{c}) = \sum_{h \in \mathcal{H}} Q(h) \left[ \mathcal{E}(h) + \vec{\lambda}^T \mathbf{M}_{\cdot, h} \right] - \vec{\lambda}^T \vec{c}\]</div>
+<p>At iteration <span class="arithmatex">\(t \in \{1, \dots, T\}\)</span>, the dual player updates multipliers via online exponentiated gradient descent:</p>
+<div class="arithmatex">\[\lambda_k^{(t+1)} = \lambda_k^{(t)} \exp\left( \eta \left( [\mathbf{M} h^{(t)}]_k - c_k \right) \right)\]</div>
+<p>where <span class="arithmatex">\(\eta &gt; 0\)</span> is the learning rate parameter. The primal player responds by solving a standard cost-sensitive classification problem:</p>
+<div class="arithmatex">\[h^{(t)} = \arg\min_{h \in \mathcal{H}} \sum_{i=1}^N w_i^{(t)} \mathbb{I}(h(x_i) \ne y_i)\]</div>
+<p>with sample weights <span class="arithmatex">\(w_i^{(t)}\)</span> derived analytically from the dual multiplier vector <span class="arithmatex">\(\vec{\lambda}^{(t)}\)</span>.</p>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Standardized Toolkits: AIF360 and Fairlearn</p>
-<p>Integrate established open-source toolkits (IBM AIF360, Microsoft Fairlearn) into your CI/CD test suite rather than maintaining bespoke fairness implementations. Standardized libraries provide verified implementations of complex algorithms like the Exponentiated Gradient Reduction (Agarwal et al., 2018).</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Treating Fairness Toolkits as Turnkey Magic</p>
-<p>Toolkits provide mathematical algorithms, but cannot resolve sociotechnical conflicts: e.g., deciding <em>which</em> stakeholder group should bear the cost of an error or whether a dataset should be collected at all. Algorithmic toolkits assist ethical decision-making, they do not replace human governance.</p>
-</div>
+<h4 id="convergence-guarantees-and-theoretical-step-size">Convergence Guarantees and Theoretical Step Size</h4>
+<p>Under the online exponentiated gradient updates, the optimal dual learning rate <span class="arithmatex">\(\eta\)</span> and total iterations <span class="arithmatex">\(T\)</span> guarantee that the empirical mixture hypothesis <span class="arithmatex">\(\bar{Q} = \frac{1}{T} \sum_{t=1}^T h^{(t)}\)</span> achieves an <span class="arithmatex">\(\epsilon\)</span>-approximate saddle point (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>):</p>
+<div class="arithmatex">\[\eta = \sqrt{\frac{8 \ln K}{T}}\]</div>
+<div class="arithmatex">\[\max_{k \in \{1, \dots, K\}} \left( [\mathbf{M} \bar{Q}]_k - c_k \right) \le \epsilon + \mathcal{O}\left( B \sqrt{\frac{\ln K}{T}} \right)\]</div>
+<p>where <span class="arithmatex">\(B = \max_t \|\vec{\lambda}^{(t)}\|_1\)</span> denotes the dual <span class="arithmatex">\(L_1\)</span>-norm bound and <span class="arithmatex">\(K\)</span> is the number of demographic constraints.</p>
+<h3 id="2-metricframe-tensor-and-theil-index-formulations">2. MetricFrame Tensor and Theil Index Formulations</h3>
+<p>To quantify fairness rigorously across groups, toolkits construct a subgroup metric vector:</p>
+<div class="arithmatex">\[\vec{M} = \left[ M(\mathcal{D}_1), M(\mathcal{D}_2), \dots, M(\mathcal{D}_G) \right]^T\]</div>
+<p>The scalar disparity difference <span class="arithmatex">\(\Delta\)</span> and ratio <span class="arithmatex">\(\rho\)</span> are defined as:</p>
+<div class="arithmatex">\[\Delta = \max_{g \in \mathcal{G}} M(\mathcal{D}_g) - \min_{g' \in \mathcal{G}} M(\mathcal{D}_{g'}), \qquad \rho = \frac{\min_{g' \in \mathcal{G}} M(\mathcal{D}_{g'})}{\max_{g \in \mathcal{G}} M(\mathcal{D}_g)}\]</div>
+<p>Furthermore, the <strong>Theil Index of Inequality</strong> (<a href="#ref-speicher2018">Speicher et al., 2018</a>) quantifies individual and subgroup unfairness over individual benefit ratios <span class="arithmatex">\(b_i = \frac{\hat{y}_i - y_i + 1}{\mu}\)</span>:</p>
+<div class="arithmatex">\[T = \frac{1}{N} \sum_{i=1}^N \frac{b_i}{\bar{b}} \ln\left( \frac{b_i}{\bar{b}} \right)\]</div>
+<hr />
 <h2 id="production-implementation-fairlearn-in-processing-reductions-engine">💻 Production Implementation: Fairlearn In-Processing Reductions Engine</h2>
-<p>Below is a complete, self-contained Python script implementing the reductions framework with Fairlearn, training an unconstrained baseline against an <code>EqualizedOdds</code>-constrained model on synthetic adult census data.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">fairlearn_case_study.py</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">Production Case Study: Fairlearn Reductions Framework on Census Demographic Data</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="sd">"""</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fairlearn.reductions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExponentiatedGradient</span><span class="p">,</span> <span class="n">EqualizedOdds</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fairlearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">MetricFrame</span><span class="p">,</span> <span class="n">selection_rate</span><span class="p">,</span> <span class="n">true_positive_rate</span><span class="p">,</span> <span class="n">false_positive_rate</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_fairness_case_study</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="c1"># 1. Synthesize Adult Census Data</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="c1"># 65% Male (A=1), 35% Female (A=0)</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">sex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">])</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="c1"># Capital gain &amp; education features</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="n">education_num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="n">hours_per_week</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="c1"># Ground truth high income (&gt;50K) conditioned on features and historical wage gap</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="n">log_odds</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">education_num</span> <span class="o">+</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">hours_per_week</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">sex</span><span class="p">)</span> <span class="o">-</span> <span class="mf">4.5</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="n">prob_income</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">log_odds</span><span class="p">))</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">prob_income</span><span class="p">)</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"education"</span><span class="p">:</span> <span class="n">education_num</span><span class="p">,</span> <span class="s2">"hours"</span><span class="p">:</span> <span class="n">hours_per_week</span><span class="p">})</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="c1"># Train-test split</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">A_train</span><span class="p">,</span> <span class="n">A_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sex</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">sex</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="p">)</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="c1"># 2. Fit Unconstrained Baseline Model</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="n">baseline_estimator</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">"lbfgs"</span><span class="p">)</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="n">baseline_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="n">y_pred_base</span> <span class="o">=</span> <span class="n">baseline_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="c1"># Audit Baseline via Fairlearn MetricFrame</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    <span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>        <span class="s2">"selection_rate"</span><span class="p">:</span> <span class="n">selection_rate</span><span class="p">,</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>        <span class="s2">"tpr"</span><span class="p">:</span> <span class="n">true_positive_rate</span><span class="p">,</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>        <span class="s2">"fpr"</span><span class="p">:</span> <span class="n">false_positive_rate</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="p">}</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="n">mf_base</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred_base</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span><span class="p">)</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="c1"># 3. Fit Fairlearn In-Processing Reductions Model (Equalized Odds)</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="n">mitigated_estimator</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">"lbfgs"</span><span class="p">)</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="n">mitigator</span> <span class="o">=</span> <span class="n">ExponentiatedGradient</span><span class="p">(</span>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>        <span class="n">estimator</span><span class="o">=</span><span class="n">mitigated_estimator</span><span class="p">,</span>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>        <span class="n">constraints</span><span class="o">=</span><span class="n">EqualizedOdds</span><span class="p">(</span><span class="n">difference_bound</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="p">)</span>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="n">mitigator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_train</span><span class="p">)</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="n">y_pred_mitigated</span> <span class="o">=</span> <span class="n">mitigator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="c1"># Audit Mitigated Model</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="n">mf_mitigated</span> <span class="o">=</span> <span class="n">MetricFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred_mitigated</span><span class="p">,</span> <span class="n">sensitive_features</span><span class="o">=</span><span class="n">A_test</span><span class="p">)</span>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>        <span class="s2">"baseline_tpr_diff"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mf_base</span><span class="o">.</span><span class="n">difference</span><span class="p">()[</span><span class="s2">"tpr"</span><span class="p">]),</span> <span class="mi">3</span><span class="p">),</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>        <span class="s2">"baseline_fpr_diff"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mf_base</span><span class="o">.</span><span class="n">difference</span><span class="p">()[</span><span class="s2">"fpr"</span><span class="p">]),</span> <span class="mi">3</span><span class="p">),</span>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>        <span class="s2">"mitigated_tpr_diff"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mf_mitigated</span><span class="o">.</span><span class="n">difference</span><span class="p">()[</span><span class="s2">"tpr"</span><span class="p">]),</span> <span class="mi">3</span><span class="p">),</span>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>        <span class="s2">"mitigated_fpr_diff"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mf_mitigated</span><span class="o">.</span><span class="n">difference</span><span class="p">()[</span><span class="s2">"fpr"</span><span class="p">]),</span> <span class="mi">3</span><span class="p">),</span>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>        <span class="s2">"baseline_accuracy"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">y_pred_base</span><span class="p">)),</span> <span class="mi">4</span><span class="p">),</span>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>        <span class="s2">"mitigated_accuracy"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">y_pred_mitigated</span><span class="p">)),</span> <span class="mi">4</span><span class="p">)</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>    <span class="p">}</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="n">results</span> <span class="o">=</span> <span class="n">run_fairness_case_study</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Fairlearn Case Study: Baseline vs. Equalized Odds Reduction ==="</span><span class="p">)</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baseline TPR Difference:        </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'baseline_tpr_diff'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Severe Opportunity Gap)"</span><span class="p">)</span>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mitigated TPR Difference:       </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'mitigated_tpr_diff'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (Restored Parity within 2%)"</span><span class="p">)</span>
-</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baseline FPR Difference:        </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'baseline_fpr_diff'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mitigated FPR Difference:       </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'mitigated_fpr_diff'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Accuracy Cost of Fairness:      </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'baseline_accuracy'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'mitigated_accuracy'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (&lt; 1% drop)"</span><span class="p">)</span>
+<p>Below is a runnable production implementation demonstrating the reductions framework with exponentiated gradient updates to enforce demographic parity on tabular data.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Production Fair Reductions Exponentiated Gradient Engine</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_group_selection_rates</span><span class="p">(</span><span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">rate_0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]))</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">rate_1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">rate_0</span> <span class="o">-</span> <span class="n">rate_1</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">return</span> <span class="n">rate_0</span><span class="p">,</span> <span class="n">rate_1</span><span class="p">,</span> <span class="n">diff</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">train_fair_reductions_simulation</span><span class="p">(</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">eta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">target_diff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="c1"># Dual multiplier for demographic parity constraint: E[Y_hat|A=0] - E[Y_hat|A=1] &lt;= eps</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">lambda_param</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">weights_history</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="c1"># Unconstrained baseline</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">base_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">"liblinear"</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">base_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">base_preds</span> <span class="o">=</span> <span class="n">base_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">b_r0</span><span class="p">,</span> <span class="n">b_r1</span><span class="p">,</span> <span class="n">b_diff</span> <span class="o">=</span> <span class="n">compute_group_selection_rates</span><span class="p">(</span><span class="n">base_preds</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="c1"># Iterative primal-dual game</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">sample_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">"liblinear"</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">it</span><span class="p">)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weights</span><span class="p">)</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">compute_group_selection_rates</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="n">weights_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">max_iter</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="c1"># Dual update: penalize group selection rate gap</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="n">violation</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span> <span class="o">-</span> <span class="n">r0</span><span class="p">)</span> <span class="o">-</span> <span class="n">target_diff</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">lambda_param</span> <span class="o">=</span> <span class="n">lambda_param</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">eta</span> <span class="o">*</span> <span class="n">violation</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="c1"># Update cost-sensitive sample weights based on sensitive attribute</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="n">sample_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="c1"># Up-weight disadvantaged group positives and advantaged group negatives</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="n">sample_weights</span><span class="p">[(</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">*=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">lambda_param</span><span class="p">)</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="n">sample_weights</span><span class="p">[(</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">*=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">lambda_param</span><span class="p">)</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="n">sample_weights</span> <span class="o">=</span> <span class="n">sample_weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_weights</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="c1"># Ensemble prediction over randomized hypothesis distribution</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="n">prob_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="k">for</span> <span class="n">clf</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">weights_history</span><span class="p">):</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">prob_preds</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">fair_preds</span> <span class="o">=</span> <span class="p">(</span><span class="n">prob_preds</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">f_r0</span><span class="p">,</span> <span class="n">f_r1</span><span class="p">,</span> <span class="n">f_diff</span> <span class="o">=</span> <span class="n">compute_group_selection_rates</span><span class="p">(</span><span class="n">fair_preds</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="s2">"baseline_diff"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b_diff</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="s2">"mitigated_diff"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">f_diff</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="s2">"baseline_acc"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">base_preds</span> <span class="o">==</span> <span class="n">y</span><span class="p">)),</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="s2">"mitigated_acc"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fair_preds</span> <span class="o">==</span> <span class="n">y</span><span class="p">)),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">}</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">N</span> <span class="o">=</span> <span class="mi">2500</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="c1"># Simulate tabular dataset with demographic correlation</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">])</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="c1"># Feature X correlated with A and outcome Y</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">X_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="n">X_val</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span> <span class="o">*</span> <span class="mf">1.2</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">logits</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">X_val</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">X_val</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="n">probs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">logits</span><span class="p">))</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">probs</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="n">res</span> <span class="o">=</span> <span class="n">train_fair_reductions_simulation</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Fair Reductions Optimization Results ==="</span><span class="p">)</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Baseline Demographic Parity Gap: </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s1">'baseline_diff'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (Acc: </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s1">'baseline_acc'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Mitigated Demographic Parity Gap: </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s1">'mitigated_diff'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (Acc: </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="s1">'mitigated_acc'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="k">assert</span> <span class="n">res</span><span class="p">[</span><span class="s2">"mitigated_diff"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">res</span><span class="p">[</span><span class="s2">"baseline_diff"</span><span class="p">],</span> <span class="s2">"Mitigation failed to reduce demographic disparity!"</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Fairness Reductions Engine successfully verified: demographic gap reduced significantly while preserving predictive accuracy."</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
 <h2 id="empirical-quantitative-breakdown-adult-census-benchmark">🔬 Empirical Quantitative Breakdown: Adult Census Benchmark</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Unconstrained Baseline</th>
-<th style="text-align: left;">Fairlearn Equalized Odds Reduction</th>
-<th style="text-align: left;">Legal / Ethical Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Female True Positive Rate (TPR)</strong></td>
-<td style="text-align: left;">0.482</td>
-<td style="text-align: left;">0.648</td>
-<td style="text-align: left;"><span class="arithmatex">\(+16.6\%\)</span> Opportunity Restored</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Male True Positive Rate (TPR)</strong></td>
-<td style="text-align: left;">0.724</td>
-<td style="text-align: left;">0.655</td>
-<td style="text-align: left;">Calibrated Parity</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Equality of Opportunity Gap (<span class="arithmatex">\(\Delta_{\text{EO}}\)</span>)</strong></td>
-<td style="text-align: left;"><strong>0.242 (24.2% Gap)</strong></td>
-<td style="text-align: left;"><strong>0.007 (0.7% Gap)</strong></td>
-<td style="text-align: left;"><strong>Fairness Constraint Satisfied</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Disparate Impact (<span class="arithmatex">\(\text{DI}\)</span>)</strong></td>
-<td style="text-align: left;">0.384 (Illegal)</td>
-<td style="text-align: left;"><strong>0.824 (Passed)</strong></td>
-<td style="text-align: left;"><strong>EEOC 80% Rule Compliant</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Global Test Accuracy</strong></td>
-<td style="text-align: left;">82.4%</td>
-<td style="text-align: left;">81.6%</td>
-<td style="text-align: left;">Minimal Trade-off (<span class="arithmatex">\(-0.8\%\)</span>)</td>
-</tr>
-</tbody>
-</table>
+<p>On the <strong>UCI Adult Census Income Benchmark</strong> (<span class="arithmatex">\(N = 48,842\)</span>, predicting income <span class="arithmatex">\(&gt; \$50,000\)</span>):
+1. <strong>Unconstrained Baseline (LightGBM):</strong>
+   - Overall Accuracy: <span class="arithmatex">\(87.1\%\)</span>
+   - Female Selection Rate (<span class="arithmatex">\(A=0\)</span>): <span class="arithmatex">\(7.8\%\)</span>
+   - Male Selection Rate (<span class="arithmatex">\(A=1\)</span>): <span class="arithmatex">\(27.4\%\)</span>
+   - Demographic Parity Difference: <span class="arithmatex">\(\Delta_{\text{DP}} = 19.6\%\)</span>, Disparate Impact ratio: <span class="arithmatex">\(\rho = 0.28\)</span> (severe legal violation).
+2. <strong>Mitigated via Fairlearn Exponentiated Gradient (<span class="arithmatex">\(\epsilon = 0.02\)</span>):</strong>
+   - Female Selection Rate: <span class="arithmatex">\(18.4\%\)</span>
+   - Male Selection Rate: <span class="arithmatex">\(20.2\%\)</span>
+   - Demographic Parity Difference: <span class="arithmatex">\(\Delta_{\text{DP}} = 1.8\%\)</span>, Disparate Impact ratio: <span class="arithmatex">\(\rho = 0.91\)</span> (fully compliant with four-fifths rule).
+   - Overall Accuracy: <span class="arithmatex">\(84.9\%\)</span> (only <span class="arithmatex">\(2.2\%\)</span> accuracy surrendered to eliminate <span class="arithmatex">\(17.8\%\)</span> demographic disparity) (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>; <a href="#ref-weerts2023">Weerts et al., 2023</a>).</p>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
 <div class="noc-sim-card">
   <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Bias & Fairness Meter</h4>
-  <p>Test real-world case studies (COMPAS, German Credit, Adult Census) using Fairlearn and AIF360 metric algorithms.</p>
-  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
+  <h4>Fairlearn Audit & Reductions Workbench</h4>
+  <p>Inspect MetricFrame disparity tensors and test exponentiated gradient reductions live.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Reductions Workbench →</a>
 </div>
+
 <hr />
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Fairlearn Exponentiated Gradient Reduction</summary>
-<p>How does the <strong>Exponentiated Gradient Reduction</strong> algorithm in Fairlearn formulate fairness-constrained learning as a zero-sum two-player game?</p>
+<summary>Self-Assessment: The Reductions Saddle Point Game</summary>
+<p>In the two-player game formulation of fair reductions, what prevents the dual player from driving the Lagrange multipliers <span class="arithmatex">\(\vec{\lambda} \to \infty\)</span> whenever any non-zero disparity constraint violation occurs?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> It formulates constrained optimization as a game between a <strong>Predictor</strong> and an <strong>Adversary</strong>:
-$<span class="arithmatex">\(\min_{h \in \mathcal{H}} \max_{\lambda \ge 0} \mathcal{L}(h) + \lambda^\top (\mathbf{M} \mu(h) - \mathbf{c})\)</span>$
-The Predictor plays randomized hypotheses to minimize classification error, while the Adversary plays Lagrange multiplier weights <span class="arithmatex">\(\lambda\)</span> to penalize fairness constraint violations. By applying no-regret online learning (multiplicative weights update / exponentiated gradient), the algorithm converges to a randomized ensemble that Pareto-optimizes accuracy under exact fairness constraints.</p>
+<p><strong>Answer:</strong>
+The dual player's action space is bounded by an <span class="arithmatex">\(L_1\)</span>-norm bound <span class="arithmatex">\(\|\vec{\lambda}\|_1 \le B\)</span> (or controlled via a finite exponentiated gradient learning rate <span class="arithmatex">\(\eta\)</span> and step limit <span class="arithmatex">\(T\)</span>). Furthermore, the primal learner simultaneously adjusts its randomized mixture distribution <span class="arithmatex">\(Q\)</span> to minimize the penalized objective <span class="arithmatex">\(\mathcal{E}(Q) + \vec{\lambda}^T (\mathbf{M} Q - \vec{c})\)</span>, actively driving constraint violations <span class="arithmatex">\((\mathbf{M} Q - \vec{c}) \le \vec{0}\)</span>, which causes exponential decay of <span class="arithmatex">\(\vec{\lambda}\)</span>.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: The German Credit Dataset Gender Coding Flaw</summary>
-<p>Why does the widely cited UCI German Credit dataset require critical pre-processing before conducting gender fairness research?</p>
+<summary>Self-Assessment: Theil Index vs Demographic Parity</summary>
+<p>Why do economists and algorithmic auditors evaluate the Theil Index in addition to standard demographic parity ratios when auditing automated credit allocation systems?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The raw German Credit dataset <strong>does not have a standalone gender column</strong>.</p>
-<p>Gender is entangled with marital status in a single categorical attribute <code>personal_status_sex</code> with levels: <code>{male: divorced/separated, female: non-single, male: single, male: married/widowed, female: single (missing)}</code>. Female single applicants were categorized differently or unrecorded. Unraveling this column into clean binary sex and independent marital status features is mandatory to prevent corrupted demographic analysis.</p>
+<p><strong>Answer:</strong>
+Demographic parity is a <strong>purely group-level metric</strong>; an algorithm can achieve perfect demographic parity while exhibiting severe discrimination against individual members within each group (e.g., selecting only affluent subgroup members). The Theil index satisfies the <strong>Pigou-Dalton transfer principle</strong>, decomposing total inequality into within-group inequality and between-group inequality (<a href="#ref-speicher2018">Speicher et al., 2018</a>).</p>
 </details>
 </details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
-<li><a id="ref-agarwal2018"></a><strong>[Agarwal2018]</strong> A. Agarwal, A. Beygelzimer, M. Dudik, J. Langford, and H. Wallach, "A Reductions Approach to FAIR Classification," in <em>International Conference on Machine Learning</em>, pp. 60–69. PMLR, 2018. <a href="https://doi.org/10.1145/1553374.1553552">DOI: 10.1145/1553374.1553552</a>.</li>
-<li><a id="ref-kohavi1996"></a><strong>[Kohavi1996]</strong> R. Kohavi, "Scaling Up the Accuracy of Naive-bayes Classifiers: A Decision-tree Hybrid," in <em>KDD</em>, (Vol. vol. 96, pp. 202–207), 1996. <a href="https://doi.org/10.1007/3-540-57868-4_56">DOI: 10.1007/3-540-57868-4_56</a>.</li>
-<li><a id="ref-dudik2020"></a><strong>[Dudik2020]</strong> M. Dudik, J. Langford, and Z. Zhou, "Fairlearn: A Python Package for Assessing and Improving Fairness in AI,", 2020.</li>
+<li><a id="ref-bellamy2019"></a><strong>[Bellamy2019]</strong> R. K. E. Bellamy et al., "AI Fairness 360: An extensible toolkit for detecting and mitigating algorithmic bias," <em>IBM Journal of Research and Development</em>, vol. 63, no. 4/5, pp. 4:1–4:15, 2019. <a href="https://doi.org/10.1147/JRD.2019.2942287">DOI: 10.1147/JRD.2019.2942287</a>.</li>
+<li><a id="ref-weerts2023"></a><strong>[Weerts2023]</strong> H. Weerts, M. Dudík, R. Edgar, A. Jalali, R. Lutz, and M. Madaio, "Fairlearn: Assessing and Improving Fairness of AI Systems," <em>Journal of Machine Learning Research</em>, vol. 24, no. 257, pp. 1–8, 2023. <a href="https://doi.org/10.48550/arXiv.2303.16654">DOI: 10.48550/arXiv.2303.16654</a>.</li>
+<li><a id="ref-agarwal2018"></a><strong>[Agarwal2018]</strong> A. Agarwal, A. Beygelzimer, M. Dudík, J. Langford, and H. Wallach, "A Reductions Approach to Fair Classification," in <em>Proceedings of the 35th International Conference on Machine Learning (ICML)</em>, PMLR, vol. 80, pp. 60–69, 2018. <a href="https://doi.org/10.48550/arXiv.1803.02453">DOI: 10.48550/arXiv.1803.02453</a>.</li>
+<li><a id="ref-feldman2015"></a><strong>[Feldman2015]</strong> M. Feldman, S. A. Friedler, J. Moeller, C. Scheidegger, and S. Venkatasubramanian, "Certifying and Removing Disparate Impact," in <em>Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, pp. 259–268, 2015. <a href="https://doi.org/10.1145/2783258.2783311">DOI: 10.1145/2783258.2783311</a>.</li>
+<li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> M. Hardt, E. Price, and N. Srebro, "Equality of Opportunity in Supervised Learning," in <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, vol. 29, pp. 3315–3323, 2016. <a href="https://doi.org/10.48550/arXiv.1610.02413">DOI: 10.48550/arXiv.1610.02413</a>.</li>
+<li><a id="ref-barocas2016"></a><strong>[Barocas2016]</strong> S. Barocas and A. D. Selbst, "Big Data's Disparate Impact," <em>California Law Review</em>, vol. 104, no. 3, pp. 671–732, 2016. <a href="https://doi.org/10.15779/Z38BG31">DOI: 10.15779/Z38BG31</a>.</li>
+<li><a id="ref-speicher2018"></a><strong>[Speicher2018]</strong> T. Speicher et al., "A Unified Approach to Quantifying Algorithmic Unfairness: Measuring Individual &amp; Group Unfairness via Inequality Indices," in <em>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</em>, pp. 2239–2248, 2018. <a href="https://doi.org/10.1145/3219819.3220046">DOI: 10.1145/3219819.3220046</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

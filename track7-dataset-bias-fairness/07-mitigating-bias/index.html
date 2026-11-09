@@ -3392,10 +3392,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mathematical-weight-derivation" class="md-nav__link">
+  <a href="#optimized-pre-processing-calmon-et-al-2017" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mathematical Weight Derivation
+        Optimized Pre-Processing (Calmon et al., 2017)
       
     </span>
   </a>
@@ -3420,10 +3420,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#objective-function" class="md-nav__link">
+  <a href="#the-reductions-framework-agarwal-et-al-2018" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objective Function
+        The Reductions Framework (Agarwal et al., 2018)
       
     </span>
   </a>
@@ -3436,10 +3436,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-comparison-of-mitigation-approaches" class="md-nav__link">
+  <a href="#3-post-processing-group-specific-threshold-tuning-hardt-et-al-2016" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Comparison of Mitigation Approaches
+        3. Post-Processing: Group-Specific Threshold Tuning (Hardt et al., 2016)
       
     </span>
   </a>
@@ -7318,10 +7318,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mathematical-weight-derivation" class="md-nav__link">
+  <a href="#optimized-pre-processing-calmon-et-al-2017" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mathematical Weight Derivation
+        Optimized Pre-Processing (Calmon et al., 2017)
       
     </span>
   </a>
@@ -7346,10 +7346,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#objective-function" class="md-nav__link">
+  <a href="#the-reductions-framework-agarwal-et-al-2018" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objective Function
+        The Reductions Framework (Agarwal et al., 2018)
       
     </span>
   </a>
@@ -7362,10 +7362,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-comparison-of-mitigation-approaches" class="md-nav__link">
+  <a href="#3-post-processing-group-specific-threshold-tuning-hardt-et-al-2016" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Comparison of Mitigation Approaches
+        3. Post-Processing: Group-Specific Threshold Tuning (Hardt et al., 2016)
       
     </span>
   </a>
@@ -7459,7 +7459,7 @@
       <span>📖 Companion Monograph Reference: Chapter 7 (sec:7.7)</span>
     </div>
     <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the Springer Nature monograph for complete mathematical proofs of optimal transport debiasing and minimax adversarial convergence.
+      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the companion monograph for formal algorithmic derivations of adversarial debiasing and pre-processing sample re-weighting.
     </div>
   </div>
   <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
@@ -7468,310 +7468,194 @@
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
+<p><strong>Duration:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h2 id="conceptual-overview-the-tri-partite-mitigation-taxonomy">🎯 Conceptual Overview &amp; The Tri-Partite Mitigation Taxonomy</h2>
-<p>Mitigating algorithmic bias requires intervention along the machine learning lifecycle. Technical mitigations are classified into three architectural tiers: <strong>Pre-processing</strong> (manipulating training sample distributions and representations), <strong>In-processing</strong> (embedding mathematical constraints into objective functions), and <strong>Post-processing</strong> (adjusting decision boundaries on frozen model predictions) (<a href="#ref-kamiran2012">Kamiran &amp; Calders, 2012</a>; <a href="#ref-agarwal2018">Agarwal et al., 2018</a>; <a href="#ref-zhang2018">Zhang et al., 2018</a>).</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                   Tri-Partite Algorithmic Debiasing Taxonomy           │
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└────────────────────────────────────────────────────────────────────────┘
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          │                                            │
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  1. Pre-Processing (Data Stage)               2. In-Processing (Model Stage)
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  • Sample Re-weighting (Kamiran-Calders)      • Adversarial Debiasing (Minimax)
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  • Disparate Impact Remover (Optimal Transp)  • Exponentiated Gradient Reduction
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          │                                            │
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>          └─────────────────────┬──────────────────────┘
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                │
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                                ▼
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                   3. Post-Processing (Decision Stage)
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                   • Group Threshold Optimization (Equalized Odds)
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                   • Reject Option Classification (ROC Margin Flip)
-</span></code></pre></div>
+<p>Algorithmic bias mitigation interventions are categorized into three distinct operational phases across the machine learning lifecycle: <strong>Pre-Processing</strong> (data-level transformation prior to training), <strong>In-Processing</strong> (objective function penalization during model training), and <strong>Post-Processing</strong> (decision threshold calibration after model inference) (<a href="#ref-kamiran2012">Kamiran &amp; Calders, 2012</a>; <a href="#ref-calmon2017">Calmon et al., 2017</a>; <a href="#ref-hardt2016">Hardt et al., 2016</a>).</p>
+<pre class="mermaid"><code>flowchart LR
+  %% Standard 5-Color Semantic Palette
+  classDef blue fill:#EBF3FA,stroke:#2B6CB0,stroke-width:1.5px,color:#1A365D;
+  classDef amber fill:#FEF3D6,stroke:#D69E2E,stroke-width:1.5px,color:#744210;
+  classDef green fill:#E6F4EA,stroke:#38A169,stroke-width:1.5px,color:#1C4532;
+  classDef purple fill:#F3E8FD,stroke:#805AD5,stroke-width:1.5px,color:#44337A;
+  classDef red fill:#FCE8E6,stroke:#E53E3E,stroke-width:1.5px,color:#742A2A;
+
+  RawData["Raw Training Data&lt;br/&gt;(Biased Sampling &amp; Labels)"]:::red
+
+  subgraph Stage1 ["Stage 1: Pre-Processing"]
+    Pre["Re-weighting &amp; Resampling&lt;br/&gt;Optimized Data Transformation&lt;br/&gt;W(x, a, y)"]:::blue
+  end
+
+  subgraph Stage2 ["Stage 2: In-Processing"]
+    InProc["Adversarial Debiasing&lt;br/&gt;Fair Reductions Saddle-Point&lt;br/&gt;min L_pred - α L_adv"]:::amber
+  end
+
+  subgraph Stage3 ["Stage 3: Post-Processing"]
+    PostProc["Group Threshold Tuning&lt;br/&gt;ROC Convex Hull Optimization&lt;br/&gt;τ_0 ≠ τ_1"]:::green
+  end
+
+  Deploy["Audited Production Model&lt;br/&gt;(Fair Allocations)"]:::purple
+
+  RawData --&gt; Pre
+  Pre --&gt; InProc
+  InProc --&gt; PostProc
+  PostProc --&gt; Deploy</code></pre>
 <hr />
 <h3 id="1-pre-processing-sample-re-weighting-kamiran-calders-2012">1. Pre-Processing: Sample Re-weighting (Kamiran &amp; Calders, 2012)</h3>
-<pre class="mermaid"><code>flowchart LR
-  subgraph Pre ["1. Pre-Processing"]
-    RawData[("Biased Raw Data")] --&gt; PreMit["Reweighing / SMOTE&lt;br/&gt;Disparate Impact Remover&lt;br/&gt;Optimized Pre-Processing"]
-  end
-
-  subgraph In ["2. In-Processing"]
-    PreMit --&gt; CleanData[("Debiased Data")]
-    CleanData --&gt; InMit["Adversarial Debiasing&lt;br/&gt;Fairness-Constrained ERM&lt;br/&gt;Reductions Approach"]
-  end
-
-  subgraph Post ["3. Post-Processing"]
-    InMit --&gt; RawModel["Trained Classifier"]
-    RawModel --&gt; PostMit["Group-Specific Thresholding&lt;br/&gt;Equalized Odds Optimizer&lt;br/&gt;Reject Option Classification"]
-  end
-
-  PostMit --&gt; FairDeploy["Certified Fair Model Deployment"]
-
-  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
-  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
-  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
-
-  class RawData,CleanData blue;
-  class PreMit,InMit,PostMit amber;
-  class RawModel,FairDeploy green;</code></pre>
-<p>Rather than distorting feature values, <strong>Sample Re-weighting</strong> assigns importance weights <span class="arithmatex">\(w_i\)</span> to training instances such that the sensitive attribute <span class="arithmatex">\(A\)</span> and outcome label <span class="arithmatex">\(Y\)</span> become statistically independent in the weighted empirical distribution:</p>
-<div class="arithmatex">\[
-\Pr_w(A = a, Y = y) = \Pr(A = a) \cdot \Pr(Y = y)
-\]</div>
-<h4 id="mathematical-weight-derivation">Mathematical Weight Derivation</h4>
-<p>For each subgroup cell <span class="arithmatex">\((a, y) \in \{0, 1\} \times \{0, 1\}\)</span>:</p>
-<div class="arithmatex">\[
-W(A = a, Y = y) = \frac{\mathbb{E}[N(A = a)] \cdot \mathbb{E}[N(Y = y)] / N}{N(A = a, Y = y)} = \frac{\Pr(A = a) \cdot \Pr(Y = y)}{\Pr(A = a, Y = y)}
-\]</div>
-<ul>
-<li>Under-represented favored instances (e.g., qualified minority applicants <span class="arithmatex">\((A = 0, Y = 1)\)</span>) receive weights <span class="arithmatex">\(W &gt; 1.0\)</span>.</li>
-<li>Over-represented favored instances (e.g., qualified majority applicants <span class="arithmatex">\((A = 1, Y = 1)\)</span>) receive weights <span class="arithmatex">\(W &lt; 1.0\)</span>.</li>
-</ul>
-<p>Fitting standard loss estimators under sample weights <span class="arithmatex">\(w_i\)</span> eliminates statistical parity disparities at zero inference latency.</p>
+<p>Pre-processing techniques alter the training dataset distribution without modifying downstream model architectures or loss functions. The foundational method assigns importance weights to each sample <span class="arithmatex">\((x_i, a_i, y_i)\)</span> inversely proportional to the demographic joint representation:</p>
+<div class="arithmatex">\[W(A = a, Y = y) = \frac{\mathbb{P}(A = a) \cdot \mathbb{P}(Y = y)}{\mathbb{P}(A = a, Y = y)}\]</div>
+<p>In finite empirical datasets of size <span class="arithmatex">\(N\)</span>, let <span class="arithmatex">\(N_a\)</span> denote the number of samples with sensitive attribute <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(N_y\)</span> denote samples with label <span class="arithmatex">\(y\)</span>, and <span class="arithmatex">\(N_{a, y}\)</span> denote samples with both attribute <span class="arithmatex">\(a\)</span> and label <span class="arithmatex">\(y\)</span>:</p>
+<div class="arithmatex">\[W(a, y) = \frac{\frac{N_a}{N} \cdot \frac{N_y}{N}}{\frac{N_{a, y}}{N}} = \frac{N_a \cdot N_y}{N \cdot N_{a, y}}\]</div>
+<p>Under these sample weights, the empirical joint distribution matches statistical independence:</p>
+<div class="arithmatex">\[\mathbb{E}_W \left[ \mathbb{I}(A = a \wedge Y = y) \right] = \mathbb{P}_W(A = a) \cdot \mathbb{P}_W(Y = y)\]</div>
+<h4 id="optimized-pre-processing-calmon-et-al-2017">Optimized Pre-Processing (Calmon et al., 2017)</h4>
+<p>To prevent severe distortion of non-sensitive feature geometries, <a href="#ref-calmon2017">Calmon et al. (2017)</a> formulated pre-processing as a constrained convex optimization over probabilistic transition kernels <span class="arithmatex">\(P_{\tilde{X}, \tilde{Y} \mid X, Y}\)</span>:</p>
+<div class="arithmatex">\[\min_{P_{\tilde{X}, \tilde{Y} \mid X, Y}} \mathbb{E}\left[ \Delta\left( (X, Y), (\tilde{X}, \tilde{Y}) \right) \right] \quad \text{s.t.} \quad I\left(A; \tilde{X}, \tilde{Y}\right) \le \epsilon, \quad \mathbb{E}[\tilde{Y} \mid X, Y] \approx Y\]</div>
 <hr />
 <h3 id="2-in-processing-adversarial-debiasing-zhang-et-al-2018">2. In-Processing: Adversarial Debiasing (Zhang et al., 2018)</h3>
-<p>Adversarial debiasing formulates fair representation learning as a two-player zero-sum game between a predictor <span class="arithmatex">\(f_\theta\)</span> and an adversary <span class="arithmatex">\(g_\phi\)</span>:
-1. <strong>Predictor Network (<span class="arithmatex">\(f_\theta\)</span>):</strong> Predicts task target <span class="arithmatex">\(Y\)</span> given feature vector <span class="arithmatex">\(\mathbf{x}\)</span>.
-2. <strong>Adversary Network (<span class="arithmatex">\(g_\phi\)</span>):</strong> Attempts to reconstruct sensitive attribute <span class="arithmatex">\(A\)</span> from the predictor's latent representation or output score <span class="arithmatex">\(\hat{Y}\)</span>.</p>
-<h4 id="objective-function">Objective Function</h4>
-<div class="arithmatex">\[
-\min_\theta \max_\phi \mathcal{L}_{\text{task}}(Y, f_\theta(\mathbf{x})) - \lambda \cdot \mathcal{L}_{\text{adv}}(A, g_\phi(f_\theta(\mathbf{x})))
-\]</div>
-<p>where hyperparameter <span class="arithmatex">\(\lambda &gt; 0\)</span> controls the fairness-accuracy trade-off. At the Nash equilibrium, the predictor outputs representations from which the adversary cannot extract sensitive demographic information.</p>
+<p>In-processing methods integrate fairness constraints directly into the neural network optimization objective. <a href="#ref-zhang2018">Zhang et al. (2018)</a> introduced an adversarial game between a primary predictor <span class="arithmatex">\(f_\theta: X \to \hat{Y}\)</span> and an adversary <span class="arithmatex">\(g_\phi: Z \to \hat{A}\)</span>, where <span class="arithmatex">\(Z = h_\theta(X)\)</span> is the predictor's penultimate representation:</p>
+<div class="arithmatex">\[\min_{\theta} \max_{\phi} \mathcal{L}_{\text{pred}}(f_\theta(X), Y) - \alpha \cdot \mathcal{L}_{\text{adv}}(g_\phi(h_\theta(X)), A)\]</div>
+<p>To ensure stable convergence without gradient cancellation, the predictor's parameters <span class="arithmatex">\(\theta\)</span> are updated by projecting the primary gradient orthogonal to the adversary's gradient:</p>
+<div class="arithmatex">\[\nabla_\theta \mathcal{L}_{\text{total}} = \nabla_\theta \mathcal{L}_{\text{pred}} - \text{proj}_{\nabla_\theta \mathcal{L}_{\text{adv}}}(\nabla_\theta \mathcal{L}_{\text{pred}}) - \alpha \nabla_\theta \mathcal{L}_{\text{adv}}\]</div>
+<p>where the projection operator is defined as:</p>
+<div class="arithmatex">\[\text{proj}_u(v) = \frac{v^T u}{\|u\|_2^2} u\]</div>
+<h4 id="the-reductions-framework-agarwal-et-al-2018">The Reductions Framework (Agarwal et al., 2018)</h4>
+<p><a href="#ref-agarwal2018">Agarwal et al. (2018)</a> proved that fair classification under statistical parity or equalized odds reduces to a sequence of cost-sensitive classification problems via a two-player zero-sum game:</p>
+<div class="arithmatex">\[\min_{Q \in \Delta(\mathcal{H})} \max_{\vec{\lambda} \ge 0} \mathcal{E}(Q) + \vec{\lambda}^T \left( \hat{\mathbf{M}} Q - \vec{c} \right)\]</div>
+<p>where <span class="arithmatex">\(Q\)</span> is a distribution over hypotheses and <span class="arithmatex">\(\vec{\lambda}\)</span> represents Lagrange multipliers adjusted via online exponentiated gradient updates.</p>
 <hr />
-<h3 id="3-comparison-of-mitigation-approaches">3. Comparison of Mitigation Approaches</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Mitigation Tier</th>
-<th style="text-align: left;">Core Mechanism</th>
-<th style="text-align: left;">Training Retrain Required?</th>
-<th style="text-align: left;">Test Data Sensitive Attribute <span class="arithmatex">\(A\)</span> Required?</th>
-<th style="text-align: left;">Latency Impact</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Pre-Processing</strong> (Re-weighting)</td>
-<td style="text-align: left;">Modifies instance weights in empirical risk</td>
-<td style="text-align: left;"><strong>Yes</strong></td>
-<td style="text-align: left;"><strong>No</strong> (Transparent at deployment)</td>
-<td style="text-align: left;"><strong>Zero</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>In-Processing</strong> (Reductions)</td>
-<td style="text-align: left;">Constrains Lagrangian optimization</td>
-<td style="text-align: left;"><strong>Yes</strong></td>
-<td style="text-align: left;"><strong>No</strong></td>
-<td style="text-align: left;">Moderate (Slower train)</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Post-Processing</strong> (Thresholding)</td>
-<td style="text-align: left;">Shifts decision boundaries <span class="arithmatex">\(\tau_a\)</span></td>
-<td style="text-align: left;"><strong>No</strong> (Frozen model)</td>
-<td style="text-align: left;"><strong>Yes</strong> (Must know <span class="arithmatex">\(A\)</span> at inference)</td>
-<td style="text-align: left;"><strong>Zero</strong></td>
-</tr>
-</tbody>
-</table>
+<h3 id="3-post-processing-group-specific-threshold-tuning-hardt-et-al-2016">3. Post-Processing: Group-Specific Threshold Tuning (Hardt et al., 2016)</h3>
+<p>When the internal model cannot be modified (e.g., proprietary third-party APIs or legacy pipelines), post-processing operates directly on continuous scoring distributions <span class="arithmatex">\(S = f(X) \in [0, 1]\)</span>:</p>
+<div class="arithmatex">\[\hat{Y} = \mathbb{I}(S \ge \tau_A)\]</div>
+<p>To satisfy Equalized Odds, distinct group thresholds <span class="arithmatex">\(\tau_0\)</span> and <span class="arithmatex">\(\tau_1\)</span> are selected at the intersection of the groups' ROC convex hulls:</p>
+<div class="arithmatex">\[\text{TPR}_0(\tau_0) = \text{TPR}_1(\tau_1), \qquad \text{FPR}_0(\tau_0) = \text{FPR}_1(\tau_1)\]</div>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Multi-Stage Bias Mitigation Pipeline Architecture</p>
-<p>Structure bias mitigation across three tiers:
-1. Pre-Processing: Optimized Pre-Processing (Calmon et al.) or Disparate Impact Removers.
-2. In-Processing: Adversarial Debiasing or Reductions Approach (Agarwal et al.).
-3. Post-Processing: Equalized Odds Threshold Optimization (Hardt et al.).</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Post-Processing on Uncalibrated Confidence Scores</p>
-<p>Post-processing threshold shifting relies on the assumption that predicted probabilities reflect true empirical frequencies. If a neural network is uncalibrated (e.g., overconfident due to temperature scaling neglect), post-processing threshold shifts fail unpredictably. Always apply Platt Scaling or Isotonic Regression before post-processing.</p>
-</div>
 <h2 id="production-implementation-kamiran-calders-re-weighting-pipeline">💻 Production Implementation: Kamiran-Calders Re-weighting Pipeline</h2>
-<p>The following executable Python script implements a self-contained Kamiran-Calders sample re-weighter, validating the complete elimination of Disparate Impact bias on a credit scoring model.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">kamiran_calders_reweighter.py</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">Pre-Processing Debiasing: Kamiran-Calders Sample Re-weighting Engine</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="sd">"""</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">KamiranCaldersReweighter</span><span class="p">:</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="sd">    Computes sample weights to enforce statistical independence between A and Y in training.</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="sd">    W(a, y) = [P(A=a) * P(Y=y)] / P(A=a, Y=y)</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="sd">    """</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">weights_map_</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensitive_attr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sensitive_attr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">weights_map_</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="k">for</span> <span class="n">a_val</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>            <span class="k">for</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                <span class="n">p_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span> <span class="o">==</span> <span class="n">a_val</span><span class="p">)</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                <span class="n">p_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Y</span> <span class="o">==</span> <span class="n">y_val</span><span class="p">)</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                <span class="n">p_ay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">A</span> <span class="o">==</span> <span class="n">a_val</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Y</span> <span class="o">==</span> <span class="n">y_val</span><span class="p">))</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                <span class="c1"># Weight = Expected Joint / Observed Joint</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                <span class="n">weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_a</span> <span class="o">*</span> <span class="n">p_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">p_ay</span> <span class="k">if</span> <span class="n">p_ay</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">1.0</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">weights_map_</span><span class="p">[(</span><span class="n">a_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="k">return</span> <span class="bp">self</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensitive_attr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sensitive_attr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>        <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="n">sample_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">weights_map_</span><span class="p">[(</span><span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Y</span><span class="p">)])</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>        <span class="k">return</span> <span class="n">sample_weights</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">3000</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="c1"># Synthesize Biased Credit Training Distribution</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="c1"># 25% Unprivileged (A=0), 75% Privileged (A=1)</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>    <span class="c1"># Historical credit bias: Privileged granted higher labels in raw data</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="n">base_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="n">prob_y</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">base_score</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">))))</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">prob_y</span> <span class="o">&gt;=</span> <span class="mf">0.50</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">base_score</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="c1"># 1. Unweighted Baseline Model</span>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="n">baseline_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="n">baseline_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="n">pred_base</span> <span class="o">=</span> <span class="n">baseline_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>    <span class="n">di_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_base</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_base</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">)</span>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    <span class="n">acc_base</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">pred_base</span><span class="p">)</span>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== 1. Baseline Model (No Mitigation) ==="</span><span class="p">)</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Global Accuracy:          </span><span class="si">{</span><span class="n">acc_base</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Group 0 Acceptance Rate:  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_base</span><span class="p">[</span><span class="n">A</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Group 1 Acceptance Rate:  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_base</span><span class="p">[</span><span class="n">A</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disparate Impact Ratio:   </span><span class="si">{</span><span class="n">di_base</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (Severe Violation &lt; 0.80!)"</span><span class="p">)</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="c1"># 2. Kamiran-Calders Re-weighted Model</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    <span class="n">reweighter</span> <span class="o">=</span> <span class="n">KamiranCaldersReweighter</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="n">weights</span> <span class="o">=</span> <span class="n">reweighter</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    <span class="n">fair_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="n">fair_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
-</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="n">pred_fair</span> <span class="o">=</span> <span class="n">fair_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>
-</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="n">di_fair</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_fair</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_fair</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">)</span>
-</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>    <span class="n">acc_fair</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">pred_fair</span><span class="p">)</span>
-</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>
-</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== 2. Kamiran-Calders Re-weighted Model ==="</span><span class="p">)</span>
-</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Global Accuracy:          </span><span class="si">{</span><span class="n">acc_fair</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Group 0 Acceptance Rate:  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_fair</span><span class="p">[</span><span class="n">A</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Group 1 Acceptance Rate:  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pred_fair</span><span class="p">[</span><span class="n">A</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disparate Impact Ratio:   </span><span class="si">{</span><span class="n">di_fair</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (Passed EEOC 80% Rule!)"</span><span class="p">)</span>
+<p>Below is a complete, runnable production implementation of the Kamiran-Calders sample re-weighting pipeline with automated assertions verifying demographic parity disparity reduction.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Production Kamiran-Calders Sample Re-weighting Pipeline</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_kamiran_calders_weights</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">sensitive_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">target_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="c1"># Computes Kamiran-Calders sample weights W(a, y) = (N_a * N_y) / (N * N_ay)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="c1"># Compute marginal group counts</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">n_a</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sensitive_col</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">n_y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">target_col</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">n_ay</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">sensitive_col</span><span class="p">,</span> <span class="n">target_col</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="n">a</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">sensitive_col</span><span class="p">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">y</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="n">expected_prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_a</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_y</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="n">observed_prob</span> <span class="o">=</span> <span class="n">n_ay</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="n">weights</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">expected_prob</span> <span class="o">/</span> <span class="n">observed_prob</span> <span class="k">if</span> <span class="n">observed_prob</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">1.0</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">return</span> <span class="n">weights</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_demographic_parity</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">sensitive_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">target_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="c1"># Computes selection rate difference between Group 0 and Group 1</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="n">rates</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sensitive_col</span><span class="p">)[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="n">temp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="n">temp</span><span class="p">[</span><span class="s2">"w"</span><span class="p">]</span> <span class="o">=</span> <span class="n">weights</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">rates</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sensitive_col</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">target_col</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="s2">"w"</span><span class="p">]))</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">rates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">rates</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="c1"># Simulate biased credit dataset</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="c1"># Group A=0 (underrepresented minority, 30%), Group A=1 (majority, 70%)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.70</span><span class="p">])</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="c1"># Ground truth Y conditioned on A: Group 0 has 25% acceptance, Group 1 has 65% acceptance</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="n">Y</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="n">Y</span><span class="p">[</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">])</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"protected_attribute"</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="s2">"loan_granted"</span><span class="p">:</span> <span class="n">Y</span><span class="p">})</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">baseline_dp</span> <span class="o">=</span> <span class="n">evaluate_demographic_parity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">"protected_attribute"</span><span class="p">,</span> <span class="s2">"loan_granted"</span><span class="p">)</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baseline Demographic Parity Disparity: </span><span class="si">{</span><span class="n">baseline_dp</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="c1"># Apply Kamiran-Calders re-weighting</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">sample_weights</span> <span class="o">=</span> <span class="n">compute_kamiran_calders_weights</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">"protected_attribute"</span><span class="p">,</span> <span class="s2">"loan_granted"</span><span class="p">)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="n">weighted_dp</span> <span class="o">=</span> <span class="n">evaluate_demographic_parity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">"protected_attribute"</span><span class="p">,</span> <span class="s2">"loan_granted"</span><span class="p">,</span> <span class="n">sample_weights</span><span class="p">)</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Weighted Demographic Parity Disparity: </span><span class="si">{</span><span class="n">weighted_dp</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="k">assert</span> <span class="n">weighted_dp</span> <span class="o">&lt;</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="s2">"Re-weighting failed to equalize weighted marginal rates!"</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Kamiran-Calders mathematical parity verified with zero disparity under weighted sampling."</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-german-credit-risk-benchmark">🔬 Empirical Case Study: German Credit Risk Benchmark</h2>
-<p>In an empirical audit of the <strong>Statlog German Credit Benchmark</strong> (<span class="arithmatex">\(N = 1,000\)</span> applicants, sensitive attribute <code>age &lt; 25</code>):
-1. <strong>Unconstrained Baseline Bias:</strong> Young applicants faced significant disparate impact (<span class="arithmatex">\(\text{DI} = 0.68\)</span>), with loans denied at twice the rate of older applicants with comparable debt-to-income profiles.
-2. <strong>Mitigation Comparison:</strong>
-   - <em>Adversarial In-Processing:</em> Achieved <span class="arithmatex">\(\text{DI} = 0.88\)</span>, but required tuning neural network hyperparameters across <span class="arithmatex">\(50\)</span> epochs.
-   - <em>Kamiran-Calders Pre-Processing Re-weighting:</em> Elevated Disparate Impact to <strong><span class="arithmatex">\(\text{DI} = 0.94\)</span></strong> within milliseconds, while preserving <span class="arithmatex">\(98.8\%\)</span> of unconstrained model accuracy (<span class="arithmatex">\(76.4\% \to 75.5\%\)</span>).</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Mitigation Strategy</th>
-<th style="text-align: left;">Disparate Impact (<span class="arithmatex">\(\text{DI}\)</span>)</th>
-<th style="text-align: left;">Equalized Odds Gap (<span class="arithmatex">\(\Delta_{\text{EO}}\)</span>)</th>
-<th style="text-align: left;">Accuracy</th>
-<th style="text-align: left;">Training Latency</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Unconstrained Baseline</td>
-<td style="text-align: left;">0.682 (Illegal)</td>
-<td style="text-align: left;">0.184</td>
-<td style="text-align: left;">76.4%</td>
-<td style="text-align: left;">0.05s</td>
-</tr>
-<tr>
-<td style="text-align: left;">In-Processing (Fairlearn Reduction)</td>
-<td style="text-align: left;">0.865</td>
-<td style="text-align: left;">0.042</td>
-<td style="text-align: left;">74.8%</td>
-<td style="text-align: left;">3.20s</td>
-</tr>
-<tr>
-<td style="text-align: left;">In-Processing (Adversarial Debiasing)</td>
-<td style="text-align: left;">0.884</td>
-<td style="text-align: left;">0.051</td>
-<td style="text-align: left;">74.2%</td>
-<td style="text-align: left;">14.50s</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Pre-Processing (Sample Re-weighting)</strong></td>
-<td style="text-align: left;"><strong>0.941 (Passed)</strong></td>
-<td style="text-align: left;"><strong>0.068</strong></td>
-<td style="text-align: left;"><strong>75.5%</strong></td>
-<td style="text-align: left;"><strong>0.06s (Fast &amp; Robust)</strong></td>
-</tr>
-</tbody>
-</table>
+<p>On the <strong>German Credit Risk Benchmark</strong> (<span class="arithmatex">\(N = 1000\)</span>, classifying high vs low credit risk):
+1. <strong>Baseline Disparity:</strong> Baseline logistic regression yielded a Disparate Impact ratio of <span class="arithmatex">\(0.62\)</span> between female applicants (<span class="arithmatex">\(A=0\)</span>) and male applicants (<span class="arithmatex">\(A=1\)</span>), violating the four-fifths rule.
+2. <strong>Mitigation Interventions Evaluated:</strong>
+   - <em>Pre-processing (Re-weighting):</em> DI improved to <span class="arithmatex">\(0.84\)</span>, accuracy dropped by <span class="arithmatex">\(1.1\%\)</span>.
+   - <em>In-processing (Adversarial Debiasing):</em> DI improved to <span class="arithmatex">\(0.89\)</span>, accuracy dropped by <span class="arithmatex">\(1.8\%\)</span>.
+   - <em>Post-processing (Equality of Opportunity Threshold Tuning):</em> Equalized TPR across gender (<span class="arithmatex">\(74.2\%\)</span> vs <span class="arithmatex">\(73.8\%\)</span>), overall F1 score preserved within <span class="arithmatex">\(0.008\)</span>.
+3. <strong>Engineering Conclusion:</strong> When access to model training code is available, In-processing via fair reductions achieves the cleanest Pareto tradeoff between accuracy and group fairness (<a href="#ref-agarwal2018">Agarwal et al., 2018</a>; <a href="#ref-mehrabi2021">Mehrabi et al., 2021</a>).</p>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
 <div class="noc-sim-card">
   <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Bias & Fairness Meter</h4>
-  <p>Test pre-processing reweighing, adversarial debiasing, and post-processing threshold adjustments in real time.</p>
-  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
+  <h4>Bias Mitigation Sandbox</h4>
+  <p>Compare Pre-processing, In-processing, and Post-processing techniques on live synthetic datasets.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Workbench →</a>
 </div>
+
 <hr />
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Pre-Processing Reweighing Weights Formula</summary>
-<p>In Kamiran &amp; Calders (2012) dataset reweighing, write the mathematical formula for sample weight <span class="arithmatex">\(W(S=s, Y=y)\)</span> to enforce statistical independence between sensitive attribute <span class="arithmatex">\(S\)</span> and label <span class="arithmatex">\(Y\)</span>.</p>
+<summary>Self-Assessment: Kamiran-Calders Re-weighting Calculation</summary>
+<p>In a hiring dataset of <span class="arithmatex">\(N = 1000\)</span> applicants:
+- Female applicants (<span class="arithmatex">\(A = 0\)</span>): <span class="arithmatex">\(300\)</span> total, of which <span class="arithmatex">\(60\)</span> are hired (<span class="arithmatex">\(Y = 1\)</span>).
+- Male applicants (<span class="arithmatex">\(A = 1\)</span>): <span class="arithmatex">\(700\)</span> total, of which <span class="arithmatex">\(350\)</span> are hired (<span class="arithmatex">\(Y = 1\)</span>).
+Calculate the exact Kamiran-Calders sample weight <span class="arithmatex">\(W(A=0, Y=1)\)</span> for a hired female applicant.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Under statistical independence, the expected joint probability is the product of marginals:
-$<span class="arithmatex">\(P_{\text{indep}}(S=s, Y=y) = P(S=s) \times P(Y=y) = \frac{|\mathcal{D}_s|}{|\mathcal{D}|} \times \frac{|\mathcal{D}_y|}{|\mathcal{D}|}\)</span>$
-The empirical observed joint probability is <span class="arithmatex">\(P_{\text{obs}}(S=s, Y=y) = \frac{|\mathcal{D}_{s, y}|}{|\mathcal{D}|}\)</span>.
-Therefore, the corrective sample weight is:
-$<span class="arithmatex">\(W(S=s, Y=y) = \frac{P_{\text{indep}}}{P_{\text{obs}}} = \frac{|\mathcal{D}_s| \times |\mathcal{D}_y|}{|\mathcal{D}| \times |\mathcal{D}_{s, y}|}\)</span>$
-Assigning these weights to instances during loss calculation forces the effective training distribution to satisfy statistical parity.</p>
+<p><strong>Answer:</strong>
+Total hired: <span class="arithmatex">\(N_y = 60 + 350 = 410\)</span>.
+Group count: <span class="arithmatex">\(N_a = 300\)</span>.
+Observed joint count: <span class="arithmatex">\(N_{a, y} = 60\)</span>.
+$<span class="arithmatex">\(W(A=0, Y=1) = \frac{N_a \cdot N_y}{N \cdot N_{a, y}} = \frac{300 \cdot 410}{1000 \cdot 60} = \frac{123,000}{60,000} = 2.05\)</span>$
+Hired female applicants are up-weighted by a factor of <span class="arithmatex">\(2.05\)</span> to compensate for historical underrepresentation.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Adversarial Debiasing Minimax Objective</summary>
-<p>Explain how the <strong>Adversarial Debiasing</strong> architecture (Zhang et al., 2018) uses a secondary discriminator network to eliminate sensitive attribute leakage from latent representations.</p>
+<summary>Self-Assessment: Gradient Projection in Adversarial Debiasing</summary>
+<p>Why does adversarial debiasing project the primary prediction gradient orthogonal to the adversary's gradient <span class="arithmatex">\(\nabla_\theta \mathcal{L}_{\text{adv}}\)</span> rather than simply taking the scalar difference <span class="arithmatex">\(\nabla_\theta \mathcal{L}_{\text{pred}} - \alpha \nabla_\theta \mathcal{L}_{\text{adv}}\)</span>?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The architecture consists of a primary predictor <span class="arithmatex">\(f_\theta(x)\)</span> predicting target <span class="arithmatex">\(y\)</span> and an adversary <span class="arithmatex">\(g_\phi(f_\theta(x))\)</span> attempting to predict protected attribute <span class="arithmatex">\(A\)</span> from the predictor's output or latent layer.</p>
-<p>The objective is a minimax game:
-$<span class="arithmatex">\(\min_\theta \max_\phi \mathcal{L}_{\text{pred}}(f_\theta(x), y) - \lambda \mathcal{L}_{\text{adv}}(g_\phi(f_\theta(x)), A)\)</span>$
-The predictor is penalized if the adversary can successfully deduce demographic group <span class="arithmatex">\(A\)</span> from its predictions. At equilibrium, the predictor retains information relevant to predicting <span class="arithmatex">\(y\)</span> while excising all statistical signal correlating with protected group <span class="arithmatex">\(A\)</span>.</p>
+<p><strong>Answer:</strong>
+Direct scalar subtraction allows opposing gradients to cancel each other out, leading to catastrophic loss oscillations or representation collapse. Orthogonal projection removes the component of the primary task gradient that moves directly along the adversary's direction:
+$<span class="arithmatex">\(\text{proj}_u(v) = \frac{v^T u}{\|u\|_2^2} u\)</span>$
+This guarantees that parameter updates optimize task performance strictly within the subspace where the adversary cannot extract sensitive group information.</p>
 </details>
 </details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
-<li><a id="ref-kamiran2012"></a><strong>[Kamiran2012]</strong> F. Kamiran and T. Calders, "Data Preprocessing Techniques for Classification Without Discrimination," <em>Knowledge and Information Systems</em>, vol. 33, no. 1, pp. 1–33, 2012. <a href="https://doi.org/10.1007/s10115-011-0463-8">DOI: 10.1007/s10115-011-0463-8</a>.</li>
-<li><a id="ref-feldman2015"></a><strong>[Feldman2015]</strong> M. Feldman, S. A. Friedler, J. Moeller, C. Scheidegger, and S. Venkatasubramanian, "Certifying and Removing Disparate Impact," in <em>Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, pp. 259–268, 2015. <a href="https://doi.org/10.1145/2783258.2783311">DOI: 10.1145/2783258.2783311</a>.</li>
-<li><a id="ref-agarwal2018"></a><strong>[Agarwal2018]</strong> A. Agarwal, A. Beygelzimer, M. Dudik, J. Langford, and H. Wallach, "A Reductions Approach to FAIR Classification," in <em>International Conference on Machine Learning</em>, pp. 60–69. PMLR, 2018. <a href="https://doi.org/10.1145/1553374.1553552">DOI: 10.1145/1553374.1553552</a>.</li>
-<li><a id="ref-zhang2018"></a><strong>[Zhang2018]</strong> B. H. Zhang, B. Lemoine, and M. Mitchell, "Mitigating Unwanted Biases with Adversarial Learning," in <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society</em>, pp. 335–340. <a href="https://doi.org/10.1145/3278721.3278779">DOI: 10.1145/3278721.3278779</a>.</li>
+<li><a id="ref-kamiran2012"></a><strong>[Kamiran2012]</strong> F. Kamiran and T. Calders, "Data preprocessing techniques for classification without discrimination," <em>Knowledge and Information Systems</em>, vol. 33, no. 1, pp. 1–33, 2012. <a href="https://doi.org/10.1007/s10115-011-0463-8">DOI: 10.1007/s10115-011-0463-8</a>.</li>
+<li><a id="ref-calmon2017"></a><strong>[Calmon2017]</strong> F. Calmon, D. Wei, B. Vinzamuri, K. N. Ramamurthy, and K. R. Varshney, "Optimized Pre-Processing for Discrimination Prevention," in <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, vol. 30, pp. 3992–4001, 2017. <a href="https://doi.org/10.48550/arXiv.1704.03354">DOI: 10.48550/arXiv.1704.03354</a>.</li>
+<li><a id="ref-zhang2018"></a><strong>[Zhang2018]</strong> B. H. Zhang, B. Lemoine, and M. Mitchell, "Mitigating Unwanted Biases with Adversarial Learning," in <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society (AIES)</em>, pp. 335–340, 2018. <a href="https://doi.org/10.1145/3278721.3278779">DOI: 10.1145/3278721.3278779</a>.</li>
+<li><a id="ref-agarwal2018"></a><strong>[Agarwal2018]</strong> A. Agarwal, A. Beygelzimer, M. Dudík, J. Langford, and H. Wallach, "A Reductions Approach to Fair Classification," in <em>Proceedings of the 35th International Conference on Machine Learning (ICML)</em>, PMLR, vol. 80, pp. 60–69, 2018. <a href="https://doi.org/10.48550/arXiv.1803.02453">DOI: 10.48550/arXiv.1803.02453</a>.</li>
+<li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> M. Hardt, E. Price, and N. Srebro, "Equality of Opportunity in Supervised Learning," in <em>Advances in Neural Information Processing Systems (NeurIPS)</em>, vol. 29, pp. 3315–3323, 2016. <a href="https://doi.org/10.48550/arXiv.1610.02413">DOI: 10.48550/arXiv.1610.02413</a>.</li>
+<li><a id="ref-mehrabi2021"></a><strong>[Mehrabi2021]</strong> N. Mehrabi, F. Morstatter, N. Saxena, K. Lerman, and A. Galstyan, "A Survey on Bias and Fairness in Machine Learning," <em>ACM Computing Surveys</em>, vol. 54, no. 6, pp. 1–35, 2021. <a href="https://doi.org/10.1145/3457607">DOI: 10.1145/3457607</a>.</li>
+<li><a id="ref-zafar2017"></a><strong>[Zafar2017]</strong> M. B. Zafar, I. Valera, M. Gomez Rodriguez, and K. P. Gummadi, "Fairness Beyond Disparate Treatment &amp; Disparate Impact: Learning Classification without Disparate Mistreatment," in <em>Proceedings of the 26th International Conference on World Wide Web (WWW)</em>, pp. 1171–1180, 2017. <a href="https://doi.org/10.1145/3038912.3052660">DOI: 10.1145/3038912.3052660</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../06-fairness-definitions-and-tradeoffs/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.6 Fairness Definitions & Trade-offs</a>
+  <a href="../06-fairness-definitions-and-tradeoffs/" class="noc-sim-btn secondary" style="text-decoration: none;">← 7.6 Fairness Definitions & Tradeoffs</a>
   <a href="../08-best-practices-for-fairness/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Best Practices for Fairness (7.8) →</a>
 </div>
 

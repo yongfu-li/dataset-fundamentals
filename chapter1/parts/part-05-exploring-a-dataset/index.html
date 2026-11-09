@@ -3,194 +3,78 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Exploring a dataset — Dataset Fundamentals</title>
-  <link rel="stylesheet" href="../../../assets/site.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSGP2S9PZL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RSGP2S9PZL', { send_page_view: true });
-  </script>
+  <title>Home — Dataset Fundamentals</title>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="site-header-inner">
-      <p class="brand"><a href="../../../index.html">Dataset Fundamentals</a></p>
+      <p class="brand"><a href="index.html">Dataset Fundamentals</a></p>
       <nav class="site-nav" aria-label="Site">
-        <a href="../../../index.html#lectures" class="is-active" aria-current="page">Lectures</a>
-        <a href="../../../tools/index.html">Tools</a>
-        <a href="../../../project/index.html">Project</a>
-        <a href="../../../modules/index.html">Examples</a>
-        <a href="../../../community/index.html">Community</a>
+        <a href="index.html#lectures" class="is-active" aria-current="page">Lectures</a>
+        <a href="tools/index.html">Tools</a>
+        <a href="project/index.html">Project</a>
+        <a href="modules/index.html">Examples</a>
+        <a href="community/index.html">Community</a>
       </nav>
     </div>
-    <div class="site-header-crumb"><nav aria-label="Breadcrumb"><a href="../../../index.html">Home</a><a href="../../../chapter1/index.html">Chapter 1</a><span class="here">Part 5/7</span></nav></div>
   </header>
   <main id="main">
-    <div class="eyebrow">Chapter 1 · Guided part</div>
+    <div class="eyebrow">Open learning platform</div>
     
 <section class="hero">
-  <h1>Exploring a dataset</h1>
-  <div class="clip-meta">
-    <span class="pill">~8 min</span>
-    <span class="pill pill-muted">Chapter 1</span>
-    <span class="pill pill-muted">Part 5 of 7</span>
-  </div>
-  <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-04-characteristics-of-good-datasets/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-secondary" href="../../../tools/eda-dashboard/index.html">Try EDA dashboard</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-06-uses-of-datasets/index.html" title="Uses of datasets">Next →</a>
-  </nav>
+  <h1>Learn, practice, and share datasets</h1>
+  <p class="lead">Open companion platform for <em>Fundamental of Dataset: Collection, Annotation, and Management</em>.
+  Short lectures, browser tools, a raw-to-ready project path, packaged examples,
+  and a reader community — all in one place.</p>
 </section>
 
-<section class="video-panel" aria-label="Part video">
-  <div class="video-wrap">
-    <video controls preload="metadata" playsinline>
-      <source src="video/clip.mp4" type="video/mp4">
-    </video>
-    <div class="video-placeholder" hidden>
-      Video not available yet. Download the PPTX/PDF and continue with the quiz.
-    </div>
-  </div>
+<section class="home-pillars" aria-label="Explore the platform">
+  <ul class="pillar-grid">
+    <li>
+      <a class="pillar-card" href="#lectures">
+        <h2>Lectures</h2>
+        <p>Guided chapter paths with short videos, bridges, quizzes, and downloadable decks.</p>
+      </a>
+    </li>
+    <li>
+      <a class="pillar-card" href="tools/index.html">
+        <h2>Tools</h2>
+        <p>In-browser labs along the dataset workflow — upload, transform, document, and export.</p>
+      </a>
+    </li>
+    <li>
+      <a class="pillar-card" href="project/index.html">
+        <h2>Project</h2>
+        <p>Turn raw data into a documented, licensed release kit — step by step in the browser.</p>
+      </a>
+    </li>
+    <li>
+      <a class="pillar-card" href="modules/index.html">
+        <h2>Examples</h2>
+        <p>Packaged chapter examples with notes, data files, and expected results.</p>
+      </a>
+    </li>
+    <li>
+      <a class="pillar-card" href="community/index.html">
+        <h2>Community</h2>
+        <p>Reader stories and feedback for the authors and the tool set.</p>
+      </a>
+    </li>
+  </ul>
 </section>
 
-<h2>Learning objectives</h2>
-<ul class='objectives'>
-<li>Explain the epistemological purpose of exploratory data analysis as formulated by John Tukey</li>
-<li>Implement the four-tier diagnostic framework evaluating dimensions, moments, outliers, and correlations</li>
-<li>Analyze Simpson&#x27;s paradox and uncover hidden confounding variables</li>
-<li>Profile live income distributions and evaluate log transformations in our interactive workbench</li>
-</ul>
-
-
-<section class="panel sp-tool-callout" id="tools">
-  <h2>Try it</h2>
-  <p class="lead">Practice this part's ideas in the browser.</p>
-  <div class="deck-links"><a class="btn btn-secondary" href="../../../tools/eda-dashboard/index.html">Try EDA dashboard</a></div>
-</section>
-
-
-
-<section class="examples-panel" id="examples">
-  <h2>Example files and results</h2>
-  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
-  to inspect the data, source files, and any saved expected result.</p>
-  <div class="module-grid">
-<article class="module-card">
-  <div>
-    <span class="pill pill-muted">eg:1.20</span>
-    <h3>Example 1.20 — Exploratory Analysis of Household Incomes</h3>
-    <p>Run a minimal pandas EDA loop — preview, summarize, check missingness, visualize — and read skew directly off mean vs median.</p>
-    <p class='module-files-inline'>Preview files: <code>household_incomes.csv</code>, <code>main.py</code>, <code>requirements.txt</code></p>
-  </div>
-  <a class="btn btn-secondary" href="../../../modules/chapter1/example20/index.html">View files and result</a>
-</article>
-</div>
-</section>
-
-
-<details class="panel" data-persist="slides">
-  <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Exploring a Dataset</h3><ul><li>Welcome to Part 5 of Chapter 1</li></ul></div><div class="slide-card"><h3>Learning Objectives</h3><ul><li>Four primary objectives anchor this exploration lecture</li><li>We explain the epistemological purpose of exploratory data analysis as formulated by John</li><li>Correlations</li><li>We analyze Simpson&#x27;s paradox and uncover hidden confounding variables</li><li>Finally, we profile live income distributions and evaluate log transformations in our</li></ul></div><div class="slide-card"><h3>The Epistemological Role of EDA</h3><ul><li>Exploratory Data Analysis rejects the naive assumption that datasets arrive ready for</li><li>First formalized by John Tukey</li><li>Machine learning algorithms naively exploit collection artifacts such as default null</li><li>Rigorous exploratory analysis uncovers latent anomalies and structural biases before</li></ul></div><div class="slide-card"><h3>Tier 1: Shape, Memory, and Typing Invariants</h3><ul><li>The first tier of diagnostic profiling audits fundamental shape and memory invariants</li><li>Data scientists calculate sample volume N, attribute count M, and overall matrix sparsity</li><li>Analysts verify that memory footprints align with workstation constraints</li><li>Crucially, inspectors separate physical storage types from semantic measurement domains,</li></ul></div><div class="slide-card"><h3>Tier 2: Distributional Moments, Skewness, and Kurtosis</h3><ul><li>The second tier evaluates the first four statistical moments for every continuous feature</li><li>Mean and variance measure central location and scale</li><li>Skewness quantifies distributional asymmetry</li><li>Kurtosis measures tail heaviness and extreme event risk</li><li>Recognizing skewness dictates when practitioners must apply non-parametric methods or</li></ul></div><div class="slide-card"><h3>Tier 3: Non-Parametric Outlier Fencing via Tukey&#x27;s IQR</h3><ul><li>Rather than relying on Gaussian assumptions</li><li>Interquartile range is computed as the difference between the seventy-fifth and</li><li>Inner fences set boundaries at one point five times the interquartile range beyond the</li><li>Outer fences extend three times the interquartile range to flag extreme anomalies</li><li>Outliers transcending the outer fence warrant individual provenance investigation</li></ul></div><div class="slide-card"><h3>Tier 4: Bivariate Associations: Pearson versus Spearman</h3><ul><li>The fourth tier investigates pairwise relationships across attribute dimensions</li><li>Pearson correlation quantifies linear relationships between continuous features but is</li><li>Spearman rank correlation calculates Pearson correlation over ordinal ranks</li><li>Comparing both metrics reveals non-linear dependencies and protects against spurious</li></ul></div><div class="slide-card"><h3>The Pathological Pitfall: Simpson&#x27;s Paradox</h3><ul><li>During correlation analysis, analysts must guard against Simpson&#x27;s paradox</li><li>In this counter-intuitive statistical phenomenon</li><li>The reversal occurs when an unobserved confounding variable influences both feature</li><li>Rigorous exploratory subgroup profiling exposes confounding factors early</li></ul></div><div class="slide-card"><h3>Example 1.20 — Household Income Distribution Profiling</h3><ul><li>Example 1.20 — hands-on module</li><li>Example 1.20 walks through exploratory profiling on an empirical household income dataset</li><li>Incomes exhibit heavy right-skew</li><li>Profiling the raw table reveals how extreme values distort naive parametric summaries</li><li>View files: <code>modules/chapter1/example20/</code></li></ul></div><div class="slide-card"><h3>Example 1.20 — listing</h3><pre><code>import pandas as pd
-import matplotlib.pyplot as plt
-
-# Load the dataset
-household_incomes = pd.read_csv(&quot;household_incomes.csv&quot;)
-
-# View the first few rows
-print(household_incomes.head())
-
-# Summary statistics for numerical columns
-print(household_incomes.describe())
-
-# Check for missing values
-print(household_incomes.isnull().sum())
-
-# Visualize the income distribution
-household_incomes[&quot;Income&quot;].hist()
-plt.title(&quot;Distribution of Household Incomes&quot;)
-plt.xlabel(&quot;Income&quot;)
-plt.ylabel(&quot;Frequency&quot;)
-plt.show()</code></pre></div><div class="slide-card"><h3>Transforming Right-Skewed Empirical Distributions</h3><ul><li>When continuous attributes display heavy positive skewness</li><li>Compressing extreme values stabilizes gradient descent during neural network training</li><li>Variance-stabilizing transformations prevent high-magnitude features from dominating</li></ul></div><div class="slide-card"><h3>In-Browser Interactive EDA and Profiler Workbench</h3><ul><li>Learners can experiment with distributional anomalies interactively using our in-browser</li><li>The workbench allows you to select Gaussian</li><li>You can toggle log-transformations, view dynamic histogram shifts</li><li>Interacting with these controls develops visual and quantitative instincts for</li></ul></div><div class="slide-card"><h3>Key Takeaways and Diagnostic Principles</h3><ul><li>Four essential principles guide exploratory data analysis in dataset engineering</li><li>Exploratory profiling must precede model training to prevent fitting to collection</li><li>The four-tier framework systematically audits dimensions, moments, outliers</li><li>Tukey non-parametric fences provide robust anomaly detection without assuming normality</li><li>Checking for Simpson&#x27;s paradox by disaggregating cohorts prevents spurious causal</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Pause here to test your diagnostic skills with the quiz for this part</li></ul></div></div></div>
-</details>
-
-
-<details class="panel" data-persist="transcript">
-  <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Exploring a Dataset</h3><p>Welcome to Part 5 of Chapter 1. Having established quality criteria, we now study how data scientists forensic audit concrete datasets before training models. We examine exploratory data analysis across statistical moments, non-parametric outlier fences, association metrics, and confounding paradoxes.</p></div><div class="transcript"><h3>Slide 2 — Learning Objectives</h3><p>Four primary objectives anchor this exploration lecture. We explain the epistemological purpose of exploratory data analysis as formulated by John Tukey. We implement the four-tier diagnostic inspection framework evaluating dimensions, moments, outliers, and correlations. We analyze Simpson&#x27;s paradox and uncover hidden confounding variables. Finally, we profile live income distributions and evaluate log transformations in our interactive workbench.</p></div><div class="transcript"><h3>Slide 3 — The Epistemological Role of EDA</h3><p>Exploratory Data Analysis rejects the naive assumption that datasets arrive ready for formal mathematical modeling. First formalized by John Tukey, exploratory analysis is the forensic investigation of empirical records. Machine learning algorithms naively exploit collection artifacts such as default null placeholders or sensor drift as predictive signals. Rigorous exploratory analysis uncovers latent anomalies and structural biases before defining loss functions.</p></div><div class="transcript"><h3>Slide 4 — Tier 1: Shape, Memory, and Typing Invariants</h3><p>The first tier of diagnostic profiling audits fundamental shape and memory invariants. Data scientists calculate sample volume N, attribute count M, and overall matrix sparsity. Analysts verify that memory footprints align with workstation constraints. Crucially, inspectors separate physical storage types from semantic measurement domains, identifying categorical identifiers stored as numeric values.</p></div><div class="transcript"><h3>Slide 5 — Tier 2: Distributional Moments, Skewness, and Kurtosis</h3><p>The second tier evaluates the first four statistical moments for every continuous feature. Mean and variance measure central location and scale. Skewness quantifies distributional asymmetry, where severe positive right-skew causes sample means to diverge from medians. Kurtosis measures tail heaviness and extreme event risk. Recognizing skewness dictates when practitioners must apply non-parametric methods or logarithmic transformations.</p></div><div class="transcript"><h3>Slide 6 — Tier 3: Non-Parametric Outlier Fencing via Tukey&#x27;s IQR</h3><p>Rather than relying on Gaussian assumptions, robust exploration uses Tukey&#x27;s non-parametric fences. Interquartile range is computed as the difference between the seventy-fifth and twenty-fifth percentiles. Inner fences set boundaries at one point five times the interquartile range beyond the quartiles. Outer fences extend three times the interquartile range to flag extreme anomalies. Outliers transcending the outer fence warrant individual provenance investigation.</p></div><div class="transcript"><h3>Slide 7 — Tier 4: Bivariate Associations: Pearson versus Spearman</h3><p>The fourth tier investigates pairwise relationships across attribute dimensions. Pearson correlation quantifies linear relationships between continuous features but is sensitive to extreme outliers. Spearman rank correlation calculates Pearson correlation over ordinal ranks, capturing monotonic non-linear associations. Comparing both metrics reveals non-linear dependencies and protects against spurious linear assumptions.</p></div><div class="transcript"><h3>Slide 8 — The Pathological Pitfall: Simpson&#x27;s Paradox</h3><p>During correlation analysis, analysts must guard against Simpson&#x27;s paradox. In this counter-intuitive statistical phenomenon, an aggregate correlation across an entire dataset completely reverses when records are disaggregated into sub-populations. The reversal occurs when an unobserved confounding variable influences both feature assignment and outcome rates. Rigorous exploratory subgroup profiling exposes confounding factors early.</p></div><div class="transcript"><h3>Slide 9 — Example 1.20 — Household Income Distribution Profiling</h3><p>Example 1.20 walks through exploratory profiling on an empirical household income dataset. Incomes exhibit heavy right-skew, where a small cohort of high earners pulls the mean far above the median. Profiling the raw table reveals how extreme values distort naive parametric summaries. You can inspect the dataset and run diagnostic profiling scripts in the example 20 module.</p></div><div class="transcript"><h3>Slide 10 — Transforming Right-Skewed Empirical Distributions</h3><p>When continuous attributes display heavy positive skewness, applying a logarithmic transformation restores approximate symmetry. Compressing extreme values stabilizes gradient descent during neural network training. Variance-stabilizing transformations prevent high-magnitude features from dominating Euclidean distance calculations in clustering and nearest-neighbor algorithms.</p></div><div class="transcript"><h3>Slide 11 — In-Browser Interactive EDA and Profiler Workbench</h3><p>Learners can experiment with distributional anomalies interactively using our in-browser EDA Profiler. The workbench allows you to select Gaussian, uniform, or heavy right-skewed income distributions. You can toggle log-transformations, view dynamic histogram shifts, and inspect live Tukey outlier fences. Interacting with these controls develops visual and quantitative instincts for distribution auditing.</p></div><div class="transcript"><h3>Slide 12 — Key Takeaways and Diagnostic Principles</h3><p>Four essential principles guide exploratory data analysis in dataset engineering. Exploratory profiling must precede model training to prevent fitting to collection artifacts. The four-tier framework systematically audits dimensions, moments, outliers, and pairwise associations. Tukey non-parametric fences provide robust anomaly detection without assuming normality. Checking for Simpson&#x27;s paradox by disaggregating cohorts prevents spurious causal conclusions.</p></div><div class="transcript"><h3>Slide 13 — Next Steps</h3><p>Pause here to test your diagnostic skills with the quiz for this part. When ready, proceed to Part 6 to explore how datasets drive value across industrial applications and modeling topologies.</p></div></div>
-</details>
-
-
-<section class="quiz-section" id="quiz">
-  <div id="quiz-root" data-next-href="../part-06-uses-of-datasets/index.html" data-next-label="Continue to Uses of datasets"></div>
-  <script id="quiz-data" type="application/json">{
-  "part_id": "part-05-exploring-a-dataset",
-  "title": "Check your understanding: Exploratory Data Analysis & Diagnostics",
-  "passing_score": 0.8,
-  "items": [
-    {
-      "id": "q1",
-      "type": "mcq",
-      "prompt": "When an empirical feature distribution exhibits severe positive right-skew (skewness > +1.0), what is the relationship between the sample mean and the median?",
-      "choices": [
-        "The mean is equal to the median",
-        "The mean is significantly greater than the median, as extreme positive values pull the mean upward",
-        "The median is negative, while the mean is undefined",
-        "The mean is strictly smaller than the 10th percentile"
-      ],
-      "answer_index": 1,
-      "explain": "In right-skewed distributions (such as incomes or web traffic), a small number of extreme high values drag the arithmetic mean upward, making it much larger than the robust median."
-    },
-    {
-      "id": "q2",
-      "type": "mcq",
-      "prompt": "Under Tukey's non-parametric outlier fencing formulation, what defines the inner fences?",
-      "choices": [
-        "[Mean - 3 * StdDev, Mean + 3 * StdDev]",
-        "[Q1 - 1.5 * IQR, Q3 + 1.5 * IQR] where IQR = Q3 - Q1",
-        "[Min - 10, Max + 10]",
-        "[0.0, 1.0]"
-      ],
-      "answer_index": 1,
-      "explain": "Tukey's inner fences are set at 1.5 times the Interquartile Range (IQR = Q3 - Q1) below the first quartile and above the third quartile."
-    },
-    {
-      "id": "q3",
-      "type": "mcq",
-      "prompt": "What defines Simpson's Paradox in exploratory bivariate analysis?",
-      "choices": [
-        "A condition where training error exactly equals validation error on all epochs",
-        "A statistical condition where an apparent trend in an aggregate dataset vanishes or completely reverses when records are disaggregated into subgroups",
-        "A bug caused by missing foreign key constraints in SQLite",
-        "A failure of GPU floating point precision during backpropagation"
-      ],
-      "answer_index": 1,
-      "explain": "Simpson's Paradox occurs when an unobserved confounding variable influences both the predictor and the outcome, reversing the aggregate correlation when broken down into cohorts."
-    },
-    {
-      "id": "q4",
-      "type": "true_false",
-      "prompt": "Spearman rank correlation evaluates linear relationships and is just as sensitive to extreme outliers as Pearson correlation.",
-      "answer": false,
-      "explain": "Spearman rank correlation evaluates monotonic relationships using ordinal ranks, making it much more robust to non-linear associations and extreme outliers than Pearson correlation."
-    },
-    {
-      "id": "q5",
-      "type": "short",
-      "prompt": "Why should data scientists apply variance-stabilizing log-transformations to heavily right-skewed features before training models?",
-      "rubric": "Compresses extreme values, restores approximate symmetry, stabilizes gradient descent, and prevents high-magnitude features from dominating distance metrics.",
-      "sample_answer": "Log-transformations compress extreme outlier values, restore approximate symmetry, stabilize gradient optimization, and prevent extreme numbers from dominating Euclidean distances."
-    }
-  ]
-}
-</script>
-  <script src="../../../assets/quiz.js"></script>
+<section id="lectures" class="home-lectures">
+  <h2>Lectures</h2>
+  <p class="lead">Each chapter is a guided path: short videos, bridge text between parts,
+  a quiz after each part, and a downloadable full deck.</p>
+  <ul class="chapter-list"></ul>
 </section>
 
   </main>
-  <footer class="site-footer">Open learning platform for Fundamental of Dataset: Collection, Annotation, and Management
-  <p class="site-footer-privacy">Anonymous usage analytics (Google Analytics) help improve these materials.</p></footer>
+  <footer class="site-footer">Open learning platform for Fundamental of Dataset: Collection, Annotation, and Management</footer>
   
-  <script src="../../../assets/site.js"></script>
+  <script src="assets/site.js"></script>
 </body>
 </html>

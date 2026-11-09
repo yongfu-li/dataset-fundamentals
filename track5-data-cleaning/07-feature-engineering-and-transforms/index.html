@@ -2610,6 +2610,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-non-linear-transformation-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Non-Linear Transformation Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7416,6 +7427,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-non-linear-transformation-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Non-Linear Transformation Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7595,6 +7617,18 @@ D = \binom{d + k}{k}
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Combinatorial Feature Explosion</p>
 <p>Generating all pairwise polynomial interactions for a dataset with <span class="arithmatex">\(D = 100\)</span> features produces <span class="arithmatex">\(\frac{100 \times 101}{2} = 5,050\)</span> new columns. This inflates model training time, introduces multicollinearity, and increases generalization variance unless paired with <span class="arithmatex">\(L_1\)</span> LASSO feature selection.</p>
 </div>
+<h3 id="decision-framework-non-linear-transformation-selection">Decision Framework: Non-Linear Transformation Selection</h3>
+<pre class="mermaid"><code>flowchart TD
+    RawCol["Continuous Numerical Feature"] --&gt; SkewTest{"Compute Sample Skewness gamma_1"}
+    SkewTest -- "|gamma_1| &lt;= 0.5 (Symmetric)" --&gt; Linear["Retain Linear Scale"]
+    SkewTest -- "|gamma_1| &gt; 0.5 (Skewed)" --&gt; Positivity{"Values Strictly Positive (x &gt; 0)?"}
+    Positivity -- "Yes" --&gt; BoxCox["Box-Cox Power Transform: (x^lambda - 1) / lambda"]
+    Positivity -- "Includes Zeros or Negatives" --&gt; YeoJohnson["Yeo-Johnson Transform (General Real)"]
+    SkewTest -- "Extreme Multimodal / Arbitrary" --&gt; Quantile["QuantileTransformer (Uniform/Normal CDF Mapping)"]
+    Linear &amp; BoxCox &amp; YeoJohnson &amp; Quantile --&gt; ModelFamily{"Downstream Model Family"}
+    ModelFamily -- "Tree-Based (GBDT, RF)" --&gt; Monotonic["Monotonic transforms suffice; preserve rankings"]
+    ModelFamily -- "Linear / Neural" --&gt; SplineExpansion["Periodic / B-Spline Basis Expansions"]</code></pre>
+<hr />
 <h2 id="production-implementation-skewness-correction-and-interaction-pipeline">💻 Production Implementation: Skewness Correction and Interaction Pipeline</h2>
 <p>The following script computes Fisher-Pearson skewness, automatically fits Yeo-Johnson power transforms, generates interaction features, and filters multicollinearity using VIF.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>

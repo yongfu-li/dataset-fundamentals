@@ -2582,6 +2582,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-feature-scaling-categorical-encoding-triage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Feature Scaling &amp; Categorical Encoding Triage
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7416,6 +7427,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decision-framework-feature-scaling-categorical-encoding-triage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Framework: Feature Scaling &amp; Categorical Encoding Triage
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7610,6 +7632,19 @@ This prevents overfitting to rare categories with tiny sample sizes.</p>
 <p class="admonition-title">Common Pitfall / Anti-Pattern: One-Hot Encoding High-Cardinality Features</p>
 <p>One-hot encoding a categorical column with 5,000 categories creates an ultra-sparse matrix that inflates memory by <span class="arithmatex">\(5,000\times\)</span>, degrades tree-based split efficiency, and triggers the curse of dimensionality. Use Target Encoding or CatBoost Ordered Encoding instead.</p>
 </div>
+<h3 id="decision-framework-feature-scaling-categorical-encoding-triage">Decision Framework: Feature Scaling &amp; Categorical Encoding Triage</h3>
+<pre class="mermaid"><code>flowchart TD
+    Feature["Input Feature Triage"] --&gt; TypeCheck{"Feature Type"}
+    TypeCheck -- "Categorical" --&gt; CardCheck{"Cardinality &amp; Target"}
+    CardCheck -- "Low (&lt;= 10 categories)" --&gt; OneHot["One-Hot Encoding"]
+    CardCheck -- "Ordinal (Low, Med, High)" --&gt; OrdinalEnc["Integer Ordinal Encoding"]
+    CardCheck -- "High Cardinality (&gt; 100)" --&gt; TargetEnc["K-Fold Out-of-Fold Target Encoding"]
+    TypeCheck -- "Continuous Numerical" --&gt; DistCheck{"Distribution Shape &amp; Outliers"}
+    DistCheck -- "Near Gaussian, Low Outliers" --&gt; Standard["StandardScaler (Z-Score)"]
+    DistCheck -- "Heavy Outliers / Non-Gaussian" --&gt; Robust["RobustScaler (IQR Normalization)"]
+    DistCheck -- "Strict Bounded Range [0, 1]" --&gt; MinMax["MinMaxScaler"]
+    DistCheck -- "Extreme Skewness" --&gt; PowerTransform["Yeo-Johnson / QuantileTransform"]</code></pre>
+<hr />
 <h2 id="production-implementation-leak-free-target-robust-scaling-pipeline">💻 Production Implementation: Leak-Free Target &amp; Robust Scaling Pipeline</h2>
 <p>The following production script implements an out-of-fold Empirical Bayes Target Encoder integrated into a scikit-learn <code>ColumnTransformer</code>.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">"""</span>

@@ -2917,15 +2917,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-bivariate-association-linear-vs-monotonic-metrics" class="md-nav__link">
+  <a href="#2-bivariate-association-linear-vs-monotonic-vs-concordance-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Bivariate Association: Linear vs. Monotonic Metrics
+        2. Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Bivariate Association: Linear vs. Monotonic Metrics">
+    <nav class="md-nav" aria-label="2. Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2951,10 +2951,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-kendalls-tau-tau" class="md-nav__link">
+  <a href="#3-kendalls-tau-tau-concordance-metric" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Kendall's Tau (\(\tau\))
+        3. Kendall's Tau (\(\tau\)) Concordance Metric
       
     </span>
   </a>
@@ -2972,10 +2972,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-ecdf-with-dkw-bands-correlation-diagnostics" class="md-nav__link">
+  <a href="#production-implementation-density-estimator-correlation-suite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: ECDF with DKW Bands &amp; Correlation Diagnostics
+        💻 Production Implementation: Density Estimator &amp; Correlation Suite
       
     </span>
   </a>
@@ -2983,10 +2983,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-adtech-click-through-rates-overplotting" class="md-nav__link">
+  <a href="#empirical-case-study-sensor-fusion-disconnect-server-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: AdTech Click-Through Rates &amp; Overplotting
+        🔬 Empirical Case Study: Sensor Fusion Disconnect &amp; Server Metrics
       
     </span>
   </a>
@@ -7389,15 +7389,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-bivariate-association-linear-vs-monotonic-metrics" class="md-nav__link">
+  <a href="#2-bivariate-association-linear-vs-monotonic-vs-concordance-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Bivariate Association: Linear vs. Monotonic Metrics
+        2. Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Bivariate Association: Linear vs. Monotonic Metrics">
+    <nav class="md-nav" aria-label="2. Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7423,10 +7423,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-kendalls-tau-tau" class="md-nav__link">
+  <a href="#3-kendalls-tau-tau-concordance-metric" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Kendall's Tau (\(\tau\))
+        3. Kendall's Tau (\(\tau\)) Concordance Metric
       
     </span>
   </a>
@@ -7444,10 +7444,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-ecdf-with-dkw-bands-correlation-diagnostics" class="md-nav__link">
+  <a href="#production-implementation-density-estimator-correlation-suite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: ECDF with DKW Bands &amp; Correlation Diagnostics
+        💻 Production Implementation: Density Estimator &amp; Correlation Suite
       
     </span>
   </a>
@@ -7455,10 +7455,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-adtech-click-through-rates-overplotting" class="md-nav__link">
+  <a href="#empirical-case-study-sensor-fusion-disconnect-server-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: AdTech Click-Through Rates &amp; Overplotting
+        🔬 Empirical Case Study: Sensor Fusion Disconnect &amp; Server Metrics
       
     </span>
   </a>
@@ -7522,7 +7522,7 @@
 <div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
     <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 6 (sec:6.4)</span>
+      <span>📖 Companion Monograph Reference: Chapter 6 (§6.4)</span>
     </div>
     <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
       Read <strong>Chapter 6: Exploratory Data Analysis</strong> in the Springer Nature monograph for complete proofs of the Dvoretzky-Kiefer-Wolfowitz theorem and optimal kernel bandwidth derivations.
@@ -7538,18 +7538,32 @@
 </blockquote>
 <hr />
 <h2 id="conceptual-overview-mathematical-geometries">🎯 Conceptual Overview &amp; Mathematical Geometries</h2>
-<p>Visual representations convert abstract tabular matrices into perceptual geometries. Choosing visualization techniques is not an artistic preference; it is governed by mathematical principles balancing bin width bias-variance tradeoffs, kernel smoothing consistency, and rank-order correlation bounds (<a href="#ref-silverman1986">Silverman, 1986</a>; <a href="#ref-cleveland1993">Cleveland, 1993</a>).</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                   Visual Association &amp; Density Geometries              │
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└────────────────────────────────────────────────────────────────────────┘
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          │                                            │
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Univariate Geometry                          Bivariate Association
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> (Distributional Density &amp; Mass)              (Pairwise Dependence Structures)
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>          │                                            │
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>          ├── Freedman-Diaconis Histogram              ├── Pearson Correlation (r): Linear
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>          ├── Parzen-Rosenblatt KDE                    ├── Spearman Rank (ρ): Monotonic
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>          └── ECDF with DKW Confidence Bands           └── Kendall's Tau (τ): Concordance
-</span></code></pre></div>
+<p>Visual representations convert abstract tabular matrices into perceptual geometries. Choosing visualization techniques is not an artistic preference; it is governed by mathematical principles balancing bin width bias-variance tradeoffs, kernel smoothing consistency, and rank-order correlation bounds [<a href="#ref-silverman1986">Silverman1986</a>, <a href="#ref-cleveland1984">Cleveland1984</a>].</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Univariate ["Univariate Density Geometries"]
+        direction TB
+        U1["Freedman-Diaconis Histogram (Resistant Binning)"]
+        U2["Parzen-Rosenblatt KDE (Continuous Mass)"]
+        U3["ECDF with DKW Non-Parametric Confidence Envelopes"]
+        U1 --&gt; U2 --&gt; U3
+    end
+
+    subgraph Bivariate ["Bivariate Association Geometries"]
+        direction TB
+        B1["Pearson Correlation (r): Strictly Linear Covariance"]
+        B2["Spearman Rank (ρ): Monotonic Non-Linear Dependence"]
+        B3["Kendall's Tau (τ): Pairwise Concordance Probability"]
+        B1 --&gt; B2 --&gt; B3
+    end
+
+    Univariate --&gt;|Cross-Attribute Coupling| Bivariate
+
+    classDef blue fill:#EBF3FA,stroke:#387EB8,stroke-width:2px,color:#2A2A2A;
+    classDef amber fill:#FEF3D6,stroke:#D9822B,stroke-width:2px,color:#2A2A2A;
+    classDef green fill:#E6F4EA,stroke:#2E7D32,stroke-width:2px,color:#2A2A2A;
+
+    class U1,U2,U3 blue;
+    class B1,B2,B3 amber;</code></pre>
 <hr />
 <h3 id="1-univariate-geometries-histograms-kde-and-ecdfs">1. Univariate Geometries: Histograms, KDE, and ECDFs</h3>
 <pre class="mermaid"><code>flowchart TD
@@ -7562,9 +7576,9 @@
   CheckTypes -- "Categorical vs Continuous" --&gt; CatContRoute["Grouped Boxplot + Violin Overlay&lt;br/&gt;or Ridgeline Density Plot"]
   CheckTypes -- "Categorical vs Categorical" --&gt; CatCatRoute["Mosaic Plot or Normalized Heatmap&lt;br/&gt;with Chi-Square Contingency Residuals"]
 
-  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
-  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
-  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+  classDef blue fill:#EBF3FA,stroke:#387EB8,stroke-width:2px,color:#2A2A2A;
+  classDef amber fill:#FEF3D6,stroke:#D9822B,stroke-width:2px,color:#2A2A2A;
+  classDef green fill:#E6F4EA,stroke:#2E7D32,stroke-width:2px,color:#2A2A2A;
 
   class FeaturePair blue;
   class CheckTypes,ScatterRoute amber;
@@ -7572,13 +7586,17 @@
 <h4 id="the-histogram-binning-dilemma">The Histogram Binning Dilemma</h4>
 <p>Given continuous sample <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_n)\)</span>, dividing the range into bins of width <span class="arithmatex">\(h\)</span> involves an asymptotic Mean Integrated Squared Error (MISE) tradeoff:</p>
 <div class="arithmatex">\[
-\text{MISE}(h) = \mathcal{O}(n^{-1} h^{-1}) + \mathcal{O}(h^2)
+\text{MISE}(h) = \mathbb{E}\left[ \int (\hat{f}_h(x) - f(x))^2 dx \right] = \frac{1}{n h} + \frac{1}{12} h^2 \int (f'(x))^2 dx + \mathcal{O}(h^4)
 \]</div>
 <ul>
 <li>Over-smoothing (<span class="arithmatex">\(h \to \infty\)</span>): High bias, masks bimodal mixtures.</li>
 <li>Under-smoothing (<span class="arithmatex">\(h \to 0\)</span>): High variance, produces spiky sample noise.</li>
 </ul>
-<p>The optimal, outlier-resistant bin width is given by the <strong>Freedman-Diaconis Rule</strong> (<a href="#ref-freedman1981">1981</a>):</p>
+<p><strong>Scott's Normal Reference Rule</strong> minimizes MISE for Gaussian distributions:</p>
+<div class="arithmatex">\[
+h_{\text{Scott}} = 3.49 \cdot s \cdot n^{-1/3}
+\]</div>
+<p>The optimal, outlier-resistant bin width is given by the <strong>Freedman-Diaconis Rule</strong> [<a href="#ref-freedman1981">Freedman1981</a>]:</p>
 <div class="arithmatex">\[
 h_{\text{FD}} = 2 \cdot \frac{\text{IQR}(\mathbf{x})}{n^{1/3}}
 \]</div>
@@ -7588,7 +7606,7 @@ h_{\text{FD}} = 2 \cdot \frac{\text{IQR}(\mathbf{x})}{n^{1/3}}
 <div class="arithmatex">\[
 \hat{f}_h(x) = \frac{1}{n h} \sum_{i=1}^n K\left(\frac{x - x_i}{h}\right)
 \]</div>
-<p>where <span class="arithmatex">\(K(u)\)</span> is a symmetric standard normal kernel <span class="arithmatex">\(K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\)</span>. <strong>Silverman's Rule of Thumb</strong> provides the optimal bandwidth minimizing asymptotic MISE for unimodal densities:</p>
+<p>where <span class="arithmatex">\(K(u)\)</span> is a symmetric standard normal kernel <span class="arithmatex">\(K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}\)</span>. <strong>Silverman's Rule of Thumb</strong> provides the optimal bandwidth minimizing asymptotic MISE for unimodal densities [<a href="#ref-silverman1986">Silverman1986</a>]:</p>
 <div class="arithmatex">\[
 h^* = 0.9 \cdot \min\left(s, \; \frac{\text{IQR}}{1.34}\right) \cdot n^{-1/5}
 \]</div>
@@ -7606,16 +7624,21 @@ F_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbb{I}(x_i \le x)
 \epsilon = \sqrt{\frac{\ln(2 / \alpha)}{2n}}, \quad L(x) = \max(0, F_n(x) - \epsilon), \quad U(x) = \min(1, F_n(x) + \epsilon)
 \]</div>
 <hr />
-<h3 id="2-bivariate-association-linear-vs-monotonic-metrics">2. Bivariate Association: Linear vs. Monotonic Metrics</h3>
-<p>Let paired observations <span class="arithmatex">\(\{ (x_i, y_i) \}_{i=1}^n\)</span>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Correlation Geometry
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>   Linear (r = 1.0, ρ = 1.0)       Monotonic Nonlinear (r = 0.72, ρ = 1.0)      Outlier Distorted (r = 0.89, ρ = 0.05)
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>          *                                      *                                                 ● (Outlier)
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        *                                       *                                      * *
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>      *                                       *                                      * * *
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    *                                     *                                         * * * *
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  *                                 * * *                                          * * * *
-</span></code></pre></div>
+<h3 id="2-bivariate-association-linear-vs-monotonic-vs-concordance-metrics">2. Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics</h3>
+<pre class="mermaid"><code>flowchart TD
+    Pair["Paired Bivariate Observations (X, Y)"] --&gt; RelType{"Nature of Dependency?"}
+
+    RelType -- "Linear + Bivariate Normal" --&gt; Pearson["Pearson r&lt;br/&gt;Cov(X,Y) / (σ_x σ_y)&lt;br/&gt;Vulnerable to outliers"]
+    RelType -- "Non-linear Monotonic" --&gt; Spearman["Spearman Rank ρ&lt;br/&gt;Pearson on Ranks R(X), R(Y)&lt;br/&gt;Robust to monotonic curves"]
+    RelType -- "Rank Concordance / Small n" --&gt; Kendall["Kendall's Tau τ&lt;br/&gt;(C - D) / [n(n-1)/2]&lt;br/&gt;Direct probabilistic meaning"]
+
+    classDef blue fill:#EBF3FA,stroke:#387EB8,stroke-width:2px,color:#2A2A2A;
+    classDef amber fill:#FEF3D6,stroke:#D9822B,stroke-width:2px,color:#2A2A2A;
+    classDef green fill:#E6F4EA,stroke:#2E7D32,stroke-width:2px,color:#2A2A2A;
+
+    class Pair blue;
+    class RelType amber;
+    class Pearson,Spearman,Kendall green;</code></pre>
 <h4 id="1-pearson-correlation-coefficient-r">1. Pearson Correlation Coefficient (<span class="arithmatex">\(r\)</span>)</h4>
 <p>Measures strictly linear co-variation:</p>
 <div class="arithmatex">\[
@@ -7625,194 +7648,180 @@ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i -
 <li><em>Failure Mode:</em> A single extreme bivariate outlier can inflate <span class="arithmatex">\(r\)</span> from <span class="arithmatex">\(0.0\)</span> to <span class="arithmatex">\(0.95\)</span> or depress <span class="arithmatex">\(r\)</span> to <span class="arithmatex">\(0.0\)</span>. Pearson <span class="arithmatex">\(r\)</span> is blind to nonlinear relationships (e.g., <span class="arithmatex">\(y = x^2 \implies r \approx 0\)</span>).</li>
 </ul>
 <h4 id="2-spearman-rank-correlation-rho">2. Spearman Rank Correlation (<span class="arithmatex">\(\rho\)</span>)</h4>
-<p>Computes Pearson correlation over empirical ranks <span class="arithmatex">\(R(x_i), R(y_i)\)</span>:</p>
+<p>Computes Pearson correlation over empirical ranks <span class="arithmatex">\(R(x_i), R(y_i)\)</span> [<a href="#ref-spearman1904">Spearman1904</a>]:</p>
 <div class="arithmatex">\[
 \rho = 1 - \frac{6 \sum_{i=1}^n d_i^2}{n(n^2 - 1)}, \quad d_i = R(x_i) - R(y_i)
 \]</div>
-<p>Measures arbitrary monotonic relationships (<span class="arithmatex">\(y = e^x \implies \rho = 1.0\)</span> while <span class="arithmatex">\(r &lt; 1.0\)</span>) and is resistant to univariate tail extremes.</p>
-<h4 id="3-kendalls-tau-tau">3. Kendall's Tau (<span class="arithmatex">\(\tau\)</span>)</h4>
-<p>Evaluates the proportion of <strong>concordant pairs</strong> (<span class="arithmatex">\(x_i &gt; x_j \wedge y_i &gt; y_j\)</span>) versus <strong>discordant pairs</strong> (<span class="arithmatex">\(x_i &gt; x_j \wedge y_i &lt; y_j\)</span>):</p>
+<p>Spearman <span class="arithmatex">\(\rho\)</span> captures any monotonic relationship (<span class="arithmatex">\(y = \exp(x)\)</span> yields <span class="arithmatex">\(\rho = 1.0\)</span>) and resists extreme tail leverage.</p>
+<h4 id="3-kendalls-tau-tau-concordance-metric">3. Kendall's Tau (<span class="arithmatex">\(\tau\)</span>) Concordance Metric</h4>
+<p>Given pairs <span class="arithmatex">\((x_i, y_i)\)</span> and <span class="arithmatex">\((x_j, y_j)\)</span>, a pair is concordant if <span class="arithmatex">\((x_i - x_j)(y_i - y_j) &gt; 0\)</span> and discordant if negative [<a href="#ref-kendall1938">Kendall1938</a>]:</p>
 <div class="arithmatex">\[
-\tau = \frac{C - D}{\frac{1}{2} n(n - 1)}
+\tau = \frac{C - D}{\frac{1}{2} n (n - 1)} = \Pr(\text{concordance}) - \Pr(\text{discordance})
 \]</div>
-<p>Kendall's <span class="arithmatex">\(\tau\)</span> converges faster to asymptotic normality and provides direct probabilistic interpretation: <span class="arithmatex">\(\tau = \Pr(\text{Concordance}) - \Pr(\text{Discordance})\)</span>.</p>
+<p>Kendall's <span class="arithmatex">\(\tau\)</span> possesses superior small-sample asymptotic normal convergence and offers a direct probabilistic interpretation.</p>
 <hr />
 <div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Hexbin and 2D Density Contours for Big Data Scatterplots</p>
-<p>When visualizing bivariate relationships with <span class="arithmatex">\(N &gt; 100,000\)</span> points, standard scatterplots suffer from catastrophic overplotting: points merge into solid black blocks that hide local density variations. Replace point markers with <strong>Hexagonal Binning (Hexbin)</strong> or kernel density contour plots where color encodes point frequency.</p>
+<p class="admonition-title">Industrial Best Practice: Always Plot the ECDF Alongside KDE</p>
+<p>While Kernel Density Estimates (KDE) provide smooth, intuitive visuals, they suffer from boundary bias at positive physical thresholds (e.g., <span class="arithmatex">\(x \ge 0\)</span> for response latency) and depend heavily on arbitrary bandwidth choices. Always plot the <strong>Empirical Cumulative Distribution Function (ECDF)</strong> with DKW confidence bands: ECDFs require zero tuning parameters and display 100% of the raw data without distortion.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Truncating the Y-Axis on Bar Charts</p>
-<p>Truncating the baseline of a bar chart away from zero (<span class="arithmatex">\(y \ne 0\)</span>) artificially exaggerates minute percentage variations, visually misleading viewers. While scatterplots and line charts may use non-zero baselines to display localized variance, bar heights represent visual magnitudes and must always anchor to zero.</p>
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Truncating Bar Chart Y-Axes</p>
+<p>Bar charts encode numerical values via visual bar <em>length</em> from zero. Truncating the vertical axis (e.g., setting the baseline to 95 instead of 0) visually exaggerates a 1% difference into a 500% visual discrepancy, severely violating proportional ink principles [<a href="#ref-cleveland1984">Cleveland1984</a>]. For non-zero-baseline displays, use point plots or line charts.</p>
 </div>
-<h2 id="production-implementation-ecdf-with-dkw-bands-correlation-diagnostics">💻 Production Implementation: ECDF with DKW Bands &amp; Correlation Diagnostics</h2>
-<p>Below is a complete Python module calculating Freedman-Diaconis binning, ECDF with Dvoretzky-Kiefer-Wolfowitz confidence bands, and a comparative correlation matrix.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">"""</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="sd">univariate_bivariate_analysis.py</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">Freedman-Diaconis Binning, DKW Confidence Envelopes, and Association Metrics</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">"""</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_freedman_diaconis_bins</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="sd">    Computes optimal bin count and bin width using Freedman-Diaconis rule.</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="sd">    h = 2 * IQR * n^(-1/3)</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="sd">    """</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">q25</span><span class="p">,</span> <span class="n">q75</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q75</span> <span class="o">-</span> <span class="n">q25</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="k">if</span> <span class="n">iqr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        <span class="n">iqr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">or</span> <span class="mf">1.0</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="n">bin_width</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">iqr</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">))</span>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="n">data_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="n">bin_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">data_range</span> <span class="o">/</span> <span class="n">bin_width</span><span class="p">))</span>
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">bin_count</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">bin_width</span><span class="p">)</span>
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_ecdf_dkw_bounds</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="sd">    Computes Empirical CDF and exact 1 - alpha confidence bands via DKW inequality.</span>
-</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="sd">    epsilon = sqrt( ln(2 / alpha) / (2n) )</span>
-</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="sd">    """</span>
-</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
-</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
-</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    <span class="c1"># ECDF step values</span>
-</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    <span class="n">ecdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
-</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>
-</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>    <span class="c1"># DKW epsilon band</span>
-</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">n</span><span class="p">))</span>
-</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>    <span class="n">lower_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">ecdf</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>    <span class="n">upper_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">ecdf</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>
-</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>        <span class="s2">"x"</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
-</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>        <span class="s2">"ecdf"</span><span class="p">:</span> <span class="n">ecdf</span><span class="p">,</span>
-</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>        <span class="s2">"lower_dkw_95"</span><span class="p">:</span> <span class="n">lower_band</span><span class="p">,</span>
-</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>        <span class="s2">"upper_dkw_95"</span><span class="p">:</span> <span class="n">upper_band</span>
-</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>    <span class="p">})</span>
-</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>
-</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_association_metrics</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="sd">    Evaluates linear (Pearson), rank monotonic (Spearman), and concordance (Kendall) associations.</span>
-</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="sd">    """</span>
-</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>    <span class="n">r_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>    <span class="n">rho_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>    <span class="n">tau_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">kendalltau</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>
-</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>        <span class="s2">"pearson_r"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">r_val</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
-</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>        <span class="s2">"spearman_rho"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">rho_val</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
-</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>        <span class="s2">"kendall_tau"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">tau_val</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
-</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>    <span class="p">}</span>
-</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>
-</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
-</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>
-</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>    <span class="c1"># 1. Freedman-Diaconis Binning on Skewed Financial Amounts</span>
-</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>    <span class="n">spend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>    <span class="n">n_bins</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">compute_freedman_diaconis_bins</span><span class="p">(</span><span class="n">spend</span><span class="p">)</span>
-</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"=== 1. Freedman-Diaconis Rule: </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> points ==="</span><span class="p">)</span>
-</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Optimal Bin Count: </span><span class="si">{</span><span class="n">n_bins</span><span class="si">}</span><span class="s2"> | Optimal Bin Width: $</span><span class="si">{</span><span class="n">width</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>
-</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>    <span class="c1"># 2. ECDF with DKW Confidence Envelopes</span>
-</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>    <span class="n">ecdf_df</span> <span class="o">=</span> <span class="n">compute_ecdf_dkw_bounds</span><span class="p">(</span><span class="n">spend</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== 2. ECDF + DKW 95% Confidence Bounds (Sample Quantiles) ==="</span><span class="p">)</span>
-</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>    <span class="n">quantiles_idx</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">]]</span>
-</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">ecdf_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">quantiles_idx</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>
-</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>    <span class="c1"># 3. Association Breakdown: Non-Linear Monotonic Relationship</span>
-</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>    <span class="c1"># Exponential growth curve: y = exp(0.5 * x) + noise</span>
-</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>    <span class="n">x_feat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>    <span class="n">y_feat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">x_feat</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>
-</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== 3. Non-Linear Monotonic Association Benchmark ==="</span><span class="p">)</span>
-</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>    <span class="n">assoc_metrics</span> <span class="o">=</span> <span class="n">compare_association_metrics</span><span class="p">(</span><span class="n">x_feat</span><span class="p">,</span> <span class="n">y_feat</span><span class="p">)</span>
-</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">assoc_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">15</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Interpretation: Spearman rho captures pure monotonic curvature where Pearson r degrades."</span><span class="p">)</span>
+<hr />
+<h2 id="production-implementation-density-estimator-correlation-suite">💻 Production Implementation: Density Estimator &amp; Correlation Suite</h2>
+<p>Below is a self-contained, typed Python implementation computing Freedman-Diaconis bin widths, Silverman KDE, ECDF confidence bands, and the Pearson-Spearman-Kendall correlation triad.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># visualization_math_suite.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Freedman-Diaconis Binning, Silverman KDE, DKW Confidence Envelopes, and Correlation Triad</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_optimal_hist_bins</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="c1"># Calculates Scott's and Freedman-Diaconis optimal bin widths</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">s</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">q25</span><span class="p">,</span> <span class="n">q75</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">iqr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">q75</span> <span class="o">-</span> <span class="n">q25</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">h_scott</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">3.49</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)))</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">h_fd</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">iqr</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)))</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="c1"># Silverman's KDE bandwidth</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">silverman_scale</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">iqr</span> <span class="o">/</span> <span class="mf">1.34</span><span class="p">)</span> <span class="k">if</span> <span class="n">iqr</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">s</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">h_silverman</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">silverman_scale</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">5.0</span><span class="p">)))</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="s2">"n"</span><span class="p">:</span> <span class="n">n</span><span class="p">,</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="s2">"h_scott"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">h_scott</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="s2">"h_freedman_diaconis"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">h_fd</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="s2">"h_silverman_kde"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">h_silverman</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="p">}</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_dkw_ecdf</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="c1"># Computes sorted ECDF along with DKW uniform confidence margin epsilon</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">ecdf_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">epsilon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">n</span><span class="p">)))</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">ecdf_vals</span><span class="p">,</span> <span class="n">epsilon</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_bivariate_correlations</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="c1"># Evaluates Pearson, Spearman, and Kendall association metrics</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">r_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">rho_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="n">tau_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">kendalltau</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="s2">"pearson_r"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">r_val</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="s2">"spearman_rho"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">rho_val</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="s2">"kendall_tau"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">tau_val</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="p">}</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="c1"># ---------------------------------------------------------</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># 1. Test Freedman-Diaconis and KDE bandwidth calculations</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">bin_res</span> <span class="o">=</span> <span class="n">compute_optimal_hist_bins</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Optimal Density Binning Parameters ==="</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">bin_res</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">22</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="k">assert</span> <span class="n">bin_res</span><span class="p">[</span><span class="s2">"h_freedman_diaconis"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"FD bin width must be positive."</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="k">assert</span> <span class="n">bin_res</span><span class="p">[</span><span class="s2">"h_silverman_kde"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Silverman bandwidth must be positive."</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="c1"># 2. DKW ECDF uniform bound test</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">sorted_x</span><span class="p">,</span> <span class="n">ecdf_y</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="n">compute_dkw_ecdf</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">DKW Confidence Margin (alpha=0.05, n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">): +/- </span><span class="si">{</span><span class="n">eps</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="k">assert</span> <span class="n">eps</span> <span class="o">&lt;</span> <span class="mf">0.10</span><span class="p">,</span> <span class="s2">"DKW margin should be tight for n=500."</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="c1"># 3. Correlation Triad Comparison: Monotonic Non-Linear Phenomenon</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="c1"># y = exp(x/10) with zero noise: perfect monotonic relation</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="n">x_mon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">y_mon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x_mon</span> <span class="o">/</span> <span class="mf">5.0</span><span class="p">)</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="n">corr_mon</span> <span class="o">=</span> <span class="n">compute_bivariate_correlations</span><span class="p">(</span><span class="n">x_mon</span><span class="p">,</span> <span class="n">y_mon</span><span class="p">)</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== Monotonic Non-Linear Exponential Growth ==="</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Pearson r    : </span><span class="si">{</span><span class="n">corr_mon</span><span class="p">[</span><span class="s1">'pearson_r'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (impaired by non-linearity)"</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Spearman rho : </span><span class="si">{</span><span class="n">corr_mon</span><span class="p">[</span><span class="s1">'spearman_rho'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (perfect rank monotonicity)"</span><span class="p">)</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Kendall tau  : </span><span class="si">{</span><span class="n">corr_mon</span><span class="p">[</span><span class="s1">'kendall_tau'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (perfect rank concordance)"</span><span class="p">)</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="k">assert</span> <span class="n">corr_mon</span><span class="p">[</span><span class="s2">"spearman_rho"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Spearman must detect perfect monotonicity."</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="k">assert</span> <span class="n">corr_mon</span><span class="p">[</span><span class="s2">"kendall_tau"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Kendall must detect perfect concordance."</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="k">assert</span> <span class="n">corr_mon</span><span class="p">[</span><span class="s2">"pearson_r"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Pearson r should be strictly less than 1 for nonlinear exponential."</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="c1"># 4. Correlation Triad Comparison: Gross Outlier Contamination</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="c1"># Linear dataset with 1 extreme outlier</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="n">x_lin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">y_lin</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">x_lin</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="c1"># Inject single disastrous leverage point</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="n">x_lin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">50.0</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="n">y_lin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">100.0</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="n">corr_out</span> <span class="o">=</span> <span class="n">compute_bivariate_correlations</span><span class="p">(</span><span class="n">x_lin</span><span class="p">,</span> <span class="n">y_lin</span><span class="p">)</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">=== Outlier Contaminated Dataset (1 Leverage Point) ==="</span><span class="p">)</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Pearson r    : </span><span class="si">{</span><span class="n">corr_out</span><span class="p">[</span><span class="s1">'pearson_r'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (sign flipped / collapsed)"</span><span class="p">)</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Spearman rho : </span><span class="si">{</span><span class="n">corr_out</span><span class="p">[</span><span class="s1">'spearman_rho'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (resistant)"</span><span class="p">)</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Kendall tau  : </span><span class="si">{</span><span class="n">corr_out</span><span class="p">[</span><span class="s1">'kendall_tau'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (resistant)"</span><span class="p">)</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="k">assert</span> <span class="n">corr_out</span><span class="p">[</span><span class="s2">"spearman_rho"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.80</span><span class="p">,</span> <span class="s2">"Spearman rank should resist single outlier."</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">[OK] All visualization mathematical estimators and correlation bounds verified."</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h2 id="empirical-case-study-adtech-click-through-rates-overplotting">🔬 Empirical Case Study: AdTech Click-Through Rates &amp; Overplotting</h2>
+<h2 id="empirical-case-study-sensor-fusion-disconnect-server-metrics">🔬 Empirical Case Study: Sensor Fusion Disconnect &amp; Server Metrics</h2>
 <ol>
-<li><strong>The <span class="arithmatex">\(10^6\)</span> Point Blob Failure:</strong> An ad-tech analytics platform monitored User Dwell Time (<span class="arithmatex">\(X\)</span>) versus Click-Through Probability (<span class="arithmatex">\(Y\)</span>) across <span class="arithmatex">\(1,200,000\)</span> ad impressions. Standard scatter plots produced an undifferentiated black ink rectangle, obscuring where the density resided.</li>
-<li><strong>Pearson vs. Spearman Discrepancy:</strong></li>
-<li>Linear Pearson reported <span class="arithmatex">\(r = 0.28\)</span> (suggesting negligible correlation).</li>
-<li>Spearman rank correlation reported <span class="arithmatex">\(\rho = 0.84\)</span> (<span class="arithmatex">\(p &lt; 10^{-50}\)</span>).</li>
-<li><strong>Hexagonal Binning Resolution:</strong> Replacing scatter plots with <strong>2D Hexbin density maps</strong> revealed that <span class="arithmatex">\(94\%\)</span> of all observations occupied a tight power-law curved ridge: users with dwell time <span class="arithmatex">\(&lt; 1.2\text{s}\)</span> almost never clicked, whereas dwell time <span class="arithmatex">\(&gt; 3.5\text{s}\)</span> triggered a deterministic step-function increase in conversions. The linear metric had severely understated feature utility.</li>
+<li><strong>Autonomous Vehicle LiDAR-Radar Calibration Failure:</strong> During rainy highway trials, an autonomous vehicle perceived phantom obstacles. Aggregate logging showed a high Pearson correlation (<span class="arithmatex">\(r = 0.91\)</span>) between LiDAR point counts and Radar reflectivity. However, exploratory bivariate scatterplots revealed an extreme outlier cluster: under wet road glare, LiDAR suffered total backscatter absorption (<span class="arithmatex">\(x \approx 0\)</span>), while Radar detected ground spray (<span class="arithmatex">\(y \approx 4,000\)</span>). The high Pearson correlation was artificially driven by high-speed highway segments. Computing <strong>Spearman <span class="arithmatex">\(\rho\)</span></strong> during rain collapsed to <span class="arithmatex">\(0.18\)</span>, exposing the sensor fusion failure.</li>
+<li><strong>Database Connection Pool Exhaustion:</strong> A financial API suffered periodic connection timeouts. A graph of CPU utilization versus request volume showed low correlation (<span class="arithmatex">\(r = 0.22\)</span>). However, replacing the scatterplot with a <strong>LOWESS-smoothed hexbin plot</strong> exposed a sharp non-linear threshold: CPU stayed flat at <span class="arithmatex">\(15\%\)</span> until connections reached <span class="arithmatex">\(1,024\)</span>, at which point lock contention triggered an exponential wall to <span class="arithmatex">\(100\%\)</span>. The non-linear relationship was invisible to summary correlation.</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Visualization Modality</th>
-<th style="text-align: left;">Perceptual Clarity</th>
-<th style="text-align: left;">Linear <span class="arithmatex">\(r\)</span></th>
-<th style="text-align: left;">Rank <span class="arithmatex">\(\rho\)</span></th>
-<th style="text-align: left;">Actionable Modeling Decision</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Standard Scatter Plot (1.2M pts)</td>
-<td style="text-align: left;">Solid black ink blob</td>
-<td style="text-align: left;">0.28</td>
-<td style="text-align: left;">0.84</td>
-<td style="text-align: left;">Prematurely discarded feature</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>2D Hexagonal Binning (Hexbin)</strong></td>
-<td style="text-align: left;"><strong>Revealed density ridge</strong></td>
-<td style="text-align: left;"><strong>0.28</strong></td>
-<td style="text-align: left;"><strong>0.84</strong></td>
-<td style="text-align: left;"><strong>Engineered threshold feature at 3.5s</strong></td>
-</tr>
-</tbody>
-</table>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
 <div class="noc-sim-card">
   <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Automated EDA Dashboard</h4>
-  <p>Generate interactive scatterplots, violin plots, and hexagonal density charts across high-dimensional feature pairs.</p>
+  <h4>Explore Univariate & Bivariate Geometry Studio</h4>
+  <p>Compare Freedman-Diaconis vs. Scott binning interactively, fit adaptive Gaussian KDEs, and observe Pearson vs. Spearman breakdown under outlier manipulation.</p>
   <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
+
 <hr />
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Violin Plots vs. Standard Boxplots</summary>
-<p>Why does a standard Tukey boxplot fail to detect bimodal and multimodal distributions, and how does a <strong>Violin Plot</strong> resolve this limitation?</p>
+<summary>Self-Assessment: Why Does Freedman-Diaconis Outperform Sturges' Rule?</summary>
+<p>Many statistical packages historically used <strong>Sturges' Rule</strong> (<span class="arithmatex">\(k = 1 + \log_2 n\)</span>) as default histogram binning. Why does Sturges' rule fail severely on modern large datasets (<span class="arithmatex">\(n &gt; 10,000\)</span>) or heavy-tailed distributions, and why does Freedman-Diaconis resolve this?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> A Tukey boxplot displays only 5 summary order statistics: minimum, <span class="arithmatex">\(Q_1\)</span>, median (<span class="arithmatex">\(Q_2\)</span>), <span class="arithmatex">\(Q_3\)</span>, and maximum.</p>
-<p>A bimodal distribution (e.g., two distinct Gaussian peaks at <span class="arithmatex">\(-3\)</span> and <span class="arithmatex">\(+3\)</span> with zero points in between) produces an identical five-number summary to a uniform distribution spanning <span class="arithmatex">\([-3, +3]\)</span>. A <strong>Violin Plot</strong> overlays a symmetrical Kernel Density Estimation (KDE) curve along the boxplot, immediately revealing the waist and dual modes of the distribution.</p>
+<p><strong>Answer:</strong> 
+- <strong>Sturges' Rule Failure:</strong> Sturges' rule assumes an underlying binomial/Gaussian distribution. On large datasets (<span class="arithmatex">\(n=1,000,000\)</span>), Sturges suggests only <span class="arithmatex">\(k \approx 21\)</span> bins, resulting in massive over-smoothing that obliterates multimodal structures. Furthermore, Sturges relies on the sample range (<span class="arithmatex">\(\max - \min\)</span>), making bin width hypersensitive to a single extreme outlier.
+- <strong>Freedman-Diaconis Resolution:</strong> Scales bin width as <span class="arithmatex">\(h = 2 \cdot \text{IQR} \cdot n^{-1/3}\)</span>, which asymptotically minimizes <span class="arithmatex">\(L_2\)</span> error. By substituting the Interquartile Range for the range, it is completely immune to arbitrary tail outliers up to a <span class="arithmatex">\(25\%\)</span> contamination threshold [<a href="#ref-freedman1981">Freedman1981</a>].</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Q-Q Plot Heavy Tail Diagnostics</summary>
-<p>On a Quantile-Quantile (Q-Q) plot against a standard normal distribution, the empirical sample quantiles bend upward on the right side and downward on the left side (forming an S-shape). What does this pattern diagnose?</p>
+<summary>Self-Assessment: Pearson r vs. Spearman rho Under Monotonic Transformations</summary>
+<p>Given paired data <span class="arithmatex">\((X, Y)\)</span> with Pearson correlation <span class="arithmatex">\(r = 0.85\)</span>. If we apply the strictly monotonic transformation <span class="arithmatex">\(Y' = \ln(Y)\)</span>, how will Pearson <span class="arithmatex">\(r\)</span> and Spearman <span class="arithmatex">\(\rho\)</span> react?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> This S-shape pattern diagnoses a <strong>Heavy-Tailed (Leptokurtic) Distribution</strong>.</p>
-<p>The empirical extreme percentiles (e.g., 99th and 1st percentiles) are much larger in absolute value than expected under a theoretical normal distribution. This indicates that extreme outlier events occur with significantly higher probability than Gaussian assumptions predict (e.g., Student's <span class="arithmatex">\(t\)</span> or Pareto tails).</p>
+<p><strong>Answer:</strong> 
+- <strong>Pearson <span class="arithmatex">\(r\)</span>:</strong> Will change (increase or decrease) because Pearson correlation depends on linear distances and covariance: <span class="arithmatex">\(\text{Cov}(X, \ln(Y)) \neq \text{Cov}(X, Y)\)</span>.
+- <strong>Spearman <span class="arithmatex">\(\rho\)</span>:</strong> Will remain <strong>strictly identical</strong> because the rank ordering of observations is completely invariant under any strictly increasing monotonic transformation: <span class="arithmatex">\(R(\ln(y_i)) = R(y_i)\)</span> for all <span class="arithmatex">\(i\)</span> [<a href="#ref-spearman1904">Spearman1904</a>].</p>
 </details>
 </details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
-<li><a id="ref-freedman1981"></a><strong>[Freedman1981]</strong> D. Freedman and P. Diaconis, "On the Histogram as a Density Estimator: <span class="arithmatex">\(l_2\)</span> Theory," <em>Zeitschrift für Wahrscheinlichkeitstheorie und verwandte Gebiete</em>, vol. 57, no. 4, pp. 453–476, 1981. <a href="https://doi.org/10.1007/bf01025868">DOI: 10.1007/bf01025868</a>.</li>
-<li><a id="ref-silverman1986"></a><strong>[Silverman1986]</strong> B. W. Silverman, "Density Estimation for Statistics and Data Analysis," <em>Chapman &amp; Hall</em>, London, 1986. <a href="https://doi.org/10.1002/bimj.4710300745">DOI: 10.1002/bimj.4710300745</a>.</li>
-<li><a id="ref-cleveland1993"></a><strong>[Cleveland1993]</strong> W. S. Cleveland, <em>Visualizing Data</em>, Hobart Press, Summit, New Jersey, 1993. <a href="https://doi.org/10.1002/sim.4780141212">DOI: 10.1002/sim.4780141212</a>.</li>
-<li><a id="ref-massart1990"></a><strong>[Massart1990]</strong> P. Massart, "The Tight Constant in the Dvoretzky-kiefer-wolfowitz Inequality," <em>The Annals of Probability</em>, 1269–1283, 1990. <a href="https://doi.org/10.1214/aop/1176990746">DOI: 10.1214/aop/1176990746</a>.</li>
+<li><a id="ref-freedman1981"></a><strong>[Freedman1981]</strong> D. Freedman and P. Diaconis, "On the histogram as a density estimator: <span class="arithmatex">\(L_2\)</span> theory," <em>Zeitschrift für Wahrscheinlichkeitstheorie und Verwandte Gebiete</em>, vol. 57, no. 4, pp. 453–476, 1981. <a href="https://doi.org/10.1007/BF01025868">DOI: 10.1007/BF01025868</a>.</li>
+<li><a id="ref-silverman1986"></a><strong>[Silverman1986]</strong> B. W. Silverman, <em>Density Estimation for Statistics and Data Analysis</em>, Chapman and Hall, London, 1986. <a href="https://doi.org/10.1201/9781315140919">DOI: 10.1201/9781315140919</a>.</li>
+<li><a id="ref-cleveland1984"></a><strong>[Cleveland1984]</strong> W. S. Cleveland and R. McGill, "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods," <em>Journal of the American Statistical Association</em>, vol. 79, no. 387, pp. 531–554, 1984. <a href="https://doi.org/10.1080/01621459.1984.10478080">DOI: 10.1080/01621459.1984.10478080</a>.</li>
+<li><a id="ref-anscombe1973"></a><strong>[Anscombe1973]</strong> F. J. Anscombe, "Graphs in Statistical Analysis," <em>The American Statistician</em>, vol. 27, no. 1, pp. 17–21, 1973. <a href="https://doi.org/10.1080/00031305.1973.10478966">DOI: 10.1080/00031305.1973.10478966</a>.</li>
+<li><a id="ref-spearman1904"></a><strong>[Spearman1904]</strong> C. Spearman, "The Proof and Measurement of Association between Two Things," <em>The American Journal of Psychology</em>, vol. 15, no. 1, pp. 72–101, 1904. <a href="https://doi.org/10.2307/1412159">DOI: 10.2307/1412159</a>.</li>
+<li><a id="ref-kendall1938"></a><strong>[Kendall1938]</strong> M. G. Kendall, "A New Measure of Rank Correlation," <em>Biometrika</em>, vol. 30, no. 1–2, pp. 81–93, 1938. <a href="https://doi.org/10.1093/biomet/30.1-2.81">DOI: 10.1093/biomet/30.1-2.81</a>.</li>
+<li><a id="ref-waskom2021"></a><strong>[Waskom2021]</strong> M. L. Waskom, "seaborn: statistical data visualization," <em>Journal of Open Source Software</em>, vol. 6, no. 60, p. 3021, 2021. <a href="https://doi.org/10.21105/joss.03021">DOI: 10.21105/joss.03021</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">

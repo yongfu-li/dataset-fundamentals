@@ -2711,6 +2711,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#architectural-framework-end-to-end-multimodal-cleansing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Framework: End-to-End Multimodal Cleansing Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7422,6 +7433,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#architectural-framework-end-to-end-multimodal-cleansing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Framework: End-to-End Multimodal Cleansing Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7610,6 +7632,24 @@ Values outside these intervals represent sensor disconnection or transducer fail
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Forward-Looking Imputation in Time-Series</p>
 <p>Using future values to impute missing points in a historical time series (e.g., bidirectional spline interpolation) introduces catastrophic lookahead bias. Models achieve artificially high backtest accuracy but fail immediately when deployed in live real-time streams.</p>
 </div>
+<h3 id="architectural-framework-end-to-end-multimodal-cleansing-pipeline">Architectural Framework: End-to-End Multimodal Cleansing Pipeline</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph IngestionStage ["1. Multimodal Raw Ingestion"]
+        R1["Clinical EHR Tables"]
+        R2["DICOM Medical Images"]
+        R3["Sensor Telemetry JSON"]
+    end
+    subgraph CleansingStage ["2. Domain Cleansing Pipelines"]
+        C1["Temporal Imputation &amp; Unit Standardization"]
+        C2["Window Leveling &amp; Artifact Removal"]
+        C3["Jitter De-noising &amp; Outlier Rejection"]
+    end
+    subgraph FusionStage ["3. Harmonized Feature Store"]
+        F1["Strict Patient Cohort Alignment"]
+        F2["Leakage-Free Validation Registry"]
+    end
+    IngestionStage --&gt; CleansingStage --&gt; FusionStage</code></pre>
+<hr />
 <h2 id="production-implementation-end-to-end-domain-cleaning-pipelines">💻 Production Implementation: End-to-End Domain Cleaning Pipelines</h2>
 <p>The following executable Python script implements both complete domain pipelines: (1) E-Commerce RFM Currency Harmonization &amp; Clustering, and (2) Clinical Vital Plausibility Screening with Missingness-Indicator Tracking.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>

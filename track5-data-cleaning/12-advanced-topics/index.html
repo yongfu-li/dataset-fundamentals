@@ -2694,6 +2694,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#algorithmic-architecture-activeclean-iterative-error-repair-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithmic Architecture: ActiveClean Iterative Error Repair Loop
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7304,6 +7315,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#algorithmic-architecture-activeclean-iterative-error-repair-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithmic Architecture: ActiveClean Iterative Error Repair Loop
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7501,6 +7523,17 @@ j = \arg\max_{k \in \{1, \dots, C\}} \hat{P}(\tilde{y} = k \mid \mathbf{x}) \qua
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Unverified Programmatic Label Weak Supervision</p>
 <p>Using heuristic rules or LLM prompts for programmatic data cleaning without computing a Snorkel generative label model fails to account for correlated errors and multi-source labeling dependencies.</p>
 </div>
+<h3 id="algorithmic-architecture-activeclean-iterative-error-repair-loop">Algorithmic Architecture: ActiveClean Iterative Error Repair Loop</h3>
+<pre class="mermaid"><code>flowchart TD
+    DirtyData["Raw Dirty Training Dataset (N records)"] --&gt; Sampler["ActiveClean Sample Selector (Horvitz-Thompson)"]
+    Sampler --&gt; HumanClean["Oracle / Expert Cleans Micro-Batch (b records)"]
+    HumanClean --&gt; GradientCompute["Compute Cleaned Loss Gradient g_clean"]
+    GradientCompute --&gt; HTWeighting["Apply Inverse Probability Weights: w_i = 1 / pi_i"]
+    HTWeighting --&gt; ModelUpdate["Update Model Weights: theta_{t+1} = theta_t - eta * sum(w_i * g_i)"]
+    ModelUpdate --&gt; ConvergenceCheck{"Validation Loss Metric Stabilized?"}
+    ConvergenceCheck -- "No" --&gt; Sampler
+    ConvergenceCheck -- "Yes" --&gt; CleanModel["Optimally Repaired Classifier (Without 100% Manual Scrubbing)"]</code></pre>
+<hr />
 <h2 id="production-implementation-streaming-scaler-and-confident-learning-pruner">💻 Production Implementation: Streaming Scaler and Confident Learning Pruner</h2>
 <p>The following executable Python script implements an online <span class="arithmatex">\(\mathcal{O}(1)\)</span>-memory Welford streaming scaler alongside a complete Confident Learning label error auditor.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
