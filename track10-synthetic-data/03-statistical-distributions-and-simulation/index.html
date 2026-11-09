@@ -4486,10 +4486,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7507,6 +7529,14 @@
 <li><strong>Markov Chain Monte Carlo (MCMC):</strong> Employs Metropolis-Hastings transition kernels to sample from unnormalized multi-dimensional joint posterior distributions <span class="arithmatex">\(p(\mathbf{x} \mid \mathcal{D})\)</span> where <span class="arithmatex">\(F_X^{-1}\)</span> cannot be solved analytically (<a href="#ref-hastings1970">Hastings, 1970</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Inverse Transform Sampling for Arbitrary Continuous CDFs</p>
+<p>When generating random variates from an arbitrary continuous probability distribution whose cumulative distribution function <span class="arithmatex">\(F(x)\)</span> is invertible, apply <strong>Inverse Transform Sampling</strong>: draw uniform random variate <span class="arithmatex">\(u \sim \text{Uniform}(0, 1)\)</span> and evaluate <span class="arithmatex">\(x = F^{-1}(u)\)</span>. The resulting sample is mathematically exact.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Rejection Sampling in High Dimensions</p>
+<p>Rejection sampling efficiency degrades exponentially with dimensionality <span class="arithmatex">\(D\)</span>: because the volume of high-dimensional spheres concentrates in thin shells, the acceptance probability <span class="arithmatex">\(P(\text{accept}) = \frac{1}{M} \to 0\)</span> as <span class="arithmatex">\(D &gt; 10\)</span>, causing sampling loops to hang indefinitely. Use Markov Chain Monte Carlo (MCMC) instead.</p>
+</div>
 <h2 id="mathematical-formulations-of-monte-carlo-sampling">🧮 Mathematical Formulations of Monte Carlo Sampling</h2>
 <h3 id="1-probability-integral-transform-theorem">1. Probability Integral Transform Theorem</h3>
 <p>Let <span class="arithmatex">\(X\)</span> be a continuous random variable possessing strictly monotonic cumulative distribution function <span class="arithmatex">\(F_X(x) = \mathbb{P}[X \le x]\)</span>. The transformed variable <span class="arithmatex">\(U = F_X(X)\)</span> is uniformly distributed on the open interval <span class="arithmatex">\((0, 1)\)</span>:</p>
@@ -7645,17 +7675,36 @@ D_{n, m} &gt; c(\alpha) \sqrt{\frac{n + m}{n \cdot m}}, \quad \text{where } c(0.
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Sampling & Simulation Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Inverse Transform Sampling, test continuous distributions, and audit KS statistics:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Sampling Simulator</a>
-    <a href="../../tools/cleaning/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Data Cleaning Lab</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Augmentation Lab</h4>
+  <p>Test Monte Carlo sampling, Gaussian Mixture Model simulation, and inverse CDF transformation engines.</p>
+  <a href="../../tools/text-augmentation/" class="noc-sim-btn">Launch Text Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Acceptance Probability in Rejection Sampling</summary>
+<p>In Rejection Sampling, target density <span class="arithmatex">\(p(x)\)</span> is enveloped by proposal density <span class="arithmatex">\(q(x)\)</span> such that <span class="arithmatex">\(p(x) \le M q(x)\)</span> for all <span class="arithmatex">\(x\)</span>, with scaling constant <span class="arithmatex">\(M = 4.5\)</span>. What is the expected number of proposal draws required to generate a single accepted sample?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The probability of accepting any candidate draw is <span class="arithmatex">\(P(\text{accept}) = \frac{1}{M} = \frac{1}{4.5} \approx 0.2222\)</span>.</p>
+<p>The number of trials until an acceptance follows a Geometric distribution. Therefore, the expected number of draws is:
+$<span class="arithmatex">\(\mathbb{E}[\text{trials}] = M = 4.5 \text{ draws}\)</span>$
+On average, 4.5 proposal draws are evaluated and rejected for every accepted sample.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Gaussian Mixture Model EM Expectation Step</summary>
+<p>In a Gaussian Mixture Model with <span class="arithmatex">\(K\)</span> components, write the formula for the posterior responsibility <span class="arithmatex">\(\gamma_{i, k} = P(z_i = k \mid x_i)\)</span> evaluated during the Expectation step.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> By Bayes' theorem, the responsibility of component <span class="arithmatex">\(k\)</span> for observation <span class="arithmatex">\(x_i\)</span> is:
+$<span class="arithmatex">\(\gamma_{i, k} = \frac{\pi_k \mathcal{N}(x_i \mid \mu_k, \Sigma_k)}{\sum_{j=1}^K \pi_j \mathcal{N}(x_i \mid \mu_j, \Sigma_j)}\)</span>$
+where <span class="arithmatex">\(\pi_k\)</span> is the prior mixture weight, and <span class="arithmatex">\(\mathcal{N}(x_i \mid \mu_k, \Sigma_k)\)</span> is the multivariate Gaussian probability density function.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

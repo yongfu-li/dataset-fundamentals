@@ -1435,6 +1435,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7366,6 +7377,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7452,6 +7474,14 @@ x_{\text{observed}}(t) = x_{\text{true}}(t) + \alpha_{\text{drift}} \cdot t + \e
 \]</div>
 <p>Without periodic recalibration schedules, an automated system will faithfully log millions of highly precise, perfectly uniform, <strong>completely false measurements</strong>.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Human-in-the-Loop Hybrid Ingestion Gateways</p>
+<p>For high-consequence domains (e.g., medical claims, anti-money laundering), implement a <strong>confidence-gated hybrid ingest</strong>. Automated OCR/parsers process high-confidence entries (<span class="arithmatex">\(p &gt; 0.95\)</span>), while marginal cases (<span class="arithmatex">\(0.70 \le p \le 0.95\)</span>) are routed to an adjudication queue for human verifier confirmation before committing to the canonical lakehouse.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Uncalibrated Manual Entry Drift</p>
+<p>Manual data entry pipelines without real-time schema validation accumulate subtle systemic errors: typos in categorical codes, inconsistent unit conventions (e.g., Celsius vs Fahrenheit), and irregular entry cadences that models interpret as physiological or operational signals.</p>
+</div>
 <h2 id="2-multi-dimensional-trade-off-comparison">2. Multi-Dimensional Trade-Off Comparison</h2>
 <table>
 <thead>
@@ -7525,16 +7555,12 @@ x_{\text{observed}}(t) = x_{\text{true}}(t) + \alpha_{\text{drift}} \cdot t + \e
 </ol>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Test automated collection thresholds and rate limiters in the sandbox:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Acquisition Mechanics</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate sensor packet drops, rate limit thresholds, and explore streaming queues:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/api-collector/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Ingestion Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">💻 Open Web Data Terminal</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Annotation & Validation</h4>
+  <p>Practice human-in-the-loop schema validation, adjudication workflows, and entity parsing client-side.</p>
+  <a href="../../tools/text-annotation/" class="noc-sim-btn">Launch Annotation Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7542,6 +7568,29 @@ x_{\text{observed}}(t) = x_{\text{true}}(t) + \alpha_{\text{drift}} \cdot t + \e
 <li><strong>Sensor Recalibration Schedules</strong>: Automated sensors require scheduled drift audits and physical invariant checks to avoid logging millions of false readings.</li>
 <li><strong>Tiered Hybrid Architecture</strong>: Automate the bulk stream (<span class="arithmatex">\(95\text{--}99\%\)</span>) while routing low-confidence edge cases to human expert triage queues.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Confidence Thresholding in Optical Character Recognition (OCR)</summary>
+<p>An automated invoice processing system ingests 100,000 PDF invoices monthly. The OCR model outputs a per-field confidence score <span class="arithmatex">\(c \in [0, 1]\)</span>. Setting the automated acceptance threshold at <span class="arithmatex">\(\tau = 0.98\)</span> requires 45% of invoices to be manually verified by human clerks, exceeding budget. Lowering <span class="arithmatex">\(\tau = 0.85\)</span> allows 92% automated ingestion but introduces a 4.2% error rate in invoice amount totals. Formulate the optimal cost-minimization objective.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The optimal threshold <span class="arithmatex">\(\tau^*\)</span> minimizes the total expected operational cost:
+$<span class="arithmatex">\(\min_\tau C(\tau) = C_{\text{human}} \cdot \Pr(c &lt; \tau) + C_{\text{error}} \cdot \Pr(c \ge \tau \land \text{Error})\)</span>$
+where <span class="arithmatex">\(C_{\text{human}}\)</span> is the marginal labor cost of manual invoice inspection, and <span class="arithmatex">\(C_{\text{error}}\)</span> is the expected downstream penalty of undetected invoice misstatements (audits, vendor disputes). The cutoff threshold <span class="arithmatex">\(\tau^*\)</span> is located where the marginal cost of human review equals the marginal risk of downstream billing failure:
+$<span class="arithmatex">\(\frac{\Pr(\text{Error} \mid c = \tau^*)}{1 - \Pr(\text{Error} \mid c = \tau^*)} = \frac{C_{\text{human}}}{C_{\text{error}}}\)</span>$</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Inter-Annotator Agreement as a Data Collection Quality Filter</summary>
+<p>Why should human-entered categorical fields in manual data collection always undergo double-entry sampling with Cohen's Kappa evaluation?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Single-entry manual collection provides zero statistical visibility into annotator drift, ambiguous category definitions, or fatigue-induced errors. Double-entry verification on a random 10% sample allows computing <strong>Cohen's <span class="arithmatex">\(\kappa\)</span></strong>:
+$<span class="arithmatex">\(\kappa = \frac{p_o - p_e}{1 - p_e}\)</span>$
+If <span class="arithmatex">\(\kappa &lt; 0.75\)</span>, the category guidelines are systematically ambiguous or collectors are inadequately trained, signaling that collection must pause for codebook revision before bad labels contaminate downstream models.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

@@ -7488,6 +7488,14 @@
     class Clean green;</code></pre>
 <p>Fitting a predictive model to un-profiled data is hazardous. A machine learning model will passively exploit collection artifacts—such as default null imputations (<code>-999</code> or <code>1970-01-01</code>), survivor selection biases, or uncalibrated sensor drift—as predictive signal, yielding models that collapse catastrophic in production <a href="#ref-sculley2015">[Sculley2015]</a>.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Stratified Data Profiling</p>
+<p>When exploring a new dataset, profile summary metrics both globally and stratified across key operational segments (e.g., mobile vs desktop, geographic region). Unstratified global metrics obscure localized data corruption and Simpson's Paradox reversals.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Visualizing Without Verifying Sampling Density</p>
+<p>Standard scatter plots of dense datasets (<span class="arithmatex">\(N &gt; 50,000\)</span>) create misleading visual saturation. Always use hexagonal binning, alpha transparency blending, or 2D kernel density contours to inspect actual point densities.</p>
+</div>
 <h2 id="2-the-4-tier-diagnostic-inspection-framework">2. The 4-Tier Diagnostic Inspection Framework</h2>
 <p>A rigorous first-pass EDA pipeline evaluates raw records across four quantitative tiers:</p>
 <h3 id="tier-1-shape-memory-and-typing-invariants">Tier 1: Shape, Memory, and Typing Invariants</h3>

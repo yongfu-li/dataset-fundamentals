@@ -1,15 +1,16 @@
 # Chapter 1 — Introduction to datasets
 
-**Duration:** ~6 min  
-**Video:** [Watch](video/clip.mp4) *(pending TTS/ffmpeg)*  
+**Duration:** ~8 min  
+**Video:** [Watch](video/clip.mp4)  
 **Slides:** [slides.md](slides.md) · [clip.pptx](clip.pptx)  
 **Transcript:** [transcript.md](transcript.md)
 
 ## Objectives
 
-- Define what counts as a dataset (vs raw logs)
-- Distinguish records from attributes
-- Recognize the same idea in CSV and JSON forms
+- Define an empirical sample using formal probability space and statistical learning theory
+- Establish the universal orthogonal abstraction of records and attributes across computing paradigms
+- Analyze the law of data quality cascades where early collection errors compound downstream
+- Examine real-world clinical and autonomous vehicle failures and test schema validation in the interactive laboratory
 
 ## Quiz
 

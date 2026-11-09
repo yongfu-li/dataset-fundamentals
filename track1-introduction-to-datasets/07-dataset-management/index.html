@@ -7426,6 +7426,14 @@
     class Purge red;</code></pre>
 <p>Without systematic governance, pipelines succumb to <strong>Data Debt</strong> <a href="#ref-sculley2015">[Sculley2015]</a>: silent upstream modifications overwrite training sets, undocumented preprocessing steps make results irreproducible, and unmonitored personal data incurs severe legal penalties under international privacy statutes.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Immutable Merkle DAG Lineage</p>
+<p>Pair Git with Data Version Control (DVC) to track dataset hashes alongside code commits. Storing SHA-256 content hashes in lightweight pointer files guarantees exact, bitwise-identical pipeline reproducibility without bloating Git repositories with binary blobs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unversioned Shared Network Drives</p>
+<p>Storing production training data on shared network file shares (NFS/SMB) with ad-hoc folder names ("data_v2_final_final") destroys scientific reproducibility. When files are overwritten without audit trails, debugging production regressions becomes impossible.</p>
+</div>
 <h2 id="2-the-six-pillars-of-mature-dataset-management">2. The Six Pillars of Mature Dataset Management</h2>
 <p>Mature data engineering organizations build their infrastructure upon six foundational pillars:</p>
 <table>

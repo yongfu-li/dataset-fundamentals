@@ -4803,10 +4803,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7557,6 +7579,14 @@
 </tbody>
 </table>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: The Human-in-the-Loop Active Feedback Loop</p>
+<p>In advanced annotation architectures, never run model training and human annotation as decoupled silos. Build a reactive loop: model predictions prioritize uncertain items for humans, and human-verified labels trigger automated re-training DAGs in real time.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Uncalibrated Model Pre-Labeling</p>
+<p>Using an overconfident, uncalibrated model to pre-label tasks biases human annotators toward accepting incorrect predictions (Automation Bias), degrading true gold-standard label quality.</p>
+</div>
 <h2 id="mathematical-formulations-of-sample-complexity-label-efficiency">🧮 Mathematical Formulations of Sample Complexity &amp; Label Efficiency</h2>
 <h3 id="1-passive-pac-learning-sample-complexity">1. Passive PAC Learning Sample Complexity</h3>
 <p>In classical Probably Approximately Correct (PAC) learning under passive random sampling, achieving generalization error <span class="arithmatex">\(\le \epsilon\)</span> with probability <span class="arithmatex">\(\ge 1 - \delta\)</span> over hypothesis class <span class="arithmatex">\(\mathcal{H}\)</span> with Vapnik-Chervonenkis (VC) dimension <span class="arithmatex">\(d\)</span> requires sample complexity:</p>
@@ -7721,17 +7751,36 @@ N_{\text{active}}(\epsilon, \delta) = \mathcal{O}\left( d \cdot \theta \cdot \ln
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Active Learning Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate active learning loops, test uncertainty acquisition functions, and evaluate label efficiency ratios:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/active-learning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Active Learning Studio</a>
-    <a href="../../tools/pipeline-builder/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Pipeline Builder</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Active Learning Simulator</h4>
+  <p>Simulate pool-based active learning, test uncertainty sampling strategies, and compare sample efficiency gains.</p>
+  <a href="../../tools/active-learning/" class="noc-sim-btn">Launch Active Learning Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Passive Supervised Learning vs. Active Learning Sample Complexity</summary>
+<p>Under Cohn, Atlas &amp; Ladner (1994), what theoretical reduction in sample complexity does Active Learning achieve when learning a 1D linear threshold on uniform data?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> 
+- <strong>Passive Random Sampling:</strong> To achieve generalization error <span class="arithmatex">\(\le \epsilon\)</span>, passive learning requires <span class="arithmatex">\(O(1/\epsilon)\)</span> random labeled samples.
+- <strong>Active Learning (Binary Search):</strong> By querying the label at the midpoint of the current version space interval at each step, active learning requires only:
+$<span class="arithmatex">\(O\left(\log \frac{1}{\epsilon}\right) \text{ samples}\)</span>$
+Active learning achieves an <strong>exponential reduction in label sample complexity</strong>, slashing labeling requirements from thousands to dozens of instances.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Cold-Start Sampling Problem in Active Learning</summary>
+<p>Why does an active learning loop fail if initiated on an entirely unlabeled dataset without an initial stratified warm-start seed set?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Active query heuristics (entropy, margin) depend entirely on the model's posterior probability estimates <span class="arithmatex">\(P(Y \mid X; \theta)\)</span>.</p>
+<p>Without an initial diverse seed set to train a baseline model, model parameters are uninitialized random weights. Querying "most uncertain" instances on an uninitialized model selects random noise or outliers rather than informative decision boundary candidates. A representative, stratified seed set (<span class="arithmatex">\(\sim 500\text{--}1,000\)</span> items) is mandatory to warm-start the loop.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

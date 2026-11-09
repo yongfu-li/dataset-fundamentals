@@ -24,6 +24,18 @@
   Handoff.LOCAL_KEY = LOCAL_KEY;
   Handoff.VERSION = 1;
 
+  Handoff.notifyIncoming = function (payload) {
+    try {
+      const badge = document.getElementById("handoff-status-badge");
+      if (badge && payload && payload.source) {
+        badge.textContent = "New Data from " + payload.source;
+        badge.style.background = "rgba(16, 185, 129, 0.25)";
+        badge.style.borderColor = "rgba(16, 185, 129, 0.5)";
+        badge.style.color = "#34d399";
+      }
+    } catch (e) {}
+  };
+
   // Broadcast channel for instantaneous cross-tab and cross-iframe synchronization
   let broadcastChannel = null;
   try {
@@ -31,7 +43,9 @@
       broadcastChannel = new BroadcastChannel(CHANNEL_NAME);
       broadcastChannel.onmessage = function (event) {
         if (event && event.data && event.data.type === "HANDOFF_UPDATED") {
-          Handoff.notifyIncoming(event.data.payload);
+          if (typeof Handoff.notifyIncoming === "function") {
+            Handoff.notifyIncoming(event.data.payload);
+          }
         }
       };
     }

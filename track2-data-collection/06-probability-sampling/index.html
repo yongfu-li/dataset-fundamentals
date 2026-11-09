@@ -1502,6 +1502,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7444,6 +7455,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7509,6 +7531,16 @@
 \]</div>
 <p>If inclusion probabilities are unknown or zero for certain sub-populations (e.g., offline citizens), <span class="arithmatex">\(\hat{Y}_{\text{HT}}\)</span> cannot be computed, and external statistical validity collapses.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Neyman Optimal Allocation Under Strata Cost Constraints</p>
+<p>When stratification strata have unequal observation variances <span class="arithmatex">\(\sigma_h^2\)</span> and heterogeneous sampling costs <span class="arithmatex">\(c_h\)</span>, always use <strong>Neyman-Tschuprow Optimal Allocation</strong>:
+$<span class="arithmatex">\(n_h = n \frac{N_h \sigma_h / \sqrt{c_h}}{\sum_k N_k \sigma_k / \sqrt{c_k}}\)</span>$
+This mathematically minimizes the global variance of the population estimator for a fixed sampling budget.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Conflating Cluster Sampling with Stratified Sampling</p>
+<p>Stratified sampling selects <em>some</em> elements from <em>all</em> strata (reducing variance by ensuring subgroup representation). Cluster sampling selects <em>all</em> elements from <em>some</em> clusters (reducing field collection cost, but increasing variance due to intra-cluster correlation <span class="arithmatex">\(\rho_{\text{ICC}}\)</span>). Confusing the two leads to severe under-estimation of confidence intervals.</p>
+</div>
 <h2 id="2-simple-random-sampling-srs-sample-size-determination">2. Simple Random Sampling (SRS) &amp; Sample Size Determination</h2>
 <p>In Simple Random Sampling without replacement (<span class="arithmatex">\(\text{SRSWOR}\)</span>), every subset of size <span class="arithmatex">\(n\)</span> has equal probability of selection: <span class="arithmatex">\(P(\mathcal{S}) = \binom{N}{n}^{-1}\)</span>. Hence, <span class="arithmatex">\(\pi_i = \frac{n}{N}\)</span> for all <span class="arithmatex">\(i\)</span>.</p>
 <h3 id="a-estimator-variance-finite-population-correction-fpc">A. Estimator Variance &amp; Finite Population Correction (FPC)</h3>
@@ -7622,16 +7654,12 @@ n_{\text{eff}} = \frac{1{,}000}{10.9} \approx 92 \text{ independent observations
     class Clust,NonProb amber;</code></pre>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Simulate probability sampling distributions and test Neyman allocations live in your browser:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Sampling Technique Visualizer</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Draw random, stratified, and cluster samples from synthetic populations, visualize standard error convergence, and compute Kish's Design Effect:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Launch Sampling Technique Visualizer</a>
-    <a href="../../tools/api-collector/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Ingestion Simulator</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Sampling Techniques Visualizer</h4>
+  <p>Simulate Simple Random, Stratified, and Cluster Sampling across heterogeneous 2D population maps and compare empirical standard errors.</p>
+  <a href="../../tools/sampling/" class="noc-sim-btn">Launch Sampling Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7639,6 +7667,30 @@ n_{\text{eff}} = \frac{1{,}000}{10.9} \approx 92 \text{ independent observations
 <li><strong>Neyman Allocation Efficiency</strong>: In stratified sampling, sample more heavily from strata with higher standard deviation <span class="arithmatex">\(S_h\)</span> to minimize total estimation variance.</li>
 <li><strong>The Cluster Inflation Penalty</strong>: High intra-class correlation (<span class="arithmatex">\(\rho &gt; 0\)</span>) causes cluster sampling to drastically inflate variance; always compute Kish's <span class="arithmatex">\(\text{Deff}\)</span> to establish effective sample size.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Quantifying the Design Effect (Deff) in Cluster Sampling</summary>
+<p>A market research team samples 50 retail stores (clusters) and interviews 20 customers per store (<span class="arithmatex">\(m = 20\)</span>). The intra-cluster correlation coefficient for purchasing habits is <span class="arithmatex">\(\rho = 0.15\)</span>. Calculate the Design Effect (<span class="arithmatex">\(Deff\)</span>) and effective sample size (<span class="arithmatex">\(n_{\text{eff}}\)</span>) if the total interviewed sample is <span class="arithmatex">\(n = 1,000\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The Design Effect (<span class="arithmatex">\(Deff\)</span>) measures how much cluster sampling inflates the variance of the estimator compared to Simple Random Sampling (SRS):
+$<span class="arithmatex">\(Deff = 1 + (m - 1)\rho = 1 + (20 - 1) \times 0.15 = 1 + 19 \times 0.15 = 1 + 2.85 = 3.85\)</span>$
+The effective sample size is:
+$<span class="arithmatex">\(n_{\text{eff}} = \frac{n}{Deff} = \frac{1000}{3.85} \approx 260\)</span>$
+Despite interviewing 1,000 individuals, the sample carries only the statistical information equivalent to 260 independent observations because customers within the same store exhibit correlated behavior.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Horvitz-Thompson Estimator and Unequal Selection Probabilities</summary>
+<p>Under what mathematical condition is the Horvitz-Thompson estimator <span class="arithmatex">\(\hat{Y}_{HT} = \sum_{i=1}^n \frac{y_i}{\pi_i}\)</span> guaranteed to be strictly unbiased for total population value <span class="arithmatex">\(Y = \sum_{i=1}^N y_i\)</span>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The Horvitz-Thompson estimator is strictly unbiased if and only if <strong>every element in the target population has a strictly positive probability of selection</strong>:
+$<span class="arithmatex">\(\forall i \in \{1, \dots, N\}, \quad \pi_i &gt; 0\)</span>$
+If any population subset has <span class="arithmatex">\(\pi_i = 0\)</span> (under-coverage), <span class="arithmatex">\(\mathbb{E}[\hat{Y}_{HT}] \ne Y\)</span>, producing persistent, irrecoverable sampling bias.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

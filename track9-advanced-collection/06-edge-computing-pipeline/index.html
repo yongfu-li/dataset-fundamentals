@@ -4186,10 +4186,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7502,6 +7524,14 @@
 \frac{D}{B_{\text{net}}} + \frac{C}{f_{\text{cloud}}} &lt; \frac{C}{f_{\text{edge}}}
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Lightweight Edge Inference with ONNX Runtime</p>
+<p>Deploy quantized INT8 models directly to edge nodes (NVIDIA Jetson, Raspberry Pi) using ONNX Runtime or TensorRT. Run initial object detection locally, streaming only high-confidence crops or metadata coordinates to the cloud to reduce uplink bandwidth by <span class="arithmatex">\(95\%\)</span>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Fog-to-Cloud Network Partition Freeze</p>
+<p>Designing edge pipelines that block local processing when cloud uplink connectivity drops causes physical equipment failure during intermittent WAN outages. Always implement local ring-buffer spooling on edge SSDs with automatic store-and-forward replay.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements a 1D Kalman filter for embedded edge denoising and calculates edge bandwidth reduction ratios:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -7588,17 +7618,35 @@
 <li><strong>The Edge Trigger Architecture:</strong> Tesla vehicles run lightweight <strong>Edge Neural Trigger Classifiers</strong> directly on the in-car FSD hardware. The edge model filters ordinary highway driving, transmitting video snippets to the cloud data lake <em>only</em> when human drivers disengage Autopilot or when vision predictions conflict with radar returns, reducing uploaded volume by <strong><span class="arithmatex">\(99.98\%\)</span></strong> while capturing critical corner-case training data (<a href="#ref-shi2016">Shi et al., 2016</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Edge Ingestion Simulator</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate edge Kalman filtering, test novelty threshold gating, and evaluate offloading decisions:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore IoT & Sensor Stream Simulator</h4>
+  <p>Test edge quantization, simulate network disconnection dropouts, and inspect store-and-forward buffer drains.</p>
+  <a href="../../tools/pipeline-builder/" class="noc-sim-btn">Launch Pipeline Builder Studio →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Edge vs. Fog vs. Cloud Functional Partitioning</summary>
+<p>In an autonomous traffic management system, categorize where the following tasks should execute: (1) Emergency pedestrian braking trigger (<span class="arithmatex">\(&lt;5\text{ ms}\)</span>), (2) Neighborhood traffic light phase optimization (<span class="arithmatex">\(10\text{ seconds}\)</span>), (3) Citywide annual traffic congestion model training (<span class="arithmatex">\(1\text{ month}\)</span>).</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Edge Tier (On-Vehicle / On-Camera):</strong> Emergency braking (<span class="arithmatex">\(&lt;5\text{ ms}\)</span>). Requires ultra-low latency and zero dependency on wireless network connectivity.
+2. <strong>Fog Tier (Roadside Edge Server / Base Station):</strong> Neighborhood traffic light optimization (<span class="arithmatex">\(10\text{ s}\)</span>). Aggregates multiple local camera streams within a localized physical area.
+3. <strong>Cloud Tier (Centralized Data Lakehouse):</strong> Citywide annual model retraining (<span class="arithmatex">\(1\text{ month}\)</span>). Requires massive scalable compute and petabyte-scale historical storage.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Model Quantization Accuracy Tradeoffs</summary>
+<p>Explain how quantizing a neural network feature extractor from 32-bit floating point (FP32) to 8-bit integer (INT8) reduces edge memory and latency, and how <strong>Quantization-Aware Training (QAT)</strong> prevents accuracy degradation.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> INT8 quantization reduces memory footprint by <span class="arithmatex">\(4\times\)</span> (1 byte vs 4 bytes per weight) and allows the edge CPU/NPU to use fast vector integer arithmetic units (SIMD), speeding up inference by <span class="arithmatex">\(2\times\text{--}4\times\)</span>.</p>
+<p>Post-training quantization can cause accuracy drops due to rounding errors. <strong>Quantization-Aware Training (QAT)</strong> models quantization noise directly during the forward pass of training, allowing backpropagation to adjust remaining weights to compensate for integer clipping, maintaining within <span class="arithmatex">\(0.5\%\)</span> of baseline FP32 accuracy.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

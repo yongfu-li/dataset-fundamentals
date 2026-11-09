@@ -1,47 +1,60 @@
 {
   "part_id": "part-01-introduction-to-datasets",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Foundations & Quality Cascades",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which statement best matches how this chapter defines a dataset?",
+      "prompt": "Which statement best describes a dataset from a statistical learning perspective?",
       "choices": [
-        "Any raw log stream from a production system",
-        "A curated collection of data, often as records and attributes, prepared for a purpose",
-        "Only CSV files with numeric columns",
-        "A trained machine learning model checkpoint"
+        "Any uncurated dump of server logs or raw packet captures",
+        "A curated empirical sample drawn from an unobservable joint probability distribution, serving as input to modeling or analysis",
+        "Only flat CSV files containing numeric continuous columns",
+        "A frozen checkpoint of neural network weights after optimization"
       ],
       "answer_index": 1,
-      "explain": "The chapter treats a dataset as curated for analysis, with scope, structure, and ideally documentation—not merely raw operational logs."
+      "explain": "A dataset is a curated collection of observations drawn from a joint probability measure P(X, Y), structured with defined schema and scope for downstream analysis."
     },
     {
       "id": "q2",
       "type": "mcq",
-      "prompt": "In Example 1.1 (sales CSV), what is one record?",
+      "prompt": "Across database systems and machine learning pipelines, how do records and attributes correspond?",
       "choices": [
-        "The Price column",
-        "The header line Date,Product,Quantity,Price,Total",
-        "One sale transaction (one row)",
-        "The entire CSV file"
+        "Records correspond to vertical features; attributes correspond to horizontal rows",
+        "Records correspond to horizontal observations (tuples/instances); attributes correspond to vertical fields (columns/covariates)",
+        "Both terms refer strictly to document-level metadata",
+        "Records are only used for text; attributes are only used for tabular data"
       ],
-      "answer_index": 2,
-      "explain": "Each row is one observation—one sale. Columns are attributes of that sale."
+      "answer_index": 1,
+      "explain": "Records (rows/tuples/instances) represent individual observations, while attributes (columns/fields/features) represent properties measured across those observations."
     },
     {
       "id": "q3",
-      "type": "true_false",
-      "prompt": "A dataset must always be a flat table of rows and columns.",
-      "answer": false,
-      "explain": "Example 1.4 (housing JSON) shows nested, semi-structured forms; images and text are also datasets when curated for a purpose."
+      "type": "mcq",
+      "prompt": "What is the core principle of the Data-Centric AI paradigm as formulated by researchers like Andrew Ng and Sambasivan et al.?",
+      "choices": [
+        "Keep the dataset fixed as an immutable benchmark while continuously expanding model parameters and layers",
+        "Hold the machine learning model architecture fixed while systematically auditing, versioning, and sanitizing the underlying dataset",
+        "Discard structured tabular schemas in favor of raw unindexed text files",
+        "Train models exclusively on synthetic noise to maximize parameter regularization"
+      ],
+      "answer_index": 1,
+      "explain": "Data-Centric AI shifts engineering effort from tweaking model architectures to rigorously auditing, sanitizing, and improving data quality."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "The Law of Data Quality Cascades implies that early data collection and sensor errors remain isolated and can easily be fixed by scaling downstream neural network depth.",
+      "answer": false,
+      "explain": "Data quality cascades compound non-linearly across downstream preprocessing, annotation, and model optimization stages, often causing catastrophic production failures."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "In one sentence, what is the difference between a record and an attribute?",
-      "rubric": "Record = one observation/row; attribute = one property/column of that observation.",
-      "sample_answer": "A record is one observation (row); an attribute is one property that describes that observation (column)."
+      "prompt": "Why did the sepsis detection model trained on MIMIC ICU data collapse when deployed to an external hospital?",
+      "rubric": "Learned nurse recording frequency (operational artifact) as a proxy for illness severity rather than genuine physiological disease biomarkers.",
+      "sample_answer": "The model learned spurious operational correlations—specifically that bedside nurses recorded vitals more frequently when patients were crashing—rather than genuine clinical biomarkers."
     }
   ]
 }

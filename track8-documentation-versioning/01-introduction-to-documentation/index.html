@@ -3662,10 +3662,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7355,10 +7366,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7477,6 +7499,14 @@ h = \mathcal{H}_{\text{SHA-256}}(\text{Payload})
 \]</div>
 <p>This guarantees that any bitwise alteration of training samples produces a completely distinct hash address, eliminating silent training-serving skew.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Treating Metadata as First-Class Artifacts</p>
+<p>Treat dataset documentation and schema dictionaries with the same continuous integration rigor as application source code. Validate JSON-Schema or Protobuf contracts on every commit and block dataset builds if documentation coverage falls below 95%.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Post-Hoc Retroactive Documentation</p>
+<p>Documenting datasets months after collection relies on fallible human memory. When original engineers leave or sensor configurations change, undocumented quirks turn into cascading silent bugs in production ML systems.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script models the documentation decay function, calculates schema information entropy, and computes Merkle root hashes for dataset files:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
@@ -7578,17 +7608,34 @@ h = \mathcal{H}_{\text{SHA-256}}(\text{Payload})
 <li><strong>The Aftermath:</strong> Because Duke lacked formal version control and data provenance logs, cancer patients received incorrect, toxic chemotherapy regimens. The scandal led to trial terminations, 10 retractions, and spurred the Institute of Medicine (IOM) to mandate <strong>immutable cryptographic versioning and open data dictionaries</strong> across clinical research.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Documentation & Versioning Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate documentation entropy, calculate Merkle roots, and evaluate epistemic decay curves:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Datasheets for Datasets Interactive Builder</h4>
+  <p>Generate standardized Gebru et al. datasheets, audit motivation and composition, and export machine-readable JSON metadata.</p>
+  <a href="../../tools/datasheet/" class="noc-sim-btn">Launch Datasheet Builder →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Epistemic Decay-Jump Process</summary>
+<p>In Michener's documentation decay model <span class="arithmatex">\(\mathcal{Q}(t) = \mathcal{Q}_0 e^{-\lambda t} + \sum \Delta \mathcal{Q}_k\)</span>, what happens to an unmaintained dataset after 5 years if the annual decay rate is <span class="arithmatex">\(\lambda = 0.25\)</span>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The effective epistemic quality decays exponentially:
+$<span class="arithmatex">\(\mathcal{Q}(5) = \mathcal{Q}_0 e^{-0.25 \times 5} = \mathcal{Q}_0 e^{-1.25} \approx 0.2865 \cdot \mathcal{Q}_0\)</span>$
+Without ongoing audits or maintenance, the dataset loses over <strong>71% of its operational utility and institutional knowledge</strong> within five years due to undocumented schema shifts, deprecated external foreign keys, and staff turnover.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Shannon Entropy of Schema Metadata Completeness</summary>
+<p>Why does maximizing the Schema Documentation Entropy <span class="arithmatex">\(H_{\text{schema}}(D) \to \log_2 m\)</span> prevent critical feature blind spots in machine learning pipelines?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Entropy measures the uniformity of descriptive metadata across attributes.</p>
+<p>If an engineering team exhaustively documents primary revenue features while allocating zero documentation tokens to secondary demographic features (<span class="arithmatex">\(H \ll \log_2 m\)</span>), the pipeline creates systemic blind spots where undocumented proxy variables cause silent bias or data corruption. Uniform entropy guarantees exhaustive documentation coverage across all <span class="arithmatex">\(m\)</span> fields.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

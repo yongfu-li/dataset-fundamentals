@@ -4270,10 +4270,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7497,6 +7519,14 @@ R_{\text{IO}} = \frac{\sum_{j \in \mathcal{Q}} \text{size}(A_j)}{\sum_{j=1}^M \t
 \text{Validate}(T_i) = \left[ \mathcal{R}(T_i) \cap \left( \bigcup_{V = V_{\text{start}}+1}^{V_{\text{commit}}} \mathcal{W}_{\text{committed}}(V) \right) = \emptyset \right]
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Open Table Formats: Apache Iceberg over Hive Metastore</p>
+<p>Adopt <strong>Apache Iceberg</strong> or <strong>Delta Lake</strong> as your table format. Iceberg provides full ACID transactions, hidden partitioning (query engines auto-prune partitions without users hardcoding partition columns), and schema evolution without rewriting petabytes of Parquet files.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Small Files Problem in Data Lakes</p>
+<p>Allowing streaming pipelines to commit thousands of 50 KB Parquet files every hour degrades query performance by orders of magnitude due to excessive object storage metadata requests. Deploy automated background compaction jobs to merge small files into optimal 128 MB–512 MB chunks.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script calculates columnar I/O projection savings, models bin-packing compaction speedup, and tests OCC transaction validation:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -7561,17 +7591,35 @@ R_{\text{IO}} = \frac{\sum_{j \in \mathcal{Q}} \text{size}(A_j)}{\sum_{j=1}^M \t
 <li><strong>The Lakehouse Solution:</strong> Apple migrated to <strong>Apache Iceberg with Automated Background Compaction</strong> (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>). Background worker daemons bin-pack streaming 1-MB micro-batches into 256-MB Parquet segments in near-real-time, accelerating downstream acoustic model training queries by <span class="arithmatex">\(28\times\)</span>.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Lakehouse Compaction Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate columnar I/O projection ratios, calculate small-file compaction speedup, and test ACID OCC:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Storage Format & Parquet Chooser</h4>
+  <p>Compare read throughput, file compaction efficiency, and column pruning speeds across Parquet, Iceberg, and CSV.</p>
+  <a href="../../tools/storage-format/" class="noc-sim-btn">Launch Storage Format Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Medallion Architecture (Bronze / Silver / Gold)</summary>
+<p>In modern Lakehouse engineering, define the responsibilities of the <strong>Bronze</strong>, <strong>Silver</strong>, and <strong>Gold</strong> storage tiers.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Bronze Tier (Raw Ingestion):</strong> Append-only raw event dumps preserved in their original format with ingestion timestamps. Immutable historical ledger.
+- <strong>Silver Tier (Cleaned &amp; Conformed):</strong> Filtered, deduplicated, type-validated, and schema-enforced relational tables. Ready for feature engineering and ad-hoc exploratory analytics.
+- <strong>Gold Tier (Curated Business Level):</strong> Star-schema dimensional aggregations, daily business metrics, and high-performance feature store tables optimized for production BI dashboards and machine learning training.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: ACID Transactions in Data Lakes via Two-Phase Commits</summary>
+<p>How does Apache Iceberg guarantee ACID serializability when two concurrent Spark jobs write to the same table?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Iceberg uses <strong>Optimistic Concurrency Control (OCC)</strong> based on atomic metadata pointer swaps.</p>
+<p>Each writer writes new Parquet data files and drafts a new candidate metadata snapshot file. When committing, the writer attempts an atomic compare-and-swap (CAS) operation on the current table pointer. If Job A swaps first, Job B detects a conflict, checks if Job A modified the exact same partitions, and if not, rebases its changes onto Job A's snapshot and retries automatically.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

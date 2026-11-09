@@ -3401,10 +3401,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7467,10 +7478,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7597,6 +7619,14 @@ Y \perp A \mid \hat{Y}
 \]</div>
 <p>If a risk score of <span class="arithmatex">\(0.85\)</span> means an <span class="arithmatex">\(85\%\)</span> likelihood of loan default for Group 1, it must mean an identical <span class="arithmatex">\(85\%\)</span> default likelihood for Group 0.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Stratified Subgroup Performance Matrices</p>
+<p>Never report aggregate model metrics (AUC, F1-score) without publishing a disaggregated <strong>Subgroup Disparity Matrix</strong> across all intersectional protected slices (e.g., gender <span class="arithmatex">\(\times\)</span> race <span class="arithmatex">\(\times\)</span> age). A model with 92% global accuracy can hide a 45% error rate in a vulnerable intersectional sub-population.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Simpson's Paradox in Fairness Audits</p>
+<p>An algorithmic approval rate can appear equitable in aggregate while exhibiting severe discrimination within every individual qualification tranche. Always evaluate disparate impact conditioned on underlying qualification tiers.</p>
+</div>
 <h2 id="production-implementation-comprehensive-statistical-fairness-audit-suite">💻 Production Implementation: Comprehensive Statistical Fairness Audit Suite</h2>
 <p>Below is an executable Python class that computes Demographic Parity, Disparate Impact, Equalized Odds, Equality of Opportunity, and Predictive Parity from confusion matrices.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7715,17 +7745,36 @@ Y \perp A \mid \hat{Y}
 <p>Over a quarter of creditworthy minority applicants were denied loans compared to equally creditworthy majority applicants.
 3. <strong>Threshold Calibration:</strong> Decoupling classification thresholds by group achieved Equality of Opportunity (<span class="arithmatex">\(\text{TPR}_0 = \text{TPR}_1 = 0.85\)</span>), increasing credit access for qualified minority borrowers by <span class="arithmatex">\(37\%\)</span> without increasing bank loan loss defaults.</p>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Statistical Fairness Calculator</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Demographic Parity, Disparate Impact ratios, and Equalized Odds curves client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/fairness/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Fairness Tool</a>
-    <a href="../../tools/representation/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Representation Checker</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Bias & Fairness Meter</h4>
+  <p>Compute Statistical Parity, Equal Opportunity, and Equalized Odds metrics across customizable multi-group datasets.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Calculating the Disparate Impact Ratio</summary>
+<p>A university admissions algorithm evaluates 1,000 male applicants and admits 400 (<span class="arithmatex">\(\text{Rate} = 0.40\)</span>). It evaluates 500 female applicants and admits 150 (<span class="arithmatex">\(\text{Rate} = 0.30\)</span>). Calculate the Disparate Impact Ratio (DIR) and evaluate whether it violates the EEOC Four-Fifths (80%) Rule.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under the EEOC 80% Rule:
+$<span class="arithmatex">\(\text{DIR} = \frac{\Pr(\hat{Y}=1 \mid \text{Female})}{\Pr(\hat{Y}=1 \mid \text{Male})} = \frac{0.30}{0.40} = 0.75\)</span>$
+Because <span class="arithmatex">\(\text{DIR} = 0.75 &lt; 0.80\)</span>, the admissions algorithm <strong>violates the Four-Fifths Rule</strong> and establishes a prima facie statistical finding of adverse impact requiring formal institutional remediation.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Demographic Parity Difference vs. Disparate Impact Ratio</summary>
+<p>Distinguish mathematically between the <strong>Demographic Parity Difference (DPD)</strong> and the <strong>Disparate Impact Ratio (DIR)</strong>. Which is more sensitive when overall base selection rates are very small?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Demographic Parity Difference:</strong> <span class="arithmatex">\(\text{DPD} = \Pr(\hat{Y}=1 \mid A=0) - \Pr(\hat{Y}=1 \mid A=1)\)</span> (Additive gap).
+- <strong>Disparate Impact Ratio:</strong> <span class="arithmatex">\(\text{DIR} = \frac{\Pr(\hat{Y}=1 \mid A=0)}{\Pr(\hat{Y}=1 \mid A=1)}\)</span> (Multiplicative ratio).</p>
+<p>When base selection rates are very small (e.g., highly selective fellowships with 1% admission), <strong>DIR is far more sensitive</strong>. If Group 1 has approval 1.0% and Group 0 has approval 0.2%, the additive difference is tiny (<span class="arithmatex">\(\text{DPD} = 0.008\)</span>), but the multiplicative ratio exposes massive discrimination: <span class="arithmatex">\(\text{DIR} = \frac{0.002}{0.010} = 0.20\)</span> (<span class="arithmatex">\(5\times\)</span> disparity).</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

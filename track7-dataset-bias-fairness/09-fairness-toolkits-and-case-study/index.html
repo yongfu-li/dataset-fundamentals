@@ -3502,10 +3502,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7333,10 +7344,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7432,6 +7454,14 @@ h_{t+1} = \arg\min_{h \in \mathcal{H}} \mathcal{L}(h, \boldsymbol{\lambda}_t)
 \]</div>
 <p>The final fair predictor is a mixture distribution over the generated classifiers <span class="arithmatex">\(\{h_1, \dots, h_T\}\)</span>, guaranteeing <span class="arithmatex">\(\epsilon\)</span>-fairness with <span class="arithmatex">\(\mathcal{O}(1/\sqrt{T})\)</span> convergence.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Standardized Toolkits: AIF360 and Fairlearn</p>
+<p>Integrate established open-source toolkits (IBM AIF360, Microsoft Fairlearn) into your CI/CD test suite rather than maintaining bespoke fairness implementations. Standardized libraries provide verified implementations of complex algorithms like the Exponentiated Gradient Reduction (Agarwal et al., 2018).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Treating Fairness Toolkits as Turnkey Magic</p>
+<p>Toolkits provide mathematical algorithms, but cannot resolve sociotechnical conflicts: e.g., deciding <em>which</em> stakeholder group should bear the cost of an error or whether a dataset should be collected at all. Algorithmic toolkits assist ethical decision-making, they do not replace human governance.</p>
+</div>
 <h2 id="production-implementation-fairlearn-in-processing-reductions-engine">💻 Production Implementation: Fairlearn In-Processing Reductions Engine</h2>
 <p>Below is a complete, self-contained Python script implementing the reductions framework with Fairlearn, training an unconstrained baseline against an <code>EqualizedOdds</code>-constrained model on synthetic adult census data.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7562,17 +7592,34 @@ h_{t+1} = \arg\min_{h \in \mathcal{H}} \mathcal{L}(h, \boldsymbol{\lambda}_t)
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Fairlearn Case Study Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Exponentiated Gradient reductions, lagrangian multiplier iterations, and MetricFrames client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/fairness/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Fairness Tool</a>
-    <a href="../../tools/datasheet/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Datasheet Workbench</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Bias & Fairness Meter</h4>
+  <p>Test real-world case studies (COMPAS, German Credit, Adult Census) using Fairlearn and AIF360 metric algorithms.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Fairlearn Exponentiated Gradient Reduction</summary>
+<p>How does the <strong>Exponentiated Gradient Reduction</strong> algorithm in Fairlearn formulate fairness-constrained learning as a zero-sum two-player game?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> It formulates constrained optimization as a game between a <strong>Predictor</strong> and an <strong>Adversary</strong>:
+$<span class="arithmatex">\(\min_{h \in \mathcal{H}} \max_{\lambda \ge 0} \mathcal{L}(h) + \lambda^\top (\mathbf{M} \mu(h) - \mathbf{c})\)</span>$
+The Predictor plays randomized hypotheses to minimize classification error, while the Adversary plays Lagrange multiplier weights <span class="arithmatex">\(\lambda\)</span> to penalize fairness constraint violations. By applying no-regret online learning (multiplicative weights update / exponentiated gradient), the algorithm converges to a randomized ensemble that Pareto-optimizes accuracy under exact fairness constraints.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The German Credit Dataset Gender Coding Flaw</summary>
+<p>Why does the widely cited UCI German Credit dataset require critical pre-processing before conducting gender fairness research?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The raw German Credit dataset <strong>does not have a standalone gender column</strong>.</p>
+<p>Gender is entangled with marital status in a single categorical attribute <code>personal_status_sex</code> with levels: <code>{male: divorced/separated, female: non-single, male: single, male: married/widowed, female: single (missing)}</code>. Female single applicants were categorized differently or unrecorded. Unraveling this column into clean binary sex and independent marital status features is mandatory to prevent corrupted demographic analysis.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

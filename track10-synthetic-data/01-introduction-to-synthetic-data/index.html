@@ -4430,10 +4430,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7515,6 +7537,14 @@
 <li><strong>Hybrid Augmented Data:</strong> Blends empirical observations with generative samples to rectify severe sample size deficits or demographic imbalances, such as minority-class oversampling (<a href="#ref-chawla2002">Chawla et al., 2002</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Dual-Gate Fidelity and Privacy Auditing</p>
+<p>Deploy a strict two-stage release gate for all synthetic datasets: Stage 1 certifies <strong>Statistical Fidelity</strong> (Wasserstein distance <span class="arithmatex">\(\le \tau_w\)</span> and correlation preservation <span class="arithmatex">\(\ge 95\%\)</span>), while Stage 2 certifies <strong>Privacy Preservation</strong> (empirical Membership Inference Attack AUC <span class="arithmatex">\(\le 0.52\)</span> and <span class="arithmatex">\((\epsilon, \delta)\)</span>-DP bounds).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Synthetic Data Privacy Fallacy</p>
+<p>Assuming that because data is "synthetically generated" it automatically protects privacy is dangerously false. Overfitted GANs or unconstrained diffusion models memorize training instances verbatim, reproducing confidential medical records or SSNs upon specific prompt queries.</p>
+</div>
 <h2 id="mathematical-formulations-of-synthetic-fidelity-divergence">🧮 Mathematical Formulations of Synthetic Fidelity &amp; Divergence</h2>
 <h3 id="1-the-generative-objective-information-divergence">1. The Generative Objective &amp; Information Divergence</h3>
 <p>Let empirical observations <span class="arithmatex">\(\mathcal{D}_{\text{real}} = \{\mathbf{x}_1, \dots, \mathbf{x}_N\}\)</span> be drawn independently and identically distributed (<span class="arithmatex">\(i.i.d.\)</span>) from an unknown true probability density <span class="arithmatex">\(p_{\text{data}}(\mathbf{x})\)</span> over instance space <span class="arithmatex">\(\mathcal{X} \subseteq \mathbb{R}^d\)</span>. The generative objective is to optimize parameters <span class="arithmatex">\(\theta^*\)</span> of a model density <span class="arithmatex">\(\hat{p}_\theta(\mathbf{x})\)</span>:</p>
@@ -7673,17 +7703,35 @@ D_{\text{KL}}(p_{\text{data}} \parallel \hat{p}_\theta) = \int_{\mathcal{X}} p_{
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Synthetic Data Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate parametric distribution fitting, test KS-test fidelity, and generate synthetic tabular samples:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Sampling Simulator</a>
-    <a href="../../tools/synthetic-text/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Synthetic Text Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Augmentation Lab</h4>
+  <p>Test rule-based, Markovian, and neural synthetic text generation and measure lexical diversity metrics.</p>
+  <a href="../../tools/text-augmentation/" class="noc-sim-btn">Launch Text Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Total Variation Distance in Synthetic Data Audits</summary>
+<p>Given an empirical discrete categorical distribution <span class="arithmatex">\(P = [0.60, 0.30, 0.10]\)</span> and a synthetic generator output distribution <span class="arithmatex">\(Q = [0.50, 0.35, 0.15]\)</span>, calculate the <strong>Total Variation Distance</strong> <span class="arithmatex">\(\delta(P, Q)\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Total Variation Distance is half the <span class="arithmatex">\(L_1\)</span> norm between distributions:
+$<span class="arithmatex">\(\delta(P, Q) = \frac{1}{2} \sum_{i=1}^k |P_i - Q_i| = \frac{1}{2} (|0.60 - 0.50| + |0.30 - 0.35| + |0.10 - 0.15|)\)</span>$
+$<span class="arithmatex">\(\delta(P, Q) = \frac{1}{2} (0.10 + 0.05 + 0.05) = \frac{1}{2}(0.20) = 0.10\)</span>$
+The maximum probability difference between real and synthetic events across any subset of outcomes is bounded by <span class="arithmatex">\(10\%\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The 2020 US Census TopDown Algorithm</summary>
+<p>Why did the US Census Bureau deploy the differentially private TopDown Algorithm (TDA) for the 2020 Decennial Census instead of traditional data swapping?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Modern database reconstruction attacks proved that traditional swapping heuristic defenses were completely vulnerable.</p>
+<p>Using only public 2010 census statistical tables, researchers successfully reconstructed the individual census records (including race, age, and sex) of over 52 million American citizens. The TopDown Algorithm injects calibrated discrete Gaussian noise scaled to privacy budget <span class="arithmatex">\(\epsilon\)</span>, mathematically bounding reconstruction risk regardless of adversary auxiliary knowledge.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

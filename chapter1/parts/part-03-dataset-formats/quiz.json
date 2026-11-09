@@ -1,47 +1,60 @@
 {
   "part_id": "part-03-dataset-formats",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Storage Formats & Serialization",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which format is typically a strong fit for large scientific array datasets?",
+      "prompt": "Why are columnar formats such as Apache Parquet vastly faster than row-oriented CSV files for analytical queries?",
       "choices": [
-        "Plain CSV only",
-        "HDF5",
-        "Unformatted free text",
-        "Screenshots of spreadsheets"
+        "Columnar formats encrypt all data using public keys by default",
+        "Columnar formats enable projection pushdown to load only requested columns, and exploit type homogeneity for high compression",
+        "Row stores cannot be read by multi-core processors",
+        "Columnar formats eliminate the need for an operating system file system"
       ],
       "answer_index": 1,
-      "explain": "Example 1.9 and the chapter format discussion highlight HDF5 for hierarchical/binary storage of large numeric data."
+      "explain": "Columnar layouts group identical attribute types contiguously, allowing engines to read only the columns needed by a query and achieve high compression via dictionary and run-length encoding."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Format choice should ignore the tools that will query or train on the data.",
-      "answer": false,
-      "explain": "The chapter stresses matching format to structure, volume, and downstream tools."
+      "type": "mcq",
+      "prompt": "How does predicate pushdown operate in Apache Parquet to accelerate filtered queries?",
+      "choices": [
+        "It decompresses all row groups sequentially and checks every row in Python",
+        "It uses min/max column metadata stored in row group headers to skip entire blocks from disk if they cannot match the filter condition",
+        "It deletes unmatched rows permanently from the storage drive",
+        "It re-encodes numbers into ASCII strings for faster regular expression matching"
+      ],
+      "answer_index": 1,
+      "explain": "Row group headers contain min, max, and null count statistics. If a filter predicate cannot be satisfied within those bounds, the entire row group is skipped without reading it from disk."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "SQL tables are primarily associated with which structural type?",
+      "prompt": "Which format is specifically designed for high-dimensional scientific tensors and multidimensional array slicing (e.g. physics simulations and climate models)?",
       "choices": [
-        "Unstructured audio",
-        "Structured data with a fixed schema",
-        "Only geospatial polygons",
-        "Documentation files"
+        "Plain text CSV",
+        "HDF5 (Hierarchical Data Format version 5)",
+        "Tab-Separated Values (TSV)",
+        "Raw JSON objects"
       ],
       "answer_index": 1,
-      "explain": "SQL tables store structured records with typed columns suitable for queries and joins."
+      "explain": "HDF5 is designed to store large, multidimensional numerical arrays in hierarchical groups with chunking and native binary compression."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "In an uncompressed row-oriented format, calculating the average of a single numeric column requires reading all other unused column bytes on that row from disk.",
+      "answer": true,
+      "explain": "Because row-oriented stores pack all attributes of a tuple contiguously, reading one column requires scanning through the entire physical row."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one reason CSV can be a poor choice for very large numeric arrays.",
-      "rubric": "Accept size, slow I/O, lack of typed binary efficiency, or awkward nested/array structure.",
-      "sample_answer": "CSV is text-heavy and slow for large arrays; binary formats like HDF5 read and write more efficiently."
+      "prompt": "Explain how dictionary encoding and run-length encoding (RLE) combine to compress low-cardinality categorical data.",
+      "rubric": "Dictionary replaces long strings with short integer tokens; RLE replaces consecutive duplicate tokens with (token, count) pairs.",
+      "sample_answer": "Dictionary encoding replaces repetitive string values with small integer IDs, and run-length encoding collapses consecutive identical IDs into compact (value, count) pairs."
     }
   ]
 }

@@ -4598,10 +4598,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7511,6 +7533,14 @@
 <li><strong>Direct Preference Optimization (DPO) Data Synthesis:</strong> Generates pairs of candidate completions <span class="arithmatex">\((y_w, y_l)\)</span> from varied model checkpoints, rating winners (<span class="arithmatex">\(y_w\)</span>) and losers (<span class="arithmatex">\(y_l\)</span>) via automated reward modeling or execution unit tests (<a href="#ref-rafailov2023">Rafailov et al., 2023</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Self-Instruct Task Generation Protocols</p>
+<p>Generate synthetic NLP instruction tuning datasets using <strong>Self-Instruct</strong> (Wang et al., 2022): seed an LLM with 100 human-written tasks, prompt it to brainstorm new instruction-input-output triplets, and filter candidates via automated ROUGE-L similarity pruning to enforce novelty.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Uncurated Synthetic LLM Distillation</p>
+<p>Distilling large teacher models into smaller student models using uncurated synthetic outputs transfers hallucinations, syllogistic logical fallacies, and subtle bias blind spots into the student model weights. Always apply automated consistency filters.</p>
+</div>
 <h2 id="mathematical-formulations-of-autoregressive-synthesis">🧮 Mathematical Formulations of Autoregressive Synthesis</h2>
 <h3 id="1-autoregressive-joint-factorization">1. Autoregressive Joint Factorization</h3>
 <p>Given vocabulary <span class="arithmatex">\(\mathcal{V}\)</span>, an autoregressive language model factorizes the joint probability of token sequence <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_T)\)</span> into a product of conditional distributions parameterized by Transformer weights <span class="arithmatex">\(\boldsymbol{\theta}\)</span>:</p>
@@ -7667,17 +7697,35 @@ P_\tau(x_t = v \mid x_{&lt;t}) = \frac{\exp(z_{t, v} / \tau)}{\sum_{j \in \mathc
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Synthetic Text Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate autoregressive prompt mutation, evaluate perplexity bounds, and test semantic deduplication:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/synthetic-text/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Synthetic Text Studio</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Augmentation Lab</h4>
+  <p>Test prompt-engineered synthetic instruction generators, Constitutional AI filters, and perplexity audits.</p>
+  <a href="../../tools/text-augmentation/" class="noc-sim-btn">Launch Text Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: ROUGE-L Deduplication in Self-Instruct Pipelines</summary>
+<p>Why does the Self-Instruct pipeline compute the ROUGE-L overlap between newly generated candidate instructions and all existing instructions in the seed pool, rejecting any candidate with <span class="arithmatex">\(\text{ROUGE-L} &gt; 0.70\)</span>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> LLMs suffer from severe lexical repetition when prompted iteratively.</p>
+<p>Without a deduplication filter, models generate trivial syntactic rephrasings of existing tasks (e.g., "Summarize the text", "Provide a summary of the passage", "Condense this article"). Enforcing <span class="arithmatex">\(\text{ROUGE-L} \le 0.70\)</span> guarantees semantic and structural diversity across the synthetic instruction tuning corpus.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Constitutional AI and Self-Critique Loops</summary>
+<p>In Anthropic's Constitutional AI framework (Bai et al., 2022), explain the two-phase loop: <strong>Critique and Revision</strong>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Critique Step:</strong> The model generates an initial response to a prompt. The model is then shown a specific constitutional principle (e.g., <em>"Critique whether this response encourages illegal acts or discriminatory harm"</em>) and prompts itself to identify ethical flaws.
+2. <strong>Revision Step:</strong> The model rewrites its initial response specifically addressing the identified critique.
+This self-correction loop generates millions of safe, aligned synthetic training pairs without human micro-annotation.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

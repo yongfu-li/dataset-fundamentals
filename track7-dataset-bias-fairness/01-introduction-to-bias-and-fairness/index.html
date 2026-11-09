@@ -3289,10 +3289,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7355,10 +7366,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7487,6 +7509,14 @@
    - Text generation models associating female pronouns exclusively with domestic roles and male pronouns with leadership roles.
    - Search engines returning hyper-sexualized results for queries about minority women.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Pre-Deployment Socio-Technical Audit Gates</p>
+<p>Never treat algorithmic fairness as a post-training statistical tuning knob. Bias is predominantly baked into data collection and historical societal inequities. Implement formal <strong>Algorithmic Disparity Audits</strong> across intersectional subgroups prior to model deployment.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Feedback Loop Blind Spot</p>
+<p>Deploying predictive models in human feedback loops (e.g., predictive policing, automated fraud flagging) creates a runaway self-fulfilling prophecy: deploying more enforcement to historically scrutinized neighborhoods generates more arrests, which the model interprets as higher ground-truth criminality.</p>
+</div>
 <h2 id="production-implementation-algorithmic-feedback-loop-simulator">💻 Production Implementation: Algorithmic Feedback Loop Simulator</h2>
 <p>Below is an executable Python script simulating the runaway over-policing feedback loop, demonstrating how an initial 5% measurement bias rapidly expands into total allocative disparity.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
@@ -7605,17 +7635,34 @@
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Algorithmic Fairness Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate runaway feedback loops, subgroup disparate impact ratios, and intersectional audits client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/fairness/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Fairness Tool</a>
-    <a href="../../tools/representation/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Representation Checker</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Bias & Fairness Meter</h4>
+  <p>Test the four-fifths rule, evaluate disparate impact ratios, and simulate predictive policing runaway feedback loops.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Allocative Harms vs. Representational Harms</summary>
+<p>Distinguish between <strong>Allocative Harms</strong> and <strong>Representational Harms</strong> in algorithmic systems, providing a concrete example of each.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Allocative Harm:</strong> Occurs when an automated system withholds or allocates concrete resources, opportunities, or information unfairly (e.g., an automated mortgage underwriting algorithm approving loans for minority applicants at half the rate of similarly qualified non-minority applicants).
+- <strong>Representational Harm:</strong> Occurs when a system demeans, stereotypes, or erases a demographic group's identity without necessarily allocating physical resources (e.g., an image search query for "CEO" displaying exclusively images of older white males, or computer vision facial classification tagging darker-skinned individuals as gorillas).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The Runaway Feedback Loop Invariant</summary>
+<p>Under the Lum &amp; Isaac (2016) predictive policing dynamical system, if police dispatch volume <span class="arithmatex">\(D_t \propto \hat{Y}_t\)</span> and observed arrests <span class="arithmatex">\(Y_{t+1} = \text{Poisson}(D_t \cdot \lambda)\)</span>, explain why the system concentrates surveillance entirely in one neighborhood even if true crime rates <span class="arithmatex">\(\lambda\)</span> are identical across the city.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The system suffers from <strong>Confirmation Bias in Sampling Frame Construction</strong>.</p>
+<p>Police cannot discover crimes where they are not present. If neighborhood A has an initial minor stochastic fluctuation in police dispatches (<span class="arithmatex">\(D_A &gt; D_B\)</span>), more arrests are recorded in A simply due to higher surveillance density (<span class="arithmatex">\(Y_A &gt; Y_B\)</span>). The model updates its priors, predicting higher risk in A, which prompts still higher police deployment (<span class="arithmatex">\(D_{t+1, A} \gg D_{t+1, B}\)</span>). This forms a divergent positive feedback loop that concentrates 100% of police resources in A, leaving true crimes in B unobserved and unrecorded.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

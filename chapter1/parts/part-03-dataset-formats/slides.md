@@ -1,43 +1,71 @@
 ---
 marp: true
-title: Chapter 1 — Dataset formats
+title: Chapter 1 — Dataset Formats
 paginate: true
 ---
 
-# Chapter 1 — Dataset formats
+# Chapter 1 — Dataset Formats
 
-Structure tells you how records are organized; format tells you how they are stored
-
----
-
-## Learning objectives
-- Leave able to name formats for tabular, hierarchical
-- Geospatial data, explain when CSV, SQL, HDF5, or GeoJSON fits
-- Connect format choice to the tools that will consume the data
+Welcome to Part 3 of Chapter 1
 
 ---
 
-## Why format matters
-- Format is the serialization of structure
-- Matching format to structure, expected volume
-- A mismatch, for example, forcing huge arrays through naive CSV, creates avoidable cost
+## Learning Objectives
+- Four foundational goals guide our exploration of dataset formats
+- We contrast row-oriented stores with columnar architectures through mechanical sympathy
+- We formalize analytical query input-output using mathematical models of projection and
+- Predicate pushdown
+- Finally, we evaluate SQL, HDF5
 
 ---
 
-## Common formats at a glance
-- CSV remains the common language for simple tables
-- SQL tables add typed schemas and efficient queries
-- JSON and GeoJSON handle nested objects and spatial features
-- HDF5 targets large scientific or array-oriented datasets
-- Each aligns with a structural niche
+## The Physical Storage Serialization Dilemma
+- Choosing a storage format is an architectural decision that governs system performance
+- A format mismatch imposes severe computational and financial penalties across data
+- Storing hundreds of millions of transaction records in uncompressed CSV wastes massive
+- Columnar and binary serializations eliminate parsing overhead by storing values in native
 
 ---
 
-## Example 1.8 — SQL format
+## Row Stores versus Columnar Stores: Mechanical Sympathy
+- Modern NVMe solid-state storage reads data in fixed physical four-kilobyte pages
+- Row-oriented layouts group all fields of an individual record contiguously on physical
+- Row layouts excel at transactional point lookups where single full records are modified
+- Columnar stores like Apache Parquet layout all values of a single column contiguously
+- When computing aggregations over selected columns
+
+---
+
+## Mathematical Model of Analytical Query I/O
+- Analytical input-output efficiency can be modeled mathematically
+- For a table of N records and M columns
+- A columnar architecture executes projection pushdown
+- Columnar compression ratios further shrink physical disk footprint by exploiting type
+- Total bytes transferred drops by an order of magnitude for analytical workloads
+
+---
+
+## Advanced Columnar Encoding: Dictionary and RLE
+- Columnar engines achieve high compression ratios through specialized entropy encoding
+- Categorical features with low cardinality replace repetitive strings with compact integer
+- Run-length encoding compresses consecutive identical values into compact value and count
+- Combining dictionary mapping with run-length encoding dramatically reduces memory
+
+---
+
+## Predicate Pushdown and Row Group Metadata Skipping
+- Apache Parquet organizes large datasets into self-contained row groups
+- Each row group header maintains embedded metadata storing exact minimum, maximum
+- When executing filtered queries
+- If a query filter falls outside the row group minimum and maximum range
+
+---
+
+## Example 1.8 — SQL Relational Storage
 - Example 1.8 — hands-on module
-- Example 1.8 shows structured data in a relational form
-- When attributes are stable and analysts need aggregations
-- Explore the chapter example module
+- Example 1.8 demonstrates relational tabular data managed by a relational SQL engine
+- Relational database management systems enforce strong column typing, unique primary keys
+- Structured query language allows analysts to perform declarative filtering, joins
 - View files: `modules/chapter1/example8/`
 
 ---
@@ -71,11 +99,11 @@ CREATE TABLE Order_Items (
 
 ---
 
-## Example 1.9 — HDF5
+## Example 1.9 — Hierarchical Scientific Arrays in HDF5
 - Example 1.9 — hands-on module
-- Example 1.9 creates and reads an HDF5 file
-- Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or
-- Explore the chapter example module
+- Example 1.9 demonstrates scientific array storage using the Hierarchical Data Format
+- HDF5 organizes complex multidimensional numeric arrays into tree-like group hierarchies
+- It supports chunked storage and native compression for high-dimensional scientific tensors
 - View files: `modules/chapter1/example9/`
 
 ---
@@ -101,20 +129,33 @@ with h5py.File("example.h5", "r") as hdf:
 
 ---
 
-## Choosing a format
-- Start from structure, then consider size, update rate, and tooling
-- Prefer formats your team already supports
-- Metadata and documentation, covered next, make that choice durable
+## Multi-Format Trade-Off Matrix: Parquet, CSV, and SQLite
+- Engineering teams must select formats based on access patterns and scale
+- Plain text CSV remains universally portable for small diagnostic exports despite slow
+- Relational SQLite provides zero-configuration local transactions and indexed queries for
+- Apache Parquet represents the industry standard for analytical data lakes
+- Specialized scientific formats like HDF5 and Zarr remain optimal for high-dimensional
 
 ---
 
-## Takeaways
-- Format serializes structure
-- Everyday tables lean on CSV and SQL
+## In-Browser Storage Format Benchmark and I/O Simulator
+- Learners can evaluate serialization trade-offs interactively using our in-browser Storage
+- The tool benchmarks file size, write latency
+- You can adjust column selectivity and row group sizes to observe predicate pushdown and
+- Observing these live metrics reinforces theoretical input-output equations with concrete
+
+---
+
+## Key Takeaways and Format Decision Framework
+- Four principles govern physical format selection for dataset engineering
+- Row layouts optimize single-record transactional writes and key-based point lookups
+- Columnar stores optimize analytical aggregations through projection pushdown and entropy
+- Predicate pushdown skips irrelevant row groups using embedded header metadata
+- Matching storage format to downstream access patterns prevents expensive hardware
 
 ---
 
 ## Next
 - Complete the quiz for this part
-- Complete the quiz, then move to characteristics of good datasets, accuracy, completeness
+- Pause here to test your understanding with the quiz for this part
 

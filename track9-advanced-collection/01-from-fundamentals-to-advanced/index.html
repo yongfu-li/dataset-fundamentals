@@ -4046,10 +4046,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7501,6 +7523,14 @@ T_{\text{latency}}(\text{stream}) = t_{\text{event\_proc}} + \frac{|e|}{B_{\text
 \]</div>
 <p>In autonomous driving, <span class="arithmatex">\(\tau_{\max} \le 10\text{ ms}\)</span>; exceeding this threshold invalidates spatial sensor fusion matrices.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Polyglot Ingestion Tiering</p>
+<p>Modern enterprise data collection requires a polyglot architecture: high-throughput distributed brokers (Apache Kafka) for high-velocity streaming events, alongside distributed orchestration (Airflow/Temporal) for scheduled batch pulls.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Neglecting Backpressure in High-Velocity Streams</p>
+<p>Streaming consumers without backpressure control crash when upstream producers spike in volume. Always implement reactive streams with dynamic buffer sizing or rate-throttling to prevent out-of-memory cascading failures.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script models message queue accumulation via Little's Law, compares batch vs. streaming latency, and evaluates multi-sensor timestamp jitter:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -7573,17 +7603,35 @@ T_{\text{latency}}(\text{stream}) = t_{\text{event\_proc}} + \frac{|e|}{B_{\text
 <li><strong>The Streaming Resolution:</strong> Market infrastructures transitioned to <strong>Hardware-Accelerated UDP Multicast &amp; Apache Kafka/Aeron streams</strong>. Ingestion pipelines process tick updates with deterministic sub-50 microsecond p99 latencies, ensuring that training feature matrices maintain complete temporal fidelity (<a href="#ref-wang2015">Wang et al., 2015</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Streaming Ingestion Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Little's Law message queues, calculate batch vs streaming latency, and test sensor jitter:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore API Collector & Rate-Limiter</h4>
+  <p>Simulate token bucket rate limiters, concurrent multi-worker queues, and observe dynamic backpressure throttling.</p>
+  <a href="../../tools/api-collector/" class="noc-sim-btn">Launch API Collector Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Little's Law in Ingestion Queue Sizing</summary>
+<p>A distributed sensor ingestion gateway receives telemetry events at an arrival rate of <span class="arithmatex">\(\lambda = 2,500\text{ events/sec}\)</span>. The average processing and validation latency per event is <span class="arithmatex">\(W = 0.08\text{ seconds}\)</span>. Under Little's Law (<span class="arithmatex">\(L = \lambda W\)</span>), what is the minimum concurrent buffer queue capacity <span class="arithmatex">\(L\)</span> required to prevent packet dropping?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> By Little's Law:
+$<span class="arithmatex">\(L = \lambda W = 2500 \times 0.08 = 200 \text{ events}\)</span>$
+The gateway must maintain an active in-flight buffer capacity of at least <strong>200 concurrent events</strong> under steady-state conditions. To accommodate stochastic bursts (<span class="arithmatex">\(3\sigma\)</span>), production queue capacity should be sized at <span class="arithmatex">\(3\times\)</span> to <span class="arithmatex">\(5\times\)</span> this baseline (<span class="arithmatex">\(\ge 1,000\)</span> events).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Batch vs. Stream Ingestion Tradeoffs</summary>
+<p>Under what physical and architectural conditions is Batch Ingestion preferable to Real-Time Streaming Ingestion?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Batch ingestion is preferable when:
+1. <strong>High-Throughput Global Compression &amp; Sorting:</strong> Writing large contiguous columnar Parquet row groups (128 MB) achieves <span class="arithmatex">\(5\times\)</span> better compression ratios and faster analytical scans than writing millions of tiny streaming micro-files (the Small Files Problem).
+2. <strong>Complex Deduplication &amp; Reconciliation:</strong> Global entity matching and accounting reconciliation require complete end-of-day transaction windows rather than partial event streams.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

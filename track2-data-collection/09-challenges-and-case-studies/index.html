@@ -1569,6 +1569,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7410,6 +7421,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7502,6 +7524,14 @@
 - <strong>Excluded Population</strong>: Senior citizens (<span class="arithmatex">\(&gt;65\)</span>), rural transit-dependent residents, offline commuters.</p>
 <p>Because inclusion probability <span class="arithmatex">\(\pi_i = 0\)</span> for citizens without smartphones, no statistical re-weighting or post-stratification can rescue the survey's external validity. Light-rail lines planned on this dataset under-serve the populations that rely most heavily on public transit.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Automated Dead-Letter Queue (DLQ) Quarantine and Replay Strategies</p>
+<p>Resilient data architectures never discard malformed or schema-violating records silently. Production Kafka and AWS SQS consumers route unparseable messages to a <strong>Dead-Letter Queue (DLQ)</strong> along with rich diagnostic metadata: originating payload, worker host ID, timestamp, and parse exception stack trace. Once data engineers deploy a schema patch, a DLQ replay orchestrator re-injects quarantined records back into the main pipeline with zero data loss.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unmonitored Sensor Calibration Decay</p>
+<p>In industrial IoT and environmental monitoring, physical sensors suffer from gradual chemical and mechanical sensor drift. Failing to conduct continuous <strong>Two-Sample Kolmogorov-Smirnov (KS) Drift Tests</strong> against baseline distributions leads models to interpret sensor wear as genuine real-world phenomena.</p>
+</div>
 <h2 id="2-in-depth-multi-domain-case-studies">2. In-Depth Multi-Domain Case Studies</h2>
 <h3 id="case-study-1-real-time-social-media-sentiment-ingestion">Case Study 1: Real-Time Social Media Sentiment Ingestion</h3>
 <p>A financial analytics consortium ingests social platform posts to compute sentiment indicators for consumer retail brands [<a href="#ref-pang2008">Pang2008</a>]:</p>
@@ -7578,17 +7608,12 @@
     class G green;</code></pre>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Test end-to-end dataset acquisition and rate limit algorithms:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Capstone Collection Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate probability sampling distributions, evaluate rate limits, and test API collection loops:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Technique Visualizer</a>
-    <a href="../../tools/api-collector/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Ingestion Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Web Data Terminal</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore API Collector & Fault Simulator</h4>
+  <p>Simulate real-time schema drift anomalies, dead-letter queue routing, and test automated recovery protocols client-side.</p>
+  <a href="../../tools/api-collector/" class="noc-sim-btn">Launch API Collector Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7596,6 +7621,30 @@
 <li><strong>Channel Parity</strong>: Multi-channel collection plans are essential whenever single-channel instruments (e.g., smartphone apps) exclude vulnerable populations.</li>
 <li><strong>Spatial &amp; Temporal Joining Contracts</strong>: Ensure unified time epochs (UTC) and coordinate frames (CRS) before attempting to fuse multi-source streams.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Detecting Covariate Shift via Kolmogorov-Smirnov Test</summary>
+<p>An IoT sensor stream tracks continuous factory furnace temperature (<span class="arithmatex">\(X\)</span>). In week 1 (baseline), <span class="arithmatex">\(X_1 \sim \mathcal{N}(750, 25)\)</span>. In week 2, a sensor experiences calibration degradation, shifting to <span class="arithmatex">\(X_2 \sim \mathcal{N}(758, 25)\)</span>. How does the two-sample Kolmogorov-Smirnov (KS) test detect this distributional shift, and why is KS preferable to a naive student's t-test for non-Gaussian telemetry?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The Kolmogorov-Smirnov test measures the supremum distance between empirical cumulative distribution functions:
+$<span class="arithmatex">\(D = \sup_x |F_1(x) - F_2(x)|\)</span>$</p>
+<p>The two-sample KS test evaluates the null hypothesis <span class="arithmatex">\(H_0: F_1(x) = F_2(x)\)</span> across the entire real line. Unlike the Student's t-test, which assumes normality and evaluates only the first moment (mean), the KS test is completely non-parametric. It is sensitive not only to location shifts (mean drifts) but also to scale shifts (variance explosions), heavy tails, and multimodal emergence, making it robust for real-world sensor streams where sensor failure manifests as bimodal skew rather than a clean Gaussian shift.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Dead-Letter Queue Poison Pill Remediation</summary>
+<p>A streaming ingestion service encounters a "poison pill" message: a malformed JSON payload containing recursive nesting that triggers a <code>StackOverflowError</code> in the parser. In a naive retry loop, what happens to the pipeline? Outline the 3-step fault isolation protocol to resolve it.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In a naive retry loop, the worker repeatedly crashes and restarts, permanently blocking the consumer group offset commit and halting ingestion of all subsequent valid messages across that partition (pipeline starvation).</p>
+<p>The 3-step fault isolation protocol:
+1. <strong>Circuit Breaker &amp; Quarantine:</strong> After a maximum retry count (<span class="arithmatex">\(k=3\)</span>), the message is wrapped in an envelope containing the error trace and routed to a Dead-Letter Queue (DLQ).
+2. <strong>Offset Acknowledgment:</strong> The consumer commits the offset of the quarantined poison pill, allowing the partition to resume processing subsequent healthy messages.
+3. <strong>Asynchronous Inspection &amp; Replay:</strong> Alerts trigger an on-call notification. Engineers inspect the quarantined payload in the DLQ UI, update the parser to safely reject or sanitize malformed recursive payloads, and trigger a DLQ replay task to process the quarantined event safely.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

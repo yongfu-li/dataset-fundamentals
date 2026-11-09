@@ -1,47 +1,60 @@
 {
   "part_id": "part-02-types-of-datasets",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Types & Temporal Dynamics",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which pair correctly matches type to typical format?",
+      "prompt": "What are the two fundamental orthogonal axes used to categorize datasets in modern data engineering?",
       "choices": [
-        "Structured → images; Unstructured → CSV",
-        "Structured → CSV/SQL; Semi-structured → JSON/XML",
-        "Unstructured → SQL tables; Semi-structured → fixed spreadsheets only",
-        "Dynamic → only PDF documents"
+        "Hardware architecture and GPU memory bandwidth",
+        "Structural organization (schema rigidity) and temporal dynamics (evolution over time)",
+        "Compression codec and encryption key length",
+        "License type and geographic origin"
       ],
       "answer_index": 1,
-      "explain": "Table 1.2 in the chapter: structured uses fixed schemas (CSV, SQL); semi-structured uses flexible tags (JSON, XML)."
+      "explain": "Datasets are categorized structurally (structured, semi-structured, unstructured) and temporally (static snapshots versus dynamic streams)."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Unstructured data always fits a fixed row-and-column schema.",
-      "answer": false,
-      "explain": "Unstructured data (text, images, audio) does not follow a predefined tabular model."
+      "type": "mcq",
+      "prompt": "Which property is a mathematical requirement for structured tabular relations adhering to first normal form (1NF)?",
+      "choices": [
+        "Attributes must contain variable-length nested dictionaries without keys",
+        "All attribute values in each cell must be atomic and indivisible, with homogeneous column types",
+        "Records must arrive out of order across streaming sockets",
+        "Every table must be stored exclusively in plain text CSV files"
+      ],
+      "answer_index": 1,
+      "explain": "First normal form requires that each attribute value is atomic, with uniform typing and schema conformity across all tuples."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "A continuously updating clickstream is best described as:",
+      "prompt": "In dynamic event streaming systems, what is the primary role of an event-time watermark?",
       "choices": [
-        "A static structured archive",
-        "A dynamic dataset",
-        "Metadata only",
-        "Documentation, not data"
+        "To encrypt sensitive customer identifiers before writing to disk",
+        "To provide a temporal threshold indicating that no earlier events are expected, allowing window aggregations to close",
+        "To compress audio waveforms into dense vector embeddings",
+        "To assign sequential primary keys to relational SQL tables"
       ],
       "answer_index": 1,
-      "explain": "Dynamic datasets update continuously; static datasets are snapshots that change rarely."
+      "explain": "Watermarks track event-time progression and define a heuristic boundary for handling late-arriving events so windowed aggregations can be finalized."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Unstructured data like audio and medical imaging can be queried directly using standard relational SQL joins without prior feature extraction or neural embedding models.",
+      "answer": false,
+      "explain": "Unstructured data lacks a uniform relational schema and requires deep feature extractors or embedding models to map raw signals into structured representation spaces."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Why might NLP be needed for a social-media feedback dataset?",
-      "rubric": "Unstructured text lacks a fixed schema; slang/emojis require extraction/classification rather than simple SQL filters.",
-      "sample_answer": "Posts are unstructured text; extracting sentiment or aspects needs NLP, not a simple tabular filter."
+      "prompt": "Why do web applications often choose semi-structured formats like JSON over rigid relational tables for transaction payloads?",
+      "rubric": "Allows flexible, self-describing schemas with nested objects and optional fields without requiring database schema migrations.",
+      "sample_answer": "Semi-structured formats are self-describing and support hierarchical nesting and optional fields, allowing schemas to evolve without costly database migrations."
     }
   ]
 }

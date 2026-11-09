@@ -4615,10 +4615,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7492,6 +7514,14 @@
 <li><strong>PATE-GAN:</strong> Enforces differential privacy by training an ensemble of "Teacher" discriminators on disjoint partitions of private data, using a noisy voting mechanism to guide the "Student" discriminator without direct gradient leakage (<a href="#ref-jordon2019">Jordon et al., 2019</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Differentially Private Tabular Synthesis (DP-CTGAN)</p>
+<p>When synthesizing clinical EHR datasets (e.g., MIMIC-IV) or banking transaction records, train CTGAN with <strong>Differentially Private Stochastic Gradient Descent (DP-SGD)</strong>. Clipping gradients (<span class="arithmatex">\(C\)</span>) and injecting Gaussian noise (<span class="arithmatex">\(\sigma\)</span>) guarantees formal <span class="arithmatex">\((\epsilon, \delta)\)</span>-DP compliance against re-identification lawsuits.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Correlation Breakdown in Synthetic Financial Time Series</p>
+<p>Generating financial portfolio return trajectories using independent marginal models destroys cross-asset correlation structures. In simulated stress tests, correlated assets appear diversified, causing catastrophic risk underestimation during market shocks.</p>
+</div>
 <h2 id="mathematical-formulations-of-tabular-utility-privacy-risk">🧮 Mathematical Formulations of Tabular Utility &amp; Privacy Risk</h2>
 <h3 id="1-mode-specific-normalization-formulation-xu-et-al-2019">1. Mode-Specific Normalization Formulation (Xu et al., 2019)</h3>
 <p>For continuous column <span class="arithmatex">\(C_j\)</span>, a Variational Gaussian Mixture fits <span class="arithmatex">\(K\)</span> modes with means <span class="arithmatex">\(\eta_k\)</span> and variances <span class="arithmatex">\(\sigma_k^2\)</span>:</p>
@@ -7647,17 +7677,33 @@ v_{i, j} = \frac{c_{i, j} - \eta_{k^*}}{4 \sigma_{k^*}} \in [-1, 1]
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Class Imbalance & Clinical Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate mode-specific tabular normalization, test TSTR utility, and audit membership inference risk:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/class-imbalance/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Class Imbalance Studio</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore De-Identification Risk Checker</h4>
+  <p>Test differential privacy budget accounting on synthetic medical tables and audit linkage attack vulnerability.</p>
+  <a href="../../tools/deid-risk/" class="noc-sim-btn">Launch De-ID Risk Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Clinical Correlation Preservation in Synthetic Health Records</summary>
+<p>In a synthetic EHR dataset, an analyst discovers records where <code>Biological_Sex = Male</code> is paired with <code>Diagnosis = Ovarian Cancer</code>. What architectural constraint was missing from the tabular generative model?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The generator lacked <strong>Deterministic Relational / Medical Knowledge Graph Constraints</strong>.</p>
+<p>Pure probabilistic density estimators evaluate joint likelihoods, where rare non-zero correlations can be assigned small positive probabilities. Enterprise healthcare synthesis frameworks enforce hard <strong>Deterministic Rejection Rules (Domain Logic Filters)</strong>: post-filtering or conditioning generation to strictly eliminate biologically impossible attribute combinations.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The Extreme Class Imbalance Synthesis Advantage in Fraud</summary>
+<p>In credit card transaction databases, fraudulent transactions account for only <span class="arithmatex">\(0.05\%\)</span> (<span class="arithmatex">\(1\text{ in } 2,000\)</span>). How does synthetic data generation overcome SMOTE limitations when augmenting this extreme imbalance?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> SMOTE performs naive linear interpolation between <span class="arithmatex">\(k\)</span>-nearest neighbors in feature space. In high-dimensional spaces with tiny sample counts (<span class="arithmatex">\(N_{\text{fraud}} = 50\)</span>), SMOTE draws straight lines across empty space, synthesizing unfeasible records.</p>
+<p>Deep generative models (CTGAN, WGAN-GP) learn the true non-linear low-dimensional manifold of fraud behavior, synthesizing realistic multi-attribute attack signatures that capture complex temporal correlations without naive linear bridging.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

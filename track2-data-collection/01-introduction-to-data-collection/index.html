@@ -1350,6 +1350,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7420,6 +7431,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7508,6 +7530,14 @@
 <li><strong>Processing Error</strong>: Syntactic corruption introduced during ETL, JSON deserialization, or character-encoding transitions (e.g., UTF-8 to ASCII mojibake).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Idempotent Acquisition Checkpointing</p>
+<p>In mission-critical data collection engines (e.g., Apache Flink, Kafka Connect, or distributed cloud crawlers), always enforce <strong>idempotency keys</strong> and <strong>two-phase commit checkpoints</strong>. If an ingestion worker crashes midway through fetching a batch of 100,000 records, deterministic replay from the latest high-water mark ensures zero duplicate entries and zero state corruption downstream.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Premature Ingestion Without TSE Audit</p>
+<p>Teams frequently rush to build automated ingestion pipelines before conducting a formal <strong>Total Survey &amp; Acquisition Error (TSE)</strong> triage. Ingesting billions of high-velocity records that suffer from unmodeled coverage bias or systematic sensor drift merely accelerates the accumulation of downstream technical debt and model degradation.</p>
+</div>
 <h2 id="2-the-5-step-systematic-collection-lifecycle">2. The 5-Step Systematic Collection Lifecycle</h2>
 <p>A rigorous data collection program is not opportunistic gathering; it is an objective-driven engineering process consisting of five interdependent stages:</p>
 <pre class="mermaid"><code>flowchart LR
@@ -7614,16 +7644,12 @@
 <p>By specifying strata, precision targets, and privacy hashing <em>before</em> initiating collection, the engineering team guarantees that device-specific checkout friction (e.g., payment widget failure on Safari iOS) is captured with statistical confidence.</p>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Practice configuring acquisition parameters and sampling frames in the browser:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Collection &amp; Sampling Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate probability sampling distributions, calculate sample size error bounds, and test API rate limiters:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Launch Sampling Visualizer</a>
-    <a href="../../tools/api-collector/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Collector Simulator</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Collection & Sampling Visualizer</h4>
+  <p>Simulate probability sampling distributions, calculate statistical sample size error bounds, and test API rate limiter token buckets client-side.</p>
+  <a href="../../tools/sampling/" class="noc-sim-btn">Launch Sampling Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7631,6 +7657,26 @@
 <li><strong>Total Acquisition Error</strong>: Always balance representation errors (sampling frame, non-response) against measurement errors (instrument bias, sensor calibration).</li>
 <li><strong>Data Minimization by Design</strong>: Collect only attributes with an explicit hypothesis or operational target, pre-specifying schema invariants and privacy transforms.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Total Survey Error (TSE) Diagnostic in Telemetry Collection</summary>
+<p>An autonomous vehicle fleet collects 500 million miles of driving telemetry exclusively during daylight hours in arid desert climates. The engineering team claims the dataset has near-zero error because the statistical variance of the sensor readings approaches zero (<span class="arithmatex">\(N \to \infty\)</span>). Identify the primary TSE error component corrupting this dataset and explain why massive scale cannot remediate it.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The primary error is <strong>Specification and Coverage Bias</strong> (a systematic non-sampling error), not variance error.</p>
+<p>Under the Total Survey Error framework, <span class="arithmatex">\(\text{MSE} = \text{Variance} + \text{Bias}^2\)</span>. As sample size <span class="arithmatex">\(N \to \infty\)</span>, stochastic sampling variance <span class="arithmatex">\(\sigma^2 / N\)</span> vanishes to zero, but systematic bias <span class="arithmatex">\(\text{Bias}^2\)</span> remains completely invariant. Because the sampling frame systematically excludes adverse weather conditions (precipitation, freezing fog, low-light night driving), the target population parameter <span class="arithmatex">\(\theta\)</span> diverges permanently from the acquired frame distribution, leading to catastrophic out-of-distribution model failures when deployed in humid or winter environments.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Designing Idempotent Ingestion Protocols</summary>
+<p>A distributed REST API scraper ingesting e-commerce inventory crashes midway through page 452 of an un-indexed catalog crawl. Upon auto-restarting, the scraper resumes from page 1 using a naive <code>page_number</code> offset. What two failure modes occur, and how does cursor-based token hashing guarantee idempotent recovery?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The scraper suffers from <strong>Record Duplication</strong> and <strong>Silent Page Drift</strong> (phantom or skipped records caused by items being inserted or deleted concurrently upstream).</p>
+<p>Cursor-based token hashing anchors the query to an immutable unique identifier and monotonic timestamp (e.g., <code>WHERE (created_at, id) &lt; ($last_timestamp, $last_id)</code>). When the scraper restarts, it transmits the cursor token of the last successfully committed record. This guarantees idempotency: already-ingested records are never fetched twice, concurrent upstream inserts do not shift pagination offsets, and recovery is instantaneous (<span class="arithmatex">\(O(1)\)</span> checkpoint lookup).</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

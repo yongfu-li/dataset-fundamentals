@@ -2722,10 +2722,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-cleanlab-river" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Cleanlab &amp; River
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7321,10 +7332,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-cleanlab-river" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Cleanlab &amp; River
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7463,6 +7485,22 @@ j = \arg\max_{k \in \{1, \dots, C\}} \hat{P}(\tilde{y} = k \mid \mathbf{x}) \qua
 \]</div>
 <p>Instances where <span class="arithmatex">\(\tilde{y} \neq y^*\)</span> represent certified label errors and are automatically pruned from the training corpus.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: ActiveClean Gradient-Informed Sample Prioritization</p>
+<p>When budget permits cleaning only a small fraction of a massive corrupted dataset (<span class="arithmatex">\(k \ll N\)</span>), deploy <strong>ActiveClean</strong>: prioritize cleaning records whose gradients with respect to the current model loss <span class="arithmatex">\(\nabla_\theta \mathcal{L}(h(x_i), y_i)\)</span> are largest. This achieves <span class="arithmatex">\(95\%\)</span> of full-dataset cleaning accuracy while inspecting less than <span class="arithmatex">\(5\%\)</span> of records.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unverified Programmatic Label Weak Supervision</p>
+<p>Using heuristic rules or LLM prompts for programmatic data cleaning without computing a Snorkel generative label model fails to account for correlated errors and multi-source labeling dependencies.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: ActiveClean Gradient-Informed Sample Prioritization</p>
+<p>When budget permits cleaning only a small fraction of a massive corrupted dataset (<span class="arithmatex">\(k \ll N\)</span>), deploy <strong>ActiveClean</strong>: prioritize cleaning records whose gradients with respect to the current model loss <span class="arithmatex">\(\nabla_\theta \mathcal{L}(h(x_i), y_i)\)</span> are largest. This achieves <span class="arithmatex">\(95\%\)</span> of full-dataset cleaning accuracy while inspecting less than <span class="arithmatex">\(5\%\)</span> of records.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unverified Programmatic Label Weak Supervision</p>
+<p>Using heuristic rules or LLM prompts for programmatic data cleaning without computing a Snorkel generative label model fails to account for correlated errors and multi-source labeling dependencies.</p>
+</div>
 <h2 id="production-implementation-streaming-scaler-and-confident-learning-pruner">💻 Production Implementation: Streaming Scaler and Confident Learning Pruner</h2>
 <p>The following executable Python script implements an online <span class="arithmatex">\(\mathcal{O}(1)\)</span>-memory Welford streaming scaler alongside a complete Confident Learning label error auditor.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7644,40 +7682,39 @@ j = \arg\max_{k \in \{1, \dots, C\}} \hat{P}(\tilde{y} = k \mid \mathbf{x}) \qua
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-cleanlab-river">🛠️ Tool Integration: Cleanlab &amp; River</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Library</th>
-<th style="text-align: left;">Primary Capability</th>
-<th style="text-align: left;">Streaming vs Batch</th>
-<th style="text-align: left;">Scalability</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Cleanlab</strong></td>
-<td style="text-align: left;">Confident Learning label error auditing</td>
-<td style="text-align: left;">Batch / Out-of-Fold</td>
-<td style="text-align: left;">Any scikit-learn / PyTorch estimator</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>River</strong></td>
-<td style="text-align: left;">Online incremental ML &amp; preprocessing</td>
-<td style="text-align: left;">Pure Streaming (<span class="arithmatex">\(\mathcal{O}(1)\)</span>)</td>
-<td style="text-align: left;">High-velocity Kafka pipelines</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Hyperimpute</strong></td>
-<td style="text-align: left;">Deep generative imputation (GAIN, MICE, Sinkhorn)</td>
-<td style="text-align: left;">Batch</td>
-<td style="text-align: left;">GPU acceleration</td>
-</tr>
-</tbody>
-</table>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Frontier data preprocessing tools</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pip<span class="w"> </span>install<span class="w"> </span>cleanlab<span class="w"> </span>river<span class="w"> </span>hyperimpute
-</span></code></pre></div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Data Cleaning Workbench</h4>
+  <p>Simulate gradient-weighted sample cleaning, active learning label remediation, and weak supervision heuristics.</p>
+  <a href="../../tools/cleaning/" class="noc-sim-btn">Launch Cleaning Workbench →</a>
+</div>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: ActiveClean Sampling Weight Convergence</summary>
+<p>How does the ActiveClean framework use Stochastic Gradient Descent (SGD) with importance sampling to guarantee unbiased model parameter convergence when cleaning only a non-random subset of records?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> ActiveClean uses <strong>Horvitz-Thompson Importance Weights</strong>:
+$<span class="arithmatex">\(w_i = \frac{1}{q_i}\)</span>$
+where <span class="arithmatex">\(q_i \propto \|\nabla_\theta \mathcal{L}(x_i, y_i)\|\)</span> is the probability of selecting record <span class="arithmatex">\(i\)</span> for human or automated cleaning.</p>
+<p>By weighting the cleaned gradient update by <span class="arithmatex">\(w_i\)</span>, the expected value of the sampled gradient is mathematically equal to the true full-data gradient:
+$<span class="arithmatex">\(\mathbb{E}\left[ \sum_{i \in \mathcal{S}} \frac{\nabla \mathcal{L}_i}{q_i} \right] = \sum_{i=1}^N \nabla \mathcal{L}_i\)</span>$
+guaranteeing unbiased convergence toward the optimal clean-data parameters <span class="arithmatex">\(\theta^*\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: HoloClean Weak Supervision and Probabilistic Factoring</summary>
+<p>How does the HoloClean framework combine denial constraints, external knowledge bases, and quantitative statistics into a unified probabilistic factor graph for automated data repair?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> HoloClean models dirty data repair as <strong>Maximum A Posteriori (MAP) inference over a factor graph</strong>.</p>
+<p>Features, relational integrity constraints (e.g., denial constraints: <span class="arithmatex">\(\text{ZIP} \to \text{State}\)</span>), and external knowledge base matches are expressed as weighted feature functions <span class="arithmatex">\(\phi_j(c)\)</span>. The joint probability distribution over candidate repair values <span class="arithmatex">\(c\)</span> is:
+$<span class="arithmatex">\(P(C = c) = \frac{1}{Z} \exp\left( \sum_j w_j \phi_j(c) \right)\)</span>$
+HoloClean learns weights <span class="arithmatex">\(w_j\)</span> via marginal maximum likelihood, finding the most statistically coherent repair that satisfies constraints with minimal distortion of observed features.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

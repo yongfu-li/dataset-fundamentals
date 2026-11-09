@@ -1502,6 +1502,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7388,6 +7399,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7489,6 +7511,14 @@ y_i = \mu + A \cdot \sin\left(\frac{2\pi i}{P}\right) + \epsilon_i
 <strong>Defensive Engineering Rule</strong>: Before running a systematic draw over an ordered database, always verify whether sorting order contains hidden periodicity (e.g., day of week, machine rack IDs). When in doubt, apply a pseudo-random permutation (shuffle) to the indices before sampling.</p>
 </blockquote>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Distributed Streaming Reservoir Sampling (Algorithm R)</p>
+<p>When collecting an unbiased random sample of size <span class="arithmatex">\(k\)</span> from a high-velocity data stream of unknown total length <span class="arithmatex">\(N\)</span>, deploy <strong>Vitter's Reservoir Sampling (Algorithm R)</strong>. For each arriving item <span class="arithmatex">\(i\)</span>, generate random integer <span class="arithmatex">\(j \in [1, i]\)</span>; if <span class="arithmatex">\(j \le k\)</span>, replace reservoir slot <span class="arithmatex">\(j\)</span> with the new item. Every item in the unbounded stream has an exact equal selection probability <span class="arithmatex">\(\Pr = k/N\)</span>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Snowball Sampling Trap in Rare Populations</p>
+<p>While snowball (chain-referral) sampling is indispensable for hidden or stigmatized populations, naive sample statistics are biased toward individuals with larger social networks (high degree centrality). Always apply <strong>Respondent-Driven Sampling (RDS)</strong> with Volz-Heckathorn Markov chain weighting.</p>
+</div>
 <h2 id="2-non-probability-sampling-when-frames-do-not-exist">2. Non-Probability Sampling: When Frames Do Not Exist</h2>
 <p>When an exhaustive sampling frame is unavailable, data teams are forced outside the boundaries of classical probability theory. Non-probability designs trade statistical generalizability for <strong>feasibility and access</strong>.</p>
 <pre class="mermaid"><code>flowchart TD
@@ -7601,16 +7631,12 @@ P\left(e_{ij} \in \mathcal{E} \mid y_i = y_j\right) \gg P\left(e_{ij} \in \mathc
 </table>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Test sampling strategies hands-on in the Data Studio:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Sampling Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate systematic sampling across periodic signals and test RDS degree weighting:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Technique Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">💻 Open Web Data Terminal</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Train / Val / Test Splitter</h4>
+  <p>Practice reservoir-based and stratified data partitioning client-side to ensure balanced representation across rare classes.</p>
+  <a href="../../tools/train-test-split/" class="noc-sim-btn">Launch Data Splitter Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7618,6 +7644,34 @@ P\left(e_{ij} \in \mathcal{E} \mid y_i = y_j\right) \gg P\left(e_{ij} \in \mathc
 <li><strong>Never Claim Generalizability from Convenience</strong>: Non-probability convenience draws describe only the sampled individuals, not the broader population.</li>
 <li><strong>Correct for Network Degree</strong>: When using snowball referral chains, apply Respondent-Driven Sampling (RDS) inverse degree weighting to adjust for participant connectedness.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Mathematical Proof of Reservoir Sampling Equivalence</summary>
+<p>Prove by induction that in Reservoir Sampling (Algorithm R), after seeing <span class="arithmatex">\(n\)</span> items, any specific element in the stream has an exact probability <span class="arithmatex">\(\Pr = k/n\)</span> of being in the reservoir.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> 
+<strong>Base Case:</strong> For <span class="arithmatex">\(n = k\)</span>, the reservoir holds all <span class="arithmatex">\(k\)</span> items, so <span class="arithmatex">\(\Pr = k/k = 1\)</span>.
+<strong>Inductive Step:</strong> Assume the property holds for <span class="arithmatex">\(n\)</span>. For item <span class="arithmatex">\(n + 1\)</span>:
+1. Item <span class="arithmatex">\(n + 1\)</span> is chosen to enter the reservoir with probability <span class="arithmatex">\(\frac{k}{n + 1}\)</span>.
+2. For any item already in the reservoir, it remains if either item <span class="arithmatex">\(n + 1\)</span> is not selected (<span class="arithmatex">\(1 - \frac{k}{n + 1}\)</span>), or item <span class="arithmatex">\(n + 1\)</span> is selected but replaces a <em>different</em> slot (<span class="arithmatex">\(\frac{k}{n + 1} \times \frac{k - 1}{k}\)</span>):
+$<span class="arithmatex">\(\Pr(\text{retained}) = \frac{n + 1 - k}{n + 1} + \frac{k - 1}{n + 1} = \frac{n}{n + 1}\)</span>$
+By the induction hypothesis, its prior probability of being in the reservoir was <span class="arithmatex">\(\frac{k}{n}\)</span>. Therefore, its posterior probability is:
+$<span class="arithmatex">\(\Pr(\text{in reservoir at } n+1) = \frac{k}{n} \times \frac{n}{n + 1} = \frac{k}{n + 1}\)</span>$
+Thus, the property holds for all <span class="arithmatex">\(n \ge k\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Respondent-Driven Sampling (RDS) Degree Weighting</summary>
+<p>In a snowball sampling campaign studying rare cybersecurity exploits, participant A has 40 peer contacts, while participant B has 4 peer contacts. How does RDS adjust their sample weights?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under the Hansen-Hurwitz probability proportional to size (PPS) framework utilized by RDS, an individual's probability of being recruited is proportional to their network degree <span class="arithmatex">\(d_i\)</span>. Therefore, the sampling weight must be inversely proportional to degree:
+$<span class="arithmatex">\(w_i \propto \frac{1}{d_i}\)</span>$
+Participant B (with 4 contacts) is weighted <span class="arithmatex">\(10\times\)</span> higher than Participant A (with 40 contacts) (<span class="arithmatex">\(w_B / w_A = 40 / 4 = 10\)</span>) to counteract the structural oversampling of highly connected social hubs.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

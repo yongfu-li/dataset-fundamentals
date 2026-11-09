@@ -4915,10 +4915,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7516,6 +7538,14 @@
 <li>LFs are expected to be noisy (<span class="arithmatex">\(60 - 85\%\)</span> accuracy), correlate with each other, and frequently conflict. A <strong>Generative Label Model</strong> mathematically models their accuracies without requiring gold labels (<a href="#ref-ratner2017">Ratner et al., 2017</a>).</li>
 </ul>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Programmatic Labeling with Snorkel</p>
+<p>Replace manual token-by-token labeling with <strong>Programmatic Weak Supervision</strong>: write 20–50 deterministic Labeling Functions (LFs) capturing domain heuristics, regex patterns, external dictionaries, and zero-shot model outputs. Snorkel estimates rule accuracies and outputs probabilistic training labels automatically.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Majority Voting Over Correlated Labeling Rules</p>
+<p>If five labeling functions depend on the exact same keyword list, a naive majority vote counts their correlated vote five times, artificially inflating confidence. Always use a generative model that models conditional covariance between labeling functions.</p>
+</div>
 <h2 id="mathematical-formulations-of-data-programming-label-matrix-metrics">🧮 Mathematical Formulations of Data Programming &amp; Label Matrix Metrics</h2>
 <h3 id="1-the-sparse-label-matrix-mathbflambda">1. The Sparse Label Matrix <span class="arithmatex">\(\mathbf{\Lambda}\)</span></h3>
 <p>Let <span class="arithmatex">\(\mathcal{D}_N = \{\mathbf{x}_1, \dots, \mathbf{x}_N\}\)</span> be the unlabeled dataset and <span class="arithmatex">\(\{\lambda_1, \dots, \lambda_M\}\)</span> be <span class="arithmatex">\(M\)</span> labeling functions. Evaluating all functions over the dataset produces the <strong>Label Matrix</strong> <span class="arithmatex">\(\mathbf{\Lambda} \in \{-1, 0, +1\}^{N \times M}\)</span>:</p>
@@ -7709,17 +7739,38 @@
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Active Learning & Pipeline Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate programmatic labeling functions, inspect sparse label matrices, and compute coverage statistics:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/active-learning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Active Learning Studio</a>
-    <a href="../../tools/pipeline-builder/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Pipeline Builder</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Annotation Workbench</h4>
+  <p>Write rule-based labeling functions, simulate label matrix aggregation, and inspect Snorkel probabilistic outputs.</p>
+  <a href="../../tools/text-annotation/" class="noc-sim-btn">Launch Text Annotation Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Label Matrix Representation in Snorkel</summary>
+<p>In Snorkel weak supervision, explain the structure of the <strong>Label Matrix</strong> <span class="arithmatex">\(\mathbf{\Lambda} \in \{-1, 0, 1\}^{n \times m}\)</span> for a binary classification task with <span class="arithmatex">\(n\)</span> instances and <span class="arithmatex">\(m\)</span> labeling functions.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Each entry <span class="arithmatex">\(\Lambda_{i, j}\)</span> represents the output of labeling function <span class="arithmatex">\(\lambda_j\)</span> on data instance <span class="arithmatex">\(x_i\)</span>:
+- <span class="arithmatex">\(\Lambda_{i, j} = +1\)</span>: The rule votes for the positive class.
+- <span class="arithmatex">\(\Lambda_{i, j} = -1\)</span>: The rule votes for the negative class.
+- <span class="arithmatex">\(\Lambda_{i, j} = 0\)</span>: The rule <strong>abstains</strong> (the pattern was not detected; the rule provides zero opinion).
+The matrix is sparse because each heuristic specializes in a specific sub-pattern and abstains on the vast majority of records.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Coverage vs. Conflict Rate in Weak Supervision</summary>
+<p>Define <strong>Coverage</strong> and <strong>Conflict Rate</strong> of a suite of labeling functions. What does a high conflict rate signal?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Coverage:</strong> The fraction of total instances in the dataset where at least one labeling function does not abstain: <span class="arithmatex">\(\frac{1}{n} \sum_{i=1}^n \mathbb{I}(\exists j : \Lambda_{i, j} \ne 0)\)</span>.
+- <strong>Conflict Rate:</strong> The fraction of instances where two or more labeling functions vote with opposing signs (<span class="arithmatex">\(\Lambda_{i, j} \ne \Lambda_{i, k}\)</span> and both <span class="arithmatex">\(\ne 0\)</span>).
+A high conflict rate (<span class="arithmatex">\(&gt;30\%\)</span>) indicates that labeling rules have overlapping domains with contradictory definitions, requiring generative label modeling to resolve latent rule accuracy.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

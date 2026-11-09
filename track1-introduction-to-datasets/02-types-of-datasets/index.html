@@ -7687,6 +7687,14 @@
 </tbody>
 </table>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Stream-Table Duality in Modern Lakehouses</p>
+<p>Following the Kappa Architecture, treat streaming event logs as the single source of truth: a table is simply a materialized view of a stream at a specific point in time, and a stream is the changelog of a table. Unifying static and dynamic data through Apache Iceberg or Delta Lake eliminates dual-pipeline synchronization bugs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unbounded Memory Ingestion of JSON Trees</p>
+<p>Loading multi-gigabyte deeply nested JSON documents directly into memory creates massive pointer overhead and triggers out-of-memory crashes. Always flatten nested payloads into columnar Arrow tables with pre-defined leaf-node schemas at the ingestion gateway.</p>
+</div>
 <h2 id="2-mathematical-formalization-of-structural-archetypes">2. Mathematical Formalization of Structural Archetypes</h2>
 <h3 id="21-structured-tabular-relations">2.1 Structured Tabular Relations</h3>
 <p>Formally, a <strong>structured dataset</strong> is defined as an empirical relation <span class="arithmatex">\(R\)</span> over a fixed schema relation signature <span class="arithmatex">\(\mathcal{S} = (A_1: \mathcal{F}_1, A_2: \mathcal{F}_2, \dots, A_M: \mathcal{F}_M)\)</span>, where each attribute <span class="arithmatex">\(A_j\)</span> draws values strictly from a defined domain <span class="arithmatex">\(\mathcal{F}_j\)</span>:</p>

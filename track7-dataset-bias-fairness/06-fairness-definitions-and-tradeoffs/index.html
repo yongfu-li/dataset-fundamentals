@@ -3418,10 +3418,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7333,10 +7344,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7412,6 +7434,24 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-algebraic-proof-of-the-impossibility-theorem-chouldechova-2017">1. Algebraic Proof of the Impossibility Theorem (Chouldechova, 2017)</h3>
+<pre class="mermaid"><code>flowchart TD
+  Context["What is the Decision Context?"] --&gt; DecisionNature{"Is the Decision Punitive&lt;br/&gt;or Assistive/Opportunity?"}
+
+  DecisionNature -- "Punitive (Bail, Fraud, Arrest)" --&gt; Punitive["Prioritize Error of False Accusation&lt;br/&gt;Enforce Equal False Positive Rates (FPR)&lt;br/&gt;Pr(Y_hat=1 | Y=0, A=0) = Pr(Y_hat=1 | Y=0, A=1)"]
+
+  DecisionNature -- "Assistive (Scholarship, Medical Care)" --&gt; Assistive["Prioritize Error of Withheld Opportunity&lt;br/&gt;Enforce Equal Opportunity (Equal FNR)&lt;br/&gt;Pr(Y_hat=1 | Y=1, A=0) = Pr(Y_hat=1 | Y=1, A=1)"]
+
+  DecisionNature -- "Legal Mandate of Demographic Equity" --&gt; DemoParity["Enforce Demographic Parity&lt;br/&gt;Pr(Y_hat=1 | A=0) = Pr(Y_hat=1 | A=1)&lt;br/&gt;(Note: Surrenders Equalized Odds if base rates differ)"]
+
+  DecisionNature -- "Risk Calibration (Insurance Pricing)" --&gt; Calib["Enforce Predictive Parity (Calibration)&lt;br/&gt;Pr(Y=1 | Y_hat=1, A=0) = Pr(Y=1 | Y_hat=1, A=1)"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class Context blue;
+  class DecisionNature amber;
+  class Punitive,Assistive,DemoParity,Calib green;</code></pre>
 <p>Let binary label <span class="arithmatex">\(Y \in \{0, 1\}\)</span>, sensitive group <span class="arithmatex">\(A \in \{0, 1\}\)</span>, and binary decision <span class="arithmatex">\(\hat{Y} \in \{0, 1\}\)</span>.
 Let group base rate be <span class="arithmatex">\(p_a = \Pr(Y = 1 \mid A = a)\)</span>.
 Let False Positive Rate be <span class="arithmatex">\(\text{FPR}_a = \Pr(\hat{Y} = 1 \mid Y = 0, A = a)\)</span>.
@@ -7444,6 +7484,16 @@ Let Positive Predictive Value (Calibration / PPV) be <span class="arithmatex">\(
 \]</div>
 <p>Engineering teams must map the <strong>Fairness-Accuracy Pareto Frontier</strong>: tracing how much marginal predictive accuracy must be surrendered to gain each unit of demographic disparity reduction.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Domain-Specific Fairness Metric Selection</p>
+<p>Select your fairness criterion based on the sociotechnical consequence of the decision:
+- Punitive Decisions (Criminal Justice, Fraud Triage): Enforce <strong>Equal False Positive Rates</strong> (Balance for the Negative Class).
+- Assistive / Opportunity Decisions (Scholarships, Medical Screening): Enforce <strong>Equal False Negative Rates (Equal Opportunity)</strong>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Chasing Impossible Metric Harmonization</p>
+<p>Under the <strong>Kleinberg-Chouldechova Impossibility Theorem</strong>, Calibration (Predictive Parity), Equal FPR, and Equal FNR are mathematically mutually exclusive whenever base rates between demographic groups differ. Do not attempt to force all three simultaneously; select the criterion aligned with your legal and ethical mandate.</p>
+</div>
 <h2 id="production-implementation-numerical-proof-of-the-impossibility-theorem">💻 Production Implementation: Numerical Proof of the Impossibility Theorem</h2>
 <p>Below is an executable script proving the Chouldechova identity, verifying that equalizing predictive value across groups with unequal base rates forces disparate false positive rates.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7507,17 +7557,38 @@ Let Positive Predictive Value (Calibration / PPV) be <span class="arithmatex">\(
    - Patient advocacy groups demanded <strong>Equalized False Positive Rates</strong>: elderly patients must not be falsely categorized as "unsalvageable" at higher rates than younger patients.
 3. <strong>The Impossibility Resolution:</strong> Because base rates differed by <span class="arithmatex">\(4.5\times\)</span>, the mathematical theorem proved both demands could not be satisfied simultaneously. The hospital formally selected Calibration as the primary ethical criterion and instituted mandatory non-algorithmic clinical re-evaluations for elderly triage denials.</p>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Fairness Impossibility Explorer</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate base rate divergence, verify the Chouldechova identity, and explore Pareto frontier tradeoffs client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/fairness/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Fairness Tool</a>
-    <a href="../../tools/ethical-decision/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Ethical Decision Tree</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Bias & Fairness Meter</h4>
+  <p>Test the Kleinberg-Chouldechova Impossibility Theorem numerically and inspect the accuracy-fairness Pareto frontier.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Kleinberg Impossibility Proof Step</summary>
+<p>Under Chouldechova's identity, False Positive Rate is expressed as:
+$<span class="arithmatex">\(\text{FPR}_a = \frac{p_a}{1 - p_a} \cdot \frac{1 - v_a}{v_a} \cdot (1 - \text{FNR}_a)\)</span>$
+If a predictive policing system achieves perfect Calibration across groups (<span class="arithmatex">\(v_0 = v_1\)</span>) and equal False Negative Rates (<span class="arithmatex">\(\text{FNR}_0 = \text{FNR}_1\)</span>), but Group 1 has a true base crime rate <span class="arithmatex">\(p_1 = 0.40\)</span> while Group 0 has <span class="arithmatex">\(p_0 = 0.10\)</span>, calculate the ratio of their False Positive Rates <span class="arithmatex">\(\frac{\text{FPR}_1}{\text{FPR}_0}\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Substituting into Chouldechova's ratio:
+$<span class="arithmatex">\(\frac{\text{FPR}_1}{\text{FPR}_0} = \frac{\frac{p_1}{1 - p_1}}{\frac{p_0}{1 - p_0}} = \frac{\frac{0.40}{0.60}}{\frac{0.10}{0.90}} = \frac{0.6667}{0.1111} = 6.0\)</span>$
+The False Positive Rate for Group 1 <strong>must be exactly <span class="arithmatex">\(6\times\)</span> higher</strong> than for Group 0. It is a mathematical impossibility for False Positive Rates to be equal under unequal base rates if predictive value and false negative rates are held equal.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The COMPAS Recidivism Debate</summary>
+<p>In the landmark 2016 ProPublica investigation into the COMPAS recidivism risk score, what metric did Northpointe claim proved their algorithm was fair, and what metric did ProPublica prove was discriminatory?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Northpointe's Defense (Calibration / Predictive Parity):</strong> COMPAS was calibrated across racial groups: a score of 7 meant an identical <span class="arithmatex">\(\sim 60\%\)</span> probability of re-arrest whether the defendant was Black or White.
+- <strong>ProPublica's Critique (Equalized Odds / False Positive Parity):</strong> COMPAS had dramatically disparate False Positive Rates: Black defendants who did <em>not</em> recidivate were falsely flagged as high risk at nearly twice the rate of White non-recidivists (<span class="arithmatex">\(44.9\%\)</span> vs <span class="arithmatex">\(23.5\%\)</span>).
+- <strong>Root Cause:</strong> Unequal re-arrest base rates in the criminal justice system made satisfying both metrics mathematically impossible under the Kleinberg Theorem.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

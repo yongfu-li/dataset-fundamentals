@@ -4988,10 +4988,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7433,10 +7444,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7554,6 +7576,14 @@
 <li><strong>BYOL (Grill et al., 2020):</strong> Achieves state-of-the-art representations without any negative pairs by combining an online network with a target network using an asymmetric predictor architecture (<a href="#ref-grill2020">Grill et al., 2020</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Temperature Calibration in InfoNCE Contrastive Loss</p>
+<p>In contrastive pre-training (SimCLR, MoCo), tune the InfoNCE temperature hyperparameter <span class="arithmatex">\(\tau\)</span> carefully (typically <span class="arithmatex">\(\tau \in [0.07, 0.20]\)</span>). A small temperature creates sharp hardness penalties, forcing the representation space to distribute uniformly across the unit hypersphere without representation collapse.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Trivial Contrastive Shortcuts via False Augmentations</p>
+<p>If data augmentation is too weak (e.g., minor color tint without spatial cropping), the neural network learns trivial low-level statistical shortcuts (e.g., matching average background pixel brightness or border padding) rather than semantic object geometry.</p>
+</div>
 <h2 id="mathematical-formulations-of-contrastive-objectives-manifold-geometry">🧮 Mathematical Formulations of Contrastive Objectives &amp; Manifold Geometry</h2>
 <h3 id="1-the-infonce-loss-oord-et-al-2018">1. The InfoNCE Loss (Oord et al., 2018)</h3>
 <p>Given an anchor representation <span class="arithmatex">\(\mathbf{z}_i\)</span>, a positive pair <span class="arithmatex">\(\mathbf{z}_j\)</span> (derived from the same underlying instance), and a set of <span class="arithmatex">\(K\)</span> negative samples <span class="arithmatex">\(\{\mathbf{z}_k\}_{k=1}^K\)</span>, the <strong>InfoNCE Loss</strong> is:</p>
@@ -7704,17 +7734,36 @@ I(X; Y) \ge \ln(K + 1) - \mathcal{L}_{\text{InfoNCE}}
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Active Learning & SSL Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate InfoNCE loss, evaluate hypersphere alignment and uniformity, and test linear probing:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/active-learning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Active Learning Studio</a>
-    <a href="../../tools/pipeline-builder/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Pipeline Builder</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Image Augmentation Studio</h4>
+  <p>Simulate SimCLR dual augmentation pipelines, visualize InfoNCE contrastive alignments, and inspect unit sphere projections.</p>
+  <a href="../../tools/image-augmentation/" class="noc-sim-btn">Launch Image Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: InfoNCE Alignment vs. Uniformity Proof</summary>
+<p>Under Wang &amp; Isola (2020), state the two asymptotic geometric properties satisfied by optimizing the contrastive InfoNCE loss on the unit hypersphere <span class="arithmatex">\(\mathcal{S}^{d-1}\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Alignment:</strong> Representations of positive pairs (augmented views of the same instance) are pulled together:
+$<span class="arithmatex">\(\mathcal{L}_{\text{align}} = \mathbb{E}_{(x, y) \sim p_{\text{pos}}}\left[ \|\mathbf{z}_x - \mathbf{z}_y\|^2 \right] \to 0\)</span>$
+2. <strong>Uniformity:</strong> Features preserve maximal Shannon information by distributing uniformly across the entire hypersphere surface, preventing representation collapse:
+$<span class="arithmatex">\(\mathcal{L}_{\text{uniform}} = \ln \mathbb{E}_{x, y \stackrel{\text{i.i.d.}}{\sim} p_{\text{data}}}\left[ \exp\left( -2 \|\mathbf{z}_x - \mathbf{z}_y\|^2 \right) \right] \to \text{constant}\)</span>$</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Masked Autoencoders (MAE) vs. Contrastive Learning</summary>
+<p>Why do Masked Autoencoders (He et al., 2022) mask an extremely high ratio (<span class="arithmatex">\(75\%\)</span>) of image patches during Vision Transformer (ViT) pre-training, whereas BERT masks only <span class="arithmatex">\(15\%\)</span> of text tokens?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Images exhibit <strong>massive spatial redundancy</strong> compared to natural language.</p>
+<p>Natural language is information-dense: every token carries high semantic entropy, so masking <span class="arithmatex">\(15\%\)</span> creates a challenging prediction task. In contrast, pixels in an image are highly correlated with immediate spatial neighbors. Masking only <span class="arithmatex">\(15\%\)</span> allows the model to trivially interpolate missing pixels from adjacent boundary pixels without learning high-level visual semantic geometry. Masking <span class="arithmatex">\(75\%\)</span> forces the autoencoder to learn holistic object representations to reconstruct the scene.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

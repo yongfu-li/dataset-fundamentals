@@ -1,47 +1,60 @@
 {
   "part_id": "part-04-characteristics-of-good-datasets",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Quality Dimensions & Metadata",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which set matches the five quality dimensions emphasized in this chapter?",
+      "prompt": "Why can simple syntactic schema validation fail to catch severe semantic accuracy defects like an extra trailing zero in a transaction ledger?",
       "choices": [
-        "Accuracy, completeness, consistency, relevance, timeliness",
-        "Velocity, volume, variety only",
-        "Encryption, MFA, backups only",
-        "Precision, recall, F1 only"
+        "Because floating-point numbers cannot be stored in computer memory",
+        "Because the corrupted number remains a syntactically valid positive float, even though it distorts the true distribution",
+        "Because databases automatically round all numbers to zero",
+        "Because semantic errors only occur in unstructured text datasets"
       ],
-      "answer_index": 0,
-      "explain": "Table 1.6 lists accuracy, completeness, consistency, relevance, and timeliness."
+      "answer_index": 1,
+      "explain": "A value like $15,000.00 is syntactically a valid positive float. Naive type checking cannot know the true intended purchase was $1,500.00 without statistical outlier screening."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Completeness and accuracy are the same quality dimension.",
-      "answer": false,
-      "explain": "They are distinct: values can be present (complete) yet wrong (inaccurate), or correct where present but missing key fields."
+      "type": "mcq",
+      "prompt": "What missingness mechanism is present when high-income survey respondents systematically refuse to disclose their salary?",
+      "choices": [
+        "MCAR (Missing Completely at Random)",
+        "MAR (Missing at Random)",
+        "MNAR (Missing Not at Random)",
+        "Deterministic Parquet compression"
+      ],
+      "answer_index": 2,
+      "explain": "When the probability of a value being missing depends directly on the unobserved missing value itself (e.g. concealing extreme income), the mechanism is Missing Not at Random (MNAR)."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "In Example 1.11, the main defect illustrated is:",
+      "prompt": "Under the FAIR data principles, what does the acronym stand for?",
       "choices": [
-        "Missing columns",
-        "An inaccurate (mis-keyed) amount",
-        "Wrong file format (HDF5 vs CSV)",
-        "Lack of a Git repository"
+        "Fast, Automated, Indexed, Redundant",
+        "Findable, Accessible, Interoperable, Reusable",
+        "Formatted, Audited, Immutable, Relational",
+        "Filtered, Aggregated, Integrated, Normalized"
       ],
       "answer_index": 1,
-      "explain": "An extra zero in a transaction amount is an accuracy error that distorts totals."
+      "explain": "The FAIR principles require scientific datasets to be Findable (persistent IDs), Accessible (standard protocols), Interoperable (standard schemas/ontologies), and Reusable (clear licensing)."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Dropping rows with missing values is always safe in healthcare datasets because clinical lab tests are missing completely at random.",
+      "answer": false,
+      "explain": "Missing clinical measurements are rarely MCAR; doctors order tests selectively based on patient condition. Dropping missing rows severely biases models toward critically ill patients."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one thing metadata should capture about a dataset.",
-      "rubric": "Accept schema, units, provenance, collection time, ownership, or similar from the chapter.",
-      "sample_answer": "Schema and units for each attribute, or provenance describing how the file was produced."
+      "prompt": "How does inconsistent date formatting (e.g., mixing US MM/DD/YYYY and European DD/MM/YYYY) corrupt machine learning models?",
+      "rubric": "Causes chronological disordering, leading to temporal data leakage across train/validation splits.",
+      "sample_answer": "Inconsistent date conventions cause chronological sorting errors, which misplaces records and risks leaking future information into past training features."
     }
   ]
 }

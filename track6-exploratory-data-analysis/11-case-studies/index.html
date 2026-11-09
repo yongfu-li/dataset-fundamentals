@@ -3140,10 +3140,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7355,10 +7366,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7451,6 +7473,14 @@ Investigating sales metadata disclosed these were <strong>abnormal partial liqui
 1. <strong>Redundant Multicollinearity:</strong> <code>TotalCharges</code> exhibited a near-perfect deterministic correlation with <code>MonthlyCharges * tenure</code> (<span class="arithmatex">\(r = 0.992\)</span>). Retaining both in regression models inflated Variance Inflation Factors (<span class="arithmatex">\(\text{VIF} &gt; 85.0\)</span>).
 2. <strong>Survival Hazard Curve:</strong> Plotting Kaplan-Meier empirical churn survival curves revealed that <span class="arithmatex">\(62\%\)</span> of all customer terminations occurred in the first <span class="arithmatex">\(3\)</span> months of contract inception (the "Onboarding Valley of Death").</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multi-Cohort Generalization Stress Testing</p>
+<p>When developing healthcare or algorithmic underwriting models, stress-test EDA profiles across multiple external institutional cohorts (e.g., MIMIC-IV vs eICU vs external regional hospitals). Cross-cohort covariate shift profiling is the only reliable way to detect hospital-specific sensor calibrations.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Target Proxy Trap in Health Equity</p>
+<p>Using healthcare expenditure as a proxy for healthcare need creates profound racial bias (Obermeyer et al., 2019): because less money is spent on Black patients due to systemic access barriers, algorithms trained on cost predict that Black patients are healthier than equally sick White patients.</p>
+</div>
 <h2 id="production-implementation-end-to-end-ames-housing-eda-pipeline">💻 Production Implementation: End-to-End Ames Housing EDA Pipeline</h2>
 <p>Below is a self-contained, production-grade Python script executing full exploratory diagnostic screening, log-stabilization, Eve's Law neighborhood decomposition, and outlier isolation on synthetic Ames housing data.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7571,17 +7601,33 @@ Investigating sales metadata disclosed these were <strong>abnormal partial liqui
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Housing &amp; Churn Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate real estate log transformations, leverage outlier trimming, and customer cohort survival analysis client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/cleaning/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Data Cleaning Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Step through real-world case study datasets (MIMIC-IV, COMPAS, German Credit) and audit diagnostic distributions.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Obermeyer Health Cost Proxy Bias Mechanism</summary>
+<p>In the landmark 2019 Science study by Obermeyer et al., an algorithm used healthcare cost as a target variable to identify high-risk patients for special care management programs. Why did using cost as a proxy for illness severity induce massive racial disparity?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Cost is not a direct measure of illness; it is a measure of <strong>healthcare utilization mediated by wealth, insurance access, and systemic bias</strong>.</p>
+<p>At every level of actual illness (measured by chronic conditions, biomarker distress, and mortality risk), significantly less money was spent caring for Black patients than White patients. Consequently, the algorithm required Black patients to be substantially sicker than White patients before qualifying for the same specialized care program. The remedy was shifting the target variable from financial expenditure to chronic disease morbidity indices.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The 1999 Mars Climate Orbiter Metric Unit Discrepancy</summary>
+<p>How could automated Exploratory Data Analysis (EDA) of thruster telemetry residuals have detected the imperial/metric pound-force vs Newton discrepancy before the spacecraft reached Mars?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Telemetry angular momentum desaturation (AMD) residuals would show a <strong>systematic, non-zero multiplicative scale factor of <span class="arithmatex">\(4.45\times\)</span></strong> between modeled thruster impulse and observed Doppler shift frequency changes.</p>
+<p>A simple residual scatterplot plotting predicted velocity change <span class="arithmatex">\(\Delta v_{\text{model}}\)</span> against actual trajectory tracking <span class="arithmatex">\(\Delta v_{\text{observed}}\)</span> would reveal a clean slope of <span class="arithmatex">\(4.45\)</span> instead of the expected <span class="arithmatex">\(1.00\)</span>, immediately flagging the unit conversion error months before orbital insertion.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

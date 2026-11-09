@@ -4542,10 +4542,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7515,6 +7537,14 @@
 <li><strong>Conditional Tabular GAN (CTGAN):</strong> Incorporates mode-specific normalization and conditional sampling to model mixed tabular datasets with multi-modal continuous distributions and severe categorical imbalances (<a href="#ref-xu2019">Xu et al., 2019</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Wasserstein GAN with Gradient Penalty (WGAN-GP)</p>
+<p>When synthesizing continuous or tabular data with GANs, replace the standard cross-entropy minimax objective with <strong>WGAN-GP</strong>. Minimizing the Earth Mover's (Wasserstein-1) distance with a 1-Lipschitz gradient penalty eliminates vanishing gradients and stabilizes generator convergence without mode collapse.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Standard GAN Training on Unnormalized Tabular Data</p>
+<p>Applying vanilla GANs to tabular data with multimodal continuous features (e.g., zero-inflated spending with sharp peaks) causes catastrophic failure: generators blur sharp modes into a single broad Gaussian. Use <strong>CTGAN Mode-Specific Normalization</strong>.</p>
+</div>
 <h2 id="mathematical-formulations-of-adversarial-learning">🧮 Mathematical Formulations of Adversarial Learning</h2>
 <h3 id="1-the-zero-sum-minimax-objective">1. The Zero-Sum Minimax Objective</h3>
 <p>The generator <span class="arithmatex">\(G_\theta\)</span> and discriminator <span class="arithmatex">\(D_\phi\)</span> engage in a two-player zero-sum game with value function <span class="arithmatex">\(V(D, G)\)</span> (<a href="#ref-goodfellow2014">Goodfellow et al., 2014</a>):</p>
@@ -7704,17 +7734,37 @@ W_1(p_{\text{data}}, p_g) = \sup_{\|D\|_L \le 1} \mathbb{E}_{\mathbf{x} \sim p_{
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Class Imbalance & GAN Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate adversarial training dynamics, inspect gradient penalty loss curves, and evaluate synthetic mode coverage:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/class-imbalance/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Class Imbalance Studio</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Image Augmentation Studio</h4>
+  <p>Test GAN discriminator gradients, inspect mode collapse in 2D latent spaces, and evaluate WGAN convergence.</p>
+  <a href="../../tools/image-augmentation/" class="noc-sim-btn">Launch Image Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Minimax GAN Nash Equilibrium</summary>
+<p>Under Goodfellow et al. (2014), prove that when the generator achieves the optimal data distribution <span class="arithmatex">\(p_g = p_{\text{data}}\)</span>, the optimal discriminator outputs <span class="arithmatex">\(D^*(x) = \frac{1}{2}\)</span>, and calculate the minimax value <span class="arithmatex">\(V(D^*, G)\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> 
+1. The optimal discriminator formula is <span class="arithmatex">\(D^*(x) = \frac{p_{\text{data}}(x)}{p_{\text{data}}(x) + p_g(x)}\)</span>.
+2. When <span class="arithmatex">\(p_g = p_{\text{data}}\)</span>, <span class="arithmatex">\(D^*(x) = \frac{p_{\text{data}}(x)}{2 p_{\text{data}}(x)} = \frac{1}{2}\)</span>.
+3. Substituting into the minimax value function:
+$<span class="arithmatex">\(V(D^*, G) = \mathbb{E}_{x \sim p_{\text{data}}}[\ln(1/2)] + \mathbb{E}_{z \sim p_z}[\ln(1 - 1/2)] = -\ln(2) - \ln(2) = -\ln(4) = -2\ln(2)\)</span>$
+At Nash equilibrium, the discriminator cannot distinguish real from fake (random guessing at 50%), and the objective value equals <span class="arithmatex">\(-2\ln(2)\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Mode-Specific Normalization in CTGAN</summary>
+<p>Why does CTGAN (Xu et al., 2019) represent continuous features using a Variational Gaussian Mixture Model (VGM) before passing values to the generator?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Real-world tabular features frequently exhibit complex multimodal distributions (e.g., salary spikes at round numbers <span class="arithmatex">\(50\text{k}, 75\text{k}, 100\text{k}\)</span>).</p>
+<p>CTGAN fits a VGM with <span class="arithmatex">\(K=10\)</span> Gaussian components per feature. Each continuous value is encoded as a one-hot representation indicating which Gaussian mode it belongs to, paired with a normalized scalar representing its distance from that mode's center. This transforms non-linear multimodal peaks into a representation deep neural networks can learn smoothly.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

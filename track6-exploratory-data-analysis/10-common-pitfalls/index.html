@@ -3129,10 +3129,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7389,10 +7400,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7500,6 +7522,14 @@ Y_t = Y_{t-1} + \epsilon_{2t}, \quad \epsilon_{2t} \sim \mathcal{N}(0, \sigma_2^
 - The intuitive proposal was to add armor to the areas exhibiting the highest density of bullet holes.
 - <strong>Wald's Insight:</strong> The inspection was conditioned on survivors (<span class="arithmatex">\(S = 1\)</span>). Planes struck in the engine or cockpit crashed and never returned (<span class="arithmatex">\(S = 0\)</span>). The holes in returning planes demonstrated areas where an aircraft could absorb damage and survive. Armor had to be placed where returning bombers had <strong>no holes</strong> (the engines).</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Out-of-Time (OOT) Holdout Validation</p>
+<p>In temporal and transactional datasets, never rely on standard random <span class="arithmatex">\(K\)</span>-fold cross-validation. Always evaluate on an <strong>Out-of-Time (OOT)</strong> holdout split (e.g., train on Q1–Q3, evaluate on Q4). Random splits leak future trend information into the past, hiding temporal degradation.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Ecological Fallacy in Geospatial Analytics</p>
+<p>Inferring individual-level behavioral relationships from aggregate regional statistics (e.g., observing that states with higher average incomes have higher obesity rates, and concluding that wealthy individuals are more obese) commits the <strong>Ecological Fallacy</strong>. Group-level correlations can have zero or inverse correlation at the individual level.</p>
+</div>
 <h2 id="production-implementation-spurious-drift-stationarity-differencing-engine">💻 Production Implementation: Spurious Drift &amp; Stationarity Differencing Engine</h2>
 <p>Below is a self-contained Python script simulating independent random walks, demonstrating the emergence of false spurious correlations, and executing Augmented Dickey-Fuller stationarity repairs.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7577,17 +7607,34 @@ Y_t = Y_{t-1} + \epsilon_{2t}, \quad \epsilon_{2t} \sim \mathcal{N}(0, \sigma_2^
 <li><strong>Engineering Failure:</strong> A consumer goods company built demand-forecasting models regressing product purchase volume against un-differenced regional GDP indexes, resulting in severe overfitting to shared macro trends that collapsed during the next cyclical downturn.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Spurious Correlation &amp; Collider Inspector</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate random walk correlations, dual-axis distortions, and Berkson collider conditioning client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Detect data leakage, inspect time-series cross-validation artifacts, and test ecological fallacy reversals.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Ecological Fallacy vs. Atomistic Fallacy</summary>
+<p>Distinguish between the <strong>Ecological Fallacy</strong> and the <strong>Atomistic (Individualistic) Fallacy</strong> with concrete examples.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Ecological Fallacy:</strong> Making inferences about individuals based exclusively on aggregate group statistics (e.g., assuming an individual resident of a high-crime neighborhood is personally prone to criminality).
+- <strong>Atomistic Fallacy:</strong> Making inferences about aggregate societal groups based exclusively on individual observations (e.g., observing that an individual athlete who trains 8 hours daily wins a marathon, and concluding that if an entire city population trains 8 hours daily, everyone will become an elite marathoner, ignoring systemic injury rates and economic productivity collapses).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Lookahead Leakage via Global Imputation</summary>
+<p>Why does computing global column means on an entire time-series dataset before splitting into train and test sets constitute lookahead leakage?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The global mean <span class="arithmatex">\(\mu = \frac{1}{N} \sum_{t=1}^N x_t\)</span> incorporates values from future time steps <span class="arithmatex">\(t &gt; t_{\text{split}}\)</span>.</p>
+<p>When imputing missing entries in early training observations using <span class="arithmatex">\(\mu\)</span>, information about future economic or sensory shocks (e.g., a stock market crash or pandemic spike in month 11) is backward-propagated into month 2 data. When deployed in live operations where the future is unobserved, the model fails. Imputation parameters must be computed strictly rolling or forward from historical data.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

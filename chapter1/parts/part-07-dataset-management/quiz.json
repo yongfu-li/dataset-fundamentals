@@ -1,47 +1,60 @@
 {
   "part_id": "part-07-dataset-management",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Management & Governance",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which practice helps prevent silent overwrites when a feature matrix evolves?",
+      "prompt": "How does Data Version Control (DVC) enable exact pipeline reproducibility without bloating Git repositories with gigabytes of binary data?",
       "choices": [
-        "Ignoring file names",
-        "Data version control",
-        "Deleting all metadata",
-        "Training without labels"
+        "It deletes earlier versions of data permanently when a new version is created",
+        "It stores cryptographic SHA-256 content hashes in lightweight pointer files tracked by Git, while storing large binaries in remote object storage",
+        "It converts all binary data into plain ASCII text inside Git commits",
+        "It compresses datasets using lossy JPEG encoding"
       ],
       "answer_index": 1,
-      "explain": "Table 1.8 lists data version control to track versions and avoid overwriting important changes."
+      "explain": "DVC computes SHA-256 hashes of datasets and tracks these small hash files in Git, while the actual heavy binary files are stored in object storage (e.g. S3)."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Privacy and security controls are optional once a churn model reaches production.",
-      "answer": false,
-      "explain": "The chapter states management and protection begin when records are stored and continue through reuse—not afterthoughts."
+      "type": "mcq",
+      "prompt": "How does cryptographic erasure (crypto-tombstoning) satisfy GDPR Article 17 (Right to Erasure) in immutable append-only columnar stores without rewriting large files?",
+      "choices": [
+        "By physically destroying the hard drives hosting the database cluster",
+        "By encrypting each subject's data with a unique per-user key and destroying that key upon erasure, rendering the data provably unrecoverable random noise",
+        "By renaming the column headers to anonymous pseudonyms",
+        "By running an automated script to overwrite the text cells with blank spaces"
+      ],
+      "answer_index": 1,
+      "explain": "Crypto-tombstoning encrypts individual records with a unique per-subject encryption key. Destroying that key instantly renders the ciphertext unrecoverable random noise without rewriting massive immutable Parquet files."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "Which control reduces re-identification risk when sharing research extracts?",
+      "prompt": "In the standard 3-2-1 backup strategy for disaster recovery, what do the numbers represent?",
       "choices": [
-        "Anonymization / de-identification",
-        "Publishing raw national IDs by default",
-        "Disabling all backups",
-        "Removing access logs forever"
+        "3 days of retention, 2 operators on call, 1 password manager",
+        "3 total copies of the data, on 2 different physical media types, with 1 copy stored in a geographically isolated offsite location",
+        "3 petabytes of storage, 2 GPUs, 1 backup script",
+        "3 cloud vendors, 2 data engineers, 1 relational database"
       ],
-      "answer_index": 0,
-      "explain": "Table 1.9 lists anonymization and de-identification among privacy practices for shared extracts."
+      "answer_index": 1,
+      "explain": "The 3-2-1 rule dictates maintaining at least 3 total copies of data, across at least 2 different storage media types, with at least 1 copy held offsite."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Dynamic column masking in Role-Based Access Control allows ML engineers to train models on masked features without revealing raw personally identifiable information.",
+      "answer": true,
+      "explain": "Dynamic column masking intercepts queries and redacts sensitive PII attributes (like credit card numbers or patient names) based on user role permissions."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one reason traceability matters in dataset management.",
-      "rubric": "Accept audits, explaining how a figure was produced, collaboration, or reproducibility.",
-      "sample_answer": "Traceability lets teams show how a reported figure was produced when auditors or collaborators ask."
+      "prompt": "What is data debt, and how does immutable lineage tracking prevent it?",
+      "rubric": "Data debt is the accumulation of unversioned, undocumented data modifications and silent upstream errors; lineage tracking records transformations and hashes to guarantee auditability and reproducibility.",
+      "sample_answer": "Data debt is the accumulation of undocumented, unversioned data modifications that make ML systems irreproducible; lineage tracking documents every transformation and hash pointer from ingestion to deployment."
     }
   ]
 }

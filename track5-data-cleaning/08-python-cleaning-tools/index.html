@@ -2638,10 +2638,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-pandera-cleanlab" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Pandera &amp; Cleanlab
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-pandera-cleanlab" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Pandera &amp; Cleanlab
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7542,6 +7564,22 @@
 </tbody>
 </table>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Polars Vectorized Lazy Execution</p>
+<p>For datasets between 10 GB and 100 GB that exceed single-core Pandas memory limits, adopt <strong>Polars LazyFrames (<code>pl.scan_parquet</code>)</strong>. Polars optimizes the query execution plan, applies predicate pushdown, and executes parallel SIMD operations across all CPU cores with zero Python GIL overhead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Eager In-Memory Parsing of Monolithic CSVs</p>
+<p>Loading a 20 GB uncompressed CSV into Pandas consumes up to 80–100 GB of RAM due to object boxing and pointer overhead, frequently triggering <code>MemoryError</code> or Linux OOM killer termination. Use chunked streaming (<code>pd.read_csv(chunksize=...)</code>) or convert to Apache Parquet.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Polars Vectorized Lazy Execution</p>
+<p>For datasets between 10 GB and 100 GB that exceed single-core Pandas memory limits, adopt <strong>Polars LazyFrames (<code>pl.scan_parquet</code>)</strong>. Polars optimizes the query execution plan, applies predicate pushdown, and executes parallel SIMD operations across all CPU cores with zero Python GIL overhead.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Eager In-Memory Parsing of Monolithic CSVs</p>
+<p>Loading a 20 GB uncompressed CSV into Pandas consumes up to 80–100 GB of RAM due to object boxing and pointer overhead, frequently triggering <code>MemoryError</code> or Linux OOM killer termination. Use chunked streaming (<code>pd.read_csv(chunksize=...)</code>) or convert to Apache Parquet.</p>
+</div>
 <h2 id="production-implementation-high-throughput-benchmarking-pandas-vs-polars">💻 Production Implementation: High-Throughput Benchmarking (Pandas vs. Polars)</h2>
 <p>Below is an executable benchmark performing deduplication, string sanitization, missing value imputation, and group aggregation over a 1,000,000-row synthetic dirty dataset.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7693,19 +7731,33 @@
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-pandera-cleanlab">🛠️ Tool Integration: Pandera &amp; Cleanlab</h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pandera.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Series</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">CleanedTransactionSchema</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">DataFrameModel</span><span class="p">):</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="sd">"""Declarative type and value contract enforced at ingestion."""</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">user_id</span><span class="p">:</span> <span class="n">Series</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">amount</span><span class="p">:</span> <span class="n">Series</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">category</span><span class="p">:</span> <span class="n">Series</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">isin</span><span class="o">=</span><span class="p">[</span><span class="s2">"GROCERY"</span><span class="p">,</span> <span class="s2">"ELECTRONICS"</span><span class="p">,</span> <span class="s2">"DINING"</span><span class="p">,</span> <span class="s2">"TRAVEL"</span><span class="p">,</span> <span class="s2">"UNKNOWN"</span><span class="p">])</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Production installation for modern data cleaning stack</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pip<span class="w"> </span>install<span class="w"> </span>polars<span class="w"> </span>pyarrow<span class="w"> </span>duckdb<span class="w"> </span>pandera<span class="w"> </span>cleanlab
-</span></code></pre></div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Storage Format & Parquet Chooser</h4>
+  <p>Compare read throughput, compression ratios, and memory mapping between Pandas, Polars, and Apache Arrow.</p>
+  <a href="../../tools/storage-format/" class="noc-sim-btn">Launch Storage Format Workbench →</a>
+</div>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Arrow Memory Model Zero-Copy Sharing</summary>
+<p>How does the Apache Arrow columnar memory format eliminate CPU overhead when passing large datasets between Python (Pandas/Polars) and C++/Rust analytics engines?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Apache Arrow defines a standardized, language-independent <strong>in-memory contiguous binary layout</strong>.</p>
+<p>Traditional frameworks require serializing data to disk or IPC byte buffers and deserializing it into target language object pointers (costing extensive CPU cycles and doubling RAM consumption). Arrow allows Python, C++, and Rust runtimes to share a single shared-memory pointer directly (<code>mmap</code>) without any serialization or copy step (Zero-Copy Data Transfer).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Polars Predicate Pushdown</summary>
+<p>Explain how Polars LazyFrame query optimization executes <strong>Predicate Pushdown</strong> on a multi-partition Parquet dataset.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In eager execution, all rows are loaded into RAM before applying a filter (e.g., <code>df.filter(df['country'] == 'US')</code>).</p>
+<p>In LazyFrame execution, Polars inspects the entire query plan before reading data. When scanning Parquet files, it pushes the <code>country == 'US'</code> filter down to the storage layer, inspecting the Parquet file metadata (min/max column chunk statistics). Entire row groups and file partitions that do not contain 'US' are skipped without reading their byte arrays from disk (I/O pruning).</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

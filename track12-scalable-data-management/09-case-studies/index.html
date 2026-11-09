@@ -5367,10 +5367,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7333,10 +7344,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7456,6 +7478,14 @@ f^* \approx \frac{0.023 - 0.0036}{0.03} \approx 0.646\text{ accesses per month}
 \eta_{\text{tier}} = 1 - \frac{\sum_{k=1}^K c_k^{\text{cap}} V_k}{c_1^{\text{cap}} \sum_{k=1}^K V_k}
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Reverse-ETL Feature Store Synchronization</p>
+<p>In enterprise recommendation platforms, bridge analytical data lakes and real-time inference using a <strong>Feature Store (Feast, Hopsworks)</strong>: analytical pipelines compute features in daily batch Parquet jobs, while a Reverse-ETL sync pushes the latest values into a low-latency key-value store (Redis) for sub-5ms production lookup.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Offline-Online Training-Serving Skew</p>
+<p>Computing features using one implementation in Python for offline training (e.g., Pandas rolling mean) while implementing the same feature in Java or Go for real-time serving creates subtle numerical calculation divergences that degrade production model accuracy. Unify feature definitions via a centralized Feature Store.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements an enterprise storage tier optimizer that calculates TCO, evaluates break-even migration boundaries, and asserts financial savings:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
@@ -7550,17 +7580,36 @@ f^* \approx \frac{0.023 - 0.0036}{0.03} \approx 0.646\text{ accesses per month}
 <li><strong>Cold:</strong> Automated lifecycle archiving to AWS S3 Glacier, yielding over <strong><span class="arithmatex">\(\$18\text{M}\)</span> in annual infrastructure savings</strong>.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Multi-Tier Cost Calculator</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Model enterprise capacity migration thresholds and test break-even retrieval frequencies:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Storage Format & Parquet Chooser</h4>
+  <p>Simulate real-world enterprise architectures (Uber Michelangelo, Netflix Keystone) and evaluate feature store latencies.</p>
+  <a href="../../tools/storage-format/" class="noc-sim-btn">Launch Storage Format Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Uber Michelangelo Feature Store Architecture</summary>
+<p>In Uber's Michelangelo ML platform, how does the <strong>Feature Store</strong> eliminate redundant engineering across independent modeling teams?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In traditional organizations, the Fraud team, Pricing team, and Dispatch team independently write redundant SQL scripts to calculate <code>driver_completed_trips_last_7_days</code>.</p>
+<p>Michelangelo centralized features into a shared catalog. A data engineer writes the computation once: the platform computes it automatically in batch and streams it to Redis. Any modeling team discovers and consumes the verified, pre-computed feature via a single API call (<code>features.get(['driver:trips_7d'])</code>), slashing development time from months to hours and eliminating training-serving skew.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Netflix Keystone Data Pipeline Throughput Invariants</summary>
+<p>How does Netflix's Keystone event pipeline sustain 1+ trillion events daily without data loss during regional cloud data center outages?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Keystone deploys <strong>Active-Active Cross-Region Kafka Mirroring and Anycast Routing</strong>:
+1. Client applications emit events to localized edge proxy fleets via BGP Anycast routing.
+2. Events are written to local Apache Kafka clusters distributed across three AWS regions.
+3. Kafka MirrorMaker replicates events asynchronously across regions.
+If an entire AWS data center region fails, traffic is instantly re-routed to the surviving regions within seconds with zero data loss due to multi-region partition replication.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

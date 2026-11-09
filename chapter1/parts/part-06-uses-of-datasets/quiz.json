@@ -1,47 +1,60 @@
 {
   "part_id": "part-06-uses-of-datasets",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Applications & Leakage Prevention",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Across sectors in this chapter, which lifecycle pattern recurs?",
+      "prompt": "What is entity contamination data leakage in a clinical predictive model?",
       "choices": [
-        "Skip quality and train immediately on raw dumps",
-        "Define entities, assess quality, explore, then act on findings",
-        "Only encrypt files and never analyze them",
-        "Publish models without labels"
+        "A hardware failure in the hospital's power grid",
+        "Placing different diagnostic records from the same patient into both the training and test splits, allowing the model to memorize patient-specific traits",
+        "Converting continuous blood pressure into categorical buckets",
+        "Encrypting medical records using asymmetric RSA keys"
       ],
       "answer_index": 1,
-      "explain": "Table 1.10 and the surrounding prose emphasize define, assess, explore, and act across domains."
+      "explain": "Entity contamination occurs when records from the same individual appear in both train and test partitions, causing models to memorize individual characteristics rather than general disease biomarkers."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "The customer-churn case study includes exploration and cleaning before modeling.",
-      "answer": true,
-      "explain": "Section 1.5.3 presents explore/clean as steps in the full analytics workflow before scoring and intervention."
+      "type": "mcq",
+      "prompt": "Why is a classification threshold of 0.5 rarely optimal in enterprise customer churn prevention?",
+      "choices": [
+        "Because binary classification models cannot output numbers other than 0 or 1",
+        "Because false positives and false negatives carry asymmetric economic costs; retaining high-LTV customers justifies intervening at lower probability cutoffs",
+        "Because computer processors cannot calculate floating-point probabilities between 0.4 and 0.6",
+        "Because churn prediction requires multi-class softmax loss"
+      ],
+      "answer_index": 1,
+      "explain": "The optimal decision threshold depends on the financial cost matrix: the cost of a retention offer versus the high lifetime value preserved by preventing a cancellation."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "Purchase-history datasets in retail are typically used to support:",
+      "prompt": "In time-series modeling, why must practitioners use out-of-time temporal partitioning rather than random shuffling?",
       "choices": [
-        "Segmentation, forecasting, and recommendations",
-        "Only GPU driver updates",
-        "Replacing all clinical trials",
-        "Deleting metadata by default"
+        "Random shuffling causes hard drive fragmentation",
+        "Random shuffling causes temporal lookahead leakage by using future events to train models predicting past events",
+        "Time-series models cannot process shuffled array indices",
+        "Temporal splits are only legally required under copyright law"
       ],
-      "answer_index": 0,
-      "explain": "Table 1.10 lists segmentation, demand forecasting, and recommendations for business/retail datasets."
+      "answer_index": 1,
+      "explain": "Random splitting mixes future and past records, leaking future market or seasonal trends into training features and yielding unrealistically optimistic test metrics."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Empirical Risk Minimization guarantees that a model with zero training error will achieve zero generalization error on unobserved real-world data.",
+      "answer": false,
+      "explain": "Empirical risk minimization optimizes sample loss on observed data. If the dataset has collection bias or covariate shift, empirical risk diverges from true generalization risk."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one action retention teams take after a churn model scores customers.",
-      "rubric": "Accept offers, support outreach, or similar intervention before cancellation.",
-      "sample_answer": "Intervene with offers or support before the customer cancels."
+      "prompt": "How does preprocessing leakage occur when standardizing features with mean and standard deviation?",
+      "rubric": "Computing the scaling mean and standard deviation on the entire dataset instead of fitting strictly on the training partition.",
+      "sample_answer": "Preprocessing leakage happens when normalization parameters (mean and standard deviation) are computed across the full dataset rather than being fit strictly on the training split."
     }
   ]
 }

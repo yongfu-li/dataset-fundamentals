@@ -2470,10 +2470,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        🔬 Interactive Laboratory Workbench
       
     </span>
   </a>
@@ -2485,6 +2485,28 @@
     <span class="md-ellipsis">
       
         5. Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7332,10 +7354,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        🔬 Interactive Laboratory Workbench
       
     </span>
   </a>
@@ -7347,6 +7369,28 @@
     <span class="md-ellipsis">
       
         5. Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7449,6 +7493,22 @@ R(\boldsymbol{\gamma}) = \frac{P(\boldsymbol{\gamma} \mid (a, b) \in M)}{P(\bold
     ThreshCheck -- "T_lower &lt; R &lt; T_upper" --&gt; HumanQueue["5. Clerical Adjudication Queue"]
     ThreshCheck -- "R ≤ T_lower" --&gt; Keep["6. Distinct Entities (Non-Match)"]</code></pre>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: MinHash Locality-Sensitive Hashing (LSH) for Massive Deduplication</p>
+<p>When deduplicating millions of text records or document scrapes, naive pairwise comparison requires <span class="arithmatex">\(O(N^2)\)</span> distance evaluations (trillions of operations). Deploy <strong>MinHash LSH</strong>: tokenize text into <span class="arithmatex">\(k\)</span>-shingles, hash with <span class="arithmatex">\(M\)</span> random permutations, and band buckets to identify candidate near-duplicate pairs in <span class="arithmatex">\(O(N)\)</span> linear time.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Exact-Match Deduplication in Master Data Management</p>
+<p>Relying exclusively on <code>df.drop_duplicates()</code> misses near-duplicate customer records created by typos, abbreviated addresses ("St" vs "Street"), or shifted middle initials, resulting in fragmented user entities and distorted lifetime value calculations.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: MinHash Locality-Sensitive Hashing (LSH) for Massive Deduplication</p>
+<p>When deduplicating millions of text records or document scrapes, naive pairwise comparison requires <span class="arithmatex">\(O(N^2)\)</span> distance evaluations (trillions of operations). Deploy <strong>MinHash LSH</strong>: tokenize text into <span class="arithmatex">\(k\)</span>-shingles, hash with <span class="arithmatex">\(M\)</span> random permutations, and band buckets to identify candidate near-duplicate pairs in <span class="arithmatex">\(O(N)\)</span> linear time.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Exact-Match Deduplication in Master Data Management</p>
+<p>Relying exclusively on <code>df.drop_duplicates()</code> misses near-duplicate customer records created by typos, abbreviated addresses ("St" vs "Street"), or shifted middle initials, resulting in fragmented user entities and distorted lifetime value calculations.</p>
+</div>
 <h2 id="2-production-python-implementation-fuzzy-deduplication-blocking-engine">2. Production Python Implementation: Fuzzy Deduplication &amp; Blocking Engine</h2>
 <p>The following production script implements Levenshtein dynamic programming, Jaro-Winkler scoring, and <strong>blocking-key candidate pruning</strong> to deduplicate customer master records in quadratic-free complexity:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
@@ -7602,18 +7662,13 @@ R(\boldsymbol{\gamma}) = \frac{P(\boldsymbol{\gamma} \mid (a, b) \in M)}{P(\bold
 <li><strong>Result</strong>: Automated resolution merged <strong><span class="arithmatex">\(94.8\%\)</span> of true duplicate charts</strong>, reducing clerical review overhead by <span class="arithmatex">\(88\%\)</span> and eliminating medication cross-reaction errors.</li>
 </ul>
 <hr />
-<h2 id="4-interactive-laboratory-workbench">4. 🔬 Interactive Laboratory Workbench</h2>
-<p>Test client-side tabular deduplication and string normalization:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Data Cleaning &amp; Schema Format Tools</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate fuzzy string matching, test regex normalization, and examine deduplication clusters:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/cleaning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Cleaning Workbench</a>
-    <a href="../../tools/schema-format/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Schema / Format Translator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Annotation & Deduplication</h4>
+  <p>Test fuzzy string matching (Levenshtein, Jaro-Winkler) and evaluate entity resolution algorithms client-side.</p>
+  <a href="../../tools/text-annotation/" class="noc-sim-btn">Launch Annotation Workbench →</a>
 </div>
-
 <hr />
 <h2 id="5-key-engineering-takeaways">5. Key Engineering Takeaways</h2>
 <ol>
@@ -7621,6 +7676,50 @@ R(\boldsymbol{\gamma}) = \frac{P(\boldsymbol{\gamma} \mid (a, b) \in M)}{P(\bold
 <li><strong>Quadratic Complexity Management</strong>: Never compare <span class="arithmatex">\(N \times N\)</span> pairs naively; use phonetic blocking keys (Soundex, Double Metaphone) to restrict comparisons to manageable candidate sub-blocks.</li>
 <li><strong>Fellegi-Sunter Optimality</strong>: Use probabilistic likelihood ratios to define confident automated merge thresholds while routing ambiguous borderline cases to clerical human adjudication.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Jaro-Winkler vs. Levenshtein for Entity Resolution</summary>
+<p>Why is the <strong>Jaro-Winkler</strong> metric generally superior to standard <strong>Levenshtein Distance</strong> when deduplicating human first and last names in customer relationship management (CRM) tables?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Jaro-Winkler gives <strong>higher weight to common prefixes</strong> and penalizes transpositions less severely than raw edit distance.</p>
+<p>Human name data entry errors (e.g., "Catherine" vs "Katherine" or "Smith-Jones" vs "Smith") frequently share exact initial prefixes or localized letter swaps. Jaro-Winkler applies a prefix scaling factor <span class="arithmatex">\(p\)</span> (typically <span class="arithmatex">\(0.1\)</span> for up to 4 initial characters):
+$<span class="arithmatex">\(d_w = d_j + \ell \cdot p (1 - d_j)\)</span>$
+This elevates the similarity score for names with matching prefixes, matching human phonetic intuition far better than unweighted minimum edit insertion/deletion costs.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: False Positive Costs in Medical Record Merging</summary>
+<p>In patient identity resolution across regional hospital EHR databases, why must the record linkage classifier operate at ultra-high specificity (<span class="arithmatex">\(&gt;0.9999\)</span>) even at the expense of sensitivity?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In patient record linkage, a <strong>False Positive (erroneously merging two different patients' records)</strong> is medically catastrophic.</p>
+<p>Merging Patient A's chart into Patient B's chart can lead to administering medication to which Patient B is fatally allergic, or transfusing incompatible blood types. A False Negative (failing to merge, leaving two charts for one patient) causes operational inconvenience and duplicate testing, but avoids lethal clinical contamination. Therefore, the decision threshold must strictly minimize False Positives.</p>
+</details>
+</details>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks_1">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Jaro-Winkler vs. Levenshtein for Entity Resolution</summary>
+<p>Why is the <strong>Jaro-Winkler</strong> metric generally superior to standard <strong>Levenshtein Distance</strong> when deduplicating human first and last names in customer relationship management (CRM) tables?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Jaro-Winkler gives <strong>higher weight to common prefixes</strong> and penalizes transpositions less severely than raw edit distance.</p>
+<p>Human name data entry errors (e.g., "Catherine" vs "Katherine" or "Smith-Jones" vs "Smith") frequently share exact initial prefixes or localized letter swaps. Jaro-Winkler applies a prefix scaling factor <span class="arithmatex">\(p\)</span> (typically <span class="arithmatex">\(0.1\)</span> for up to 4 initial characters):
+$<span class="arithmatex">\(d_w = d_j + \ell \cdot p (1 - d_j)\)</span>$
+This elevates the similarity score for names with matching prefixes, matching human phonetic intuition far better than unweighted minimum edit insertion/deletion costs.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: False Positive Costs in Medical Record Merging</summary>
+<p>In patient identity resolution across regional hospital EHR databases, why must the record linkage classifier operate at ultra-high specificity (<span class="arithmatex">\(&gt;0.9999\)</span>) even at the expense of sensitivity?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In patient record linkage, a <strong>False Positive (erroneously merging two different patients' records)</strong> is medically catastrophic.</p>
+<p>Merging Patient A's chart into Patient B's chart can lead to administering medication to which Patient B is fatally allergic, or transfusing incompatible blood types. A False Negative (failing to merge, leaving two charts for one patient) causes operational inconvenience and duplicate testing, but avoids lethal clinical contamination. Therefore, the decision threshold must strictly minimize False Positives.</p>
+</details>
+</details>
 <hr />
 <h2 id="6-peer-reviewed-scholarly-references">6. Peer-Reviewed Scholarly References</h2>
 <ol>

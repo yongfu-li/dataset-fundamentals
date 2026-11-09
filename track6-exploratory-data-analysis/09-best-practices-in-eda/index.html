@@ -3112,10 +3112,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7411,10 +7422,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7544,6 +7566,14 @@ p_{(k)} \le \frac{k}{m} \cdot Q^*
 <li>Reject the null hypothesis for all <span class="arithmatex">\(H_{(i)}\)</span> where <span class="arithmatex">\(i \le k\)</span>.</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Pre-Registered EDA Audit Logs</p>
+<p>Maintain an immutable, versioned Jupyter notebook or Quarto document recording every exploratory transformation, assumption, and discarded hypothesis. Documenting <em>why</em> specific features were dropped or imputed prevents exploratory hindsight bias and ensures full auditability.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Garden of Forking Paths in Exploratory Modeling</p>
+<p>Making modeling decisions (transforming variables, excluding outliers, redefining subgroups) conditionally based on whether they improve correlation or model accuracy invalidates all nominal statistical significance tests (Gelman &amp; Loken, 2013).</p>
+</div>
 <h2 id="production-implementation-lie-factor-auditor-fdr-multiplicity-controller">💻 Production Implementation: Lie Factor Auditor &amp; FDR Multiplicity Controller</h2>
 <p>Below is an executable script evaluating graphical Lie Factors and implementing the Benjamini-Hochberg False Discovery Rate correction over exploratory correlation scans.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">"""</span>
@@ -7653,17 +7683,33 @@ p_{(k)} \le \frac{k}{m} \cdot Q^*
 3. <strong>Replication Collapse:</strong> Independent clinical validation cohorts failed to replicate over <span class="arithmatex">\(98\%\)</span> of the reported genes.
 4. <strong>FDR Remediation:</strong> Re-analyzing the original dataset with the Benjamini-Hochberg procedure at <span class="arithmatex">\(Q = 0.01\)</span> reduced the valid candidate set from <span class="arithmatex">\(2,280\)</span> down to <strong><span class="arithmatex">\(3\)</span> robust, replicable loci</strong>, preserving institutional credibility and scientific resources.</p>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Visual Perception &amp; FDR Tester</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Tufte lie factors, Cleveland-McGill perceptual tasks, and Benjamini-Hochberg correction curves client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/ethical-decision/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Ethical Decision Workbench</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Practice structured, auditable exploratory data workflows and export reproducible documentation artifacts.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Garden of Forking Paths Mechanism</summary>
+<p>How does Gelman &amp; Loken's concept of the <strong>Garden of Forking Paths</strong> explain how a researcher can report a statistically significant result (<span class="arithmatex">\(p &lt; 0.05\)</span>) without consciously engaging in deliberate fraud or explicit <span class="arithmatex">\(p\)</span>-hacking?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Researchers make multiple reasonable, discretionary data-dependent analysis choices (e.g., "should we log-transform salary?", "should we remove patients over 80?", "should we control for gender?").</p>
+<p>Even without running all combinations consciously, researchers naturally stop exploring once they find a clean, plausible result that confirms their domain intuition. Because the analysis choices were contingent on the observed data, the effective search space of statistical tests was vast, inflating the true false-positive rate far above the nominal 5% threshold.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Blind Analysis in Scientific Data Work</summary>
+<p>What is <strong>Blind Analysis</strong> (as practiced in experimental particle physics and clinical genomics), and how does it eliminate unconscious observer bias during EDA?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In Blind Analysis, the data pipeline obscures or perturbs the primary target label or critical treatment variable (e.g., adding hidden random noise to particle mass, or encrypting drug vs placebo labels) while data cleaning, calibration, and feature engineering are developed.</p>
+<p>Once all cleaning rules, pipeline transformations, and statistical testing scripts are frozen and pre-registered, the data is unblinded in a single step. This guarantees that no analysis decision was chosen to favor a desired outcome.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

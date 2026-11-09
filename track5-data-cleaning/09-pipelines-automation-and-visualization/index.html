@@ -2666,10 +2666,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-scikit-learn-pipelines-missingno" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Scikit-Learn Pipelines &amp; Missingno
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-scikit-learn-pipelines-missingno" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Scikit-Learn Pipelines &amp; Missingno
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7459,6 +7481,46 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-the-mathematics-of-data-leakage">1. The Mathematics of Data Leakage</h3>
+<pre class="mermaid"><code>flowchart TD
+  RawData[("Raw Input DataStream&lt;br/&gt;Mixed Types &amp; Missing Values")] --&gt; Preprocess["Scikit-Learn ColumnTransformer"]
+
+  subgraph Preprocess ["Pre-Processing Pipeline"]
+    direction TB
+    NumPipe["Numeric Features Pipeline&lt;br/&gt;1. SimpleImputer(median)&lt;br/&gt;2. RobustScaler()"]
+    CatPipe["Categorical Features Pipeline&lt;br/&gt;1. SimpleImputer(most_frequent)&lt;br/&gt;2. TargetEncoder(cv=5)"]
+    TextPipe["Text Features Pipeline&lt;br/&gt;1. TfidfVectorizer(max_features=500)"]
+  end
+
+  Preprocess --&gt; FeatureUnion[("Feature Concat &amp; Alignment&lt;br/&gt;X_transformed in R^(N x D)")]
+  FeatureUnion --&gt; Estimator["Gradient Boosted Trees / Neural Net&lt;br/&gt;h_theta(X) -&gt; y_pred"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class RawData blue;
+  class NumPipe,CatPipe,TextPipe amber;
+  class FeatureUnion,Estimator green;</code></pre>
+<pre class="mermaid"><code>flowchart TD
+  RawData[("Raw Input DataStream&lt;br/&gt;Mixed Types &amp; Missing Values")] --&gt; Preprocess["Scikit-Learn ColumnTransformer"]
+
+  subgraph Preprocess ["Pre-Processing Pipeline"]
+    direction TB
+    NumPipe["Numeric Features Pipeline&lt;br/&gt;1. SimpleImputer(median)&lt;br/&gt;2. RobustScaler()"]
+    CatPipe["Categorical Features Pipeline&lt;br/&gt;1. SimpleImputer(most_frequent)&lt;br/&gt;2. TargetEncoder(cv=5)"]
+    TextPipe["Text Features Pipeline&lt;br/&gt;1. TfidfVectorizer(max_features=500)"]
+  end
+
+  Preprocess --&gt; FeatureUnion[("Feature Concat &amp; Alignment&lt;br/&gt;X_transformed in R^(N x D)")]
+  FeatureUnion --&gt; Estimator["Gradient Boosted Trees / Neural Net&lt;br/&gt;h_theta(X) -&gt; y_pred"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class RawData blue;
+  class NumPipe,CatPipe,TextPipe amber;
+  class FeatureUnion,Estimator green;</code></pre>
 <p>Let dataset <span class="arithmatex">\(\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^n\)</span> partitioned into training set <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span> and test set <span class="arithmatex">\(\mathcal{D}_{\text{test}}\)</span>. Let <span class="arithmatex">\(\hat{\theta} \in \Theta\)</span> denote parameters of a preprocessing transformation <span class="arithmatex">\(T_{\hat{\theta}}(\mathbf{x})\)</span> (such as mean imputation <span class="arithmatex">\(\hat{\mu}\)</span>, scaling variance <span class="arithmatex">\(\hat{\sigma}^2\)</span>, or target encoding priors).</p>
 <h4 id="global-preprocessing-hazard">Global Preprocessing Hazard</h4>
 <p>If <span class="arithmatex">\(\hat{\theta}\)</span> is computed over the entire dataset <span class="arithmatex">\(\mathcal{D}\)</span>:</p>
@@ -7506,6 +7568,22 @@ r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - \bar{M}_j)(M_{ik} - \bar{M}_
 <li><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to -1\)</span>: Missingness in one variable implies the presence of the other (e.g., conditional screening questionnaires).</li>
 </ul>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Encapsulated ColumnTransformer Serialization</p>
+<p>Always wrap feature transformations and estimators inside a unified <code>sklearn.pipeline.Pipeline</code>. Serializing the full pipeline as a single artifact (ONNX or Joblib) guarantees that preprocessing steps, scaling parameters, and imputation medians learned during training are applied identically to real-time inference payloads.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Separate Fitting on Test and Production Payloads</p>
+<p>Calling <code>.fit_transform()</code> on validation or production test data recalculates scaling means and standard deviations on unseen records. This corrupts model calibration and constitutes critical test set contamination. Always call <code>.fit()</code> strictly on training data, and <code>.transform()</code> on evaluation data.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Encapsulated ColumnTransformer Serialization</p>
+<p>Always wrap feature transformations and estimators inside a unified <code>sklearn.pipeline.Pipeline</code>. Serializing the full pipeline as a single artifact (ONNX or Joblib) guarantees that preprocessing steps, scaling parameters, and imputation medians learned during training are applied identically to real-time inference payloads.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Separate Fitting on Test and Production Payloads</p>
+<p>Calling <code>.fit_transform()</code> on validation or production test data recalculates scaling means and standard deviations on unseen records. This corrupts model calibration and constitutes critical test set contamination. Always call <code>.fit()</code> strictly on training data, and <code>.transform()</code> on evaluation data.</p>
+</div>
 <h2 id="production-implementation-leak-free-scikit-learn-pipeline-diagnostic-suite">💻 Production Implementation: Leak-Free Scikit-Learn Pipeline &amp; Diagnostic Suite</h2>
 <p>Below is a self-contained, production-grade script that executes a leak-free <code>ColumnTransformer</code> pipeline with cross-validation and evaluates the nullity correlation matrix.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7641,40 +7719,34 @@ r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - \bar{M}_j)(M_{ik} - \bar{M}_
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-scikit-learn-pipelines-missingno">🛠️ Tool Integration: Scikit-Learn Pipelines &amp; Missingno</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Library</th>
-<th style="text-align: left;">Primary Use Case</th>
-<th style="text-align: left;">Key Methods</th>
-<th style="text-align: left;">Serialization</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>scikit-learn</strong></td>
-<td style="text-align: left;">Composite DAG Execution</td>
-<td style="text-align: left;"><code>Pipeline</code>, <code>ColumnTransformer</code>, <code>FeatureUnion</code></td>
-<td style="text-align: left;"><code>joblib.dump()</code>, ONNX converter</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>missingno</strong></td>
-<td style="text-align: left;">Missingness Pattern Visualization</td>
-<td style="text-align: left;"><code>msno.matrix()</code>, <code>msno.heatmap()</code>, <code>msno.dendrogram()</code></td>
-<td style="text-align: left;">Matplotlib figures</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Featuretools</strong></td>
-<td style="text-align: left;">Automated Deep Feature Synthesis</td>
-<td style="text-align: left;"><code>ft.dfs(entityset=es, target_dataframe_name=...)</code></td>
-<td style="text-align: left;">Parquet / JSON metadata</td>
-</tr>
-</tbody>
-</table>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Core pipeline and visualization dependencies</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pip<span class="w"> </span>install<span class="w"> </span>scikit-learn<span class="w"> </span>missingno<span class="w"> </span>featuretools
-</span></code></pre></div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Visual Pipeline Builder</h4>
+  <p>Build, configure, and inspect multi-stage data cleaning pipelines with drag-and-drop transform blocks in the browser.</p>
+  <a href="../../tools/pipeline-builder/" class="noc-sim-btn">Launch Pipeline Builder Workbench →</a>
+</div>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Data Leakage Prevention via Scikit-Learn Pipeline</summary>
+<p>Why does nesting <code>StandardScaler</code> inside a <code>Pipeline</code> passed to <code>cross_val_score</code> prevent data leakage, whereas scaling the whole dataset first before calling <code>cross_val_score</code> violates statistical rigor?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> If you scale the full dataset first, the global mean <span class="arithmatex">\(\mu_{\text{global}}\)</span> and standard deviation <span class="arithmatex">\(\sigma_{\text{global}}\)</span> are computed across all instances, including the validation fold. Information about the validation fold's distribution leaks into the training fold.</p>
+<p>When <code>StandardScaler</code> is inside the <code>Pipeline</code>, <code>cross_val_score</code> fits the scaler strictly on the <span class="arithmatex">\(K-1\)</span> training folds during each split, learning <span class="arithmatex">\(\mu_{\text{train}}\)</span> and <span class="arithmatex">\(\sigma_{\text{train}}\)</span>, and applies <code>.transform()</code> to the holdout fold using only training statistics.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Custom Transformer Contract</summary>
+<p>What two methods must a custom Python class implement to integrate seamlessly into a Scikit-Learn <code>Pipeline</code> or <code>ColumnTransformer</code>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The class must inherit from <code>BaseEstimator</code> and <code>TransformerMixin</code> and implement:
+1. <code>fit(self, X, y=None)</code>: Learns parameters from training data (e.g., calculates column medians, outlier cutoff thresholds) and returns <code>self</code>.
+2. <code>transform(self, X)</code>: Applies the learned transformation to input data <span class="arithmatex">\(X\)</span> without updating parameters and returns the transformed array or DataFrame.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

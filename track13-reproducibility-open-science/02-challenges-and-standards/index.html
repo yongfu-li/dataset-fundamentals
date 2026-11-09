@@ -5544,10 +5544,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7333,10 +7344,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7463,6 +7485,14 @@ S_i &amp;= t_i
 \]</div>
 <p>where criteria encompass: (1) specification of exact random seeds, (2) compute infrastructure description, (3) dataset split hashes, (4) hyperparameters tuning bounds, and (5) code repository preservation.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: IEEE Standard for Data Quality Assurance (IEEE 730 / ISO 8000)</p>
+<p>Align research data governance with <strong>ISO 8000 and IEEE 730 software engineering quality standards</strong>: mandate automated checksum verification (SHA-256), cryptographic signatures, and reproducible execution environments as prerequisite gates for dataset peer review.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unrecorded Stochastic Seeds</p>
+<p>Publishing randomized algorithms (stochastic gradient descent, t-SNE, random train/test splits) without recording the exact pseudo-random number generator (PRNG) state and seed prevents exact replication of figures and tabular numbers.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script proves the mathematical non-associativity of floating-point reduction, demonstrates Kahan compensated precision, and implements an automated reproducibility compliance auditor:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -7564,17 +7594,33 @@ S_i &amp;= t_i
 <li><strong>The Root Cause:</strong> In addition to policy weight initialization, subtle variations in OpenAI Gym's internal MuJoCo integration—including non-deterministic CPU vectorization flags—caused trajectory rollouts to diverge after just 30 simulation timesteps. The study resulted in widespread adoption of the <strong>NeurIPS Reproducibility Checklist</strong>.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Determinism Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Audit floating-point rounding errors, test PRNG seeds, and calculate checklist compliance:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Metadata Completeness Checker</h4>
+  <p>Test automated reproducibility scorecards, audit random seed specifications, and verify environment lockfiles.</p>
+  <a href="../../tools/metadata-checker/" class="noc-sim-btn">Launch Metadata Checker →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Floating-Point Non-Determinism Across GPU Architectures</summary>
+<p>Why can executing the exact same PyTorch script with fixed random seed <code>torch.manual_seed(42)</code> produce slightly different floating-point results when executed on an NVIDIA A100 vs an NVIDIA H100 GPU?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Non-determinism arises from <strong>floating-point non-associativity and parallel atomic reduction order</strong>.</p>
+<p>In parallel GPU operations (e.g., <code>atomicAdd</code> in backward convolutions), floating-point additions happen in non-deterministic thread arrival order: <span class="arithmatex">\((a + b) + c \ne a + (b + c)\)</span> due to rounding. Furthermore, architectural differences in Tensor Core accumulation (TF32, FP16 fusions) introduce micro-variations. Achieving bitwise exactness requires forcing deterministic algorithms (<code>torch.use_deterministic_algorithms(True)</code>) at a minor performance cost.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The Computational Provenance DAG Invariant</summary>
+<p>Why must a scientific computational provenance workflow be mathematically structured as a <strong>Directed Acyclic Graph (DAG)</strong>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In scientific computing, causality requires a strict, irreversible temporal arrow: an output entity cannot simultaneously be an input ancestor of itself.</p>
+<p>Acyclicity (<span class="arithmatex">\(\nexists \text{ path } u \to \dots \to u\)</span>) guarantees that computation can be executed via <strong>Topological Sorting</strong>, establishing a deterministic execution sequence where all prerequisite inputs are guaranteed complete before downstream dependent stages begin.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

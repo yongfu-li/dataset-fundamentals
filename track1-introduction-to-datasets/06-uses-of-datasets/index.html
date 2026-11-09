@@ -7451,6 +7451,14 @@
 \]</div>
 <p>The fidelity of <span class="arithmatex">\(\hat{\theta}\)</span> depends entirely on whether <span class="arithmatex">\(\mathcal{D}_N\)</span> accurately reflects the operational environment without sampling bias, historical stereotyping, or data leakage.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Strict Temporal Split Discipline</p>
+<p>In real-world predictive workflows (e.g., fraud, churn, demand forecasting), always partition training, validation, and test sets strictly along the time dimension. Random cross-validation leaks future trends into past predictions, producing fictitious validation accuracy.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Benchmark Overfitting</p>
+<p>Repeatedly tuning model hyperparameters against a static public benchmark (e.g., ImageNet, GLUE) causes the research community to overfit to the idiosyncratic quirks and label noise of that specific benchmark rather than learning generalized real-world capabilities.</p>
+</div>
 <h2 id="2-sectoral-applications-decision-topologies">2. Sectoral Applications &amp; Decision Topologies</h2>
 <table>
 <thead>

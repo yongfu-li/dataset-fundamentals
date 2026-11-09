@@ -1395,6 +1395,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7454,6 +7465,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7575,6 +7597,14 @@
 </tbody>
 </table>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Hybrid Secondary-Primary Data Harmonization</p>
+<p>When merging internal secondary CRM logs with external primary sensor streams, establish an explicit <strong>Schema Alignment Contract</strong>. Normalize timestamps to UTC microsecond epochs, cast ISO-3166 country codes, and map domain entities through a unified canonical ID graph to eliminate relational collisions.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: The Passive Scraping License Trap</p>
+<p>Treating publicly accessible web pages as unencumbered secondary data creates severe legal and operational liability. Unregulated scraping without verifying <code>robots.txt</code>, terms of service (ToS), and intellectual property licensing risks IP infringement lawsuits, GDPR Article 6 violations, and IP subnet blacklisting.</p>
+</div>
 <h2 id="2-mathematical-formalization-of-sources">2. Mathematical Formalization of Sources</h2>
 <h3 id="a-primary-data-generation">A. Primary Data Generation</h3>
 <p>Primary data generation models an empirical sampling apparatus operating directly on the physical universe:</p>
@@ -7699,16 +7729,12 @@
 </table>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Explore hands-on multi-source ingestion tools:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Multi-Source Ingestion Tools</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Test streaming telemetry filters and evaluate sampling allocations:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/api-collector/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Ingestion Simulator</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Technique Visualizer</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Schema & Format Translator</h4>
+  <p>Test schema alignment across disparate primary and secondary data sources, converting nested JSON logs into strict Apache Parquet tables.</p>
+  <a href="../../tools/schema-format/" class="noc-sim-btn">Launch Schema Format Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7716,6 +7742,27 @@
 <li><strong>Secondary Data Tax</strong>: Secondary data saves fieldwork costs but introduces a hidden "curation tax" (resolving schema mismatches, MAUP spatial misalignments, and undocumented distribution shifts).</li>
 <li><strong>Streaming Invariants</strong>: Real-time streams require event-time watermarking and physical invariant screening to filter out-of-order packets and failing sensor batteries.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Quantifying Survivorship Bias in Secondary Data</summary>
+<p>A credit risk modeling team trains a default prediction model using historical loan payment records from active bank accounts spanning 2018–2024. Why does this secondary dataset suffer from severe survivorship bias, and what mathematical adjustment must be applied?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Accounts that experienced catastrophic default or bankruptcy prior to 2024 were closed and purged from the active database, systematically censoring the most predictive negative outcome records from the sample frame.</p>
+<p>To correct for this right-censoring survivorship bias, data engineers must re-integrate dormant/closed account historical archives and apply <strong>Heckman Two-Stage Correction</strong> or <strong>Inverse Probability of Censoring Weighting (IPCW)</strong>:
+$<span class="arithmatex">\(w_i = \frac{1}{\Pr(C_i \ge t \mid X_i)}\)</span>$
+weighting observed surviving trajectories by the inverse probability of remaining uncensored at time <span class="arithmatex">\(t\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Shannon Information Density in Real-Time Telemetry</summary>
+<p>An IoT sensor stream transmits vibration data at 1 kHz. If 98% of the readings represent baseline stationary hum (<span class="arithmatex">\(\sigma^2 \le 0.01\)</span>), how does applying edge-level Huffman entropy coding reduce downstream bandwidth without information loss?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> By Shannon's Source Coding Theorem, the minimum expected code length is bounded by the source entropy <span class="arithmatex">\(H(X) = -\sum p(x) \log_2 p(x)\)</span>. When one symbol (baseline hum) has probability <span class="arithmatex">\(p \approx 0.98\)</span>, its self-information is <span class="arithmatex">\(-\log_2(0.98) \approx 0.029\)</span> bits. Huffman coding assigns a 1-bit prefix to this dominant state, compressing the transmission payload by over 85% compared to raw 32-bit floating-point streaming.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

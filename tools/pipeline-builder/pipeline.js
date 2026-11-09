@@ -197,9 +197,10 @@
       .map((n) => {
         const def = NODE_TYPES[n.type];
         const isSel = n.id === selectedNodeId ? "is-selected" : "";
+        const isSuccess = n.lastResult ? "is-success" : "";
         const stat = n.lastResult ? `<div class="pipe-node-stats">${n.lastResult.log}</div>` : "";
         return `
-          <div class="pipe-node ${isSel}" id="${n.id}" style="left: ${n.x}px; top: ${n.y}px;" data-node="${n.id}">
+          <div class="pipe-node ${isSel} ${isSuccess}" id="${n.id}" style="left: ${n.x}px; top: ${n.y}px;" data-node="${n.id}">
             ${def.inputs > 0 ? `<div class="pipe-socket pipe-socket-in" data-socket-in="${n.id}" title="Input"></div>` : ""}
             <div class="pipe-node-header" style="border-left: 4px solid ${def.color};">
               <span>${def.icon} ${def.title}</span>

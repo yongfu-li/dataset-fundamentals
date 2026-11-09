@@ -34,12 +34,12 @@
 <section class="hero">
   <h1>Dataset formats</h1>
   <div class="clip-meta">
-    <span class="pill">~6 min</span>
+    <span class="pill">~8 min</span>
     <span class="pill pill-muted">Chapter 1</span>
     <span class="pill pill-muted">Part 3 of 7</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-types-of-datasets/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-secondary" href="../../../tools/schema-format/index.html">Try schema / format translator</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-characteristics-of-good-datasets/index.html" title="Characteristics of good datasets">Next →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-02-types-of-datasets/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-secondary" href="../../../tools/schema-format/index.html">Try schema / format translator</a><a class="btn btn-secondary" href="../../../tools/storage-format/index.html">Try storage format benchmark</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../part-04-characteristics-of-good-datasets/index.html" title="Characteristics of good datasets">Next →</a>
   </nav>
 </section>
 
@@ -56,16 +56,17 @@
 
 <h2>Learning objectives</h2>
 <ul class='objectives'>
-<li>Name common formats for tabular, hierarchical, and geospatial data</li>
-<li>Explain when CSV, SQL, HDF5, or GeoJSON fits</li>
-<li>Link format choice to downstream tooling</li>
+<li>Contrast row-oriented stores with columnar architectures through mechanical sympathy with modern hardware</li>
+<li>Formalize analytical query I/O using mathematical models of projection and compression</li>
+<li>Analyze columnar encoding techniques including dictionary compression, run-length encoding, and predicate pushdown</li>
+<li>Evaluate SQL, HDF5, and Parquet trade-offs using our interactive benchmark simulator</li>
 </ul>
 
 
 <section class="panel sp-tool-callout" id="tools">
   <h2>Try it</h2>
   <p class="lead">Practice this part's ideas in the browser.</p>
-  <div class="deck-links"><a class="btn btn-secondary" href="../../../tools/schema-format/index.html">Try schema / format translator</a></div>
+  <div class="deck-links"><a class="btn btn-secondary" href="../../../tools/schema-format/index.html">Try schema / format translator</a><a class="btn btn-secondary" href="../../../tools/storage-format/index.html">Try storage format benchmark</a></div>
 </section>
 
 
@@ -100,7 +101,7 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Dataset formats</h3><ul><li>Structure tells you how records are organized; format tells you how they are stored</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Leave able to name formats for tabular, hierarchical</li><li>Geospatial data, explain when CSV, SQL, HDF5, or GeoJSON fits</li><li>Connect format choice to the tools that will consume the data</li></ul></div><div class="slide-card"><h3>Why format matters</h3><ul><li>Format is the serialization of structure</li><li>Matching format to structure, expected volume</li><li>A mismatch, for example, forcing huge arrays through naive CSV, creates avoidable cost</li></ul></div><div class="slide-card"><h3>Common formats at a glance</h3><ul><li>CSV remains the common language for simple tables</li><li>SQL tables add typed schemas and efficient queries</li><li>JSON and GeoJSON handle nested objects and spatial features</li><li>HDF5 targets large scientific or array-oriented datasets</li><li>Each aligns with a structural niche</li></ul></div><div class="slide-card"><h3>Example 1.8 — SQL format</h3><ul><li>Example 1.8 — hands-on module</li><li>Example 1.8 shows structured data in a relational form</li><li>When attributes are stable and analysts need aggregations</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example8/</code></li></ul></div><div class="slide-card"><h3>Example 1.8 — listing</h3><pre><code>]
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Dataset Formats</h3><ul><li>Welcome to Part 3 of Chapter 1</li></ul></div><div class="slide-card"><h3>Learning Objectives</h3><ul><li>Four foundational goals guide our exploration of dataset formats</li><li>We contrast row-oriented stores with columnar architectures through mechanical sympathy</li><li>We formalize analytical query input-output using mathematical models of projection and</li><li>Predicate pushdown</li><li>Finally, we evaluate SQL, HDF5</li></ul></div><div class="slide-card"><h3>The Physical Storage Serialization Dilemma</h3><ul><li>Choosing a storage format is an architectural decision that governs system performance</li><li>A format mismatch imposes severe computational and financial penalties across data</li><li>Storing hundreds of millions of transaction records in uncompressed CSV wastes massive</li><li>Columnar and binary serializations eliminate parsing overhead by storing values in native</li></ul></div><div class="slide-card"><h3>Row Stores versus Columnar Stores: Mechanical Sympathy</h3><ul><li>Modern NVMe solid-state storage reads data in fixed physical four-kilobyte pages</li><li>Row-oriented layouts group all fields of an individual record contiguously on physical</li><li>Row layouts excel at transactional point lookups where single full records are modified</li><li>Columnar stores like Apache Parquet layout all values of a single column contiguously</li><li>When computing aggregations over selected columns</li></ul></div><div class="slide-card"><h3>Mathematical Model of Analytical Query I/O</h3><ul><li>Analytical input-output efficiency can be modeled mathematically</li><li>For a table of N records and M columns</li><li>A columnar architecture executes projection pushdown</li><li>Columnar compression ratios further shrink physical disk footprint by exploiting type</li><li>Total bytes transferred drops by an order of magnitude for analytical workloads</li></ul></div><div class="slide-card"><h3>Advanced Columnar Encoding: Dictionary and RLE</h3><ul><li>Columnar engines achieve high compression ratios through specialized entropy encoding</li><li>Categorical features with low cardinality replace repetitive strings with compact integer</li><li>Run-length encoding compresses consecutive identical values into compact value and count</li><li>Combining dictionary mapping with run-length encoding dramatically reduces memory</li></ul></div><div class="slide-card"><h3>Predicate Pushdown and Row Group Metadata Skipping</h3><ul><li>Apache Parquet organizes large datasets into self-contained row groups</li><li>Each row group header maintains embedded metadata storing exact minimum, maximum</li><li>When executing filtered queries</li><li>If a query filter falls outside the row group minimum and maximum range</li></ul></div><div class="slide-card"><h3>Example 1.8 — SQL Relational Storage</h3><ul><li>Example 1.8 — hands-on module</li><li>Example 1.8 demonstrates relational tabular data managed by a relational SQL engine</li><li>Relational database management systems enforce strong column typing, unique primary keys</li><li>Structured query language allows analysts to perform declarative filtering, joins</li><li>View files: <code>modules/chapter1/example8/</code></li></ul></div><div class="slide-card"><h3>Example 1.8 — listing</h3><pre><code>]
 CREATE TABLE Customers (
     customer_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -121,7 +122,7 @@ CREATE TABLE Order_Items (
     product_id INT NOT NULL,
     quantity INT NOT NULL CHECK (quantity &gt; 0),
     FOREIGN KEY (order_id) REFERENCES Orders(order_id)
-);</code></pre></div><div class="slide-card"><h3>Example 1.9 — HDF5</h3><ul><li>Example 1.9 — hands-on module</li><li>Example 1.9 creates and reads an HDF5 file</li><li>Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example9/</code></li></ul></div><div class="slide-card"><h3>Example 1.9 — listing</h3><pre><code>import h5py
+);</code></pre></div><div class="slide-card"><h3>Example 1.9 — Hierarchical Scientific Arrays in HDF5</h3><ul><li>Example 1.9 — hands-on module</li><li>Example 1.9 demonstrates scientific array storage using the Hierarchical Data Format</li><li>HDF5 organizes complex multidimensional numeric arrays into tree-like group hierarchies</li><li>It supports chunked storage and native compression for high-dimensional scientific tensors</li><li>View files: <code>modules/chapter1/example9/</code></li></ul></div><div class="slide-card"><h3>Example 1.9 — listing</h3><pre><code>import h5py
 import numpy as np
 
 with h5py.File(&quot;example.h5&quot;, &quot;w&quot;) as hdf:
@@ -134,13 +135,13 @@ with h5py.File(&quot;example.h5&quot;, &quot;w&quot;) as hdf:
 with h5py.File(&quot;example.h5&quot;, &quot;r&quot;) as hdf:
     print(&quot;Datasets in root:&quot;, list(hdf.keys()))
     random_data = hdf[&quot;random_data&quot;][:]
-    print(&quot;Shape of &#x27;random_data&#x27;:&quot;, random_data.shape)</code></pre></div><div class="slide-card"><h3>Choosing a format</h3><ul><li>Start from structure, then consider size, update rate, and tooling</li><li>Prefer formats your team already supports</li><li>Metadata and documentation, covered next, make that choice durable</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Format serializes structure</li><li>Everyday tables lean on CSV and SQL</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz, then move to characteristics of good datasets, accuracy, completeness</li></ul></div></div></div>
+    print(&quot;Shape of &#x27;random_data&#x27;:&quot;, random_data.shape)</code></pre></div><div class="slide-card"><h3>Multi-Format Trade-Off Matrix: Parquet, CSV, and SQLite</h3><ul><li>Engineering teams must select formats based on access patterns and scale</li><li>Plain text CSV remains universally portable for small diagnostic exports despite slow</li><li>Relational SQLite provides zero-configuration local transactions and indexed queries for</li><li>Apache Parquet represents the industry standard for analytical data lakes</li><li>Specialized scientific formats like HDF5 and Zarr remain optimal for high-dimensional</li></ul></div><div class="slide-card"><h3>In-Browser Storage Format Benchmark and I/O Simulator</h3><ul><li>Learners can evaluate serialization trade-offs interactively using our in-browser Storage</li><li>The tool benchmarks file size, write latency</li><li>You can adjust column selectivity and row group sizes to observe predicate pushdown and</li><li>Observing these live metrics reinforces theoretical input-output equations with concrete</li></ul></div><div class="slide-card"><h3>Key Takeaways and Format Decision Framework</h3><ul><li>Four principles govern physical format selection for dataset engineering</li><li>Row layouts optimize single-record transactional writes and key-based point lookups</li><li>Columnar stores optimize analytical aggregations through projection pushdown and entropy</li><li>Predicate pushdown skips irrelevant row groups using embedded header metadata</li><li>Matching storage format to downstream access patterns prevents expensive hardware</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Pause here to test your understanding with the quiz for this part</li></ul></div></div></div>
 </details>
 
 
 <details class="panel" data-persist="transcript">
   <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Dataset formats</h3><p>Structure tells you how records are organized; format tells you how they are stored. This part connects common on-disk formats to the types from the previous part.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should leave able to name formats for tabular, hierarchical, and geospatial data, explain when CSV, SQL, HDF5, or GeoJSON fits, and connect format choice to the tools that will consume the data.</p></div><div class="transcript"><h3>Slide 3 — Why format matters</h3><p>Format is the serialization of structure. Matching format to structure, expected volume, and downstream tools reduces friction across collection and analysis. A mismatch—for example, forcing huge arrays through naive CSV—creates avoidable cost.</p></div><div class="transcript"><h3>Slide 4 — Common formats at a glance</h3><p>CSV remains the common language for simple tables. SQL tables add typed schemas and efficient queries. JSON and GeoJSON handle nested objects and spatial features. HDF5 targets large scientific or array-oriented datasets. Each aligns with a structural niche.</p></div><div class="transcript"><h3>Slide 5 — Example 1.8 — SQL format</h3><p>Example 1.8 shows structured data in a relational form: typed columns and queries for filtering and joins. When attributes are stable and analysts need aggregations, SQL, or an equivalent relational store, is a natural fit. The example 8 module lets you explore this hands-on.</p></div><div class="transcript"><h3>Slide 6 — Example 1.9 — HDF5</h3><p>Example 1.9 creates and reads an HDF5 file—a hierarchical binary format efficient for large numeric arrays. Scientific and machine-learning pipelines often prefer HDF5 when CSV becomes too slow or too large. Try the example 9 module to create and read one yourself.</p></div><div class="transcript"><h3>Slide 7 — Choosing a format</h3><p>Start from structure, then consider size, update rate, and tooling. Prefer formats your team already supports, and document the choice so later consumers are not guessing. Metadata and documentation—covered next—make that choice durable.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Format serializes structure. Everyday tables lean on CSV and SQL; specialized shapes and scales use HDF5, GeoJSON, and related formats.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Complete the quiz, then move to characteristics of good datasets—accuracy, completeness, and related quality dimensions.</p></div></div>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Dataset Formats</h3><p>Welcome to Part 3 of Chapter 1. Having analyzed dataset structural types, we now examine physical storage serialization architectures. We study how on-disk byte layouts govern input-output throughput, query latency, and memory footprints.</p></div><div class="transcript"><h3>Slide 2 — Learning Objectives</h3><p>Four foundational goals guide our exploration of dataset formats. We contrast row-oriented stores with columnar architectures through mechanical sympathy with modern storage hardware. We formalize analytical query input-output using mathematical models of projection and compression. We analyze columnar encoding techniques including dictionary compression, run-length encoding, and predicate pushdown. Finally, we evaluate SQL, HDF5, and Parquet trade-offs using our interactive benchmark simulator.</p></div><div class="transcript"><h3>Slide 3 — The Physical Storage Serialization Dilemma</h3><p>Choosing a storage format is an architectural decision that governs system performance. A format mismatch imposes severe computational and financial penalties across data pipelines. Storing hundreds of millions of transaction records in uncompressed CSV wastes massive storage and bandwidth parsing text delimiters into binary numbers. Columnar and binary serializations eliminate parsing overhead by storing values in native binary representations.</p></div><div class="transcript"><h3>Slide 4 — Row Stores versus Columnar Stores: Mechanical Sympathy</h3><p>Modern NVMe solid-state storage reads data in fixed physical four-kilobyte pages. Row-oriented layouts group all fields of an individual record contiguously on physical disk pages. Row layouts excel at transactional point lookups where single full records are modified. Columnar stores like Apache Parquet layout all values of a single column contiguously. When computing aggregations over selected columns, columnar engines load only target attributes, bypassing discarded fields entirely.</p></div><div class="transcript"><h3>Slide 5 — Mathematical Model of Analytical Query I/O</h3><p>Analytical input-output efficiency can be modeled mathematically. For a table of N records and M columns, an uncompressed row store must read all column byte widths for every query. A columnar architecture executes projection pushdown, reading only requested column subsets. Columnar compression ratios further shrink physical disk footprint by exploiting type homogeneity. Total bytes transferred drops by an order of magnitude for analytical workloads.</p></div><div class="transcript"><h3>Slide 6 — Advanced Columnar Encoding: Dictionary and RLE</h3><p>Columnar engines achieve high compression ratios through specialized entropy encoding schemes. Categorical features with low cardinality replace repetitive strings with compact integer tokens. Run-length encoding compresses consecutive identical values into compact value and count pairs. Combining dictionary mapping with run-length encoding dramatically reduces memory footprint while preserving direct random access.</p></div><div class="transcript"><h3>Slide 7 — Predicate Pushdown and Row Group Metadata Skipping</h3><p>Apache Parquet organizes large datasets into self-contained row groups. Each row group header maintains embedded metadata storing exact minimum, maximum, and null counts for every column. When executing filtered queries, query engines inspect row group metadata before loading data. If a query filter falls outside the row group minimum and maximum range, the engine skips the entire row group from disk.</p></div><div class="transcript"><h3>Slide 8 — Example 1.8 — SQL Relational Storage</h3><p>Example 1.8 demonstrates relational tabular data managed by a relational SQL engine. Relational database management systems enforce strong column typing, unique primary keys, and foreign key integrity. Structured query language allows analysts to perform declarative filtering, joins, and aggregations across related tables. You can inspect the table schemas and execute analytical queries in the example 8 module.</p></div><div class="transcript"><h3>Slide 9 — Example 1.9 — Hierarchical Scientific Arrays in HDF5</h3><p>Example 1.9 demonstrates scientific array storage using the Hierarchical Data Format version 5. HDF5 organizes complex multidimensional numeric arrays into tree-like group hierarchies. It supports chunked storage and native compression for high-dimensional scientific tensors. Pipelines in physics, climate modeling, and deep learning rely on HDF5 for rapid multi-dimensional slicing. You can run code to create and query an HDF5 archive in the example 9 module.</p></div><div class="transcript"><h3>Slide 10 — Multi-Format Trade-Off Matrix: Parquet, CSV, and SQLite</h3><p>Engineering teams must select formats based on access patterns and scale. Plain text CSV remains universally portable for small diagnostic exports despite slow parsing. Relational SQLite provides zero-configuration local transactions and indexed queries for mobile and embedded applications. Apache Parquet represents the industry standard for analytical data lakes, maximizing compression and query speed. Specialized scientific formats like HDF5 and Zarr remain optimal for high-dimensional numeric arrays.</p></div><div class="transcript"><h3>Slide 11 — In-Browser Storage Format Benchmark and I/O Simulator</h3><p>Learners can evaluate serialization trade-offs interactively using our in-browser Storage Format Benchmark. The tool benchmarks file size, write latency, and analytical query scan times across CSV, JSON, and Parquet. You can adjust column selectivity and row group sizes to observe predicate pushdown and projection savings. Observing these live metrics reinforces theoretical input-output equations with concrete measurements.</p></div><div class="transcript"><h3>Slide 12 — Key Takeaways and Format Decision Framework</h3><p>Four principles govern physical format selection for dataset engineering. Row layouts optimize single-record transactional writes and key-based point lookups. Columnar stores optimize analytical aggregations through projection pushdown and entropy compression. Predicate pushdown skips irrelevant row groups using embedded header metadata. Matching storage format to downstream access patterns prevents expensive hardware bottlenecks.</p></div><div class="transcript"><h3>Slide 13 — Next Steps</h3><p>Pause here to test your understanding with the quiz for this part. When ready, proceed to Part 4 to explore the characteristics of good datasets and multi-dimensional quality frameworks.</p></div></div>
 </details>
 
 
@@ -148,48 +149,61 @@ with h5py.File(&quot;example.h5&quot;, &quot;r&quot;) as hdf:
   <div id="quiz-root" data-next-href="../part-04-characteristics-of-good-datasets/index.html" data-next-label="Continue to Characteristics of good datasets"></div>
   <script id="quiz-data" type="application/json">{
   "part_id": "part-03-dataset-formats",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Storage Formats & Serialization",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which format is typically a strong fit for large scientific array datasets?",
+      "prompt": "Why are columnar formats such as Apache Parquet vastly faster than row-oriented CSV files for analytical queries?",
       "choices": [
-        "Plain CSV only",
-        "HDF5",
-        "Unformatted free text",
-        "Screenshots of spreadsheets"
+        "Columnar formats encrypt all data using public keys by default",
+        "Columnar formats enable projection pushdown to load only requested columns, and exploit type homogeneity for high compression",
+        "Row stores cannot be read by multi-core processors",
+        "Columnar formats eliminate the need for an operating system file system"
       ],
       "answer_index": 1,
-      "explain": "Example 1.9 and the chapter format discussion highlight HDF5 for hierarchical/binary storage of large numeric data."
+      "explain": "Columnar layouts group identical attribute types contiguously, allowing engines to read only the columns needed by a query and achieve high compression via dictionary and run-length encoding."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Format choice should ignore the tools that will query or train on the data.",
-      "answer": false,
-      "explain": "The chapter stresses matching format to structure, volume, and downstream tools."
+      "type": "mcq",
+      "prompt": "How does predicate pushdown operate in Apache Parquet to accelerate filtered queries?",
+      "choices": [
+        "It decompresses all row groups sequentially and checks every row in Python",
+        "It uses min/max column metadata stored in row group headers to skip entire blocks from disk if they cannot match the filter condition",
+        "It deletes unmatched rows permanently from the storage drive",
+        "It re-encodes numbers into ASCII strings for faster regular expression matching"
+      ],
+      "answer_index": 1,
+      "explain": "Row group headers contain min, max, and null count statistics. If a filter predicate cannot be satisfied within those bounds, the entire row group is skipped without reading it from disk."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "SQL tables are primarily associated with which structural type?",
+      "prompt": "Which format is specifically designed for high-dimensional scientific tensors and multidimensional array slicing (e.g. physics simulations and climate models)?",
       "choices": [
-        "Unstructured audio",
-        "Structured data with a fixed schema",
-        "Only geospatial polygons",
-        "Documentation files"
+        "Plain text CSV",
+        "HDF5 (Hierarchical Data Format version 5)",
+        "Tab-Separated Values (TSV)",
+        "Raw JSON objects"
       ],
       "answer_index": 1,
-      "explain": "SQL tables store structured records with typed columns suitable for queries and joins."
+      "explain": "HDF5 is designed to store large, multidimensional numerical arrays in hierarchical groups with chunking and native binary compression."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "In an uncompressed row-oriented format, calculating the average of a single numeric column requires reading all other unused column bytes on that row from disk.",
+      "answer": true,
+      "explain": "Because row-oriented stores pack all attributes of a tuple contiguously, reading one column requires scanning through the entire physical row."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one reason CSV can be a poor choice for very large numeric arrays.",
-      "rubric": "Accept size, slow I/O, lack of typed binary efficiency, or awkward nested/array structure.",
-      "sample_answer": "CSV is text-heavy and slow for large arrays; binary formats like HDF5 read and write more efficiently."
+      "prompt": "Explain how dictionary encoding and run-length encoding (RLE) combine to compress low-cardinality categorical data.",
+      "rubric": "Dictionary replaces long strings with short integer tokens; RLE replaces consecutive duplicate tokens with (token, count) pairs.",
+      "sample_answer": "Dictionary encoding replaces repetitive string values with small integer IDs, and run-length encoding collapses consecutive identical IDs into compact (value, count) pairs."
     }
   ]
 }

@@ -34,7 +34,7 @@
 <section class="hero">
   <h1>Uses of datasets</h1>
   <div class="clip-meta">
-    <span class="pill">~7 min</span>
+    <span class="pill">~8 min</span>
     <span class="pill pill-muted">Chapter 1</span>
     <span class="pill pill-muted">Part 6 of 7</span>
   </div>
@@ -56,9 +56,10 @@
 
 <h2>Learning objectives</h2>
 <ul class='objectives'>
-<li>Map sectors to typical datasets and analytical goals</li>
-<li>Trace the shared lifecycle across domains</li>
-<li>Outline the customer-churn case study steps</li>
+<li>Trace the closed-loop value creation cycle from raw phenomena to production decision-making</li>
+<li>Analyze cross-sector applications and their asymmetric cost topologies</li>
+<li>Formalize rigorous data partitioning protocols and eliminate three deadly data leakage vectors</li>
+<li>Evaluate customer churn optimization and tune economic decision thresholds in our interactive workbench</li>
 </ul>
 
 
@@ -100,7 +101,7 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Uses of datasets</h3><ul><li>Earlier parts answered what a dataset is and how to read one responsibly</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Map sectors to typical datasets and goals, recognize the shared lifecycle across domains</li><li>Outline the steps in the customer-churn case study</li></ul></div><div class="slide-card"><h3>Applications across sectors</h3><ul><li>Use them to monitor performance, detect risk, or personalize services</li><li>Retail emphasizes purchase and clickstream data</li></ul></div><div class="slide-card"><h3>Example 1.21 — Purchase history</h3><ul><li>Example 1.21 — hands-on module</li><li>Example 1.21 stores one row per order with customer, category, date, and amount</li><li>Aggregating by customer reveals repurchase intervals and category preferences that drive</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example21/</code></li></ul></div><div class="slide-card"><h3>Case study: customer churn</h3><ul><li>The churn case study stitches the chapter together</li><li>Ranked feature importance highlights which behaviors precede churn</li></ul></div><div class="slide-card"><h3>Example 1.31 — Churn model sketch</h3><ul><li>Example 1.31 — hands-on module</li><li>Example 1.31 provides a Python sketch of that pipeline</li><li>The same structure appears in fraud scoring and demand forecasting</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example31/</code></li></ul></div><div class="slide-card"><h3>Example 1.31 — listing</h3><pre><code>import pandas as pd
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Uses of Datasets in Modeling and Industry</h3><ul><li>Welcome to Part 6 of Chapter 1</li></ul></div><div class="slide-card"><h3>Learning Objectives</h3><ul><li>Four primary learning goals guide this applied lecture</li><li>We trace the closed-loop value creation cycle from raw phenomena to production</li><li>We analyze cross-sector applications and their asymmetric cost topologies</li><li>We formalize rigorous data partitioning protocols and eliminate three deadly data leakage</li><li>Finally, we evaluate customer churn optimization and tune economic decision thresholds in</li></ul></div><div class="slide-card"><h3>The Value Creation Cycle: From Records to Action</h3><ul><li>A dataset is not an isolated artifact</li><li>Across commercial and scientific sectors, datasets follow an invariant lifecycle</li><li>Real-world phenomena are collected and audited through schema validation gates</li><li>Raw records undergo feature engineering and representation embedding</li><li>Empirical risk minimization fits predictive models</li></ul></div><div class="slide-card"><h3>Empirical Risk Minimization and Expected Generalization Risk</h3><ul><li>Supervised learning aims to minimize expected statistical risk over the unobserved</li><li>Because the true distribution is inaccessible</li><li>The model minimizes sample loss plus parameter regularization penalties</li><li>High training fidelity only translates into real-world success when the curated sample</li></ul></div><div class="slide-card"><h3>Sectoral Applications and Asymmetric Cost Topologies</h3><ul><li>Real-world applications operate under severely asymmetric error costs</li><li>In healthcare sepsis forecasting</li><li>In financial fraud detection</li><li>In subscription services</li></ul></div><div class="slide-card"><h3>The Critical Protocol: Train, Validation, and Test Partitioning</h3><ul><li>To obtain unbiased estimates of model generalization</li><li>The training set optimizes model parameters, the validation set tunes hyperparameters</li><li>When records are independent, stratified splitting preserves target class ratios</li><li>When records represent temporal histories</li></ul></div><div class="slide-card"><h3>Three Deadly Data Leakage Vectors</h3><ul><li>Data leakage occurs when target or future information inadvertently contaminates model</li><li>Temporal lookahead leakage occurs when global feature statistics are computed across both</li><li>Causing models to memorize individuals</li><li>Exact duplicate record leakage artificially inflates evaluation metrics while failing on</li></ul></div><div class="slide-card"><h3>Example 1.21 — Retail Purchase History and Aggregation</h3><ul><li>Example 1.21 — hands-on module</li><li>Example 1.21 illustrates how raw transaction logs transform into predictive behavioral</li><li>Individual purchase rows record customer identifiers</li><li>Aggregating transactions by customer yields purchase frequencies and monetary spend</li><li>Explore the chapter example module</li><li>View files: <code>modules/chapter1/example21/</code></li></ul></div><div class="slide-card"><h3>Enterprise Case Study: Customer Churn Optimization</h3><ul><li>Subscription churn prediction represents a classic enterprise modeling lifecycle</li><li>Behavioral features such as tenure, complaint frequency</li><li>However, setting the decision threshold to point five is rarely optimal</li><li>The optimal economic threshold balances true positive retention gains against the</li></ul></div><div class="slide-card"><h3>Example 1.31 — Churn Prediction Pipeline Sketch</h3><ul><li>Example 1.31 — hands-on module</li><li>Example 1.31 provides a complete Python implementation of a churn classification pipeline</li><li>Computes ROC curves</li><li>It demonstrates how feature importance scores highlight which behaviors precede customer</li><li>View files: <code>modules/chapter1/example31/</code></li></ul></div><div class="slide-card"><h3>Example 1.31 — listing</h3><pre><code>import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -166,13 +167,13 @@ evaluation_metrics = pd.DataFrame({
 })
 
 print(&quot;\nModel Evaluation Metrics:&quot;)
-print(evaluation_metrics)</code></pre></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Domain vocabulary changes; the lifecycle does not</li><li>Quality and exploration feed every serious application</li><li>Churn is the chapter&#x27;s end-to-end illustration of define, prepare, model, and intervene</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz, then finish the chapter with dataset management, versioning, access</li></ul></div></div></div>
+print(evaluation_metrics)</code></pre></div><div class="slide-card"><h3>In-Browser Decision Threshold and Cost-Benefit Workbench</h3><ul><li>Learners can explore threshold optimization interactively using our in-browser Churn</li><li>The interactive simulator lets you adjust the decision threshold across zero to one</li><li>You can observe the trade-offs between precision, recall</li><li>Tuning these controls demonstrates why financial loss matrices dictate practical machine</li></ul></div><div class="slide-card"><h3>Key Takeaways and Operational Deployment Principles</h3><ul><li>Four principles summarize the applied use of datasets in machine learning systems</li><li>Datasets exist to power closed-loop decision making and empirical risk minimization</li><li>Real-world applications demand error metrics aligned with asymmetric business and clinical</li><li>Rigid train, validation, and test partitioning prevents catastrophic data leakage</li><li>Operational decision thresholds must be optimized against net economic utility rather than</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Pause here to complete the formative quiz for this part</li></ul></div></div></div>
 </details>
 
 
 <details class="panel" data-persist="transcript">
   <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Uses of datasets</h3><p>Earlier parts answered what a dataset is and how to read one responsibly. This part asks where datasets create value in practice, then walks a complete churn workflow.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should map sectors to typical datasets and goals, recognize the shared lifecycle across domains, and outline the steps in the customer-churn case study.</p></div><div class="transcript"><h3>Slide 3 — Applications across sectors</h3><p>Organizations collect records about customers, patients, students, or transactions, organize them, and use them to monitor performance, detect risk, or personalize services. Retail emphasizes purchase and clickstream data; healthcare joins EHRs with wearables; finance scores transactions; education and government use logs and public statistics for intervention and planning.</p></div><div class="transcript"><h3>Slide 4 — Example 1.21 — Purchase history</h3><p>Example 1.21 stores one row per order with customer, category, date, and amount. Aggregating by customer reveals repurchase intervals and category preferences that drive segmentation and promotions. The example 21 module walks through the concept.</p></div><div class="transcript"><h3>Slide 5 — Case study: customer churn</h3><p>The churn case study stitches the chapter together: assemble behavioral features, explore and clean, train a classifier, and intervene before cancellation. Ranked feature importance highlights which behaviors precede churn; thresholded scores let retention teams act.</p></div><div class="transcript"><h3>Slide 6 — Example 1.31 — Churn model sketch</h3><p>Example 1.31 provides a Python sketch of that pipeline. The same structure appears in fraud scoring and demand forecasting—only labels and the cost of errors change. Run the example 31 module when you want to see the code in action.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Domain vocabulary changes; the lifecycle does not. Quality and exploration feed every serious application. Churn is the chapter&#x27;s end-to-end illustration of define, prepare, model, and intervene.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then finish the chapter with dataset management—versioning, access, and privacy that keep such pipelines trustworthy.</p></div></div>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Uses of Datasets in Modeling and Industry</h3><p>Welcome to Part 6 of Chapter 1. Having profiled dataset distributions and anomalies, we now explore how datasets drive value across industrial applications. We examine empirical risk minimization, asymmetric error costs, data partitioning protocols, and leakage prevention.</p></div><div class="transcript"><h3>Slide 2 — Learning Objectives</h3><p>Four primary learning goals guide this applied lecture. We trace the closed-loop value creation cycle from raw phenomena to production decision-making. We analyze cross-sector applications and their asymmetric cost topologies. We formalize rigorous data partitioning protocols and eliminate three deadly data leakage vectors. Finally, we evaluate customer churn optimization and tune economic decision thresholds in our interactive workbench.</p></div><div class="transcript"><h3>Slide 3 — The Value Creation Cycle: From Records to Action</h3><p>A dataset is not an isolated artifact; it is an informational asset designed to drive automated operational decisions. Across commercial and scientific sectors, datasets follow an invariant lifecycle. Real-world phenomena are collected and audited through schema validation gates. Raw records undergo feature engineering and representation embedding. Empirical risk minimization fits predictive models, and decisions execute in production with closed-loop telemetry feedback.</p></div><div class="transcript"><h3>Slide 4 — Empirical Risk Minimization and Expected Generalization Risk</h3><p>Supervised learning aims to minimize expected statistical risk over the unobserved real-world data distribution. Because the true distribution is inaccessible, machine learning solves the empirical risk minimization surrogate over curated datasets. The model minimizes sample loss plus parameter regularization penalties. High training fidelity only translates into real-world success when the curated sample accurately mirrors the deployment environment without collection bias.</p></div><div class="transcript"><h3>Slide 5 — Sectoral Applications and Asymmetric Cost Topologies</h3><p>Real-world applications operate under severely asymmetric error costs. In healthcare sepsis forecasting, false negatives result in fatal patient outcomes, while false positives trigger alarm fatigue. In financial fraud detection, severe class imbalance of one in ten thousand requires optimizing precision-recall curves. In subscription services, retaining a churned subscriber yields high net lifetime value compared to the minor cost of a discount offer.</p></div><div class="transcript"><h3>Slide 6 — The Critical Protocol: Train, Validation, and Test Partitioning</h3><p>To obtain unbiased estimates of model generalization, dataset engineers partition datasets into mutually disjoint subsets. The training set optimizes model parameters, the validation set tunes hyperparameters, and the test set evaluates final generalization. When records are independent, stratified splitting preserves target class ratios. When records represent temporal histories, out-of-time splits prevent chronological information leakage.</p></div><div class="transcript"><h3>Slide 7 — Three Deadly Data Leakage Vectors</h3><p>Data leakage occurs when target or future information inadvertently contaminates model features. Temporal lookahead leakage occurs when global feature statistics are computed across both training and test horizons. Entity contamination leakage occurs when observations from the same patient or user appear in both splits, causing models to memorize individuals. Exact duplicate record leakage artificially inflates evaluation metrics while failing on unseen data.</p></div><div class="transcript"><h3>Slide 8 — Example 1.21 — Retail Purchase History and Aggregation</h3><p>Example 1.21 illustrates how raw transaction logs transform into predictive behavioral features. Individual purchase rows record customer identifiers, product categories, transaction dates, and amounts. Aggregating transactions by customer yields purchase frequencies and monetary spend profiles that feed downstream segmentation algorithms. You can explore this aggregation pipeline in the example 21 module.</p></div><div class="transcript"><h3>Slide 9 — Enterprise Case Study: Customer Churn Optimization</h3><p>Subscription churn prediction represents a classic enterprise modeling lifecycle. Behavioral features such as tenure, complaint frequency, and activity trends predict the probability of customer cancellation. However, setting the decision threshold to point five is rarely optimal. The optimal economic threshold balances true positive retention gains against the operational cost of marketing outreach.</p></div><div class="transcript"><h3>Slide 10 — Example 1.31 — Churn Prediction Pipeline Sketch</h3><p>Example 1.31 provides a complete Python implementation of a churn classification pipeline. The script loads customer records, performs stratified train-test splitting, trains a gradient-boosted classifier, and computes ROC curves. It demonstrates how feature importance scores highlight which behaviors precede customer cancellation. You can execute this pipeline in the example 31 module.</p></div><div class="transcript"><h3>Slide 11 — In-Browser Decision Threshold and Cost-Benefit Workbench</h3><p>Learners can explore threshold optimization interactively using our in-browser Churn Decision Workbench. The interactive simulator lets you adjust the decision threshold across zero to one. You can observe the trade-offs between precision, recall, and net economic profit in dollars. Tuning these controls demonstrates why financial loss matrices dictate practical machine learning deployments.</p></div><div class="transcript"><h3>Slide 12 — Key Takeaways and Operational Deployment Principles</h3><p>Four principles summarize the applied use of datasets in machine learning systems. Datasets exist to power closed-loop decision making and empirical risk minimization. Real-world applications demand error metrics aligned with asymmetric business and clinical costs. Rigid train, validation, and test partitioning prevents catastrophic data leakage. Operational decision thresholds must be optimized against net economic utility rather than naive default cutoffs.</p></div><div class="transcript"><h3>Slide 13 — Next Steps</h3><p>Pause here to complete the formative quiz for this part. When ready, proceed to Part 7 to conclude Chapter 1 with dataset management, governance, and lifecycle architecture.</p></div></div>
 </details>
 
 
@@ -180,48 +181,61 @@ print(evaluation_metrics)</code></pre></div><div class="slide-card"><h3>Takeaway
   <div id="quiz-root" data-next-href="../part-07-dataset-management/index.html" data-next-label="Continue to Dataset management"></div>
   <script id="quiz-data" type="application/json">{
   "part_id": "part-06-uses-of-datasets",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Applications & Leakage Prevention",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Across sectors in this chapter, which lifecycle pattern recurs?",
+      "prompt": "What is entity contamination data leakage in a clinical predictive model?",
       "choices": [
-        "Skip quality and train immediately on raw dumps",
-        "Define entities, assess quality, explore, then act on findings",
-        "Only encrypt files and never analyze them",
-        "Publish models without labels"
+        "A hardware failure in the hospital's power grid",
+        "Placing different diagnostic records from the same patient into both the training and test splits, allowing the model to memorize patient-specific traits",
+        "Converting continuous blood pressure into categorical buckets",
+        "Encrypting medical records using asymmetric RSA keys"
       ],
       "answer_index": 1,
-      "explain": "Table 1.10 and the surrounding prose emphasize define, assess, explore, and act across domains."
+      "explain": "Entity contamination occurs when records from the same individual appear in both train and test partitions, causing models to memorize individual characteristics rather than general disease biomarkers."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "The customer-churn case study includes exploration and cleaning before modeling.",
-      "answer": true,
-      "explain": "Section 1.5.3 presents explore/clean as steps in the full analytics workflow before scoring and intervention."
+      "type": "mcq",
+      "prompt": "Why is a classification threshold of 0.5 rarely optimal in enterprise customer churn prevention?",
+      "choices": [
+        "Because binary classification models cannot output numbers other than 0 or 1",
+        "Because false positives and false negatives carry asymmetric economic costs; retaining high-LTV customers justifies intervening at lower probability cutoffs",
+        "Because computer processors cannot calculate floating-point probabilities between 0.4 and 0.6",
+        "Because churn prediction requires multi-class softmax loss"
+      ],
+      "answer_index": 1,
+      "explain": "The optimal decision threshold depends on the financial cost matrix: the cost of a retention offer versus the high lifetime value preserved by preventing a cancellation."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "Purchase-history datasets in retail are typically used to support:",
+      "prompt": "In time-series modeling, why must practitioners use out-of-time temporal partitioning rather than random shuffling?",
       "choices": [
-        "Segmentation, forecasting, and recommendations",
-        "Only GPU driver updates",
-        "Replacing all clinical trials",
-        "Deleting metadata by default"
+        "Random shuffling causes hard drive fragmentation",
+        "Random shuffling causes temporal lookahead leakage by using future events to train models predicting past events",
+        "Time-series models cannot process shuffled array indices",
+        "Temporal splits are only legally required under copyright law"
       ],
-      "answer_index": 0,
-      "explain": "Table 1.10 lists segmentation, demand forecasting, and recommendations for business/retail datasets."
+      "answer_index": 1,
+      "explain": "Random splitting mixes future and past records, leaking future market or seasonal trends into training features and yielding unrealistically optimistic test metrics."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Empirical Risk Minimization guarantees that a model with zero training error will achieve zero generalization error on unobserved real-world data.",
+      "answer": false,
+      "explain": "Empirical risk minimization optimizes sample loss on observed data. If the dataset has collection bias or covariate shift, empirical risk diverges from true generalization risk."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one action retention teams take after a churn model scores customers.",
-      "rubric": "Accept offers, support outreach, or similar intervention before cancellation.",
-      "sample_answer": "Intervene with offers or support before the customer cancels."
+      "prompt": "How does preprocessing leakage occur when standardizing features with mean and standard deviation?",
+      "rubric": "Computing the scaling mean and standard deviation on the entire dataset instead of fitting strictly on the training partition.",
+      "sample_answer": "Preprocessing leakage happens when normalization parameters (mean and standard deviation) are computed across the full dataset rather than being fit strictly on the training split."
     }
   ]
 }

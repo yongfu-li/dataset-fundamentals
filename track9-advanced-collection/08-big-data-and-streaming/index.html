@@ -4242,10 +4242,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7508,6 +7530,14 @@ W(t) = \max_{e \in \text{Observed}(t)} \left\{ t_{\text{event}}(e) \right\} - \D
 \text{Throughput}_{\max} = P \cdot \min\left( R_{\text{disk}}, \frac{B_{\text{net}}}{N_{\text{replicas}}} \right)
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Event-Time Processing with Watermarking</p>
+<p>In streaming architectures (Apache Flink, Spark Streaming), always compute aggregations using <strong>Event Time</strong> (when the physical event occurred) rather than Processing Time (when the server received the event). Define <strong>Watermarks</strong> to handle out-of-order and late-arriving events deterministically.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Tumbling Windows on Sliding Metrics</p>
+<p>Using disjoint tumbling windows (e.g., rigid 1-hour blocks) to detect sudden fraud spikes introduces edge boundary blind spots: a massive attack split evenly across the boundary of two windows fails to trigger threshold alarms in either. Use sliding or session windows instead.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements an event-time watermark tracker, handles out-of-order event streams, and computes sliding window aggregations:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
@@ -7600,17 +7630,38 @@ W(t) = \max_{e \in \text{Observed}(t)} \left\{ t_{\text{event}}(e) \right\} - \D
 <li><strong>The Streaming Solution:</strong> Stripe deployed a multi-region <strong>Apache Kafka and Flink streaming ingestion topology</strong>. Features such as <em>number of transactions on this card in the last 10 minutes</em> are maintained in Flink stateful sliding memory windows, serving sub-10ms fraud inferences while processing over 100,000 continuous financial events per second.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Streaming Window Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate event-time watermarking, test late-data dropping, and evaluate sliding window aggregations:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore API Collector & Rate-Limiter</h4>
+  <p>Simulate out-of-order event streams, test tumbling vs sliding window aggregations, and inspect watermark delays.</p>
+  <a href="../../tools/api-collector/" class="noc-sim-btn">Launch API Collector Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Watermarks and Bounded Lateness in Apache Flink</summary>
+<p>In a streaming pipeline, a watermark is defined as <span class="arithmatex">\(W(t) = \text{CurrentMaxEventTime} - 10\text{ seconds}\)</span>. If an event arrives with event timestamp <span class="arithmatex">\(t = 12:00:15\)</span>, and the current watermark is <span class="arithmatex">\(W = 12:00:20\)</span>, how does the stream engine handle this event?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The event arrives with timestamp <span class="arithmatex">\(t = 12:00:15\)</span>, which is <strong>strictly earlier than the watermark</strong> <span class="arithmatex">\(W = 12:00:20\)</span> (<span class="arithmatex">\(t &lt; W\)</span>).</p>
+<p>The stream engine classifies this record as <strong>Late Data</strong>. By default, any window ending at or before <span class="arithmatex">\(12:00:15\)</span> has already been finalized and emitted. Depending on configuration, the event is either:
+1. Dropped silently.
+2. Routed to a designated <strong>Side Output (Dead-Letter Queue)</strong> for retroactive reconciliation.
+3. Used to trigger a window re-computation if <code>allowedLateness</code> was enabled.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Tumbling vs. Sliding vs. Session Windows</summary>
+<p>Distinguish between <strong>Tumbling</strong>, <strong>Sliding</strong>, and <strong>Session Windows</strong> with concrete examples in real-time analytics.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Tumbling Window:</strong> Fixed duration, non-overlapping (e.g., hourly sales count: <span class="arithmatex">\([12:00, 13:00), [13:00, 14:00)\)</span>). Every event belongs to exactly one window.
+- <strong>Sliding Window:</strong> Fixed duration, overlapping by a slide interval (e.g., 10-minute moving average calculated every 1 minute). Events belong to multiple overlapping windows.
+- <strong>Session Window:</strong> Dynamic duration bounded by gaps of inactivity (e.g., a user's web browsing session defined by a 30-minute idle timeout). Windows have variable lengths across users.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

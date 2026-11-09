@@ -5210,10 +5210,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7411,10 +7422,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7528,6 +7550,14 @@ p_{\min} = 2^{-k_{\text{optimal}}} \approx (0.6185)^{m / n}
 \]</div>
 <p>Allocating <span class="arithmatex">\(m / n = 10\text{ bits per key}\)</span> with <span class="arithmatex">\(k = 7\)</span> hashes guarantees a false positive rate <span class="arithmatex">\(p &lt; 0.0082\)</span> (<span class="arithmatex">\(&lt; 1\%\)</span>), eliminating over <span class="arithmatex">\(99\%\)</span> of non-existent key disk reads.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multi-Cloud Tiered Lifecycle Rules</p>
+<p>Implement automated cloud storage lifecycle rules: transition raw bronze parquet files to Infrequent Access (S3-IA) after 30 days, Glacier Flexible Retrieval after 90 days, and Glacier Deep Archive ($0.00099/GB/mo) after 365 days, slashing annual storage costs by <span class="arithmatex">\(&gt;80\%\)</span>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Using Relational OLTP Databases for ML Feature Stores</p>
+<p>Querying traditional row-oriented relational databases (PostgreSQL, MySQL) for high-dimensional feature vectors (<span class="arithmatex">\(D = 500\)</span>) across 10 million rows forces the engine to read entire physical disk blocks into memory, causing severe buffer cache thrashing. Use dedicated columnar stores or Vector DBs (Pinecone, Milvus, Qdrant).</p>
+</div>
 <h2 id="production-implementation-in-memory-lsm-tree-engine">💻 Production Implementation: In-Memory LSM-Tree Engine</h2>
 <p>The following typed Python implementation illustrates the core components of an LSM-Tree: an append-only WAL, an in-memory sorted MemTable, immutable SSTable flushes, and Bloom filter acceleration with verified false-positive bounds.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
@@ -7684,17 +7714,34 @@ p_{\min} = 2^{-k_{\text{optimal}}} \approx (0.6185)^{m / n}
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Database & Schema Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Explore schema translation, compare storage efficiency, and test relational vs key-value projections:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/schema-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Schema & Format Translator</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Storage Format & Parquet Chooser</h4>
+  <p>Test read latency, compression ratios, and pricing tiers across S3 Standard, S3-IA, and local NVMe storage.</p>
+  <a href="../../tools/storage-format/" class="noc-sim-btn">Launch Storage Format Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Object Storage Immutability and Atomic Overwrites</summary>
+<p>Why do cloud object stores (Amazon S3, Google Cloud Storage) lack POSIX-compliant random in-place byte writes (<code>fseek</code>), and how do table formats achieve atomic updates?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Object storage is fundamentally an <strong>immutable, key-value blob store</strong>, not a block filesystem.</p>
+<p>You cannot modify byte 400 of an existing 100 MB object without rewriting the entire object. Modern open table formats (Apache Iceberg, Delta Lake) resolve this using <strong>Copy-on-Write (CoW)</strong> or <strong>Merge-on-Read (MoR)</strong>: modifications are written as new Parquet files, and an atomic commit pointer swaps the active snapshot manifest, preserving ACID consistency.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: OLTP vs. OLAP Storage Architectures</summary>
+<p>Contrast the optimal physical storage layout of an Online Transaction Processing (OLTP) database versus an Online Analytical Processing (OLAP) database.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>OLTP (Row-Oriented):</strong> Tuples are stored contiguously on disk (<code>[ID, Name, Age, Balance], [ID, Name, Age, Balance]</code>). Optimized for single-row insert, update, and lookup by primary key with B+ Tree indexing.
+- <strong>OLAP (Column-Oriented):</strong> Values of each attribute are stored contiguously (<code>[ID, ID, ID], [Age, Age, Age]</code>). Optimized for analytical aggregations (<code>SELECT AVG(Age) WHERE Balance &gt; 1000</code>): the engine reads <em>only</em> the <code>Age</code> and <code>Balance</code> column arrays, skipping all other columns entirely.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

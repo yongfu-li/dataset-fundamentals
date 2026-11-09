@@ -1,32 +1,74 @@
 ---
 marp: true
-title: Chapter 1 — Characteristics of good datasets
+title: Chapter 1 — Characteristics of Good Datasets
 paginate: true
 ---
 
-# Chapter 1 — Characteristics of good datasets
+# Chapter 1 — Characteristics of Good Datasets
 
-Knowing a file's type and format is not enough
-
----
-
-## Learning objectives
-- Consistency, and explain why metadata and documentation make a dataset reusable
+Welcome to Part 4 of Chapter 1
 
 ---
 
-## Five quality dimensions
-- Table 1.6 in the chapter lists accuracy, completeness, consistency, relevance
-- None stands alone
-- Still on-question
+## Learning Objectives
+- Four primary objectives anchor our study of data quality
+- We define the five core dimensions of accuracy, completeness, consistency, timeliness
+- We diagnose semantic accuracy defects and categorize missingness mechanisms into MCAR, MAR
+- We examine metadata architectures adhering to the FAIR data principles
+- Finally, we audit dataset health scores using our in-browser diagnostic inspector
 
 ---
 
-## Example 1.11 — Incorrect transaction
+## The Multi-Dimensional Quality Framework
+- Data quality is not a single scalar metric
+- A dataset can be completely populated while being factually inaccurate
+- Following foundational data quality ontologies
+- Accuracy measures ground truth fidelity
+- Completeness measures attribute coverage and sparsity
+- Consistency checks invariant rules
+
+---
+
+## Mathematical Definitions of Quality Dimensions
+- Each quality dimension can be formalized mathematically
+- Accuracy is computed as the proportion of recorded values falling within an acceptable
+- Completeness measures the ratio of non-null, valid cells across the observation matrix
+- Consistency calculates the fraction of records satisfying all referential integrity and
+- Timeliness models freshness using exponential temporal decay functions from observation to
+
+---
+
+## The Semantic Accuracy Catastrophe
+- Syntactically valid values can still cause severe analytical catastrophes
+- The sample mean shifts dramatically
+- Because the corrupted number remains a valid positive float
+- Catching semantic inaccuracy requires distribution auditing, Mahalanobis distance checks
+
+---
+
+## Missingness Mechanisms: MCAR, MAR, and MNAR
+- When attributes contain missing cells
+- Missing completely at random occurs when data drops due to transient
+- Missing at random occurs when missingness depends on observed features
+- Missing not at random occurs when the missing value itself dictates its absence
+- Imputing without understanding these mechanisms introduces severe statistical bias
+
+---
+
+## Consistency Invariants and Format Ambiguities
+- Consistency failures frequently emerge from format collisions and violated relational
+- Date format ambiguities represent a classic failure mode when combining American and
+- Storing dates without ISO eight-six-zero-one standards causes sorting algorithms to
+- This temporal disordering leaks future records into training sets
+- Enforcing strict schema invariants at ingestion prevents downstream leakage
+
+---
+
+## Example 1.11 — Defective Transaction Ledger
 - Example 1.11 — hands-on module
-- Example 1.11 shows a ledger where one transaction likely contains an extra zero
-- That single accuracy error changes monthly revenue by an order of magnitude and can
-- Explore the chapter example module
+- Example 1.11 demonstrates a semantic accuracy failure in a retail transaction ledger
+- One purchase entry contains an extra trailing zero
+- Inspecting this simple table demonstrates why statistical screening must accompany schema
 - View files: `modules/chapter1/example11/`
 
 ---
@@ -42,28 +84,70 @@ T003,2024-03-03,Refund,50.00,Debit
 
 ---
 
-## Completeness and consistency
-- Completeness failures
-- Consistency failures
-- Later chapters develop systematic repair; here the goal is recognition
+## Metadata Engineering and the FAIR Data Paradigm
+- Accurate values are useless if consumers cannot interpret their physical meaning
+- Collection provenance
+- Reusable under explicit licenses
 
 ---
 
-## Metadata and documentation
-- Metadata records schema, units, provenance, and related context
-- Example 1.14 illustrates metadata for a weather dataset
-- Without these, even accurate tables become hard to trust outside the original team
-- The example 14 module shows what good metadata looks like in practice
+## Example 1.14 — Weather Dataset Metadata Sidecar
+- Example 1.14 — hands-on module
+- Example 1.14 demonstrates production metadata engineering using a JSON sidecar file
+- Temporal sampling intervals
+- Storing explicit metadata alongside raw readings ensures downstream models correctly
+- View files: `modules/chapter1/example14/`
 
 ---
 
-## Takeaways
-- Quality is multi-dimensional and task-relative
-- Learn to spot accuracy errors, missing fields
+## Example 1.14 — listing
+
+```
+{
+  "dataset_name": "Global Weather Data",
+  "description": "This dataset contains weather measurements from various geographic locations.",
+  "measurement_units": {
+    "temperature": "Celsius",
+    "humidity": "Percentage",
+    "wind_speed": "m/s",
+    "pressure": "hPa"
+  },
+  "geographic_location": {
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "city": "San Francisco",
+    "country": "USA"
+  },
+  "time_period": {
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-31",
+    "time_zone": "UTC"
+  },
+  "data_source": "National Meteorological Agency",
+  "last_updated": "2024-02-01T12:00:00Z"
+}
+```
+
+---
+
+## In-Browser Data Quality Health Inspector
+- Learners can evaluate dataset health interactively using our in-browser Data Quality
+- The workbench computes a composite quality index across accuracy, completeness
+- You can toggle between clean datasets and corrupted samples containing MCAR and MNAR
+- Observing how individual defects degrade the composite health score sharpens diagnostic
+
+---
+
+## Key Takeaways and Quality Assurance Principles
+- Four fundamental principles summarize our study of dataset quality
+- Quality is multi-dimensional and must be evaluated relative to specific analytical tasks
+- Detecting semantic accuracy errors requires statistical distribution auditing beyond
+- Addressing missing values requires identifying whether data is missing completely at
+- Metadata sidecars adhering to FAIR principles ensure long-term scientific reproducibility
 
 ---
 
 ## Next
 - Complete the quiz for this part
-- Complete the quiz
+- Pause here to test your understanding with the formative quiz for this part
 

@@ -3774,10 +3774,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7355,10 +7366,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7481,6 +7503,14 @@ h = \mathcal{H}(B) = \text{SHA-256}(B)
 T_{\text{verify}} = \mathcal{O}(\log_b N)
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Content-Addressable Storage (CAS) Deduplication</p>
+<p>Version multi-gigabyte datasets using <strong>Content-Addressable Storage (CAS)</strong>: chunk files into content-defined blocks (e.g., FastCDC) and index by cryptographic hash. If a new dataset version modifies only 2% of records, CAS stores only the newly changed blocks, saving <span class="arithmatex">\(&gt;90\%\)</span> in cloud storage costs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Committing Binary Large Objects (BLOBs) to Raw Git</p>
+<p>Committing multi-gigabyte CSV or Parquet files directly into standard Git balloons the <code>.git</code> directory permanently. Every clone and fetch operation downloads the entire historical binary payload, degrading developer workflow and crashing Git servers.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements Content-Addressable Storage (CAS), computes Merkle tree root hashes, and verifies deduplication efficiency:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
@@ -7586,17 +7616,39 @@ T_{\text{verify}} = \mathcal{O}(\log_b N)
 <li><strong>The CAS Architecture:</strong> Motional migrated nuScenes versioning to an S3-backed Content-Addressable Storage architecture. Lightweight JSON annotation tables are versioned in Git, while massive point cloud tensors are stored immutably in S3 by SHA-256 hash. Researchers switch branches in sub-seconds while downloading only the specific sensor modalities required for their experiment (<a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Versioning & Storage Topology</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate content-addressable deduplication and inspect Merkle DAG commit trees:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Dataset Version Timeline (DVC)</h4>
+  <p>Simulate Git-LFS pointer files, Merkle DAG commit trees, and content-addressable storage deduplication client-side.</p>
+  <a href="../../tools/version-timeline/" class="noc-sim-btn">Launch Version Timeline →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Git-LFS Pointer File Mechanics</summary>
+<p>Explain the exact structure and function of a <strong>Git-LFS Pointer File</strong> committed to a Git repository.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> A Git-LFS pointer file is a tiny (~130 byte) text file committed to Git in place of the massive binary file. It contains three keys:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>version https://git-lfs.github.com/spec/v1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>oid sha256:4d7a8b9c... (64-char SHA-256 hash of the binary file)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>size 1245892300 (exact byte length of the file)
+</span></code></pre></div>
+Git tracks the tiny text pointer in version history. When a developer runs <code>git checkout</code>, Git-LFS intercept hooks read the <code>oid</code> hash and fetch the actual binary payload on-demand from remote object storage (S3/GCS).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Semantic Versioning for Datasets</summary>
+<p>Under SemVer principles adapted for datasets, when should you increment the <strong>Major</strong>, <strong>Minor</strong>, and <strong>Patch</strong> version numbers?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Major (<span class="arithmatex">\(X.0.0\)</span>):</strong> Breaking schema changes (renaming columns, removing attributes, altering target label definitions) that would break existing downstream model inference code.
+- <strong>Minor (<span class="arithmatex">\(X.Y.0\)</span>):</strong> Backwards-compatible additions (adding new feature columns, appending new validated rows, adding new demographic slices).
+- <strong>Patch (<span class="arithmatex">\(X.Y.Z\)</span>):</strong> Backwards-compatible errata and bug fixes (correcting typos, repairing minor missing values, fixing metadata annotations) without altering schema structure.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

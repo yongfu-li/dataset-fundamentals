@@ -2966,10 +2966,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7455,10 +7466,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7592,6 +7614,16 @@ G_2 = \frac{n - 1}{(n - 2)(n - 3)} \left[ (n + 1) g_2 + 6 \right], \quad g_2 = \
 \]</div>
 <p>where <span class="arithmatex">\(p_k = \frac{n_k}{n}\)</span> is the group proportion, <span class="arithmatex">\(\mu_k\)</span> is the group conditional mean, and <span class="arithmatex">\(\sigma_k^2\)</span> is the group conditional variance. If between-group variance dominates, conditioning on group <span class="arithmatex">\(G\)</span> is essential for predictive modeling.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Median Absolute Deviation (MAD) for Dispersion</p>
+<p>When measuring variance in non-Gaussian or outlier-contaminated datasets, replace standard deviation with <strong>Median Absolute Deviation (MAD)</strong>:
+$<span class="arithmatex">\(\text{MAD} = \text{median}(|x_i - \text{median}(X)|)\)</span>$
+Multiply by the asymptotic consistency factor <span class="arithmatex">\(1.4826\)</span> to yield an unbiased estimator of <span class="arithmatex">\(\sigma\)</span> for normally distributed inliers that is immune to extreme outliers up to a 50% breakdown point.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Conflating High Kurtosis with Peak Sharpness</p>
+<p>A pervasive statistical myth assumes kurtosis measures "peakedness" of the probability density. As proven by Westfall (2014), kurtosis measures <strong>tail heaviness and propensity for extreme outliers</strong>, having virtually no formal relationship to the central peak curvature.</p>
+</div>
 <h2 id="production-implementation-high-order-moment-variance-decomposition-suite">💻 Production Implementation: High-Order Moment &amp; Variance Decomposition Suite</h2>
 <p>Below is an executable Python script calculating unbiased moments, robust order statistics, and Eve's Law variance decomposition across stratified customer cohorts.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7745,17 +7777,37 @@ G_2 = \frac{n - 1}{(n - 2)(n - 3)} \left[ (n + 1) g_2 + 6 \right], \quad g_2 = \
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Distribution &amp; Moment Laboratories</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate skewness and kurtosis dynamics, box-plot fences, and Eve's Law group decomposition client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Visualize skewness, kurtosis, and quantile-quantile (Q-Q) plots across heavy-tailed Student's t, Cauchy, and Gaussian distributions.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Interpreting Skewness and the Mean-Median Inequality</summary>
+<p>A cybersecurity dataset records network flow duration with skewness <span class="arithmatex">\(\gamma_1 = +3.4\)</span>. What is the relative order of the mean, median, and mode, and what does this indicate about network activity?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Positive skewness (<span class="arithmatex">\(\gamma_1 &gt; 0\)</span>) indicates a <strong>right-skewed (heavy right tail)</strong> distribution.</p>
+<p>Typically, <span class="arithmatex">\(\text{Mode} &lt; \text{Median} &lt; \text{Mean}\)</span>.
+The vast majority of network connections are brief (ephemeral pings, DNS handshakes lasting milliseconds), while a small minority of long-lived data transfers (large file downloads, SSH sessions) pull the empirical mean far to the right.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Gini Coefficient and the Lorenz Curve</summary>
+<p>How does the <strong>Gini Coefficient</strong> calculate dispersion in resource allocation, and how is it geometrically derived from the Lorenz Curve?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The Lorenz curve <span class="arithmatex">\(L(p)\)</span> plots the cumulative percentage of the total resource owned by the bottom <span class="arithmatex">\(p \times 100\%\)</span> of the population.</p>
+<p>Under absolute equality, <span class="arithmatex">\(L(p) = p\)</span> (the 45-degree diagonal line).
+The Gini coefficient is the ratio of the area <span class="arithmatex">\(A\)</span> between the line of perfect equality and the Lorenz curve to the total area under the diagonal (<span class="arithmatex">\(A + B = 0.5\)</span>):
+$<span class="arithmatex">\(G = \frac{A}{A + B} = 2A = 1 - 2\int_0^1 L(p) dp\)</span>$
+<span class="arithmatex">\(G = 0\)</span> represents perfect equality; <span class="arithmatex">\(G = 1\)</span> represents complete concentration (one individual possesses all resources).</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

@@ -4999,10 +4999,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7512,6 +7534,14 @@
 <li><strong>Contrastive Language-Image Pretraining (CLIP):</strong> Learns joint multimodal representations by predicting which caption matches which image across 400 million pairs, enabling zero-shot classification on novel categories (<a href="#ref-radford2021">Radford et al., 2021</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Linear Probing vs. End-to-End Fine-Tuning</p>
+<p>When evaluating self-supervised representations, always run <strong>Linear Probing</strong> first: freeze the pre-trained feature backbone and train a simple logistic regression head on gold labels. If linear probe accuracy matches or exceeds full supervised training, the representation backbone is robust and generalizable.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Catastrophic Forgetting During Fine-Tuning</p>
+<p>Fine-tuning a massive SSL foundation model using an aggressive learning rate on a small labeled dataset (<span class="arithmatex">\(N &lt; 500\)</span>) overwrites the generalized feature representations learned during pre-training. Use discriminative layer-wise learning rates or LoRA (Low-Rank Adaptation) parameter-efficient fine-tuning.</p>
+</div>
 <h2 id="mathematical-formulations-of-downstream-transfer">🧮 Mathematical Formulations of Downstream Transfer</h2>
 <h3 id="1-linear-probe-optimization-objective">1. Linear Probe Optimization Objective</h3>
 <p>In linear evaluation, encoder parameters <span class="arithmatex">\(\boldsymbol{\theta}^*\)</span> remain strictly frozen. The linear classifier parameters <span class="arithmatex">\(\mathbf{W} \in \mathbb{R}^{C \times D}\)</span> and bias <span class="arithmatex">\(\mathbf{b} \in \mathbb{R}^C\)</span> are optimized via cross-entropy loss over target training set <span class="arithmatex">\(\mathcal{D}_{\text{target}}\)</span>:</p>
@@ -7665,17 +7695,33 @@ P(Y = c \mid \mathbf{x}_{\text{query}}) = \frac{\sum_{i \in \mathcal{N}_k(\mathb
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Active Learning & SSL Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate frozen linear probes, test zero-training k-NN retrieval, and evaluate transfer efficiency:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/active-learning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Active Learning Studio</a>
-    <a href="../../tools/pipeline-builder/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Pipeline Builder</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Annotation Workbench</h4>
+  <p>Test linear probe classification heads on pre-trained feature embeddings, and inspect few-shot learning performance.</p>
+  <a href="../../tools/text-annotation/" class="noc-sim-btn">Launch Text Annotation Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: wav2vec 2.0 Acoustic Contrastive Pre-Training</summary>
+<p>How does Facebook's <strong>wav2vec 2.0</strong> use Vector Quantization (Gumbel-Softmax) to construct discrete contrastive pretext targets from continuous audio waveforms?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Continuous speech audio lacks discrete tokens (unlike text).</p>
+<p>wav2vec 2.0 feeds raw audio into a convolutional encoder, generating continuous feature vectors. A vector quantizer discretizes these vectors into finite codebook entries using Gumbel-Softmax. A Transformer then masks portions of the continuous latent representation and solves a contrastive task: identifying the correct quantized codebook token for the masked time-step among distractors, enabling high-accuracy speech recognition with only 10 minutes of transcribed audio.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Few-Shot Sample Efficiency with Self-Supervised Backbones</summary>
+<p>In medical imaging classification with only 50 labeled cancer biopsy slides, why does fine-tuning a self-supervised foundation model (e.g., DINO) outperform training a ResNet from scratch by <span class="arithmatex">\(&gt;35\%\)</span> in AUC-ROC?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Training a deep network from scratch with 50 images leads to catastrophic overfitting: millions of parameters memorize the 50 instances.</p>
+<p>The SSL foundation model was pre-trained on millions of unlabelled histological images, already learning edge detectors, cellular morphology, texture manifolds, and tissue architecture invariants. Fine-tuning with 50 images merely learns to rotate the final linear decision boundary in an already semantically structured embedding space.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

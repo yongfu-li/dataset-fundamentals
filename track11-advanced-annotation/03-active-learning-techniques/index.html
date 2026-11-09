@@ -4859,10 +4859,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7513,6 +7535,16 @@
 <li><strong>BADGE (Batch Active Learning by Diverse Gradient Embeddings):</strong> Computes hallucinated gradient embeddings for the final classification layer, then applies <span class="arithmatex">\(k\)</span>-Means++ initialization to simultaneously select points with high model gradient magnitude (uncertainty) and diverse feature directions (coverage) (<a href="#ref-ash2020">Ash et al., 2020</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: BALD (Bayesian Active Learning by Disagreement)</p>
+<p>In deep learning active learning, standard softmax confidence is notoriously uncalibrated and overconfident. Deploy <strong>Monte Carlo Dropout</strong> to approximate deep Gaussian processes and compute <strong>BALD</strong>:
+$<span class="arithmatex">\(\mathcal{I}(y; \mathbf{w} \mid x, \mathcal{D}) = \mathcal{H}(y \mid x, \mathcal{D}) - \mathbb{E}_{p(\mathbf{w} \mid \mathcal{D})}[\mathcal{H}(y \mid x, \mathbf{w})]\)</span>$
+BALD identifies points where model parameters disagree, eliminating noisy outliers that fool single models.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Querying Outliers Under Pure Entropy Sampling</p>
+<p>Pure Shannon Entropy sampling (<span class="arithmatex">\(\arg\max \mathcal{H}(p)\)</span>) is attracted to corrupted data points, unclassifiable artifacts, and extreme outliers because they naturally produce flat softmax probabilities (<span class="arithmatex">\(1/K\)</span>). Combine uncertainty with <strong>Diversity / Representative Sampling</strong> (e.g., Core-Set or BADGE).</p>
+</div>
 <h2 id="mathematical-formulations-of-geometric-ensemble-active-learning">🧮 Mathematical Formulations of Geometric &amp; Ensemble Active Learning</h2>
 <h3 id="1-the-core-set-k-center-greedy-objective-sener-savarese-2018">1. The Core-Set k-Center Greedy Objective (Sener &amp; Savarese, 2018)</h3>
 <p>Let <span class="arithmatex">\(\mathcal{L}\)</span> denote the currently labeled set and <span class="arithmatex">\(\mathbf{s}\)</span> be the candidate batch of size <span class="arithmatex">\(b\)</span> selected from unlabeled pool <span class="arithmatex">\(\mathcal{U}\)</span>. The <strong>Core-Set Formulation</strong> minimizes the covering radius <span class="arithmatex">\(\delta\)</span>:</p>
@@ -7662,17 +7694,41 @@
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Active Learning Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Core-Set greedy k-center algorithms, test QBC vote entropy, and inspect manifold coverage:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/active-learning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Active Learning Studio</a>
-    <a href="../../tools/pipeline-builder/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Pipeline Builder</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Active Learning Simulator</h4>
+  <p>Test Shannon Entropy, Margin Sampling, and Query-by-Committee algorithms across non-linear multi-class datasets.</p>
+  <a href="../../tools/active-learning/" class="noc-sim-btn">Launch Active Learning Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Shannon Entropy Calculation in Multi-Class Uncertainty</summary>
+<p>A 4-class classifier outputs predicted probabilities for instance <span class="arithmatex">\(x_1\)</span>: <span class="arithmatex">\([0.40, 0.30, 0.20, 0.10]\)</span> and for instance <span class="arithmatex">\(x_2\)</span>: <span class="arithmatex">\([0.70, 0.10, 0.10, 0.10]\)</span>. Calculate the base-2 Shannon Entropy for both instances. Which instance is prioritized by an entropy active learner?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Shannon Entropy formula: <span class="arithmatex">\(H(X) = - \sum_{i=1}^K p_i \log_2(p_i)\)</span>.
+1. For <span class="arithmatex">\(x_1\)</span>:
+$<span class="arithmatex">\(H(x_1) = -(0.4 \log_2 0.4 + 0.3 \log_2 0.3 + 0.2 \log_2 0.2 + 0.1 \log_2 0.1)\)</span>$
+$<span class="arithmatex">\(H(x_1) \approx -(0.4(-1.322) + 0.3(-1.737) + 0.2(-2.322) + 0.1(-3.322)) = 0.5288 + 0.5211 + 0.4644 + 0.3322 \approx 1.8465 \text{ bits}\)</span>$
+2. For <span class="arithmatex">\(x_2\)</span>:
+$<span class="arithmatex">\(H(x_2) = -(0.7(-0.515) + 3 \times 0.1(-3.322)) = 0.3605 + 0.9966 \approx 1.3571 \text{ bits}\)</span>$
+Because <span class="arithmatex">\(H(x_1) = 1.85 &gt; H(x_2) = 1.36\)</span>, <strong>instance <span class="arithmatex">\(x_1\)</span> has significantly higher entropy and is prioritized</strong> for human labeling.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Query-by-Committee (QBC) Disagreement Metric</summary>
+<p>How does <strong>Query-by-Committee (QBC)</strong> use the Kullback-Leibler (KL) divergence to quantify committee disagreement on instance <span class="arithmatex">\(x\)</span>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In QBC, an ensemble of <span class="arithmatex">\(C\)</span> diverse models forms the committee. The consensus distribution is:
+$<span class="arithmatex">\(P_{\text{consensus}}(y \mid x) = \frac{1}{C} \sum_{c=1}^C P_c(y \mid x)\)</span>$
+The disagreement score is the average KL-divergence between individual committee members and the consensus:
+$<span class="arithmatex">\(D(x) = \frac{1}{C} \sum_{c=1}^C D_{\text{KL}}\left(P_c(y \mid x) \parallel P_{\text{consensus}}(y \mid x)\right)\)</span>$
+Instances where committee members diverge most sharply produce maximum <span class="arithmatex">\(D(x)\)</span> and are selected for expert oracle labeling.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

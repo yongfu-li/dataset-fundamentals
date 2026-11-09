@@ -4654,10 +4654,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7509,6 +7531,14 @@
 <li><strong>Automated Ground Truth Annotation:</strong> Digital simulation engines produce pixel-perfect ground truth annotations (3D bounding boxes, instance segmentation masks, optical flow, surface normals) for free, eliminating human annotator variance (<a href="#ref-dosovitskiy2017">Dosovitskiy et al., 2017</a>; <a href="#ref-tremblay2018">Tremblay et al., 2018</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Domain Randomization in Synthetic Simulators</p>
+<p>When training computer vision models inside 3D physics engines (CARLA, Isaac Sim), apply <strong>Domain Randomization</strong>: randomly vary lighting angles, rain density, lens flare, surface friction, and vehicle textures. Forcing the network to learn features invariant to randomized synthetic artifacts bridges the "Sim-to-Real" transfer gap.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unmodeled Sensor Physics in Ray-Traced LiDAR</p>
+<p>Simulating LiDAR by simply casting geometric rays against 3D polygons fails to capture physical atmospheric backscatter, wet road specular reflection drops, and pulse return attenuation. Models trained on clean synthetic LiDAR crash when encountering real-world road spray.</p>
+</div>
 <h2 id="mathematical-formulations-of-sim-to-real-transfer-sensor-simulation">🧮 Mathematical Formulations of Sim-to-Real Transfer &amp; Sensor Simulation</h2>
 <h3 id="1-domain-randomization-generalization-bound-tobin-et-al-2017">1. Domain Randomization Generalization Bound (Tobin et al., 2017)</h3>
 <p>Let <span class="arithmatex">\(\Xi\)</span> denote the space of simulated environment parameters (lighting, textures, camera poses) drawn from distribution <span class="arithmatex">\(p(\boldsymbol{\xi})\)</span>. The expected risk across randomized simulations is:</p>
@@ -7654,17 +7684,36 @@
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Sampling & Sensor Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate domain randomization, evaluate MMD sim-to-real gap, and inspect sensor ray-casting:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Sampling Simulator</a>
-    <a href="../../tools/cleaning/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Data Cleaning Lab</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Image Augmentation Studio</h4>
+  <p>Simulate photometric domain randomization, rain and lens distortions, and synthetic corner-case injections.</p>
+  <a href="../../tools/image-augmentation/" class="noc-sim-btn">Launch Image Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: The Sim-to-Real Domain Gap Metric</summary>
+<p>How does <strong>Maximum Mean Discrepancy (MMD)</strong> evaluate whether synthetic simulator images match real-world physical camera captures?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Maximum Mean Discrepancy (MMD) measures the distance between two probability distributions in a Reproducing Kernel Hilbert Space (RKHS) <span class="arithmatex">\(\mathcal{H}\)</span>:
+$<span class="arithmatex">\(\text{MMD}^2(P, Q) = \mathbb{E}_{x, x'}[k(x, x')] - 2\mathbb{E}_{x, y}[k(x, y)] + \mathbb{E}_{y, y'}[k(y, y')]\)</span>$
+where <span class="arithmatex">\(k\)</span> is a characteristic kernel (e.g., Gaussian RBF).</p>
+<p>MMD is zero if and only if <span class="arithmatex">\(P = Q\)</span>. Measuring MMD between deep feature activations of real camera images and synthetic simulator renders quantifies the domain gap prior to vehicle deployment.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Synthetic Adversarial Attack Generation</summary>
+<p>How does synthesizing synthetic adversarial perturbations (e.g., Projected Gradient Descent - PGD) during data collection harden production computer vision models?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> PGD searches for the worst-case imperceptible pixel perturbation <span class="arithmatex">\(\delta\)</span> within an <span class="arithmatex">\(L_\infty\)</span> epsilon ball that maximizes model classification loss:
+$<span class="arithmatex">\(\delta^* = \arg\max_{\|\delta\|_\infty \le \epsilon} \mathcal{L}(h(x + \delta), y)\)</span>$
+Synthesizing these adversarial instances and injecting them into the training dataset executes <strong>Adversarial Training (Minimax Robust Optimization)</strong>, expanding model decision boundaries and preventing physical real-world spoofing (e.g., adversarial stickers on stop signs).</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

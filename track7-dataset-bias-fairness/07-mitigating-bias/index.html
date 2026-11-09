@@ -3474,10 +3474,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7389,10 +7400,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7468,6 +7490,30 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-pre-processing-sample-re-weighting-kamiran-calders-2012">1. Pre-Processing: Sample Re-weighting (Kamiran &amp; Calders, 2012)</h3>
+<pre class="mermaid"><code>flowchart LR
+  subgraph Pre ["1. Pre-Processing"]
+    RawData[("Biased Raw Data")] --&gt; PreMit["Reweighing / SMOTE&lt;br/&gt;Disparate Impact Remover&lt;br/&gt;Optimized Pre-Processing"]
+  end
+
+  subgraph In ["2. In-Processing"]
+    PreMit --&gt; CleanData[("Debiased Data")]
+    CleanData --&gt; InMit["Adversarial Debiasing&lt;br/&gt;Fairness-Constrained ERM&lt;br/&gt;Reductions Approach"]
+  end
+
+  subgraph Post ["3. Post-Processing"]
+    InMit --&gt; RawModel["Trained Classifier"]
+    RawModel --&gt; PostMit["Group-Specific Thresholding&lt;br/&gt;Equalized Odds Optimizer&lt;br/&gt;Reject Option Classification"]
+  end
+
+  PostMit --&gt; FairDeploy["Certified Fair Model Deployment"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class RawData,CleanData blue;
+  class PreMit,InMit,PostMit amber;
+  class RawModel,FairDeploy green;</code></pre>
 <p>Rather than distorting feature values, <strong>Sample Re-weighting</strong> assigns importance weights <span class="arithmatex">\(w_i\)</span> to training instances such that the sensitive attribute <span class="arithmatex">\(A\)</span> and outcome label <span class="arithmatex">\(Y\)</span> become statistically independent in the weighted empirical distribution:</p>
 <div class="arithmatex">\[
 \Pr_w(A = a, Y = y) = \Pr(A = a) \cdot \Pr(Y = y)
@@ -7529,6 +7575,17 @@ W(A = a, Y = y) = \frac{\mathbb{E}[N(A = a)] \cdot \mathbb{E}[N(Y = y)] / N}{N(A
 </tbody>
 </table>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multi-Stage Bias Mitigation Pipeline Architecture</p>
+<p>Structure bias mitigation across three tiers:
+1. Pre-Processing: Optimized Pre-Processing (Calmon et al.) or Disparate Impact Removers.
+2. In-Processing: Adversarial Debiasing or Reductions Approach (Agarwal et al.).
+3. Post-Processing: Equalized Odds Threshold Optimization (Hardt et al.).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Post-Processing on Uncalibrated Confidence Scores</p>
+<p>Post-processing threshold shifting relies on the assumption that predicted probabilities reflect true empirical frequencies. If a neural network is uncalibrated (e.g., overconfident due to temperature scaling neglect), post-processing threshold shifts fail unpredictably. Always apply Platt Scaling or Isotonic Regression before post-processing.</p>
+</div>
 <h2 id="production-implementation-kamiran-calders-re-weighting-pipeline">💻 Production Implementation: Kamiran-Calders Re-weighting Pipeline</h2>
 <p>The following executable Python script implements a self-contained Kamiran-Calders sample re-weighter, validating the complete elimination of Disparate Impact bias on a credit scoring model.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7671,17 +7728,39 @@ W(A = a, Y = y) = \frac{\mathbb{E}[N(A = a)] \cdot \mathbb{E}[N(Y = y)] / N}{N(A
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Algorithmic Debiasing Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate sample re-weighting calculations, Disparate Impact remediation, and Fairlearn reductions client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/fairness/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Fairness Tool</a>
-    <a href="../../tools/representation/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Representation Checker</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Bias & Fairness Meter</h4>
+  <p>Test pre-processing reweighing, adversarial debiasing, and post-processing threshold adjustments in real time.</p>
+  <a href="../../tools/fairness/" class="noc-sim-btn">Launch Fairness Meter Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Pre-Processing Reweighing Weights Formula</summary>
+<p>In Kamiran &amp; Calders (2012) dataset reweighing, write the mathematical formula for sample weight <span class="arithmatex">\(W(S=s, Y=y)\)</span> to enforce statistical independence between sensitive attribute <span class="arithmatex">\(S\)</span> and label <span class="arithmatex">\(Y\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under statistical independence, the expected joint probability is the product of marginals:
+$<span class="arithmatex">\(P_{\text{indep}}(S=s, Y=y) = P(S=s) \times P(Y=y) = \frac{|\mathcal{D}_s|}{|\mathcal{D}|} \times \frac{|\mathcal{D}_y|}{|\mathcal{D}|}\)</span>$
+The empirical observed joint probability is <span class="arithmatex">\(P_{\text{obs}}(S=s, Y=y) = \frac{|\mathcal{D}_{s, y}|}{|\mathcal{D}|}\)</span>.
+Therefore, the corrective sample weight is:
+$<span class="arithmatex">\(W(S=s, Y=y) = \frac{P_{\text{indep}}}{P_{\text{obs}}} = \frac{|\mathcal{D}_s| \times |\mathcal{D}_y|}{|\mathcal{D}| \times |\mathcal{D}_{s, y}|}\)</span>$
+Assigning these weights to instances during loss calculation forces the effective training distribution to satisfy statistical parity.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Adversarial Debiasing Minimax Objective</summary>
+<p>Explain how the <strong>Adversarial Debiasing</strong> architecture (Zhang et al., 2018) uses a secondary discriminator network to eliminate sensitive attribute leakage from latent representations.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The architecture consists of a primary predictor <span class="arithmatex">\(f_\theta(x)\)</span> predicting target <span class="arithmatex">\(y\)</span> and an adversary <span class="arithmatex">\(g_\phi(f_\theta(x))\)</span> attempting to predict protected attribute <span class="arithmatex">\(A\)</span> from the predictor's output or latent layer.</p>
+<p>The objective is a minimax game:
+$<span class="arithmatex">\(\min_\theta \max_\phi \mathcal{L}_{\text{pred}}(f_\theta(x), y) - \lambda \mathcal{L}_{\text{adv}}(g_\phi(f_\theta(x)), A)\)</span>$
+The predictor is penalized if the adversary can successfully deduce demographic group <span class="arithmatex">\(A\)</span> from its predictions. At equilibrium, the predictor retains information relevant to predicting <span class="arithmatex">\(y\)</span> while excising all statistical signal correlating with protected group <span class="arithmatex">\(A\)</span>.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

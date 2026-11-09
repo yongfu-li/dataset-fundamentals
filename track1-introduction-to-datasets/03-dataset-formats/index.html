@@ -7525,6 +7525,14 @@
     class RowUse,ColUse,SciUse green;</code></pre>
 <p>A format mismatch imposes catastrophic pipeline penalties. Storing <span class="arithmatex">\(10^8\)</span> tabular transaction records in uncompressed CSV requires scanning gigabytes of redundant delimiters and parsing ASCII strings into binary floats on every analytical pass, resulting in an order-of-magnitude slowdown compared to vectorized columnar stores <a href="#ref-armbrust2015">[Armbrust2015]</a>.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Columnar Chunk Pruning with Parquet Statistics</p>
+<p>When writing Apache Parquet files, tune row group sizes to 128 MB or 512 MB. Parquet stores column-level minimum and maximum statistics in the file footer, allowing query engines (DuckDB, Trino, Spark) to skip entire row groups without touching storage disk blocks.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Using CSV for Safety-Critical Data Pipelines</p>
+<p>CSVs lack schema contracts, type validation, and metadata: floats are converted to ASCII strings and back, introducing IEEE 754 precision loss. Storing mission-critical timestamps or monetary amounts in CSV without schema assertions risks catastrophic downstream truncation errors.</p>
+</div>
 <h2 id="2-row-stores-vs-columnar-stores-mechanical-sympathy">2. Row Stores vs. Columnar Stores: Mechanical Sympathy</h2>
 <h3 id="21-the-disk-page-layout-architecture">2.1 The Disk Page Layout Architecture</h3>
 <p>Modern NVMe solid-state storage devices read data in fixed physical blocks (typically <span class="arithmatex">\(4\text{ KB}\)</span> physical pages). The physical layout of bytes within those pages governs I/O throughput:</p>

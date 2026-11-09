@@ -2453,10 +2453,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        🔬 Interactive Laboratory Workbench
       
     </span>
   </a>
@@ -2468,6 +2468,28 @@
     <span class="md-ellipsis">
       
         6. Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7354,10 +7376,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        🔬 Interactive Laboratory Workbench
       
     </span>
   </a>
@@ -7369,6 +7391,28 @@
     <span class="md-ellipsis">
       
         6. Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7429,6 +7473,44 @@
 <p>Handling missingness naively—such as indiscriminately dropping rows or replacing nulls with column means—is a severe engineering anti-pattern that <strong>distorts covariance matrices, artificially deflates standard errors, and introduces catastrophic selection bias</strong> [<a href="#ref-rubin1976">Rubin1976</a>, <a href="#ref-little2002">Little2002</a>].</p>
 <hr />
 <h2 id="1-formal-mathematical-foundations-rubins-missingness-taxonomy">1. Formal Mathematical Foundations: Rubin's Missingness Taxonomy</h2>
+<pre class="mermaid"><code>flowchart TD
+  Start["Inspect Missingness Pattern&lt;br/&gt;Missing Indicator Matrix M"] --&gt; TestMCAR{"Little's MCAR Test&lt;br/&gt;p-value &gt; 0.05?"}
+
+  TestMCAR -- "Yes (MCAR)" --&gt; CheckRate1{"Missing Rate &lt; 5%?"}
+  CheckRate1 -- "Yes" --&gt; SimpleImp["Complete-Case or&lt;br/&gt;Mean/Median Imputation"]
+  CheckRate1 -- "No" --&gt; MICE_MCAR["MICE / MissForest&lt;br/&gt;Multiple Imputation"]
+
+  TestMCAR -- "No (Dependent)" --&gt; CheckAux{"Missingness Explained by&lt;br/&gt;Observed Covariates X_obs?"}
+
+  CheckAux -- "Yes (MAR)" --&gt; AdvancedImp["MICE (Chained Equations) or&lt;br/&gt;EM Algorithm / KNN Imputer"]
+  CheckAux -- "No (MNAR)" --&gt; PatternMix["Pattern-Mixture Models or&lt;br/&gt;Heckman Selection Model +&lt;br/&gt;Binary Missing Indicator Feature"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class Start blue;
+  class TestMCAR,CheckRate1,CheckAux amber;
+  class SimpleImp,MICE_MCAR,AdvancedImp,PatternMix green;</code></pre>
+<pre class="mermaid"><code>flowchart TD
+  Start["Inspect Missingness Pattern&lt;br/&gt;Missing Indicator Matrix M"] --&gt; TestMCAR{"Little's MCAR Test&lt;br/&gt;p-value &gt; 0.05?"}
+
+  TestMCAR -- "Yes (MCAR)" --&gt; CheckRate1{"Missing Rate &lt; 5%?"}
+  CheckRate1 -- "Yes" --&gt; SimpleImp["Complete-Case or&lt;br/&gt;Mean/Median Imputation"]
+  CheckRate1 -- "No" --&gt; MICE_MCAR["MICE / MissForest&lt;br/&gt;Multiple Imputation"]
+
+  TestMCAR -- "No (Dependent)" --&gt; CheckAux{"Missingness Explained by&lt;br/&gt;Observed Covariates X_obs?"}
+
+  CheckAux -- "Yes (MAR)" --&gt; AdvancedImp["MICE (Chained Equations) or&lt;br/&gt;EM Algorithm / KNN Imputer"]
+  CheckAux -- "No (MNAR)" --&gt; PatternMix["Pattern-Mixture Models or&lt;br/&gt;Heckman Selection Model +&lt;br/&gt;Binary Missing Indicator Feature"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class Start blue;
+  class TestMCAR,CheckRate1,CheckAux amber;
+  class SimpleImp,MICE_MCAR,AdvancedImp,PatternMix green;</code></pre>
 <p>Donald Rubin (1976) [<a href="#ref-rubin1976">Rubin1976</a>] formalized missing data theory by treating missingness as a stochastic random variable.</p>
 <p>Let <span class="arithmatex">\(\mathbf{Y} = (\mathbf{Y}_{\text{obs}}, \mathbf{Y}_{\text{mis}})\)</span> denote the complete data matrix partitioned into observed and unobserved components. Let <span class="arithmatex">\(\mathbf{M} \in \{0, 1\}^{N \times D}\)</span> be the binary missingness indicator matrix, where <span class="arithmatex">\(M_{i,j} = 1\)</span> if <span class="arithmatex">\(Y_{i,j}\)</span> is missing and <span class="arithmatex">\(0\)</span> if observed.</p>
 <pre class="mermaid"><code>flowchart TD
@@ -7470,6 +7552,22 @@ P(\mathbf{M} \mid \mathbf{Y}_{\text{obs}}, \mathbf{Y}_{\text{mis}}, \psi) \ne P(
 <li><strong>Implication</strong>: Standard imputation algorithms fail; practitioners must employ explicit Heckman selection models or sensitivity analyses [<a href="#ref-heckman1979">Heckman1979</a>].</li>
 </ul>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multiple Imputation by Chained Equations (MICE)</p>
+<p>For tabular datasets with MAR missingness across multiple continuous and categorical features, use <strong>MICE (Fully Conditional Specification)</strong> with <span class="arithmatex">\(m \ge 5\)</span> imputed datasets. MICE fits feature-specific regression models conditioned on all observed features, pooling estimates via Rubin's Rules to properly propagate imputation uncertainty.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Complete-Case Analysis Under MNAR</p>
+<p>Dropping rows with missing values (<code>dropna()</code>) when missingness is Missing Not at Random (MNAR) introduces severe survivorship and selection bias. In clinical trials, dropping patients who dropped out due to severe side effects makes a toxic drug appear safe and well-tolerated.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multiple Imputation by Chained Equations (MICE)</p>
+<p>For tabular datasets with MAR missingness across multiple continuous and categorical features, use <strong>MICE (Fully Conditional Specification)</strong> with <span class="arithmatex">\(m \ge 5\)</span> imputed datasets. MICE fits feature-specific regression models conditioned on all observed features, pooling estimates via Rubin's Rules to properly propagate imputation uncertainty.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Complete-Case Analysis Under MNAR</p>
+<p>Dropping rows with missing values (<code>dropna()</code>) when missingness is Missing Not at Random (MNAR) introduces severe survivorship and selection bias. In clinical trials, dropping patients who dropped out due to severe side effects makes a toxic drug appear safe and well-tolerated.</p>
+</div>
 <h2 id="2-advanced-imputation-multivariate-imputation-by-chained-equations-mice">2. Advanced Imputation: Multivariate Imputation by Chained Equations (MICE)</h2>
 <p>Single imputation (mean or median replacement) creates a point-mass spike at <span class="arithmatex">\(\bar{y}\)</span>, collapsing the sample variance (<span class="arithmatex">\(\hat{\sigma}^2 &lt; \sigma^2\)</span>) and artificially inflating <span class="arithmatex">\(t\)</span>-statistics and <span class="arithmatex">\(p\)</span>-values.</p>
 <p><strong>MICE (Fully Conditional Specification)</strong> [<a href="#ref-vanbuuren2011">VanBuuren2011</a>] addresses multivariate missingness through an iterative Gibbs-sampler regression chain across each variable <span class="arithmatex">\(Y_j\)</span>:</p>
@@ -7598,18 +7696,13 @@ Y_{i,j}^{\text{mis}} \sim f(Y_{i,-j}; \theta_j^*)
 <li><strong>The Statistical Fix</strong>: Applying MICE with auxiliary biomarker variables and pattern-mixture sensitivity modeling revealed the true clinical treatment effect was only <strong><span class="arithmatex">\(-0.6\%\)</span></strong>, preventing an uncalibrated drug approval submission.</li>
 </ul>
 <hr />
-<h2 id="5-interactive-laboratory-workbench">5. 🔬 Interactive Laboratory Workbench</h2>
-<p>Test client-side missing value imputation and cleaning strategies live:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Cleaning &amp; Imbalance Workbenches</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate missing value remediation algorithms and inspect feature covariance matrices:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/cleaning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch Cleaning Workbench</a>
-    <a href="../../tools/class-imbalance/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Class Imbalance Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Data Cleaning Workbench</h4>
+  <p>Simulate MCAR, MAR, and MNAR missingness distributions and compare MICE, KNN, and median imputation recovery errors.</p>
+  <a href="../../tools/cleaning/" class="noc-sim-btn">Launch Cleaning Workbench →</a>
 </div>
-
 <hr />
 <h2 id="6-key-engineering-takeaways">6. Key Engineering Takeaways</h2>
 <ol>
@@ -7617,6 +7710,50 @@ Y_{i,j}^{\text{mis}} \sim f(Y_{i,-j}; \theta_j^*)
 <li><strong>Variance Collapse</strong>: Avoid mean/median imputation in statistical and machine learning workflows; it artificially compresses feature variance and corrupts correlation matrices.</li>
 <li><strong>MICE Superiority</strong>: Multivariate Imputation by Chained Equations (MICE) models iterative conditional distributions, preserving covariance structures without data leakage.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Identifying Missingness Mechanisms in Clinical EHRs</summary>
+<p>In a hospital ICU dataset, arterial blood gas (<span class="arithmatex">\(\text{PaO}_2\)</span>) is unrecorded for 85% of patients. Clinical protocol dictates that physicians only order an arterial blood draw if a patient shows visible cyanosis or respiratory distress. Classify this missingness mechanism under Donald Rubin's taxonomy and explain why mean imputation is statistically invalid.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The mechanism is <strong>Missing Not at Random (MNAR)</strong> (or Non-Ignorable Missingness).</p>
+<p>The probability of an observation being missing depends directly on the unobserved health state (healthy patients with normal blood oxygen are never tested, while failing patients are tested). Imputing the sample mean (<span class="arithmatex">\(\sim 75\text{ mmHg}\)</span>) to all unmeasured patients imputes a diseased hypoxia value to healthy individuals, destroying the diagnostic calibration of downstream mortality prediction models.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Rubin's Rules for Multiple Imputation Uncertainty</summary>
+<p>Why does single imputation (e.g., deterministic regression imputation) falsely inflate test statistics and produce artificially narrow confidence intervals?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Single imputation treats imputed synthetic estimates as if they were <strong>true, known empirical observations with zero variance</strong>.</p>
+<p>This artificially deflates the estimated standard error (<span class="arithmatex">\(\text{SE} \propto 1/\sqrt{N}\)</span>) and artificially inflates <span class="arithmatex">\(t\)</span>-statistics, causing researchers to declare spurious correlations statistically significant. <strong>Multiple Imputation</strong> generates <span class="arithmatex">\(m\)</span> independent datasets, combining within-imputation variance (<span class="arithmatex">\(\bar{U}\)</span>) and between-imputation variance (<span class="arithmatex">\(B\)</span>) via Rubin's total variance formula:
+$<span class="arithmatex">\(T = \bar{U} + \left(1 + \frac{1}{m}\right)B\)</span>$
+accurately reflecting the epistemic uncertainty introduced by missing data.</p>
+</details>
+</details>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks_1">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Identifying Missingness Mechanisms in Clinical EHRs</summary>
+<p>In a hospital ICU dataset, arterial blood gas (<span class="arithmatex">\(\text{PaO}_2\)</span>) is unrecorded for 85% of patients. Clinical protocol dictates that physicians only order an arterial blood draw if a patient shows visible cyanosis or respiratory distress. Classify this missingness mechanism under Donald Rubin's taxonomy and explain why mean imputation is statistically invalid.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The mechanism is <strong>Missing Not at Random (MNAR)</strong> (or Non-Ignorable Missingness).</p>
+<p>The probability of an observation being missing depends directly on the unobserved health state (healthy patients with normal blood oxygen are never tested, while failing patients are tested). Imputing the sample mean (<span class="arithmatex">\(\sim 75\text{ mmHg}\)</span>) to all unmeasured patients imputes a diseased hypoxia value to healthy individuals, destroying the diagnostic calibration of downstream mortality prediction models.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Rubin's Rules for Multiple Imputation Uncertainty</summary>
+<p>Why does single imputation (e.g., deterministic regression imputation) falsely inflate test statistics and produce artificially narrow confidence intervals?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Single imputation treats imputed synthetic estimates as if they were <strong>true, known empirical observations with zero variance</strong>.</p>
+<p>This artificially deflates the estimated standard error (<span class="arithmatex">\(\text{SE} \propto 1/\sqrt{N}\)</span>) and artificially inflates <span class="arithmatex">\(t\)</span>-statistics, causing researchers to declare spurious correlations statistically significant. <strong>Multiple Imputation</strong> generates <span class="arithmatex">\(m\)</span> independent datasets, combining within-imputation variance (<span class="arithmatex">\(\bar{U}\)</span>) and between-imputation variance (<span class="arithmatex">\(B\)</span>) via Rubin's total variance formula:
+$<span class="arithmatex">\(T = \bar{U} + \left(1 + \frac{1}{m}\right)B\)</span>$
+accurately reflecting the epistemic uncertainty introduced by missing data.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

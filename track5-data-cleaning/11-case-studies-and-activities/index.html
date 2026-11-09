@@ -2767,10 +2767,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-fastparquet-seaborn-diagnostics" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Fastparquet &amp; Seaborn Diagnostics
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7467,10 +7478,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-fastparquet-seaborn-diagnostics" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Fastparquet &amp; Seaborn Diagnostics
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7572,6 +7594,22 @@ Values outside these intervals represent sensor disconnection or transducer fail
 \tilde{\mathbf{x}}_i = \begin{bmatrix} \mathbf{x}_i^* \\ \mathbf{m}_i \end{bmatrix}, \quad m_{ij} = \mathbb{I}(x_{ij} \text{ was missing})
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multi-Table Temporal Integrity Constraints</p>
+<p>When cleaning relational telemetry datasets (e.g., patient vital sign streams linked to hospital admissions), enforce <strong>point-in-time joins (as-of joins)</strong>. Ensure features only aggregate sensor readings timestamped strictly prior to the clinical prediction point (<span class="arithmatex">\(t &lt; t_{\text{predict}}\)</span>).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Forward-Looking Imputation in Time-Series</p>
+<p>Using future values to impute missing points in a historical time series (e.g., bidirectional spline interpolation) introduces catastrophic lookahead bias. Models achieve artificially high backtest accuracy but fail immediately when deployed in live real-time streams.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Multi-Table Temporal Integrity Constraints</p>
+<p>When cleaning relational telemetry datasets (e.g., patient vital sign streams linked to hospital admissions), enforce <strong>point-in-time joins (as-of joins)</strong>. Ensure features only aggregate sensor readings timestamped strictly prior to the clinical prediction point (<span class="arithmatex">\(t &lt; t_{\text{predict}}\)</span>).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Forward-Looking Imputation in Time-Series</p>
+<p>Using future values to impute missing points in a historical time series (e.g., bidirectional spline interpolation) introduces catastrophic lookahead bias. Models achieve artificially high backtest accuracy but fail immediately when deployed in live real-time streams.</p>
+</div>
 <h2 id="production-implementation-end-to-end-domain-cleaning-pipelines">💻 Production Implementation: End-to-End Domain Cleaning Pipelines</h2>
 <p>The following executable Python script implements both complete domain pipelines: (1) E-Commerce RFM Currency Harmonization &amp; Clustering, and (2) Clinical Vital Plausibility Screening with Missingness-Indicator Tracking.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7758,20 +7796,32 @@ Values outside these intervals represent sensor disconnection or transducer fail
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-fastparquet-seaborn-diagnostics">🛠️ Tool Integration: Fastparquet &amp; Seaborn Diagnostics</h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Inspect log-pareto compression</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">plot_rfm_distribution</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"amount_usd"</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Raw USD (Heavy Skew)"</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"monetary_log"</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Log(USD) (Stabilized)"</span><span class="p">)</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Domain pipeline tools</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>pip<span class="w"> </span>install<span class="w"> </span>scikit-learn<span class="w"> </span>seaborn<span class="w"> </span>matplotlib
-</span></code></pre></div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Run end-to-end case study diagnostics, inspect temporal correlation heatmaps, and detect lookahead bias.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
+</div>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Diagnosing Target Leakage via Suspicious Metric Peaks</summary>
+<p>A newly trained churn prediction model achieves an AUC-ROC of <span class="arithmatex">\(0.998\)</span> on cross-validation. An audit reveals that the feature table includes <code>days_since_account_cancellation</code>. Explain why this feature represents fatal target leakage.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> <code>days_since_account_cancellation</code> is a <strong>downstream consequence of the target event (churn)</strong>, not an upstream predictive indicator.</p>
+<p>Active customers have a null or zero value, while churned customers have positive integers. The model learns a trivial post-hoc association. In production, predicting which active customer <em>will</em> churn requires using only features observable <em>prior</em> to cancellation.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: As-of Joins for Point-in-Time Correctness</summary>
+<p>In algorithmic trading, an order execution timestamp is <span class="arithmatex">\(T = 09:30:15.200\)</span>. An analyst joins macroeconomic GDP release data timestamped <span class="arithmatex">\(T = 09:30:00.000\)</span> that was released publicly at <span class="arithmatex">\(09:30:30.000\)</span>. Why does this introduce lookahead bias?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The report carries an official timestamp of <span class="arithmatex">\(09:30:00\)</span>, but was not published and available on the news wire until <span class="arithmatex">\(09:30:30\)</span>. Joining based on the document creation timestamp grants the model 14.8 seconds of future knowledge at <span class="arithmatex">\(09:30:15.200\)</span>, creating fictitious backtest alpha that vanishes in live trading.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

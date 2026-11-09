@@ -3830,10 +3830,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7355,10 +7366,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7473,6 +7495,14 @@
 T_{\text{makespan}} = \max_{p \in \mathcal{P}} \sum_{s \in p} t(s)
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Declarative <code>dvc.yaml</code> Pipeline DAGs</p>
+<p>Define data engineering pipelines declaratively in <code>dvc.yaml</code> with explicit <code>deps</code> (input scripts and data) and <code>outs</code> (output artifacts). When running <code>dvc repro</code>, DVC computes cryptographic checksums across all dependencies, skipping stages whose inputs have not changed and executing only modified downstream steps.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Non-Deterministic Pipeline Stages</p>
+<p>Including random seeds without fixed constants (<code>np.random.seed(42)</code>) or pulling live unversioned API calls inside a <code>dvc.yaml</code> stage destroys pipeline reproducibility, causing <code>dvc repro</code> to invalidate caches continuously.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements a content-addressed pipeline DAG engine with automated stage memoization and execution speedup calculations:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
@@ -7575,17 +7605,36 @@ T_{\text{makespan}} = \max_{p \in \mathcal{P}} \sum_{s \in p} t(s)
 <li><strong>The DVC Pipeline Architecture:</strong> Planet deployed DVC pipelines backed by Google Cloud Storage. By partitioning processing into content-addressed stages, atmospheric calibration outputs are cached immutably. When researchers tweak deep learning segmentation heads, earlier geospatial calibration stages are bypassed, slashing cloud GPU cluster compute bills by <strong><span class="arithmatex">\(68\%\)</span></strong> (<a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Pipeline DAG Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate DVC pipeline DAG executions, test content-addressed memoization, and calculate speedup:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Visual Pipeline Builder</h4>
+  <p>Design multi-stage DVC pipeline graphs, configure caching dependencies, and test automated stage re-execution.</p>
+  <a href="../../tools/pipeline-builder/" class="noc-sim-btn">Launch Pipeline Builder →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: DVC DAG Stage Caching Logic</summary>
+<p>In a 3-stage DVC pipeline: <code>ingest</code> <span class="arithmatex">\(\to\)</span> <code>clean</code> <span class="arithmatex">\(\to\)</span> <code>train</code>. If an engineer edits only the hyperparameters in <code>params.yaml</code> consumed by <code>train</code>, what does <code>dvc repro</code> do?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> DVC inspects the dependency checksums of all stages in the DAG:
+- <code>ingest</code>: Code and input dependencies are identical <span class="arithmatex">\(\to\)</span> <strong>Skipped (cached)</strong>.
+- <code>clean</code>: Ingestion output is identical and clean script is unchanged <span class="arithmatex">\(\to\)</span> <strong>Skipped (cached)</strong>.
+- <code>train</code>: Dependency <code>params.yaml</code> has a modified MD5 hash <span class="arithmatex">\(\to\)</span> <strong>Executed</strong>.</p>
+<p>Only stage 3 runs, saving extensive compute and I/O time while preserving end-to-end reproducibility.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: DVC Metrics and Plots Tracking</summary>
+<p>How does <code>dvc metrics diff</code> enable data scientists to evaluate model and data pipeline regressions across Git branches?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> DVC tracks lightweight scalar metric files (e.g., <code>metrics.json</code> containing F1, AUC, MSE).</p>
+<p>Running <code>dvc metrics diff main</code> compares the metrics of the current working branch against the <code>main</code> branch, displaying an instant terminal table of performance deltas. Paired with <code>dvc plots diff</code>, it renders comparative ROC and precision-recall curves directly in HTML.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

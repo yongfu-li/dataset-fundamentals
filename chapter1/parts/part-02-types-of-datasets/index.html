@@ -34,7 +34,7 @@
 <section class="hero">
   <h1>Types of datasets</h1>
   <div class="clip-meta">
-    <span class="pill">~7 min</span>
+    <span class="pill">~8 min</span>
     <span class="pill pill-muted">Chapter 1</span>
     <span class="pill pill-muted">Part 2 of 7</span>
   </div>
@@ -56,9 +56,10 @@
 
 <h2>Learning objectives</h2>
 <ul class='objectives'>
-<li>Contrast structured, unstructured, and semi-structured data</li>
-<li>Give a typical format for each type</li>
-<li>Distinguish static from dynamic datasets</li>
+<li>Classify datasets across the structural dimension into structured, semi-structured, and unstructured archetypes</li>
+<li>Formalize relational tables mathematically through attribute domains and first normal form</li>
+<li>Contrast static historical snapshots with dynamic streaming event queues</li>
+<li>Analyze the late arrival problem with event-time watermarks and simulate streaming windows in the interactive workbench</li>
 </ul>
 
 
@@ -90,13 +91,21 @@
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Types of datasets</h3><ul><li>This part classifies how datasets are organized</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Contrast the three structural types, name a typical format for each</li><li>Explain when a dataset is static versus dynamic</li></ul></div><div class="slide-card"><h3>Two classification axes</h3><ul><li>Datasets are commonly classified along two axes</li><li>Structure covers structured, unstructured, and semi-structured forms</li><li>Temporal behavior covers static snapshots versus continuously updating streams</li><li>Selecting an appropriate representation is a prerequisite for reliable analysis</li></ul></div><div class="slide-card"><h3>Structured datasets</h3><ul><li>Structured datasets follow a fixed schema: rows and columns with consistent types</li><li>They live comfortably in spreadsheets and relational databases and are generally the</li><li>A retail customer table</li></ul></div><div class="slide-card"><h3>Unstructured datasets</h3><ul><li>Unstructured data has no predefined row–column model</li><li>Text, images, audio, and video fall here</li><li>Valuable insights often require NLP or image recognition rather than a simple SQL filter</li><li>Social media feedback and medical images are common examples</li></ul></div><div class="slide-card"><h3>Semi-structured datasets</h3><ul><li>Semi-structured data uses tags or keys</li><li>Example 1.7 shows JSON objects where optional fields appear when relevant</li><li>Open the example 7 module to inspect a concrete sample</li></ul></div><div class="slide-card"><h3>Static vs dynamic</h3><ul><li>Static datasets change rarely, an archived extract</li><li>Dynamic datasets update continuously, sensor streams or click logs</li><li>The same entity can move between forms over its lifecycle</li><li>Temporal behavior shapes how often you refresh, version, and monitor the data</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Structure and time are independent</li><li>Structured data is easiest to query</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz, then continue to dataset formats, how these types are stored on disk</li></ul></div></div></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Types of Datasets</h3><ul><li>Welcome to Part 2 of Chapter 1</li></ul></div><div class="slide-card"><h3>Learning Objectives</h3><ul><li>Normal form. We examine temporal dynamics</li><li>We analyze the late arrival problem with event-time watermarks and simulate streaming</li></ul></div><div class="slide-card"><h3>The Two Fundamental Classification Axes</h3><ul><li>Every dataset encountered in data science is categorized across two orthogonal dimensions</li><li>The structural dimension evaluates how rigidly data conforms to a predefined schema</li><li>The temporal dimension governs how observations evolve over physical time</li><li>Selecting an organizational archetype dictates ingestion throughput and downstream storage</li><li>Structural organization directly influences how vulnerable a dataset is to schema drift</li></ul></div><div class="slide-card"><h3>Mathematical Formalization of Structured Relations</h3><ul><li>A structured dataset is defined as an empirical relation over a fixed schema signature</li><li>Each attribute draws values strictly from a defined algebraic state domain</li><li>Structured relations satisfy relational invariance through strict column type homogeneity</li><li>Every relation adheres to first normal form</li><li>Tabular structured datasets are optimized for analytical aggregations and relational join</li></ul></div><div class="slide-card"><h3>Semi-Structured Hierarchical Trees</h3><ul><li>Semi-structured datasets relax global schema requirements while remaining fully</li><li>Records are formalized as rooted, labeled, directed attributed trees</li><li>Vertices represent structured objects, variable-length arrays, or scalar leaf values</li><li>Edge labels define attribute keys such as order identifiers and customer records</li><li>Formats such as JSON and Protocol Buffers enable schema evolution without breaking</li></ul></div><div class="slide-card"><h3>Unstructured Multimodal Manifolds</h3><ul><li>Unstructured data lacks a uniform relational schema or coordinate grid</li><li>Modalities such as raw natural language, audio recordings</li><li>Extracting meaning requires deep neural representation encoders that map high-dimensional</li><li>These dense embeddings then become the structured feature inputs for downstream</li></ul></div><div class="slide-card"><h3>Temporal Dynamics: Static Snapshots versus Dynamic Streams</h3><ul><li>The temporal dimension separates static historical extracts from continuous dynamic event</li><li>Static datasets represent frozen temporal snapshots over a bounded time window</li><li>Benchmark corpora like ImageNet and historical census dumps are immutable references for</li><li>Dynamic datasets arrive as unbounded continuous event streams governed by time-varying</li><li>Real-time telemetry, IoT sensors</li></ul></div><div class="slide-card"><h3>The Late Arrival Problem and Event-Time Watermarks</h3><ul><li>Dynamic streaming pipelines face the fundamental challenge of out-of-order data arrival</li><li>Network partitions and mobile disconnections mean processing time rarely matches true</li><li>Stream processors implement event-time watermarks to define when a temporal window can be</li><li>Watermarks establish a monotonic timestamp threshold that balances aggregation</li><li>Handling late-arriving records is essential for avoiding corrupted temporal state</li></ul></div><div class="slide-card"><h3>Example 1.7 — Semi-Structured Dataset in JSON</h3><ul><li>Example 1.7 — hands-on module</li><li>Example 1.7 demonstrates semi-structured data using an e-commerce order payload formatted</li><li>The record combines rigid relational keys such as order identifier and customer identifier</li><li>This hybrid architecture shows how modern web applications store complex transactions</li><li>View files: <code>modules/chapter1/example7/</code></li></ul></div><div class="slide-card"><h3>Example 1.7 — listing</h3><pre><code>{
+    &quot;order_id&quot;: &quot;12345&quot;,
+    &quot;customer_id&quot;: &quot;1&quot;,
+    &quot;products&quot;: [
+        {&quot;product_name&quot;: &quot;Shoes&quot;, &quot;quantity&quot;: 2},
+        {&quot;product_name&quot;: &quot;Jacket&quot;, &quot;quantity&quot;: 1}
+    ],
+    &quot;comments&quot;: &quot;Fast shipping, excellent quality!&quot;
+}</code></pre></div><div class="slide-card"><h3>Industry Case Study: Multimodal Ingestion and Limit Order Books</h3><ul><li>Production enterprises encounter both structural and temporal challenges simultaneously</li><li>Unstructured product imagery</li><li>In financial exchanges</li><li>Trading engines maintain deterministic state transitions by serializing rapid order</li></ul></div><div class="slide-card"><h3>In-Browser Taxonomy and Streaming Simulator</h3><ul><li>Learners can explore these dynamics directly using the in-browser Taxonomy and Streaming</li><li>The interactive workbench allows you to stream simulated events through tumbling time</li><li>You can observe how network latency induces out-of-order event arrivals and adjust</li><li>Watching records get accepted or rejected clarifies streaming trade-offs between latency</li></ul></div><div class="slide-card"><h3>Key Takeaways and Architectural Trade-offs</h3><ul><li>To summarize our taxonomy of datasets, remember four architectural principles</li><li>Structural organization and temporal dynamics are orthogonal design decisions</li><li>Structured tabular relations guarantee atomic integrity and optimal query performance</li><li>Semi-structured trees enable flexible schema evolution at the cost of parsing overhead</li><li>Dynamic streams require event-time watermarking to guarantee accurate windowed analytics</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Pause here to complete the formative quiz for this part</li></ul></div></div></div>
 </details>
 
 
 <details class="panel" data-persist="transcript">
   <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Types of datasets</h3><p>With records and attributes defined, this part classifies how datasets are organized. The taxonomy—structure and temporal behavior—appears throughout the rest of the book.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>By the end of this part, you should contrast the three structural types, name a typical format for each, and explain when a dataset is static versus dynamic.</p></div><div class="transcript"><h3>Slide 3 — Two classification axes</h3><p>Datasets are commonly classified along two axes. Structure covers structured, unstructured, and semi-structured forms. Temporal behavior covers static snapshots versus continuously updating streams. Selecting an appropriate representation is a prerequisite for reliable analysis.</p></div><div class="transcript"><h3>Slide 4 — Structured datasets</h3><p>Structured datasets follow a fixed schema: rows and columns with consistent types. They live comfortably in spreadsheets and relational databases and are generally the easiest to query and aggregate. A retail customer table—one row per customer, typed columns for email and purchase history—is the textbook case.</p></div><div class="transcript"><h3>Slide 5 — Unstructured datasets</h3><p>Unstructured data has no predefined row–column model. Text, images, audio, and video fall here. Valuable insights often require NLP or image recognition rather than a simple SQL filter. Social media feedback and medical images are common examples.</p></div><div class="transcript"><h3>Slide 6 — Semi-structured datasets</h3><p>Semi-structured data uses tags or keys—JSON, XML, YAML—without requiring every record to share the same flat columns. Example 1.7 shows JSON objects where optional fields appear when relevant. Open the example 7 module to inspect a concrete sample.</p></div><div class="transcript"><h3>Slide 7 — Static vs dynamic</h3><p>Static datasets change rarely—an archived extract. Dynamic datasets update continuously—sensor streams or click logs. The same entity can move between forms over its lifecycle. Temporal behavior shapes how often you refresh, version, and monitor the data.</p></div><div class="transcript"><h3>Slide 8 — Takeaways</h3><p>Structure and time are independent. Structured data is easiest to query; unstructured data needs extraction pipelines; semi-structured data offers flexible keys that remain machine-readable.</p></div><div class="transcript"><h3>Slide 9 — Next</h3><p>Complete the quiz, then continue to dataset formats—how these types are stored on disk.</p></div></div>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Types of Datasets</h3><p>Welcome to Part 2 of Chapter 1. Having defined records and attributes, we now establish how datasets are systematically classified. We examine structural taxonomies and temporal dynamics that govern data storage, query efficiency, and machine learning pipelines.</p></div><div class="transcript"><h3>Slide 2 — Learning Objectives</h3><p>Four primary learning goals guide this part. We classify datasets across the structural dimension into structured, semi-structured, and unstructured archetypes. We formalize relational tables mathematically through attribute domains and first normal form. We examine temporal dynamics, contrasting static historical snapshots with dynamic streaming event queues. Finally, we analyze the late arrival problem with event-time watermarks and simulate streaming windows in our interactive workbench.</p></div><div class="transcript"><h3>Slide 3 — The Two Fundamental Classification Axes</h3><p>Every dataset encountered in data science is categorized across two orthogonal dimensions. The structural dimension evaluates how rigidly data conforms to a predefined schema. The temporal dimension governs how observations evolve over physical time. Selecting an organizational archetype dictates ingestion throughput and downstream storage footprints. Structural organization directly influences how vulnerable a dataset is to schema drift and covariate shift.</p></div><div class="transcript"><h3>Slide 4 — Mathematical Formalization of Structured Relations</h3><p>A structured dataset is defined as an empirical relation over a fixed schema signature. Each attribute draws values strictly from a defined algebraic state domain. Structured relations satisfy relational invariance through strict column type homogeneity. Every relation adheres to first normal form, ensuring all attribute cells contain atomic values rather than unindexed arrays. Tabular structured datasets are optimized for analytical aggregations and relational join operations.</p></div><div class="transcript"><h3>Slide 5 — Semi-Structured Hierarchical Trees</h3><p>Semi-structured datasets relax global schema requirements while remaining fully self-describing. Records are formalized as rooted, labeled, directed attributed trees. Vertices represent structured objects, variable-length arrays, or scalar leaf values. Edge labels define attribute keys such as order identifiers and customer records. Formats such as JSON and Protocol Buffers enable schema evolution without breaking downstream readers.</p></div><div class="transcript"><h3>Slide 6 — Unstructured Multimodal Manifolds</h3><p>Unstructured data lacks a uniform relational schema or coordinate grid. Modalities such as raw natural language, audio recordings, and medical imaging represent continuous physical signals. Extracting meaning requires deep neural representation encoders that map high-dimensional raw inputs into dense continuous vector embeddings. These dense embeddings then become the structured feature inputs for downstream classification and search.</p></div><div class="transcript"><h3>Slide 7 — Temporal Dynamics: Static Snapshots versus Dynamic Streams</h3><p>The temporal dimension separates static historical extracts from continuous dynamic event streams. Static datasets represent frozen temporal snapshots over a bounded time window. Benchmark corpora like ImageNet and historical census dumps are immutable references for reproducibility. Dynamic datasets arrive as unbounded continuous event streams governed by time-varying arrival rates. Real-time telemetry, IoT sensors, and financial tick data require sliding or tumbling window aggregations.</p></div><div class="transcript"><h3>Slide 8 — The Late Arrival Problem and Event-Time Watermarks</h3><p>Dynamic streaming pipelines face the fundamental challenge of out-of-order data arrival. Network partitions and mobile disconnections mean processing time rarely matches true event occurrence time. Stream processors implement event-time watermarks to define when a temporal window can be safely closed. Watermarks establish a monotonic timestamp threshold that balances aggregation completeness against real-time latency. Handling late-arriving records is essential for avoiding corrupted temporal state.</p></div><div class="transcript"><h3>Slide 9 — Example 1.7 — Semi-Structured Dataset in JSON</h3><p>Example 1.7 demonstrates semi-structured data using an e-commerce order payload formatted in JSON. The record combines rigid relational keys such as order identifier and customer identifier with flexible product lists and free-text customer reviews. This hybrid architecture shows how modern web applications store complex transactions without rigid multi-table joins. You can inspect and modify this payload in the example 7 module.</p></div><div class="transcript"><h3>Slide 10 — Industry Case Study: Multimodal Ingestion and Limit Order Books</h3><p>Production enterprises encounter both structural and temporal challenges simultaneously. In e-commerce platforms like Shopify, product catalogs combine tabular inventory prices, semi-structured metadata tags, and unstructured product imagery. In financial exchanges, high-frequency limit order books process millions of dynamic microsecond ticks. Trading engines maintain deterministic state transitions by serializing rapid order submissions into immutable audit logs.</p></div><div class="transcript"><h3>Slide 11 — In-Browser Taxonomy and Streaming Simulator</h3><p>Learners can explore these dynamics directly using the in-browser Taxonomy and Streaming Simulator. The interactive workbench allows you to stream simulated events through tumbling time windows. You can observe how network latency induces out-of-order event arrivals and adjust watermark thresholds. Watching records get accepted or rejected clarifies streaming trade-offs between latency and completeness.</p></div><div class="transcript"><h3>Slide 12 — Key Takeaways and Architectural Trade-offs</h3><p>To summarize our taxonomy of datasets, remember four architectural principles. Structural organization and temporal dynamics are orthogonal design decisions. Structured tabular relations guarantee atomic integrity and optimal query performance. Semi-structured trees enable flexible schema evolution at the cost of parsing overhead. Dynamic streams require event-time watermarking to guarantee accurate windowed analytics.</p></div><div class="transcript"><h3>Slide 13 — Next Steps</h3><p>Pause here to complete the formative quiz for this part. When ready, proceed to Part 3 to explore dataset storage formats and low-level serialization architectures.</p></div></div>
 </details>
 
 
@@ -104,48 +113,61 @@
   <div id="quiz-root" data-next-href="../part-03-dataset-formats/index.html" data-next-label="Continue to Dataset formats"></div>
   <script id="quiz-data" type="application/json">{
   "part_id": "part-02-types-of-datasets",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Types & Temporal Dynamics",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which pair correctly matches type to typical format?",
+      "prompt": "What are the two fundamental orthogonal axes used to categorize datasets in modern data engineering?",
       "choices": [
-        "Structured → images; Unstructured → CSV",
-        "Structured → CSV/SQL; Semi-structured → JSON/XML",
-        "Unstructured → SQL tables; Semi-structured → fixed spreadsheets only",
-        "Dynamic → only PDF documents"
+        "Hardware architecture and GPU memory bandwidth",
+        "Structural organization (schema rigidity) and temporal dynamics (evolution over time)",
+        "Compression codec and encryption key length",
+        "License type and geographic origin"
       ],
       "answer_index": 1,
-      "explain": "Table 1.2 in the chapter: structured uses fixed schemas (CSV, SQL); semi-structured uses flexible tags (JSON, XML)."
+      "explain": "Datasets are categorized structurally (structured, semi-structured, unstructured) and temporally (static snapshots versus dynamic streams)."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Unstructured data always fits a fixed row-and-column schema.",
-      "answer": false,
-      "explain": "Unstructured data (text, images, audio) does not follow a predefined tabular model."
+      "type": "mcq",
+      "prompt": "Which property is a mathematical requirement for structured tabular relations adhering to first normal form (1NF)?",
+      "choices": [
+        "Attributes must contain variable-length nested dictionaries without keys",
+        "All attribute values in each cell must be atomic and indivisible, with homogeneous column types",
+        "Records must arrive out of order across streaming sockets",
+        "Every table must be stored exclusively in plain text CSV files"
+      ],
+      "answer_index": 1,
+      "explain": "First normal form requires that each attribute value is atomic, with uniform typing and schema conformity across all tuples."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "A continuously updating clickstream is best described as:",
+      "prompt": "In dynamic event streaming systems, what is the primary role of an event-time watermark?",
       "choices": [
-        "A static structured archive",
-        "A dynamic dataset",
-        "Metadata only",
-        "Documentation, not data"
+        "To encrypt sensitive customer identifiers before writing to disk",
+        "To provide a temporal threshold indicating that no earlier events are expected, allowing window aggregations to close",
+        "To compress audio waveforms into dense vector embeddings",
+        "To assign sequential primary keys to relational SQL tables"
       ],
       "answer_index": 1,
-      "explain": "Dynamic datasets update continuously; static datasets are snapshots that change rarely."
+      "explain": "Watermarks track event-time progression and define a heuristic boundary for handling late-arriving events so windowed aggregations can be finalized."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Unstructured data like audio and medical imaging can be queried directly using standard relational SQL joins without prior feature extraction or neural embedding models.",
+      "answer": false,
+      "explain": "Unstructured data lacks a uniform relational schema and requires deep feature extractors or embedding models to map raw signals into structured representation spaces."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Why might NLP be needed for a social-media feedback dataset?",
-      "rubric": "Unstructured text lacks a fixed schema; slang/emojis require extraction/classification rather than simple SQL filters.",
-      "sample_answer": "Posts are unstructured text; extracting sentiment or aspects needs NLP, not a simple tabular filter."
+      "prompt": "Why do web applications often choose semi-structured formats like JSON over rigid relational tables for transaction payloads?",
+      "rubric": "Allows flexible, self-describing schemas with nested objects and optional fields without requiring database schema migrations.",
+      "sample_answer": "Semi-structured formats are self-describing and support hierarchical nesting and optional fields, allowing schemas to evolve without costly database migrations."
     }
   ]
 }

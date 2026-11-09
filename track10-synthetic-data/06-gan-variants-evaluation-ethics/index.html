@@ -4570,10 +4570,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7506,6 +7528,16 @@
 <li><strong>StyleGAN:</strong> Bypasses direct latent injection by feeding noise into an 8-layer MLP that yields an intermediate disentangled latent space <span class="arithmatex">\(\mathcal{W}\)</span>, controlling spatial hierarchy via Adaptive Instance Normalization (AdaIN) (<a href="#ref-karras2019">Karras et al., 2019</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Fréchet Inception Distance (FID) Benchmark Standards</p>
+<p>In generative vision synthesis, evaluate fidelity using <strong>Fréchet Inception Distance (FID)</strong> computed over at least 50,000 generated images:
+$<span class="arithmatex">\(\text{FID} = \|\mu_r - \mu_g\|^2 + \text{Tr}(\Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2})\)</span>$
+Lower FID indicates superior perceptual realism and diversity.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Inception Score Blindness to Mode Dropping</p>
+<p>The Inception Score (IS) measures whether individual images contain distinct objects and whether classes are balanced overall, but is completely blind to intra-class mode dropping. A generator producing only one single perfect golden retriever image per class achieves an artificially high Inception Score.</p>
+</div>
 <h2 id="mathematical-formulations-of-gan-metrics-objective-functions">🧮 Mathematical Formulations of GAN Metrics &amp; Objective Functions</h2>
 <h3 id="1-conditional-minimax-game-formulation-cgan">1. Conditional Minimax Game Formulation (cGAN)</h3>
 <p>In a Conditional GAN, the generator <span class="arithmatex">\(G_\theta(\mathbf{z}, \mathbf{y})\)</span> and discriminator <span class="arithmatex">\(D_\phi(\mathbf{x}, \mathbf{y})\)</span> optimize the value function conditioned on attribute <span class="arithmatex">\(\mathbf{y}\)</span> (<a href="#ref-mirza2014">Mirza &amp; Osindero, 2014</a>):</p>
@@ -7663,17 +7695,39 @@
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Class Imbalance & Evaluation Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate conditional GAN sampling, compute FID metrics, and inspect precision-recall trade-offs:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/class-imbalance/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Class Imbalance Studio</a>
-    <a href="../../tools/sampling/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Sampling Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Media Augmentation Lab</h4>
+  <p>Compare FID scores, Inception Scores, and Wasserstein distance metrics across synthetic visual and audio datasets.</p>
+  <a href="../../tools/media-augmentation/" class="noc-sim-btn">Launch Media Augmentation Lab →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Fréchet Inception Distance (FID) Trace Formulation</summary>
+<p>In FID calculation, two feature distributions have means <span class="arithmatex">\(\mu_r = [1, 2]\)</span>, <span class="arithmatex">\(\mu_g = [2, 4]\)</span> and diagonal covariance matrices <span class="arithmatex">\(\Sigma_r = \begin{bmatrix} 4 &amp; 0 \\ 0 &amp; 9 \end{bmatrix}\)</span>, <span class="arithmatex">\(\Sigma_g = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 4 \end{bmatrix}\)</span>. Calculate the exact FID.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> 
+1. Squared Euclidean distance between means:
+$<span class="arithmatex">\(\|\mu_r - \mu_g\|^2 = (1 - 2)^2 + (2 - 4)^2 = 1 + 4 = 5\)</span>$
+2. Matrix term for diagonal covariances:
+$<span class="arithmatex">\(\Sigma_r \Sigma_g = \begin{bmatrix} 4 \times 1 &amp; 0 \\ 0 &amp; 9 \times 4 \end{bmatrix} = \begin{bmatrix} 4 &amp; 0 \\ 0 &amp; 36 \end{bmatrix}\)</span>$
+$<span class="arithmatex">\((\Sigma_r \Sigma_g)^{1/2} = \begin{bmatrix} \sqrt{4} &amp; 0 \\ 0 &amp; \sqrt{36} \end{bmatrix} = \begin{bmatrix} 2 &amp; 0 \\ 0 &amp; 6 \end{bmatrix}\)</span>$
+$<span class="arithmatex">\(\text{Tr}(\Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2}) = (4 + 1 - 2(2)) + (9 + 4 - 2(6)) = (5 - 4) + (13 - 12) = 1 + 1 = 2\)</span>$
+3. Total FID: <span class="arithmatex">\(\text{FID} = 5 + 2 = 7.0\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Synthetic Data Amplification of Societal Bias</summary>
+<p>Why can training a generative model on an uncurated dataset amplify historical demographic bias rather than merely replicating it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Generative models optimize to capture high-density modes while pruning low-density tail modes to minimize generator loss.</p>
+<p>If a minority group represents 8% of the training dataset, an unconstrained GAN may allocate zero generator capacity to that subpopulation, dropping their representation from 8% to 0% in the synthetic release (Mode Dropping). Downstream models trained on this synthetic data completely fail on the excluded subpopulation.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

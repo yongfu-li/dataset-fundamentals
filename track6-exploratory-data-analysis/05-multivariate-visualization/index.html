@@ -2989,10 +2989,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7389,10 +7400,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7464,6 +7486,21 @@
 </span></code></pre></div>
 <hr />
 <h3 id="1-parallel-coordinates-point-line-duality">1. Parallel Coordinates &amp; Point-Line Duality</h3>
+<pre class="mermaid"><code>flowchart TD
+  MultiX[("Multivariate Feature Matrix X in R^(N x D)")] --&gt; Goal{"Analysis Objective"}
+
+  Goal -- "Explore Pairwise Linear Dependencies" --&gt; CorrHeatmap["Hierarchically Clustered Correlation Heatmap&lt;br/&gt;(Pearson / Spearman with Ward's linkage)"]
+  Goal -- "Global Linear Dimensionality Reduction" --&gt; PCA["Principal Component Analysis (PCA)&lt;br/&gt;Scree Plot + 2D/3D Biplot"]
+  Goal -- "Non-Linear Manifold Cluster Discovery" --&gt; UMAP["UMAP / t-SNE Projection&lt;br/&gt;Tune Perplexity &amp; Min Distance"]
+  Goal -- "Continuous Dynamic Trajectories" --&gt; ParallelCoord["Parallel Coordinates Plot&lt;br/&gt;with Color-Coded Target Classes"]
+
+  classDef blue fill:#1e3a8a,stroke:#3b82f6,color:#fff;
+  classDef amber fill:#78350f,stroke:#f59e0b,color:#fff;
+  classDef green fill:#064e3b,stroke:#10b981,color:#fff;
+
+  class MultiX blue;
+  class Goal amber;
+  class CorrHeatmap,PCA,UMAP,ParallelCoord green;</code></pre>
 <p>Introduced by Alfred Inselberg (<a href="#ref-inselberg1985">1985</a>), <strong>Parallel Coordinates</strong> replaces orthogonal axes with <span class="arithmatex">\(d\)</span> equidistant parallel vertical axes <span class="arithmatex">\(\{\bar{X}_1, \dots, \bar{X}_d\}\)</span> spaced across the Euclidean plane.</p>
 <h4 id="point-line-projective-duality">Point-Line Projective Duality</h4>
 <p>Every point <span class="arithmatex">\(\mathbf{p} = (p_1, p_2, \dots, p_d) \in \mathbb{R}^d\)</span> is represented by a polygonal line intersecting each vertical axis <span class="arithmatex">\(\bar{X}_j\)</span> at height <span class="arithmatex">\(p_j\)</span>.</p>
@@ -7512,6 +7549,14 @@ D(j, k) = 1 - |r_{jk}|
 \]</div>
 <p>Variables belonging to the same functional modules or causal sub-systems cluster into clean block-diagonal visual squares.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Correlation Matrix Hierarchical Clustering</p>
+<p>When inspecting large correlation matrices (<span class="arithmatex">\(D &gt; 30\)</span>), never plot features in arbitrary alphabetical order. Apply <strong>Hierarchical Clustered Heatmaps (Clustermap)</strong> using Ward's minimum variance criterion: this groups collinear and correlated features into distinct visual blocks along the diagonal, exposing redundant feature clusters instantly.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Over-Interpreting t-SNE Cluster Distances</p>
+<p>In t-SNE projections, the distances <em>between</em> separated clusters are largely meaningless and depend heavily on the arbitrary choice of perplexity. Furthermore, t-SNE does not preserve global topology or density: a dense cluster and a sparse cluster will be expanded to appear equally sized. Use <strong>UMAP</strong> or <strong>PCA</strong> when preserving global geometry is required.</p>
+</div>
 <h2 id="production-implementation-andrews-fourier-engine-parallel-coordinates">💻 Production Implementation: Andrews Fourier Engine &amp; Parallel Coordinates</h2>
 <p>The following production script implements Andrews Fourier curve projection with <span class="arithmatex">\(L_2\)</span> distance preservation verification and parallel coordinates normalization.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">"""</span>
@@ -7646,17 +7691,36 @@ D(j, k) = 1 - |r_{jk}|
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Multivariate Analysis Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate parallel coordinate axes reordering, clustered heatmaps, and high-dimensional projections client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/scaling-encoding/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Feature Scaling Tool</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Compute interactive correlation heatmaps, PCA biplots, and pairwise scatter matrices with instant clustering.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: PCA Explained Variance Ratio and Scree Plot Elbow</summary>
+<p>In Principal Component Analysis (PCA), eigenvalues of the covariance matrix are <span class="arithmatex">\(\lambda_1 = 8.4\)</span>, <span class="arithmatex">\(\lambda_2 = 3.6\)</span>, <span class="arithmatex">\(\lambda_3 = 1.2\)</span>, <span class="arithmatex">\(\lambda_4 = 0.8\)</span>. Calculate the cumulative explained variance ratio captured by the first two principal components.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Total variance is the trace of the eigenvalue matrix:
+$<span class="arithmatex">\(\sum \lambda_i = 8.4 + 3.6 + 1.2 + 0.8 = 14.0\)</span>$
+The cumulative explained variance ratio of PC1 and PC2 is:
+$<span class="arithmatex">\(\frac{\lambda_1 + \lambda_2}{\sum \lambda_i} = \frac{8.4 + 3.6}{14.0} = \frac{12.0}{14.0} \approx 0.8571 \text{ (85.71\%)}\)</span>$
+Projecting the 4-dimensional data onto the 2D subspace spanned by the first two eigenvectors retains 85.71% of total dataset variance.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Crowding Problem in High-to-Low Dimensional Embedding</summary>
+<p>What is the <strong>Crowding Problem</strong> in multidimensional scaling, and how does the Student's <span class="arithmatex">\(t\)</span>-distribution in t-SNE resolve it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In high dimensions, the volume of a sphere scales as <span class="arithmatex">\(r^D\)</span>. A point can have hundreds of equidistant near-neighbors. In a 2D projection space, there is simply not enough physical area to place hundreds of points at equal distance from the center without clustering them on top of each other (the Crowding Problem).</p>
+<p><strong>t-SNE</strong> resolves this by using a standard Gaussian distribution in the high-dimensional space but a <strong>heavy-tailed Student's <span class="arithmatex">\(t\)</span>-distribution (with 1 degree of freedom / Cauchy distribution)</strong> in the low-dimensional map. The heavy tails allow moderate dissimilarities in high dimensions to be mapped to large distances in 2D without distorting local neighbor clusters.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

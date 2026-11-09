@@ -4943,10 +4943,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7399,10 +7410,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7507,6 +7529,14 @@
 <li><strong>Probabilistic Soft Labels:</strong> Rather than outputting noisy hard labels <span class="arithmatex">\(\{0, 1\}\)</span>, the label model emits continuous probabilities <span class="arithmatex">\(\tilde{y}_i \in [0, 1]\)</span>, enabling downstream discriminative models to account for labeling uncertainty via cross-entropy loss (<a href="#ref-fries2021">Fries et al., 2021</a>).</li>
 </ol>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Distilling Weak Labels into Deep Discriminative Classifiers</p>
+<p>Never deploy the Snorkel generative label model directly in production. Use the generative model to create soft probabilistic labels <span class="arithmatex">\(\tilde{Y} \in [0, 1]\)</span> across 1,000,000 unlabeled records, and train a high-capacity deep neural network (e.g., RoBERTa, ResNet) using cross-entropy loss against <span class="arithmatex">\(\tilde{Y}\)</span>. The neural network generalizes beyond the rigid heuristics.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Hard Thresholding Probabilistic Labels</p>
+<p>Rounding probabilistic training labels to binary integers (<span class="arithmatex">\(\tilde{y} \ge 0.5 \to 1\)</span>) destroys epistemic confidence metadata. A prediction with <span class="arithmatex">\(\tilde{y} = 0.51\)</span> (high rule disagreement) is treated identically to <span class="arithmatex">\(\tilde{y} = 0.99\)</span> (unanimous rule consensus). Train directly on soft continuous probabilities.</p>
+</div>
 <h2 id="mathematical-formulations-of-generative-label-models">🧮 Mathematical Formulations of Generative Label Models</h2>
 <h3 id="1-the-factor-graph-model-ratner-et-al-2019">1. The Factor Graph Model (Ratner et al., 2019)</h3>
 <p>Let <span class="arithmatex">\(Y \in \{-1, +1\}\)</span> denote the latent unobserved ground-truth label of an instance, and let <span class="arithmatex">\(\boldsymbol{\Lambda} = (\Lambda_1, \dots, \Lambda_M) \in \{-1, 0, +1\}^M\)</span> denote the observed votes. The joint distribution is modeled as a log-linear Markov Random Field:</p>
@@ -7669,17 +7699,38 @@ z_j z_k = (\boldsymbol{\Sigma}_{\boldsymbol{\Lambda}})_{jk} \quad \forall j \neq
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Active Learning & Pipeline Studio</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate covariance matching label models, inspect rank-1 matrix completion, and compute soft probabilities:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/active-learning/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Active Learning Studio</a>
-    <a href="../../tools/pipeline-builder/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Pipeline Builder</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Text Annotation Workbench</h4>
+  <p>Test Snorkel generative parameter estimation, inspect factor graph correlations, and train soft-label classifiers.</p>
+  <a href="../../tools/text-annotation/" class="noc-sim-btn">Launch Text Annotation Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Generative Label Model Factor Graph Formulation</summary>
+<p>In Ratner et al. (2016), write the joint probability distribution <span class="arithmatex">\(P_\theta(\mathbf{\Lambda}, Y)\)</span> modeled by the Snorkel factor graph for labeling functions <span class="arithmatex">\(\mathbf{\Lambda}\)</span> and latent ground truth <span class="arithmatex">\(Y \in \{-1, +1\}\)</span>.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under the log-linear factor graph:
+$<span class="arithmatex">\(P_\theta(\mathbf{\Lambda}, Y) = \frac{1}{Z_\theta} \exp\left( \sum_{i=1}^m \theta_i \Lambda_i Y + \sum_{j, k} \theta_{j, k} \Lambda_j \Lambda_k \right)\)</span>$
+where:
+- <span class="arithmatex">\(\theta_i\)</span> is the accuracy parameter for labeling function <span class="arithmatex">\(i\)</span>.
+- <span class="arithmatex">\(\theta_{j, k}\)</span> captures pairwise correlation or dependency between labeling functions <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(k\)</span>.
+- <span class="arithmatex">\(Z_\theta = \sum_{\mathbf{\Lambda}, Y} \exp(\dots)\)</span> is the partition normalization constant.
+Parameters <span class="arithmatex">\(\theta\)</span> are learned via marginal maximum likelihood over observed <span class="arithmatex">\(\mathbf{\Lambda}\)</span> alone.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Why Distillation Outperforms Heuristics</summary>
+<p>Why does a deep Transformer trained on soft labels generated by keyword rules achieve higher test accuracy than the keyword rules themselves?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The deep network learns <strong>continuous representation embeddings and contextual semantics</strong>.</p>
+<p>A keyword heuristic rule fires only on exact string matches (e.g., "bankrupt"). The deep Transformer learns dense semantic vector representations: it recognizes synonyms, metaphorical language, and contextual phrasing ("insolvent", "chapter 11", "severe liquidity distress") that the original keyword rule never explicitly mentioned, achieving vastly superior recall.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

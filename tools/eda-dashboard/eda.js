@@ -293,8 +293,6 @@
       renderLoader() +
       renderMessage() +
       (session ? renderWorkspace() : "");
-    bindEvents();
-    if (session) drawCharts();
 
     if (window.DatasetToolsHandoff && window.DatasetToolsHandoff.mountBar) {
       window.DatasetToolsHandoff.mountBar(root, {
@@ -314,6 +312,15 @@
           }
         }
       });
+    }
+
+    bindEvents();
+    if (session) {
+      try {
+        drawCharts();
+      } catch (err) {
+        console.warn("drawCharts failed:", err);
+      }
     }
   }
 

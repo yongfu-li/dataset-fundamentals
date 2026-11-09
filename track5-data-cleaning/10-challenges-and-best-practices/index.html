@@ -2694,10 +2694,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-dvc-great-expectations" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: DVC &amp; Great Expectations
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-dvc-great-expectations" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: DVC &amp; Great Expectations
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7483,6 +7505,26 @@ I(\hat{\theta}; \mathcal{D}_{\text{test}}) &gt; 0
 H_k = \text{SHA-256}\left(H_{k-1} \;\|\; \text{CodeVersion} \;\|\; \text{ConfigHash} \;\|\; \text{Seed}\right)
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Automated Population Stability Index (PSI) Drift Monitoring</p>
+<p>Deploy continuous <strong>Population Stability Index (PSI)</strong> calculation across production feature distributions:
+$<span class="arithmatex">\(\text{PSI} = \sum_{b=1}^B (P_b - Q_b) \ln\left(\frac{P_b}{Q_b}\right)\)</span>$
+A <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> indicates significant distributional drift, triggering an automated alert to retrain models and inspect upstream data collection pipelines.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Silent Schema Mutation</p>
+<p>Upstream database schema changes (e.g., altering an integer <code>user_id</code> to alphanumeric string, or changing a status string from lowercase to title case) can silently pass untyped pipelines, producing 100% NaN features downstream.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Automated Population Stability Index (PSI) Drift Monitoring</p>
+<p>Deploy continuous <strong>Population Stability Index (PSI)</strong> calculation across production feature distributions:
+$<span class="arithmatex">\(\text{PSI} = \sum_{b=1}^B (P_b - Q_b) \ln\left(\frac{P_b}{Q_b}\right)\)</span>$
+A <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> indicates significant distributional drift, triggering an automated alert to retrain models and inspect upstream data collection pipelines.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Silent Schema Mutation</p>
+<p>Upstream database schema changes (e.g., altering an integer <code>user_id</code> to alphanumeric string, or changing a status string from lowercase to title case) can silently pass untyped pipelines, producing 100% NaN features downstream.</p>
+</div>
 <h2 id="production-implementation-automated-data-leakage-sentinel">💻 Production Implementation: Automated Data Leakage Sentinel</h2>
 <p>The following production script implements an automated leakage audit suite, verifying zero train-test overlap, detecting causal target proxies via mutual information, and validating chronological split ordering.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7652,40 +7694,40 @@ H_k = \text{SHA-256}\left(H_{k-1} \;\|\; \text{CodeVersion} \;\|\; \text{ConfigH
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-dvc-great-expectations">🛠️ Tool Integration: DVC &amp; Great Expectations</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Tool</th>
-<th style="text-align: left;">Core Capability</th>
-<th style="text-align: left;">Governance Role</th>
-<th style="text-align: left;">Integration Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>DVC (Data Version Control)</strong></td>
-<td style="text-align: left;">Git-like versioning for massive Parquet/S3 objects</td>
-<td style="text-align: left;">Tracks immutable raw-to-clean dataset diffs</td>
-<td style="text-align: left;"><code>dvc repro</code>, <code>dvc push</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Delta Lake / MLflow</strong></td>
-<td style="text-align: left;">ACID transactions and time-travel query logs</td>
-<td style="text-align: left;">Audit transformation lineage and rollback</td>
-<td style="text-align: left;"><code>df.write.format("delta").save()</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Evidently AI</strong></td>
-<td style="text-align: left;">Data drift and concept drift monitoring</td>
-<td style="text-align: left;">Detects test distribution shifts in production</td>
-<td style="text-align: left;"><code>Report(metrics=[DataDriftPreset()])</code></td>
-</tr>
-</tbody>
-</table>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Governance and lineage tool installation</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pip<span class="w"> </span>install<span class="w"> </span>dvc<span class="w"> </span>evidently<span class="w"> </span>mlflow
-</span></code></pre></div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Metadata Completeness Checker</h4>
+  <p>Test schema validation rules, monitor feature stability, and audit drift bounds in the interactive studio.</p>
+  <a href="../../tools/metadata-checker/" class="noc-sim-btn">Launch Metadata Checker →</a>
+</div>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Population Stability Index (PSI) Threshold Interpretation</summary>
+<p>A fraud detection model monitors the transaction amount distribution monthly. In month 3, the calculated PSI against the baseline training distribution is <span class="arithmatex">\(\text{PSI} = 0.31\)</span>. What action should the data engineering and ML teams take?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> A <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> indicates <strong>Significant Distributional Shift</strong>.</p>
+<p>The operational runbook mandates:
+1. Immediate alert triage: investigate whether the shift is driven by genuine macro-economic changes (holiday shopping surge) or upstream data corruption (currency conversion failure, duplicate billing).
+2. Evaluate model performance metrics (AUC-ROC, calibration) on the drifted cohort.
+3. Recalibrate and retrain the model on recent data, updating the reference baseline distribution.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Concept Drift vs. Covariate Shift</summary>
+<p>Distinguish mathematically between <strong>Covariate Shift</strong> and <strong>Concept Drift</strong> in the context of production data pipeline monitoring.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Covariate Shift:</strong> The input feature distribution changes over time, but the conditional label distribution remains invariant:
+$<span class="arithmatex">\(P_{\text{train}}(X) \ne P_{\text{deploy}}(X), \quad \text{while} \quad P(Y \mid X) = \text{constant}\)</span>$
+- <strong>Concept Drift:</strong> The fundamental statistical relationship between features and target labels changes over time:
+$<span class="arithmatex">\(P(Y \mid X)_{\text{train}} \ne P(Y \mid X)_{\text{deploy}}\)</span>$
+For example, during a financial crisis, consumers with previously "safe" debt-to-income ratios begin defaulting at <span class="arithmatex">\(3\times\)</span> higher rates.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

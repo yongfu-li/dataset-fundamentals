@@ -5712,10 +5712,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7333,10 +7344,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7451,6 +7473,14 @@ D_{n, m} &gt; c(\alpha) \sqrt{\frac{n + m}{n \cdot m}}, \quad \text{where } c(\a
 - <span class="arithmatex">\(0.10 \le \text{PSI} &lt; 0.25\)</span>: Moderate drift; generate diagnostic warnings.
 - <span class="arithmatex">\(\text{PSI} \ge 0.25\)</span>: Severe covariate shift; fail CI gate and block model deployment.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Continuous Data Integration (CDI) in GitHub Actions</p>
+<p>Deploy <strong>Continuous Data Integration (CDI)</strong> on every pull request that touches data pipelines: spin up an ephemeral runner, pull a 1% stratified subsample of data, execute the transformation scripts, and assert that all Great Expectations data quality checks pass before allowing code to merge into <code>main</code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Storing Gigabyte Data Files in GitHub Action Runners</p>
+<p>Downloading multi-gigabyte datasets during CI runners exceeds GitHub runner disk quotas and wastes build minutes. Use cached DVC remotes or configure your CI workflow to run regression assertions strictly against a lightweight, versioned "Golden Fixture" test dataset (<span class="arithmatex">\(&lt;50\text{ MB}\)</span>).</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script implements a production CDI statistical test harness computing two-sample KS statistics and PSI drift metrics with automated threshold assertion:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -7538,17 +7568,41 @@ D_{n, m} &gt; c(\alpha) \sqrt{\frac{n + m}{n \cdot m}}, \quad \text{where } c(\a
 <li><strong>The Solution:</strong> AWS engineering developed and open-sourced <strong>Deequ</strong>, a library built on Apache Spark that translates declarative data quality constraints (e.g., <code>hasCompleteness("id", _ &gt;= 0.999)</code>, <code>isPositive("price")</code>) into distributed Spark aggregate metrics. Deequ processes millions of records in parallel, blocking corrupted partitions in staging before they reach downstream production ML models.</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: CDI Statistical Gate Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Kolmogorov-Smirnov drift tests, calculate PSI metrics, and configure CI gates:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Metadata Completeness Checker</h4>
+  <p>Simulate GitHub Actions CDI runners, test automated PR data validation gates, and audit CI/CD execution logs.</p>
+  <a href="../../tools/metadata-checker/" class="noc-sim-btn">Launch Metadata Checker →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: GitHub Actions Ephemeral Caching Strategy</summary>
+<p>In a GitHub Actions workflow executing scientific pipelines, how does the <code>@actions/cache</code> action prevent re-downloading identical DVC data blobs on every commit?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The workflow configures a cache step using the DVC lockfile hash as the cache key:
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v3</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.dvc/cache</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dvc-cache-${{ hashFiles('dvc.lock') }}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dvc-cache-</span>
+</span></code></pre></div>
+If <code>dvc.lock</code> is unchanged, GitHub Actions restores the cached binary chunks from fast internal cache storage in seconds, bypassing external S3 downloads and slashing CI build times by <span class="arithmatex">\(&gt;80\%\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Automated Data Regression Assertions</summary>
+<p>What three automated sanity checks should a continuous integration job run on newly generated tabular feature tables before tagging a release?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Null/Missingness Assertion:</strong> Assert that non-nullable columns have 0 null values (<code>assert df['user_id'].null_count() == 0</code>).
+2. <strong>Uniqueness Assertion:</strong> Assert that primary keys are strictly unique (<code>assert df['id'].is_unique()</code>).
+3. <strong>Distributional Bound Assertion:</strong> Assert that numerical features lie within physical bounds and statistical variance matches historical limits (e.g., Z-score test on feature means).</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

@@ -1390,6 +1390,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7388,6 +7399,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7461,6 +7483,14 @@
 <strong>The High-N Fallacy</strong>: A survey with <span class="arithmatex">\(N = 100{,}000\)</span> responses but an <span class="arithmatex">\(m/N = 95\%\)</span> non-response rate produces massive, high-precision bias if respondents differ systematically from non-respondents (e.g., highly dissatisfied customers leaving angry reviews). A small, probability-sampled survey (<span class="arithmatex">\(n = 1{,}200\)</span>) with a <span class="arithmatex">\(75\%\)</span> response rate is statistically superior to an uncurated million-row voluntary internet poll.</p>
 </blockquote>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Ethical Scraping Politeness Policies</p>
+<p>Production crawlers must strictly comply with <code>robots.txt</code> specifications, enforce <code>Crawl-delay</code> parameters, provide an identifiable <code>User-Agent</code> containing administrative contact email, and route requests through exponential backoff jitter to prevent server degradation.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Non-Response Bias in Digital Surveys</p>
+<p>Voluntary web surveys suffer from extreme self-selection bias: individuals with polarized opinions (very satisfied or extremely aggrieved) respond at dramatically higher rates than the moderate majority. Reporting raw unweighted means without post-stratification adjustment produces invalid population inferences.</p>
+</div>
 <h2 id="2-web-scraping-engineering-dom-extraction-legal-etiquette">2. Web Scraping Engineering: DOM Extraction &amp; Legal Etiquette</h2>
 <p>When public data lacks official APIs, engineers deploy web scrapers to transform unstructured HTML into structured records.</p>
 <pre class="mermaid"><code>flowchart TD
@@ -7591,16 +7621,12 @@
 <p>By fusing high-frequency IoT sensor telemetry with qualitative occupant surveys, researchers can explain <em>why</em> unexpected power consumption spikes occur (e.g., anomalous meter reading explained by an unannounced appliance maintenance cycle noted in the survey), rather than treating real-world occupant behavior as noise or sensor error.</p>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<p>Test your web scraping selectors and rate limiters hands-on:</p>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Crawling &amp; Rate Throttling Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate API throttling, leaky bucket backoff, and examine robots exclusion trees:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/api-collector/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ API Collector &amp; Throttling Simulator</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">💻 Open Web Data Terminal</a>
-  </div>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore API Collector & Rate-Limiter</h4>
+  <p>Simulate web crawler rate-limiting, exponential backoff, and polite scraping heuristics in the interactive simulator.</p>
+  <a href="../../tools/api-collector/" class="noc-sim-btn">Launch API Collector Workbench →</a>
 </div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -7608,6 +7634,26 @@
 <li><strong>Selector Durability</strong>: Never bind web scrapers to generated CSS class hashes; target semantic data attributes (<code>data-testid</code>) or structural XPath axes.</li>
 <li><strong>Polite Crawling Architecture</strong>: Always implement RFC 9309 robots parsing, unique institutional User-Agents, and adaptive jittered rate throttling.</li>
 </ol>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Post-Stratification Raking for Survey Non-Response</summary>
+<p>A customer feedback survey achieves a 15% response rate. Female users aged 18–25 represent 50% of the respondents but only 20% of the active platform user base. What post-stratification weight <span class="arithmatex">\(w_h\)</span> should be assigned to this subgroup?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under standard post-stratification weighting:
+$<span class="arithmatex">\(w_h = \frac{N_h / N}{n_h / n} = \frac{0.20}{0.50} = 0.40\)</span>$
+Each response in this overrepresented stratum must be scaled down by a factor of <span class="arithmatex">\(0.40\)</span> so that the weighted sample mean reflects the true population demographic proportions.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Headless Browser Scraping vs. REST Endpoint Reverse-Engineering</summary>
+<p>Why do production scraping architectures prioritize inspecting Network WebSocket/XHR traffic over Selenium/Puppeteer DOM scraping for dynamic Single Page Applications (SPAs)?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> DOM scraping via headless browsers incurs high CPU/memory overhead (<span class="arithmatex">\(100\times\)</span> resource consumption per page), fragile CSS selector dependencies, and rendering latency. Reverse-engineering the underlying REST/GraphQL API payload provides direct, structured JSON objects, reducing network payload size by 90% and eliminating DOM parsing errors.</p>
+</details>
+</details>
 <hr />
 <h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
 <ol>

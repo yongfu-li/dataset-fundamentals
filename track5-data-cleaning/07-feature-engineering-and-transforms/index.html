@@ -2638,10 +2638,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-scipy-scikit-learn" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Scipy &amp; Scikit-Learn
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7433,10 +7444,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-scipy-scikit-learn" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Scipy &amp; Scikit-Learn
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7557,6 +7579,22 @@ D = \binom{d + k}{k}
 1. <strong>Equal-Width Binning:</strong> Divides range into <span class="arithmatex">\(B\)</span> identical intervals of width <span class="arithmatex">\(w = \frac{x_{\max} - x_{\min}}{B}\)</span>. Vulnerable to empty bins when severe outliers exist.
 2. <strong>Quantile (Equal-Frequency) Binning:</strong> Calculates bin cutoffs at empirical quantiles <span class="arithmatex">\(q_k = F^{-1}(k / B)\)</span> for <span class="arithmatex">\(k \in \{1, \dots, B - 1\}\)</span>. Guarantees identical sample counts across bins and uniform categorical entropy <span class="arithmatex">\(H(B) = \log_2 B\)</span>.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Yeo-Johnson vs. Box-Cox Power Transforms</p>
+<p>While the Box-Cox transform strictly requires strictly positive numbers (<span class="arithmatex">\(x &gt; 0\)</span>), the <strong>Yeo-Johnson power transform</strong> supports zero and negative values. Use Yeo-Johnson when transforming continuous financial profit/loss features or sensor error deltas into near-Gaussian distributions.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Combinatorial Feature Explosion</p>
+<p>Generating all pairwise polynomial interactions for a dataset with <span class="arithmatex">\(D = 100\)</span> features produces <span class="arithmatex">\(\frac{100 \times 101}{2} = 5,050\)</span> new columns. This inflates model training time, introduces multicollinearity, and increases generalization variance unless paired with <span class="arithmatex">\(L_1\)</span> LASSO feature selection.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Yeo-Johnson vs. Box-Cox Power Transforms</p>
+<p>While the Box-Cox transform strictly requires strictly positive numbers (<span class="arithmatex">\(x &gt; 0\)</span>), the <strong>Yeo-Johnson power transform</strong> supports zero and negative values. Use Yeo-Johnson when transforming continuous financial profit/loss features or sensor error deltas into near-Gaussian distributions.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Combinatorial Feature Explosion</p>
+<p>Generating all pairwise polynomial interactions for a dataset with <span class="arithmatex">\(D = 100\)</span> features produces <span class="arithmatex">\(\frac{100 \times 101}{2} = 5,050\)</span> new columns. This inflates model training time, introduces multicollinearity, and increases generalization variance unless paired with <span class="arithmatex">\(L_1\)</span> LASSO feature selection.</p>
+</div>
 <h2 id="production-implementation-skewness-correction-and-interaction-pipeline">💻 Production Implementation: Skewness Correction and Interaction Pipeline</h2>
 <p>The following script computes Fisher-Pearson skewness, automatically fits Yeo-Johnson power transforms, generates interaction features, and filters multicollinearity using VIF.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7705,40 +7743,36 @@ D = \binom{d + k}{k}
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-scipy-scikit-learn">🛠️ Tool Integration: Scipy &amp; Scikit-Learn</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Library</th>
-<th style="text-align: left;">Primary Class</th>
-<th style="text-align: left;">Algorithm / Mechanism</th>
-<th style="text-align: left;">Best Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>scikit-learn</strong></td>
-<td style="text-align: left;"><code>PowerTransformer</code></td>
-<td style="text-align: left;">Box-Cox / Yeo-Johnson with Profile Likelihood</td>
-<td style="text-align: left;">Normality restoration for linear models</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>scikit-learn</strong></td>
-<td style="text-align: left;"><code>KBinsDiscretizer</code></td>
-<td style="text-align: left;"><code>strategy='quantile'</code>, <code>strategy='kmeans'</code></td>
-<td style="text-align: left;">Nonlinear continuous feature binning</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>scipy.stats</strong></td>
-<td style="text-align: left;"><code>stats.boxcox</code>, <code>stats.skew</code></td>
-<td style="text-align: left;">Direct parameter optimization and moment tests</td>
-<td style="text-align: left;">Statistical auditing and inference</td>
-</tr>
-</tbody>
-</table>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Core numerical tools for transformations</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pip<span class="w"> </span>install<span class="w"> </span>scipy<span class="w"> </span>scikit-learn<span class="w"> </span>pandas
-</span></code></pre></div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Feature Scaling & Encoding Lab</h4>
+  <p>Test Yeo-Johnson, Quantile, and Log transforms and observe the normalization of heavy-tailed distributions.</p>
+  <a href="../../tools/scaling-encoding/" class="noc-sim-btn">Launch Scaling Workbench →</a>
+</div>
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Box-Cox Maximum Likelihood Optimization</summary>
+<p>In the Box-Cox power transform <span class="arithmatex">\(y^{(\lambda)} = \frac{x^\lambda - 1}{\lambda}\)</span> for <span class="arithmatex">\(\lambda \ne 0\)</span>, how is the optimal parameter <span class="arithmatex">\(\lambda^*\)</span> determined mathematically?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The optimal parameter <span class="arithmatex">\(\lambda^*\)</span> is selected via <strong>Profile Log-Likelihood Maximization</strong>:
+$<span class="arithmatex">\(L(\lambda) = -\frac{n}{2} \ln(\hat{\sigma}^2(\lambda)) + (\lambda - 1) \sum_{i=1}^n \ln(x_i)\)</span>$
+where <span class="arithmatex">\(\hat{\sigma}^2(\lambda)\)</span> is the scale variance of the transformed data. The algorithm scans a range of candidate values (typically <span class="arithmatex">\(\lambda \in [-2, 2]\)</span>) to find the parameter that maximizes the normality log-likelihood.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Cyclic Feature Encoding (Sine/Cosine Transformation)</summary>
+<p>Why does encoding hour of the day (0 to 23) as an integer introduce an artificial discontinuity, and how does dual sine/cosine projection resolve it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In raw integer encoding, 23:00 (11 PM) and 00:00 (midnight) have an absolute Euclidean distance of <span class="arithmatex">\(|23 - 0| = 23\)</span>, even though they are temporally separated by only 1 hour.</p>
+<p>Projecting hour <span class="arithmatex">\(H \in [0, 23]\)</span> onto the unit circle preserves cyclical continuity:
+$<span class="arithmatex">\(x_{\sin} = \sin\left(\frac{2\pi H}{24}\right), \quad x_{\cos} = \cos\left(\frac{2\pi H}{24}\right)\)</span>$
+Now, the Euclidean distance between 23:00 and 00:00 is identical to the distance between 12:00 and 13:00, allowing gradient-based models and distance metrics to recognize cyclical time smoothly.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

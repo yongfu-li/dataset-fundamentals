@@ -1,47 +1,60 @@
 {
   "part_id": "part-05-exploring-a-dataset",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Exploratory Data Analysis & Diagnostics",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Exploration in this chapter is primarily meant to:",
+      "prompt": "When an empirical feature distribution exhibits severe positive right-skew (skewness > +1.0), what is the relationship between the sample mean and the median?",
       "choices": [
-        "Replace all formal cleaning forever",
-        "Discover structure, defects, and feasible goals before modeling",
-        "Train the final production model",
-        "Encrypt the dataset at rest"
+        "The mean is equal to the median",
+        "The mean is significantly greater than the median, as extreme positive values pull the mean upward",
+        "The median is negative, while the mean is undefined",
+        "The mean is strictly smaller than the 10th percentile"
       ],
       "answer_index": 1,
-      "explain": "Exploration reveals where cleaning is needed and what analysis remains feasible; it does not replace formal cleaning workflows."
+      "explain": "In right-skewed distributions (such as incomes or web traffic), a small number of extreme high values drag the arithmetic mean upward, making it much larger than the robust median."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "A first exploration pass often includes summary statistics, visuals, and missingness checks.",
-      "answer": true,
-      "explain": "Section 1.4.3 describes summaries, histograms/scatter plots, and null counts as a practical first pass."
+      "type": "mcq",
+      "prompt": "Under Tukey's non-parametric outlier fencing formulation, what defines the inner fences?",
+      "choices": [
+        "[Mean - 3 * StdDev, Mean + 3 * StdDev]",
+        "[Q1 - 1.5 * IQR, Q3 + 1.5 * IQR] where IQR = Q3 - Q1",
+        "[Min - 10, Max + 10]",
+        "[0.0, 1.0]"
+      ],
+      "answer_index": 1,
+      "explain": "Tukey's inner fences are set at 1.5 times the Interquartile Range (IQR = Q3 - Q1) below the first quartile and above the third quartile."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "Which tool is highlighted for reproducible tabular profiling scripts?",
+      "prompt": "What defines Simpson's Paradox in exploratory bivariate analysis?",
       "choices": [
-        "Handwritten sticky notes only",
-        "Python pandas",
-        "Unlabeled image dumps",
-        "Random guessing"
+        "A condition where training error exactly equals validation error on all epochs",
+        "A statistical condition where an apparent trend in an aggregate dataset vanishes or completely reverses when records are disaggregated into subgroups",
+        "A bug caused by missing foreign key constraints in SQLite",
+        "A failure of GPU floating point precision during backpropagation"
       ],
       "answer_index": 1,
-      "explain": "Table 1.7 and Example 1.20 emphasize pandas for detailed, script-based exploration."
+      "explain": "Simpson's Paradox occurs when an unobserved confounding variable influences both the predictor and the outcome, reversing the aggregate correlation when broken down into cohorts."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Spearman rank correlation evaluates linear relationships and is just as sensitive to extreme outliers as Pearson correlation.",
+      "answer": false,
+      "explain": "Spearman rank correlation evaluates monotonic relationships using ordinal ranks, making it much more robust to non-linear associations and extreme outliers than Pearson correlation."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "State one of the three early questions exploration should answer.",
-      "rubric": "Accept: what is in the table; what looks suspicious; what goals remain feasible given defects.",
-      "sample_answer": "What looks suspicious in the table?"
+      "prompt": "Why should data scientists apply variance-stabilizing log-transformations to heavily right-skewed features before training models?",
+      "rubric": "Compresses extreme values, restores approximate symmetry, stabilizes gradient descent, and prevents high-magnitude features from dominating distance metrics.",
+      "sample_answer": "Log-transformations compress extreme outlier values, restore approximate symmetry, stabilize gradient optimization, and prevent extreme numbers from dominating Euclidean distances."
     }
   ]
 }

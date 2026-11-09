@@ -1,57 +1,111 @@
-title: Chapter 1 — Introduction to datasets
+title: Chapter 1 — Introduction to Datasets
 footer: Chapter 1 — Introduction To Datasets
 slides:
 - type: title
-  title: Chapter 1 — Introduction to datasets
-  subtitle: 'This part opens Chapter 1 by answering a deceptively simple question:
-    what counts as a dataset?'
-  notes: 'This part opens Chapter 1 by answering a deceptively simple question: what
-    counts as a dataset? By the end, the vocabulary of records and attributes should
-    feel concrete, whether the file is a spreadsheet or a JSON document.'
+  title: Chapter 1 — Introduction to Datasets
+  subtitle: Welcome to Chapter 1 of the Dataset Fundamentals lecture series
+  notes: Welcome to Chapter 1 of the Dataset Fundamentals lecture series. This opening
+    part establishes what a dataset is from computational and mathematical perspectives.
+    We examine why modern artificial intelligence must transition from model-centric
+    tuning to data-centric engineering.
 - type: bullets
-  title: Learning objectives
+  title: Learning Objectives
   bullets:
-  - Define a dataset as curated for analysis, not raw event streams
-  - Distinguish records from attributes (shared vocabulary)
-  - Same idea in CSV tables and nested JSON
-  notes: Three goals guide this part. First, define a dataset as something curated
-    for analysis, not merely a raw stream of events. Second, separate records from
-    attributes so every later example has a shared language. Third, see that the same
-    idea appears in both flat CSV tables and nested JSON.
+  - Our primary goals guide this foundational part
+  - We define an empirical sample using statistical learning theory and joint probability
+  - We establish the universal orthogonal abstraction of records and attributes across
+    modern
+  - We analyze the law of data quality cascades where early collection errors compound
+  - We study real-world failures across healthcare and robotics and test schema enforcement
+    in
+  notes: Our primary goals guide this foundational part. We define an empirical sample
+    using statistical learning theory and joint probability distributions. We establish
+    the universal orthogonal abstraction of records and attributes across modern computing
+    paradigms. We analyze the law of data quality cascades where early collection
+    errors compound downstream. We study real-world failures across healthcare and
+    robotics and test schema enforcement in our interactive laboratory.
 - type: bullets
-  title: What is a dataset?
+  title: The Data-Centric AI Paradigm Shift
   bullets:
-  - A dataset is a curated collection of data
-  - Has scope, structure, and documentation
-  - The dataset is the basic unit for ML, statistics, and BI
-  notes: A dataset is a curated collection of data, often organized as records and
-    attributes, that serves as input to analysis, modeling, or decision-making. Unlike
-    raw operational logs, a dataset usually has defined scope, structure, and ideally
-    documentation that makes it interpretable. In modern data work, the dataset is
-    the basic unit—whether the task is machine learning, statistics, or business intelligence.
+  - Machine learning research historically focused on a model-centric paradigm with
+    fixed
+  - Empirical investigations reveal that real-world AI failures stem from dirty data
+    rather
+  - Data-Centric AI holds the model fixed while systematically auditing and engineering
+    the
+  - Rigorous data curation delivers significantly greater reliability gains than marginal
+  notes: Machine learning research historically focused on a model-centric paradigm
+    with fixed benchmark datasets. Empirical investigations reveal that real-world
+    AI failures stem from dirty data rather than model architecture defects. Data-Centric
+    AI holds the model fixed while systematically auditing and engineering the dataset.
+    Rigorous data curation delivers significantly greater reliability gains than marginal
+    hyperparameter adjustments.
 - type: bullets
-  title: Records and attributes
+  title: Mathematical Foundations of an Empirical Sample
   bullets:
-  - Each record is one observation; each attribute describes it
-  - The sales CSV uses Date, Product, Quantity, and Price as attributes
-  - The same mapping appears in healthcare and sensor examples later in the section
-  notes: 'In tabular data, each record is one observation—one sale, one patient, one
-    sensor reading—and each attribute describes a property of that observation. The
-    sales CSV uses Date, Product, Quantity, and Price as attributes; each row is one
-    transaction. The same mapping appears in healthcare and sensor examples later
-    in the section: change the domain, keep the structure.'
+  - An empirical dataset is formally defined as a sample drawn from an unobservable
+    joint
+  - We denote the instance feature space as X and the target label space as Y
+  - An empirical dataset of sample size N consists of paired observations independently
+    and
+  - In empirical risk minimization
+  - Corrupted training distributions cause empirical risk to diverge sharply from
+    true risk
+  notes: An empirical dataset is formally defined as a sample drawn from an unobservable
+    joint probability distribution. We denote the instance feature space as X and
+    the target label space as Y. An empirical dataset of sample size N consists of
+    paired observations independently and identically distributed from this measure.
+    In empirical risk minimization, algorithms minimize sample loss to approximate
+    true generalization risk. Corrupted training distributions cause empirical risk
+    to diverge sharply from true risk.
 - type: bullets
-  title: Example 1.1 — Sample CSV sales data
+  title: The Attribute Space and Feature Schema
+  bullets:
+  - Each observation vector is decomposed across an attribute schema of distinct measurement
+  - Continuous metric features capture real-valued physical measurements such as blood
+  - Discrete count variables record non-negative event totals such as website visits
+  - Categorical nominal variables represent distinct unordered states such as medical
+  - Ordinal ranked variables enforce monotonic order across categories
+  - Enforcing explicit domain invariants prevents silent pipeline corruption across
+    processing
+  notes: Each observation vector is decomposed across an attribute schema of distinct
+    measurement domains. Continuous metric features capture real-valued physical measurements
+    such as blood pressure. Discrete count variables record non-negative event totals
+    such as website visits. Categorical nominal variables represent distinct unordered
+    states such as medical diagnosis codes. Ordinal ranked variables enforce monotonic
+    order across categories. Enforcing explicit domain invariants prevents silent
+    pipeline corruption across processing stages.
+- type: bullets
+  title: 'Records versus Attributes: Universal Abstraction'
+  bullets:
+  - Structured data universally reduces to two orthogonal dimensions of observations
+    and
+  - Statistical analysis examines individual sample observations and vertical covariate
+  - Relational database engines organize structured tuples and typed table columns
+  - Machine learning pipelines batch observation instances and multi-dimensional feature
+  - Modern columnar storage layouts arrange horizontal row groups and vertical column
+    chunks
+  notes: Structured data universally reduces to two orthogonal dimensions of observations
+    and features. Statistical analysis examines individual sample observations and
+    vertical covariate variables. Relational database engines organize structured
+    tuples and typed table columns. Machine learning pipelines batch observation instances
+    and multi-dimensional feature vectors. Modern columnar storage layouts arrange
+    horizontal row groups and vertical column chunks.
+- type: bullets
+  title: Example 1.1 — Sample CSV Sales Data
   bullets:
   - Example 1.1 — hands-on module
-  - 'First concrete anchor: a small CSV of retail sales'
-  - Each row is one sale; columns detail product, date, quantity, and price
-  - Explore the chapter example module
+  - Example 1.1 illustrates the classic tabular archetype using retail purchase records
+  - Each row represents a single customer purchase event in the store
+  - Each column defines a typed attribute including transaction date, product name,
+    quantity
   - 'View files: `modules/chapter1/example1/`'
-  notes: 'Example 1.1 is the chapter''s first concrete anchor: a small CSV of retail
-    sales. Each row is one sale; columns detail product, date, quantity, and price.
-    Open the example 1 module for this chapter to inspect the file and count rows
-    and columns before moving on. Later examples change domain but keep this shape.'
+  notes: Example 1.1 illustrates the classic tabular archetype using retail purchase
+    records. Each row represents a single customer purchase event in the store. Each
+    column defines a typed attribute including transaction date, product name, quantity,
+    and unit price. Inspecting this table shows how row-level observations intersect
+    with attribute domains to form a feature matrix. You can explore the data file
+    and its schema in the hands-on module for this example.
 - type: code
   title: Example 1.1 — listing
   code: 'Date,Product,Quantity,Price,Total
@@ -68,18 +122,21 @@ slides:
 
     2024-01-04,Apple,2,0.5,1.0'
 - type: bullets
-  title: Example 1.4 — Housing prices in JSON
+  title: Example 1.4 — Housing Prices in JSON
   bullets:
   - Example 1.4 — hands-on module
-  - Example 1.4 JSON listings with nested fields (flexible schema)
-  - 'The form changes; the objective stays the same: meaningful, analyzable data'
-  - Explore the chapter example module
+  - Tabular rows and columns are not the only medium for dataset representation
+  - Example 1.4 demonstrates semi-structured data using housing property listings
+    formatted in
+  - Individual records maintain flexible hierarchical trees with nested dictionaries
+    and
   - 'View files: `modules/chapter1/example4/`'
-  notes: 'Datasets are not only tables. Example 1.4 stores housing listings as JSON
-    with nested fields—still records with attributes, but in a flexible schema. The
-    form changes; the objective stays the same: provide meaningful data that can be
-    turned into insight. Try the example 4 module to see how keys and nested objects
-    play the role of columns.'
+  notes: 'Tabular rows and columns are not the only medium for dataset representation.
+    Example 1.4 demonstrates semi-structured data using housing property listings
+    formatted in JSON. Individual records maintain flexible hierarchical trees with
+    nested dictionaries and variable-length arrays. The underlying objective remains
+    identical: representing observations and properties for downstream analytical
+    processing. You can examine this nested schema in the example 4 module.'
 - type: code
   title: Example 1.4 — listing
   code: "[\n  {\n    \"House_ID\": 101,\n    \"Location\": \"New York\",\n    \"Square_Footage\"\
@@ -93,19 +150,86 @@ slides:
     : 1500,\n    \"Bedrooms\": 2,\n    \"Proximity_to_Schools\": \"0.3 miles\",\n\
     \    \"Price\": 950000\n  }\n]"
 - type: bullets
-  title: Takeaways
+  title: The Law of Data Quality Cascades
   bullets:
-  - A dataset is prepared for a purpose
-  - Records and attributes are the shared vocabulary
-  - Formats and modalities vary widely, but the goal of interpretable, usable data
-    does not
-  notes: Remember three points. A dataset is prepared for a purpose. Records and attributes
-    are the shared vocabulary. Formats and modalities vary widely, but the goal of
-    interpretable, usable data does not.
+  - Production machine learning systems execute multi-stage directed processing graphs
+  - The law of data quality cascades establishes that early collection errors compound
+  - Hardware telemetry drift or missing sensor readings compound through arbitrary
+    imputation
+  - Noisy annotations mislead feature representation learning and model optimization
+  - Even subtle collection artifacts can trigger catastrophic failure during production
+  notes: Production machine learning systems execute multi-stage directed processing
+    graphs. The law of data quality cascades establishes that early collection errors
+    compound non-linearly across downstream stages. Hardware telemetry drift or missing
+    sensor readings compound through arbitrary imputation. Noisy annotations mislead
+    feature representation learning and model optimization. Even subtle collection
+    artifacts can trigger catastrophic failure during production deployment.
+- type: bullets
+  title: 'Comic: The Perilous Journey of Record 402'
+  bullets:
+  - Here we visualize the law of data quality cascades through an illustrated four-panel
+    comic
+  - In panel one
+  - In panel two
+  - In panel three, an exhausted crowd worker mislabels the corrupted record
+  - By panel four
+  notes: Here we visualize the law of data quality cascades through an illustrated
+    four-panel comic strip. In panel one, an uncalibrated bedside sensor introduces
+    a minor twenty-five millisecond desync. In panel two, an engineer naively plugs
+    missing blood pressure with a default negative nine-nine-nine sentinel value.
+    In panel three, an exhausted crowd worker mislabels the corrupted record. By panel
+    four, the downstream machine learning model overfits to the artifact, triggering
+    catastrophic triage failures in the clinical ICU.
+- type: bullets
+  title: 'Real-World Case Studies: When Datasets Fail'
+  bullets:
+  - Catastrophic consequences of data quality cascades appear across high-stakes industries
+  - In clinical ICU sepsis prediction
+  - In autonomous driving pipelines
+  - Such temporal misalignment creates ghost obstacles and emergency braking failures
+    in road
+  notes: Catastrophic consequences of data quality cascades appear across high-stakes
+    industries. In clinical ICU sepsis prediction, models collapsed when deployed
+    across new hospitals due to nurse logging frequency artifacts. In autonomous driving
+    pipelines, twenty milliseconds of LiDAR and camera timing jitter produces over
+    half a meter of spatial displacement. Such temporal misalignment creates ghost
+    obstacles and emergency braking failures in road tests.
+- type: bullets
+  title: Interactive Schema and Quality Laboratory
+  bullets:
+  - Learners can explore data health auditing directly using the in-browser Schema
+    and Quality
+  - This interactive workbench allows you to stream clean transaction records and
+    inject
+  - You can observe live health reports detailing completeness, type validation
+  - Exploring these interactive controls bridges theoretical definitions with practical
+  notes: Learners can explore data health auditing directly using the in-browser Schema
+    and Quality Inspector. This interactive workbench allows you to stream clean transaction
+    records and inject missing values. You can observe live health reports detailing
+    completeness, type validation, and cascade risk index. Exploring these interactive
+    controls bridges theoretical definitions with practical diagnostic instincts.
+- type: bullets
+  title: Key Takeaways and Foundation Summary
+  bullets:
+  - Four fundamental insights summarize our study of dataset foundations
+  - A dataset is an empirical sample whose joint probability distribution bounds all
+  - Records and attributes represent universal orthogonal axes across all data storage
+    formats
+  - Data quality cascades mean early collection rigor prevents catastrophic downstream
+    model
+  - Explicit schema validation and real-world failure auditing must precede model
+    training
+  notes: Four fundamental insights summarize our study of dataset foundations. A dataset
+    is an empirical sample whose joint probability distribution bounds all downstream
+    accuracy. Records and attributes represent universal orthogonal axes across all
+    data storage formats. Data quality cascades mean early collection rigor prevents
+    catastrophic downstream model collapse. Explicit schema validation and real-world
+    failure auditing must precede model training.
 - type: bullets
   title: Next
   bullets:
   - Complete the quiz for this part
-  - Continue to the next part on types of datasets, structured, unstructured
-  notes: Pause for the quiz, then continue to the next part on types of datasets—structured,
-    unstructured, and semi-structured.
+  - Pause here to test your understanding with the formative quiz for this part
+  notes: Pause here to test your understanding with the formative quiz for this part.
+    When ready, proceed to Part 2 to classify dataset types across structural taxonomies
+    and temporal streaming dynamics.

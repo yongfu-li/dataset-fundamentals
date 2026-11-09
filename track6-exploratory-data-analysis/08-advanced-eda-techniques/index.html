@@ -3073,10 +3073,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7389,10 +7400,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7516,6 +7538,14 @@ q_{ij} = \frac{(1 + \|\mathbf{y}_i - \mathbf{y}_j\|^2)^{-1}}{\sum_{k} \sum_{l \n
 \mathcal{L}_{\text{t-SNE}} = \text{KL}(P \parallel Q) = \sum_{i \neq j} p_{ij} \log \frac{p_{ij}}{q_{ij}}
 \]</div>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Topological Data Analysis (TDA) for High-Dimensional Manifolds</p>
+<p>When data resides on non-linear loop, cycle, or branching geometries (e.g., viral genomic evolution, single-cell RNA velocity, financial market regime shifts), deploy <strong>Persistent Homology (TDA)</strong>. TDA extracts coordinate-free topological invariants (<span class="arithmatex">\(\beta_0\)</span> connected components, <span class="arithmatex">\(\beta_1\)</span> 1-dimensional loops) that standard PCA and clustering miss completely.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Visualizing UMAP with Arbitrary Random Seeds</p>
+<p>UMAP stochastic optimization can yield visually distinct cluster layouts across different random seeds when datasets lack pronounced manifold structure. Always run multiple random seeds and compute quantitative cluster stability metrics (Adjusted Rand Index) before asserting that visual sub-clusters reflect genuine latent subpopulations.</p>
+</div>
 <h2 id="production-implementation-pca-spectral-engine-biplot-geometry">💻 Production Implementation: PCA Spectral Engine &amp; Biplot Geometry</h2>
 <p>Below is an executable script computing singular value decompositions, eigenvalue scree profiles, and verifying loading vector angle-correlation correspondence.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7663,17 +7693,38 @@ q_{ij} = \frac{(1 + \|\mathbf{y}_i - \mathbf{y}_j\|^2)^{-1}}{\sum_{k} \sum_{l \n
 </tbody>
 </table>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Manifold Projection Visualizer</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate PCA scree plots, biplot loading vectors, and t-SNE perplexity dynamics client-side:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/representation/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Subgroup Representation</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Test advanced manifold projections, interactive dimension reducers, and cluster stability metrics.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Betti Numbers in Topological Data Analysis</summary>
+<p>In Persistent Homology, what topological features are measured by the 0th Betti number (<span class="arithmatex">\(\beta_0\)</span>) and 1st Betti number (<span class="arithmatex">\(\beta_1\)</span>)?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> 
+- <span class="arithmatex">\(\beta_0\)</span> (Betti-0): Counts the number of <strong>connected components (clusters)</strong> in the data manifold at filtration radius <span class="arithmatex">\(\epsilon\)</span>.
+- <span class="arithmatex">\(\beta_1\)</span> (Betti-1): Counts the number of <strong>1-dimensional circular loops or empty tunnels</strong> enclosed by the data.</p>
+<p>Features that persist across a wide range of filtration distances in a persistence barcode diagram represent true geometric properties of the underlying manifold rather than stochastic sampling noise.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Copula-Based Multivariate Dependence Modeling</summary>
+<p>Under Sklar's Theorem, how does a Copula function decouple the modeling of individual feature marginal distributions from their joint non-linear dependency structure?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Sklar's Theorem states that any multivariate cumulative distribution function <span class="arithmatex">\(F(x_1, \dots, x_d)\)</span> can be expressed in terms of its continuous marginal distributions <span class="arithmatex">\(F_i(x_i)\)</span> and a copula <span class="arithmatex">\(C\)</span>:
+$<span class="arithmatex">\(F(x_1, \dots, x_d) = C(F_1(x_1), \dots, F_d(x_d))\)</span>$
+This decouples analysis into two independent steps:
+1. Fit empirical or parametric marginal distributions to each feature individually (e.g., feature 1 is Pareto, feature 2 is Gaussian).
+2. Transform marginals to uniform variables <span class="arithmatex">\(u_i = F_i(x_i) \in [0, 1]\)</span> and fit a copula (Gaussian, Clayton, Gumbel) to model tail dependencies and non-linear interactions directly.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

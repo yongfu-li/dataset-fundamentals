@@ -3869,10 +3869,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7503,6 +7525,14 @@
 \]</div>
 <p>Production release gates enforce <span class="arithmatex">\(\mathcal{S}_{\text{comp}}(D) \ge 0.95\)</span> prior to catalog indexing.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Pre-Commit Hooks for Metadata Linting</p>
+<p>Install Git pre-commit hooks (<code>pre-commit</code>) that automatically run schema validators, check for unmasked PII, verify non-empty data dictionaries, and prevent accidental raw CSV commits exceeding 10 MB.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Ignoring Dataset Lineage in Regulatory Audits</p>
+<p>Under the EU AI Act (Article 10), high-risk AI systems must maintain documented data governance and provenance. Inability to produce bitwise-verified data lineage records during an audit can result in mandatory model recall and statutory fines.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements a Continuous Data Testing (CDT) test harness, calculates PSI distribution drift, and evaluates documentation freshness:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -7593,17 +7623,34 @@
 <li><strong>The Governance Solution:</strong> Airbnb instituted mandatory <strong>Pre-flight CDT Assertion Gates</strong> and automated PSI drift thresholds. If an incoming feature partition deviates beyond <span class="arithmatex">\(\text{PSI} \ge 0.15\)</span> or violates schema constraints, the CI gate isolates the partition, alerting engineers before downstream pricing inferences execute (<a href="#ref-schelter2018">Schelter et al., 2018</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Governance & Drift Workbench</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Continuous Data Testing suites, calculate PSI drift, and monitor documentation freshness:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Metadata Completeness Checker</h4>
+  <p>Audit automated pre-commit metadata checks, test compliance rules, and verify documentation completeness scores.</p>
+  <a href="../../tools/metadata-checker/" class="noc-sim-btn">Launch Metadata Checker →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Automated Pre-Commit Hook Configuration</summary>
+<p>What two checks should a <code>.pre-commit-config.yaml</code> file enforce for a data science repository to prevent accidental leaks and bloated Git histories?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong><code>check-added-large-files</code>:</strong> Blocks any git commit containing files larger than a specified threshold (e.g., <code>args: ['--maxkb=500']</code>), forcing developers to use DVC or Git-LFS.
+2. <strong><code>detect-private-key</code> / <code>detect-secrets</code>:</strong> Scans commit diffs for accidental AWS credentials, API tokens, or hardcoded passwords before they are pushed to GitHub.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: The Golden Master Dataset Rule</summary>
+<p>What is a <strong>Golden Master Dataset</strong> in enterprise regression testing, and how should it be version-controlled?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> A Golden Master is a static, curated, immutable evaluation dataset representing known edge cases, critical customer cohorts, and gold-standard benchmarks.</p>
+<p>It is versioned with an immutable cryptographic tag (e.g., <code>gold-v1.0-release</code>). Every new model checkpoint candidate must evaluate against the Golden Master in CI/CD; a regression in accuracy on the Golden Master acts as an automated release blocker.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

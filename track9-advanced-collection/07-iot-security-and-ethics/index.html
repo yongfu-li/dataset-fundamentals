@@ -4214,10 +4214,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7496,6 +7518,14 @@
 \]</div>
 <p>If <span class="arithmatex">\(\chi^2 &gt; \chi^2_{\alpha, B-1}\)</span>, the telemetry violates natural physical randomness and is quarantined as an adversarial sensor spoofing attack.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Mutual TLS (mTLS) with Hardware Roots of Trust</p>
+<p>Authenticate every IoT sensor connecting to telemetry brokers using <strong>Mutual TLS (mTLS)</strong> backed by device private keys stored in a dedicated cryptographic Secure Element (TPM or ATECC608A chip). Reject any connection without valid certificate verification.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Hardcoded Default Credentials in Firmware</p>
+<p>Shipping IoT firmware with hardcoded administrative credentials or unencrypted OTA update endpoints allows adversaries to compromise devices, recruit them into DDoS botnets (e.g., Mirai), and exfiltrate private domestic telemetry.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production script implements the Local Differential Privacy Laplace mechanism, calculates accumulated privacy loss, and evaluates Chi-square sensor spoofing detection:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -7574,17 +7604,35 @@
 <li><strong>The Defense:</strong> Utility providers deploy <strong>Local Differential Privacy on Smart Meter Firmware</strong>. By injecting calibrated Laplace noise (<span class="arithmatex">\(\epsilon = 0.50\)</span>) to aggregated 15-minute intervals, individual appliance power signatures are statistically masked while grid-level load forecasting accuracy remains within <span class="arithmatex">\(1.2\%\)</span> of ground truth (<a href="#ref-dwork2014">Dwork &amp; Roth, 2014</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: IoT Security & Privacy Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate Local Differential Privacy Laplace mechanisms, test privacy budgets, and detect spoofing:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Consent & PII Scrubber</h4>
+  <p>Test anonymization of ambient IoT sensor streams, scrub MAC addresses, and audit geolocation trajectory privacy.</p>
+  <a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch PII Scrubber Workbench →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Sensor Fingerprinting Re-identification Attacks</summary>
+<p>Even if an IoT smartphone sensor transmits anonymous accelerometer data with all user IDs stripped, how can microscopic physical manufacturing imperfections uniquely identify the physical device (Dey et al., 2014)?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Physical MEMS accelerometers have microscopic silicon wafer fabrication tolerances that induce consistent, unique hardware <strong>gain and bias calibration offsets</strong>.</p>
+<p>By measuring subtle baseline frequency drifts across vibration sweeps, an adversary extracts a persistent hardware biometric fingerprint with <span class="arithmatex">\(&gt;96\%\)</span> classification accuracy, uniquely linking supposedly anonymous sessions back to a specific physical smartphone.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Over-the-Air (OTA) Firmware Cryptographic Verification</summary>
+<p>What cryptographic primitives must an IoT device verify before applying a remote Over-the-Air (OTA) firmware binary update?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Cryptographic Signature Verification:</strong> The device verifies an asymmetric digital signature (ECDSA or RSA-3072) appended to the firmware using the public key embedded in its hardware root of trust.
+2. <strong>Hash Integrity Check:</strong> Verifies the SHA-256 digest of the downloaded binary matches the signed manifest.
+3. <strong>Anti-Rollback Version Check:</strong> Verifies the firmware version is strictly greater than the currently installed version (stored in eFuse or non-volatile memory) to prevent downgrade attacks against known vulnerabilities.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

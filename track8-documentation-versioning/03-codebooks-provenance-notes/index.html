@@ -3729,10 +3729,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7377,10 +7388,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7509,6 +7531,14 @@ V = \mathcal{E} \cup \mathcal{A} \cup \mathcal{G}
 \]</div>
 <p>where <span class="arithmatex">\(P\)</span> is the number of connected workflow components.</p>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: W3C PROV-O Lineage Graph Tracking</p>
+<p>Model dataset derivation histories using the <strong>W3C PROV-O standard</strong>: explicitly record Entities (datasets, features), Activities (ETL jobs, cleaning scripts, ML runs), and Agents (engineers, automated schedulers) to provide bitwise auditability.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Missing Raw-to-Clean Transformation Lineage</p>
+<p>Publishing a cleaned dataset without publishing the exact transformation script and source commit creates an "orphan dataset": external researchers cannot verify whether outliers were trimmed validly or selectively cherry-picked.</p>
+</div>
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following script implements codebook categorical mapping, evaluates W3C PROV-O reachability, and determines SemVer release version increments:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -7634,17 +7664,35 @@ V = \mathcal{E} \cup \mathcal{A} \cup \mathcal{G}
 <li><strong>The Architectural Remedy:</strong> The CDC introduced <strong>Formal SAS Codebooks paired with Machine-Readable XML Dictionaries</strong>. Every variable explicitly documents top-coding rules, imputation markers, and skip patterns, preventing systematic epidemiological misclassification across thousands of public health studies (<a href="#ref-michener1997">Michener et al., 1997</a>).</li>
 </ol>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Codebook & Provenance Lab</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Audit codebook mapping fidelity, compute PROV-O reachability matrices, and evaluate SemVer logic:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/version-timeline/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Version Timeline Studio</a>
-    <a href="../../tools/storage-format/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Storage Format Visualizer</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Dataset Version Timeline (DVC)</h4>
+  <p>Inspect directed acyclic lineage graphs (DAGs), trace upstream entities and transformation activities, and verify commit hashes.</p>
+  <a href="../../tools/version-timeline/" class="noc-sim-btn">Launch Version Timeline →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: W3C PROV-O Entity-Activity-Agent Triad</summary>
+<p>In a medical ML pipeline, a raw DICOM image dataset is normalized by a Python script executed by an automated Kubernetes cronjob. Map these three components into the W3C PROV-O ontology.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Entity (<code>prov:Entity</code>):</strong> The raw DICOM dataset and the normalized image dataset (the data artifacts).
+- <strong>Activity (<code>prov:Activity</code>):</strong> The Python normalization execution process (<code>wasGeneratedBy</code> / <code>used</code>).
+- <strong>Agent (<code>prov:Agent</code>):</strong> The Kubernetes cronjob / engineering service account (<code>wasAssociatedWith</code>).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Cryptographic Hash Chaining in Lineage Audits</summary>
+<p>How does linking dataset version metadata with SHA-256 parent hash pointers guarantee tamper-evident data provenance?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> In a Merkle DAG hash chain, every commit hash <span class="arithmatex">\(H_t\)</span> is computed over its contents and the parent hash: <span class="arithmatex">\(H_t = \text{SHA256}(\text{data}_t \parallel H_{t-1})\)</span>.</p>
+<p>If an adversary retroactively alters a single record in historical dataset <span class="arithmatex">\(D_0\)</span>, its hash changes to <span class="arithmatex">\(H_0'\)</span>. This cascades through all subsequent child hashes (<span class="arithmatex">\(H_1', H_2', \dots\)</span>), breaking the signature of the latest commit and instantly exposing unauthorized tampering.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

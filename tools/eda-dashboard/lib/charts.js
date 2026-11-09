@@ -261,8 +261,9 @@
     const cols = corr.columns;
     const n = cols.length;
     const pad = { t: 28, r: 16, b: 70, l: 70 };
-    const size = Math.min(size(canvas).width - pad.l - pad.r, size(canvas).height - pad.t - pad.b);
-    const cell = size / n;
+    const canvasDim = size(canvas);
+    const plotSize = Math.min(canvasDim.width - pad.l - pad.r, canvasDim.height - pad.t - pad.b);
+    const cell = plotSize / n;
     ctx.fillStyle = TEXT;
     ctx.font = "600 13px " + FONT;
     ctx.fillText("Pearson correlation (numeric cols)", pad.l, 16);

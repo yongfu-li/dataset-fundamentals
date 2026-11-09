@@ -3000,10 +3000,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7299,10 +7310,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tool-integration-interactive-data-studio" class="md-nav__link">
+  <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Tool Integration: Interactive Data Studio
+        🔬 Interactive Laboratory Workbench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Interactive Self-Assessment Micro-Checks
       
     </span>
   </a>
@@ -7431,6 +7453,14 @@ V = \sqrt{\frac{\chi^2}{n \cdot \min(r - 1, c - 1)}}
 </tbody>
 </table>
 <hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Automated Profiling Reports with Great Expectations</p>
+<p>Integrate automated HTML profiling generators (e.g., YData Profiling, Sweetviz) into your CI/CD data ingestion pipeline. Generate baseline report snapshots on every pull request to catch schema changes and null bursts before models retrain.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Over-Reliance on Black-Box Automated EDA</p>
+<p>Automated EDA tools compute naive univariate metrics and correlations, but cannot detect domain-specific business logic errors, temporal lookahead bias, or data leakage across train/test splits. Automated summaries are an orientation aid, never a substitute for exploratory domain inquiry.</p>
+</div>
 <h2 id="production-implementation-high-throughput-automated-eda-profiler">💻 Production Implementation: High-Throughput Automated EDA Profiler</h2>
 <p>Below is a self-contained, high-performance automated EDA engine computing missingness fractions, skewness flags, high-cardinality alerts, and pairwise associations.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
@@ -7556,17 +7586,36 @@ V = \sqrt{\frac{\chi^2}{n \cdot \min(r - 1, c - 1)}}
    - Title strings had <span class="arithmatex">\(99.8\%\)</span> uniqueness (<code>Quasi-Identifier alert</code>), preventing naive categorical one-hot encoding.
 2. <strong>Speed Comparison:</strong> A custom vectorized Polars profiling routine audited the entire <span class="arithmatex">\(850,000\)</span>-row table in <strong><span class="arithmatex">\(0.48\text{ seconds}\)</span></strong>, compared to <strong><span class="arithmatex">\(41.2\text{ seconds}\)</span></strong> using standard loop-based Pandas profiling.</p>
 <hr />
-<h2 id="tool-integration-interactive-data-studio">🛠️ Tool Integration: Interactive Data Studio</h2>
-<div style="background:var(--noc-surface-subtle); border:1px solid var(--noc-border); border-radius:10px; padding:16px 20px; margin:20px 0;">
-  <div style="font-weight:700; color:var(--noc-primary); margin-bottom:8px;">🔬 Interactive Data Studio: Automated EDA Dashboard</div>
-  <p style="margin-bottom:12px; font-size:0.92rem;">Simulate real-time tabular profiling, missingness matrix audits, and automated diagnostic alerts:</p>
-  <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-    <a href="../../tools/eda-dashboard/" class="noc-sim-btn" style="background:#2563eb; text-decoration:none;">🛠️ Launch EDA Dashboard</a>
-    <a href="../../tools/schema-format/" class="noc-sim-btn" style="background:#059669; text-decoration:none;">🛠️ Schema Format Tool</a>
-    <a href="../../interactive/terminal/" class="noc-sim-btn secondary" style="text-decoration:none;">💻 Open Virtual Terminal</a>
-  </div>
+<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
+<div class="noc-sim-card">
+  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
+  <h4>Explore Automated EDA Dashboard</h4>
+  <p>Generate one-click automated EDA diagnostic reports, export CSV profiles, and audit feature health client-side.</p>
+  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Dashboard →</a>
 </div>
-
+<hr />
+<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<details class="question">
+<summary>Self-Assessment: Profiling High-Cardinality String Columns</summary>
+<p>An automated EDA tool inspects a 10-million row dataset and encounters a string column with 9.8 million unique values. What heuristic checks should the pipeline run to classify this column?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The pipeline should check:
+1. <strong>Primary Key / Unique Identifier Check:</strong> Uniqueness ratio <span class="arithmatex">\(\frac{\text{unique\_count}}{N} \ge 0.98\)</span>. If unique and non-semantic, flag as candidate surrogate key or GUID and exclude from modeling.
+2. <strong>Free-Text vs Categorical:</strong> Compute average character length and entropy. If long string with space characters, classify as unstructured natural language text requiring NLP embedding.
+3. <strong>PII Masking Check:</strong> Run regex assertions for email addresses, phone numbers, and SSNs.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment: Automated Data Drift Assertion in CI/CD</summary>
+<p>How can an ML platform automatically fail a data deployment pipeline using the Wasserstein distance between new production data and the reference baseline?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The CI/CD step computes the first Wasserstein (Earth Mover's) distance <span class="arithmatex">\(W_1(P_{\text{new}}, P_{\text{baseline}})\)</span> for continuous features:
+$<span class="arithmatex">\(W_1(u, v) = \int_{-\infty}^\infty |U(x) - V(x)| dx\)</span>$
+If <span class="arithmatex">\(W_1 &gt; \tau_{\text{drift}}\)</span> (where threshold <span class="arithmatex">\(\tau_{\text{drift}}\)</span> is pre-calibrated to 3 standard errors of baseline variation), the CI/CD job emits a nonzero exit code, blocking model retraining and notifying data engineers.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>

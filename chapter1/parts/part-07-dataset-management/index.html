@@ -34,12 +34,12 @@
 <section class="hero">
   <h1>Dataset management</h1>
   <div class="clip-meta">
-    <span class="pill">~6 min</span>
+    <span class="pill">~8 min</span>
     <span class="pill pill-muted">Chapter 1</span>
     <span class="pill pill-muted">Part 7 of 7</span>
   </div>
   <nav class="clip-toolbar" aria-label="Part actions and navigation">
-    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-uses-of-datasets/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../../../chapter1/index.html" title="Back to chapter learning path">Finish →</a>
+    <a class="btn btn-secondary clip-toolbar-prev" href="../part-06-uses-of-datasets/index.html">← Previous</a><a class="btn btn-secondary" href="clip.pptx">Download PPTX</a><a class="btn btn-secondary" href="clip.pdf">Download PDF</a><a class="btn btn-secondary" href="#examples">View examples</a><a class="btn btn-ghost" href="#quiz">Jump to quiz</a><a class="btn clip-toolbar-next" href="../../../chapter1/index.html" title="Back to chapter learning path">Finish →</a>
   </nav>
 </section>
 
@@ -56,24 +56,42 @@
 
 <h2>Learning objectives</h2>
 <ul class='objectives'>
-<li>Explain why management matters after models ship</li>
-<li>List core management practices</li>
-<li>Name privacy and security controls for sensitive tables</li>
+<li>Trace the multi-stage dataset lifecycle from raw bronze ingestion to regulatory cryptographic purging</li>
+<li>Evaluate the six architectural pillars of enterprise dataset management</li>
+<li>Examine regulatory compliance across GDPR, HIPAA, and differential privacy</li>
+<li>Simulate dynamic role-based column masking and lineage tracking in our interactive workbench</li>
 </ul>
 
 
 
 
+<section class="examples-panel" id="examples">
+  <h2>Example files and results</h2>
+  <p class="lead">These examples are shown as static files for GitHub Pages. Open the module
+  to inspect the data, source files, and any saved expected result.</p>
+  <div class="module-grid">
+<article class="module-card">
+  <div>
+    <span class="pill pill-muted">eg:1.28</span>
+    <h3>Example 1.28 — Banking Transactions Dataset</h3>
+    <p>Describe how labeled historical transactions become features for a near-real-time fraud-scoring pipeline.</p>
+    
+  </div>
+  <a class="btn btn-secondary" href="../../../modules/chapter1/example28/index.html">View files and result</a>
+</article>
+</div>
+</section>
+
 
 <details class="panel" data-persist="slides">
   <summary>Slides overview</summary>
-  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Dataset management</h3><ul><li>Models and dashboards depend on quieter work</li></ul></div><div class="slide-card"><h3>Learning objectives</h3><ul><li>Explain why management matters after a model ships</li><li>Name privacy controls that protect sensitive extracts</li></ul></div><div class="slide-card"><h3>Why management matters</h3><ul><li>A dataset is collected, cleaned, documented, stored, shared, and sometimes retired</li><li>Traceability links figures to their sources</li><li>Without these foundations</li></ul></div><div class="slide-card"><h3>Best practices (overview)</h3><ul><li>Table 1.8 highlights version control</li><li>These reinforce one another</li></ul></div><div class="slide-card"><h3>Privacy and security</h3><ul><li>Encryption, anonymization, role-based access with MFA, regulatory compliance</li><li>Healthcare extracts, banking ledgers</li><li>Ethical nuance continues in later chapters</li></ul></div><div class="slide-card"><h3>Looking ahead</h3><ul><li>Chapter 1 established definitions, types, quality, exploration, applications</li><li>Chapter 2 turns to data collection</li></ul></div><div class="slide-card"><h3>Takeaways</h3><ul><li>Management is not optional</li><li>Versioning, metadata, and access must work together</li><li>Protection begins at first storage and continues through every reuse</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Complete the quiz</li></ul></div></div></div>
+  <div class="panel-body"><div class="slides-deck"><div class="slide-card"><h3>Chapter 1 — Dataset Management, Governance, and Lifecycle</h3><ul><li>Welcome to the concluding lecture of Chapter 1</li></ul></div><div class="slide-card"><h3>Learning Objectives</h3><ul><li>Four foundational goals guide our exploration of dataset governance</li><li>We trace the multi-stage dataset lifecycle from raw bronze ingestion to regulatory</li><li>We evaluate the six architectural pillars of enterprise dataset management</li><li>We examine regulatory compliance across GDPR, HIPAA, and differential privacy</li><li>Finally, we simulate dynamic role-based column masking and lineage tracking in our</li></ul></div><div class="slide-card"><h3>The Imperative of Dataset Governance</h3><ul><li>In production machine learning systems</li><li>Without systematic governance, pipelines accumulate technical and data debt</li><li>Unmonitored personal data incurs severe legal liabilities</li><li>Dataset governance ensures traceability, reproducible retraining</li></ul></div><div class="slide-card"><h3>The Multi-Stage Data Lifecycle: From Bronze to Purge</h3><ul><li>Modern data engineering organizes datasets into multi-stage lifecycle tiers</li><li>The bronze tier captures immutable raw streams directly from physical ingestion sources</li><li>The silver tier applies schema validation, deduplication, and standardized typing</li><li>The gold tier publishes curated feature tables tracked by content hashes</li><li>Subsequent tiers govern model serving, cold storage archiving</li></ul></div><div class="slide-card"><h3>The Six Pillars of Mature Dataset Management</h3><ul><li>Mature engineering organizations anchor data infrastructure upon six foundational pillars</li><li>Version control tracks exact dataset states alongside code commits</li><li>Declarative execution graphs ensure deterministic transformation reproducibility</li><li>Metadata lineage tracks attribute transformations from source to model</li><li>Resilient storage prevents data loss through geographic replication</li><li>Fine-grained access control enforces least-privilege security</li></ul></div><div class="slide-card"><h3>Immutable Content-Addressable Version Control</h3><ul><li>Tracking dataset versions using ad-hoc folder names destroys scientific reproducibility</li><li>Modern systems pair Git with tools like Data Version Control</li><li>Instead of storing large binary files in code repositories</li><li>Storing lightweight hash pointers in Git links every code commit to bitwise-identical</li></ul></div><div class="slide-card"><h3>Metadata Lineage and Resilient Storage Architectures</h3><ul><li>Lineage tracking records every transformation applied to an attribute from ingestion to</li><li>Specifications like OpenLineage capture runtime execution graphs automatically</li><li>With one geographically isolated replica</li></ul></div><div class="slide-card"><h3>Role-Based Access Control and Discovery Catalogs</h3><ul><li>Role-based access control restricts attribute visibility to the minimum required for</li><li>Dynamic column masking redacts personally identifiable information for model development</li><li>Searchable dataset catalogs index schemas, usage documentation</li></ul></div><div class="slide-card"><h3>Privacy Engineering: GDPR, HIPAA, and Differential Privacy</h3><ul><li>Datasets recording human observations must comply with stringent international privacy</li><li>Legal frameworks demand technical safeguards including AES-256 encryption at rest and TLS</li><li>Pseudonymization replaces direct identifiers with salted hashes</li><li>Differential privacy injects calibrated mathematical noise</li></ul></div><div class="slide-card"><h3>Cryptographic Erasure and Article 17 Tombstoning</h3><ul><li>Under GDPR Article 17</li><li>In immutable</li><li>Cryptographic erasure solves this by encrypting each user&#x27;s records with a unique per-user</li><li>Satisfying legal mandates instantly</li></ul></div><div class="slide-card"><h3>In-Browser Interactive Governance and RBAC Simulator</h3><ul><li>Learners can explore enterprise access control interactively using our in-browser</li><li>The workbench allows you to switch roles between administrator, machine learning engineer</li><li>You can observe live policy masking across sensitive clinical and financial attributes</li><li>Exploring lineage commits illustrates how content hashes track dataset evolution across</li></ul></div><div class="slide-card"><h3>Chapter 1 Capstone Summary and Key Takeaways</h3><ul><li>Chapter 1 established the comprehensive foundation of dataset engineering</li><li>We defined datasets as curated empirical samples and established the universal abstraction</li><li>We classified structures and temporal streaming dynamics and compared row and columnar</li><li>We audited multi-dimensional quality, profiled distributions, prevented data leakage</li></ul></div><div class="slide-card"><h3>Next</h3><ul><li>Complete the quiz for this part</li><li>Congratulations on completing Chapter 1</li></ul></div></div></div>
 </details>
 
 
 <details class="panel" data-persist="transcript">
   <summary>Transcript</summary>
-  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Dataset management</h3><p>Models and dashboards depend on quieter work: who may access the table, which version was trained, where backups live, and how long personal fields may be retained. This final part introduces that discipline.</p></div><div class="transcript"><h3>Slide 2 — Learning objectives</h3><p>You should explain why management matters after a model ships, list core practices such as versioning and access control, and name privacy controls that protect sensitive extracts.</p></div><div class="transcript"><h3>Slide 3 — Why management matters</h3><p>A dataset is collected, cleaned, documented, stored, shared, and sometimes retired. Traceability links figures to their sources; ownership and documentation reduce duplicated effort; governance limits who can see sensitive fields. Without these foundations, tuned models can amplify undocumented errors or leak attributes that should never leave a restricted store.</p></div><div class="transcript"><h3>Slide 4 — Best practices (overview)</h3><p>Table 1.8 highlights version control, cleaning and transformation, metadata documentation, storage and backups, access control, and cataloging. These reinforce one another: a versioned file without metadata still confuses new users; rich docs without access controls may violate privacy rules.</p></div><div class="transcript"><h3>Slide 5 — Privacy and security</h3><p>Encryption, anonymization, role-based access with MFA, regulatory compliance, and audit logging commonly combine to protect personal and proprietary data. Healthcare extracts, banking ledgers, and customer feature tables are useful only if access, retention, and sharing are controlled. Ethical nuance continues in later chapters; the point here is that protection starts when records are first stored.</p></div><div class="transcript"><h3>Slide 6 — Looking ahead</h3><p>Chapter 1 established definitions, types, quality, exploration, applications, and management. Chapter 2 turns to data collection—where records originate and how sampling shapes representativeness.</p></div><div class="transcript"><h3>Slide 7 — Takeaways</h3><p>Management is not optional. Versioning, metadata, and access must work together. Protection begins at first storage and continues through every reuse.</p></div><div class="transcript"><h3>Slide 8 — Next</h3><p>Complete the quiz, then return to the chapter learning path or continue to Chapter 2 when that lecture is available.</p></div></div>
+  <div class="panel-body"><div class="transcript"><h3>Slide 1 — Chapter 1 — Dataset Management, Governance, and Lifecycle</h3><p>Welcome to the concluding lecture of Chapter 1. Having explored modeling workflows and data leakage prevention, we examine the infrastructure that preserves dataset trustworthiness over time. We study lifecycle governance, content-addressable version control, fine-grained access security, and cryptographic erasure.</p></div><div class="transcript"><h3>Slide 2 — Learning Objectives</h3><p>Four foundational goals guide our exploration of dataset governance. We trace the multi-stage dataset lifecycle from raw bronze ingestion to regulatory cryptographic purging. We evaluate the six architectural pillars of enterprise dataset management. We examine regulatory compliance across GDPR, HIPAA, and differential privacy. Finally, we simulate dynamic role-based column masking and lineage tracking in our interactive workbench.</p></div><div class="transcript"><h3>Slide 3 — The Imperative of Dataset Governance</h3><p>In production machine learning systems, research credibility depends on data infrastructure. Without systematic governance, pipelines accumulate technical and data debt. Silent upstream changes overwrite training files, undocumented scripts make results irreproducible, and unmonitored personal data incurs severe legal liabilities. Dataset governance ensures traceability, reproducible retraining, and regulatory compliance.</p></div><div class="transcript"><h3>Slide 4 — The Multi-Stage Data Lifecycle: From Bronze to Purge</h3><p>Modern data engineering organizes datasets into multi-stage lifecycle tiers. The bronze tier captures immutable raw streams directly from physical ingestion sources. The silver tier applies schema validation, deduplication, and standardized typing. The gold tier publishes curated feature tables tracked by content hashes. Subsequent tiers govern model serving, cold storage archiving, and eventual cryptographic destruction.</p></div><div class="transcript"><h3>Slide 5 — The Six Pillars of Mature Dataset Management</h3><p>Mature engineering organizations anchor data infrastructure upon six foundational pillars. Version control tracks exact dataset states alongside code commits. Declarative execution graphs ensure deterministic transformation reproducibility. Metadata lineage tracks attribute transformations from source to model. Resilient storage prevents data loss through geographic replication. Fine-grained access control enforces least-privilege security, and centralized catalogs make data discoverable.</p></div><div class="transcript"><h3>Slide 6 — Immutable Content-Addressable Version Control</h3><p>Tracking dataset versions using ad-hoc folder names destroys scientific reproducibility. Modern systems pair Git with tools like Data Version Control. Instead of storing large binary files in code repositories, systems calculate cryptographic SHA-256 hashes of dataset snapshots. Storing lightweight hash pointers in Git links every code commit to bitwise-identical training data without repository bloat.</p></div><div class="transcript"><h3>Slide 7 — Metadata Lineage and Resilient Storage Architectures</h3><p>Lineage tracking records every transformation applied to an attribute from ingestion to downstream features. Specifications like OpenLineage capture runtime execution graphs automatically. Resilient storage protects against hardware failures using the classic three-two-one backup strategy: three total copies across two distinct media types, with one geographically isolated replica.</p></div><div class="transcript"><h3>Slide 8 — Role-Based Access Control and Discovery Catalogs</h3><p>Role-based access control restricts attribute visibility to the minimum required for specific organizational roles. Dynamic column masking redacts personally identifiable information for model development while granting raw access to authorized administrators. Searchable dataset catalogs index schemas, usage documentation, and quality scores, preventing duplicate collection efforts across large organizations.</p></div><div class="transcript"><h3>Slide 9 — Privacy Engineering: GDPR, HIPAA, and Differential Privacy</h3><p>Datasets recording human observations must comply with stringent international privacy regulations. Legal frameworks demand technical safeguards including AES-256 encryption at rest and TLS in transit. Pseudonymization replaces direct identifiers with salted hashes. Differential privacy injects calibrated mathematical noise, allowing statistical analysis while guaranteeing privacy bounds for individual records.</p></div><div class="transcript"><h3>Slide 10 — Cryptographic Erasure and Article 17 Tombstoning</h3><p>Under GDPR Article 17, individuals possess the right to demand erasure of their personal data. In immutable, append-only columnar stores like Parquet in object storage, deleting a single record requires rewriting entire files. Cryptographic erasure solves this by encrypting each user&#x27;s records with a unique per-user key. Destroying that specific key renders the physical ciphertext provably unrecoverable random noise, satisfying legal mandates instantly.</p></div><div class="transcript"><h3>Slide 11 — In-Browser Interactive Governance and RBAC Simulator</h3><p>Learners can explore enterprise access control interactively using our in-browser Governance Simulator. The workbench allows you to switch roles between administrator, machine learning engineer, and external auditor. You can observe live policy masking across sensitive clinical and financial attributes. Exploring lineage commits illustrates how content hashes track dataset evolution across versions.</p></div><div class="transcript"><h3>Slide 12 — Chapter 1 Capstone Summary and Key Takeaways</h3><p>Chapter 1 established the comprehensive foundation of dataset engineering. We defined datasets as curated empirical samples and established the universal abstraction of records and attributes. We classified structures and temporal streaming dynamics and compared row and columnar formats. We audited multi-dimensional quality, profiled distributions, prevented data leakage, and implemented lifecycle governance.</p></div><div class="transcript"><h3>Slide 13 — Next Steps</h3><p>Congratulations on completing Chapter 1. Pause here to test your understanding with the capstone quiz for this part. When ready, proceed to Chapter 2 to explore data collection mechanisms, sensor architectures, and probabilistic sampling theory.</p></div></div>
 </details>
 
 
@@ -81,48 +99,61 @@
   <div id="quiz-root" data-next-href="../../../chapter1/index.html" data-next-label="Back to chapter learning path"></div>
   <script id="quiz-data" type="application/json">{
   "part_id": "part-07-dataset-management",
-  "title": "Check your understanding",
-  "passing_score": 0.7,
+  "title": "Check your understanding: Dataset Management & Governance",
+  "passing_score": 0.8,
   "items": [
     {
       "id": "q1",
       "type": "mcq",
-      "prompt": "Which practice helps prevent silent overwrites when a feature matrix evolves?",
+      "prompt": "How does Data Version Control (DVC) enable exact pipeline reproducibility without bloating Git repositories with gigabytes of binary data?",
       "choices": [
-        "Ignoring file names",
-        "Data version control",
-        "Deleting all metadata",
-        "Training without labels"
+        "It deletes earlier versions of data permanently when a new version is created",
+        "It stores cryptographic SHA-256 content hashes in lightweight pointer files tracked by Git, while storing large binaries in remote object storage",
+        "It converts all binary data into plain ASCII text inside Git commits",
+        "It compresses datasets using lossy JPEG encoding"
       ],
       "answer_index": 1,
-      "explain": "Table 1.8 lists data version control to track versions and avoid overwriting important changes."
+      "explain": "DVC computes SHA-256 hashes of datasets and tracks these small hash files in Git, while the actual heavy binary files are stored in object storage (e.g. S3)."
     },
     {
       "id": "q2",
-      "type": "true_false",
-      "prompt": "Privacy and security controls are optional once a churn model reaches production.",
-      "answer": false,
-      "explain": "The chapter states management and protection begin when records are stored and continue through reuse—not afterthoughts."
+      "type": "mcq",
+      "prompt": "How does cryptographic erasure (crypto-tombstoning) satisfy GDPR Article 17 (Right to Erasure) in immutable append-only columnar stores without rewriting large files?",
+      "choices": [
+        "By physically destroying the hard drives hosting the database cluster",
+        "By encrypting each subject's data with a unique per-user key and destroying that key upon erasure, rendering the data provably unrecoverable random noise",
+        "By renaming the column headers to anonymous pseudonyms",
+        "By running an automated script to overwrite the text cells with blank spaces"
+      ],
+      "answer_index": 1,
+      "explain": "Crypto-tombstoning encrypts individual records with a unique per-subject encryption key. Destroying that key instantly renders the ciphertext unrecoverable random noise without rewriting massive immutable Parquet files."
     },
     {
       "id": "q3",
       "type": "mcq",
-      "prompt": "Which control reduces re-identification risk when sharing research extracts?",
+      "prompt": "In the standard 3-2-1 backup strategy for disaster recovery, what do the numbers represent?",
       "choices": [
-        "Anonymization / de-identification",
-        "Publishing raw national IDs by default",
-        "Disabling all backups",
-        "Removing access logs forever"
+        "3 days of retention, 2 operators on call, 1 password manager",
+        "3 total copies of the data, on 2 different physical media types, with 1 copy stored in a geographically isolated offsite location",
+        "3 petabytes of storage, 2 GPUs, 1 backup script",
+        "3 cloud vendors, 2 data engineers, 1 relational database"
       ],
-      "answer_index": 0,
-      "explain": "Table 1.9 lists anonymization and de-identification among privacy practices for shared extracts."
+      "answer_index": 1,
+      "explain": "The 3-2-1 rule dictates maintaining at least 3 total copies of data, across at least 2 different storage media types, with at least 1 copy held offsite."
     },
     {
       "id": "q4",
+      "type": "true_false",
+      "prompt": "Dynamic column masking in Role-Based Access Control allows ML engineers to train models on masked features without revealing raw personally identifiable information.",
+      "answer": true,
+      "explain": "Dynamic column masking intercepts queries and redacts sensitive PII attributes (like credit card numbers or patient names) based on user role permissions."
+    },
+    {
+      "id": "q5",
       "type": "short",
-      "prompt": "Name one reason traceability matters in dataset management.",
-      "rubric": "Accept audits, explaining how a figure was produced, collaboration, or reproducibility.",
-      "sample_answer": "Traceability lets teams show how a reported figure was produced when auditors or collaborators ask."
+      "prompt": "What is data debt, and how does immutable lineage tracking prevent it?",
+      "rubric": "Data debt is the accumulation of unversioned, undocumented data modifications and silent upstream errors; lineage tracking records transformations and hashes to guarantee auditability and reproducibility.",
+      "sample_answer": "Data debt is the accumulation of undocumented, unversioned data modifications that make ML systems irreproducible; lineage tracking documents every transformation and hash pointer from ingestion to deployment."
     }
   ]
 }
