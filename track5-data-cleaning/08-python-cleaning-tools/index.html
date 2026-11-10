@@ -2538,6 +2538,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#interactive-slide-lecture-dr-nova-kaito-on-lesson-58" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.8
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conceptual-overview-computational-architectures-for-data-cleansing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7310,6 +7321,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#interactive-slide-lecture-dr-nova-kaito-on-lesson-58" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.8
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conceptual-overview-computational-architectures-for-data-cleansing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7503,8 +7525,30 @@
 <p><strong>Duration:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
+<h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-58">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.8</h3>
+<p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
+  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.2rem;">🎙️</span>
+      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">5 Slides</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="font-size: 0.8rem; color: #bae6fd;">
+        Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
+      </span>
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=8" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+        <span>⤢ Open Fullscreen Studio ↗</span>
+      </a>
+    </div>
+  </div>
+  <iframe src="../../assets/virtual-speaker.html?chapter=5&part=8" style="width: 100%; height: 920px; border: none; display: block;" loading="lazy" title="Dr. Nova and Kaito Virtual Lecture"></iframe>
+</div>
+
+<hr />
 <h2 id="conceptual-overview-computational-architectures-for-data-cleansing">🎯 Conceptual Overview: Computational Architectures for Data Cleansing</h2>
-<p>High-throughput data cleaning at scale (<span class="arithmatex">\(N &gt; 10^7\)</span> rows) requires understanding hardware cache hierarchies, columnar memory layouts, and query execution plans (<a href="#ref-mckinney2010">McKinney, 2010</a>; <a href="#ref-raasveldt2019">Raasveldt &amp; Mühleisen, 2019</a>). The Python data engineering ecosystem is anchored by two fundamentally distinct paradigms:
+<p>High-throughput data cleaning at scale (<span class="arithmatex">\(N &gt; 10^7\)</span> rows) requires understanding hardware cache hierarchies, columnar memory layouts, and query execution plans (<a href="#ref-mckinney2010">McKinney, 2010</a>; <a href="#ref-raasveldt2019">Raasveldt &amp; Mühleisen, 2019</a>), integrating active sample-cleaning loops (<a href="#ref-krishnan2016">Krishnan et al., 2016</a>) across web crawl ingestion streams (<a href="#ref-olston2010">Olston &amp; Najork, 2010</a>). The Python data engineering ecosystem is anchored by two fundamentally distinct paradigms:
 1. <strong>Pandas (NumPy 2D BlockManager):</strong> Eager evaluation, row-fragmented heap pointers, and single-threaded Python Global Interpreter Lock (GIL) execution.
 2. <strong>Polars &amp; DuckDB (Apache Arrow Columnar):</strong> Lazy query planning, contiguous memory buffers, SIMD vectorization, and multi-threaded Rust/C++ execution.</p>
 <pre class="mermaid"><code>flowchart TD
@@ -7533,6 +7577,7 @@
   PolarsBranch --&gt; Validation
   Validation --&gt; Production</code></pre>
 <hr />
+<p>When evaluating massive out-of-core streams before cleaning, memory-bounded uniform sampling is performed via reservoir sampling (<a href="#ref-vitter1985">Vitter, 1985</a>).</p>
 <h3 id="1-mathematical-foundations-of-memory-layouts-cache-efficiency">1. Mathematical Foundations of Memory Layouts &amp; Cache Efficiency</h3>
 <h4 id="a-memory-access-latency-penalty">A. Memory Access Latency Penalty</h4>
 <p>CPU memory bandwidth is bounded by the cache hierarchy. When iterating across an array, random pointer dereferencing (standard Python objects) incurs severe cache miss latencies:</p>
@@ -7681,7 +7726,7 @@
 <p>In an enterprise e-commerce platform processing <span class="arithmatex">\(85\text{ million}\)</span> daily clickstream logs:
 1. <strong>The Ingestion Bottleneck:</strong> A legacy Pandas ETL batch job running on an AWS <code>r5.8xlarge</code> instance (<span class="arithmatex">\(256\text{ GB}\)</span> RAM) ran out of memory (OOM) due to NumPy BlockManager fragmentation when executing join transformations.
 2. <strong>The Architectural Migration:</strong>
-   - Migrated to <strong>Polars Lazy Frames</strong> leveraging Apache Arrow contiguous memory buffers (<a href="#ref-mckinney2010">McKinney, 2010</a>; <a href="#ref-raasveldt2019">Raasveldt &amp; Mühleisen, 2019</a>).
+   - Migrated to <strong>Polars Lazy Frames</strong> leveraging Apache Arrow contiguous memory buffers (<a href="#ref-mckinney2010">McKinney, 2010</a>; <a href="#ref-raasveldt2019">Raasveldt &amp; Mühleisen, 2019</a>), integrating active sample-cleaning loops (<a href="#ref-krishnan2016">Krishnan et al., 2016</a>) across web crawl ingestion streams (<a href="#ref-olston2010">Olston &amp; Najork, 2010</a>).
    - Integrated <strong>Cleanlab</strong> for automated Confident Learning label noise pruning (<a href="#ref-northcutt2021">Northcutt et al., 2021</a>).
 3. <strong>Engineering Outcome:</strong> Peak memory consumption plummeted from <span class="arithmatex">\(185\text{ GB}\)</span> down to <span class="arithmatex">\(14\text{ GB}\)</span> (<span class="arithmatex">\(92\%\)</span> reduction), while runtime dropped from <span class="arithmatex">\(3.2\text{ hours}\)</span> to <span class="arithmatex">\(11.5\text{ minutes}\)</span> (<span class="arithmatex">\(16.7\times\)</span> speedup), saving <span class="arithmatex">\(\$140,000\)</span> in annual cloud computing costs (<a href="#ref-schelter2018">Schelter et al., 2018</a>).</p>
 <hr />

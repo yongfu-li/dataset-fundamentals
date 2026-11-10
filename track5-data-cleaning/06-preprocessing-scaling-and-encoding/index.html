@@ -2482,6 +2482,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#interactive-slide-lecture-dr-nova-kaito-on-lesson-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.6
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conceptual-overview-mathematical-derivations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7327,6 +7338,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#interactive-slide-lecture-dr-nova-kaito-on-lesson-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.6
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conceptual-overview-mathematical-derivations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7537,6 +7559,28 @@
 <p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
+<h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-56">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.6</h3>
+<p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
+  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.2rem;">🎙️</span>
+      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">5 Slides</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span style="font-size: 0.8rem; color: #bae6fd;">
+        Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
+      </span>
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=6" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+        <span>⤢ Open Fullscreen Studio ↗</span>
+      </a>
+    </div>
+  </div>
+  <iframe src="../../assets/virtual-speaker.html?chapter=5&part=6" style="width: 100%; height: 920px; border: none; display: block;" loading="lazy" title="Dr. Nova and Kaito Virtual Lecture"></iframe>
+</div>
+
+<hr />
 <h2 id="conceptual-overview-mathematical-derivations">🎯 Conceptual Overview &amp; Mathematical Derivations</h2>
 <p>Once data defects are cleaned, raw features rarely arrive in mathematical forms optimized for parametric optimization or geometric distance evaluation. Features with disparate variance distort Euclidean distance calculations, while raw categorical strings cannot be ingested by linear, kernel, or neural network architectures.</p>
 <pre class="mermaid"><code>flowchart TD
@@ -7581,13 +7625,14 @@ x_i' = a + \frac{x_i - \min(\mathbf{x})}{\max(\mathbf{x}) - \min(\mathbf{x})} (b
 \]</div>
 <p><em>Failure Mode:</em> A single outlier <span class="arithmatex">\(x_{\text{out}} \gg \max(\mathbf{x})\)</span> compresses all non-outlier mass into <span class="arithmatex">\([0, \epsilon]\)</span>, destroying feature variance.</p>
 <h4 id="robust-scaling-median-and-interquartile-range">Robust Scaling (Median and Interquartile Range)</h4>
-<p>Substitutes parametric moments with order statistics to resist extreme tail corruption:</p>
+<p>Substitutes parametric moments with order statistics to resist extreme tail corruption, bounding the estimator influence function (<a href="#ref-hampel1974">Hampel, 1974</a>) via high-breakdown covariance structures (<a href="#ref-rousseeuw1999">Rousseeuw &amp; Van Driessen, 1999</a>):</p>
 <div class="arithmatex">\[
 x_i' = \frac{x_i - \text{median}(\mathbf{x})}{\text{IQR}(\mathbf{x})}, \quad \text{IQR}(\mathbf{x}) = Q_3(\mathbf{x}) - Q_1(\mathbf{x})
 \]</div>
 <hr />
 <h3 id="2-categorical-encoding-geometries-and-information-bounds">2. Categorical Encoding: Geometries and Information Bounds</h3>
 <p>Let categorical variable <span class="arithmatex">\(C \in \{c_1, c_2, \dots, c_K\}\)</span> with cardinality <span class="arithmatex">\(|C| = K\)</span>.</p>
+<p>When numerical variables follow heavily skewed or non-Gaussian distributions, variance-stabilizing power transformations map data toward normal geometry (<a href="#ref-box1964">Box &amp; Cox, 1964</a>). In imbalanced classification tasks, feature scaling and categorical encoding precede synthetic minority oversampling pipelines (<a href="#ref-chawla2002">Chawla et al., 2002</a>) to ensure distance metrics operate across standardized feature ranges.</p>
 <h4 id="one-hot-encoding-ohe-and-the-dummy-variable-trap">One-Hot Encoding (OHE) and the Dummy Variable Trap</h4>
 <p>One-hot encoding maps category <span class="arithmatex">\(c_k\)</span> to standard basis vector <span class="arithmatex">\(\mathbf{e}_k \in \mathbb{R}^K\)</span>:</p>
 <div class="arithmatex">\[
@@ -7642,17 +7687,7 @@ This prevents overfitting to rare categories with tiny sample sizes.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Common Pitfall / Anti-Pattern: One-Hot Encoding High-Cardinality Features</p>
-<p>One-hot encoding a categorical column with 5,000 categories creates an ultra-sparse matrix that inflates memory by <span class="arithmatex">\(5,000\times\)</span>, degrades tree-based split efficiency, and triggers the curse of dimensionality. Use Target Encoding or CatBoost Ordered Encoding instead.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Target Encoding with Empirical Bayes Shrinkage</p>
-<p>When encoding high-cardinality categorical features (e.g., zip codes with 40,000 unique values), replace categories with the out-of-fold target mean smoothed via empirical Bayes shrinkage:
-$<span class="arithmatex">\(S_i = \lambda(n_i) \bar{y}_i + (1 - \lambda(n_i)) \bar{y}_{\text{global}}\)</span>$
-This prevents overfitting to rare categories with tiny sample sizes.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: One-Hot Encoding High-Cardinality Features</p>
-<p>One-hot encoding a categorical column with 5,000 categories creates an ultra-sparse matrix that inflates memory by <span class="arithmatex">\(5,000\times\)</span>, degrades tree-based split efficiency, and triggers the curse of dimensionality. Use Target Encoding or CatBoost Ordered Encoding instead.</p>
+<p>One-hot encoding a categorical column with 5,000 categories creates an ultra-sparse matrix that inflates memory by <span class="arithmatex">\(5,000\times\)</span>, degrades tree-based split efficiency, and triggers the curse of dimensionality. Use Target Encoding, feature hashing via the hashing trick (<a href="#ref-weinberger2009">Weinberger et al., 2009</a>), or CatBoost Ordered Encoding instead.</p>
 </div>
 <h3 id="decision-framework-feature-scaling-categorical-encoding-triage">Decision Framework: Feature Scaling &amp; Categorical Encoding Triage</h3>
 <pre class="mermaid"><code>flowchart TD
