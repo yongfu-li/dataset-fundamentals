@@ -113,10 +113,10 @@
   </header>
 
   <!-- Main Showcase Container (Vertical Stage: Slide on Top -> Cinema Subtitles Below -> Voice Studio at Bottom) -->
-  <main class="max-w-5xl mx-auto flex flex-col gap-5 px-2 sm:px-4">
+  <main class="max-w-5xl mx-auto flex flex-col gap-4 sm:gap-5 px-2 sm:px-4">
 
-    <!-- 1. High-Contrast Keynote Slide Canvas with Overlapping Presenter Dais -->
-    <div class="relative bg-[#111827] border border-[#1e293b] rounded-3xl p-5 sm:p-7 md:p-8 shadow-2xl flex flex-col justify-between min-h-[460px] overflow-visible">
+    <!-- 1. Keynote Slide Canvas (Self-contained, Presenters Within Slides at Bottom-Left & Bottom-Right) -->
+    <div class="relative bg-[#111827] border border-[#1e293b] rounded-3xl p-5 sm:p-7 md:p-8 shadow-2xl flex flex-col justify-between min-h-[460px] overflow-hidden">
       <!-- Top Cyan Accent Bar with Slide Deck Progress -->
       <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-800 rounded-t-3xl overflow-hidden">
         <div id="slideProgressBar" class="h-full bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-500 transition-all duration-300" style="width: 10%;"></div>
@@ -145,13 +145,13 @@
       <!-- Slide Carousel Navigation & Progress Controls Bar -->
       <div class="mt-6 pt-4 border-t border-[#1e293b] flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
         <div class="flex items-center gap-1.5">
-          <button onclick="prevSlide()" id="prevSlideBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold transition flex items-center gap-1">
+          <button onclick="prevSlide()" id="prevSlideBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold transition flex items-center gap-1">
             <span>◀</span> Prev Slide
           </button>
-          <span id="slideDeckCounter" class="px-2.5 py-1.5 rounded-lg bg-[#0b0f19] border border-cyan-800/80 text-cyan-300 font-bold">
+          <span id="slideDeckCounter" class="px-2 sm:px-2.5 py-1.5 rounded-lg bg-[#0b0f19] border border-cyan-800/80 text-cyan-300 font-bold">
             Slide 1 of 14
           </span>
-          <button onclick="nextSlide()" id="nextSlideBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold transition flex items-center gap-1">
+          <button onclick="nextSlide()" id="nextSlideBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold transition flex items-center gap-1">
             Next Slide <span>▶</span>
           </button>
         </div>
@@ -168,171 +168,165 @@
         </label>
       </div>
 
-      <!-- Presenter Overlap Pod (Anchored Dais Overlapping the Bottom Edge of the Slide Canvas) -->
-      <div id="presenterOverlapPod" class="relative -mb-12 sm:-mb-14 mt-4 z-20 flex flex-col items-center">
-        <!-- Speaker Status & Current Pose Pill -->
-        <div class="flex items-center gap-2 mb-1.5 px-3 py-1 rounded-full bg-[#070b14]/95 backdrop-blur-md border border-cyan-800/80 shadow-lg">
-          <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
-          <span class="font-mono text-xs font-bold text-white" id="speakerName">Dr. Nova (Data Architect)</span>
-          <span id="poseBadge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-bold">
-            Pose: Teaching
-          </span>
-        </div>
-
-        <!-- Manga Avatar Graphic Arena (Single in Solo, Dual in Duo) -->
-        <div id="avatarArena" class="relative">
-          <!-- Hologram Radial Glow -->
-          <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-950/40 via-transparent to-transparent pointer-events-none"></div>
-
-          <!-- CONTAINER FOR AVATARS (Solo = 1 centered, Duo = 2 side-by-side) -->
-          <div id="avatarFlexContainer" class="flex items-end justify-center gap-3 sm:gap-6 bg-[#070b14]/95 backdrop-blur-md px-5 sm:px-8 pt-2.5 pb-1 rounded-2xl border-2 border-cyan-500/50 shadow-[0_12px_40px_rgba(6,182,212,0.3)]">
-
-            <!-- 1. DR. NOVA AVATAR -->
-            <div id="novaAvatarCard" class="speaker-sway avatar-active flex flex-col items-center transition-all duration-300">
-              <svg class="w-24 sm:w-28 md:w-32 h-auto" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="75" fill="url(#haloGrad)" opacity="0.3"/>
-                <!-- Hair Back (Anime Long Bob / Cyber Violet) -->
-                <path d="M 50 110 C 35 150 45 190 55 210 C 70 190 75 160 70 120 Z" fill="#6366f1"/>
-                <path d="M 150 110 C 165 150 155 190 145 210 C 130 190 125 160 130 120 Z" fill="#6366f1"/>
-                <!-- High-Collar Cyber Lab Coat -->
-                <path d="M 60 180 L 40 240 L 160 240 L 140 180 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
-                <path d="M 75 180 L 100 215 L 125 180" stroke="#38bdf8" stroke-width="3" fill="#1e293b"/>
-                <path d="M 70 180 L 60 240 L 95 240 L 85 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
-                <path d="M 130 180 L 140 240 L 105 240 L 115 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
-                <rect x="70" y="210" width="18" height="10" rx="3" fill="#0284c7"/>
-                <circle cx="75" cy="215" r="2" fill="#38bdf8"/>
-                <!-- Neck -->
-                <rect x="90" y="145" width="20" height="35" rx="5" fill="#fcd34d" opacity="0.9"/>
-                <path d="M 90 160 Q 100 168 110 160" stroke="#d97706" stroke-width="1.5" fill="none" opacity="0.4"/>
-                <!-- Face -->
-                <path d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z" fill="#fef3c7"/>
-                <ellipse cx="78" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3"/>
-                <ellipse cx="122" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3"/>
-                <!-- Eyes -->
-                <g class="eyes-blinking">
-                  <ellipse cx="80" cy="100" rx="9" ry="11" fill="#0f172a"/>
-                  <ellipse cx="80" cy="100" rx="7" ry="9" fill="#0284c7"/>
-                  <circle cx="78" cy="96" r="3.5" fill="#ffffff"/>
-                  <circle cx="83" cy="103" r="1.5" fill="#ffffff"/>
-                  <path d="M 70 88 Q 80 84 90 89" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                  
-                  <ellipse cx="120" cy="100" rx="9" ry="11" fill="#0f172a"/>
-                  <ellipse cx="120" cy="100" rx="7" ry="9" fill="#0284c7"/>
-                  <circle cx="118" cy="96" r="3.5" fill="#ffffff"/>
-                  <circle cx="123" cy="103" r="1.5" fill="#ffffff"/>
-                  <path d="M 110 89 Q 120 84 130 88" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                </g>
-                <!-- AR Monocle -->
-                <circle cx="120" cy="100" r="14" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.85"/>
-                <line x1="134" y1="100" x2="148" y2="92" stroke="#38bdf8" stroke-width="1.5"/>
-                <circle cx="120" cy="100" r="12" fill="#38bdf8" opacity="0.18"/>
-                <path d="M 100 110 L 98 116 L 101 116" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                <!-- Mouth -->
-                <path id="novaMouth" d="M 92 128 Q 100 132 108 128" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                <!-- Hair Front Bangs -->
-                <path d="M 60 75 Q 85 95 90 120 Q 95 85 100 65 Q 105 85 115 118 Q 120 90 140 75 C 130 50 70 50 60 75 Z" fill="#818cf8"/>
-                <path d="M 75 65 Q 100 75 125 65" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
-                <!-- Soundwave Equalizer -->
-                <g id="novaSoundwaves" class="opacity-0 transition-opacity duration-300">
-                  <rect x="25" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-1"/>
-                  <rect x="31" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2"/>
-                  <rect x="37" y="102" width="3" height="8" rx="1.5" fill="#38bdf8" class="wave-bar-3"/>
-                </g>
-                <defs>
-                  <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#38bdf8"/>
-                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-                  </radialGradient>
-                </defs>
-              </svg>
-              <span class="mt-1 text-xs font-mono font-bold text-cyan-300 bg-cyan-950/80 px-2.5 py-0.5 rounded-full border border-cyan-800">
-                Dr. Nova (Senior)
-              </span>
-            </div>
-
-            <!-- 2. KAITO AVATAR (Visible in Socratic Duo Mode) -->
-            <div id="kaitoAvatarCard" class="speaker-sway avatar-inactive flex flex-col items-center transition-all duration-300 hidden">
-              <svg class="w-24 sm:w-28 md:w-32 h-auto" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="75" fill="url(#kaitoHaloGrad)" opacity="0.3"/>
-                <!-- Hair Back (Anime Spiky / Amber Brown) -->
-                <path d="M 45 90 L 35 130 L 50 160 L 60 180 L 140 180 L 150 160 L 165 130 L 155 90 Z" fill="#431407"/>
-                <path d="M 40 85 L 25 110 L 45 130 Z" fill="#b45309"/>
-                <path d="M 160 85 L 175 110 L 155 130 Z" fill="#b45309"/>
-                <!-- Tech Hoodie Torso -->
-                <path d="M 55 180 L 35 240 L 165 240 L 145 180 Z" fill="#1e1b4b" stroke="#312e81" stroke-width="2"/>
-                <path d="M 70 180 L 100 215 L 130 180" stroke="#f97316" stroke-width="3" fill="#1e1b4b"/>
-                <line x1="88" y1="215" x2="88" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
-                <line x1="112" y1="215" x2="112" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
-                <!-- Headset on Neck -->
-                <path d="M 60 170 C 60 195 140 195 140 170" stroke="#64748b" stroke-width="7" stroke-linecap="round" fill="none"/>
-                <circle cx="62" cy="170" r="10" fill="#f97316"/>
-                <circle cx="138" cy="170" r="10" fill="#f97316"/>
-                <!-- Neck -->
-                <rect x="90" y="145" width="20" height="35" rx="5" fill="#fde68a"/>
-                <!-- Face -->
-                <path d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z" fill="#fffbeb"/>
-                <ellipse cx="78" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3"/>
-                <ellipse cx="122" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3"/>
-                <!-- Eyes (Anime Expressive Inquisitive Eyes) -->
-                <g class="eyes-blinking">
-                  <ellipse cx="80" cy="102" rx="8" ry="10" fill="#0f172a"/>
-                  <ellipse cx="80" cy="102" rx="6" ry="8" fill="#d97706"/>
-                  <circle cx="78" cy="98" r="3" fill="#ffffff"/>
-                  <circle cx="83" cy="105" r="1.5" fill="#ffffff"/>
-                  <path d="M 70 90 Q 80 85 90 91" stroke="#451a03" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                  
-                  <ellipse cx="120" cy="102" rx="8" ry="10" fill="#0f172a"/>
-                  <ellipse cx="120" cy="102" rx="6" ry="8" fill="#d97706"/>
-                  <circle cx="118" cy="98" r="3" fill="#ffffff"/>
-                  <circle cx="123" cy="105" r="1.5" fill="#ffffff"/>
-                  <path d="M 110 91 Q 120 85 130 90" stroke="#451a03" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                </g>
-                <!-- Nose -->
-                <path d="M 100 112 L 98 118 L 102 118" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                <!-- Mouth -->
-                <path id="kaitoMouth" d="M 91 128 Q 100 132 109 128" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                <!-- Spiky Anime Front Bangs -->
-                <path d="M 55 75 L 75 95 L 85 65 L 100 95 L 115 65 L 125 95 L 145 75 C 135 50 65 50 55 75 Z" fill="#d97706"/>
-                <path d="M 85 65 L 100 50 L 115 65 Z" fill="#f59e0b"/>
-                <!-- Soundwave Equalizer -->
-                <g id="kaitoSoundwaves" class="opacity-0 transition-opacity duration-300">
-                  <rect x="160" y="102" width="3" height="8" rx="1.5" fill="#f97316" class="wave-bar-3"/>
-                  <rect x="166" y="96" width="3" height="18" rx="1.5" fill="#f97316" class="wave-bar-2"/>
-                  <rect x="172" y="100" width="3" height="10" rx="1.5" fill="#f97316" class="wave-bar-4"/>
-                </g>
-                <defs>
-                  <radialGradient id="kaitoHaloGrad" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#f97316"/>
-                    <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                  </radialGradient>
-                </defs>
-              </svg>
-              <span class="mt-1 text-xs font-mono font-bold text-orange-300 bg-orange-950/80 px-2.5 py-0.5 rounded-full border border-orange-800">
-                Kaito (Junior)
-              </span>
-            </div>
-
+      <!-- Presenters Stage Dock (Within the Slides at the Bottom-Left and Bottom-Right Edge) -->
+      <div id="avatarArena" class="grid grid-cols-12 items-end w-full mt-4 pt-3 border-t border-[#1e293b]/60 relative">
+        
+        <!-- Bottom-Left Edge: Dr. Nova Avatar Pod -->
+        <div class="col-span-4 flex justify-start items-end">
+          <div id="novaAvatarCard" class="speaker-sway avatar-active flex flex-col items-center transition-all duration-300">
+            <svg class="w-20 sm:w-24 md:w-28 h-auto" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="75" fill="url(#haloGrad)" opacity="0.3"/>
+              <!-- Hair Back (Anime Long Bob / Cyber Violet) -->
+              <path d="M 50 110 C 35 150 45 190 55 210 C 70 190 75 160 70 120 Z" fill="#6366f1"/>
+              <path d="M 150 110 C 165 150 155 190 145 210 C 130 190 125 160 130 120 Z" fill="#6366f1"/>
+              <!-- High-Collar Cyber Lab Coat -->
+              <path d="M 60 180 L 40 240 L 160 240 L 140 180 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+              <path d="M 75 180 L 100 215 L 125 180" stroke="#38bdf8" stroke-width="3" fill="#1e293b"/>
+              <path d="M 70 180 L 60 240 L 95 240 L 85 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+              <path d="M 130 180 L 140 240 L 105 240 L 115 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+              <rect x="70" y="210" width="18" height="10" rx="3" fill="#0284c7"/>
+              <circle cx="75" cy="215" r="2" fill="#38bdf8"/>
+              <!-- Neck -->
+              <rect x="90" y="145" width="20" height="35" rx="5" fill="#fcd34d" opacity="0.9"/>
+              <path d="M 90 160 Q 100 168 110 160" stroke="#d97706" stroke-width="1.5" fill="none" opacity="0.4"/>
+              <!-- Face -->
+              <path d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z" fill="#fef3c7"/>
+              <ellipse cx="78" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3"/>
+              <ellipse cx="122" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3"/>
+              <!-- Eyes -->
+              <g class="eyes-blinking">
+                <ellipse cx="80" cy="100" rx="9" ry="11" fill="#0f172a"/>
+                <ellipse cx="80" cy="100" rx="7" ry="9" fill="#0284c7"/>
+                <circle cx="78" cy="96" r="3.5" fill="#ffffff"/>
+                <circle cx="83" cy="103" r="1.5" fill="#ffffff"/>
+                <path d="M 70 88 Q 80 84 90 89" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                
+                <ellipse cx="120" cy="100" rx="9" ry="11" fill="#0f172a"/>
+                <ellipse cx="120" cy="100" rx="7" ry="9" fill="#0284c7"/>
+                <circle cx="118" cy="96" r="3.5" fill="#ffffff"/>
+                <circle cx="123" cy="103" r="1.5" fill="#ffffff"/>
+                <path d="M 110 89 Q 120 84 130 88" stroke="#312e81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              </g>
+              <!-- AR Monocle -->
+              <circle cx="120" cy="100" r="14" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.85"/>
+              <line x1="134" y1="100" x2="148" y2="92" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="120" cy="100" r="12" fill="#38bdf8" opacity="0.18"/>
+              <path d="M 100 110 L 98 116 L 101 116" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <!-- Mouth -->
+              <path id="novaMouth" d="M 92 128 Q 100 132 108 128" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <!-- Hair Front Bangs -->
+              <path d="M 60 75 Q 85 95 90 120 Q 95 85 100 65 Q 105 85 115 118 Q 120 90 140 75 C 130 50 70 50 60 75 Z" fill="#818cf8"/>
+              <path d="M 75 65 Q 100 75 125 65" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+              <!-- Soundwave Equalizer -->
+              <g id="novaSoundwaves" class="opacity-0 transition-opacity duration-300">
+                <rect x="25" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-1"/>
+                <rect x="31" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2"/>
+                <rect x="37" y="102" width="3" height="8" rx="1.5" fill="#38bdf8" class="wave-bar-3"/>
+              </g>
+              <defs>
+                <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#38bdf8"/>
+                  <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+            </svg>
+            <span class="mt-1 text-[10px] sm:text-xs font-mono font-bold text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded-full border border-cyan-800 shadow-sm">
+              Dr. Nova (Senior)
+            </span>
           </div>
         </div>
+
+        <!-- Center Stage: Active Speaker Status & Pose Pill -->
+        <div class="col-span-4 flex flex-col items-center justify-end pb-2">
+          <div class="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[#070b14]/90 backdrop-blur-md border border-cyan-800/80 shadow-lg">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
+            <span class="font-mono text-[11px] sm:text-xs font-bold text-white truncate max-w-[130px] sm:max-w-none" id="speakerName">Dr. Nova (Data Architect)</span>
+            <span id="poseBadge" class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-bold whitespace-nowrap">
+              Pose: Teaching
+            </span>
+          </div>
+        </div>
+
+        <!-- Bottom-Right Edge: Kaito Avatar Pod -->
+        <div class="col-span-4 flex justify-end items-end">
+          <div id="kaitoAvatarCard" class="speaker-sway avatar-inactive flex flex-col items-center transition-all duration-300 hidden">
+            <svg class="w-20 sm:w-24 md:w-28 h-auto" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="75" fill="url(#kaitoHaloGrad)" opacity="0.3"/>
+              <!-- Hair Back (Anime Spiky / Amber Brown) -->
+              <path d="M 45 90 L 35 130 L 50 160 L 60 180 L 140 180 L 150 160 L 165 130 L 155 90 Z" fill="#431407"/>
+              <path d="M 40 85 L 25 110 L 45 130 Z" fill="#b45309"/>
+              <path d="M 160 85 L 175 110 L 155 130 Z" fill="#b45309"/>
+              <!-- Tech Hoodie Torso -->
+              <path d="M 55 180 L 35 240 L 165 240 L 145 180 Z" fill="#1e1b4b" stroke="#312e81" stroke-width="2"/>
+              <path d="M 70 180 L 100 215 L 130 180" stroke="#f97316" stroke-width="3" fill="#1e1b4b"/>
+              <line x1="88" y1="215" x2="88" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+              <line x1="112" y1="215" x2="112" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+              <!-- Headset on Neck -->
+              <path d="M 60 170 C 60 195 140 195 140 170" stroke="#64748b" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <circle cx="62" cy="170" r="10" fill="#f97316"/>
+              <circle cx="138" cy="170" r="10" fill="#f97316"/>
+              <!-- Neck -->
+              <rect x="90" y="145" width="20" height="35" rx="5" fill="#fde68a"/>
+              <!-- Face -->
+              <path d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z" fill="#fffbeb"/>
+              <ellipse cx="78" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3"/>
+              <ellipse cx="122" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3"/>
+              <!-- Eyes (Anime Expressive Inquisitive Eyes) -->
+              <g class="eyes-blinking">
+                <ellipse cx="80" cy="102" rx="8" ry="10" fill="#0f172a"/>
+                <ellipse cx="80" cy="102" rx="6" ry="8" fill="#d97706"/>
+                <circle cx="78" cy="98" r="3" fill="#ffffff"/>
+                <circle cx="83" cy="105" r="1.5" fill="#ffffff"/>
+                <path d="M 70 90 Q 80 85 90 91" stroke="#451a03" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                
+                <ellipse cx="120" cy="102" rx="8" ry="10" fill="#0f172a"/>
+                <ellipse cx="120" cy="102" rx="6" ry="8" fill="#d97706"/>
+                <circle cx="118" cy="98" r="3" fill="#ffffff"/>
+                <circle cx="123" cy="105" r="1.5" fill="#ffffff"/>
+                <path d="M 110 91 Q 120 85 130 90" stroke="#451a03" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              </g>
+              <!-- Nose -->
+              <path d="M 100 112 L 98 118 L 102 118" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <!-- Mouth (Centered at X=100, Morphs cleanly when speaking) -->
+              <path id="kaitoMouth" d="M 91 128 Q 100 132 109 128" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <!-- Spiky Anime Front Bangs -->
+              <path d="M 55 75 L 75 95 L 85 65 L 100 95 L 115 65 L 125 95 L 145 75 C 135 50 65 50 55 75 Z" fill="#d97706"/>
+              <path d="M 85 65 L 100 50 L 115 65 Z" fill="#f59e0b"/>
+              <!-- Soundwave Equalizer -->
+              <g id="kaitoSoundwaves" class="opacity-0 transition-opacity duration-300">
+                <rect x="160" y="102" width="3" height="8" rx="1.5" fill="#f97316" class="wave-bar-3"/>
+                <rect x="166" y="96" width="3" height="18" rx="1.5" fill="#f97316" class="wave-bar-2"/>
+                <rect x="172" y="100" width="3" height="10" rx="1.5" fill="#f97316" class="wave-bar-4"/>
+              </g>
+              <defs>
+                <radialGradient id="kaitoHaloGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f97316"/>
+                  <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+            </svg>
+            <span class="mt-1 text-[10px] sm:text-xs font-mono font-bold text-orange-300 bg-orange-950/80 px-2 py-0.5 rounded-full border border-orange-800 shadow-sm">
+              Kaito (Junior)
+            </span>
+          </div>
+        </div>
+
       </div>
 
     </div>
 
-    <!-- 2. Subtitle Section (Directly Below the Presenter Dais) -->
-    <div class="pt-8 sm:pt-10">
-      <!-- PROMINENT CINEMA SUBTITLE BANNER -->
-      <div id="cinemaSubtitleCard" class="p-4 sm:p-5 rounded-2xl bg-[#070a12] border-2 border-cyan-500/80 shadow-2xl relative overflow-hidden transition-all duration-300">
-        <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded bg-emerald-500 text-black font-mono font-black text-xs tracking-wider">CC ON</span>
-            <span id="cinemaSpeaker" class="font-mono font-black text-xs sm:text-sm md:text-base text-cyan-300 uppercase tracking-wider">Dr. Nova (Senior Architect)</span>
-          </div>
-          <span id="turnCounter" class="text-xs font-mono font-bold text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-slate-700">Turn 1 of 2</span>
+    <!-- 2. Prominent Cinema Subtitle Banner (Directly Below the Slide Canvas) -->
+    <div id="cinemaSubtitleCard" class="p-4 sm:p-5 rounded-2xl bg-[#070a12] border-2 border-cyan-500/80 shadow-2xl relative overflow-hidden transition-all duration-300">
+      <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded bg-emerald-500 text-black font-mono font-black text-xs tracking-wider">CC ON</span>
+          <span id="cinemaSpeaker" class="font-mono font-black text-xs sm:text-sm md:text-base text-cyan-300 uppercase tracking-wider">Dr. Nova (Senior Architect)</span>
         </div>
-        <p id="cinemaSubtitleText" class="text-sm sm:text-base md:text-lg font-bold text-white leading-relaxed tracking-wide">
-          "Welcome to Lesson 1.1: What is a Dataset? Records, Attributes &amp; Data Quality Cascades."
-        </p>
+        <span id="turnCounter" class="text-xs font-mono font-bold text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-slate-700">Turn 1 of 2</span>
       </div>
+      <p id="cinemaSubtitleText" class="text-sm sm:text-base md:text-lg font-bold text-white leading-relaxed tracking-wide">
+        "Welcome to Lesson 1.1: What is a Dataset? Records, Attributes &amp; Data Quality Cascades."
+      </p>
     </div>
 
     <!-- 3. Character Voice Studio & Playback Settings (Directly Following Subtitles) -->
