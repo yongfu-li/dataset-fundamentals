@@ -3937,6 +3937,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-ingestion-throughput-streaming-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematics of Ingestion Throughput &amp; Streaming Queues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Mathematics of Ingestion Throughput &amp; Streaming Queues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shannon-channel-capacity-for-ingestion-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Channel Capacity for Ingestion Streams
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#littles-law-for-ingestion-backlog-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Little's Law for Ingestion Backlog Queues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-vs-streaming-latency-differential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch vs. Streaming Latency Differential
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-modal-time-synchronization-jitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Modal Time Synchronization Jitter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runnable-executable-python-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Runnable Executable Python Implementation
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7212,6 +7290,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-ingestion-throughput-streaming-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematics of Ingestion Throughput &amp; Streaming Queues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Mathematics of Ingestion Throughput &amp; Streaming Queues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shannon-channel-capacity-for-ingestion-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Channel Capacity for Ingestion Streams
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#littles-law-for-ingestion-backlog-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Little's Law for Ingestion Backlog Queues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-vs-streaming-latency-differential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch vs. Streaming Latency Differential
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-modal-time-synchronization-jitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Modal Time Synchronization Jitter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runnable-executable-python-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Runnable Executable Python Implementation
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7358,129 +7514,108 @@
 
   class CSV,BatchModel blue;
   class SensorMesh,KafkaCluster,OnlineModel green;
-  class ActiveQuery,CrowdPool amber;```
-
-### The Mathematics of Ingestion Throughput &amp; Streaming Queues
-
-The physics of streaming data ingestion is governed by channel capacity and queueing theory ([Little, 1961](#ref-little1961)):
-
-#### Shannon Channel Capacity for Ingestion Streams
-
-For an ingestion pipe with analog or network bandwidth $B$ (Hz or bytes/sec) and Signal-to-Noise Ratio (SNR), the maximum theoretical error-free data rate $C$ is:
-
-$$
+  class ActiveQuery,CrowdPool amber;</code></pre>
+<h3 id="the-mathematics-of-ingestion-throughput-streaming-queues">The Mathematics of Ingestion Throughput &amp; Streaming Queues</h3>
+<p>The physics of streaming data ingestion is governed by channel capacity and queueing theory (<a href="#ref-little1961">Little, 1961</a>):</p>
+<h4 id="shannon-channel-capacity-for-ingestion-streams">Shannon Channel Capacity for Ingestion Streams</h4>
+<p>For an ingestion pipe with analog or network bandwidth <span class="arithmatex">\(B\)</span> (Hz or bytes/sec) and Signal-to-Noise Ratio (SNR), the maximum theoretical error-free data rate <span class="arithmatex">\(C\)</span> is:</p>
+<div class="arithmatex">\[
 C = B \log_2\left(1 + \frac{S}{N}\right)
-$$
-
-Attempting to ingest sensor telemetry at a rate $\lambda &gt; C$ causes unbounded packet dropouts or client-side socket saturation.
-
-#### Little's Law for Ingestion Backlog Queues
-
-Let events arrive at message broker rate $\lambda$ (events/sec), and let $W$ denote the average time an event resides in buffer memory before being committed to persistent storage. The expected number of buffered events in-flight $L$ is:
-
-$$
+\]</div>
+<p>Attempting to ingest sensor telemetry at a rate <span class="arithmatex">\(\lambda &gt; C\)</span> causes unbounded packet dropouts or client-side socket saturation.</p>
+<h4 id="littles-law-for-ingestion-backlog-queues">Little's Law for Ingestion Backlog Queues</h4>
+<p>Let events arrive at message broker rate <span class="arithmatex">\(\lambda\)</span> (events/sec), and let <span class="arithmatex">\(W\)</span> denote the average time an event resides in buffer memory before being committed to persistent storage. The expected number of buffered events in-flight <span class="arithmatex">\(L\)</span> is:</p>
+<div class="arithmatex">\[
 L = \lambda \cdot W
-$$
-
-If broker commit latency spikes from $W = 10\text{ ms}$ to $W = 500\text{ ms}$ under heavy disk I/O, the in-memory queue depth expands by **$50\times$**, risking out-of-memory worker crashes unless backpressure protocols are activated ([Wang et al., 2015](#ref-wang2015)).
-
-#### Batch vs. Streaming Latency Differential
-
-The end-to-end latency of a batch pipeline with batch accumulation window $\Delta t_{\text{batch}}$ and transfer bandwidth $B_{\text{net}}$ is:
-
-$$
+\]</div>
+<p>If broker commit latency spikes from <span class="arithmatex">\(W = 10\text{ ms}\)</span> to <span class="arithmatex">\(W = 500\text{ ms}\)</span> under heavy disk I/O, the in-memory queue depth expands by <strong><span class="arithmatex">\(50\times\)</span></strong>, risking out-of-memory worker crashes unless backpressure protocols are activated (<a href="#ref-wang2015">Wang et al., 2015</a>).</p>
+<h4 id="batch-vs-streaming-latency-differential">Batch vs. Streaming Latency Differential</h4>
+<p>The end-to-end latency of a batch pipeline with batch accumulation window <span class="arithmatex">\(\Delta t_{\text{batch}}\)</span> and transfer bandwidth <span class="arithmatex">\(B_{\text{net}}\)</span> is:</p>
+<div class="arithmatex">\[
 T_{\text{latency}}(\text{batch}) = \Delta t_{\text{batch}} + \frac{V_{\text{batch}}}{B_{\text{net}}}
-$$
-
-In contrast, streaming pipelines emit discrete events of size $|e| \ll V_{\text{batch}}$, slashing response latency to:
-
-$$
+\]</div>
+<p>In contrast, streaming pipelines emit discrete events of size <span class="arithmatex">\(|e| \ll V_{\text{batch}}\)</span>, slashing response latency to:</p>
+<div class="arithmatex">\[
 T_{\text{latency}}(\text{stream}) = t_{\text{event\_proc}} + \frac{|e|}{B_{\text{net}}} \ll T_{\text{latency}}(\text{batch})
-$$
-
-#### Multi-Modal Time Synchronization Jitter
-
-When ingesting synchronized streams from $M$ heterogeneous sensors (e.g., LiDAR point clouds, radar pulses, camera video frames), temporal jitter $\tau_{\text{jitter}}$ across timestamps $\{t_1, \dots, t_M\}$ must satisfy:
-
-$$
+\]</div>
+<h4 id="multi-modal-time-synchronization-jitter">Multi-Modal Time Synchronization Jitter</h4>
+<p>When ingesting synchronized streams from <span class="arithmatex">\(M\)</span> heterogeneous sensors (e.g., LiDAR point clouds, radar pulses, camera video frames), temporal jitter <span class="arithmatex">\(\tau_{\text{jitter}}\)</span> across timestamps <span class="arithmatex">\(\{t_1, \dots, t_M\}\)</span> must satisfy:</p>
+<div class="arithmatex">\[
 \tau_{\text{jitter}} = \sqrt{\frac{1}{M}\sum_{m=1}^M (t_m - \bar{t})^2} &lt; \tau_{\max}
-$$
-
-In autonomous driving, $\tau_{\max} \le 10\text{ ms}$; exceeding this threshold invalidates spatial sensor fusion matrices.
-
----
-
-!!! tip "Industrial Best Practice: Polyglot Ingestion Tiering"
-    Modern enterprise data collection requires a polyglot architecture: high-throughput distributed brokers (Apache Kafka) for high-velocity streaming events, alongside distributed orchestration (Airflow/Temporal) for scheduled batch pulls.
-
-!!! warning "Common Pitfall / Anti-Pattern: Neglecting Backpressure in High-Velocity Streams"
-    Streaming consumers without backpressure control crash when upstream producers spike in volume. Always implement reactive streams with dynamic buffer sizing or rate-throttling to prevent out-of-memory cascading failures.
-
-## 💻 Runnable Executable Python Implementation
-
-The following script models message queue accumulation via Little's Law, compares batch vs. streaming latency, and evaluates multi-sensor timestamp jitter:
-
-```python
-import math
-import numpy as np
-
-class AdvancedIngestionEngine:
-    """Models streaming queue dynamics, batch vs stream latency, and multi-modal jitter."""
-
-    @staticmethod
-    def calculate_littles_law_backlog(arrival_rate_hz: float, residency_time_sec: float) -&gt; float:
-        """Calculates expected in-flight queue backlog L = lambda * W."""
-        return arrival_rate_hz * residency_time_sec
-
-    @staticmethod
-    def compare_ingestion_latencies(event_size_bytes: int, events_per_batch: int, network_bps: float) -&gt; dict:
-        """Calculates end-to-end latency for batch accumulation vs continuous streaming."""
-        batch_size_bytes = event_size_bytes * events_per_batch
-        # Assume batch window accumulates for 60 seconds
-        batch_window_sec = 60.0
-
-        t_batch = batch_window_sec + (batch_size_bytes * 8.0 / network_bps)
-        t_stream = (event_size_bytes * 8.0 / network_bps) + 0.005  # 5ms event overhead
-
-        return {
-            "batch_latency_sec": t_batch,
-            "stream_latency_sec": t_stream,
-            "speedup_ratio": t_batch / t_stream
-        }
-
-    @staticmethod
-    def calculate_sensor_jitter(timestamps_sec: list) -&gt; float:
-        """Calculates temporal jitter (standard deviation) across multi-modal sensor inputs."""
-        return float(np.std(timestamps_sec))
-
-# =====================================================================
-# Verification &amp; Mathematical Assertions
-# =====================================================================
-if __name__ == "__main__":
-    engine = AdvancedIngestionEngine()
-
-    # Evaluation 1: Little's Law Queue Backlog
-    # Ingestion rate lambda = 50,000 events/sec, residency time W = 20ms (0.02s)
-    backlog = engine.calculate_littles_law_backlog(arrival_rate_hz=50000.0, residency_time_sec=0.02)
-    print(f"Calculated Queue Backlog L: {backlog:,.0f} events")
-    assert math.isclose(backlog, 1000.0, rel_tol=1e-3), f"Expected 1000 events, got {backlog}"
-
-    # Evaluation 2: Batch vs Stream Latency Comparison
-    # 500-byte events, 10,000 events per batch, 100 Mbps network pipe
-    lat_res = engine.compare_ingestion_latencies(event_size_bytes=500, events_per_batch=10000, network_bps=1e8)
-    print(f"Batch Latency:  {lat_res['batch_latency_sec']:.2f} seconds")
-    print(f"Stream Latency: {lat_res['stream_latency_sec'] * 1000:.2f} milliseconds")
-    print(f"Streaming Latency Reduction: {lat_res['speedup_ratio']:,.0f}x")
-    assert lat_res["stream_latency_sec"] &lt; 0.010, "Streaming latency must be under 10ms!"
-    assert lat_res["speedup_ratio"] &gt; 1000, "Streaming must achieve &gt;1000x latency reduction!"
-
-    # Evaluation 3: Multi-Sensor Synchronization Jitter
-    # 3 sensors (Camera, LiDAR, Radar) recording same frame: [1.000s, 1.002s, 1.001s]
-    timestamps = [1.000, 1.002, 1.001]
-    jitter_ms = engine.calculate_sensor_jitter(timestamps) * 1000.0
-    print(f"Sensor Synchronization Jitter: {jitter_ms:.3f} ms")
-    assert jitter_ms &lt; 5.0, "Multi-modal sensor jitter must be under 5ms!"
-    print("All advanced ingestion and queueing assertions passed successfully!")</code></pre>
+\]</div>
+<p>In autonomous driving, <span class="arithmatex">\(\tau_{\max} \le 10\text{ ms}\)</span>; exceeding this threshold invalidates spatial sensor fusion matrices.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Polyglot Ingestion Tiering</p>
+<p>Modern enterprise data collection requires a polyglot architecture: high-throughput distributed brokers (Apache Kafka) for high-velocity streaming events, alongside distributed orchestration (Airflow/Temporal) for scheduled batch pulls.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Neglecting Backpressure in High-Velocity Streams</p>
+<p>Streaming consumers without backpressure control crash when upstream producers spike in volume. Always implement reactive streams with dynamic buffer sizing or rate-throttling to prevent out-of-memory cascading failures.</p>
+</div>
+<h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
+<p>The following script models message queue accumulation via Little's Law, compares batch vs. streaming latency, and evaluates multi-sensor timestamp jitter:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">AdvancedIngestionEngine</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="sd">"""Models streaming queue dynamics, batch vs stream latency, and multi-modal jitter."""</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_littles_law_backlog</span><span class="p">(</span><span class="n">arrival_rate_hz</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">residency_time_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="sd">"""Calculates expected in-flight queue backlog L = lambda * W."""</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">return</span> <span class="n">arrival_rate_hz</span> <span class="o">*</span> <span class="n">residency_time_sec</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compare_ingestion_latencies</span><span class="p">(</span><span class="n">event_size_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">events_per_batch</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">network_bps</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="sd">"""Calculates end-to-end latency for batch accumulation vs continuous streaming."""</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="n">batch_size_bytes</span> <span class="o">=</span> <span class="n">event_size_bytes</span> <span class="o">*</span> <span class="n">events_per_batch</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="c1"># Assume batch window accumulates for 60 seconds</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="n">batch_window_sec</span> <span class="o">=</span> <span class="mf">60.0</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="n">t_batch</span> <span class="o">=</span> <span class="n">batch_window_sec</span> <span class="o">+</span> <span class="p">(</span><span class="n">batch_size_bytes</span> <span class="o">*</span> <span class="mf">8.0</span> <span class="o">/</span> <span class="n">network_bps</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="n">t_stream</span> <span class="o">=</span> <span class="p">(</span><span class="n">event_size_bytes</span> <span class="o">*</span> <span class="mf">8.0</span> <span class="o">/</span> <span class="n">network_bps</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.005</span>  <span class="c1"># 5ms event overhead</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            <span class="s2">"batch_latency_sec"</span><span class="p">:</span> <span class="n">t_batch</span><span class="p">,</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            <span class="s2">"stream_latency_sec"</span><span class="p">:</span> <span class="n">t_stream</span><span class="p">,</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="s2">"speedup_ratio"</span><span class="p">:</span> <span class="n">t_batch</span> <span class="o">/</span> <span class="n">t_stream</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="p">}</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_sensor_jitter</span><span class="p">(</span><span class="n">timestamps_sec</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="sd">"""Calculates temporal jitter (standard deviation) across multi-modal sensor inputs."""</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">timestamps_sec</span><span class="p">))</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="c1"># Verification &amp; Mathematical Assertions</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">engine</span> <span class="o">=</span> <span class="n">AdvancedIngestionEngine</span><span class="p">()</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="c1"># Evaluation 1: Little's Law Queue Backlog</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="c1"># Ingestion rate lambda = 50,000 events/sec, residency time W = 20ms (0.02s)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">backlog</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">calculate_littles_law_backlog</span><span class="p">(</span><span class="n">arrival_rate_hz</span><span class="o">=</span><span class="mf">50000.0</span><span class="p">,</span> <span class="n">residency_time_sec</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Calculated Queue Backlog L: </span><span class="si">{</span><span class="n">backlog</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> events"</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">backlog</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"Expected 1000 events, got </span><span class="si">{</span><span class="n">backlog</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="c1"># Evaluation 2: Batch vs Stream Latency Comparison</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="c1"># 500-byte events, 10,000 events per batch, 100 Mbps network pipe</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="n">lat_res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">compare_ingestion_latencies</span><span class="p">(</span><span class="n">event_size_bytes</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">events_per_batch</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">network_bps</span><span class="o">=</span><span class="mf">1e8</span><span class="p">)</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Batch Latency:  </span><span class="si">{</span><span class="n">lat_res</span><span class="p">[</span><span class="s1">'batch_latency_sec'</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Stream Latency: </span><span class="si">{</span><span class="n">lat_res</span><span class="p">[</span><span class="s1">'stream_latency_sec'</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> milliseconds"</span><span class="p">)</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Streaming Latency Reduction: </span><span class="si">{</span><span class="n">lat_res</span><span class="p">[</span><span class="s1">'speedup_ratio'</span><span class="p">]</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">assert</span> <span class="n">lat_res</span><span class="p">[</span><span class="s2">"stream_latency_sec"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.010</span><span class="p">,</span> <span class="s2">"Streaming latency must be under 10ms!"</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="k">assert</span> <span class="n">lat_res</span><span class="p">[</span><span class="s2">"speedup_ratio"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">"Streaming must achieve &gt;1000x latency reduction!"</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="c1"># Evaluation 3: Multi-Sensor Synchronization Jitter</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="c1"># 3 sensors (Camera, LiDAR, Radar) recording same frame: [1.000s, 1.002s, 1.001s]</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">timestamps</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.000</span><span class="p">,</span> <span class="mf">1.002</span><span class="p">,</span> <span class="mf">1.001</span><span class="p">]</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="n">jitter_ms</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">calculate_sensor_jitter</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sensor Synchronization Jitter: </span><span class="si">{</span><span class="n">jitter_ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ms"</span><span class="p">)</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">assert</span> <span class="n">jitter_ms</span> <span class="o">&lt;</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">"Multi-modal sensor jitter must be under 5ms!"</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"All advanced ingestion and queueing assertions passed successfully!"</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-global-financial-telemetry-ingestion-nasdaq-market-data">🔬 Empirical Case Study: Global Financial Telemetry Ingestion (NASDAQ Market Data)</h2>
 <p>In algorithmic electronic exchanges:</p>

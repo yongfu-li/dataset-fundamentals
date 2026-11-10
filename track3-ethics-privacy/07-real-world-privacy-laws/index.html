@@ -1830,6 +1830,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#4-python-verification-hipaa-18-identifier-masking-penalty-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7415,6 +7426,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#4-python-verification-hipaa-18-identifier-masking-penalty-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7615,99 +7637,129 @@
     classDef amber fill:#FEF3D6,stroke:#D9822B,stroke-width:2px,color:#2A2A2A;
 
     class US_Regimes,HIPAA,CCPA,FERPA amber;
-    class EU_Regime,GDPR blue;```
-
-| Dimension | GDPR (EU / EEA) | HIPAA (United States) | CCPA / CPRA (California) |
-| :--- | :--- | :--- | :--- |
-| **Philosophical Basis** | Fundamental human right to data privacy. | Sectoral protection of medical records. | Consumer consumer-protection and market transparency. |
-| **Material Scope** | Any identified or identifiable natural person. | Protected Health Information (PHI) held by Covered Entities. | Personal information of California residents. |
-| **De-Identification Test** | True irreversible anonymization (extremely strict). | Safe Harbor (18 items) OR Expert Determination ($&lt; 5\%$). | De-identified or aggregated data with technical anti-linkage controls. |
-| **Private Right of Action** | Broad (Art. 79/82 for material or non-material damage). | None (enforced by HHS Office for Civil Rights). | Limited to data breaches resulting from failure to maintain reasonable security. |
-| **Maximum Fine** | $\max(€20\text{M}, 4\% \text{ global revenue})$. | $\$50{,}000$ per violation up to $\$2\text{M}$ annually. | $\$7{,}500$ per intentional violation. |
-
----
-
-## 4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator
-
-The following Python script implements the 18 Safe Harbor filtering transforms and computes statutory penalty upper bounds under GDPR and CCPA.
-
-```python
-# statutory_compliance_validator.py
-# Validates HIPAA Safe Harbor scrubbing and calculates statutory regulatory exposure
-
-from typing import Dict, Any, List
-import re
-
-HIPAA_DIRECT_KEYS = {
-    "name", "address", "phone", "fax", "ssn", "mrn",
-    "health_plan_id", "account_num", "certificate_num",
-    "license_num", "vehicle_id", "device_id", "url",
-    "ip_address", "biometric", "photo"
-}
-
-def scrub_hipaa_safe_harbor(record: Dict[str, Any]) -&gt; Dict[str, Any]:
-    # Implements HIPAA 45 CFR 164.514(b)(2) 18-attribute Safe Harbor scrubber
-    scrubbed = {}
-    for k, v in record.items():
-        k_norm = k.lower().strip()
-        if k_norm in HIPAA_DIRECT_KEYS:
-            continue
-        elif k_norm == "date_of_birth":
-            # Retain only birth year
-            year_match = re.search(r"\b(19\d\d|20\d\d)\b", str(v))
-            scrubbed["birth_year"] = int(year_match.group(1)) if year_match else None
-        elif k_norm == "zip_code":
-            # Mask last two digits
-            zip_str = str(v).strip()
-            scrubbed["zip_prefix"] = zip_str[:3] + "**" if len(zip_str) &gt;= 3 else "***"
-        else:
-            scrubbed[k] = v
-    return scrubbed
-
-def calculate_statutory_exposure(global_turnover_eur: float, california_victims: int) -&gt; Dict[str, float]:
-    # Calculates statutory maximum regulatory exposure
-    gdpr_tier2 = max(20_000_000.0, 0.04 * global_turnover_eur)
-    gdpr_tier1 = max(10_000_000.0, 0.02 * global_turnover_eur)
-    ccpa_max_statutory = california_victims * 750.0
-
-    return {
-        "gdpr_tier1_max": gdpr_tier1,
-        "gdpr_tier2_max": gdpr_tier2,
-        "ccpa_breach_statutory_max": ccpa_max_statutory
-    }
-
-def test_compliance_assertions():
-    # Patient record with HIPAA identifiers
-    raw_patient = {
-        "name": "Jane Doe",
-        "ssn": "000-12-3456",
-        "date_of_birth": "1984-06-15",
-        "zip_code": "02138",
-        "diagnosis_code": "E11.9", # Type 2 Diabetes (clinical attribute retained)
-        "hba1c": 6.8
-    }
-
-    scrubbed = scrub_hipaa_safe_harbor(raw_patient)
-
-    # Assertions
-    assert "name" not in scrubbed
-    assert "ssn" not in scrubbed
-    assert scrubbed["birth_year"] == 1984
-    assert scrubbed["zip_prefix"] == "021**"
-    assert scrubbed["diagnosis_code"] == "E11.9"
-
-    # Corporate exposure check: Global enterprise with €2 Billion revenue, 50,000 CA victims
-    exposure = calculate_statutory_exposure(global_turnover_eur=2.0e9, california_victims=50_000)
-    assert exposure["gdpr_tier2_max"] == 80_000_000.0 # 4% of 2B
-    assert exposure["ccpa_breach_statutory_max"] == 37_500_000.0 # 50,000 * $750
-
-    print(f"Scrubbed Patient Keys: {list(scrubbed.keys())}")
-    print(f"GDPR Tier 2 Max Fine: €{exposure['gdpr_tier2_max']:,.2f}")
-    print(f"CCPA Statutory Max Exposure: ${exposure['ccpa_breach_statutory_max']:,.2f}")
-    print("✓ Statutory compliance and penalty calculation assertions passed successfully!")
-
-if __name__ == "__main__":
-    test_compliance_assertions()</code></pre>
+    class EU_Regime,GDPR blue;</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: left;">GDPR (EU / EEA)</th>
+<th style="text-align: left;">HIPAA (United States)</th>
+<th style="text-align: left;">CCPA / CPRA (California)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Philosophical Basis</strong></td>
+<td style="text-align: left;">Fundamental human right to data privacy.</td>
+<td style="text-align: left;">Sectoral protection of medical records.</td>
+<td style="text-align: left;">Consumer consumer-protection and market transparency.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Material Scope</strong></td>
+<td style="text-align: left;">Any identified or identifiable natural person.</td>
+<td style="text-align: left;">Protected Health Information (PHI) held by Covered Entities.</td>
+<td style="text-align: left;">Personal information of California residents.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>De-Identification Test</strong></td>
+<td style="text-align: left;">True irreversible anonymization (extremely strict).</td>
+<td style="text-align: left;">Safe Harbor (18 items) OR Expert Determination (<span class="arithmatex">\(&lt; 5\%\)</span>).</td>
+<td style="text-align: left;">De-identified or aggregated data with technical anti-linkage controls.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Private Right of Action</strong></td>
+<td style="text-align: left;">Broad (Art. 79/82 for material or non-material damage).</td>
+<td style="text-align: left;">None (enforced by HHS Office for Civil Rights).</td>
+<td style="text-align: left;">Limited to data breaches resulting from failure to maintain reasonable security.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Maximum Fine</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\max(€20\text{M}, 4\% \text{ global revenue})\)</span>.</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$50{,}000\)</span> per violation up to <span class="arithmatex">\(\$2\text{M}\)</span> annually.</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$7{,}500\)</span> per intentional violation.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-python-verification-hipaa-18-identifier-masking-penalty-calculator">4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator</h2>
+<p>The following Python script implements the 18 Safe Harbor filtering transforms and computes statutory penalty upper bounds under GDPR and CCPA.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># statutory_compliance_validator.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Validates HIPAA Safe Harbor scrubbing and calculates statutory regulatory exposure</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">HIPAA_DIRECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"address"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">,</span> <span class="s2">"fax"</span><span class="p">,</span> <span class="s2">"ssn"</span><span class="p">,</span> <span class="s2">"mrn"</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">"health_plan_id"</span><span class="p">,</span> <span class="s2">"account_num"</span><span class="p">,</span> <span class="s2">"certificate_num"</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">"license_num"</span><span class="p">,</span> <span class="s2">"vehicle_id"</span><span class="p">,</span> <span class="s2">"device_id"</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">"ip_address"</span><span class="p">,</span> <span class="s2">"biometric"</span><span class="p">,</span> <span class="s2">"photo"</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">scrub_hipaa_safe_harbor</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="c1"># Implements HIPAA 45 CFR 164.514(b)(2) 18-attribute Safe Harbor scrubber</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">scrubbed</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">k_norm</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="k">if</span> <span class="n">k_norm</span> <span class="ow">in</span> <span class="n">HIPAA_DIRECT_KEYS</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            <span class="k">continue</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">elif</span> <span class="n">k_norm</span> <span class="o">==</span> <span class="s2">"date_of_birth"</span><span class="p">:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="c1"># Retain only birth year</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            <span class="n">year_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(19\d\d|20\d\d)\b"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"birth_year"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">year_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">year_match</span> <span class="k">else</span> <span class="kc">None</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">elif</span> <span class="n">k_norm</span> <span class="o">==</span> <span class="s2">"zip_code"</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="c1"># Mask last two digits</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            <span class="n">zip_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"zip_prefix"</span><span class="p">]</span> <span class="o">=</span> <span class="n">zip_str</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"**"</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">zip_str</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">"***"</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            <span class="n">scrubbed</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">return</span> <span class="n">scrubbed</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_statutory_exposure</span><span class="p">(</span><span class="n">global_turnover_eur</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">california_victims</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Calculates statutory maximum regulatory exposure</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">gdpr_tier2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">20_000_000.0</span><span class="p">,</span> <span class="mf">0.04</span> <span class="o">*</span> <span class="n">global_turnover_eur</span><span class="p">)</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">gdpr_tier1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">10_000_000.0</span><span class="p">,</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">global_turnover_eur</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">ccpa_max_statutory</span> <span class="o">=</span> <span class="n">california_victims</span> <span class="o">*</span> <span class="mf">750.0</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="s2">"gdpr_tier1_max"</span><span class="p">:</span> <span class="n">gdpr_tier1</span><span class="p">,</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="s2">"gdpr_tier2_max"</span><span class="p">:</span> <span class="n">gdpr_tier2</span><span class="p">,</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="s2">"ccpa_breach_statutory_max"</span><span class="p">:</span> <span class="n">ccpa_max_statutory</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">}</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_compliance_assertions</span><span class="p">():</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="c1"># Patient record with HIPAA identifiers</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="n">raw_patient</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Jane Doe"</span><span class="p">,</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="s2">"ssn"</span><span class="p">:</span> <span class="s2">"000-12-3456"</span><span class="p">,</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="s2">"date_of_birth"</span><span class="p">:</span> <span class="s2">"1984-06-15"</span><span class="p">,</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="s2">"zip_code"</span><span class="p">:</span> <span class="s2">"02138"</span><span class="p">,</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="s2">"diagnosis_code"</span><span class="p">:</span> <span class="s2">"E11.9"</span><span class="p">,</span> <span class="c1"># Type 2 Diabetes (clinical attribute retained)</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="s2">"hba1c"</span><span class="p">:</span> <span class="mf">6.8</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="p">}</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">scrubbed</span> <span class="o">=</span> <span class="n">scrub_hipaa_safe_harbor</span><span class="p">(</span><span class="n">raw_patient</span><span class="p">)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># Assertions</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">assert</span> <span class="s2">"name"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scrubbed</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="k">assert</span> <span class="s2">"ssn"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scrubbed</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"birth_year"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1984</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"zip_prefix"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"021**"</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"diagnosis_code"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"E11.9"</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="c1"># Corporate exposure check: Global enterprise with €2 Billion revenue, 50,000 CA victims</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">exposure</span> <span class="o">=</span> <span class="n">calculate_statutory_exposure</span><span class="p">(</span><span class="n">global_turnover_eur</span><span class="o">=</span><span class="mf">2.0e9</span><span class="p">,</span> <span class="n">california_victims</span><span class="o">=</span><span class="mi">50_000</span><span class="p">)</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="k">assert</span> <span class="n">exposure</span><span class="p">[</span><span class="s2">"gdpr_tier2_max"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">80_000_000.0</span> <span class="c1"># 4% of 2B</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="k">assert</span> <span class="n">exposure</span><span class="p">[</span><span class="s2">"ccpa_breach_statutory_max"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">37_500_000.0</span> <span class="c1"># 50,000 * $750</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Scrubbed Patient Keys: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">scrubbed</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GDPR Tier 2 Max Fine: €</span><span class="si">{</span><span class="n">exposure</span><span class="p">[</span><span class="s1">'gdpr_tier2_max'</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CCPA Statutory Max Exposure: $</span><span class="si">{</span><span class="n">exposure</span><span class="p">[</span><span class="s1">'ccpa_breach_statutory_max'</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Statutory compliance and penalty calculation assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">test_compliance_assertions</span><span class="p">()</span>
+</span></code></pre></div>
 <hr />
 <h2 id="5-interactive-laboratory-workbench">5. 🔬 Interactive Laboratory Workbench</h2>
 <div class="noc-sim-card">

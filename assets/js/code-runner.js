@@ -102,7 +102,9 @@
 
     // Execute Python with stdout, stderr, and matplotlib figure capture
     const wrappedCode = `
-import sys, io, base64
+import sys, io, base64, warnings
+warnings.filterwarnings('ignore', category=DeprecationWarning)
+warnings.filterwarnings('ignore', category=FutureWarning)
 
 _stdout_buf = io.StringIO()
 _stderr_buf = io.StringIO()

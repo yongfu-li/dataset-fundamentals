@@ -3564,6 +3564,73 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-documentation-degradation-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematics of Documentation Degradation &amp; Technical Debt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Mathematics of Documentation Degradation &amp; Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shannon-information-entropy-of-schema-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Information Entropy of Schema Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#total-cost-of-undocumented-dataset-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Total Cost of Undocumented Dataset Remediation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-addressable-cryptographic-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content-Addressable Cryptographic Addressing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runnable-executable-python-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Runnable Executable Python Implementation
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7212,6 +7279,73 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-documentation-degradation-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematics of Documentation Degradation &amp; Technical Debt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Mathematics of Documentation Degradation &amp; Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shannon-information-entropy-of-schema-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Information Entropy of Schema Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#total-cost-of-undocumented-dataset-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Total Cost of Undocumented Dataset Remediation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-addressable-cryptographic-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content-Addressable Cryptographic Addressing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runnable-executable-python-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Runnable Executable Python Implementation
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7357,156 +7491,136 @@
   class RawData,SchemaDoc blue;
   class CAS,CommitDAG green;
   class LineageGraph purple;
-  class ComplianceGate amber;```
-
-### The Mathematics of Documentation Degradation &amp; Technical Debt
-
-Without disciplined maintenance, the operational utility of a dataset deteriorates over time due to upstream API schema drift, unrecorded sensory recalibrations, and organizational turnover. We model the **Effective Epistemic Quality** $\mathcal{Q}_{\text{doc}}(t) \in [0, 1]$ of a dataset over time $t$ as a decay-jump process ([Michener et al., 1997](#ref-michener1997)):
-
-$$
+  class ComplianceGate amber;</code></pre>
+<h3 id="the-mathematics-of-documentation-degradation-technical-debt">The Mathematics of Documentation Degradation &amp; Technical Debt</h3>
+<p>Without disciplined maintenance, the operational utility of a dataset deteriorates over time due to upstream API schema drift, unrecorded sensory recalibrations, and organizational turnover. We model the <strong>Effective Epistemic Quality</strong> <span class="arithmatex">\(\mathcal{Q}_{\text{doc}}(t) \in [0, 1]\)</span> of a dataset over time <span class="arithmatex">\(t\)</span> as a decay-jump process (<a href="#ref-michener1997">Michener et al., 1997</a>):</p>
+<div class="arithmatex">\[
 \mathcal{Q}_{\text{doc}}(t) = \mathcal{Q}_0 \cdot \exp(-\lambda_{\text{decay}} t) + \sum_{k=1}^K \Delta \mathcal{Q}_k \cdot \mathbb{I}(t \ge t_k)
-$$
-
-where $\lambda_{\text{decay}}$ is the ambient documentation entropy rate, $t_k$ represents the timestamp of a formal documentation audit, and $\Delta \mathcal{Q}_k$ is the quality recovery jump induced by audit curation.
-
-#### Shannon Information Entropy of Schema Documentation
-
-Let a dataset schema define $m$ attributes $\mathcal{A} = \{a_1, a_2, \dots, a_m\}$. If attribute documentation completeness is treated as a probability distribution $p(a_i) = \frac{\text{DocTokens}(a_i)}{\sum_j \text{DocTokens}(a_j)}$, the **Schema Documentation Entropy** is:
-
-$$
+\]</div>
+<p>where <span class="arithmatex">\(\lambda_{\text{decay}}\)</span> is the ambient documentation entropy rate, <span class="arithmatex">\(t_k\)</span> represents the timestamp of a formal documentation audit, and <span class="arithmatex">\(\Delta \mathcal{Q}_k\)</span> is the quality recovery jump induced by audit curation.</p>
+<h4 id="shannon-information-entropy-of-schema-documentation">Shannon Information Entropy of Schema Documentation</h4>
+<p>Let a dataset schema define <span class="arithmatex">\(m\)</span> attributes <span class="arithmatex">\(\mathcal{A} = \{a_1, a_2, \dots, a_m\}\)</span>. If attribute documentation completeness is treated as a probability distribution <span class="arithmatex">\(p(a_i) = \frac{\text{DocTokens}(a_i)}{\sum_j \text{DocTokens}(a_j)}\)</span>, the <strong>Schema Documentation Entropy</strong> is:</p>
+<div class="arithmatex">\[
 H_{\text{schema}}(D) = - \sum_{i=1}^m p(a_i) \log_2 p(a_i)
-$$
-
-Maximizing $H_{\text{schema}}(D) \to \log_2 m$ guarantees that descriptive metadata is uniformly distributed across all feature columns, preventing critical "blind spots" where primary features are exhaustively documented while auxiliary demographic features remain undocumented ([Sambasivan et al., 2021](#ref-sambasivan2021)).
-
-#### Total Cost of Undocumented Dataset Remediation
-
-Proactive documentation incurs upfront authoring cost $\mathcal{C}_{\text{upfront}}$. In contrast, undocumented datasets incur downstream forensic debugging penalties proportional to the incident arrival rate $\lambda_{\text{inc}}$ and average forensic resolution cost $\bar{C}_{\text{debug}}$ ([Sculley et al., 2015](#ref-sculley2015)):
-
-$$
+\]</div>
+<p>Maximizing <span class="arithmatex">\(H_{\text{schema}}(D) \to \log_2 m\)</span> guarantees that descriptive metadata is uniformly distributed across all feature columns, preventing critical "blind spots" where primary features are exhaustively documented while auxiliary demographic features remain undocumented (<a href="#ref-sambasivan2021">Sambasivan et al., 2021</a>).</p>
+<h4 id="total-cost-of-undocumented-dataset-remediation">Total Cost of Undocumented Dataset Remediation</h4>
+<p>Proactive documentation incurs upfront authoring cost <span class="arithmatex">\(\mathcal{C}_{\text{upfront}}\)</span>. In contrast, undocumented datasets incur downstream forensic debugging penalties proportional to the incident arrival rate <span class="arithmatex">\(\lambda_{\text{inc}}\)</span> and average forensic resolution cost <span class="arithmatex">\(\bar{C}_{\text{debug}}\)</span> (<a href="#ref-sculley2015">Sculley et al., 2015</a>):</p>
+<div class="arithmatex">\[
 \mathcal{C}_{\text{total}} = \mathcal{C}_{\text{upfront}} + \mathbb{E}[N_{\text{incidents}}] \cdot \bar{C}_{\text{debug}} \cdot \left(1 - \frac{H_{\text{schema}}(D)}{\log_2 m}\right)
-$$
-
-When documentation coverage is low, downstream troubleshooting costs exceed initial curation investments by over **$12\times$** across production lifecycles.
-
-#### Content-Addressable Cryptographic Addressing
-
-Modern dataset version control establishes mathematical immutability by decoupling lightweight tracking pointers from heavy binary payloads via cryptographic hashing ([Pacheco et al., 2024](#ref-pacheco2024)):
-
-$$
+\]</div>
+<p>When documentation coverage is low, downstream troubleshooting costs exceed initial curation investments by over <strong><span class="arithmatex">\(12\times\)</span></strong> across production lifecycles.</p>
+<h4 id="content-addressable-cryptographic-addressing">Content-Addressable Cryptographic Addressing</h4>
+<p>Modern dataset version control establishes mathematical immutability by decoupling lightweight tracking pointers from heavy binary payloads via cryptographic hashing (<a href="#ref-pacheco2024">Pacheco et al., 2024</a>):</p>
+<div class="arithmatex">\[
 h = \mathcal{H}_{\text{SHA-256}}(\text{Payload})
-$$
-
-For any directory tree containing $m$ files, the directory state is summarized into a Merkle root hash:
-
-$$
+\]</div>
+<p>For any directory tree containing <span class="arithmatex">\(m\)</span> files, the directory state is summarized into a Merkle root hash:</p>
+<div class="arithmatex">\[
 \mathcal{H}(N_v) = \mathcal{H}_{\text{SHA-256}}\left( \text{name}(N_v) \,\|\, \bigoplus_{c \in \text{Children}(N_v)} \left(\text{name}(c) \,\|\, \mathcal{H}(c) \,\|\, \text{size}(c)\right) \right)
-$$
-
-This guarantees that any bitwise alteration of training samples produces a completely distinct hash address, eliminating silent training-serving skew.
-
----
-
-!!! tip "Industrial Best Practice: Treating Metadata as First-Class Artifacts"
-    Treat dataset documentation and schema dictionaries with the same continuous integration rigor as application source code. Validate JSON-Schema or Protobuf contracts on every commit and block dataset builds if documentation coverage falls below 95%.
-
-!!! warning "Common Pitfall / Anti-Pattern: Post-Hoc Retroactive Documentation"
-    Documenting datasets months after collection relies on fallible human memory. When original engineers leave or sensor configurations change, undocumented quirks turn into cascading silent bugs in production ML systems.
-
-## 💻 Runnable Executable Python Implementation
-
-The following production script models the documentation decay function, calculates schema information entropy, and computes Merkle root hashes for dataset files:
-
-```python
-import hashlib
-import json
-import math
-from typing import Dict, List
-
-class DatasetEpistemicAuditor:
-    """Calculates documentation entropy, epistemic decay, and cryptographic Merkle roots."""
-
-    @staticmethod
-    def calculate_documentation_entropy(token_counts: Dict[str, int]) -&gt; float:
-        """Calculates Shannon entropy across schema attribute documentation."""
-        total_tokens = sum(token_counts.values())
-        if total_tokens == 0:
-            return 0.0
-
-        entropy = 0.0
-        for count in token_counts.values():
-            if count &gt; 0:
-                p = count / total_tokens
-                entropy -= p * math.log2(p)
-        return entropy
-
-    @staticmethod
-    def epistemic_quality_decay(q0: float, lambda_decay: float, t_months: float, audits: List[tuple]) -&gt; float:
-        """Models documentation decay over time with audit recovery jumps."""
-        # Baseline exponential decay
-        quality = q0 * math.exp(-lambda_decay * t_months)
-        # Apply audit recovery jumps: audits = [(t_k, delta_q)]
-        for t_k, delta_q in audits:
-            if t_months &gt;= t_k:
-                quality += delta_q * math.exp(-lambda_decay * (t_months - t_k))
-        return min(1.0, quality)
-
-    @staticmethod
-    def compute_merkle_root(file_blobs: Dict[str, bytes]) -&gt; str:
-        """Computes deterministic Merkle root hash for a collection of files."""
-        tree_entries = []
-        for filename in sorted(file_blobs.keys()):
-            data = file_blobs[filename]
-            blob_hash = hashlib.sha256(data).hexdigest()
-            tree_entries.append(f"{filename}:{blob_hash}:{len(data)}")
-
-        manifest = "\n".join(tree_entries).encode("utf-8")
-        return hashlib.sha256(manifest).hexdigest()
-
-# =====================================================================
-# Verification &amp; Mathematical Assertions
-# =====================================================================
-if __name__ == "__main__":
-    auditor = DatasetEpistemicAuditor()
-
-    # Evaluation 1: Documentation Entropy across 4 attributes
-    # Perfectly balanced documentation (100 tokens per field)
-    balanced_tokens = {"age": 100, "income": 100, "credit_score": 100, "zip_code": 100}
-    h_balanced = auditor.calculate_documentation_entropy(balanced_tokens)
-    max_h = math.log2(4)  # log2(4) = 2.0 bits
-    assert math.isclose(h_balanced, max_h, rel_tol=1e-5), f"Expected 2.0 bits, got {h_balanced}"
-
-    # Skewed documentation: 'age' has 900 tokens, others have only 10 tokens
-    skewed_tokens = {"age": 900, "income": 10, "credit_score": 10, "zip_code": 10}
-    h_skewed = auditor.calculate_documentation_entropy(skewed_tokens)
-    assert h_skewed &lt; 0.60 * max_h, "Skewed documentation must exhibit depressed entropy!"
-    print(f"Balanced Entropy: {h_balanced:.3f} bits | Skewed Entropy: {h_skewed:.3f} bits")
-
-    # Evaluation 2: Epistemic Decay over 24 months with an audit at month 12
-    q_decayed = auditor.epistemic_quality_decay(
-        q0=1.0, lambda_decay=0.05, t_months=24.0, audits=[(12.0, 0.40)]
-    )
-    print(f"Epistemic Quality at 24 Months: {q_decayed:.4f}")
-    assert 0.40 &lt;= q_decayed &lt;= 0.60, f"Expected quality ~0.52, got {q_decayed}"
-
-    # Evaluation 3: Merkle Root Hash Determinism
-    files_v1 = {
-        "features.csv": b"id,val\n1,10\n2,20",
-        "labels.csv": b"id,y\n1,0\n2,1"
-    }
-    root_1 = auditor.compute_merkle_root(files_v1)
-
-    # Mutate 1 bit in labels.csv
-    files_v2 = {
-        "features.csv": b"id,val\n1,10\n2,20",
-        "labels.csv": b"id,y\n1,0\n2,0"  # flipped label
-    }
-    root_2 = auditor.compute_merkle_root(files_v2)
-
-    assert root_1 != root_2, "Merkle root must detect 1-bit label mutation!"
-    print(f"Merkle Root v1: {root_1}")
-    print(f"Merkle Root v2: {root_2}")
-    print("All documentation entropy and versioning assertions verified!")</code></pre>
+\]</div>
+<p>This guarantees that any bitwise alteration of training samples produces a completely distinct hash address, eliminating silent training-serving skew.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Treating Metadata as First-Class Artifacts</p>
+<p>Treat dataset documentation and schema dictionaries with the same continuous integration rigor as application source code. Validate JSON-Schema or Protobuf contracts on every commit and block dataset builds if documentation coverage falls below 95%.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Post-Hoc Retroactive Documentation</p>
+<p>Documenting datasets months after collection relies on fallible human memory. When original engineers leave or sensor configurations change, undocumented quirks turn into cascading silent bugs in production ML systems.</p>
+</div>
+<h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
+<p>The following production script models the documentation decay function, calculates schema information entropy, and computes Merkle root hashes for dataset files:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">DatasetEpistemicAuditor</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="sd">"""Calculates documentation entropy, epistemic decay, and cryptographic Merkle roots."""</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_documentation_entropy</span><span class="p">(</span><span class="n">token_counts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="sd">"""Calculates Shannon entropy across schema attribute documentation."""</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">total_tokens</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">token_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">if</span> <span class="n">total_tokens</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="k">return</span> <span class="mf">0.0</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">entropy</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">token_counts</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                <span class="n">p</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">total_tokens</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                <span class="n">entropy</span> <span class="o">-=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">return</span> <span class="n">entropy</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">epistemic_quality_decay</span><span class="p">(</span><span class="n">q0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lambda_decay</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">t_months</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">audits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="sd">"""Models documentation decay over time with audit recovery jumps."""</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="c1"># Baseline exponential decay</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="n">quality</span> <span class="o">=</span> <span class="n">q0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lambda_decay</span> <span class="o">*</span> <span class="n">t_months</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="c1"># Apply audit recovery jumps: audits = [(t_k, delta_q)]</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">for</span> <span class="n">t_k</span><span class="p">,</span> <span class="n">delta_q</span> <span class="ow">in</span> <span class="n">audits</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            <span class="k">if</span> <span class="n">t_months</span> <span class="o">&gt;=</span> <span class="n">t_k</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                <span class="n">quality</span> <span class="o">+=</span> <span class="n">delta_q</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lambda_decay</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_months</span> <span class="o">-</span> <span class="n">t_k</span><span class="p">))</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_merkle_root</span><span class="p">(</span><span class="n">file_blobs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="sd">"""Computes deterministic Merkle root hash for a collection of files."""</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="n">tree_entries</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">file_blobs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="n">data</span> <span class="o">=</span> <span class="n">file_blobs</span><span class="p">[</span><span class="n">filename</span><span class="p">]</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>            <span class="n">blob_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            <span class="n">tree_entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">blob_hash</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">manifest</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tree_entries</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">manifest</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="c1"># Verification &amp; Mathematical Assertions</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">auditor</span> <span class="o">=</span> <span class="n">DatasetEpistemicAuditor</span><span class="p">()</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="c1"># Evaluation 1: Documentation Entropy across 4 attributes</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="c1"># Perfectly balanced documentation (100 tokens per field)</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">balanced_tokens</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"age"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"credit_score"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"zip_code"</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">h_balanced</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">calculate_documentation_entropy</span><span class="p">(</span><span class="n">balanced_tokens</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">max_h</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># log2(4) = 2.0 bits</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">h_balanced</span><span class="p">,</span> <span class="n">max_h</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"Expected 2.0 bits, got </span><span class="si">{</span><span class="n">h_balanced</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="c1"># Skewed documentation: 'age' has 900 tokens, others have only 10 tokens</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">skewed_tokens</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"age"</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"credit_score"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"zip_code"</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="n">h_skewed</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">calculate_documentation_entropy</span><span class="p">(</span><span class="n">skewed_tokens</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">assert</span> <span class="n">h_skewed</span> <span class="o">&lt;</span> <span class="mf">0.60</span> <span class="o">*</span> <span class="n">max_h</span><span class="p">,</span> <span class="s2">"Skewed documentation must exhibit depressed entropy!"</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Balanced Entropy: </span><span class="si">{</span><span class="n">h_balanced</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> bits | Skewed Entropy: </span><span class="si">{</span><span class="n">h_skewed</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> bits"</span><span class="p">)</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="c1"># Evaluation 2: Epistemic Decay over 24 months with an audit at month 12</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">q_decayed</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">epistemic_quality_decay</span><span class="p">(</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="n">q0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">lambda_decay</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">t_months</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> <span class="n">audits</span><span class="o">=</span><span class="p">[(</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">)]</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="p">)</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Epistemic Quality at 24 Months: </span><span class="si">{</span><span class="n">q_decayed</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="k">assert</span> <span class="mf">0.40</span> <span class="o">&lt;=</span> <span class="n">q_decayed</span> <span class="o">&lt;=</span> <span class="mf">0.60</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected quality ~0.52, got </span><span class="si">{</span><span class="n">q_decayed</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="c1"># Evaluation 3: Merkle Root Hash Determinism</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="n">files_v1</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="s2">"features.csv"</span><span class="p">:</span> <span class="sa">b</span><span class="s2">"id,val</span><span class="se">\n</span><span class="s2">1,10</span><span class="se">\n</span><span class="s2">2,20"</span><span class="p">,</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="s2">"labels.csv"</span><span class="p">:</span> <span class="sa">b</span><span class="s2">"id,y</span><span class="se">\n</span><span class="s2">1,0</span><span class="se">\n</span><span class="s2">2,1"</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="p">}</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="n">root_1</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">compute_merkle_root</span><span class="p">(</span><span class="n">files_v1</span><span class="p">)</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="c1"># Mutate 1 bit in labels.csv</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="n">files_v2</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="s2">"features.csv"</span><span class="p">:</span> <span class="sa">b</span><span class="s2">"id,val</span><span class="se">\n</span><span class="s2">1,10</span><span class="se">\n</span><span class="s2">2,20"</span><span class="p">,</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="s2">"labels.csv"</span><span class="p">:</span> <span class="sa">b</span><span class="s2">"id,y</span><span class="se">\n</span><span class="s2">1,0</span><span class="se">\n</span><span class="s2">2,0"</span>  <span class="c1"># flipped label</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="p">}</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="n">root_2</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">compute_merkle_root</span><span class="p">(</span><span class="n">files_v2</span><span class="p">)</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="k">assert</span> <span class="n">root_1</span> <span class="o">!=</span> <span class="n">root_2</span><span class="p">,</span> <span class="s2">"Merkle root must detect 1-bit label mutation!"</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Merkle Root v1: </span><span class="si">{</span><span class="n">root_1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Merkle Root v2: </span><span class="si">{</span><span class="n">root_2</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"All documentation entropy and versioning assertions verified!"</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-forensic-bioinformatics-baggerly-coombes-2009">🔬 Empirical Case Study: Forensic Bioinformatics (<a href="#ref-baggerly2009">Baggerly &amp; Coombes, 2009</a>)</h2>
 <p>In high-throughput genomic clinical trials:</p>

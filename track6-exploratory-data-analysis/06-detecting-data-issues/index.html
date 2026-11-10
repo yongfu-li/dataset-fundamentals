@@ -2906,6 +2906,34 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-simpsons-paradox-and-causal-confounding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Simpson's Paradox and Causal Confounding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Simpson&#39;s Paradox and Causal Confounding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mathematical-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematical Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#2-berksons-paradox-collider-stratification-bias" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7333,6 +7361,34 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-simpsons-paradox-and-causal-confounding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Simpson's Paradox and Causal Confounding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Simpson&#39;s Paradox and Causal Confounding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mathematical-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematical Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#2-berksons-paradox-collider-stratification-bias" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7581,46 +7637,32 @@
     classDef green fill:#E6F4EA,stroke:#2E7D32,stroke-width:2px,color:#2A2A2A;
 
     class M1,M2 blue;
-    class F1,F2,F3 amber;```
-
----
-
-### 1. Simpson's Paradox and Causal Confounding
-
-Simpson's Paradox occurs when a statistical trend observed within aggregated data reverses direction when the data is disaggregated into underlying sub-populations [[Blyth1972](#ref-blyth1972)].
-
-#### Mathematical Formulation
-Let binary treatment $X \in \{0, 1\}$, outcome $Y \in \{0, 1\}$, and confounding stratum $Z \in \{1, \dots, K\}$.
-Simpson's reversal occurs when:
-
-$$
+    class F1,F2,F3 amber;</code></pre>
+<hr />
+<h3 id="1-simpsons-paradox-and-causal-confounding">1. Simpson's Paradox and Causal Confounding</h3>
+<p>Simpson's Paradox occurs when a statistical trend observed within aggregated data reverses direction when the data is disaggregated into underlying sub-populations [<a href="#ref-blyth1972">Blyth1972</a>].</p>
+<h4 id="mathematical-formulation">Mathematical Formulation</h4>
+<p>Let binary treatment <span class="arithmatex">\(X \in \{0, 1\}\)</span>, outcome <span class="arithmatex">\(Y \in \{0, 1\}\)</span>, and confounding stratum <span class="arithmatex">\(Z \in \{1, \dots, K\}\)</span>.
+Simpson's reversal occurs when:</p>
+<div class="arithmatex">\[
 \Pr(Y = 1 \mid X = 1, Z = k) &lt; \Pr(Y = 1 \mid X = 0, Z = k) \quad \forall k \in \{1, \dots, K\}
-$$
-
-yet in the aggregate population:
-
-$$
+\]</div>
+<p>yet in the aggregate population:</p>
+<div class="arithmatex">\[
 \Pr(Y = 1 \mid X = 1) &gt; \Pr(Y = 1 \mid X = 0)
-$$
-
-In linear regression, if confounder $Z$ is omitted, the omitted variable bias formula demonstrates the coefficient shift:
-
-$$
+\]</div>
+<p>In linear regression, if confounder <span class="arithmatex">\(Z\)</span> is omitted, the omitted variable bias formula demonstrates the coefficient shift:</p>
+<div class="arithmatex">\[
 y = \alpha_0 + \beta_{\text{naive}} x + \epsilon_1
-$$
-
-$$
+\]</div>
+<div class="arithmatex">\[
 y = \alpha_1 + \beta_{\text{true}} x + \gamma z + \epsilon_2
-$$
-
-$$
+\]</div>
+<div class="arithmatex">\[
 \beta_{\text{naive}} = \beta_{\text{true}} + \gamma \cdot \frac{\text{Cov}(x, z)}{\text{Var}(x)}
-$$
-
-If $\gamma \cdot \text{Cov}(x, z)$ is negative and exceeds $\beta_{\text{true}}$, the estimated slope $\beta_{\text{naive}}$ flips sign entirely.
-
-```mermaid
-flowchart TD
+\]</div>
+<p>If <span class="arithmatex">\(\gamma \cdot \text{Cov}(x, z)\)</span> is negative and exceeds <span class="arithmatex">\(\beta_{\text{true}}\)</span>, the estimated slope <span class="arithmatex">\(\beta_{\text{naive}}\)</span> flips sign entirely.</p>
+<pre class="mermaid"><code>flowchart TD
     Z["Confounder Z (e.g., Department / Severity)"] --&gt; X["Treatment / Predictor X"]
     Z --&gt; Y["Outcome Y"]
     X --&gt; Y

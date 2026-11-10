@@ -3018,6 +3018,46 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-spurious-correlation-in-non-stationary-time-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Spurious Correlation in Non-Stationary Time Series
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Spurious Correlation in Non-Stationary Time Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remediation-stationarity-auditing-and-differencing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remediation: Stationarity Auditing and Differencing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-berksons-bias-collider-stratification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Berkson's Bias (Collider Stratification)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Berkson&#39;s Bias (Collider Stratification)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#causal-dag-formulation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3025,6 +3065,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -7294,6 +7339,46 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-spurious-correlation-in-non-stationary-time-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Spurious Correlation in Non-Stationary Time Series
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Spurious Correlation in Non-Stationary Time Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remediation-stationarity-auditing-and-differencing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remediation: Stationarity Auditing and Differencing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-berksons-bias-collider-stratification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Berkson's Bias (Collider Stratification)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Berkson&#39;s Bias (Collider Stratification)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#causal-dag-formulation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7301,6 +7386,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -7503,43 +7593,28 @@
     classDef amber fill:#FEF3D6,stroke:#D9822B,stroke-width:2px,color:#2A2A2A;
 
     class T1,T2,T3 blue;
-    class C1,C2,C3 amber;```
-
----
-
-### 1. Spurious Correlation in Non-Stationary Time Series
-
-Udny Yule [[Yule1926](#ref-yule1926)] proved that computing correlation coefficients between non-stationary integrated time series $I(1)$ produces massive, statistically significant correlations even when the underlying generating processes are completely independent Brownian motions:
-
-$$
+    class C1,C2,C3 amber;</code></pre>
+<hr />
+<h3 id="1-spurious-correlation-in-non-stationary-time-series">1. Spurious Correlation in Non-Stationary Time Series</h3>
+<p>Udny Yule [<a href="#ref-yule1926">Yule1926</a>] proved that computing correlation coefficients between non-stationary integrated time series <span class="arithmatex">\(I(1)\)</span> produces massive, statistically significant correlations even when the underlying generating processes are completely independent Brownian motions:</p>
+<div class="arithmatex">\[
 X_t = X_{t-1} + \epsilon_{1t}, \quad \epsilon_{1t} \sim \mathcal{N}(0, \sigma_1^2)
-$$
-
-$$
+\]</div>
+<div class="arithmatex">\[
 Y_t = Y_{t-1} + \epsilon_{2t}, \quad \epsilon_{2t} \sim \mathcal{N}(0, \sigma_2^2)
-$$
-
-with $\mathbb{E}[\epsilon_{1t} \epsilon_{2s}] = 0$ for all $t, s$.
-
-As sample duration $T \to \infty$, the sample correlation coefficient $r_{XY}$ does not converge in probability to zero ($r \not\xrightarrow{p} 0$). Instead, it follows a non-degenerate random variable distribution with high probability of $|r| &gt; 0.80$.
-
-#### Remediation: Stationarity Auditing and Differencing
-Prior to evaluating temporal correlations, audit series stationarity using the **Augmented Dickey-Fuller (ADF) test**:
-
-$$
+\]</div>
+<p>with <span class="arithmatex">\(\mathbb{E}[\epsilon_{1t} \epsilon_{2s}] = 0\)</span> for all <span class="arithmatex">\(t, s\)</span>.</p>
+<p>As sample duration <span class="arithmatex">\(T \to \infty\)</span>, the sample correlation coefficient <span class="arithmatex">\(r_{XY}\)</span> does not converge in probability to zero (<span class="arithmatex">\(r \not\xrightarrow{p} 0\)</span>). Instead, it follows a non-degenerate random variable distribution with high probability of <span class="arithmatex">\(|r| &gt; 0.80\)</span>.</p>
+<h4 id="remediation-stationarity-auditing-and-differencing">Remediation: Stationarity Auditing and Differencing</h4>
+<p>Prior to evaluating temporal correlations, audit series stationarity using the <strong>Augmented Dickey-Fuller (ADF) test</strong>:</p>
+<div class="arithmatex">\[
 \Delta X_t = \alpha + \beta t + \gamma X_{t-1} + \sum_{i=1}^p \delta_i \Delta X_{t-i} + e_t
-$$
-
-If null hypothesis $\gamma = 0$ (unit root) cannot be rejected, difference the series $\Delta X_t = X_t - X_{t-1}$ to restore stationary white noise before evaluating associations.
-
----
-
-### 2. Berkson's Bias (Collider Stratification)
-
-Berkson's Fallacy [[Berkson1946](#ref-berkson1946)] occurs when selecting or conditioning on a common effect variable (a **collider** $C$) induces a spurious negative association between two independent causes $A$ and $B$.
-
-```mermaid
-flowchart TD
+\]</div>
+<p>If null hypothesis <span class="arithmatex">\(\gamma = 0\)</span> (unit root) cannot be rejected, difference the series <span class="arithmatex">\(\Delta X_t = X_t - X_{t-1}\)</span> to restore stationary white noise before evaluating associations.</p>
+<hr />
+<h3 id="2-berksons-bias-collider-stratification">2. Berkson's Bias (Collider Stratification)</h3>
+<p>Berkson's Fallacy [<a href="#ref-berkson1946">Berkson1946</a>] occurs when selecting or conditioning on a common effect variable (a <strong>collider</strong> <span class="arithmatex">\(C\)</span>) induces a spurious negative association between two independent causes <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>.</p>
+<pre class="mermaid"><code>flowchart TD
     A["Independent Feature A&lt;br/&gt;(e.g., Programming Ability)"] --&gt; C["Collider C: Hired by Elite Firm&lt;br/&gt;Conditioning: (A + B &gt;= Tau)"]
     B["Independent Feature B&lt;br/&gt;(e.g., Interpersonal Charisma)"] --&gt; C
 

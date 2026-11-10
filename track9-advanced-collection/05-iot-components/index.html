@@ -4049,6 +4049,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-sensor-quantization-battery-duty-cycles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematics of Sensor Quantization &amp; Battery Duty Cycles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Mathematics of Sensor Quantization &amp; Battery Duty Cycles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nyquist-shannon-sampling-criterion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nyquist-Shannon Sampling Criterion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-to-quantization-noise-ratio-sqnr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal-to-Quantization-Noise Ratio (SQNR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-protocol-overhead-mqtt-vs-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Protocol Overhead: MQTT vs. HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#battery-lifetime-under-duty-cycle-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Battery Lifetime under Duty-Cycle Scheduling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runnable-executable-python-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Runnable Executable Python Implementation
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7212,6 +7290,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mathematics-of-sensor-quantization-battery-duty-cycles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Mathematics of Sensor Quantization &amp; Battery Duty Cycles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Mathematics of Sensor Quantization &amp; Battery Duty Cycles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nyquist-shannon-sampling-criterion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nyquist-Shannon Sampling Criterion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-to-quantization-noise-ratio-sqnr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal-to-Quantization-Noise Ratio (SQNR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-protocol-overhead-mqtt-vs-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Protocol Overhead: MQTT vs. HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#battery-lifetime-under-duty-cycle-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Battery Lifetime under Duty-Cycle Scheduling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runnable-executable-python-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 Runnable Executable Python Implementation
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7357,128 +7513,109 @@
   class Phenom,Transducer blue;
   class ADC,MCU purple;
   class MQTT amber;
-  class Gateway green;```
-
-### The Mathematics of Sensor Quantization &amp; Battery Duty Cycles
-
-Transforming continuous physical fields into digital dataset rows requires adhering to fundamental sampling theorems and radio energy conservation models ([Shannon, 1949](#ref-shannon1949); [Gubbi et al., 2013](#ref-gubbi2013)).
-
-#### Nyquist-Shannon Sampling Criterion
-
-To guarantee that an analog signal with maximum bandwidth frequency $f_{\max}$ can be reconstructed without aliasing distortion, the sampling frequency $f_s$ must satisfy:
-
-$$
+  class Gateway green;</code></pre>
+<h3 id="the-mathematics-of-sensor-quantization-battery-duty-cycles">The Mathematics of Sensor Quantization &amp; Battery Duty Cycles</h3>
+<p>Transforming continuous physical fields into digital dataset rows requires adhering to fundamental sampling theorems and radio energy conservation models (<a href="#ref-shannon1949">Shannon, 1949</a>; <a href="#ref-gubbi2013">Gubbi et al., 2013</a>).</p>
+<h4 id="nyquist-shannon-sampling-criterion">Nyquist-Shannon Sampling Criterion</h4>
+<p>To guarantee that an analog signal with maximum bandwidth frequency <span class="arithmatex">\(f_{\max}\)</span> can be reconstructed without aliasing distortion, the sampling frequency <span class="arithmatex">\(f_s\)</span> must satisfy:</p>
+<div class="arithmatex">\[
 f_s \ge 2 f_{\max}
-$$
-
-Sampling below $2 f_{\max}$ causes high-frequency vibrations to fold spuriously into low-frequency spectrum bands, permanently corrupting predictive features.
-
-#### Signal-to-Quantization-Noise Ratio (SQNR)
-
-When an ADC quantizes an analog voltage into an $N$-bit integer representation, the theoretical dynamic range and Signal-to-Quantization-Noise Ratio (SQNR) is bounded by:
-
-$$
+\]</div>
+<p>Sampling below <span class="arithmatex">\(2 f_{\max}\)</span> causes high-frequency vibrations to fold spuriously into low-frequency spectrum bands, permanently corrupting predictive features.</p>
+<h4 id="signal-to-quantization-noise-ratio-sqnr">Signal-to-Quantization-Noise Ratio (SQNR)</h4>
+<p>When an ADC quantizes an analog voltage into an <span class="arithmatex">\(N\)</span>-bit integer representation, the theoretical dynamic range and Signal-to-Quantization-Noise Ratio (SQNR) is bounded by:</p>
+<div class="arithmatex">\[
 \text{SQNR}_{\text{dB}} = 6.02 \cdot N + 1.76\text{ dB}
-$$
-
-Each additional bit of ADC precision adds approximately $6\text{ dB}$ of dynamic fidelity. A 16-bit industrial ADC provides $98.08\text{ dB}$ of clean dynamic range, whereas an 8-bit embedded sensor provides only $49.92\text{ dB}$, burying low-amplitude signals in quantization noise.
-
-#### Network Protocol Overhead: MQTT vs. HTTP
-
-Let an IoT sensor emit a payload of $S_{\text{payload}}$ bytes (e.g., 8 bytes: timestamp + float32). The protocol transmission efficiency $\eta_{\text{proto}}$ is:
-
-$$
+\]</div>
+<p>Each additional bit of ADC precision adds approximately <span class="arithmatex">\(6\text{ dB}\)</span> of dynamic fidelity. A 16-bit industrial ADC provides <span class="arithmatex">\(98.08\text{ dB}\)</span> of clean dynamic range, whereas an 8-bit embedded sensor provides only <span class="arithmatex">\(49.92\text{ dB}\)</span>, burying low-amplitude signals in quantization noise.</p>
+<h4 id="network-protocol-overhead-mqtt-vs-http">Network Protocol Overhead: MQTT vs. HTTP</h4>
+<p>Let an IoT sensor emit a payload of <span class="arithmatex">\(S_{\text{payload}}\)</span> bytes (e.g., 8 bytes: timestamp + float32). The protocol transmission efficiency <span class="arithmatex">\(\eta_{\text{proto}}\)</span> is:</p>
+<div class="arithmatex">\[
 \eta_{\text{proto}} = \frac{S_{\text{payload}}}{S_{\text{payload}} + S_{\text{header}}}
-$$
-
-- Standard HTTP/1.1 header: $S_{\text{header}} \approx 500\text{ bytes} \implies \eta_{\text{HTTP}} = \frac{8}{508} \approx 1.57\%$
-- MQTT compact header: $S_{\text{header}} \approx 2\text{ bytes} \implies \eta_{\text{MQTT}} = \frac{8}{10} = 80.0\%$
-
-Deploying MQTT slashes cellular telemetry transmission fees by over **$98\%$**.
-
-#### Battery Lifetime under Duty-Cycle Scheduling
-
-Let an IoT sensor operate with duty cycle $D = \frac{T_{\text{active}}}{T_{\text{active}} + T_{\text{sleep}}}$. With active current draw $I_{\text{active}}$, sleep current draw $I_{\text{sleep}}$, and battery capacity $C_{\text{battery}}$ (mAh):
-
-$$
+\]</div>
+<ul>
+<li>Standard HTTP/1.1 header: <span class="arithmatex">\(S_{\text{header}} \approx 500\text{ bytes} \implies \eta_{\text{HTTP}} = \frac{8}{508} \approx 1.57\%\)</span></li>
+<li>MQTT compact header: <span class="arithmatex">\(S_{\text{header}} \approx 2\text{ bytes} \implies \eta_{\text{MQTT}} = \frac{8}{10} = 80.0\%\)</span></li>
+</ul>
+<p>Deploying MQTT slashes cellular telemetry transmission fees by over <strong><span class="arithmatex">\(98\%\)</span></strong>.</p>
+<h4 id="battery-lifetime-under-duty-cycle-scheduling">Battery Lifetime under Duty-Cycle Scheduling</h4>
+<p>Let an IoT sensor operate with duty cycle <span class="arithmatex">\(D = \frac{T_{\text{active}}}{T_{\text{active}} + T_{\text{sleep}}}\)</span>. With active current draw <span class="arithmatex">\(I_{\text{active}}\)</span>, sleep current draw <span class="arithmatex">\(I_{\text{sleep}}\)</span>, and battery capacity <span class="arithmatex">\(C_{\text{battery}}\)</span> (mAh):</p>
+<div class="arithmatex">\[
 T_{\text{lifetime}} = \frac{C_{\text{battery}}}{D \cdot I_{\text{active}} + (1 - D) \cdot I_{\text{sleep}}}
-$$
-
-For $D = 0.01$ (active $1\%$ of the time), battery longevity extends from 5 days up to **$3.2\text{ years}$**.
-
----
-
-!!! tip "Industrial Best Practice: Sensor Telemetry Quantization and Edge Filtering"
-    Apply deadband filtering at the physical IoT micro-controller: only transmit a telemetry packet if the measured physical quantity deviates from the last reported value by more than $\Delta \ge \epsilon_{\text{threshold}}$ or a heartbeat interval expires. This cuts network radio power consumption by $&gt;80\%$.
-
-!!! warning "Common Pitfall / Anti-Pattern: Unsynchronized Physical Sensor Clocks"
-    Relying on internal crystal oscillators in un-networked IoT sensors causes clock drift of several seconds per week. When multi-sensor data is joined downstream in the cloud, temporal misalignment corrupts event causality. Always synchronize via NTP or GPS PTP (IEEE 1588).
-
-## 💻 Runnable Executable Python Implementation
-
-The following script models Nyquist sampling, computes ADC Signal-to-Quantization-Noise ratios, compares MQTT vs HTTP protocol overhead, and evaluates battery duty-cycle lifetime:
-
-```python
-import math
-
-class IoTSensorAuditor:
-    """Calculates Nyquist sampling bounds, ADC SQNR, protocol overhead, and battery lifetime."""
-
-    @staticmethod
-    def nyquist_minimum_rate(f_max_hz: float) -&gt; float:
-        """Calculates minimum sampling rate to avoid aliasing."""
-        return 2.0 * f_max_hz
-
-    @staticmethod
-    def adc_sqnr_db(resolution_bits: int) -&gt; float:
-        """Calculates theoretical ADC SQNR in decibels."""
-        return 6.02 * resolution_bits + 1.76
-
-    @staticmethod
-    def protocol_transmission_efficiency(payload_bytes: int, header_bytes: int) -&gt; float:
-        """Computes transmission payload efficiency ratio."""
-        return payload_bytes / (payload_bytes + header_bytes)
-
-    @staticmethod
-    def battery_longevity_days(capacity_mah: float, active_ma: float, sleep_ma: float, duty_cycle: float) -&gt; float:
-        """Computes battery lifespan under duty cycle D."""
-        avg_current_ma = (duty_cycle * active_ma) + ((1.0 - duty_cycle) * sleep_ma)
-        hours = capacity_mah / avg_current_ma
-        return hours / 24.0
-
-# =====================================================================
-# Verification &amp; Mathematical Assertions
-# =====================================================================
-if __name__ == "__main__":
-    auditor = IoTSensorAuditor()
-
-    # Evaluation 1: Nyquist Frequency for Industrial Vibration
-    # Max vibration frequency = 2,500 Hz -&gt; Min sampling rate = 5,000 Hz
-    fs_min = auditor.nyquist_minimum_rate(f_max_hz=2500.0)
-    print(f"Minimum Nyquist Sampling Rate: {fs_min} Hz")
-    assert fs_min == 5000.0
-
-    # Evaluation 2: ADC Quantization Dynamic Range
-    sqnr_12bit = auditor.adc_sqnr_db(resolution_bits=12)
-    sqnr_16bit = auditor.adc_sqnr_db(resolution_bits=16)
-    print(f"12-bit ADC SQNR: {sqnr_12bit:.2f} dB | 16-bit ADC SQNR: {sqnr_16bit:.2f} dB")
-    assert math.isclose(sqnr_16bit, 98.08, rel_tol=1e-3)
-    assert sqnr_16bit - sqnr_12bit &gt; 24.0  # 4 bits * 6.02 dB/bit ~ 24.08 dB
-
-    # Evaluation 3: Protocol Overhead: 8-byte payload
-    eff_http = auditor.protocol_transmission_efficiency(payload_bytes=8, header_bytes=500)
-    eff_mqtt = auditor.protocol_transmission_efficiency(payload_bytes=8, header_bytes=2)
-    print(f"HTTP Efficiency: {eff_http * 100:.2f}% | MQTT Efficiency: {eff_mqtt * 100:.2f}%")
-    assert eff_mqtt == 0.80  # 8 / 10 = 80%
-    assert eff_http &lt; 0.02   # 8 / 508 &lt; 2%
-
-    # Evaluation 4: Battery Lifetime: 2000 mAh battery, active=50mA, sleep=0.01mA, D=0.01 (1% active)
-    days_1pct = auditor.battery_longevity_days(capacity_mah=2000.0, active_ma=50.0, sleep_ma=0.01, duty_cycle=0.01)
-    # Average current = (0.01 * 50) + (0.99 * 0.01) = 0.50 + 0.0099 = 0.5099 mA
-    # Hours = 2000 / 0.5099 ~ 3922 hours ~ 163.4 days
-    print(f"Battery Lifespan (1% Duty Cycle): {days_1pct:.1f} days ({days_1pct / 365:.2f} years)")
-    assert 150.0 &lt;= days_1pct &lt;= 180.0
-    print("All IoT sensor hardware and communication assertions passed successfully!")</code></pre>
+\]</div>
+<p>For <span class="arithmatex">\(D = 0.01\)</span> (active <span class="arithmatex">\(1\%\)</span> of the time), battery longevity extends from 5 days up to <strong><span class="arithmatex">\(3.2\text{ years}\)</span></strong>.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Sensor Telemetry Quantization and Edge Filtering</p>
+<p>Apply deadband filtering at the physical IoT micro-controller: only transmit a telemetry packet if the measured physical quantity deviates from the last reported value by more than <span class="arithmatex">\(\Delta \ge \epsilon_{\text{threshold}}\)</span> or a heartbeat interval expires. This cuts network radio power consumption by <span class="arithmatex">\(&gt;80\%\)</span>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Unsynchronized Physical Sensor Clocks</p>
+<p>Relying on internal crystal oscillators in un-networked IoT sensors causes clock drift of several seconds per week. When multi-sensor data is joined downstream in the cloud, temporal misalignment corrupts event causality. Always synchronize via NTP or GPS PTP (IEEE 1588).</p>
+</div>
+<h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
+<p>The following script models Nyquist sampling, computes ADC Signal-to-Quantization-Noise ratios, compares MQTT vs HTTP protocol overhead, and evaluates battery duty-cycle lifetime:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">IoTSensorAuditor</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="sd">"""Calculates Nyquist sampling bounds, ADC SQNR, protocol overhead, and battery lifetime."""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">nyquist_minimum_rate</span><span class="p">(</span><span class="n">f_max_hz</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="sd">"""Calculates minimum sampling rate to avoid aliasing."""</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">return</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">f_max_hz</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">adc_sqnr_db</span><span class="p">(</span><span class="n">resolution_bits</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="sd">"""Calculates theoretical ADC SQNR in decibels."""</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">return</span> <span class="mf">6.02</span> <span class="o">*</span> <span class="n">resolution_bits</span> <span class="o">+</span> <span class="mf">1.76</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">protocol_transmission_efficiency</span><span class="p">(</span><span class="n">payload_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">header_bytes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="sd">"""Computes transmission payload efficiency ratio."""</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="k">return</span> <span class="n">payload_bytes</span> <span class="o">/</span> <span class="p">(</span><span class="n">payload_bytes</span> <span class="o">+</span> <span class="n">header_bytes</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">battery_longevity_days</span><span class="p">(</span><span class="n">capacity_mah</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">active_ma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sleep_ma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="sd">"""Computes battery lifespan under duty cycle D."""</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="n">avg_current_ma</span> <span class="o">=</span> <span class="p">(</span><span class="n">duty_cycle</span> <span class="o">*</span> <span class="n">active_ma</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">duty_cycle</span><span class="p">)</span> <span class="o">*</span> <span class="n">sleep_ma</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="n">hours</span> <span class="o">=</span> <span class="n">capacity_mah</span> <span class="o">/</span> <span class="n">avg_current_ma</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="k">return</span> <span class="n">hours</span> <span class="o">/</span> <span class="mf">24.0</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="c1"># Verification &amp; Mathematical Assertions</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">auditor</span> <span class="o">=</span> <span class="n">IoTSensorAuditor</span><span class="p">()</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Evaluation 1: Nyquist Frequency for Industrial Vibration</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="c1"># Max vibration frequency = 2,500 Hz -&gt; Min sampling rate = 5,000 Hz</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">fs_min</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">nyquist_minimum_rate</span><span class="p">(</span><span class="n">f_max_hz</span><span class="o">=</span><span class="mf">2500.0</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Minimum Nyquist Sampling Rate: </span><span class="si">{</span><span class="n">fs_min</span><span class="si">}</span><span class="s2"> Hz"</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">assert</span> <span class="n">fs_min</span> <span class="o">==</span> <span class="mf">5000.0</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="c1"># Evaluation 2: ADC Quantization Dynamic Range</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">sqnr_12bit</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">adc_sqnr_db</span><span class="p">(</span><span class="n">resolution_bits</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">sqnr_16bit</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">adc_sqnr_db</span><span class="p">(</span><span class="n">resolution_bits</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"12-bit ADC SQNR: </span><span class="si">{</span><span class="n">sqnr_12bit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> dB | 16-bit ADC SQNR: </span><span class="si">{</span><span class="n">sqnr_16bit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> dB"</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">sqnr_16bit</span><span class="p">,</span> <span class="mf">98.08</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="k">assert</span> <span class="n">sqnr_16bit</span> <span class="o">-</span> <span class="n">sqnr_12bit</span> <span class="o">&gt;</span> <span class="mf">24.0</span>  <span class="c1"># 4 bits * 6.02 dB/bit ~ 24.08 dB</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="c1"># Evaluation 3: Protocol Overhead: 8-byte payload</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="n">eff_http</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">protocol_transmission_efficiency</span><span class="p">(</span><span class="n">payload_bytes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">header_bytes</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="n">eff_mqtt</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">protocol_transmission_efficiency</span><span class="p">(</span><span class="n">payload_bytes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">header_bytes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HTTP Efficiency: </span><span class="si">{</span><span class="n">eff_http</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% | MQTT Efficiency: </span><span class="si">{</span><span class="n">eff_mqtt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">assert</span> <span class="n">eff_mqtt</span> <span class="o">==</span> <span class="mf">0.80</span>  <span class="c1"># 8 / 10 = 80%</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="k">assert</span> <span class="n">eff_http</span> <span class="o">&lt;</span> <span class="mf">0.02</span>   <span class="c1"># 8 / 508 &lt; 2%</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="c1"># Evaluation 4: Battery Lifetime: 2000 mAh battery, active=50mA, sleep=0.01mA, D=0.01 (1% active)</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">days_1pct</span> <span class="o">=</span> <span class="n">auditor</span><span class="o">.</span><span class="n">battery_longevity_days</span><span class="p">(</span><span class="n">capacity_mah</span><span class="o">=</span><span class="mf">2000.0</span><span class="p">,</span> <span class="n">active_ma</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">sleep_ma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="c1"># Average current = (0.01 * 50) + (0.99 * 0.01) = 0.50 + 0.0099 = 0.5099 mA</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="c1"># Hours = 2000 / 0.5099 ~ 3922 hours ~ 163.4 days</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Battery Lifespan (1% Duty Cycle): </span><span class="si">{</span><span class="n">days_1pct</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> days (</span><span class="si">{</span><span class="n">days_1pct</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">365</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> years)"</span><span class="p">)</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">assert</span> <span class="mf">150.0</span> <span class="o">&lt;=</span> <span class="n">days_1pct</span> <span class="o">&lt;=</span> <span class="mf">180.0</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"All IoT sensor hardware and communication assertions passed successfully!"</span><span class="p">)</span>
+</span></code></pre></div>
 <hr />
 <h2 id="empirical-case-study-structural-health-monitoring-of-the-golden-gate-bridge">🔬 Empirical Case Study: Structural Health Monitoring of the Golden Gate Bridge</h2>
 <p>In civil engineering and edge telemetry:</p>

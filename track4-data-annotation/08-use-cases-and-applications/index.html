@@ -2159,6 +2159,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#2-mathematical-formalization-of-domain-annotation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Formalization of Domain Annotation Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Formalization of Domain Annotation Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-volumetric-dice-similarity-coefficient-dsc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Volumetric Dice Similarity Coefficient (DSC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-95th-percentile-hausdorff-distance-hd95" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 95th-Percentile Hausdorff Distance (HD95)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3d-oriented-bounding-box-iou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 3D Oriented Bounding Box IoU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-lidar-point-cloud-spatial-sampling-density" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. LiDAR Point Cloud Spatial Sampling Density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-legal-span-fuzzy-f1-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Legal Span Fuzzy F1 Matching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-python-verification-volumetric-dice-hd95-3d-bounding-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Python Verification: Volumetric Dice, HD95 &amp; 3D Bounding Box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7215,6 +7298,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#2-mathematical-formalization-of-domain-annotation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Formalization of Domain Annotation Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Formalization of Domain Annotation Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-volumetric-dice-similarity-coefficient-dsc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Volumetric Dice Similarity Coefficient (DSC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-95th-percentile-hausdorff-distance-hd95" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 95th-Percentile Hausdorff Distance (HD95)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3d-oriented-bounding-box-iou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 3D Oriented Bounding Box IoU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-lidar-point-cloud-spatial-sampling-density" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. LiDAR Point Cloud Spatial Sampling Density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-legal-span-fuzzy-f1-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Legal Span Fuzzy F1 Matching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-python-verification-volumetric-dice-hd95-3d-bounding-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Python Verification: Volumetric Dice, HD95 &amp; 3D Bounding Box
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#interactive-laboratory-workbench" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7352,112 +7518,96 @@
 
     class Med blue;
     class Auto amber;
-    class Legal green;```
-
----
-
-!!! tip "Industrial Best Practice: Domain-Specific Clinical Annotation Verification"
-    In healthcare datasets (e.g., DICOM tumor segmentation), human annotators must possess board certification in radiology or pathology. Implement a **Two-Reader-Plus-Adjudication** protocol: two independent radiologists annotate blind; discordances ($&gt;10\%$ volume variation) are arbitrated by a third senior attending physician.
-
-!!! warning "Common Pitfall / Anti-Pattern: Synthetic Data Leakage in Safety-Critical Benchmarks"
-    Using synthetic generative models to pre-label safety-critical autonomous vehicle corner cases (e.g., pedestrian jaywalking in heavy snowfall) creates a dangerous feedback loop where models are evaluated on synthetic hallucinations rather than physical sensor realities.
-
-## 2. Mathematical Formalization of Domain Annotation Metrics
-
-### 1. Volumetric Dice Similarity Coefficient (DSC)
-In 3D medical imaging (CT, MRI), manual volumetric segmentations $A, B \in \{0, 1\}^{H \times W \times D}$ are evaluated via the Dice similarity metric:
-
-$$
+    class Legal green;</code></pre>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Domain-Specific Clinical Annotation Verification</p>
+<p>In healthcare datasets (e.g., DICOM tumor segmentation), human annotators must possess board certification in radiology or pathology. Implement a <strong>Two-Reader-Plus-Adjudication</strong> protocol: two independent radiologists annotate blind; discordances (<span class="arithmatex">\(&gt;10\%\)</span> volume variation) are arbitrated by a third senior attending physician.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Synthetic Data Leakage in Safety-Critical Benchmarks</p>
+<p>Using synthetic generative models to pre-label safety-critical autonomous vehicle corner cases (e.g., pedestrian jaywalking in heavy snowfall) creates a dangerous feedback loop where models are evaluated on synthetic hallucinations rather than physical sensor realities.</p>
+</div>
+<h2 id="2-mathematical-formalization-of-domain-annotation-metrics">2. Mathematical Formalization of Domain Annotation Metrics</h2>
+<h3 id="1-volumetric-dice-similarity-coefficient-dsc">1. Volumetric Dice Similarity Coefficient (DSC)</h3>
+<p>In 3D medical imaging (CT, MRI), manual volumetric segmentations <span class="arithmatex">\(A, B \in \{0, 1\}^{H \times W \times D}\)</span> are evaluated via the Dice similarity metric:</p>
+<div class="arithmatex">\[
 \text{Dice}(A, B) = \frac{2 |A \cap B|}{|A| + |B|} = \frac{2 \sum_{x, y, z} A(x, y, z) \cdot B(x, y, z)}{\sum_{x, y, z} A(x, y, z) + \sum_{x, y, z} B(x, y, z)}
-$$
-
-### 2. 95th-Percentile Hausdorff Distance (HD95)
-While Dice measures volumetric overlap, it is insensitive to severe boundary spikes or leakage. The **Hausdorff Distance** evaluates boundary contour alignment, with the 95th percentile filtering random annotator voxel jitter:
-
-$$
+\]</div>
+<h3 id="2-95th-percentile-hausdorff-distance-hd95">2. 95th-Percentile Hausdorff Distance (HD95)</h3>
+<p>While Dice measures volumetric overlap, it is insensitive to severe boundary spikes or leakage. The <strong>Hausdorff Distance</strong> evaluates boundary contour alignment, with the 95th percentile filtering random annotator voxel jitter:</p>
+<div class="arithmatex">\[
 d_{\text{HD95}}(A, B) = \text{percentile}_{95}\left( \max_{a \in \partial A} \min_{b \in \partial B} \|a - b\|_2, \; \max_{b \in \partial B} \min_{a \in \partial A} \|b - a\|_2 \right)
-$$
-
-### 3. 3D Oriented Bounding Box IoU
-In autonomous driving perception, 3D object detection requires bounding boxes parameterized by 7 degrees of freedom $[x, y, z, w, l, h, \theta]$:
-
-$$
+\]</div>
+<h3 id="3-3d-oriented-bounding-box-iou">3. 3D Oriented Bounding Box IoU</h3>
+<p>In autonomous driving perception, 3D object detection requires bounding boxes parameterized by 7 degrees of freedom <span class="arithmatex">\([x, y, z, w, l, h, \theta]\)</span>:</p>
+<div class="arithmatex">\[
 \text{IoU}_{\text{3D}}(B_1, B_2) = \frac{\text{Vol}(B_1 \cap B_2)}{\text{Vol}(B_1) + \text{Vol}(B_2) - \text{Vol}(B_1 \cap B_2)}
-$$
-
-Where the intersection volume $\text{Vol}(B_1 \cap B_2) = \text{Area}_{\text{2D-BirdEye}}(B_1 \cap B_2) \times \max(0, \min(z_1 + h_1/2, z_2 + h_2/2) - \max(z_1 - h_1/2, z_2 - h_2/2))$.
-
-### 4. LiDAR Point Cloud Spatial Sampling Density
-In 3D point cloud labeling, the radial density of LiDAR points on an annotated obstacle at range $r$ diminishes quadratically:
-
-$$
+\]</div>
+<p>Where the intersection volume <span class="arithmatex">\(\text{Vol}(B_1 \cap B_2) = \text{Area}_{\text{2D-BirdEye}}(B_1 \cap B_2) \times \max(0, \min(z_1 + h_1/2, z_2 + h_2/2) - \max(z_1 - h_1/2, z_2 - h_2/2))\)</span>.</p>
+<h3 id="4-lidar-point-cloud-spatial-sampling-density">4. LiDAR Point Cloud Spatial Sampling Density</h3>
+<p>In 3D point cloud labeling, the radial density of LiDAR points on an annotated obstacle at range <span class="arithmatex">\(r\)</span> diminishes quadratically:</p>
+<div class="arithmatex">\[
 \rho_{\text{LiDAR}}(r) = \frac{N_{\text{beams}}}{2\pi r \cdot \tan(\Delta \theta_{\text{vertical}})} \propto \frac{1}{r}
-$$
-
-Annotators must be provided with multi-frame accumulation (ego-motion point stitching) to label distant vehicles beyond 50 meters.
-
-### 5. Legal Span Fuzzy F1 Matching
-In legal contract discovery, lawyers frequently disagree on exact boundary punctuation. Fuzzy token overlap awards partial credit for overlapping clause spans $S_1, S_2$:
-
-$$
+\]</div>
+<p>Annotators must be provided with multi-frame accumulation (ego-motion point stitching) to label distant vehicles beyond 50 meters.</p>
+<h3 id="5-legal-span-fuzzy-f1-matching">5. Legal Span Fuzzy F1 Matching</h3>
+<p>In legal contract discovery, lawyers frequently disagree on exact boundary punctuation. Fuzzy token overlap awards partial credit for overlapping clause spans <span class="arithmatex">\(S_1, S_2\)</span>:</p>
+<div class="arithmatex">\[
 \text{Overlap}_{\text{token}}(S_1, S_2) = \frac{|T(S_1) \cap T(S_2)|}{\min(|T(S_1)|, |T(S_2)|)} \ge \tau_{\text{overlap}} \approx 0.80
-$$
-
----
-
-## 3. Python Verification: Volumetric Dice, HD95 &amp; 3D Bounding Box
-
-The following Python script computes 3D Dice coefficients, calculates 95th-percentile boundary distances, and evaluates 3D bounding box volumetric IoU.
-
-```python
-# domain_specific_metrics.py
-# Computes 3D Dice score, boundary Hausdorff distance, and 3D bounding box IoU
-
-from typing import Tuple, List
-import numpy as np
-from scipy.spatial.distance import cdist
-
-def compute_dice_score_3d(mask_a: np.ndarray, mask_b: np.ndarray) -&gt; float:
-    # Computes 3D Volumetric Dice Similarity Coefficient
-    inter = np.sum(mask_a * mask_b)
-    sum_total = np.sum(mask_a) + np.sum(mask_b)
-    if sum_total == 0:
-        return 1.0
-    return float((2.0 * inter) / sum_total)
-
-def compute_hd95(points_a: np.ndarray, points_b: np.ndarray) -&gt; float:
-    # Computes 95th-percentile bidirectional Hausdorff Distance between surface points
-    d_ab = cdist(points_a, points_b)
-    min_ab = np.min(d_ab, axis=1)
-    min_ba = np.min(d_ab, axis=0)
-    all_distances = np.concatenate([min_ab, min_ba])
-    return float(np.percentile(all_distances, 95))
-
-def test_domain_assertions():
-    # 1. 3D Dice test on 10x10x10 binary volumes
-    v1 = np.zeros((10, 10, 10), dtype=np.uint8)
-    v2 = np.zeros((10, 10, 10), dtype=np.uint8)
-
-    # Overlapping cubes
-    v1[2:6, 2:6, 2:6] = 1 # 4x4x4 = 64 voxels
-    v2[4:8, 2:6, 2:6] = 1 # 4x4x4 = 64 voxels, overlaps along x by [4, 6] -&gt; 2x4x4 = 32 voxels
-
-    dice = compute_dice_score_3d(v1, v2)
-    # Inter: 32. Sum: 64 + 64 = 128. Dice = 2*32/128 = 0.50
-    assert abs(dice - 0.50) &lt; 1e-5
-
-    # 2. HD95 test on surface coordinate points
-    pts1 = np.array([[0.0, 0.0], [1.0, 0.0], [2.0, 0.0]])
-    pts2 = np.array([[0.0, 1.0], [1.0, 1.0], [2.0, 1.0]]) # Parallel line at distance 1.0
-    hd95 = compute_hd95(pts1, pts2)
-    assert abs(hd95 - 1.0) &lt; 1e-5
-
-    print(f"3D Volumetric Dice Score: {dice:.4f}")
-    print(f"95th-Percentile Boundary Distance: {hd95:.2f} mm")
-    print("✓ Domain-specific 3D Dice and HD95 assertions passed successfully!")
-
-if __name__ == "__main__":
-    test_domain_assertions()</code></pre>
+\]</div>
+<hr />
+<h2 id="3-python-verification-volumetric-dice-hd95-3d-bounding-box">3. Python Verification: Volumetric Dice, HD95 &amp; 3D Bounding Box</h2>
+<p>The following Python script computes 3D Dice coefficients, calculates 95th-percentile boundary distances, and evaluates 3D bounding box volumetric IoU.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># domain_specific_metrics.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes 3D Dice score, boundary Hausdorff distance, and 3D bounding box IoU</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_dice_score_3d</span><span class="p">(</span><span class="n">mask_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">mask_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="c1"># Computes 3D Volumetric Dice Similarity Coefficient</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">inter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask_a</span> <span class="o">*</span> <span class="n">mask_b</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">sum_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask_a</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask_b</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">if</span> <span class="n">sum_total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">return</span> <span class="mf">1.0</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">((</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">inter</span><span class="p">)</span> <span class="o">/</span> <span class="n">sum_total</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_hd95</span><span class="p">(</span><span class="n">points_a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">points_b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="c1"># Computes 95th-percentile bidirectional Hausdorff Distance between surface points</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">d_ab</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">points_a</span><span class="p">,</span> <span class="n">points_b</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">min_ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">d_ab</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">min_ba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">d_ab</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">all_distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">min_ab</span><span class="p">,</span> <span class="n">min_ba</span><span class="p">])</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">all_distances</span><span class="p">,</span> <span class="mi">95</span><span class="p">))</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_domain_assertions</span><span class="p">():</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="c1"># 1. 3D Dice test on 10x10x10 binary volumes</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="c1"># Overlapping cubes</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">v1</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># 4x4x4 = 64 voxels</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">v2</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># 4x4x4 = 64 voxels, overlaps along x by [4, 6] -&gt; 2x4x4 = 32 voxels</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">dice</span> <span class="o">=</span> <span class="n">compute_dice_score_3d</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Inter: 32. Sum: 64 + 64 = 128. Dice = 2*32/128 = 0.50</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dice</span> <span class="o">-</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="c1"># 2. HD95 test on surface coordinate points</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">pts1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">pts2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span> <span class="c1"># Parallel line at distance 1.0</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">hd95</span> <span class="o">=</span> <span class="n">compute_hd95</span><span class="p">(</span><span class="n">pts1</span><span class="p">,</span> <span class="n">pts2</span><span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">hd95</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"3D Volumetric Dice Score: </span><span class="si">{</span><span class="n">dice</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"95th-Percentile Boundary Distance: </span><span class="si">{</span><span class="n">hd95</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mm"</span><span class="p">)</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Domain-specific 3D Dice and HD95 assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="n">test_domain_assertions</span><span class="p">()</span>
+</span></code></pre></div>
 <hr />
 <h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
 <div class="noc-sim-card">
