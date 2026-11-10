@@ -7503,7 +7503,7 @@ print("╞══════════╪════════════�
 for order in sample_feed:
     total_usd = sum(item.quantity * item.unit_price_usd for item in order.items)
     total_qty = sum(item.quantity for item in order.items)
-    print(f"│ {order.order_id:<8} ┆ {order.customer_id:<11} ┆ {order.customer_email:<18} ┆ {total_qty:<11} ┆ ${total_usd:>13,.2f} │")
+    print(f"│ {order.order_id:<8} ┆ {order.customer_id:<11} ┆ {order.customer_email:<18} ┆ {total_qty:<11} ┆ \${total_usd:>13,.2f} │")
 print("└──────────┴─────────────┴────────────────────┴─────────────┴─────────────────┘")
 print("✔ Schema Contract verified: All streaming events validated.")`
   },
@@ -7519,7 +7519,7 @@ with open('/workspace/datasets/customers.csv', 'r') as f:
 valid_spends = [float(r['monthly_spend']) for r in rows if r.get('monthly_spend') and r['monthly_spend'] != 'null']
 avg_spend = mean(valid_spends)
 print(f"Total Records: {len(rows)} | Valid spend samples: {len(valid_spends)}")
-print(f"Empirical Mean Spend: ${avg_spend:.2f}")
+print(f"Empirical Mean Spend: \${avg_spend:.2f}")
 
 # Imputation pass
 imputed_count = 0
@@ -7527,7 +7527,7 @@ for r in rows:
     if not r.get('monthly_spend') or r['monthly_spend'] == 'null':
         r['monthly_spend'] = f"{avg_spend:.2f}"
         imputed_count += 1
-        print(f"  • Imputed Customer {r['customer_id']} missing monthly_spend with ${avg_spend:.2f}")
+        print(f"  • Imputed Customer {r['customer_id']} missing monthly_spend with \${avg_spend:.2f}")
 
 # Outlier Detection pass (Tukey IQR fences)
 sorted_spends = sorted(valid_spends)
@@ -7536,12 +7536,12 @@ q3 = sorted_spends[(len(sorted_spends) * 3) // 4]
 iqr = q3 - q1
 lower_fence = q1 - 1.5 * iqr
 upper_fence = q3 + 1.5 * iqr
-print(f"Tukey IQR Fences (1.5*IQR): [${lower_fence:.2f}, ${upper_fence:.2f}]")
+print(f"Tukey IQR Fences (1.5*IQR): [\${lower_fence:.2f}, \${upper_fence:.2f}]")
 
 for r in rows:
     spend = float(r['monthly_spend'])
     if spend > upper_fence or spend < lower_fence:
-        print(f"  ⚠ Outlier Flagged: Customer {r['customer_id']} with spend ${spend:.2f}")
+        print(f"  ⚠ Outlier Flagged: Customer {r['customer_id']} with spend \${spend:.2f}")
 
 print("✔ Data Cleaning Pipeline completed successfully.")`
   },
