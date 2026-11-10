@@ -1,153 +1,144 @@
-/* Modern High-Readability Semiconductor & Data Engineering Design System */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   Warm Paper & Ink Neo-Brutalist Design System
+   Coloring inspired by EDA Floorplanning Topic 02 (https://muranfei.github.io/eda-floorplanning-topic02/)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
   --md-text-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --md-code-font: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* EDA Floorplanning Core Tokens */
+  --ink: #151b20;
+  --ink-light: #242c33;
+  --paper: #f6f0dc;
+  --paper-deep: #eee4c8;
+  --cream: #fffaf0;
+
+  --cyan: #22bfd7;
+  --cyan-soft: #c9f3f4;
+  --lime: #b7df69;
+  --lime-soft: #e7f4c8;
+  --yellow: #ffc83e;
+  --yellow-soft: #fff0b9;
+  --coral: #f38469;
+  --coral-soft: #ffd8ce;
+  --purple: #8275e8;
+  --purple-soft: #e2dfff;
+
+  --line: rgba(21, 27, 32, 0.16);
+  --border-ink: 2px solid var(--ink);
+  --hard-shadow: 4px 4px 0px var(--ink);
+  --hard-shadow-lg: 6px 6px 0px var(--ink);
+  --radius-lg: 24px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
 }
 
 :root,
-[data-md-color-scheme="default"] {
-  /* Modern High-Readability Light Palette */
-  --md-default-bg-color: #ffffff !important;
-  --md-default-bg-color--light: #f8fafc !important;
-  --md-default-bg-color--lighter: #f1f5f9 !important;
-  --md-default-fg-color: #0f172a !important;
-  /* Slate 900 */
-  --md-default-fg-color--light: #0f172a !important;
-  /* Deep Slate 900 body text - 15:1 contrast */
-  --md-default-fg-color--lighter: #334155 !important;
-  /* Slate 700 - AAA 7.8:1 contrast for all secondary text */
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  /* Warm Paper & Ink Palette */
+  --md-default-bg-color: var(--paper) !important;
+  --md-default-bg-color--light: var(--cream) !important;
+  --md-default-bg-color--lighter: var(--paper-deep) !important;
+  --md-default-fg-color: var(--ink) !important;
+  --md-default-fg-color--light: var(--ink) !important;
+  --md-default-fg-color--lighter: rgba(21, 27, 32, 0.72) !important;
 
-  --md-primary-fg-color: #0f172a !important;
-  /* Slate 900 Header */
-  --md-primary-fg-color--light: #1e293b !important;
-  --md-primary-fg-color--dark: #020617 !important;
-  --md-accent-fg-color: #2563eb !important;
-  /* Royal Blue */
-  --md-code-bg-color: #0f172a !important;
+  /* Primary Header & Navigation */
+  --md-primary-fg-color: var(--ink) !important;
+  --md-primary-fg-color--light: var(--cream) !important;
+  --md-primary-fg-color--dark: var(--ink) !important;
+  --md-primary-bg-color: var(--paper) !important;
+  --md-accent-fg-color: var(--cyan) !important;
+
+  /* Code Blocks & Highlighting */
+  --md-code-bg-color: var(--ink) !important;
   --md-code-fg-color: #f8fafc !important;
 
-  /* Code Syntax Highlighting Tokens */
-  --md-code-hl-color: #38bdf8 !important;
-  --md-code-hl-number-color: #fb923c !important;
-  --md-code-hl-special-color: #f87171 !important;
+  --md-code-hl-color: var(--cyan) !important;
+  --md-code-hl-number-color: var(--yellow) !important;
+  --md-code-hl-special-color: var(--coral) !important;
   --md-code-hl-function-color: #60a5fa !important;
   --md-code-hl-constant-color: #c084fc !important;
-  --md-code-hl-keyword-color: #818cf8 !important;
-  --md-code-hl-string-color: #4ade80 !important;
+  --md-code-hl-keyword-color: var(--cyan) !important;
+  --md-code-hl-string-color: var(--lime) !important;
   --md-code-hl-name-color: #f8fafc !important;
   --md-code-hl-operator-color: #94a3b8 !important;
   --md-code-hl-punctuation-color: #cbd5e1 !important;
-  --md-code-hl-comment-color: #94a3b8 !important;
+  --md-code-hl-comment-color: #8b9bb4 !important;
   --md-code-hl-generic-color: #cbd5e1 !important;
   --md-code-hl-variable-color: #e2e8f0 !important;
 
-  --tcl-blue-600: #2563eb;
-  --tcl-blue-700: #1d4ed8;
-  --tcl-surface: #f8fafc;
-  --tcl-surface-card: #ffffff;
-  --tcl-border: #e2e8f0;
-  --tcl-border-hover: #cbd5e1;
-  --tcl-heading: #0f172a;
+  --tcl-blue-600: var(--cyan);
+  --tcl-blue-700: #0ea5e9;
+  --tcl-surface: var(--cream);
+  --tcl-surface-card: var(--cream);
+  --tcl-border: var(--ink);
+  --tcl-border-hover: var(--ink);
+  --tcl-heading: var(--ink);
 
-  /* NoC Design Tokens - Light Mode */
-  --noc-primary: #0f766e;
-  --noc-primary-light: #0d9488;
-  --noc-primary-dark: #115e59;
-  --noc-accent: #2563eb;
-  --noc-surface: #ffffff;
-  --noc-surface-subtle: #f8fafc;
-  --noc-border: #cbd5e1;
-  --noc-border-subtle: #e2e8f0;
-  --noc-text-main: #0f172a;
-  --noc-text-muted: #334155;
+  /* NoC & Card Tokens */
+  --noc-primary: var(--ink);
+  --noc-primary-light: var(--cyan);
+  --noc-primary-dark: #090c0e;
+  --noc-accent: var(--yellow);
+  --noc-surface: var(--cream);
+  --noc-surface-subtle: var(--paper-deep);
+  --noc-border: var(--ink);
+  --noc-border-subtle: rgba(21, 27, 32, 0.2);
+  --noc-text-main: var(--ink);
+  --noc-text-muted: rgba(21, 27, 32, 0.72);
   --noc-radius-sm: 8px;
-  --noc-radius-md: 12px;
-  --noc-radius-lg: 16px;
-  --noc-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
-  --noc-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --noc-shadow-hover: 0 12px 24px -4px rgba(37, 99, 235, 0.15);
+  --noc-radius-md: 14px;
+  --noc-radius-lg: 20px;
+  --noc-shadow-sm: 3px 3px 0px var(--ink);
+  --noc-shadow-md: 5px 5px 0px var(--ink);
+  --noc-shadow-hover: 7px 7px 0px var(--cyan);
 
-  /* Mermaid Diagram Tokens - Crisp High-Contrast Light Mode */
-  --md-mermaid-node-bg-color: #ffffff !important;
-  --md-mermaid-node-fg-color: #2563eb !important;
-  --md-mermaid-label-fg-color: #0f172a !important;
-  --md-mermaid-label-bg-color: #ffffff !important;
-  --md-mermaid-edge-color: #334155 !important;
+  /* Mermaid Diagram Tokens */
+  --md-mermaid-node-bg-color: var(--cream) !important;
+  --md-mermaid-node-fg-color: var(--ink) !important;
+  --md-mermaid-label-fg-color: var(--ink) !important;
+  --md-mermaid-label-bg-color: var(--cream) !important;
+  --md-mermaid-edge-color: var(--ink) !important;
 }
 
-[data-md-color-scheme="slate"] {
-  /* OLED Midnight High-Readability Dark Palette */
-  --md-default-bg-color: #0b0f19 !important;
-  /* Deep space slate */
-  --md-default-bg-color--light: #111827 !important;
-  --md-default-bg-color--lighter: #1e293b !important;
-  --md-default-fg-color: #ffffff !important;
-  /* Pure white */
-  --md-default-fg-color--light: #f8fafc !important;
-  /* Slate 50 body text - 16:1 contrast */
-  --md-default-fg-color--lighter: #cbd5e1 !important;
-  /* Slate 300 secondary text - 10:1 contrast */
-
-  --md-primary-fg-color: #090d16 !important;
-  --md-primary-fg-color--light: #111827 !important;
-  --md-primary-fg-color--dark: #030712 !important;
-  --md-accent-fg-color: #38bdf8 !important;
-  /* Electric Cyan */
-  --md-code-bg-color: #070a12 !important;
-  --md-code-fg-color: #f1f5f9 !important;
-
-  /* Code Syntax Highlighting Tokens */
-  --md-code-hl-color: #38bdf8 !important;
-  --md-code-hl-number-color: #fb923c !important;
-  --md-code-hl-special-color: #f87171 !important;
-  --md-code-hl-function-color: #60a5fa !important;
-  --md-code-hl-constant-color: #c084fc !important;
-  --md-code-hl-keyword-color: #818cf8 !important;
-  --md-code-hl-string-color: #4ade80 !important;
-  --md-code-hl-name-color: #f1f5f9 !important;
-  --md-code-hl-operator-color: #94a3b8 !important;
-  --md-code-hl-punctuation-color: #cbd5e1 !important;
-  --md-code-hl-comment-color: #94a3b8 !important;
-  --md-code-hl-generic-color: #cbd5e1 !important;
-  --md-code-hl-variable-color: #e2e8f0 !important;
-
-  --tcl-blue-600: #38bdf8;
-  --tcl-blue-700: #60a5fa;
-  --tcl-surface: #111827;
-  --tcl-surface-card: #1e293b;
-  --tcl-border: #334155;
-  --tcl-border-hover: #475569;
-  --tcl-heading: #ffffff;
-
-  /* NoC Design Tokens - Dark Mode */
-  --noc-primary: #2dd4bf;
-  --noc-primary-light: #5eead4;
-  --noc-primary-dark: #14b8a6;
-  --noc-accent: #38bdf8;
-  --noc-surface: #1e293b;
-  --noc-surface-subtle: #111827;
-  --noc-border: #334155;
-  --noc-border-subtle: #475569;
-  --noc-text-main: #f8fafc;
-  --noc-text-muted: #cbd5e1;
-  --noc-radius-sm: 8px;
-  --noc-radius-md: 12px;
-  --noc-radius-lg: 16px;
-  --noc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --noc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --noc-shadow-hover: 0 12px 28px -4px rgba(56, 189, 248, 0.25);
-
-  /* Mermaid Diagram Tokens - Crisp High-Contrast Dark Mode */
-  --md-mermaid-node-bg-color: #1e293b !important;
-  --md-mermaid-node-fg-color: #38bdf8 !important;
-  --md-mermaid-label-fg-color: #ffffff !important;
-  --md-mermaid-label-bg-color: #0b0f19 !important;
-  --md-mermaid-edge-color: #cbd5e1 !important;
+/* Zero-Lag Bilingual Language Switching */
+html[data-lang="en"] .zh,
+html[data-lang="zh"] .en {
+  display: none !important;
 }
 
-/* Global Typography - Pure Sans-Serif Stack (No fuzzy serifs!) */
+/* Blueprint Graph Paper Background */
+body {
+  margin: 0;
+  color: var(--ink) !important;
+  background:
+    radial-gradient(circle at 10% 4%, rgba(34, 191, 215, 0.16), transparent 22rem),
+    radial-gradient(circle at 90% 12%, rgba(255, 200, 62, 0.15), transparent 26rem),
+    var(--paper) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  opacity: 0.38;
+  background-image:
+    linear-gradient(rgba(21, 27, 32, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 27, 32, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+  pointer-events: none;
+}
+
+
 body,
 .md-typeset {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
@@ -601,28 +592,72 @@ body,
   text-decoration-color: #7dd3fc;
 }
 
-/* Header & Tabs */
+/* Header & Navigation Tabs - Frosted Warm Paper with Solid Ink Border */
 .md-header {
-  background-color: #0f172a !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.12) !important;
+  background-color: rgba(246, 240, 220, 0.92) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--ink) !important;
+  box-shadow: 0 4px 20px -2px rgba(21, 27, 32, 0.08) !important;
+  color: var(--ink) !important;
+}
+
+.md-header__title,
+.md-header__button,
+.md-header__topic {
+  color: var(--ink) !important;
+  font-weight: 700;
+}
+
+.md-header .md-icon,
+.md-header__button.md-logo {
+  color: var(--ink) !important;
+}
+
+.md-search__inner {
+  background-color: var(--cream) !important;
+  border: 1.5px solid var(--ink) !important;
+  border-radius: 999px !important;
+  box-shadow: 2px 2px 0px var(--ink) !important;
+}
+
+.md-search__input {
+  color: var(--ink) !important;
+}
+
+.md-search__input::placeholder {
+  color: rgba(21, 27, 32, 0.5) !important;
 }
 
 .md-tabs {
-  background-color: #1e293b !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background-color: var(--cream) !important;
+  border-bottom: 2px solid var(--ink) !important;
 }
 
 .md-tabs__link {
-  font-weight: 500;
-  font-size: 14px;
-  opacity: 0.85;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: rgba(21, 27, 32, 0.75) !important;
+  opacity: 0.9;
+  transition: all 0.15s ease;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.md-tabs__link:hover {
+  color: var(--ink) !important;
+  background-color: rgba(21, 27, 32, 0.06);
 }
 
 .md-tabs__link--active {
   opacity: 1 !important;
-  font-weight: 600 !important;
-  color: #38bdf8 !important;
+  font-weight: 800 !important;
+  color: var(--ink) !important;
+  background-color: var(--yellow) !important;
+  border: 1.5px solid var(--ink) !important;
+  border-radius: 999px !important;
+  padding: 4px 14px !important;
+  box-shadow: 2px 2px 0px var(--ink) !important;
 }
 
 /* Hero Section */
@@ -2149,99 +2184,166 @@ canvas,
 }
 
 /* ==========================================================================
-   Admonitions & Callouts (Notes, Tips, Warnings)
+   Admonitions & Callouts (Notes, Tips, Warnings) - Neo-Brutalist Engineering
    ========================================================================== */
 .md-typeset .admonition,
 .md-typeset details {
-  border-width: 1.5px !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05) !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: 14px !important;
+  box-shadow: 5px 5px 0px var(--ink) !important;
+  background-color: var(--cream) !important;
+  margin: 1.6rem 0 !important;
+  overflow: hidden !important;
 }
 
 .md-typeset .admonition-title,
 .md-typeset summary {
-  font-weight: 700 !important;
+  font-weight: 800 !important;
+  color: var(--ink) !important;
+  border-bottom: 2px solid var(--ink) !important;
+  padding: 10px 16px !important;
+  letter-spacing: -0.01em;
 }
 
-.md-typeset .admonition.tip {
-  border-color: #059669 !important;
+.md-typeset .admonition.tip,
+.md-typeset .admonition.success {
+  border-color: var(--ink) !important;
+  background-color: var(--lime-soft) !important;
+  box-shadow: 5px 5px 0px var(--lime) !important;
 }
 
-.md-typeset .admonition.tip .admonition-title {
-  background-color: rgba(5, 150, 105, 0.1) !important;
-  color: #065f46 !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .admonition.tip .admonition-title {
-  background-color: rgba(5, 150, 105, 0.2) !important;
-  color: #6ee7b7 !important;
+.md-typeset .admonition.tip .admonition-title,
+.md-typeset .admonition.success .admonition-title {
+  background-color: var(--lime) !important;
+  color: var(--ink) !important;
 }
 
 .md-typeset .admonition.note,
 .md-typeset .admonition.info {
-  border-color: #2563eb !important;
+  border-color: var(--ink) !important;
+  background-color: var(--cyan-soft) !important;
+  box-shadow: 5px 5px 0px var(--cyan) !important;
 }
 
 .md-typeset .admonition.note .admonition-title,
 .md-typeset .admonition.info .admonition-title {
-  background-color: rgba(37, 99, 235, 0.08) !important;
-  color: #1e40af !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .admonition.note .admonition-title,
-[data-md-color-scheme="slate"] .md-typeset .admonition.info .admonition-title {
-  background-color: rgba(37, 99, 235, 0.2) !important;
-  color: #93c5fd !important;
+  background-color: var(--cyan) !important;
+  color: var(--ink) !important;
 }
 
 .md-typeset .admonition.warning {
-  border-color: #d97706 !important;
+  border-color: var(--ink) !important;
+  background-color: var(--yellow-soft) !important;
+  box-shadow: 5px 5px 0px var(--yellow) !important;
 }
 
 .md-typeset .admonition.warning .admonition-title {
-  background-color: rgba(217, 119, 6, 0.1) !important;
-  color: #92400e !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .admonition.warning .admonition-title {
-  background-color: rgba(217, 119, 6, 0.2) !important;
-  color: #fcd34d !important;
+  background-color: var(--yellow) !important;
+  color: var(--ink) !important;
 }
 
 .md-typeset .admonition.danger,
 .md-typeset .admonition.caution {
-  border-color: #dc2626 !important;
+  border-color: var(--ink) !important;
+  background-color: var(--coral-soft) !important;
+  box-shadow: 5px 5px 0px var(--coral) !important;
 }
 
 .md-typeset .admonition.danger .admonition-title,
 .md-typeset .admonition.caution .admonition-title {
-  background-color: rgba(220, 38, 38, 0.1) !important;
-  color: #991b1b !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .admonition.danger .admonition-title,
-[data-md-color-scheme="slate"] .md-typeset .admonition.caution .admonition-title {
-  background-color: rgba(220, 38, 38, 0.2) !important;
-  color: #fca5a5 !important;
+  background-color: var(--coral) !important;
+  color: var(--ink) !important;
 }
 
 /* ==========================================================================
-   Data Tables & Comparative Matrices Zebra Striping
+   Data Tables & Comparative Matrices - Warm Blueprint Grid
    ========================================================================== */
+.md-typeset table:not([class]) {
+  border: 2px solid var(--ink) !important;
+  border-radius: 12px !important;
+  box-shadow: 5px 5px 0px var(--cyan) !important;
+  background-color: var(--cream) !important;
+  overflow: hidden !important;
+  display: table !important;
+  margin: 1.8rem 0 !important;
+  width: 100% !important;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--yellow) !important;
+  color: var(--ink) !important;
+  font-weight: 800 !important;
+  border-bottom: 2px solid var(--ink) !important;
+  padding: 10px 16px !important;
+  font-size: 13.5px !important;
+  letter-spacing: 0.02em;
+}
+
+.md-typeset table:not([class]) td {
+  border-bottom: 1px solid var(--line) !important;
+  padding: 11px 16px !important;
+  color: var(--ink) !important;
+}
+
 .md-typeset table:not([class]) tbody tr:nth-child(even) {
-  background-color: var(--md-default-bg-color--light) !important;
+  background-color: var(--paper-deep) !important;
 }
 
 .md-typeset table:not([class]) tbody tr:hover {
-  background-color: var(--md-default-bg-color--lighter) !important;
+  background-color: var(--yellow-soft) !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset table:not([class]) tbody tr:nth-child(even) {
-  background-color: rgba(30, 41, 59, 0.45) !important;
+/* ==========================================================================
+   Neo-Brutalist Code Blocks & Inline Code
+   ========================================================================== */
+.md-typeset .highlight {
+  border: 2px solid var(--ink) !important;
+  border-radius: 12px !important;
+  box-shadow: 5px 5px 0px var(--coral) !important;
+  overflow: hidden;
+  margin: 1.6rem 0 !important;
+  background-color: var(--ink) !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset table:not([class]) tbody tr:hover {
-  background-color: rgba(56, 189, 248, 0.1) !important;
+.md-typeset code {
+  background-color: var(--yellow-soft) !important;
+  color: var(--ink) !important;
+  border: 1px solid rgba(21, 27, 32, 0.22) !important;
+  border-radius: 6px !important;
+  padding: 2px 6px !important;
+  font-weight: 600 !important;
+}
+
+.md-typeset pre > code {
+  background-color: transparent !important;
+  border: none !important;
+  color: #f8fafc !important;
+}
+
+/* ==========================================================================
+   Sidebar Navigation - Tactile Highlighting
+   ========================================================================== */
+.md-nav__link {
+  color: rgba(21, 27, 32, 0.75) !important;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.md-nav__link:hover {
+  color: var(--ink) !important;
+}
+
+.md-nav__link--active {
+  color: var(--ink) !important;
+  font-weight: 800 !important;
+  background-color: var(--yellow-soft) !important;
+  border-radius: 6px;
+  padding-left: 8px !important;
+}
+
+.md-nav__title {
+  color: var(--ink) !important;
+  font-weight: 800 !important;
 }
 
 /* ==========================================================================
@@ -3317,4 +3419,518 @@ canvas,
 
 [data-md-color-scheme="slate"] .noc-tool-card:hover {
   box-shadow: 0 12px 28px rgba(56, 189, 248, 0.12);
+}
+
+
+/* ==========================================================================
+   Dataset Fundamentals - In-Browser Python Runner & CodeLab Styles
+   ========================================================================== */
+
+.noc-code-wrapper {
+  position: relative;
+  margin: 1.2rem 0;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--md-code-bg-color, #0f172a);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.noc-code-wrapper:hover {
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.noc-code-wrapper.has-open-drawer {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+}
+
+/* Toolbar attached to code block */
+.noc-code-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 48px; /* Leave room for MkDocs copy button */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+}
+
+.noc-code-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(30, 41, 59, 0.85);
+  color: #e2e8f0;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+  line-height: 1.3;
+}
+
+.noc-code-btn:hover {
+  background: rgba(51, 65, 85, 0.95);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.noc-code-btn.primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+.noc-code-btn.primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+.noc-code-btn.secondary {
+  background: rgba(15, 23, 42, 0.7);
+  color: #cbd5e1;
+}
+
+.noc-code-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+}
+
+/* Inline In-Place Code Editor */
+.noc-inline-editor-wrap {
+  padding: 12px;
+  background: #0b1120;
+}
+
+.noc-inline-editor {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--md-code-font-family, "JetBrains Mono", Consolas, "Fira Code", monospace);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  background: #060b17;
+  color: #e2e8f0;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 6px;
+  padding: 12px;
+  resize: vertical;
+  tab-size: 4;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.noc-inline-editor:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+/* Inline Execution Drawer */
+.noc-code-drawer {
+  display: none;
+  background: #090e1a;
+  border-top: 1px solid rgba(59, 130, 246, 0.3);
+  color: #cbd5e1;
+  font-family: var(--md-code-font-family, monospace);
+  font-size: 0.8rem;
+  animation: nocDrawerSlide 0.25s ease-out;
+}
+
+.noc-code-drawer.open {
+  display: block;
+}
+
+@keyframes nocDrawerSlide {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.noc-code-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+}
+
+.noc-drawer-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.noc-drawer-kernel {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.noc-drawer-status {
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  font-size: 0.72rem;
+}
+
+.noc-code-drawer-body {
+  padding: 12px 16px;
+  max-height: 420px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+.noc-console-stdout {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #e2e8f0;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.noc-console-stderr {
+  margin: 6px 0 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #fbbf24;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.noc-console-error {
+  margin: 6px 0 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+  padding: 8px 10px !important;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.noc-exec-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #38bdf8;
+  font-size: 0.82rem;
+  padding: 8px 0;
+}
+
+.noc-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(56, 189, 248, 0.25);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: nocSpin 0.7s linear infinite;
+}
+
+@keyframes nocSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Matplotlib inline images */
+.noc-figure-gallery {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.noc-figure-card {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.noc-figure-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.noc-generated-plot {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.noc-code-drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  background: rgba(15, 23, 42, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   Dataset CodeLab Challenge Component Styles (like Module 09)
+   ========================================================================== */
+
+.dataset-codelab {
+  margin: 2rem 0;
+}
+
+.codelab-card {
+  border-radius: 10px;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: #0f172a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.codelab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.35), rgba(15, 23, 42, 0.8));
+  border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.codelab-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.codelab-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  border-radius: 4px;
+}
+
+.codelab-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #f1f5f9;
+}
+
+.codelab-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.codelab-btn {
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.codelab-btn.primary {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+.codelab-btn.primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.codelab-btn.secondary {
+  background: rgba(30, 41, 59, 0.8);
+  color: #cbd5e1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.codelab-btn.secondary:hover {
+  background: rgba(51, 65, 85, 0.9);
+  color: #ffffff;
+}
+
+.codelab-intro {
+  padding: 12px 18px;
+  background: rgba(15, 23, 42, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.codelab-editor-wrap {
+  padding: 14px 18px;
+  background: #090e1a;
+}
+
+.codelab-editor {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--md-code-font-family, monospace);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  background: #050811;
+  color: #f8fafc;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 6px;
+  padding: 14px;
+  resize: vertical;
+  tab-size: 4;
+  outline: none;
+  min-height: 240px;
+}
+
+.codelab-editor:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+.codelab-results-drawer {
+  background: #070b14;
+  border-top: 1px solid rgba(59, 130, 246, 0.35);
+  animation: nocDrawerSlide 0.2s ease-out;
+}
+
+.codelab-results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+.codelab-results-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.codelab-results-close:hover {
+  color: #ffffff;
+}
+
+.codelab-results-body {
+  padding: 14px 18px;
+}
+
+.codelab-summary-pass {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 12px;
+}
+
+.codelab-summary-progress {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+
+.codelab-test-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.codelab-test-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.82rem;
+}
+
+.codelab-test-item.pass {
+  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(6, 78, 59, 0.15);
+}
+
+.codelab-test-item.fail {
+  border-color: rgba(239, 68, 68, 0.25);
+  background: rgba(127, 29, 29, 0.15);
+}
+
+.codelab-test-item.incomplete {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: rgba(120, 53, 15, 0.15);
+}
+
+.codelab-test-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.codelab-test-badge.pass {
+  background: #059669;
+  color: #ffffff;
+}
+
+.codelab-test-badge.fail {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.codelab-test-badge.incomplete {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.codelab-test-name {
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.codelab-test-note {
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 3px;
+  font-family: var(--md-code-font-family, monospace);
 }
