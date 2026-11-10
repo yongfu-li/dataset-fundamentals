@@ -76,9 +76,9 @@
       try {
         const dirs = ['/workspace', '/workspace/data', '/workspace/scripts'];
         dirs.forEach(d => {
-          try { py.FS.mkdirTree(d); } catch (e) {}
+          try { py.FS.mkdirTree(d); } catch (e) { }
         });
-      } catch (e) {}
+      } catch (e) { }
 
       pyodideInstance = py;
       return py;
@@ -175,7 +175,7 @@ _stderr_val = _stderr_buf.getvalue()
     if (lower.includes('krippendorff') || lower.includes('cohen')) return 'iaa_agreement.py';
     if (lower.includes('laplace') || lower.includes('k_anonymity')) return 'privacy_engine.py';
     if (lower.includes('dvc') || lower.includes('pipeline')) return 'dvc_pipeline.py';
-    
+
     const slug = (pageTitle || 'dataset_script').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
     return `${slug.slice(0, 24) || 'script'}.py`;
   }
@@ -462,7 +462,7 @@ _stderr_val = _stderr_buf.getvalue()
         if (res.figures && res.figures.length > 0) {
           html += '<div class="noc-figure-gallery">';
           res.figures.forEach((b64, idx) => {
-            html += `<div class="noc-figure-card"><div class="noc-figure-title">📊 Generated Plot #${idx+1}</div><img src="data:image/png;base64,${b64}" alt="Matplotlib Plot" class="noc-generated-plot" /></div>`;
+            html += `<div class="noc-figure-card"><div class="noc-figure-title">📊 Generated Plot #${idx + 1}</div><img src="data:image/png;base64,${b64}" alt="Matplotlib Plot" class="noc-generated-plot" /></div>`;
           });
           html += '</div>';
         }
@@ -609,17 +609,17 @@ _stderr_val = _stderr_buf.getvalue()
       resultsDrawer.style.display = 'block';
       resultsStatus.textContent = 'Executing...';
       resultsBody.innerHTML = '<div class="noc-exec-loading"><div class="noc-spinner"></div> Running in Pyodide WebAssembly...</div>';
-      
+
       try {
         const res = await runPythonInWasm(editor.value, (msg) => {
           resultsStatus.textContent = msg;
         });
-        
+
         let out = '';
         if (res.stdout) out += `<pre class="noc-console-stdout">${escapeHtml(res.stdout)}</pre>`;
         if (res.stderr) out += `<pre class="noc-console-stderr">${escapeHtml(res.stderr)}</pre>`;
         if (res.error) out += `<pre class="noc-console-error">❌ Runtime Error:\n${escapeHtml(res.error)}</pre>`;
-        
+
         if (!out) out = '<div style="color:#64748b; font-size:0.85rem;">Code executed cleanly with no output. Click "Run Checks" to verify against test suite!</div>';
         resultsBody.innerHTML = out;
         resultsStatus.textContent = res.error ? 'Error' : 'Execution Finished';

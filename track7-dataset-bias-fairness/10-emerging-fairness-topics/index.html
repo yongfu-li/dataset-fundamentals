@@ -62,6 +62,7 @@
   <script>
     (function () {
       // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM
+      // Following the EDA Floorplanning Warm Paper & Neo-Brutalist Design System
       const shadowCss = `
         /* Default typography and colors for unstyled nodes & diagram labels */
         .nodeLabel,
@@ -74,10 +75,10 @@
         .messageText,
         .noteText,
         .loopText {
-          color: var(--md-mermaid-label-fg-color, #0f172a);
-          fill: var(--md-mermaid-label-fg-color, #0f172a);
+          color: var(--ink, #151b20) !important;
+          fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 600 !important;
+          font-weight: 700 !important;
           font-size: 13.5px !important;
           line-height: 1.35 !important;
         }
@@ -85,13 +86,13 @@
         /* Default SVG text / tspan */
         text:not([fill]):not([style*="fill"]),
         tspan:not([fill]):not([style*="fill"]) {
-          fill: var(--md-mermaid-label-fg-color, #0f172a);
+          fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 600 !important;
+          font-weight: 700 !important;
           font-size: 13.5px !important;
         }
 
-        /* Child text elements inside node labels MUST inherit color from parent */
+        /* All child text elements inside node labels MUST be crisp ink text */
         .nodeLabel p,
         .nodeLabel span,
         .nodeLabel div,
@@ -102,50 +103,9 @@
         .label span,
         foreignObject p,
         foreignObject span {
-          color: inherit !important;
+          color: var(--ink, #151b20) !important;
           font-family: inherit !important;
-        }
-
-        /* Explicit high-contrast white text for custom colored node classes */
-        .node.blue .nodeLabel, .node.blue p, .node.blue span, .node.blue text, .node.blue tspan,
-        .node.green .nodeLabel, .node.green p, .node.green span, .node.green text, .node.green tspan,
-        .node.amber .nodeLabel, .node.amber p, .node.amber span, .node.amber text, .node.amber tspan,
-        .node.purple .nodeLabel, .node.purple p, .node.purple span, .node.purple text, .node.purple tspan,
-        .node.red .nodeLabel, .node.red p, .node.red span, .node.red text, .node.red tspan,
-        .node.cyan .nodeLabel, .node.cyan p, .node.cyan span, .node.cyan text, .node.cyan tspan,
-        .node.obj .nodeLabel, .node.obj p, .node.obj span, .node.obj text, .node.obj tspan,
-        .node.val .nodeLabel, .node.val p, .node.val span, .node.val text, .node.val tspan,
-        .node.list .nodeLabel, .node.list p, .node.list span, .node.list text, .node.list tspan,
-        .node.store .nodeLabel, .node.store p, .node.store span, .node.store text, .node.store tspan,
-        .node.comp .nodeLabel, .node.comp p, .node.comp span, .node.comp text, .node.comp tspan,
-        .node.out .nodeLabel, .node.out p, .node.out span, .node.out text, .node.out tspan {
-          color: #ffffff !important;
-          fill: #ffffff !important;
-        }
-
-        /* Shapes for known classes */
-        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link) { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link) { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link) { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link) { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link) { fill: #7f1d1d !important; stroke: #ef4444 !important; }
-        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link) { fill: #0f766e !important; stroke: #14b8a6 !important; }
-        .node.obj rect, .node.obj polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.val rect, .node.val polygon { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.list rect, .node.list polygon { fill: #78350f !important; stroke: #f59e0b !important; }
-        .node.store rect, .node.store polygon { fill: #1e3a8a !important; stroke: #3b82f6 !important; }
-        .node.comp rect, .node.comp polygon { fill: #064e3b !important; stroke: #10b981 !important; }
-        .node.out rect, .node.out polygon { fill: #4c1d95 !important; stroke: #8b5cf6 !important; }
-
-        /* Node shapes (only unstyled nodes) */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
-          fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
-          stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
-          stroke-width: 1.75px !important;
+          font-weight: 700 !important;
         }
 
         .nodeLabel, .label, foreignObject div {
@@ -153,32 +113,116 @@
           word-wrap: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
-          padding: 2px 4px !important;
+          padding: 3px 6px !important;
         }
 
-        /* Connecting paths, lines & arrows */
+        /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
+        /* Cyan / Blue / Obj / Store */
+        .node.blue rect, .node.blue polygon, .node.blue circle, .node.blue ellipse, .node.blue path:not(.flowchart-link),
+        .node.cyan rect, .node.cyan polygon, .node.cyan circle, .node.cyan ellipse, .node.cyan path:not(.flowchart-link),
+        .node.obj rect, .node.obj polygon,
+        .node.store rect, .node.store polygon {
+          fill: var(--cyan-soft, #c9f3f4) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(3px 3px 0px var(--cyan, #22bfd7)) !important;
+        }
+
+        /* Green / Lime / Val / Comp */
+        .node.green rect, .node.green polygon, .node.green circle, .node.green ellipse, .node.green path:not(.flowchart-link),
+        .node.lime rect, .node.lime polygon, .node.lime circle, .node.lime ellipse, .node.lime path:not(.flowchart-link),
+        .node.val rect, .node.val polygon,
+        .node.comp rect, .node.comp polygon {
+          fill: var(--lime-soft, #e7f4c8) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(3px 3px 0px var(--lime, #b7df69)) !important;
+        }
+
+        /* Amber / Yellow / List */
+        .node.amber rect, .node.amber polygon, .node.amber circle, .node.amber ellipse, .node.amber path:not(.flowchart-link),
+        .node.yellow rect, .node.yellow polygon, .node.yellow circle, .node.yellow ellipse, .node.yellow path:not(.flowchart-link),
+        .node.list rect, .node.list polygon {
+          fill: var(--yellow-soft, #fff0b9) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(3px 3px 0px var(--yellow, #ffc83e)) !important;
+        }
+
+        /* Purple / Out */
+        .node.purple rect, .node.purple polygon, .node.purple circle, .node.purple ellipse, .node.purple path:not(.flowchart-link),
+        .node.out rect, .node.out polygon {
+          fill: var(--purple-soft, #e2dfff) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(3px 3px 0px var(--purple, #8275e8)) !important;
+        }
+
+        /* Red / Coral */
+        .node.red rect, .node.red polygon, .node.red circle, .node.red ellipse, .node.red path:not(.flowchart-link),
+        .node.coral rect, .node.coral polygon, .node.coral circle, .node.coral ellipse, .node.coral path:not(.flowchart-link) {
+          fill: var(--coral-soft, #ffd8ce) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(3px 3px 0px var(--coral, #f38469)) !important;
+        }
+
+        /* Unstyled Default Nodes - Warm Cream Surface with Solid Ink Border & Hard Shadow */
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+          fill: var(--cream, #fffaf0) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(3px 3px 0px var(--ink, #151b20)) !important;
+        }
+
+        /* Connecting Paths, Lines & Arrows */
         .edgePath .path, .flowchart-link, .relation, .transition {
-          stroke: var(--md-mermaid-edge-color, #334155) !important;
-          stroke-width: 1.75px !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
         }
         marker path, .marker, .arrowheadPath,
         .arrowMarkerPath {
-          fill: var(--md-mermaid-edge-color, #334155) !important;
-          stroke: var(--md-mermaid-edge-color, #334155) !important;
+          fill: var(--ink, #151b20) !important;
+          stroke: var(--ink, #151b20) !important;
         }
 
-        /* Clusters / Subgraphs */
+        /* Clusters / Subgraphs - Technical Blueprint Dashed Containers */
         .cluster rect {
-          fill: var(--md-default-bg-color--lighter, rgba(127, 127, 127, 0.08)) !important;
-          stroke: var(--md-default-fg-color--lighter, #94a3b8) !important;
-          stroke-width: 1.5px !important;
+          fill: rgba(238, 228, 200, 0.45) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 6 4 !important;
+          rx: 10px !important;
+          ry: 10px !important;
         }
 
-        /* Edge labels */
-        .edgeLabel, .edgeLabel rect, .edgeLabel p {
-          background-color: var(--md-default-bg-color, #ffffff) !important;
-          fill: var(--md-default-bg-color, #ffffff) !important;
-          color: var(--md-mermaid-label-fg-color, #0f172a) !important;
+        .cluster text, .cluster span {
+          fill: var(--ink, #151b20) !important;
+          color: var(--ink, #151b20) !important;
+          font-family: 'Inter', sans-serif !important;
+          font-weight: 800 !important;
+          font-size: 13px !important;
+          letter-spacing: 0.04em !important;
+        }
+
+        /* Edge Labels - Tactile Pill Badges */
+        .edgeLabel, .edgeLabel rect {
+          background-color: var(--cream, #fffaf0) !important;
+          fill: var(--cream, #fffaf0) !important;
+          stroke: var(--ink, #151b20) !important;
+          stroke-width: 1.5px !important;
+          rx: 6px !important;
+          ry: 6px !important;
+        }
+
+        .edgeLabel p, .edgeLabel span {
+          color: var(--ink, #151b20) !important;
+          font-weight: 700 !important;
+          font-size: 11.5px !important;
         }
       `;
 

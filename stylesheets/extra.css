@@ -172,7 +172,7 @@ body,
 }
 
 /* ==========================================================================
-   Mermaid Diagrams & Flowcharts - Unified Multi-Theme High-Contrast System
+   Mermaid Diagrams & Flowcharts - EDA Floorplanning Neo-Brutalist Theme
    ========================================================================== */
 
 .md-typeset .mermaid,
@@ -181,8 +181,8 @@ body,
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  padding: 0.75rem 0 !important;
-  margin: 1.5rem auto !important;
+  padding: 1.25rem 0 !important;
+  margin: 1.75rem auto !important;
   text-align: center;
   display: block;
 }
@@ -194,8 +194,8 @@ body,
 }
 
 /* Default typography and colors for unstyled nodes & diagram labels */
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) .nodeLabel,
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) .label,
+.md-typeset .mermaid .nodeLabel,
+.md-typeset .mermaid .label,
 .md-typeset .mermaid .cluster text,
 .md-typeset .mermaid .cluster span,
 .md-typeset .mermaid .edgeLabel,
@@ -207,24 +207,24 @@ body,
 .md-typeset .mermaid .messageText,
 .md-typeset .mermaid .noteText,
 .md-typeset .mermaid .loopText {
-  color: var(--md-mermaid-label-fg-color, #0f172a);
-  fill: var(--md-mermaid-label-fg-color, #0f172a);
+  color: var(--ink, #151b20) !important;
+  fill: var(--ink, #151b20) !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   font-size: 13.5px !important;
   line-height: 1.35 !important;
 }
 
 .md-typeset .mermaid text:not([fill]):not([style*="fill"]),
 .md-typeset .mermaid tspan:not([fill]):not([style*="fill"]) {
-  color: var(--md-mermaid-label-fg-color, #0f172a);
-  fill: var(--md-mermaid-label-fg-color, #0f172a);
+  color: var(--ink, #151b20) !important;
+  fill: var(--ink, #151b20) !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   font-size: 13.5px !important;
 }
 
-/* Child text elements inside node labels MUST inherit color from their parent */
+/* Child text elements inside node labels MUST be crisp ink text */
 .md-typeset .mermaid .nodeLabel p,
 .md-typeset .mermaid .nodeLabel span,
 .md-typeset .mermaid .nodeLabel div,
@@ -235,8 +235,9 @@ body,
 .md-typeset .mermaid .label span,
 .md-typeset .mermaid foreignObject p,
 .md-typeset .mermaid foreignObject span {
-  color: inherit !important;
+  color: var(--ink, #151b20) !important;
   font-family: inherit !important;
+  font-weight: 700 !important;
 }
 
 .md-typeset .mermaid .nodeLabel,
@@ -246,174 +247,121 @@ body,
   word-wrap: break-word !important;
   white-space: normal !important;
   box-sizing: border-box !important;
-  padding: 2px 4px !important;
+  padding: 3px 6px !important;
 }
 
-/* Explicit high-contrast white text for custom colored node classes */
-.md-typeset .mermaid .node.blue .nodeLabel,
-.md-typeset .mermaid .node.blue p,
-.md-typeset .mermaid .node.blue span,
-.md-typeset .mermaid .node.blue text,
-.md-typeset .mermaid .node.blue tspan,
-.md-typeset .mermaid .node.green .nodeLabel,
-.md-typeset .mermaid .node.green p,
-.md-typeset .mermaid .node.green span,
-.md-typeset .mermaid .node.green text,
-.md-typeset .mermaid .node.green tspan,
-.md-typeset .mermaid .node.amber .nodeLabel,
-.md-typeset .mermaid .node.amber p,
-.md-typeset .mermaid .node.amber span,
-.md-typeset .mermaid .node.amber text,
-.md-typeset .mermaid .node.amber tspan,
-.md-typeset .mermaid .node.purple .nodeLabel,
-.md-typeset .mermaid .node.purple p,
-.md-typeset .mermaid .node.purple span,
-.md-typeset .mermaid .node.purple text,
-.md-typeset .mermaid .node.purple tspan,
-.md-typeset .mermaid .node.red .nodeLabel,
-.md-typeset .mermaid .node.red p,
-.md-typeset .mermaid .node.red span,
-.md-typeset .mermaid .node.red text,
-.md-typeset .mermaid .node.red tspan,
-.md-typeset .mermaid .node.obj .nodeLabel,
-.md-typeset .mermaid .node.obj p,
-.md-typeset .mermaid .node.obj span,
-.md-typeset .mermaid .node.obj text,
-.md-typeset .mermaid .node.obj tspan,
-.md-typeset .mermaid .node.val .nodeLabel,
-.md-typeset .mermaid .node.val p,
-.md-typeset .mermaid .node.val span,
-.md-typeset .mermaid .node.val text,
-.md-typeset .mermaid .node.val tspan,
-.md-typeset .mermaid .node.list .nodeLabel,
-.md-typeset .mermaid .node.list p,
-.md-typeset .mermaid .node.list span,
-.md-typeset .mermaid .node.list text,
-.md-typeset .mermaid .node.list tspan,
-.md-typeset .mermaid .node.store .nodeLabel,
-.md-typeset .mermaid .node.store p,
-.md-typeset .mermaid .node.store span,
-.md-typeset .mermaid .node.store text,
-.md-typeset .mermaid .node.store tspan,
-.md-typeset .mermaid .node.comp .nodeLabel,
-.md-typeset .mermaid .node.comp p,
-.md-typeset .mermaid .node.comp span,
-.md-typeset .mermaid .node.comp text,
-.md-typeset .mermaid .node.comp tspan,
-.md-typeset .mermaid .node.out .nodeLabel,
-.md-typeset .mermaid .node.out p,
-.md-typeset .mermaid .node.out span,
-.md-typeset .mermaid .node.out text,
-.md-typeset .mermaid .node.out tspan {
-  color: #ffffff !important;
-  fill: #ffffff !important;
-}
-
-/* Explicit shape fills and strokes for known classes */
+/* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
+/* Cyan / Blue / Obj / Store */
 .md-typeset .mermaid .node.blue rect,
 .md-typeset .mermaid .node.blue polygon,
 .md-typeset .mermaid .node.blue circle,
-.md-typeset .mermaid .node.blue path:not(.flowchart-link) {
-  fill: #1e3a8a !important;
-  stroke: #3b82f6 !important;
+.md-typeset .mermaid .node.blue ellipse,
+.md-typeset .mermaid .node.blue path:not(.flowchart-link),
+.md-typeset .mermaid .node.cyan rect,
+.md-typeset .mermaid .node.cyan polygon,
+.md-typeset .mermaid .node.cyan circle,
+.md-typeset .mermaid .node.cyan ellipse,
+.md-typeset .mermaid .node.cyan path:not(.flowchart-link),
+.md-typeset .mermaid .node.obj rect,
+.md-typeset .mermaid .node.obj polygon,
+.md-typeset .mermaid .node.store rect,
+.md-typeset .mermaid .node.store polygon {
+  fill: var(--cyan-soft, #c9f3f4) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(3px 3px 0px var(--cyan, #22bfd7)) !important;
 }
 
+/* Green / Lime / Val / Comp */
 .md-typeset .mermaid .node.green rect,
 .md-typeset .mermaid .node.green polygon,
 .md-typeset .mermaid .node.green circle,
-.md-typeset .mermaid .node.green path:not(.flowchart-link) {
-  fill: #064e3b !important;
-  stroke: #10b981 !important;
+.md-typeset .mermaid .node.green ellipse,
+.md-typeset .mermaid .node.green path:not(.flowchart-link),
+.md-typeset .mermaid .node.lime rect,
+.md-typeset .mermaid .node.lime polygon,
+.md-typeset .mermaid .node.lime circle,
+.md-typeset .mermaid .node.lime ellipse,
+.md-typeset .mermaid .node.lime path:not(.flowchart-link),
+.md-typeset .mermaid .node.val rect,
+.md-typeset .mermaid .node.val polygon,
+.md-typeset .mermaid .node.comp rect,
+.md-typeset .mermaid .node.comp polygon {
+  fill: var(--lime-soft, #e7f4c8) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(3px 3px 0px var(--lime, #b7df69)) !important;
 }
 
+/* Amber / Yellow / List */
 .md-typeset .mermaid .node.amber rect,
 .md-typeset .mermaid .node.amber polygon,
 .md-typeset .mermaid .node.amber circle,
-.md-typeset .mermaid .node.amber path:not(.flowchart-link) {
-  fill: #78350f !important;
-  stroke: #f59e0b !important;
+.md-typeset .mermaid .node.amber ellipse,
+.md-typeset .mermaid .node.amber path:not(.flowchart-link),
+.md-typeset .mermaid .node.yellow rect,
+.md-typeset .mermaid .node.yellow polygon,
+.md-typeset .mermaid .node.yellow circle,
+.md-typeset .mermaid .node.yellow ellipse,
+.md-typeset .mermaid .node.yellow path:not(.flowchart-link),
+.md-typeset .mermaid .node.list rect,
+.md-typeset .mermaid .node.list polygon {
+  fill: var(--yellow-soft, #fff0b9) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(3px 3px 0px var(--yellow, #ffc83e)) !important;
 }
 
+/* Purple / Out */
 .md-typeset .mermaid .node.purple rect,
 .md-typeset .mermaid .node.purple polygon,
 .md-typeset .mermaid .node.purple circle,
-.md-typeset .mermaid .node.purple path:not(.flowchart-link) {
-  fill: #4c1d95 !important;
-  stroke: #8b5cf6 !important;
+.md-typeset .mermaid .node.purple ellipse,
+.md-typeset .mermaid .node.purple path:not(.flowchart-link),
+.md-typeset .mermaid .node.out rect,
+.md-typeset .mermaid .node.out polygon {
+  fill: var(--purple-soft, #e2dfff) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(3px 3px 0px var(--purple, #8275e8)) !important;
 }
 
+/* Red / Coral */
 .md-typeset .mermaid .node.red rect,
 .md-typeset .mermaid .node.red polygon,
 .md-typeset .mermaid .node.red circle,
-.md-typeset .mermaid .node.red path:not(.flowchart-link) {
-  fill: #7f1d1d !important;
-  stroke: #ef4444 !important;
+.md-typeset .mermaid .node.red ellipse,
+.md-typeset .mermaid .node.red path:not(.flowchart-link),
+.md-typeset .mermaid .node.coral rect,
+.md-typeset .mermaid .node.coral polygon,
+.md-typeset .mermaid .node.coral circle,
+.md-typeset .mermaid .node.coral ellipse,
+.md-typeset .mermaid .node.coral path:not(.flowchart-link) {
+  fill: var(--coral-soft, #ffd8ce) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(3px 3px 0px var(--coral, #f38469)) !important;
 }
 
-.md-typeset .mermaid .node.obj rect,
-.md-typeset .mermaid .node.obj polygon {
-  fill: #1e3a8a !important;
-  stroke: #3b82f6 !important;
+/* Unstyled Default Nodes - Warm Cream Surface with Solid Ink Border & Hard Shadow */
+.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
+.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
+.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+  fill: var(--cream, #fffaf0) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(3px 3px 0px var(--ink, #151b20)) !important;
 }
 
-.md-typeset .mermaid .node.val rect,
-.md-typeset .mermaid .node.val polygon {
-  fill: #064e3b !important;
-  stroke: #10b981 !important;
-}
-
-.md-typeset .mermaid .node.list rect,
-.md-typeset .mermaid .node.list polygon {
-  fill: #78350f !important;
-  stroke: #f59e0b !important;
-}
-
-.md-typeset .mermaid .node.store rect,
-.md-typeset .mermaid .node.store polygon {
-  fill: #1e3a8a !important;
-  stroke: #3b82f6 !important;
-}
-
-.md-typeset .mermaid .node.comp rect,
-.md-typeset .mermaid .node.comp polygon {
-  fill: #064e3b !important;
-  stroke: #10b981 !important;
-}
-
-.md-typeset .mermaid .node.out rect,
-.md-typeset .mermaid .node.out polygon {
-  fill: #4c1d95 !important;
-  stroke: #8b5cf6 !important;
-}
-
-/* Unstyled flowchart node shapes - dynamic theme adapter */
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-.md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
-  fill: var(--md-mermaid-node-bg-color, #ffffff) !important;
-  stroke: var(--md-mermaid-node-fg-color, #2563eb) !important;
-  stroke-width: 1.75px !important;
-}
-
-[data-md-color-scheme="default"] .md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-[data-md-color-scheme="default"] .md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]) {
-  filter: drop-shadow(0 1px 3px rgba(15, 23, 42, 0.08));
-}
-
-[data-md-color-scheme="slate"] .md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-[data-md-color-scheme="slate"] .md-typeset .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]) {
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
-}
-
-/* Connecting paths, lines & arrows */
+/* Connecting Paths, Lines & Arrows */
 .md-typeset .mermaid .edgePath .path,
 .md-typeset .mermaid .flowchart-link,
 .md-typeset .mermaid .relation,
 .md-typeset .mermaid .transition {
-  stroke: var(--md-mermaid-edge-color, #334155) !important;
-  stroke-width: 1.75px !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
 }
 
 .md-typeset .mermaid .edgePath .arrowheadPath,
@@ -421,25 +369,48 @@ body,
 .md-typeset .mermaid .marker,
 .md-typeset .mermaid .arrowheadPath,
 .md-typeset .mermaid .arrowMarkerPath {
-  fill: var(--md-mermaid-edge-color, #334155) !important;
-  stroke: var(--md-mermaid-edge-color, #334155) !important;
+  fill: var(--ink, #151b20) !important;
+  stroke: var(--ink, #151b20) !important;
 }
 
-/* Clusters / Subgraphs */
+/* Clusters / Subgraphs - Technical Blueprint Dashed Containers */
 .md-typeset .mermaid .cluster rect {
-  fill: var(--md-default-bg-color--lighter, rgba(127, 127, 127, 0.08)) !important;
-  stroke: var(--md-default-fg-color--lighter, #94a3b8) !important;
-  stroke-width: 1.5px !important;
+  fill: rgba(238, 228, 200, 0.45) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 2px !important;
+  stroke-dasharray: 6 4 !important;
+  rx: 10px !important;
+  ry: 10px !important;
 }
 
-/* Edge labels */
-.md-typeset .mermaid .edgeLabel,
-.md-typeset .mermaid .edgeLabel rect,
-.md-typeset .mermaid .edgeLabel p {
-  background-color: var(--md-default-bg-color, #ffffff) !important;
-  fill: var(--md-default-bg-color, #ffffff) !important;
-  color: var(--md-mermaid-label-fg-color, #0f172a) !important;
+.md-typeset .mermaid .cluster text,
+.md-typeset .mermaid .cluster span {
+  fill: var(--ink, #151b20) !important;
+  color: var(--ink, #151b20) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
 }
+
+/* Edge Labels - Tactile Pill Badges */
+.md-typeset .mermaid .edgeLabel,
+.md-typeset .mermaid .edgeLabel rect {
+  background-color: var(--cream, #fffaf0) !important;
+  fill: var(--cream, #fffaf0) !important;
+  stroke: var(--ink, #151b20) !important;
+  stroke-width: 1.5px !important;
+  rx: 6px !important;
+  ry: 6px !important;
+}
+
+.md-typeset .mermaid .edgeLabel p,
+.md-typeset .mermaid .edgeLabel span {
+  color: var(--ink, #151b20) !important;
+  font-weight: 700 !important;
+  font-size: 11.5px !important;
+}
+
 
 .md-typeset code,
 .md-typeset pre {
