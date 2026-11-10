@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="./curriculums/manifest.js"></script>
   <script src="./curriculums/chapter1.js"></script>
   <style>
@@ -21,6 +22,13 @@
     }
     .font-mono {
       font-family: 'JetBrains Mono', monospace;
+    }
+    .mermaid svg {
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: 360px;
+      margin: 0 auto;
+      display: block;
     }
     @keyframes mouth-talk {
       0%, 100% { d: path("M 88 126 Q 100 128 112 126"); }
@@ -446,6 +454,29 @@
     let turnTimeout = null;
     let autoAdvance = true;
     let isFullDeckPlaying = false;
+
+    if (window.mermaid) {
+      try {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'dark',
+          themeVariables: {
+            darkMode: true,
+            background: '#070b14',
+            primaryColor: '#0e7490',
+            primaryTextColor: '#f8fafc',
+            primaryBorderColor: '#06b6d4',
+            lineColor: '#38bdf8',
+            secondaryColor: '#1e293b',
+            tertiaryColor: '#0f172a',
+            mainBkg: '#0b1329',
+            nodeBorder: '#0ea5e9'
+          }
+        });
+      } catch (e) {
+        console.warn('Mermaid init warning:', e);
+      }
+    }
 
     let availableVoices = [];
     let selectedNovaVoice = null;
@@ -974,6 +1005,18 @@
             });
           } catch (e) {
             console.warn('KaTeX render warning:', e);
+          }
+        }
+        if (window.mermaid) {
+          try {
+            const mermaidNodes = contentEl.querySelectorAll('.mermaid');
+            if (mermaidNodes.length > 0) {
+              window.mermaid.run({ nodes: Array.from(mermaidNodes) }).catch(err => {
+                console.warn('Mermaid run error:', err);
+              });
+            }
+          } catch (e) {
+            console.warn('Mermaid render warning:', e);
           }
         }
       }
