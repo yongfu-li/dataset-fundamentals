@@ -302,6 +302,59 @@
       stroke-dasharray: 6 4 !important;
       rx: 10px !important;
     }
+  
+    /* ==========================================================================
+       Capeur Deterministic Timeline, Karaoke Captions & Active Recall Styles
+       ========================================================================== */
+    .kword {
+      transition: color 0.1s ease, background 0.1s ease, transform 0.1s ease;
+      display: inline-block;
+      margin: 0 1.5px;
+      border-radius: 4px;
+      padding: 0 2px;
+    }
+    .kword-current {
+      background: #ffc83e !important;
+      color: #151b20 !important;
+      font-weight: 900 !important;
+      padding: 1px 6px !important;
+      box-shadow: 2px 2px 0px #151b20 !important;
+      transform: scale(1.06) !important;
+    }
+    .kword-past {
+      color: #ffffff !important;
+      opacity: 0.95;
+    }
+    .kword-future {
+      color: rgba(255, 255, 255, 0.45) !important;
+    }
+
+    .scrubber-track {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #242c33;
+      outline: none;
+      border: 2px solid #151b20;
+      border-radius: 8px;
+      box-shadow: 2px 2px 0px #151b20;
+    }
+    .scrubber-track::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      background: #ffc83e;
+      border: 2px solid #151b20;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px #151b20;
+      transition: transform 0.1s, background 0.1s;
+    }
+    .scrubber-track::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+      background: #22bfd7;
+    }
+
   </style>
 </head>
 <body class="min-h-screen p-3 md:p-6 select-none antialiased">
@@ -546,14 +599,205 @@
 
     </div>
 
+    
+    <!-- Hidden HTML5 Audio Element for Deterministic Timeline Sync -->
+    <audio id="neuralAudio" preload="auto"></audio>
+
+    <!-- Capeur Formative 'Pause and Guess' Active Recall Card -->
+    <div id="pauseAndGuessCard" class="hidden p-5 rounded-2xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[6px_6px_0px_#f38469] text-[#151b20] transition-all duration-300">
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono font-black text-xs uppercase">
+          <span>⚡ Pause &amp; Guess</span>
+          <span>•</span>
+          <span>Active Recall Checkpoint</span>
+        </div>
+        <span class="text-xs font-mono font-bold text-[rgba(21,27,32,0.6)] bg-[#fffaf0] px-2.5 py-0.5 rounded-full border border-[#151b20]">Lecture Auto-Paused</span>
+      </div>
+      <h3 id="pauseQuestionText" class="text-base sm:text-lg font-black text-[#151b20] mb-3">
+        Where does error compound most catastrophically if sensor calibration drifts at raw collection?
+      </h3>
+      <div id="pauseOptionsContainer" class="space-y-2 mb-3 font-mono text-xs sm:text-sm">
+        <!-- Dynamically populated options -->
+      </div>
+      <div id="pauseFeedbackContainer" class="hidden p-3.5 rounded-xl border-2 border-[#151b20] mb-3 font-mono text-xs leading-relaxed">
+        <!-- Immediate feedback message -->
+      </div>
+      <div class="flex items-center justify-between pt-2 border-t border-[#151b20]/20 flex-wrap gap-2">
+        <button id="btnResumeAfterGuess" onclick="resumeAfterGuess()" class="px-4 py-2 rounded-xl bg-[#b7df69] hover:bg-[#a6d054] text-[#151b20] font-mono font-black text-xs sm:text-sm border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] transition flex items-center gap-2">
+          <span>Continue Lesson</span>
+          <span>▶</span>
+        </button>
+        <button onclick="skipPauseAndGuess()" class="text-xs font-mono text-[rgba(21,27,32,0.6)] hover:underline font-bold">
+          Skip Question ⏩
+        </button>
+      </div>
+    </div>
+
+    <!-- Capeur 'Your Turn' Free Mode Interactive Workbench (Data Quality Cascade Simulator) -->
+    <div id="cascadeSimulatorCard" class="p-4 sm:p-5 rounded-2xl bg-[#f6f0dc] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] transition-all duration-300">
+      <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+        <div class="flex items-center gap-2">
+          <span class="text-base">🛠️</span>
+          <span class="font-mono font-black text-xs sm:text-sm uppercase tracking-wide text-[#151b20]">
+            Your Turn: Interactive Data Quality Cascade Simulator
+          </span>
+          <span class="px-2 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] font-mono text-[10px] font-black border border-[#151b20]">
+            Free Exploration
+          </span>
+        </div>
+        <div id="freeModeControls" class="flex items-center gap-2">
+          <button id="btnReturnToLecture" onclick="leaveFreeMode()" class="hidden px-3 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] transition flex items-center gap-1.5 animate-bounce">
+            <span>◀</span> Resume Lecture
+          </button>
+          <button type="button" onclick="toggleWorkbenchVisibility()" id="btnToggleWorkbench" class="px-2.5 py-1 rounded-lg bg-[#fffaf0] hover:bg-[#eee4c8] text-[#151b20] font-mono text-xs font-bold border border-[#151b20]">
+            ▼ Minimize
+          </button>
+        </div>
+      </div>
+
+      <div id="workbenchBody" class="space-y-3">
+        <p class="text-xs text-[rgba(21,27,32,0.75)] leading-relaxed">
+          Based on Sambasivan et al. (CHI 2021). Adjust upstream parameters to observe how defects in physical data collection cascade into downstream catastrophic production failures.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
+          <!-- Slider 1 -->
+          <div class="bg-[#fffaf0] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+            <div class="flex justify-between font-bold mb-1">
+              <span>1. Sensor Calibration Drift:</span>
+              <span id="valSensorDrift" class="text-[#0e7490] font-black">8%</span>
+            </div>
+            <input type="range" id="sliderSensorDrift" min="0" max="30" value="8" step="1" oninput="onSimulatorInput()" class="w-full accent-[#0e7490]">
+            <span class="text-[10px] text-slate-500">Hardware &amp; collection noise</span>
+          </div>
+
+          <!-- Slider 2 -->
+          <div class="bg-[#fffaf0] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+            <div class="flex justify-between font-bold mb-1">
+              <span>2. Imputation Distortion:</span>
+              <span id="valImputeDistort" class="text-[#b45309] font-black">12%</span>
+            </div>
+            <input type="range" id="sliderImputeDistort" min="0" max="35" value="12" step="1" oninput="onSimulatorInput()" class="w-full accent-[#b45309]">
+            <span class="text-[10px] text-slate-500">Heuristic mean/median fill bias</span>
+          </div>
+
+          <!-- Slider 3 -->
+          <div class="bg-[#fffaf0] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+            <div class="flex justify-between font-bold mb-1">
+              <span>3. Annotation Inconsistency:</span>
+              <span id="valAnnotNoise" class="text-[#dc2626] font-black">10%</span>
+            </div>
+            <input type="range" id="sliderAnnotNoise" min="0" max="40" value="10" step="1" oninput="onSimulatorInput()" class="w-full accent-[#dc2626]">
+            <span class="text-[10px] text-slate-500">Inter-rater label ambiguity</span>
+          </div>
+        </div>
+
+        <!-- Real-time SVG Cascade Visualization -->
+        <div class="bg-[#151b20] p-3.5 rounded-xl border-2 border-[#151b20] text-white font-mono text-xs space-y-2">
+          <div class="flex items-center justify-between text-[11px] text-slate-300 pb-1 border-b border-slate-700">
+            <span>LIFECYCLE ERROR COMPOUNDING STAGE</span>
+            <span>ESTIMATED SYSTEM DEGRADATION</span>
+          </div>
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-2">
+              <span class="w-36 text-slate-400">1. Raw Collection:</span>
+              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+                <div id="barRaw" class="h-full bg-[#22bfd7] transition-all duration-150" style="width: 8%;"></div>
+              </div>
+              <span id="pctRaw" class="w-12 text-right font-bold text-[#22bfd7]">8.0%</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-36 text-slate-400">2. Preprocessing:</span>
+              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+                <div id="barPrep" class="h-full bg-[#ffc83e] transition-all duration-150" style="width: 21%;"></div>
+              </div>
+              <span id="pctPrep" class="w-12 text-right font-bold text-[#ffc83e]">21.2%</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-36 text-slate-400">3. Feature Store:</span>
+              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+                <div id="barFeatures" class="h-full bg-[#f38469] transition-all duration-150" style="width: 38%;"></div>
+              </div>
+              <span id="pctFeatures" class="w-12 text-right font-bold text-[#f38469]">38.5%</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-36 text-slate-400">4. Model Serving:</span>
+              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+                <div id="barServing" class="h-full bg-[#dc2626] transition-all duration-150" style="width: 63%;"></div>
+              </div>
+              <span id="pctServing" class="w-12 text-right font-black text-[#dc2626]">63.1%</span>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-slate-700 flex items-center justify-between text-[11px] font-bold flex-wrap gap-2">
+            <span class="text-amber-400">Compound Multiplier Factor: <span id="cascadeMultiplier" class="text-white">3.9×</span></span>
+            <span id="cascadeVerdict" class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold uppercase">Critical Production Failure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Capeur-Style Deterministic Audio Transport Dock -->
+    <div id="transportDock" class="bg-[#151b20] border-2 border-[#151b20] rounded-2xl p-3 sm:p-4 shadow-[6px_6px_0px_#22bfd7] text-white">
+      <!-- Status row: Mode Pill & Timecode -->
+      <div class="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/10 text-xs font-mono">
+        <div class="flex items-center gap-2">
+          <span id="audioEngineBadge" class="px-2.5 py-0.5 rounded-full font-bold bg-[#c9f3f4] text-[#151b20] border border-[#151b20] flex items-center gap-1.5 shadow-[1px_1px_0px_#151b20]">
+            <span class="w-2 h-2 rounded-full bg-[#0e7490] animate-pulse"></span>
+            <span id="audioEngineBadgeText">🎙️ Neural Audio Synced (S(t) = f(t))</span>
+          </span>
+          <span id="lessonSpeedBadge" class="hidden sm:inline text-slate-400 font-mono">1.0× Speed</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="timecodeDisplay" class="font-mono font-bold text-xs text-[#22bfd7]">00:00 / 00:00</span>
+        </div>
+      </div>
+
+      <!-- Scrubber Slider with Slide Tick Markers -->
+      <div class="relative py-1 flex items-center">
+        <input type="range" id="audioScrubber" min="0" max="100" value="0" step="0.1"
+          oninput="onScrubberInput(this.value)"
+          class="w-full h-3 scrubber-track cursor-pointer accent-[#ffc83e]">
+        <div id="scrubberTicks" class="absolute inset-x-0 top-0 h-full pointer-events-none flex justify-between px-1"></div>
+      </div>
+
+      <!-- Transport Controls: Play/Pause, Navigation, Speeds, CC -->
+      <div class="flex items-center justify-between gap-2 mt-2 pt-1 flex-wrap font-mono text-xs">
+        <div class="flex items-center gap-2">
+          <button id="transportPlayBtn" onclick="togglePlayback()" class="px-4 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] font-black border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex items-center gap-1.5 transition">
+            <span id="transportPlayIcon">▶</span>
+            <span id="transportPlayText">Play Lesson</span>
+          </button>
+          <button onclick="prevSlide()" class="px-2.5 py-1.5 rounded-lg bg-[#242c33] hover:bg-[#333e48] text-white border border-white/20 transition">
+            ◀ Prev Slide
+          </button>
+          <button onclick="nextSlide()" class="px-2.5 py-1.5 rounded-lg bg-[#242c33] hover:bg-[#333e48] text-white border border-white/20 transition">
+            Next Slide ▶
+          </button>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <span class="text-slate-400 font-bold hidden sm:inline">Speed:</span>
+          <button onclick="setEngineSpeed(0.8)" id="btnSpd08" class="px-2 py-1 rounded bg-[#242c33] text-slate-300 hover:text-white border border-white/10">0.8×</button>
+          <button onclick="setEngineSpeed(1.0)" id="btnSpd10" class="px-2 py-1 rounded bg-[#0e7490] text-white font-bold border border-cyan-400">1.0×</button>
+          <button onclick="setEngineSpeed(1.2)" id="btnSpd12" class="px-2 py-1 rounded bg-[#242c33] text-slate-300 hover:text-white border border-white/10">1.2×</button>
+          <button onclick="setEngineSpeed(1.5)" id="btnSpd15" class="px-2 py-1 rounded bg-[#242c33] text-slate-300 hover:text-white border border-white/10">1.5×</button>
+          <button onclick="toggleClosedCaptions()" id="btnCCToggle" class="ml-1 px-2.5 py-1 rounded bg-[#b7df69] text-[#151b20] font-black border border-[#151b20]">CC ON</button>
+        </div>
+      </div>
+    </div>
+
+
     <!-- 2. Prominent Cinema Subtitle Banner (Directly Below the Slide Canvas) -->
     <div id="cinemaSubtitleCard" class="p-4 sm:p-5 rounded-2xl bg-[#151b20] border-2 border-[#151b20] shadow-[6px_6px_0px_#ffc83e] relative overflow-hidden transition-all duration-300">
       <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
         <div class="flex items-center gap-2">
-          <span class="px-2.5 py-0.5 rounded bg-[#b7df69] text-[#151b20] font-mono font-black text-xs tracking-wider border border-[#151b20]">CC ON</span>
+          <span id="ccBadge" class="px-2.5 py-0.5 rounded bg-[#b7df69] text-[#151b20] font-mono font-black text-xs tracking-wider border border-[#151b20]">CC ON</span>
           <span id="cinemaSpeaker" class="font-mono font-black text-xs sm:text-sm md:text-base text-[#22bfd7] uppercase tracking-wider">Dr. Nova (Senior Architect)</span>
         </div>
-        <span id="turnCounter" class="text-xs font-mono font-bold text-white bg-[#242c33] px-3 py-1 rounded-full border border-white/20">Turn 1 of 2</span>
+        <div class="flex items-center gap-2">
+          <span id="freeModeIndicatorBadge" class="hidden px-2.5 py-0.5 rounded-full bg-[#f38469] text-[#151b20] font-mono font-black text-xs animate-pulse border border-[#151b20]">🛠️ FREE MODE</span>
+          <span id="turnCounter" class="text-xs font-mono font-bold text-white bg-[#242c33] px-3 py-1 rounded-full border border-white/20">Turn 1 of 2</span>
+        </div>
       </div>
       <p id="cinemaSubtitleText" class="text-sm sm:text-base md:text-lg font-bold text-white leading-relaxed tracking-wide">
         "Welcome to Lesson 1.1: What is a Dataset? Records, Attributes &amp; Data Quality Cascades."
@@ -1140,6 +1384,7 @@
       currentSlideIndex = 0;
       isFullDeckPlaying = false;
       loadLesson(topicKey, () => {
+        loadAudioForLesson(topicKey, currentMode);
         const select = document.getElementById('topicSelect');
         if (select) select.value = currentTopic;
         updateView();
@@ -1183,6 +1428,7 @@
       }
 
       updateView();
+      loadAudioForLesson(currentTopic, currentMode);
     }
 
     function updateView() {
@@ -1561,6 +1807,7 @@
         const select = document.getElementById('topicSelect');
         if (select) select.value = currentTopic;
         updateView();
+        loadAudioForLesson(targetKey, currentMode);
       });
     });
 

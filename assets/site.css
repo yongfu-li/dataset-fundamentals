@@ -1,27 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
 
 :root {
-  --bg: #f3efe6;
-  --bg-deep: #e7e0d2;
-  --surface: #fffdf8;
-  --surface2: #efe8db;
-  --ink: #1c2421;
-  --muted: #5c675f;
-  --accent: #0f6b5c;
-  --accent-soft: #d7efe8;
-  --accent-hover: #0b5347;
-  --line: #d5cdc0;
-  --ok: #1f7a4c;
-  --ok-bg: #e4f5eb;
-  --warn: #9a6b12;
-  --warn-bg: #f8efd6;
-  --err: #a33b3b;
-  --err-bg: #f8e6e6;
+  --bg: #f6f0dc;
+  --bg-deep: #eee4c8;
+  --surface: #fffaf0;
+  --surface2: #eee4c8;
+  --surface3: #e5dac0;
+  --ink: #151b20;
+  --text: #151b20;
+  --muted: rgba(21, 27, 32, 0.72);
+  --accent: #0e7490;
+  --cyan: #22bfd7;
+  --accent-soft: #c9f3f4;
+  --accent-hover: #0891b2;
+  --yellow: #ffc83e;
+  --yellow-soft: #fff0b9;
+  --lime: #b7df69;
+  --lime-soft: #e7f4c8;
+  --coral: #f38469;
+  --coral-soft: #ffd8ce;
+  --purple: #8275e8;
+  --purple-soft: #e2dfff;
+  --line: rgba(21, 27, 32, 0.18);
+  --ok: #b7df69;
+  --ok-bg: #e7f4c8;
+  --warn: #ffc83e;
+  --warn-bg: #fff0b9;
+  --err: #f38469;
+  --err-bg: #ffd8ce;
   --radius: 12px;
-  --shadow: 0 10px 30px rgba(28, 36, 33, 0.06);
-  --font: "Source Sans 3", "Segoe UI", sans-serif;
-  --display: "Fraunces", Georgia, serif;
-  --max: 920px;
+  --shadow: 4px 4px 0px #151b20;
+  --font: "Inter", "Source Sans 3", "Segoe UI", sans-serif;
+  --display: "Arial Black", "Inter", sans-serif;
+  --max: 980px;
 }
 
 * { box-sizing: border-box; }
@@ -32,11 +43,26 @@ body {
   margin: 0;
   font-family: var(--font);
   background:
-    radial-gradient(circle at top left, rgba(15, 107, 92, 0.08), transparent 28%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+    radial-gradient(circle at 10% 4%, rgba(34, 191, 215, 0.16), transparent 22rem),
+    radial-gradient(circle at 90% 12%, rgba(255, 200, 62, 0.15), transparent 26rem),
+    var(--bg) !important;
   color: var(--ink);
   line-height: 1.65;
   min-height: 100vh;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  opacity: 0.38;
+  background-image:
+    linear-gradient(rgba(21, 27, 32, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 27, 32, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+  pointer-events: none;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -897,4 +923,179 @@ footer.site-footer .site-footer-privacy {
   .clip-toolbar { flex-wrap: wrap; flex-direction: column; align-items: stretch; }
   .module-card { grid-template-columns: 1fr; }
   .clip-toolbar .btn { width: 100%; }
+}
+
+
+/* ==========================================================================
+   EDA Floorplanning Warm Paper & Neo-Brutalist Interactive Tools Styling
+   ========================================================================== */
+
+.site-header {
+  background: var(--surface) !important;
+  border-bottom: 2px solid var(--ink) !important;
+  box-shadow: 0 4px 0 rgba(21, 27, 32, 0.06);
+}
+
+.pillar-card,
+.project-step,
+.project-checklist,
+.clip-card,
+.panel,
+.objectives,
+.module-card,
+.quiz-section,
+.expected-result,
+.module-file {
+  background: var(--surface) !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: 12px !important;
+  box-shadow: 4px 4px 0px var(--ink) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.pillar-card:hover,
+.module-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px var(--cyan) !important;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1.15rem;
+  background: var(--yellow) !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: 8px !important;
+  font-family: var(--font) !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  text-decoration: none !important;
+  box-shadow: 3px 3px 0px var(--ink) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease !important;
+}
+
+.btn:hover {
+  background: var(--cyan) !important;
+  color: var(--ink) !important;
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0px var(--ink) !important;
+}
+
+.btn-secondary {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--ink) !important;
+  box-shadow: 3px 3px 0px var(--ink) !important;
+}
+
+.btn-secondary:hover {
+  background: var(--lime) !important;
+  color: var(--ink) !important;
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0px var(--ink) !important;
+}
+
+.btn-ghost {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 2px solid transparent !important;
+}
+
+.btn-ghost:hover {
+  background: var(--accent-soft) !important;
+  border-color: var(--ink) !important;
+  box-shadow: 3px 3px 0px var(--ink) !important;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 6px !important;
+  background: var(--yellow-soft) !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--ink) !important;
+  box-shadow: 2px 2px 0px var(--ink) !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.pill-muted {
+  background: var(--surface2) !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--ink) !important;
+}
+
+/* Form controls & interactive elements across 29 tools */
+input[type="text"],
+input[type="number"],
+input[type="range"],
+select,
+textarea {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 0.75rem !important;
+  font-family: inherit !important;
+  font-size: 0.9rem !important;
+  box-shadow: 2px 2px 0px var(--ink) !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 3px 3px 0px var(--cyan) !important;
+}
+
+/* Tool tables */
+.md-table-wrap {
+  border: 2px solid var(--ink) !important;
+  border-radius: 10px !important;
+  box-shadow: 4px 4px 0px var(--ink) !important;
+  background: var(--surface) !important;
+}
+
+.md-table th {
+  background: var(--yellow) !important;
+  color: var(--ink) !important;
+  font-weight: 800 !important;
+  border-bottom: 2px solid var(--ink) !important;
+}
+
+.md-table td {
+  border-bottom: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+}
+
+.md-table tr:hover td {
+  background: var(--surface3) !important;
+}
+
+/* Pre / Code inside tools */
+pre, code {
+  font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+}
+
+.expected-result pre,
+.module-file pre {
+  background: #151b20 !important;
+  color: #f6f0dc !important;
+  border-top: 2px solid var(--ink) !important;
+}
+
+/* Tool specific panel containers (eda-panel, etc.) */
+[class*="-panel"],
+[class*="-card"],
+[class*="-container"],
+[class*="-box"] {
+  border-color: var(--ink);
 }
