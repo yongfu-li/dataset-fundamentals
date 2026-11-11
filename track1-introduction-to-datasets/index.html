@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -7345,22 +7389,22 @@
   <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
     <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">⏱️ 7 In-Depth Lessons</span>
     <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669; border-color: rgba(16, 185, 129, 0.2);">🔬 Interactive Labs &amp; Tools</span>
-    <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">📊 PPTX &amp; PDF Lecture Decks</span>
+    <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">🎙️ Interactive AI Slide Decks</span>
     <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">📜 Grounded in Springer Monograph</span>
   </div>
 </div>
 
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span>📚 Aligned with Chapter 1 of the Official Monograph</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Hub: Chapter 1</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Explore complete theoretical derivations, mathematical models, and proofs in <strong>Chapter 1</strong>.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Explore complete theoretical derivations, formal schemas, and mathematical proofs in <strong>Chapter 1: Introduction to Datasets</strong>.
     </div>
   </div>
-  <a href="../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none;">
-    <span>Read Monograph Hub →</span>
+  <a href="../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 1 in Monograph →</span>
   </a>
 </div>
 

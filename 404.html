@@ -97,12 +97,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -222,6 +250,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -273,6 +306,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers

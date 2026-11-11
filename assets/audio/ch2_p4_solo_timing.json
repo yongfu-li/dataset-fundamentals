@@ -1,0 +1,6453 @@
+{
+  "duration": 687.84,
+  "sentences": [
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 2.4 of Dataset Fundamentals: Programmatic API Ingestion, Rate Limits, and Fault-Tolerant Clients. Unlike web scraping over raw HTML trees, Application Programming Interfaces—principally RESTful HTTP and GraphQL endpoints—deliver structured, contractually governed data feeds.",
+      "start": 0.0,
+      "end": 19.962,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 0.0
+        },
+        {
+          "w": "to",
+          "t": 0.57
+        },
+        {
+          "w": "Lesson",
+          "t": 1.141
+        },
+        {
+          "w": "2.4",
+          "t": 1.711
+        },
+        {
+          "w": "of",
+          "t": 2.281
+        },
+        {
+          "w": "Dataset",
+          "t": 2.852
+        },
+        {
+          "w": "Fundamentals:",
+          "t": 3.422
+        },
+        {
+          "w": "Programmatic",
+          "t": 3.992
+        },
+        {
+          "w": "API",
+          "t": 4.563
+        },
+        {
+          "w": "Ingestion,",
+          "t": 5.133
+        },
+        {
+          "w": "Rate",
+          "t": 5.703
+        },
+        {
+          "w": "Limits,",
+          "t": 6.274
+        },
+        {
+          "w": "and",
+          "t": 6.844
+        },
+        {
+          "w": "Fault-Tolerant",
+          "t": 7.414
+        },
+        {
+          "w": "Clients.",
+          "t": 7.985
+        },
+        {
+          "w": "Unlike",
+          "t": 8.555
+        },
+        {
+          "w": "web",
+          "t": 9.125
+        },
+        {
+          "w": "scraping",
+          "t": 9.696
+        },
+        {
+          "w": "over",
+          "t": 10.266
+        },
+        {
+          "w": "raw",
+          "t": 10.837
+        },
+        {
+          "w": "HTML",
+          "t": 11.407
+        },
+        {
+          "w": "trees,",
+          "t": 11.977
+        },
+        {
+          "w": "Application",
+          "t": 12.548
+        },
+        {
+          "w": "Programming",
+          "t": 13.118
+        },
+        {
+          "w": "Interfaces—principally",
+          "t": 13.688
+        },
+        {
+          "w": "RESTful",
+          "t": 14.259
+        },
+        {
+          "w": "HTTP",
+          "t": 14.829
+        },
+        {
+          "w": "and",
+          "t": 15.399
+        },
+        {
+          "w": "GraphQL",
+          "t": 15.97
+        },
+        {
+          "w": "endpoints—deliver",
+          "t": 16.54
+        },
+        {
+          "w": "structured,",
+          "t": 17.11
+        },
+        {
+          "w": "contractually",
+          "t": 17.681
+        },
+        {
+          "w": "governed",
+          "t": 18.251
+        },
+        {
+          "w": "data",
+          "t": 18.821
+        },
+        {
+          "w": "feeds.",
+          "t": 19.392
+        }
+      ]
+    },
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "speaker": "Dr. Nova",
+      "text": "However, programmatic access does not guarantee infinite throughput. Production ingestion pipelines must handle server-side throttling via HTTP 429 Too Many Requests, avoid synchronized worker retry storms known as the Thundering Herd problem, and bypass database degradation caused by offset pagination. In this masterclass, we will derive the mathematics of Token Buckets and Leaky Buckets, formulate Full and Decorrelated Jitter exponential backoff, and master cursor-based keyset traversal.",
+      "start": 19.962,
+      "end": 53.618,
+      "words": [
+        {
+          "w": "However,",
+          "t": 19.962
+        },
+        {
+          "w": "programmatic",
+          "t": 20.472
+        },
+        {
+          "w": "access",
+          "t": 20.982
+        },
+        {
+          "w": "does",
+          "t": 21.492
+        },
+        {
+          "w": "not",
+          "t": 22.002
+        },
+        {
+          "w": "guarantee",
+          "t": 22.512
+        },
+        {
+          "w": "infinite",
+          "t": 23.022
+        },
+        {
+          "w": "throughput.",
+          "t": 23.532
+        },
+        {
+          "w": "Production",
+          "t": 24.042
+        },
+        {
+          "w": "ingestion",
+          "t": 24.551
+        },
+        {
+          "w": "pipelines",
+          "t": 25.061
+        },
+        {
+          "w": "must",
+          "t": 25.571
+        },
+        {
+          "w": "handle",
+          "t": 26.081
+        },
+        {
+          "w": "server-side",
+          "t": 26.591
+        },
+        {
+          "w": "throttling",
+          "t": 27.101
+        },
+        {
+          "w": "via",
+          "t": 27.611
+        },
+        {
+          "w": "HTTP",
+          "t": 28.121
+        },
+        {
+          "w": "429",
+          "t": 28.631
+        },
+        {
+          "w": "Too",
+          "t": 29.141
+        },
+        {
+          "w": "Many",
+          "t": 29.651
+        },
+        {
+          "w": "Requests,",
+          "t": 30.161
+        },
+        {
+          "w": "avoid",
+          "t": 30.671
+        },
+        {
+          "w": "synchronized",
+          "t": 31.181
+        },
+        {
+          "w": "worker",
+          "t": 31.691
+        },
+        {
+          "w": "retry",
+          "t": 32.201
+        },
+        {
+          "w": "storms",
+          "t": 32.71
+        },
+        {
+          "w": "known",
+          "t": 33.22
+        },
+        {
+          "w": "as",
+          "t": 33.73
+        },
+        {
+          "w": "the",
+          "t": 34.24
+        },
+        {
+          "w": "Thundering",
+          "t": 34.75
+        },
+        {
+          "w": "Herd",
+          "t": 35.26
+        },
+        {
+          "w": "problem,",
+          "t": 35.77
+        },
+        {
+          "w": "and",
+          "t": 36.28
+        },
+        {
+          "w": "bypass",
+          "t": 36.79
+        },
+        {
+          "w": "database",
+          "t": 37.3
+        },
+        {
+          "w": "degradation",
+          "t": 37.81
+        },
+        {
+          "w": "caused",
+          "t": 38.32
+        },
+        {
+          "w": "by",
+          "t": 38.83
+        },
+        {
+          "w": "offset",
+          "t": 39.34
+        },
+        {
+          "w": "pagination.",
+          "t": 39.85
+        },
+        {
+          "w": "In",
+          "t": 40.36
+        },
+        {
+          "w": "this",
+          "t": 40.87
+        },
+        {
+          "w": "masterclass,",
+          "t": 41.379
+        },
+        {
+          "w": "we",
+          "t": 41.889
+        },
+        {
+          "w": "will",
+          "t": 42.399
+        },
+        {
+          "w": "derive",
+          "t": 42.909
+        },
+        {
+          "w": "the",
+          "t": 43.419
+        },
+        {
+          "w": "mathematics",
+          "t": 43.929
+        },
+        {
+          "w": "of",
+          "t": 44.439
+        },
+        {
+          "w": "Token",
+          "t": 44.949
+        },
+        {
+          "w": "Buckets",
+          "t": 45.459
+        },
+        {
+          "w": "and",
+          "t": 45.969
+        },
+        {
+          "w": "Leaky",
+          "t": 46.479
+        },
+        {
+          "w": "Buckets,",
+          "t": 46.989
+        },
+        {
+          "w": "formulate",
+          "t": 47.499
+        },
+        {
+          "w": "Full",
+          "t": 48.009
+        },
+        {
+          "w": "and",
+          "t": 48.519
+        },
+        {
+          "w": "Decorrelated",
+          "t": 49.029
+        },
+        {
+          "w": "Jitter",
+          "t": 49.538
+        },
+        {
+          "w": "exponential",
+          "t": 50.048
+        },
+        {
+          "w": "backoff,",
+          "t": 50.558
+        },
+        {
+          "w": "and",
+          "t": 51.068
+        },
+        {
+          "w": "master",
+          "t": 51.578
+        },
+        {
+          "w": "cursor-based",
+          "t": 52.088
+        },
+        {
+          "w": "keyset",
+          "t": 52.598
+        },
+        {
+          "w": "traversal.",
+          "t": 53.108
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "speaker": "Dr. Nova",
+      "text": "Slide 2 presents the closed-loop state machine governing a fault-tolerant API ingestion client. Distributed worker threads submit jobs from the Request Queue into a Token Bucket Check. If available tokens B of t meet or exceed request cost, the HTTP request is immediately dispatched using an indexed cursor token.",
+      "start": 53.618,
+      "end": 75.011,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 53.618
+        },
+        {
+          "w": "2",
+          "t": 54.055
+        },
+        {
+          "w": "presents",
+          "t": 54.491
+        },
+        {
+          "w": "the",
+          "t": 54.928
+        },
+        {
+          "w": "closed-loop",
+          "t": 55.364
+        },
+        {
+          "w": "state",
+          "t": 55.801
+        },
+        {
+          "w": "machine",
+          "t": 56.238
+        },
+        {
+          "w": "governing",
+          "t": 56.674
+        },
+        {
+          "w": "a",
+          "t": 57.111
+        },
+        {
+          "w": "fault-tolerant",
+          "t": 57.547
+        },
+        {
+          "w": "API",
+          "t": 57.984
+        },
+        {
+          "w": "ingestion",
+          "t": 58.421
+        },
+        {
+          "w": "client.",
+          "t": 58.857
+        },
+        {
+          "w": "Distributed",
+          "t": 59.294
+        },
+        {
+          "w": "worker",
+          "t": 59.73
+        },
+        {
+          "w": "threads",
+          "t": 60.167
+        },
+        {
+          "w": "submit",
+          "t": 60.603
+        },
+        {
+          "w": "jobs",
+          "t": 61.04
+        },
+        {
+          "w": "from",
+          "t": 61.477
+        },
+        {
+          "w": "the",
+          "t": 61.913
+        },
+        {
+          "w": "Request",
+          "t": 62.35
+        },
+        {
+          "w": "Queue",
+          "t": 62.786
+        },
+        {
+          "w": "into",
+          "t": 63.223
+        },
+        {
+          "w": "a",
+          "t": 63.66
+        },
+        {
+          "w": "Token",
+          "t": 64.096
+        },
+        {
+          "w": "Bucket",
+          "t": 64.533
+        },
+        {
+          "w": "Check.",
+          "t": 64.969
+        },
+        {
+          "w": "If",
+          "t": 65.406
+        },
+        {
+          "w": "available",
+          "t": 65.843
+        },
+        {
+          "w": "tokens",
+          "t": 66.279
+        },
+        {
+          "w": "B",
+          "t": 66.716
+        },
+        {
+          "w": "of",
+          "t": 67.152
+        },
+        {
+          "w": "t",
+          "t": 67.589
+        },
+        {
+          "w": "meet",
+          "t": 68.026
+        },
+        {
+          "w": "or",
+          "t": 68.462
+        },
+        {
+          "w": "exceed",
+          "t": 68.899
+        },
+        {
+          "w": "request",
+          "t": 69.335
+        },
+        {
+          "w": "cost,",
+          "t": 69.772
+        },
+        {
+          "w": "the",
+          "t": 70.208
+        },
+        {
+          "w": "HTTP",
+          "t": 70.645
+        },
+        {
+          "w": "request",
+          "t": 71.082
+        },
+        {
+          "w": "is",
+          "t": 71.518
+        },
+        {
+          "w": "immediately",
+          "t": 71.955
+        },
+        {
+          "w": "dispatched",
+          "t": 72.391
+        },
+        {
+          "w": "using",
+          "t": 72.828
+        },
+        {
+          "w": "an",
+          "t": 73.265
+        },
+        {
+          "w": "indexed",
+          "t": 73.701
+        },
+        {
+          "w": "cursor",
+          "t": 74.138
+        },
+        {
+          "w": "token.",
+          "t": 74.574
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "speaker": "Dr. Nova",
+      "text": "Upon HTTP 200 OK, records flow directly into the Delta Lake sink. Conversely, if either local tokens are exhausted or the server rejects the request with HTTP 429 or 503, the loop routes to Full Jitter Exponential Backoff, waiting a uniformly sampled random interval before re-entering the Token Bucket gate.",
+      "start": 75.011,
+      "end": 95.995,
+      "words": [
+        {
+          "w": "Upon",
+          "t": 75.011
+        },
+        {
+          "w": "HTTP",
+          "t": 75.431
+        },
+        {
+          "w": "200",
+          "t": 75.85
+        },
+        {
+          "w": "OK,",
+          "t": 76.27
+        },
+        {
+          "w": "records",
+          "t": 76.69
+        },
+        {
+          "w": "flow",
+          "t": 77.109
+        },
+        {
+          "w": "directly",
+          "t": 77.529
+        },
+        {
+          "w": "into",
+          "t": 77.949
+        },
+        {
+          "w": "the",
+          "t": 78.368
+        },
+        {
+          "w": "Delta",
+          "t": 78.788
+        },
+        {
+          "w": "Lake",
+          "t": 79.208
+        },
+        {
+          "w": "sink.",
+          "t": 79.627
+        },
+        {
+          "w": "Conversely,",
+          "t": 80.047
+        },
+        {
+          "w": "if",
+          "t": 80.467
+        },
+        {
+          "w": "either",
+          "t": 80.887
+        },
+        {
+          "w": "local",
+          "t": 81.306
+        },
+        {
+          "w": "tokens",
+          "t": 81.726
+        },
+        {
+          "w": "are",
+          "t": 82.146
+        },
+        {
+          "w": "exhausted",
+          "t": 82.565
+        },
+        {
+          "w": "or",
+          "t": 82.985
+        },
+        {
+          "w": "the",
+          "t": 83.405
+        },
+        {
+          "w": "server",
+          "t": 83.824
+        },
+        {
+          "w": "rejects",
+          "t": 84.244
+        },
+        {
+          "w": "the",
+          "t": 84.664
+        },
+        {
+          "w": "request",
+          "t": 85.083
+        },
+        {
+          "w": "with",
+          "t": 85.503
+        },
+        {
+          "w": "HTTP",
+          "t": 85.923
+        },
+        {
+          "w": "429",
+          "t": 86.342
+        },
+        {
+          "w": "or",
+          "t": 86.762
+        },
+        {
+          "w": "503,",
+          "t": 87.182
+        },
+        {
+          "w": "the",
+          "t": 87.601
+        },
+        {
+          "w": "loop",
+          "t": 88.021
+        },
+        {
+          "w": "routes",
+          "t": 88.441
+        },
+        {
+          "w": "to",
+          "t": 88.86
+        },
+        {
+          "w": "Full",
+          "t": 89.28
+        },
+        {
+          "w": "Jitter",
+          "t": 89.7
+        },
+        {
+          "w": "Exponential",
+          "t": 90.119
+        },
+        {
+          "w": "Backoff,",
+          "t": 90.539
+        },
+        {
+          "w": "waiting",
+          "t": 90.959
+        },
+        {
+          "w": "a",
+          "t": 91.379
+        },
+        {
+          "w": "uniformly",
+          "t": 91.798
+        },
+        {
+          "w": "sampled",
+          "t": 92.218
+        },
+        {
+          "w": "random",
+          "t": 92.638
+        },
+        {
+          "w": "interval",
+          "t": 93.057
+        },
+        {
+          "w": "before",
+          "t": 93.477
+        },
+        {
+          "w": "re-entering",
+          "t": 93.897
+        },
+        {
+          "w": "the",
+          "t": 94.316
+        },
+        {
+          "w": "Token",
+          "t": 94.736
+        },
+        {
+          "w": "Bucket",
+          "t": 95.156
+        },
+        {
+          "w": "gate.",
+          "t": 95.575
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "speaker": "Dr. Nova",
+      "text": "Let us formalize the Token Bucket algorithm used both in API servers like Stripe and GitHub and inside well-behaved API ingestion clients. A token bucket tracks a continuous token balance B of t bounded between zero and capacity B max. Tokens replenish continuously at rate r tokens per second: B of t equals the minimum of B max and the previous token count plus r times delta t.",
+      "start": 95.995,
+      "end": 121.884,
+      "words": [
+        {
+          "w": "Let",
+          "t": 95.995
+        },
+        {
+          "w": "us",
+          "t": 96.376
+        },
+        {
+          "w": "formalize",
+          "t": 96.756
+        },
+        {
+          "w": "the",
+          "t": 97.137
+        },
+        {
+          "w": "Token",
+          "t": 97.518
+        },
+        {
+          "w": "Bucket",
+          "t": 97.899
+        },
+        {
+          "w": "algorithm",
+          "t": 98.279
+        },
+        {
+          "w": "used",
+          "t": 98.66
+        },
+        {
+          "w": "both",
+          "t": 99.041
+        },
+        {
+          "w": "in",
+          "t": 99.421
+        },
+        {
+          "w": "API",
+          "t": 99.802
+        },
+        {
+          "w": "servers",
+          "t": 100.183
+        },
+        {
+          "w": "like",
+          "t": 100.564
+        },
+        {
+          "w": "Stripe",
+          "t": 100.944
+        },
+        {
+          "w": "and",
+          "t": 101.325
+        },
+        {
+          "w": "GitHub",
+          "t": 101.706
+        },
+        {
+          "w": "and",
+          "t": 102.087
+        },
+        {
+          "w": "inside",
+          "t": 102.467
+        },
+        {
+          "w": "well-behaved",
+          "t": 102.848
+        },
+        {
+          "w": "API",
+          "t": 103.229
+        },
+        {
+          "w": "ingestion",
+          "t": 103.609
+        },
+        {
+          "w": "clients.",
+          "t": 103.99
+        },
+        {
+          "w": "A",
+          "t": 104.371
+        },
+        {
+          "w": "token",
+          "t": 104.752
+        },
+        {
+          "w": "bucket",
+          "t": 105.132
+        },
+        {
+          "w": "tracks",
+          "t": 105.513
+        },
+        {
+          "w": "a",
+          "t": 105.894
+        },
+        {
+          "w": "continuous",
+          "t": 106.274
+        },
+        {
+          "w": "token",
+          "t": 106.655
+        },
+        {
+          "w": "balance",
+          "t": 107.036
+        },
+        {
+          "w": "B",
+          "t": 107.417
+        },
+        {
+          "w": "of",
+          "t": 107.797
+        },
+        {
+          "w": "t",
+          "t": 108.178
+        },
+        {
+          "w": "bounded",
+          "t": 108.559
+        },
+        {
+          "w": "between",
+          "t": 108.94
+        },
+        {
+          "w": "zero",
+          "t": 109.32
+        },
+        {
+          "w": "and",
+          "t": 109.701
+        },
+        {
+          "w": "capacity",
+          "t": 110.082
+        },
+        {
+          "w": "B",
+          "t": 110.462
+        },
+        {
+          "w": "max.",
+          "t": 110.843
+        },
+        {
+          "w": "Tokens",
+          "t": 111.224
+        },
+        {
+          "w": "replenish",
+          "t": 111.605
+        },
+        {
+          "w": "continuously",
+          "t": 111.985
+        },
+        {
+          "w": "at",
+          "t": 112.366
+        },
+        {
+          "w": "rate",
+          "t": 112.747
+        },
+        {
+          "w": "r",
+          "t": 113.127
+        },
+        {
+          "w": "tokens",
+          "t": 113.508
+        },
+        {
+          "w": "per",
+          "t": 113.889
+        },
+        {
+          "w": "second:",
+          "t": 114.27
+        },
+        {
+          "w": "B",
+          "t": 114.65
+        },
+        {
+          "w": "of",
+          "t": 115.031
+        },
+        {
+          "w": "t",
+          "t": 115.412
+        },
+        {
+          "w": "equals",
+          "t": 115.792
+        },
+        {
+          "w": "the",
+          "t": 116.173
+        },
+        {
+          "w": "minimum",
+          "t": 116.554
+        },
+        {
+          "w": "of",
+          "t": 116.935
+        },
+        {
+          "w": "B",
+          "t": 117.315
+        },
+        {
+          "w": "max",
+          "t": 117.696
+        },
+        {
+          "w": "and",
+          "t": 118.077
+        },
+        {
+          "w": "the",
+          "t": 118.458
+        },
+        {
+          "w": "previous",
+          "t": 118.838
+        },
+        {
+          "w": "token",
+          "t": 119.219
+        },
+        {
+          "w": "count",
+          "t": 119.6
+        },
+        {
+          "w": "plus",
+          "t": 119.98
+        },
+        {
+          "w": "r",
+          "t": 120.361
+        },
+        {
+          "w": "times",
+          "t": 120.742
+        },
+        {
+          "w": "delta",
+          "t": 121.123
+        },
+        {
+          "w": "t.",
+          "t": 121.503
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "speaker": "Dr. Nova",
+      "text": "When an API call requiring weight c cost arrives—such as a GraphQL query costing 30 points—we evaluate two branches. If B of t is at least c cost, we decrement the balance and dispatch immediately. Otherwise, the client must compute and sleep for the exact wait interval delta t wait equal to c cost minus B of t, divided by refill rate r.",
+      "start": 121.884,
+      "end": 144.98,
+      "words": [
+        {
+          "w": "When",
+          "t": 121.884
+        },
+        {
+          "w": "an",
+          "t": 122.251
+        },
+        {
+          "w": "API",
+          "t": 122.617
+        },
+        {
+          "w": "call",
+          "t": 122.984
+        },
+        {
+          "w": "requiring",
+          "t": 123.35
+        },
+        {
+          "w": "weight",
+          "t": 123.717
+        },
+        {
+          "w": "c",
+          "t": 124.084
+        },
+        {
+          "w": "cost",
+          "t": 124.45
+        },
+        {
+          "w": "arrives—such",
+          "t": 124.817
+        },
+        {
+          "w": "as",
+          "t": 125.183
+        },
+        {
+          "w": "a",
+          "t": 125.55
+        },
+        {
+          "w": "GraphQL",
+          "t": 125.917
+        },
+        {
+          "w": "query",
+          "t": 126.283
+        },
+        {
+          "w": "costing",
+          "t": 126.65
+        },
+        {
+          "w": "30",
+          "t": 127.016
+        },
+        {
+          "w": "points—we",
+          "t": 127.383
+        },
+        {
+          "w": "evaluate",
+          "t": 127.75
+        },
+        {
+          "w": "two",
+          "t": 128.116
+        },
+        {
+          "w": "branches.",
+          "t": 128.483
+        },
+        {
+          "w": "If",
+          "t": 128.849
+        },
+        {
+          "w": "B",
+          "t": 129.216
+        },
+        {
+          "w": "of",
+          "t": 129.583
+        },
+        {
+          "w": "t",
+          "t": 129.949
+        },
+        {
+          "w": "is",
+          "t": 130.316
+        },
+        {
+          "w": "at",
+          "t": 130.682
+        },
+        {
+          "w": "least",
+          "t": 131.049
+        },
+        {
+          "w": "c",
+          "t": 131.416
+        },
+        {
+          "w": "cost,",
+          "t": 131.782
+        },
+        {
+          "w": "we",
+          "t": 132.149
+        },
+        {
+          "w": "decrement",
+          "t": 132.515
+        },
+        {
+          "w": "the",
+          "t": 132.882
+        },
+        {
+          "w": "balance",
+          "t": 133.249
+        },
+        {
+          "w": "and",
+          "t": 133.615
+        },
+        {
+          "w": "dispatch",
+          "t": 133.982
+        },
+        {
+          "w": "immediately.",
+          "t": 134.349
+        },
+        {
+          "w": "Otherwise,",
+          "t": 134.715
+        },
+        {
+          "w": "the",
+          "t": 135.082
+        },
+        {
+          "w": "client",
+          "t": 135.448
+        },
+        {
+          "w": "must",
+          "t": 135.815
+        },
+        {
+          "w": "compute",
+          "t": 136.182
+        },
+        {
+          "w": "and",
+          "t": 136.548
+        },
+        {
+          "w": "sleep",
+          "t": 136.915
+        },
+        {
+          "w": "for",
+          "t": 137.281
+        },
+        {
+          "w": "the",
+          "t": 137.648
+        },
+        {
+          "w": "exact",
+          "t": 138.015
+        },
+        {
+          "w": "wait",
+          "t": 138.381
+        },
+        {
+          "w": "interval",
+          "t": 138.748
+        },
+        {
+          "w": "delta",
+          "t": 139.114
+        },
+        {
+          "w": "t",
+          "t": 139.481
+        },
+        {
+          "w": "wait",
+          "t": 139.848
+        },
+        {
+          "w": "equal",
+          "t": 140.214
+        },
+        {
+          "w": "to",
+          "t": 140.581
+        },
+        {
+          "w": "c",
+          "t": 140.947
+        },
+        {
+          "w": "cost",
+          "t": 141.314
+        },
+        {
+          "w": "minus",
+          "t": 141.681
+        },
+        {
+          "w": "B",
+          "t": 142.047
+        },
+        {
+          "w": "of",
+          "t": 142.414
+        },
+        {
+          "w": "t,",
+          "t": 142.78
+        },
+        {
+          "w": "divided",
+          "t": 143.147
+        },
+        {
+          "w": "by",
+          "t": 143.514
+        },
+        {
+          "w": "refill",
+          "t": 143.88
+        },
+        {
+          "w": "rate",
+          "t": 144.247
+        },
+        {
+          "w": "r.",
+          "t": 144.613
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "speaker": "Dr. Nova",
+      "text": "In contrast to the Token Bucket, which permits sudden traffic bursts up to B max, the Leaky Bucket enforces a strictly constant outflow rate mu leak regardless of upstream arrival spikes. Incoming requests enter a FIFO buffer queue Q of t with maximum depth Q max.",
+      "start": 144.98,
+      "end": 162.966,
+      "words": [
+        {
+          "w": "In",
+          "t": 144.98
+        },
+        {
+          "w": "contrast",
+          "t": 145.371
+        },
+        {
+          "w": "to",
+          "t": 145.762
+        },
+        {
+          "w": "the",
+          "t": 146.153
+        },
+        {
+          "w": "Token",
+          "t": 146.544
+        },
+        {
+          "w": "Bucket,",
+          "t": 146.935
+        },
+        {
+          "w": "which",
+          "t": 147.326
+        },
+        {
+          "w": "permits",
+          "t": 147.717
+        },
+        {
+          "w": "sudden",
+          "t": 148.108
+        },
+        {
+          "w": "traffic",
+          "t": 148.499
+        },
+        {
+          "w": "bursts",
+          "t": 148.89
+        },
+        {
+          "w": "up",
+          "t": 149.281
+        },
+        {
+          "w": "to",
+          "t": 149.672
+        },
+        {
+          "w": "B",
+          "t": 150.063
+        },
+        {
+          "w": "max,",
+          "t": 150.454
+        },
+        {
+          "w": "the",
+          "t": 150.845
+        },
+        {
+          "w": "Leaky",
+          "t": 151.236
+        },
+        {
+          "w": "Bucket",
+          "t": 151.627
+        },
+        {
+          "w": "enforces",
+          "t": 152.018
+        },
+        {
+          "w": "a",
+          "t": 152.409
+        },
+        {
+          "w": "strictly",
+          "t": 152.8
+        },
+        {
+          "w": "constant",
+          "t": 153.191
+        },
+        {
+          "w": "outflow",
+          "t": 153.582
+        },
+        {
+          "w": "rate",
+          "t": 153.973
+        },
+        {
+          "w": "mu",
+          "t": 154.364
+        },
+        {
+          "w": "leak",
+          "t": 154.755
+        },
+        {
+          "w": "regardless",
+          "t": 155.146
+        },
+        {
+          "w": "of",
+          "t": 155.537
+        },
+        {
+          "w": "upstream",
+          "t": 155.928
+        },
+        {
+          "w": "arrival",
+          "t": 156.319
+        },
+        {
+          "w": "spikes.",
+          "t": 156.71
+        },
+        {
+          "w": "Incoming",
+          "t": 157.101
+        },
+        {
+          "w": "requests",
+          "t": 157.492
+        },
+        {
+          "w": "enter",
+          "t": 157.883
+        },
+        {
+          "w": "a",
+          "t": 158.274
+        },
+        {
+          "w": "FIFO",
+          "t": 158.665
+        },
+        {
+          "w": "buffer",
+          "t": 159.056
+        },
+        {
+          "w": "queue",
+          "t": 159.447
+        },
+        {
+          "w": "Q",
+          "t": 159.838
+        },
+        {
+          "w": "of",
+          "t": 160.229
+        },
+        {
+          "w": "t",
+          "t": 160.62
+        },
+        {
+          "w": "with",
+          "t": 161.011
+        },
+        {
+          "w": "maximum",
+          "t": 161.402
+        },
+        {
+          "w": "depth",
+          "t": 161.793
+        },
+        {
+          "w": "Q",
+          "t": 162.184
+        },
+        {
+          "w": "max.",
+          "t": 162.575
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "speaker": "Dr. Nova",
+      "text": "At each time step delta t, the buffer drains linearly at rate mu leak while incorporating arriving packet volume A of t: Q of t equals max of 0 and Q of t minus delta t minus mu leak times delta t, plus A of t. Whenever arriving traffic pushes queue depth Q of t strictly above Q max, incoming requests overflow and are immediately dropped with HTTP 429.",
+      "start": 162.966,
+      "end": 187.084,
+      "words": [
+        {
+          "w": "At",
+          "t": 162.966
+        },
+        {
+          "w": "each",
+          "t": 163.316
+        },
+        {
+          "w": "time",
+          "t": 163.665
+        },
+        {
+          "w": "step",
+          "t": 164.015
+        },
+        {
+          "w": "delta",
+          "t": 164.364
+        },
+        {
+          "w": "t,",
+          "t": 164.714
+        },
+        {
+          "w": "the",
+          "t": 165.063
+        },
+        {
+          "w": "buffer",
+          "t": 165.413
+        },
+        {
+          "w": "drains",
+          "t": 165.762
+        },
+        {
+          "w": "linearly",
+          "t": 166.112
+        },
+        {
+          "w": "at",
+          "t": 166.461
+        },
+        {
+          "w": "rate",
+          "t": 166.811
+        },
+        {
+          "w": "mu",
+          "t": 167.16
+        },
+        {
+          "w": "leak",
+          "t": 167.51
+        },
+        {
+          "w": "while",
+          "t": 167.86
+        },
+        {
+          "w": "incorporating",
+          "t": 168.209
+        },
+        {
+          "w": "arriving",
+          "t": 168.559
+        },
+        {
+          "w": "packet",
+          "t": 168.908
+        },
+        {
+          "w": "volume",
+          "t": 169.258
+        },
+        {
+          "w": "A",
+          "t": 169.607
+        },
+        {
+          "w": "of",
+          "t": 169.957
+        },
+        {
+          "w": "t:",
+          "t": 170.306
+        },
+        {
+          "w": "Q",
+          "t": 170.656
+        },
+        {
+          "w": "of",
+          "t": 171.005
+        },
+        {
+          "w": "t",
+          "t": 171.355
+        },
+        {
+          "w": "equals",
+          "t": 171.704
+        },
+        {
+          "w": "max",
+          "t": 172.054
+        },
+        {
+          "w": "of",
+          "t": 172.403
+        },
+        {
+          "w": "0",
+          "t": 172.753
+        },
+        {
+          "w": "and",
+          "t": 173.103
+        },
+        {
+          "w": "Q",
+          "t": 173.452
+        },
+        {
+          "w": "of",
+          "t": 173.802
+        },
+        {
+          "w": "t",
+          "t": 174.151
+        },
+        {
+          "w": "minus",
+          "t": 174.501
+        },
+        {
+          "w": "delta",
+          "t": 174.85
+        },
+        {
+          "w": "t",
+          "t": 175.2
+        },
+        {
+          "w": "minus",
+          "t": 175.549
+        },
+        {
+          "w": "mu",
+          "t": 175.899
+        },
+        {
+          "w": "leak",
+          "t": 176.248
+        },
+        {
+          "w": "times",
+          "t": 176.598
+        },
+        {
+          "w": "delta",
+          "t": 176.947
+        },
+        {
+          "w": "t,",
+          "t": 177.297
+        },
+        {
+          "w": "plus",
+          "t": 177.647
+        },
+        {
+          "w": "A",
+          "t": 177.996
+        },
+        {
+          "w": "of",
+          "t": 178.346
+        },
+        {
+          "w": "t.",
+          "t": 178.695
+        },
+        {
+          "w": "Whenever",
+          "t": 179.045
+        },
+        {
+          "w": "arriving",
+          "t": 179.394
+        },
+        {
+          "w": "traffic",
+          "t": 179.744
+        },
+        {
+          "w": "pushes",
+          "t": 180.093
+        },
+        {
+          "w": "queue",
+          "t": 180.443
+        },
+        {
+          "w": "depth",
+          "t": 180.792
+        },
+        {
+          "w": "Q",
+          "t": 181.142
+        },
+        {
+          "w": "of",
+          "t": 181.491
+        },
+        {
+          "w": "t",
+          "t": 181.841
+        },
+        {
+          "w": "strictly",
+          "t": 182.19
+        },
+        {
+          "w": "above",
+          "t": 182.54
+        },
+        {
+          "w": "Q",
+          "t": 182.89
+        },
+        {
+          "w": "max,",
+          "t": 183.239
+        },
+        {
+          "w": "incoming",
+          "t": 183.589
+        },
+        {
+          "w": "requests",
+          "t": 183.938
+        },
+        {
+          "w": "overflow",
+          "t": 184.288
+        },
+        {
+          "w": "and",
+          "t": 184.637
+        },
+        {
+          "w": "are",
+          "t": 184.987
+        },
+        {
+          "w": "immediately",
+          "t": 185.336
+        },
+        {
+          "w": "dropped",
+          "t": 185.686
+        },
+        {
+          "w": "with",
+          "t": 186.035
+        },
+        {
+          "w": "HTTP",
+          "t": 186.385
+        },
+        {
+          "w": "429.",
+          "t": 186.734
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "speaker": "Dr. Nova",
+      "text": "When fifty distributed API workers experience transient HTTP 429 throttling at the exact same millisecond, deterministic backoff fails catastrophically. Under pure exponential backoff T exp of k equals min of T max and T base times 2 to the k, every worker sleeps identically for 1 second, then 2 seconds, then 4 seconds—creating synchronized Thundering Herd retry waves that permanently pin the server.",
+      "start": 187.084,
+      "end": 214.54,
+      "words": [
+        {
+          "w": "When",
+          "t": 187.084
+        },
+        {
+          "w": "fifty",
+          "t": 187.52
+        },
+        {
+          "w": "distributed",
+          "t": 187.956
+        },
+        {
+          "w": "API",
+          "t": 188.391
+        },
+        {
+          "w": "workers",
+          "t": 188.827
+        },
+        {
+          "w": "experience",
+          "t": 189.263
+        },
+        {
+          "w": "transient",
+          "t": 189.699
+        },
+        {
+          "w": "HTTP",
+          "t": 190.135
+        },
+        {
+          "w": "429",
+          "t": 190.57
+        },
+        {
+          "w": "throttling",
+          "t": 191.006
+        },
+        {
+          "w": "at",
+          "t": 191.442
+        },
+        {
+          "w": "the",
+          "t": 191.878
+        },
+        {
+          "w": "exact",
+          "t": 192.314
+        },
+        {
+          "w": "same",
+          "t": 192.75
+        },
+        {
+          "w": "millisecond,",
+          "t": 193.185
+        },
+        {
+          "w": "deterministic",
+          "t": 193.621
+        },
+        {
+          "w": "backoff",
+          "t": 194.057
+        },
+        {
+          "w": "fails",
+          "t": 194.493
+        },
+        {
+          "w": "catastrophically.",
+          "t": 194.929
+        },
+        {
+          "w": "Under",
+          "t": 195.364
+        },
+        {
+          "w": "pure",
+          "t": 195.8
+        },
+        {
+          "w": "exponential",
+          "t": 196.236
+        },
+        {
+          "w": "backoff",
+          "t": 196.672
+        },
+        {
+          "w": "T",
+          "t": 197.108
+        },
+        {
+          "w": "exp",
+          "t": 197.543
+        },
+        {
+          "w": "of",
+          "t": 197.979
+        },
+        {
+          "w": "k",
+          "t": 198.415
+        },
+        {
+          "w": "equals",
+          "t": 198.851
+        },
+        {
+          "w": "min",
+          "t": 199.287
+        },
+        {
+          "w": "of",
+          "t": 199.722
+        },
+        {
+          "w": "T",
+          "t": 200.158
+        },
+        {
+          "w": "max",
+          "t": 200.594
+        },
+        {
+          "w": "and",
+          "t": 201.03
+        },
+        {
+          "w": "T",
+          "t": 201.466
+        },
+        {
+          "w": "base",
+          "t": 201.902
+        },
+        {
+          "w": "times",
+          "t": 202.337
+        },
+        {
+          "w": "2",
+          "t": 202.773
+        },
+        {
+          "w": "to",
+          "t": 203.209
+        },
+        {
+          "w": "the",
+          "t": 203.645
+        },
+        {
+          "w": "k,",
+          "t": 204.081
+        },
+        {
+          "w": "every",
+          "t": 204.516
+        },
+        {
+          "w": "worker",
+          "t": 204.952
+        },
+        {
+          "w": "sleeps",
+          "t": 205.388
+        },
+        {
+          "w": "identically",
+          "t": 205.824
+        },
+        {
+          "w": "for",
+          "t": 206.26
+        },
+        {
+          "w": "1",
+          "t": 206.695
+        },
+        {
+          "w": "second,",
+          "t": 207.131
+        },
+        {
+          "w": "then",
+          "t": 207.567
+        },
+        {
+          "w": "2",
+          "t": 208.003
+        },
+        {
+          "w": "seconds,",
+          "t": 208.439
+        },
+        {
+          "w": "then",
+          "t": 208.874
+        },
+        {
+          "w": "4",
+          "t": 209.31
+        },
+        {
+          "w": "seconds—creating",
+          "t": 209.746
+        },
+        {
+          "w": "synchronized",
+          "t": 210.182
+        },
+        {
+          "w": "Thundering",
+          "t": 210.618
+        },
+        {
+          "w": "Herd",
+          "t": 211.054
+        },
+        {
+          "w": "retry",
+          "t": 211.489
+        },
+        {
+          "w": "waves",
+          "t": 211.925
+        },
+        {
+          "w": "that",
+          "t": 212.361
+        },
+        {
+          "w": "permanently",
+          "t": 212.797
+        },
+        {
+          "w": "pin",
+          "t": 213.233
+        },
+        {
+          "w": "the",
+          "t": 213.668
+        },
+        {
+          "w": "server.",
+          "t": 214.104
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "speaker": "Dr. Nova",
+      "text": "To shatter this lockstep clustering, engineers inject randomness. Full Jitter samples uniformly from zero up to the exponential cap. Even stronger, Decorrelated Jitter computes T decorr of k as min of T max and a uniform draw from T base up to 3 times the previous delay, smoothing cluster contention.",
+      "start": 214.54,
+      "end": 235.047,
+      "words": [
+        {
+          "w": "To",
+          "t": 214.54
+        },
+        {
+          "w": "shatter",
+          "t": 214.95
+        },
+        {
+          "w": "this",
+          "t": 215.36
+        },
+        {
+          "w": "lockstep",
+          "t": 215.77
+        },
+        {
+          "w": "clustering,",
+          "t": 216.181
+        },
+        {
+          "w": "engineers",
+          "t": 216.591
+        },
+        {
+          "w": "inject",
+          "t": 217.001
+        },
+        {
+          "w": "randomness.",
+          "t": 217.411
+        },
+        {
+          "w": "Full",
+          "t": 217.821
+        },
+        {
+          "w": "Jitter",
+          "t": 218.231
+        },
+        {
+          "w": "samples",
+          "t": 218.641
+        },
+        {
+          "w": "uniformly",
+          "t": 219.052
+        },
+        {
+          "w": "from",
+          "t": 219.462
+        },
+        {
+          "w": "zero",
+          "t": 219.872
+        },
+        {
+          "w": "up",
+          "t": 220.282
+        },
+        {
+          "w": "to",
+          "t": 220.692
+        },
+        {
+          "w": "the",
+          "t": 221.102
+        },
+        {
+          "w": "exponential",
+          "t": 221.512
+        },
+        {
+          "w": "cap.",
+          "t": 221.923
+        },
+        {
+          "w": "Even",
+          "t": 222.333
+        },
+        {
+          "w": "stronger,",
+          "t": 222.743
+        },
+        {
+          "w": "Decorrelated",
+          "t": 223.153
+        },
+        {
+          "w": "Jitter",
+          "t": 223.563
+        },
+        {
+          "w": "computes",
+          "t": 223.973
+        },
+        {
+          "w": "T",
+          "t": 224.383
+        },
+        {
+          "w": "decorr",
+          "t": 224.793
+        },
+        {
+          "w": "of",
+          "t": 225.204
+        },
+        {
+          "w": "k",
+          "t": 225.614
+        },
+        {
+          "w": "as",
+          "t": 226.024
+        },
+        {
+          "w": "min",
+          "t": 226.434
+        },
+        {
+          "w": "of",
+          "t": 226.844
+        },
+        {
+          "w": "T",
+          "t": 227.254
+        },
+        {
+          "w": "max",
+          "t": 227.664
+        },
+        {
+          "w": "and",
+          "t": 228.075
+        },
+        {
+          "w": "a",
+          "t": 228.485
+        },
+        {
+          "w": "uniform",
+          "t": 228.895
+        },
+        {
+          "w": "draw",
+          "t": 229.305
+        },
+        {
+          "w": "from",
+          "t": 229.715
+        },
+        {
+          "w": "T",
+          "t": 230.125
+        },
+        {
+          "w": "base",
+          "t": 230.535
+        },
+        {
+          "w": "up",
+          "t": 230.946
+        },
+        {
+          "w": "to",
+          "t": 231.356
+        },
+        {
+          "w": "3",
+          "t": 231.766
+        },
+        {
+          "w": "times",
+          "t": 232.176
+        },
+        {
+          "w": "the",
+          "t": 232.586
+        },
+        {
+          "w": "previous",
+          "t": 232.996
+        },
+        {
+          "w": "delay,",
+          "t": 233.406
+        },
+        {
+          "w": "smoothing",
+          "t": 233.817
+        },
+        {
+          "w": "cluster",
+          "t": 234.227
+        },
+        {
+          "w": "contention.",
+          "t": 234.637
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: The Token Bucket Capacity and Burst Simulator. Our stage has docked directly above the simulation workbench. Try setting Bucket Capacity B max to 100 tokens, Refill Rate r to 10 tokens per second, and Elapsed Idle Interval delta t to 4 seconds. Notice the bucket refills to 40 tokens. If an incoming batch requires 30 tokens, the dispatch status shows Immediate Execution with 10 tokens remaining. Now slide batch cost up to 60 tokens and watch exact wait time adjust automatically.",
+      "start": 235.047,
+      "end": 269.93,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 235.047
+        },
+        {
+          "w": "to",
+          "t": 235.453
+        },
+        {
+          "w": "Interactive",
+          "t": 235.858
+        },
+        {
+          "w": "Lab",
+          "t": 236.264
+        },
+        {
+          "w": "1:",
+          "t": 236.669
+        },
+        {
+          "w": "The",
+          "t": 237.075
+        },
+        {
+          "w": "Token",
+          "t": 237.481
+        },
+        {
+          "w": "Bucket",
+          "t": 237.886
+        },
+        {
+          "w": "Capacity",
+          "t": 238.292
+        },
+        {
+          "w": "and",
+          "t": 238.698
+        },
+        {
+          "w": "Burst",
+          "t": 239.103
+        },
+        {
+          "w": "Simulator.",
+          "t": 239.509
+        },
+        {
+          "w": "Our",
+          "t": 239.914
+        },
+        {
+          "w": "stage",
+          "t": 240.32
+        },
+        {
+          "w": "has",
+          "t": 240.726
+        },
+        {
+          "w": "docked",
+          "t": 241.131
+        },
+        {
+          "w": "directly",
+          "t": 241.537
+        },
+        {
+          "w": "above",
+          "t": 241.942
+        },
+        {
+          "w": "the",
+          "t": 242.348
+        },
+        {
+          "w": "simulation",
+          "t": 242.754
+        },
+        {
+          "w": "workbench.",
+          "t": 243.159
+        },
+        {
+          "w": "Try",
+          "t": 243.565
+        },
+        {
+          "w": "setting",
+          "t": 243.971
+        },
+        {
+          "w": "Bucket",
+          "t": 244.376
+        },
+        {
+          "w": "Capacity",
+          "t": 244.782
+        },
+        {
+          "w": "B",
+          "t": 245.187
+        },
+        {
+          "w": "max",
+          "t": 245.593
+        },
+        {
+          "w": "to",
+          "t": 245.999
+        },
+        {
+          "w": "100",
+          "t": 246.404
+        },
+        {
+          "w": "tokens,",
+          "t": 246.81
+        },
+        {
+          "w": "Refill",
+          "t": 247.215
+        },
+        {
+          "w": "Rate",
+          "t": 247.621
+        },
+        {
+          "w": "r",
+          "t": 248.027
+        },
+        {
+          "w": "to",
+          "t": 248.432
+        },
+        {
+          "w": "10",
+          "t": 248.838
+        },
+        {
+          "w": "tokens",
+          "t": 249.244
+        },
+        {
+          "w": "per",
+          "t": 249.649
+        },
+        {
+          "w": "second,",
+          "t": 250.055
+        },
+        {
+          "w": "and",
+          "t": 250.46
+        },
+        {
+          "w": "Elapsed",
+          "t": 250.866
+        },
+        {
+          "w": "Idle",
+          "t": 251.272
+        },
+        {
+          "w": "Interval",
+          "t": 251.677
+        },
+        {
+          "w": "delta",
+          "t": 252.083
+        },
+        {
+          "w": "t",
+          "t": 252.488
+        },
+        {
+          "w": "to",
+          "t": 252.894
+        },
+        {
+          "w": "4",
+          "t": 253.3
+        },
+        {
+          "w": "seconds.",
+          "t": 253.705
+        },
+        {
+          "w": "Notice",
+          "t": 254.111
+        },
+        {
+          "w": "the",
+          "t": 254.517
+        },
+        {
+          "w": "bucket",
+          "t": 254.922
+        },
+        {
+          "w": "refills",
+          "t": 255.328
+        },
+        {
+          "w": "to",
+          "t": 255.733
+        },
+        {
+          "w": "40",
+          "t": 256.139
+        },
+        {
+          "w": "tokens.",
+          "t": 256.545
+        },
+        {
+          "w": "If",
+          "t": 256.95
+        },
+        {
+          "w": "an",
+          "t": 257.356
+        },
+        {
+          "w": "incoming",
+          "t": 257.762
+        },
+        {
+          "w": "batch",
+          "t": 258.167
+        },
+        {
+          "w": "requires",
+          "t": 258.573
+        },
+        {
+          "w": "30",
+          "t": 258.978
+        },
+        {
+          "w": "tokens,",
+          "t": 259.384
+        },
+        {
+          "w": "the",
+          "t": 259.79
+        },
+        {
+          "w": "dispatch",
+          "t": 260.195
+        },
+        {
+          "w": "status",
+          "t": 260.601
+        },
+        {
+          "w": "shows",
+          "t": 261.006
+        },
+        {
+          "w": "Immediate",
+          "t": 261.412
+        },
+        {
+          "w": "Execution",
+          "t": 261.818
+        },
+        {
+          "w": "with",
+          "t": 262.223
+        },
+        {
+          "w": "10",
+          "t": 262.629
+        },
+        {
+          "w": "tokens",
+          "t": 263.035
+        },
+        {
+          "w": "remaining.",
+          "t": 263.44
+        },
+        {
+          "w": "Now",
+          "t": 263.846
+        },
+        {
+          "w": "slide",
+          "t": 264.251
+        },
+        {
+          "w": "batch",
+          "t": 264.657
+        },
+        {
+          "w": "cost",
+          "t": 265.063
+        },
+        {
+          "w": "up",
+          "t": 265.468
+        },
+        {
+          "w": "to",
+          "t": 265.874
+        },
+        {
+          "w": "60",
+          "t": 266.279
+        },
+        {
+          "w": "tokens",
+          "t": 266.685
+        },
+        {
+          "w": "and",
+          "t": 267.091
+        },
+        {
+          "w": "watch",
+          "t": 267.496
+        },
+        {
+          "w": "exact",
+          "t": 267.902
+        },
+        {
+          "w": "wait",
+          "t": 268.308
+        },
+        {
+          "w": "time",
+          "t": 268.713
+        },
+        {
+          "w": "adjust",
+          "t": 269.119
+        },
+        {
+          "w": "automatically.",
+          "t": 269.524
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1. Suppose an API ingestion client runs a Token Bucket with capacity B max equals 100 tokens and refill rate r equals 10 tokens per second. A sudden burst consumes all 100 tokens at t equals zero seconds, emptying the bucket. At t equals 4 seconds, a batch request requiring 30 tokens arrives. Will this batch request succeed immediately, and what is the resulting token state? Select Option A, B, or C above me.",
+      "start": 269.93,
+      "end": 299.839,
+      "words": [
+        {
+          "w": "Time",
+          "t": 269.93
+        },
+        {
+          "w": "for",
+          "t": 270.313
+        },
+        {
+          "w": "Active",
+          "t": 270.697
+        },
+        {
+          "w": "Checkpoint",
+          "t": 271.08
+        },
+        {
+          "w": "1.",
+          "t": 271.464
+        },
+        {
+          "w": "Suppose",
+          "t": 271.847
+        },
+        {
+          "w": "an",
+          "t": 272.231
+        },
+        {
+          "w": "API",
+          "t": 272.614
+        },
+        {
+          "w": "ingestion",
+          "t": 272.998
+        },
+        {
+          "w": "client",
+          "t": 273.381
+        },
+        {
+          "w": "runs",
+          "t": 273.764
+        },
+        {
+          "w": "a",
+          "t": 274.148
+        },
+        {
+          "w": "Token",
+          "t": 274.531
+        },
+        {
+          "w": "Bucket",
+          "t": 274.915
+        },
+        {
+          "w": "with",
+          "t": 275.298
+        },
+        {
+          "w": "capacity",
+          "t": 275.682
+        },
+        {
+          "w": "B",
+          "t": 276.065
+        },
+        {
+          "w": "max",
+          "t": 276.449
+        },
+        {
+          "w": "equals",
+          "t": 276.832
+        },
+        {
+          "w": "100",
+          "t": 277.216
+        },
+        {
+          "w": "tokens",
+          "t": 277.599
+        },
+        {
+          "w": "and",
+          "t": 277.982
+        },
+        {
+          "w": "refill",
+          "t": 278.366
+        },
+        {
+          "w": "rate",
+          "t": 278.749
+        },
+        {
+          "w": "r",
+          "t": 279.133
+        },
+        {
+          "w": "equals",
+          "t": 279.516
+        },
+        {
+          "w": "10",
+          "t": 279.9
+        },
+        {
+          "w": "tokens",
+          "t": 280.283
+        },
+        {
+          "w": "per",
+          "t": 280.667
+        },
+        {
+          "w": "second.",
+          "t": 281.05
+        },
+        {
+          "w": "A",
+          "t": 281.433
+        },
+        {
+          "w": "sudden",
+          "t": 281.817
+        },
+        {
+          "w": "burst",
+          "t": 282.2
+        },
+        {
+          "w": "consumes",
+          "t": 282.584
+        },
+        {
+          "w": "all",
+          "t": 282.967
+        },
+        {
+          "w": "100",
+          "t": 283.351
+        },
+        {
+          "w": "tokens",
+          "t": 283.734
+        },
+        {
+          "w": "at",
+          "t": 284.118
+        },
+        {
+          "w": "t",
+          "t": 284.501
+        },
+        {
+          "w": "equals",
+          "t": 284.885
+        },
+        {
+          "w": "zero",
+          "t": 285.268
+        },
+        {
+          "w": "seconds,",
+          "t": 285.651
+        },
+        {
+          "w": "emptying",
+          "t": 286.035
+        },
+        {
+          "w": "the",
+          "t": 286.418
+        },
+        {
+          "w": "bucket.",
+          "t": 286.802
+        },
+        {
+          "w": "At",
+          "t": 287.185
+        },
+        {
+          "w": "t",
+          "t": 287.569
+        },
+        {
+          "w": "equals",
+          "t": 287.952
+        },
+        {
+          "w": "4",
+          "t": 288.336
+        },
+        {
+          "w": "seconds,",
+          "t": 288.719
+        },
+        {
+          "w": "a",
+          "t": 289.102
+        },
+        {
+          "w": "batch",
+          "t": 289.486
+        },
+        {
+          "w": "request",
+          "t": 289.869
+        },
+        {
+          "w": "requiring",
+          "t": 290.253
+        },
+        {
+          "w": "30",
+          "t": 290.636
+        },
+        {
+          "w": "tokens",
+          "t": 291.02
+        },
+        {
+          "w": "arrives.",
+          "t": 291.403
+        },
+        {
+          "w": "Will",
+          "t": 291.787
+        },
+        {
+          "w": "this",
+          "t": 292.17
+        },
+        {
+          "w": "batch",
+          "t": 292.553
+        },
+        {
+          "w": "request",
+          "t": 292.937
+        },
+        {
+          "w": "succeed",
+          "t": 293.32
+        },
+        {
+          "w": "immediately,",
+          "t": 293.704
+        },
+        {
+          "w": "and",
+          "t": 294.087
+        },
+        {
+          "w": "what",
+          "t": 294.471
+        },
+        {
+          "w": "is",
+          "t": 294.854
+        },
+        {
+          "w": "the",
+          "t": 295.238
+        },
+        {
+          "w": "resulting",
+          "t": 295.621
+        },
+        {
+          "w": "token",
+          "t": 296.005
+        },
+        {
+          "w": "state?",
+          "t": 296.388
+        },
+        {
+          "w": "Select",
+          "t": 296.771
+        },
+        {
+          "w": "Option",
+          "t": 297.155
+        },
+        {
+          "w": "A,",
+          "t": 297.538
+        },
+        {
+          "w": "B,",
+          "t": 297.922
+        },
+        {
+          "w": "or",
+          "t": 298.305
+        },
+        {
+          "w": "C",
+          "t": 298.689
+        },
+        {
+          "w": "above",
+          "t": 299.072
+        },
+        {
+          "w": "me.",
+          "t": 299.456
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "speaker": "Dr. Nova",
+      "text": "Having conquered API rate limits, we confront the second major bottleneck of large-scale extraction: database pagination. Most novice endpoints implement Offset Pagination: SELECT star FROM events ORDER BY id LIMIT 100 OFFSET 1000000. At scale, OFFSET is an architectural disaster for two distinct mathematical reasons.",
+      "start": 299.839,
+      "end": 321.572,
+      "words": [
+        {
+          "w": "Having",
+          "t": 299.839
+        },
+        {
+          "w": "conquered",
+          "t": 300.322
+        },
+        {
+          "w": "API",
+          "t": 300.805
+        },
+        {
+          "w": "rate",
+          "t": 301.288
+        },
+        {
+          "w": "limits,",
+          "t": 301.771
+        },
+        {
+          "w": "we",
+          "t": 302.254
+        },
+        {
+          "w": "confront",
+          "t": 302.737
+        },
+        {
+          "w": "the",
+          "t": 303.22
+        },
+        {
+          "w": "second",
+          "t": 303.703
+        },
+        {
+          "w": "major",
+          "t": 304.186
+        },
+        {
+          "w": "bottleneck",
+          "t": 304.669
+        },
+        {
+          "w": "of",
+          "t": 305.152
+        },
+        {
+          "w": "large-scale",
+          "t": 305.634
+        },
+        {
+          "w": "extraction:",
+          "t": 306.117
+        },
+        {
+          "w": "database",
+          "t": 306.6
+        },
+        {
+          "w": "pagination.",
+          "t": 307.083
+        },
+        {
+          "w": "Most",
+          "t": 307.566
+        },
+        {
+          "w": "novice",
+          "t": 308.049
+        },
+        {
+          "w": "endpoints",
+          "t": 308.532
+        },
+        {
+          "w": "implement",
+          "t": 309.015
+        },
+        {
+          "w": "Offset",
+          "t": 309.498
+        },
+        {
+          "w": "Pagination:",
+          "t": 309.981
+        },
+        {
+          "w": "SELECT",
+          "t": 310.464
+        },
+        {
+          "w": "star",
+          "t": 310.947
+        },
+        {
+          "w": "FROM",
+          "t": 311.43
+        },
+        {
+          "w": "events",
+          "t": 311.913
+        },
+        {
+          "w": "ORDER",
+          "t": 312.396
+        },
+        {
+          "w": "BY",
+          "t": 312.879
+        },
+        {
+          "w": "id",
+          "t": 313.362
+        },
+        {
+          "w": "LIMIT",
+          "t": 313.845
+        },
+        {
+          "w": "100",
+          "t": 314.328
+        },
+        {
+          "w": "OFFSET",
+          "t": 314.811
+        },
+        {
+          "w": "1000000.",
+          "t": 315.294
+        },
+        {
+          "w": "At",
+          "t": 315.777
+        },
+        {
+          "w": "scale,",
+          "t": 316.259
+        },
+        {
+          "w": "OFFSET",
+          "t": 316.742
+        },
+        {
+          "w": "is",
+          "t": 317.225
+        },
+        {
+          "w": "an",
+          "t": 317.708
+        },
+        {
+          "w": "architectural",
+          "t": 318.191
+        },
+        {
+          "w": "disaster",
+          "t": 318.674
+        },
+        {
+          "w": "for",
+          "t": 319.157
+        },
+        {
+          "w": "two",
+          "t": 319.64
+        },
+        {
+          "w": "distinct",
+          "t": 320.123
+        },
+        {
+          "w": "mathematical",
+          "t": 320.606
+        },
+        {
+          "w": "reasons.",
+          "t": 321.089
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "speaker": "Dr. Nova",
+      "text": "First, relational query engines cannot jump directly to offset 1 million; they must sequentially scan, count, and discard k times S rows on disk—inducing linear O of k times S degradation where page 1000 slows from milliseconds to several seconds. Second, under concurrent inserts or deletes, offset indices shift in mid-crawl, injecting duplicate rows and missing records through phantom read drift.",
+      "start": 321.572,
+      "end": 348.824,
+      "words": [
+        {
+          "w": "First,",
+          "t": 321.572
+        },
+        {
+          "w": "relational",
+          "t": 322.019
+        },
+        {
+          "w": "query",
+          "t": 322.466
+        },
+        {
+          "w": "engines",
+          "t": 322.912
+        },
+        {
+          "w": "cannot",
+          "t": 323.359
+        },
+        {
+          "w": "jump",
+          "t": 323.806
+        },
+        {
+          "w": "directly",
+          "t": 324.253
+        },
+        {
+          "w": "to",
+          "t": 324.699
+        },
+        {
+          "w": "offset",
+          "t": 325.146
+        },
+        {
+          "w": "1",
+          "t": 325.593
+        },
+        {
+          "w": "million;",
+          "t": 326.04
+        },
+        {
+          "w": "they",
+          "t": 326.486
+        },
+        {
+          "w": "must",
+          "t": 326.933
+        },
+        {
+          "w": "sequentially",
+          "t": 327.38
+        },
+        {
+          "w": "scan,",
+          "t": 327.827
+        },
+        {
+          "w": "count,",
+          "t": 328.273
+        },
+        {
+          "w": "and",
+          "t": 328.72
+        },
+        {
+          "w": "discard",
+          "t": 329.167
+        },
+        {
+          "w": "k",
+          "t": 329.614
+        },
+        {
+          "w": "times",
+          "t": 330.06
+        },
+        {
+          "w": "S",
+          "t": 330.507
+        },
+        {
+          "w": "rows",
+          "t": 330.954
+        },
+        {
+          "w": "on",
+          "t": 331.401
+        },
+        {
+          "w": "disk—inducing",
+          "t": 331.847
+        },
+        {
+          "w": "linear",
+          "t": 332.294
+        },
+        {
+          "w": "O",
+          "t": 332.741
+        },
+        {
+          "w": "of",
+          "t": 333.188
+        },
+        {
+          "w": "k",
+          "t": 333.634
+        },
+        {
+          "w": "times",
+          "t": 334.081
+        },
+        {
+          "w": "S",
+          "t": 334.528
+        },
+        {
+          "w": "degradation",
+          "t": 334.975
+        },
+        {
+          "w": "where",
+          "t": 335.421
+        },
+        {
+          "w": "page",
+          "t": 335.868
+        },
+        {
+          "w": "1000",
+          "t": 336.315
+        },
+        {
+          "w": "slows",
+          "t": 336.762
+        },
+        {
+          "w": "from",
+          "t": 337.208
+        },
+        {
+          "w": "milliseconds",
+          "t": 337.655
+        },
+        {
+          "w": "to",
+          "t": 338.102
+        },
+        {
+          "w": "several",
+          "t": 338.549
+        },
+        {
+          "w": "seconds.",
+          "t": 338.995
+        },
+        {
+          "w": "Second,",
+          "t": 339.442
+        },
+        {
+          "w": "under",
+          "t": 339.889
+        },
+        {
+          "w": "concurrent",
+          "t": 340.336
+        },
+        {
+          "w": "inserts",
+          "t": 340.782
+        },
+        {
+          "w": "or",
+          "t": 341.229
+        },
+        {
+          "w": "deletes,",
+          "t": 341.676
+        },
+        {
+          "w": "offset",
+          "t": 342.123
+        },
+        {
+          "w": "indices",
+          "t": 342.569
+        },
+        {
+          "w": "shift",
+          "t": 343.016
+        },
+        {
+          "w": "in",
+          "t": 343.463
+        },
+        {
+          "w": "mid-crawl,",
+          "t": 343.91
+        },
+        {
+          "w": "injecting",
+          "t": 344.356
+        },
+        {
+          "w": "duplicate",
+          "t": 344.803
+        },
+        {
+          "w": "rows",
+          "t": 345.25
+        },
+        {
+          "w": "and",
+          "t": 345.697
+        },
+        {
+          "w": "missing",
+          "t": 346.143
+        },
+        {
+          "w": "records",
+          "t": 346.59
+        },
+        {
+          "w": "through",
+          "t": 347.037
+        },
+        {
+          "w": "phantom",
+          "t": 347.484
+        },
+        {
+          "w": "read",
+          "t": 347.93
+        },
+        {
+          "w": "drift.",
+          "t": 348.377
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "speaker": "Dr. Nova",
+      "text": "The production gold standard is Keyset or Cursor-Based Pagination. Instead of tracking numeric row offsets, the server passes an opaque cursor token encoding the last seen primary key or timestamp. The client supplies that cursor in a SQL predicate: SELECT star FROM events WHERE id is greater than cursor token ORDER BY id LIMIT 100.",
+      "start": 348.824,
+      "end": 371.579,
+      "words": [
+        {
+          "w": "The",
+          "t": 348.824
+        },
+        {
+          "w": "production",
+          "t": 349.238
+        },
+        {
+          "w": "gold",
+          "t": 349.651
+        },
+        {
+          "w": "standard",
+          "t": 350.065
+        },
+        {
+          "w": "is",
+          "t": 350.479
+        },
+        {
+          "w": "Keyset",
+          "t": 350.893
+        },
+        {
+          "w": "or",
+          "t": 351.306
+        },
+        {
+          "w": "Cursor-Based",
+          "t": 351.72
+        },
+        {
+          "w": "Pagination.",
+          "t": 352.134
+        },
+        {
+          "w": "Instead",
+          "t": 352.548
+        },
+        {
+          "w": "of",
+          "t": 352.961
+        },
+        {
+          "w": "tracking",
+          "t": 353.375
+        },
+        {
+          "w": "numeric",
+          "t": 353.789
+        },
+        {
+          "w": "row",
+          "t": 354.202
+        },
+        {
+          "w": "offsets,",
+          "t": 354.616
+        },
+        {
+          "w": "the",
+          "t": 355.03
+        },
+        {
+          "w": "server",
+          "t": 355.444
+        },
+        {
+          "w": "passes",
+          "t": 355.857
+        },
+        {
+          "w": "an",
+          "t": 356.271
+        },
+        {
+          "w": "opaque",
+          "t": 356.685
+        },
+        {
+          "w": "cursor",
+          "t": 357.099
+        },
+        {
+          "w": "token",
+          "t": 357.512
+        },
+        {
+          "w": "encoding",
+          "t": 357.926
+        },
+        {
+          "w": "the",
+          "t": 358.34
+        },
+        {
+          "w": "last",
+          "t": 358.753
+        },
+        {
+          "w": "seen",
+          "t": 359.167
+        },
+        {
+          "w": "primary",
+          "t": 359.581
+        },
+        {
+          "w": "key",
+          "t": 359.995
+        },
+        {
+          "w": "or",
+          "t": 360.408
+        },
+        {
+          "w": "timestamp.",
+          "t": 360.822
+        },
+        {
+          "w": "The",
+          "t": 361.236
+        },
+        {
+          "w": "client",
+          "t": 361.65
+        },
+        {
+          "w": "supplies",
+          "t": 362.063
+        },
+        {
+          "w": "that",
+          "t": 362.477
+        },
+        {
+          "w": "cursor",
+          "t": 362.891
+        },
+        {
+          "w": "in",
+          "t": 363.304
+        },
+        {
+          "w": "a",
+          "t": 363.718
+        },
+        {
+          "w": "SQL",
+          "t": 364.132
+        },
+        {
+          "w": "predicate:",
+          "t": 364.546
+        },
+        {
+          "w": "SELECT",
+          "t": 364.959
+        },
+        {
+          "w": "star",
+          "t": 365.373
+        },
+        {
+          "w": "FROM",
+          "t": 365.787
+        },
+        {
+          "w": "events",
+          "t": 366.201
+        },
+        {
+          "w": "WHERE",
+          "t": 366.614
+        },
+        {
+          "w": "id",
+          "t": 367.028
+        },
+        {
+          "w": "is",
+          "t": 367.442
+        },
+        {
+          "w": "greater",
+          "t": 367.855
+        },
+        {
+          "w": "than",
+          "t": 368.269
+        },
+        {
+          "w": "cursor",
+          "t": 368.683
+        },
+        {
+          "w": "token",
+          "t": 369.097
+        },
+        {
+          "w": "ORDER",
+          "t": 369.51
+        },
+        {
+          "w": "BY",
+          "t": 369.924
+        },
+        {
+          "w": "id",
+          "t": 370.338
+        },
+        {
+          "w": "LIMIT",
+          "t": 370.752
+        },
+        {
+          "w": "100.",
+          "t": 371.165
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "speaker": "Dr. Nova",
+      "text": "Because the column id resides inside a B-Tree index, the relational engine jumps directly to the boundary key via logarithmic binary tree seek in O of log N operations, then sequentially reads only the next S leaf records. Query latency remains strictly constant from page 1 through page 10 million, completely immune to upstream deletions or insertions.",
+      "start": 371.579,
+      "end": 395.697,
+      "words": [
+        {
+          "w": "Because",
+          "t": 371.579
+        },
+        {
+          "w": "the",
+          "t": 372.002
+        },
+        {
+          "w": "column",
+          "t": 372.425
+        },
+        {
+          "w": "id",
+          "t": 372.848
+        },
+        {
+          "w": "resides",
+          "t": 373.271
+        },
+        {
+          "w": "inside",
+          "t": 373.695
+        },
+        {
+          "w": "a",
+          "t": 374.118
+        },
+        {
+          "w": "B-Tree",
+          "t": 374.541
+        },
+        {
+          "w": "index,",
+          "t": 374.964
+        },
+        {
+          "w": "the",
+          "t": 375.387
+        },
+        {
+          "w": "relational",
+          "t": 375.81
+        },
+        {
+          "w": "engine",
+          "t": 376.233
+        },
+        {
+          "w": "jumps",
+          "t": 376.656
+        },
+        {
+          "w": "directly",
+          "t": 377.08
+        },
+        {
+          "w": "to",
+          "t": 377.503
+        },
+        {
+          "w": "the",
+          "t": 377.926
+        },
+        {
+          "w": "boundary",
+          "t": 378.349
+        },
+        {
+          "w": "key",
+          "t": 378.772
+        },
+        {
+          "w": "via",
+          "t": 379.195
+        },
+        {
+          "w": "logarithmic",
+          "t": 379.618
+        },
+        {
+          "w": "binary",
+          "t": 380.041
+        },
+        {
+          "w": "tree",
+          "t": 380.465
+        },
+        {
+          "w": "seek",
+          "t": 380.888
+        },
+        {
+          "w": "in",
+          "t": 381.311
+        },
+        {
+          "w": "O",
+          "t": 381.734
+        },
+        {
+          "w": "of",
+          "t": 382.157
+        },
+        {
+          "w": "log",
+          "t": 382.58
+        },
+        {
+          "w": "N",
+          "t": 383.003
+        },
+        {
+          "w": "operations,",
+          "t": 383.426
+        },
+        {
+          "w": "then",
+          "t": 383.85
+        },
+        {
+          "w": "sequentially",
+          "t": 384.273
+        },
+        {
+          "w": "reads",
+          "t": 384.696
+        },
+        {
+          "w": "only",
+          "t": 385.119
+        },
+        {
+          "w": "the",
+          "t": 385.542
+        },
+        {
+          "w": "next",
+          "t": 385.965
+        },
+        {
+          "w": "S",
+          "t": 386.388
+        },
+        {
+          "w": "leaf",
+          "t": 386.811
+        },
+        {
+          "w": "records.",
+          "t": 387.235
+        },
+        {
+          "w": "Query",
+          "t": 387.658
+        },
+        {
+          "w": "latency",
+          "t": 388.081
+        },
+        {
+          "w": "remains",
+          "t": 388.504
+        },
+        {
+          "w": "strictly",
+          "t": 388.927
+        },
+        {
+          "w": "constant",
+          "t": 389.35
+        },
+        {
+          "w": "from",
+          "t": 389.773
+        },
+        {
+          "w": "page",
+          "t": 390.196
+        },
+        {
+          "w": "1",
+          "t": 390.62
+        },
+        {
+          "w": "through",
+          "t": 391.043
+        },
+        {
+          "w": "page",
+          "t": 391.466
+        },
+        {
+          "w": "10",
+          "t": 391.889
+        },
+        {
+          "w": "million,",
+          "t": 392.312
+        },
+        {
+          "w": "completely",
+          "t": 392.735
+        },
+        {
+          "w": "immune",
+          "t": 393.158
+        },
+        {
+          "w": "to",
+          "t": 393.581
+        },
+        {
+          "w": "upstream",
+          "t": 394.005
+        },
+        {
+          "w": "deletions",
+          "t": 394.428
+        },
+        {
+          "w": "or",
+          "t": 394.851
+        },
+        {
+          "w": "insertions.",
+          "t": 395.274
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "speaker": "Dr. Nova",
+      "text": "Slide 10 compiles a multi-dimensional architectural trade-off matrix contrasting four dominant programmatic ingestion strategies: REST with Offset Pagination, REST with Keyset Cursor, GraphQL Relay Connections, and Push-Based Event Webhooks.",
+      "start": 395.697,
+      "end": 412.116,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 395.697
+        },
+        {
+          "w": "10",
+          "t": 396.263
+        },
+        {
+          "w": "compiles",
+          "t": 396.829
+        },
+        {
+          "w": "a",
+          "t": 397.396
+        },
+        {
+          "w": "multi-dimensional",
+          "t": 397.962
+        },
+        {
+          "w": "architectural",
+          "t": 398.528
+        },
+        {
+          "w": "trade-off",
+          "t": 399.094
+        },
+        {
+          "w": "matrix",
+          "t": 399.66
+        },
+        {
+          "w": "contrasting",
+          "t": 400.226
+        },
+        {
+          "w": "four",
+          "t": 400.793
+        },
+        {
+          "w": "dominant",
+          "t": 401.359
+        },
+        {
+          "w": "programmatic",
+          "t": 401.925
+        },
+        {
+          "w": "ingestion",
+          "t": 402.491
+        },
+        {
+          "w": "strategies:",
+          "t": 403.057
+        },
+        {
+          "w": "REST",
+          "t": 403.623
+        },
+        {
+          "w": "with",
+          "t": 404.19
+        },
+        {
+          "w": "Offset",
+          "t": 404.756
+        },
+        {
+          "w": "Pagination,",
+          "t": 405.322
+        },
+        {
+          "w": "REST",
+          "t": 405.888
+        },
+        {
+          "w": "with",
+          "t": 406.454
+        },
+        {
+          "w": "Keyset",
+          "t": 407.02
+        },
+        {
+          "w": "Cursor,",
+          "t": 407.587
+        },
+        {
+          "w": "GraphQL",
+          "t": 408.153
+        },
+        {
+          "w": "Relay",
+          "t": 408.719
+        },
+        {
+          "w": "Connections,",
+          "t": 409.285
+        },
+        {
+          "w": "and",
+          "t": 409.851
+        },
+        {
+          "w": "Push-Based",
+          "t": 410.417
+        },
+        {
+          "w": "Event",
+          "t": 410.984
+        },
+        {
+          "w": "Webhooks.",
+          "t": 411.55
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "speaker": "Dr. Nova",
+      "text": "Notice that REST Offset offers trivial URL statefulness and parallel page splitting, yet fails catastrophically on scan complexity and live phantom reads. REST Cursor achieves constant logarithmic latency and drift immunity. GraphQL Relay adds dynamic payload pruning so clients fetch strictly needed ML features—reducing wire bandwidth—at the expense of complex weighted cost buckets. Finally, Event Webhooks deliver zero-latency real-time push streams, requiring robust idempotency keys and dead-letter sinks.",
+      "start": 412.116,
+      "end": 446.93,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 412.116
+        },
+        {
+          "w": "that",
+          "t": 412.628
+        },
+        {
+          "w": "REST",
+          "t": 413.14
+        },
+        {
+          "w": "Offset",
+          "t": 413.652
+        },
+        {
+          "w": "offers",
+          "t": 414.164
+        },
+        {
+          "w": "trivial",
+          "t": 414.676
+        },
+        {
+          "w": "URL",
+          "t": 415.188
+        },
+        {
+          "w": "statefulness",
+          "t": 415.7
+        },
+        {
+          "w": "and",
+          "t": 416.212
+        },
+        {
+          "w": "parallel",
+          "t": 416.724
+        },
+        {
+          "w": "page",
+          "t": 417.236
+        },
+        {
+          "w": "splitting,",
+          "t": 417.748
+        },
+        {
+          "w": "yet",
+          "t": 418.26
+        },
+        {
+          "w": "fails",
+          "t": 418.772
+        },
+        {
+          "w": "catastrophically",
+          "t": 419.284
+        },
+        {
+          "w": "on",
+          "t": 419.796
+        },
+        {
+          "w": "scan",
+          "t": 420.308
+        },
+        {
+          "w": "complexity",
+          "t": 420.82
+        },
+        {
+          "w": "and",
+          "t": 421.331
+        },
+        {
+          "w": "live",
+          "t": 421.843
+        },
+        {
+          "w": "phantom",
+          "t": 422.355
+        },
+        {
+          "w": "reads.",
+          "t": 422.867
+        },
+        {
+          "w": "REST",
+          "t": 423.379
+        },
+        {
+          "w": "Cursor",
+          "t": 423.891
+        },
+        {
+          "w": "achieves",
+          "t": 424.403
+        },
+        {
+          "w": "constant",
+          "t": 424.915
+        },
+        {
+          "w": "logarithmic",
+          "t": 425.427
+        },
+        {
+          "w": "latency",
+          "t": 425.939
+        },
+        {
+          "w": "and",
+          "t": 426.451
+        },
+        {
+          "w": "drift",
+          "t": 426.963
+        },
+        {
+          "w": "immunity.",
+          "t": 427.475
+        },
+        {
+          "w": "GraphQL",
+          "t": 427.987
+        },
+        {
+          "w": "Relay",
+          "t": 428.499
+        },
+        {
+          "w": "adds",
+          "t": 429.011
+        },
+        {
+          "w": "dynamic",
+          "t": 429.523
+        },
+        {
+          "w": "payload",
+          "t": 430.035
+        },
+        {
+          "w": "pruning",
+          "t": 430.547
+        },
+        {
+          "w": "so",
+          "t": 431.059
+        },
+        {
+          "w": "clients",
+          "t": 431.571
+        },
+        {
+          "w": "fetch",
+          "t": 432.083
+        },
+        {
+          "w": "strictly",
+          "t": 432.595
+        },
+        {
+          "w": "needed",
+          "t": 433.107
+        },
+        {
+          "w": "ML",
+          "t": 433.619
+        },
+        {
+          "w": "features—reducing",
+          "t": 434.131
+        },
+        {
+          "w": "wire",
+          "t": 434.643
+        },
+        {
+          "w": "bandwidth—at",
+          "t": 435.155
+        },
+        {
+          "w": "the",
+          "t": 435.667
+        },
+        {
+          "w": "expense",
+          "t": 436.179
+        },
+        {
+          "w": "of",
+          "t": 436.691
+        },
+        {
+          "w": "complex",
+          "t": 437.203
+        },
+        {
+          "w": "weighted",
+          "t": 437.715
+        },
+        {
+          "w": "cost",
+          "t": 438.226
+        },
+        {
+          "w": "buckets.",
+          "t": 438.738
+        },
+        {
+          "w": "Finally,",
+          "t": 439.25
+        },
+        {
+          "w": "Event",
+          "t": 439.762
+        },
+        {
+          "w": "Webhooks",
+          "t": 440.274
+        },
+        {
+          "w": "deliver",
+          "t": 440.786
+        },
+        {
+          "w": "zero-latency",
+          "t": 441.298
+        },
+        {
+          "w": "real-time",
+          "t": 441.81
+        },
+        {
+          "w": "push",
+          "t": 442.322
+        },
+        {
+          "w": "streams,",
+          "t": 442.834
+        },
+        {
+          "w": "requiring",
+          "t": 443.346
+        },
+        {
+          "w": "robust",
+          "t": 443.858
+        },
+        {
+          "w": "idempotency",
+          "t": 444.37
+        },
+        {
+          "w": "keys",
+          "t": 444.882
+        },
+        {
+          "w": "and",
+          "t": 445.394
+        },
+        {
+          "w": "dead-letter",
+          "t": 445.906
+        },
+        {
+          "w": "sinks.",
+          "t": 446.418
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "speaker": "Dr. Nova",
+      "text": "Slide 11 presents a distributed multi-worker ingestion architecture designed for enterprise reliability. Rather than maintaining isolated local token counters in memory across sixty-four independent containers, workers check out execution permits from a centralized Redis Atomic Token Bucket governed by Lua scripts.",
+      "start": 446.93,
+      "end": 468.459,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 446.93
+        },
+        {
+          "w": "11",
+          "t": 447.455
+        },
+        {
+          "w": "presents",
+          "t": 447.98
+        },
+        {
+          "w": "a",
+          "t": 448.505
+        },
+        {
+          "w": "distributed",
+          "t": 449.03
+        },
+        {
+          "w": "multi-worker",
+          "t": 449.555
+        },
+        {
+          "w": "ingestion",
+          "t": 450.081
+        },
+        {
+          "w": "architecture",
+          "t": 450.606
+        },
+        {
+          "w": "designed",
+          "t": 451.131
+        },
+        {
+          "w": "for",
+          "t": 451.656
+        },
+        {
+          "w": "enterprise",
+          "t": 452.181
+        },
+        {
+          "w": "reliability.",
+          "t": 452.706
+        },
+        {
+          "w": "Rather",
+          "t": 453.231
+        },
+        {
+          "w": "than",
+          "t": 453.756
+        },
+        {
+          "w": "maintaining",
+          "t": 454.281
+        },
+        {
+          "w": "isolated",
+          "t": 454.806
+        },
+        {
+          "w": "local",
+          "t": 455.332
+        },
+        {
+          "w": "token",
+          "t": 455.857
+        },
+        {
+          "w": "counters",
+          "t": 456.382
+        },
+        {
+          "w": "in",
+          "t": 456.907
+        },
+        {
+          "w": "memory",
+          "t": 457.432
+        },
+        {
+          "w": "across",
+          "t": 457.957
+        },
+        {
+          "w": "sixty-four",
+          "t": 458.482
+        },
+        {
+          "w": "independent",
+          "t": 459.007
+        },
+        {
+          "w": "containers,",
+          "t": 459.532
+        },
+        {
+          "w": "workers",
+          "t": 460.057
+        },
+        {
+          "w": "check",
+          "t": 460.583
+        },
+        {
+          "w": "out",
+          "t": 461.108
+        },
+        {
+          "w": "execution",
+          "t": 461.633
+        },
+        {
+          "w": "permits",
+          "t": 462.158
+        },
+        {
+          "w": "from",
+          "t": 462.683
+        },
+        {
+          "w": "a",
+          "t": 463.208
+        },
+        {
+          "w": "centralized",
+          "t": 463.733
+        },
+        {
+          "w": "Redis",
+          "t": 464.258
+        },
+        {
+          "w": "Atomic",
+          "t": 464.783
+        },
+        {
+          "w": "Token",
+          "t": 465.308
+        },
+        {
+          "w": "Bucket",
+          "t": 465.834
+        },
+        {
+          "w": "governed",
+          "t": 466.359
+        },
+        {
+          "w": "by",
+          "t": 466.884
+        },
+        {
+          "w": "Lua",
+          "t": 467.409
+        },
+        {
+          "w": "scripts.",
+          "t": 467.934
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "speaker": "Dr. Nova",
+      "text": "Cursor states are checkpointed after every batch commit into PostgreSQL or S3 metadata logs. When transient HTTP 429 or 503 faults occur, the worker dispatches through a Full Jitter retry coordinator before escalating unrecoverable payloads to a Dead-Letter Queue.",
+      "start": 468.459,
+      "end": 486.445,
+      "words": [
+        {
+          "w": "Cursor",
+          "t": 468.459
+        },
+        {
+          "w": "states",
+          "t": 468.92
+        },
+        {
+          "w": "are",
+          "t": 469.381
+        },
+        {
+          "w": "checkpointed",
+          "t": 469.843
+        },
+        {
+          "w": "after",
+          "t": 470.304
+        },
+        {
+          "w": "every",
+          "t": 470.765
+        },
+        {
+          "w": "batch",
+          "t": 471.226
+        },
+        {
+          "w": "commit",
+          "t": 471.687
+        },
+        {
+          "w": "into",
+          "t": 472.148
+        },
+        {
+          "w": "PostgreSQL",
+          "t": 472.61
+        },
+        {
+          "w": "or",
+          "t": 473.071
+        },
+        {
+          "w": "S3",
+          "t": 473.532
+        },
+        {
+          "w": "metadata",
+          "t": 473.993
+        },
+        {
+          "w": "logs.",
+          "t": 474.454
+        },
+        {
+          "w": "When",
+          "t": 474.916
+        },
+        {
+          "w": "transient",
+          "t": 475.377
+        },
+        {
+          "w": "HTTP",
+          "t": 475.838
+        },
+        {
+          "w": "429",
+          "t": 476.299
+        },
+        {
+          "w": "or",
+          "t": 476.76
+        },
+        {
+          "w": "503",
+          "t": 477.221
+        },
+        {
+          "w": "faults",
+          "t": 477.683
+        },
+        {
+          "w": "occur,",
+          "t": 478.144
+        },
+        {
+          "w": "the",
+          "t": 478.605
+        },
+        {
+          "w": "worker",
+          "t": 479.066
+        },
+        {
+          "w": "dispatches",
+          "t": 479.527
+        },
+        {
+          "w": "through",
+          "t": 479.988
+        },
+        {
+          "w": "a",
+          "t": 480.45
+        },
+        {
+          "w": "Full",
+          "t": 480.911
+        },
+        {
+          "w": "Jitter",
+          "t": 481.372
+        },
+        {
+          "w": "retry",
+          "t": 481.833
+        },
+        {
+          "w": "coordinator",
+          "t": 482.294
+        },
+        {
+          "w": "before",
+          "t": 482.756
+        },
+        {
+          "w": "escalating",
+          "t": 483.217
+        },
+        {
+          "w": "unrecoverable",
+          "t": 483.678
+        },
+        {
+          "w": "payloads",
+          "t": 484.139
+        },
+        {
+          "w": "to",
+          "t": 484.6
+        },
+        {
+          "w": "a",
+          "t": 485.061
+        },
+        {
+          "w": "Dead-Letter",
+          "t": 485.523
+        },
+        {
+          "w": "Queue.",
+          "t": 485.984
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: The Pagination Complexity and Thundering Herd Simulator. Tweak Page Depth k from 1 up to 2,000, Page Size S, and Concurrent Worker Threads. Observe how Offset pagination discards millions of preceding rows, degrading query latency from milliseconds to multiple seconds—while Keyset Cursor seek stays permanently sub-millisecond! Simultaneously, switch Jitter Strategy between Deterministic and Full Jitter to watch concurrent worker collision rates drop dramatically.",
+      "start": 486.445,
+      "end": 520.306,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 486.445
+        },
+        {
+          "w": "to",
+          "t": 486.943
+        },
+        {
+          "w": "Interactive",
+          "t": 487.441
+        },
+        {
+          "w": "Lab",
+          "t": 487.939
+        },
+        {
+          "w": "2:",
+          "t": 488.437
+        },
+        {
+          "w": "The",
+          "t": 488.935
+        },
+        {
+          "w": "Pagination",
+          "t": 489.433
+        },
+        {
+          "w": "Complexity",
+          "t": 489.931
+        },
+        {
+          "w": "and",
+          "t": 490.429
+        },
+        {
+          "w": "Thundering",
+          "t": 490.927
+        },
+        {
+          "w": "Herd",
+          "t": 491.425
+        },
+        {
+          "w": "Simulator.",
+          "t": 491.923
+        },
+        {
+          "w": "Tweak",
+          "t": 492.42
+        },
+        {
+          "w": "Page",
+          "t": 492.918
+        },
+        {
+          "w": "Depth",
+          "t": 493.416
+        },
+        {
+          "w": "k",
+          "t": 493.914
+        },
+        {
+          "w": "from",
+          "t": 494.412
+        },
+        {
+          "w": "1",
+          "t": 494.91
+        },
+        {
+          "w": "up",
+          "t": 495.408
+        },
+        {
+          "w": "to",
+          "t": 495.906
+        },
+        {
+          "w": "2,000,",
+          "t": 496.404
+        },
+        {
+          "w": "Page",
+          "t": 496.902
+        },
+        {
+          "w": "Size",
+          "t": 497.4
+        },
+        {
+          "w": "S,",
+          "t": 497.898
+        },
+        {
+          "w": "and",
+          "t": 498.396
+        },
+        {
+          "w": "Concurrent",
+          "t": 498.894
+        },
+        {
+          "w": "Worker",
+          "t": 499.392
+        },
+        {
+          "w": "Threads.",
+          "t": 499.89
+        },
+        {
+          "w": "Observe",
+          "t": 500.388
+        },
+        {
+          "w": "how",
+          "t": 500.886
+        },
+        {
+          "w": "Offset",
+          "t": 501.384
+        },
+        {
+          "w": "pagination",
+          "t": 501.882
+        },
+        {
+          "w": "discards",
+          "t": 502.38
+        },
+        {
+          "w": "millions",
+          "t": 502.878
+        },
+        {
+          "w": "of",
+          "t": 503.375
+        },
+        {
+          "w": "preceding",
+          "t": 503.873
+        },
+        {
+          "w": "rows,",
+          "t": 504.371
+        },
+        {
+          "w": "degrading",
+          "t": 504.869
+        },
+        {
+          "w": "query",
+          "t": 505.367
+        },
+        {
+          "w": "latency",
+          "t": 505.865
+        },
+        {
+          "w": "from",
+          "t": 506.363
+        },
+        {
+          "w": "milliseconds",
+          "t": 506.861
+        },
+        {
+          "w": "to",
+          "t": 507.359
+        },
+        {
+          "w": "multiple",
+          "t": 507.857
+        },
+        {
+          "w": "seconds—while",
+          "t": 508.355
+        },
+        {
+          "w": "Keyset",
+          "t": 508.853
+        },
+        {
+          "w": "Cursor",
+          "t": 509.351
+        },
+        {
+          "w": "seek",
+          "t": 509.849
+        },
+        {
+          "w": "stays",
+          "t": 510.347
+        },
+        {
+          "w": "permanently",
+          "t": 510.845
+        },
+        {
+          "w": "sub-millisecond!",
+          "t": 511.343
+        },
+        {
+          "w": "Simultaneously,",
+          "t": 511.841
+        },
+        {
+          "w": "switch",
+          "t": 512.339
+        },
+        {
+          "w": "Jitter",
+          "t": 512.837
+        },
+        {
+          "w": "Strategy",
+          "t": 513.335
+        },
+        {
+          "w": "between",
+          "t": 513.833
+        },
+        {
+          "w": "Deterministic",
+          "t": 514.331
+        },
+        {
+          "w": "and",
+          "t": 514.828
+        },
+        {
+          "w": "Full",
+          "t": 515.326
+        },
+        {
+          "w": "Jitter",
+          "t": 515.824
+        },
+        {
+          "w": "to",
+          "t": 516.322
+        },
+        {
+          "w": "watch",
+          "t": 516.82
+        },
+        {
+          "w": "concurrent",
+          "t": 517.318
+        },
+        {
+          "w": "worker",
+          "t": 517.816
+        },
+        {
+          "w": "collision",
+          "t": 518.314
+        },
+        {
+          "w": "rates",
+          "t": 518.812
+        },
+        {
+          "w": "drop",
+          "t": 519.31
+        },
+        {
+          "w": "dramatically.",
+          "t": 519.808
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "speaker": "Dr. Nova",
+      "text": "Let us verify your algorithmic analysis of API pagination. An engineer writes a script that iterates through 1,000 pages of 100 records each using OFFSET k times 100. Page 1 executes in 10 milliseconds, yet Page 1,000 stalls for over 4.5 seconds. Why does latency degrade linearly with page depth, and what fixes it? Select Option A, B, or C above me.",
+      "start": 520.306,
+      "end": 544.22,
+      "words": [
+        {
+          "w": "Let",
+          "t": 520.306
+        },
+        {
+          "w": "us",
+          "t": 520.692
+        },
+        {
+          "w": "verify",
+          "t": 521.077
+        },
+        {
+          "w": "your",
+          "t": 521.463
+        },
+        {
+          "w": "algorithmic",
+          "t": 521.849
+        },
+        {
+          "w": "analysis",
+          "t": 522.235
+        },
+        {
+          "w": "of",
+          "t": 522.62
+        },
+        {
+          "w": "API",
+          "t": 523.006
+        },
+        {
+          "w": "pagination.",
+          "t": 523.392
+        },
+        {
+          "w": "An",
+          "t": 523.777
+        },
+        {
+          "w": "engineer",
+          "t": 524.163
+        },
+        {
+          "w": "writes",
+          "t": 524.549
+        },
+        {
+          "w": "a",
+          "t": 524.935
+        },
+        {
+          "w": "script",
+          "t": 525.32
+        },
+        {
+          "w": "that",
+          "t": 525.706
+        },
+        {
+          "w": "iterates",
+          "t": 526.092
+        },
+        {
+          "w": "through",
+          "t": 526.477
+        },
+        {
+          "w": "1,000",
+          "t": 526.863
+        },
+        {
+          "w": "pages",
+          "t": 527.249
+        },
+        {
+          "w": "of",
+          "t": 527.634
+        },
+        {
+          "w": "100",
+          "t": 528.02
+        },
+        {
+          "w": "records",
+          "t": 528.406
+        },
+        {
+          "w": "each",
+          "t": 528.792
+        },
+        {
+          "w": "using",
+          "t": 529.177
+        },
+        {
+          "w": "OFFSET",
+          "t": 529.563
+        },
+        {
+          "w": "k",
+          "t": 529.949
+        },
+        {
+          "w": "times",
+          "t": 530.334
+        },
+        {
+          "w": "100.",
+          "t": 530.72
+        },
+        {
+          "w": "Page",
+          "t": 531.106
+        },
+        {
+          "w": "1",
+          "t": 531.492
+        },
+        {
+          "w": "executes",
+          "t": 531.877
+        },
+        {
+          "w": "in",
+          "t": 532.263
+        },
+        {
+          "w": "10",
+          "t": 532.649
+        },
+        {
+          "w": "milliseconds,",
+          "t": 533.034
+        },
+        {
+          "w": "yet",
+          "t": 533.42
+        },
+        {
+          "w": "Page",
+          "t": 533.806
+        },
+        {
+          "w": "1,000",
+          "t": 534.192
+        },
+        {
+          "w": "stalls",
+          "t": 534.577
+        },
+        {
+          "w": "for",
+          "t": 534.963
+        },
+        {
+          "w": "over",
+          "t": 535.349
+        },
+        {
+          "w": "4.5",
+          "t": 535.734
+        },
+        {
+          "w": "seconds.",
+          "t": 536.12
+        },
+        {
+          "w": "Why",
+          "t": 536.506
+        },
+        {
+          "w": "does",
+          "t": 536.892
+        },
+        {
+          "w": "latency",
+          "t": 537.277
+        },
+        {
+          "w": "degrade",
+          "t": 537.663
+        },
+        {
+          "w": "linearly",
+          "t": 538.049
+        },
+        {
+          "w": "with",
+          "t": 538.434
+        },
+        {
+          "w": "page",
+          "t": 538.82
+        },
+        {
+          "w": "depth,",
+          "t": 539.206
+        },
+        {
+          "w": "and",
+          "t": 539.591
+        },
+        {
+          "w": "what",
+          "t": 539.977
+        },
+        {
+          "w": "fixes",
+          "t": 540.363
+        },
+        {
+          "w": "it?",
+          "t": 540.749
+        },
+        {
+          "w": "Select",
+          "t": 541.134
+        },
+        {
+          "w": "Option",
+          "t": 541.52
+        },
+        {
+          "w": "A,",
+          "t": 541.906
+        },
+        {
+          "w": "B,",
+          "t": 542.291
+        },
+        {
+          "w": "or",
+          "t": 542.677
+        },
+        {
+          "w": "C",
+          "t": 543.063
+        },
+        {
+          "w": "above",
+          "t": 543.449
+        },
+        {
+          "w": "me.",
+          "t": 543.834
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "speaker": "Dr. Nova",
+      "text": "Slide 14 examines a gripping real-world post-mortem from an algorithmic trading research cluster ingesting Level-2 limit order books across global cryptocurrency exchanges. Initially, sixty-four parallel ingestion workers polled historical snapshots using naive linear sleep backoff of 1.0 seconds and deep offset pagination.",
+      "start": 544.22,
+      "end": 566.362,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 544.22
+        },
+        {
+          "w": "14",
+          "t": 544.747
+        },
+        {
+          "w": "examines",
+          "t": 545.274
+        },
+        {
+          "w": "a",
+          "t": 545.802
+        },
+        {
+          "w": "gripping",
+          "t": 546.329
+        },
+        {
+          "w": "real-world",
+          "t": 546.856
+        },
+        {
+          "w": "post-mortem",
+          "t": 547.383
+        },
+        {
+          "w": "from",
+          "t": 547.91
+        },
+        {
+          "w": "an",
+          "t": 548.438
+        },
+        {
+          "w": "algorithmic",
+          "t": 548.965
+        },
+        {
+          "w": "trading",
+          "t": 549.492
+        },
+        {
+          "w": "research",
+          "t": 550.019
+        },
+        {
+          "w": "cluster",
+          "t": 550.546
+        },
+        {
+          "w": "ingesting",
+          "t": 551.073
+        },
+        {
+          "w": "Level-2",
+          "t": 551.601
+        },
+        {
+          "w": "limit",
+          "t": 552.128
+        },
+        {
+          "w": "order",
+          "t": 552.655
+        },
+        {
+          "w": "books",
+          "t": 553.182
+        },
+        {
+          "w": "across",
+          "t": 553.709
+        },
+        {
+          "w": "global",
+          "t": 554.237
+        },
+        {
+          "w": "cryptocurrency",
+          "t": 554.764
+        },
+        {
+          "w": "exchanges.",
+          "t": 555.291
+        },
+        {
+          "w": "Initially,",
+          "t": 555.818
+        },
+        {
+          "w": "sixty-four",
+          "t": 556.345
+        },
+        {
+          "w": "parallel",
+          "t": 556.873
+        },
+        {
+          "w": "ingestion",
+          "t": 557.4
+        },
+        {
+          "w": "workers",
+          "t": 557.927
+        },
+        {
+          "w": "polled",
+          "t": 558.454
+        },
+        {
+          "w": "historical",
+          "t": 558.981
+        },
+        {
+          "w": "snapshots",
+          "t": 559.509
+        },
+        {
+          "w": "using",
+          "t": 560.036
+        },
+        {
+          "w": "naive",
+          "t": 560.563
+        },
+        {
+          "w": "linear",
+          "t": 561.09
+        },
+        {
+          "w": "sleep",
+          "t": 561.617
+        },
+        {
+          "w": "backoff",
+          "t": 562.144
+        },
+        {
+          "w": "of",
+          "t": 562.672
+        },
+        {
+          "w": "1.0",
+          "t": 563.199
+        },
+        {
+          "w": "seconds",
+          "t": 563.726
+        },
+        {
+          "w": "and",
+          "t": 564.253
+        },
+        {
+          "w": "deep",
+          "t": 564.78
+        },
+        {
+          "w": "offset",
+          "t": 565.308
+        },
+        {
+          "w": "pagination.",
+          "t": 565.835
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "speaker": "Dr. Nova",
+      "text": "Whenever exchange volatility spiked and triggered HTTP 429 limits, all sixty-four workers retried in lockstep at exactly t equals 1 second, resulting in catastrophic IP bans and a thirty-four percent error drop rate. By re-architecting the pipeline around Full Jitter Exponential Backoff and indexed B-Tree cursor pagination, errors plunged from thirty-four percent to 0.002 percent while sustaining 4,200 records per second.",
+      "start": 566.362,
+      "end": 595.317,
+      "words": [
+        {
+          "w": "Whenever",
+          "t": 566.362
+        },
+        {
+          "w": "exchange",
+          "t": 566.837
+        },
+        {
+          "w": "volatility",
+          "t": 567.311
+        },
+        {
+          "w": "spiked",
+          "t": 567.786
+        },
+        {
+          "w": "and",
+          "t": 568.261
+        },
+        {
+          "w": "triggered",
+          "t": 568.735
+        },
+        {
+          "w": "HTTP",
+          "t": 569.21
+        },
+        {
+          "w": "429",
+          "t": 569.685
+        },
+        {
+          "w": "limits,",
+          "t": 570.159
+        },
+        {
+          "w": "all",
+          "t": 570.634
+        },
+        {
+          "w": "sixty-four",
+          "t": 571.109
+        },
+        {
+          "w": "workers",
+          "t": 571.583
+        },
+        {
+          "w": "retried",
+          "t": 572.058
+        },
+        {
+          "w": "in",
+          "t": 572.533
+        },
+        {
+          "w": "lockstep",
+          "t": 573.007
+        },
+        {
+          "w": "at",
+          "t": 573.482
+        },
+        {
+          "w": "exactly",
+          "t": 573.957
+        },
+        {
+          "w": "t",
+          "t": 574.431
+        },
+        {
+          "w": "equals",
+          "t": 574.906
+        },
+        {
+          "w": "1",
+          "t": 575.381
+        },
+        {
+          "w": "second,",
+          "t": 575.855
+        },
+        {
+          "w": "resulting",
+          "t": 576.33
+        },
+        {
+          "w": "in",
+          "t": 576.805
+        },
+        {
+          "w": "catastrophic",
+          "t": 577.279
+        },
+        {
+          "w": "IP",
+          "t": 577.754
+        },
+        {
+          "w": "bans",
+          "t": 578.229
+        },
+        {
+          "w": "and",
+          "t": 578.703
+        },
+        {
+          "w": "a",
+          "t": 579.178
+        },
+        {
+          "w": "thirty-four",
+          "t": 579.653
+        },
+        {
+          "w": "percent",
+          "t": 580.127
+        },
+        {
+          "w": "error",
+          "t": 580.602
+        },
+        {
+          "w": "drop",
+          "t": 581.077
+        },
+        {
+          "w": "rate.",
+          "t": 581.552
+        },
+        {
+          "w": "By",
+          "t": 582.026
+        },
+        {
+          "w": "re-architecting",
+          "t": 582.501
+        },
+        {
+          "w": "the",
+          "t": 582.976
+        },
+        {
+          "w": "pipeline",
+          "t": 583.45
+        },
+        {
+          "w": "around",
+          "t": 583.925
+        },
+        {
+          "w": "Full",
+          "t": 584.4
+        },
+        {
+          "w": "Jitter",
+          "t": 584.874
+        },
+        {
+          "w": "Exponential",
+          "t": 585.349
+        },
+        {
+          "w": "Backoff",
+          "t": 585.824
+        },
+        {
+          "w": "and",
+          "t": 586.298
+        },
+        {
+          "w": "indexed",
+          "t": 586.773
+        },
+        {
+          "w": "B-Tree",
+          "t": 587.248
+        },
+        {
+          "w": "cursor",
+          "t": 587.722
+        },
+        {
+          "w": "pagination,",
+          "t": 588.197
+        },
+        {
+          "w": "errors",
+          "t": 588.672
+        },
+        {
+          "w": "plunged",
+          "t": 589.146
+        },
+        {
+          "w": "from",
+          "t": 589.621
+        },
+        {
+          "w": "thirty-four",
+          "t": 590.096
+        },
+        {
+          "w": "percent",
+          "t": 590.57
+        },
+        {
+          "w": "to",
+          "t": 591.045
+        },
+        {
+          "w": "0.002",
+          "t": 591.52
+        },
+        {
+          "w": "percent",
+          "t": 591.994
+        },
+        {
+          "w": "while",
+          "t": 592.469
+        },
+        {
+          "w": "sustaining",
+          "t": 592.944
+        },
+        {
+          "w": "4,200",
+          "t": 593.418
+        },
+        {
+          "w": "records",
+          "t": 593.893
+        },
+        {
+          "w": "per",
+          "t": 594.368
+        },
+        {
+          "w": "second.",
+          "t": 594.842
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 contains complete production Python code implementing our TokenBucket class and Full Jitter backoff simulator. Look at the consume method: it lazily refills capacity using elapsed wall-clock time multiplied by refill rate, capped cleanly at bucket capacity.",
+      "start": 595.317,
+      "end": 613.44,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 595.317
+        },
+        {
+          "w": "15",
+          "t": 595.794
+        },
+        {
+          "w": "contains",
+          "t": 596.271
+        },
+        {
+          "w": "complete",
+          "t": 596.748
+        },
+        {
+          "w": "production",
+          "t": 597.225
+        },
+        {
+          "w": "Python",
+          "t": 597.702
+        },
+        {
+          "w": "code",
+          "t": 598.179
+        },
+        {
+          "w": "implementing",
+          "t": 598.655
+        },
+        {
+          "w": "our",
+          "t": 599.132
+        },
+        {
+          "w": "TokenBucket",
+          "t": 599.609
+        },
+        {
+          "w": "class",
+          "t": 600.086
+        },
+        {
+          "w": "and",
+          "t": 600.563
+        },
+        {
+          "w": "Full",
+          "t": 601.04
+        },
+        {
+          "w": "Jitter",
+          "t": 601.517
+        },
+        {
+          "w": "backoff",
+          "t": 601.994
+        },
+        {
+          "w": "simulator.",
+          "t": 602.471
+        },
+        {
+          "w": "Look",
+          "t": 602.948
+        },
+        {
+          "w": "at",
+          "t": 603.425
+        },
+        {
+          "w": "the",
+          "t": 603.902
+        },
+        {
+          "w": "consume",
+          "t": 604.379
+        },
+        {
+          "w": "method:",
+          "t": 604.855
+        },
+        {
+          "w": "it",
+          "t": 605.332
+        },
+        {
+          "w": "lazily",
+          "t": 605.809
+        },
+        {
+          "w": "refills",
+          "t": 606.286
+        },
+        {
+          "w": "capacity",
+          "t": 606.763
+        },
+        {
+          "w": "using",
+          "t": 607.24
+        },
+        {
+          "w": "elapsed",
+          "t": 607.717
+        },
+        {
+          "w": "wall-clock",
+          "t": 608.194
+        },
+        {
+          "w": "time",
+          "t": 608.671
+        },
+        {
+          "w": "multiplied",
+          "t": 609.148
+        },
+        {
+          "w": "by",
+          "t": 609.625
+        },
+        {
+          "w": "refill",
+          "t": 610.102
+        },
+        {
+          "w": "rate,",
+          "t": 610.578
+        },
+        {
+          "w": "capped",
+          "t": 611.055
+        },
+        {
+          "w": "cleanly",
+          "t": 611.532
+        },
+        {
+          "w": "at",
+          "t": 612.009
+        },
+        {
+          "w": "bucket",
+          "t": 612.486
+        },
+        {
+          "w": "capacity.",
+          "t": 612.963
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "speaker": "Dr. Nova",
+      "text": "If available tokens cover requested cost, it decrements atomically and returns true. When transient 429 or 503 exceptions are simulated inside the ingestion loop, the client draws a uniformly distributed full jitter delay capped by an exponential backoff bound. Finally, automated assertions verify one hundred percent eventual ingestion completion.",
+      "start": 613.44,
+      "end": 637.217,
+      "words": [
+        {
+          "w": "If",
+          "t": 613.44
+        },
+        {
+          "w": "available",
+          "t": 613.925
+        },
+        {
+          "w": "tokens",
+          "t": 614.41
+        },
+        {
+          "w": "cover",
+          "t": 614.896
+        },
+        {
+          "w": "requested",
+          "t": 615.381
+        },
+        {
+          "w": "cost,",
+          "t": 615.866
+        },
+        {
+          "w": "it",
+          "t": 616.351
+        },
+        {
+          "w": "decrements",
+          "t": 616.837
+        },
+        {
+          "w": "atomically",
+          "t": 617.322
+        },
+        {
+          "w": "and",
+          "t": 617.807
+        },
+        {
+          "w": "returns",
+          "t": 618.292
+        },
+        {
+          "w": "true.",
+          "t": 618.778
+        },
+        {
+          "w": "When",
+          "t": 619.263
+        },
+        {
+          "w": "transient",
+          "t": 619.748
+        },
+        {
+          "w": "429",
+          "t": 620.233
+        },
+        {
+          "w": "or",
+          "t": 620.719
+        },
+        {
+          "w": "503",
+          "t": 621.204
+        },
+        {
+          "w": "exceptions",
+          "t": 621.689
+        },
+        {
+          "w": "are",
+          "t": 622.174
+        },
+        {
+          "w": "simulated",
+          "t": 622.66
+        },
+        {
+          "w": "inside",
+          "t": 623.145
+        },
+        {
+          "w": "the",
+          "t": 623.63
+        },
+        {
+          "w": "ingestion",
+          "t": 624.115
+        },
+        {
+          "w": "loop,",
+          "t": 624.601
+        },
+        {
+          "w": "the",
+          "t": 625.086
+        },
+        {
+          "w": "client",
+          "t": 625.571
+        },
+        {
+          "w": "draws",
+          "t": 626.056
+        },
+        {
+          "w": "a",
+          "t": 626.542
+        },
+        {
+          "w": "uniformly",
+          "t": 627.027
+        },
+        {
+          "w": "distributed",
+          "t": 627.512
+        },
+        {
+          "w": "full",
+          "t": 627.997
+        },
+        {
+          "w": "jitter",
+          "t": 628.483
+        },
+        {
+          "w": "delay",
+          "t": 628.968
+        },
+        {
+          "w": "capped",
+          "t": 629.453
+        },
+        {
+          "w": "by",
+          "t": 629.938
+        },
+        {
+          "w": "an",
+          "t": 630.424
+        },
+        {
+          "w": "exponential",
+          "t": 630.909
+        },
+        {
+          "w": "backoff",
+          "t": 631.394
+        },
+        {
+          "w": "bound.",
+          "t": 631.879
+        },
+        {
+          "w": "Finally,",
+          "t": 632.365
+        },
+        {
+          "w": "automated",
+          "t": 632.85
+        },
+        {
+          "w": "assertions",
+          "t": 633.335
+        },
+        {
+          "w": "verify",
+          "t": 633.82
+        },
+        {
+          "w": "one",
+          "t": 634.306
+        },
+        {
+          "w": "hundred",
+          "t": 634.791
+        },
+        {
+          "w": "percent",
+          "t": 635.276
+        },
+        {
+          "w": "eventual",
+          "t": 635.761
+        },
+        {
+          "w": "ingestion",
+          "t": 636.247
+        },
+        {
+          "w": "completion.",
+          "t": 636.732
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "speaker": "Dr. Nova",
+      "text": "Let us conclude Lesson 2.4 with the Four Golden Rules of Programmatic API Ingestion. First, never blast remote endpoints blindly—enforce client-side Token Bucket pacing synchronized globally via atomic Redis Lua scripts across worker clusters. Second, abolish deterministic retry loops—combine Exponential Backoff with Full or Decorrelated Jitter to annihilate the Thundering Herd problem.",
+      "start": 637.217,
+      "end": 663.72,
+      "words": [
+        {
+          "w": "Let",
+          "t": 637.217
+        },
+        {
+          "w": "us",
+          "t": 637.727
+        },
+        {
+          "w": "conclude",
+          "t": 638.236
+        },
+        {
+          "w": "Lesson",
+          "t": 638.746
+        },
+        {
+          "w": "2.4",
+          "t": 639.256
+        },
+        {
+          "w": "with",
+          "t": 639.765
+        },
+        {
+          "w": "the",
+          "t": 640.275
+        },
+        {
+          "w": "Four",
+          "t": 640.785
+        },
+        {
+          "w": "Golden",
+          "t": 641.294
+        },
+        {
+          "w": "Rules",
+          "t": 641.804
+        },
+        {
+          "w": "of",
+          "t": 642.314
+        },
+        {
+          "w": "Programmatic",
+          "t": 642.823
+        },
+        {
+          "w": "API",
+          "t": 643.333
+        },
+        {
+          "w": "Ingestion.",
+          "t": 643.843
+        },
+        {
+          "w": "First,",
+          "t": 644.352
+        },
+        {
+          "w": "never",
+          "t": 644.862
+        },
+        {
+          "w": "blast",
+          "t": 645.372
+        },
+        {
+          "w": "remote",
+          "t": 645.881
+        },
+        {
+          "w": "endpoints",
+          "t": 646.391
+        },
+        {
+          "w": "blindly—enforce",
+          "t": 646.901
+        },
+        {
+          "w": "client-side",
+          "t": 647.41
+        },
+        {
+          "w": "Token",
+          "t": 647.92
+        },
+        {
+          "w": "Bucket",
+          "t": 648.43
+        },
+        {
+          "w": "pacing",
+          "t": 648.939
+        },
+        {
+          "w": "synchronized",
+          "t": 649.449
+        },
+        {
+          "w": "globally",
+          "t": 649.959
+        },
+        {
+          "w": "via",
+          "t": 650.468
+        },
+        {
+          "w": "atomic",
+          "t": 650.978
+        },
+        {
+          "w": "Redis",
+          "t": 651.488
+        },
+        {
+          "w": "Lua",
+          "t": 651.998
+        },
+        {
+          "w": "scripts",
+          "t": 652.507
+        },
+        {
+          "w": "across",
+          "t": 653.017
+        },
+        {
+          "w": "worker",
+          "t": 653.527
+        },
+        {
+          "w": "clusters.",
+          "t": 654.036
+        },
+        {
+          "w": "Second,",
+          "t": 654.546
+        },
+        {
+          "w": "abolish",
+          "t": 655.056
+        },
+        {
+          "w": "deterministic",
+          "t": 655.565
+        },
+        {
+          "w": "retry",
+          "t": 656.075
+        },
+        {
+          "w": "loops—combine",
+          "t": 656.585
+        },
+        {
+          "w": "Exponential",
+          "t": 657.094
+        },
+        {
+          "w": "Backoff",
+          "t": 657.604
+        },
+        {
+          "w": "with",
+          "t": 658.114
+        },
+        {
+          "w": "Full",
+          "t": 658.623
+        },
+        {
+          "w": "or",
+          "t": 659.133
+        },
+        {
+          "w": "Decorrelated",
+          "t": 659.643
+        },
+        {
+          "w": "Jitter",
+          "t": 660.152
+        },
+        {
+          "w": "to",
+          "t": 660.662
+        },
+        {
+          "w": "annihilate",
+          "t": 661.172
+        },
+        {
+          "w": "the",
+          "t": 661.681
+        },
+        {
+          "w": "Thundering",
+          "t": 662.191
+        },
+        {
+          "w": "Herd",
+          "t": 662.701
+        },
+        {
+          "w": "problem.",
+          "t": 663.21
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "speaker": "Dr. Nova",
+      "text": "Third, strictly forbid OFFSET pagination at scale—mandate indexed Keyset Cursor Seek so latency remains invariant at O of log N plus S without phantom drift. Fourth, checkpoint immutable cursor states after every storage commit to guarantee crash recovery and idempotency. Next in Lesson 2.5, we examine Manual versus Automated Data Collection workflows.",
+      "start": 663.72,
+      "end": 687.84,
+      "words": [
+        {
+          "w": "Third,",
+          "t": 663.72
+        },
+        {
+          "w": "strictly",
+          "t": 664.184
+        },
+        {
+          "w": "forbid",
+          "t": 664.648
+        },
+        {
+          "w": "OFFSET",
+          "t": 665.112
+        },
+        {
+          "w": "pagination",
+          "t": 665.575
+        },
+        {
+          "w": "at",
+          "t": 666.039
+        },
+        {
+          "w": "scale—mandate",
+          "t": 666.503
+        },
+        {
+          "w": "indexed",
+          "t": 666.967
+        },
+        {
+          "w": "Keyset",
+          "t": 667.431
+        },
+        {
+          "w": "Cursor",
+          "t": 667.895
+        },
+        {
+          "w": "Seek",
+          "t": 668.358
+        },
+        {
+          "w": "so",
+          "t": 668.822
+        },
+        {
+          "w": "latency",
+          "t": 669.286
+        },
+        {
+          "w": "remains",
+          "t": 669.75
+        },
+        {
+          "w": "invariant",
+          "t": 670.214
+        },
+        {
+          "w": "at",
+          "t": 670.678
+        },
+        {
+          "w": "O",
+          "t": 671.142
+        },
+        {
+          "w": "of",
+          "t": 671.605
+        },
+        {
+          "w": "log",
+          "t": 672.069
+        },
+        {
+          "w": "N",
+          "t": 672.533
+        },
+        {
+          "w": "plus",
+          "t": 672.997
+        },
+        {
+          "w": "S",
+          "t": 673.461
+        },
+        {
+          "w": "without",
+          "t": 673.925
+        },
+        {
+          "w": "phantom",
+          "t": 674.388
+        },
+        {
+          "w": "drift.",
+          "t": 674.852
+        },
+        {
+          "w": "Fourth,",
+          "t": 675.316
+        },
+        {
+          "w": "checkpoint",
+          "t": 675.78
+        },
+        {
+          "w": "immutable",
+          "t": 676.244
+        },
+        {
+          "w": "cursor",
+          "t": 676.708
+        },
+        {
+          "w": "states",
+          "t": 677.172
+        },
+        {
+          "w": "after",
+          "t": 677.635
+        },
+        {
+          "w": "every",
+          "t": 678.099
+        },
+        {
+          "w": "storage",
+          "t": 678.563
+        },
+        {
+          "w": "commit",
+          "t": 679.027
+        },
+        {
+          "w": "to",
+          "t": 679.491
+        },
+        {
+          "w": "guarantee",
+          "t": 679.955
+        },
+        {
+          "w": "crash",
+          "t": 680.418
+        },
+        {
+          "w": "recovery",
+          "t": 680.882
+        },
+        {
+          "w": "and",
+          "t": 681.346
+        },
+        {
+          "w": "idempotency.",
+          "t": 681.81
+        },
+        {
+          "w": "Next",
+          "t": 682.274
+        },
+        {
+          "w": "in",
+          "t": 682.738
+        },
+        {
+          "w": "Lesson",
+          "t": 683.202
+        },
+        {
+          "w": "2.5,",
+          "t": 683.665
+        },
+        {
+          "w": "we",
+          "t": 684.129
+        },
+        {
+          "w": "examine",
+          "t": 684.593
+        },
+        {
+          "w": "Manual",
+          "t": 685.057
+        },
+        {
+          "w": "versus",
+          "t": 685.521
+        },
+        {
+          "w": "Automated",
+          "t": 685.985
+        },
+        {
+          "w": "Data",
+          "t": 686.448
+        },
+        {
+          "w": "Collection",
+          "t": 686.912
+        },
+        {
+          "w": "workflows.",
+          "t": 687.376
+        }
+      ]
+    }
+  ]
+}

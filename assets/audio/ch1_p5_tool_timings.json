@@ -1,0 +1,130 @@
+{
+  "ch1_p5_chk1_solo.mp3": {
+    "duration": 34.464,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Recall Checkpoint 1! A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures forty-eight hours in advance. One engineered feature is oil_filter_replacement_count_next_7_days, which achieves an astonishing 0.99 ROC-AUC during five-fold cross-validation. But when deployed live, model performance collapses to near random chance at 0.52 ROC-AUC. What occurred? Select your answer on the slide!",
+        "start": 0.0,
+        "end": 34.464
+      }
+    ]
+  },
+  "ch1_p5_chk1_duo.mp3": {
+    "duration": 18.422,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at that feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?",
+        "start": 0.0,
+        "end": 13.536
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Click the correct answer on the checkpoint card below to test your retention!",
+        "start": 13.886,
+        "end": 18.422
+      }
+    ]
+  },
+  "ch1_p5_chk1_feedback_correct.mp3": {
+    "duration": 24.216,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! That is direct lookahead target leakage. In historical logs, technicians replaced oil filters immediately after gearbox failure alerts, embedding the target label into the input feature. When evaluated in cross-validation, the model memorized this future proxy. Always enforce strict temporal boundaries when generating rolling window aggregations!",
+        "start": 0.0,
+        "end": 24.216
+      }
+    ]
+  },
+  "ch1_p5_chk1_feedback_incorrect.mp3": {
+    "duration": 12.864,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember our temporal boundaries: you cannot use events from the future to predict the present! The feature embedded future maintenance actions, causing massive lookahead target leakage.",
+        "start": 0.0,
+        "end": 12.864
+      }
+    ]
+  },
+  "ch1_p5_sim_solo.mp3": {
+    "duration": 24.048,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Distribution Profiler and Transformation Lab! Look at the control selectors above me: you can toggle between Right-Skewed household incomes, Symmetric Gaussian adult heights, and a Bimodal multi-cluster mixture. Notice how the dashed reference lines on the histogram demonstrate the divergence between sample mean and median, and watch how variance-stabilizing log transforms restore normality!",
+        "start": 0.0,
+        "end": 24.048
+      }
+    ]
+  },
+  "ch1_p5_sim_duo.mp3": {
+    "duration": 24.302,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at the canvas! When Right-Skewed is selected on Raw Scale, the mean is over one hundred thousand dollars, while the median is only eighty-seven thousand, and skewness is positive one point four!",
+        "start": 0.0,
+        "end": 12.336
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito. Now switch the Mathematical Transform selector to 'Logarithmic Normalization: log(x + 1)'. Look at what happens to the histogram!",
+        "start": 12.686,
+        "end": 24.302
+      }
+    ]
+  },
+  "ch1_p5_chk2_solo.mp3": {
+    "duration": 23.568,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Recall Checkpoint 2! In a hospital chest X-ray classification dataset containing one hundred thousand scans from twenty-five thousand unique patients, each patient has an average of four sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization? Make your choice on the slide!",
+        "start": 0.0,
+        "end": 23.568
+      }
+    ]
+  },
+  "ch1_p5_chk2_duo.mp3": {
+    "duration": 15.254,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?",
+        "start": 0.0,
+        "end": 9.648
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Select the correct option below to analyze the clinical data contamination hazard!",
+        "start": 9.998,
+        "end": 15.254
+      }
+    ]
+  },
+  "ch1_p5_chk2_feedback_correct.mp3": {
+    "duration": 25.272,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding diagnosis! Random train-test splitting distributes scans from the same patient across both training and test sets. Deep convolutional networks easily learn idiosyncratic anatomical markers, implant signatures, or patient-specific radiograph hardware settings rather than generalized pathology patterns. The split must be partitioned strictly by patient identifier using GroupKFold!",
+        "start": 0.0,
+        "end": 25.272
+      }
+    ]
+  },
+  "ch1_p5_chk2_feedback_incorrect.mp3": {
+    "duration": 13.368,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Careful! Random splitting across multiple records from the same patient causes severe identity contamination. The neural network learns patient re-identification rather than clinical disease generalization.",
+        "start": 0.0,
+        "end": 13.368
+      }
+    ]
+  }
+}

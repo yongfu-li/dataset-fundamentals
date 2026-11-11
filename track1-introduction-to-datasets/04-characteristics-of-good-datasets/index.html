@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -7580,38 +7624,35 @@
 
 
 <h1 id="14-characteristics-of-good-datasets-quality-dimensions">1.4 Characteristics of Good Datasets &amp; Quality Dimensions</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 1 (sec:1.3), Chapter 5 &amp; Chapter 8</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Reference: Chapter 1 (§1.3), Chapter 5 & Chapter 8</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
       Read <strong>Chapter 1: Characteristics of Good Datasets</strong> in the Springer Nature monograph for rigorous formal definitions of data quality dimensions and metadata architecture.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 1 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~8 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-14">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 1.4</h3>
 <p>Experience Chapter 1 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">9 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=1&part=4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=1&part=4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7787,58 +7828,58 @@
 <hr />
 <h2 id="4-in-browser-interactive-data-quality-health-inspector">4. 🔬 In-Browser Interactive Data Quality Health Inspector</h2>
 <p>Test how localized corruptions and missingness propagate into composite quality scores:</p>
-<div class="noc-sim-card" style="background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin: 24px 0; color: #f8fafc;">
-  <div style="border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 20px;">
-    <h3 style="margin: 0; color: #38bdf8; font-size: 1.25rem;">🔬 Data Quality Health Radar &amp; Defect Injector</h3>
-    <span style="font-size: 0.85rem; color: #94a3b8;">Inject real-world data flaws into a live 1,000-record batch and observe real-time dimensional score degradation.</span>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 14px; padding: 24px; margin: 24px 0; color: #151b20; box-shadow: 5px 5px 0px #22bfd7;">
+  <div style="border-bottom: 2px solid #151b20; padding-bottom: 16px; margin-bottom: 20px;">
+    <h3 style="margin: 0; color: #0e7490; font-weight: 800; font-size: 1.25rem;">🔬 Data Quality Health Radar &amp; Defect Injector</h3>
+    <span style="font-size: 0.85rem; color: #475569; font-weight: 500;">Inject real-world data flaws into a live 1,000-record batch and observe real-time dimensional score degradation.</span>
   </div>
 
   <!-- CONTROL TOGGLES -->
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px;">
-    <label style="background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid #334155; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+    <label style="background: #f6f0dc; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; cursor: pointer; display: flex; align-items: center; gap: 10px;">
       <input type="checkbox" id="chkMissing" onchange="auditQualityScores()" checked style="width: 18px; height: 18px; accent-color: #2563eb;">
       <div>
-        <div style="font-size: 0.85rem; font-weight: 700; color: #f8fafc;">Inject Missing Values</div>
-        <div style="font-size: 0.75rem; color: #94a3b8;">15% Nulls in Age &amp; Income</div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; font-weight: 700;">Inject Missing Values</div>
+        <div style="font-size: 0.75rem; color: #475569; font-weight: 500;">15% Nulls in Age &amp; Income</div>
       </div>
     </label>
 
-    <label style="background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid #334155; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+    <label style="background: #f6f0dc; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; cursor: pointer; display: flex; align-items: center; gap: 10px;">
       <input type="checkbox" id="chkOutliers" onchange="auditQualityScores()" checked style="width: 18px; height: 18px; accent-color: #2563eb;">
       <div>
-        <div style="font-size: 0.85rem; font-weight: 700; color: #f8fafc;">Inject Trailing Zeros</div>
-        <div style="font-size: 0.75rem; color: #94a3b8;">10x semantic accuracy shift</div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; font-weight: 700;">Inject Trailing Zeros</div>
+        <div style="font-size: 0.75rem; color: #475569; font-weight: 500;">10x semantic accuracy shift</div>
       </div>
     </label>
 
-    <label style="background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid #334155; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+    <label style="background: #f6f0dc; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; cursor: pointer; display: flex; align-items: center; gap: 10px;">
       <input type="checkbox" id="chkDateInconsist" onchange="auditQualityScores()" checked style="width: 18px; height: 18px; accent-color: #2563eb;">
       <div>
-        <div style="font-size: 0.85rem; font-weight: 700; color: #f8fafc;">Date Format Collision</div>
-        <div style="font-size: 0.75rem; color: #94a3b8;">Mixed MM/DD and DD/MM</div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; font-weight: 700;">Date Format Collision</div>
+        <div style="font-size: 0.75rem; color: #475569; font-weight: 500;">Mixed MM/DD and DD/MM</div>
       </div>
     </label>
 
-    <label style="background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid #334155; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+    <label style="background: #f6f0dc; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; cursor: pointer; display: flex; align-items: center; gap: 10px;">
       <input type="checkbox" id="chkStale" onchange="auditQualityScores()" style="width: 18px; height: 18px; accent-color: #2563eb;">
       <div>
-        <div style="font-size: 0.85rem; font-weight: 700; color: #f8fafc;">Simulate Stale Data</div>
-        <div style="font-size: 0.75rem; color: #94a3b8;">Records &gt; 180 days old</div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; font-weight: 700;">Simulate Stale Data</div>
+        <div style="font-size: 0.75rem; color: #475569; font-weight: 500;">Records &gt; 180 days old</div>
       </div>
     </label>
   </div>
 
   <!-- METRICS SCORE DISPLAY -->
   <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
-    <div style="background: #020617; border: 1px solid #334155; border-radius: 8px; padding: 16px;">
-      <span style="font-size: 0.82rem; font-weight: 700; color: #38bdf8; text-transform: uppercase;">Dimension Score Breakdown</span>
+    <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px; box-shadow: 3px 3px 0px #151b20;">
+      <span style="font-size: 0.82rem; font-weight: 700; color: #0e7490; font-weight: 800; text-transform: uppercase;">Dimension Score Breakdown</span>
       <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
         <div>
           <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px;">
             <span>1. Accuracy Score:</span>
-            <span id="scoreAccuracy" style="font-weight: bold; color: #38bdf8;">85%</span>
+            <span id="scoreAccuracy" style="font-weight: bold; color: #0e7490; font-weight: 800;">85%</span>
           </div>
-          <div style="background: #1e293b; height: 8px; border-radius: 4px; overflow: hidden;">
+          <div style="background: #f6f0dc; height: 8px; border-radius: 4px; overflow: hidden; border: 1px solid #151b20;">
             <div id="barAccuracy" style="background: #38bdf8; width: 85%; height: 100%;"></div>
           </div>
         </div>
@@ -7848,7 +7889,7 @@
             <span>2. Completeness Score:</span>
             <span id="scoreCompleteness" style="font-weight: bold; color: #4ade80;">85%</span>
           </div>
-          <div style="background: #1e293b; height: 8px; border-radius: 4px; overflow: hidden;">
+          <div style="background: #f6f0dc; height: 8px; border-radius: 4px; overflow: hidden; border: 1px solid #151b20;">
             <div id="barCompleteness" style="background: #4ade80; width: 85%; height: 100%;"></div>
           </div>
         </div>
@@ -7858,7 +7899,7 @@
             <span>3. Consistency Score:</span>
             <span id="scoreConsistency" style="font-weight: bold; color: #f59e0b;">70%</span>
           </div>
-          <div style="background: #1e293b; height: 8px; border-radius: 4px; overflow: hidden;">
+          <div style="background: #f6f0dc; height: 8px; border-radius: 4px; overflow: hidden; border: 1px solid #151b20;">
             <div id="barConsistency" style="background: #f59e0b; width: 70%; height: 100%;"></div>
           </div>
         </div>
@@ -7868,20 +7909,20 @@
             <span>4. Timeliness Score:</span>
             <span id="scoreTimeliness" style="font-weight: bold; color: #a855f7;">95%</span>
           </div>
-          <div style="background: #1e293b; height: 8px; border-radius: 4px; overflow: hidden;">
+          <div style="background: #f6f0dc; height: 8px; border-radius: 4px; overflow: hidden; border: 1px solid #151b20;">
             <div id="barTimeliness" style="background: #a855f7; width: 95%; height: 100%;"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-      <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Composite Data Quality Index</span>
+    <div style="background: #f0fbfd; border: 2px solid #151b20; border-radius: 12px; padding: 16px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+      <span style="font-size: 0.8rem; font-weight: 700; color: #475569; font-weight: 500; text-transform: uppercase;">Composite Data Quality Index</span>
       <div id="compositeDQI" style="font-size: 2.8rem; font-weight: 800; color: #f59e0b; margin: 8px 0;">83.8</div>
       <div id="dqiStatusBadge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 6px;">
         ⚠️ MEDIUM QUALITY RISK
       </div>
-      <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 10px;">
+      <div style="font-size: 0.75rem; color: #475569; font-weight: 500; margin-top: 10px;">
         Threshold: &gt;90 Pass, 75-90 Warning, &lt;75 Reject.
       </div>
     </div>

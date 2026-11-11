@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -7434,7 +7478,7 @@
         Taxonomy of structured, semi-structured, and unstructured data. Core quality dimensions: accuracy, completeness, consistency, timeliness, and relevance.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 7 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pdf">PDF</a> Slides • Schema Translator &amp; Splitter
+        ⚡ 7 Guided Parts • Interactive AI Slide Decks • Schema Translator &amp; Splitter
       </div>
     </div>
     <a href="../track1-introduction-to-datasets/" class="noc-track-link">Explore Track 1 →</a>
@@ -7448,7 +7492,7 @@
         Sampling theory and mathematical error limits. Simple random, stratified, and cluster sampling. Power analysis and real-world population coverage.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 9 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter2/chapter2.pdf">PDF</a> Slides • Sampling Techniques Visualizer
+        ⚡ 9 Guided Parts • Interactive AI Slide Decks • Sampling Techniques Visualizer
       </div>
     </div>
     <a href="../track2-data-collection/" class="noc-track-link">Explore Track 2 →</a>
@@ -7462,7 +7506,7 @@
         Regulatory governance under GDPR, HIPAA, and CCPA. Mathematical anonymity models: $k$-anonymity, $l$-diversity, $t$-closeness, and differential privacy ($\epsilon, \delta$).
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 11 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">PDF</a> Slides • PII Scrubber &amp; De-ID Risk
+        ⚡ 11 Guided Parts • Interactive AI Slide Decks • PII Scrubber &amp; De-ID Risk
       </div>
     </div>
     <a href="../track3-ethics-privacy/" class="noc-track-link">Explore Track 3 →</a>
@@ -7476,7 +7520,7 @@
         Human-in-the-loop annotation workflows, bounding boxes, segmentation, and NER. Inter-Annotator Agreement (IAA): Cohen's $\kappa$, Fleiss' $\kappa$, and Krippendorff's $\alpha$.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">PDF</a> Slides • Text/Image Lab &amp; IAA Calculator
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Text/Image Lab &amp; IAA Calculator
       </div>
     </div>
     <a href="../track4-data-annotation/" class="noc-track-link">Explore Track 4 →</a>
@@ -7490,7 +7534,7 @@
         Missing data mechanisms (MCAR, MAR, MNAR) and imputation. Statistical outlier detection (Z-scores, Tukey IQR). Feature scaling and class imbalance (SMOTE).
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 12 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">PDF</a> Slides • Cleaning Workbench &amp; Scaling Lab
+        ⚡ 12 Guided Parts • Interactive AI Slide Decks • Cleaning Workbench &amp; Scaling Lab
       </div>
     </div>
     <a href="../track5-data-cleaning/" class="noc-track-link">Explore Track 5 →</a>
@@ -7504,7 +7548,7 @@
         Univariate, bivariate, and multivariate inspection. Covariance structures, Pearson/Spearman correlation matrices, confounder detection, and Simpson's Paradox.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 12 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter6/chapter6.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter6/chapter6.pdf">PDF</a> Slides • Automated EDA Dashboard
+        ⚡ 12 Guided Parts • Interactive AI Slide Decks • Automated EDA Dashboard
       </div>
     </div>
     <a href="../track6-exploratory-data-analysis/" class="noc-track-link">Explore Track 6 →</a>
@@ -7518,7 +7562,7 @@
         Representational, historical, and measurement bias. Mathematical fairness criteria: Disparate Impact Ratio, Equalized Odds, and Demographic Parity frontiers.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">PDF</a> Slides • Representation Visualizer &amp; Fairness Meter
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Representation Visualizer &amp; Fairness Meter
       </div>
     </div>
     <a href="../track7-dataset-bias-fairness/" class="noc-track-link">Explore Track 7 →</a>
@@ -7532,7 +7576,7 @@
         Standardized metadata schemas and Gebru et al. Datasheets for Datasets. Dataset version control using Git LFS and Data Version Control (DVC).
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter8/chapter8.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter8/chapter8.pdf">PDF</a> Slides • Datasheets Builder &amp; Version Timeline
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Datasheets Builder &amp; Version Timeline
       </div>
     </div>
     <a href="../track8-documentation-versioning/" class="noc-track-link">Explore Track 8 →</a>
@@ -7546,7 +7590,7 @@
         Ethical web crawling, Robots.txt parsing, sliding-window API rate limits, backoff strategies, and real-time IoT sensor telemetry streams.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter9/chapter9.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter9/chapter9.pdf">PDF</a> Slides • Telemetry Simulator &amp; Robots Auditor
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Telemetry Simulator &amp; Robots Auditor
       </div>
     </div>
     <a href="../track9-advanced-collection/" class="noc-track-link">Explore Track 9 →</a>
@@ -7560,7 +7604,7 @@
         Data augmentation heuristics, text paraphrasing, Generative Adversarial Networks (GANs), Diffusion models, and privacy-preserving synthetic record generation.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter10/chapter10.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter10/chapter10.pdf">PDF</a> Slides • Text &amp; Image Augmentation Labs
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Text &amp; Image Augmentation Labs
       </div>
     </div>
     <a href="../track10-synthetic-data/" class="noc-track-link">Explore Track 10 →</a>
@@ -7574,7 +7618,7 @@
         Active learning query heuristics (uncertainty sampling, query-by-committee), weak supervision (Snorkel labeling functions), and label aggregation under noisy annotators.
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter11/chapter11.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter11/chapter11.pdf">PDF</a> Slides • Active Learning &amp; Snorkel Simulator
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Active Learning &amp; Snorkel Simulator
       </div>
     </div>
     <a href="../track11-advanced-annotation/" class="noc-track-link">Explore Track 11 →</a>
@@ -7588,7 +7632,7 @@
         The CAP theorem in distributed storage. Columnar formats (Apache Parquet, Arrow, ORC) vs. row stores. Data lakes, partitioning, and cloud object stores (S3).
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter12/chapter12.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter12/chapter12.pdf">PDF</a> Slides • Storage Chooser &amp; Parquet Lab
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Storage Chooser &amp; Parquet Lab
       </div>
     </div>
     <a href="../track12-scalable-data-management/" class="noc-track-link">Explore Track 12 →</a>
@@ -7602,7 +7646,7 @@
         The FAIR data principles (Findable, Accessible, Interoperable, Reusable). Open science licensing (Creative Commons, Open Data Commons), and persistent data identifiers (DOIs).
       </div>
       <div style="font-size:0.8rem; color:var(--noc-text-muted); margin-top:0.35rem;">
-        ⚡ 10 Guided Parts • <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter13/chapter13.pptx">PPTX</a> / <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter13/chapter13.pdf">PDF</a> Slides • Open Science Checklist &amp; License Lab
+        ⚡ 10 Guided Parts • Interactive AI Slide Decks • Open Science Checklist &amp; License Lab
       </div>
     </div>
     <a href="../track13-reproducibility-open-science/" class="noc-track-link">Explore Capstone Track 13 →</a>

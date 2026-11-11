@@ -2283,9 +2283,11 @@ window.CURRICULUM_CH4 = window.curriculum_chapter4 = {
     "chapter": 4,
     "part": 4,
     "key": "ch4_p4",
-    "badge": "◆ TRACK 4 • LESSON 4.4: ANNOTATION TECHNIQUES: FROM MANUAL LABELING TO WEAK SUPERVISION & ACTIVE LEARNING",
     "index": "Lesson 4 of 10",
     "lessonTitle": "Annotation Techniques: From Manual Labeling to Weak Supervision & Active Learning",
+    "title": "Annotation Techniques: From Manual Labeling to Weak Supervision & Active Learning",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Reducing human annotation labor by 70% to 90% via Active Learning uncertainty sampling, Snorkel triplet covariance moment modeling, core-set geometric diversity, and pre-label anchoring defense.",
     "slides": [
       {
         "id": "s1",
@@ -2293,277 +2295,751 @@ window.CURRICULUM_CH4 = window.curriculum_chapter4 = {
         "type": "title",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Annotation Techniques: From Manual Labeling to Weak Supervision & Active Learning",
+          "title": "Annotation Techniques: Hybrid Human Loops, Weak Supervision & Active Learning",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.4. Today we examine annotation techniques: from manual labeling to weak supervision & active learning, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Annotation Techniques: From Manual Labeling to Weak Supervision &amp; Active Learning\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into annotation techniques: from manual labeling to weak supervision &amp; active learning with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Annotation Techniques: From Manual Labeling to Weak Supervision & Active Learning",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 4.4?"
+              "text": "Welcome to Track 4, Lesson 4.4 of Dataset Fundamentals: Annotation Techniques: From Manual Labeling to Weak Supervision and Active Learning. Earlier lessons formalized label noise bounds and multi-modal exchange formats. Now we address scale: manual brute-force annotation of millions of records is economically unviable.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.4. Today we examine annotation techniques: from manual labeling to weak supervision & active learning, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "In production AI engineering, labeling is the dominant cost center and delivery bottleneck. By strategically orchestrating Active Learning uncertainty sampling, Snorkel generative weak supervision, and confidence-gated model pre-labeling, teams cut manual labeling volume by 70 to 90 percent while preserving theoretical generalization guarantees.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Annotation Techniques: From Manual Labeling to Weak Supervision &amp; Active Learning\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into annotation techniques: from manual labeling to weak supervision &amp; active learning with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Data Annotation &amp; Ground Truth • Lesson 4.4</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Annotation Techniques: Manual Loops to Weak Supervision &amp; Active Learning\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Reducing manual human annotation labor by $70\\% \\text{ to } 90\\%$ via mathematical active querying, Snorkel triplet covariance modeling, core-set geometric diversity, and anchoring safeguards.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Cost Frontier</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Navigating 5 paradigms from \\$25 expert labels to &lt;\\$0.005 rules.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Active Learning</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Least Confidence, Margin, Shannon Entropy, QBC &amp; Core-Sets.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Snorkel Solver</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Triplet covariance moments, dependency graphs &amp; soft posteriors $\\tilde{y}_i$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Loop Safeguards</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Warm-start seeding, confirmation trap &amp; pre-label anchoring defense.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: How Do We Label Ten Million Samples Without Going Bankrupt?",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 4.4, Kaito! Today we tackle the engineering economics of supervision: scaling labels from thousands of manual boxes to millions of production records.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "If expert medical or legal annotations cost 5 dollars per sample, Dr. Nova, labeling a million records costs 5 million dollars! Can anyone really afford pure manual ground truth anymore?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Almost nobody can! That is why industrial ML teams deploy a strategic portfolio: Weak Supervision writes programmatic labeling functions over millions of items, Active Learning routes only the deadlocked boundary 1 percent to human experts, and pre-label assistants accelerate verification.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—if weak supervision relies on noisy regex rules and heuristics without ground truth, how does Snorkel know which rules are smart and which rules are garbage?",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Socratic Duo • Lesson 4.4</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Socratic Exploration: Scaling Supervision Intelligently\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Dr. Nova and Kaito debate how active boundary querying and Snorkel covariance estimation replace naive crowd-labeling without compromising generalization.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 max-w-3xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block text-sm mb-1 font-black\">Dr. Nova's Strategy</strong>\n      <p class=\"text-[#151b20] leading-relaxed\">\n        Not all unlabeled samples carry equal information. Querying near the margin hyperplane and estimating latent rule accuracies via empirical covariance moments slices costs by up to $90\\%$.\n      </p>\n    </div>\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block text-sm mb-1 font-black\">Kaito's Skepticism</strong>\n      <p class=\"text-[#151b20] leading-relaxed\">\n        What prevents Active Learning from querying duplicate outliers, what breaks majority voting on correlated heuristics, and why do AI pre-labels drop recall on small pedestrians?\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "The Spectrum of Annotation Paradigms",
-        "type": "figure",
+        "title": "The 5-Paradigm Spectrum: Cost, Throughput & Theoretical Guarantees",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Spectrum of Annotation Paradigms",
+          "title": "The 5 Annotation Paradigms Along the Economic Frontier",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Spectrum of Annotation Paradigms. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Unlabeled Corpus X\"] --> Strategy{\"Labeling Strategy Selection\"}\n    \n    Strategy -->|Pure Manual| M1[\"1. Exhaustive Human Labeling<br/>High Cost ($1.50/sample), Low Throughput\"]\n    Strategy -->|Uncertainty Guided| M2[\"2. Active Learning Querying<br/>Prioritize Informative Boundary Points\"]\n    Strategy -->|Heuristic Programmatic| M3[\"3. Weak Supervision (Snorkel LFs)<br/>Rules, Pattern Dictionaries & Distant Supervision\"]\n    Strategy -->|Foundation Model| M4[\"4. Pre-label & Human Verify<br/>Zero-Shot Models generate candidates\"]\n\n    M2 & M3 & M4 --> HumanReview[\"Targeted Human Adjudication Queue\"]\n    HumanReview --> FinalD[(\"Gold Labeled Dataset D\")]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Strategy blue;\n    class M1,M2,M3,M4 amber;\n    class HumanReview,FinalD green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Never annotate unlabeled data randomly. Run inference across the unlabeled pool using model ensembles or dropout entropy: route the top-1% most uncertain instances ($\\mathcal{H}(p) \\to \\max$) to expert annotators. This achieves target validation accu</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Modern annotation workflows</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">balance theoretical sample complexity under noisy labels (Angluin, 1988), automated confident learning to purge pervasive benchmark errors (Northcutt, 2021), and foundation model pre-training transfer strategies like Big Transfer (BiT) (Kolesnikov, 2020).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Spectrum of Annotation Paradigms",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the spectrum of annotation paradigms, how does the architectural flow enforce system stability?"
+              "text": "Modern data engineering spans five distinct supervision paradigms along a four-order-of-magnitude cost and throughput frontier. At the far high-precision end lies Exhaustive Expert Manual annotation: double-blind ground truth costing 2 to 25 dollars per record, constrained to a few hundred samples daily.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Crowdsourced microtasks scale faster at 5 to 30 cents via Dawid-Skene voting. Model-assisted pre-labeling lowers audit times to 20 percent, though introducing confirmation bias. Active Learning extracts top leverage by focusing exclusively on the top 1 to 5 percent boundary instances, while Weak Supervision compiles labeling functions over 100 million records for under half a cent each.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Unlabeled Corpus X\"] --> Strategy{\"Labeling Strategy Selection\"}\n    \n    Strategy -->|Pure Manual| M1[\"1. Exhaustive Human Labeling<br/>High Cost ($1.50/sample), Low Throughput\"]\n    Strategy -->|Uncertainty Guided| M2[\"2. Active Learning Querying<br/>Prioritize Informative Boundary Points\"]\n    Strategy -->|Heuristic Programmatic| M3[\"3. Weak Supervision (Snorkel LFs)<br/>Rules, Pattern Dictionaries & Distant Supervision\"]\n    Strategy -->|Foundation Model| M4[\"4. Pre-label & Human Verify<br/>Zero-Shot Models generate candidates\"]\n\n    M2 & M3 & M4 --> HumanReview[\"Targeted Human Adjudication Queue\"]\n    HumanReview --> FinalD[(\"Gold Labeled Dataset D\")]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Strategy blue;\n    class M1,M2,M3,M4 amber;\n    class HumanReview,FinalD green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Never annotate unlabeled data randomly. Run inference across the unlabeled pool using model ensembles or dropout entropy: route the top-1% most uncertain instances ($\\mathcal{H}(p) \\to \\max$) to expert annotators. This achieves target validation accu</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Modern annotation workflows</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">balance theoretical sample complexity under noisy labels (Angluin, 1988), automated confident learning to purge pervasive benchmark errors (Northcutt, 2021), and foundation model pre-training transfer strategies like Big Transfer (BiT) (Kolesnikov, 2020).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase mb-3\">Quantitative Comparison of the 5 Annotation Paradigms</h3>\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-mono text-xs border-collapse\">\n      <thead>\n        <tr class=\"border-b-2 border-[#151b20] bg-[#f1f5f9] text-[#151b20]\">\n          <th class=\"p-2\">Paradigm</th>\n          <th class=\"p-2\">Unit Cost</th>\n          <th class=\"p-2\">Daily Velocity</th>\n          <th class=\"p-2\">Primary Pathology</th>\n          <th class=\"p-2\">Theoretical Guarantee</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#cbd5e1]\">\n        <tr>\n          <td class=\"p-2 font-bold text-[#151b20]\">1. Expert Manual</td>\n          <td class=\"p-2\">\\$2 &ndash; \\$25</td>\n          <td class=\"p-2\">$10^2 - 10^3$</td>\n          <td class=\"p-2 text-[#b91c1c]\">Fatigue, semantic drift</td>\n          <td class=\"p-2 text-[#15803d]\">Gold Standard Baseline</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 font-bold text-[#b45309]\">2. Crowdsourcing</td>\n          <td class=\"p-2\">\\$0.05 &ndash; \\$0.30</td>\n          <td class=\"p-2\">$10^4 - 10^5$</td>\n          <td class=\"p-2 text-[#b91c1c]\">Adversarial bots, RCN noise</td>\n          <td class=\"p-2 text-[#0e7490]\">Dawid-Skene consensus</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 font-bold text-[#86198f]\">3. Pre-Label + Verify</td>\n          <td class=\"p-2\">\\$0.02 &ndash; \\$0.15</td>\n          <td class=\"p-2\">$10^4 - 10^5$</td>\n          <td class=\"p-2 text-[#b91c1c]\">Human Anchoring Bias</td>\n          <td class=\"p-2 text-[#0e7490]\">Base model recall bound</td>\n        </tr>\n        <tr class=\"bg-[#c9f3f4]/40\">\n          <td class=\"p-2 font-bold text-[#0e7490]\">4. Active Learning</td>\n          <td class=\"p-2\">\\$0.10 &ndash; \\$1.50</td>\n          <td class=\"p-2\">$10^3 - 10^4$ (Targeted)</td>\n          <td class=\"p-2 text-[#b91c1c]\">Outlier/Confirmation trap</td>\n          <td class=\"p-2 text-[#15803d]\">PAC boundary sample complexity</td>\n        </tr>\n        <tr class=\"bg-[#e7f4c8]/40\">\n          <td class=\"p-2 font-bold text-[#15803d]\">5. Weak Supervision</td>\n          <td class=\"p-2\">&lt; \\$0.005</td>\n          <td class=\"p-2\">$10^6 - 10^8$</td>\n          <td class=\"p-2 text-[#b91c1c]\">Correlated rules, abstention</td>\n          <td class=\"p-2 text-[#15803d]\">Covariance moment matching</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Orchestrating the 5-Tier Hybrid Pipeline",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at that table! Weak supervision hits up to 100 million records per day under half a cent, while Expert Manual handles only a few hundred records at up to 25 dollars each!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yet you should never throw away Expert Manual labeling entirely, Kaito! Every Snorkel generative model and Active Learning benchmark still relies on an expert-curated Gold test set of 1,000 items to measure ground-truth F1 honestly.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So the architecture isn't choosing just ONE paradigm—it is routing clean evaluation to Gold Experts, high-volume training to Weak Supervision, and boundary refinement to Active Learning!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Hybrid pipelines extract the geometric accuracy of experts at the unit economics of programmatic heuristics.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-3\">\n    <span>Production Hybrid Architecture</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Strategic Allocation of Labeling Capital</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">1. Test Set ($\\mathcal{D}_{\\text{gold}}$)</strong>\n      <span class=\"text-[11px] text-[#151b20]\">100% Double-Blind Expert Manual (Zero leakage, exact calibration).</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. High-Volume Train ($\\mathcal{D}_{\\text{soft}}$)</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Snorkel Weak Supervision ($10^6+$ items) weighted via LF covariances.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">3. Hard Decision Regions</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Active Learning Margin/Core-Set querying top $1\\%$ boundary ambiguities.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Mathematical Formalization of Active Learning & Weak Supervision: Shannon Entropy Sampling",
-        "type": "equation",
+        "title": "Active Learning Queries: Least Confidence & Decision-Boundary Margin Sampling",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Mathematical Formalization of Active Learning & Weak Supervision: Shannon Entropy Sampling",
+          "title": "Pool-Based Active Learning: Least Confidence & Margin Sampling",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Mathematical Formalization of Active Learning & Weak Supervision: Shannon Entropy Sampling. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$x^*_{\\text{entropy}} = \\arg\\max_{x \\in \\mathcal{U}} \\left( -\\sum_{k=1}^K P(y = k \\mid x; \\theta) \\log_2 P(y = k \\mid x; \\theta) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Under Entropy Sampling</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">(Settles, 2009), the oracle prioritizes points maximizing prediction entropy:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Mathematical Formalization of Active Learning & Weak Supervision: Shannon Entropy Sampling",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does mathematical formalization of active learning & weak supervision: shannon entropy sampling protect our system against silent distribution shift in production?"
+              "text": "Let us formalize pool-based Active Learning. Given a small labeled set L and a massive unlabeled pool U, the active loop evaluates posterior class predictions across U and picks the highest-leverage batch B to route to human experts.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Least Confidence selects the item whose single highest predicted probability is minimal. While fast at linear time complexity O of N, it ignores secondary probability mass. Margin Sampling fixes this by minimizing the gap between the top-one and top-two most likely classes, focusing directly on the hyperplane decision boundary.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$x^*_{\\text{entropy}} = \\arg\\max_{x \\in \\mathcal{U}} \\left( -\\sum_{k=1}^K P(y = k \\mid x; \\theta) \\log_2 P(y = k \\mid x; \\theta) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Under Entropy Sampling</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">(Settles, 2009), the oracle prioritizes points maximizing prediction entropy:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#b45309] font-black text-sm\">1. Least Confidence (LC)</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">$\\mathcal{O}(N)$ Heuristic</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center\">\n        $$x^*_{\\text{LC}} = \\arg\\max_{x \\in \\mathcal{U}} \\left( 1 - \\max_{k \\in \\{1..K\\}} P(y = k \\mid x; \\theta) \\right)$$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Evaluates peak confidence only. Blind to remaining $K-1$ posterior weights across non-dominant classes!\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#0e7490] font-black text-sm\">2. Margin Sampling</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">Hyperplane Target</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center\">\n        $$x^*_{\\text{margin}} = \\arg\\min_{x \\in \\mathcal{U}} \\left( P(\\hat{y}_1 \\mid x; \\theta) - P(\\hat{y}_2 \\mid x; \\theta) \\right)$$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Targets tight binary/two-class deadlocks (e.g., $[0.491, 0.490, 0.019]$) sitting squarely on the classifier hyperplane.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: Least Confidence vs. Margin on Multi-Class Datasets",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "When $K=2$ binary classification is used, aren't Least Confidence, Margin, and Entropy all identical, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Mathematically, yes! In 2 classes, sorting by $1 - \\max(p)$ gives the exact same ranking as sorting by $|p_1 - p_2|$ or Shannon entropy—everything peaks symmetrically at $p=0.5$.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Then why do we need Margin Sampling once we jump to 10 or 100 classes?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Consider two candidates in 10 classes: Candidate A has probabilities [0.49, 0.49, 0.002...], an exact two-class clinical deadlock. Candidate B has [0.35, 0.08, 0.08...]. Least Confidence picks B even though class 1 dominates by 27 points, whereas Margin catches deadlock A cleanly!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Multi-Class Equivalence Break</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Case Contrast in $K=10$ Classes</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div><strong>Instance A:</strong> $[0.491, 0.490, 0.002, \\dots]$ &rarr; Margin $\\Delta = 0.001$ (Sharp Boundary Impasse!)</div>\n    <div><strong>Instance B:</strong> $[0.350, 0.090, 0.080, \\dots]$ &rarr; $1 - \\max = 0.650$, Margin $\\Delta = 0.260$ (Noisy/Low Conf)</div>\n    <div class=\"text-[#0e7490] font-bold\">Insight: Least Confidence picks B; Margin targets A where boundary learning occurs!</div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Margin Sampling",
-        "type": "equation",
+        "title": "Multi-Class Dispersion: Shannon Entropy, Vote Entropy & KL Divergence",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Margin Sampling",
+          "title": "Shannon Entropy & Query-by-Committee Ensembles",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Margin Sampling. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$x^*_{\\text{margin}} = \\arg\\min_{x \\in \\mathcal{U}} \\left( P(\\hat{y}_1 \\mid x; \\theta) - P(\\hat{y}_2 \\mid x; \\theta) \\right)$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Margin Sampling",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does margin sampling protect our system against silent distribution shift in production?"
+              "text": "When we want to quantify full distribution dispersion across all K classes simultaneously, we use Shannon Prediction Entropy. Measured in bits via base-2 logarithm, entropy peaks at log2 of K when every class is equally probable.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "However, a single deep neural network can still be arrogantly overconfident on out-of-distribution inputs! Query-by-Committee cures single-model overconfidence by maintaining an ensemble of distinct architectures or bootstrap models, querying points that maximize Vote Entropy or average Kullback-Leibler divergence across committee members.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$x^*_{\\text{margin}} = \\arg\\min_{x \\in \\mathcal{U}} \\left( P(\\hat{y}_1 \\mid x; \\theta) - P(\\hat{y}_2 \\mid x; \\theta) \\right)$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block font-black text-sm mb-2\">3. Shannon Prediction Entropy</strong>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-[11px]\">\n        $$\\mathcal{H}(Y \\mid x; \\theta) = -\\sum_{k=1}^K P(y=k \\mid x; \\theta) \\log_2 P(y=k \\mid x; \\theta)$$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Captures total class-simplex dispersion; peaks at $\\log_2(K)$ bits for flat uniform distributions.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#f3e8ff] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#6b21a8] block font-black text-sm mb-2\">4. Query-by-Committee (QBC)</strong>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-[11px]\">\n        $$x^*_{\\text{KL}} = \\arg\\max_{x \\in \\mathcal{U}} \\frac{1}{C} \\sum_{c=1}^C D_{\\text{KL}}\\left(P_{\\theta^{(c)}}(\\cdot \\mid x) \\,\\|\\, P_{\\mathcal{C}}(\\cdot \\mid x)\\right)$$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Ensemble $\\mathcal{C} = \\{\\theta^{(1)}\\dots\\theta^{(C)}\\}$ measures committee consensus disagreement via Vote Entropy or KL divergence.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Exposing Overconfident Models via Committees",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why do single models fail even when evaluated with Shannon Entropy, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Deep softmax networks are notoriously uncalibrated, Kaito! An individual CNN can encounter a strange unseen truck and output 99.8 percent confidence that it is an ostrich, resulting in near-zero Shannon Entropy!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whereas if we evaluate a ResNet, a Vision Transformer, and an EfficientNet together in Query-by-Committee, one says bird, one says vehicle, and one says unknown!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Their committee Vote Entropy and KL divergence spike immediately, flagging the anomaly for human inspection despite individual model overconfidence.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3e8ff] border border-[#151b20] text-[#6b21a8] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Epistemic Uncertainty Resolution</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Vote Entropy &amp; Consensus Divergence</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div><strong>Vote Entropy:</strong> $x^*_{\\text{VE}} = \\arg\\max (-\\sum \\frac{V(k,x)}{C} \\log_2 \\frac{V(k,x)}{C})$</div>\n    <div class=\"text-[#15803d]\"><strong>ISIC Benchmark Result:</strong> Combining ResNet + ViT + EfficientNet in QBC reached $90\\%$ of peak accuracy using only $18.4\\%$ of the dermatology pool!</div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Weak Supervision: The Snorkel Label Model",
-        "type": "equation",
+        "title": "Safeguards in Human Loops: Core-Set Geometry, Warm-Start Seeding & Anchoring Bias",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Weak Supervision: The Snorkel Label Model",
+          "title": "Geometric Core-Sets, Cold-Start & Pre-Label Anchoring Guards",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Weak Supervision: The Snorkel Label Model. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_\\theta(\\boldsymbol{\\lambda}, Y^*) = \\frac{1}{Z_\\theta} \\exp\\left( \\theta_0 Y^* + \\sum_{j=1}^m \\theta_j \\lambda_j Y^* + \\sum_{j, k} \\theta_{j, k} \\lambda_j \\lambda_k \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{E}[\\boldsymbol{\\lambda} \\boldsymbol{\\lambda}^T] - \\mathbb{E}[\\boldsymbol{\\lambda}] \\mathbb{E}[\\boldsymbol{\\lambda}]^T = \\Sigma_{\\text{observed}}$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Weak Supervision: The Snorkel Label Model",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does weak supervision: the snorkel label model protect our system against silent distribution shift in production?"
+              "text": "Pure uncertainty sampling carries two hidden hazards: batch sampling redundancy, where an iteration picks 50 near-identical boundary outliers, and the cold-start trap, where random Epoch-0 weights lock the loop onto confirmation bias. Core-Set Active Learning enforces minimax feature dispersion alongside Warm-Start random pilot seeding of 500 to 2,000 labels.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Meanwhile, in Model-Assisted Pre-Labeling, annotators review proposed boxes 4x faster, yet recall on tiny pedestrians collapses by 8 percent due to Anchoring Bias: humans edit false positives easily, but miss false negatives without raw canvas scanning. Production QA injects stripped honeypots and confidence-gates box display.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_\\theta(\\boldsymbol{\\lambda}, Y^*) = \\frac{1}{Z_\\theta} \\exp\\left( \\theta_0 Y^* + \\sum_{j=1}^m \\theta_j \\lambda_j Y^* + \\sum_{j, k} \\theta_{j, k} \\lambda_j \\lambda_k \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{E}[\\boldsymbol{\\lambda} \\boldsymbol{\\lambda}^T] - \\mathbb{E}[\\boldsymbol{\\lambda}] \\mathbb{E}[\\boldsymbol{\\lambda}]^T = \\Sigma_{\\text{observed}}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 my-2\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <strong class=\"text-[#0e7490] font-mono text-xs uppercase font-black block mb-1\">1. Core-Set Minimax Dispersion (Sener &amp; Savarese, ICLR 2018)</strong>\n    <div class=\"bg-[#f8fafc] p-2 rounded border border-[#151b20] text-center font-mono text-xs mb-1\">\n      $$\\min_{\\mathcal{S} \\subseteq \\mathcal{U}, |\\mathcal{S}| \\le B} \\max_{i \\in \\mathcal{U} \\setminus \\mathcal{S}} \\min_{j \\in \\mathcal{L} \\cup \\mathcal{S}} \\|\\phi(x_i) - \\phi(x_j)\\|_2$$\n    </div>\n    <p class=\"text-[11px] text-[#475569]\">Prevents querying 50 clustered duplicates; ensures geometric coverage across latent space $\\phi(x)$.</p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block font-black mb-1\">2. The Cold-Start Confirmation Trap</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Random $\\theta_0$ gives meaningless probabilities. Fix: Seed a <strong>Warm-Start Random Pilot Cohort</strong> ($N=500\\text{–}2{,}000$) before enabling uncertainty loops!\n      </p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block font-black mb-1\">3. Pre-Label Anchoring Bias (-8% Recall)</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Workers miss unproposed small pedestrians. Defense: <strong>Honeypot Stripping</strong> + <strong>Confidence-Gated Display</strong> ($0.30 \\le p \\le 0.85 \\implies$ hide pre-label).\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: Why Faster Pre-Labeling Drops Pedestrian Recall by 8%",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "If AI pre-labels make human annotators four times faster on bounding boxes, Dr. Nova, why did autonomous driving pedestrian recall drop by 8 percent?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think about human cognitive ergonomics, Kaito! Auditing an existing box to trim two pixels takes zero mental effort. Scanning every dark corner of an intersection to realize the AI missed a tiny distant pedestrian takes active concentration.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And since workers are rewarded for boxes per hour, they trust the AI proposals—missing false negatives completely!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Injecting stripped honeypots and hiding pre-labels in moderate-confidence scenes restores active visual scanning immediately.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border border-[#151b20] text-[#b91c1c] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Asymmetric Verification Effort</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Anchoring Bias Countermeasures</h3>\n  <ul class=\"font-mono text-xs space-y-2 text-[#151b20]\">\n    <li class=\"p-2 bg-[#f8fafc] rounded border border-[#151b20]\"><strong>1. Honeypot Stripping:</strong> Deliberately delete gold pedestrian boxes before review to test worker discovery recall.</li>\n    <li class=\"p-2 bg-[#f8fafc] rounded border border-[#151b20]\"><strong>2. Confidence-Gated UI:</strong> Show pre-labels only when confidence $p &gt; 0.85$; show raw frames when $p \\in [0.30, 0.85]$.</li>\n  </ul>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Human Verification Cost Savings Model",
-        "type": "equation",
+        "title": "Interactive Lab: 2D Active Learning Decision-Boundary & Uncertainty Studio",
+        "type": "interactive",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Human Verification Cost Savings Model",
+          "title": "Interactive Lab: 2D Active Learning Decision-Boundary Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Human Verification Cost Savings Model. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Cost Reduction} = 1 - \\frac{N_{\\text{auto}} \\cdot 0 + N_{\\text{verified}} \\cdot \\gamma \\cdot C_{\\text{manual}}}{N_{\\text{total}} \\cdot C_{\\text{manual}}}$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Human Verification Cost Savings Model",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does human verification cost savings model protect our system against silent distribution shift in production?"
+              "text": "Welcome to our 2D Active Learning Studio. On this HTML5 canvas, 40 data points sit across two partially overlapping clusters. Only 4 points start with ground-truth labels, defining the dashed logistic hyperplane.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Notice the golden target ring highlighting the candidate with highest acquisition priority. Click Query Top Candidate or Auto-Query Batch with Shannon Entropy selected, and observe validation accuracy jump past 90 percent with only a handful of labels compared to Passive Random Sampling.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Cost Reduction} = 1 - \\frac{N_{\\text{auto}} \\cdot 0 + N_{\\text{verified}} \\cdot \\gamma \\cdot C_{\\text{manual}}}{N_{\\text{total}} \\cdot C_{\\text{manual}}}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div id=\"alSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Lab: Watching Entropy Refine the Hyperplane",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, watch the 2D canvas above us! Try querying 5 points with Shannon Entropy and look at where the golden ring lands!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Every single query lands right along the dashed decision boundary! In just two batches, accuracy jumped from 65% to over 90% using a fraction of the pool!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now reset the pool and compare Passive Random Sampling. Random draws waste annotation budget on obvious deep-cluster points far from the boundary.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That visually proves information density maximization in action!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div id=\"alSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Python Verification: Active Uncertainty Sampling & LF Consensus",
-        "type": "code",
+        "title": "Active Checkpoint 1: Bimodal Boundary Dilemmas (Margin vs. Shannon Entropy)",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Python Verification: Active Uncertainty Sampling & LF Consensus",
+          "title": "Active Checkpoint 1: Margin vs. Shannon Entropy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Python Verification: Active Uncertainty Sampling & LF Consensus. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># active_learning_weak_supervision.py\n# Computes entropy sampling scores and weak supervision voting consensus\n\nfrom typing import List, Dict, Tuple\nimport numpy as np\n\ndef compute_entropy_scores(prob_matrix: np.ndarray) -&gt; np.ndarray:\n    # Computes Shannon entropy across class prediction probabilities\n    clipped = np.clip(prob_matrix, 1e-12, 1.0)\n    entropy = -np.sum(clipped * np.log2(clipped), axis=1)\n    return entropy\n\ndef compute_margin_scores(prob_matrix: np.ndarray) -&gt; np.ndarray:\n    # Computes margin sampling: (top_prob - second_prob)\n    # Sort descending along class axis\n    sorted_probs = np.sort(prob_matrix, axis=1)[:, ::-1]\n    margin = sorted_probs[:, 0] - sorted_probs[:, 1]\n    return margin\n\ndef weak_supervision_majority_vote(lf_matrix: np.ndarray) -&gt; np.ndarray:\n    # Aggregates noisy labeling functions (-1, 0, +1) vi</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Python Verification: Active Uncertainty Sampling & LF Consensus",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Time for Active Checkpoint 1. Suppose a 10-class diagnostic classifier evaluates two candidates. Instance A outputs probabilities 0.491 and 0.490 across two leading classes.",
+              "dock": "checkpoint"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Instance B outputs diffuse probabilities between 0.12 and 0.16 spread across six classes. Which acquisition heuristic targets Instance A, and which targets Instance B? Select the mathematically correct choice.",
+              "dock": "checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># active_learning_weak_supervision.py\n# Computes entropy sampling scores and weak supervision voting consensus\n\nfrom typing import List, Dict, Tuple\nimport numpy as np\n\ndef compute_entropy_scores(prob_matrix: np.ndarray) -&gt; np.ndarray:\n    # Computes Shannon entropy across class prediction probabilities\n    clipped = np.clip(prob_matrix, 1e-12, 1.0)\n    entropy = -np.sum(clipped * np.log2(clipped), axis=1)\n    return entropy\n\ndef compute_margin_scores(prob_matrix: np.ndarray) -&gt; np.ndarray:\n    # Computes margin sampling: (top_prob - second_prob)\n    # Sort descending along class axis\n    sorted_probs = np.sort(prob_matrix, axis=1)[:, ::-1]\n    margin = sorted_probs[:, 0] - sorted_probs[:, 1]\n    return margin\n\ndef weak_supervision_majority_vote(lf_matrix: np.ndarray) -&gt; np.ndarray:\n    # Aggregates noisy labeling functions (-1, 0, +1) vi</code></pre>\n</div>"
+          "contentHtml": "\n<div id=\"checkpoint1Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Checkpoint: Resolving Two-Class Impasses vs. Flat Entropy",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's test whether engineers understand when Margin Sampling and Shannon Entropy diverge in 10-class tasks!",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Instance A is a razor-thin two-way impasse, while Instance B spreads uncertainty evenly across 6 classes! Which metric queries which instance?",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"checkpoint1Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Explore Active Learning Simulator",
-        "type": "tool",
+        "title": "Weak Supervision: Labeling Functions, Coverage, Overlap & Conflict Rates",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Active Learning Simulator",
+          "title": "Weak Supervision: Programmatic Labeling Functions",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Active Learning Simulator. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Active Learning Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate pool-based active learning with Least Confidence, Margin Sampling, and Shannon Entropy query strategies.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Active Learning Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Active Learning Simulator",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore active learning simulator located below this player?"
+              "text": "Now let us turn to programmatic Weak Supervision, pioneered by Snorkel. Instead of manually labeling rows one by one, subject matter experts author m programmatic Labeling Functions, or LFs.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Each LF maps an unlabeled record to minus 1, 0 for abstention, or plus 1. Heuristics can range from regex matches and MeSH dictionaries to zero-shot LLM prompts. We summarize their corpus behavior via three observable empirical rates: Coverage, Pairwise Overlap, and Pairwise Conflict.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Active Learning Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate pool-based active learning with Least Confidence, Margin Sampling, and Shannon Entropy query strategies.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Active Learning Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2\">\n      <strong class=\"font-mono text-sm font-black text-[#151b20]\">Labeling Function Mapping Signature</strong>\n      <span class=\"px-2.5 py-0.5 rounded-full bg-[#e7f4c8] border border-[#151b20] font-mono text-[10px] font-bold text-[#15803d]\">0 = Abstention</span>\n    </div>\n    <div class=\"bg-[#f8fafc] p-2.5 rounded border-2 border-[#151b20] text-center font-mono text-sm\">\n      $$\\lambda_j: \\mathcal{X} \\to \\{-1, 0, +1\\}, \\quad j \\in \\{1, \\dots, m\\}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">Coverage ($\\phi_j$)</strong>\n      <div class=\"bg-white p-2 rounded border border-[#151b20] text-center mb-1.5 text-[11px]\">\n        $$\\phi_j = \\frac{1}{N} \\sum_{i=1}^N \\mathbb{I}(\\lambda_j(x_i) \\ne 0)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]\">Fraction of items labeled (non-abstaining) by $\\lambda_j$.</p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">Overlap ($O_{jk}$)</strong>\n      <div class=\"bg-white p-2 rounded border border-[#151b20] text-center mb-1.5 text-[11px]\">\n        $$O_{jk} = \\frac{1}{N} \\sum_{i=1}^N \\mathbb{I}(\\lambda_j \\ne 0 \\land \\lambda_k \\ne 0)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]\">Joint firing rate needed to estimate covariance.</p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">Conflict ($C_{jk}$)</strong>\n      <div class=\"bg-white p-2 rounded border border-[#151b20] text-center mb-1.5 text-[11px]\">\n        $$C_{jk} = \\frac{1}{N} \\sum_{i=1}^N \\mathbb{I}(\\lambda_j \\cdot \\lambda_k = -1)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]\">Empirical disagreement rate exposing rule noise.</p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Why Abstention Is a Superpower",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why do Snorkel labeling functions return 0 for abstention instead of always voting minus 1 or plus 1, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think about a medical regex looking for the phrase 'chest pain'. If a clinical report mentions chest pain, it fires +1 confidently. If the phrase isn't present, claiming the patient is definitely healthy would add catastrophic false negative noise!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So returning 0 lets specialists encode high-precision partial heuristics without guessing wildly on everything outside their domain!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! High precision with partial coverage combined across 50 diverse labeling functions yields massive coverage once aggregated.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Modular Heuristic Engineering</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">4 Sources of Labeling Functions</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\"><strong>Regex &amp; Pattern Heuristics:</strong> Fast domain keywords &amp; negation windows.</div>\n    <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\"><strong>Distant Supervision:</strong> Matching entities against Wikidata/MeSH dictionaries.</div>\n    <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\"><strong>Legacy Models &amp; Thresholds:</strong> Out-of-domain pretrained classifiers.</div>\n    <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\"><strong>Zero-Shot LLM Prompts:</strong> Foundation model rationales serialized into noisy votes.</div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s9",
-        "title": "Key Engineering Takeaways",
-        "type": "bullets",
+        "title": "Snorkel Generative Factor Graphs & Correlated Heuristic De-Duplication",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Key Engineering Takeaways",
+          "title": "Snorkel Generative Model & Factor Graph Structure",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Key Engineering Takeaways. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Information Density Targeting</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Active learning queries the samples closest to the decision boundary (low margin, high entropy), maximizing learning per dollar.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Weak Supervision Scaling</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Programmatic labeling functions allow domain experts to label millions of documents in minutes using heuristic rules and distant supervision.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Pre-Labeling Cost Dynamics</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Verifying pre-labeled candidates takes $20\\%\\text{ to }30\\%$ of the time required to draw bounding geometries from scratch.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Covariance-Based Weighting</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Snorkel&#x27;s generative model learns which labeling functions are accurate without ever inspecting ground-truth labels.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Key Engineering Takeaways",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "Why does simple majority voting fail on noisy labeling functions? Two reasons: first, it treats a 55-percent noisy rule identically to a 95-percent expert rule; second, duplicated or correlated rules double-count their bias and overrule accurate evidence.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "Snorkel solves both failures by parameterizing the joint distribution of unobserved ground truth Y-star and all LF votes as an exponential factor graph. Parameter theta_j models intrinsic rule accuracy, while pairwise factor theta_jk explicitly captures and down-weights conditional dependencies among correlated heuristics.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Information Density Targeting</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Active learning queries the samples closest to the decision boundary (low margin, high entropy), maximizing learning per dollar.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Weak Supervision Scaling</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Programmatic labeling functions allow domain experts to label millions of documents in minutes using heuristic rules and distant supervision.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Pre-Labeling Cost Dynamics</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Verifying pre-labeled candidates takes $20\\%\\text{ to }30\\%$ of the time required to draw bounding geometries from scratch.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Covariance-Based Weighting</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Snorkel&#x27;s generative model learns which labeling functions are accurate without ever inspecting ground-truth labels.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2\">\n      <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase\">Snorkel Generative Factor Graph (Ratner et al., 2017)</h3>\n      <span class=\"px-2.5 py-0.5 rounded-full bg-[#c9f3f4] border border-[#151b20] font-mono text-[10px] text-[#0e7490] font-bold\">Dependency Aware</span>\n    </div>\n    <div class=\"bg-[#f8fafc] p-3 rounded-lg border-2 border-[#151b20] text-center font-mono text-sm mb-3\">\n      $$P_\\theta(\\boldsymbol{\\lambda}, Y^*) = \\frac{1}{Z_\\theta} \\exp\\left( \\theta_0 Y^* + \\sum_{j=1}^m \\theta_j \\lambda_j Y^* + \\sum_{j < k} \\theta_{jk} \\lambda_j \\lambda_k \\right)$$\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Accuracy Factor $\\theta_j \\lambda_j Y^*$</strong>\n        <span class=\"text-[11px] text-[#151b20]\">Captures true reliability of $\\lambda_j$ aligned with latent ground truth $Y^*$.</span>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block mb-1\">Dependency Factor $\\theta_{jk} \\lambda_j \\lambda_k$</strong>\n        <span class=\"text-[11px] text-[#151b20]\">Penalizes shared mutual information between correlated heuristics ($\\operatorname{Cov}(\\lambda_1, \\lambda_2 \\mid Y^*) \\gg 0$).</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Duplicate Regex Overrule Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Suppose I write two identical regex rules for negative sentiment, $\\lambda_1$ and $\\lambda_2$, and my colleague writes one super-accurate 95% clinical negation rule $\\lambda_3$ voting positive. What does Majority Vote do?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Naive Majority Vote computes -1 plus -1 plus 1, outputting negative one! Two correlated copies just defeated a 95-percent expert rule 2 to 1!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whoa—how does Snorkel stop the correlated pair from double-counting?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at that pairwise interaction parameter $\\theta_{12}$. Because $\\lambda_1$ and $\\lambda_2$ agree almost 100 percent unconditionally, Snorkel shrinks their effective joint voting mass back to that of one single rule—letting the 95-percent expert rule win cleanly!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border border-[#151b20] text-[#b91c1c] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Correlated Rule Defense</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">De-Duplicating Votes in Factor Space</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div class=\"text-[#b91c1c]\"><strong>Naive Vote:</strong> $\\lambda_1(-1) + \\lambda_2(-1) + \\lambda_3(+1) = -1$ (Duplicate rules win $2 \\text{ vs } 1$!)</div>\n    <div class=\"text-[#15803d]\"><strong>Snorkel Factor Graph:</strong> High $\\theta_{12}$ shrinks correlated pair back to 1 unit vote &rarr; $\\lambda_3$ wins via log-odds weight $w_3 \\gg w_{1,2}$!</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Learning Accuracies Without Ground Truth: Triplet Covariance Moment Solver",
+        "type": "math",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Unsupervised Accuracy Estimation via Triplet Moments",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "How can Snorkel possibly measure how accurate each labeling function is when we possess zero ground truth labels Y-star? The mathematical magic relies on conditional independence and triplet covariance moments.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "When independent LFs only communicate through true label Y-star, the observed covariance between lambda_j and lambda_k factors identically into c_j times c_k. Given any overlapping triplet j, k, l, multiplying Cov(j,k) by Cov(j,l) and dividing by Cov(k,l) cancels c_k and c_l identically, leaving a closed-form analytical solution for c_j squared and worker accuracy!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2\">\n      <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase\">Triplet Covariance Moment Solver (Ratner et al.)</h3>\n      <span class=\"px-2.5 py-0.5 rounded-full bg-[#fff0b9] border border-[#151b20] font-mono text-[10px] text-[#b45309] font-bold\">Zero Ground Truth</span>\n    </div>\n    <div class=\"bg-[#f8fafc] p-3 rounded-lg border-2 border-[#151b20] text-center font-mono text-xs mb-3 space-y-2\">\n      <div>$$\\operatorname{Cov}(\\lambda_j, \\lambda_k) = c_j c_k, \\quad \\operatorname{Cov}(\\lambda_j, \\lambda_l) = c_j c_l, \\quad \\operatorname{Cov}(\\lambda_k, \\lambda_l) = c_k c_l$$</div>\n      <div class=\"pt-1 border-t border-gray-300\">\n        $$c_j^2 = \\frac{\\operatorname{Cov}(\\lambda_j, \\lambda_k) \\cdot \\operatorname{Cov}(\\lambda_j, \\lambda_l)}{\\operatorname{Cov}(\\lambda_k, \\lambda_l)} \\implies \\operatorname{Acc}_j = \\frac{1 + c_j / \\phi_j}{2}$$\n      </div>\n    </div>\n    <p class=\"text-xs text-[#475569] leading-relaxed\">\n      Where $c_j = \\operatorname{Cov}(\\lambda_j, Y^*)$ measures latent alignment with unobserved ground truth. Three overlapping LFs determine every accuracy algebraically from raw agreements!\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Proof: Finding Accuracies Purely from Disagreement Matrices",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Hold on, Dr. Nova! Let me verify this algebraic trick! With three labeling functions—j, k, and l—we don't ever inspect Y-star?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Not once! Because their votes over 100,000 raw records are fully observable, we compute the three empirical covariances Cov(j,k), Cov(j,l), and Cov(k,l) directly from the vote matrix.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And since Cov(j,k) times Cov(j,l) equals c_j squared times c_k times c_l, dividing by Cov(k,l) cancels c_k and c_l cleanly, yielding c_j squared!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Wait until you check sign symmetry too: taking the sign of mean alignment recovers exact worker accuracy $\\operatorname{Acc}_j = (1 + c_j / \\phi_j) / 2$ analytically without a single manual label!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Worked Numeric Verification</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Recovering Latent Accuracies $[0.90, 0.80, 0.70]$ Blindly</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-1.5\">\n    <div>Observed Covariances: $\\text{Cov}_{12}=0.48$, $\\text{Cov}_{13}=0.32$, $\\text{Cov}_{23}=0.24$</div>\n    <div>Solver: $c_1 = \\sqrt{\\frac{0.48 \\times 0.32}{0.24}} = \\sqrt{0.64} = 0.80$</div>\n    <div class=\"text-[#15803d] font-bold\">Recovered: $\\text{Acc}_1 = \\frac{1 + 0.80}{2} = 0.90$ ($90\\%$), $\\text{Acc}_2 = 0.80$, $\\text{Acc}_3 = 0.70$!</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Soft Posterior Labels (ỹ) & Noise-Aware Discriminator Regularization",
+        "type": "math",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Probabilistic Soft Pseudo-Label Aggregation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Once the triplet solver estimates individual LF accuracies, we convert those accuracies into log-odds weights w_j equals one half natural log of accuracy divided by 1 minus accuracy.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Summing weighted LF votes through a sigmoid produces a calibrated continuous soft posterior y-tilde between 0 and 1. Rather than rounding softly inferred beliefs into harsh binary 0-or-1 integers, downstream BERT or ResNet models minimize noise-aware cross-entropy against continuous soft labels, acting as natural statistical regularization.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase mb-2\">Log-Odds Posterior Calibration</h3>\n    <div class=\"bg-[#f8fafc] p-3 rounded-lg border-2 border-[#151b20] text-center font-mono text-sm mb-3 space-y-2\">\n      <div>$$w_j = \\frac{1}{2} \\ln \\left( \\frac{\\operatorname{Acc}_j}{1 - \\operatorname{Acc}_j} \\right)$$</div>\n      <div>$$\\tilde{y}_i = P(Y_i = +1 \\mid \\boldsymbol{\\lambda}_i) = \\frac{1}{1 + \\exp\\left( -2 \\sum_{j=1}^m w_j \\lambda_{ij} \\right)} = \\sigma\\left( 2 \\sum_{j=1}^m w_j \\lambda_{ij} \\right)$$</div>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block mb-1\">❌ Hard Rounding ($\\tilde{y} \\to \\{0, 1\\}$)</strong>\n        <span class=\"text-[11px] text-[#151b20]\">Discards uncertainty confidence (treating $P=0.52$ equally with $P=0.99$), forcing models to memorize residual heuristic noise!</span>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#c9f3f4] border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">✓ Noise-Aware Soft Cross-Entropy</strong>\n        <span class=\"text-[11px] text-[#151b20]\">Backpropagating against soft probability $\\tilde{y}_i \\in [0, 1]$ smooths loss surfaces and generalizes across unseen features where all LFs abstained!</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Discussion: Why Don't We Just Stop at the Generative Model?",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! If Snorkel's generative model already predicts labels on the unlabeled corpus, why bother training a downstream BERT or ResNet discriminator at all?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because labeling functions only look at brittle regex rules or explicit keywords, Kaito! Suppose at inference time a new patient record paraphrases 'shortness of breath' as 'dyspnea upon mild exertion', so all regexes abstain.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "On unseen synonyms where every rule outputs 0, the generative model falls back to 50 percent coin-flip uncertainty!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Whereas a deep neural discriminator trained on millions of soft pseudo-labels transfers general language representations from all raw features—easily generalizing cleanly even when every labeling function abstains!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Generalization Beyond Heuristics</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Why Discriminative Neural Backbones Beat LFs</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div class=\"text-[#b91c1c]\"><strong>Labeling Functions Only:</strong> Zero-coverage on unseen paraphrasing (e.g., regex misses <em>\"dyspnea\"</em>).</div>\n    <div class=\"text-[#15803d]\"><strong>Downstream BERT Discriminator:</strong> Learns latent semantic synonyms over continuous soft targets $\\tilde{y}_i$, scaling generalization far past heuristic recall!</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Snorkel Weak Supervision & Soft Posterior Workbench",
+        "type": "interactive",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: Snorkel Weak Supervision Workbench",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to our Snorkel Weak Supervision Workbench. Above me are 5 clinical reviews voted upon by 4 noisy heuristic Labeling Functions, including a noisy Length rule LF3.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Inspect Record 2 and Record 3 where Majority Vote ties or fails, achieving only 60 percent accuracy. Now adjust the estimated accuracy sliders above to give LF1 Keyword and LF2 Negation stronger weights while leaving LF3 near 0.55. Watch Snorkel's log-odds posterior hit 100 percent accuracy instantly!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div id=\"wsSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Lab: Overriding Corrupted Majority Votes with Log-Odds Weights",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, check Record 3 in the Snorkel Weak Supervision Workbench: 'Mild localized tenderness, non-cardiac etiology'!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at LF1 Negation (-1), LF2 Negation (-1), and noisy LF3 Length (+1)! Majority Vote got fooled into a tie on Record 2 as well, scoring only 60 percent!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And now look at Snorkel's Probabilistic Posterior column right next to it using calibrated log-odds weights!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Snorkel assigns negative one decisively at 100% overall accuracy—because low-accuracy noise barely budges the calibrated log-odds sum!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div id=\"wsSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Correlated Labeling Functions vs. Majority Voting",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Correlated Heuristics",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us complete Active Checkpoint 2 from Micro-Check 3. Suppose an engineer creates two identical duplicate regex rules, lambda 1 and lambda 2, that both falsely emit minus 1 on an item.",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Meanwhile, an independent expert rule lambda 3 with 95 percent historical precision votes plus 1. Why does naive majority voting output the wrong class, and how does Snorkel's factor graph handle correlated LFs? Select the right answer.",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"checkpoint2Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Checkpoint: Breaking the Duplicate Rule Tie-Break",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's test whether learners remember how Snorkel prevents duplicated heuristics from drowning out an independent expert rule!",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Two copied regexes voting minus one versus one 95-percent expert rule voting plus one! Choose the factor graph explanation above.",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"checkpoint2Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Industrial Benchmarks: CDR Biomedical, Waymo LiDAR, CUAD Legal & ISIC",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Industrial Deployments of Active & Weak Supervision",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Across medicine, robotics, and law, industrial teams have proven massive economic ROI using these methods. In the CDR Biomedical benchmark over 1.5 million PubMed abstracts, 74 Snorkel labeling functions matched over 10,000 hours of manual PhD curation—authored in 48 hours.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Waymo 3D LiDAR detection, Entropy paired with Core-Set geometric dispersion cut annotated scenes by 64 percent while hitting 72 mAP. In CUAD Legal Contract review, LLM labeling functions cut lawyer hours by 78 percent, and in ISIC dermoscopy QBC achieved 90 percent accuracy using just 18.4 percent of the dataset.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase mb-3\">Landmark Industrial Supervision Benchmarks</h3>\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-mono text-xs border-collapse\">\n      <thead>\n        <tr class=\"border-b-2 border-[#151b20] bg-[#f1f5f9] text-[#151b20]\">\n          <th class=\"p-2\">Deployment</th>\n          <th class=\"p-2\">Methodology</th>\n          <th class=\"p-2\">Scale</th>\n          <th class=\"p-2\">Quantified Impact</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#cbd5e1]\">\n        <tr>\n          <td class=\"p-2 font-bold text-[#15803d]\">CDR Biomedical</td>\n          <td class=\"p-2\">74 Snorkel LFs (MeSH + Parse)</td>\n          <td class=\"p-2\">1.5M PubMed Abstracts</td>\n          <td class=\"p-2 text-[#15803d]\">Matched 10k+ hrs manual curation in 48 hrs</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 font-bold text-[#0e7490]\">Waymo 3D LiDAR</td>\n          <td class=\"p-2\">Entropy + Core-Set Sampling</td>\n          <td class=\"p-2\">200k 3D Scenes</td>\n          <td class=\"p-2 text-[#0e7490]\">$64\\%$ reduction in frames to hit 72 mAP</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 font-bold text-[#b45309]\">CUAD Legal</td>\n          <td class=\"p-2\">Distant Sup + Zero-Shot LLM LFs</td>\n          <td class=\"p-2\">510 Contracts (9.2k spans)</td>\n          <td class=\"p-2 text-[#b45309]\">$78\\%$ counsel time savings (0.81 F1)</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 font-bold text-[#86198f]\">ISIC Dermatology</td>\n          <td class=\"p-2\">Query-by-Committee (CNN+ViT)</td>\n          <td class=\"p-2\">25,331 Clinical Images</td>\n          <td class=\"p-2 text-[#86198f]\">$90\\%$ peak accuracy with only $18.4\\%$ pool</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Discussion: Scaling 10,000 Expert Hours Down to One Weekend",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Ten thousand hours of biomedical PhD labeling recreated in a 48-hour weekend hackathon—those CDR numbers feel unreal, Dr. Nova!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the asymmetric multiplier of encoding expertise as software instead of clicking buttons! When domain scientists write 74 modular rules against biomedical ontologies, those rules scale effortlessly across millions of unseen abstracts.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And even for complex spatial 3D LiDAR in Waymo, mixing Entropy with Core-Sets eliminated 64 percent of redundant frame labeling!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Whether text, medical scans, or 3D point clouds, mathematical acquisition and programmatic aggregation always outperform brute force.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-2\">\n    <span>The Code-Over-Clicks Principle</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Empirical Leverage Across Benchmarks</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Programmatic Scale (CDR / CUAD)</strong>\n      <span class=\"text-[11px] text-[#475569]\">Encodes heuristics once; scales horizontally across millions of records in seconds.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Active Leverage (Waymo / ISIC)</strong>\n      <span class=\"text-[11px] text-[#475569]\">Cuts human labeling budgets by $64\\% - 81.6\\%$ with zero peak performance penalty.</span>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Python Verification Engine: Pydantic V2 Active Learning & Triplet Solver",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Python Engine: ActiveLearningEngine & SnorkelTripletSolver",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us review our production Python verification engine built with Pydantic V2. First, UnlabeledCandidate validates probability simplex invariants, rejecting predictions that fail to sum to 1.0 within floating tolerance.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "ActiveLearningEngine ranks unlabeled candidates cleanly under Least Confidence, Margin, and Shannon Entropy. Alongside it, SnorkelTripletSolver solves analytical accuracies directly from empirical pairwise covariances and calibrates log-odds soft posteriors under automated CI assertion checks.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 my-2\">\n  <div class=\"p-4 rounded-xl bg-[#151b20] text-[#f8fafc] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-gray-700 text-[11px] text-gray-400\">\n      <span>production_active_and_weak_supervision.py (Pydantic V2)</span>\n      <span class=\"text-[#22bfd7]\">Production CI/CD Engine</span>\n    </div>\n    <pre class=\"leading-relaxed\"><code><span class=\"text-[#22bfd7]\">class</span> <span class=\"text-[#ffc83e]\">ActiveLearningEngine</span>:\n    <span class=\"text-gray-400\">@staticmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">margin_sampling</span>(probs: List[float]) -> float:\n        sp = sorted(probs, reverse=True)\n        <span class=\"text-[#22bfd7]\">return</span> -(sp[0] - sp[1])  <span class=\"text-gray-400\"># Smaller margin = highest rank</span>\n\n    <span class=\"text-gray-400\">@staticmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">shannon_entropy</span>(probs: List[float]) -> float:\n        <span class=\"text-[#22bfd7]\">return</span> -sum(p * math.log2(max(p, 1e-12)) <span class=\"text-[#22bfd7]\">for</span> p <span class=\"text-[#22bfd7]\">in</span> probs)\n\n<span class=\"text-[#22bfd7]\">class</span> <span class=\"text-[#ffc83e]\">SnorkelTripletSolver</span>:\n    <span class=\"text-gray-400\">@staticmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">solve_accuracies_from_covariances</span>(c12, c13, c23, coverages):\n        c1 = math.sqrt(max(1e-8, (c12 * c13) / c23))\n        c2 = math.sqrt(max(1e-8, (c12 * c23) / c13))\n        c3 = math.sqrt(max(1e-8, (c13 * c23) / c12))\n        <span class=\"text-[#22bfd7]\">return</span> tuple((1.0 + c / cov) / 2.0 <span class=\"text-[#22bfd7]\">for</span> c, cov <span class=\"text-[#22bfd7]\">in</span> zip((c1, c2, c3), coverages))\n\n    <span class=\"text-gray-400\">@staticmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">compute_soft_posterior</span>(votes: List[int], accs: List[float]) -> float:\n        score = sum((0.5 * math.log(a / (1.0 - a))) * v <span class=\"text-[#22bfd7]\">for</span> v, a <span class=\"text-[#22bfd7]\">in</span> zip(votes, accs) <span class=\"text-[#22bfd7]\">if</span> v != 0)\n        <span class=\"text-[#22bfd7]\">return</span> 1.0 / (1.0 + math.exp(-2.0 * score))</code></pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Automated Mathematical Unit Verification",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at how compact that SnorkelTripletSolver code is! Literally four lines recover accuracies cleanly from pairwise covariances!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, Kaito! And notice the automated assertions running against it: when we supply empirical covariances 0.48, 0.32, and 0.24, the solver asserts exact recovery of 0.90, 0.80, and 0.70 down to 1e-4!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And when a noisy 0.55 rule votes minus 1 against two high-accuracy +1 rules, compute_soft_posterior guarantees a posterior above 0.90!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Putting strict simplex validation and analytical assertions directly into CI ensures our label models never output corrupted weights silently.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Verified Pipeline Unit Assertions</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Exact Analytical Tests</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Entropy Max Bound</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert isclose(entropy([.334, .333, .333]), log2(3))</code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Margin Zero Check</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert margin([0.49, 0.49, 0.02]) == 0.0</code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">3. Triplet Moment Solver</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert isclose(solved_accs, (0.90, 0.80, 0.70))</code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">4. Posterior Override</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert compute_posterior([1, 1, -1], [.9, .8, .55]) &gt; 0.90</code>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: The 4 Laws of Hybrid Supervision & Path to Lesson 4.5",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Synthesis & Bridge to Lesson 4.5",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us synthesize the Four Laws of Hybrid Annotation. First: Information Density Maximization via Margin, Entropy, and QBC focuses expensive human judgment directly on the hyperplane.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Second: Geometric Core-Sets and Warm-Start Seeding guard against clustered outlier redundancy and random confirmation bias. Third: Unsupervised Triplet Covariance Discovery learns heuristic accuracies and prevents correlated double-counting. Fourth: Noise-Aware Soft Posteriors regularize deep neural training.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Next, in Lesson 4.5 Tools for Annotation, we examine the concrete open-source and enterprise platforms—CVAT, Label Studio, Prodigy, and Snorkel Flow—that run these pipelines at scale. Click Next to continue to Lesson 4.5.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-3\">\n    <span>Capstone Synthesis • Lesson 4.4 Complete</span>\n  </div>\n  <h2 class=\"text-2xl font-black text-[#151b20] mb-2\">The 4 Engineering Laws of Hybrid Supervision</h2>\n  <p class=\"text-xs sm:text-sm text-[#475569] max-w-2xl mx-auto mb-5 leading-relaxed\">\n    Combining active boundary queries, covariance-calibrated labeling functions, and cognitive human-loop safeguards scales datasets without sacrificing statistical truth.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Information Density</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Margin &amp; Entropy match full generalization with $40\\%\\text{–}70\\%$ fewer labels.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Moment Discovery</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Triplet solvers infer LF accuracies analytically from observable covariances.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Geometric Guards</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Warm-start seeding, Core-Sets, &amp; confidence gating stop bias &amp; anchoring.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Soft Regularization</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Train backbones on calibrated $\\tilde{y}_i \\in [0, 1]$, never rounded hard integers.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Capstone: Ready for Annotation Tooling Platforms (Lesson 4.5)",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "What a deep dive, Kaito! From Margin Sampling vs. Shannon Entropy to the Snorkel Triplet Moment Solver and Pre-Label Anchoring countermeasures, you now command modern hybrid supervision.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Everything fits together mathematically—active querying picks the hardest data points, and weak supervision propagates scalable probabilistic beliefs across millions!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Next up in Lesson 4.5, we look under the hood of production software platforms—Label Studio, CVAT, Prodigy, and enterprise annotation engines—to inspect how these algorithms run in live UI queues.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let's click Next and explore Lesson 4.5!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-3\">\n    <span>Socratic Capstone • Ready for Lesson 4.5</span>\n  </div>\n  <h2 class=\"text-2xl font-black text-[#151b20] mb-2\">Bridge to Lesson 4.5: Enterprise Tools for Annotation</h2>\n  <p class=\"text-xs sm:text-sm text-[#475569] max-w-2xl mx-auto mb-5 leading-relaxed\">\n    Moving from algorithmic acquisition and label models into engineering system design: Label Studio, CVAT, Prodigy, and scalable cloud annotation stacks.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 text-left font-mono text-xs max-w-3xl mx-auto\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">1. Label Studio &amp; Web UI</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Multi-modal configurable XML schemas and ML backend webhooks.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">2. CVAT &amp; Spatial Suites</strong>\n      <span class=\"text-[11px] text-[#151b20]\">GPU-accelerated interpolation and SAM interactive polygon magic wands.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">3. Prodigy &amp; Active UI</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Continuous Python generator-driven active learning feedback loops.</span>\n    </div>\n  </div>\n</div>\n"
         }
       }
     ]

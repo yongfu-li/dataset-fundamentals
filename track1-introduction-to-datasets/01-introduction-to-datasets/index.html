@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1115,6 +1159,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. The Law of Data Quality Cascades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-case-study-the-perilous-journey-of-record-402" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visual Case Study: The Perilous Journey of Record #402
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1190,10 +1251,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Peer-Reviewed Scholarly References
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7519,6 +7580,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. The Law of Data Quality Cascades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-case-study-the-perilous-journey-of-record-402" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visual Case Study: The Perilous Journey of Record #402
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7594,10 +7672,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Peer-Reviewed Scholarly References
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7636,37 +7714,37 @@
 
 
 <h1 id="11-what-is-a-dataset-records-attributes-data-quality-cascades">1.1 What is a Dataset? Records, Attributes &amp; Data Quality Cascades</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
       Read <strong>Chapter 1: Introduction to Datasets (§1.1: Definition & Components)</strong> in the official Springer Nature monograph, featuring formal schema theory, retail transaction models, and MIMIC clinical case studies.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 1 in Monograph →</span>
   </a>
 </div>
 
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-11">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 1.1</h3>
 <p>Experience Chapter 1 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">16 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=1&part=1&tour=1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #ffc83e; border: 1.5px solid #151b20; color: #151b20; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
+      <a href="../../assets/virtual-speaker.html?chapter=1&part=1&tour=1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #ffc83e; border: 2px solid #151b20; color: #151b20; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>🎯 Guided Site Tour ↗</span>
       </a>
-      <a href="../../assets/virtual-speaker.html?chapter=1&part=1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=1&part=1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7852,6 +7930,20 @@
 \text{Error}_{final} \ge \sum_{k=1}^K w_k \cdot \|\epsilon_k\|_2^2 + \sum_{j \neq k} \Gamma_{jk} \cdot (\epsilon_j \odot \epsilon_k)
 \]</div>
 <p>Where <span class="arithmatex">\(\Gamma_{jk}\)</span> represents the cross-stage coupling matrix. A seemingly negligible <span class="arithmatex">\(0.5\%\)</span> rounding error in raw medical sensor telemetry can cause a downstream gradient-boosted decision tree to split on artifactual step-functions, completely destroying clinical recall on high-risk patient subgroups.</p>
+<h3 id="visual-case-study-the-perilous-journey-of-record-402">Visual Case Study: The Perilous Journey of Record #402</h3>
+<p>The lifecycle of an empirical data cascade is illustrated below through the journey of <strong>Record #402</strong>, tracking how a minor millisecond sensor desync compounds non-linearly into catastrophic clinical model collapse:</p>
+<div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 14px; padding: 18px; margin: 24px 0; box-shadow: 4px 4px 0px #151b20;">
+  <img src="../images/chapter1/cartoon_record_402_cascade.png" alt="The Perilous Journey of Record #402: The Law of Compounding Data Quality Cascades" style="width: 100%; height: auto; border-radius: 10px; display: block; border: 1.5px solid #151b20;" />
+  <div style="margin-top: 14px; font-size: 0.88rem; color: #334155; line-height: 1.6;">
+    <strong style="color: #151b20;">Figure 1.1: The Compounding Lifecycle of a Data Quality Cascade.</strong>
+    Silent errors propagate across four lifecycle tiers:
+    <strong>(1) Ingestion:</strong> Hardware battery depletion introduces clock desync ($\Delta t = +25\text{ ms}$, $\|\epsilon_1\|_2 = 0.05$).
+    <strong>(2) Cleaning:</strong> Naive sentinel replacement (plugging nulls with <code>-999</code>) distorts feature variance ($\Delta\mu = +440\%$, $\|\epsilon_2\|_2 = 0.44$).
+    <strong>(3) Annotation:</strong> An exhausted annotator misreads inverted dark UI theme, inverting the ground truth label (Fleiss' $\kappa = 0.22$, $\|\epsilon_3\|_2 = 0.38$).
+    <strong>(4) Production Deployment:</strong> Deep neural networks overfit to the artifact, collapsing clinical sepsis triage AUC from 0.88 down to 0.52 on real ICU patients ($\text{Error}_{final} \gg \sum \|\epsilon_k\|_2^2$).
+  </div>
+</div>
+
 <hr />
 <h2 id="4-real-world-case-studies-when-datasets-fail-in-silicon-life">4. Real-World Case Studies: When Datasets Fail in Silicon &amp; Life</h2>
 <h3 id="a-medical-informatics-the-mimic-iv-clinical-record-shift">A. Medical Informatics: The MIMIC-IV Clinical Record Shift</h3>
@@ -7872,22 +7964,24 @@
 <hr />
 <h2 id="5-interactive-schema-validator-data-quality-laboratory">5. Interactive Schema Validator &amp; Data Quality Laboratory</h2>
 <p>Test how data anomalies and schema violations affect empirical dataset properties in real time using the interactive workbench below:</p>
-<div class="noc-sim-container" style="background:#0a0e17; border:1px solid #1e293b; border-radius:12px; padding:20px; margin:24px 0;">
+<div class="noc-sim-container" style="background:#fffdf7; border:2px solid #151b20; border-radius:14px; padding:22px; margin:24px 0; box-shadow:4px 4px 0px #151b20;">
   <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
     <div>
-      <span style="font-weight:700; color:#38bdf8; font-size:1.05rem;">🔬 Interactive Schema &amp; Quality Inspector</span>
-      <div style="font-size:0.82rem; color:#cbd5e1;">Simulate dirty record ingestion, missing value cascades, and schema enforcement</div>
+      <span style="font-weight:800; color:#0e7490; font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+        <span>🔬</span> Interactive Schema &amp; Quality Inspector
+      </span>
+      <div style="font-size:0.84rem; color:#475569; margin-top:2px; font-weight:500;">Simulate dirty record ingestion, missing value cascades, and schema enforcement</div>
     </div>
-    <div style="display:flex; gap:8px;">
-      <button class="noc-sim-btn" onclick="injectCleanPreset()" style="background:#2563eb; color:#ffffff; font-size:0.8rem; padding:6px 12px;">Sample Clean Presets</button>
-      <button class="noc-sim-btn secondary" onclick="injectCorruptRecords()" style="font-size:0.8rem; padding:6px 12px; color:#f87171; border-color:#f87171; background:rgba(248,113,113,0.12);">Inject Corrupt Noise</button>
+    <div style="display:flex; gap:10px;">
+      <button class="noc-sim-btn" onclick="injectCleanPreset()" style="background:#22bfd7; color:#151b20; font-size:0.82rem; padding:8px 14px; border:2px solid #151b20; border-radius:8px; font-weight:800; box-shadow:2px 2px 0px #151b20; cursor:pointer;">Sample Clean Presets</button>
+      <button class="noc-sim-btn secondary" onclick="injectCorruptRecords()" style="font-size:0.82rem; padding:8px 14px; color:#c2410c; border:2px solid #151b20; background:#ffd8ce; border-radius:8px; font-weight:800; box-shadow:2px 2px 0px #151b20; cursor:pointer;">Inject Corrupt Noise</button>
     </div>
   </div>
 
   <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
     <div>
-      <label style="font-size:0.82rem; font-weight:600; color:#cbd5e1; display:block; margin-bottom:6px;">Raw Ingestion Records (CSV Stream):</label>
-      <textarea id="rawCsvInput" rows="7" style="width:100%; background:#0f172a; color:#38bdf8; font-family:'JetBrains Mono',monospace; font-size:0.8rem; border:1px solid #334155; border-radius:6px; padding:10px; box-sizing:border-box;">Date,Product,Quantity,Price,Patient_ID
+      <label style="font-size:0.84rem; font-weight:700; color:#151b20; display:block; margin-bottom:6px;">Raw Ingestion Records (CSV Stream):</label>
+      <textarea id="rawCsvInput" rows="7" style="width:100%; background:#fffaf0; color:#151b20; font-family:'JetBrains Mono',monospace; font-size:0.82rem; border:2px solid #151b20; border-radius:8px; padding:10px; box-sizing:border-box; box-shadow:2px 2px 0px #151b20;">Date,Product,Quantity,Price,Patient_ID
 2024-01-01,Apple,3,0.50,P101
 2024-01-01,Banana,2,0.30,P102
 2024-01-02,Orange,5,0.70,P103
@@ -7896,19 +7990,19 @@
     </div>
 
     <div>
-      <label style="font-size:0.82rem; font-weight:600; color:#cbd5e1; display:block; margin-bottom:6px;">Real-Time Data Health &amp; Schema Report:</label>
-      <div id="qualityReport" style="background:#0f172a; border:1px solid #334155; border-radius:6px; padding:12px; height:140px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#e2e8f0; overflow-y:auto; box-sizing:border-box;">
-        <span style="color:#34d399;">✓ Records Parsed: 5 | Attributes: 5</span><br/>
-        <span style="color:#38bdf8;">✓ Completeness: 100.0% (Zero Missing Values)</span><br/>
-        <span style="color:#34d399;">✓ Type Consistency: All Types Validated</span><br/>
-        <span style="color:#a78bfa;">✓ Cascade Risk Index: 0.00 (Safe for Training)</span>
+      <label style="font-size:0.84rem; font-weight:700; color:#151b20; display:block; margin-bottom:6px;">Real-Time Data Health &amp; Schema Report:</label>
+      <div id="qualityReport" style="background:#f6f0dc; border:2px solid #151b20; border-radius:8px; padding:12px; height:140px; font-family:'JetBrains Mono',monospace; font-size:0.82rem; color:#151b20; overflow-y:auto; box-sizing:border-box; box-shadow:2px 2px 0px #151b20;">
+        <span style="color:#047857; font-weight:700;">✓ Records Parsed: 5 | Attributes: 5</span><br/>
+        <span style="color:#0e7490; font-weight:700;">✓ Completeness: 100.0% (Zero Missing Values)</span><br/>
+        <span style="color:#047857; font-weight:700;">✓ Type Consistency: All Types Validated</span><br/>
+        <span style="color:#6d28d9; font-weight:700;">✓ Cascade Risk Index: 0.00 (Safe for Training)</span>
       </div>
     </div>
   </div>
 
-  <div style="margin-top:14px; display:flex; gap:10px; align-items:center;">
-    <button class="noc-sim-btn" onclick="auditCurrentDataset()" style="background:#059669; color:#ffffff; font-size:0.85rem; padding:8px 16px;">Audit Dataset Integrity</button>
-    <a href="../../tools/cleaning/" class="noc-sim-btn secondary" style="font-size:0.85rem; padding:8px 16px; text-decoration:none; color:#f1f5f9; border-color:#475569; background:rgba(30,41,59,0.6);">Open Full Cleaning Workbench →</a>
+  <div style="margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+    <button class="noc-sim-btn" onclick="auditCurrentDataset()" style="background:#b7df69; color:#151b20; font-size:0.84rem; padding:9px 18px; border:2px solid #151b20; border-radius:8px; font-weight:800; box-shadow:2px 2px 0px #151b20; cursor:pointer;">Audit Dataset Integrity</button>
+    <a href="../../tools/cleaning/" class="noc-sim-btn secondary" style="font-size:0.84rem; padding:9px 18px; text-decoration:none; color:#151b20; border:2px solid #151b20; background:#fffaf0; border-radius:8px; font-weight:700; box-shadow:2px 2px 0px #151b20;">Open Full Cleaning Workbench →</a>
   </div>
 </div>
 
@@ -7925,10 +8019,10 @@ function injectCorruptRecords() {
 
 function auditCurrentDataset() {
   const text = document.getElementById('rawCsvInput').value.trim();
-  const lines = text.split('\\n').filter(l => l.trim().length > 0);
+  const lines = text.split('\n').filter(l => l.trim().length > 0);
   const out = document.getElementById('qualityReport');
   if (lines.length < 2) {
-    out.innerHTML = '<span style="color:#f87171;">✗ Error: Insufficient records. Minimum 1 header + 1 row.</span>';
+    out.innerHTML = '<span style="color:#b91c1c; font-weight:700;">✗ Error: Insufficient records. Minimum 1 header + 1 row.</span>';
     return;
   }
   const headers = lines[0].split(',');
@@ -7952,23 +8046,23 @@ function auditCurrentDataset() {
   const completeness = Math.max(0, ((totalCells - missing) / totalCells) * 100).toFixed(1);
   const cascadeRisk = ((missing * 1.5 + typeErrors * 2.0 + outliers * 3.0) / totalCells).toFixed(2);
 
-  let html = `<span style="color:#38bdf8;">✓ Rows: ${rows.length} | Columns: ${headers.length}</span><br/>`;
+  let html = `<span style="color:#0e7490; font-weight:700;">✓ Rows: ${rows.length} | Columns: ${headers.length}</span><br/>`;
   if (missing > 0) {
-    html += `<span style="color:#fbbf24;">⚠ Missing Cells: ${missing} (Completeness: ${completeness}%)</span><br/>`;
+    html += `<span style="color:#b45309; font-weight:700;">⚠ Missing Cells: ${missing} (Completeness: ${completeness}%)</span><br/>`;
   } else {
-    html += `<span style="color:#34d399;">✓ Completeness: 100.0%</span><br/>`;
+    html += `<span style="color:#047857; font-weight:700;">✓ Completeness: 100.0%</span><br/>`;
   }
 
   if (typeErrors > 0) {
-    html += `<span style="color:#f87171;">✗ Type Violations Detected: ${typeErrors} anomalies</span><br/>`;
+    html += `<span style="color:#b91c1c; font-weight:700;">✗ Type Violations Detected: ${typeErrors} anomalies</span><br/>`;
   } else {
-    html += `<span style="color:#34d399;">✓ Type Schema: Validated</span><br/>`;
+    html += `<span style="color:#047857; font-weight:700;">✓ Type Schema: Validated</span><br/>`;
   }
 
   if (cascadeRisk > 0.3) {
-    html += `<span style="color:#f87171; font-weight:700;">🚨 High Cascade Risk: ${cascadeRisk} (Downstream Model Degradation Inevitable!)</span>`;
+    html += `<span style="color:#b91c1c; font-weight:800;">🚨 High Cascade Risk: ${cascadeRisk} (Downstream Model Degradation Inevitable!)</span>`;
   } else {
-    html += `<span style="color:#34d399;">✓ Cascade Risk Index: ${cascadeRisk} (Healthy)</span>`;
+    html += `<span style="color:#047857; font-weight:700;">✓ Cascade Risk Index: ${cascadeRisk} (Healthy)</span>`;
   }
 
   out.innerHTML = html;
@@ -8035,7 +8129,6 @@ function auditCurrentDataset() {
 </span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="k">return</span> <span class="n">clean_df</span>
 </span></code></pre></div>
 <hr />
-<hr />
 <h2 id="7-interactive-self-assessment-diagnostic-scenarios">7. Interactive Self-Assessment &amp; Diagnostic Scenarios</h2>
 <details class="question">
 <summary>Self-Assessment: Identifying Silent Data Cascades in Multimodal Telemetry</summary>
@@ -8043,20 +8136,20 @@ function auditCurrentDataset() {
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong> Cross-sensor temporal timestamp jitter and uncalibrated rolling-shutter exposure lag causing multimodal spatial misalignment.
-While packet throughput is nominal, microsecond-level clock drift between LiDAR and RGB camera sensors produces spatial divergence (<span class="arithmatex">\(\Delta x = v \cdot \Delta t\)</span>). At highway speeds of <span class="arithmatex">\(100   ext{ km/h}\)</span> (<span class="arithmatex">\(27.8  ext{ m/s}\)</span>), an undocumented timestamp jitter of just <span class="arithmatex">\(20   ext{ ms}\)</span> causes an obstacle displacement of <span class="arithmatex">\(0.56  ext{ meters}\)</span> between camera bounding boxes and point-cloud centroids. This spatial discrepancy causes Intersection-over-Union (IoU) matching to fail in the fusion layer. The remedy is hardware Precision Time Protocol (PTP / IEEE 1588) synchrony combined with explicit inter-sensor latency assertions in the ingestion pipeline.</p>
+While packet throughput is nominal, microsecond-level clock drift between LiDAR and RGB camera sensors produces spatial divergence (<span class="arithmatex">\(\Delta x = v \cdot \Delta t\)</span>). At highway speeds of <span class="arithmatex">\(100\text{ km/h}\)</span> (<span class="arithmatex">\(27.8\text{ m/s}\)</span>), an undocumented timestamp jitter of just <span class="arithmatex">\(20\text{ ms}\)</span> causes an obstacle displacement of <span class="arithmatex">\(0.56\text{ meters}\)</span> between camera bounding boxes and point-cloud centroids. This spatial discrepancy causes Intersection-over-Union (IoU) matching to fail in the fusion layer. The remedy is hardware Precision Time Protocol (PTP / IEEE 1588) synchrony combined with explicit inter-sensor latency assertions in the ingestion pipeline.</p>
 </details>
 </details>
 <details class="question">
 <summary>Self-Assessment: Empirical Risk Minimization vs. Out-of-Distribution Shift</summary>
-<p>Under classical statistical learning theory, Empirical Risk Minimization (ERM) assumes that training observations are independent and identically distributed: <span class="arithmatex">\((\mathbf{x}_i, y_i) \stackrel{  ext{i.i.d.}}{\sim} \mathcal{P}_{X, Y}\)</span>. If an intensive care triage model achieves zero empirical training loss (<span class="arithmatex">\(\mathcal{R}_{ ext{emp}}(h) = 0\)</span>) on 50,000 retrospective ICU patient encounters from an urban teaching hospital, why might its generalization risk <span class="arithmatex">\(\mathcal{R}_{ ext{true}}(h)\)</span> degrade catastrophically when deployed at a regional trauma clinic?</p>
+<p>Under classical statistical learning theory, Empirical Risk Minimization (ERM) assumes that training observations are independent and identically distributed: <span class="arithmatex">\((\mathbf{x}_i, y_i) \stackrel{\text{i.i.d.}}{\sim} \mathcal{P}_{X, Y}\)</span>. If an intensive care triage model achieves zero empirical training loss (<span class="arithmatex">\(\mathcal{R}_{\text{emp}}(h) = 0\)</span>) on 50,000 retrospective ICU patient encounters from an urban teaching hospital, why might its generalization risk <span class="arithmatex">\(\mathcal{R}_{\text{true}}(h)\)</span> degrade catastrophically when deployed at a regional trauma clinic?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Severe Covariate Shift ($P_{    ext{train}}(X) </p>
+<p><strong>Answer:</strong> Severe Covariate Shift (<span class="arithmatex">\(P_{\text{train}}(X) \neq P_{\text{deploy}}(X)\)</span>) compounded by hidden selection bias and measurement policy differences.
+Zero empirical training loss only bounds test risk under an identical joint Borel probability measure. Regional trauma clinics differ fundamentally from urban research hospitals in patient demographic age distributions, admission criteria, blood gas analyzer calibration baselines, and local charting frequency policies. In modern data-centric AI, high-capacity models easily memorize spurious statistical artifacts unique to the source institution's EHR system, causing generalization failure on unobserved target distributions.</p>
 </details>
 </details>
-<p>eq P_{  ext{deploy}}(X)$) compounded by hidden selection bias and measurement policy differences.
-        Zero empirical training loss only bounds test risk under an identical joint Borel probability measure. Regional trauma clinics differ fundamentally from urban research hospitals in patient demographic age distributions, admission criteria, blood gas analyzer calibration baselines, and local charting frequency policies. In modern data-centric AI, high-capacity models easily memorize spurious statistical artifacts unique to the source institution's EHR system, causing generalization failure on unobserved target distributions.</p>
-<h2 id="7-peer-reviewed-scholarly-references">7. Peer-Reviewed Scholarly References</h2>
+<hr />
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-donoho2017"></a><strong>[Donoho2017]</strong> D. Donoho, "50 Years of Data Science," <em>Journal of Computational and Graphical Statistics</em>, vol. 26, no. 4, pp. 745–766, Oct. 2017. <a href="https://doi.org/10.1080/10618600.2017.1384734">DOI: 10.1080/10618600.2017.1384734</a>.</li>
 <li><a id="ref-sambasivan2021"></a><strong>[Sambasivan2021]</strong> N. Sambasivan, S. Kapania, H. Highfill, D. Akrong, P. Paritosh, and L. M. Aroyo, "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI," in <em>Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI '21)</em>, May 2021, pp. 1–15. <a href="https://doi.org/10.1145/3411764.3445518">DOI: 10.1145/3411764.3445518</a>.</li>

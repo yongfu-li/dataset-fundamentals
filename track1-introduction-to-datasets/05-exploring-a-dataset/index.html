@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -7568,38 +7612,35 @@
 
 
 <h1 id="15-exploring-a-dataset-first-pass-diagnostics">1.5 Exploring a Dataset &amp; First-Pass Diagnostics</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 1 (sec:1.4) &amp; Chapter 6</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Reference: Chapter 1 (§1.4) & Chapter 6</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 1 &amp; Chapter 6: Exploratory Data Analysis</strong> in the Springer Nature monograph for high-dimensional covariance structures and hypothesis testing.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 1 & Chapter 6: Exploratory Data Analysis</strong> in the Springer Nature monograph for high-dimensional covariance structures and hypothesis testing.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 1 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~8 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-15">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 1.5</h3>
 <p>Experience Chapter 1 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">10 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=1&part=5" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=1&part=5" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7703,24 +7744,24 @@ r_{XY} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2
 <hr />
 <h2 id="4-in-browser-interactive-eda-profiler-distribution-workbench">4. 🔬 In-Browser Interactive EDA Profiler &amp; Distribution Workbench</h2>
 <p>Experiment with distributional skew, log-transformations, and Tukey outlier detection on a live income dataset:</p>
-<div class="noc-sim-card" style="background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin: 24px 0; color: #f8fafc;">
-  <div style="border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 20px;">
-    <h3 style="margin: 0; color: #38bdf8; font-size: 1.25rem;">🔬 Distribution Profiler &amp; Transformation Lab</h3>
-    <span style="font-size: 0.85rem; color: #94a3b8;">Observe how right-skewed distributions distort central tendency and test log-transformations in real time.</span>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 14px; padding: 24px; margin: 24px 0; color: #151b20; box-shadow: 5px 5px 0px #22bfd7;">
+  <div style="border-bottom: 2px solid #151b20; padding-bottom: 16px; margin-bottom: 20px;">
+    <h3 style="margin: 0; color: #0e7490; font-weight: 800; font-size: 1.25rem;">🔬 Distribution Profiler &amp; Transformation Lab</h3>
+    <span style="font-size: 0.85rem; color: #475569; font-weight: 500;">Observe how right-skewed distributions distort central tendency and test log-transformations in real time.</span>
   </div>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
     <div>
-      <label style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">Distribution Archetype:</label>
-      <select id="edaDistType" onchange="updateEdaSimulation()" style="width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 8px; border-radius: 6px; margin-top: 6px;">
+      <label style="font-size: 0.82rem; color: #151b20; font-weight: 700; font-weight: 600;">Distribution Archetype:</label>
+      <select id="edaDistType" onchange="updateEdaSimulation()" style="width: 100%; background: #fffdf7; border: 2px solid #151b20; color: #151b20; font-weight: 700; padding: 8px; border-radius: 6px; margin-top: 6px;">
         <option value="skewed" selected>Right-Skewed (Household Incomes / Log-Normal)</option>
         <option value="gaussian">Symmetric Normal (Adult Heights: μ=172cm)</option>
         <option value="bimodal">Bimodal Mixture (Dual Demographic Clusters)</option>
       </select>
     </div>
     <div>
-      <label style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">Mathematical Transform:</label>
-      <select id="edaTransform" onchange="updateEdaSimulation()" style="width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 8px; border-radius: 6px; margin-top: 6px;">
+      <label style="font-size: 0.82rem; color: #151b20; font-weight: 700; font-weight: 600;">Mathematical Transform:</label>
+      <select id="edaTransform" onchange="updateEdaSimulation()" style="width: 100%; background: #fffdf7; border: 2px solid #151b20; color: #151b20; font-weight: 700; padding: 8px; border-radius: 6px; margin-top: 6px;">
         <option value="raw" selected>Raw Scale (Identity x)</option>
         <option value="log">Logarithmic Normalization: log(x + 1)</option>
         <option value="zscore">Standardization: (x - μ) / σ</option>
@@ -7729,26 +7770,26 @@ r_{XY} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2
   </div>
 
   <!-- CANVAS VISUALIZER -->
-  <div style="background: #020617; border: 1px solid #334155; border-radius: 8px; padding: 16px; text-align: center;">
+  <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px; box-shadow: 3px 3px 0px #151b20; text-align: center;">
     <canvas id="edaHistogramCanvas" width="760" height="220" style="width: 100%; max-height: 220px;"></canvas>
   </div>
 
   <!-- SUMMARY STATISTICS HUD -->
   <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px;">
-    <div style="background: #1e293b; padding: 12px; border-radius: 6px; border: 1px solid #334155;">
-      <span style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Sample Mean (μ)</span>
-      <div id="edaMeanVal" style="font-size: 1.15rem; font-weight: 700; color: #38bdf8; margin-top: 4px;">$105,250</div>
+    <div style="background: #fffaf0; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+      <span style="font-size: 0.75rem; color: #475569; font-weight: 500; text-transform: uppercase;">Sample Mean (μ)</span>
+      <div id="edaMeanVal" style="font-size: 1.15rem; font-weight: 700; color: #0e7490; font-weight: 800; margin-top: 4px;">$105,250</div>
     </div>
-    <div style="background: #1e293b; padding: 12px; border-radius: 6px; border: 1px solid #334155;">
-      <span style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Median (Q2)</span>
+    <div style="background: #fffaf0; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+      <span style="font-size: 0.75rem; color: #475569; font-weight: 500; text-transform: uppercase;">Median (Q2)</span>
       <div id="edaMedianVal" style="font-size: 1.15rem; font-weight: 700; color: #4ade80; margin-top: 4px;">$87,500</div>
     </div>
-    <div style="background: #1e293b; padding: 12px; border-radius: 6px; border: 1px solid #334155;">
-      <span style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Skewness (γ1)</span>
+    <div style="background: #fffaf0; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+      <span style="font-size: 0.75rem; color: #475569; font-weight: 500; text-transform: uppercase;">Skewness (γ1)</span>
       <div id="edaSkewVal" style="font-size: 1.15rem; font-weight: 700; color: #f59e0b; margin-top: 4px;">+1.42</div>
     </div>
-    <div style="background: #1e293b; padding: 12px; border-radius: 6px; border: 1px solid #334155;">
-      <span style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;">Tukey Outliers</span>
+    <div style="background: #fffaf0; padding: 12px; border-radius: 10px; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+      <span style="font-size: 0.75rem; color: #475569; font-weight: 500; text-transform: uppercase;">Tukey Outliers</span>
       <div id="edaOutlierCount" style="font-size: 1.15rem; font-weight: 700; color: #f43f5e; margin-top: 4px;">12 detected</div>
     </div>
   </div>

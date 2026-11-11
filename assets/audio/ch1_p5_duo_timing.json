@@ -1,0 +1,485 @@
+{
+  "duration": 656.002,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in competitive data science tournaments, people often just immediately run automated machine learning pipelines or gradient boosting trees on the raw CSV. Why is that considered bad practice in production engineering?",
+      "start": 0.0,
+      "end": 13.608
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because a machine learning algorithm is a blind pattern optimizer, Kaito! It cannot distinguish between a genuine physical law and an unrecorded database glitch—such as an engineering system that fills missing temperatures with minus nine hundred ninety-nine.",
+      "start": 13.958,
+      "end": 29.294
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So if minus nine-nine-nine appears in thirty percent of records, the tree splits on that exact arbitrary number and memorizes a phantom correlation!",
+      "start": 29.644,
+      "end": 38.044
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That is what Google researchers famously termed Hidden Technical Debt in Machine Learning. Exploratory Data Analysis is your forensic defense against fitting models to collection artifacts.",
+      "start": 38.394,
+      "end": 51.522
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, John Tukey wrote that 'finding the question is often more important than finding the answer.' How does that apply to an ML engineer looking at ten gigabytes of Parquet files?",
+      "start": 52.272,
+      "end": 63.312
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "It means before asking 'which neural network gets the lowest cross-entropy loss,' you must first ask: 'how was this data collected? What is missing? Why does this column have a bimodal distribution? Did an upstream ETL job change its definition last month?'",
+      "start": 63.662,
+      "end": 80.558
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So EDA is about discovering what questions the dataset can honestly answer, and discovering where its blind spots lie!",
+      "start": 80.908,
+      "end": 88.036
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely formulated, Kaito. EDA is data-centric inquiry at its purest.",
+      "start": 88.386,
+      "end": 94.794
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, look at that physical versus semantic typing trap! A Pandas or CSV parser frequently infers zip code or user ID as a floating point number because of missing values!",
+      "start": 95.544,
+      "end": 107.112
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! In older Pandas versions, any integer column with a null value was automatically coerced to a float64. Then a linear regression model treats user ID 1002 as being exactly twice the magnitude of user ID 501!",
+      "start": 107.462,
+      "end": 125.318
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "That completely ruins the mathematical inductive bias of the model! That is why Tier 1 schema verification is non-negotiable.",
+      "start": 125.668,
+      "end": 134.188
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. Never let a parser decide your semantic data types.",
+      "start": 134.538,
+      "end": 139.842
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, why do we need all four moments? Isn't mean and standard deviation enough to describe a continuous column?",
+      "start": 140.592,
+      "end": 148.608
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Only if your data is perfectly Gaussian, Kaito! Two completely different distributions can have the exact same mean of fifty and standard deviation of ten, yet one is a symmetric bell curve and the other is heavily right-skewed with extreme black-swan spikes!",
+      "start": 148.958,
+      "end": 164.558
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And the skewness and kurtosis instantly tell us whether the data violates Gaussian assumptions!",
+      "start": 164.908,
+      "end": 170.596
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. When kurtosis is high, extreme events occur far more frequently than a normal curve predicts, which is fatal for financial risk and anomaly detection models.",
+      "start": 170.946,
+      "end": 182.178
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, look at that income example. If a politician or company announces 'our average customer earns over one million dollars,' but the median is only fifty thousand, they are exploiting the mathematical flaw of the mean!",
+      "start": 182.928,
+      "end": 196.2
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Precisely, Kaito. The mean is fragile; a single high-net-worth individual pulls the mean up by orders of magnitude. The median is robust because it depends on the middle rank, completely unaffected by extreme tail values.",
+      "start": 196.55,
+      "end": 211.382
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And when we apply log of x plus one, the billionaire's influence is compressed from one hundred million down to eighteen point four!",
+      "start": 211.732,
+      "end": 219.028
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Logarithmic transforms linearize exponential phenomena, allowing standard gradient descent algorithms to converge reliably without gradient explosion.",
+      "start": 219.378,
+      "end": 230.154
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, that point about three standard deviations failing due to the masking effect is profound. If an outlier is massive, it expands the standard deviation so much that the outlier hides inside its own inflated three-sigma boundary!",
+      "start": 230.904,
+      "end": 244.752
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! That is known in statistics as outlier masking. Because Tukey's IQR relies strictly on rank percentiles Q1 and Q3, an extreme outlier cannot change the 25th or 75th percentiles. The fences remain completely immovable.",
+      "start": 245.102,
+      "end": 263.606
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So Tukey's non-parametric fences catch the anomalies that standard deviation completely fails to detect!",
+      "start": 263.956,
+      "end": 270.604
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. Robust statistics protects the analyst from self-deception.",
+      "start": 270.954,
+      "end": 276.81
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Look closely at the feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?",
+      "start": 277.56,
+      "end": 291.36
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Of course not! Review the concepts of lookahead target leakage we covered. Click your answer on the checkpoint card below to test your retention!",
+      "start": 291.71,
+      "end": 301.406
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, if a feature has an exponential relationship with the target, Pearson correlation might give only point seven, while Spearman gives a perfect one point zero!",
+      "start": 302.156,
+      "end": 311.78
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Precisely! Because Pearson penalizes the curvature of the exponential, mistaking non-linearity for noise. A decision tree or neural network handles non-linear monotonic relationships effortlessly, so discarding a feature based on low Pearson correlation is a massive mistake!",
+      "start": 312.13,
+      "end": 329.89
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So during feature selection, we should check both Pearson and Spearman to avoid throwing away powerful non-linear predictors!",
+      "start": 330.24,
+      "end": 337.32
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. Pairwise EDA requires multiple lenses.",
+      "start": 337.67,
+      "end": 342.734
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, this is terrifying! If a data scientist simply trains an unstratified model on the raw table, the model will learn that giving more medication kills patients!",
+      "start": 343.484,
+      "end": 354.164
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Yes, Kaito! And in an automated clinical decision support system, the algorithm would recommend withholding life-saving medication from the sickest patients. That is why Judea Pearl emphasizes causal DAGs and stratified exploratory profiling.",
+      "start": 354.514,
+      "end": 371.218
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So during EDA, whenever we see a counterintuitive correlation, the first thing we must do is stratify across potential confounding covariates!",
+      "start": 371.568,
+      "end": 379.872
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Stratified slicing is the antidote to Simpson's Paradox.",
+      "start": 380.222,
+      "end": 386.126
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, look at the canvas! When Right-Skewed is selected on Raw Scale, the mean is over one hundred thousand dollars, while the median is only eighty-seven thousand, and skewness is positive one point four!",
+      "start": 386.876,
+      "end": 399.212
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. Now switch the Mathematical Transform selector to 'Logarithmic Normalization: log(x + 1)'. Look at what happens to the histogram!",
+      "start": 399.562,
+      "end": 411.178
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "The red and green dashed lines snap together! Skewness drops to near zero, and the Tukey outlier count drops to zero! That visually proves why log transforms are so powerful.",
+      "start": 411.528,
+      "end": 423.648
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Try testing the Bimodal mixture next to see why single-mean statistics fail on multi-cluster populations.",
+      "start": 423.998,
+      "end": 432.446
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, so if an e-commerce model achieves ninety-eight percent accuracy in cross-validation, but fifty percent when deployed live, the culprit is almost always data leakage during splitting?",
+      "start": 433.196,
+      "end": 443.972
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Nine times out of ten, Kaito! If random splitting placed purchases from the exact same user on Tuesday into the training set and on Wednesday into the test set, the model doesn't generalize—it just memorizes that specific user's shopping basket!",
+      "start": 444.322,
+      "end": 459.754
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And in production, when a brand-new user arrives, the model has never seen them before and completely collapses!",
+      "start": 460.104,
+      "end": 466.824
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Cross-validation must rigorously simulate the real-world operational reality of inference time.",
+      "start": 467.174,
+      "end": 474.638
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, I remember plotting a million rows in Matplotlib once. My browser froze, and when it finally rendered, it was just a solid blue rectangle!",
+      "start": 475.388,
+      "end": 485.228
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "A classic beginner mistake, Kaito! Rendering one million SVG or canvas elements melts client hardware and provides zero statistical insight. Hexagonal binning aggregates points into a few hundred hexagonal counters in O(N) time.",
+      "start": 485.578,
+      "end": 501.85
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And the visual rendering stays crisp, fast, and accurately depicts point density across multiple orders of magnitude!",
+      "start": 502.2,
+      "end": 509.376
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Visual scalability is a core engineering requirement for big data exploration.",
+      "start": 509.726,
+      "end": 516.59
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?",
+      "start": 517.34,
+      "end": 526.988
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Review how deep vision models learn patient-specific markers like pacemaker shapes, bone density, or jewelry. Select the correct option below to analyze the clinical hazard!",
+      "start": 527.338,
+      "end": 538.546
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, the difference is night and day! Computing quantiles and skewness across fifty million rows takes five minutes in Pandas, but only two seconds in Polars!",
+      "start": 539.296,
+      "end": 549.712
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! Because Polars writes zero intermediate Python objects. It compiles the descriptive statistics directly into a vectorized Arrow execution plan executed in parallel Rust.",
+      "start": 550.062,
+      "end": 563.598
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And that means we can run deep forensic EDA on massive production tables without waiting for hours or crashing our development machines!",
+      "start": 563.948,
+      "end": 571.46
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Fast profiling means thorough profiling.",
+      "start": 571.81,
+      "end": 576.754
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, this script encapsulates everything we covered today: null ratios, central moments, standardized skewness, and Tukey outlier counts all computed cleanly in Polars!",
+      "start": 577.504,
+      "end": 587.776
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Indeed, Kaito. By running this function as an automated step in your CI CD pipeline or Airflow DAG, your team automatically flags skewed distributions, sentinel null values, and extreme outliers before any model training runs.",
+      "start": 588.126,
+      "end": 603.942
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Defensive EDA converted into automated software engineering!",
+      "start": 604.292,
+      "end": 608.804
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "That is the standard of excellence in Data-Centric AI.",
+      "start": 609.154,
+      "end": 612.802
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, what an eye-opening lecture! Learning how the mean can be fooled by skewness, how standard deviation masks outliers, and how Simpson's Paradox can completely reverse a medical trial has forever changed how I look at datasets.",
+      "start": 613.552,
+      "end": 627.712
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "That is the mark of a true data scientist, Kaito. Modeling is easy; understanding the true generative process and topology of your data is where the real intelligence lives.",
+      "start": 628.062,
+      "end": 639.126
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And in Lesson 1.6, we will see how these carefully profiled datasets are mobilized in production modeling and industry systems!",
+      "start": 639.476,
+      "end": 647.276
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Join us in Lesson 1.6 to explore real-world dataset mobilization across enterprise industries!",
+      "start": 647.626,
+      "end": 656.002
+    }
+  ]
+}

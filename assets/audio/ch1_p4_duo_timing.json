@@ -1,0 +1,485 @@
+{
+  "duration": 661.69,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in machine learning tutorials, datasets always seem clean, tabular, and ready to feed directly into PyTorch or XGBoost. Why do production engineers spend up to eighty percent of their time wrestling with data quality?",
+      "start": 0.0,
+      "end": 13.8
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because real-world data is collected by distributed sensors, human annotators, legacy databases, and mobile clients—all of which fail continuously. A model trained on corrupt data doesn't fail politely with an error code; it learns the corruptions and predicts disastrously with high statistical confidence!",
+      "start": 14.15,
+      "end": 33.062
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So if our training data has subtle systematic errors, our gradient descent optimizations will simply optimize for those exact defects!",
+      "start": 33.412,
+      "end": 41.236
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely! That is why data quality is an engineering discipline governed by rigorous mathematical definitions, not an intuitive gut check.",
+      "start": 41.586,
+      "end": 51.21
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, notice how each dimension can fail independently. Can you give me an example where a dataset scores a perfect one hundred percent on completeness, but completely destroys a model?",
+      "start": 51.96,
+      "end": 63.768
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Easily! Imagine an automated financial trading feed where every trade price is present—so completeness is one hundred percent. But due to a network clock synchronization bug, all timestamps are shifted by five minutes into the future!",
+      "start": 64.118,
+      "end": 79.574
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Consistency and timeliness are completely shattered! The model looks at future prices during training, resulting in total data leakage!",
+      "start": 79.924,
+      "end": 88.684
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That is why an elite ML engineer audits all five dimensions simultaneously using composite data quality gates.",
+      "start": 89.034,
+      "end": 97.722
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, look at that trailing zero example. If our automated ingestion pipeline only checks data types—like verifying that amount is a positive floating point number—it completely misses the catastrophe!",
+      "start": 98.472,
+      "end": 111.0
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. Fifteen thousand dollars is a perfectly valid float. To catch semantic inaccuracies, you must apply statistical anomaly detection—such as verifying values against interquartile range fences, historical Z-scores, or domain-specific physical constraints.",
+      "start": 111.35,
+      "end": 130.454
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So type safety is only syntactic validation. True data accuracy requires semantic and distribution validation!",
+      "start": 130.804,
+      "end": 139.156
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. Syntactic validity is the floor; semantic accuracy is the ceiling.",
+      "start": 139.506,
+      "end": 145.986
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in many beginner data science notebooks, people simply run df.fillna(df.mean()) or drop all rows containing nulls. Why is that considered an anti-pattern in production?",
+      "start": 146.736,
+      "end": 158.928
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because mean imputation artificially shrinks the variance of your feature distribution and distorts covariance structures! And if you do listwise deletion—dropping every row with a null—you risk discarding fifty percent of your dataset and introducing catastrophic selection bias.",
+      "start": 159.278,
+      "end": 175.934
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So before imputing or dropping a single row, we must formally classify whether the data is MCAR, MAR, or MNAR!",
+      "start": 176.284,
+      "end": 183.82
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. The statistical validity of your model hinges entirely on that diagnosis.",
+      "start": 184.17,
+      "end": 190.986
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in intensive care unit data like MIMIC-IV, if arterial blood gas measurements are missing for eighty percent of patients, you're saying that's not random?",
+      "start": 191.736,
+      "end": 200.856
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Far from it, Kaito! Critical care physicians only order arterial blood punctures when a patient is in acute respiratory failure. If a patient is stable, the doctor does not order the test. Missingness is highly informative!",
+      "start": 201.206,
+      "end": 216.686
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So if we impute normal values, or drop all patients missing blood gas tests, our model will only ever learn from critically dying patients!",
+      "start": 217.036,
+      "end": 225.244
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. You induce severe selection bias and destroy the model's ability to generalize to outpatient or general ward populations.",
+      "start": 225.594,
+      "end": 234.69
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, besides date formats, what other consistency invariants are critical in tabular machine learning?",
+      "start": 235.44,
+      "end": 242.304
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Referential and physical invariants! For example, in hospital analytics, discharge date must always be greater than or equal to admission date. A patient cannot be discharged before they are admitted!",
+      "start": 242.654,
+      "end": 256.214
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And in e-commerce, transaction total must equal the sum of item prices minus discounts plus tax!",
+      "start": 256.564,
+      "end": 262.9
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. When these invariants fail, it signals upstream pipeline pipeline bugs, duplicate record ingestion, or corrupted transactional state.",
+      "start": 263.25,
+      "end": 273.546
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Look at the clues in the prompt: missingness correlates with observed age and insurance, but conditional on those observed variables, it doesn't depend on the glucose level itself!",
+      "start": 274.296,
+      "end": 284.208
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Review the definitions of MCAR, MAR, and MNAR we just covered. Make your choice on the checkpoint card below to test your retention!",
+      "start": 284.558,
+      "end": 295.526
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, so collecting ten million customer interaction records from 2021 might actually harm our 2026 recommender system?",
+      "start": 296.276,
+      "end": 304.916
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Without question, Kaito! Consumer tastes and cultural trends have moved on. Feeding stale 2021 records into your training set will bias the model toward obsolete products that no longer exist.",
+      "start": 305.266,
+      "end": 318.754
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So more data is not always better if the data has suffered exponential timeliness decay!",
+      "start": 319.104,
+      "end": 324.576
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. High-quality data is fresh data aligned with the real-world operational velocity of your domain.",
+      "start": 324.926,
+      "end": 332.246
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, some engineers believe that if storage is cheap, we should just throw every available feature into the training set and let deep learning figure it out. What is wrong with that philosophy?",
+      "start": 332.996,
+      "end": 344.42
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "That violates the fundamental laws of statistical learning! In finite samples, an overparameterized model will latch onto random coincidences between irrelevant features and training labels—spurious correlations that instantly disintegrate on unseen test distributions.",
+      "start": 344.77,
+      "end": 361.402
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So pruning features with low mutual information actually improves generalization and protects against overfitting!",
+      "start": 361.752,
+      "end": 368.472
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Feature engineering is not just feature generation; it is aggressive feature pruning for relevance.",
+      "start": 368.822,
+      "end": 376.574
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, look at the toggles! When I check 'Date Format Collision' and 'Trailing Zeros', our Consistency drops to seventy percent and Accuracy drops to eighty-five percent!",
+      "start": 377.324,
+      "end": 388.052
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Watch the composite DQI gauge on the right: it plunges to eighty-three point eight, triggering a Medium Quality Risk warning. Now activate 'Simulate Stale Data'—see what happens!",
+      "start": 388.402,
+      "end": 400.042
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "The composite score drops down into the red zone—Pipeline Rejected! That is how automated quality gates prevent silent model corruption.",
+      "start": 400.392,
+      "end": 409.32
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Never deploy code to production without declarative quality assertions.",
+      "start": 409.67,
+      "end": 416.006
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, this explains why commercial facial recognition systems historically failed on darker skin tones! The models scored high on overall benchmark datasets because the benchmarks themselves were eighty percent lighter skin!",
+      "start": 416.756,
+      "end": 429.932
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Precisely! Joy Buolamwini and Timnit Gebru exposed this in their landmark Gender Shades paper. When minority groups make up only a tiny fraction of the data, the optimizer treats them as negligible statistical outliers.",
+      "start": 430.282,
+      "end": 445.21
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So checking aggregate test set accuracy is totally insufficient. We must compute disaggregated metrics across every demographic subgroup!",
+      "start": 445.56,
+      "end": 454.944
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Fairness is not an afterthought; it is a fundamental pillar of data quality verification.",
+      "start": 455.294,
+      "end": 462.638
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, so putting a dataset on GitHub with a markdown README file isn't enough to satisfy FAIR principles?",
+      "start": 463.388,
+      "end": 470.204
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "A markdown README is human-readable, Kaito. But automated ETL agents, web crawlers, and feature store catalog engines cannot parse free-form prose to verify data units, bounds, or licensing constraints.",
+      "start": 470.554,
+      "end": 484.642
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "That is why JSON-LD sidecars are essential—software can inspect variable definitions and units programmatically before ever reading the binary payload!",
+      "start": 484.992,
+      "end": 493.872
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Self-describing data packages make pipelines resilient, auditable, and truly interoperable.",
+      "start": 494.222,
+      "end": 502.094
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Eighty-eight percent Fitzpatrick types I and II, but only three percent types V and VI! Even though aggregate accuracy is ninety-two percent, what happens to patients with darker skin tones?",
+      "start": 502.844,
+      "end": 514.724
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Review how Empirical Risk Minimization optimizes average loss over majority groups. Select the correct option below to analyze the clinical hazard!",
+      "start": 515.074,
+      "end": 524.866
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, I love the analogy to hardware engineering. In electronics, you wouldn't plug a chip into a motherboard without reading its datasheet. Why did software engineers assume data could be used without a specification?",
+      "start": 525.616,
+      "end": 540.04
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because early AI was academic and small scale, Kaito! But in modern enterprise systems, deploying an autonomous vehicle or clinical diagnostic tool on un-audited data can lead to catastrophic failure and legal liability.",
+      "start": 540.39,
+      "end": 554.67
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And the 'Uses and Limitations' section is vital—it explicitly defines where the dataset is dangerous to deploy!",
+      "start": 555.02,
+      "end": 561.716
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. A dataset curated for healthy adult athletes must never be used to train pediatric triage models. Datasheets enforce that accountability.",
+      "start": 562.066,
+      "end": 572.89
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, this Polars contract is brilliant! By writing the quality assertions as native columnar filter expressions, Polars evaluates all four dimensions across ten million rows in just milliseconds!",
+      "start": 573.64,
+      "end": 586.264
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. No row iteration in Python. It executes entirely in parallel Rust threads, compiling our business constraints directly into vectorized SIMD instructions.",
+      "start": 586.614,
+      "end": 599.19
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And integrating this into GitHub Actions or Airflow ensures that bad data is rejected automatically at the ingestion boundary before it ever enters training storage!",
+      "start": 599.54,
+      "end": 608.588
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "That is the hallmark of defensive data engineering: treat every incoming dataset as untrusted user input.",
+      "start": 608.938,
+      "end": 615.658
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, what a journey! From the Wang-Strong framework to Little-Rubin missing data mechanisms, FAIR JSON-LD sidecars, and vectorized Polars contracts, data quality has transformed from an intuitive chore into a mathematical discipline.",
+      "start": 616.408,
+      "end": 630.808
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "That is the core ethos of Data-Centric AI, Kaito. Spending time engineering high-fidelity datasets yields far greater performance gains than obsessively tweaking neural network hyperparameters on corrupted inputs.",
+      "start": 631.158,
+      "end": 644.334
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And in Lesson 1.5, we will put this into practice by building automated statistical profiling and exploratory data analysis pipelines!",
+      "start": 644.684,
+      "end": 653.468
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Join us in Lesson 1.5 to master automated data profiling and statistical discovery!",
+      "start": 653.818,
+      "end": 661.69
+    }
+  ]
+}

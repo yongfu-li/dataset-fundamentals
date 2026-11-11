@@ -7833,7 +7833,7 @@
 <h3 id="1-training-data-extraction-likelihood-ratio-carlini-et-al-2021">1. Training Data Extraction Likelihood Ratio (Carlini et al., 2021)</h3>
 <p>Adversaries extract sensitive sequences from large models without direct parameter access using <strong>Likelihood Ratio Prompting</strong>. Let <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_T)\)</span> be a sequence of generated tokens. The adversary computes the ratio between the target model's perplexity and an independent generic reference model <span class="arithmatex">\(\mathcal{L}_{\text{ref}}\)</span>:</p>
 <div class="arithmatex">\[
-\mathcal{R}_{\text{extract}}(\mathbf{x}) = \frac{\mathcal{L}_{\text{target}}(\mathbf{x}; \theta)}{\mathcal{L}_{\text{ref}}(\mathbf{x})} = \frac{\prod_{t=1}^T P_\theta(x_t \mid x_{&lt;t})}{\prod_{t=1}^T P_{\text{ref}}(x_t \mid x_{&lt;t})}
+\mathcal{R}_{\text{extract}}(\mathbf{x}) = \frac{\mathcal{L}_{\text{target}}(\mathbf{x}; \theta)}{\mathcal{L}_{\text{ref}}(\mathbf{x})} = \frac{\prod_{t=1}^T P_\theta(x_t \mid x_{\lt t})}{\prod_{t=1}^T P_{\text{ref}}(x_t \mid x_{\lt t})}
 \]</div>
 <p>When <span class="arithmatex">\(\mathcal{R}_{\text{extract}}(\mathbf{x}) \gg \tau_{\text{memo}}\)</span>, the sequence is flagged as <strong>verbatim training data memorization</strong> rather than spontaneous generation. Carlini et al. proved that memorization likelihood follows a power law with token duplication frequency <span class="arithmatex">\(k\)</span> and parameter scale <span class="arithmatex">\(P\)</span>:</p>
 <div class="arithmatex">\[
@@ -7903,22 +7903,21 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
 <hr />
 <h2 id="4-interactive-laboratory-foundation-model-memorization-mia-studio">4. Interactive Laboratory: Foundation Model Memorization &amp; MIA Studio</h2>
 <p>Simulate the relationship between model parameter capacity, string duplication frequency, and membership inference vulnerability. Test how <strong>Differential Privacy (DP-SGD)</strong> suppresses memorization extraction curves in real-time.</p>
-<p><div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
-<br />
-<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.5rem;">🤖</span>
       <h3 style="margin: 0; font-weight: 800; color: #151b20; font-size: 1.25rem;">Foundation Model Memorization &amp; MIA Studio</h3>
     </div>
     <span style="background: #c9f3f4; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; font-family: monospace;">CARLINI MEMORIZATION BENCHMARK</span>
   </div>
-</p>
-<p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
+
+  <p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
     Observe how model parameter capacity and training data repetition compound verbatim memorization risk, and evaluate how DP-SGD gradient noise bounds Membership Inference Attacks (MIA).
   </p>
 
-<!-- Controls Panel -->
-<div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+  <!-- Controls Panel -->
+  <div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
     <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
       ⚙️ Foundation Model Architecture &amp; Training Parameters
     </div>
@@ -7953,8 +7952,8 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
     </div>
   </div>
 
-<!-- Real-Time Metrics Display -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
+  <!-- Real-Time Metrics Display -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
     <!-- Memorization Extraction Probability -->
     <div style="background: #fef2f2; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
       <div style="font-size: 0.72rem; font-weight: 800; color: #991b1b; text-transform: uppercase;">Extraction Probability $P_{\text{extract}}$</div>
@@ -7984,11 +7983,12 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
     </div>
   </div>
 
-<!-- Dynamic Risk Banner -->
-<div id="gen_risk_banner" style="background: #dcfce7; border: 2px solid #15803d; border-radius: 8px; padding: 14px; font-size: 0.85rem; color: #14532d; line-height: 1.5;">
+  <!-- Dynamic Risk Banner -->
+  <div id="gen_risk_banner" style="background: #dcfce7; border: 2px solid #15803d; border-radius: 8px; padding: 14px; font-size: 0.85rem; color: #14532d; line-height: 1.5;">
     <strong>✓ Certified Privacy Invariant Active:</strong> Strong Differential Privacy ($\epsilon = 1.0$) prevents training data extraction and collapses Membership Inference Attack AUC to near-random ($0.521$). Individual training records are mathematically protected.
   </div>
 </div>
+
 <script>
 function updateGenSim() {
   let pScale = parseFloat(document.getElementById('sel_param_scale').value);

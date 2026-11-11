@@ -1,0 +1,130 @@
+{
+  "ch1_p3_chk1_solo.mp3": {
+    "duration": 18.504,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Recall Checkpoint 1! An enterprise BI engine needs to calculate the average transaction amount across two hundred million records with eighty-five columns. Why does Apache Parquet outperform a CSV or row-store database by orders of magnitude? Select your answer on the slide!",
+        "start": 0.0,
+        "end": 18.504
+      }
+    ]
+  },
+  "ch1_p3_chk1_duo.mp3": {
+    "duration": 15.326,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Two hundred million records and eighty-five columns! Look at the four options below. Which architectural capability gives Parquet its overwhelming speedup?",
+        "start": 0.0,
+        "end": 10.752
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Click the correct answer on the checkpoint card to test your retention!",
+        "start": 11.102,
+        "end": 15.326
+      }
+    ]
+  },
+  "ch1_p3_chk1_feedback_correct.mp3": {
+    "duration": 17.16,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! In Apache Parquet, the amount column is stored as a contiguous binary byte block. The query engine reads only that single column, bypassing over ninety-eight percent of on-disk bytes, and computes averages using vectorized SIMD CPU instructions!",
+        "start": 0.0,
+        "end": 17.16
+      }
+    ]
+  },
+  "ch1_p3_chk1_feedback_incorrect.mp3": {
+    "duration": 13.584,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember our projection law: in a row store, the engine must parse every single column off disk just to get amount. Parquet skips ninety-eight percent of data through columnar projection pushdown!",
+        "start": 0.0,
+        "end": 13.584
+      }
+    ]
+  },
+  "ch1_p3_sim_solo.mp3": {
+    "duration": 21.192,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Physical Storage Layout and Query I/O Simulator! Look at the controls above me: adjust Dataset Scale, Column Schema Profile, and Target Workload Query. Watch how physical I/O read bytes and execution latency diverge dramatically between CSV, JSON Lines, SQLite, Parquet, and Arrow Feather!",
+        "start": 0.0,
+        "end": 21.192
+      }
+    ]
+  },
+  "ch1_p3_sim_duo.mp3": {
+    "duration": 25.334,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at the table! When I select Column Aggregation on ten million rows with the Standard Enterprise profile, CSV requires reading over two gigabytes of data off disk!",
+        "start": 0.0,
+        "end": 11.496
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Exactly! Whereas Apache Parquet reads only forty-eight megabytes, executing in under fifty milliseconds. Try testing the Single Key Lookup workload to see where SQLite and row stores pull ahead!",
+        "start": 11.846,
+        "end": 25.334
+      }
+    ]
+  },
+  "ch1_p3_chk2_solo.mp3": {
+    "duration": 20.976,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Recall Checkpoint 2! A feature store receives JSON logs from mobile client apps. Version 1.0 logged heading as an integer, but Version 2.0 changed it to a categorical string. How does this schema mutation impact downstream Spark and PyArrow pipelines? Make your choice on the slide!",
+        "start": 0.0,
+        "end": 20.976
+      }
+    ]
+  },
+  "ch1_p3_chk2_duo.mp3": {
+    "duration": 17.222,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "A classic production disaster! The mobile team changed an integer to a string without alerting data engineering. What happens to the Spark or PyArrow ingestion job?",
+        "start": 0.0,
+        "end": 11.16
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Select the correct option below to see how schema-on-read traps trigger silent feature drift!",
+        "start": 11.51,
+        "end": 17.222
+      }
+    ]
+  },
+  "ch1_p3_chk2_feedback_correct.mp3": {
+    "duration": 16.128,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding diagnosis! When PyArrow or Spark infers conflicting data types for the same key, it triggers an ArrowTypeError crash, or silently coerces the incompatible values to null, poisoning feature stores and corrupting downstream models!",
+        "start": 0.0,
+        "end": 16.128
+      }
+    ]
+  },
+  "ch1_p3_chk2_feedback_incorrect.mp3": {
+    "duration": 13.992,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Careful! Semi-structured formats do not automatically convert strings to numbers. Conflicting types cause schema reconciliation failure, crashing the ingestion job or silently nullifying column values.",
+        "start": 0.0,
+        "end": 13.992
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ch2_p4_tb_sim_solo": {
+    "duration": 17.4,
+    "voice": "en-US-JennyNeural",
+    "text": "Welcome to the Token Bucket Capacity and Wait-Time Simulator! Adjust bucket capacity B max, refill rate r, elapsed time, and incoming batch cost. Watch how continuous token replenishment determines whether requests dispatch immediately or wait linearly."
+  },
+  "ch2_p4_tb_sim_duo": {
+    "duration": 14.808,
+    "voice": "en-US-GuyNeural",
+    "text": "Look at that, Nova! With capacity 100, refill rate 10 per second, and elapsed time 4 seconds, the bucket refills to 40 tokens. Sending a 30-token batch dispatches immediately with 10 tokens remaining!"
+  },
+  "ch2_p4_chk1_solo": {
+    "duration": 22.704,
+    "voice": "en-US-JennyNeural",
+    "text": "Active Checkpoint 1: An API client runs a Token Bucket with capacity B max 100 and refill rate 10 tokens per second. All 100 tokens are emptied at t equals zero. At t equals 4 seconds, a 30-token batch arrives. Does it succeed immediately? Select Option A, B, or C above me."
+  },
+  "ch2_p4_chk1_duo": {
+    "duration": 13.008,
+    "voice": "en-US-GuyNeural",
+    "text": "Let us calculate: 10 tokens per second times 4 seconds equals 40 refilled tokens! Since 40 is greater than 30, the batch succeeds right away! Let's challenge our students above us!"
+  },
+  "ch2_p4_chk1_feedback_correct": {
+    "duration": 18.216,
+    "voice": "en-US-JennyNeural",
+    "text": "Outstanding! At t equals 4 seconds, tokens refilled equal min of 100 and 10 times 4, which equals 40 tokens. Because 40 exceeds the 30-token batch cost, the request executes immediately with zero sleep wait, leaving 10 tokens remaining."
+  },
+  "ch2_p4_chk1_feedback_incorrect": {
+    "duration": 14.472,
+    "voice": "en-US-JennyNeural",
+    "text": "Not quite. Remember tokens accumulate linearly at rate r equals 10 tokens per second. After 4 seconds, 40 tokens are available\u2014plenty to pay the 30-token cost immediately without waiting."
+  },
+  "ch2_p4_page_sim_solo": {
+    "duration": 19.128,
+    "voice": "en-US-JennyNeural",
+    "text": "Welcome to the Pagination Complexity and Thundering Herd Simulator! Increase page depth k up to 1,000 and watch Offset query scan overhead explode past four seconds, while Cursor B-Tree latency stays permanently near one millisecond. Then compare Deterministic versus Full Jitter collision risk."
+  },
+  "ch2_p4_page_sim_duo": {
+    "duration": 14.616,
+    "voice": "en-US-GuyNeural",
+    "text": "Whoa! At page 1,000 with size 100, Offset throws away one hundred thousand rows per query\u2014giving Cursor pagination over a three-thousand-times speedup! And switching to Full Jitter crushes multi-worker collisions!"
+  },
+  "ch2_p4_chk2_solo": {
+    "duration": 20.376,
+    "voice": "en-US-JennyNeural",
+    "text": "Active Checkpoint 2: A script pulls 1,000 pages of 100 items using OFFSET k times 100. Page 1 finishes in 10 milliseconds, but Page 1,000 stalls over 4.5 seconds. Why does OFFSET degrade linearly? Select Option A, B, or C above me."
+  },
+  "ch2_p4_chk2_duo": {
+    "duration": 14.208,
+    "voice": "en-US-GuyNeural",
+    "text": "OFFSET 100,000 forces the SQL database to scan and discard all one hundred thousand rows before emitting the next hundred! Cursor pagination jumps via the B-Tree index instead! Select the right answer above!"
+  },
+  "ch2_p4_chk2_feedback_correct": {
+    "duration": 17.952,
+    "voice": "en-US-JennyNeural",
+    "text": "Precisely correct! OFFSET 100,000 compels the database engine to traverse and discard all 100,000 preceding rows on disk\u2014inducing linear O of k times S degradation. Keyset cursor seek jumps straight via the B-Tree index in O of log N time."
+  },
+  "ch2_p4_chk2_feedback_incorrect": {
+    "duration": 11.472,
+    "voice": "en-US-JennyNeural",
+    "text": "That is incorrect. The slowdown occurs inside the relational storage engine: OFFSET forces the database to scan and discard k times S preceding rows before emitting results."
+  }
+}

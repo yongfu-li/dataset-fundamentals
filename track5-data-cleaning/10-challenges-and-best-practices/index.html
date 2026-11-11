@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2700,34 +2744,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-theoretical-formalisms" class="md-nav__link">
+  <a href="#1-conceptual-overview-taxonomy-of-data-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Theoretical Formalisms
+        1. Conceptual Overview: Taxonomy of Data Leakage
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Theoretical Formalisms">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-formal-taxonomy-of-data-leakage" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-theoretical-formalisms-leakage-semirings-drift-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Formal Taxonomy of Data Leakage
+        2. Theoretical Formalisms: Leakage, Semirings &amp; Drift Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Formal Taxonomy of Data Leakage">
+    <nav class="md-nav" aria-label="2. Theoretical Formalisms: Leakage, Semirings &amp; Drift Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#type-i-target-leakage-causal-reversal" class="md-nav__link">
+  <a href="#1-three-structural-vectors-of-leakage-kaufman2012" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Type I: Target Leakage (Causal Reversal)
+        1. Three Structural Vectors of Leakage [Kaufman2012]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Three Structural Vectors of Leakage [Kaufman2012]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-i-causal-target-leakage-y-longrightarrow-x_textleak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type I: Causal Target Leakage (\(Y \longrightarrow X_{\text{leak}}\))
       
     </span>
   </a>
@@ -2735,10 +2790,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#type-ii-train-test-contamination-distributional-bleed" class="md-nav__link">
+  <a href="#type-ii-train-test-distributional-contamination-thetamathcald_texttrain-cup-mathcald_texttest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Type II: Train-Test Contamination (Distributional Bleed)
+        Type II: Train-Test Distributional Contamination (\(\theta(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})\))
       
     </span>
   </a>
@@ -2746,10 +2801,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#type-iii-temporal-leakage-look-ahead-bias" class="md-nav__link">
+  <a href="#type-iii-temporal-filtration-inversion-look-ahead-bias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Type III: Temporal Leakage (Look-Ahead Bias)
+        Type III: Temporal Filtration Inversion (Look-Ahead Bias)
       
     </span>
   </a>
@@ -2762,10 +2817,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-provenance-semirings-and-cryptographic-lineage" class="md-nav__link">
+  <a href="#2-provenance-semirings-cryptographic-lineage-chaining" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Provenance Semirings and Cryptographic Lineage
+        2. Provenance Semirings &amp; Cryptographic Lineage Chaining
       
     </span>
   </a>
@@ -2773,10 +2828,33 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-framework-continuous-data-drift-leakage-sentinel-architecture" class="md-nav__link">
+  <a href="#3-production-drift-sentinels-psi-kolmogorov-smirnov-distance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Framework: Continuous Data Drift &amp; Leakage Sentinel Architecture
+        3. Production Drift Sentinels: PSI &amp; Kolmogorov-Smirnov Distance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Production Drift Sentinels: PSI &amp; Kolmogorov-Smirnov Distance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#population-stability-index-psi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Population Stability Index (PSI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covariate-shift-vs-concept-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Covariate Shift vs. Concept Drift
       
     </span>
   </a>
@@ -2787,12 +2865,17 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-automated-data-leakage-sentinel" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-kaggle-healthcare-mortality-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Automated Data Leakage Sentinel
+        3. Landmark Empirical Case Study: Kaggle Healthcare Mortality Leakage
       
     </span>
   </a>
@@ -2800,10 +2883,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-kaggle-healthcare-mortality-leakage" class="md-nav__link">
+  <a href="#4-interactive-laboratory-psi-drift-sentinel-provenance-chain-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Kaggle Healthcare Mortality Leakage
+        4. Interactive Laboratory: PSI Drift Sentinel &amp; Provenance Chain Studio
       
     </span>
   </a>
@@ -2811,10 +2894,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -2822,10 +2905,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2833,10 +2916,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7416,34 +7510,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-theoretical-formalisms" class="md-nav__link">
+  <a href="#1-conceptual-overview-taxonomy-of-data-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Theoretical Formalisms
+        1. Conceptual Overview: Taxonomy of Data Leakage
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Theoretical Formalisms">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-formal-taxonomy-of-data-leakage" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-theoretical-formalisms-leakage-semirings-drift-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Formal Taxonomy of Data Leakage
+        2. Theoretical Formalisms: Leakage, Semirings &amp; Drift Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Formal Taxonomy of Data Leakage">
+    <nav class="md-nav" aria-label="2. Theoretical Formalisms: Leakage, Semirings &amp; Drift Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#type-i-target-leakage-causal-reversal" class="md-nav__link">
+  <a href="#1-three-structural-vectors-of-leakage-kaufman2012" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Type I: Target Leakage (Causal Reversal)
+        1. Three Structural Vectors of Leakage [Kaufman2012]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Three Structural Vectors of Leakage [Kaufman2012]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-i-causal-target-leakage-y-longrightarrow-x_textleak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type I: Causal Target Leakage (\(Y \longrightarrow X_{\text{leak}}\))
       
     </span>
   </a>
@@ -7451,10 +7556,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#type-ii-train-test-contamination-distributional-bleed" class="md-nav__link">
+  <a href="#type-ii-train-test-distributional-contamination-thetamathcald_texttrain-cup-mathcald_texttest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Type II: Train-Test Contamination (Distributional Bleed)
+        Type II: Train-Test Distributional Contamination (\(\theta(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})\))
       
     </span>
   </a>
@@ -7462,10 +7567,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#type-iii-temporal-leakage-look-ahead-bias" class="md-nav__link">
+  <a href="#type-iii-temporal-filtration-inversion-look-ahead-bias" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Type III: Temporal Leakage (Look-Ahead Bias)
+        Type III: Temporal Filtration Inversion (Look-Ahead Bias)
       
     </span>
   </a>
@@ -7478,10 +7583,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-provenance-semirings-and-cryptographic-lineage" class="md-nav__link">
+  <a href="#2-provenance-semirings-cryptographic-lineage-chaining" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Provenance Semirings and Cryptographic Lineage
+        2. Provenance Semirings &amp; Cryptographic Lineage Chaining
       
     </span>
   </a>
@@ -7489,10 +7594,33 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-framework-continuous-data-drift-leakage-sentinel-architecture" class="md-nav__link">
+  <a href="#3-production-drift-sentinels-psi-kolmogorov-smirnov-distance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Framework: Continuous Data Drift &amp; Leakage Sentinel Architecture
+        3. Production Drift Sentinels: PSI &amp; Kolmogorov-Smirnov Distance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Production Drift Sentinels: PSI &amp; Kolmogorov-Smirnov Distance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#population-stability-index-psi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Population Stability Index (PSI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covariate-shift-vs-concept-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Covariate Shift vs. Concept Drift
       
     </span>
   </a>
@@ -7503,12 +7631,17 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-automated-data-leakage-sentinel" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-kaggle-healthcare-mortality-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Automated Data Leakage Sentinel
+        3. Landmark Empirical Case Study: Kaggle Healthcare Mortality Leakage
       
     </span>
   </a>
@@ -7516,10 +7649,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-kaggle-healthcare-mortality-leakage" class="md-nav__link">
+  <a href="#4-interactive-laboratory-psi-drift-sentinel-provenance-chain-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Kaggle Healthcare Mortality Leakage
+        4. Interactive Laboratory: PSI Drift Sentinel &amp; Provenance Chain Studio
       
     </span>
   </a>
@@ -7527,10 +7660,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -7538,10 +7671,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7549,10 +7682,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7580,38 +7724,39 @@
 
 
 <h1 id="510-challenges-leakage-prevention-and-governance">5.10 Challenges, Leakage Prevention, and Governance</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 5 (sec:5.6)</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 5: Data Cleaning and Preprocessing</strong> in the Springer Nature monograph for complete formal proofs of provenance semirings and causal leakage theorems.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.10: Causal Leakage Theorems &amp; Lineage Governance)</strong> in the official Springer Nature monograph, covering Provenance Semirings, Population Stability Index drift thresholds, and temporal filtrations.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+    <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~28 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-510">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.10</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">8 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">8 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=5&part=10" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=10" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7620,312 +7765,548 @@
 </div>
 
 <hr />
-<h2 id="conceptual-overview-theoretical-formalisms">🎯 Conceptual Overview &amp; Theoretical Formalisms</h2>
-<p>Data cleaning is fraught with subtle pitfalls where well-intentioned repairs introduce fatal statistical artifacts. Among these, <strong>data leakage</strong> is the most pernicious: it produces stellar offline cross-validation metrics that collapse completely when deployed into live production inference (<a href="#ref-kaufman2012">Kaufman et al., 2012</a>). Rigorous data governance combines causal audit checks, provenance tracking, and deterministic reproducibility (<a href="#ref-sculley2015">Sculley et al., 2015</a>; <a href="#ref-schelter2018">Schelter et al., 2018</a>; <a href="#ref-northcutt2021">Northcutt et al., 2021</a>; <a href="#ref-krishnan2016">Krishnan et al., 2016</a>).</p>
+<p>Data cleaning carries a paradox: well-intentioned transformations frequently introduce catastrophic statistical artifacts if decoupled from causal ordering and partition governance. Among production machine learning failures, <strong>data leakage</strong> and <strong>unmonitored distributional drift</strong> are the leading causes of offline-to-online performance collapses [<a href="#ref-kaufman2012">Kaufman2012</a>, <a href="#ref-sculley2015">Sculley2015</a>].</p>
+<p>Enterprise dataset engineering prevents these silent failures through <strong>Leakage Sentinel Audits</strong>, <strong>Cryptographic Provenance Semirings</strong> [<a href="#ref-green2007">Green2007</a>], and <strong>Population Stability Index (PSI) Circuit Breakers</strong> [<a href="#ref-schelter2018">Schelter2018</a>, <a href="#ref-northcutt2021">Northcutt2021</a>].</p>
+<hr />
+<h2 id="1-conceptual-overview-taxonomy-of-data-leakage">1. Conceptual Overview: Taxonomy of Data Leakage</h2>
 <pre class="mermaid"><code>flowchart LR
-    Root["Data Leakage Typology"] --&gt; T1["Type I: Target Leakage&lt;br/&gt;Causal Reversal (Y -&gt; X)"]
-    Root --&gt; T2["Type II: Distributional Bleed&lt;br/&gt;θ(Train ∪ Test) Contamination"]
-    Root --&gt; T3["Type III: Temporal Inversion&lt;br/&gt;Look-Ahead Bias (t_feat &gt; t_target)"]
+    Root["Data Leakage Typology"] --&gt; T1["Type I: Target Leakage&lt;br/&gt;Causal Reversal (Y -&gt; X_leak)"]
+    Root --&gt; T2["Type II: Distributional Bleed&lt;br/&gt;Parameters Fitted on Train ∪ Test"]
+    Root --&gt; T3["Type III: Temporal Inversion&lt;br/&gt;Look-Ahead Leakage (t_feat &gt; t_target)"]
+
+    T1 --&gt; Fix1["Fix: Causal Timestamp &amp; MI Proxy Screening"]
+    T2 --&gt; Fix2["Fix: Fold-Isolated Pipeline Encapsulation &amp; Row Dedupe"]
+    T3 --&gt; Fix3["Fix: Chronological Filtration Splits F_t"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#f3e8ff,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class Root purple;
     class T1 red;
     class T2 amber;
-    class T3 blue;</code></pre>
+    class T3 blue;
+    class Fix1,Fix2,Fix3 green;</code></pre>
 <hr />
-<h3 id="1-formal-taxonomy-of-data-leakage">1. Formal Taxonomy of Data Leakage</h3>
-<h4 id="type-i-target-leakage-causal-reversal">Type I: Target Leakage (Causal Reversal)</h4>
-<p>Let <span class="arithmatex">\(Y\)</span> denote the target outcome and <span class="arithmatex">\(X_j\)</span> an engineered feature. In a valid predictive setting, the causal arrow flows strictly from predictors to target:</p>
+<h2 id="2-theoretical-formalisms-leakage-semirings-drift-metrics">2. Theoretical Formalisms: Leakage, Semirings &amp; Drift Metrics</h2>
+<h3 id="1-three-structural-vectors-of-leakage-kaufman2012">1. Three Structural Vectors of Leakage [<a href="#ref-kaufman2012">Kaufman2012</a>]</h3>
+<h4 id="type-i-causal-target-leakage-y-longrightarrow-x_textleak">Type I: Causal Target Leakage (<span class="arithmatex">\(Y \longrightarrow X_{\text{leak}}\)</span>)</h4>
+<p>In legitimate prediction, causal information propagates forward from predictor attributes to future target outcomes (<span class="arithmatex">\(X_j \longrightarrow Y\)</span>). Target leakage arises when an engineered feature <span class="arithmatex">\(X_{\text{leak}}\)</span> is recorded <strong>after</strong> or as a direct administrative consequence of <span class="arithmatex">\(Y\)</span>:</p>
 <div class="arithmatex">\[
-X_j \longrightarrow Y
+Y \longrightarrow X_{\text{leak}} \implies I\left( X_{\text{leak}}; Y \right) \to H(Y)
 \]</div>
-<p>Target leakage occurs when an attribute <span class="arithmatex">\(X_{\text{leak}}\)</span> is physically populated or updated <em>after</em> or <em>as a consequence of</em> the target event <span class="arithmatex">\(Y\)</span>:</p>
+<p><em>Example</em>: Training an inpatient mortality predictor using <code>hospital_billing_autopsy_code</code> or predicting loan default using <code>collection_agency_fee</code>.</p>
+<h4 id="type-ii-train-test-distributional-contamination-thetamathcald_texttrain-cup-mathcald_texttest">Type II: Train-Test Distributional Contamination (<span class="arithmatex">\(\theta(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})\)</span>)</h4>
+<p>Occurs when preprocessing operators (imputers, scalers, PCA rotations, SMOTE generators, or fuzzy record linkages) share state across splits, or when duplicate records span both partitions:</p>
 <div class="arithmatex">\[
-Y \longrightarrow X_{\text{leak}}
+\hat{\theta} = g\left( \mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}} \right) \implies I\left( \hat{\theta}; \mathcal{D}_{\text{test}} \right) &gt; 0
 \]</div>
-<p><em>Example:</em> Including <code>appointment_cancellation_reason</code> in a model predicting whether a patient will miss an appointment, or including <code>post_operative_antibiotics_mg</code> in a model predicting surgical infection risk.</p>
-<h4 id="type-ii-train-test-contamination-distributional-bleed">Type II: Train-Test Contamination (Distributional Bleed)</h4>
-<p>Occurs when estimators <span class="arithmatex">\(\hat{\theta}\)</span> (e.g., sample mean <span class="arithmatex">\(\bar{x}\)</span>, PCA eigenvectors <span class="arithmatex">\(\mathbf{V}\)</span>, or target encodings <span class="arithmatex">\(\hat{S}\)</span>) are fitted over the union of train and test partitions:</p>
+<h4 id="type-iii-temporal-filtration-inversion-look-ahead-bias">Type III: Temporal Filtration Inversion (Look-Ahead Bias)</h4>
+<p>In sequential event streams, predictions at forecast horizon <span class="arithmatex">\(t\)</span> may only condition on events inside the measurable filtration <span class="arithmatex">\(\mathcal{F}_t = \sigma(\{X_s : s \le t\})\)</span>. Random shuffling across time allows future covariates <span class="arithmatex">\(\mathbf{x}_{t'}\)</span> (<span class="arithmatex">\(t' &gt; t\)</span>) to leak into training gradients:</p>
 <div class="arithmatex">\[
-\hat{\theta} = f(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})
-\]</div>
-<p>This introduces an unobserved statistical dependence:</p>
-<div class="arithmatex">\[
-I(\hat{\theta}; \mathcal{D}_{\text{test}}) &gt; 0
-\]</div>
-<p>which violates the fundamental Independent and Identically Distributed (i.i.d.) assumption of machine learning evaluation.</p>
-<h4 id="type-iii-temporal-leakage-look-ahead-bias">Type III: Temporal Leakage (Look-Ahead Bias)</h4>
-<p>In time-series and event streams, features must be conditioned strictly on the filtration <span class="arithmatex">\(\mathcal{F}_t = \sigma(\{X_s : s \le t\})\)</span>. Evaluating feature values at timestamp <span class="arithmatex">\(t' &gt; t\)</span>:</p>
-<div class="arithmatex">\[
-\mathbf{x}_{t'} \in \mathcal{F}_{t'} \quad \text{where } t' &gt; t
-\]</div>
-<p>creates look-ahead bias, rendering backtesting simulations unachievable in real-time execution.</p>
-<hr />
-<h3 id="2-provenance-semirings-and-cryptographic-lineage">2. Provenance Semirings and Cryptographic Lineage</h3>
-<p>To verify that transformed values maintain legal compliance (e.g., GDPR Article 17 "Right to Erasure") and scientific auditability, data provenance can be modeled algebraically via <strong>Provenance Semirings</strong> <span class="arithmatex">\((\mathbb{K}, \oplus, \otimes, 0, 1)\)</span> (<a href="#ref-green2007">Green et al., 2007</a>):
-- <strong>Addition (<span class="arithmatex">\(\oplus\)</span>):</strong> Represents alternative derivations (union, projection).
-- <strong>Multiplication (<span class="arithmatex">\(\otimes\)</span>):</strong> Represents joint derivations (joins, Cartesian products).</p>
-<p>Every output tuple <span class="arithmatex">\(t\)</span> is associated with a derivation polynomial <span class="arithmatex">\(\Phi(t) \in \mathbb{K}[X]\)</span> over input tuple identifiers. At the operational level, each transformation step records its SHA-256 cryptographic digest:</p>
-<div class="arithmatex">\[
-H_k = \text{SHA-256}\left(H_{k-1} \;\|\; \text{CodeVersion} \;\|\; \text{ConfigHash} \;\|\; \text{Seed}\right)
+\max_{t \in \mathcal{D}_{\text{train}}} t_{\text{event}} \ge \min_{t' \in \mathcal{D}_{\text{test}}} t'_{\text{event}} \implies \text{Look-Ahead Contamination}
 \]</div>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Automated Population Stability Index (PSI) Drift Monitoring</p>
-<p>Deploy continuous <strong>Population Stability Index (PSI)</strong> calculation across production feature distributions:
-$<span class="arithmatex">\(\text{PSI} = \sum_{b=1}^B (P_b - Q_b) \ln\left(\frac{P_b}{Q_b}\right)\)</span>$
-A <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> indicates significant distributional drift, triggering an automated alert to retrain models and inspect upstream data collection pipelines.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Silent Schema Mutation</p>
-<p>Upstream database schema changes (e.g., altering an integer <code>user_id</code> to alphanumeric string, or changing a status string from lowercase to title case) can silently pass untyped pipelines, producing 100% NaN features downstream.</p>
-</div>
-<h3 id="decision-framework-continuous-data-drift-leakage-sentinel-architecture">Decision Framework: Continuous Data Drift &amp; Leakage Sentinel Architecture</h3>
+<h3 id="2-provenance-semirings-cryptographic-lineage-chaining">2. Provenance Semirings &amp; Cryptographic Lineage Chaining</h3>
+<p>When regulations (such as GDPR Article 17 <em>"Right to Erasure"</em>) mandate purging all derived artifacts traced back to a deleted user record, ad-hoc logs collapse. Algebraic data lineage models derivations as <strong>Provenance Semirings</strong> <span class="arithmatex">\((\mathbb{K}, \oplus, \otimes, 0, 1)\)</span> [<a href="#ref-green2007">Green2007</a>]:
+- <strong>Alternative Derivation (<span class="arithmatex">\(\oplus\)</span>)</strong>: Relational Union (<span class="arithmatex">\(\cup\)</span>) or Duplicate Aggregation.
+- <strong>Joint Derivation (<span class="arithmatex">\(\otimes\)</span>)</strong>: Relational Join (<span class="arithmatex">\(\Join\)</span>) or Multi-table Feature Merge.</p>
+<p>Operationally, every transformation stage seals its execution graph with an immutable Merkle / SHA-256 lineage chain:</p>
+<div class="arithmatex">\[
+H_k = \operatorname{SHA-256}\left( H_{k-1} \;\|\; \text{CodeCommitHash} \;\|\; \text{ConfigJSON} \;\|\; \text{RandomSeed} \right)
+\]</div>
+<hr />
+<h3 id="3-production-drift-sentinels-psi-kolmogorov-smirnov-distance">3. Production Drift Sentinels: PSI &amp; Kolmogorov-Smirnov Distance</h3>
+<p>Because live environments shift continuously after deployment, pipelines monitor distributional divergence continuously across production batches:</p>
+<h4 id="population-stability-index-psi">Population Stability Index (PSI)</h4>
+<p>Measures binned discrete shift between baseline training density <span class="arithmatex">\(P_b\)</span> and live production density <span class="arithmatex">\(Q_b\)</span>:</p>
+<div class="arithmatex">\[
+\text{PSI} = \sum_{b=1}^B \left( P_b - Q_b \right) \ln\left( \frac{P_b}{Q_b} \right)
+\]</div>
+<ul>
+<li><strong><span class="arithmatex">\(\text{PSI} &lt; 0.10\)</span></strong>: Minimal shift (Green — Stable baseline).</li>
+<li><strong><span class="arithmatex">\(0.10 \le \text{PSI} \le 0.25\)</span></strong>: Moderate population drift (Yellow — Monitoring alert).</li>
+<li><strong><span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span></strong>: Severe distributional shift (Red — <strong>Trigger automated circuit breaker &amp; model retraining!</strong>).</li>
+</ul>
+<h4 id="covariate-shift-vs-concept-drift">Covariate Shift vs. Concept Drift</h4>
+<ul>
+<li><strong>Covariate Shift</strong>: Input distribution changes while conditional mapping stays fixed: <span class="arithmatex">\(P_{\text{train}}(X) \ne P_{\text{deploy}}(X)\)</span>, <span class="arithmatex">\(P_{\text{train}}(Y \mid X) = P_{\text{deploy}}(Y \mid X)\)</span>.</li>
+<li><strong>Concept Drift</strong>: Fundamental world mechanism shifts over time: <span class="arithmatex">\(P_{\text{train}}(Y \mid X) \ne P_{\text{deploy}}(Y \mid X)\)</span>.</li>
+</ul>
 <pre class="mermaid"><code>flowchart TD
-    ProductionStream["Production Feature Stream"] --&gt; PipelineSplit["Strict Cross-Validation / Time-Split Boundary"]
-    PipelineSplit --&gt; FitOnlyTrain["Fit Imputers/Scalers on Training Fold ONLY"]
-    FitOnlyTrain --&gt; MonitorDrift["Continuous Drift Monitoring Sentinel"]
-    MonitorDrift --&gt; MetricCalc{"Calculate Statistical Drift"}
-    MetricCalc -- "Continuous Feature" --&gt; KSTest["Kolmogorov-Smirnov (KS) Test / Wasserstein"]
-    MetricCalc -- "Binned / Categorical" --&gt; PSICalc["Population Stability Index (PSI)"]
-    KSTest &amp; PSICalc --&gt; AlertCheck{"PSI &gt; 0.25 or p-value &lt; 0.01?"}
-    AlertCheck -- "Yes: Severe Drift" --&gt; CircuitBreaker["Trigger Retraining &amp; Fallback Circuit Breaker"]
-    AlertCheck -- "No: Stable" --&gt; ProductionInference["Proceed to Downstream Model Inference"]
+    Stream["Production Payload Batch"] --&gt; Check{"Evaluate Continuous Drift Sentinel"}
+    Check --&gt; PSI["Compute Binned PSI = sum((P_b - Q_b) ln(P_b/Q_b))"]
+    Check --&gt; KS["Compute KS Distance D_n = sup |F_train(x) - F_prod(x)|"]
+    PSI &amp; KS --&gt; Gate{"PSI &gt; 0.25 or KS p &lt; 0.01?"}
+    Gate --&gt;|Yes| Alert["CIRCUIT BREAKER: Halt Auto-Decisions &amp; Trigger Retrain"]
+    Gate --&gt;|No| Infer["Authorized Production Inference"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class ProductionStream,PipelineSplit blue;
-    class FitOnlyTrain,ProductionInference green;
-    class MonitorDrift,MetricCalc,KSTest,PSICalc purple;
-    class AlertCheck amber;
-    class CircuitBreaker red;</code></pre>
+    class Stream,Check blue;
+    class PSI,KS,Gate amber;
+    class Alert red;
+    class Infer green;</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Industrial Best Practice: Mutual Information Proxy Gates Before Model Fitting</p>
+<p>Automatically execute univariate Mutual Information (<span class="arithmatex">\(I(X_j; Y)\)</span>) and point-biserial correlation sweeps on training columns prior to modeling. Any feature reporting unusually high predictability (<span class="arithmatex">\(I(X_j; Y) &gt; 0.45\)</span> or single-feature AUC <span class="arithmatex">\(&gt; 0.90\)</span> in noisy domains) must pass manual causal timestamp verification before entering production!</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Silent Schema &amp; Categorical Drift Mutations</p>
+<p>Upstream engineering teams frequently rename categorical ENUM strings (<code>"mobile_ios"</code> <span class="arithmatex">\(\to\)</span> <code>"iOS"</code>) or convert <code>user_id</code> integers to padded strings without notifying ML teams. Untyped pipelines silently assign unknown categories to <code>NaN</code> or fallback buckets, degrading live inference accuracy cleanly without throwing Python exceptions.</p>
+</div>
 <hr />
-<h2 id="production-implementation-automated-data-leakage-sentinel">💻 Production Implementation: Automated Data Leakage Sentinel</h2>
-<p>The following production script implements an automated leakage audit suite, verifying zero train-test overlap, detecting causal target proxies via mutual information, and validating chronological split ordering.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">data_leakage_sentinel.py</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production-grade Data Leakage Sentinel: Causal Audit, Split Contamination, and Hash Lineage</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">mutual_info_regression</span><span class="p">,</span> <span class="n">mutual_info_classif</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">DataLeakageSentinel</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="sd">    Automated Sentinel for Detecting Machine Learning Preprocessing Leakage:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="sd">    1. Cross-partition exact duplicate detection (Train vs Test)</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="sd">    2. High mutual information target leakage detection (I(X; Y) &gt; threshold)</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="sd">    3. Temporal chronological ordering verification</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="sd">    4. Cryptographic pipeline fingerprinting</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="sd">    """</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mi_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">):</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mi_threshold</span> <span class="o">=</span> <span class="n">mi_threshold</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_split_contamination</span><span class="p">(</span><span class="n">X_train</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="sd">        Checks for identical feature vectors appearing across both train and test partitions.</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="sd">        Returns the number of leaked duplicate rows.</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="sd">        """</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="c1"># Create hash representation per row</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="n">train_hashes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">test_hashes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="n">leak_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_hashes</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">test_hashes</span><span class="p">))</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="k">return</span> <span class="n">leak_count</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_target_proxies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">is_classification</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="sd">        Detects potential Type I target leakage via Mutual Information screening.</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="sd">        """</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="c1"># Drop non-numeric columns for MI calculation</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">numeric_df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mf">9999.0</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="k">if</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>            <span class="k">return</span> <span class="p">{}</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">if</span> <span class="n">is_classification</span><span class="p">:</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>            <span class="n">mi_scores</span> <span class="o">=</span> <span class="n">mutual_info_classif</span><span class="p">(</span><span class="n">numeric_df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="n">mi_scores</span> <span class="o">=</span> <span class="n">mutual_info_regression</span><span class="p">(</span><span class="n">numeric_df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="n">leak_proxies</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">mi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">numeric_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">mi_scores</span><span class="p">):</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>            <span class="k">if</span> <span class="n">mi</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mi_threshold</span><span class="p">:</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>                <span class="n">leak_proxies</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mi</span><span class="p">)</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="k">return</span> <span class="n">leak_proxies</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_temporal_leakage</span><span class="p">(</span><span class="n">train_timestamps</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">test_timestamps</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="sd">        Verifies that maximum training timestamp strictly precedes minimum test timestamp.</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="sd">        """</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">max_train_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">train_timestamps</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="n">min_test_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">test_timestamps</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="c1"># Returns True if leak exists (train event occurs after test event)</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="k">return</span> <span class="n">max_train_t</span> <span class="o">&gt;=</span> <span class="n">min_test_t</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">generate_pipeline_digest</span><span class="p">(</span><span class="n">pipeline_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">random_seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">        </span><span class="sd">"""Generates a cryptographic SHA-256 fingerprint for data pipeline auditability."""</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>            <span class="s2">"code_hash"</span><span class="p">:</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">pipeline_code</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>            <span class="s2">"config"</span><span class="p">:</span> <span class="n">config</span><span class="p">,</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>            <span class="s2">"random_seed"</span><span class="p">:</span> <span class="n">random_seed</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>        <span class="p">}</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="n">serialized</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">serialized</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="c1"># Synthesize realistic customer loan repayment dataset</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="n">timestamps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2024-01-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">)</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="n">credit_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">680</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="n">loan_amount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mi">15000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="c1"># Target: 1 if default, 0 otherwise</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="n">default</span> <span class="o">=</span> <span class="p">(</span><span class="n">credit_score</span> <span class="o">&lt;</span> <span class="mi">620</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="c1"># Injected Leaks:</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="c1"># 1. Target Leakage: 'charge_off_recovery_fee' only recorded AFTER default occurs</span>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="n">recovery_fee</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="n">recovery_fee</span><span class="p">[</span><span class="n">default</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">default</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
-</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>
-</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">timestamps</span><span class="p">,</span>
-</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>        <span class="s2">"credit_score"</span><span class="p">:</span> <span class="n">credit_score</span><span class="p">,</span>
-</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="s2">"loan_amount"</span><span class="p">:</span> <span class="n">loan_amount</span><span class="p">,</span>
-</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>        <span class="s2">"recovery_fee"</span><span class="p">:</span> <span class="n">recovery_fee</span>
-</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="p">})</span>
-</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"default"</span><span class="p">)</span>
-</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>
-</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>    <span class="c1"># Contaminated split: random shuffle instead of chronological split</span>
-</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="n">train_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>    <span class="n">test_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">train_idx</span><span class="p">)</span>
-</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>
-</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
-</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
-</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>
-</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="nb">sentinel</span> <span class="o">=</span> <span class="n">DataLeakageSentinel</span><span class="p">(</span><span class="n">mi_threshold</span><span class="o">=</span><span class="mf">0.50</span><span class="p">)</span>
-</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>
-</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="c1"># 1. Audit Target Proxies (Type I Leak)</span>
-</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">target_leaks</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">audit_target_proxies</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s2">"credit_score"</span><span class="p">,</span> <span class="s2">"loan_amount"</span><span class="p">,</span> <span class="s2">"recovery_fee"</span><span class="p">]],</span> <span class="n">y_train</span><span class="p">)</span>
-</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"--- 1. Target Leakage Audit (Mutual Information) ---"</span><span class="p">)</span>
-</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">target_leaks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"⚠️ LEAK DETECTED: Feature '</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">' has excessive MI: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> with label!"</span><span class="p">)</span>
-</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>
-</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="c1"># 2. Audit Split Contamination (Type II Leak)</span>
-</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="c1"># Inject exact identical duplicate across splits</span>
-</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="n">X_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
-</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>    <span class="n">cross_leaks</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">audit_split_contamination</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]),</span> <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]))</span>
-</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- 2. Split Contamination Audit ---"</span><span class="p">)</span>
-</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Duplicate feature rows detected across partitions: </span><span class="si">{</span><span class="n">cross_leaks</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>
-</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="c1"># 3. Audit Temporal Leakage (Type III Leak)</span>
-</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="n">is_temporal_leaky</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">audit_temporal_leakage</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">])</span>
-</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- 3. Temporal Inversion Audit ---"</span><span class="p">)</span>
-</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Temporal look-ahead leakage present: </span><span class="si">{</span><span class="n">is_temporal_leaky</span><span class="si">}</span><span class="s2"> (Training max: </span><span class="si">{</span><span class="n">X_train</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2"> &gt;= Test min: </span><span class="si">{</span><span class="n">X_test</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
-</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>
-</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="c1"># 4. Pipeline SHA-256 Digest</span>
-</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="n">digest</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">generate_pipeline_digest</span><span class="p">(</span><span class="s2">"def clean(): pass"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"impute"</span><span class="p">:</span> <span class="s2">"median"</span><span class="p">},</span> <span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- 4. Cryptographic Provenance Hash ---"</span><span class="p">)</span>
-</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pipeline Execution Digest: </span><span class="si">{</span><span class="n">digest</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span></code></pre></div>
-<hr />
-<h2 id="empirical-case-study-kaggle-healthcare-mortality-leakage">🔬 Empirical Case Study: Kaggle Healthcare Mortality Leakage</h2>
-<p>In a widely documented predictive healthcare tournament:
-1. <strong>The Phantom Predictor:</strong> Competitors achieved a miraculous ROC-AUC of <strong><span class="arithmatex">\(0.998\)</span></strong> predicting ICU patient 30-day mortality.
-2. <strong>Post-Mortem Root Cause Discovery:</strong> A feature named <code>encounter_sequence_id</code> had been populated monotonically by the hospital database. Because deceased patients were immediately discharged to the morgue and had their encounter records closed earlier, their encounter IDs clustered sequentially. The models were simply memorizing hospital administration batch keys.
-3. <strong>Remediation &amp; Governance Impact:</strong> Stripping <code>encounter_sequence_id</code> dropped leaderboard scores to a realistic <strong><span class="arithmatex">\(0.814\)</span></strong>, preventing an ineffective and dangerous model from deploying to critical care triage units.</p>
+<h2 id="3-landmark-empirical-case-study-kaggle-healthcare-mortality-leakage">3. Landmark Empirical Case Study: Kaggle Healthcare Mortality Leakage</h2>
+<p>In a documented predictive healthcare benchmark modeling 30-day ICU mortality:
+1. <strong>The <span class="arithmatex">\(0.998\)</span> Mirage</strong>: Top leaderboard teams achieved a seemingly impossible ROC-AUC of <strong><span class="arithmatex">\(0.998\)</span></strong> predicting patient mortality.
+2. <strong>Causal Discovery</strong>: Forensic audit revealed a feature called <code>encounter_sequence_id</code>. Hospital clerks closed deceased patient administrative accounts immediately upon transfer to the morgue, systematically assigning distinct monotonic batch ID blocks to non-survivors. Models learned hospital administrative billing quirks rather than human physiology.
+3. <strong>Production Remediation</strong>: Purging <code>encounter_sequence_id</code> lowered CV AUC from <span class="arithmatex">\(0.998\)</span> to a clinically grounded <strong><span class="arithmatex">\(0.814\)</span></strong>—matching out-of-hospital generalization (<strong><span class="arithmatex">\(0.811\)</span></strong>) while preventing a fatal model deployment [<a href="#ref-kaufman2012">Kaufman2012</a>, <a href="#ref-sculley2015">Sculley2015</a>].</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Feature Set</th>
-<th style="text-align: left;">Leaderboard CV AUC</th>
-<th style="text-align: left;">Real-World Hospital Deployment AUC</th>
-<th style="text-align: left;">Operational Assessment</th>
+<th style="text-align: left;">Feature Configuration</th>
+<th style="text-align: center;">Offline CV ROC-AUC</th>
+<th style="text-align: center;">External Hospital Deployment AUC</th>
+<th style="text-align: left;">Governance Assessment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Full Features (With Encounter ID)</td>
-<td style="text-align: left;">0.998</td>
-<td style="text-align: left;">0.502 (Random Guess)</td>
-<td style="text-align: left;"><strong>Fatal Target Leakage</strong></td>
+<td style="text-align: left;">Full Features (With <code>encounter_sequence_id</code>)</td>
+<td style="text-align: center;"><span class="arithmatex">\(0.998\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0.502\)</span> (Random Collapse)</td>
+<td style="text-align: left;"><strong>Catastrophic Type I Leakage</strong></td>
 </tr>
 <tr>
-<td style="text-align: left;">Stripped (Clinical Vitals Only)</td>
-<td style="text-align: left;">0.814</td>
-<td style="text-align: left;">0.811</td>
-<td style="text-align: left;"><strong>Validated Generalization</strong></td>
+<td style="text-align: left;"><strong>Causal Audited (Clinical Vitals Only)</strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(0.814\)</span></strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(0.811\)</span></strong></td>
+<td style="text-align: left;"><strong>Certified Safe Deployment</strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Metadata Completeness Checker</h4>
-  <p>Test schema validation rules, monitor feature stability, and audit drift bounds in the interactive studio.</p>
-  <a href="../../tools/metadata-checker/" class="noc-sim-btn">Launch Metadata Checker →</a>
+<h2 id="4-interactive-laboratory-psi-drift-sentinel-provenance-chain-studio">4. Interactive Laboratory: PSI Drift Sentinel &amp; Provenance Chain Studio</h2>
+<p>Simulate real-time production distribution shifts against PSI circuit breaker limits and inspect cryptographic pipeline lineage hashing live.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 5px 5px 0px #151b20;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <span style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 10px; border-radius: 9999px; font-weight: 800; font-family: monospace; box-shadow: 1px 1px 0px #151b20;">SIMULATOR 5.10</span>
+      <h3 style="margin: 8px 0 0 0; font-size: 1.3rem; font-weight: 800; color: #151b20;">PSI Drift Sentinel &amp; Cryptographic Provenance Studio</h3>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="btnTabPSI" onclick="switchGovTab510('psi')" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab A: Population Stability Index (PSI) Sentinel</button>
+      <button id="btnTabHash" onclick="switchGovTab510('hash')" style="background: #ffffff; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab B: Cryptographic SHA-256 Lineage Chain</button>
+    </div>
+  </div>
+
+  <!-- TAB A: PSI DRIFT SENTINEL -->
+  <div id="panelPSI">
+    <div style="display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start;">
+      <div>
+        <div style="position: relative; border: 2px solid #151b20; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <canvas id="psiCanvas" width="560" height="330" style="display: block; width: 100%; height: auto;"></canvas>
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+            🔵 Baseline Training Deciles (P_b) vs. 🟠 Production Stream (Q_b)
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="margin-bottom: 12px;">
+          <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">
+            Production Mean Drift ($\Delta \mu$): <span id="valDriftMu">0.00 SD</span>
+          </label>
+          <input type="range" id="sliderDriftMu" min="-1.5" max="1.5" step="0.1" value="0.0" oninput="updatePSISim()" style="width: 100%;">
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">
+            Production Variance Expansion ($\sigma_{\text{deploy}}$): <span id="valDriftSig">1.00</span>
+          </label>
+          <input type="range" id="sliderDriftSig" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updatePSISim()" style="width: 100%;">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">POPULATION STABILITY INDEX (PSI)</div>
+            <div id="statPSIVal" style="font-size: 1.35rem; font-weight: 900; color: #16a34a;">0.000</div>
+          </div>
+          <div id="cardPSIGate" style="background: #dcfce7; border: 2px solid #151b20; padding: 10px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #151b20; font-weight: 800;">CIRCUIT BREAKER STATUS</div>
+            <div id="statPSIGate" style="font-size: 1.05rem; font-weight: 900; color: #16a34a;">✓ STABLE (PSI &lt; 0.10)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB B: CRYPTOGRAPHIC PROVENANCE HASH -->
+  <div id="panelHash" style="display: none;">
+    <p style="font-size: 0.88rem; color: #334155; margin-top: 0;">
+      Modify any preprocessing parameter or random seed below. Notice how any single-character mutation deterministically invalidates the cryptographic SHA-256 lineage chain hash, ensuring strict ML reproducibility.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 18px;">
+      <div>
+        <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">Code Version Commit Tag:</label>
+        <input type="text" id="inputCodeVer" value="v2.4.1-cleaning-prod" oninput="updateHashSim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-family: monospace; font-weight: 700;">
+      </div>
+      <div>
+        <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">Imputation / Scaling Rule:</label>
+        <input type="text" id="inputConfigRule" value="RobustScaler + 1NN-HotDeck" oninput="updateHashSim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-family: monospace; font-weight: 700;">
+      </div>
+      <div>
+        <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">Pipeline Random Seed:</label>
+        <input type="number" id="inputSeed" value="42" oninput="updateHashSim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-family: monospace; font-weight: 700;">
+      </div>
+    </div>
+
+    <div style="background: #151b20; color: #c9f3f4; border-radius: 8px; padding: 16px; font-family: monospace;">
+      <div style="font-size: 0.72rem; color: #ffc83e; font-weight: 800; margin-bottom: 6px;">MERKLE LINEAGE EXECUTION DIGEST H_k (SHA-256):</div>
+      <div id="outSha256" style="font-size: 0.92rem; word-break: break-all; font-weight: 700; letter-spacing: 0.04em;">computing...</div>
+    </div>
+  </div>
 </div>
+
+<script>
+// --- TAB SWITCHING ---
+function switchGovTab510(tab) {
+  document.getElementById('panelPSI').style.display = tab === 'psi' ? 'block' : 'none';
+  document.getElementById('panelHash').style.display = tab === 'hash' ? 'block' : 'none';
+  document.getElementById('btnTabPSI').style.background = tab === 'psi' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabPSI').style.color = tab === 'psi' ? '#ffffff' : '#151b20';
+  document.getElementById('btnTabHash').style.background = tab === 'hash' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabHash').style.color = tab === 'hash' ? '#ffffff' : '#151b20';
+
+  if (tab === 'psi') updatePSISim();
+  if (tab === 'hash') updateHashSim();
+}
+
+// --- PSI DRIFT CALCULATION ---
+function normPDF(x, mu, sig) {
+  return (1.0 / (sig * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * ((x - mu) / sig) ** 2);
+}
+
+function updatePSISim() {
+  const dMu = parseFloat(document.getElementById('sliderDriftMu').value);
+  const dSig = parseFloat(document.getElementById('sliderDriftSig').value);
+  document.getElementById('valDriftMu').innerText = `${dMu >= 0 ? '+' : ''}${dMu.toFixed(1)} SD`;
+  document.getElementById('valDriftSig').innerText = dSig.toFixed(1);
+
+  const centers = [-2.0, -1.2, -0.4, 0.4, 1.2, 2.0];
+  let pBins = centers.map(c => normPDF(c, 0.0, 1.0));
+  let qBins = centers.map(c => normPDF(c, dMu, dSig));
+
+  const sumP = pBins.reduce((a, b) => a + b, 0);
+  const sumQ = qBins.reduce((a, b) => a + b, 0);
+  pBins = pBins.map(v => Math.max(1e-4, v / sumP));
+  qBins = qBins.map(v => Math.max(1e-4, v / sumQ));
+
+  let psi = 0.0;
+  for (let i = 0; i < centers.length; i++) {
+    psi += (pBins[i] - qBins[i]) * Math.log(pBins[i] / qBins[i]);
+  }
+
+  const psiEl = document.getElementById('statPSIVal');
+  const gateEl = document.getElementById('statPSIGate');
+  const cardEl = document.getElementById('cardPSIGate');
+  psiEl.innerText = psi.toFixed(3);
+
+  if (psi < 0.10) {
+    psiEl.style.color = '#16a34a';
+    gateEl.innerText = '✓ STABLE (PSI < 0.10)';
+    gateEl.style.color = '#16a34a';
+    cardEl.style.background = '#dcfce7';
+  } else if (psi <= 0.25) {
+    psiEl.style.color = '#d97706';
+    gateEl.innerText = '⚠ WARNING DRIFT (0.10–0.25)';
+    gateEl.style.color = '#b45309';
+    cardEl.style.background = '#fff0b9';
+  } else {
+    psiEl.style.color = '#dc2626';
+    gateEl.innerText = '✗ CIRCUIT BREAKER TRIGGERED!';
+    gateEl.style.color = '#dc2626';
+    cardEl.style.background = '#fee2e2';
+  }
+
+  // Draw grouped bar chart on Canvas
+  const cv = document.getElementById('psiCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const maxH = Math.max(...pBins, ...qBins) * 1.15;
+  const padX = 45, padY = 40;
+  const groupW = (w - 2 * padX) / centers.length;
+  const barW = groupW * 0.34;
+
+  centers.forEach((c, i) => {
+    const gx = padX + i * groupW + groupW * 0.12;
+    const hP = (pBins[i] / maxH) * (h - 2 * padY - 15);
+    const hQ = (qBins[i] / maxH) * (h - 2 * padY - 15);
+
+    ctx.fillStyle = '#2563eb';
+    ctx.fillRect(gx, h - padY - hP, barW, hP);
+    ctx.strokeStyle = '#151b20'; ctx.lineWidth = 1.5;
+    ctx.strokeRect(gx, h - padY - hP, barW, hP);
+
+    ctx.fillStyle = '#ea580c';
+    ctx.fillRect(gx + barW + 4, h - padY - hQ, barW, hQ);
+    ctx.strokeRect(gx + barW + 4, h - padY - hQ, barW, hQ);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 11px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`B${i + 1}`, gx + barW + 2, h - 16);
+  });
+}
+
+// --- SHA-256 PROVENANCE CHAIN ---
+async function updateHashSim() {
+  const ver = document.getElementById('inputCodeVer').value;
+  const cfg = document.getElementById('inputConfigRule').value;
+  const seed = document.getElementById('inputSeed').value;
+  const payload = JSON.stringify({ code: ver, config: cfg, seed: seed });
+
+  const msgBuffer = new TextEncoder().encode(payload);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  document.getElementById('outSha256').innerText = hashHex;
+}
+
+window.addEventListener('load', () => {
+  updatePSISim();
+});
+</script>
+
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="5-production-grade-python-verification-engine">5. Production-Grade Python Verification Engine</h2>
+<p>The following Python module uses <strong>Pydantic V2</strong> to automate <strong>Type I Causal Proxy Audits</strong> (Mutual Information detection), <strong>Type II Split Duplicate Detection</strong>, <strong>Type III Temporal Inversion Checks</strong>, <strong>Population Stability Index (PSI)</strong> drift alerts, and <strong>SHA-256 Provenance Digests</strong>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">production_data_leakage_sentinel.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Pydantic V2 verified Sentinel Auditing Type I/II/III Leakage, PSI Drift &amp; Cryptographic Lineage.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">mutual_info_classif</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">class</span><span class="w"> </span><span class="nc">LeakageSentinelReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="sd">"""Pydantic V2 schema reporting detected leakage defects, PSI drift, and lineage hash."""</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">type1_proxy_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">type2_split_duplicates_found</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">type3_temporal_leak_detected</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">psi_stable_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">lt</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">psi_drifted_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">sha256_lineage_digest</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">class</span><span class="w"> </span><span class="nc">DataLeakageSentinel</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="sd">"""Automated Governance Sentinel validating causal safety, split purity, and PSI drift."""</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mi_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.40</span><span class="p">):</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mi_threshold</span> <span class="o">=</span> <span class="n">mi_threshold</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_target_proxies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="sd">"""Type I Check: Flags features exhibiting suspiciously extreme Mutual Information."""</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="n">num_df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mf">9999.0</span><span class="p">)</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="n">mi_scores</span> <span class="o">=</span> <span class="n">mutual_info_classif</span><span class="p">(</span><span class="n">num_df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="k">return</span> <span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mi</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">mi</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">num_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">mi_scores</span><span class="p">)</span> <span class="k">if</span> <span class="n">mi</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mi_threshold</span><span class="p">}</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_split_contamination</span><span class="p">(</span><span class="n">X_train</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">X_test</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="sd">"""Type II Check: Identifies identical row hashes existing in both train and test partitions."""</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="n">train_hashes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">test_hashes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_hashes</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">test_hashes</span><span class="p">))</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_temporal_leakage</span><span class="p">(</span><span class="n">train_timestamps</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">test_timestamps</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">        </span><span class="sd">"""Type III Check: Returns True if max(train_time) &gt;= min(test_time)."""</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">train_timestamps</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">test_timestamps</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_psi</span><span class="p">(</span><span class="n">baseline</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">current</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">        </span><span class="sd">"""Computes Population Stability Index (PSI) between baseline and deployment samples."""</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">baseline</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">baseline</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">edges</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">baseline</span><span class="p">),</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">edges</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">current</span><span class="p">),</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">p</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">q</span><span class="p">)))</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">generate_pipeline_digest</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>            <span class="s2">"code_hash"</span><span class="p">:</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>            <span class="s2">"config"</span><span class="p">:</span> <span class="n">config</span><span class="p">,</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>            <span class="s2">"seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="p">}</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_leakage_sentinel_assertions</span><span class="p">():</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="c1"># Synthetic credit loan dataset</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="n">timestamps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2024-01-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">)</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">credit_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">680.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="n">loan_amount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">15000.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">default</span> <span class="o">=</span> <span class="p">(</span><span class="n">credit_score</span> <span class="o">&lt;</span> <span class="mf">620.0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="c1"># Type I Target Leak: 'recovery_fee' only recorded post-default!</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="n">recovery_fee</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="n">recovery_fee</span><span class="p">[</span><span class="n">default</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">200.0</span><span class="p">,</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">default</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">timestamps</span><span class="p">,</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="s2">"credit_score"</span><span class="p">:</span> <span class="n">credit_score</span><span class="p">,</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="s2">"loan_amount"</span><span class="p">:</span> <span class="n">loan_amount</span><span class="p">,</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="s2">"recovery_fee"</span><span class="p">:</span> <span class="n">recovery_fee</span><span class="p">,</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="p">})</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"default"</span><span class="p">)</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="c1"># Random shuffle split injects Type III Temporal Look-ahead!</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">train_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="n">test_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">train_idx</span><span class="p">)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="c1"># Inject 1 cross-partition duplicate (Type II Leak)</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="n">X_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="nb">sentinel</span> <span class="o">=</span> <span class="n">DataLeakageSentinel</span><span class="p">(</span><span class="n">mi_threshold</span><span class="o">=</span><span class="mf">0.30</span><span class="p">)</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="c1"># Audit Type I, II, III</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="n">proxies</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">audit_target_proxies</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s2">"loan_amount"</span><span class="p">,</span> <span class="s2">"recovery_fee"</span><span class="p">]],</span> <span class="n">y_train</span><span class="p">)</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="n">dup_leaks</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">audit_split_contamination</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]),</span> <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">]))</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="n">temp_leak</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">audit_temporal_leakage</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[</span><span class="s2">"timestamp"</span><span class="p">])</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="k">assert</span> <span class="s2">"recovery_fee"</span> <span class="ow">in</span> <span class="n">proxies</span><span class="p">,</span> <span class="s2">"Type I Sentinel missed causal post-event proxy!"</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>    <span class="k">assert</span> <span class="n">dup_leaks</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Type II Sentinel missed train-test duplicate row!"</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="k">assert</span> <span class="n">temp_leak</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Type III Sentinel missed temporal inversion!"</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="c1"># PSI Drift Check</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="n">base_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="n">stable_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="n">drifted_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="n">psi_ok</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">compute_psi</span><span class="p">(</span><span class="n">base_dist</span><span class="p">,</span> <span class="n">stable_dist</span><span class="p">)</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">psi_bad</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">compute_psi</span><span class="p">(</span><span class="n">base_dist</span><span class="p">,</span> <span class="n">drifted_dist</span><span class="p">)</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="c1"># Lineage Hash Check</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>    <span class="n">d1</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">generate_pipeline_digest</span><span class="p">(</span><span class="s2">"clean()"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"scaler"</span><span class="p">:</span> <span class="s2">"robust"</span><span class="p">},</span> <span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="n">d2</span> <span class="o">=</span> <span class="nb">sentinel</span><span class="o">.</span><span class="n">generate_pipeline_digest</span><span class="p">(</span><span class="s2">"clean()"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"scaler"</span><span class="p">:</span> <span class="s2">"robust"</span><span class="p">},</span> <span class="mi">43</span><span class="p">)</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="k">assert</span> <span class="n">d1</span> <span class="o">!=</span> <span class="n">d2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">64</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="n">report</span> <span class="o">=</span> <span class="n">LeakageSentinelReport</span><span class="p">(</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>        <span class="n">type1_proxy_features</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">proxies</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>        <span class="n">type2_split_duplicates_found</span><span class="o">=</span><span class="n">dup_leaks</span><span class="p">,</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>        <span class="n">type3_temporal_leak_detected</span><span class="o">=</span><span class="n">temp_leak</span><span class="p">,</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>        <span class="n">psi_stable_score</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">psi_ok</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>        <span class="n">psi_drifted_score</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">psi_bad</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>        <span class="n">sha256_lineage_digest</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="p">)</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Production Data Leakage Sentinel &amp; Governance Audit ==="</span><span class="p">)</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Type I Causal Proxies Detected: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">type1_proxy_features</span><span class="si">}</span><span class="s2"> (MI: </span><span class="si">{</span><span class="n">proxies</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Type II Cross-Split Duplicates: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">type2_split_duplicates_found</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Type III Temporal Inversion Detected: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">type3_temporal_leak_detected</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"PSI Drift Sentinel -&gt; Stable=</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">psi_stable_score</span><span class="si">}</span><span class="s2"> vs Alert Triggered=</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">psi_drifted_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cryptographic SHA-256 Digest: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">sha256_lineage_digest</span><span class="p">[:</span><span class="mi">24</span><span class="p">]</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Pydantic V2 governance schemas &amp; sentinel alerts verified cleanly!"</span><span class="p">)</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="n">test_leakage_sentinel_assertions</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-key-engineering-takeaways">6. Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Eliminate Causal Reversal (<code>Y -&gt; X</code>)</strong>: Screen suspicious high-Mutual-Information features against creation timestamps; exclude post-outcome administrative, recovery, or billing artifacts.</li>
+<li><strong>Enforce Temporal Filtrations</strong>: Random cross-validation splits on chronological event streams violate causality (<span class="arithmatex">\(\mathcal{F}_t\)</span>); always deploy strictly ordered rolling/out-of-time splits.</li>
+<li><strong>Automate PSI Drift Circuit Breakers</strong>: Continuous Population Stability Index tracking flags both genuine economic shifts (<span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span>) and silent upstream schema mutations before defective predictions harm users.</li>
+<li><strong>Seal Pipelines with Cryptographic Provenance</strong>: Bind every transformation pipeline run to immutable SHA-256 commit, configuration, and random seed digests to enforce regulatory compliance (GDPR Article 17).</li>
+</ol>
+<hr />
+<h2 id="7-scenario-based-diagnostic-micro-checks">7. Scenario-Based Diagnostic Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Population Stability Index (PSI) Threshold Interpretation</summary>
-<p>A fraud detection model monitors the transaction amount distribution monthly. In month 3, the calculated PSI against the baseline training distribution is <span class="arithmatex">\(\text{PSI} = 0.31\)</span>. What action should the data engineering and ML teams take?</p>
+<summary>Micro-Check 1: Population Stability Index (PSI) Threshold Interpretation</summary>
+<p>A credit underwriting pipeline computes monthly PSI against training baseline deciles for borrower <code>DebtToIncomeRatio</code>. In Month 4, PSI spikes to <span class="arithmatex">\(\text{PSI} = 0.34\)</span>. What are the two distinct engineering root causes that must be checked before retraining?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> A <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> indicates <strong>Significant Distributional Shift</strong>.</p>
-<p>The operational runbook mandates:
-1. Immediate alert triage: investigate whether the shift is driven by genuine macro-economic changes (holiday shopping surge) or upstream data corruption (currency conversion failure, duplicate billing).
-2. Evaluate model performance metrics (AUC-ROC, calibration) on the drifted cohort.
-3. Recalibrate and retrain the model on recent data, updating the reference baseline distribution.</p>
+<p><strong>Any <span class="arithmatex">\(\text{PSI} &gt; 0.25\)</span> triggers a mandatory Circuit Breaker audit separating Data Pipeline Corruption from Genuine Distribution Drift:</strong></p>
+<ol>
+<li><strong>Upstream Data Schema Corruption</strong>: Verify that the data warehouse did not silently alter units (e.g., recording percentage <code>0.35</code> as <code>35.0</code>), drop denominator incomes to NULL, or introduce duplicate rows. Never retrain a model on broken upstream data!</li>
+<li><strong>Genuine Macro-Economic Shift</strong>: If schema assertions pass, the shift reflects real behavioral change (interest rate shock, inflation). Trigger an automated training refresh using calibrated validation weights.</li>
+</ol>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Concept Drift vs. Covariate Shift</summary>
-<p>Distinguish mathematically between <strong>Covariate Shift</strong> and <strong>Concept Drift</strong> in the context of production data pipeline monitoring.</p>
+<summary>Micro-Check 2: Covariate Shift vs. Concept Drift</summary>
+<p>Compare the mathematical conditional probability definitions of <strong>Covariate Shift</strong> and <strong>Concept Drift</strong>, providing a concrete financial example of each.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong>
-- <strong>Covariate Shift:</strong> The input feature distribution changes over time, but the conditional label distribution remains invariant:
-$<span class="arithmatex">\(P_{\text{train}}(X) \ne P_{\text{deploy}}(X), \quad \text{while} \quad P(Y \mid X) = \text{constant}\)</span>$
-- <strong>Concept Drift:</strong> The fundamental statistical relationship between features and target labels changes over time:
-$<span class="arithmatex">\(P(Y \mid X)_{\text{train}} \ne P(Y \mid X)_{\text{deploy}}\)</span>$
-For example, during a financial crisis, consumers with previously "safe" debt-to-income ratios begin defaulting at <span class="arithmatex">\(3\times\)</span> higher rates.</p>
+<ul>
+<li><strong>Covariate Shift (<span class="arithmatex">\(P(X)\)</span> shifts; <span class="arithmatex">\(P(Y \mid X)\)</span> stays invariant)</strong>:
+  $<span class="arithmatex">\(P_{\text{train}}(X) \ne P_{\text{deploy}}(X), \qquad P_{\text{train}}(Y \mid X) = P_{\text{deploy}}(Y \mid X)\)</span>$
+  <em>Example</em>: A digital bank shifts marketing from college campuses to retirees, altering customer age/wealth inputs <span class="arithmatex">\(X\)</span>, while default likelihood <em>for any fixed borrower profile</em> stays unchanged. Importance weighting (<span class="arithmatex">\(\frac{P_{\text{deploy}}(X)}{P_{\text{train}}(X)}\)</span>) resolves this cleanly.</li>
+<li><strong>Concept Drift (<span class="arithmatex">\(P(Y \mid X)\)</span> shifts)</strong>:
+  $<span class="arithmatex">\(P_{\text{train}}(Y \mid X) \ne P_{\text{deploy}}(Y \mid X)\)</span>$
+  <em>Example</em>: A sudden pandemic alters fraudsters' patterns and consumer delinquency rules such that identical borrower attributes predict totally different default probabilities. Full fresh label acquisition and retraining are mandatory.</li>
+</ul>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 3: Why Random Cross-Validation Fails Silently on Time-Series Credit Streams</summary>
+<p>An e-commerce marketplace generates <span class="arithmatex">\(100{,}000\)</span> monthly orders across 2023–2024. Why does evaluating a customer LTV predictor with random 5-fold CV leak inflation metrics across folds?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Random row shuffling mixes future macroeconomic surges, holiday pricing shocks, and later transactions from the <em>same customers</em> into the training partition of earlier transactions.</strong></p>
+<p>Evaluating on an order from <code>March 2023</code> while the training fold already saw that same customer's <code>November 2023</code> Black Friday purchases violates temporal filtration <span class="arithmatex">\(\mathcal{F}_t\)</span>. Production backtesting requires <strong>Out-of-Time Group Splits</strong> (<span class="arithmatex">\(t_{\text{train}} \le T_{\text{cutoff}} &lt; t_{\text{test}}\)</span>).</p>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 4: Provenance Semirings &amp; GDPR Article 17 Lineage Auditing</summary>
+<p>Under GDPR <em>"Right to Erasure"</em>, a customer demands deletion of all records derived from their PII. How does Green et al.'s <strong>Provenance Semiring</strong> algebra identify which aggregated analytics tables require purging?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Semirings attach symbolic lineage polynomials <span class="arithmatex">\(\Phi(t) \in \mathbb{K}[X]\)</span> using <span class="arithmatex">\(\oplus\)</span> (alternative union sources) and <span class="arithmatex">\(\otimes\)</span> (mandatory join inputs).</strong></p>
+<p>When user token <span class="arithmatex">\(x_u\)</span> is purged (<span class="arithmatex">\(x_u \leftarrow 0\)</span> in semiring assignment):
+1. Joined output tuples bearing monomial <span class="arithmatex">\(x_u \otimes x_k\)</span> evaluate strictly to <span class="arithmatex">\(0\)</span> (deleted immediately!).
+2. Deduped or unioned outputs carrying polynomial <span class="arithmatex">\(x_u \oplus x_{\text{other}}\)</span> drop <span class="arithmatex">\(x_u\)</span> yet survive cleanly via alternative provenance factor <span class="arithmatex">\(x_{\text{other}}\)</span>, eliminating manual trial-and-error database scanning!</p>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-kaufman2012"></a><strong>[Kaufman2012]</strong> S. Kaufman, S. Rosset, C. Perlich, and O. Stitelman, "Leakage in Data Mining: Formulation, Detection, and Avoidance," <em>ACM Transactions on Knowledge Discovery from Data (TKDD)</em>, vol. 6, no. 4, pp. 1–21, 2012. <a href="https://doi.org/10.1145/2382577.2382579">DOI: 10.1145/2382577.2382579</a>.</li>
 <li><a id="ref-green2007"></a><strong>[Green2007]</strong> T. J. Green, G. Karvounarakis, and V. Tannen, "Provenance Semirings," in <em>Proceedings of the Twenty-Sixth ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS '07)</em>, pp. 31–40, 2007. <a href="https://doi.org/10.1145/1265530.1265535">DOI: 10.1145/1265530.1265535</a>.</li>
 <li><a id="ref-sculley2015"></a><strong>[Sculley2015]</strong> D. Sculley et al., "Hidden Technical Debt in Machine Learning Systems," in <em>Advances in Neural Information Processing Systems (NeurIPS 2015)</em>, vol. 28, pp. 2503–2511, 2015. <a href="https://doi.org/10.5555/2969442.2969519">DOI: 10.5555/2969442.2969519</a>.</li>
-<li><a id="ref-schelter2018"></a><strong>[Schelter2018]</strong> S. Schelter, D. Lange, P. Schmidt, F. Celikel, F. Biessmann, and A. Grafberger, "Automating Large-Scale Data Quality Verification," <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 12, pp. 1783–1794, 2018. <a href="https://doi.org/10.14778/3229863.3236237">DOI: 10.14778/3229863.3236237</a>.</li>
+<li><a id="ref-schelter2018"></a><strong>[Schelter2018]</strong> S. Schelter, D. Lange, P. Schmidt, M. Celikel, F. Biessmann, and A. Grafberger, "Automating Large-Scale Data Quality Verification," <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 12, pp. 1781–1794, 2018. <a href="https://doi.org/10.14778/3229863.3229867">DOI: 10.14778/3229863.3229867</a>.</li>
 <li><a id="ref-northcutt2021"></a><strong>[Northcutt2021]</strong> C. G. Northcutt, A. Athalye, and J. Mueller, "Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks," in <em>Proceedings of the 35th Conference on Neural Information Processing Systems (NeurIPS 2021)</em>. <a href="https://doi.org/10.48550/arXiv.2103.14749">DOI: 10.48550/arXiv.2103.14749</a>.</li>
 <li><a id="ref-krishnan2016"></a><strong>[Krishnan2016]</strong> S. Krishnan, J. Wang, E. Wu, M. J. Franklin, and K. Goldberg, "ActiveClean: An Interactive Data Cleaning Framework for Modern Machine Learning," in <em>Proceedings of the 2016 International Conference on Management of Data (SIGMOD '16)</em>, pp. 2117–2120, 2016. <a href="https://doi.org/10.1145/2882903.2915239">DOI: 10.1145/2882903.2915239</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../09-pipelines-automation-and-visualization/" class="noc-sim-btn secondary" style="text-decoration: none;">← 5.9 Pipelines & Automation</a>
-  <a href="../11-case-studies-and-activities/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: 5.11 Case Studies & Labs →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../09-pipelines-automation-and-visualization/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← 5.9 Pipelines &amp; Automation
+  </a>
+  <a href="../11-case-studies-and-activities/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: Case Studies &amp; Labs (5.11) →
+  </a>
 </div>
 
 

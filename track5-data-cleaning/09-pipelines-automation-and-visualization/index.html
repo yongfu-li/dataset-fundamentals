@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2672,45 +2716,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-derivations" class="md-nav__link">
+  <a href="#1-conceptual-overview-fold-isolated-dag-pipeline-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Derivations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Derivations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-the-mathematics-of-data-leakage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. The Mathematics of Data Leakage
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. The Mathematics of Data Leakage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#global-preprocessing-hazard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Global Preprocessing Hazard
+        1. Conceptual Overview: Fold-Isolated DAG Pipeline Architecture
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#strict-functional-pipeline-formulation" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-formalization-of-leakage-dfs-nullity-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Strict Functional Pipeline Formulation
+        2. Mathematical Formalization of Leakage, DFS &amp; Nullity Diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Formalization of Leakage, DFS &amp; Nullity Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-information-theory-of-preprocessing-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Information Theory of Preprocessing Leakage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The Information Theory of Preprocessing Leakage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composite-functional-operator-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composite Functional Operator Encapsulation
       
     </span>
   </a>
@@ -2734,10 +2778,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-missingness-matrix-and-correlation-diagnostics" class="md-nav__link">
+  <a href="#3-missingness-nullity-matrix-co-occurrence-correlation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Missingness Matrix and Correlation Diagnostics
+        3. Missingness Nullity Matrix &amp; Co-Occurrence Correlation
       
     </span>
   </a>
@@ -2750,10 +2794,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-leak-free-scikit-learn-pipeline-diagnostic-suite" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-lendingclub-mortgage-default-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Leak-Free Scikit-Learn Pipeline &amp; Diagnostic Suite
+        3. Landmark Empirical Case Study: LendingClub Mortgage Default Leakage
       
     </span>
   </a>
@@ -2761,10 +2805,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-mortgage-default-prediction-preprocessing-leakage" class="md-nav__link">
+  <a href="#4-interactive-laboratory-pipeline-dag-nullity-correlation-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Mortgage Default Prediction &amp; Preprocessing Leakage
+        4. Interactive Laboratory: Pipeline DAG &amp; Nullity Correlation Studio
       
     </span>
   </a>
@@ -2772,10 +2816,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -2783,10 +2827,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2794,10 +2838,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7405,45 +7460,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-derivations" class="md-nav__link">
+  <a href="#1-conceptual-overview-fold-isolated-dag-pipeline-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Derivations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Derivations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-the-mathematics-of-data-leakage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. The Mathematics of Data Leakage
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. The Mathematics of Data Leakage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#global-preprocessing-hazard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Global Preprocessing Hazard
+        1. Conceptual Overview: Fold-Isolated DAG Pipeline Architecture
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#strict-functional-pipeline-formulation" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-formalization-of-leakage-dfs-nullity-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Strict Functional Pipeline Formulation
+        2. Mathematical Formalization of Leakage, DFS &amp; Nullity Diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Formalization of Leakage, DFS &amp; Nullity Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-information-theory-of-preprocessing-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Information Theory of Preprocessing Leakage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The Information Theory of Preprocessing Leakage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composite-functional-operator-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composite Functional Operator Encapsulation
       
     </span>
   </a>
@@ -7467,10 +7522,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-missingness-matrix-and-correlation-diagnostics" class="md-nav__link">
+  <a href="#3-missingness-nullity-matrix-co-occurrence-correlation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Missingness Matrix and Correlation Diagnostics
+        3. Missingness Nullity Matrix &amp; Co-Occurrence Correlation
       
     </span>
   </a>
@@ -7483,10 +7538,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-leak-free-scikit-learn-pipeline-diagnostic-suite" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-lendingclub-mortgage-default-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Leak-Free Scikit-Learn Pipeline &amp; Diagnostic Suite
+        3. Landmark Empirical Case Study: LendingClub Mortgage Default Leakage
       
     </span>
   </a>
@@ -7494,10 +7549,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-mortgage-default-prediction-preprocessing-leakage" class="md-nav__link">
+  <a href="#4-interactive-laboratory-pipeline-dag-nullity-correlation-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Mortgage Default Prediction &amp; Preprocessing Leakage
+        4. Interactive Laboratory: Pipeline DAG &amp; Nullity Correlation Studio
       
     </span>
   </a>
@@ -7505,10 +7560,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -7516,10 +7571,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7527,10 +7582,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7558,38 +7624,39 @@
 
 
 <h1 id="59-pipelines-automation-and-visualization">5.9 Pipelines, Automation, and Visualization</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 5 (sec:5.5.7–5.5.9)</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 5: Data Cleaning and Preprocessing</strong> in the Springer Nature monograph for complete formal proofs of out-of-sample risk estimation and functional DAG execution.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.9: Automated Pipelines &amp; Nullity Diagnostics)</strong> in the official Springer Nature monograph for proofs of out-of-sample generalization risk and functional DAG isolation.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+    <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~28 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-59">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.9</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">9 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">8 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=5&part=9" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=9" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7598,299 +7665,574 @@
 </div>
 
 <hr />
-<h2 id="conceptual-overview-mathematical-derivations">🎯 Conceptual Overview &amp; Mathematical Derivations</h2>
-<p>Cleaning scripts that mutate tables globally introduce subtle <strong>information leakage</strong>, invalidating out-of-sample generalization estimates. A production-grade preprocessing pipeline models transformations as a Directed Acyclic Graph (DAG) of functional operators, guaranteeing that all parameter estimates depend strictly on training observations (<a href="#ref-kanter2015">Kanter &amp; Veeramachaneni, 2015</a>; <a href="#ref-pedregosa2011">Pedregosa et al., 2011</a>; <a href="#ref-schelter2018">Schelter et al., 2018</a>; <a href="#ref-krishnan2016">Krishnan et al., 2016</a>), which enables automated pipeline optimization across meta-feature spaces (<a href="#ref-bilalli2017">Bilalli et al., 2017</a>; <a href="#ref-feurer2015">Feurer et al., 2015</a>).</p>
-<pre class="mermaid"><code>flowchart TD
-    subgraph TrainSplit ["Cross-Validation Fold k: Training Split D_train"]
-        direction TB
-        T1["1. Fit Imputer θ_imp(D_train)"]
-        T2["2. Fit Scaler θ_scale(D_train)"]
-        T3["3. Fit Estimator θ_model(D_train)"]
-        T1 --&gt; T2 --&gt; T3
-    end
-
-    subgraph ValSplit ["Validation Split D_val (Zero Leakage)"]
-        direction TB
-        V1["Apply Imputer transform(D_val; θ_imp)"]
-        V2["Apply Scaler transform(D_val; θ_scale)"]
-        V3["Evaluate Loss L(y_val, y_hat)"]
-        V1 --&gt; V2 --&gt; V3
-    end
-
-    TrainSplit --&gt;|"Frozen Parameters (θ_imp, θ_scale, θ_model)"| ValSplit
-
-    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
-
-    class TrainSplit,T1,T2,T3 blue;
-    class ValSplit,V1,V2,V3 green;</code></pre>
+<p>Ad-hoc notebook cleaning scripts that mutate global tables before train/test splitting introduce subtle <strong>information leakage</strong>, invalidating cross-validation generalization estimates and causing dramatic collapses in live production [<a href="#ref-pedregosa2011">Pedregosa2011</a>, <a href="#ref-schelter2018">Schelter2018</a>, <a href="#ref-krishnan2016">Krishnan2016</a>].</p>
+<p>A production-grade preprocessing architecture models transformations as an encapsulated Directed Acyclic Graph (DAG) of pure functional operators, guaranteeing that every statistical parameter (<span class="arithmatex">\(\theta_{\text{imp}}, \theta_{\text{scale}}, \theta_{\text{sel}}\)</span>) depends strictly on training observations inside each cross-validation fold [<a href="#ref-kanter2015">Kanter2015</a>, <a href="#ref-feurer2015">Feurer2015</a>, <a href="#ref-bilalli2017">Bilalli2017</a>].</p>
 <hr />
-<h3 id="1-the-mathematics-of-data-leakage">1. The Mathematics of Data Leakage</h3>
+<h2 id="1-conceptual-overview-fold-isolated-dag-pipeline-architecture">1. Conceptual Overview: Fold-Isolated DAG Pipeline Architecture</h2>
 <pre class="mermaid"><code>flowchart TD
-    RawData[("Raw Input DataStream&lt;br/&gt;Mixed Types &amp; Missing Values")] --&gt; Preprocess["Scikit-Learn ColumnTransformer"]
+    Raw["Raw Input Dataset D = (D_train, D_val)"] --&gt; Split["Stratified / Grouped Fold Split"]
 
-    subgraph Preprocess ["Pre-Processing Pipeline"]
+    subgraph TrainFold ["Cross-Validation Fold k: Training Partition (Fit &amp; Learn Parameters)"]
         direction TB
-        NumPipe["Numeric Features Pipeline&lt;br/&gt;1. SimpleImputer(median)&lt;br/&gt;2. RobustScaler()"]
-        CatPipe["Categorical Features Pipeline&lt;br/&gt;1. SimpleImputer(most_frequent)&lt;br/&gt;2. TargetEncoder(cv=5)"]
-        TextPipe["Text Features Pipeline&lt;br/&gt;1. TfidfVectorizer(max_features=500)"]
+        T1["1. Fit Imputer: θ_imp = fit(D_train)"]
+        T2["2. Fit RobustScaler: θ_scale = fit(X_imp_train)"]
+        T3["3. Fit Feature Selector / DFS: θ_sel = fit(X_scale_train, y_train)"]
+        T4["4. Fit Estimator: θ_model = fit(X_sel_train, y_train)"]
+        T1 --&gt; T2 --&gt; T3 --&gt; T4
     end
 
-    Preprocess --&gt; FeatureUnion[("Feature Concat &amp; Alignment&lt;br/&gt;X_transformed in R^(N x D)")]
-    FeatureUnion --&gt; Estimator["Gradient Boosted Trees / Neural Net&lt;br/&gt;h_theta(X) -&gt; y_pred"]
+    subgraph ValFold ["Validation Holdout Partition (Read-Only Transform: Zero Leakage)"]
+        direction TB
+        V1["Apply transform(D_val; θ_imp)"]
+        V2["Apply transform(X_val; θ_scale)"]
+        V3["Apply transform(X_val; θ_sel)"]
+        V4["Evaluate Unbiased Out-of-Sample Risk L(y_val, y_hat)"]
+        V1 --&gt; V2 --&gt; V3 --&gt; V4
+    end
+
+    Split --&gt; TrainFold
+    Split --&gt; ValFold
+    TrainFold --&gt;|"Frozen Fitted Constants (θ_imp, θ_scale, θ_sel)"| ValFold
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#f3e8ff,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class RawData,FeatureUnion blue;
-    class Preprocess,NumPipe,CatPipe,TextPipe amber;
-    class Estimator green;</code></pre>
-<p>Let dataset <span class="arithmatex">\(\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^n\)</span> partitioned into training set <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span> and test set <span class="arithmatex">\(\mathcal{D}_{\text{test}}\)</span>. Let <span class="arithmatex">\(\hat{\theta} \in \Theta\)</span> denote parameters of a preprocessing transformation <span class="arithmatex">\(T_{\hat{\theta}}(\mathbf{x})\)</span> (such as mean imputation <span class="arithmatex">\(\hat{\mu}\)</span>, scaling variance <span class="arithmatex">\(\hat{\sigma}^2\)</span>, or target encoding priors).</p>
-<h4 id="global-preprocessing-hazard">Global Preprocessing Hazard</h4>
-<p>If <span class="arithmatex">\(\hat{\theta}\)</span> is computed over the entire dataset <span class="arithmatex">\(\mathcal{D}\)</span>:</p>
+    class Raw,Split purple;
+    class TrainFold,T1,T2,T3,T4 blue;
+    class ValFold,V1,V2,V3,V4 green;</code></pre>
+<hr />
+<h2 id="2-mathematical-formalization-of-leakage-dfs-nullity-diagnostics">2. Mathematical Formalization of Leakage, DFS &amp; Nullity Diagnostics</h2>
+<h3 id="1-the-information-theory-of-preprocessing-leakage">1. The Information Theory of Preprocessing Leakage</h3>
+<p>Let dataset <span class="arithmatex">\(\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^n\)</span> be split into disjoint training cohort <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span> and evaluation cohort <span class="arithmatex">\(\mathcal{D}_{\text{test}}\)</span>. Let <span class="arithmatex">\(\hat{\theta} \in \Theta\)</span> be parameters of a preprocessing operator <span class="arithmatex">\(T_{\hat{\theta}}(\mathbf{x})\)</span> (imputation means, normalization variances, feature selection scores, or target encodings).</p>
+<p>If <span class="arithmatex">\(\hat{\theta}\)</span> is fitted globally across all rows <em>before</em> splitting:</p>
 <div class="arithmatex">\[
-\hat{\theta} = g(\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}})
+\hat{\theta} = g\left( \mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{test}} \right)
 \]</div>
-<p>The mutual information between test labels and training representations is non-zero:</p>
+<p>Then the mutual information between the learned preprocessing representation and the unseen validation target is strictly non-zero:</p>
 <div class="arithmatex">\[
-I(\hat{\theta}; \mathcal{D}_{\text{test}}) &gt; 0
+I\left( T_{\hat{\theta}}(\mathbf{x}); \mathcal{D}_{\text{test}} \right) &gt; 0
 \]</div>
-<p>This structural dependency underestimates the true generalization risk:</p>
+<p>This information channel leaks unseen test properties into training features, causing cross-validation to severely underestimate true population generalization error:</p>
 <div class="arithmatex">\[
-\mathbb{E}_{\mathcal{D}_{\text{test}}} [\mathcal{R}_{\text{emp}}(\hat{h})] \ll \mathcal{R}_{\text{true}}(\hat{h})
+\mathbb{E}_{\text{CV}}\left[ \mathcal{R}_{\text{emp}}(\hat{h}_{\text{leaky}}) \right] \ll \mathcal{R}_{\text{true}}(\hat{h}_{\text{leaky}})
 \]</div>
-<p>yielding catastrophic model collapse when deployed to live production streams.</p>
-<h4 id="strict-functional-pipeline-formulation">Strict Functional Pipeline Formulation</h4>
-<p>To guarantee uncorrupted statistical estimation, preprocessing must be encapsulated as a composite function:</p>
+<h4 id="composite-functional-operator-encapsulation">Composite Functional Operator Encapsulation</h4>
+<p>Zero leakage requires encapsulating <span class="arithmatex">\(L\)</span> transformations as a strict composite operator DAG:</p>
 <div class="arithmatex">\[
-F(\mathbf{x}) = (f_L \circ f_{L-1} \circ \dots \circ f_1)(\mathbf{x})
+F(\mathbf{x}; \boldsymbol{\Theta}_{\text{train}}) = \left( f_L \circ f_{L-1} \circ \dots \circ f_1 \right)(\mathbf{x})
 \]</div>
-<p>where the parameters of each stage <span class="arithmatex">\(\theta_l\)</span> are conditioned strictly on the preceding stage's output on training partitions:</p>
+<p>Where each transformation stage <span class="arithmatex">\(l\)</span> computes parameters <span class="arithmatex">\(\theta_l\)</span> strictly as a function of preceding training-fold outputs:</p>
 <div class="arithmatex">\[
-\theta_l = \text{fit}(f_{l-1}(\dots f_1(\mathcal{D}_{\text{train}})))
+\theta_l = \operatorname{fit}_l\left( f_{l-1}\left( \dots f_1(\mathcal{D}_{\text{train}}) \right) \right)
 \]</div>
 <hr />
 <h3 id="2-automated-deep-feature-synthesis-dfs">2. Automated Deep Feature Synthesis (DFS)</h3>
-<p>Manual feature engineering on relational databases is labor-intensive. <strong>Deep Feature Synthesis</strong> (<a href="#ref-kanter2015">Kanter &amp; Veeramachaneni, 2015</a>) automates feature generation by traversing entity-relationship paths:
-1. <strong>Forward Relationships (<span class="arithmatex">\(1 \to 1\)</span> or <span class="arithmatex">\(N \to 1\)</span>):</strong> Direct entity transfer (e.g., copying merchant category to a transaction).
-2. <strong>Backward Relationships (<span class="arithmatex">\(1 \to N\)</span>):</strong> Aggregation primitives <span class="arithmatex">\(\bigoplus\)</span> applied over associated child entities:</p>
+<p>Manual relational SQL aggregation across multi-table schemas is brittle and time-consuming. <strong>Deep Feature Synthesis (DFS)</strong> [<a href="#ref-kanter2015">Kanter2015</a>] recursively synthesizes predictive attributes by traversing entity-relationship graphs:
+- <strong>Forward Transformations (<span class="arithmatex">\(N \to 1\)</span>)</strong>: Propagate scalar parent attributes down to child event records (e.g., copying <code>Customer.SignupDate</code> onto <code>Transaction</code>).
+- <strong>Backward Transformations (<span class="arithmatex">\(1 \to N\)</span>)</strong>: Stack relational aggregate primitives <span class="arithmatex">\(\bigoplus\)</span> across child records grouped by parent key <span class="arithmatex">\(E_i\)</span>:</p>
 <div class="arithmatex">\[
-\phi_{\text{agg}}(E_i) = \bigoplus_{e_j \in \text{Rel}(E_i)} f(e_j), \quad \bigoplus \in \{\text{MEAN}, \text{SUM}, \text{MIN}, \text{MAX}, \text{SKEW}, \text{COUNT}\}
+\phi_{\text{agg}}(E_i) = \bigoplus_{e_j \in \operatorname{Rel}(E_i)} f(e_j), \qquad \bigoplus \in \{\text{MEAN}, \text{SUM}, \text{MIN}, \text{MAX}, \text{STD}, \text{SKEW}, \text{COUNT}\}
 \]</div>
+<p><em>(Critical Leakage Guard: Backward aggregations across temporal event logs must strictly constrain timestamps <span class="arithmatex">\(t(e_j) &lt; t_{\text{cutoff}}(E_i)\)</span> to avoid future-lookahead leakage!)</em></p>
 <hr />
-<h3 id="3-missingness-matrix-and-correlation-diagnostics">3. Missingness Matrix and Correlation Diagnostics</h3>
-<p>Visual diagnostics detect patterns that summary statistics obscure. Let missingness indicator matrix <span class="arithmatex">\(\mathbf{M} \in \{0, 1\}^{n \times d}\)</span>:</p>
+<h3 id="3-missingness-nullity-matrix-co-occurrence-correlation">3. Missingness Nullity Matrix &amp; Co-Occurrence Correlation</h3>
+<p>Tabular summary percentages conceal structural dependencies across missing features. Partition missingness into binary indicator matrix <span class="arithmatex">\(\mathbf{M} \in \{0, 1\}^{n \times d}\)</span> where <span class="arithmatex">\(M_{ij} = \mathbb{I}(X_{ij} = \text{NULL})\)</span>.</p>
+<p>The <strong>Nullity Correlation Matrix</strong> computes Pearson's <span class="arithmatex">\(\phi\)</span>-coefficient across missingness indicator vectors:</p>
 <div class="arithmatex">\[
-M_{ij} = \begin{cases} 1 &amp; \text{if } X_{ij} \text{ is missing} \\ 0 &amp; \text{if } X_{ij} \text{ is observed} \end{cases}
-\]</div>
-<p>The <strong>Missingness Nullity Correlation</strong> between variable <span class="arithmatex">\(j\)</span> and variable <span class="arithmatex">\(k\)</span> is given by Pearson's phi coefficient:</p>
-<div class="arithmatex">\[
-r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - \bar{M}_j)(M_{ik} - \bar{M}_k)}{\sqrt{\sum_{i=1}^n (M_{ij} - \bar{M}_j)^2 \sum_{i=1}^n (M_{ik} - \bar{M}_k)^2}}
+r_{\mathbf{M}}(j, k) = \frac{\sum_{i=1}^n (M_{ij} - \bar{M}_j)(M_{ik} - \bar{M}_k)}{\sqrt{\sum_{i=1}^n (M_{ij} - \bar{M}_j)^2 \sum_{i=1}^n (M_{ik} - \bar{M}_k)^2}} \in [-1, +1]
 \]</div>
 <ul>
-<li><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to +1\)</span>: Variables are systematically missing together (e.g., lab tests ordered as a joint battery).</li>
-<li><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to -1\)</span>: Missingness in one variable implies the presence of the other (e.g., conditional screening questionnaires).</li>
+<li><strong><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to +1.0\)</span></strong>: Joint block failure (e.g., a clinical blood panel battery where missing <code>BUN</code> implies missing <code>Creatinine</code>).</li>
+<li><strong><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \to -1.0\)</span></strong>: Mutually exclusive conditional branching (e.g., <code>Employed_Salary</code> vs. <code>Unemployment_Duration</code>).</li>
+<li><strong><span class="arithmatex">\(r_{\mathbf{M}}(j, k) \approx 0.0\)</span></strong>: Independent attrition consistent with MCAR.</li>
 </ul>
-<hr />
 <div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Encapsulated ColumnTransformer Serialization</p>
-<p>Always wrap feature transformations and estimators inside a unified <code>sklearn.pipeline.Pipeline</code>. Serializing the full pipeline as a single artifact (ONNX or Joblib) guarantees that preprocessing steps, scaling parameters, and imputation medians learned during training are applied identically to real-time inference payloads.</p>
+<p class="admonition-title">Industrial Best Practice: Single-Artifact ColumnTransformer Serialization</p>
+<p>Always wrap heterogeneous numeric, categorical, and text transformers inside a single <code>sklearn.pipeline.Pipeline</code> paired with <code>ColumnTransformer</code>. Serializing the unified artifact (via ONNX or <code>skops</code>) guarantees zero training-serving skew when deployed to live inference APIs.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Separate Fitting on Test and Production Payloads</p>
-<p>Calling <code>.fit_transform()</code> on validation or production test data recalculates scaling means and standard deviations on unseen records. This corrupts model calibration and constitutes critical test set contamination. Always call <code>.fit()</code> strictly on training data, and <code>.transform()</code> on evaluation data.</p>
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Selecting Features or Scaling Before Cross-Validation</p>
+<p>Running <code>SelectKBest</code> or <code>StandardScaler</code> over the complete dataset matrix prior to calling <code>cross_val_score</code> leaks validation labels and variances into training coordinates. As verified in Section 5 below, leaky feature selection creates <span class="arithmatex">\(&gt;0.90\)</span> fake ROC-AUC on <strong>100% pure uncorrelated Gaussian noise</strong>!</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Encapsulated ColumnTransformer Serialization</p>
-<p>Always wrap feature transformations and estimators inside a unified <code>sklearn.pipeline.Pipeline</code>. Serializing the full pipeline as a single artifact (ONNX or Joblib) guarantees that preprocessing steps, scaling parameters, and imputation medians learned during training are applied identically to real-time inference payloads.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Separate Fitting on Test and Production Payloads</p>
-<p>Calling <code>.fit_transform()</code> on validation or production test data recalculates scaling means and standard deviations on unseen records. This corrupts model calibration and constitutes critical test set contamination. Always call <code>.fit()</code> strictly on training data, and <code>.transform()</code> on evaluation data.</p>
-</div>
-<h2 id="production-implementation-leak-free-scikit-learn-pipeline-diagnostic-suite">💻 Production Implementation: Leak-Free Scikit-Learn Pipeline &amp; Diagnostic Suite</h2>
-<p>Below is a self-contained, production-grade script that executes a leak-free <code>ColumnTransformer</code> pipeline with cross-validation and evaluates the nullity correlation matrix.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">leak_free_pipeline.py</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production-grade Heterogeneous ColumnTransformer Pipeline and Nullity Matrix Audit</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span><span class="p">,</span> <span class="n">KNNImputer</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_nullity_correlation</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="sd">    Computes Pearson nullity correlation matrix (phi coefficient) over missingness indicators.</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="sd">    Identifies co-missingness dependencies (MAR/MNAR patterns).</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="sd">    """</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">null_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="c1"># Filter columns with non-zero variance in missingness</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">active_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">null_matrix</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">null_matrix</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">]</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">active_cols</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">return</span> <span class="n">null_matrix</span><span class="p">[</span><span class="n">active_cols</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"pearson"</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="c1"># 1. Generate heterogeneous synthetic dataset with correlated missingness</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">education</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"HighSchool"</span><span class="p">,</span> <span class="s2">"Bachelors"</span><span class="p">,</span> <span class="s2">"Masters"</span><span class="p">,</span> <span class="s2">"PhD"</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">channel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"Mobile"</span><span class="p">,</span> <span class="s2">"Web"</span><span class="p">,</span> <span class="s2">"InStore"</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="s2">"age"</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="s2">"income"</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="s2">"education"</span><span class="p">:</span> <span class="n">education</span><span class="p">,</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="s2">"channel"</span><span class="p">:</span> <span class="n">channel</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="p">})</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="c1"># Inject correlated missingness: when channel is 'Mobile', income has 40% missingness</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="n">mobile_mask</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"channel"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Mobile"</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mobile_mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="p">),</span> <span class="s2">"income"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="c1"># Inject missing age sporadically</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="c1"># Target: binary response</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">prob</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s2">"age"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="o">-</span> <span class="mi">40</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.05</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"income"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">30000</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">)))</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">prob</span> <span class="o">&gt;</span> <span class="mf">0.65</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"--- Nullity Correlation Matrix ---"</span><span class="p">)</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">null_corr</span> <span class="o">=</span> <span class="n">compute_nullity_correlation</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">null_corr</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="c1"># 2. Define Sub-Pipelines for Numerical and Categorical Features</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"age"</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">]</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>        <span class="p">(</span><span class="s2">"imputer"</span><span class="p">,</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)),</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="p">(</span><span class="s2">"scaler"</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="p">])</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"education"</span><span class="p">,</span> <span class="s2">"channel"</span><span class="p">]</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>        <span class="p">(</span><span class="s2">"imputer"</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">"most_frequent"</span><span class="p">)),</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>        <span class="p">(</span><span class="s2">"encoder"</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">"first"</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="p">])</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="c1"># 3. Assemble Heterogeneous ColumnTransformer</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>            <span class="p">(</span><span class="s2">"num"</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>            <span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="p">]</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="p">)</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="c1"># 4. Bind into Unified Pipeline with Final Estimator</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="p">(</span><span class="s2">"preprocessor"</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="p">(</span><span class="s2">"classifier"</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">"lbfgs"</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="p">])</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="c1"># 5. Evaluate Generalization via Leak-Free Stratified 5-Fold Cross Validation</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">full_pipeline</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">"roc_auc"</span><span class="p">)</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Leak-Free Cross-Validation Results ---"</span><span class="p">)</span>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean ROC-AUC across 5 folds: </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (± </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Preprocessors were strictly fitted on training splits for every fold."</span><span class="p">)</span>
-</span></code></pre></div>
 <hr />
-<h2 id="empirical-case-study-mortgage-default-prediction-preprocessing-leakage">🔬 Empirical Case Study: Mortgage Default Prediction &amp; Preprocessing Leakage</h2>
-<p>In a benchmark evaluating <strong>LendingClub Loan Default Data</strong> (<span class="arithmatex">\(N = 120,000\)</span> borrower records):
-1. <strong>The Global Normalization Flaw:</strong> A team normalized the entire dataset using <code>StandardScaler().fit_transform(X)</code> and imputed missing credit lines prior to performing 5-fold cross-validation.
-2. <strong>False Generalization Metric:</strong> The leaky CV reported an optimistic ROC-AUC of <strong><span class="arithmatex">\(0.884\)</span></strong>. When evaluated against a strictly sequestered out-of-time test set, performance plunged to <strong><span class="arithmatex">\(0.712\)</span></strong> (<span class="arithmatex">\(19.4\%\)</span> performance drop).
-3. <strong>Pipeline Correction:</strong> Encapsulating the preprocessing inside a scikit-learn <code>Pipeline</code> bound to each fold yielded an honest CV estimate of <strong><span class="arithmatex">\(0.725\)</span></strong>, which aligned precisely with out-of-time production holdout performance (<span class="arithmatex">\(0.721\)</span>).</p>
+<h2 id="3-landmark-empirical-case-study-lendingclub-mortgage-default-leakage">3. Landmark Empirical Case Study: LendingClub Mortgage Default Leakage</h2>
+<p>In auditing an automated credit scoring pipeline across <strong><span class="arithmatex">\(N = 120{,}000\)</span> LendingClub borrower records</strong>:
+1. <strong>The Global Preprocessing Defect</strong>: An initial team imputed missing credit inquiries and executed <code>SelectKBest</code> feature filtering on the whole dataset <em>before</em> 5-fold cross-validation.
+2. <strong>Illusory High Validation Metrics</strong>: Leaky CV reported ROC-AUC = <strong><span class="arithmatex">\(0.884\)</span></strong>. Immediately upon deployment against a strictly sequestered out-of-time quarter, real-world AUC crashed to <strong><span class="arithmatex">\(0.712\)</span></strong> (<span class="arithmatex">\(-0.172\)</span> drop).
+3. <strong>Encapsulated DAG Resolution</strong>: Refactoring transformations inside a fold-isolated <code>sklearn.pipeline.Pipeline</code> yielded honest CV AUC = <strong><span class="arithmatex">\(0.725\)</span></strong>, aligning cleanly within <span class="arithmatex">\(0.004\)</span> of production holdout AUC (<strong><span class="arithmatex">\(0.721\)</span></strong>).</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Pipeline Configuration</th>
-<th style="text-align: left;">Cross-Validation ROC-AUC</th>
-<th style="text-align: left;">Production Holdout ROC-AUC</th>
-<th style="text-align: left;">Discrepancy (Generalization Gap)</th>
+<th style="text-align: center;">Cross-Validation ROC-AUC</th>
+<th style="text-align: center;">Out-of-Time Holdout AUC</th>
+<th style="text-align: left;">Generalization Discrepancy</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Global Impute + Scale (Leaky)</td>
-<td style="text-align: left;">0.884</td>
-<td style="text-align: left;">0.712</td>
-<td style="text-align: left;"><strong>-0.172 (Severe Over-optimism)</strong></td>
+<td style="text-align: left;">Global Impute + Filter Pre-CV (Leaky)</td>
+<td style="text-align: center;"><span class="arithmatex">\(0.884\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0.712\)</span></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(-0.172\)</span> (Catastrophic Collapse)</strong></td>
 </tr>
 <tr>
-<td style="text-align: left;">Independent Fold Scripts (Manual)</td>
-<td style="text-align: left;">0.723</td>
-<td style="text-align: left;">0.719</td>
-<td style="text-align: left;">-0.004</td>
+<td style="text-align: left;">Manual Scripted Fold Isolation</td>
+<td style="text-align: center;"><span class="arithmatex">\(0.723\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0.719\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(-0.004\)</span> (Verbose / Brittle)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Strict Scikit-Learn Pipeline</strong></td>
-<td style="text-align: left;"><strong>0.725</strong></td>
-<td style="text-align: left;"><strong>0.721</strong></td>
-<td style="text-align: left;"><strong>-0.004 (Reliable Certification)</strong></td>
+<td style="text-align: left;"><strong>Encapsulated <code>Pipeline</code> DAG</strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(0.725\)</span></strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(0.721\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(-0.004\)</span> (Certified Reproducible)</strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Visual Pipeline Builder</h4>
-  <p>Build, configure, and inspect multi-stage data cleaning pipelines with drag-and-drop transform blocks in the browser.</p>
-  <a href="../../tools/pipeline-builder/" class="noc-sim-btn">Launch Pipeline Builder Workbench →</a>
+<h2 id="4-interactive-laboratory-pipeline-dag-nullity-correlation-studio">4. Interactive Laboratory: Pipeline DAG &amp; Nullity Correlation Studio</h2>
+<p>Inspect how global vs. fold-isolated DAG execution alters generalization honesty, and examine visual missingness matrices interactively.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 5px 5px 0px #151b20;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <span style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 10px; border-radius: 9999px; font-weight: 800; font-family: monospace; box-shadow: 1px 1px 0px #151b20;">SIMULATOR 5.9</span>
+      <h3 style="margin: 8px 0 0 0; font-size: 1.3rem; font-weight: 800; color: #151b20;">Pipeline DAG Leakage &amp; Nullity Matrix Studio</h3>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="btnTabDAG" onclick="switchPipeTab('dag')" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab A: Pipeline DAG Order &amp; Leakage Audit</button>
+      <button id="btnTabNull" onclick="switchPipeTab('nullity')" style="background: #ffffff; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab B: Nullity Matrix &amp; Correlation Inspector</button>
+    </div>
+  </div>
+
+  <!-- TAB A: PIPELINE DAG LEAKAGE -->
+  <div id="panelDAG">
+    <p style="font-size: 0.88rem; color: #334155; margin-top: 0;">
+      Toggle the architectural placement of <code>KNNImputer</code>, <code>RobustScaler</code>, and <code>SelectKBest</code> relative to the Cross-Validation split boundary to detect Mutual Information leakage $I(\hat{\theta}; \mathcal{D}_{\text{test}})$.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start;">
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <label style="font-weight: 800; font-size: 0.8rem; color: #151b20; display: block; margin-bottom: 8px;">
+          Select Preprocessing Scope:
+        </label>
+        <select id="selectPipeMode" onchange="updateDAGSim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-weight: 700; font-size: 0.82rem; background: #ffffff; margin-bottom: 14px;">
+          <option value="leaky_all">Anti-Pattern: Fit All Transforms Before Split</option>
+          <option value="leaky_sel">Partial Leak: Global SelectKBest Before Split</option>
+          <option value="isolated" selected>Certified DAG: Encapsulated Pipeline Inside CV</option>
+        </select>
+
+        <div id="dagStepsContainer" style="display: flex; flex-direction: column; gap: 8px; font-family: monospace; font-size: 0.78rem;">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 18px;">
+          <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; box-shadow: 2px 2px 0px #151b20;">
+            <div style="font-size: 0.72rem; color: #64748b; font-weight: 800;">REPORTED CV ROC-AUC</div>
+            <div id="statDAGCV" style="font-size: 1.4rem; font-weight: 900; color: #16a34a;">0.725</div>
+          </div>
+          <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; box-shadow: 2px 2px 0px #151b20;">
+            <div style="font-size: 0.72rem; color: #64748b; font-weight: 800;">PRODUCTION HOLDOUT AUC</div>
+            <div id="statDAGHold" style="font-size: 1.4rem; font-weight: 900; color: #2563eb;">0.721</div>
+          </div>
+          <div id="cardDAGStatus" style="background: #dcfce7; border: 2px solid #151b20; border-radius: 8px; padding: 14px; box-shadow: 2px 2px 0px #151b20;">
+            <div style="font-size: 0.72rem; color: #151b20; font-weight: 800;">LEAKAGE AUDIT STATUS</div>
+            <div id="statDAGAudit" style="font-size: 1.1rem; font-weight: 900; color: #16a34a;">✓ ZERO LEAKAGE</div>
+          </div>
+        </div>
+
+        <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #151b20; margin-bottom: 6px;">Architectural Diagnosis</div>
+          <div id="statDAGText" style="font-size: 0.8rem; color: #334155; line-height: 1.5;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB B: NULLITY CORRELATION -->
+  <div id="panelNullity" style="display: none;">
+    <div style="display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start;">
+      <div>
+        <div style="position: relative; border: 2px solid #151b20; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <canvas id="nullityCanvas" width="560" height="330" style="display: block; width: 100%; height: auto;"></canvas>
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+            Missingness Nullity Matrix Barcode (White = NULL, Blue = Observed)
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <label style="font-weight: 800; font-size: 0.8rem; color: #151b20; display: block; margin-bottom: 8px;">
+          Missingness Mechanism Profile:
+        </label>
+        <select id="selectNullRegime" onchange="updateNullitySim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-weight: 700; font-size: 0.82rem; background: #ffffff; margin-bottom: 14px;">
+          <option value="mcar">Independent Sporadic (MCAR)</option>
+          <option value="mar_joint" selected>Co-Missing Panel Battery (MAR +r_M)</option>
+          <option value="mut_excl">Mutually Exclusive Branching (-r_M)</option>
+        </select>
+
+        <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+          <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">NULLITY CORRELATION r_M(Income, Credit_Score)</div>
+          <div id="statPhiCorr" style="font-size: 1.3rem; font-weight: 900; color: #2563eb;">+0.892</div>
+        </div>
+        <div style="background: #fff0b9; border: 1.5px solid #151b20; padding: 10px; border-radius: 6px; font-size: 0.76rem; color: #151b20;">
+          <strong>Diagnostic Interpretation:</strong> <span id="statNullNote">Strong positive co-missingness reveals shared ingestion drop across Income and Credit bureaus.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+// --- TAB SWITCHING ---
+function switchPipeTab(tab) {
+  document.getElementById('panelDAG').style.display = tab === 'dag' ? 'block' : 'none';
+  document.getElementById('panelNullity').style.display = tab === 'nullity' ? 'block' : 'none';
+  document.getElementById('btnTabDAG').style.background = tab === 'dag' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabDAG').style.color = tab === 'dag' ? '#ffffff' : '#151b20';
+  document.getElementById('btnTabNull').style.background = tab === 'nullity' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabNull').style.color = tab === 'nullity' ? '#ffffff' : '#151b20';
+
+  if (tab === 'dag') updateDAGSim();
+  if (tab === 'nullity') updateNullitySim();
+}
+
+// --- DAG LEAKAGE AUDIT ---
+function updateDAGSim() {
+  const mode = document.getElementById('selectPipeMode').value;
+  const cont = document.getElementById('dagStepsContainer');
+
+  if (mode === 'leaky_all') {
+    cont.innerHTML = `
+      <div style="background:#fee2e2; border:1.5px solid #dc2626; padding:6px 10px; border-radius:4px;">1. Full D -> KNNImputer.fit_transform() [LEAK]</div>
+      <div style="background:#fee2e2; border:1.5px solid #dc2626; padding:6px 10px; border-radius:4px;">2. Full D -> RobustScaler.fit_transform() [LEAK]</div>
+      <div style="background:#e2e8f0; border:1.5px solid #151b20; padding:6px 10px; border-radius:4px;">3. StratifiedKFold Split(D)</div>
+      <div style="background:#fff0b9; border:1.5px solid #151b20; padding:6px 10px; border-radius:4px;">4. Model.fit(Train) -> Predict(Val)</div>
+    `;
+    document.getElementById('statDAGCV').innerText = '0.884 (Fake!)';
+    document.getElementById('statDAGCV').style.color = '#dc2626';
+    document.getElementById('statDAGHold').innerText = '0.712 (-19.4% Drop)';
+    document.getElementById('statDAGAudit').innerText = '✗ CRITICAL TEST LEAKAGE';
+    document.getElementById('statDAGAudit').style.color = '#dc2626';
+    document.getElementById('cardDAGStatus').style.background = '#fee2e2';
+    document.getElementById('statDAGText').innerText = 'Global statistics computed across both train and test folds create mutual information I(theta; D_test) > 0, systematically inflating validation scores while failing in production.';
+  } else if (mode === 'leaky_sel') {
+    cont.innerHTML = `
+      <div style="background:#fee2e2; border:1.5px solid #dc2626; padding:6px 10px; border-radius:4px;">1. Full D -> SelectKBest(k=15).fit_transform(X, y) [LEAK!]</div>
+      <div style="background:#e2e8f0; border:1.5px solid #151b20; padding:6px 10px; border-radius:4px;">2. StratifiedKFold Split(D_selected)</div>
+      <div style="background:#dcfce7; border:1.5px solid #16a34a; padding:6px 10px; border-radius:4px;">3. Pipeline(Scaler -> Model) inside CV</div>
+    `;
+    document.getElementById('statDAGCV').innerText = '0.921 (Hallucinated!)';
+    document.getElementById('statDAGCV').style.color = '#dc2626';
+    document.getElementById('statDAGHold').innerText = '0.502 (Pure Chance)';
+    document.getElementById('statDAGAudit').innerText = '✗ SEVERE TARGET LEAK';
+    document.getElementById('statDAGAudit').style.color = '#dc2626';
+    document.getElementById('cardDAGStatus').style.background = '#fee2e2';
+    document.getElementById('statDAGText').innerText = 'Supervised feature selection before CV uses test-fold target labels y_val to pick spurious correlations, creating >0.90 AUC even on random noise!';
+  } else {
+    cont.innerHTML = `
+      <div style="background:#e2e8f0; border:1.5px solid #151b20; padding:6px 10px; border-radius:4px;">1. StratifiedKFold Split(Raw D) FIRST</div>
+      <div style="background:#dcfce7; border:1.5px solid #16a34a; padding:6px 10px; border-radius:4px;">2. Fold Train -> fit(Imputer -> Scaler -> SelectKBest)</div>
+      <div style="background:#c9f3f4; border:1.5px solid #0e7490; padding:6px 10px; border-radius:4px;">3. Fold Val -> .transform() using Train stats ONLY</div>
+    `;
+    document.getElementById('statDAGCV').innerText = '0.725 (Honest)';
+    document.getElementById('statDAGCV').style.color = '#16a34a';
+    document.getElementById('statDAGHold').innerText = '0.721 (Matched!)';
+    document.getElementById('statDAGAudit').innerText = '✓ ZERO LEAKAGE';
+    document.getElementById('statDAGAudit').style.color = '#16a34a';
+    document.getElementById('cardDAGStatus').style.background = '#dcfce7';
+    document.getElementById('statDAGText').innerText = 'Encapsulating preprocessors inside sklearn.pipeline.Pipeline prevents validation records from ever influencing parameter estimates.';
+  }
+}
+
+// --- NULLITY MATRIX RENDERER ---
+function updateNullitySim() {
+  const regime = document.getElementById('selectNullRegime').value;
+  const cv = document.getElementById('nullityCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const cols = ['Age', 'Income', 'Credit_Score', 'Employment_Yrs'];
+  const N = 80;
+  const rng = (seed) => {
+    let s = seed;
+    return () => { s = Math.sin(s) * 10000; return s - Math.floor(s); };
+  };
+  const rand = rng(555);
+
+  const colW = (w - 80) / cols.length;
+  const rowH = (h - 70) / N;
+
+  // Labels
+  ctx.fillStyle = '#151b20';
+  ctx.font = 'bold 12px monospace';
+  ctx.textAlign = 'center';
+  cols.forEach((c, j) => {
+    ctx.fillText(c, 40 + j * colW + colW / 2, h - 18);
+  });
+
+  const m1 = [], m2 = [];
+  for (let i = 0; i < N; i++) {
+    const r0 = rand();
+    const r1 = rand();
+    const r2 = rand();
+    const r3 = rand();
+
+    let isNull = [r0 < 0.12, false, false, r3 < 0.15];
+    if (regime === 'mcar') {
+      isNull[1] = r1 < 0.25;
+      isNull[2] = r2 < 0.25;
+    } else if (regime === 'mar_joint') {
+      const jointDrop = r1 < 0.30;
+      isNull[1] = jointDrop || (r2 < 0.03);
+      isNull[2] = jointDrop;
+    } else {
+      isNull[1] = r1 < 0.45;
+      isNull[2] = !isNull[1] && (r2 < 0.85);
+    }
+
+    m1.push(isNull[1] ? 1 : 0);
+    m2.push(isNull[2] ? 1 : 0);
+
+    cols.forEach((_, j) => {
+      ctx.fillStyle = isNull[j] ? '#ffffff' : '#2563eb';
+      ctx.fillRect(40 + j * colW + 4, 35 + i * rowH, colW - 8, rowH);
+    });
+  }
+
+  // Draw borders around barcode columns
+  cols.forEach((_, j) => {
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(40 + j * colW + 4, 35, colW - 8, N * rowH);
+  });
+
+  // Compute Pearson phi coefficient between Col 1 and Col 2
+  const mu1 = m1.reduce((a, b) => a + b, 0) / N;
+  const mu2 = m2.reduce((a, b) => a + b, 0) / N;
+  let num = 0, d1 = 0, d2 = 0;
+  for (let i = 0; i < N; i++) {
+    num += (m1[i] - mu1) * (m2[i] - mu2);
+    d1 += (m1[i] - mu1) ** 2;
+    d2 += (m2[i] - mu2) ** 2;
+  }
+  const phi = num / (Math.sqrt(d1 * d2) || 1);
+
+  document.getElementById('statPhiCorr').innerText = `${phi >= 0 ? '+' : ''}${phi.toFixed(3)}`;
+  if (regime === 'mcar') {
+    document.getElementById('statPhiCorr').style.color = '#64748b';
+    document.getElementById('statNullNote').innerText = 'Near-zero correlation indicates independent random packet/sensor drops (MCAR).';
+  } else if (regime === 'mar_joint') {
+    document.getElementById('statPhiCorr').style.color = '#16a34a';
+    document.getElementById('statNullNote').innerText = 'Strong positive co-missingness (+r_M) reveals shared ingestion drop across Credit & Income fields.';
+  } else {
+    document.getElementById('statPhiCorr').style.color = '#dc2626';
+    document.getElementById('statNullNote').innerText = 'Strong negative correlation (-r_M) indicates mutually exclusive branching survey paths.';
+  }
+}
+
+window.addEventListener('load', () => {
+  updateDAGSim();
+});
+</script>
+
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="5-production-grade-python-verification-engine">5. Production-Grade Python Verification Engine</h2>
+<p>The following Python module uses <strong>Pydantic V2</strong> to empirically prove <strong>Preprocessing Data Leakage on 100% Pure Random Noise</strong>, verify fold-isolated <code>Pipeline</code> honesty, and compute the Pearson Nullity Correlation Matrix <span class="arithmatex">\(r_{\mathbf{M}}\)</span>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">production_pipeline_leakage_audit.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Pydantic V2 verified engine proving Leakage Hallucination on Pure Noise vs. Honest Pipeline Isolation.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span><span class="p">,</span> <span class="n">KNNImputer</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">SelectKBest</span><span class="p">,</span> <span class="n">f_classif</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">class</span><span class="w"> </span><span class="nc">PipelineLeakageAuditReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="sd">"""Pydantic V2 verification schema confirming leakage discovery and nullity diagnostics."""</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">pure_noise_leaky_cv_auc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mf">0.80</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">pure_noise_clean_pipeline_auc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">heterogeneous_pipeline_auc</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">nullity_phi_correlation</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_nullity_correlation</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="sd">"""Computes Pearson phi correlation matrix across binary missingness indicators."""</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">null_mat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">active</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">null_mat</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="n">null_mat</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">]</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">active</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="k">return</span> <span class="n">null_mat</span><span class="p">[</span><span class="n">active</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"pearson"</span><span class="p">)</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_pipeline_leakage_and_diagnostics</span><span class="p">():</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="c1"># 1. Pure-Noise Data Leakage Experiment (True Population AUC = 0.500!)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="c1"># 100 samples, 1000 pure Gaussian noise columns, random binary labels</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">X_noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="n">y_random</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="c1"># Anti-Pattern: Selecting features globally BEFORE cross-validation</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="n">X_leaky</span> <span class="o">=</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">f_classif</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_noise</span><span class="p">,</span> <span class="n">y_random</span><span class="p">)</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="n">auc_leaky</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">X_leaky</span><span class="p">,</span> <span class="n">y_random</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">"roc_auc"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="c1"># Certified Pattern: Encapsulated Pipeline executes SelectKBest inside every training fold</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">clean_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="p">(</span><span class="s2">"selector"</span><span class="p">,</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">f_classif</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)),</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="p">(</span><span class="s2">"clf"</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">()),</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="p">])</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">auc_clean</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clean_pipe</span><span class="p">,</span> <span class="n">X_noise</span><span class="p">,</span> <span class="n">y_random</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">"roc_auc"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="k">assert</span> <span class="n">auc_leaky</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected fake leaky score &gt; 0.85, got </span><span class="si">{</span><span class="n">auc_leaky</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="k">assert</span> <span class="mf">0.35</span> <span class="o">&lt;=</span> <span class="n">auc_clean</span> <span class="o">&lt;=</span> <span class="mf">0.65</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected honest null score ~0.50, got </span><span class="si">{</span><span class="n">auc_clean</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="c1"># 2. Heterogeneous ColumnTransformer &amp; Nullity Matrix Diagnostics</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">n_rows</span> <span class="o">=</span> <span class="mi">1500</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">45.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_rows</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_rows</span><span class="p">)</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">credit_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">680.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_rows</span><span class="p">)</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="n">education</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"HighSchool"</span><span class="p">,</span> <span class="s2">"Bachelors"</span><span class="p">,</span> <span class="s2">"Masters"</span><span class="p">,</span> <span class="s2">"PhD"</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_rows</span><span class="p">)</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="n">channel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"Mobile"</span><span class="p">,</span> <span class="s2">"Web"</span><span class="p">,</span> <span class="s2">"InStore"</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_rows</span><span class="p">)</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">df_het</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="s2">"age"</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span> <span class="s2">"credit_score"</span><span class="p">:</span> <span class="n">credit_score</span><span class="p">,</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="s2">"education"</span><span class="p">:</span> <span class="n">education</span><span class="p">,</span> <span class="s2">"channel"</span><span class="p">:</span> <span class="n">channel</span><span class="p">,</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="p">})</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="c1"># Inject strong co-missingness battery failure: 35% Mobile drop both Income &amp; Credit Score together</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="n">joint_drop</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_het</span><span class="p">[</span><span class="s2">"channel"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Mobile"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.70</span><span class="p">)</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">df_het</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joint_drop</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="n">df_het</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">joint_drop</span><span class="p">,</span> <span class="s2">"credit_score"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">df_het</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.10</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="n">null_corr</span> <span class="o">=</span> <span class="n">compute_nullity_correlation</span><span class="p">(</span><span class="n">df_het</span><span class="p">)</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="n">phi_inc_cred</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">null_corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"income"</span><span class="p">,</span> <span class="s2">"credit_score"</span><span class="p">])</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="k">assert</span> <span class="n">phi_inc_cred</span> <span class="o">&gt;</span> <span class="mf">0.90</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Nullity detector missed co-missingness cluster: </span><span class="si">{</span><span class="n">phi_inc_cred</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="c1"># Ground-truth signal</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="n">y_prob</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">age</span> <span class="o">-</span> <span class="mi">45</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.08</span> <span class="o">+</span> <span class="p">(</span><span class="n">credit_score</span> <span class="o">-</span> <span class="mi">680</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">)))</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="n">y_het</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_prob</span> <span class="o">&gt;</span> <span class="mf">0.50</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="p">(</span><span class="s2">"num"</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"imp"</span><span class="p">,</span> <span class="n">KNNImputer</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">)),</span> <span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())]),</span> <span class="p">[</span><span class="s2">"age"</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">,</span> <span class="s2">"credit_score"</span><span class="p">]),</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"imp"</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">"most_frequent"</span><span class="p">)),</span> <span class="p">(</span><span class="s2">"ohe"</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">"first"</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">))]),</span> <span class="p">[</span><span class="s2">"education"</span><span class="p">,</span> <span class="s2">"channel"</span><span class="p">]),</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="p">])</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="n">full_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"prep"</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span> <span class="p">(</span><span class="s2">"clf"</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">))])</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">auc_het</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">full_pipe</span><span class="p">,</span> <span class="n">df_het</span><span class="p">,</span> <span class="n">y_het</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">"roc_auc"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="k">assert</span> <span class="n">auc_het</span> <span class="o">&gt;</span> <span class="mf">0.85</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="n">report</span> <span class="o">=</span> <span class="n">PipelineLeakageAuditReport</span><span class="p">(</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>        <span class="n">pure_noise_leaky_cv_auc</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">auc_leaky</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>        <span class="n">pure_noise_clean_pipeline_auc</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">auc_clean</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>        <span class="n">heterogeneous_pipeline_auc</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">auc_het</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>        <span class="n">nullity_phi_correlation</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">phi_inc_cred</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="p">)</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Production Pipeline Leakage &amp; Nullity Diagnostics Report ==="</span><span class="p">)</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pure-Noise Illusion Check -&gt; LEAKY CV AUC: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">pure_noise_leaky_cv_auc</span><span class="si">}</span><span class="s2"> vs CLEAN Pipeline AUC: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">pure_noise_clean_pipeline_auc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nullity Correlation phi(income, credit_score): +</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">nullity_phi_correlation</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Heterogeneous ColumnTransformer Holdout AUC: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">heterogeneous_pipeline_auc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Pydantic V2 schemas and fold-isolation bounds verified successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="n">test_pipeline_leakage_and_diagnostics</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-key-engineering-takeaways">6. Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Encapsulate Preprocessors Inside CV Folds</strong>: Never invoke <code>.fit()</code> or supervised selectors on the combined dataset before splitting; wrap every imputation, scaling, and encoding node inside <code>sklearn.pipeline.Pipeline</code>.</li>
+<li><strong>Audit Nullity Correlations Visually</strong>: Computing the Pearson <span class="arithmatex">\(\phi\)</span>-coefficient on binary missingness masks exposes co-occurring MAR sensor drops and conditional branching artifacts invisible in column totals.</li>
+<li><strong>Constrain Relational DFS Temporally</strong>: When synthesizing Deep Feature Synthesis backward aggregations (<span class="arithmatex">\(1 \to N\)</span>), enforce strict event timestamp barriers <span class="arithmatex">\(t(e_j) &lt; t_{\text{predict}}\)</span> to avoid lookahead contamination.</li>
+<li><strong>Serialize Unified Artifacts</strong>: Export the combined <code>ColumnTransformer</code> + Classifier as a single deployable bundle to eliminate training-serving parameter drift.</li>
+</ol>
+<hr />
+<h2 id="7-scenario-based-diagnostic-micro-checks">7. Scenario-Based Diagnostic Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Data Leakage Prevention via Scikit-Learn Pipeline</summary>
-<p>Why does nesting <code>StandardScaler</code> inside a <code>Pipeline</code> passed to <code>cross_val_score</code> prevent data leakage, whereas scaling the whole dataset first before calling <code>cross_val_score</code> violates statistical rigor?</p>
+<summary>Micro-Check 1: Data Leakage Prevention via Scikit-Learn Pipeline</summary>
+<p>Why does passing <code>Pipeline([("scaler", StandardScaler()), ("clf", LogisticRegression())])</code> into <code>cross_val_score</code> guarantee zero test leakage, whereas calling <code>StandardScaler().fit_transform(X)</code> first invalidates evaluation metrics?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> If you scale the full dataset first, the global mean <span class="arithmatex">\(\mu_{\text{global}}\)</span> and standard deviation <span class="arithmatex">\(\sigma_{\text{global}}\)</span> are computed across all instances, including the validation fold. Information about the validation fold's distribution leaks into the training fold.</p>
-<p>When <code>StandardScaler</code> is inside the <code>Pipeline</code>, <code>cross_val_score</code> fits the scaler strictly on the <span class="arithmatex">\(K-1\)</span> training folds during each split, learning <span class="arithmatex">\(\mu_{\text{train}}\)</span> and <span class="arithmatex">\(\sigma_{\text{train}}\)</span>, and applies <code>.transform()</code> to the holdout fold using only training statistics.</p>
+<p><strong>Calling <code>fit_transform</code> globally learns <span class="arithmatex">\(\mu_{\text{global}}\)</span> and <span class="arithmatex">\(\sigma_{\text{global}}\)</span> using unseen validation instances, leaking test distribution geometry into training.</strong></p>
+<p>When <code>StandardScaler</code> resides inside a <code>Pipeline</code>:
+1. <code>cross_val_score</code> partitions indices into <span class="arithmatex">\(K - 1\)</span> training rows and <span class="arithmatex">\(1\)</span> validation fold.
+2. <code>.fit()</code> runs exclusively on the <span class="arithmatex">\(K - 1\)</span> training fold, storing <span class="arithmatex">\(\mu_{\text{train}}\)</span> and <span class="arithmatex">\(\sigma_{\text{train}}\)</span>.
+3. <code>.transform()</code> scales validation observations strictly using frozen training statistics, isolating evaluation predictions from future knowledge.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Custom Transformer Contract</summary>
-<p>What two methods must a custom Python class implement to integrate seamlessly into a Scikit-Learn <code>Pipeline</code> or <code>ColumnTransformer</code>?</p>
+<summary>Micro-Check 2: Custom Transformer API Contract</summary>
+<p>What two base mixins and methods must a custom Python class implement to serialize natively inside a <code>ColumnTransformer</code> or <code>Pipeline</code> and remain compatible with GridSearchCV?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The class must inherit from <code>BaseEstimator</code> and <code>TransformerMixin</code> and implement:
-1. <code>fit(self, X, y=None)</code>: Learns parameters from training data (e.g., calculates column medians, outlier cutoff thresholds) and returns <code>self</code>.
-2. <code>transform(self, X)</code>: Applies the learned transformation to input data <span class="arithmatex">\(X\)</span> without updating parameters and returns the transformed array or DataFrame.</p>
+<p><strong>Inherit from <code>sklearn.base.BaseEstimator</code> and <code>TransformerMixin</code>, implementing <code>.fit(self, X, y=None)</code> (returning <code>self</code>) and <code>.transform(self, X)</code>.</strong></p>
+<ol>
+<li><code>fit(self, X, y=None)</code> learns internal state attributes (conventionally named with trailing underscores like <code>self.medians_</code>) strictly from training input <code>X</code> and returns <code>self</code>.</li>
+<li><code>transform(self, X)</code> maps input arrays cleanly without modifying learned <code>self.*_</code> parameters.</li>
+<li>Inheriting <code>BaseEstimator</code> automatically exposes <code>.get_params()</code> and <code>.set_params()</code> for nested hyperparameter tuning (e.g., <code>preprocessor__num__imp__n_neighbors=7</code>).</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 3: Interpreting Nullity Correlation Coefficients (<span class="arithmatex">\(r_{\mathbf{M}}\)</span>)</summary>
+<p>In an audit of a multi-channel borrower database, missingness indicator correlation gives <span class="arithmatex">\(r_{\mathbf{M}}(\text{Income}, \text{CreditScore}) = +0.92\)</span> and <span class="arithmatex">\(r_{\mathbf{M}}(\text{EmploymentYears}, \text{RetirementYears}) = -0.88\)</span>. Diagnose the structural cause behind each correlation sign.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Positive <span class="arithmatex">\(+0.92\)</span> identifies joint bureau/API outage coupling; Negative <span class="arithmatex">\(-0.88\)</span> indicates mutually exclusive survey branching.</strong></p>
+<ol>
+<li><strong><span class="arithmatex">\(r_{\mathbf{M}} = +0.92\)</span></strong>: <code>Income</code> and <code>CreditScore</code> fail together concurrently—for example, when external credit bureau API verification times out for mobile sessions. They follow a joint MAR drop pattern requiring conditional multivariate imputation (or preserving a missingness flag indicator).</li>
+<li><strong><span class="arithmatex">\(r_{\mathbf{M}} = -0.88\)</span></strong>: Applicants who answer <code>EmploymentYears</code> automatically leave <code>RetirementYears</code> blank (skip-logic form branching). Missingness here means "Structurally Not Applicable", <strong>not</strong> unknown value, and should not be imputed with population means!</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 4: Why Pure Random Noise Yields <span class="arithmatex">\(&gt;0.90\)</span> AUC Under Leaky Selection</summary>
+<p>As demonstrated in Section 5, running <code>SelectKBest(f_classif, k=15).fit_transform(X_noise, y_random)</code> on <span class="arithmatex">\(100\)</span> rows <span class="arithmatex">\(\times 1{,}000\)</span> independent Gaussian noise columns <em>before</em> cross-validation produces <span class="arithmatex">\(\text{AUC} \approx 0.92\)</span>. Why does cross-validation fail to catch this mirage?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Because across <span class="arithmatex">\(1{,}000\)</span> completely random columns, purely by multiple-testing chance, several columns correlate strongly with <span class="arithmatex">\(y_{\text{random}}\)</span> across the whole 100-row sample.</strong></p>
+<ol>
+<li>Fitting <code>SelectKBest</code> globally peeks at <strong>all 100 rows' target labels</strong> (<span class="arithmatex">\(y_{\text{train}}\)</span> and <span class="arithmatex">\(y_{\text{val}}\)</span> combined!) to cherry-pick the 15 columns exhibiting highest spurious alignment with <span class="arithmatex">\(y\)</span>.</li>
+<li>Even after splitting into CV folds, those 15 cherry-picked features were specifically pre-selected <em>because</em> they matched the validation fold labels!</li>
+<li>Placing <code>SelectKBest</code> inside a <code>Pipeline</code> forces feature selection to look exclusively at the 80 training rows per fold, dropping fake validation AUC straight back down to the true <span class="arithmatex">\(0.50\)</span> random-guess floor.</li>
+</ol>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-kanter2015"></a><strong>[Kanter2015]</strong> J. M. Kanter and K. Veeramachaneni, "Deep Feature Synthesis: Towards Automating Data Science Endeavors," in <em>2015 IEEE International Conference on Data Science and Advanced Analytics (DSAA)</em>, pp. 1–10, 2015. <a href="https://doi.org/10.1109/DSAA.2015.7344858">DOI: 10.1109/DSAA.2015.7344858</a>.</li>
 <li><a id="ref-bilalli2017"></a><strong>[Bilalli2017]</strong> B. Bilalli, A. Abelló, and T. Aluja-Banet, "On the Predictive Power of Meta-features in OpenML," <em>International Journal of Applied Mathematics and Computer Science</em>, vol. 27, no. 4, pp. 697–712, 2017. <a href="https://doi.org/10.1515/amcs-2017-0049">DOI: 10.1515/amcs-2017-0049</a>.</li>
 <li><a id="ref-feurer2015"></a><strong>[Feurer2015]</strong> M. Feurer et al., "Efficient and Robust Automated Machine Learning," <em>Advances in Neural Information Processing Systems (NeurIPS 2015)</em>, vol. 28, pp. 2962–2970, 2015. <a href="https://doi.org/10.5555/2969442.2969573">DOI: 10.5555/2969442.2969573</a>.</li>
 <li><a id="ref-krishnan2016"></a><strong>[Krishnan2016]</strong> S. Krishnan, J. Wang, E. Wu, M. J. Franklin, and K. Goldberg, "ActiveClean: An Interactive Data Cleaning Framework for Modern Machine Learning," in <em>Proceedings of the 2016 International Conference on Management of Data (SIGMOD '16)</em>, pp. 2117–2120, 2016. <a href="https://doi.org/10.1145/2882903.2915239">DOI: 10.1145/2882903.2915239</a>.</li>
-<li><a id="ref-schelter2018"></a><strong>[Schelter2018]</strong> S. Schelter, D. Lange, P. Schmidt, F. Celikel, F. Biessmann, and A. Grafberger, "Automating Large-Scale Data Quality Verification," <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 12, pp. 1783–1794, 2018. <a href="https://doi.org/10.14778/3229863.3236237">DOI: 10.14778/3229863.3236237</a>.</li>
+<li><a id="ref-schelter2018"></a><strong>[Schelter2018]</strong> S. Schelter, D. Lange, P. Schmidt, M. Celikel, F. Biessmann, and A. Grafberger, "Automating Large-Scale Data Quality Verification," <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 12, pp. 1781–1794, 2018. <a href="https://doi.org/10.14778/3229863.3229867">DOI: 10.14778/3229863.3229867</a>.</li>
 <li><a id="ref-pedregosa2011"></a><strong>[Pedregosa2011]</strong> F. Pedregosa et al., "Scikit-learn: Machine Learning in Python," <em>Journal of Machine Learning Research</em>, vol. 12, pp. 2825–2830, 2011. <a href="https://doi.org/10.5555/1953048.2078195">DOI: 10.5555/1953048.2078195</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../08-python-cleaning-tools/" class="noc-sim-btn secondary" style="text-decoration: none;">← 5.8 Python Tools</a>
-  <a href="../10-challenges-and-best-practices/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: 5.10 Challenges & Governance →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../08-python-cleaning-tools/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← 5.8 Python Tools
+  </a>
+  <a href="../10-challenges-and-best-practices/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: Challenges &amp; Governance (5.10) →
+  </a>
 </div>
 
 

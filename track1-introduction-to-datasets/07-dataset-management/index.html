@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -7502,38 +7546,35 @@
 
 
 <h1 id="17-dataset-management-governance-lifecycle-architecture">1.7 Dataset Management, Governance &amp; Lifecycle Architecture</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 1 (sec:1.6), Chapter 3, 8 &amp; 12</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Reference: Chapter 1 (§1.6), Chapter 3, 8 & 12</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
       Read <strong>Chapter 1: Dataset Management</strong> in the Springer Nature monograph for complete lifecycle governance, compliance frameworks, and storage tiers.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 1 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~8 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter1/chapter1.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-17">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 1.7</h3>
 <p>Experience Chapter 1 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">8 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=1&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=1&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7656,25 +7697,28 @@
 <hr />
 <h2 id="4-in-browser-interactive-governance-rbac-simulator">4. 🔬 In-Browser Interactive Governance &amp; RBAC Simulator</h2>
 <p>Test how enterprise Role-Based Access Controls (RBAC) dynamically mask sensitive attributes and explore DVC dataset lineage below:</p>
-<div class="noc-sim-card" style="background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin: 24px 0; color: #f8fafc;">
-  <div style="border-bottom: 1px solid #334155; padding-bottom: 16px; margin-bottom: 20px;">
-    <h3 style="margin: 0; color: #38bdf8; font-size: 1.25rem;">🔬 Dynamic RBAC Column Masking &amp; Lineage Workbench</h3>
-    <span style="font-size: 0.85rem; color: #94a3b8;">Switch user roles to observe real-time policy masking across sensitive clinical and financial attributes.</span>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 5px 5px 0px #22bfd7; border-radius: 14px; padding: 24px; margin: 24px 0; color: #151b20;">
+  <div style="border-bottom: 2px solid #151b20; padding-bottom: 14px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+    <div>
+      <h3 style="margin: 0; color: #0e7490; font-size: 1.25rem; font-weight: 800;">🔬 Dynamic RBAC Column Masking &amp; Lineage Workbench</h3>
+      <span style="font-size: 0.85rem; color: #475569; font-weight: 600;">Switch user roles to observe real-time policy masking across sensitive clinical and financial attributes.</span>
+    </div>
+    <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 12px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">Governance Simulator</span>
   </div>
 
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-    <div>
-      <label style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">Active User Security Role:</label>
-      <select id="rbacRoleSelect" onchange="updateRbacView()" style="width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 8px; border-radius: 6px; margin-top: 6px;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+    <div style="background: #f6f0dc; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; border-radius: 10px; padding: 12px;">
+      <label style="font-size: 0.82rem; color: #151b20; font-weight: 800; font-family: monospace;">Active User Security Role:</label>
+      <select id="rbacRoleSelect" onchange="updateRbacView()" style="width: 100%; background: #fffdf7; border: 2px solid #151b20; color: #151b20; padding: 8px; border-radius: 6px; margin-top: 6px; font-weight: 700; cursor: pointer;">
         <option value="admin" selected>System Administrator (Full Decrypted Access)</option>
         <option value="ml_engineer">ML Research Engineer (Masked PII, Full Features)</option>
         <option value="external_auditor">External Auditor (K-Anonymized &amp; Perturbed)</option>
         <option value="public">Anonymous Public User (Access Denied / Synthetic Only)</option>
       </select>
     </div>
-    <div>
-      <label style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">Dataset Lineage Commit Version:</label>
-      <select id="dvcVersionSelect" onchange="updateRbacView()" style="width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 8px; border-radius: 6px; margin-top: 6px;">
+    <div style="background: #f6f0dc; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; border-radius: 10px; padding: 12px;">
+      <label style="font-size: 0.82rem; color: #151b20; font-weight: 800; font-family: monospace;">Dataset Lineage Commit Version:</label>
+      <select id="dvcVersionSelect" onchange="updateRbacView()" style="width: 100%; background: #fffdf7; border: 2px solid #151b20; color: #151b20; padding: 8px; border-radius: 6px; margin-top: 6px; font-weight: 700; cursor: pointer;">
         <option value="v1.0">v1.0 (commit 8a4f91) - Raw Unprocessed Extraction</option>
         <option value="v1.1">v1.1 (commit 3e7c02) - Nulls Imputed, Schema Enforced</option>
         <option value="v2.0" selected>v2.0 (commit e722d2) - Production Feature Store (Current)</option>
@@ -7683,16 +7727,16 @@
   </div>
 
   <!-- TABLE DISPLAY -->
-  <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; font-family: monospace;">
+  <div style="overflow-x: auto; border: 2px solid #151b20; border-radius: 10px; box-shadow: 3px 3px 0px #151b20;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; font-family: monospace; background: #fffdf7;">
       <thead>
-        <tr style="background: #1e293b; color: #38bdf8; text-align: left;">
-          <th style="padding: 10px; border: 1px solid #334155;">Subject ID</th>
-          <th style="padding: 10px; border: 1px solid #334155;">Full Name (Direct PII)</th>
-          <th style="padding: 10px; border: 1px solid #334155;">SSN / Tax ID</th>
-          <th style="padding: 10px; border: 1px solid #334155;">Age (Quasi-ID)</th>
-          <th style="padding: 10px; border: 1px solid #334155;">Clinical Diagnosis</th>
-          <th style="padding: 10px; border: 1px solid #334155;">Risk Score</th>
+        <tr style="background: #c9f3f4; color: #151b20; text-align: left; border-bottom: 2px solid #151b20;">
+          <th style="padding: 10px; border-right: 1px solid #151b20;">Subject ID</th>
+          <th style="padding: 10px; border-right: 1px solid #151b20;">Full Name (Direct PII)</th>
+          <th style="padding: 10px; border-right: 1px solid #151b20;">SSN / Tax ID</th>
+          <th style="padding: 10px; border-right: 1px solid #151b20;">Age (Quasi-ID)</th>
+          <th style="padding: 10px; border-right: 1px solid #151b20;">Clinical Diagnosis</th>
+          <th style="padding: 10px;">Risk Score</th>
         </tr>
       </thead>
       <tbody id="rbacTableBody">
@@ -7701,7 +7745,7 @@
     </table>
   </div>
 
-  <div id="rbacPolicyNotice" style="margin-top: 14px; font-size: 0.8rem; color: #94a3b8; background: #020617; padding: 10px 14px; border-radius: 6px; border: 1px solid #334155;">
+  <div id="rbacPolicyNotice" style="margin-top: 16px; font-size: 0.82rem; color: #151b20; background: #e7f4c8; padding: 12px 14px; border-radius: 8px; border: 2px solid #151b20; font-weight: 700;">
     Active Policy: Admin role grants unredacted access for operational pipeline auditing.
   </div>
 </div>
@@ -7723,14 +7767,15 @@ function updateRbacView() {
 
   if (role === 'public') {
     tbody.innerHTML = `
-      <tr>
-        <td colspan="6" style="padding: 24px; text-align: center; color: #f43f5e; font-weight: bold;">
+      <tr style="background: #ffd8ce;">
+        <td colspan="6" style="padding: 20px; text-align: center; color: #b91c1c; font-weight: 800;">
           ⛔ ACCESS DENIED: Role 'Anonymous Public User' does not possess read grants for protected clinical store.
         </td>
       </tr>
     `;
     notice.innerText = "Security Alert: Unauthorized read attempt logged to compliance SIEM audit index.";
-    notice.style.borderColor = '#f43f5e';
+    notice.style.background = '#ffd8ce';
+    notice.style.color = '#b91c1c';
     return;
   }
 
@@ -7748,32 +7793,35 @@ function updateRbacView() {
     } else if (role === 'external_auditor') {
       dispName = 'ANON_SUBJECT';
       dispSsn = 'REDACTED';
-      dispAge = (Math.floor(parseInt(r.age) / 10) * 10) + '-' + (Math.floor(parseInt(r.age) / 10) * 10 + 9); // Age binning
+      dispAge = (Math.floor(parseInt(r.age) / 10) * 10) + '-' + (Math.floor(parseInt(r.age) / 10) * 10 + 9);
       dispDiag = 'Category-Cardio/Metabolic';
     }
 
     const tr = document.createElement('tr');
-    tr.style.borderBottom = '1px solid #334155';
+    tr.style.borderBottom = '1px solid #cbd5e1';
     tr.innerHTML = `
-      <td style="padding: 8px; border: 1px solid #334155; color: #38bdf8;">${r.id}</td>
-      <td style="padding: 8px; border: 1px solid #334155; color: ${role === 'admin' ? '#cbd5e1' : '#64748b'};">${dispName}</td>
-      <td style="padding: 8px; border: 1px solid #334155; color: ${role === 'admin' ? '#f59e0b' : '#64748b'};">${dispSsn}</td>
-      <td style="padding: 8px; border: 1px solid #334155;">${dispAge}</td>
-      <td style="padding: 8px; border: 1px solid #334155; color: #4ade80;">${dispDiag}</td>
-      <td style="padding: 8px; border: 1px solid #334155; font-weight: bold;">${r.risk}</td>
+      <td style="padding: 9px; border-right: 1px solid #cbd5e1; color: #0e7490; font-weight: 800;">${r.id}</td>
+      <td style="padding: 9px; border-right: 1px solid #cbd5e1; color: ${role === 'admin' ? '#151b20' : '#64748b'}; font-weight: 600;">${dispName}</td>
+      <td style="padding: 9px; border-right: 1px solid #cbd5e1; color: ${role === 'admin' ? '#b45309' : '#64748b'}; font-weight: 600;">${dispSsn}</td>
+      <td style="padding: 9px; border-right: 1px solid #cbd5e1; color: #151b20;">${dispAge}</td>
+      <td style="padding: 9px; border-right: 1px solid #cbd5e1; color: #15803d; font-weight: 700;">${dispDiag}</td>
+      <td style="padding: 9px; font-weight: 800; color: #151b20;">${r.risk}</td>
     `;
     tbody.appendChild(tr);
   });
 
   if (role === 'admin') {
     notice.innerText = `Active Policy: Unrestricted access granted. Showing commit ${ver}. Audit hash: SHA-256(e722d2b).`;
-    notice.style.borderColor = '#334155';
+    notice.style.background = '#e7f4c8';
+    notice.style.color = '#151b20';
   } else if (role === 'ml_engineer') {
     notice.innerText = `Active Policy: HIPAA Safe Harbor active. Direct PII (Name, full SSN) dynamically masked. Quasi-identifiers preserved.`;
-    notice.style.borderColor = '#2563eb';
+    notice.style.background = '#c9f3f4';
+    notice.style.color = '#151b20';
   } else {
     notice.innerText = `Active Policy: K-Anonymity (k=5) generalization active. Age banded, diagnoses generalized.`;
-    notice.style.borderColor = '#f59e0b';
+    notice.style.background = '#fff0b9';
+    notice.style.color = '#151b20';
   }
 }
 document.addEventListener('DOMContentLoaded', updateRbacView);

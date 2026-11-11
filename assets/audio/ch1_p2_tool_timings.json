@@ -1,0 +1,158 @@
+{
+  "ch1_p2_multi_sim_solo.mp3": {
+    "duration": 22.416,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Multi-Structure Inspector! Explore the three tabs above: Relational SQL with fixed schema constraints, Semi-Structured JSON with schema-on-read flexibility, and Continuous Vector Embeddings with cosine similarity search. Notice how each data structure represents trade-offs between schema rigidity, query speed, and semantic richness.",
+        "start": 0.0,
+        "end": 22.416
+      }
+    ]
+  },
+  "ch1_p2_multi_sim_duo.mp3": {
+    "duration": 30.062,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at how the same product catalog looks across SQL tables, JSON documents, and vector embeddings! Which one should an engineer choose?",
+        "start": 0.0,
+        "end": 9.84
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "It is all about the query pattern! Relational tables give constant-time attribute lookups and acid guarantees, JSON gives frictionless hierarchical nesting, while vector embeddings capture latent semantics for approximate nearest neighbor search. Try switching tabs and running queries above to experience the differences!",
+        "start": 10.19,
+        "end": 30.062
+      }
+    ]
+  },
+  "ch1_p2_chk1_solo.mp3": {
+    "duration": 16.632,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Here is your active checkpoint: In a high-throughput financial data lake processing 500,000 JSON ticks per second, why does pure schema-on-read JSON cause catastrophic pipeline degradation compared to columnar Parquet? Select Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 16.632
+      }
+    ]
+  },
+  "ch1_p2_chk1_duo.mp3": {
+    "duration": 19.19,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Parsing deeply nested JSON at high speed creates massive CPU serialization bottlenecks and memory allocation thrashing!",
+        "start": 0.0,
+        "end": 7.272
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Precisely, Kaito! Let's see if our engineers can spot the exact architectural bottleneck. Select Option A, B, or C above me to test your understanding.",
+        "start": 7.622,
+        "end": 19.19
+      }
+    ]
+  },
+  "ch1_p2_chk1_feedback_correct.mp3": {
+    "duration": 15.912,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding! Schema-on-read forces CPU-intensive string parsing and pointer dereferencing on every read, whereas columnar formats like Parquet store homogeneous columns contiguously with vectorized SIMD compression and zero-copy projection pushdown!",
+        "start": 0.0,
+        "end": 15.912
+      }
+    ]
+  },
+  "ch1_p2_chk1_feedback_incorrect.mp3": {
+    "duration": 16.92,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember that JSON is a text-based format requiring full lexical parsing and field name duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with run-length and dictionary encoding.",
+        "start": 0.0,
+        "end": 16.92
+      }
+    ]
+  },
+  "ch1_p2_stream_sim_solo.mp3": {
+    "duration": 19.296,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Dynamic Streaming Simulator! Look at the real-time sensor waveform above. A tumbling window aggregates batches every 6 seconds. Try clicking 'Inject Out-of-Order Reading'—watch how our watermark threshold evaluates whether the late arrival is merged or quarantined into a dead-letter queue!",
+        "start": 0.0,
+        "end": 19.296
+      }
+    ]
+  },
+  "ch1_p2_stream_sim_duo.mp3": {
+    "duration": 26.39,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at the live sensor feed! What happens when network jitter delays a reading past the window boundary?",
+        "start": 0.0,
+        "end": 7.896
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Watch closely! When you inject a late record with a timestamp older than our watermark, the tumbling window has already closed. The streaming engine must either trigger a costly retraction or drop the record to the dead-letter queue to preserve temporal determinism. Test the controls above!",
+        "start": 8.246,
+        "end": 26.39
+      }
+    ]
+  },
+  "ch1_p2_chk2_solo.mp3": {
+    "duration": 15.84,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Here is your active checkpoint: In an Apache Flink or Spark Streaming pipeline, how does setting an overly aggressive watermark threshold of zero seconds impact stateful tumbling window calculations under network jitter? Select Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 15.84
+      }
+    ]
+  },
+  "ch1_p2_chk2_duo.mp3": {
+    "duration": 19.19,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Setting the watermark lag to zero gives the lowest latency, but what happens when network packets don't arrive in perfect chronological order?",
+        "start": 0.0,
+        "end": 8.064
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "A classic production dilemma, Kaito! Let's challenge our engineers: Select Option A, B, or C above me to verify your streaming architecture intuition.",
+        "start": 8.414,
+        "end": 19.19
+      }
+    ]
+  },
+  "ch1_p2_chk2_feedback_correct.mp3": {
+    "duration": 15.6,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! An aggressive zero-lag watermark closes windows immediately upon processing the first event of the next window, causing all legitimately delayed events to be dropped as late arrivals, resulting in severe data loss and biased window aggregations!",
+        "start": 0.0,
+        "end": 15.6
+      }
+    ]
+  },
+  "ch1_p2_chk2_feedback_incorrect.mp3": {
+    "duration": 15.648,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Careful! A watermark tells the streaming engine when all data up to event time t has arrived. If you set lag to zero, any jittered network delay means valid data arrives after the window is already closed, dropping it into the dead-letter queue.",
+        "start": 0.0,
+        "end": 15.648
+      }
+    ]
+  }
+}
