@@ -1,0 +1,215 @@
+{
+  "duration": 568.44,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Track 3, Lesson 3.4 of Dataset Fundamentals: Data Privacy Principles, Informed Consent, Quasi-Identifiers, and Privacy by Design. Today we translate ethical commitments into concrete data engineering architecture.",
+      "start": 0.0,
+      "end": 16.104,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Stripping names and email addresses does not create an anonymous dataset. Real-world privacy breaches stem from structural quasi-identifier linkage and dark-pattern consent bundling. We formalize Sweeney's cardinality theorem, the HIPAA 18 Safe Harbor taxonomy, GDPR Article 5 minimization via Information Bottlenecks, and Ann Cavoukian's Privacy by Design axioms.",
+      "start": 16.104,
+      "end": 40.272,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In production schema architecture, attributes are classified into four distinct tiers: Direct Identifiers, Quasi-Identifiers, Sensitive Attributes, and Insensitive Telemetry.",
+      "start": 40.272,
+      "end": 52.392,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Direct Identifiers like Social Security Numbers uniquely single out an individual in isolation. Quasi-Identifiers like 5-digit ZIP codes, gender, and birth dates appear harmless alone, but re-identify individuals when joined with auxiliary voter registries. Sensitive attributes carry confidential payloads, while insensitive telemetry contains operational parameters.",
+      "start": 52.392,
+      "end": 76.416,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let vector Q denote m discrete quasi-identifiers. The theoretical domain cardinality is the Cartesian product of the attribute state spaces: cardinality of Omega Q equals the product of domain sizes of Q k.",
+      "start": 76.416,
+      "end": 90.792,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "For the classic triad of 5-digit ZIP code, binary gender, and birth date across 100 years, the domain cardinality is approximately 3.14 billion discrete cells. Because the entire United States population is an order of magnitude smaller at 330 million, the space is astronomically sparse. 87.1 percent of residents occupy unique singleton cells, resulting in deterministic re-identification when joined with voter rolls.",
+      "start": 90.792,
+      "end": 120.504,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Under the US Health Insurance Portability and Accountability Act Safe Harbor method, health microdata is considered formally de-identified only if all 18 specified direct and indirect identifiers are excised.",
+      "start": 120.504,
+      "end": 133.56,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "This covers direct personal identifiers like names and SSNs, network telemetry like IP addresses and URLs, biometric full-face photos, and strict spatio-temporal rules. ZIP codes must be truncated to 3 digits, and if the 3-digit area contains fewer than 20,000 residents, it must be zeroed out to 000. All dates related to an individual must be generalized to years, and ages over 89 must be binned into a single 90-plus cohort.",
+      "start": 133.56,
+      "end": 164.28,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "The European General Data Protection Regulation establishes seven foundational principles in Article 5 that govern every modern data pipeline.",
+      "start": 164.28,
+      "end": 173.184,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "First, Lawfulness and Transparency under Article 6 require an explicit legal basis. Second, Purpose Limitation prevents function creep—data collected for billing cannot be fed to ML training. Third, Data Minimization requires collecting only what is strictly necessary. Fourth, Accuracy mandates automated correction DAGs. Fifth, Storage Limitation enforces automatic deletion. Sixth, Integrity guarantees encryption. And seventh, Accountability demands audit trails.",
+      "start": 173.184,
+      "end": 207.36,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the HIPAA 18 Detection and Consent Studio! Here you can test real-time regular expression sanitization, quasi-identifier generalization, and dynamic consent contract enforcement.",
+      "start": 207.36,
+      "end": 220.32,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice how switching Direct PII handling from Cleartext to Salted HMAC replaces names and Social Security numbers with cryptographic digests. Then adjust ZIP code generalization to see the 3-digit prefix 20,000 population rule in action. Finally, toggle Patient Consent Scope to test GDPR Article 17 erasure gating.",
+      "start": 220.32,
+      "end": 242.736,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1! Let's calculate the combinatorial sparsity of a healthcare registry and determine the exact re-identification probability for a unique demographic resident.",
+      "start": 242.736,
+      "end": 254.688,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Article 5(1)(c) of the GDPR mandates Data Minimization, but how do we formalize it mathematically? We use the Information Bottleneck method developed by Naftali Tishby.",
+      "start": 254.688,
+      "end": 267.216,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let X denote raw collected telemetry, Y denote the authorized downstream task target, and Z denote the compressed encoded representation. The Information Bottleneck objective minimizes the mutual information between X and Z while maximizing the mutual information between Z and Y, governed by Lagrange multiplier beta.",
+      "start": 267.216,
+      "end": 287.568,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Under Helen Nissenbaum's theory of Contextual Integrity, privacy is not absolute secrecy; it is the appropriate flow of information according to contextual norms.",
+      "start": 287.568,
+      "end": 297.6,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We formalize Purpose Limitation as a statistical leakage bound: the conditional mutual information between the encoded representation Z and any unauthorized secondary target Y secondary, given the primary target Y primary, must be bounded by a strict leakage threshold tau leak. This mathematical invariant prevents function creep when user telemetry crosses contextual boundaries.",
+      "start": 297.6,
+      "end": 321.312,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When a data subject exercises their GDPR Article 17 Right to Erasure, retraining a multi-billion parameter neural network from scratch on D minus z is economically and computationally impossible.",
+      "start": 321.312,
+      "end": 334.224,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Using second-order Taylor expansions and Koh and Liang's influence functions, we calculate the parameter update delta theta required to remove sample z's gradient influence. The update equals negative one over N times the inverse empirical Hessian matrix times the sample gradient.",
+      "start": 334.224,
+      "end": 351.792,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Developed by Dr. Ann Cavoukian and formally codified under GDPR Article 25, Privacy by Design establishes seven architectural axioms for modern engineering.",
+      "start": 351.792,
+      "end": 362.808,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "First, Proactive not Reactive: anticipate privacy risks at ingestion. Second, Privacy as the Default: maximum confidentiality with zero opt-in burden. Third, Embedded into Design: not an add-on bolt-on. Fourth, Positive-Sum: rejecting false tradeoffs between privacy and functionality. Fifth, End-to-End Security throughout the lifecycle. Sixth, Transparency and Open Verification. And seventh, Respect for User Privacy.",
+      "start": 362.808,
+      "end": 394.776,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the Information Bottleneck and Purpose Limitation Workbench! Here we balance telemetry compression against task utility and secondary concept leakage.",
+      "start": 394.776,
+      "end": 405.336,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Adjust the compression multiplier beta: at high beta, the pipeline transmits raw features, achieving 98 percent accuracy but leaking 85 percent of sensitive secondary attributes like health and income. Tune beta down to find the positive-sum operating point where task utility stays above 90 percent while collateral leakage collapses to zero.",
+      "start": 405.336,
+      "end": 426.888,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Active Checkpoint 2! Let's evaluate the legal and architectural constraints surrounding consumer consent contracts and dark-pattern data bundling.",
+      "start": 426.888,
+      "end": 437.016,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let us examine three pivotal real-world privacy failures that redefined international regulatory enforcement and dataset engineering.",
+      "start": 437.016,
+      "end": 445.104,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In 2017, the UK ICO ruled that Google DeepMind and the Royal Free NHS Trust unlawfully transferred 1.6 million patient records for their Streams clinical app without explicit patient consent. In 2018, Cambridge Analytica harvested 87 million Facebook profiles via an Open Graph API friend-permission cascade, resulting in a historic 5 billion dollar FTC fine. And Polar Flow exposed the home addresses of 6,400 military and secret service personnel by failing to normalize low-density GPS running tracks.",
+      "start": 445.104,
+      "end": 481.392,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Here is our production Python implementation: the HIPAASafeHarborScrubber class, built with Pydantic V2 audit records, pre-compiled regular expressions, and keyed cryptographic HMAC hashing.",
+      "start": 481.392,
+      "end": 494.808,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice how direct identifiers like SSNs, Medical Record Numbers, and emails are scrubbed or replaced with HMAC tokens. Meanwhile, ZIP codes are generalized to 3-digit prefixes according to the HIPAA 20,000 resident threshold, and exact dates are truncated to birth years. The resulting audit log certifies Safe Harbor compliance.",
+      "start": 494.808,
+      "end": 517.728,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Congratulations on completing Lesson 3.4! Let us synthesize the five foundational laws of data privacy engineering.",
+      "start": 517.728,
+      "end": 526.344,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "First, Quasi-Identifier Sparsity: Cartesian domain cardinality always dwarfs population, making singletons deterministic targets. Second, Information Bottleneck Minimization: compress non-task telemetry while preserving task utility. Third, Contextual Integrity: verify mutual information leakage remains bounded. Fourth, Privacy by Default: zero opt-in burden. And fifth, Unbundled Consent: never gate core service delivery behind secondary data brokering. In Lesson 3.5, we explore advanced Privacy-Preserving Techniques: k-anonymity, l-diversity, t-closeness, and Homomorphic Encryption.",
+      "start": 526.344,
+      "end": 568.44,
+      "slideIndex": 15
+    }
+  ]
+}

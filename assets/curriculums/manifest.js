@@ -1,4 +1,4 @@
-window.CURRICULUM_MANIFEST = window.manifestData = [
+window.CURRICULUM_MANIFEST = [
   {
     "chapter": 1,
     "part": 1,
@@ -176,7 +176,7 @@ window.CURRICULUM_MANIFEST = window.manifestData = [
     "key": "ch3_p4",
     "title": "Data Privacy Principles: Informed Consent, Quasi-Identifiers & Privacy by Design",
     "trackName": "Ethics, Privacy & Governance",
-    "slidesCount": 11,
+    "slidesCount": 16,
     "docPath": "track3-ethics-privacy/04-data-privacy-principles/"
   },
   {
@@ -302,7 +302,7 @@ window.CURRICULUM_MANIFEST = window.manifestData = [
     "key": "ch4_p7",
     "title": "Challenges in Annotation: Ambiguity, Cognitive Fatigue & Crowdsourcing Fraud",
     "trackName": "Data Annotation & Labeling",
-    "slidesCount": 10,
+    "slidesCount": 16,
     "docPath": "track4-data-annotation/07-challenges-in-annotation/"
   },
   {
@@ -455,7 +455,7 @@ window.CURRICULUM_MANIFEST = window.manifestData = [
     "key": "ch6_p2",
     "title": "Data Types, Measurement Scales, and Central Tendency",
     "trackName": "Exploratory Data Analysis",
-    "slidesCount": 8,
+    "slidesCount": 16,
     "docPath": "track6-exploratory-data-analysis/02-types-and-central-tendency/"
   },
   {

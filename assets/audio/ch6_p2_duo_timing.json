@@ -1,0 +1,453 @@
+{
+  "duration": 675.66,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome back Kaito! Today we tackle a fundamental question that trips up even experienced machine learning engineers: how do you properly measure the center of empirical data?",
+      "start": 0.0,
+      "end": 10.704
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Kaito",
+      "text": "Isn't the center just numpy dot mean, Dr. Nova? We sum the values and divide by n. It's the first thing everyone computes in pandas.",
+      "start": 11.004,
+      "end": 21.18
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 2,
+      "speaker": "Dr. Nova",
+      "text": "And that reflex causes catastrophic pipeline failures! If your feature is ordinal, like a five-point Likert rating, computing the arithmetic mean violates Stevens' measurement invariance theorem. If your feature measures throughput in requests per second, the arithmetic mean is physically biased by over eighty percent, whereas the harmonic mean reflects true physical runtime.",
+      "start": 21.48,
+      "end": 44.448
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 3,
+      "speaker": "Kaito",
+      "text": "Wait, an eighty percent error just from picking the wrong mean? Let's unpack the mathematical foundations behind that right now!",
+      "start": 44.748,
+      "end": 53.196
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Hold on, Dr. Nova. Every product team in tech computes the average customer satisfaction score from one to five stars. Are you saying that entire dashboard is mathematically invalid?",
+      "start": 53.696,
+      "end": 66.512
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Mathematically, yes! Star ratings are ordinal, not interval. Is the psychological distance between one star and two stars identical to the distance between four stars and five stars? Of course not.",
+      "start": 66.812,
+      "end": 81.596
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So if Team A has five hundred ratings of three stars, and Team B has two hundred and fifty ratings of one star and two hundred and fifty ratings of five stars, their arithmetic mean is identical at 3.0!",
+      "start": 81.896,
+      "end": 93.512
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Yet Team B has extreme polarization while Team A has uniform neutrality. By reporting median and interquartile range alongside full categorical frequency bars, you preserve the true ordinal distribution without making false metric assumptions.",
+      "start": 93.812,
+      "end": 110.636
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Why is the mean so sensitive to a single outlier compared to the median? What makes squared loss so punishing?",
+      "start": 111.136,
+      "end": 118.768
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Consider the derivative of the loss function, Kaito. For squared error, the gradient is two times x minus mu. The force pulling the estimate toward a point scales linearly with its distance.",
+      "start": 119.068,
+      "end": 132.004
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So if a data point is ten thousand units away, it exerts ten thousand times more torque on the parameter than a point sitting at one unit!",
+      "start": 132.304,
+      "end": 140.32
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. That linear influence function is why a single recording error or telemetry glitch obliterates the arithmetic mean.",
+      "start": 140.62,
+      "end": 149.308
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Wait, sixty-three percent efficiency means by using the median, I throw away over a third of my statistical data efficiency if the noise is Gaussian?",
+      "start": 149.808,
+      "end": 158.616
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. That's the classic robustness-efficiency dilemma. The mean is optimal when you are 100% sure the distribution is normal, but collapses if one point is corrupted. The median protects you completely from outliers, but wastes statistical power on clean data.",
+      "start": 158.916,
+      "end": 178.188
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Is there an estimator that gives us both? High Gaussian efficiency AND high breakdown resistance?",
+      "start": 178.488,
+      "end": 185.4
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Yes! The Hodges-Lehmann estimator, which we will derive shortly, delivers 95.5% Gaussian efficiency while preserving a robust 29.3% breakdown point. But first, let's explore multiplicative scales.",
+      "start": 185.7,
+      "end": 202.044
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "How can inverting the baseline flip the outcome of a hardware benchmark? That sounds impossible!",
+      "start": 202.544,
+      "end": 209.36
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Let's test two tasks, Kaito. On Task 1, System A runs in 1 second and System B takes 2 seconds. On Task 2, System A takes 2 seconds and System B takes 1 second. Both systems have identical performance.",
+      "start": 209.66,
+      "end": 226.292
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Right. System A is 2x faster on Task 1, but System B is 2x faster on Task 2.",
+      "start": 226.592,
+      "end": 234.128
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Now normalize to System B: System A has speedups of 2.0 and 0.5. Its arithmetic mean speedup is 1.25, claiming A is 25% faster! Now normalize to System A: System B has speedups of 0.5 and 2.0, meaning B is also 25% faster! The geometric mean gives exactly 1.0 for both—preserving physical truth.",
+      "start": 234.428,
+      "end": 261.716
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Look at the simulator canvas, Dr. Nova! At just ten percent contamination with values at plus eight hundred, the arithmetic mean needle shot up from one hundred to one hundred and seventy-eight!",
+      "start": 262.216,
+      "end": 274.072
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Notice that while the mean is utterly wrecked, the twenty percent trimmed mean, Hodges-Lehmann, and median remain rock solid near one hundred point nine. Try pushing the slider to twenty-five percent!",
+      "start": 274.372,
+      "end": 286.636
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "At twenty-five percent, the trimmed mean breaks because we exceeded its twenty percent alpha trim! But Hodges-Lehmann and median are still holding firm!",
+      "start": 286.936,
+      "end": 296.32
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "A five-point customer rating survey and an arithmetic mean of 3.64! Review our three options above me and select the correct mathematical critique!",
+      "start": 296.82,
+      "end": 307.02
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Wait! Is this the famous math puzzle? You drive to work at 30 miles per hour, and drive back along the same route at 60 miles per hour. What is your average speed?",
+      "start": 307.52,
+      "end": 319.928
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! Almost everyone guesses 45 miles per hour by taking the arithmetic mean. But let's calculate: if the distance is 60 miles, going there at 30 mph takes 2 hours. Returning at 60 mph takes 1 hour.",
+      "start": 320.228,
+      "end": 338.324
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Total distance is 120 miles, total time is 3 hours. 120 divided by 3 is exactly 40 miles per hour!",
+      "start": 338.624,
+      "end": 348.104
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "And the harmonic mean of 30 and 60 is 2 divided by (1/30 + 1/60), which equals exactly 40.0! You spend twice as much time crawling at 30 mph as you do cruising at 60 mph. Time weights the physical reality.",
+      "start": 348.404,
+      "end": 366.332
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "So the difference between the arithmetic mean and the harmonic mean isn't just an error—it actually measures something physical!",
+      "start": 366.832,
+      "end": 373.888
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Brilliant deduction, Kaito! The Jensen gap, A minus H, directly reflects the variance and skewness of the underlying values. If all pipeline stages run at the exact same speed, the gap is zero.",
+      "start": 374.188,
+      "end": 388.492
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And the wider the disparity between the fastest and slowest stages, the bigger the Jensen gap grows, dragging physical throughput further toward the bottleneck!",
+      "start": 388.792,
+      "end": 397.696
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. The Jensen gap is an empirical audit of systemic imbalance.",
+      "start": 397.996,
+      "end": 403.996
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Ninety-five point five percent Gaussian efficiency and twenty-nine percent outlier resistance? That sounds like a free lunch! What's the catch?",
+      "start": 404.496,
+      "end": 414.624
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The catch is computational complexity, Kaito! Computing all pairwise Walsh averages requires n times n plus 1 divided by 2 operations. For n equals one million, that is five hundred billion pairs!",
+      "start": 414.924,
+      "end": 429.564
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Ouch! O of n squared time and memory. So we can't run it naively on massive distributed arrays.",
+      "start": 429.864,
+      "end": 438.36
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Correct. In production, we either compute Hodges-Lehmann on rolling windows or sub-samples of size three hundred, or use an alpha-trimmed mean, which provides linear O of n complexity with configurable breakdown.",
+      "start": 438.66,
+      "end": 452.364
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Why would anyone Winsorize instead of just trimming the outliers away? Clamping values to the twentieth percentile seems artificial.",
+      "start": 452.864,
+      "end": 461.648
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because when you delete points in trimmed means, you shrink your sample size from n to n minus 2k. That reduces statistical degrees of freedom when calculating confidence intervals or standard errors.",
+      "start": 461.948,
+      "end": 474.62
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Ah! So Winsorization keeps the sample size at n, retaining valid standard error estimators for hypothesis tests while neutralizing the leverage of the extreme tails!",
+      "start": 474.92,
+      "end": 485.768
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Winsorization tames the extremes without destroying the sample footprint.",
+      "start": 486.068,
+      "end": 492.596
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Look at the numbers, Nova! With Stage A running at 100 requests per second and Stage B running at 20 requests per second, the arithmetic mean is 60 requests per second, predicting a total runtime of 3,333 seconds.",
+      "start": 493.096,
+      "end": 508.408
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Now look at the actual elapsed time: Stage A takes 1,000 seconds, but Stage B takes 5,000 seconds! The actual runtime is 6,000 seconds—an eighty percent budgeting failure!",
+      "start": 508.708,
+      "end": 521.668
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And the harmonic mean is exactly 33.33 requests per second, which computes 200,000 divided by 33.33 equals 6,000 seconds! The harmonic mean matches physical reality down to the second!",
+      "start": 521.968,
+      "end": 536.32
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "One hundred requests per second followed by twenty requests per second! Review our three options above me and select the correct physical analysis!",
+      "start": 536.82,
+      "end": 546.444
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "This decision tree is super clear, Dr. Nova! In our automated ingest pipelines, we can encode these exact checks into feature schema definitions.",
+      "start": 546.944,
+      "end": 556.832
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. If a column is tagged as 'telemetry_rate_rps', the pipeline compiler should reject any aggregation query using arithmetic mean and automatically rewrite it to harmonic mean.",
+      "start": 557.132,
+      "end": 570.524
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And if an analyst tries to compute average user feedback scores from 1 to 5, the pipeline flags an ordinal invariance violation!",
+      "start": 570.824,
+      "end": 578.72
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "That is how robust engineering organizations eliminate statistical bugs before they reach executive dashboards.",
+      "start": 579.02,
+      "end": 586.076
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Simpson's paradox is mind-bending! Female applicants had equal or higher acceptance rates in every single department, yet the aggregate marginal mean showed males ahead by nine percent!",
+      "start": 586.576,
+      "end": 597.928
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "That is because the marginal mean conflates within-department acceptance rates with the applicant volume distribution across departments. Women applied disproportionately to humanities departments with 10% quotas, while men applied to engineering with 70% quotas.",
+      "start": 598.228,
+      "end": 614.404
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So if an exploratory analyst only looks at the overall mean, they reach the exact opposite conclusion of reality!",
+      "start": 614.704,
+      "end": 621.76
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Always condition on key covariates before drawing inferences from central location metrics.",
+      "start": 622.06,
+      "end": 629.74
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "What an incredible journey through central tendency, Dr. Nova! We went from Stevens' 1946 measurement hierarchy to L1 and L2 risk formulations, the AGH inequality, and the 95.5% efficiency of the Hodges-Lehmann estimator.",
+      "start": 630.24,
+      "end": 646.152
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "And most importantly, Kaito, you now know that selecting a location estimator is never an afterthought. It is a fundamental architectural decision governed by measurement scales and physical laws.",
+      "start": 646.452,
+      "end": 658.668
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "In Lesson 6.3, we take the next step: examining dispersion, shape, skewness, and grouping! Thank you, Dr. Nova!",
+      "start": 658.968,
+      "end": 668.016
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "See you in Lesson 6.3! Keep your pipelines robust and your invariants mathematically verified.",
+      "start": 668.316,
+      "end": 675.66
+    }
+  ]
+}

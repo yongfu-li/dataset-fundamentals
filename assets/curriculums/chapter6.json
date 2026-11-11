@@ -748,9 +748,11 @@
     "chapter": 6,
     "part": 2,
     "key": "ch6_p2",
-    "badge": "◆ TRACK 6 • LESSON 6.2: DATA TYPES, MEASUREMENT SCALES, AND CENTRAL TENDENCY",
     "index": "Lesson 2 of 12",
     "lessonTitle": "Data Types, Measurement Scales, and Central Tendency",
+    "title": "Data Types, Measurement Scales, and Central Tendency",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Formalizing Stevens' Measurement Hierarchy, Invariant Transformations, L2 vs. L1 Empirical Risk, the AGH Inequality, and Robust Non-Parametric Estimators.",
     "slides": [
       {
         "id": "s1",
@@ -758,246 +760,716 @@
         "type": "title",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Data Types, Measurement Scales, and Central Tendency",
+          "title": "Data Types, Measurement Scales & Location Estimators",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 6.2. Today we examine data types, measurement scales, and central tendency, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 6: Foundations</span>\n    <span>•</span>\n    <span>Lesson 6.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Data Types, Measurement Scales, and Central Tendency\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into data types, measurement scales, and central tendency with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Data Types, Measurement Scales, and Central Tendency",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 6.2?"
+              "text": "Welcome to Lesson 6.2 of Dataset Fundamentals: Data Types, Measurement Scales, and Central Tendency. In exploratory data analysis, calculating a statistical metric on an inappropriate variable scale produces mathematically meaningless quantities. Formally establishing variable measurement levels determines which mathematical transformations are permissible and which estimators of central location accurately summarize empirical distributions.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 6.2. Today we examine data types, measurement scales, and central tendency, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Today we formalize Stevens' measurement hierarchy, derive the L2 and L1 empirical risk formulations of the mean and median, examine why the geometric and harmonic means govern multiplicative growth and rates, prove the Arithmetic-Geometric-Harmonic inequality via Jensen's theorem, and benchmark robust estimators including the Hodges-Lehmann median of Walsh averages.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 6: Foundations</span>\n    <span>•</span>\n    <span>Lesson 6.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Data Types, Measurement Scales, and Central Tendency\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into data types, measurement scales, and central tendency with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 6 • Exploratory Data Analysis • Lesson 6.2</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Data Types, Measurement Scales &amp; Robust Location Estimators\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Formalizing Stevens' Measurement Hierarchy, Invariant Transformations, $L_2$ vs. $L_1$ Empirical Risk, the AGH Inequality, and Robust Non-Parametric Estimators.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Stevens' Scales</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Nominal, Ordinal, Interval, Ratio &amp; permissible bijections vs. monotonic functions.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. L2 vs. L1 Risk</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Mean ($\\epsilon^* = 0\\%$) vs. Median ($\\epsilon^* = 50\\%$); Cramér-Rao efficiency vs. robustness.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. AGH Inequality</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">$\\bar{x}_H \\le \\bar{x}_G \\le \\bar{x}$. Jensen's Gap, physical rate averaging &amp; $F_1$ score.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Hodges-Lehmann</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Walsh averages with $95.5\\%$ ARE and $29.3\\%$ breakdown; Pydantic V2 engine.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Meaning of Central Tendency",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome back Kaito! Today we tackle a fundamental question that trips up even experienced machine learning engineers: how do you properly measure the center of empirical data?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Isn't the center just numpy dot mean, Dr. Nova? We sum the values and divide by n. It's the first thing everyone computes in pandas.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And that reflex causes catastrophic pipeline failures! If your feature is ordinal, like a five-point Likert rating, computing the arithmetic mean violates Stevens' measurement invariance theorem. If your feature measures throughput in requests per second, the arithmetic mean is physically biased by over eighty percent, whereas the harmonic mean reflects true physical runtime.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait, an eighty percent error just from picking the wrong mean? Let's unpack the mathematical foundations behind that right now!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Socratic Dialogue • Dr. Nova &amp; Kaito</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    The Fallacy of the Default Mean: Scales &amp; Risk Minimization\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Examining why summary metrics collapse when applied to incompatible measurement levels, and establishing the mathematical conditions for admissible central location estimators.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 max-w-3xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black text-sm\">Kaito's Intuition</strong>\n      <p class=\"text-[#151b20] leading-relaxed\">\n        Why not always use $\\bar{x} = \\frac{1}{n}\\sum x_i$? It's computationally cheap, built into standard tensor libraries, and minimizes squared error.\n      </p>\n    </div>\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black text-sm\">Dr. Nova's Mathematical Defense</strong>\n      <p class=\"text-[#151b20] leading-relaxed\">\n        Mean requires Interval or Ratio scales. It has a $0\\%$ breakdown point, distorts rates, and changes ranks under monotonic ordinal transforms.\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & Mathematical Derivations",
-        "type": "figure",
+        "title": "Stevens' Measurement Scales Hierarchy (1946 Science Monograph)",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Mathematical Derivations",
+          "title": "Stevens' Four Levels of Measurement",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Mathematical Derivations. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    subgraph Scales [\"Stevens' Measurement Scales Hierarchy\"]\n        Nom[\"Nominal Scale<br/>Labels & Categories (Blood types, IDs)<br/>Permissible: Injective Bijection f(x)\"]\n        Ord[\"Ordinal Scale<br/>Rank Orderings (Likert, Class ranks)<br/>Permissible: Monotonic Order-Preserving g(x)\"]\n        Int[\"Interval Scale<br/>Equidistant Spacing (Celsius, Calendar)<br/>Permissible: Positive Affine ax + b\"]\n        Rat[\"Ratio Scale<br/>Absolute Physical Zero (Kelvin, Latency, Mass)<br/>Permissible: Proportional Dilatation ax\"]\n\n        Nom -->|Add Ranking| Ord\n        Ord -->|Add Constant Distance| Int\n        Int -->|Add Absolute Zero| Rat\n    end\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Nom blue;\n    class Ord amber;\n    class Int purple;\n    class Rat green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In exploratory data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">analysis, calculating a statistical metric on an inappropriate variable scale produces mathematically meaningless quantities.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| Scale |</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Permissible Transformation | Mathematical Operations | Admissible Central Location Metric | | :--- | :--- | :--- | :--- | | Nominal | Injective bijection: $x' = \\pi(x)$ | Equality ($=, \\neq$) | Mode, Modal Frequency | | Ordinal | Monotonic increasing: $x' = g(x)$ | Ordering ($ $) | Median, Order Quantiles, IQR, Spearman $\\rho$ (DeWinter et al., 2016) | | Interval | Positive affine: $x' = a x + b$ ($a > 0$) | Addition, Subtraction ($+, -$) | Arithmetic Mean, Standard Deviation | | Ratio | Proportional dilatation: $x' = a x$ ($a > 0$) | Multiplication, Division ($\\times, \\div$) | Geometric Mean, Harmonic Mean |</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Mathematical Derivations",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & mathematical derivations, how does the architectural flow enforce system stability?"
+              "text": "In 1946, Stanley Smith Stevens published a landmark paper in Science establishing the four levels of measurement: Nominal, Ordinal, Interval, and Ratio. Each scale level is formally defined by its group of permissible transformations—mathematical transformations that preserve the empirical information contained in the variable.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "On a Nominal scale, only one-to-one bijections are permissible; only the mode is admissible. On an Ordinal scale, any strictly monotonic increasing function preserves rank ordering; here, the median, quantiles, and rank correlations are admissible, but the arithmetic mean is meaningless because arbitrary score shifts alter mean rankings across cohorts.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    subgraph Scales [\"Stevens' Measurement Scales Hierarchy\"]\n        Nom[\"Nominal Scale<br/>Labels & Categories (Blood types, IDs)<br/>Permissible: Injective Bijection f(x)\"]\n        Ord[\"Ordinal Scale<br/>Rank Orderings (Likert, Class ranks)<br/>Permissible: Monotonic Order-Preserving g(x)\"]\n        Int[\"Interval Scale<br/>Equidistant Spacing (Celsius, Calendar)<br/>Permissible: Positive Affine ax + b\"]\n        Rat[\"Ratio Scale<br/>Absolute Physical Zero (Kelvin, Latency, Mass)<br/>Permissible: Proportional Dilatation ax\"]\n\n        Nom -->|Add Ranking| Ord\n        Ord -->|Add Constant Distance| Int\n        Int -->|Add Absolute Zero| Rat\n    end\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Nom blue;\n    class Ord amber;\n    class Int purple;\n    class Rat green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In exploratory data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">analysis, calculating a statistical metric on an inappropriate variable scale produces mathematically meaningless quantities.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| Scale |</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Permissible Transformation | Mathematical Operations | Admissible Central Location Metric | | :--- | :--- | :--- | :--- | | Nominal | Injective bijection: $x' = \\pi(x)$ | Equality ($=, \\neq$) | Mode, Modal Frequency | | Ordinal | Monotonic increasing: $x' = g(x)$ | Ordering ($ $) | Median, Order Quantiles, IQR, Spearman $\\rho$ (DeWinter et al., 2016) | | Interval | Positive affine: $x' = a x + b$ ($a > 0$) | Addition, Subtraction ($+, -$) | Arithmetic Mean, Standard Deviation | | Ratio | Proportional dilatation: $x' = a x$ ($a > 0$) | Multiplication, Division ($\\times, \\div$) | Geometric Mean, Harmonic Mean |</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §1 Conceptual Foundation • S. S. Stevens (Science, 1946)\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20]\">\n      Measurement Invariance Theorem\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-3 font-mono text-xs mb-3\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[#0e7490] font-black text-sm mb-1\">1. Nominal</div>\n      <div class=\"text-[11px] text-[#475569] mb-1\">Categories (UUID, Country, Blood)</div>\n      <div class=\"text-[10px] font-bold text-[#151b20] bg-white/70 p-1.5 rounded border border-[#151b20]/20 mb-1\">\n        Permissible: $x' = \\pi(x)$ (Injective Bijection)\n      </div>\n      <div class=\"text-[10px] text-[#0e7490] font-bold\">Admissible: Mode, Modal Frequency Ratio</div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[#b45309] font-black text-sm mb-1\">2. Ordinal</div>\n      <div class=\"text-[11px] text-[#475569] mb-1\">Rank Orders (Likert 1-5, Bug Severity)</div>\n      <div class=\"text-[10px] font-bold text-[#151b20] bg-white/70 p-1.5 rounded border border-[#151b20]/20 mb-1\">\n        Permissible: $x' = g(x)$ ($g' > 0$ Monotonic)\n      </div>\n      <div class=\"text-[10px] text-[#b45309] font-bold\">Admissible: Median, IQR, Spearman $\\rho$</div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[#6b21a8] font-black text-sm mb-1\">3. Interval</div>\n      <div class=\"text-[11px] text-[#475569] mb-1\">Equal Intervals, Arbitrary Zero (°C, Year)</div>\n      <div class=\"text-[10px] font-bold text-[#151b20] bg-white/70 p-1.5 rounded border border-[#151b20]/20 mb-1\">\n        Permissible: $x' = ax + b$ ($a > 0$ Affine)\n      </div>\n      <div class=\"text-[10px] text-[#6b21a8] font-bold\">Admissible: Arithmetic Mean, Standard Deviation</div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[#15803d] font-black text-sm mb-1\">4. Ratio</div>\n      <div class=\"text-[11px] text-[#475569] mb-1\">Absolute Physical Zero (Kelvin, Latency, Mass)</div>\n      <div class=\"text-[10px] font-bold text-[#151b20] bg-white/70 p-1.5 rounded border border-[#151b20]/20 mb-1\">\n        Permissible: $x' = ax$ ($a > 0$ Similitude)\n      </div>\n      <div class=\"text-[10px] text-[#15803d] font-bold\">Admissible: Geometric Mean, Harmonic Mean</div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20] shadow-[2px_2px_0px_#dc2626] font-mono text-xs\">\n    <strong class=\"text-[#dc2626] font-black block mb-0.5\">⚠️ The Ordinal Likert Trap:</strong>\n    <span class=\"text-[#151b20] text-[11px] leading-snug\">\n      Averaging Likert ratings (1=\"Poor\" to 5=\"Excellent\") presumes equal perceptual spacing between categories. Under an admissible monotonic transformation $g(x) = [1, 2, 3, 5, 10]$, cohort mean rankings can flip completely! Always summarize ordinal data with median, quantiles, or cumulative logit models.\n    </span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Likert Scale Dilemma",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Hold on, Dr. Nova. Every product team in tech computes the average customer satisfaction score from one to five stars. Are you saying that entire dashboard is mathematically invalid?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Mathematically, yes! Star ratings are ordinal, not interval. Is the psychological distance between one star and two stars identical to the distance between four stars and five stars? Of course not.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if Team A has five hundred ratings of three stars, and Team B has two hundred and fifty ratings of one star and two hundred and fifty ratings of five stars, their arithmetic mean is identical at 3.0!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Yet Team B has extreme polarization while Team A has uniform neutrality. By reporting median and interquartile range alongside full categorical frequency bars, you preserve the true ordinal distribution without making false metric assumptions.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Socratic Exploration • Likert Invariance Under Arbitrary Monotonic Mapping\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#eff6ff] border-2 border-[#151b20] shadow-[2px_2px_0px_#2563eb]\">\n      <strong class=\"text-[#2563eb] block mb-1 text-sm font-black\">Cohort A: Moderate Consensus</strong>\n      <div class=\"text-[11px] text-[#151b20] space-y-1 mb-2\">\n        <div>• Distribution: 100% of users rate <strong>3 Stars</strong></div>\n        <div>• Arithmetic Mean: $\\bar{x}_A = 3.00$</div>\n        <div>• Sample Median: $\\tilde{x}_A = 3.00$, $\\text{IQR} = 0$</div>\n      </div>\n      <div class=\"text-[10px] text-[#475569] bg-white p-1.5 rounded border border-[#151b20]/20\">\n        Verdict: Low variance, uniform middle sentiment.\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fef2f2] border-2 border-[#151b20] shadow-[2px_2px_0px_#dc2626]\">\n      <strong class=\"text-[#dc2626] block mb-1 text-sm font-black\">Cohort B: Extreme Polarization</strong>\n      <div class=\"text-[11px] text-[#151b20] space-y-1 mb-2\">\n        <div>• Distribution: 50% rate <strong>1 Star</strong>, 50% rate <strong>5 Stars</strong></div>\n        <div>• Arithmetic Mean: $\\bar{x}_B = \\frac{1 + 5}{2} = 3.00$ (Identical!)</div>\n        <div>• Sample Median: $\\tilde{x}_B = 3.00$, $\\text{IQR} = 4.00$</div>\n      </div>\n      <div class=\"text-[10px] text-[#dc2626] bg-white p-1.5 rounded border border-[#151b20]/20 font-bold\">\n        Blind Mean: Masks critical bimodal customer revolt!\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Mathematical Formulations of Location Estimators",
-        "type": "equation",
+        "title": "The Arithmetic Mean: L2 Loss Minimization & Outlier Vulnerability",
+        "type": "formula",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Mathematical Formulations of Location Estimators",
+          "title": "Mathematical Derivation of the Sample Mean",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Mathematical Formulations of Location Estimators. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x} = \\frac{1}{n} \\sum_{i=1}^n x_i = \\arg\\min_{\\mu \\in \\mathbb{R}} \\sum_{i=1}^n (x_i - \\mu)^2$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\tilde{x} = \\begin{cases} \nx_{\\left(\\frac{n+1}{2}\\right)} & \\text{if } n \\text{ is odd} \\\\ \n\\frac{1}{2}\\left(x_{\\left(\\frac{n}{2}\\right)} + x_{\\left(\\frac{n}{2} + 1\\right)}\\right) & \\text{if } n \\text{ is even} \n\\end{cases} = \\arg\\min_{m \\in \\mathbb{R}} \\sum_{i=1}^n |x_i - m|$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x}_G = \\left(\\prod_{i=1}^n x_i\\right)^{1/n} = \\exp\\left(\\frac{1}{n} \\sum_{i=1}^n \\ln x_i\\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The sample median</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">minimizes $L_1$ absolute error and achieves the optimal breakdown point $\\epsilon^ = 0.50$ ($50\\%$): The geometric mean represents the central tendency of multiplicative processes, log-normal phenomena, and benchmark speedups: The harmonic mean is the correct estimator for rates, velocities, and ratios where units are expressed as $y / x$ (e.g., bits per second, $F_1$ score): For any positive non-identical real numbers $x_i > 0$: with equality holding if and only if $x_1 = x_2 = \\dots = x_n$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To balance statistical</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">efficiency under Gaussians with robustness under heavy tails, the $\\alpha$-trimmed mean discards the upper and lower $\\alpha \\cdot n$ order statistics ($0 < \\alpha < 0.5$): The breakdown point is $\\epsilon^ = \\alpha$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A $20\\%$ trimmed</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">mean ($\\alpha = 0.20$) withstands $20\\%$ gross contamination while maintaining over $80\\%$ Gaussian efficiency.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When comparing location</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">estimators across stratified subgroups, aggregate central tendencies can invert sub-population directionality—a manifestation of Simpson&#x27;s Paradox (Bickel et al., 1975).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Mathematical Formulations of Location Estimators",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does mathematical formulations of location estimators protect our system against silent distribution shift in production?"
+              "text": "Mathematically, the sample mean is the unique minimizer of empirical squared Euclidean loss, or L2 risk. Setting the first derivative of the sum of squared residuals to zero yields the standard formula: one over n times the sum of x sub i.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Under a pure Gaussian distribution, the sample mean attains the Cramér-Rao lower bound, achieving 100% statistical efficiency. However, this optimal efficiency comes at extreme fragility: because error is penalized quadratically, the finite-sample breakdown point is one over n, which tends to zero percent. A single corrupted leverage point can drag the mean to infinity.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x} = \\frac{1}{n} \\sum_{i=1}^n x_i = \\arg\\min_{\\mu \\in \\mathbb{R}} \\sum_{i=1}^n (x_i - \\mu)^2$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\tilde{x} = \\begin{cases} \nx_{\\left(\\frac{n+1}{2}\\right)} & \\text{if } n \\text{ is odd} \\\\ \n\\frac{1}{2}\\left(x_{\\left(\\frac{n}{2}\\right)} + x_{\\left(\\frac{n}{2} + 1\\right)}\\right) & \\text{if } n \\text{ is even} \n\\end{cases} = \\arg\\min_{m \\in \\mathbb{R}} \\sum_{i=1}^n |x_i - m|$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x}_G = \\left(\\prod_{i=1}^n x_i\\right)^{1/n} = \\exp\\left(\\frac{1}{n} \\sum_{i=1}^n \\ln x_i\\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The sample median</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">minimizes $L_1$ absolute error and achieves the optimal breakdown point $\\epsilon^ = 0.50$ ($50\\%$): The geometric mean represents the central tendency of multiplicative processes, log-normal phenomena, and benchmark speedups: The harmonic mean is the correct estimator for rates, velocities, and ratios where units are expressed as $y / x$ (e.g., bits per second, $F_1$ score): For any positive non-identical real numbers $x_i > 0$: with equality holding if and only if $x_1 = x_2 = \\dots = x_n$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To balance statistical</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">efficiency under Gaussians with robustness under heavy tails, the $\\alpha$-trimmed mean discards the upper and lower $\\alpha \\cdot n$ order statistics ($0 < \\alpha < 0.5$): The breakdown point is $\\epsilon^ = \\alpha$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A $20\\%$ trimmed</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">mean ($\\alpha = 0.20$) withstands $20\\%$ gross contamination while maintaining over $80\\%$ Gaussian efficiency.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When comparing location</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">estimators across stratified subgroups, aggregate central tendencies can invert sub-population directionality—a manifestation of Simpson&#x27;s Paradox (Bickel et al., 1975).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#dc2626] uppercase tracking-wide\">\n      §2 Mathematical Formulation • L2 Empirical Risk Minimization\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffd8ce] text-[#991b1b] border-2 border-[#151b20]\">\n      Breakdown Point $\\epsilon^* \\to 0\\%$\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0fbfd] border-2 border-[#0e7490] shadow-[3px_3px_0px_#22bfd7] font-mono text-center mb-3\">\n    <div class=\"text-xs text-[#0e7490] font-bold uppercase tracking-wider mb-1\">L2 Empirical Risk Objective</div>\n    $$\\bar{x} = \\arg\\min_{\\mu \\in \\mathbb{R}} \\sum_{i=1}^n (x_i - \\mu)^2 = \\frac{1}{n} \\sum_{i=1}^n x_i$$\n    <div class=\"text-[11px] text-[#475569] mt-2\">\n      First-Order Condition: $\\frac{d}{d\\mu} \\sum_{i=1}^n (x_i - \\mu)^2 = -2 \\sum_{i=1}^n (x_i - \\mu) = 0 \\implies n\\mu = \\sum_{i=1}^n x_i$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] font-black block mb-1\">Gaussian Efficiency (Cramér-Rao)</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Under pure Gaussian noise $X \\sim \\mathcal{N}(\\mu, \\sigma^2)$, $\\text{Var}(\\bar{x}) = \\frac{\\sigma^2}{n}$, matching the Cramér-Rao lower bound. Efficiency = $100\\%$.\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fef2f2] border-2 border-[#151b20] shadow-[2px_2px_0px_#dc2626]\">\n      <strong class=\"text-[#dc2626] font-black block mb-1\">Breakdown Point Catastrophe</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        $$\\epsilon^* = \\frac{1}{n} \\xrightarrow{n \\to \\infty} 0\\%$$\n        A single adversary setting $x_k \\to +\\infty$ pulls $\\bar{x} \\to +\\infty$ unconditionally.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: Quadratic Penalty and Leverage",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why is the mean so sensitive to a single outlier compared to the median? What makes squared loss so punishing?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Consider the derivative of the loss function, Kaito. For squared error, the gradient is two times x minus mu. The force pulling the estimate toward a point scales linearly with its distance.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if a data point is ten thousand units away, it exerts ten thousand times more torque on the parameter than a point sitting at one unit!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. That linear influence function is why a single recording error or telemetry glitch obliterates the arithmetic mean.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Mathematical Physics • Influence Function of Squared Loss\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"text-[#b45309] font-black text-sm mb-2\">Influence Function $\\psi(x)$ Comparison</div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n      <div class=\"p-2.5 rounded bg-white border border-[#151b20]/20\">\n        <strong class=\"text-[#dc2626] block mb-1\">L2 Mean Loss: $\\rho(u) = u^2$</strong>\n        <p class=\"text-[11px] text-[#151b20]\">Score Function: $\\psi(u) = \\frac{d}{du}u^2 = 2u$ (Unbounded!). Force scales linearly with distance $u = x - \\mu$.</p>\n      </div>\n      <div class=\"p-2.5 rounded bg-white border border-[#151b20]/20\">\n        <strong class=\"text-[#16a34a] block mb-1\">L1 Median Loss: $\\rho(u) = |u|$</strong>\n        <p class=\"text-[11px] text-[#151b20]\">Score Function: $\\psi(u) = \\text{sign}(u) \\in \\{-1, +1\\}$ (Bounded!). A point at $+10{,}000$ exerts the same pull as a point at $+1$.</p>\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Estimator Selection Decision Protocol",
-        "type": "equation",
+        "title": "The Sample Median: L1 Loss Minimization & 50% Breakdown Robustness",
+        "type": "formula",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Estimator Selection Decision Protocol",
+          "title": "Mathematical Derivation of the Sample Median",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Estimator Selection Decision Protocol. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{GM} = \\left(\\prod_{i=1}^n x_i\\right)^{1/n}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When averaging growth rates, investment returns, or normalized performance benchmark ratios (e.g., speedup factors across GPU hardware), never compute the arithmetic mean. Always use the Geometric Mean: $$\\text{GM} = \\left(\\prod_{i=1}^n x_i\\right)^{1</span>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Estimator Selection Decision Protocol",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does estimator selection decision protocol protect our system against silent distribution shift in production?"
+              "text": "The sample median is the empirical risk minimizer under L1 absolute deviation loss. Because the derivative of the absolute value function is simply the sign function, the first-order condition requires balancing the number of points above the median with the number of points below.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "This yields the theoretical maximum breakdown point for any translation-equivariant location estimator: 50%. You can corrupt up to half the sample data without driving the median to infinity. However, under a pure Gaussian distribution, the median's asymptotic relative efficiency drops to 2 over pi, or approximately 63.7%.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{GM} = \\left(\\prod_{i=1}^n x_i\\right)^{1/n}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When averaging growth rates, investment returns, or normalized performance benchmark ratios (e.g., speedup factors across GPU hardware), never compute the arithmetic mean. Always use the Geometric Mean: $$\\text{GM} = \\left(\\prod_{i=1}^n x_i\\right)^{1</span>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#16a34a] uppercase tracking-wide\">\n      §3 Mathematical Formulation • L1 Empirical Risk Minimization\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#dcfce7] text-[#166534] border-2 border-[#151b20]\">\n      Optimal Breakdown $\\epsilon^* = 50\\%$\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0fbfd] border-2 border-[#0e7490] shadow-[3px_3px_0px_#22bfd7] font-mono text-center mb-3\">\n    <div class=\"text-xs text-[#0e7490] font-bold uppercase tracking-wider mb-1\">L1 Absolute Loss Objective</div>\n    $$\\tilde{x} = \\arg\\min_{m \\in \\mathbb{R}} \\sum_{i=1}^n |x_i - m| = \\begin{cases} x_{\\left(\\frac{n+1}{2}\\right)} & n \\text{ odd} \\\\[4pt] \\frac{1}{2}\\left(x_{\\left(\\frac{n}{2}\\right)} + x_{\\left(\\frac{n}{2} + 1\\right)}\\right) & n \\text{ even} \\end{cases}$$\n    <div class=\"text-[11px] text-[#475569] mt-2\">\n      Optimality: $\\sum_{i=1}^n \\text{sign}(x_i - m) = 0 \\iff \\#\\{x_i > m\\} = \\#\\{x_i < m\\}$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] font-black block mb-1\">Breakdown Robustness ($\\\\epsilon^* = 50\\%$)</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Up to $\\lfloor \\frac{n-1}{2} \\rfloor$ observations can be maliciously replaced with $\\pm\\infty$ without causing the estimate to diverge. Optimal resistance bound.\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#b45309]\">\n      <strong class=\"text-[#b45309] font-black block mb-1\">Gaussian Efficiency Penalty (63.7% ARE)</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        $$\\text{Var}(\\tilde{x}) \\approx \\frac{\\pi}{2} \\frac{\\sigma^2}{n} \\approx 1.571 \\frac{\\sigma^2}{n} \\implies \\text{ARE} = \\frac{2}{\\pi} \\approx 63.7\\%$$\n        Requires $57\\%$ more sample data to achieve the estimation precision of the mean on Gaussians.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Efficiency Penalty Trade-Off",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, sixty-three percent efficiency means by using the median, I throw away over a third of my statistical data efficiency if the noise is Gaussian?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito. That's the classic robustness-efficiency dilemma. The mean is optimal when you are 100% sure the distribution is normal, but collapses if one point is corrupted. The median protects you completely from outliers, but wastes statistical power on clean data.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Is there an estimator that gives us both? High Gaussian efficiency AND high breakdown resistance?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes! The Hodges-Lehmann estimator, which we will derive shortly, delivers 95.5% Gaussian efficiency while preserving a robust 29.3% breakdown point. But first, let's explore multiplicative scales.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Statistical Trade-Offs • The Efficiency vs. Robustness Frontier\n    </span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full font-mono text-xs border-collapse\">\n      <thead>\n        <tr class=\"bg-[#151b20] text-white\">\n          <th class=\"p-2 text-left border border-[#151b20]\">Estimator</th>\n          <th class=\"p-2 text-center border border-[#151b20]\">Loss Function</th>\n          <th class=\"p-2 text-center border border-[#151b20]\">Breakdown ($\\epsilon^*$)</th>\n          <th class=\"p-2 text-center border border-[#151b20]\">Gaussian ARE</th>\n          <th class=\"p-2 text-left border border-[#151b20]\">Production Use Case</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"bg-white\">\n          <td class=\"p-2 font-bold text-[#dc2626] border border-[#151b20]/20\">Arithmetic Mean</td>\n          <td class=\"p-2 text-center border border-[#151b20]/20\">$L_2: (x - \\mu)^2$</td>\n          <td class=\"p-2 text-center font-bold text-[#dc2626] border border-[#151b20]/20\">$0\\%$</td>\n          <td class=\"p-2 text-center font-bold text-[#16a34a] border border-[#151b20]/20\">$100.0\\%$</td>\n          <td class=\"p-2 border border-[#151b20]/20\">Pure Gaussian noise, total sums budgeting</td>\n        </tr>\n        <tr class=\"bg-[#f8fafc]\">\n          <td class=\"p-2 font-bold text-[#16a34a] border border-[#151b20]/20\">Sample Median</td>\n          <td class=\"p-2 text-center border border-[#151b20]/20\">$L_1: |x - m|$</td>\n          <td class=\"p-2 text-center font-bold text-[#16a34a] border border-[#151b20]/20\">$50.0\\%$</td>\n          <td class=\"p-2 text-center font-bold text-[#ea580c] border border-[#151b20]/20\">$63.7\\%$</td>\n          <td class=\"p-2 border border-[#151b20]/20\">Heavy tails, gross contamination, ordinal ranks</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-2 font-bold text-[#7c3aed] border border-[#151b20]/20\">Hodges-Lehmann</td>\n          <td class=\"p-2 text-center border border-[#151b20]/20\">Walsh Median</td>\n          <td class=\"p-2 text-center font-bold text-[#7c3aed] border border-[#151b20]/20\">$29.3\\%$</td>\n          <td class=\"p-2 text-center font-bold text-[#16a34a] border border-[#151b20]/20\">$95.5\\%$</td>\n          <td class=\"p-2 border border-[#151b20]/20\">Continuous telemetry, telemetry sensors (Ideal)</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Estimator Selection Decision Protocol: Architecture Flowchart",
-        "type": "figure",
+        "title": "The Geometric Mean: Multiplicative Growth, Log-Normality & Scale Invariance",
+        "type": "formula",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Estimator Selection Decision Protocol: Architecture Flowchart",
+          "title": "Mathematical Derivation of the Geometric Mean",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Estimator Selection Decision Protocol: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    In[\"Empirical Feature Vector X\"] --> ScaleCheck{\"Scale of Measurement?\"}\n    \n    ScaleCheck -- \"Nominal\" --> ModeOp[\"Compute Mode & Frequency Table\"]\n    ScaleCheck -- \"Ordinal\" --> MedianOp[\"Compute Median & Quartile Range\"]\n    \n    ScaleCheck -- \"Interval / Ratio\" --> ContamCheck{\"Tail Heaviness & Contamination?\"}\n    ContamCheck -- \"Symmetric, Thin-Tailed (Gaussian)\" --> MeanOp[\"Arithmetic Mean (Optimal L2 Efficiency)\"]\n    ContamCheck -- \"Multiplicative / Rates\" --> RateCheck{\"Rate or Multiplicative Ratio?\"}\n    RateCheck -- \"Speedup / Growth Rate\" --> GeomOp[\"Geometric Mean\"]\n    RateCheck -- \"Throughput (per-unit-time)\" --> HarmOp[\"Harmonic Mean\"]\n    \n    ContamCheck -- \"Heavy-Tailed / Outliers\" --> RobustOp[\"Hodges-Lehmann or 20% Trimmed Mean\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class In,ScaleCheck,ContamCheck,RateCheck amber;\n    class ModeOp,MedianOp,MeanOp,GeomOp,HarmOp,RobustOp green;</pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Estimator Selection Decision Protocol: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for estimator selection decision protocol: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "For strictly positive data, the geometric mean is defined as the n-th root of the product of the observations, which is equivalent to exponentiating the arithmetic mean of log-transformed values. It is the natural central tendency measure for multiplicative processes, log-normal distributions, and normalized benchmark speedups.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Crucially, the geometric mean satisfies the scale-invariance and invertibility property: the ratio of the geometric means of two systems equals the geometric mean of their ratios. If you use the arithmetic mean to average normalized speedup ratios, changing the reference baseline will invert which system appears faster—a fatal benchmarking flaw.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    In[\"Empirical Feature Vector X\"] --> ScaleCheck{\"Scale of Measurement?\"}\n    \n    ScaleCheck -- \"Nominal\" --> ModeOp[\"Compute Mode & Frequency Table\"]\n    ScaleCheck -- \"Ordinal\" --> MedianOp[\"Compute Median & Quartile Range\"]\n    \n    ScaleCheck -- \"Interval / Ratio\" --> ContamCheck{\"Tail Heaviness & Contamination?\"}\n    ContamCheck -- \"Symmetric, Thin-Tailed (Gaussian)\" --> MeanOp[\"Arithmetic Mean (Optimal L2 Efficiency)\"]\n    ContamCheck -- \"Multiplicative / Rates\" --> RateCheck{\"Rate or Multiplicative Ratio?\"}\n    RateCheck -- \"Speedup / Growth Rate\" --> GeomOp[\"Geometric Mean\"]\n    RateCheck -- \"Throughput (per-unit-time)\" --> HarmOp[\"Harmonic Mean\"]\n    \n    ContamCheck -- \"Heavy-Tailed / Outliers\" --> RobustOp[\"Hodges-Lehmann or 20% Trimmed Mean\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class In,ScaleCheck,ContamCheck,RateCheck amber;\n    class ModeOp,MedianOp,MeanOp,GeomOp,HarmOp,RobustOp green;</pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#b45309] uppercase tracking-wide\">\n      §4 Multiplicative Estimator • Geometric Mean &amp; Invariant Ratios\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#b45309] border-2 border-[#151b20]\">\n      Scale Invariance $\\frac{\\bar{x}_G}{\\bar{y}_G} = \\overline{(x/y)}_G$\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0fbfd] border-2 border-[#0e7490] shadow-[3px_3px_0px_#22bfd7] font-mono text-center mb-3\">\n    <div class=\"text-xs text-[#0e7490] font-bold uppercase tracking-wider mb-1\">Geometric Mean Formulation ($x_i > 0$)</div>\n    $$\\bar{x}_G = \\left(\\prod_{i=1}^n x_i\\right)^{1/n} = \\exp\\left( \\frac{1}{n} \\sum_{i=1}^n \\ln x_i \\right)$$\n    <div class=\"text-[11px] text-[#475569] mt-2\">\n      Log-Normal Equivalence: If $\\ln X \\sim \\mathcal{N}(\\mu, \\sigma^2)$, then $\\bar{x}_G$ is the maximum likelihood estimator of the median $e^\\mu$.\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] font-black block mb-1\">Baseline Invariance in Benchmarking</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        When evaluating model latency speedups across hardware:\n        $$\\frac{\\bar{x}_G}{\\bar{y}_G} = \\left( \\prod_{i=1}^n \\frac{x_i}{y_i} \\right)^{1/n}$$\n        The relative speedup ranking remains identical regardless of which machine is chosen as the divisor baseline.\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20] shadow-[2px_2px_0px_#dc2626]\">\n      <strong class=\"text-[#dc2626] font-black block mb-1\">Arithmetic Mean Fallacy on Ratios</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Averaging ratios arithmetically creates ranking paradoxes:\n        $$\\frac{1}{n} \\sum \\frac{x_i}{y_i} \\neq \\left( \\frac{1}{n} \\sum \\frac{y_i}{x_i} \\right)^{-1}$$\n        Machine A can appear faster than B, yet B appears faster than A simply by inverting the baseline!\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Benchmark Speedup Inversion Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "How can inverting the baseline flip the outcome of a hardware benchmark? That sounds impossible!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's test two tasks, Kaito. On Task 1, System A runs in 1 second and System B takes 2 seconds. On Task 2, System A takes 2 seconds and System B takes 1 second. Both systems have identical performance.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Right. System A is 2x faster on Task 1, but System B is 2x faster on Task 2.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now normalize to System B: System A has speedups of 2.0 and 0.5. Its arithmetic mean speedup is 1.25, claiming A is 25% faster! Now normalize to System A: System B has speedups of 0.5 and 2.0, meaning B is also 25% faster! The geometric mean gives exactly 1.0 for both—preserving physical truth.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Empirical Paradox • The SPEC Benchmark Baseline Reversal\n    </span>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"font-black text-[#b45309] text-sm mb-2\">Two Symmetrical Workloads ($T_1, T_2$)</div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-2\">\n      <div class=\"p-2 bg-white rounded border border-[#151b20]/20\">\n        <strong>Normalized to System B:</strong><br/>\n        Speedup A: $[2.0, 0.5]$<br/>\n        • Arithmetic Mean: $\\frac{2.0 + 0.5}{2} = \\mathbf{1.25}$ (System A wins!)<br/>\n        • Geometric Mean: $\\sqrt{2.0 \\times 0.5} = \\mathbf{1.00}$ (Tie)\n      </div>\n      <div class=\"p-2 bg-white rounded border border-[#151b20]/20\">\n        <strong>Normalized to System A:</strong><br/>\n        Speedup B: $[0.5, 2.0]$<br/>\n        • Arithmetic Mean: $\\frac{0.5 + 2.0}{2} = \\mathbf{1.25}$ (System B wins!)<br/>\n        • Geometric Mean: $\\sqrt{0.5 \\times 2.0} = \\mathbf{1.00}$ (Tie)\n      </div>\n    </div>\n    <div class=\"text-[11px] text-[#dc2626] font-bold\">\n      Conclusion: Only the geometric mean avoids self-contradictory claims when averaging speedup factors!\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Production Implementation: Location & Scale Estimator Benchmark",
-        "type": "code",
+        "title": "Interactive Lab 1: Central Tendency & Outlier Breakdown Contamination Studio",
+        "type": "tool",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Location & Scale Estimator Benchmark",
+          "title": "Interactive Lab: Breakdown Contamination Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Location & Scale Estimator Benchmark. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># central_tendency_benchmark.py\n# Mathematical Location Estimators, Breakdown Points, and the AGH Inequality\n\nfrom typing import Dict, List\nimport numpy as np\nfrom scipy import stats\n\ndef compute_all_location_estimators(data: np.ndarray, alpha_trim: float = 0.10) -&gt; Dict[str, float]:\n    # Computes all fundamental central tendency metrics for a continuous 1D sample\n    x = np.asarray(data, dtype=float)\n    x = x[~np.isnan(x)] # Drop missing values\n    n = len(x)\n    if n == 0:\n        raise ValueError(&quot;Cannot calculate location on empty array.&quot;)\n\n    # 1. Arithmetic Mean\n    arith_mean = float(np.mean(x))\n\n    # 2. Sample Median\n    med_val = float(np.median(x))\n\n    # 3. Geometric Mean (requires x_i &gt; 0)\n    if np.all(x &gt; 0):\n        geom_mean = float(np.exp(np.mean(np.log(x))))\n    else:\n        geom_mean = float(&quot;nan&quot;)\n\n    # 4. Harmon</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Location & Scale Estimator Benchmark",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Welcome to the Central Tendency Breakdown Studio! In this interactive sandbox, we stress-test four fundamental location estimators against increasing fractions of gross outlier contamination. Use the slider below to inject extreme leverage shocks into a baseline Gaussian sample.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Observe how the arithmetic mean collapses immediately at even five percent contamination. The twenty percent trimmed mean holds until twenty percent outliers, the Hodges-Lehmann estimator survives up to its theoretical twenty-nine point three percent bound, while the sample median resists all the way to fifty percent.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># central_tendency_benchmark.py\n# Mathematical Location Estimators, Breakdown Points, and the AGH Inequality\n\nfrom typing import Dict, List\nimport numpy as np\nfrom scipy import stats\n\ndef compute_all_location_estimators(data: np.ndarray, alpha_trim: float = 0.10) -&gt; Dict[str, float]:\n    # Computes all fundamental central tendency metrics for a continuous 1D sample\n    x = np.asarray(data, dtype=float)\n    x = x[~np.isnan(x)] # Drop missing values\n    n = len(x)\n    if n == 0:\n        raise ValueError(&quot;Cannot calculate location on empty array.&quot;)\n\n    # 1. Arithmetic Mean\n    arith_mean = float(np.mean(x))\n\n    # 2. Sample Median\n    med_val = float(np.median(x))\n\n    # 3. Geometric Mean (requires x_i &gt; 0)\n    if np.all(x &gt; 0):\n        geom_mean = float(np.exp(np.mean(np.log(x))))\n    else:\n        geom_mean = float(&quot;nan&quot;)\n\n    # 4. Harmon</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs font-mono\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>🔬</span> Lab 1: Location Estimator Breakdown Stress Test\n    </span>\n    <span class=\"text-[10px] text-[#475569]\">Simulating $N=120$, Baseline $\\mathcal{N}(100, 15^2)$</span>\n  </div>\n  <p class=\"text-[#475569] mb-2 leading-relaxed\">\n    Drag the slider below to increase the gross outlier contamination percentage. Watch how each estimator's vertical needle shifts on the empirical distribution canvas.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: The Outlier Stress Test",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the simulator canvas, Dr. Nova! At just ten percent contamination with values at plus eight hundred, the arithmetic mean needle shot up from one hundred to one hundred and seventy-eight!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice that while the mean is utterly wrecked, the twenty percent trimmed mean, Hodges-Lehmann, and median remain rock solid near one hundred point nine. Try pushing the slider to twenty-five percent!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "At twenty-five percent, the trimmed mean breaks because we exceeded its twenty percent alpha trim! But Hodges-Lehmann and median are still holding firm!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs font-mono\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>🔬</span> Socratic Lab: Location Estimator Breakdown Stress Test\n    </span>\n  </div>\n  <p class=\"text-[#475569] mb-2 leading-relaxed\">\n    Observe the sequential collapse: Mean breaks at $\\epsilon^* > 0$, Trimmed breaks at $\\epsilon^* > 20\\%$, Hodges-Lehmann breaks at $\\epsilon^* > 29.3\\%$, Median holds up to $\\epsilon^* = 50\\%$.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: Web Service Throughput and Sensor Averaging",
-        "type": "equation",
+        "title": "Active Checkpoint 1: Stevens' Scale Invariance & Breakdown Mechanics",
+        "type": "quiz",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Web Service Throughput and Sensor Averaging",
+          "title": "Checkpoint 1: Stevens' Scale Invariance & Breakdown",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Web Service Throughput and Sensor Averaging. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Active Checkpoint 1. A customer feedback team collects five thousand ratings on a five-point Likert scale, from one equals Strongly Disagree to five equals Strongly Agree. The lead engineer computes an arithmetic mean of 3.64 and prepares to run a parametric two-sample t-test across cohorts. Why does this violate Stevens' measurement scale invariance theorem, and what is the methodologically sound alternative? Select Option A, B, or C above me!",
+              "dock": "quiz"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x} = \\frac{100 + 20}{2} = 60\\text{ records/sec}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x}_H = \\frac{2}{\\frac{1}{100} + \\frac{1}{20}} = \\frac{2}{0.01 + 0.05} = 33.33\\text{ records/sec}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dual-Stage ETL Pipeline Throughput</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">An engineering team monitored a streaming ETL ingest pipeline operating in two equal-batch stages. Stage A ingested records at $100\\text{ records/sec}$, while Stage B operated at $20\\text{ records/sec}$. A manager computed the arithmetic mean:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Cloud Server Latency SLA</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A multi-tenant database reported mean query latency of $14.2\\text{ ms}$, meeting the $\\le 20\\text{ ms}$ SLA. Customer escalations revealed that $5\\%$ of queries took $2,500\\text{ ms}$, timing out web applications. The arithmetic mean was masked by thousands of $1\\text{ ms}$ health checks. Switching SLA reporting to median and 99th percentile quantiles immediately reflected production reality.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[4px_4px_0px_#b45309] my-2 font-mono text-xs\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#b45309] flex items-center gap-1.5\">\n      <span>⚡</span> Active Recall Checkpoint 6.2.1\n    </span>\n    <span class=\"text-[10px] text-[#475569]\">Stevens' Scale Invariance &amp; Likert Analysis</span>\n  </div>\n  <p class=\"text-[#151b20] font-bold mb-2 leading-relaxed\">\n    Evaluate the methodological validity of computing arithmetic means on ordinal Likert data:\n  </p>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Web Service Throughput and Sensor Averaging",
+          "title": "Socratic Checkpoint 1: The Likert Scale Test",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, how does empirical case study: web service throughput and sensor averaging protect our system against silent distribution shift in production?"
-            },
-            {
-              "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "A five-point customer rating survey and an arithmetic mean of 3.64! Review our three options above me and select the correct mathematical critique!",
+              "dock": "quiz"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x} = \\frac{100 + 20}{2} = 60\\text{ records/sec}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{x}_H = \\frac{2}{\\frac{1}{100} + \\frac{1}{20}} = \\frac{2}{0.01 + 0.05} = 33.33\\text{ records/sec}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dual-Stage ETL Pipeline Throughput</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">An engineering team monitored a streaming ETL ingest pipeline operating in two equal-batch stages. Stage A ingested records at $100\\text{ records/sec}$, while Stage B operated at $20\\text{ records/sec}$. A manager computed the arithmetic mean:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Cloud Server Latency SLA</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A multi-tenant database reported mean query latency of $14.2\\text{ ms}$, meeting the $\\le 20\\text{ ms}$ SLA. Customer escalations revealed that $5\\%$ of queries took $2,500\\text{ ms}$, timing out web applications. The arithmetic mean was masked by thousands of $1\\text{ ms}$ health checks. Switching SLA reporting to median and 99th percentile quantiles immediately reflected production reality.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[4px_4px_0px_#b45309] my-2 font-mono text-xs\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#b45309] flex items-center gap-1.5\">\n      <span>⚡</span> Socratic Checkpoint 6.2.1\n    </span>\n    <span class=\"text-[10px] text-[#475569]\">Likert Ordinal Invariance</span>\n  </div>\n  <p class=\"text-[#151b20] font-bold mb-2 leading-relaxed\">\n    Select the option that correctly identifies the permissible transformations and admissible summary metrics under Stevens' theorem:\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Explore Central Tendency & Breakdown Simulator",
-        "type": "tool",
+        "title": "The Harmonic Mean: Physical Rate Averaging & The F1 Score",
+        "type": "formula",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Central Tendency & Breakdown Simulator",
+          "title": "Mathematical Derivation of the Harmonic Mean",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Central Tendency & Breakdown Simulator. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Central Tendency &amp; Breakdown Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate dirty data streams, evaluate breakdown thresholds of median vs. Hodges-Lehmann, and test the AGH inequality across skewed distributions.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch EDA Dashboard →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Central Tendency & Breakdown Simulator",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore central tendency & breakdown simulator located below this player?"
+              "text": "The harmonic mean is defined as the reciprocal of the arithmetic mean of reciprocals. It is the strictly correct estimator whenever averaging rates, velocities, or throughput metrics where equal amounts of work are performed across different speeds.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "To understand why, consider the physics: throughput is total work divided by total elapsed time. When equal work N is performed at rates R1 and R2, total time is N over R1 plus N over R2. Factoring out N gives exactly the harmonic mean. This same principle governs the machine learning F1 score, which is the harmonic mean of precision and recall.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Central Tendency &amp; Breakdown Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate dirty data streams, evaluate breakdown thresholds of median vs. Hodges-Lehmann, and test the AGH inequality across skewed distributions.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch EDA Dashboard →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §5 Rate Estimator • The Harmonic Mean &amp; Physics of Throughput\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">\n      Rate Invariance $\\bar{R} = \\frac{W_{\\text{total}}}{T_{\\text{total}}}$\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0fbfd] border-2 border-[#0e7490] shadow-[3px_3px_0px_#22bfd7] font-mono text-center mb-3\">\n    <div class=\"text-xs text-[#0e7490] font-bold uppercase tracking-wider mb-1\">Harmonic Mean Formulation ($x_i > 0$)</div>\n    $$\\bar{x}_H = \\frac{n}{\\sum_{i=1}^n \\frac{1}{x_i}} = \\left( \\frac{1}{n} \\sum_{i=1}^n x_i^{-1} \\right)^{-1}$$\n    <div class=\"text-[11px] text-[#475569] mt-2\">\n      Physical Derivation: Total work $W = 2N$, elapsed time $T = \\frac{N}{R_1} + \\frac{N}{R_2} \\implies \\bar{R} = \\frac{2N}{N(R_1^{-1} + R_2^{-1})} = \\frac{2}{\\frac{1}{R_1} + \\frac{1}{R_2}}$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] font-black block mb-1\">The Machine Learning $F_1$ Score</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        $$F_1 = 2 \\cdot \\frac{P \\cdot R}{P + R} = \\frac{2}{\\frac{1}{P} + \\frac{1}{R}}$$\n        Harmonic mean heavily penalizes extreme asymmetry. If Precision $P=1.0$ and Recall $R=0.01$, arithmetic mean reports $0.505$, while $F_1$ collapses to $0.0198$, accurately exposing detector failure.\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fef2f2] border-2 border-[#151b20] shadow-[2px_2px_0px_#dc2626]\">\n      <strong class=\"text-[#dc2626] font-black block mb-1\">The Arithmetic Rate Fallacy</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        $$\\bar{R}_{\\text{arith}} = \\frac{R_1 + R_2}{2}$$\n        Assumes equal time is spent at each speed. Because slower stages take proportionally more time ($T \\propto 1/R$), the arithmetic mean dramatically overestimates throughput.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Commute Speed Puzzle",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait! Is this the famous math puzzle? You drive to work at 30 miles per hour, and drive back along the same route at 60 miles per hour. What is your average speed?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito! Almost everyone guesses 45 miles per hour by taking the arithmetic mean. But let's calculate: if the distance is 60 miles, going there at 30 mph takes 2 hours. Returning at 60 mph takes 1 hour.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Total distance is 120 miles, total time is 3 hours. 120 divided by 3 is exactly 40 miles per hour!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And the harmonic mean of 30 and 60 is 2 divided by (1/30 + 1/60), which equals exactly 40.0! You spend twice as much time crawling at 30 mph as you do cruising at 60 mph. Time weights the physical reality.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Socratic Exploration • The Classical 30/60 Velocity Commute\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"text-[#b45309] font-black text-sm mb-2\">Round-Trip Commute Physics ($D = 60\\text{ miles each way}$)</div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-center\">\n      <div class=\"p-2 bg-white rounded border border-[#151b20]/20\">\n        <span class=\"text-[#dc2626] font-bold block\">Outbound Leg</span>\n        <span>$60\\text{ mi} / 30\\text{ mph}$</span>\n        <span class=\"block font-black text-sm text-[#151b20] mt-1\">$2.0\\text{ Hours}$</span>\n      </div>\n      <div class=\"p-2 bg-white rounded border border-[#151b20]/20\">\n        <span class=\"text-[#16a34a] font-bold block\">Inbound Leg</span>\n        <span>$60\\text{ mi} / 60\\text{ mph}$</span>\n        <span class=\"block font-black text-sm text-[#151b20] mt-1\">$1.0\\text{ Hour}$</span>\n      </div>\n      <div class=\"p-2 bg-[#c9f3f4] rounded border border-[#151b20]\">\n        <span class=\"text-[#0e7490] font-bold block\">True Velocity</span>\n        <span>$120\\text{ mi} / 3.0\\text{ hrs}$</span>\n        <span class=\"block font-black text-sm text-[#0e7490] mt-1\">$\\bar{v}_H = 40.0\\text{ mph}$</span>\n      </div>\n    </div>\n    <div class=\"text-[11px] text-[#dc2626] mt-2 font-bold text-center\">\n      Arithmetic Mean ($45.0\\text{ mph}$) introduces a $+12.5\\%$ illusory speed error!\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "The AGH Inequality & Jensen's Mathematical Invariant",
+        "type": "formula",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Mathematical Proof of the AGH Inequality",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "For any set of positive non-identical real numbers, the Arithmetic-Geometric-Harmonic inequality states that the Harmonic mean is strictly bounded above by the Geometric mean, which is strictly bounded above by the Arithmetic mean. Equality holds if and only if all observations are identical.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The proof relies elegantly on Jensen's Inequality. Because the natural logarithm is strictly concave on the positive reals, the log of the geometric mean is less than or equal to the log of the arithmetic mean. Exponentiating both sides proves G is less than or equal to A. Applying the same convexity theorem to the reciprocal function proves H is less than or equal to G.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §6 Mathematical Theorem • The AGH Hierarchy &amp; Jensen's Invariant\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20]\">\n      $\\bar{x}_H \\le \\bar{x}_G \\le \\bar{x}$\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-center mb-3\">\n    <div class=\"text-xs text-[#b45309] font-bold uppercase tracking-wider mb-1\">The Fundamental AGH Inequality ($x_i > 0$)</div>\n    $$\\bar{x}_H \\le \\bar{x}_G \\le \\bar{x}$$\n    <div class=\"text-[11px] text-[#151b20] mt-1 font-bold\">\n      Equality holds if and only if $x_1 = x_2 = \\dots = x_n$.\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#eff6ff] border-2 border-[#151b20] shadow-[2px_2px_0px_#2563eb]\">\n      <strong class=\"text-[#2563eb] font-black block mb-1\">Jensen Proof 1: $\\bar{x}_G \\le \\bar{x}$</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Since $f(t) = \\ln t$ is strictly concave ($f''(t) = -1/t^2 < 0$), Jensen's Inequality states:\n        $$\\ln \\bar{x}_G = \\frac{1}{n} \\sum \\ln x_i \\le \\ln\\left( \\frac{1}{n} \\sum x_i \\right) = \\ln \\bar{x}$$\n        Exponentiating both sides establishes $\\bar{x}_G \\le \\bar{x}$.\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] font-black block mb-1\">Jensen Proof 2: $\\bar{x}_H \\le \\bar{x}_G$</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Applying the same inequality to reciprocal variables $y_i = 1/x_i$:\n        $$\\bar{y}_G \\le \\bar{y} \\iff \\frac{1}{\\bar{x}_G} \\le \\frac{1}{\\bar{x}_H} \\iff \\bar{x}_H \\le \\bar{x}_G$$\n        Combining both chains completes the universal order: $\\bar{x}_H \\le \\bar{x}_G \\le \\bar{x}$.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Jensen Gap as Dispersion Gauge",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "So the difference between the arithmetic mean and the harmonic mean isn't just an error—it actually measures something physical!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Brilliant deduction, Kaito! The Jensen gap, A minus H, directly reflects the variance and skewness of the underlying values. If all pipeline stages run at the exact same speed, the gap is zero.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the wider the disparity between the fastest and slowest stages, the bigger the Jensen gap grows, dragging physical throughput further toward the bottleneck!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. The Jensen gap is an empirical audit of systemic imbalance.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Analytical Invariant • The Jensen Gap as a Measure of Imbalance\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"text-[#b45309] font-black text-sm mb-2\">Second-Order Taylor Approximation of the Jensen Gap</div>\n    $$\\bar{x} - \\bar{x}_G \\approx \\frac{\\sigma^2}{2\\bar{x}}, \\quad \\bar{x} - \\bar{x}_H \\approx \\frac{\\sigma^2}{\\bar{x}}$$\n    <p class=\"text-[11px] text-[#475569] mt-2 leading-relaxed\">\n      The gap between arithmetic and harmonic means scales directly with empirical variance $\\sigma^2$. In engineering architectures, a widening Jensen gap warns of severe upstream-downstream stage mismatch.\n    </p>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "The Hodges-Lehmann Estimator: 95.5% Gaussian Efficiency with 29.3% Breakdown",
+        "type": "formula",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Mathematical Derivation of the Hodges-Lehmann Estimator",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Derived from the Wilcoxon signed-rank test by Joseph Hodges and Erich Lehmann in 1963, the Hodges-Lehmann location estimator computes the median of all pairwise Walsh averages: x sub i plus x sub j divided by two, for all i less than or equal to j.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "This estimator is often described as the holy grail of continuous location estimation. Under pure Gaussian noise, it achieves an astonishing 95.5% asymptotic relative efficiency compared to the mean—vastly outperforming the sample median's 63.7%. Yet simultaneously, it provides a high breakdown point of 29.3%, resisting gross outlier bursts.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#7c3aed] uppercase tracking-wide\">\n      §7 Robust Non-Parametric Estimator • Hodges &amp; Lehmann (Ann. Math. Stat., 1963)\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ede9fe] text-[#6b21a8] border-2 border-[#151b20]\">\n      $95.5\\%$ ARE • $29.3\\%$ Breakdown\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0fbfd] border-2 border-[#0e7490] shadow-[3px_3px_0px_#22bfd7] font-mono text-center mb-3\">\n    <div class=\"text-xs text-[#0e7490] font-bold uppercase tracking-wider mb-1\">Pairwise Walsh Average Median Formulation</div>\n    $$\\hat{\\theta}_{\\text{HL}} = \\text{median}\\left\\{ \\frac{x_i + x_j}{2} : 1 \\le i \\le j \\le n \\right\\}$$\n    <div class=\"text-[11px] text-[#475569] mt-2\">\n      Computes the median across all $K = \\binom{n+1}{2} = \\frac{n(n+1)}{2}$ pairwise midpoints.\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] font-black block mb-1\">Gaussian Efficiency: 95.5% ARE</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Under Gaussian distributions, $\\text{ARE}(\\hat{\\theta}_{\\text{HL}}, \\bar{x}) = \\frac{3}{\\pi} \\approx 95.49\\%$. Loses less than $4.5\\%$ efficiency compared to the Cramér-Rao lower bound!\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#ede9fe] border-2 border-[#151b20] shadow-[2px_2px_0px_#7c3aed]\">\n      <strong class=\"text-[#7c3aed] font-black block mb-1\">Breakdown Point: 29.3%</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        $$\\epsilon^* = 1 - \\frac{1}{\\sqrt{2}} \\approx 29.29\\%$$\n        Can withstand nearly $30\\%$ catastrophic contamination before the estimate diverges. Ideal for sensor telemetry and automated data pipelines.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Computational Trade-Off",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Ninety-five point five percent Gaussian efficiency and twenty-nine percent outlier resistance? That sounds like a free lunch! What's the catch?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The catch is computational complexity, Kaito! Computing all pairwise Walsh averages requires n times n plus 1 divided by 2 operations. For n equals one million, that is five hundred billion pairs!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Ouch! O of n squared time and memory. So we can't run it naively on massive distributed arrays.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Correct. In production, we either compute Hodges-Lehmann on rolling windows or sub-samples of size three hundred, or use an alpha-trimmed mean, which provides linear O of n complexity with configurable breakdown.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Algorithmic Reality • Complexity vs. Telemetry Scalability\n    </span>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"text-[#b45309] font-black text-sm mb-2\">Hodges-Lehmann Scaling Bounds</div>\n    <div class=\"space-y-1.5 text-[11px] text-[#151b20]\">\n      <div>• Exact Walsh Pair Count: $K = \\frac{n(n+1)}{2} = \\mathcal{O}(n^2)$</div>\n      <div>• Fast Selection Algorithm: Monotone matrix selection (Johnson &amp; Mizoguchi) achieves $\\mathcal{O}(n \\log n)$ time.</div>\n      <div>• Streaming Heuristic: Subsample $m = 300$ items ($K = 45{,}150$ pairs) to compute real-time sensor center in under $2\\text{ ms}$.</div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Alpha-Trimmed & Winsorized Means: Configurable Outlier Resistance",
+        "type": "formula",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Mathematical Formulations of Trimmed & Winsorized Means",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To achieve a tunable trade-off between Gaussian efficiency and outlier robustness with linear computational complexity, statisticians rely on alpha-trimmed and alpha-Winsorized means. For an alpha between zero and zero point five, the alpha-trimmed mean discards the lowest and highest alpha fraction of order statistics.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Its breakdown point is exactly alpha. By contrast, the alpha-Winsorized mean replaces tail values with the nearest boundary quantile rather than discarding them. This preserves the full sample size n, allowing valid degrees of freedom calculations in robust hypothesis testing and regression modeling.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §8 Linear-Time Robust Estimators • Trimming vs. Winsorization\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20]\">\n      Breakdown $\\epsilon^* = \\alpha$\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#eff6ff] border-2 border-[#151b20] shadow-[2px_2px_0px_#2563eb]\">\n      <strong class=\"text-[#2563eb] block mb-1 text-sm font-black\">1. $\\alpha$-Trimmed Mean</strong>\n      <div class=\"text-[10px] text-[#475569] mb-1.5\">Discards $\\lfloor \\alpha n \\rfloor$ tail order statistics:</div>\n      $$\\bar{x}_\\alpha = \\frac{1}{n - 2k} \\sum_{i=k+1}^{n-k} x_{(i)}, \\quad k = \\lfloor \\alpha n \\rfloor$$\n      <div class=\"text-[10px] text-[#2563eb] font-bold mt-2\">\n        • Breakdown: $\\epsilon^* = \\alpha$ (e.g., $20\\%$ trim resists up to $20\\%$ outliers)<br/>\n        • Gaussian ARE: $\\sim 84\\%$ for $\\alpha = 0.20$\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1 text-sm font-black\">2. $\\alpha$-Winsorized Mean</strong>\n      <div class=\"text-[10px] text-[#475569] mb-1.5\">Clamps extremes to boundary quantiles:</div>\n      $$\\bar{x}_{W,\\alpha} = \\frac{1}{n} \\sum_{i=1}^n w_i, \\quad w_i = \\begin{cases} x_{(k+1)} & x_i < x_{(k+1)} \\\\ x_i & \\text{mid} \\\\ x_{(n-k)} & x_i > x_{(n-k)} \\end{cases}$$\n      <div class=\"text-[10px] text-[#15803d] font-bold mt-2\">\n        • Preserves $N$ degrees of freedom for robust $t$-tests<br/>\n        • Prevents leverage points from skewing covariance\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border border-[#151b20]/30 font-mono text-xs\">\n    <strong class=\"text-[#b45309] font-black\">Production Best Practice:</strong>\n    <span class=\"text-[#151b20] text-[11px]\">\n      When telemetry distributions are mildly contaminated and speed is critical, a $10\\%$ to $20\\%$ trimmed mean computed via <code>scipy.stats.trim_mean</code> offers near-optimal performance with strictly guaranteed $\\mathcal{O}(n \\log n)$ execution.\n    </span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: Trimming vs. Winsorizing",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why would anyone Winsorize instead of just trimming the outliers away? Clamping values to the twentieth percentile seems artificial.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because when you delete points in trimmed means, you shrink your sample size from n to n minus 2k. That reduces statistical degrees of freedom when calculating confidence intervals or standard errors.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Ah! So Winsorization keeps the sample size at n, retaining valid standard error estimators for hypothesis tests while neutralizing the leverage of the extreme tails!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Winsorization tames the extremes without destroying the sample footprint.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Socratic Exploration • Degrees of Freedom &amp; Asymptotic Variance\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Trimmed Mean Variance</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        Calculating the standard error of a trimmed mean requires the Winsorized variance in the numerator divided by $(1 - 2\\alpha)^2 n$:\n        $$\\text{SE}(\\bar{x}_\\alpha) = \\frac{s_{W,\\alpha}}{(1 - 2\\alpha)\\sqrt{n}}$$\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1\">Practical Recommendation</strong>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • For point estimates: $20\\%$ Trimmed Mean is simpler and faster.<br/>\n        • For confidence intervals &amp; linear regression: Winsorized standard errors avoid false positive rate inflation.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab 2: AGH Inequality & Pipeline Throughput Workbench",
+        "type": "tool",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: Pipeline Throughput Workbench",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to the AGH Inequality and Pipeline Throughput Workbench. In this interactive simulation, we model a two-stage ETL pipeline processing one hundred thousand items per stage. Adjust the processing rates of Stage A and Stage B using the sliders below.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Observe the comparison bars: the arithmetic mean gives a false, optimistic rate that assumes equal time is spent at each speed. The harmonic mean gives the exact physical rate. Notice how the budgeted runtime under the arithmetic mean falls short by thousands of seconds, producing severe operational delays.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs font-mono\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>🔬</span> Lab 2: Two-Stage Pipeline Throughput &amp; AGH Simulator\n    </span>\n    <span class=\"text-[10px] text-[#475569]\">Simulating $N = 100{,}000$ items per stage</span>\n  </div>\n  <p class=\"text-[#475569] mb-2 leading-relaxed\">\n    Tweak Stage A ($R_1$) and Stage B ($R_2$) rates. Compare the arithmetic, geometric, and harmonic means, and inspect the true execution latency error below.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: The Pipeline Bottleneck Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the numbers, Nova! With Stage A running at 100 requests per second and Stage B running at 20 requests per second, the arithmetic mean is 60 requests per second, predicting a total runtime of 3,333 seconds.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now look at the actual elapsed time: Stage A takes 1,000 seconds, but Stage B takes 5,000 seconds! The actual runtime is 6,000 seconds—an eighty percent budgeting failure!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the harmonic mean is exactly 33.33 requests per second, which computes 200,000 divided by 33.33 equals 6,000 seconds! The harmonic mean matches physical reality down to the second!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs font-mono\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>🔬</span> Socratic Lab: Pipeline Throughput &amp; AGH Simulator\n    </span>\n  </div>\n  <p class=\"text-[#475569] mb-2 leading-relaxed\">\n    Observe how the slower stage dictates physical throughput because latency accumulates in seconds per item ($1/R$).\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Two-Stage Pipeline Throughput & Rate Averaging",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Checkpoint 2: Pipeline Throughput Rate Averaging",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Checkpoint 2. An engineering manager monitors a two-stage data ingestion pipeline processing one hundred thousand items per stage. Stage 1 processes at 100 requests per second, taking 1,000 seconds. Stage 2 processes at 20 requests per second, taking 5,000 seconds. The manager calculates the average throughput as 100 plus 20 divided by 2 equals 60 requests per second, and budgets 3,333 seconds for completion. What is the fundamental physical flaw in this calculation? Select Option A, B, or C above me!",
+              "dock": "quiz"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2 font-mono text-xs\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#15803d] flex items-center gap-1.5\">\n      <span>⚡</span> Active Recall Checkpoint 6.2.2\n    </span>\n    <span class=\"text-[10px] text-[#475569]\">Throughput Physics &amp; Harmonic Invariance</span>\n  </div>\n  <p class=\"text-[#151b20] font-bold mb-2 leading-relaxed\">\n    Identify the mathematical mechanism governing rate averaging across sequential workloads:\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Checkpoint 2: The Latency Budget Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "One hundred requests per second followed by twenty requests per second! Review our three options above me and select the correct physical analysis!",
+              "dock": "quiz"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2 font-mono text-xs\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20\">\n    <span class=\"font-black text-[#15803d] flex items-center gap-1.5\">\n      <span>⚡</span> Socratic Checkpoint 6.2.2\n    </span>\n    <span class=\"text-[10px] text-[#475569]\">Physical Rate Budgeting</span>\n  </div>\n  <p class=\"text-[#151b20] font-bold mb-2 leading-relaxed\">\n    Select the option explaining why time-weighting forces throughput to follow the Harmonic Mean:\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Estimator Selection Decision Protocol & Production Tree",
+        "type": "flowchart",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Decision Protocol for Location Estimators",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To prevent mathematical invalidity and production failures, we establish a standardized decision tree for estimator selection. The first branch always audits Stevens' measurement scale. If nominal, compute mode. If ordinal, compute median and interquartile range.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "If interval or ratio, check whether the metric represents rates or multiplicative ratios. For rates per unit time, use harmonic mean. For speedup ratios, use geometric mean. For continuous physical quantities, test for heavy tails and leverage: if pure Gaussian, use arithmetic mean; if contaminated, deploy Hodges-Lehmann or trimmed means.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §9 Production Protocol • Location Estimator Selection Decision Tree\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">\n      Deterministic Workflow\n    </span>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3\">\n    <pre class=\"mermaid\">\nflowchart TD\n    In[\"Empirical Feature Vector X\"] --> ScaleCheck{\"1. Stevens' Scale?\"}\n\n    ScaleCheck -- \"Nominal\" --> ModeOp[\"Mode & Modal Frequency Ratio\"]\n    ScaleCheck -- \"Ordinal\" --> MedianOp[\"Median & Interquartile Range (IQR)\"]\n\n    ScaleCheck -- \"Interval / Ratio\" --> TypeCheck{\"2. Metric Domain?\"}\n    TypeCheck -- \"Throughput (Work/Time)\" --> HarmOp[\"Harmonic Mean (Accounts for Time Spent)\"]\n    TypeCheck -- \"Speedup / Ratios\" --> GeomOp[\"Geometric Mean (Preserves Invertibility)\"]\n\n    TypeCheck -- \"Continuous Physical\" --> ContamCheck{\"3. Contamination / Tails?\"}\n    ContamCheck -- \"Clean Gaussian\" --> MeanOp[\"Arithmetic Mean (100% Efficiency)\"]\n    ContamCheck -- \"Heavy Tails / Telemetry\" --> RobustOp[\"Hodges-Lehmann (95.5% ARE) or 20% Trimmed\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class In,ScaleCheck,TypeCheck,ContamCheck amber;\n    class ModeOp,MedianOp,HarmOp,GeomOp,MeanOp,RobustOp green;\n    </pre>\n  </div>\n\n  <div class=\"text-[11px] font-mono text-[#475569] text-center\">\n    Automate this decision tree in production ingest pipelines using Pydantic V2 validators before persisting metrics.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: Production Pipeline Hardening",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "This decision tree is super clear, Dr. Nova! In our automated ingest pipelines, we can encode these exact checks into feature schema definitions.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. If a column is tagged as 'telemetry_rate_rps', the pipeline compiler should reject any aggregation query using arithmetic mean and automatically rewrite it to harmonic mean.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if an analyst tries to compute average user feedback scores from 1 to 5, the pipeline flags an ordinal invariance violation!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is how robust engineering organizations eliminate statistical bugs before they reach executive dashboards.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Socratic Exploration • Compiler Rules for Data Aggregations\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fef2f2] border-2 border-[#151b20] shadow-[2px_2px_0px_#dc2626]\">\n      <strong class=\"text-[#dc2626] block mb-1\">Forbidden SQL Patterns</strong>\n      <div class=\"text-[11px] text-[#151b20] space-y-1\">\n        <div>❌ <code>AVG(rating_likert)</code> (Ordinal violation)</div>\n        <div>❌ <code>AVG(throughput_mbps)</code> (Harmonic violation)</div>\n        <div>❌ <code>AVG(cpu_speedup_ratio)</code> (Geometric violation)</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1\">Approved Pydantic Contracts</strong>\n      <div class=\"text-[11px] text-[#151b20] space-y-1\">\n        <div>✅ <code>PERCENTILE_CONT(0.5) WITHIN GROUP...</code></div>\n        <div>✅ <code>COUNT(*) / SUM(1.0 / throughput_mbps)</code></div>\n        <div>✅ <code>EXP(AVG(LN(cpu_speedup_ratio)))</code></div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Empirical Case Studies: Latency SLA Masking & Simpson's Paradox",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Real-World Case Studies in Central Tendency",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us examine two landmark empirical case studies. In Cloud Server Latency SLAs, a multi-tenant database reported a mean query latency of 14.2 milliseconds, ostensibly meeting its contractual SLA of under 20 milliseconds. Yet customer escalations were rampant. Inspection revealed that 5% of queries took 2,500 milliseconds—catastrophic timeouts masked by thousands of 1 millisecond health checks.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In our second study, Simpson's Paradox in the famous 1975 UC Berkeley admissions analysis showed an overall male admission rate of 44% versus 35% for females. Yet within every single individual department, female applicants had an equal or higher admission probability! Marginal aggregation masked the confounding covariate of department selectivity.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §10 Empirical Case Studies • Telemetry Masking &amp; Simpson's Inversion\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffd8ce] text-[#991b1b] border-2 border-[#151b20]\">\n      Production Reality\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n    <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1 text-sm font-black\">Case 1: Database Latency SLA Masking</strong>\n      <div class=\"text-[11px] text-[#151b20] space-y-1 mb-2\">\n        <div>• Aggregate Mean Latency: <strong>$14.2\\text{ ms}$</strong> (False SLA pass)</div>\n        <div>• Median ($p50$): <strong>$12.0\\text{ ms}$</strong></div>\n        <div>• 99th Percentile ($p99$): <strong>$2{,}390.0\\text{ ms}$</strong> (Catastrophic timeout)</div>\n      </div>\n      <div class=\"text-[10px] text-[#dc2626] bg-[#fef2f2] p-1.5 rounded border border-[#dc2626]/20 font-bold\">\n        Pathology: Thousands of $1\\text{ ms}$ TCP pings masked user query timeouts.\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#2563eb] block mb-1 text-sm font-black\">Case 2: Simpson's Paradox (Bickel 1975)</strong>\n      <div class=\"text-[11px] text-[#151b20] space-y-1 mb-2\">\n        <div>• Aggregate Male Rate: <strong>$44\\%$</strong> | Female: <strong>$35\\%$</strong></div>\n        <div>• Dept A: Male $62\\%$, Female <strong>$82\\%$</strong></div>\n        <div>• Dept B: Male $63\\%$, Female <strong>$68\\%$</strong></div>\n      </div>\n      <div class=\"text-[10px] text-[#2563eb] bg-[#eff6ff] p-1.5 rounded border border-[#2563eb]/20 font-bold\">\n        Pathology: Women applied to hyper-competitive departments with small quotas.\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#e7f4c8] border border-[#151b20]/30 font-mono text-xs\">\n    <strong class=\"text-[#15803d] font-black\">Key Takeaway:</strong>\n    <span class=\"text-[#151b20] text-[11px]\">\n      Never summarize latency distributions with mean alone—always report quantiles ($p50, p95, p99$). Never compare aggregated cohort means without stratifying across confounding sub-populations.\n    </span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Danger of Marginal Means",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Simpson's paradox is mind-bending! Female applicants had equal or higher acceptance rates in every single department, yet the aggregate marginal mean showed males ahead by nine percent!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is because the marginal mean conflates within-department acceptance rates with the applicant volume distribution across departments. Women applied disproportionately to humanities departments with 10% quotas, while men applied to engineering with 70% quotas.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if an exploratory analyst only looks at the overall mean, they reach the exact opposite conclusion of reality!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Always condition on key covariates before drawing inferences from central location metrics.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Socratic Exploration • Marginal vs. Conditional Distributions\n    </span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"text-[#b45309] font-black text-sm mb-2\">The Law of Total Probability Decomposition</div>\n    $$P(A \\mid G) = \\sum_{k} P(A \\mid G, D_k) \\cdot P(D_k \\mid G)$$\n    <p class=\"text-[11px] text-[#475569] mt-2 leading-relaxed\">\n      Even when $P(A \\mid \\text{Female}, D_k) \\ge P(A \\mid \\text{Male}, D_k)$ for all departments $k$, the difference in department preference $P(D_k \\mid G)$ completely inverts the marginal expectation.\n    </p>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Production Implementation: Pydantic V2 Location Benchmark & Cardinal Rules",
+        "type": "capstone",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Implementation & The 4 Cardinal Rules",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We conclude Lesson 6.2 with our production implementation verified under Pydantic V2. Our CentralTendencyBenchmark class computes arithmetic, geometric, harmonic, trimmed, Winsorized, and Hodges-Lehmann estimators, strictly validating scale properties and the AGH inequality.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Remember the four cardinal rules of central tendency in dataset engineering: First, audit Stevens' measurement scale before computing. Second, assume non-Gaussian heavy tails by default. Third, use the harmonic mean for rates and geometric mean for ratios. And fourth, never rely on arithmetic mean alone for production SLA telemetry.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      §11 Capstone Architecture • Production Pydantic V2 Benchmark\n    </span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#15803d] border-2 border-[#151b20]\">\n      Production Hardened\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-2.5 font-mono text-xs mb-3\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 1: Scale Invariance</strong>\n      <span class=\"text-[10.5px] text-[#151b20] leading-snug\">Never compute arithmetic means on Likert ratings or nominal categories.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Rule 2: Outlier Defense</strong>\n      <span class=\"text-[10.5px] text-[#151b20] leading-snug\">Continuous sensor streams demand Hodges-Lehmann ($95.5\\%$ ARE) or trimmed means.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Rule 3: Harmonic for Rates</strong>\n      <span class=\"text-[10.5px] text-[#151b20] leading-snug\">Work per unit time over equal jobs must be averaged harmonically to match physical elapsed time.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Rule 4: SLA Quantiles</strong>\n      <span class=\"text-[10.5px] text-[#151b20] leading-snug\">Always report $p50$, $p95$, and $p99.9$ to expose severe tail latency masked by sample means.</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#151b20] text-[#c9f3f4] font-mono text-[11px] overflow-x-auto\">\n    <div class=\"text-[#ffc83e] font-bold mb-1\"># Pydantic V2 Production Verification Snippet</div>\n    <code>rep = CentralTendencyBenchmark.compute_all(stream_data)</code><br/>\n    <code>assert rep.harmonic_mean <= rep.geometric_mean <= rep.arithmetic_mean</code><br/>\n    <code>print(f\"Verified AGH Invariant: H={rep.harmonic_mean:.2f} <= G={rep.geometric_mean:.2f} <= A={rep.arithmetic_mean:.2f}\")</code>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Capstone: Dr. Nova & Kaito's Production Takeaway",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What an incredible journey through central tendency, Dr. Nova! We went from Stevens' 1946 measurement hierarchy to L1 and L2 risk formulations, the AGH inequality, and the 95.5% efficiency of the Hodges-Lehmann estimator.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And most importantly, Kaito, you now know that selecting a location estimator is never an afterthought. It is a fundamental architectural decision governed by measurement scales and physical laws.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "In Lesson 6.3, we take the next step: examining dispersion, shape, skewness, and grouping! Thank you, Dr. Nova!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "See you in Lesson 6.3! Keep your pipelines robust and your invariants mathematically verified.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Masterclass Complete • Lesson 6.2</span>\n  </div>\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#151b20] tracking-tight mb-2\">\n    Measurement Scales, Invariance &amp; Robust Location Mastery\n  </h2>\n  <p class=\"text-xs sm:text-sm text-[#475569] font-medium max-w-xl mx-auto leading-relaxed mb-4\">\n    You have mastered Stevens' measurement scales hierarchy, $L_2$ vs. $L_1$ risk minimization, the AGH rate inequality, and the Hodges-Lehmann non-parametric estimator.\n  </p>\n  <div class=\"inline-flex gap-3\">\n    <a href=\"../03-dispersion-shape-and-grouping/\" class=\"px-4 py-2 rounded-xl bg-[#2563eb] text-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono font-bold text-xs hover:translate-y-[-1px] transition\">\n      Next: 6.3 Dispersion, Shape &amp; Grouping →\n    </a>\n  </div>\n</div>\n"
         }
       }
     ]

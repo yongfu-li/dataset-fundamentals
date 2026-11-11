@@ -1,0 +1,245 @@
+{
+  "duration": 673.8839999999999,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 6.2 of Dataset Fundamentals: Data Types, Measurement Scales, and Central Tendency. In exploratory data analysis, calculating a statistical metric on an inappropriate variable scale produces mathematically meaningless quantities. Formally establishing variable measurement levels determines which mathematical transformations are permissible and which estimators of central location accurately summarize empirical distributions.",
+      "start": 0.0,
+      "end": 28.32
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Today we formalize Stevens' measurement hierarchy, derive the L2 and L1 empirical risk formulations of the mean and median, examine why the geometric and harmonic means govern multiplicative growth and rates, prove the Arithmetic-Geometric-Harmonic inequality via Jensen's theorem, and benchmark robust estimators including the Hodges-Lehmann median of Walsh averages.",
+      "start": 28.62,
+      "end": 50.58
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "In 1946, Stanley Smith Stevens published a landmark paper in Science establishing the four levels of measurement: Nominal, Ordinal, Interval, and Ratio. Each scale level is formally defined by its group of permissible transformations—mathematical transformations that preserve the empirical information contained in the variable.",
+      "start": 51.08,
+      "end": 72.632
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "On a Nominal scale, only one-to-one bijections are permissible; only the mode is admissible. On an Ordinal scale, any strictly monotonic increasing function preserves rank ordering; here, the median, quantiles, and rank correlations are admissible, but the arithmetic mean is meaningless because arbitrary score shifts alter mean rankings across cohorts.",
+      "start": 72.932,
+      "end": 95.084
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Mathematically, the sample mean is the unique minimizer of empirical squared Euclidean loss, or L2 risk. Setting the first derivative of the sum of squared residuals to zero yields the standard formula: one over n times the sum of x sub i.",
+      "start": 95.584,
+      "end": 111.472
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Under a pure Gaussian distribution, the sample mean attains the Cramér-Rao lower bound, achieving 100% statistical efficiency. However, this optimal efficiency comes at extreme fragility: because error is penalized quadratically, the finite-sample breakdown point is one over n, which tends to zero percent. A single corrupted leverage point can drag the mean to infinity.",
+      "start": 111.772,
+      "end": 136.252
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "The sample median is the empirical risk minimizer under L1 absolute deviation loss. Because the derivative of the absolute value function is simply the sign function, the first-order condition requires balancing the number of points above the median with the number of points below.",
+      "start": 136.752,
+      "end": 154.008
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "This yields the theoretical maximum breakdown point for any translation-equivariant location estimator: 50%. You can corrupt up to half the sample data without driving the median to infinity. However, under a pure Gaussian distribution, the median's asymptotic relative efficiency drops to 2 over pi, or approximately 63.7%.",
+      "start": 154.308,
+      "end": 177.54
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "For strictly positive data, the geometric mean is defined as the n-th root of the product of the observations, which is equivalent to exponentiating the arithmetic mean of log-transformed values. It is the natural central tendency measure for multiplicative processes, log-normal distributions, and normalized benchmark speedups.",
+      "start": 178.04,
+      "end": 198.704
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Crucially, the geometric mean satisfies the scale-invariance and invertibility property: the ratio of the geometric means of two systems equals the geometric mean of their ratios. If you use the arithmetic mean to average normalized speedup ratios, changing the reference baseline will invert which system appears faster—a fatal benchmarking flaw.",
+      "start": 199.004,
+      "end": 220.364
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the Central Tendency Breakdown Studio! In this interactive sandbox, we stress-test four fundamental location estimators against increasing fractions of gross outlier contamination. Use the slider below to inject extreme leverage shocks into a baseline Gaussian sample.",
+      "start": 220.864,
+      "end": 239.056
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Observe how the arithmetic mean collapses immediately at even five percent contamination. The twenty percent trimmed mean holds until twenty percent outliers, the Hodges-Lehmann estimator survives up to its theoretical twenty-nine point three percent bound, while the sample median resists all the way to fifty percent.",
+      "start": 239.356,
+      "end": 258.412
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 1. A customer feedback team collects five thousand ratings on a five-point Likert scale, from one equals Strongly Disagree to five equals Strongly Agree. The lead engineer computes an arithmetic mean of 3.64 and prepares to run a parametric two-sample t-test across cohorts. Why does this violate Stevens' measurement scale invariance theorem, and what is the methodologically sound alternative? Select Option A, B, or C above me!",
+      "start": 258.912,
+      "end": 289.128
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "The harmonic mean is defined as the reciprocal of the arithmetic mean of reciprocals. It is the strictly correct estimator whenever averaging rates, velocities, or throughput metrics where equal amounts of work are performed across different speeds.",
+      "start": 289.628,
+      "end": 304.748
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "To understand why, consider the physics: throughput is total work divided by total elapsed time. When equal work N is performed at rates R1 and R2, total time is N over R1 plus N over R2. Factoring out N gives exactly the harmonic mean. This same principle governs the machine learning F1 score, which is the harmonic mean of precision and recall.",
+      "start": 305.048,
+      "end": 329.24
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "For any set of positive non-identical real numbers, the Arithmetic-Geometric-Harmonic inequality states that the Harmonic mean is strictly bounded above by the Geometric mean, which is strictly bounded above by the Arithmetic mean. Equality holds if and only if all observations are identical.",
+      "start": 329.74,
+      "end": 347.116
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The proof relies elegantly on Jensen's Inequality. Because the natural logarithm is strictly concave on the positive reals, the log of the geometric mean is less than or equal to the log of the arithmetic mean. Exponentiating both sides proves G is less than or equal to A. Applying the same convexity theorem to the reciprocal function proves H is less than or equal to G.",
+      "start": 347.416,
+      "end": 370.648
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Derived from the Wilcoxon signed-rank test by Joseph Hodges and Erich Lehmann in 1963, the Hodges-Lehmann location estimator computes the median of all pairwise Walsh averages: x sub i plus x sub j divided by two, for all i less than or equal to j.",
+      "start": 371.148,
+      "end": 387.828
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "This estimator is often described as the holy grail of continuous location estimation. Under pure Gaussian noise, it achieves an astonishing 95.5% asymptotic relative efficiency compared to the mean—vastly outperforming the sample median's 63.7%. Yet simultaneously, it provides a high breakdown point of 29.3%, resisting gross outlier bursts.",
+      "start": 388.128,
+      "end": 414.552
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To achieve a tunable trade-off between Gaussian efficiency and outlier robustness with linear computational complexity, statisticians rely on alpha-trimmed and alpha-Winsorized means. For an alpha between zero and zero point five, the alpha-trimmed mean discards the lowest and highest alpha fraction of order statistics.",
+      "start": 415.052,
+      "end": 435.116
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Its breakdown point is exactly alpha. By contrast, the alpha-Winsorized mean replaces tail values with the nearest boundary quantile rather than discarding them. This preserves the full sample size n, allowing valid degrees of freedom calculations in robust hypothesis testing and regression modeling.",
+      "start": 435.416,
+      "end": 454.736
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the AGH Inequality and Pipeline Throughput Workbench. In this interactive simulation, we model a two-stage ETL pipeline processing one hundred thousand items per stage. Adjust the processing rates of Stage A and Stage B using the sliders below.",
+      "start": 455.236,
+      "end": 472.564
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Observe the comparison bars: the arithmetic mean gives a false, optimistic rate that assumes equal time is spent at each speed. The harmonic mean gives the exact physical rate. Notice how the budgeted runtime under the arithmetic mean falls short by thousands of seconds, producing severe operational delays.",
+      "start": 472.864,
+      "end": 492.784
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 2. An engineering manager monitors a two-stage data ingestion pipeline processing one hundred thousand items per stage. Stage 1 processes at 100 requests per second, taking 1,000 seconds. Stage 2 processes at 20 requests per second, taking 5,000 seconds. The manager calculates the average throughput as 100 plus 20 divided by 2 equals 60 requests per second, and budgets 3,333 seconds for completion. What is the fundamental physical flaw in this calculation? Select Option A, B, or C above me!",
+      "start": 493.284,
+      "end": 533.532
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To prevent mathematical invalidity and production failures, we establish a standardized decision tree for estimator selection. The first branch always audits Stevens' measurement scale. If nominal, compute mode. If ordinal, compute median and interquartile range.",
+      "start": 534.032,
+      "end": 552.392
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "If interval or ratio, check whether the metric represents rates or multiplicative ratios. For rates per unit time, use harmonic mean. For speedup ratios, use geometric mean. For continuous physical quantities, test for heavy tails and leverage: if pure Gaussian, use arithmetic mean; if contaminated, deploy Hodges-Lehmann or trimmed means.",
+      "start": 552.692,
+      "end": 576.5
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two landmark empirical case studies. In Cloud Server Latency SLAs, a multi-tenant database reported a mean query latency of 14.2 milliseconds, ostensibly meeting its contractual SLA of under 20 milliseconds. Yet customer escalations were rampant. Inspection revealed that 5% of queries took 2,500 milliseconds—catastrophic timeouts masked by thousands of 1 millisecond health checks.",
+      "start": 577.0,
+      "end": 606.472
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In our second study, Simpson's Paradox in the famous 1975 UC Berkeley admissions analysis showed an overall male admission rate of 44% versus 35% for females. Yet within every single individual department, female applicants had an equal or higher admission probability! Marginal aggregation masked the confounding covariate of department selectivity.",
+      "start": 606.772,
+      "end": 630.868
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "We conclude Lesson 6.2 with our production implementation verified under Pydantic V2. Our CentralTendencyBenchmark class computes arithmetic, geometric, harmonic, trimmed, Winsorized, and Hodges-Lehmann estimators, strictly validating scale properties and the AGH inequality.",
+      "start": 631.368,
+      "end": 650.592
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Remember the four cardinal rules of central tendency in dataset engineering: First, audit Stevens' measurement scale before computing. Second, assume non-Gaussian heavy tails by default. Third, use the harmonic mean for rates and geometric mean for ratios. And fourth, never rely on arithmetic mean alone for production SLA telemetry.",
+      "start": 650.892,
+      "end": 673.884
+    }
+  ]
+}
