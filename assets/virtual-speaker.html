@@ -290,7 +290,7 @@
 
     #slideContent .text-slate-200,
     #slideContent .text-slate-300,
-    #slideContent .text-slate-400,
+    #slideContent .text-[#334155],
     #slideContent .text-slate-500,
     #slideContent .text-gray-400 {
       color: #334155 !important;
@@ -739,6 +739,7 @@
               <button type="button" onclick="manualMoveSpeaker('main')" id="dockBtnMain" title="Focus speakers on main slide content" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]">📄 Core Slide</button>
               <button type="button" onclick="manualMoveSpeaker('sim')" id="dockBtnSim" title="Move speakers to interactive simulator" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">⚡ Simulator</button>
               <button type="button" onclick="manualMoveSpeaker('quiz')" id="dockBtnQuiz" title="Move speakers to active recall checkpoint" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">💡 Checkpoint</button>
+              <button type="button" onclick="startInteractiveSequence()" id="btnInteractiveSequence" title="Auto-travel through Core Lecture, Tool, and Checkpoint" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#c9f3f4] text-[#0e7490] hover:bg-[#ffc83e] hover:text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20] ml-1">🎬 Guided Shift</button>
             </div>
           </div>
 
@@ -1478,6 +1479,13 @@
 
       // 2. Active sentence & slide sync
       if (currentTiming && currentTiming.sentences) {
+      // Slide 2 Interactive Tool Pause Hook for Neural Audio
+      if (currentSlideIndex === 1 && t >= 32.5 && !isWaitingForExploration && !isWaitingForQuiz) {
+        neuralAudio.pause();
+        moveSpeakerToDock('sim', true);
+        pauseForToolExploration();
+        return;
+      }
         const curSentence = currentTiming.sentences.find(s => t >= s.start && t <= s.end);
 
         if (curSentence) {
@@ -1939,12 +1947,12 @@
       const contentEl = document.getElementById('slideContent');
       if (contentEl) {
         contentEl.innerHTML = `
-          <div class="p-8 rounded-xl bg-[#0c1222] border border-cyan-500/40 text-center space-y-3 animate-pulse">
-            <div class="inline-block px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 font-mono text-xs border border-cyan-800 font-bold uppercase tracking-wider">
+          <div class="p-8 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] text-center space-y-3 shadow-[4px_4px_0px_#22bfd7]">
+            <div class="inline-block px-3 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border border-[#151b20] font-bold uppercase tracking-wider">
               Loading Slide Deck
             </div>
-            <h3 class="text-lg font-bold text-white">Loading Track ${ch} Lecture Deck &amp; Socratic Dialogue...</h3>
-            <p class="text-slate-400 text-xs font-mono">Fetching assets/curriculums/chapter${ch}.js</p>
+            <h3 class="text-lg font-bold text-[#151b20]">Loading Track ${ch} Lecture Deck &amp; Socratic Dialogue...</h3>
+            <p class="text-[#334155] text-xs font-mono">Fetching assets/curriculums/chapter${ch}.js</p>
           </div>`;
       }
 
@@ -2390,6 +2398,15 @@
         initialDock.appendChild(arena);
       }
       currentSpeakerDock = 'main';
+      // Clear any temporary interactive banners from previous slide
+      const oldSimBanner = document.getElementById('simExplorationBanner');
+      if (oldSimBanner) oldSimBanner.remove();
+      const oldQuizBanner = document.getElementById('checkpointPromptBanner');
+      if (oldQuizBanner) oldQuizBanner.remove();
+      const oldCompBanner = document.getElementById('checkpointCompleteBanner');
+      if (oldCompBanner) oldCompBanner.remove();
+      isWaitingForExploration = false;
+      isWaitingForQuiz = false;
       updateDockFocusPills('main');
       clearSpotlights();
 
@@ -3028,13 +3045,25 @@
     function playCurrentTurn() {
       if (!isSpeaking) return;
 
-      const turns = curriculum[currentTopic].slides[currentSlideIndex][currentMode].turns;
+      const topicData = curriculum[currentTopic];
+      if (!topicData || !topicData.slides || !topicData.slides[currentSlideIndex]) {
+        stopSpeech();
+        return;
+      }
+
+      const turns = topicData.slides[currentSlideIndex][currentMode].turns;
       if (currentTurnIndex >= turns.length) {
         stopSpeech();
         return;
       }
 
       const turn = turns[currentTurnIndex];
+
+      // Traveling Speaker Shift: Smoothly move the avatar stage to the designated section!
+      if (turn.dock) {
+        moveSpeakerToDock(turn.dock, true);
+      }
+
       setSubtitles(turn.speaker, turn.text, currentTurnIndex + 1, turns.length);
       highlightActiveAvatar(turn.speaker);
       animateTalking(turn.speaker, true);
@@ -3044,16 +3073,29 @@
       const isKaito = turn.speaker.toLowerCase().includes('kaito');
       if (isKaito) {
         if (selectedKaitoVoice) utterance.voice = selectedKaitoVoice;
-        utterance.pitch = kaitoPitch; // Dynamic pitch for Kaito
+        utterance.pitch = kaitoPitch;
         utterance.rate = playbackSpeed * 0.96;
       } else {
         if (selectedNovaVoice) utterance.voice = selectedNovaVoice;
-        utterance.pitch = novaPitch; // Dynamic pitch for Dr. Nova
+        utterance.pitch = novaPitch;
         utterance.rate = playbackSpeed * 1.04;
       }
 
       utterance.onend = () => {
         animateTalking(turn.speaker, false);
+
+        // Check for Interactive Exploration Pause
+        if (turn.pauseForInteraction === 'explore_tool') {
+          pauseForToolExploration();
+          return;
+        }
+
+        // Check for Active Checkpoint Question Pause
+        if (turn.pauseForInteraction === 'answer_checkpoint') {
+          pauseForCheckpointAnswer();
+          return;
+        }
+
         currentTurnIndex++;
         if (currentTurnIndex < turns.length && isSpeaking) {
           turnTimeout = setTimeout(() => {
@@ -3061,11 +3103,10 @@
           }, 350);
         } else {
           // Slide turns completed
-          const topicData = curriculum[currentTopic];
           if ((autoAdvance || isFullDeckPlaying) && currentSlideIndex < topicData.slides.length - 1) {
             turnTimeout = setTimeout(() => {
               nextSlide(true);
-            }, 900);
+            }, 1000);
           } else {
             stopSpeech();
             if (isFullDeckPlaying) {
@@ -3080,6 +3121,131 @@
       };
 
       window.speechSynthesis.speak(utterance);
+    }
+
+    /* ========================================================
+       Interactive Lecture Orchestrator: Tool Exploration & Checkpoint
+       ======================================================== */
+    let isWaitingForExploration = false;
+    let isWaitingForQuiz = false;
+
+    function pauseForToolExploration() {
+      isWaitingForExploration = true;
+      isSpeaking = false;
+      updatePlayButtons(false);
+      animateTalking('both', false);
+
+      // Highlight the simulator with glowing halo and autoscroll
+      const simWidget = document.getElementById('empiricalSimWidget');
+      if (simWidget) {
+        simWidget.classList.add('spotlight-active');
+        simWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Render Hands-on Exploration Banner inside avatarArena
+      const arena = document.getElementById('avatarArena');
+      if (arena && !document.getElementById('simExplorationBanner')) {
+        const banner = document.createElement('div');
+        banner.id = 'simExplorationBanner';
+        banner.className = 'w-full p-3 bg-[#c9f3f4] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
+        banner.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="text-xl animate-bounce">⚡</span>
+            <div>
+              <div class="font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide">Interactive Hands-on Phase: Test Your Intuition</div>
+              <div class="text-xs text-[#151b20] font-sans">Adjust <b>Sample Size (N)</b> and <b>Selection Bias (β)</b> sliders above to observe distribution divergence!</div>
+            </div>
+          </div>
+          <button type="button" onclick="resumeLectureToCheckpoint()" id="btnResumeToCheckpoint" class="cursor-pointer px-4 py-2 rounded-xl bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black text-xs font-mono transition flex items-center gap-1.5 active:translate-y-0.5">
+            <span>Continue to Checkpoint</span> <span>▶</span>
+          </button>
+        `;
+        arena.insertBefore(banner, arena.children[1] || arena.firstChild);
+      }
+
+      setSubtitles("Dr. Nova & Kaito", "Interactive simulation active. Adjust the sample size (N) and bias (β) sliders above! Click 'Continue to Checkpoint' when ready.", currentTurnIndex + 1, curriculum[currentTopic].slides[currentSlideIndex][currentMode].turns.length);
+    }
+
+    function resumeLectureToCheckpoint() {
+      const banner = document.getElementById('simExplorationBanner');
+      if (banner) banner.remove();
+      isWaitingForExploration = false;
+
+      // Advance to next turn (Transition to Checkpoint)
+      currentTurnIndex++;
+      isSpeaking = true;
+      updatePlayButtons(true);
+      playCurrentTurn();
+    }
+
+    function pauseForCheckpointAnswer() {
+      isWaitingForQuiz = true;
+      isSpeaking = false;
+      updatePlayButtons(false);
+      animateTalking('both', false);
+
+      const quizWidget = document.getElementById('slideQuizCheckpoint');
+      if (quizWidget) {
+        quizWidget.classList.add('spotlight-active');
+        quizWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      const arena = document.getElementById('avatarArena');
+      if (arena && !document.getElementById('checkpointPromptBanner')) {
+        const banner = document.createElement('div');
+        banner.id = 'checkpointPromptBanner';
+        banner.className = 'w-full p-3 bg-[#fff0b9] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
+        banner.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="text-xl animate-pulse">💡</span>
+            <div>
+              <div class="font-mono font-black text-xs text-[#b45309] uppercase tracking-wide">Active Checkpoint Paused: Your Turn!</div>
+              <div class="text-xs text-[#151b20] font-sans">Select <b>Option A</b> or <b>Option B</b> above to test your architectural intuition.</div>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono font-black text-[#151b20] bg-[#fffdf7] px-3 py-1 rounded-lg border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] animate-pulse">
+            Awaiting Selection...
+          </span>
+        `;
+        arena.insertBefore(banner, arena.children[1] || arena.firstChild);
+      }
+
+      setSubtitles("Dr. Nova & Kaito", "Awaiting your answer: Please select Option A or Option B above to continue.", currentTurnIndex + 1, curriculum[currentTopic].slides[currentSlideIndex][currentMode].turns.length);
+    }
+
+    function speakFeedback(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+
+      setSubtitles("Dr. Nova (Feedback)", text, currentTurnIndex + 1, currentTurnIndex + 1);
+      highlightActiveAvatar("Dr. Nova");
+      animateTalking("Dr. Nova", true);
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      if (selectedNovaVoice) utterance.voice = selectedNovaVoice;
+      utterance.pitch = novaPitch;
+      utterance.rate = playbackSpeed * 1.04;
+
+      utterance.onend = () => {
+        animateTalking("Dr. Nova", false);
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function completeCheckpointAndAdvance() {
+      const banner = document.getElementById('checkpointCompleteBanner');
+      if (banner) banner.remove();
+      isWaitingForQuiz = false;
+      stopSpeech();
+      nextSlide();
+    }
+
+    function startInteractiveSequence() {
+      stopSpeech();
+      currentTurnIndex = 0;
+      isSpeaking = true;
+      updatePlayButtons(true);
+      playCurrentTurn();
     }
     // Keyboard navigation (Arrow keys for slides, Space for speech)
     window.addEventListener('keydown', (e) => {
@@ -3129,6 +3295,15 @@
        Traveling Adaptive Virtual Speakers Engine
        ======================================================== */
     let currentSpeakerDock = 'main';
+      // Clear any temporary interactive banners from previous slide
+      const oldSimBanner = document.getElementById('simExplorationBanner');
+      if (oldSimBanner) oldSimBanner.remove();
+      const oldQuizBanner = document.getElementById('checkpointPromptBanner');
+      if (oldQuizBanner) oldQuizBanner.remove();
+      const oldCompBanner = document.getElementById('checkpointCompleteBanner');
+      if (oldCompBanner) oldCompBanner.remove();
+      isWaitingForExploration = false;
+      isWaitingForQuiz = false;
 
     function moveSpeakerToDock(targetKey, smoothScroll = false) {
       const arena = document.getElementById('avatarArena');
@@ -3474,7 +3649,7 @@
     title="Start Interactive Guided Tour"
     class="fixed bottom-5 right-5 z-50 px-4 py-2.5 rounded-full bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] font-mono font-black text-xs md:text-sm border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center gap-2 transition hover:scale-105 active:translate-y-0.5 select-none cursor-pointer">
     <span class="text-base animate-bounce">🧭</span>
-    <span>Site Tour / 使用引导</span>
+    <span>Interactive Site Tour</span>
   </button>
 
   <!-- Site Tour Spotlight Overlay & Guided Modal Card -->
