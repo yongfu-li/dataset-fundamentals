@@ -7571,13 +7571,13 @@
               A 10-class diagnostic network evaluates <strong>Instance A</strong> ($P = [0.491, 0.490, 0.002, \\dots]$) and <strong>Instance B</strong> ($P \\approx [0.16, 0.15, 0.15, 0.14, 0.14, 0.13, \\dots]$). Which acquisition strategy prioritizes Instance A vs. Instance B?
             </p>
             <div class="grid grid-cols-1 gap-1.5 font-sans text-xs">
-              <button type="button" onclick="answerSlideQuiz('A')" id="quizBtnA" class="w-full text-left px-3 py-2 rounded-lg bg-[#fffdf7] hover:bg-[#e7f4c8] border-2 border-[#151b20] font-semibold transition-all cursor-pointer shadow-[1px_1px_0px_#151b20]">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <span class="font-mono font-black mr-2 text-[#151b20]">A.</span> <strong>Margin Sampling ($\\Delta_{\\text{margin}}$)</strong> isolates Instance A ($0.001$ gap), while <strong>Shannon Entropy ($\\mathcal{H}$)</strong> isolates Instance B ($\\approx 2.95$ bits flat distribution)
               </button>
-              <button type="button" onclick="answerSlideQuiz('B')" id="quizBtnB" class="w-full text-left px-3 py-2 rounded-lg bg-[#fffdf7] hover:bg-[#ffd8ce] border-2 border-[#151b20] font-semibold transition-all cursor-pointer shadow-[1px_1px_0px_#151b20]">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <span class="font-mono font-black mr-2 text-[#151b20]">B.</span> <strong>Least Confidence ($1 - P_{\\max}$)</strong> isolates Instance A strictly, while <strong>Margin Sampling</strong> targets diffuse Instance B
               </button>
-              <button type="button" onclick="answerSlideQuiz('C')" id="quizBtnC" class="w-full text-left px-3 py-2 rounded-lg bg-[#fffdf7] hover:bg-[#ffd8ce] border-2 border-[#151b20] font-semibold transition-all cursor-pointer shadow-[1px_1px_0px_#151b20]">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <span class="font-mono font-black mr-2 text-[#151b20]">C.</span> <strong>Shannon Entropy ($\\mathcal{H}$)</strong> always selects Instance A cleanly, while <strong>Least Confidence</strong> ranks Instance B higher
               </button>
             </div>
@@ -7606,13 +7606,13 @@
               Two duplicate regex LFs ($\\lambda_1, \\lambda_2$) falsely emit <code>-1</code>, while an independent 95%-precision expert LF ($\\lambda_3$) votes <code>+1</code>. Why does Majority Voting fail and how does Snorkel resolve it?
             </p>
             <div class="grid grid-cols-1 gap-1.5 font-sans text-xs">
-              <button type="button" onclick="answerSlideQuiz('A')" id="quizBtnA" class="w-full text-left px-3 py-2 rounded-lg bg-[#fffdf7] hover:bg-[#e7f4c8] border-2 border-[#151b20] font-semibold transition-all cursor-pointer shadow-[1px_1px_0px_#151b20]">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <span class="font-mono font-black mr-2 text-[#151b20]">A.</span> Majority Voting double-counts correlated clones ($-1, -1$ outweighs $+1$). Snorkel estimates conditional covariance $\\operatorname{Cov}(\\lambda_j, \\lambda_k)$ and learns pairwise <strong>$\\theta_{jk}$ dependency factors</strong> to compress redundant mutual information
               </button>
-              <button type="button" onclick="answerSlideQuiz('B')" id="quizBtnB" class="w-full text-left px-3 py-2 rounded-lg bg-[#fffdf7] hover:bg-[#ffd8ce] border-2 border-[#151b20] font-semibold transition-all cursor-pointer shadow-[1px_1px_0px_#151b20]">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <span class="font-mono font-black mr-2 text-[#151b20]">B.</span> Majority Voting resolves duplicates via stochastic tie-breaking, whereas Snorkel drops every rule sharing any overlapping coverage unconditionally
               </button>
-              <button type="button" onclick="answerSlideQuiz('C')" id="quizBtnC" class="w-full text-left px-3 py-2 rounded-lg bg-[#fffdf7] hover:bg-[#ffd8ce] border-2 border-[#151b20] font-semibold transition-all cursor-pointer shadow-[1px_1px_0px_#151b20]">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <span class="font-mono font-black mr-2 text-[#151b20]">C.</span> Snorkel scales weights by LF runtime latency and assumes conditional independence $\\theta_{jk}=0$ strictly across all sources
               </button>
             </div>
