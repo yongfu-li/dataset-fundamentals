@@ -1936,7 +1936,7 @@
 
 
     let isSpeaking = false;
-    let currentTopic = 'part1';
+    let currentTopic = 'ch1_p1';
     let currentSlideIndex = 0;
     let currentMode = 'solo';
     let playbackSpeed = 1.0;
@@ -2010,7 +2010,17 @@
       if (!select) return;
 
       const manifest = window.CURRICULUM_MANIFEST || [];
-      if (manifest.length === 0) return;
+      if (manifest.length === 0) {
+        // Fallback: fetch manifest.json if window.CURRICULUM_MANIFEST is not yet available
+        fetch('./curriculums/manifest.json')
+          .then(res => res.json())
+          .then(data => {
+            window.CURRICULUM_MANIFEST = data;
+            populateTopicSelector();
+          })
+          .catch(e => console.warn('Could not load curriculum manifest fallback:', e));
+        return;
+      }
 
       const grouped = {};
       for (const item of manifest) {
@@ -2061,6 +2071,17 @@
       const match = key.match(/^ch(\d+)_p(\d+)$/);
       const ch = match ? Number(match[1]) : 1;
 
+      // Check if global chapter data is already in memory
+      if (window[`CURRICULUM_CH${ch}`]) {
+        Object.assign(curriculum, window[`CURRICULUM_CH${ch}`]);
+        loadedChapters.add(ch);
+        if (curriculum[key]) {
+          currentTopic = key;
+          if (callback) callback();
+          return;
+        }
+      }
+
       if (loadedChapters.has(ch) && curriculum[key]) {
         currentTopic = key;
         if (callback) callback();
@@ -2086,6 +2107,9 @@
         if (chData) {
           Object.assign(curriculum, chData);
           loadedChapters.add(ch);
+        } else if (ch === 1 && window.curriculum) {
+          Object.assign(curriculum, window.curriculum);
+          loadedChapters.add(1);
         }
         currentTopic = key;
         if (callback) callback();
@@ -2450,6 +2474,16 @@
       if (isSpeaking) stopSpeech();
       currentSlideIndex = 0;
       isFullDeckPlaying = false;
+      const match = topicKey.match(/^ch(\d+)_p(\d+)$/);
+      if (match && window.history && window.history.replaceState) {
+        try {
+          const newUrl = new URL(window.location.href);
+          newUrl.searchParams.set('chapter', match[1]);
+          newUrl.searchParams.set('part', match[2]);
+          newUrl.searchParams.delete('topic');
+          window.history.replaceState({}, '', newUrl.toString());
+        } catch (e) {}
+      }
       loadLesson(topicKey, () => {
         loadAudioForLesson(topicKey, currentMode);
         const select = document.getElementById('topicSelect');
@@ -2991,6 +3025,7 @@
       // 3. Interactive Simulation Widgets (Lesson 1.1 & 1.2)
       const isLesson1 = (currentTopic === 'ch1_p1');
       const isLesson2 = (currentTopic === 'ch1_p2');
+      const isLesson2_1 = (currentTopic === 'ch2_p1');
 
       const isSampleRiskSlide = isLesson1 && (slideIndex === 1); // Slide 2: Empirical Sample & Selection Bias
       const isCascadeSlide = isLesson1 && (slideIndex === 7 || slideIndex === 8);
@@ -2999,6 +3034,11 @@
       const isL2Chk1Slide = isLesson2 && (slideIndex === 6);        // Slide 7: Checkpoint 1
       const isL2StreamSimSlide = isLesson2 && (slideIndex === 11);  // Slide 12: Dynamic Streaming Simulator
       const isL2Chk2Slide = isLesson2 && (slideIndex === 12);       // Slide 13: Checkpoint 2
+
+      const isL2_1TaeSimSlide = isLesson2_1 && (slideIndex === 5); // Slide 6: Total Acquisition Error (TAE) Simulator
+      const isL2_1Chk1Slide = isLesson2_1 && (slideIndex === 6);   // Slide 7: Checkpoint 1 (Calculating Frame Coverage Bias)
+      const isL2_1FpcSimSlide = isLesson2_1 && (slideIndex === 11); // Slide 12: FPC & Power Workbench
+      const isL2_1Chk2Slide = isLesson2_1 && (slideIndex === 12);  // Slide 13: Checkpoint 2 (The FPC Scaling Impact)
 
       const toolContainer = document.getElementById('slideToolContainer');
       const checkpointContainer = document.getElementById('slideCheckpointContainer');
@@ -3427,6 +3467,207 @@
         if (typeof initStreamingSimulator === 'function') {
           initStreamingSimulator();
         }
+      } else if (isL2_1TaeSimSlide && toolContainer) {
+        // Slide 6: Total Acquisition Error (TAE) & Coverage Bias Simulator
+        const taeCard = document.createElement('div');
+        taeCard.id = 'taeSimWidget';
+        taeCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        taeCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>🔬</span> Interactive Lab: Total Acquisition Error (TAE) Simulator
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Groves (2009) &amp; Biemer (2010)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tweak the sampling frame coverage rate, cohort disparity, and non-response mechanism to observe how upstream acquisition defects create systematic estimator bias:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3">
+            <!-- Slider 1: Coverage Rate -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">1. Frame Coverage Rate $N_c / N$:</span>
+                <span id="taeValCovRate" class="text-[#0e7490] font-black">75%</span>
+              </div>
+              <input type="range" id="taeSliderCovRate" min="20" max="100" step="5" value="75" oninput="updateTaeSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Severe Omission (20%)</span>
+                <span>Full Census (100%)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Uncovered Cohort Mean Disparity -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">2. Uncovered Cohort Mean $\\bar{Y}_u$:</span>
+                <span id="taeValUncovMean" class="text-[#c2410c] font-black">70.0</span>
+              </div>
+              <input type="range" id="taeSliderUncovMean" min="30" max="90" step="1" value="70" oninput="updateTaeSim()" class="w-full accent-[#f38469] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>$\\bar{Y}_c = 45.0$ (Covered)</span>
+                <span>Disparity $\\bar{Y}_c - \\bar{Y}_u = -25.0$</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Metric Readouts -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono mb-3">
+            <div class="p-2.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#151b20] uppercase">True Pop Mean $\\bar{Y}$</div>
+              <div id="taeMetricTrueMean" class="font-black text-sm md:text-base text-[#151b20]">51.25</div>
+              <div class="text-[9px] text-[#151b20]/60">Physical Universe Target</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#f0fbfd] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#0e7490] uppercase">Theoretical Cov Bias</div>
+              <div id="taeMetricCovBias" class="font-black text-sm md:text-base text-[#0e7490]">-6.25</div>
+              <div class="text-[9px] text-[#151b20]/60">$\\frac{N_u}{N}(\\bar{Y}_c - \\bar{Y}_u)$</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#fff5f2] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#c2410c] uppercase">Realized Sample $\\bar{y}_r$</div>
+              <div id="taeMetricRealizedMean" class="font-black text-sm md:text-base text-[#c2410c]">42.80</div>
+              <div class="text-[9px] text-[#151b20]/60">Observed After Attrition</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#151b20] uppercase">Total Bias Gap $\\Delta$</div>
+              <div id="taeMetricTotalBias" class="font-black text-sm md:text-base text-[#dc2626] font-black">-8.45</div>
+              <div class="text-[9px] text-[#151b20]/60">$\\bar{y}_r - \\bar{Y}$</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Visual Bar -->
+          <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 text-xs font-mono space-y-2">
+            <div class="flex justify-between items-center text-[11px] font-bold pb-1 border-b border-[#151b20]/20">
+              <span>COHORT ESTIMATOR DIVERGENCE SPECTRUM</span>
+              <span id="taeCoveragePill" class="px-2 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border border-[#151b20]">Severe Frame Bias</span>
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-32 font-bold text-[#151b20]">1. True Universe $\\bar{Y}$:</span>
+                <div class="flex-1 bg-[#fffdf7] h-3.5 rounded overflow-hidden border border-[#151b20]">
+                  <div id="taeBarTrue" class="h-full bg-[#15803d]" style="width: 51%;"></div>
+                </div>
+                <span id="taeValTrueMeanText" class="w-14 text-right font-black text-[#15803d]">51.25</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-32 font-bold text-[#0e7490]">2. Covered Frame $\\bar{Y}_c$:</span>
+                <div class="flex-1 bg-[#fffdf7] h-3.5 rounded overflow-hidden border border-[#151b20]">
+                  <div id="taeBarCovered" class="h-full bg-[#22bfd7]" style="width: 45%;"></div>
+                </div>
+                <span id="taeValCoveredMeanText" class="w-14 text-right font-black text-[#0e7490]">45.00</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-32 font-bold text-[#dc2626]">3. Realized $\\bar{y}_r$:</span>
+                <div class="flex-1 bg-[#fffdf7] h-3.5 rounded overflow-hidden border border-[#151b20]">
+                  <div id="taeBarRealized" class="h-full bg-[#dc2626]" style="width: 42%;"></div>
+                </div>
+                <span id="taeValRealizedMeanText" class="w-14 text-right font-black text-[#dc2626]">42.80</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="taeInsightText" class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
+            💡 <b>The Coverage Bias Reality:</b> When $N_u/N = 25\\%$ and omitted entities have $\\bar{Y}_u = 70.0$, the sampling frame undercoverage causes a negative bias of $-6.25$. No amount of increased sampling within the accessible frame can eliminate this systematic error!
+          </div>
+        `;
+        toolContainer.appendChild(taeCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateTaeSim === 'function') {
+          updateTaeSim();
+        }
+      } else if (isL2_1FpcSimSlide && toolContainer) {
+        // Slide 12: Finite Population Correction & Power Sizer Workbench
+        const fpcCard = document.createElement('div');
+        fpcCard.id = 'fpcSimWidget';
+        fpcCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        fpcCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>⚡</span> Interactive Lab: Finite Population Correction &amp; Power Workbench
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Cochran (1977) Sampling Power
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tweak universe size $N$, sample size $n$, and error tolerance $\\delta$ to observe how the Finite Population Correction (FPC) reduces standard error and calculates minimum pilot sizes:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3">
+            <!-- Slider 1: Universe Size N -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">1. Universe Population $N$:</span>
+                <span id="fpcValN" class="text-[#0e7490] font-black">20,000 pkts</span>
+              </div>
+              <input type="range" id="fpcSliderN" min="1000" max="50000" step="1000" value="20000" oninput="updateFpcSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Small Fleet (1,000)</span>
+                <span>Enterprise Edge (50,000)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Sample Size n -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">2. Collected Sample $n$:</span>
+                <span id="fpcValn" class="text-[#b45309] font-black">5,000 pkts</span>
+              </div>
+              <input type="range" id="fpcSlidern" min="200" max="15000" step="200" value="5000" oninput="updateFpcSim()" class="w-full accent-[#b45309] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Sparse Draw (200)</span>
+                <span>Near Exhaustive (15,000)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Metric Readouts -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono mb-3">
+            <div class="p-2.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#151b20] uppercase">Sampling Fraction $f$</div>
+              <div id="fpcMetricFraction" class="font-black text-sm md:text-base text-[#151b20]">25.0%</div>
+              <div class="text-[9px] text-[#151b20]/60">$n / N$</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#f0fbfd] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#0e7490] uppercase">FPC Factor</div>
+              <div id="fpcMetricFactor" class="font-black text-sm md:text-base text-[#0e7490]">0.8660</div>
+              <div class="text-[9px] text-[#151b20]/60">$\\sqrt{(N-n)/(N-1)}$</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#15803d] uppercase">Uncertainty Reduction</div>
+              <div id="fpcMetricReduction" class="font-black text-sm md:text-base text-[#15803d] font-black">13.4%</div>
+              <div class="text-[9px] text-[#151b20]/60">$(1 - \\text{FPC}) \\times 100\\%$</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[9px] font-bold text-[#151b20] uppercase">Cochran Pilot $n_{\\text{pilot}}$</div>
+              <div id="fpcMetricPilot" class="font-black text-sm md:text-base text-[#b45309]">538 pkts</div>
+              <div class="text-[9px] text-[#151b20]/60">$\\delta = 1.0, \\sigma = 12.0$</div>
+            </div>
+          </div>
+
+          <div id="fpcInsightText" class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
+            💡 <b>FPC Significant Regime ($f > 5\\%$):</b> With a sampling fraction of $25\\%$, sampling variance shrinks by $25\\%$ ($\\text{Var} \\propto 1 - f = 0.75$), which compresses standard error by $\\mathbf{13.4\\%}$. Omitting FPC severely overestimates uncertainty!
+          </div>
+        `;
+        toolContainer.appendChild(fpcCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateFpcSim === 'function') {
+          updateFpcSim();
+        }
       }
 
       // 4. Interactive Active Checkpoint (Capeur Formative Assessment)
@@ -3552,6 +3793,74 @@
               </button>
               <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <strong>C.</strong> It converts tumbling windows into session windows automatically without data loss.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL2_1Chk1Slide) {
+          // Slide 7: Checkpoint 1 (Calculating Frame Coverage Bias)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Calculating Frame Coverage Bias
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: A municipal health survey aims to estimate the mean systolic blood pressure of a city ($N = 500,000$). The digital app sampling frame reaches only smartphone owners ($N_c = 350,000$), whose true mean systolic pressure is $\\bar{Y}_c = 118\\text{ mmHg}$. The uncovered population ($N_u = 150,000$, primarily elderly residents) has a true mean of $\\bar{Y}_u = 138\\text{ mmHg}$. What is the exact frame coverage bias $\\text{Bias}_{\\text{coverage}}(\\bar{y}_c)$?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. $-6\\text{ mmHg}$:</strong> Undercoverage fraction $150k/500k = 0.30$. Bias is $0.30 \\times (118 - 138) = -6\\text{ mmHg}$ (True mean $124\\text{ mmHg}$).
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. $+20\\text{ mmHg}$:</strong> The raw difference between the uncovered and covered cohort means ($138 - 118 = 20\\text{ mmHg}$).
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. $0\\text{ mmHg}$:</strong> Because $350,000$ respondents provides overwhelming statistical power to eliminate frame bias.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL2_1Chk2Slide) {
+          // Slide 13: Checkpoint 2 (The FPC Scaling Impact)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: The FPC Scaling Impact
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: An engineer collects $n = 5,000$ telemetry packets from an IoT edge device that logs exactly $N = 20,000$ packets per day. By what percentage does the Finite Population Correction (FPC) shrink the standard error compared to assuming an infinite population?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. $13.4\\%$ reduction:</strong> $f = 5k/20k = 0.25$. $\\text{FPC} = \\sqrt{1 - 0.25} = \\sqrt{0.75} \\approx 0.8660$, reducing uncertainty by $1 - 0.8660 = 13.4\\%$.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. $25.0\\%$ reduction:</strong> Because the sampling fraction is $25\\%$, uncertainty shrinks linearly by $25\\%$.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. $0.0\\%$ reduction:</strong> Because $5,000$ packets is sufficiently large that finite population adjustments become irrelevant.
               </button>
             </div>
             <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
@@ -3716,11 +4025,20 @@
       const isLesson2 = (currentTopic === 'ch1_p2');
       const isChk1 = isLesson2 && (currentSlideIndex === 6);
       const isChk2 = isLesson2 && (currentSlideIndex === 12);
+      const isL2_1 = (currentTopic === 'ch2_p1');
+      const isL2_1Chk1 = isL2_1 && (currentSlideIndex === 6);
+      const isL2_1Chk2 = isL2_1 && (currentSlideIndex === 12);
 
       if (isCorrect) {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#b7df69] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black scale-[1.02]';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#f0fbfd] border-2 border-[#151b20] text-[#151b20] text-xs font-sans leading-relaxed';
-        if (isChk1) {
+        if (isL2_1Chk1) {
+          feedback.innerHTML = `🎉 <b>Outstanding!</b> Coverage bias is $\\frac{N_u}{N}(\\bar{Y}_c - \\bar{Y}_u) = \\frac{150,000}{500,000}(118 - 138) = 0.30 \\times (-20) = -6\\text{ mmHg}$. True population mean is $124\\text{ mmHg}$, so the survey underestimates by $6\\text{ mmHg}$ strictly due to frame omission!`;
+          verbalFeedback = 'Outstanding! Coverage bias is undercoverage fraction 0.30 times the mean gap of negative 20, yielding exactly negative 6 millimeters of mercury! The digital survey underestimates population blood pressure by 6 millimeters of mercury strictly due to frame omission, which no amount of algorithmic tuning can fix!';
+        } else if (isL2_1Chk2) {
+          feedback.innerHTML = `🎉 <b>Precisely Correct!</b> Sampling fraction $f = \\frac{5,000}{20,000} = 0.25$. Therefore $\\text{FPC} = \\sqrt{1 - 0.25} = \\sqrt{0.75} \\approx 0.8660$. Standard error shrinks to $86.6\\%$ of unadjusted, yielding an exact $\\mathbf{13.4\\%}$ uncertainty reduction!`;
+          verbalFeedback = 'Spot on! With sampling fraction f equals 0.25, the FPC factor is square root of 0.75, approximately 0.8660. The standard error shrinks to 86.6 percent of its unadjusted value, yielding an exact 13.4 percent uncertainty reduction!';
+        } else if (isChk1) {
           feedback.innerHTML = `🎉 <b>Outstanding!</b> Schema-on-read JSON forces full-document deserialization and CPU string parsing per row on every query, whereas columnar Parquet enables vectorized SIMD compression and zero-copy projection pushdown.`;
           verbalFeedback = 'Outstanding! Schema-on-read forces CPU-intensive string parsing and pointer dereferencing on every read, whereas columnar formats like Parquet store homogeneous columns contiguously with vectorized SIMD compression and zero-copy projection pushdown!';
         } else if (isChk2) {
@@ -3736,7 +4054,13 @@
       } else {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] text-[#151b20] text-xs font-sans leading-relaxed';
-        if (isChk1) {
+        if (isL2_1Chk1) {
+          feedback.innerHTML = `❌ <b>Common Mathematical Trap:</b> Frame coverage bias is strictly the product of the undercoverage fraction and the cohort gap: $\\text{Bias} = \\frac{N_u}{N}(\\bar{Y}_c - \\bar{Y}_u)$. Even with $350,000$ responses, omitting the elderly cohort causes a $-6\\text{ mmHg}$ systematic error.`;
+          verbalFeedback = 'Careful! Frame coverage bias is strictly a function of the uncovered fraction and the parameter divergence: undercoverage fraction times the difference between covered and uncovered means. Even with 350,000 responses, missing the elderly cohort biases the estimate by minus 6 millimeters of mercury.';
+        } else if (isL2_1Chk2) {
+          feedback.innerHTML = `❌ <b>Common Architectural Trap:</b> Sampling variance scales with $(1 - f)$, which means standard error scales with the square root: $\\text{FPC} = \\sqrt{1 - f} = \\sqrt{0.75} \\approx 0.8660$. Thus standard error drops by $13.4\\%$, NOT $25\\%$.`;
+          verbalFeedback = 'Not quite. Remember that variance scales with 1 minus f, so standard error scales with the square root of 1 minus f, which is square root of 0.75 or approximately 0.8660. This means standard error shrinks by 13.4 percent, not 25 percent.';
+        } else if (isChk1) {
           feedback.innerHTML = `❌ <b>Common Architectural Trap:</b> JSON is a row-oriented text format requiring full lexical parsing and key duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with dictionary and run-length encoding.`;
           verbalFeedback = 'Not quite. Remember that JSON is a text-based format requiring full lexical parsing and field name duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with run-length and dictionary encoding.';
         } else if (isChk2) {
@@ -3968,7 +4292,8 @@
         if (isSpeaking) {
           stopSpeech();
         } else {
-          playInteractiveDockAudio(currentSpeakerDock);
+          const shouldResume = (dockPausedElapsed > 0 && dockPausedElapsed < currentInteractiveTotalDuration - 0.2);
+          playInteractiveDockAudio(currentSpeakerDock, shouldResume);
         }
         return;
       }
@@ -4119,7 +4444,7 @@
     let isWaitingForExploration = false;
     let isWaitingForQuiz = false;
 
-    function pauseForToolExploration(customSpeaker, customText) {
+    function pauseForToolExploration(customSpeaker, customText, shouldResetSubtitles = true) {
       isWaitingForExploration = true;
       isSpeaking = false;
       updatePlayButtons(false);
@@ -4171,7 +4496,9 @@
         ? "We have docked at the Data Quality Cascade Simulator directly below! Look at the three upstream sliders: Sensor Calibration Drift, Imputation Distortion, and Annotation Inconsistency. Notice how pushing sensor drift from 8% to 20% does not just double error—it triples downstream model degradation! Try adjusting the sliders now to observe the non-linear cascade."
         : "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!";
       const txt = customText || defaultTxt;
-      setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
+      if (shouldResetSubtitles) {
+        setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
+      }
     }
 
     function resumeLectureToCheckpoint() {
@@ -4182,7 +4509,7 @@
       manualMoveSpeaker('quiz', true);
     }
 
-    function pauseForCheckpointAnswer(customSpeaker, customText) {
+    function pauseForCheckpointAnswer(customSpeaker, customText, shouldResetSubtitles = true) {
       isWaitingForQuiz = true;
       isSpeaking = false;
       updatePlayButtons(false);
@@ -4223,15 +4550,48 @@
         ? "Here is your active checkpoint: According to the Law of Data Quality Cascades, where in the machine learning lifecycle does error manifest with the most catastrophic compounding multiplier? Select Option A, B, or C above me!"
         : "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!";
       const txt = customText || defaultTxt;
-      setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
+      if (shouldResetSubtitles) {
+        setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
+      }
     }
 
-    function playInteractiveDockAudio(dockKey) {
+    let dockEngineRaf = null;
+    let dockStartTime = 0;
+    let dockPausedElapsed = 0;
+    let currentInteractiveSentences = [];
+    let currentInteractiveTotalDuration = 0;
+
+    function completeInteractiveDockSpeech(dockKey) {
+      if (dockEngineRaf) {
+        cancelAnimationFrame(dockEngineRaf);
+        dockEngineRaf = null;
+      }
+      isSpeaking = false;
+      updatePlayButtons(false);
+      animateTalking('both', false);
+      dockPausedElapsed = 0;
+
+      // Keep all spoken words fully readable and marked as completed
+      const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
+      wordSpans.forEach(s => s.className = 'kword kword-past');
+
+      if (dockKey === 'sim') {
+        pauseForToolExploration(null, null, false);
+      } else if (dockKey === 'quiz') {
+        pauseForCheckpointAnswer(null, null, false);
+      }
+    }
+
+    function playInteractiveDockAudio(dockKey, resume = false) {
       dockKey = dockKey || currentSpeakerDock || 'sim';
       if (!interactiveAudio) {
         interactiveAudio = document.getElementById('interactiveAudio');
       }
 
+      if (dockEngineRaf) {
+        cancelAnimationFrame(dockEngineRaf);
+        dockEngineRaf = null;
+      }
       // Stop previous background speech or neural audio
       if (neuralAudio && !neuralAudio.paused) {
         neuralAudio.pause();
@@ -4256,8 +4616,74 @@
       let interactiveSentences = [];
       let totalDuration = 10.0;
 
+      const isL2_1 = (currentTopic === 'ch2_p1');
+      const isL2_1Tae = isL2_1 && (currentSlideIndex === 5);
+      const isL2_1Fpc = isL2_1 && (currentSlideIndex === 11);
+      const isL2_1Chk1 = isL2_1 && (currentSlideIndex === 6);
+      const isL2_1Chk2 = isL2_1 && (currentSlideIndex === 12);
+
       if (dockKey === 'sim') {
-        if (isL2Multi) {
+        if (isL2_1Tae) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p1_tae_sim_duo.mp3';
+            totalDuration = 26.510;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, our speaker stage has traveled down to the Total Acquisition Error Simulator! How should readers test the trade-offs?",
+                0.0,
+                8.640
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Look at the four sliders in the simulator directly below us! Set the Coverage Rate to 50% and widen the gap between Covered and Uncovered Means. Notice how the Realized Respondent Mean diverges from the True Population Target. Try experimenting with the controls now!",
+                8.990,
+                26.510
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p1_tae_sim_solo.mp3';
+            totalDuration = 20.544;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Total Acquisition Error and Coverage Bias Simulator! Look at the controls directly above me: Population Universe N, Frame Coverage Rate, and Cohort True Means. Try dragging the Coverage Rate slider down to 40%—watch how the theoretical coverage bias and total empirical bias expand immediately!",
+                0.0,
+                20.544
+              )
+            ];
+          }
+        } else if (isL2_1Fpc) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p1_fpc_sim_duo.mp3';
+            totalDuration = 28.118;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, our speaker stage has traveled down to the FPC and Power Sizer Workbench! Look at how the Uncertainty Reduction metric changes as we increase sample fraction!",
+                0.0,
+                10.656
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Watch closely! When sample fraction f reaches 25%, our standard error shrinks by over 13%! Experiment with the Universe Size N and Sample Size n sliders directly below us to test how finite population scaling works in practice.",
+                11.006,
+                28.118
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p1_fpc_sim_solo.mp3';
+            totalDuration = 25.536;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Finite Population Correction and Power Sizer Workbench! Look at the controls: Universe Size N, Planned Sample Size n, Variance sigma squared, and Target Margin of Error delta. Notice how increasing the sample fraction past 15% causes the FPC factor to compress standard error sharply, reducing required sample sizes. Try adjusting the sliders above me now!",
+                0.0,
+                25.536
+              )
+            ];
+          }
+        } else if (isL2Multi) {
           if (isDuo) {
             audioPath = './audio/ch1_p2_multi_sim_duo.mp3';
             totalDuration = 30.062;
@@ -4379,7 +4805,67 @@
           }
         }
       } else if (dockKey === 'quiz') {
-        if (isL2Chk1) {
+        if (isL2_1Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p1_chk1_duo.mp3';
+            totalDuration = 21.542;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "A municipal health survey with 350,000 smartphone responses completely omits 150,000 elderly residents!",
+                0.0,
+                7.992
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "A classic coverage trap, Kaito! Apply our coverage bias formula: the undercoverage fraction times the cohort difference. Select Option A, B, or C above me to lock in your answer!",
+                8.342,
+                21.542
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p1_chk1_solo.mp3';
+            totalDuration = 28.464;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Here is your active checkpoint: A municipal health survey aims to estimate mean systolic blood pressure for a city of 500,000 residents. The digital app sampling frame reaches 350,000 smartphone owners with mean 118 millimeters of mercury, but completely omits 150,000 elderly residents whose true mean is 138. What is the exact frame coverage bias? Select Option A, B, or C above me!",
+                0.0,
+                28.464
+              )
+            ];
+          }
+        } else if (isL2_1Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p1_chk2_duo.mp3';
+            totalDuration = 21.806;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Collecting 5,000 telemetry packets from a daily finite buffer of 20,000 packets gives a sampling fraction of 25%!",
+                0.0,
+                7.944
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Remember that standard error scales with the square root of 1 minus f, not 1 minus f directly! Let's challenge our engineers: Select Option A, B, or C above me to verify your FPC intuition.",
+                8.294,
+                21.806
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p1_chk2_solo.mp3';
+            totalDuration = 20.232;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Here is your active checkpoint: An engineer collects 5,000 telemetry packets from an IoT edge device that logs exactly 20,000 packets per day. By what percentage does the Finite Population Correction shrink the standard error compared to assuming an infinite population? Select Option A, B, or C above me!",
+                0.0,
+                20.232
+              )
+            ];
+          }
+        } else if (isL2Chk1) {
           if (isDuo) {
             audioPath = './audio/ch1_p2_chk1_duo.mp3';
             totalDuration = 19.190;
@@ -4502,24 +4988,43 @@
         }
       }
 
+      currentInteractiveSentences = interactiveSentences;
+      currentInteractiveTotalDuration = totalDuration;
+
+      if (!resume) {
+        dockPausedElapsed = 0;
+      }
+      dockStartTime = performance.now() - (dockPausedElapsed * 1000);
+
       // Initialize Cinema Subtitle Display with interactive karaoke spans
       lastRenderedSentenceText = "";
       const initialSent = interactiveSentences[0];
       setSubtitles(initialSent.speaker, initialSent.text, 1, interactiveSentences.length);
-      updateKaraokeWords(initialSent, 0.0);
+      updateKaraokeWords(initialSent, dockPausedElapsed);
 
       isSpeaking = true;
       updatePlayButtons(true);
 
-      const startVisualFallback = (durationMs = totalDuration * 1000) => {
-        const startTime = Date.now();
-        const fallbackInterval = setInterval(() => {
-          if (!isSpeaking) {
-            clearInterval(fallbackInterval);
-            return;
-          }
-          const elapsed = (Date.now() - startTime) / 1000;
-          const activeSent = interactiveSentences.find(s => elapsed >= s.start && elapsed <= s.end) || interactiveSentences[interactiveSentences.length - 1];
+      // Start High-Frequency 60fps Dedicated Dock Karaoke Runner
+      function runDockEngine() {
+        if (!isSpeaking || (currentSpeakerDock !== 'sim' && currentSpeakerDock !== 'quiz')) {
+          cancelAnimationFrame(dockEngineRaf);
+          dockEngineRaf = null;
+          return;
+        }
+
+        // Use hardware audio currentTime when available, else fallback to high-res clock
+        let t = dockPausedElapsed;
+        if (interactiveAudio && !interactiveAudio.paused && !isNaN(interactiveAudio.currentTime) && interactiveAudio.currentTime > 0) {
+          t = interactiveAudio.currentTime;
+        } else {
+          t = Math.max(0, (performance.now() - dockStartTime) / 1000);
+        }
+        dockPausedElapsed = t;
+
+        const sentences = currentInteractiveSentences;
+        if (sentences && sentences.length > 0) {
+          const activeSent = sentences.find(s => t >= s.start && t <= s.end) || sentences[sentences.length - 1];
           if (activeSent) {
             highlightActiveAvatar(activeSent.speaker);
             animateTalking(activeSent.speaker, true);
@@ -4527,124 +5032,73 @@
               const other = activeSent.speaker.toLowerCase().includes('kaito') ? 'Dr. Nova' : 'Kaito';
               animateTalking(other, false);
             }
-            updateKaraokeWords(activeSent, elapsed);
-          }
-        }, 60);
-
-        interactiveTimer = setTimeout(() => {
-          clearInterval(fallbackInterval);
-          stopSpeech();
-          const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
-          wordSpans.forEach(s => s.className = 'kword kword-past');
-          if (dockKey === 'sim') {
-            pauseForToolExploration();
-          } else if (dockKey === 'quiz') {
-            pauseForCheckpointAnswer();
-          }
-        }, durationMs);
-      };
-
-      if (interactiveAudio) {
-        interactiveAudio.pause();
-        interactiveAudio.src = audioPath;
-        interactiveAudio.playbackRate = engineSpeed || 1.0;
-        interactiveAudio.preservesPitch = true;
-
-        interactiveAudio.ontimeupdate = () => {
-          const t = interactiveAudio.currentTime;
-          const activeSent = interactiveSentences.find(s => t >= s.start && t <= s.end) || interactiveSentences[interactiveSentences.length - 1];
-          if (activeSent) {
-            highlightActiveAvatar(activeSent.speaker);
-            animateTalking(activeSent.speaker, true);
-            if (isDuo) {
-              const other = activeSent.speaker.toLowerCase().includes('kaito') ? 'Dr. Nova' : 'Kaito';
-              animateTalking(other, false);
-            }
-            // Update Turn counter if multi-turn
-            const turnIndex = interactiveSentences.indexOf(activeSent) + 1;
+            const turnIndex = sentences.indexOf(activeSent) + 1;
             const turnCounter = document.getElementById('turnCounter');
-            if (turnCounter) turnCounter.innerText = `Turn ${turnIndex} of ${interactiveSentences.length}`;
-            // Live Karaoke Word Highlighting!
+            if (turnCounter) turnCounter.innerText = `Turn ${turnIndex} of ${sentences.length}`;
+            // Live 60fps Word Highlighting!
             updateKaraokeWords(activeSent, t);
           }
-        };
+        }
+
+        if (t >= totalDuration || (interactiveAudio && interactiveAudio.ended)) {
+          completeInteractiveDockSpeech(dockKey);
+          return;
+        }
+
+        dockEngineRaf = requestAnimationFrame(runDockEngine);
+      }
+
+      dockEngineRaf = requestAnimationFrame(runDockEngine);
+
+      if (interactiveAudio) {
+        interactiveAudio.playbackRate = engineSpeed || 1.0;
+        interactiveAudio.preservesPitch = true;
+        
+        // Handle source loading and resume position
+        if (!interactiveAudio.src || !interactiveAudio.src.endsWith(audioPath.replace('./', '/'))) {
+          interactiveAudio.src = audioPath;
+        }
+        if (resume && dockPausedElapsed > 0) {
+          try { interactiveAudio.currentTime = dockPausedElapsed; } catch (e) {}
+        } else {
+          try { interactiveAudio.currentTime = 0; } catch (e) {}
+        }
 
         interactiveAudio.onended = () => {
-          isSpeaking = false;
-          updatePlayButtons(false);
-          animateTalking('both', false);
-          // Mark all words as past/completed
-          const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
-          wordSpans.forEach(s => s.className = 'kword kword-past');
-          if (dockKey === 'sim') {
-            pauseForToolExploration();
-          } else if (dockKey === 'quiz') {
-            pauseForCheckpointAnswer();
-          }
-        };
-
-        interactiveAudio.onerror = (e) => {
-          console.warn(`[InteractiveAudio] Audio '${audioPath}' load error, using WebSpeech fallback:`, e);
-          playInteractiveWebSpeech(initialSent.text, isDuo, dockKey, startVisualFallback);
+          completeInteractiveDockSpeech(dockKey);
         };
 
         const playPromise = interactiveAudio.play();
         if (playPromise !== undefined) {
           playPromise.catch(err => {
-            console.warn("[InteractiveAudio] play() blocked or rejected:", err);
-            playInteractiveWebSpeech(initialSent.text, isDuo, dockKey, startVisualFallback);
+            console.warn("[InteractiveAudio] play() blocked or rejected, running visual/WebSpeech fallback:", err);
+            // Visual 60fps runner is already active! Also attempt WebSpeech voice:
+            if ('speechSynthesis' in window) {
+              try {
+                window.speechSynthesis.cancel();
+                const utt = new SpeechSynthesisUtterance(initialSent.text);
+                const voices = window.speechSynthesis.getVoices();
+                const safeVoice = voices.find(v => v.lang.startsWith('en') && v.localService && !v.name.includes('Online')) ||
+                                  voices.find(v => v.lang.startsWith('en') && !v.name.includes('Online')) ||
+                                  selectedNovaVoice;
+                if (safeVoice) utt.voice = safeVoice;
+                utt.rate = playbackSpeed || 1.0;
+                window.speechSynthesis.speak(utt);
+              } catch (e) {}
+            }
           });
         }
-      } else {
-        playInteractiveWebSpeech(initialSent.text, isDuo, dockKey, startVisualFallback);
       }
     }
 
-    function playInteractiveWebSpeech(text, isDuo, dockKey, fallbackVisual) {
-      if (!('speechSynthesis' in window)) {
-        fallbackVisual();
-        return;
-      }
-      try {
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.resume();
-
-        const utterance = new SpeechSynthesisUtterance(text);
-        const voices = window.speechSynthesis.getVoices();
-        const safeVoice = voices.find(v => v.lang.startsWith('en') && v.localService && !v.name.includes('Online')) ||
-                          voices.find(v => v.lang.startsWith('en') && !v.name.includes('Online')) ||
-                          selectedNovaVoice;
-        if (safeVoice) utterance.voice = safeVoice;
-        utterance.rate = playbackSpeed || 1.0;
-
-        utterance.onstart = () => {
-          animateTalking('Dr. Nova', true);
-        };
-        utterance.onend = () => {
-          isSpeaking = false;
-          updatePlayButtons(false);
-          animateTalking('both', false);
-          if (dockKey === 'sim') {
-            pauseForToolExploration();
-          } else if (dockKey === 'quiz') {
-            pauseForCheckpointAnswer();
-          }
-        };
-        utterance.onerror = (err) => {
-          console.warn("[WebSpeech] speak error, falling back to visual lip-sync timer:", err);
-          fallbackVisual();
-        };
-
-        window.speechSynthesis.speak(utterance);
-      } catch (e) {
-        console.warn("[WebSpeech] speak exception:", e);
-        fallbackVisual();
-      }
-    }
 
     function speakFeedback(text, isCorrect = true) {
       if (!interactiveAudio) {
         interactiveAudio = document.getElementById('interactiveAudio');
+      }
+      if (dockEngineRaf) {
+        cancelAnimationFrame(dockEngineRaf);
+        dockEngineRaf = null;
       }
       if (neuralAudio && !neuralAudio.paused) {
         neuralAudio.pause();
@@ -4661,11 +5115,20 @@
       const isLesson2 = (currentTopic === 'ch1_p2');
       const isChk1 = isLesson2 && (currentSlideIndex === 6);
       const isChk2 = isLesson2 && (currentSlideIndex === 12);
+      const isL2_1 = (currentTopic === 'ch2_p1');
+      const isL2_1Chk1 = isL2_1 && (currentSlideIndex === 6);
+      const isL2_1Chk2 = isL2_1 && (currentSlideIndex === 12);
 
       let feedbackDuration = 12.0;
       let feedbackSrc = '';
 
-      if (isChk1) {
+      if (isL2_1Chk1) {
+        feedbackDuration = isCorrect ? 21.264 : 19.656;
+        feedbackSrc = isCorrect ? './audio/ch2_p1_chk1_feedback_correct.mp3' : './audio/ch2_p1_chk1_feedback_incorrect.mp3';
+      } else if (isL2_1Chk2) {
+        feedbackDuration = isCorrect ? 21.240 : 20.064;
+        feedbackSrc = isCorrect ? './audio/ch2_p1_chk2_feedback_correct.mp3' : './audio/ch2_p1_chk2_feedback_incorrect.mp3';
+      } else if (isChk1) {
         feedbackDuration = isCorrect ? 15.912 : 16.920;
         feedbackSrc = isCorrect ? './audio/ch1_p2_chk1_feedback_correct.mp3' : './audio/ch1_p2_chk1_feedback_incorrect.mp3';
       } else if (isChk2) {
@@ -4687,61 +5150,69 @@
 
       highlightActiveAvatar("Dr. Nova");
       animateTalking("Dr. Nova", true);
+      isSpeaking = true;
+      updatePlayButtons(true);
 
-      // feedbackSrc is already assigned above
+      const feedbackStartTime = performance.now();
+      function runFeedbackEngine() {
+        if (!isSpeaking) return;
+        let t = 0;
+        if (interactiveAudio && !interactiveAudio.paused && !isNaN(interactiveAudio.currentTime) && interactiveAudio.currentTime > 0) {
+          t = interactiveAudio.currentTime;
+        } else {
+          t = Math.max(0, (performance.now() - feedbackStartTime) / 1000);
+        }
 
-      const fallbackWebSpeech = () => {
-        if (!('speechSynthesis' in window)) {
-          setTimeout(() => animateTalking("Dr. Nova", false), 4500);
+        updateKaraokeWords(feedbackSentence, t);
+
+        if (t >= feedbackDuration || (interactiveAudio && interactiveAudio.ended)) {
+          cancelAnimationFrame(dockEngineRaf);
+          dockEngineRaf = null;
+          isSpeaking = false;
+          updatePlayButtons(false);
+          animateTalking("Dr. Nova", false);
+          const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
+          wordSpans.forEach(s => s.className = 'kword kword-past');
           return;
         }
-        try {
-          const utterance = new SpeechSynthesisUtterance(text);
-          const voices = window.speechSynthesis.getVoices();
-          const safeVoice = voices.find(v => v.lang.startsWith('en') && v.localService && !v.name.includes('Online')) ||
-                            voices.find(v => v.lang.startsWith('en') && !v.name.includes('Online')) ||
-                            selectedNovaVoice;
-          if (safeVoice) utterance.voice = safeVoice;
-          utterance.pitch = novaPitch;
-          utterance.rate = playbackSpeed * 1.04;
-          utterance.onend = () => animateTalking("Dr. Nova", false);
-          utterance.onerror = () => {
-            setTimeout(() => animateTalking("Dr. Nova", false), 4500);
-          };
-          window.speechSynthesis.speak(utterance);
-        } catch (e) {
-          setTimeout(() => animateTalking("Dr. Nova", false), 4500);
-        }
-      };
+        dockEngineRaf = requestAnimationFrame(runFeedbackEngine);
+      }
+      dockEngineRaf = requestAnimationFrame(runFeedbackEngine);
 
       if (interactiveAudio) {
-        interactiveAudio.pause();
         interactiveAudio.src = feedbackSrc;
         interactiveAudio.playbackRate = engineSpeed || 1.0;
-
-        interactiveAudio.ontimeupdate = () => {
-          const t = interactiveAudio.currentTime;
-          updateKaraokeWords(feedbackSentence, t);
-        };
-
+        interactiveAudio.currentTime = 0;
         interactiveAudio.onended = () => {
+          cancelAnimationFrame(dockEngineRaf);
+          dockEngineRaf = null;
+          isSpeaking = false;
+          updatePlayButtons(false);
           animateTalking("Dr. Nova", false);
           const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
           wordSpans.forEach(s => s.className = 'kword kword-past');
         };
 
-        interactiveAudio.onerror = () => {
-          fallbackWebSpeech();
-        };
-
         const p = interactiveAudio.play();
         if (p !== undefined) {
-          p.catch(() => fallbackWebSpeech());
+          p.catch(() => {
+            if ('speechSynthesis' in window) {
+              try {
+                const utt = new SpeechSynthesisUtterance(text);
+                const voices = window.speechSynthesis.getVoices();
+                const safeVoice = voices.find(v => v.lang.startsWith('en') && v.localService && !v.name.includes('Online')) ||
+                                  voices.find(v => v.lang.startsWith('en') && !v.name.includes('Online')) ||
+                                  selectedNovaVoice;
+                if (safeVoice) utt.voice = safeVoice;
+                utt.rate = playbackSpeed * 1.04;
+                window.speechSynthesis.speak(utt);
+              } catch (e) {}
+            }
+          });
         }
-      } else {
-        fallbackWebSpeech();
       }
     }
+
 
     function completeCheckpointAndAdvance() {
       const banner = document.getElementById('checkpointCompleteBanner');
@@ -4788,6 +5259,10 @@
 
 
     function stopSpeech() {
+      if (dockEngineRaf) {
+        cancelAnimationFrame(dockEngineRaf);
+        dockEngineRaf = null;
+      }
       if (turnTimeout) clearTimeout(turnTimeout);
       if (interactiveTimer) {
         clearTimeout(interactiveTimer);
@@ -4848,7 +5323,12 @@
       clearSpotlights();
 
       if (targetKey === 'sim') {
-        const sim = document.getElementById('empiricalCascadeWidget') || document.getElementById('empiricalSimWidget');
+        const sim = document.getElementById('taeSimWidget') ||
+                    document.getElementById('fpcSimWidget') ||
+                    document.getElementById('multiStructureWidget') ||
+                    document.getElementById('streamingWindowWidget') ||
+                    document.getElementById('empiricalCascadeWidget') ||
+                    document.getElementById('empiricalSimWidget');
         if (sim) {
           sim.classList.add('spotlight-active');
           if (smoothScroll) sim.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -4867,16 +5347,42 @@
       }
     }
 
-    function manualMoveSpeaker(targetKey, shouldSpeak = false) {
-      // Smart Auto-Navigation: If user is on a slide without tools, navigate to nearest tool slide
-      const isToolSlide = (currentSlideIndex === 1 || currentSlideIndex === 7 || currentSlideIndex === 8);
-      if (!isToolSlide && (targetKey === 'sim' || targetKey === 'quiz')) {
-        const destSlide = currentSlideIndex < 5 ? 1 : 7;
-        goToSlide(destSlide);
-        setTimeout(() => manualMoveSpeaker(targetKey, shouldSpeak), 250);
-        return;
-      }
+            function manualMoveSpeaker(targetKey, shouldSpeak = false) {
+      // Dynamic Tool Detection on Current Slide
+      const topicData = curriculum[currentTopic];
+      const curSlide = (topicData && topicData.slides) ? topicData.slides[currentSlideIndex] : null;
+      const curContent = curSlide ? ((curSlide.solo && curSlide.solo.contentHtml) || '') : '';
+      const curTurns = curSlide ? ((curSlide[currentMode] && curSlide[currentMode].turns) || []) : [];
+
+      const hasTurnsSim = curTurns.some(t => t.dock === 'sim' || t.pauseForInteraction === 'explore_tool');
+      const hasTurnsQuiz = curTurns.some(t => t.dock === 'quiz' || t.pauseForInteraction === 'answer_checkpoint');
+
+      const isL1Sim = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
+      const isL2Sim = (currentTopic === 'ch1_p2' && (currentSlideIndex === 5 || currentSlideIndex === 11));
+      const isL2_1Sim = (currentTopic === 'ch2_p1' && (currentSlideIndex === 5 || currentSlideIndex === 11));
+      const domSim = !!(document.getElementById('speakerDockSimulator') ||
+                        document.getElementById('taeSimWidget') ||
+                        document.getElementById('fpcSimWidget') ||
+                        document.getElementById('empiricalCascadeWidget') ||
+                        document.getElementById('empiricalSimWidget') ||
+                        document.getElementById('multiStructureWidget') ||
+                        document.getElementById('streamingWindowWidget'));
+      const hasSim = isL1Sim || isL2Sim || isL2_1Sim || hasTurnsSim || domSim;
+
+      const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
+      const isL2Quiz = (currentTopic === 'ch1_p2' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const isL2_1Quiz = (currentTopic === 'ch2_p1' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const domQuiz = !!(document.getElementById('speakerDockCheckpoint') ||
+                         document.getElementById('slideQuizCheckpoint'));
+      const hasQuiz = isL1Quiz || isL2Quiz || isL2_1Quiz || hasTurnsQuiz || domQuiz;
+
+      // Do not navigate away if tool does not exist on this slide
+      if (targetKey === 'sim' && !hasSim) return;
+      if (targetKey === 'quiz' && !hasQuiz) return;
+
       moveSpeakerToDock(targetKey, true);
+
+      
 
       // Stop any ongoing background neural audio or speech synthesis
       if (neuralAudio && !neuralAudio.paused) {
@@ -4889,7 +5395,7 @@
       updatePlayButtons(false);
       animateTalking('both', false);
 
-      const topicData = curriculum[currentTopic];
+      // topicData already declared at start of manualMoveSpeaker
       if (!topicData || !topicData.slides || !topicData.slides[currentSlideIndex]) return;
 
       const slide = topicData.slides[currentSlideIndex];
@@ -4973,11 +5479,51 @@
       }
     }
 
-    function updateDockFocusPills(activeKey) {
+        function updateDockFocusPills(activeKey) {
       const label = document.getElementById('dockActiveLabel');
       const btnMain = document.getElementById('dockBtnMain');
       const btnSim = document.getElementById('dockBtnSim');
       const btnQuiz = document.getElementById('dockBtnQuiz');
+      const btnSeq = document.getElementById('btnInteractiveSequence');
+
+      // Comprehensive multi-layer detection for simulator & checkpoint existence on current slide
+      const topicData = curriculum[currentTopic];
+      const curSlide = (topicData && topicData.slides) ? topicData.slides[currentSlideIndex] : null;
+      const curContent = curSlide ? ((curSlide.solo && curSlide.solo.contentHtml) || '') : '';
+      const curTurns = curSlide ? ((curSlide[currentMode] && curSlide[currentMode].turns) || []) : [];
+
+      const hasTurnsSim = curTurns.some(t => t.dock === 'sim' || t.pauseForInteraction === 'explore_tool');
+      const hasTurnsQuiz = curTurns.some(t => t.dock === 'quiz' || t.pauseForInteraction === 'answer_checkpoint');
+
+      const isL1Sim = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
+      const isL2Sim = (currentTopic === 'ch1_p2' && (currentSlideIndex === 5 || currentSlideIndex === 11));
+      const domSim = !!(document.getElementById('speakerDockSimulator') ||
+                        document.getElementById('empiricalCascadeWidget') ||
+                        document.getElementById('empiricalSimWidget') ||
+                        document.getElementById('multiStructureWidget') ||
+                        document.getElementById('streamingWindowWidget'));
+      const hasSim = isL1Sim || isL2Sim || hasTurnsSim || domSim;
+
+      const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
+      const isL2Quiz = (currentTopic === 'ch1_p2' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const domQuiz = !!(document.getElementById('speakerDockCheckpoint') ||
+                         document.getElementById('slideQuizCheckpoint'));
+      const hasQuiz = isL1Quiz || isL2Quiz || hasTurnsQuiz || domQuiz;
+
+      const isCascade = (currentTopic === 'ch1_p1' && (currentSlideIndex === 7 || currentSlideIndex === 8));
+      const isMultiStruct = (currentTopic === 'ch1_p2' && currentSlideIndex === 5);
+      const isStreamSim = (currentTopic === 'ch1_p2' && currentSlideIndex === 11);
+      const isChk1 = (currentTopic === 'ch1_p2' && currentSlideIndex === 6);
+      const isChk2 = (currentTopic === 'ch1_p2' && currentSlideIndex === 12);
+      const isTaeSim = (currentTopic === 'ch2_p1' && currentSlideIndex === 5);
+      const isFpcSim = (currentTopic === 'ch2_p1' && currentSlideIndex === 11);
+      const isL2_1Chk1 = (currentTopic === 'ch2_p1' && currentSlideIndex === 6);
+      const isL2_1Chk2 = (currentTopic === 'ch2_p1' && currentSlideIndex === 12);
+
+      // Default activeKey to main if dock does not exist on this slide
+      if ((activeKey === 'sim' && !hasSim) || (activeKey === 'quiz' && !hasQuiz)) {
+        activeKey = 'main';
+      }
 
       const inactiveClass = "cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]";
       const activeClass = "cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]";
@@ -4986,41 +5532,65 @@
       if (btnSim) btnSim.className = activeKey === 'sim' ? activeClass : inactiveClass;
       if (btnQuiz) btnQuiz.className = activeKey === 'quiz' ? activeClass : inactiveClass;
 
-      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
-      const isLesson2 = (currentTopic === 'ch1_p2');
-      const isMultiStruct = isLesson2 && (currentSlideIndex === 5);
-      const isStreamSim = isLesson2 && (currentSlideIndex === 11);
-      const isChk1 = isLesson2 && (currentSlideIndex === 6);
-      const isChk2 = isLesson2 && (currentSlideIndex === 12);
-
+      // Dynamically toggle pill visibility based on current slide content
       if (btnSim) {
-        if (isMultiStruct) btnSim.innerHTML = '⚡ Multi-Structure';
-        else if (isStreamSim) btnSim.innerHTML = '⚡ Streaming Sim';
-        else if (isCascade) btnSim.innerHTML = '⚡ Cascade Simulator';
-        else btnSim.innerHTML = '⚡ Simulator';
+        if (hasSim) {
+          btnSim.classList.remove('hidden');
+          if (isTaeSim) btnSim.innerHTML = '⚡ TAE Simulator';
+          else if (isFpcSim) btnSim.innerHTML = '⚡ FPC & Power';
+          else if (isMultiStruct) btnSim.innerHTML = '⚡ Multi-Structure';
+          else if (isStreamSim) btnSim.innerHTML = '⚡ Streaming Sim';
+          else if (isCascade) btnSim.innerHTML = '⚡ Cascade Simulator';
+          else btnSim.innerHTML = '⚡ Simulator';
+        } else {
+          btnSim.classList.add('hidden');
+        }
       }
 
       if (btnQuiz) {
-        if (isChk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
-        else if (isChk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
-        else btnQuiz.innerHTML = '💡 Checkpoint';
+        if (hasQuiz) {
+          btnQuiz.classList.remove('hidden');
+          if (isL2_1Chk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
+          else if (isL2_1Chk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
+          else if (isChk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
+          else if (isChk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
+          else btnQuiz.innerHTML = '💡 Checkpoint';
+        } else {
+          btnQuiz.classList.add('hidden');
+        }
+      }
+
+      if (btnSeq) {
+        if (hasSim && hasQuiz) {
+          btnSeq.classList.remove('hidden');
+        } else {
+          btnSeq.classList.add('hidden');
+        }
       }
 
       if (label) {
-        if (activeKey === 'main') label.innerText = "1. Core Slide Content";
-        else if (activeKey === 'sim') {
-          if (isMultiStruct) label.innerText = "2. Multi-Structure Inspector (SQL vs JSON vs Vector)";
+        if (activeKey === 'main') {
+          label.innerText = (hasSim || hasQuiz) ? "1. Core Slide Content" : "Core Slide Content";
+        } else if (activeKey === 'sim') {
+          if (isTaeSim) label.innerText = "2. Total Acquisition Error (TAE) & Coverage Bias Simulator";
+          else if (isFpcSim) label.innerText = "2. Finite Population Correction & Power Sizer Workbench";
+          else if (isMultiStruct) label.innerText = "2. Multi-Structure Inspector (SQL vs JSON vs Vector)";
           else if (isStreamSim) label.innerText = "2. Dynamic Tumbling Window Simulator";
           else if (isCascade) label.innerText = "2. Data Quality Cascade Simulator";
           else label.innerText = "2. Empirical Risk & Bias Playground";
         } else if (activeKey === 'quiz') {
-          if (isChk1) label.innerText = "3. Checkpoint: Schema-on-Read vs Columnar Storage";
+          if (isL2_1Chk1) label.innerText = "3. Checkpoint: Calculating Frame Coverage Bias";
+          else if (isL2_1Chk2) label.innerText = "3. Checkpoint: The FPC Scaling Impact";
+          else if (isChk1) label.innerText = "3. Checkpoint: Schema-on-Read vs Columnar Storage";
           else if (isChk2) label.innerText = "3. Checkpoint: Watermark Triage & Late Arrivals";
           else label.innerText = "3. Active Recall Checkpoint";
+        } else {
+          label.innerText = "Lecture Deck Stage";
         }
-        else label.innerText = "Lecture Deck Stage";
       }
     }
+
+    
 
     function clearSpotlights() {
       document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
@@ -5222,16 +5792,30 @@
     }
 
     // Support URL params e.g. ?chapter=3&part=2 or ?topic=ch3_p2 or ?topic=part4
-    window.addEventListener('DOMContentLoaded', () => {
-      populateVoiceSelectors();
-      populateTopicSelector();
-
+    function initStudio() {
       const params = new URLSearchParams(window.location.search);
       const chapterParam = params.get('chapter');
       const partParam = params.get('part');
       let topicParam = params.get('topic');
       const modeParam = params.get('mode');
       const tourParam = params.get('tour');
+
+      let targetKey = 'ch1_p1';
+      if (chapterParam && partParam) {
+        targetKey = `ch${chapterParam}_p${partParam}`;
+      } else if (topicParam) {
+        if (topicParam.startsWith('part')) {
+          targetKey = `ch1_p${topicParam.replace('part', '')}`;
+        } else {
+          targetKey = topicParam;
+        }
+      }
+
+      currentTopic = targetKey;
+
+      populateVoiceSelectors();
+      populateTopicSelector();
+
       if (tourParam === '1' || tourParam === 'true') {
         setTimeout(() => startSiteTour(), 600);
       }
@@ -5252,19 +5836,6 @@
         }
       }
 
-      let targetKey = 'ch1_p1';
-
-      if (chapterParam && partParam) {
-        targetKey = `ch${chapterParam}_p${partParam}`;
-      } else if (topicParam) {
-        if (topicParam.startsWith('part')) {
-          targetKey = `ch1_p${topicParam.replace('part', '')}`;
-        } else {
-          targetKey = topicParam;
-        }
-      }
-
-      currentTopic = targetKey;
       updateNavigationLinks();
       loadLesson(targetKey, () => {
         const select = document.getElementById('topicSelect');
@@ -5272,7 +5843,13 @@
         updateView();
         loadAudioForLesson(targetKey, currentMode);
       });
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initStudio);
+    } else {
+      initStudio();
+    }
 
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = () => {
@@ -5600,6 +6177,144 @@
     window.toggleStreamSimulation = toggleStreamSimulation;
     window.burstHighTempEvents = burstHighTempEvents;
     window.clearStreamLog = clearStreamLog;
+
+    /* ========================================================
+       Chapter 2.1 Interactive Simulation Engines
+       ======================================================== */
+    function updateTaeSim() {
+      const sliderCov = document.getElementById('taeSliderCovRate');
+      const sliderUncov = document.getElementById('taeSliderUncovMean');
+      if (!sliderCov || !sliderUncov) return;
+
+      const covRate = parseFloat(sliderCov.value) / 100.0;
+      const uncovRate = 1.0 - covRate;
+      const y_uncov = parseFloat(sliderUncov.value);
+      const y_cov = 45.0; // Fixed covered frame baseline mean
+
+      const y_true = (covRate * y_cov) + (uncovRate * y_uncov);
+      const covBias = uncovRate * (y_cov - y_uncov);
+
+      // Model non-response propensity attenuation
+      const nonRespBias = -2.2 * (1.0 + (uncovRate * 0.8));
+      const realizedMean = y_cov + nonRespBias;
+      const totalBias = realizedMean - y_true;
+
+      // Update labels & metrics
+      const valCovRateEl = document.getElementById('taeValCovRate');
+      if (valCovRateEl) valCovRateEl.innerText = `${Math.round(covRate * 100)}%`;
+
+      const valUncovMeanEl = document.getElementById('taeValUncovMean');
+      if (valUncovMeanEl) valUncovMeanEl.innerText = y_uncov.toFixed(1);
+
+      const mTrue = document.getElementById('taeMetricTrueMean');
+      if (mTrue) mTrue.innerText = y_true.toFixed(2);
+
+      const mCov = document.getElementById('taeMetricCovBias');
+      if (mCov) mCov.innerText = (covBias >= 0 ? '+' : '') + covBias.toFixed(2);
+
+      const mReal = document.getElementById('taeMetricRealizedMean');
+      if (mReal) mReal.innerText = realizedMean.toFixed(2);
+
+      const mTot = document.getElementById('taeMetricTotalBias');
+      if (mTot) mTot.innerText = (totalBias >= 0 ? '+' : '') + totalBias.toFixed(2);
+
+      // Visual bars
+      const barTrue = document.getElementById('taeBarTrue');
+      if (barTrue) barTrue.style.width = `${Math.min(100, Math.max(10, y_true))}%`;
+
+      const barCov = document.getElementById('taeBarCovered');
+      if (barCov) barCov.style.width = `${Math.min(100, Math.max(10, y_cov))}%`;
+
+      const barReal = document.getElementById('taeBarRealized');
+      if (barReal) barReal.style.width = `${Math.min(100, Math.max(10, realizedMean))}%`;
+
+      const tTrue = document.getElementById('taeValTrueMeanText');
+      if (tTrue) tTrue.innerText = y_true.toFixed(2);
+
+      const tCov = document.getElementById('taeValCoveredMeanText');
+      if (tCov) tCov.innerText = y_cov.toFixed(2);
+
+      const tReal = document.getElementById('taeValRealizedMeanText');
+      if (tReal) tReal.innerText = realizedMean.toFixed(2);
+
+      const pill = document.getElementById('taeCoveragePill');
+      if (pill) {
+        if (Math.abs(covBias) > 5.0) {
+          pill.className = "px-2 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border border-[#151b20] font-bold";
+          pill.innerText = "Severe Frame Bias";
+        } else if (Math.abs(covBias) > 1.5) {
+          pill.className = "px-2 py-0.5 rounded bg-[#fff0b9] text-[#151b20] border border-[#151b20] font-bold";
+          pill.innerText = "Moderate Bias";
+        } else {
+          pill.className = "px-2 py-0.5 rounded bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold";
+          pill.innerText = "Calibrated Frame";
+        }
+      }
+
+      const insight = document.getElementById('taeInsightText');
+      if (insight) {
+        insight.innerHTML = `💡 <b>The Coverage Bias Reality:</b> When $N_u/N = ${Math.round(uncovRate * 100)}\\%$ and omitted entities have $\\bar{Y}_u = ${y_uncov.toFixed(1)}$, the sampling frame undercoverage causes a coverage bias of $\\mathbf{${covBias.toFixed(2)}}$. No amount of increased sampling within the accessible frame can eliminate this systematic error!`;
+        if (window.renderMathInElement) {
+          renderMathInElement(insight, { delimiters: [{ left: '$$', right: '$$', display: false }, { left: '$', right: '$', display: false }] });
+        }
+      }
+    }
+
+    function updateFpcSim() {
+      const sliderN = document.getElementById('fpcSliderN');
+      const slidern = document.getElementById('fpcSlidern');
+      if (!sliderN || !slidern) return;
+
+      const N = parseFloat(sliderN.value);
+      let n = parseFloat(slidern.value);
+      if (n > N) {
+        n = N;
+        slidern.value = n;
+      }
+
+      const f = n / N;
+      const fpc = N > 1 ? Math.sqrt(Math.max(0, (N - n) / (N - 1))) : 0;
+      const reduction = (1.0 - fpc) * 100.0;
+
+      // Cochran Pilot sizing: alpha = 0.05 (z = 1.96), sigma = 12.0, delta = 1.0
+      const z = 1.96;
+      const sigma = 12.0;
+      const delta = 1.0;
+      const n0 = (z * z * sigma * sigma) / (delta * delta);
+      const n_pilot = Math.ceil(n0 / (1.0 + (n0 / N)));
+
+      const valNEl = document.getElementById('fpcValN');
+      if (valNEl) valNEl.innerText = `${N.toLocaleString()} pkts`;
+
+      const valnEl = document.getElementById('fpcValn');
+      if (valnEl) valnEl.innerText = `${n.toLocaleString()} pkts`;
+
+      const mFrac = document.getElementById('fpcMetricFraction');
+      if (mFrac) mFrac.innerText = `${(f * 100).toFixed(1)}%`;
+
+      const mFact = document.getElementById('fpcMetricFactor');
+      if (mFact) mFact.innerText = fpc.toFixed(4);
+
+      const mRed = document.getElementById('fpcMetricReduction');
+      if (mRed) mRed.innerText = `${reduction.toFixed(1)}%`;
+
+      const mPilot = document.getElementById('fpcMetricPilot');
+      if (mPilot) mPilot.innerText = `${n_pilot.toLocaleString()} pkts`;
+
+      const insight = document.getElementById('fpcInsightText');
+      if (insight) {
+        const isRegime = f > 0.05;
+        insight.innerHTML = isRegime
+          ? `💡 <b>FPC Significant Regime ($f > 5\\%$):</b> With a sampling fraction of $${(f * 100).toFixed(1)}\\%$, sampling variance shrinks by $${(f * 100).toFixed(1)}\\%$ ($\\text{Var} \\propto 1 - f$), compressing standard error by $\\mathbf{${reduction.toFixed(1)}\\%}$. Omitting FPC severely overestimates uncertainty!`
+          : `💡 <b>Infinite Approximation Regime ($f \\le 5\\%$):</b> At $f = ${(f * 100).toFixed(1)}\\%$, FPC is $\\approx ${fpc.toFixed(3)}$ with only a minor $${reduction.toFixed(1)}\\%$ uncertainty reduction. Standard infinite population variance formulas remain adequate.`;
+        if (window.renderMathInElement) {
+          renderMathInElement(insight, { delimiters: [{ left: '$$', right: '$$', display: false }, { left: '$', right: '$', display: false }] });
+        }
+      }
+    }
+
+    window.updateTaeSim = updateTaeSim;
+    window.updateFpcSim = updateFpcSim;
     
   </script>
 

@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1742,10 +1786,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pareto-optimality-condition" class="md-nav__link">
+  <a href="#a-pareto-optimality-condition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pareto Optimality Condition
+        A. Pareto Optimality Condition
       
     </span>
   </a>
@@ -1753,10 +1797,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kaldor-hicks-social-net-benefit-with-negative-externalities" class="md-nav__link">
+  <a href="#b-differential-privacy-the-laplace-mechanism" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kaldor-Hicks Social Net Benefit with Negative Externalities
+        B. Differential Privacy &amp; The Laplace Mechanism
       
     </span>
   </a>
@@ -1764,10 +1808,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arrow-pratt-risk-averse-certainty-equivalent" class="md-nav__link">
+  <a href="#c-kaldor-hicks-social-net-benefit-with-negative-externalities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arrow-Pratt Risk-Averse Certainty Equivalent
+        C. Kaldor-Hicks Social Net Benefit with Negative Externalities
       
     </span>
   </a>
@@ -1775,10 +1819,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kleinberg-chouldechova-impossibility-theorem" class="md-nav__link">
+  <a href="#d-arrow-pratt-risk-averse-certainty-equivalent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kleinberg-Chouldechova Impossibility Theorem
+        D. Arrow-Pratt Risk-Averse Certainty Equivalent
       
     </span>
   </a>
@@ -1799,13 +1843,80 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. Three Archetypal Ethical Dilemmas in Data Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-32-deontological-vs-consequentialist-frameworks-across-dilemmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.2: Deontological vs. Consequentialist Frameworks Across Dilemmas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-simulating-the-kleinberg-trade-off" class="md-nav__link">
+  <a href="#3-in-depth-engineering-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Simulating the Kleinberg Trade-Off
+        3. In-Depth Engineering Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. In-Depth Engineering Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-2020-us-census-differential-privacy-controversy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The 2020 US Census Differential Privacy Controversy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-covid-19-contact-tracing-centralized-gps-vs-decentralized-bluetooth-gaen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: COVID-19 Contact Tracing: Centralized GPS vs. Decentralized Bluetooth (GAEN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-the-strava-fitness-heatmap-military-base-exfiltration-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: The Strava Fitness Heatmap Military Base Exfiltration (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-interactive-laboratory-pareto-utility-privacy-dp-epsilon-tradeoff-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 🔬 Interactive Laboratory: Pareto Utility-Privacy &amp; DP \(\epsilon\)-Tradeoff Simulator
       
     </span>
   </a>
@@ -1813,10 +1924,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-python-verification-pareto-frontier-laplace-mechanism" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        5. Production Python Verification: Pareto Frontier &amp; Laplace Mechanism
       
     </span>
   </a>
@@ -1835,10 +1946,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7411,10 +7522,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pareto-optimality-condition" class="md-nav__link">
+  <a href="#a-pareto-optimality-condition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pareto Optimality Condition
+        A. Pareto Optimality Condition
       
     </span>
   </a>
@@ -7422,10 +7533,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kaldor-hicks-social-net-benefit-with-negative-externalities" class="md-nav__link">
+  <a href="#b-differential-privacy-the-laplace-mechanism" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kaldor-Hicks Social Net Benefit with Negative Externalities
+        B. Differential Privacy &amp; The Laplace Mechanism
       
     </span>
   </a>
@@ -7433,10 +7544,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#arrow-pratt-risk-averse-certainty-equivalent" class="md-nav__link">
+  <a href="#c-kaldor-hicks-social-net-benefit-with-negative-externalities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Arrow-Pratt Risk-Averse Certainty Equivalent
+        C. Kaldor-Hicks Social Net Benefit with Negative Externalities
       
     </span>
   </a>
@@ -7444,10 +7555,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kleinberg-chouldechova-impossibility-theorem" class="md-nav__link">
+  <a href="#d-arrow-pratt-risk-averse-certainty-equivalent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kleinberg-Chouldechova Impossibility Theorem
+        D. Arrow-Pratt Risk-Averse Certainty Equivalent
       
     </span>
   </a>
@@ -7468,13 +7579,80 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. Three Archetypal Ethical Dilemmas in Data Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-32-deontological-vs-consequentialist-frameworks-across-dilemmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.2: Deontological vs. Consequentialist Frameworks Across Dilemmas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-simulating-the-kleinberg-trade-off" class="md-nav__link">
+  <a href="#3-in-depth-engineering-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Simulating the Kleinberg Trade-Off
+        3. In-Depth Engineering Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. In-Depth Engineering Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-2020-us-census-differential-privacy-controversy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The 2020 US Census Differential Privacy Controversy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-covid-19-contact-tracing-centralized-gps-vs-decentralized-bluetooth-gaen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: COVID-19 Contact Tracing: Centralized GPS vs. Decentralized Bluetooth (GAEN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-the-strava-fitness-heatmap-military-base-exfiltration-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: The Strava Fitness Heatmap Military Base Exfiltration (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-interactive-laboratory-pareto-utility-privacy-dp-epsilon-tradeoff-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 🔬 Interactive Laboratory: Pareto Utility-Privacy &amp; DP \(\epsilon\)-Tradeoff Simulator
       
     </span>
   </a>
@@ -7482,10 +7660,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-python-verification-pareto-frontier-laplace-mechanism" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        5. Production Python Verification: Pareto Frontier &amp; Laplace Mechanism
       
     </span>
   </a>
@@ -7504,10 +7682,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7546,38 +7724,38 @@
 
 
 <h1 id="33-the-utility-privacy-frontier-pareto-dilemmas-externalities">3.3 The Utility-Privacy Frontier: Pareto Dilemmas &amp; Externalities</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.2.2 &amp; §3.2.3: Utility vs. Privacy Frontiers)</strong> in the official Springer Nature monograph, exploring Pareto tradeoff curves, criminal justice accuracy conflicts, and surveillance capitalism externalities.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.3: The Utility-Privacy Frontier &amp; Dilemmas)</strong> in the official Springer Nature monograph, exploring Pareto trade-off curves, criminal justice accuracy conflicts, and surveillance capitalism externalities.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~14 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~18 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-33">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.3</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">12 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">11 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=3" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=3" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7587,27 +7765,27 @@
 
 <hr />
 <p>In data engineering, privacy protection and analytical utility exist in <strong>inherent mathematical tension</strong> [<a href="#ref-dwork2006">Dwork2006</a>, <a href="#ref-mittelstadt2016">Mittelstadt2016</a>].</p>
-<p>The most mathematically useful dataset is a completely unredacted, micro-level record containing raw identifiers, high-frequency continuous timestamps, and exact diagnostic codes. Conversely, the only completely private dataset is one filled entirely with random noise, providing zero analytical utility.</p>
-<p>Engineering ethical data systems requires formalizing the <strong>Utility-Privacy Tradeoff Frontier</strong> and navigating the systemic dilemmas that arise when legitimate institutional goals conflict with individual civil liberties [<a href="#ref-kleinberg2016">Kleinberg2016</a>, <a href="#ref-chouldechova2017">Chouldechova2017</a>].</p>
+<p>The most mathematically useful dataset is a completely unredacted, micro-level record containing raw identifiers, high-frequency continuous timestamps, and exact clinical diagnostic codes. Conversely, the only completely private dataset is one filled entirely with random noise, providing zero analytical utility.</p>
+<p>Engineering ethical data systems requires formalizing the <strong>Utility-Privacy Tradeoff Frontier</strong> and navigating the systemic dilemmas that arise when legitimate institutional goals conflict with individual civil liberties [<a href="#ref-kleinberg2016">Kleinberg2016</a>, <a href="#ref-chouldechova2017">Chouldechova2017</a>, <a href="#ref-acemoglu2022">Acemoglu2022</a>].</p>
 <hr />
 <h2 id="1-the-mathematical-formulation-of-the-trade-off-frontier">1. The Mathematical Formulation of the Trade-Off Frontier</h2>
-<p>Let <span class="arithmatex">\(\mathcal{D}\)</span> denote the raw empirical dataset and <span class="arithmatex">\(\mathcal{M}(\mathcal{D})\)</span> denote a sanitized or privacy-transformed mechanism (e.g., via <span class="arithmatex">\(k\)</span>-anonymity generalization or differential privacy noise injection). </p>
-<p>The data architect solves a multi-objective optimization problem:</p>
+<p>Let <span class="arithmatex">\(\mathcal{D}\)</span> denote a raw empirical dataset and <span class="arithmatex">\(\mathcal{M}(\mathcal{D})\)</span> denote a sanitized or privacy-preserving mechanism (e.g., via <span class="arithmatex">\(k\)</span>-anonymity generalization or differential privacy noise injection).</p>
+<p>The data architect solves a constrained multi-objective optimization problem:</p>
 <div class="arithmatex">\[
 \max_{\mathcal{M}} \mathcal{U}\left(\mathcal{M}(\mathcal{D})\right) \quad \text{subject to} \quad \mathcal{R}_{\text{privacy}}\left(\mathcal{M}(\mathcal{D})\right) \le \epsilon
 \]</div>
 <p>Where:
-- <span class="arithmatex">\(\mathcal{U}\)</span> represents <strong>Analytical Utility</strong> (e.g., model accuracy <span class="arithmatex">\(R^2\)</span>, classification F1-score, or statistical query precision).
-- <span class="arithmatex">\(\mathcal{R}_{\text{privacy}}\)</span> represents <strong>Re-Identification / Leakage Risk</strong> (e.g., differential privacy budget <span class="arithmatex">\(\epsilon\)</span>, or mutual information <span class="arithmatex">\(I(\mathcal{M}(\mathcal{D}); \mathbf{S})\)</span> with sensitive attributes).</p>
+- <span class="arithmatex">\(\mathcal{U}\)</span> represents <strong>Analytical Utility</strong> (e.g., statistical query precision, classification F1-score, or downstream model <span class="arithmatex">\(R^2\)</span>).
+- <span class="arithmatex">\(\mathcal{R}_{\text{privacy}}\)</span> represents <strong>Re-Identification / Disclosure Risk</strong> (e.g., differential privacy budget <span class="arithmatex">\(\epsilon\)</span>, or mutual information <span class="arithmatex">\(I(\mathcal{M}(\mathcal{D}); \mathbf{S})\)</span> with sensitive attributes).</p>
 <pre class="mermaid"><code>flowchart LR
     subgraph Frontier ["The Pareto Frontier of Data Publishing"]
-        A["Point A: Raw Microdata&lt;br/&gt;Utility: 100%, Privacy Risk: High"]
-        B["Point B: Optimal Operating Point&lt;br/&gt;(e.g., ε = 1.0 DP / k = 10)&lt;br/&gt;Utility: 92%, Privacy Risk: Minimal"]
-        C["Point C: Over-Sanitized Data&lt;br/&gt;Utility: 15%, Privacy Risk: Zero"]
+        A["Point A: Raw Microdata&lt;br/&gt;Utility: 100%, Privacy Risk: Extreme"]
+        B["Point B: Pareto Optimal Operating Point&lt;br/&gt;(e.g., ε = 1.0 DP / k = 10)&lt;br/&gt;Utility: 92%, Privacy Risk: Bounded"]
+        C["Point C: Over-Sanitized Noise&lt;br/&gt;Utility: 10%, Privacy Risk: Zero"]
     end
 
     A --&gt;|Add Noise / Generalize| B
-    B --&gt;|Excessive Destruction| C
+    B --&gt;|Excessive Perturbation| C
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7616,50 +7794,48 @@
     class A amber;
     class B green;
     class C blue;</code></pre>
-<h3 id="pareto-optimality-condition">Pareto Optimality Condition</h3>
-<p>A mechanism <span class="arithmatex">\(\mathcal{M}^*\)</span> belongs to the Pareto frontier <span class="arithmatex">\(\mathcal{P}\)</span> if and only if no other mechanism <span class="arithmatex">\(\mathcal{M}'\)</span> exists that improves utility without increasing privacy risk:</p>
+<h3 id="a-pareto-optimality-condition">A. Pareto Optimality Condition</h3>
+<p>A mechanism <span class="arithmatex">\(\mathcal{M}^*\)</span> belongs to the Pareto frontier <span class="arithmatex">\(\mathcal{P}\)</span> if and only if no alternative mechanism <span class="arithmatex">\(\mathcal{M}'\)</span> exists that strictly improves utility without increasing disclosure risk:</p>
 <div class="arithmatex">\[
 \mathcal{M}^* \in \mathcal{P} \iff \nexists \mathcal{M}' : \left( \mathcal{U}(\mathcal{M}') \ge \mathcal{U}(\mathcal{M}^*) \land \mathcal{R}(\mathcal{M}') \le \mathcal{R}(\mathcal{M}^*) \land (\mathcal{U}(\mathcal{M}') &gt; \mathcal{U}(\mathcal{M}^*) \lor \mathcal{R}(\mathcal{M}') &lt; \mathcal{R}(\mathcal{M}^*)) \right)
 \]</div>
-<h3 id="kaldor-hicks-social-net-benefit-with-negative-externalities">Kaldor-Hicks Social Net Benefit with Negative Externalities</h3>
-<p>When secondary data sharing generates systemic negative externalities (e.g., invasive profiling, discrimination, data breach liabilities), the social welfare net gain is formalized by the Kaldor-Hicks criterion:</p>
+<p>Any sanitization pipeline operating strictly below the Pareto frontier is <strong>architecturally defective</strong>: it destroys analytical utility without providing reciprocal privacy protection.</p>
+<h3 id="b-differential-privacy-the-laplace-mechanism">B. Differential Privacy &amp; The Laplace Mechanism</h3>
+<p>Under Cynthia Dwork's foundational formulation [<a href="#ref-dwork2006">Dwork2006</a>], a randomized mechanism <span class="arithmatex">\(\mathcal{M}\)</span> provides <strong><span class="arithmatex">\(\epsilon\)</span>-Differential Privacy</strong> if for any two neighboring datasets <span class="arithmatex">\(\mathcal{D}_1, \mathcal{D}_2\)</span> differing by at most one individual record (<span class="arithmatex">\(|\mathcal{D}_1 \triangle \mathcal{D}_2| = 1\)</span>), and for all query outputs <span class="arithmatex">\(\mathcal{S} \subseteq \text{Range}(\mathcal{M})\)</span>:</p>
 <div class="arithmatex">\[
-\Delta W_{\text{KH}} = \sum_{i \in \text{Gainers}} \Delta U_i - \sum_{j \in \text{Losers}} |\Delta U_j| - \mathcal{X}_{\text{external}}
+P(\mathcal{M}(\mathcal{D}_1) \in \mathcal{S}) \le e^\epsilon \cdot P(\mathcal{M}(\mathcal{D}_2) \in \mathcal{S})
 \]</div>
-<p>Where <span class="arithmatex">\(\mathcal{X}_{\text{external}}\)</span> represents unpriced societal costs imposed on individuals whose data was used without reciprocal benefit.</p>
-<h3 id="arrow-pratt-risk-averse-certainty-equivalent">Arrow-Pratt Risk-Averse Certainty Equivalent</h3>
-<p>For data pipelines handling critical infrastructure or patient records, decision-makers exhibit risk aversion modeled by the Arrow-Pratt certainty equivalent:</p>
+<p>To sanitize a numeric query function <span class="arithmatex">\(f: \mathcal{D} \to \mathbb{R}\)</span>, the <strong>Laplace Mechanism</strong> adds calibrated noise drawn from a zero-mean Laplace distribution scaled to the global sensitivity <span class="arithmatex">\(\Delta f\)</span>:</p>
+<div class="arithmatex">\[
+\mathcal{M}(x) = f(x) + \eta, \quad \eta \sim \text{Lap}\left(0, \; \frac{\Delta f}{\epsilon}\right)
+\]</div>
+<p>Where the global sensitivity is the maximum <span class="arithmatex">\(L_1\)</span> coordinate shift across neighboring tables:</p>
+<div class="arithmatex">\[
+\Delta f = \max_{\|\mathcal{D}_1 - \mathcal{D}_2\|_1 = 1} \|f(\mathcal{D}_1) - f(\mathcal{D}_2)\|_1
+\]</div>
+<p>The expected analytical error (Mean Squared Error) induced by the privacy mechanism scales inversely with <span class="arithmatex">\(\epsilon^2\)</span>:</p>
+<div class="arithmatex">\[
+\mathbb{E}\left[ (\mathcal{M}(x) - f(x))^2 \right] = 2 \left( \frac{\Delta f}{\epsilon} \right)^2
+\]</div>
+<h3 id="c-kaldor-hicks-social-net-benefit-with-negative-externalities">C. Kaldor-Hicks Social Net Benefit with Negative Externalities</h3>
+<p>When secondary data sharing or algorithmic profiling generates systemic societal harms (e.g., surveillance capitalism, price discrimination, data breach exposure), the net social welfare change is evaluated using the <strong>Kaldor-Hicks Criterion</strong>:</p>
+<div class="arithmatex">\[
+\Delta W_{\text{KH}} = \sum_{i \in \text{Beneficiaries}} \Delta U_i - \sum_{j \in \text{Subjects}} |\Delta U_j| - \mathcal{X}_{\text{external}}
+\]</div>
+<p>Where <span class="arithmatex">\(\mathcal{X}_{\text{external}}\)</span> represents unpriced negative externalities imposed on third parties whose data was harvested without direct compensation or informed consent [<a href="#ref-acemoglu2022">Acemoglu2022</a>].</p>
+<h3 id="d-arrow-pratt-risk-averse-certainty-equivalent">D. Arrow-Pratt Risk-Averse Certainty Equivalent</h3>
+<p>For data pipelines handling critical infrastructure or confidential patient telemetry, decision-makers exhibit risk aversion modeled by the Arrow-Pratt certainty equivalent:</p>
 <div class="arithmatex">\[
 \text{CE}(\mathcal{M}) \approx \mathbb{E}[\mathcal{U}(\mathcal{M})] - \frac{1}{2} \alpha \cdot \mathbb{V}[\mathcal{R}_{\text{privacy}}(\mathcal{M})]
 \]</div>
-<p>Where <span class="arithmatex">\(\alpha &gt; 0\)</span> represents the organization's coefficient of absolute risk aversion against regulatory sanctions and reputational damage.</p>
-<h3 id="kleinberg-chouldechova-impossibility-theorem">Kleinberg-Chouldechova Impossibility Theorem</h3>
-<p>A central dilemma in algorithmic justice occurs when balancing calibration against error parity. As proved by Kleinberg et al. [<a href="#ref-kleinberg2016">Kleinberg2016</a>] and Chouldechova [<a href="#ref-chouldechova2017">Chouldechova2017</a>], if base disease or recidivism rates differ across demographic groups (<span class="arithmatex">\(p_0 \neq p_1\)</span>), a scoring algorithm <strong>cannot simultaneously satisfy</strong>:
-1. Sufficient conditions for calibration (Predictive Parity): <span class="arithmatex">\(P(Y=1 \mid R=r, G=0) = P(Y=1 \mid R=r, G=1) = r\)</span>
-2. Equal False Positive Rates: <span class="arithmatex">\(P(R &gt; \tau \mid Y=0, G=0) = P(R &gt; \tau \mid Y=0, G=1)\)</span>
-3. Equal False Negative Rates: <span class="arithmatex">\(P(R \le \tau \mid Y=1, G=0) = P(R \le \tau \mid Y=1, G=1)\)</span></p>
-<p>Mathematically, the relationship between False Positive Rate (<span class="arithmatex">\(\text{FPR}_g\)</span>), Positive Predictive Value (<span class="arithmatex">\(\text{PPV}_g\)</span>), and base rate <span class="arithmatex">\(p_g\)</span> is strictly coupled:</p>
-<div class="arithmatex">\[
-\text{FPR}_g = \frac{p_g}{1 - p_g} \left( \frac{1 - \text{PPV}_g}{\text{PPV}_g} \right) (1 - \text{FNR}_g)
-\]</div>
-<p>Because <span class="arithmatex">\(p_0 \neq p_1\)</span>, forcing equal PPV guarantees unequal FPR and FNR. This is not an algorithmic defect; it is an immutable statistical theorem that forces explicit ethical prioritization.</p>
+<p>Where <span class="arithmatex">\(\alpha &gt; 0\)</span> represents the organization's coefficient of absolute risk aversion against regulatory sanctions (GDPR fines) and catastrophic reputational collapse.</p>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Consequentialist Privacy Impact Assessments (PIA)</p>
-<p>Before deploying surveillance or biometric telemetry systems, conduct a formal <strong>Privacy Impact Assessment (PIA)</strong> quantifying the Utilitarian expected utility:
-$<span class="arithmatex">\(\mathbb{E}[U] = \sum P(\text{Benefit}) \cdot U(\text{Benefit}) - \sum P(\text{Harm}) \cdot C(\text{Harm})\)</span>$
-If worst-case catastrophic harms (e.g., false arrest from misidentified facial recognition) carry unacceptable costs, strict deontological constraints must veto the deployment regardless of aggregate convenience.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Function Creep in Security Datasets</p>
-<p>Data collected for one specific purpose (e.g., optical license plate readers for automated highway tolling) is frequently repurposed for unrelated surveillance (e.g., political protest tracking). This breach of purpose limitation destroys public trust and triggers statutory penalties.</p>
-</div>
 <h2 id="2-three-archetypal-ethical-dilemmas-in-data-practice">2. Three Archetypal Ethical Dilemmas in Data Practice</h2>
-<p>Ethical dilemmas emerge when a pipeline must balance competing values where no single choice is completely harm-free:</p>
+<p>Ethical dilemmas emerge when an engineering pipeline must arbitrate between legitimate, competing normative values where no single choice is harm-free:</p>
 <pre class="mermaid"><code>flowchart TD
-    D1["Dilemma 1: Public Health Surveillance vs Autonomy&lt;br/&gt;(COVID-19 digital contact tracing vs unconsented location tracking)"]
-    D2["Dilemma 2: Institutional Accuracy vs Group Fairness&lt;br/&gt;(COMPAS recidivism risk: overall accuracy vs racial parity)"]
-    D3["Dilemma 3: Engagement Optimization vs Mental Health&lt;br/&gt;(Social media recommendation feeds: clicks vs addictive polarization)"]
+    D1["Dilemma 1: Public Health Surveillance vs Civil Autonomy&lt;br/&gt;(COVID-19 digital contact tracing vs unconsented location tracking)"]
+    D2["Dilemma 2: Institutional Accuracy vs Demographic Parity&lt;br/&gt;(COMPAS recidivism risk: calibration vs error rate parity)"]
+    D3["Dilemma 3: Engagement Optimization vs Mental Health Externalities&lt;br/&gt;(Recommendation feeds: dwell-time maximization vs addictive polarization)"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7668,114 +7844,476 @@ If worst-case catastrophic harms (e.g., false arrest from misidentified facial r
     class D1 blue;
     class D2 amber;
     class D3 purple;</code></pre>
-<ol>
-<li><strong>Public Health vs. Civil Autonomy</strong>: High-frequency mobile GPS trajectories enable automated infectious disease contact tracing, yet exposing real-time spatial vectors creates permanent surveillance architecture [<a href="#ref-abowd2018">Abowd2018</a>].</li>
-<li><strong>Predictive Calibration vs. Demographic Parity</strong>: The famous ProPublica analysis of the COMPAS recidivism instrument [<a href="#ref-angwin2016">Angwin2016</a>] demonstrated that maintaining equal calibration across Black and white defendants resulted in twice the false positive rate for Black defendants (<span class="arithmatex">\(44.9\%\)</span> vs <span class="arithmatex">\(23.5\%\)</span>).</li>
-<li><strong>Engagement vs. Mental Health Externalities</strong>: Training recommendation models strictly on click-through and dwell time maximizes advertising revenue while imposing severe psychological externalities through sensationalist content loops.</li>
-</ol>
+<h3 id="table-32-deontological-vs-consequentialist-frameworks-across-dilemmas">Table 3.2: Deontological vs. Consequentialist Frameworks Across Dilemmas</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Dilemma Dimension</th>
+<th style="text-align: left;">Consequentialist / Utilitarian Evaluation</th>
+<th style="text-align: left;">Deontological / Rights-Based Evaluation</th>
+<th style="text-align: left;">Engineering Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Dilemma 1: Public Health vs. Privacy</strong></td>
+<td style="text-align: left;">Maximizes aggregate lives saved by tracking real-time contagion trajectories (<span class="arithmatex">\(1\text{ Hz}\)</span> GPS).</td>
+<td style="text-align: left;">Rejects involuntary mass surveillance as a violation of fundamental bodily and spatial autonomy.</td>
+<td style="text-align: left;">Decentralized Bluetooth proximity tokens (GAEN architecture) preserving anonymity.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dilemma 2: Recidivism Scoring</strong></td>
+<td style="text-align: left;">Optimizes total judicial prediction accuracy to prevent violent re-offenses across society.</td>
+<td style="text-align: left;">Forbids imposing a <span class="arithmatex">\(2\times\)</span> higher false positive rate on marginalized defendants as a matter of justice.</td>
+<td style="text-align: left;">Explicit threshold calibration to enforce Equalized Odds error parity.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dilemma 3: Behavioral Engagement</strong></td>
+<td style="text-align: left;">Maximizes shareholder value and platform usage through click-through rate optimization.</td>
+<td style="text-align: left;">Condemns deliberate manipulation of cognitive dopamine pathways and behavioral addiction.</td>
+<td style="text-align: left;">Multi-stakeholder objective functions penalizing addictive engagement loops.</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="3-python-verification-simulating-the-kleinberg-trade-off">3. Python Verification: Simulating the Kleinberg Trade-Off</h2>
-<p>The following Python script proves the Kleinberg-Chouldechova impossibility theorem by demonstrating that equal calibration across groups with different base rates forces unequal false positive rates.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># kleinberg_impossibility_sim.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Validates the mathematical coupling between base rates, calibration, and FPR</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_fpr_from_calibration</span><span class="p">(</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">base_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">ppv</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">fnr</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># Computes exact FPR dictated by calibration under Kleinberg-Chouldechova</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">odds_ratio</span> <span class="o">=</span> <span class="n">base_rate</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">base_rate</span><span class="p">)</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">precision_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">ppv</span><span class="p">)</span> <span class="o">/</span> <span class="n">ppv</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">fpr</span> <span class="o">=</span> <span class="n">odds_ratio</span> <span class="o">*</span> <span class="n">precision_ratio</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fnr</span><span class="p">)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">fpr</span><span class="p">)</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_kleinberg_assertions</span><span class="p">():</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="c1"># Group A: High base prevalence (p_A = 0.40)</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="c1"># Group B: Low base prevalence (p_B = 0.20)</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">p_A</span> <span class="o">=</span> <span class="mf">0.40</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">p_B</span> <span class="o">=</span> <span class="mf">0.20</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="c1"># Enforce Equal Calibration (PPV = 0.70) and Equal False Negative Rate (FNR = 0.20)</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">target_ppv</span> <span class="o">=</span> <span class="mf">0.70</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">target_fnr</span> <span class="o">=</span> <span class="mf">0.20</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">fpr_A</span> <span class="o">=</span> <span class="n">compute_fpr_from_calibration</span><span class="p">(</span><span class="n">p_A</span><span class="p">,</span> <span class="n">target_ppv</span><span class="p">,</span> <span class="n">target_fnr</span><span class="p">)</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">fpr_B</span> <span class="o">=</span> <span class="n">compute_fpr_from_calibration</span><span class="p">(</span><span class="n">p_B</span><span class="p">,</span> <span class="n">target_ppv</span><span class="p">,</span> <span class="n">target_fnr</span><span class="p">)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="c1"># Mathematical proof: FPR_A must exceed FPR_B by the exact base rate odds ratio</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">odds_A</span> <span class="o">=</span> <span class="n">p_A</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">p_A</span><span class="p">)</span> <span class="c1"># 0.4 / 0.6 = 0.6667</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">odds_B</span> <span class="o">=</span> <span class="n">p_B</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">p_B</span><span class="p">)</span> <span class="c1"># 0.2 / 0.8 = 0.2500</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">expected_ratio</span> <span class="o">=</span> <span class="n">odds_A</span> <span class="o">/</span> <span class="n">odds_B</span> <span class="c1"># 2.6667</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">actual_ratio</span> <span class="o">=</span> <span class="n">fpr_A</span> <span class="o">/</span> <span class="n">fpr_B</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">actual_ratio</span> <span class="o">-</span> <span class="n">expected_ratio</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="s2">"Ratio mismatch with theoretical odds"</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">assert</span> <span class="n">fpr_A</span> <span class="o">&gt;</span> <span class="n">fpr_B</span><span class="p">,</span> <span class="s2">"Group with higher base rate must have higher FPR under equal calibration"</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Group A FPR: </span><span class="si">{</span><span class="n">fpr_A</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> | Group B FPR: </span><span class="si">{</span><span class="n">fpr_B</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"FPR Ratio: </span><span class="si">{</span><span class="n">actual_ratio</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> matches theoretical odds ratio </span><span class="si">{</span><span class="n">expected_ratio</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Kleinberg-Chouldechova theorem validated successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="n">test_kleinberg_assertions</span><span class="p">()</span>
-</span></code></pre></div>
+<h2 id="3-in-depth-engineering-case-studies">3. In-Depth Engineering Case Studies</h2>
+<h3 id="case-study-1-the-2020-us-census-differential-privacy-controversy">Case Study 1: The 2020 US Census Differential Privacy Controversy</h3>
+<p>For the 2020 Decennial Census, the US Census Bureau formally adopted Differential Privacy (the "Disclosure Avoidance System", DAS) to protect the confidentiality of 330 million residents against modern database reconstruction attacks [<a href="#ref-abowd2018">Abowd2018</a>]:
+- <strong>The Threat</strong>: Census Bureau internal researchers proved that using commercial auxiliary data (e.g., credit bureau rolls, voter registries), an adversary could reconstruct individual records for over <strong><span class="arithmatex">\(52\text{ million}\)</span> Americans</strong> from published aggregate census tables.
+- <strong>The Trade-Off</strong>: To mathematically prevent reconstruction, the Bureau injected zero-mean noise (<span class="arithmatex">\(\epsilon \approx 19.6\)</span> total budget).
+- <strong>The Conflict</strong>: Civil rights organizations and small-town demographers sued, arguing that adding noise to sparsely populated rural census tracts distorted minority redistricting voting blocks and misallocated billions in federal funding (Title I school grants).
+- <strong>Resolution</strong>: The Census Bureau spent months tuning the Pareto allocation of <span class="arithmatex">\(\epsilon\)</span>, allocating larger privacy budgets to demographic sub-tables to ensure political redistricting integrity while bounding reconstruction advantage.</p>
+<h3 id="case-study-2-covid-19-contact-tracing-centralized-gps-vs-decentralized-bluetooth-gaen">Case Study 2: COVID-19 Contact Tracing: Centralized GPS vs. Decentralized Bluetooth (GAEN)</h3>
+<p>In early 2020, governments worldwide sought to deploy automated contact-tracing apps to contain pandemic spread:
+- <strong>Centralized Architecture (e.g., Singapore TraceTogether, South Korea)</strong>: Uploaded complete user GPS trails and social contact graphs to government health department servers. While providing high epidemiological utility, it created an unconstrained dragnet surveillance infrastructure prone to function creep (e.g., police later accessed contact data for criminal murder investigations).
+- <strong>Decentralized Architecture (Apple-Google Exposure Notification, GAEN)</strong>: Generated ephemeral, rotating cryptographic Bluetooth beacons exchanged device-to-device. Diagnostic keys were uploaded only upon positive medical diagnosis, matching exposures locally on-device without exposing centralized location coordinates or user identities.
+- <strong>Engineering Verdict</strong>: GAEN established a superior Pareto operating point: achieving <span class="arithmatex">\(80\%+\)</span> of epidemiological tracking efficacy with near-zero centralized surveillance risk.</p>
+<h3 id="case-study-3-the-strava-fitness-heatmap-military-base-exfiltration-2018">Case Study 3: The Strava Fitness Heatmap Military Base Exfiltration (2018)</h3>
+<p>In November 2017, fitness tracking platform <strong>Strava</strong> published an interactive global data visualization heatmap displaying <strong>3 trillion GPS data points</strong> recorded by 27 million users running and cycling:
+- <strong>The Failure</strong>: Strava applied simple spatial aggregation, believing that aggregating millions of runs eliminated privacy risk.
+- <strong>The Linkage</strong>: In January 2018, an Australian university student discovered that in war zones like Syria, Somalia, and Afghanistan, local civilian populations do not jog with GPS smartwatches. Active military personnel on secret operating bases and forward outposts did.
+- <strong>The Breach</strong>: The high-contrast GPS heat trails clearly outlined the perimeter fences, patrol routes, and supply runways of classified US military forward operating bases.
+- <strong>Engineering Lesson</strong>: Spatial aggregation without differential privacy guarantees or population density normalization leaks catastrophic structural intelligence in low-density regions.</p>
 <hr />
-<h2 id="4-interactive-laboratory-workbench">4. 🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore the Pareto Utility-Privacy Curve</h4>
-  <p>Adjust differential privacy noise ($\epsilon$), visualize accuracy degradation, and compute re-identification probabilities dynamically.</p>
-  <a href="../../tools/deid-risk/" class="noc-sim-btn">Launch Privacy Frontier Studio →</a>
+<h2 id="4-interactive-laboratory-pareto-utility-privacy-dp-epsilon-tradeoff-simulator">4. 🔬 Interactive Laboratory: Pareto Utility-Privacy &amp; DP <span class="arithmatex">\(\epsilon\)</span>-Tradeoff Simulator</h2>
+<p>Experiment directly with the mathematical trade-off between Differential Privacy noise (<span class="arithmatex">\(\epsilon\)</span>) and analytical accuracy using the interactive laboratory below. Adjust the privacy budget, inspect the Laplace noise distribution, and watch the Pareto efficiency curve respond in real time:</p>
+<div class="noc-sim-container" style="background:#fffdf7; border:2px solid #151b20; border-radius:14px; padding:22px; margin:24px 0; box-shadow:4px 4px 0px #151b20;">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+    <div>
+      <span style="font-weight:800; color:#0e7490; font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+        <span>🔬</span> Pareto Frontier &amp; Differential Privacy Simulator
+      </span>
+      <div style="font-size:0.84rem; color:#475569; margin-top:2px; font-weight:500;">
+        Simulate Laplace Mechanism queries: Sensitivity Δf = 1 (Counting Query)
+      </div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="noc-sim-btn" onclick="applyParetoPreset(1)" style="background:#ffd8ce; color:#c2410c; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 1: Raw (ε = ∞)</button>
+      <button class="noc-sim-btn" onclick="applyParetoPreset(2)" style="background:#b7df69; color:#151b20; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 2: Optimal (ε = 1.0)</button>
+      <button class="noc-sim-btn" onclick="applyParetoPreset(3)" style="background:#c9f3f4; color:#0e7490; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 3: High-Sec (ε = 0.2)</button>
+      <button class="noc-sim-btn" onclick="applyParetoPreset(4)" style="font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 4: Over-Noise (ε = 0.02)</button>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px;">
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">
+        Privacy Budget (ε): <span id="lblEpsilonVal" style="color:#0e7490; font-family:monospace; font-weight:900;">1.00</span>
+      </label>
+      <input type="range" id="ctrlEpsilonSlider" min="0.02" max="5.0" step="0.02" value="1.0" oninput="updateParetoSimulation()" style="width:100%; accent-color:#0e7490; cursor:pointer;" />
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Query Type &amp; Sensitivity (Δf):</label>
+      <select id="ctrlQueryType" onchange="updateParetoSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="1">Counting Query (ICU Patients) [Δf = 1]</option>
+        <option value="5">Subgroup Clinical Score Sum [Δf = 5]</option>
+        <option value="20">High-Sensitivity Financial Metric [Δf = 20]</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Negative Externality Cost (X_ext):</label>
+      <select id="ctrlExternalityCost" onchange="updateParetoSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="0.05">Low (De-identified Aggregate)</option>
+        <option value="0.25">Moderate (Protected Demographics)</option>
+        <option value="0.60">High (Biometric / Genetic Telemetry)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Real-Time Metrics Bar -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Analytical Utility (U)</div>
+      <div id="metricUtility" style="font-size:1.4rem; font-weight:900; color:#0e7490; font-family:monospace;">94.2%</div>
+      <div id="metricUtilityBadge" style="font-size:0.72rem; font-weight:700; color:#047857;">High Query Accuracy</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Re-ID Leakage Risk (R)</div>
+      <div id="metricLeakageRisk" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">0.08</div>
+      <div id="metricRiskBadge" style="font-size:0.72rem; font-weight:700; color:#047857;">Robust Bound (DP <= 1.0)</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Kaldor-Hicks Net Benefit</div>
+      <div id="metricKaldorHicks" style="font-size:1.4rem; font-weight:900; color:#0e7490; font-family:monospace;">+0.72</div>
+      <div style="font-size:0.72rem; color:#475569;">Utility - Risk - Externality</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Frontier Status</div>
+      <div id="metricParetoStatus" style="font-size:0.95rem; font-weight:900; color:#047857; line-height:1.2; margin-top:4px;">✅ PARETO OPTIMAL</div>
+      <div style="font-size:0.70rem; color:#475569;">Efficient Trade-off</div>
+    </div>
+  </div>
+
+  <!-- Interactive Pareto Canvas Visualizer -->
+  <div style="background:#fff; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:14px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <span style="font-size:0.82rem; font-weight:800; color:#151b20;">Pareto Frontier Curve: Analytical Utility vs. Privacy Protection (1 - Risk)</span>
+      <span style="font-size:0.74rem; font-family:monospace; color:#475569;">Green = Pareto Optimal Frontier</span>
+    </div>
+    <div style="position:relative; width:100%; height:220px; border:1.5px solid #151b20; border-radius:8px; background:#fffdf7; overflow:hidden;">
+      <svg id="paretoSvg" width="100%" height="100%" style="display:block;"></svg>
+    </div>
+  </div>
+
+  <!-- Live Query Simulation Output Box -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:12px; font-family:monospace; font-size:0.80rem; color:#151b20;">
+    <div style="font-weight:800; margin-bottom:6px; color:#0e7490;">Live Laplace Query Perturbation Sample:</div>
+    <div style="display:flex; flex-wrap:wrap; gap:16px;">
+      <div>True Aggregate Count: <strong id="lblTrueQuery">142</strong></div>
+      <div>Laplace Noise Added (η): <strong id="lblNoiseSample" style="color:#b91c1c;">+1.24</strong></div>
+      <div>Published Sanitized Result: <strong id="lblPublishedQuery" style="color:#047857;">143.24</strong></div>
+      <div>Relative Query Error: <strong id="lblQueryError">0.87%</strong></div>
+    </div>
+  </div>
 </div>
-<h4>Explore Ethical Decision Tree</h4>
-<p>Simulate deontological vs utilitarian decision trade-offs, evaluate algorithmic harm vectors, and test governance policies.</p>
-<p><a href="../../tools/ethical-decision/" class="noc-sim-btn">Launch Ethical Decision Workbench →</a>
-</div></p>
+
+<script>
+function applyParetoPreset(presetId) {
+  const slider = document.getElementById('ctrlEpsilonSlider');
+  if (presetId === 1) {
+    slider.value = 5.0; // surrogate for raw
+  } else if (presetId === 2) {
+    slider.value = 1.0; // standard DP
+  } else if (presetId === 3) {
+    slider.value = 0.2; // high security
+  } else if (presetId === 4) {
+    slider.value = 0.02; // destroyed
+  }
+  updateParetoSimulation();
+}
+
+function updateParetoSimulation() {
+  const eps = parseFloat(document.getElementById('ctrlEpsilonSlider').value);
+  const deltaF = parseFloat(document.getElementById('ctrlQueryType').value);
+  const externality = parseFloat(document.getElementById('ctrlExternalityCost').value);
+
+  document.getElementById('lblEpsilonVal').innerText = eps >= 4.9 ? '∞ (Raw)' : eps.toFixed(2);
+
+  // Compute Utility & Risk
+  // Expected Laplace Noise Variance: 2 * (deltaF / eps)^2
+  const noiseScale = deltaF / Math.max(0.001, eps);
+  const variance = 2.0 * Math.pow(noiseScale, 2);
+
+  // Utility: percentage metric inversely proportional to noise scale relative to base signal 100
+  const utility = Math.max(0.02, 1.0 / (1.0 + (noiseScale / 25.0)));
+
+  // Disclosure Risk: 1 - e^(-eps/2)
+  let risk = 1.0 - Math.exp(-eps / 2.0);
+  if (eps >= 4.9) risk = 0.95;
+
+  const privacyProtection = 1.0 - risk;
+  const kaldorHicks = utility - (risk * 0.5) - externality;
+
+  // Update UI Metrics
+  const utilElem = document.getElementById('metricUtility');
+  utilElem.innerText = (utility * 100).toFixed(1) + '%';
+  utilElem.style.color = utility > 0.70 ? '#047857' : (utility > 0.35 ? '#d97706' : '#b91c1c');
+
+  const riskElem = document.getElementById('metricLeakageRisk');
+  riskElem.innerText = risk.toFixed(2);
+  riskElem.style.color = risk > 0.40 ? '#b91c1c' : (risk > 0.15 ? '#d97706' : '#047857');
+
+  const khElem = document.getElementById('metricKaldorHicks');
+  khElem.innerText = (kaldorHicks > 0 ? '+' : '') + kaldorHicks.toFixed(2);
+  khElem.style.color = kaldorHicks > 0.40 ? '#047857' : (kaldorHicks > 0.10 ? '#0e7490' : '#b91c1c');
+
+  const statusElem = document.getElementById('metricParetoStatus');
+  if (eps >= 4.9) {
+    statusElem.innerHTML = '🚨 HIGH RISK EXPOSURE';
+    statusElem.style.color = '#b91c1c';
+  } else if (eps < 0.05) {
+    statusElem.innerHTML = '⚠️ DESTROYED UTILITY';
+    statusElem.style.color = '#d97706';
+  } else {
+    statusElem.innerHTML = '✅ PARETO OPTIMAL';
+    statusElem.style.color = '#047857';
+  }
+
+  // Draw SVG Pareto Curve
+  drawParetoSvg(privacyProtection, utility);
+
+  // Live Query Sample Simulation
+  const trueCount = 142;
+  // Sample zero-mean Laplace using inverse transform: -b * sgn(u) * ln(1 - 2|u|)
+  const u = Math.random() - 0.5;
+  const noise = -noiseScale * Math.sign(u) * Math.log(1.0 - 2.0 * Math.abs(u));
+  const published = Math.max(0, trueCount + (eps >= 4.9 ? 0 : noise));
+  const relErr = Math.abs((published - trueCount) / trueCount) * 100;
+
+  document.getElementById('lblTrueQuery').innerText = trueCount;
+  document.getElementById('lblNoiseSample').innerText = eps >= 4.9 ? '0.00 (None)' : (noise >= 0 ? '+' : '') + noise.toFixed(2);
+  document.getElementById('lblPublishedQuery').innerText = published.toFixed(2);
+  document.getElementById('lblQueryError').innerText = relErr.toFixed(2) + '%';
+}
+
+function drawParetoSvg(currPrivacy, currUtility) {
+  const svg = document.getElementById('paretoSvg');
+  const w = svg.clientWidth || 600;
+  const h = svg.clientHeight || 220;
+  const pad = 35;
+
+  // Clear existing
+  svg.innerHTML = '';
+
+  // Draw Grid lines
+  const gridLines = `
+    <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${h - pad}" stroke="#e2e8f0" stroke-width="1.5"/>
+    <line x1="${pad}" y1="${h - pad}" x2="${w - pad}" y2="${h - pad}" stroke="#e2e8f0" stroke-width="1.5"/>
+  `;
+  svg.insertAdjacentHTML('beforeend', gridLines);
+
+  // Build Pareto Curve Points: U vs (1 - Risk)
+  let pathD = '';
+  for (let step = 0; step <= 50; step++) {
+    const e = 0.02 + (step / 50.0) * 4.98;
+    const nScale = 1.0 / e;
+    const u = Math.max(0.02, 1.0 / (1.0 + (nScale / 25.0)));
+    const r = 1.0 - Math.exp(-e / 2.0);
+    const p = 1.0 - r; // privacy
+
+    const x = pad + p * (w - 2 * pad);
+    const y = (h - pad) - u * (h - 2 * pad);
+    if (step === 0) pathD += `M ${x} ${y} `;
+    else pathD += `L ${x} ${y} `;
+  }
+
+  const curveSvg = `<path d="${pathD}" fill="none" stroke="#047857" stroke-width="3.5" stroke-linecap="round"/>`;
+  svg.insertAdjacentHTML('beforeend', curveSvg);
+
+  // Draw Current Operating Point
+  const ptX = pad + currPrivacy * (w - 2 * pad);
+  const ptY = (h - pad) - currUtility * (h - 2 * pad);
+
+  const ptSvg = `
+    <circle cx="${ptX}" cy="${ptY}" r="7" fill="#ffc83e" stroke="#151b20" stroke-width="2.5" />
+    <circle cx="${ptX}" cy="${ptY}" r="12" fill="none" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="2,2"/>
+  `;
+  svg.insertAdjacentHTML('beforeend', ptSvg);
+
+  // Labels
+  const labels = `
+    <text x="${pad + 4}" y="${pad + 12}" font-family="monospace" font-size="10" fill="#475569" font-weight="700">Utility (Accuracy) ↑</text>
+    <text x="${w - pad - 120}" y="${h - pad - 6}" font-family="monospace" font-size="10" fill="#475569" font-weight="700">Privacy (1 - Risk) →</text>
+  `;
+  svg.insertAdjacentHTML('beforeend', labels);
+}
+
+// Initial mount
+document.addEventListener('DOMContentLoaded', () => {
+  updateParetoSimulation();
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateParetoSimulation();
+}
+</script>
+
+<hr />
+<h2 id="5-production-python-verification-pareto-frontier-laplace-mechanism">5. Production Python Verification: Pareto Frontier &amp; Laplace Mechanism</h2>
+<p>The following production script implements an end-to-end multi-objective Pareto frontier auditor and <span class="arithmatex">\(\epsilon\)</span>-differential privacy Laplace query mechanism using <strong>Pydantic V2</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># pareto_frontier_auditor.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Production Type-Safe Differential Privacy Mechanism and Pareto Frontier Auditor</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">MechanismCandidate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="sd">    Performance profile of a candidate data sanitization mechanism.</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="sd">    """</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Mechanism identification label"</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Differential privacy budget"</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">utility_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Normalized analytical utility"</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">disclosure_risk</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Empirical re-identification risk"</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">is_pareto_optimal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">ParetoFrontierAuditor</span><span class="p">:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="sd">    Evaluates candidate mechanisms for strict Pareto non-dominance.</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="sd">    """</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">identify_pareto_frontier</span><span class="p">(</span><span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MechanismCandidate</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MechanismCandidate</span><span class="p">]:</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="sd">        Marks candidates as Pareto-optimal or strictly dominated.</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="sd">        Candidate A dominates B iff: (U_A &gt;= U_B and R_A &lt;= R_B) with at least one strict inequality.</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="sd">        """</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidates</span><span class="p">):</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidates</span><span class="p">):</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>                    <span class="k">if</span> <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">utility_score</span> <span class="o">&gt;=</span> <span class="n">c1</span><span class="o">.</span><span class="n">utility_score</span> <span class="ow">and</span> <span class="n">c2</span><span class="o">.</span><span class="n">disclosure_risk</span> <span class="o">&lt;=</span> <span class="n">c1</span><span class="o">.</span><span class="n">disclosure_risk</span><span class="p">)</span> <span class="ow">and</span> \
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>                       <span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">utility_score</span> <span class="o">&gt;</span> <span class="n">c1</span><span class="o">.</span><span class="n">utility_score</span> <span class="ow">or</span> <span class="n">c2</span><span class="o">.</span><span class="n">disclosure_risk</span> <span class="o">&lt;</span> <span class="n">c1</span><span class="o">.</span><span class="n">disclosure_risk</span><span class="p">):</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>                        <span class="n">c1</span><span class="o">.</span><span class="n">is_pareto_optimal</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>                        <span class="k">break</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="k">return</span> <span class="n">candidates</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_kaldor_hicks_social_net_benefit</span><span class="p">(</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="n">gainers_utility</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">losers_utility</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="n">externality_penalty</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">        </span><span class="sd">"""Computes Kaldor-Hicks social net benefit accounting for negative externalities."""</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">gainers_utility</span> <span class="o">-</span> <span class="n">losers_utility</span> <span class="o">-</span> <span class="n">externality_penalty</span><span class="p">)</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="k">class</span><span class="w"> </span><span class="nc">LaplacePrivacyEngine</span><span class="p">:</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="sd">    Executes calibrated Differential Privacy numeric queries.</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="sd">    """</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="k">if</span> <span class="n">epsilon</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Privacy parameter epsilon must be strictly positive."</span><span class="p">)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">sensitivity</span> <span class="o">=</span> <span class="n">sensitivity</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">sensitivity</span> <span class="o">/</span> <span class="n">epsilon</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">true_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">        </span><span class="sd">"""Injects zero-mean Laplace noise scaled to global sensitivity."""</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">true_value</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">theoretical_mse</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">        </span><span class="sd">"""Returns theoretical Mean Squared Error of the mechanism: 2 * (Delta f / epsilon)^2."""</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="k">return</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_pareto_and_differential_privacy</span><span class="p">():</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="c1"># 1. Auditing Candidate Mechanisms on the Pareto Frontier</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="n">MechanismCandidate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Raw Microdata"</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span> <span class="n">utility_score</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">disclosure_risk</span><span class="o">=</span><span class="mf">0.88</span><span class="p">),</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="n">MechanismCandidate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Optimal DP (eps=1.0)"</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">utility_score</span><span class="o">=</span><span class="mf">0.92</span><span class="p">,</span> <span class="n">disclosure_risk</span><span class="o">=</span><span class="mf">0.08</span><span class="p">),</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="n">MechanismCandidate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Suboptimal Naive Masking"</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">utility_score</span><span class="o">=</span><span class="mf">0.68</span><span class="p">,</span> <span class="n">disclosure_risk</span><span class="o">=</span><span class="mf">0.45</span><span class="p">),</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="n">MechanismCandidate</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"High-Security DP (eps=0.2)"</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">utility_score</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span> <span class="n">disclosure_risk</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="p">]</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="n">audited</span> <span class="o">=</span> <span class="n">ParetoFrontierAuditor</span><span class="o">.</span><span class="n">identify_pareto_frontier</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="c1"># Assertions</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="n">dominated</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">audited</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">is_pareto_optimal</span><span class="p">]</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="n">optimal</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">audited</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">is_pareto_optimal</span><span class="p">]</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="c1"># "Suboptimal Naive Masking" is strictly dominated by "Optimal DP" (lower utility, higher risk)</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">dominated</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="k">assert</span> <span class="n">dominated</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"Suboptimal Naive Masking"</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">optimal</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="c1"># 2. Differential Privacy Laplace Mechanism Verification</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="n">engine</span> <span class="o">=</span> <span class="n">LaplacePrivacyEngine</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sensitivity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">engine</span><span class="o">.</span><span class="n">theoretical_mse</span><span class="p">()</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="c1"># Run Monte Carlo simulation to verify empirical error matches theoretical MSE</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="n">trials</span> <span class="o">=</span> <span class="mi">10000</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="n">true_count</span> <span class="o">=</span> <span class="mf">150.0</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="n">perturbed_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">engine</span><span class="o">.</span><span class="n">execute_query</span><span class="p">(</span><span class="n">true_count</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">trials</span><span class="p">)]</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>    <span class="n">empirical_mse</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([(</span><span class="n">s</span> <span class="o">-</span> <span class="n">true_count</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">perturbed_samples</span><span class="p">]))</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="c1"># Allow 10% sampling variance</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">empirical_mse</span> <span class="o">-</span> <span class="n">engine</span><span class="o">.</span><span class="n">theoretical_mse</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mf">0.25</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Pareto Frontier and Differential Privacy tests passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="n">test_pareto_and_differential_privacy</span><span class="p">()</span>
+</span></code></pre></div>
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>The Pareto Frontier</strong>: Privacy and analytical utility cannot be maximized simultaneously; data architects must identify and document the Pareto-optimal operating point.</li>
-<li><strong>Kleinberg Impossibility</strong>: If demographic base rates differ, an algorithm cannot simultaneously satisfy predictive calibration and equal false positive rates.</li>
-<li><strong>Internalizing Externalities</strong>: Engineering teams are morally and legally accountable for societal externalities created by optimization objectives.</li>
-<li><strong>Risk-Averse Certainty</strong>: Incorporate downside variance penalties when releasing high-consequence datasets.</li>
+<li><strong>The Pareto Trade-off Frontier</strong>: Privacy and analytical utility are mathematically opposed; no engineering architecture can maximize both simultaneously without finding the optimal Pareto operating point.</li>
+<li><strong>Eliminating Sub-Optimal Mechanisms</strong>: Pipelines that destroy data utility (e.g., naive heuristic hashing) while still allowing re-identification operate beneath the frontier and must be eliminated.</li>
+<li><strong>Internalizing Externalities</strong>: Commercial telemetry monetization frequently generates unpriced negative externalities (surveillance, dynamic discrimination); these must be quantified using the Kaldor-Hicks framework.</li>
+<li><strong>Differential Privacy as a Formal Bound</strong>: <span class="arithmatex">\(\epsilon\)</span>-Differential Privacy provides mathematically provable worst-case risk bounds that hold regardless of future auxiliary data availability.</li>
+<li><strong>Contextual Integrity</strong>: Data collected for safety or medical purposes cannot be repurposed for commercial underwriting without explicit re-consent.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="interactive-self-assessment-diagnostic-scenarios">❓ Interactive Self-Assessment Diagnostic Scenarios</h2>
 <details class="question">
-<summary>Self-Assessment: Utilitarianism vs. Deontological Rights in Biometric Surveillance</summary>
-<p>A municipal government proposes deploying real-time facial recognition in public transit stations. A utilitarian analysis projects a 12% drop in pickpocketing. Why would a deontological rights-based ethical framework reject this proposal regardless of the projected crime reduction?</p>
+<summary>Self-Assessment 1: The 2020 US Census Differential Privacy Dilemma</summary>
+<p>Why did the US Census Bureau's introduction of Differential Privacy (<span class="arithmatex">\(\epsilon \approx 19.6\)</span>) encounter fierce opposition from rural municipal leaders and civil rights redistricting lawyers, and how does the Pareto frontier explain their grievance?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Deontological ethics (Kantian categorical imperative) holds that <strong>individuals must be treated as ends in themselves, never merely as instrumental means to an aggregate societal end</strong>.</p>
-<p>Subjecting hundreds of thousands of innocent citizens to continuous, non-consensual biometric scanning violates their fundamental right to privacy and public anonymity. Under deontological principles, violating inviolable human rights cannot be justified by marginal utilitarian efficiency gains or minor crime reduction.</p>
+<p><strong>Answer:</strong> The grievance was caused by <strong>Differential Sensitivity &amp; Relative Error Scaling in Low-Density Counts</strong>.</p>
+<p>Under the Laplace Mechanism, the injected noise variance <span class="arithmatex">\(\sigma^2 = 2(\Delta f / \epsilon)^2\)</span> is independent of population size. For a major metropolis of 2,000,000 residents, adding noise of <span class="arithmatex">\(\pm 25\)</span> represents a negligible relative error (<span class="arithmatex">\(0.001\%\)</span>). However, for a small rural town or an isolated indigenous reservation of 100 residents, adding the exact same noise of <span class="arithmatex">\(\pm 25\)</span> produces a catastrophic <span class="arithmatex">\(25\%\)</span> relative error.</p>
+<p>Because federal legislative redistricting (Voting Rights Act) and municipal grant formulas depend on exact headcounts, rural communities argued that the Census Bureau chose an operating point that sacrificed municipal resource allocation utility to protect against low-probability theoretical database reconstruction attacks.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Secondary Data Repurposing and Function Creep</summary>
-<p>A rideshare company collects continuous accelerometer and gyroscope data from driver smartphones to detect vehicle crashes. Two years later, the company sells the driving roughness metrics to automotive insurance underwriters to adjust driver insurance premiums. What core ethical principle is breached?</p>
+<summary>Self-Assessment 2: Data Externalities &amp; The 'Genetic Genealogy' Linkage Paradox</summary>
+<p>In 2018, California law enforcement apprehended the notorious "Golden State Killer" by uploading crime scene DNA to the open-access consumer genealogy database GEDmatch. The suspect had never taken a commercial DNA test. Using Acemoglu et al.'s economic framework of <strong>Data Externalities</strong>, explain how distant relatives testing their DNA destroyed the suspect's privacy.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The principle of <strong>Purpose Limitation (Contextual Integrity)</strong> is breached.</p>
-<p>Helen Nissenbaum's framework of Contextual Integrity dictates that information flows are governed by contextual norms. Data surrendered for emergency safety assistance cannot be transferred to a punitive financial context without explicit re-consent and transparency.</p>
+<p><strong>Answer:</strong> The apprehension demonstrates <strong>Severe Interpersonal Data Externalities</strong>.</p>
+<p>In their economic analysis of data markets (Acemoglu et al., 2022), economists proved that data possesses a massive negative externality: when Individual A surrenders genetic or behavioral data, that data contains correlated information describing relatives and associates who never consented. </p>
+<p>Because humans share <span class="arithmatex">\(50\%\)</span> of DNA with parents/siblings, <span class="arithmatex">\(25\%\)</span> with grandparents/uncles, and <span class="arithmatex">\(12.5\%\)</span> with first cousins, having merely <strong><span class="arithmatex">\(2\%\)</span> to <span class="arithmatex">\(3\%\)</span> of the population</strong> test their DNA creates a complete genealogical lattice that spans <span class="arithmatex">\(90\%\)</span> of the entire population. The decision of distant cousins to upload their DNA imposed an uncompensated, non-consensual privacy loss on every relative in their lineage.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: First-Degree Dynamic Price Discrimination Externalities</summary>
+<p>An airline trains deep neural networks on flight booking search logs, device hardware fingerprints, and credit card zip codes to predict each customer's maximum willingness to pay (<span class="arithmatex">\(WTP\)</span>), charging wealthier customers higher ticket prices for identical seats. Evaluate this practice under the Kaldor-Hicks Social Welfare framework.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under Kaldor-Hicks, this practice results in <strong>Monopolistic Rent Extraction and Negative Social Welfare</strong>.</p>
+<p>In classical economics, first-degree price discrimination extracts all consumer surplus and transfers it entirely to producer profit. However, under the Kaldor-Hicks criterion:
+$<span class="arithmatex">\(\Delta W_{\text{KH}} = \Delta U_{\text{producer}} - |\Delta U_{\text{consumer}}| - \mathcal{X}_{\text{external}}\)</span>$</p>
+<p>The substantial psychological frustration, loss of consumer trust, privacy defense expenditures (using VPNs, disposable browsers), and the deadweight loss of users priced out of urgent travel represent unpriced negative societal externalities (<span class="arithmatex">\(\mathcal{X}_{\text{external}} &gt; 0\)</span>). When search history surrendered for flight discovery is repurposed for predatory surplus extraction, overall social net benefit turns negative.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Smart Home Telemetry &amp; Contextual Integrity Breaches</summary>
+<p>An IoT smart-thermostat company collects indoor ambient temperature, humidity, and motion sensor readings to optimize household HVAC energy efficiency. Without notifying users, the company sells aggregated hourly occupancy indicators to commercial home security and burglary insurer databases. Which specific tenet of Helen Nissenbaum's <strong>Contextual Integrity</strong> is violated?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> It violates the <strong>Information Transmission Principles (Appropriateness of Information Flows)</strong>.</p>
+<p>According to Helen Nissenbaum's framework of Contextual Integrity (2004), privacy is not secrecy; rather, it is the adherence to context-relative informational norms. Informational norms comprise five parameters: <em>Data Subject</em>, <em>Sender</em>, <em>Recipient</em>, <em>Information Type</em>, and <em>Transmission Principle</em>.</p>
+<p>The user surrendered domestic motion telemetry under the contextual norm of <strong>Energy Management (Domestic Comfort)</strong>. Transferring that telemetry to third-party commercial risk underwriters violates the governing transmission principle, transforming a supportive domestic technology into an invasive corporate surveillance proxy without informed consent.</p>
 </details>
 </details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-dwork2006"></a><strong>[Dwork2006]</strong> C. Dwork, F. McSherry, K. Nissim, and A. Smith, "Calibrating Noise to Sensitivity in Private Data Analysis," in <em>Theory of Cryptography Conference (TCC 2006)</em>, Lecture Notes in Computer Science, vol. 3876, pp. 265–284. <a href="https://doi.org/10.1007/11787006_1">DOI: 10.1007/11787006_1</a>.</li>
-<li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> B. D. Mittelstadt et al., "The Ethics of Algorithms: Mapping the Debate," <em>Big Data &amp; Society</em>, vol. 3, no. 2, pp. 1–21, 2016. <a href="https://doi.org/10.1177/2053951716679679">DOI: 10.1177/2053951716679679</a>.</li>
-<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> J. Angwin, J. Larson, S. Mattu, and L. Kirchner, "Machine Bias: There's Software Used Across the Country to Predict Future Criminals. and It's Biased Against Blacks," <em>ProPublica</em>, 2016. <a href="https://doi.org/10.1201/9781003278290-37">DOI: 10.1201/9781003278290-37</a>.</li>
+<li><a id="ref-abowd2018"></a><strong>[Abowd2018]</strong> J. M. Abowd, "The U.S. Census Bureau Adopts Differential Privacy," in <em>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</em>, p. 2867, 2018. <a href="https://doi.org/10.1145/3219819.3226070">DOI: 10.1145/3219819.3226070</a>.</li>
+<li><a id="ref-acemoglu2022"></a><strong>[Acemoglu2022]</strong> D. Acemoglu, A. Makhdoumi, A. Malekian, and A. Ozdaglar, "Too Much Data: Prices and Inefficiencies in Data Markets," <em>American Economic Review</em>, vol. 112, no. 7, pp. 2356–2396, 2022. <a href="https://doi.org/10.1257/aer.20200402">DOI: 10.1257/aer.20200402</a>.</li>
 <li><a id="ref-kleinberg2016"></a><strong>[Kleinberg2016]</strong> J. Kleinberg, S. Mullainathan, and M. Raghavan, "Inherent Trade-Offs in the Fair Determination of Risk Scores," in <em>Proceedings of Innovations in Theoretical Computer Science (ITCS 2017)</em>. <a href="https://doi.org/10.48550/arXiv.1609.05807">DOI: 10.48550/arXiv.1609.05807</a>.</li>
 <li><a id="ref-chouldechova2017"></a><strong>[Chouldechova2017]</strong> A. Chouldechova, "Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2, pp. 153–163, 2017. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a>.</li>
-<li><a id="ref-abowd2018"></a><strong>[Abowd2018]</strong> J. M. Abowd, "The U.S. Census Bureau Adopts Differential Privacy," in <em>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</em>, p. 2867, 2018. <a href="https://doi.org/10.1145/3219819.3226070">DOI: 10.1145/3219819.3226070</a>.</li>
+<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> J. Angwin, J. Larson, S. Mattu, and L. Kirchner, "Machine Bias: There's Software Used Across the Country to Predict Future Criminals. And It's Biased Against Blacks," <em>ProPublica</em>, 2016.</li>
+<li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> B. D. Mittelstadt et al., "The Ethics of Algorithms: Mapping the Debate," <em>Big Data &amp; Society</em>, vol. 3, no. 2, pp. 1–21, 2016. <a href="https://doi.org/10.1177/2053951716679679">DOI: 10.1177/2053951716679679</a>.</li>
+<li><a id="ref-nissenbaum2004"></a><strong>[Nissenbaum2004]</strong> H. Nissenbaum, "Privacy as Contextual Integrity," <em>Washington Law Review</em>, vol. 79, no. 1, pp. 119–158, 2004.</li>
+<li><a id="ref-zuboff2019"></a><strong>[Zuboff2019]</strong> S. Zuboff, <em>The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power</em>, PublicAffairs, New York, 2019.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
   <a href="../02-core-ethical-principles/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.2 Core Ethical Principles</a>
-  <a href="../04-data-privacy-principles/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Data Privacy Principles (3.4) →</a>
+  <a href="../04-data-privacy-principles/" class="noc-sim-btn" style="text-decoration: none;">Next: Data Privacy Principles (3.4) →</a>
 </div>
 
 

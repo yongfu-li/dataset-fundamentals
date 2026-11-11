@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1742,10 +1786,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#utilitarian-vs-rawlsian-distributive-welfare" class="md-nav__link">
+  <a href="#a-utilitarian-vs-rawlsian-distributive-welfare" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Utilitarian vs. Rawlsian Distributive Welfare
+        A. Utilitarian vs. Rawlsian Distributive Welfare
       
     </span>
   </a>
@@ -1753,10 +1797,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#benefit-to-risk-ratio-with-downside-variance-penalty" class="md-nav__link">
+  <a href="#b-benefit-to-risk-ratio-with-downside-variance-penalty" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Benefit-to-Risk Ratio with Downside Variance Penalty
+        B. Benefit-to-Risk Ratio with Downside Variance Penalty
       
     </span>
   </a>
@@ -1764,10 +1808,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#subgroup-disparity-under-equalized-odds" class="md-nav__link">
+  <a href="#c-the-three-competing-mathematical-formulations-of-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Subgroup Disparity Under Equalized Odds
+        C. The Three Competing Mathematical Formulations of Fairness
       
     </span>
   </a>
@@ -1775,10 +1819,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#shapley-feature-attribution-for-algorithmic-transparency" class="md-nav__link">
+  <a href="#d-the-impossibility-theorem-of-algorithmic-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shapley Feature Attribution for Algorithmic Transparency
+        D. The Impossibility Theorem of Algorithmic Fairness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-shapley-feature-attribution-for-algorithmic-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Shapley Feature Attribution for Algorithmic Transparency
       
     </span>
   </a>
@@ -1814,10 +1869,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#case-study-2-automated-credit-underwriting-adverse-action-transparency" class="md-nav__link">
+  <a href="#case-study-2-amazons-automated-ai-resume-screening-engine-accountability-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study 2: Automated Credit Underwriting &amp; Adverse Action (Transparency)
+        Case Study 2: Amazon's Automated AI Resume Screening Engine (Accountability &amp; Fairness)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-compas-recidivism-scoring-the-fairness-dilemma-predictive-parity-vs-equalized-odds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: COMPAS Recidivism Scoring &amp; The Fairness Dilemma (Predictive Parity vs. Equalized Odds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-4-automated-credit-underwriting-adverse-action-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 4: Automated Credit Underwriting &amp; Adverse Action (Transparency)
       
     </span>
   </a>
@@ -1830,10 +1907,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-rawlsian-social-welfare-disparity-audit" class="md-nav__link">
+  <a href="#4-interactive-laboratory-algorithmic-fairness-distributive-justice-simulator" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Rawlsian Social Welfare &amp; Disparity Audit
+        4. 🔬 Interactive Laboratory: Algorithmic Fairness &amp; Distributive Justice Simulator
       
     </span>
   </a>
@@ -1841,10 +1918,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-python-verification-rawlsian-social-welfare-disparity-audit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        5. Production Python Verification: Rawlsian Social Welfare &amp; Disparity Audit
       
     </span>
   </a>
@@ -1863,10 +1940,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7495,10 +7572,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#utilitarian-vs-rawlsian-distributive-welfare" class="md-nav__link">
+  <a href="#a-utilitarian-vs-rawlsian-distributive-welfare" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Utilitarian vs. Rawlsian Distributive Welfare
+        A. Utilitarian vs. Rawlsian Distributive Welfare
       
     </span>
   </a>
@@ -7506,10 +7583,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#benefit-to-risk-ratio-with-downside-variance-penalty" class="md-nav__link">
+  <a href="#b-benefit-to-risk-ratio-with-downside-variance-penalty" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Benefit-to-Risk Ratio with Downside Variance Penalty
+        B. Benefit-to-Risk Ratio with Downside Variance Penalty
       
     </span>
   </a>
@@ -7517,10 +7594,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#subgroup-disparity-under-equalized-odds" class="md-nav__link">
+  <a href="#c-the-three-competing-mathematical-formulations-of-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Subgroup Disparity Under Equalized Odds
+        C. The Three Competing Mathematical Formulations of Fairness
       
     </span>
   </a>
@@ -7528,10 +7605,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#shapley-feature-attribution-for-algorithmic-transparency" class="md-nav__link">
+  <a href="#d-the-impossibility-theorem-of-algorithmic-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shapley Feature Attribution for Algorithmic Transparency
+        D. The Impossibility Theorem of Algorithmic Fairness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-shapley-feature-attribution-for-algorithmic-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Shapley Feature Attribution for Algorithmic Transparency
       
     </span>
   </a>
@@ -7567,10 +7655,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#case-study-2-automated-credit-underwriting-adverse-action-transparency" class="md-nav__link">
+  <a href="#case-study-2-amazons-automated-ai-resume-screening-engine-accountability-fairness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study 2: Automated Credit Underwriting &amp; Adverse Action (Transparency)
+        Case Study 2: Amazon's Automated AI Resume Screening Engine (Accountability &amp; Fairness)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-compas-recidivism-scoring-the-fairness-dilemma-predictive-parity-vs-equalized-odds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: COMPAS Recidivism Scoring &amp; The Fairness Dilemma (Predictive Parity vs. Equalized Odds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-4-automated-credit-underwriting-adverse-action-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 4: Automated Credit Underwriting &amp; Adverse Action (Transparency)
       
     </span>
   </a>
@@ -7583,10 +7693,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-rawlsian-social-welfare-disparity-audit" class="md-nav__link">
+  <a href="#4-interactive-laboratory-algorithmic-fairness-distributive-justice-simulator" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Rawlsian Social Welfare &amp; Disparity Audit
+        4. 🔬 Interactive Laboratory: Algorithmic Fairness &amp; Distributive Justice Simulator
       
     </span>
   </a>
@@ -7594,10 +7704,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-python-verification-rawlsian-social-welfare-disparity-audit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        5. Production Python Verification: Rawlsian Social Welfare &amp; Disparity Audit
       
     </span>
   </a>
@@ -7616,10 +7726,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7658,38 +7768,38 @@
 
 
 <h1 id="32-core-ethical-principles-non-maleficence-fairness-transparency-autonomy">3.2 Core Ethical Principles: Non-Maleficence, Fairness, Transparency &amp; Autonomy</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.2.1: Operationalizing Ethical Principles)</strong> in the official Springer Nature monograph, analyzing Belmont Report principles, clinical proxy bias, and transparent credit underwriting.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.2: Ethical Frameworks &amp; Operational Principles)</strong> in the official Springer Nature monograph, analyzing Belmont Report principles, clinical proxy bias, and transparent credit underwriting.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~18 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-32">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.2</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">12 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">11 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7698,7 +7808,7 @@
 </div>
 
 <hr />
-<p>Global consensus across international AI governance frameworks (e.g., the OECD Principles on Artificial Intelligence, the IEEE Global Initiative, and the Montreal Declaration) converges on five foundational pillars: <strong>Non-Maleficence (Do No Harm)</strong>, <strong>Fairness</strong>, <strong>Transparency</strong>, <strong>Accountability</strong>, and <strong>Respect for Autonomy</strong> [<a href="#ref-jobin2019">Jobin2019</a>, <a href="#ref-mittelstadt2016">Mittelstadt2016</a>, <a href="#ref-beauchamp2019">Beauchamp2019</a>].</p>
+<p>Global consensus across international AI governance frameworks (e.g., the OECD Principles on Artificial Intelligence, the IEEE Global Initiative, the Belmont Report, and the Montreal Declaration) converges on five foundational pillars: <strong>Non-Maleficence (Do No Harm)</strong>, <strong>Fairness</strong>, <strong>Transparency</strong>, <strong>Accountability</strong>, and <strong>Respect for Autonomy</strong> [<a href="#ref-jobin2019">Jobin2019</a>, <a href="#ref-mittelstadt2016">Mittelstadt2016</a>, <a href="#ref-beauchamp2019">Beauchamp2019</a>].</p>
 <p>However, in software engineering, ethical principles are frequently dismissed as decorative corporate slogans. To prevent algorithmic failure, data teams must transform high-level ethical values into <strong>operational engineering tests, quantitative disparity metrics, and deployment verification gates</strong> [<a href="#ref-hardt2016">Hardt2016</a>, <a href="#ref-obermeyer2019">Obermeyer2019</a>].</p>
 <hr />
 <h2 id="1-operationalizing-the-five-principles">1. Operationalizing the Five Principles</h2>
@@ -7737,7 +7847,7 @@
 <tr>
 <td style="text-align: left;"><strong>Fairness</strong></td>
 <td style="text-align: left;"><em>Does the system allocate resources or errors systematically differently across demographic classes?</em></td>
-<td style="text-align: left;">Disparate Impact Ratio <span class="arithmatex">\(&gt; 0.80\)</span>; Equalized Odds $</td>
+<td style="text-align: left;">Disparate Impact Ratio <span class="arithmatex">\(\ge 0.80\)</span>; Equalized Odds $</td>
 <td style="text-align: left;">\text{FPR}_A - \text{FPR}_B</td>
 </tr>
 <tr>
@@ -7748,7 +7858,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Accountability</strong></td>
-<td style="text-align: left;"><em>Is there a designated human entity responsible for remediation and appeals?</em></td>
+<td style="text-align: left;"><em>Is there a designated human entity responsible for remediation, appeals, and audits?</em></td>
 <td style="text-align: left;">Cryptographic dataset hash provenance; automated human escalation queue SLA.</td>
 <td style="text-align: left;">Automated platform ban with zero customer support or appeal recourse.</td>
 </tr>
@@ -7760,62 +7870,106 @@
 </tr>
 </tbody>
 </table>
-<hr />
+<blockquote>
+<p>[!IMPORTANT]
+<strong>From Philosophy to Software Contracts</strong>: In production ML, an ethical principle without an executable assertion in the CI/CD test harness is merely aspirational. Every principle must map to a deterministic test gate that fails the build if violated.</p>
+</blockquote>
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: Dynamic Informed Consent Registries</p>
-<p>In longitudinal biomedical datasets, implement <strong>Dynamic Consent Architecture</strong> using cryptographic ledger or cryptographically signed API tokens. Participants can granularly grant, audit, or revoke consent for specific research domains (e.g., allow oncology research, disallow commercial ad modeling) at any time.</p>
+<p>In longitudinal biomedical datasets, implement <strong>Dynamic Consent Architecture</strong> using cryptographic ledgers or signed API tokens. Participants can granularly grant, audit, or revoke consent for specific research domains (e.g., allow oncology research, disallow commercial ad modeling) at any time.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Dark Patterns in Consent Capture</p>
 <p>Using pre-ticked consent boxes, confusing double-negative disclosures, or conditional service access (bundling terms of service with unconstrained AI training rights) violates GDPR Article 7(4) and FTC Section 5 unfair practices rules, rendering the collected dataset legally toxic.</p>
 </div>
+<hr />
 <h2 id="2-mathematical-formalization-of-ethical-governance-objectives">2. Mathematical Formalization of Ethical Governance Objectives</h2>
-<h3 id="utilitarian-vs-rawlsian-distributive-welfare">Utilitarian vs. Rawlsian Distributive Welfare</h3>
+<h3 id="a-utilitarian-vs-rawlsian-distributive-welfare">A. Utilitarian vs. Rawlsian Distributive Welfare</h3>
 <p>When evaluating the deployment of a dataset <span class="arithmatex">\(\mathcal{D}\)</span> for model training, ethical theory provides contrasting social welfare functions [<a href="#ref-rawls1971">Rawls1971</a>]:</p>
 <ol>
-<li><strong>Utilitarian Aggregate Welfare</strong>: Maximizes total sum of individual utilities:</li>
+<li><strong>Utilitarian Aggregate Welfare</strong>: Maximizes the total sum of individual utilities across the population:</li>
 </ol>
 <div class="arithmatex">\[
-W_{\text{utilitarian}}(\mathcal{D}) = \sum_{i=1}^N u_i(f(\mathbf{x}_i))
+W_{\text{utilitarian}}(\mathcal{D}) = \frac{1}{N} \sum_{i=1}^N u_i(f(\mathbf{x}_i))
 \]</div>
-<p>Under utilitarianism, a system that greatly benefits 90% of the population while severely harming a 10% minority may still score positively.</p>
+<p>Under utilitarianism, a system that greatly benefits <span class="arithmatex">\(90\%\)</span> of the population while severely harming a <span class="arithmatex">\(10\%\)</span> minority will still score positively. In high-stakes settings (e.g., medical triage, criminal justice), this creates a dangerous structural incentive to sacrifice minority welfare for aggregate metric gains.</p>
 <ol>
-<li><strong>Rawlsian Maximin Distributive Justice</strong>: Evaluates the system strictly by the welfare of the least-advantaged demographic subgroup <span class="arithmatex">\(\mathcal{G}_k \subset \mathcal{D}\)</span>:</li>
+<li><strong>Rawlsian Maximin Distributive Justice</strong>: Evaluates the system strictly by the welfare of its least-advantaged demographic subgroup <span class="arithmatex">\(\mathcal{G}_g \subset \mathcal{D}\)</span>:</li>
 </ol>
 <div class="arithmatex">\[
 W_{\text{Rawls}}(\mathcal{D}) = \min_{g \in \mathcal{G}} \mathbb{E}\left[ u(f(\mathbf{x})) \mid \mathbf{x} \in \mathcal{G}_g \right]
 \]</div>
-<p>Under the Rawlsian criterion, a dataset deployment is unethical if the worst-off protected cohort experiences negative net utility or disproportionate risk.</p>
-<h3 id="benefit-to-risk-ratio-with-downside-variance-penalty">Benefit-to-Risk Ratio with Downside Variance Penalty</h3>
-<p>To ensure non-maleficence, engineering teams formalize the risk-adjusted <strong>Benefit-to-Risk Ratio (BRR)</strong>:</p>
+<p>Under the Rawlsian criterion, a dataset deployment is classified as unethical if the worst-off protected cohort experiences negative net utility or disproportionate risk, regardless of how high the aggregate population score climbs.</p>
+<h3 id="b-benefit-to-risk-ratio-with-downside-variance-penalty">B. Benefit-to-Risk Ratio with Downside Variance Penalty</h3>
+<p>To operationalize non-maleficence, engineering teams formalize the risk-adjusted <strong>Benefit-to-Risk Ratio (BRR)</strong>:</p>
 <div class="arithmatex">\[
 \text{BRR}(\mathcal{D}) = \frac{\mathbb{E}[B(\mathcal{D})]}{\mathbb{E}[C(\mathcal{D})] + \gamma \sqrt{\mathbb{V}[C(\mathcal{D})]}}
 \]</div>
-<p>Where <span class="arithmatex">\(B(\mathcal{D})\)</span> is the quantified benefit, <span class="arithmatex">\(C(\mathcal{D})\)</span> is the quantified harm/cost, and <span class="arithmatex">\(\gamma &gt; 0\)</span> reflects organizational risk aversion against catastrophic downside tail events.</p>
-<h3 id="subgroup-disparity-under-equalized-odds">Subgroup Disparity Under Equalized Odds</h3>
-<p>Algorithmic fairness requires bounding error disparities across sensitive demographic groups <span class="arithmatex">\(G \in \{0, 1\}\)</span>. Equalized Odds [<a href="#ref-hardt2016">Hardt2016</a>] enforces conditional independence between prediction <span class="arithmatex">\(\hat{Y}\)</span> and sensitive attribute <span class="arithmatex">\(G\)</span> given true label <span class="arithmatex">\(Y\)</span>:</p>
+<p>Where <span class="arithmatex">\(B(\mathcal{D})\)</span> represents quantified benefit, <span class="arithmatex">\(C(\mathcal{D})\)</span> represents quantified harm/cost, and <span class="arithmatex">\(\gamma &gt; 0\)</span> reflects organizational risk aversion against catastrophic downside tail events.</p>
+<h3 id="c-the-three-competing-mathematical-formulations-of-fairness">C. The Three Competing Mathematical Formulations of Fairness</h3>
+<p>Algorithmic fairness literature formalizes three primary definitions across sensitive demographic groups <span class="arithmatex">\(G \in \{0, 1\}\)</span>:</p>
+<ol>
+<li><strong>Demographic Parity (Statistical Parity)</strong>: The acceptance rate is independent of the sensitive attribute:</li>
+</ol>
 <div class="arithmatex">\[
-\Delta_{\text{EO}} = \max_{y \in \{0, 1\}} \left| P(\hat{Y}=1 \mid Y=y, G=0) - P(\hat{Y}=1 \mid Y=y, G=1) \right| \le \epsilon_{\text{fair}}
+P(\hat{Y} = 1 \mid G = 0) = P(\hat{Y} = 1 \mid G = 1)
 \]</div>
-<p>For binary classification, this enforces simultaneous <strong>False Positive Rate (FPR)</strong> parity and <strong>True Positive Rate (TPR)</strong> parity.</p>
-<h3 id="shapley-feature-attribution-for-algorithmic-transparency">Shapley Feature Attribution for Algorithmic Transparency</h3>
+<p>Operationalized via the <strong>Disparate Impact Ratio (DIR)</strong> (enforcing the US EEOC Four-Fifths Rule):</p>
+<div class="arithmatex">\[
+\text{DIR} = \frac{P(\hat{Y}=1 \mid G=1)}{P(\hat{Y}=1 \mid G=0)} \ge 0.80
+\]</div>
+<ol>
+<li><strong>Equalized Odds (Error Rate Parity)</strong>: The model's predictions <span class="arithmatex">\(\hat{Y}\)</span> are conditionally independent of the sensitive attribute <span class="arithmatex">\(G\)</span> given the true outcome <span class="arithmatex">\(Y\)</span> [<a href="#ref-hardt2016">Hardt2016</a>]:</li>
+</ol>
+<div class="arithmatex">\[
+P(\hat{Y} = 1 \mid Y = y, G = 0) = P(\hat{Y} = 1 \mid Y = y, G = 1) \quad \forall y \in \{0, 1\}
+\]</div>
+<p>For binary classification, this enforces simultaneous <strong>False Positive Rate (FPR)</strong> parity and <strong>True Positive Rate (TPR)</strong> parity:</p>
+<div class="arithmatex">\[
+\Delta_{\text{EO}} = \max\left( |\text{FPR}_0 - \text{FPR}_1|, \; |\text{TPR}_0 - \text{TPR}_1| \right) \le \epsilon_{\text{fair}}
+\]</div>
+<ol>
+<li><strong>Predictive Parity (Outcome Calibration Within Groups)</strong>: Given a positive model prediction, the true probability of having the positive outcome is identical across groups:</li>
+</ol>
+<div class="arithmatex">\[
+P(Y = 1 \mid \hat{Y} = 1, G = 0) = P(Y = 1 \mid \hat{Y} = 1, G = 1)
+\]</div>
+<h3 id="d-the-impossibility-theorem-of-algorithmic-fairness">D. The Impossibility Theorem of Algorithmic Fairness</h3>
+<p>A fundamental result in algorithmic ethics, proven independently by Chouldechova [<a href="#ref-chouldechova2017">Chouldechova2017</a>] and Kleinberg et al. [<a href="#ref-kleinberg2017">Kleinberg2017</a>], establishes a mathematical trade-off:</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Impossibility ["The Trilemma of Algorithmic Fairness"]
+        A["1. Demographic Parity&lt;br/&gt;P(Y_hat=1 | G=0) = P(Y_hat=1 | G=1)"]
+        B["2. Equalized Odds&lt;br/&gt;FPR_0 = FPR_1 &amp; TPR_0 = TPR_1"]
+        C["3. Predictive Parity&lt;br/&gt;Calibration within Groups"]
+    end
+
+    A -.-|Mutually Incompatible when Base Rates Differ| B
+    B -.-|P(Y=1 | G=0) ≠ P(Y=1 | G=1)| C
+    C -.-|Mathematical Impossibility Theorem| A
+
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    class A,B,C amber;</code></pre>
+<p><strong>Theorem (Chouldechova, 2017)</strong>: <em>If the base rate of the true condition differs across demographic groups (<span class="arithmatex">\(P(Y=1 \mid G=0) \neq P(Y=1 \mid G=1)\)</span>), no classifier can simultaneously satisfy Equalized Odds (FPR and FNR parity) and Predictive Parity (calibration), unless the classifier achieves perfect zero error (<span class="arithmatex">\(TPR=1, FPR=0\)</span>).</em></p>
+<p><strong>Engineering Implication</strong>: Data teams cannot simply "turn on fairness." They must make explicit, documented normative decisions about which definition of fairness governs their application domain.</p>
+<h3 id="e-shapley-feature-attribution-for-algorithmic-transparency">E. Shapley Feature Attribution for Algorithmic Transparency</h3>
 <p>Under Cooperative Game Theory, fair feature attribution for transparency requires computing the Shapley value <span class="arithmatex">\(\phi_j\)</span> for each attribute <span class="arithmatex">\(j \in \{1, \dots, M\}\)</span> [<a href="#ref-lundberg2017">Lundberg2017</a>]:</p>
 <div class="arithmatex">\[
 \phi_j(v) = \sum_{S \subseteq \mathcal{F} \setminus \{j\}} \frac{|S|!(|\mathcal{F}| - |S| - 1)!}{|\mathcal{F}|!} \left( v(S \cup \{j\}) - v(S) \right)
 \]</div>
-<p>Where <span class="arithmatex">\(\mathcal{F}\)</span> is the set of all input features, and <span class="arithmatex">\(v(S)\)</span> evaluates the model output using only feature subset <span class="arithmatex">\(S\)</span>.</p>
+<p>Where <span class="arithmatex">\(\mathcal{F}\)</span> is the set of all input features, and <span class="arithmatex">\(v(S)\)</span> evaluates the model output using only feature subset <span class="arithmatex">\(S\)</span>. This provides mathematically axiomatic fairness in explainability (efficiency, symmetry, dummy player, and additivity).</p>
 <hr />
 <h2 id="3-in-depth-engineering-case-studies">3. In-Depth Engineering Case Studies</h2>
 <h3 id="case-study-1-the-commercial-health-risk-proxy-failure-non-maleficence-fairness">Case Study 1: The Commercial Health Risk Proxy Failure (Non-Maleficence &amp; Fairness)</h3>
-<p>In a seminal audit published in <em>Science</em>, Obermeyer et al. [<a href="#ref-obermeyer2019">Obermeyer2019</a>] evaluated an algorithm used by commercial health systems to triage over <span class="arithmatex">\(200\text{ Million}\)</span> patients for specialized care management:</p>
+<p>In a seminal audit published in <em>Science</em>, Obermeyer et al. [<a href="#ref-obermeyer2019">Obermeyer2019</a>] evaluated an algorithm used by commercial health systems to triage over <strong>200 million patients</strong> for specialized high-risk care management programs:</p>
 <pre class="mermaid"><code>flowchart TD
-    subgraph FlawedPipeline ["Biased Target Architecture"]
+    subgraph FlawedPipeline ["Biased Target Architecture (Cost Proxy)"]
         T1["Target Concept: Chronic Illness Severity"] --&gt; P1["Engineered Proxy: Total Annual Healthcare Cost"]
         P1 --&gt; D1["Disparity: Due to systemic disparities, less money is spent on Black patients"]
         D1 --&gt; H1["Downstream Harm: Black patients must be substantially sicker to qualify"]
     end
 
-    subgraph RemediationPipeline ["Equitable Target Architecture"]
+    subgraph RemediationPipeline ["Equitable Target Architecture (Biomarker Grounding)"]
         T2["Target Concept: Chronic Illness Severity"] --&gt; P2["Engineered Target: Active Biomarkers &amp; Chronic Condition Count"]
         P2 --&gt; D2["Parity: Equal clinical need triggers equal resource allocation"]
         D2 --&gt; H2["Fair Care Access: 84% increase in qualified Black patient enrollment"]
@@ -7826,8 +7980,26 @@ W_{\text{Rawls}}(\mathcal{D}) = \min_{g \in \mathcal{G}} \mathbb{E}\left[ u(f(\m
 
     class T1,P1,D1,H1 red;
     class T2,P2,D2,H2 green;</code></pre>
-<p>By substituting historical financial expenditure as a proxy for illness severity, the algorithm severely underestimated the health needs of Black patients. Remediating the dataset by retraining on biological chronic illness biomarkers eliminated the disparity, increasing Black enrollment by <span class="arithmatex">\(84\%\)</span>.</p>
-<h3 id="case-study-2-automated-credit-underwriting-adverse-action-transparency">Case Study 2: Automated Credit Underwriting &amp; Adverse Action (Transparency)</h3>
+<p><strong>The Mechanism of Failure</strong>:
+- The designers sought to identify patients with complex health needs to assign them dedicated nurse care coordinators.
+- Because biological need was hard to quantify across disparate clinical records, the team substituted <strong>Total Healthcare Expenditure</strong> as a convenient target label proxy: <span class="arithmatex">\(\text{Need} \equiv \text{Cost}\)</span>.
+- However, because of entrenched wealth disparities, insurance access barriers, and unequal clinician utilization, insurance companies and health systems historically spent significantly less money on Black patients than on white patients with identical chronic condition burdens.
+- At any given expenditure percentile, Black patients had significantly more chronic illnesses (e.g., uncontrolled hypertension, diabetes complications, renal failure). Black patients were forced to be far more severely ill to qualify for the program.</p>
+<p><strong>Remediation</strong>:
+By redesigning the target label to directly measure <strong>active chronic conditions and biological laboratory markers</strong> (e.g., HbA1c levels, blood pressure readings), the disparity was eliminated, increasing Black patient enrollment in the specialized care program by <strong><span class="arithmatex">\(84\%\)</span></strong>.</p>
+<h3 id="case-study-2-amazons-automated-ai-resume-screening-engine-accountability-fairness">Case Study 2: Amazon's Automated AI Resume Screening Engine (Accountability &amp; Fairness)</h3>
+<p>In 2018, Reuters reported that Amazon disbanded its internal AI recruiting tool [<a href="#ref-dastin2018">Dastin2018</a>]:
+- The engineering team trained deep NLP models on 10 years of historical applicant resumes submitted to the company to automate resume grading (1 to 5 stars).
+- Because technical roles historically had been heavily male-dominated, the training corpus exhibited severe historical selection bias.
+- The neural network learned that male candidates were preferred, actively penalizing resumes containing the word <em>"women's"</em> (e.g., <em>"captain of women's rugby club"</em>) and down-voting graduates from two all-women colleges.
+- Even when explicit gender keywords were removed, the model learned latent proxies (e.g., masculine action verbs like <em>"executed"</em>, <em>"captured"</em>). Amazon scrapped the tool because it was impossible to guarantee non-discriminatory scoring.</p>
+<h3 id="case-study-3-compas-recidivism-scoring-the-fairness-dilemma-predictive-parity-vs-equalized-odds">Case Study 3: COMPAS Recidivism Scoring &amp; The Fairness Dilemma (Predictive Parity vs. Equalized Odds)</h3>
+<p>In 2016, ProPublica audited the <strong>COMPAS</strong> risk tool used by US courts to score criminal defendants' likelihood of recidivism [<a href="#ref-angwin2016">Angwin2016</a>]:
+- The proprietary model achieved <strong>Predictive Parity (Calibration)</strong>: an individual scored as "High Risk" had roughly the same probability of re-arrest regardless of race (<span class="arithmatex">\(\approx 60\%\)</span>).
+- However, the model severely violated <strong>Equalized Odds (FPR Parity)</strong>: Black defendants who did not re-offend were almost twice as likely to be misclassified as High Risk (<span class="arithmatex">\(44.9\%\)</span>) compared to white non-reoffenders (<span class="arithmatex">\(23.5\%\)</span>).
+- White defendants who did re-offend were misclassified as Low Risk at almost double the rate of Black re-offenders (<span class="arithmatex">\(47.7\%\)</span> vs. <span class="arithmatex">\(28.0\%\)</span>).
+- This case study stands as the primary real-world manifestation of Chouldechova's Impossibility Theorem: when base arrest rates differ, satisfying predictive parity guarantees an error rate disparity.</p>
+<h3 id="case-study-4-automated-credit-underwriting-adverse-action-transparency">Case Study 4: Automated Credit Underwriting &amp; Adverse Action (Transparency)</h3>
 <p>Under the US Equal Credit Opportunity Act (ECOA) and GDPR Article 22, when an automated model declines a consumer's credit application, the lender must provide an <strong>Adverse Action Notice</strong> with concrete, actionable attribution scores:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"adverse_action_notice"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -7852,145 +8024,498 @@ W_{\text{Rawls}}(\mathcal{D}) = \min_{g \in \mathcal{G}} \mathbb{E}\left[ u(f(\m
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">}</span>
 </span></code></pre></div>
 <hr />
-<h2 id="4-python-verification-rawlsian-social-welfare-disparity-audit">4. Python Verification: Rawlsian Social Welfare &amp; Disparity Audit</h2>
-<p>The following Python script computes Utilitarian vs. Rawlsian welfare across demographic cohorts and verifies Equalized Odds error parity.</p>
+<h2 id="4-interactive-laboratory-algorithmic-fairness-distributive-justice-simulator">4. 🔬 Interactive Laboratory: Algorithmic Fairness &amp; Distributive Justice Simulator</h2>
+<p>Test the mechanics of proxy bias and evaluate Utilitarian vs. Rawlsian welfare in real time using the interactive laboratory below. Toggle between the <strong>Biased Cost Proxy Pipeline</strong> and the <strong>Equitable Biomarker Pipeline</strong>, adjust the qualification threshold, and watch how error disparities and subgroup welfare metrics respond:</p>
+<div class="noc-sim-container" style="background:#fffdf7; border:2px solid #151b20; border-radius:14px; padding:22px; margin:24px 0; box-shadow:4px 4px 0px #151b20;">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+    <div>
+      <span style="font-weight:800; color:#0e7490; font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+        <span>🔬</span> Obermeyer Clinical Triage &amp; Fairness Simulator
+      </span>
+      <div style="font-size:0.84rem; color:#475569; margin-top:2px; font-weight:500;">
+        Simulate 1,000 synthetic patient encounters: Group A (800 Majority) vs Group B (200 Minority)
+      </div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="noc-sim-btn" onclick="applyFairnessPreset(1)" style="font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 1: Biased Cost Proxy</button>
+      <button class="noc-sim-btn" onclick="applyFairnessPreset(2)" style="background:#ffd8ce; color:#c2410c; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 2: Adjusted Cutoff</button>
+      <button class="noc-sim-btn" onclick="applyFairnessPreset(3)" style="background:#b7df69; color:#151b20; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 3: Biomarker Grounding</button>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px;">
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Target Label Architecture:</label>
+      <select id="ctrlTargetPipeline" onchange="runFairnessAuditSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="cost">Historical Healthcare Cost (Proxy)</option>
+        <option value="biomarker">Biological Chronic Condition Biomarkers</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">
+        Triage Enrollment Percentile: <span id="lblThresholdVal" style="color:#0e7490; font-family:monospace;">Top 15%</span>
+      </label>
+      <input type="range" id="ctrlEnrollThreshold" min="5" max="30" value="15" step="1" oninput="document.getElementById('lblThresholdVal').innerText = 'Top ' + this.value + '%'; runFairnessAuditSimulation();" style="width:100%; accent-color:#0e7490; cursor:pointer;" />
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Group B Minority Threshold Offset:</label>
+      <select id="ctrlMinorityOffset" onchange="runFairnessAuditSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="0">Standard Unified Threshold</option>
+        <option value="5">-5% Subgroup Score Relief</option>
+        <option value="10">-10% Subgroup Score Relief</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Metrics Bar -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Disparate Impact Ratio</div>
+      <div id="metricDIR" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">0.03</div>
+      <div id="metricDIRBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">CRITICAL: &lt; 0.80 (Fail)</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Equal Opp Disparity</div>
+      <div id="metricEqOpp" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">83.2%</div>
+      <div style="font-size:0.72rem; color:#475569;">|TPR_A - TPR_B|</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Utilitarian Social Welfare</div>
+      <div id="metricUtilWelfare" style="font-size:1.4rem; font-weight:900; color:#0e7490; font-family:monospace;">0.88</div>
+      <div style="font-size:0.72rem; color:#475569;">Population Mean Utility</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Rawlsian Maximin Floor</div>
+      <div id="metricRawlsWelfare" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">0.49</div>
+      <div id="metricRawlsBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">Minority Degraded</div>
+    </div>
+  </div>
+
+  <!-- Clinical Program Enrollment Breakdown -->
+  <div style="background:#fff; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:14px;">
+    <div style="font-size:0.82rem; font-weight:800; color:#151b20; margin-bottom:10px;">
+      Clinical Care Program Enrollment &amp; True Clinical Need Match:
+    </div>
+
+    <!-- Group A -->
+    <div style="margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:#334155; margin-bottom:4px;">
+        <span>Group A (Majority: 800 Patients)</span>
+        <span id="lblEnrollA">Enrolled: 18.6% | Clinical Recall (TPR): 85.4%</span>
+      </div>
+      <div style="height:20px; background:#f1f5f9; border:1.5px solid #151b20; border-radius:6px; overflow:hidden; display:flex;">
+        <div id="barTP_A" style="width:85%; background:#b7df69;" title="True Positives: Correctly Enrolled"></div>
+        <div id="barFN_A" style="width:15%; background:#ffd8ce;" title="False Negatives: Sick but Denied"></div>
+      </div>
+    </div>
+
+    <!-- Group B -->
+    <div>
+      <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:#334155; margin-bottom:4px;">
+        <span>Group B (Minority: 200 Patients)</span>
+        <span id="lblEnrollB">Enrolled: 0.5% | Clinical Recall (TPR): 2.2%</span>
+      </div>
+      <div style="height:20px; background:#f1f5f9; border:1.5px solid #151b20; border-radius:6px; overflow:hidden; display:flex;">
+        <div id="barTP_B" style="width:2%; background:#b7df69;" title="True Positives: Correctly Enrolled"></div>
+        <div id="barFN_B" style="width:98%; background:#ffd8ce;" title="False Negatives: Sick but Denied"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:0.78rem; color:#475569; line-height:1.5;">
+    💡 <strong>Notice the Proxy Effect:</strong> Under <em>Preset 1 (Cost Proxy)</em>, Utilitarian welfare appears high ($0.88$) because the majority cohort performs well. However, the <strong>Rawlsian maximin floor collapses to $0.49$</strong> because sick Black patients are virtually locked out of care (TPR is only $2.2\%$). Selecting <em>Preset 3 (Biomarker Grounding)</em> restores Equalized Odds parity and raises the Rawlsian floor to $0.85+$.
+  </div>
+</div>
+
+<script>
+// Deterministic synthetic cohort generator
+function generateObermeyerCohort() {
+  const cohort = [];
+  // 800 Group A, 200 Group B
+  for (let i = 0; i < 1000; i++) {
+    const isA = (i < 800);
+    // Sickness index from 1 to 10
+    const u1 = Math.sin(i * 12.9898) * 0.5 + 0.5;
+    const u2 = Math.cos(i * 78.233) * 0.5 + 0.5;
+    const sickness = 2.0 + (u1 + u2) * 3.2; // approx 2 to 8.4
+    const isSick = (sickness >= 5.5);
+
+    // Spend proxy: Group B spends significantly less due to barriers
+    let spend = sickness * 2000 + (Math.sin(i * 3.14) * 600);
+    if (!isA) {
+      spend = sickness * 1350 - 900 + (Math.sin(i * 3.14) * 600);
+    }
+
+    // Biomarker proxy: biologically calibrated
+    const biomarker = sickness + (Math.cos(i * 2.71) * 0.35);
+
+    cohort.push({
+      id: i,
+      group: isA ? 'A' : 'B',
+      sickness,
+      isSick,
+      spend,
+      biomarker
+    });
+  }
+  return cohort;
+}
+
+const GLOBAL_FAIRNESS_COHORT = generateObermeyerCohort();
+
+function applyFairnessPreset(presetId) {
+  const pipelineSel = document.getElementById('ctrlTargetPipeline');
+  const threshSlider = document.getElementById('ctrlEnrollThreshold');
+  const offsetSel = document.getElementById('ctrlMinorityOffset');
+
+  if (presetId === 1) {
+    pipelineSel.value = 'cost';
+    threshSlider.value = '15';
+    offsetSel.value = '0';
+  } else if (presetId === 2) {
+    pipelineSel.value = 'cost';
+    threshSlider.value = '15';
+    offsetSel.value = '10';
+  } else if (presetId === 3) {
+    pipelineSel.value = 'biomarker';
+    threshSlider.value = '15';
+    offsetSel.value = '0';
+  }
+  document.getElementById('lblThresholdVal').innerText = 'Top ' + threshSlider.value + '%';
+  runFairnessAuditSimulation();
+}
+
+function runFairnessAuditSimulation() {
+  const pipeline = document.getElementById('ctrlTargetPipeline').value;
+  const threshPct = parseFloat(document.getElementById('ctrlEnrollThreshold').value);
+  const minorityOffset = parseFloat(document.getElementById('ctrlMinorityOffset').value);
+
+  const cohort = GLOBAL_FAIRNESS_COHORT;
+  const scores = cohort.map(c => (pipeline === 'cost' ? c.spend : c.biomarker));
+
+  // Determine percentile cutoff
+  const sortedScores = [...scores].sort((a, b) => a - b);
+  const cutoffIdx = Math.floor(sortedScores.length * (1 - (threshPct / 100)));
+  const globalCutoff = sortedScores[cutoffIdx];
+
+  // Evaluate triage decisions
+  let enrolledA = 0, enrolledB = 0;
+  let tpA = 0, fnA = 0, fpA = 0, tnA = 0;
+  let tpB = 0, fnB = 0, fpB = 0, tnB = 0;
+
+  cohort.forEach(c => {
+    const score = (pipeline === 'cost' ? c.spend : c.biomarker);
+    let cutoff = globalCutoff;
+    if (c.group === 'B' && minorityOffset > 0) {
+      // Offset cutoff downwards
+      const offsetCutoffIdx = Math.floor(sortedScores.length * (1 - ((threshPct + minorityOffset) / 100)));
+      cutoff = sortedScores[Math.max(0, offsetCutoffIdx)];
+    }
+
+    const isEnrolled = (score >= cutoff);
+
+    if (c.group === 'A') {
+      if (isEnrolled) enrolledA++;
+      if (isEnrolled && c.isSick) tpA++;
+      else if (!isEnrolled && c.isSick) fnA++;
+      else if (isEnrolled && !c.isSick) fpA++;
+      else tnA++;
+    } else {
+      if (isEnrolled) enrolledB++;
+      if (isEnrolled && c.isSick) tpB++;
+      else if (!isEnrolled && c.isSick) fnB++;
+      else if (isEnrolled && !c.isSick) fpB++;
+      else tnB++;
+    }
+  });
+
+  const rateA = enrolledA / 800;
+  const rateB = enrolledB / 200;
+  const dirRatio = rateA > 0 ? (rateB / rateA) : 0;
+
+  const tprA = (tpA + fnA) > 0 ? (tpA / (tpA + fnA)) : 0;
+  const tprB = (tpB + fnB) > 0 ? (tpB / (tpB + fnB)) : 0;
+  const eqOppDisparity = Math.abs(tprA - tprB);
+
+  const fprA = (fpA + tnA) > 0 ? (fpA / (fpA + tnA)) : 0;
+  const fprB = (fpB + tnB) > 0 ? (fpB / (fpB + tnB)) : 0;
+
+  const utilityA = 1.0 - (0.5 * fprA + 0.5 * (1.0 - tprA));
+  const utilityB = 1.0 - (0.5 * fprB + 0.5 * (1.0 - tprB));
+
+  const utilWelfare = (800 * utilityA + 200 * utilityB) / 1000;
+  const rawlsWelfare = Math.min(utilityA, utilityB);
+
+  // Update UI Elements
+  const dirElem = document.getElementById('metricDIR');
+  const dirBadge = document.getElementById('metricDIRBadge');
+  dirElem.innerText = dirRatio.toFixed(2);
+  if (dirRatio < 0.80) {
+    dirElem.style.color = '#b91c1c';
+    dirBadge.innerText = 'CRITICAL: < 0.80 (Fail)';
+    dirBadge.style.color = '#b91c1c';
+  } else {
+    dirElem.style.color = '#047857';
+    dirBadge.innerText = 'PASS: >= 0.80 (EEOC Compliant)';
+    dirBadge.style.color = '#047857';
+  }
+
+  const eqOppElem = document.getElementById('metricEqOpp');
+  eqOppElem.innerText = (eqOppDisparity * 100).toFixed(1) + '%';
+  eqOppElem.style.color = eqOppDisparity > 0.15 ? '#b91c1c' : '#047857';
+
+  document.getElementById('metricUtilWelfare').innerText = utilWelfare.toFixed(2);
+
+  const rawlsElem = document.getElementById('metricRawlsWelfare');
+  const rawlsBadge = document.getElementById('metricRawlsBadge');
+  rawlsElem.innerText = rawlsWelfare.toFixed(2);
+  if (rawlsWelfare < 0.70) {
+    rawlsElem.style.color = '#b91c1c';
+    rawlsBadge.innerText = 'Minority Subgroup Degraded';
+    rawlsBadge.style.color = '#b91c1c';
+  } else {
+    rawlsElem.style.color = '#047857';
+    rawlsBadge.innerText = 'Rawlsian Floor Certified';
+    rawlsBadge.style.color = '#047857';
+  }
+
+  // Update Bar Graphics
+  document.getElementById('lblEnrollA').innerText = `Enrolled: ${(rateA * 100).toFixed(1)}% | Clinical Recall (TPR): ${(tprA * 100).toFixed(1)}%`;
+  document.getElementById('lblEnrollB').innerText = `Enrolled: ${(rateB * 100).toFixed(1)}% | Clinical Recall (TPR): ${(tprB * 100).toFixed(1)}%`;
+
+  const tpPctA = Math.max(2, Math.min(98, tprA * 100));
+  const tpPctB = Math.max(2, Math.min(98, tprB * 100));
+
+  document.getElementById('barTP_A').style.width = tpPctA + '%';
+  document.getElementById('barFN_A').style.width = (100 - tpPctA) + '%';
+
+  document.getElementById('barTP_B').style.width = tpPctB + '%';
+  document.getElementById('barFN_B').style.width = (100 - tpPctB) + '%';
+}
+
+// Initial trigger
+document.addEventListener('DOMContentLoaded', () => {
+  runFairnessAuditSimulation();
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  runFairnessAuditSimulation();
+}
+</script>
+
+<hr />
+<h2 id="5-production-python-verification-rawlsian-social-welfare-disparity-audit">5. Production Python Verification: Rawlsian Social Welfare &amp; Disparity Audit</h2>
+<p>The following production script implements an end-to-end fairness and social welfare gatekeeper using <strong>Pydantic V2</strong> and vectorized NumPy disparity calculations:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ethical_welfare_audit.py</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Audits utilitarian aggregate vs Rawlsian maximin welfare and error disparity</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Production Type-Safe Algorithmic Fairness &amp; Rawlsian Maximin Audit Pipeline</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_subgroup_metrics</span><span class="p">(</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">y_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">groups</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">group_results</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">:</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="n">g</span><span class="p">)</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">y_t_g</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="n">y_p_g</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">SubgroupFairnessMetrics</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="sd">    Subgroup Confusion Rates and Ethical Utility.</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="sd">    """</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">sample_size</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">true_positive_rate</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">false_positive_rate</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">selection_rate</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="n">subgroup_utility</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="c1"># Calculate FPR and FNR</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_p_g</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_t_g</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_p_g</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_t_g</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="n">fn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_p_g</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_t_g</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_p_g</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_t_g</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="n">fpr</span> <span class="o">=</span> <span class="n">fp</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">fnr</span> <span class="o">=</span> <span class="n">fn</span> <span class="o">/</span> <span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="n">tp</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">fn</span> <span class="o">+</span> <span class="n">tp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">utility</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">fpr</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">fnr</span><span class="p">)</span> <span class="c1"># Balanced accuracy proxy</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">group_results</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>            <span class="s2">"fpr"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">fpr</span><span class="p">),</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>            <span class="s2">"fnr"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">fnr</span><span class="p">),</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>            <span class="s2">"utility"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">utility</span><span class="p">),</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>            <span class="s2">"n"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask</span><span class="p">))</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="p">}</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="n">utilities</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="s2">"utility"</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">group_results</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="n">fprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="s2">"fpr"</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">group_results</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="n">fnrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="s2">"fnr"</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">group_results</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="n">utilitarian_welfare</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">utilities</span><span class="p">))</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="n">rawlsian_welfare</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">utilities</span><span class="p">))</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    <span class="n">max_fpr_disparity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fprs</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">fprs</span><span class="p">))</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="n">max_fnr_disparity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fnrs</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">fnrs</span><span class="p">))</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>        <span class="s2">"groups"</span><span class="p">:</span> <span class="n">group_results</span><span class="p">,</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>        <span class="s2">"utilitarian_welfare"</span><span class="p">:</span> <span class="n">utilitarian_welfare</span><span class="p">,</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>        <span class="s2">"rawlsian_welfare"</span><span class="p">:</span> <span class="n">rawlsian_welfare</span><span class="p">,</span>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>        <span class="s2">"max_fpr_disparity"</span><span class="p">:</span> <span class="n">max_fpr_disparity</span><span class="p">,</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>        <span class="s2">"max_fnr_disparity"</span><span class="p">:</span> <span class="n">max_fnr_disparity</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="p">}</span>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_ethical_audit_assertions</span><span class="p">():</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="c1"># Synthetic cohort: Group 0 (Affluent majority), Group 1 (Protected minority)</span>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">800</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">200</span><span class="p">)</span>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="c1"># Model with disparate minority error rate</span>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="c1"># Introduce 25% errors into minority group</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="n">minority_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="n">flip_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">minority_indices</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>    <span class="n">y_pred</span><span class="p">[</span><span class="n">flip_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">flip_indices</span><span class="p">]</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductionFairnessAuditReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="sd">    Complete Multi-Principle Governance Audit Report.</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="sd">    """</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">utilitarian_social_welfare</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Population aggregate utility mean"</span><span class="p">)</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="n">rawlsian_maximin_welfare</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Worst-off subgroup welfare floor"</span><span class="p">)</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="n">disparate_impact_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Selection rate ratio (Minority / Majority)"</span><span class="p">)</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="n">equal_opportunity_disparity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"|TPR_0 - TPR_1|"</span><span class="p">)</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="n">equalized_odds_disparity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"max(|TPR_0 - TPR_1|, |FPR_0 - FPR_1|)"</span><span class="p">)</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="n">is_deployable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"True if passes Rawlsian and EEOC 80</span><span class="si">% c</span><span class="s2">riteria"</span><span class="p">)</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="k">class</span><span class="w"> </span><span class="nc">EthicalFairnessAuditor</span><span class="p">:</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="sd">    Evaluates algorithmic models against Rawlsian Maximin and Equalized Odds criteria.</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="sd">    """</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit</span><span class="p">(</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>        <span class="n">y_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>        <span class="n">y_pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="n">groups</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>        <span class="n">min_rawlsian_floor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.70</span><span class="p">,</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>        <span class="n">min_dir_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.80</span><span class="p">,</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="n">max_disparity_epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProductionFairnessAuditReport</span><span class="p">:</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>        <span class="n">unique_groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_groups</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Auditing requires at least two distinct demographic cohorts."</span><span class="p">)</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>        <span class="n">subgroup_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">SubgroupFairnessMetrics</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">:</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>            <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="n">g</span><span class="p">)</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>            <span class="n">yt</span> <span class="o">=</span> <span class="n">y_true</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>            <span class="n">yp</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>            <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">yt</span><span class="p">)</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>            <span class="n">tp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">yp</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">yt</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)))</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>            <span class="n">fp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">yp</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">yt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>            <span class="n">fn</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">yp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">yt</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)))</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>            <span class="n">tn</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">yp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">yt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>            <span class="n">tpr</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>            <span class="n">fpr</span> <span class="o">=</span> <span class="n">fp</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>            <span class="n">sel_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yp</span><span class="p">))</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>            <span class="c1"># Balanced clinical accuracy proxy for utility: 1 - 0.5(FPR + FNR)</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>            <span class="n">utility</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">fpr</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">tpr</span><span class="p">))</span>
 </span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    <span class="n">audit</span> <span class="o">=</span> <span class="n">evaluate_subgroup_metrics</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>    <span class="c1"># Utilitarian aggregate is dominated by Group 0, masking minority injustice</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    <span class="k">assert</span> <span class="n">audit</span><span class="p">[</span><span class="s2">"utilitarian_welfare"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">audit</span><span class="p">[</span><span class="s2">"rawlsian_welfare"</span><span class="p">]</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="c1"># Rawlsian floor identifies minority degradation</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>    <span class="k">assert</span> <span class="n">audit</span><span class="p">[</span><span class="s2">"rawlsian_welfare"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.85</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>    <span class="k">assert</span> <span class="n">audit</span><span class="p">[</span><span class="s2">"max_fpr_disparity"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.05</span> <span class="ow">or</span> <span class="n">audit</span><span class="p">[</span><span class="s2">"max_fnr_disparity"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.05</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Ethical welfare and Rawlsian maximin assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    <span class="n">test_ethical_audit_assertions</span><span class="p">()</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>            <span class="n">subgroup_data</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="n">SubgroupFairnessMetrics</span><span class="p">(</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>                <span class="n">sample_size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>                <span class="n">true_positive_rate</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">tpr</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>                <span class="n">false_positive_rate</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>                <span class="n">selection_rate</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">sel_rate</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>                <span class="n">subgroup_utility</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">utility</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>            <span class="p">)</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>        <span class="n">g_maj</span><span class="p">,</span> <span class="n">g_min</span> <span class="o">=</span> <span class="n">unique_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">unique_groups</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>        <span class="n">m_maj</span><span class="p">,</span> <span class="n">m_min</span> <span class="o">=</span> <span class="n">subgroup_data</span><span class="p">[</span><span class="n">g_maj</span><span class="p">],</span> <span class="n">subgroup_data</span><span class="p">[</span><span class="n">g_min</span><span class="p">]</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>        <span class="n">dir_ratio</span> <span class="o">=</span> <span class="n">m_min</span><span class="o">.</span><span class="n">selection_rate</span> <span class="o">/</span> <span class="n">m_maj</span><span class="o">.</span><span class="n">selection_rate</span> <span class="k">if</span> <span class="n">m_maj</span><span class="o">.</span><span class="n">selection_rate</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>        <span class="n">eq_opp</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">m_maj</span><span class="o">.</span><span class="n">true_positive_rate</span> <span class="o">-</span> <span class="n">m_min</span><span class="o">.</span><span class="n">true_positive_rate</span><span class="p">)</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>        <span class="n">eq_odds</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>            <span class="nb">abs</span><span class="p">(</span><span class="n">m_maj</span><span class="o">.</span><span class="n">true_positive_rate</span> <span class="o">-</span> <span class="n">m_min</span><span class="o">.</span><span class="n">true_positive_rate</span><span class="p">),</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>            <span class="nb">abs</span><span class="p">(</span><span class="n">m_maj</span><span class="o">.</span><span class="n">false_positive_rate</span> <span class="o">-</span> <span class="n">m_min</span><span class="o">.</span><span class="n">false_positive_rate</span><span class="p">)</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>        <span class="p">)</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>        <span class="n">utilities</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">subgroup_utility</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">subgroup_data</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>        <span class="n">utilitarian</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">utilities</span><span class="p">))</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>        <span class="n">rawlsian</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">utilities</span><span class="p">))</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>        <span class="n">is_deployable</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>            <span class="n">rawlsian</span> <span class="o">&gt;=</span> <span class="n">min_rawlsian_floor</span> <span class="ow">and</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>            <span class="n">dir_ratio</span> <span class="o">&gt;=</span> <span class="n">min_dir_threshold</span> <span class="ow">and</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>            <span class="n">eq_odds</span> <span class="o">&lt;=</span> <span class="n">max_disparity_epsilon</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>        <span class="p">)</span>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>        <span class="k">return</span> <span class="n">ProductionFairnessAuditReport</span><span class="p">(</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>            <span class="n">utilitarian_social_welfare</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">utilitarian</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>            <span class="n">rawlsian_maximin_welfare</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">rawlsian</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>            <span class="n">disparate_impact_ratio</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">dir_ratio</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>            <span class="n">equal_opportunity_disparity</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">eq_opp</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>            <span class="n">equalized_odds_disparity</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">eq_odds</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>            <span class="n">is_deployable</span><span class="o">=</span><span class="n">is_deployable</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        <span class="p">)</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_ethical_audit_assertions</span><span class="p">():</span>
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>    <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>    <span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">800</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">200</span><span class="p">)</span> <span class="c1"># 80% Majority, 20% Minority</span>
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>    <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>    <span class="c1"># 1. Biased Model Simulation: Accurate on Majority, Drops Minority Care</span>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>    <span class="n">y_pred_biased</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>    <span class="c1"># Depress minority predictions to simulate historical cost proxy</span>
+</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>    <span class="n">minority_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">groups</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>    <span class="n">y_pred_biased</span><span class="p">[</span><span class="n">minority_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>
+</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>    <span class="n">biased_report</span> <span class="o">=</span> <span class="n">EthicalFairnessAuditor</span><span class="o">.</span><span class="n">audit</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_biased</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>    <span class="k">assert</span> <span class="n">biased_report</span><span class="o">.</span><span class="n">is_deployable</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"Biased model must fail CI/CD gate"</span>
+</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>    <span class="k">assert</span> <span class="n">biased_report</span><span class="o">.</span><span class="n">rawlsian_maximin_welfare</span> <span class="o">&lt;</span> <span class="mf">0.60</span>
+</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>    <span class="k">assert</span> <span class="n">biased_report</span><span class="o">.</span><span class="n">disparate_impact_ratio</span> <span class="o">==</span> <span class="mf">0.0</span>
+</span><span id="__span-1-122"><a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>
+</span><span id="__span-1-123"><a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>    <span class="c1"># 2. Fair Model Simulation: Equalized Error Rates</span>
+</span><span id="__span-1-124"><a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a>    <span class="n">y_pred_fair</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-1-125"><a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>    <span class="n">fair_report</span> <span class="o">=</span> <span class="n">EthicalFairnessAuditor</span><span class="o">.</span><span class="n">audit</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred_fair</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+</span><span id="__span-1-126"><a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>    <span class="k">assert</span> <span class="n">fair_report</span><span class="o">.</span><span class="n">is_deployable</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Fair model must pass CI/CD gate"</span>
+</span><span id="__span-1-127"><a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>    <span class="k">assert</span> <span class="n">fair_report</span><span class="o">.</span><span class="n">rawlsian_maximin_welfare</span> <span class="o">&gt;=</span> <span class="mf">0.85</span>
+</span><span id="__span-1-128"><a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>    <span class="k">assert</span> <span class="n">fair_report</span><span class="o">.</span><span class="n">equalized_odds_disparity</span> <span class="o">&lt;=</span> <span class="mf">0.05</span>
+</span><span id="__span-1-129"><a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Production Ethical Fairness &amp; Rawlsian assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-1-130"><a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>
+</span><span id="__span-1-131"><a id="__codelineno-1-131" name="__codelineno-1-131" href="#__codelineno-1-131"></a>
+</span><span id="__span-1-132"><a id="__codelineno-1-132" name="__codelineno-1-132" href="#__codelineno-1-132"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-1-133"><a id="__codelineno-1-133" name="__codelineno-1-133" href="#__codelineno-1-133"></a>    <span class="n">test_ethical_audit_assertions</span><span class="p">()</span>
 </span></code></pre></div>
-<hr />
-<h2 id="5-interactive-laboratory-workbench">5. 🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Audit Bias & Fairness in Predictive Datasets</h4>
-  <p>Test disparate impact ratios, evaluate equalized odds differences across sensitive attributes, and simulate algorithmic recourse client-side.</p>
-  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch EDA Fairness Studio →</a>
-</div>
-<h4>Explore Ethical Data Decision Tree</h4>
-<p>Step through ethical review boards, evaluate participant autonomy, and audit informed consent compliance using our interactive decision framework.</p>
-<p><a href="../../tools/ethical-decision/" class="noc-sim-btn">Launch Ethical Decision Workbench →</a>
-</div></p>
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Operationalizing Ethics</strong>: Abstract values must be formalized into quantitative deployment constraints (e.g., Rawlsian maximin floors, bounded error parity).</li>
-<li><strong>Proxy Label Failure</strong>: Never substitute convenient historical variables (e.g., insurance expenditure) for clinical or human needs without rigorous bias auditing.</li>
-<li><strong>Actionable Transparency</strong>: Explainability requires local feature attribution scores (e.g., Shapley values) to provide data subjects with concrete recourse.</li>
-<li><strong>Distributive Justice</strong>: High aggregate accuracy frequently conceals severe subgroup degradation; evaluate every dataset by its worst-off cohort.</li>
+<li><strong>Operationalizing Ethics</strong>: Abstract ethical values must be translated into deterministic, quantitative code contracts (e.g., Rawlsian maximin bounds, bounded error disparities).</li>
+<li><strong>The Proxy Label Trap</strong>: Never substitute convenient administrative or financial records (e.g., healthcare spend, historical arrest records) for human need without bias auditing.</li>
+<li><strong>The Fairness Impossibility Theorem</strong>: Demographic Parity, Equalized Odds, and Predictive Parity cannot simultaneously hold when base rates differ; teams must document deliberate trade-offs.</li>
+<li><strong>Distributive Justice Over Aggregate Utility</strong>: High aggregate accuracy frequently conceals severe subgroup degradation; always evaluate systems by their least-advantaged demographic cohort.</li>
+<li><strong>Axiomatic Transparency &amp; Recourse</strong>: Explainability systems (e.g., Shapley values) are legally and ethically required under adverse action statutes to provide affected users with actionable pathways to dispute or alter outcomes.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="interactive-self-assessment-diagnostic-scenarios">❓ Interactive Self-Assessment Diagnostic Scenarios</h2>
 <details class="question">
-<summary>Self-Assessment: Utilitarian Aggregate vs. Rawlsian Maximin in Model Triage</summary>
-<p>A fraud detection model achieves <span class="arithmatex">\(96\%\)</span> aggregate accuracy across a national banking platform. However, subgroup auditing reveals that for applicants under 25, the false positive rate is <span class="arithmatex">\(28\%\)</span>, compared to <span class="arithmatex">\(2\%\)</span> for applicants over 40. How does a Rawlsian audit evaluate this deployment?</p>
+<summary>Self-Assessment 1: Chouldechova's Fairness Impossibility Theorem in ICU Sepsis Detection</summary>
+<p>An intensive care unit deploys a deep learning model to predict sepsis onset 6 hours prior to clinical septic shock. In the patient population, the true sepsis prevalence is <span class="arithmatex">\(12\%\)</span> among elderly patients (<span class="arithmatex">\(\ge 65\)</span>) and <span class="arithmatex">\(3\%\)</span> among young adults (<span class="arithmatex">\(&lt;30\)</span>). The hospital administration insists that the AI vendor deliver a model that satisfies both <strong>Equalized Odds</strong> (identical False Positive and False Negative rates across age brackets) and <strong>Predictive Parity</strong> (identical positive predictive value calibration). Why is this mathematically impossible?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Under a Rawlsian Maximin framework, the deployment is <strong>rejected</strong>.</p>
-<p>The Utilitarian metric evaluates the platform by aggregate accuracy (<span class="arithmatex">\(96\%\)</span>), which is dominated by the larger, older demographic cohort. The Rawlsian framework evaluates the platform by the welfare of the least-advantaged group:
-$<span class="arithmatex">\(W_{\text{Rawls}} = \min_{g \in \{\text{under 25}, \text{over 40}\}} \text{Utility}(g)\)</span>$
-Because the under-25 group suffers an unacceptably high <span class="arithmatex">\(28\%\)</span> false positive rate (causing legitimate transactions to be blocked), the minimum subgroup welfare fails the deployment threshold.</p>
+<p><strong>Answer:</strong> It violates <strong>Chouldechova's Impossibility Theorem</strong> (Chouldechova, 2017).</p>
+<p>The mathematical relationship between Positive Predictive Value (PPV), True Positive Rate (TPR), False Positive Rate (FPR), and base prevalence <span class="arithmatex">\(p = P(Y=1)\)</span> is given by Bayes' Theorem:
+$<span class="arithmatex">\(\text{PPV} = \frac{p \cdot \text{TPR}}{p \cdot \text{TPR} + (1 - p) \cdot \text{FPR}} = \frac{1}{1 + \left(\frac{1-p}{p}\right) \frac{\text{FPR}}{\text{TPR}}}\)</span>$</p>
+<p>If Equalized Odds holds, the ratio <span class="arithmatex">\(\frac{\text{FPR}}{\text{TPR}}\)</span> is constant across both age groups. However, because the base prevalence rates differ by a factor of 4 (<span class="arithmatex">\(p_{\ge 65} = 0.12\)</span> vs. <span class="arithmatex">\(p_{&lt;30} = 0.03\)</span>), the odds ratio <span class="arithmatex">\(\frac{1-p}{p}\)</span> is fundamentally different (<span class="arithmatex">\(7.33\)</span> vs. <span class="arithmatex">\(32.33\)</span>). Therefore, the Positive Predictive Value (<span class="arithmatex">\(\text{PPV}\)</span>) <strong>must differ</strong> between the two cohorts. The only mathematical condition under which both Equalized Odds and Calibration can hold simultaneously is if the classifier achieves error-free perfect prediction (<span class="arithmatex">\(\text{FPR} = 0, \text{TPR} = 1\)</span>).</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Obermeyer Health Proxy Mechanism</summary>
-<p>Why did using healthcare financial expenditure as a target label systematically under-allocate care to Black patients in the Obermeyer et al. study?</p>
+<summary>Self-Assessment 2: The 'Fairness Through Blindness' Fallacy in Algorithmic Credit Risk</summary>
+<p>A fintech lending startup attempts to eliminate racial bias in its automated credit underwriting model by strictly redacting all direct demographic attributes (e.g., race, ethnicity, ZIP code) from the feature store. However, an external regulatory audit reveals that the resulting model still exhibits an unconstitutional Disparate Impact Ratio of <span class="arithmatex">\(0.58\)</span> against minority applicants. What engineering failure occurred, and how does information theory explain it?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The failure was caused by <strong>Proxy Label Confounding</strong>.</p>
-<p>The model assumed that healthcare cost equals healthcare need: <span class="arithmatex">\(\text{Need} \equiv \text{Cost}\)</span>. However, because of unequal access to care, lower insurance coverage, and systemic healthcare barriers, significantly less money is spent on Black patients compared to white patients with identical chronic condition burdens. Consequently, Black patients had to be far more severely ill to generate the same expenditure score required to qualify for high-risk care management.</p>
+<p><strong>Answer:</strong> The failure occurred due to the <strong>"Fairness Through Blindness" Fallacy</strong> and <strong>Redundant Feature Encoding</strong>.</p>
+<p>Simply dropping sensitive attributes <span class="arithmatex">\(G\)</span> does not prevent a machine learning model from reconstructing <span class="arithmatex">\(G\)</span> if remaining features <span class="arithmatex">\(X\)</span> exhibit high mutual information with the protected class: <span class="arithmatex">\(I(X; G) &gt; 0\)</span>. </p>
+<p>High-capacity models (such as Gradient Boosted Trees or Deep Neural Networks) effortlessly combine subtle proxy features—such as smartphone operating system version, college attended, high school graduation year, retail merchant category codes, and payment transaction times—to reconstruct latent demographic embeddings with high fidelity. Real fairness requires adversarial debiasing, subgroup error rate regularization, or counterfactual data augmentation, rather than naive feature suppression.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: Automation Bias &amp; Human-in-the-Loop Accountability</summary>
+<p>To satisfy accountability requirements under GDPR Article 22, an enterprise criminal justice risk-assessment platform inserts a "human-in-the-loop": a human judge must review and sign off on all algorithmic risk scores before bail is set. However, an empirical study reveals that judges rubber-stamp the algorithm's recommendation in <span class="arithmatex">\(98.4\%\)</span> of cases without reading the defense dossier. Why does this design fail genuine architectural accountability?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> It succumbs to <strong>Automation Bias</strong> and creates a <strong>"Moral Crumple Zone"</strong>.</p>
+<p>Inserting a human supervisor purely as a superficial sign-off entity does not create meaningful accountability. <strong>Automation Bias</strong> is the well-documented cognitive tendency of human operators to excessively trust and defer to automated computational outputs, especially under heavy cognitive loads and severe time constraints. </p>
+<p>When the system fails or discriminates, the organization points to the human judge as a "moral crumple zone" to deflect institutional and technical liability. Genuine accountability requires <strong>meaningful friction</strong>: requiring operators to document independent reasoning, periodic double-blind peer audits, and automated escalation triggers when algorithmic scores conflict with clinical/legal baselines.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Granular Consent Revocation &amp; Machine Unlearning Invariants</summary>
+<p>Under GDPR Article 7(3) and the Belmont Report principle of Respect for Autonomy, data subjects possess the unconditional right to withdraw consent at any time. When a data subject revokes consent, their records are scrubbed from raw feature tables. Why does this fail to fully uphold autonomy in deep learning pipelines, and what technical countermeasure is required?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Scrubbing database records fails because the subject's private information remains <strong>permanently memorized within the model's parametric weights</strong>.</p>
+<p>Modern neural networks with billions of parameters act as lossy associative memories, internalizing unique training instances. Deleting row <span class="arithmatex">\(r_i\)</span> from a SQL database does not remove the gradient updates <span class="arithmatex">\(\Delta \theta = -\eta \nabla_\theta \mathcal{L}(f_\theta(\mathbf{x}_i), y_i)\)</span> that were incorporated during optimization. </p>
+<p>Adversaries can extract the subject's private data using Membership Inference Attacks or Model Inversion. To fully honor consent revocation, data architectures must support <strong>Exact or Approximate Machine Unlearning</strong> (e.g., SISA - Sharded, Isolated, Sliced, and Aggregated training) to provably scrub an individual's influence from trained weights without retraining from scratch.</p>
 </details>
 </details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
-<li><a id="ref-jobin2019"></a><strong>[Jobin2019]</strong> A. Jobin, M. Ienca, and E. Vayena, "The Global Landscape of AI Ethics Guidelines," <em>Nature Machine Intelligence</em>, vol. 1, no. 9, pp. 389–399, 2019. <a href="https://doi.org/10.1038/s42256-019-0088-2">DOI: 10.1038/s42256-019-0088-2</a>.</li>
-<li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> B. D. Mittelstadt et al., "The Ethics of Algorithms: Mapping the Debate," <em>Big Data &amp; Society</em>, vol. 3, no. 2, pp. 1–21, 2016. <a href="https://doi.org/10.1177/2053951716679679">DOI: 10.1177/2053951716679679</a>.</li>
 <li><a id="ref-obermeyer2019"></a><strong>[Obermeyer2019]</strong> Z. Obermeyer, B. Powers, C. Vogeli, and S. Mullainathan, "Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations," <em>Science</em>, vol. 366, no. 6464, pp. 447–453, 2019. <a href="https://doi.org/10.1126/science.aax2342">DOI: 10.1126/science.aax2342</a>.</li>
 <li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> M. Hardt, E. Price, and N. Srebro, "Equality of Opportunity in Supervised Learning," in <em>Proceedings of the 30th Conference on Neural Information Processing Systems (NeurIPS 2016)</em>, pp. 3315–3323. <a href="https://doi.org/10.48550/arXiv.1610.02413">DOI: 10.48550/arXiv.1610.02413</a>.</li>
+<li><a id="ref-chouldechova2017"></a><strong>[Chouldechova2017]</strong> A. Chouldechova, "Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2, pp. 153–163, 2017. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a>.</li>
+<li><a id="ref-kleinberg2017"></a><strong>[Kleinberg2017]</strong> J. Kleinberg, S. Mullainathan, and M. Raghavan, "Inherent Trade-Offs in the Fair Determination of Risk Scores," in <em>8th Innovations in Theoretical Computer Science Conference (ITCS 2017)</em>, vol. 67, pp. 43:1–43:23, 2017. <a href="https://doi.org/10.4230/LIPIcs.ITCS.2017.43">DOI: 10.4230/LIPIcs.ITCS.2017.43</a>.</li>
 <li><a id="ref-lundberg2017"></a><strong>[Lundberg2017]</strong> S. M. Lundberg and S.-I. Lee, "A Unified Approach to Interpreting Model Predictions," in <em>Proceedings of the 31st Conference on Neural Information Processing Systems (NeurIPS 2017)</em>, pp. 4765–4774. <a href="https://doi.org/10.48550/arXiv.1705.07874">DOI: 10.48550/arXiv.1705.07874</a>.</li>
+<li><a id="ref-dastin2018"></a><strong>[Dastin2018]</strong> J. Dastin, "Amazon Scraps Secret AI Recruiting Tool That Showed Bias Against Women," <em>Reuters</em>, Oct. 10, 2018.</li>
+<li><a id="ref-angwin2016"></a><strong>[Angwin2016]</strong> J. Angwin, J. Larson, S. Mattu, and L. Kirchner, "Machine Bias: There's Software Used Across the Country to Predict Future Criminals. And It's Biased Against Blacks," <em>ProPublica</em>, May 23, 2016.</li>
+<li><a id="ref-jobin2019"></a><strong>[Jobin2019]</strong> A. Jobin, M. Ienca, and E. Vayena, "The Global Landscape of AI Ethics Guidelines," <em>Nature Machine Intelligence</em>, vol. 1, no. 9, pp. 389–399, 2019. <a href="https://doi.org/10.1038/s42256-019-0088-2">DOI: 10.1038/s42256-019-0088-2</a>.</li>
+<li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> B. D. Mittelstadt et al., "The Ethics of Algorithms: Mapping the Debate," <em>Big Data &amp; Society</em>, vol. 3, no. 2, pp. 1–21, 2016. <a href="https://doi.org/10.1177/2053951716679679">DOI: 10.1177/2053951716679679</a>.</li>
 <li><a id="ref-rawls1971"></a><strong>[Rawls1971]</strong> J. Rawls, <em>A Theory of Justice</em>, Harvard University Press, Cambridge, MA, 1971. <a href="https://doi.org/10.2307/j.ctvjf3z9b">DOI: 10.2307/j.ctvjf3z9b</a>.</li>
 <li><a id="ref-beauchamp2019"></a><strong>[Beauchamp2019]</strong> T. L. Beauchamp and J. F. Childress, <em>Principles of Biomedical Ethics</em>, 8th ed., Oxford University Press, New York, 2019. <a href="https://doi.org/10.1093/med/9780190640873.001.0001">DOI: 10.1093/med/9780190640873.001.0001</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
   <a href="../01-introduction-to-ethics-and-privacy/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.1 Foundations</a>
-  <a href="../03-utility-dilemmas-consequences/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Utility-Privacy Frontier (3.3) →</a>
+  <a href="../03-utility-dilemmas-consequences/" class="noc-sim-btn" style="text-decoration: none;">Next: Utility-Privacy Frontier (3.3) →</a>
 </div>
 
 

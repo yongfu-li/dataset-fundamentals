@@ -5491,246 +5491,755 @@
         "type": "title",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Data Collection Lifecycle: Systematic Protocols & Acquisition Design",
+          "title": "The Data Collection Lifecycle & Acquisition Design",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 2.1. Today we examine the data collection lifecycle: systematic protocols & acquisition design, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 2: Foundations</span>\n    <span>•</span>\n    <span>Lesson 2.1</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    The Data Collection Lifecycle: Systematic Protocols &amp; Acquisition Design\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into the data collection lifecycle: systematic protocols &amp; acquisition design with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Data Collection Lifecycle: Systematic Protocols & Acquisition Design",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 2.1?"
+              "text": "Welcome to Track 2, Lesson 2.1 of Dataset Fundamentals: The Data Collection Lifecycle, Systematic Protocols, and Acquisition Design. In production machine learning and scientific computing, downstream algorithmic failures are rarely caused by model capacity. They stem predominantly from upstream acquisition corruption.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 2.1. Today we examine the data collection lifecycle: systematic protocols & acquisition design, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Today, we establish the Total Acquisition Error paradigm, decompose representation and measurement error channels mathematically, derive finite population corrections and pilot sample sizing, and build production quality telemetry gates. Let us begin.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 2: Foundations</span>\n    <span>•</span>\n    <span>Lesson 2.1</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    The Data Collection Lifecycle: Systematic Protocols &amp; Acquisition Design\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into the data collection lifecycle: systematic protocols &amp; acquisition design with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 2: Data Collection &amp; Ingestion</span>\n    <span>•</span>\n    <span>Lesson 2.1</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    The Data Collection Lifecycle: Systematic Protocols &amp; Acquisition Design\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Foundational principles of the <b>Total Acquisition Error (TAE)</b> framework, mathematical error decomposition across Representation and Measurement channels, and the 5-stage engineering lifecycle.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">📐 Total Acquisition Error ($\text{MSE} = \text{Var} + \text{Bias}^2$)</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">🛡️ Frame Coverage Bias ($\frac{N_u}{N}(\bar{Y}_c - \bar{Y}_u)$)</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">⚡ Finite Population Correction ($\\sqrt{\frac{N-n}{N-1}}$)</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">🔬 5-Stage Engineering Lifecycle</span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Total Acquisition Error Paradigm",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, when machine learning pipelines fail in production, teams usually rush to add more model layers or tune hyperparameters. Why are you emphasizing data collection protocols instead?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because empirical research by Groves and Biemer proves that downstream algorithmic failures almost never originate in model capacity. If your physical sensors have calibration drift, or your sampling frame omits key cohorts, scaling your neural network only locks in that corruption with higher statistical confidence!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So data collection isn't just an administrative chore—it is the physical transduction boundary where the real world becomes digital tensors.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Today we formalize the Total Acquisition Error paradigm mathematically, audit sampling frame defects, and build automated in-flight telemetry gates.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 2: Data Collection &amp; Ingestion</span>\n    <span>•</span>\n    <span>Lesson 2.1</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    The Data Collection Lifecycle: Systematic Protocols &amp; Acquisition Design\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Foundational principles of the <b>Total Acquisition Error (TAE)</b> framework, mathematical error decomposition across Representation and Measurement channels, and the 5-stage engineering lifecycle.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">📐 Total Acquisition Error ($\text{MSE} = \text{Var} + \text{Bias}^2$)</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">🛡️ Frame Coverage Bias ($\frac{N_u}{N}(\bar{Y}_c - \bar{Y}_u)$)</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">⚡ Finite Population Correction ($\\sqrt{\frac{N-n}{N-1}}$)</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] font-bold text-[#151b20] shadow-[2px_2px_0px_#151b20]\">🔬 5-Stage Engineering Lifecycle</span>\n  </div>\n</div>"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview: The Total Acquisition Error (TAE) Paradigm",
-        "type": "equation",
+        "title": "The Total Acquisition Error (TAE) Paradigm: Dual Error Channels",
+        "type": "figure",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview: The Total Acquisition Error (TAE) Paradigm",
+          "title": "The Total Acquisition Error (TAE) Architecture",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview: The Total Acquisition Error (TAE) Paradigm. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{MSE}(\\hat{\\theta}) = \\mathbb{E}\\left[(\\hat{\\theta} - \\theta)^2\\right] = \\text{Var}(\\hat{\\theta}) + \\text{Bias}^2(\\hat{\\theta})$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Data collection</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is the foundational boundary where physical phenomena, human behaviors, and digital transactions are transduced into discrete machine-readable tensors.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Total Acquisition</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Error (TAE) paradigm decomposes overall estimator Mean Squared Error (MSE) into two orthogonal error channels: Measurement Error (the observation axis) and Representation Error (the sampling axis):</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview: The Total Acquisition Error (TAE) Paradigm",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview: the total acquisition error (tae) paradigm protect our system against silent distribution shift in production?"
+              "text": "The Total Acquisition Error paradigm, established by Groves and Biemer, decomposes overall dataset error into two orthogonal channels: Representation Error, which asks who is observed, and Measurement Error, which asks what is observed.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Notice the architecture flowchart: on the Representation axis, errors accumulate from Sampling Frame Coverage, Probability Sampling variance, and Non-Response attrition. On the Measurement axis, errors stem from Construct Validity mismatches, Sensor Distortion, and Processing pipeline bugs.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{MSE}(\\hat{\\theta}) = \\mathbb{E}\\left[(\\hat{\\theta} - \\theta)^2\\right] = \\text{Var}(\\hat{\\theta}) + \\text{Bias}^2(\\hat{\\theta})$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Data collection</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is the foundational boundary where physical phenomena, human behaviors, and digital transactions are transduced into discrete machine-readable tensors.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Total Acquisition</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Error (TAE) paradigm decomposes overall estimator Mean Squared Error (MSE) into two orthogonal error channels: Measurement Error (the observation axis) and Representation Error (the sampling axis):</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Total Acquisition Error (TAE) Architecture</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Groves et al. (2009) &amp; Biemer (2010)</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart TD\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Target[\"Target Population / Phenotype θ\"]:::purple\n\n  subgraph Repr [\"Representation Error Channel (Who is Observed)\"]\n    Frame[\"Sampling Frame Coverage Bias<br/>Frame Under/Over-coverage\"]:::blue\n    Sample[\"Probability Sampling Error<br/>Sampling Variance & Selection Bias\"]:::amber\n    NonResp[\"Non-Response / Missingness Bias<br/>Unit & Item Attrition\"]:::red\n  end\n\n  subgraph Meas [\"Measurement Error Channel (What is Observed)\"]\n    Construct[\"Construct Validity Gap<br/>Proxy Variable Mismatch\"]:::blue\n    Instrument[\"Instrument / Sensor Distortion<br/>Calibration Drift & Wording\"]:::amber\n    Processing[\"Acquisition Processing Errors<br/>Transcription, Encoding, & Parsing\"]:::red\n  end\n\n  Realized[\"Realized Production Dataset D = {x_i, y_i}\"]:::green\n\n  Target --> Frame\n  Frame --> Sample\n  Sample --> NonResp\n  NonResp --> Realized\n\n  Target --> Construct\n  Construct --> Instrument\n  Instrument --> Processing\n  Processing --> Realized\n  </pre>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono\">\n  <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-1\">1. Representation Channel (Sampling Axis)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Governs population generalization. Defective frames create coverage gaps that sample scaling cannot repair.</span>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n    <strong class=\"text-[#b45309] block mb-1\">2. Measurement Channel (Observation Axis)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Governs variable fidelity. Sensor drift, wording ambiguity, and parsing faults contaminate observed feature values.</span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Representation vs. Measurement Error Channels",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, looking at this dual-channel diagram, what is the practical difference between a Representation error and a Measurement error?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think of it this way: Representation error is an error of omission or selection—you gathered data from the wrong entities. Measurement error is an error of observation—you asked the right entity, but recorded a corrupted value!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if an autonomous vehicle vision dataset only includes clear daylight drives, that is a representation coverage defect. But if camera lens flare blurs the bounding box, that is a measurement instrument defect.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on, Kaito! Both error channels converge into our realized dataset, which is why engineering mitigations must target both axes simultaneously.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Total Acquisition Error (TAE) Architecture</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Groves et al. (2009) &amp; Biemer (2010)</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart TD\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Target[\"Target Population / Phenotype θ\"]:::purple\n\n  subgraph Repr [\"Representation Error Channel (Who is Observed)\"]\n    Frame[\"Sampling Frame Coverage Bias<br/>Frame Under/Over-coverage\"]:::blue\n    Sample[\"Probability Sampling Error<br/>Sampling Variance & Selection Bias\"]:::amber\n    NonResp[\"Non-Response / Missingness Bias<br/>Unit & Item Attrition\"]:::red\n  end\n\n  subgraph Meas [\"Measurement Error Channel (What is Observed)\"]\n    Construct[\"Construct Validity Gap<br/>Proxy Variable Mismatch\"]:::blue\n    Instrument[\"Instrument / Sensor Distortion<br/>Calibration Drift & Wording\"]:::amber\n    Processing[\"Acquisition Processing Errors<br/>Transcription, Encoding, & Parsing\"]:::red\n  end\n\n  Realized[\"Realized Production Dataset D = {x_i, y_i}\"]:::green\n\n  Target --> Frame\n  Frame --> Sample\n  Sample --> NonResp\n  NonResp --> Realized\n\n  Target --> Construct\n  Construct --> Instrument\n  Instrument --> Processing\n  Processing --> Realized\n  </pre>\n</div>"
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview: Architecture Flowchart",
-        "type": "figure",
+        "title": "Mathematical Formulation: Estimator MSE Decomposition & Bias Vector",
+        "type": "equation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview: Architecture Flowchart",
+          "title": "Estimator MSE Decomposition & Bias Vector",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Target[\"Target Population / Phenotype θ\"]:::purple\n\n  subgraph Repr [\"Representation Error Channel (Who is Observed)\"]\n    Frame[\"Sampling Frame Coverage Bias<br/>Frame Under/Over-coverage\"]:::blue\n    Sample[\"Probability Sampling Error<br/>Sampling Variance & Selection Bias\"]:::amber\n    NonResp[\"Non-Response / Missingness Bias<br/>Unit & Item Attrition\"]:::red\n  end\n\n  subgraph Meas [\"Measurement Error Channel (What is Observed)\"]\n    Construct[\"Construct Validity Gap<br/>Proxy Variable Mismatch\"]:::blue\n    Instrument[\"Instrument / Sensor Distortion<br/>Calibration Drift & Question Wording\"]:::amber\n    Processing[\"Acquisition Processing Errors<br/>Transcription, Encoding, & Parsing\"]:::red\n  end\n\n  Realized[\"Realized Production Dataset D = {x_i, y_i}\"]:::green\n\n  Target --> Frame\n  Frame --> Sample\n  Sample --> NonResp\n  NonResp --> Realized\n\n  Target --> Construct\n  Construct --> Instrument\n  Instrument --> Processing\n  Processing --> Realized</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Data collection</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is the foundational boundary where physical phenomena, human behaviors, and digital transactions are transduced into discrete machine-readable tensors.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Total Acquisition</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Error (TAE) paradigm decomposes overall estimator Mean Squared Error (MSE) into two orthogonal error channels: Measurement Error (the observation axis) and Representation Error (the sampling axis):</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Let us formalize the Total Acquisition Error mathematically. When estimating target population parameter theta with sample estimator theta hat, the overall Mean Squared Error decomposes into sampling variance plus the square of the systematic bias vector.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Notice the crucial mathematical insight: while sampling variance Var scales inversely with sample size n as Big O of 1 over n, systematic bias terms do not shrink with n! If your coverage or measurement bias is non-zero, increasing dataset size simply locks in the error with higher certainty.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Target[\"Target Population / Phenotype θ\"]:::purple\n\n  subgraph Repr [\"Representation Error Channel (Who is Observed)\"]\n    Frame[\"Sampling Frame Coverage Bias<br/>Frame Under/Over-coverage\"]:::blue\n    Sample[\"Probability Sampling Error<br/>Sampling Variance & Selection Bias\"]:::amber\n    NonResp[\"Non-Response / Missingness Bias<br/>Unit & Item Attrition\"]:::red\n  end\n\n  subgraph Meas [\"Measurement Error Channel (What is Observed)\"]\n    Construct[\"Construct Validity Gap<br/>Proxy Variable Mismatch\"]:::blue\n    Instrument[\"Instrument / Sensor Distortion<br/>Calibration Drift & Question Wording\"]:::amber\n    Processing[\"Acquisition Processing Errors<br/>Transcription, Encoding, & Parsing\"]:::red\n  end\n\n  Realized[\"Realized Production Dataset D = {x_i, y_i}\"]:::green\n\n  Target --> Frame\n  Frame --> Sample\n  Sample --> NonResp\n  NonResp --> Realized\n\n  Target --> Construct\n  Construct --> Instrument\n  Instrument --> Processing\n  Processing --> Realized</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Data collection</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is the foundational boundary where physical phenomena, human behaviors, and digital transactions are transduced into discrete machine-readable tensors.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Total Acquisition</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Error (TAE) paradigm decomposes overall estimator Mean Squared Error (MSE) into two orthogonal error channels: Measurement Error (the observation axis) and Representation Error (the sampling axis):</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Fundamental Estimator Decomposition</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Biemer (2010); Lohr (2021)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{MSE}(\\hat{\\theta}) = \\mathbb{E}\\left[(\\hat{\\theta} - \\theta)^2\\right] = \\text{Var}(\\hat{\\theta}) + \\text{Bias}^2(\\hat{\\theta})$$\n  </div>\n  <div class=\"text-sm md:text-base font-serif py-1 overflow-x-auto text-[#0e7490]\">\n    $$\\text{Bias}(\\hat{\\theta}) = \\text{Bias}_{\\text{coverage}} + \\text{Bias}_{\\text{selection}} + \\text{Bias}_{\\text{nonresponse}} + \\text{Bias}_{\\text{measurement}}$$\n  </div>\n</div>\n<div class=\"overflow-x-auto my-2 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] text-xs\">\n  <table class=\"w-full text-left bg-[#fffdf7] font-sans border-collapse\">\n    <thead>\n      <tr class=\"bg-[#eee4c8] border-b-2 border-[#151b20] text-[#151b20] font-mono text-[11px]\">\n        <th class=\"p-2 border-r border-[#151b20]\">Error Component</th>\n        <th class=\"p-2 border-r border-[#151b20]\">Mathematical Cause</th>\n        <th class=\"p-2 border-r border-[#151b20]\">Scaling Behavior with Sample Size $n$</th>\n        <th class=\"p-2\">Engineering Remedy</th>\n      </tr>\n    </thead>\n    <tbody class=\"divide-y divide-[#151b20]/20 text-[11px]\">\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#0e7490] border-r border-[#151b20]\">Variance $\\text{Var}(\\hat{\\theta})$</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Finite stochastic draw uncertainty.</td>\n        <td class=\"p-2 font-mono text-[#15803d] border-r border-[#151b20] font-bold\">$\\mathcal{O}(1/n) \\to 0$ as $n \\to \\infty$</td>\n        <td class=\"p-2\">Increase sample size $n$, stratified sampling.</td>\n      </tr>\n      <tr class=\"bg-[#f0fbfd]/50\">\n        <td class=\"p-2 font-bold font-mono text-[#c2410c] border-r border-[#151b20]\">$\\text{Bias}_{\\text{coverage}}$</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Frame under/overcoverage ($N_c \\ne N$).</td>\n        <td class=\"p-2 font-mono text-[#dc2626] border-r border-[#151b20] font-bold\">Invariant to $n$ (Constant)</td>\n        <td class=\"p-2\">Multi-frame blending, administrative registry linkage.</td>\n      </tr>\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#c2410c] border-r border-[#151b20]\">$\\text{Bias}_{\\text{nonresponse}}$</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Covariance between target and propensity $\\pi_i$.</td>\n        <td class=\"p-2 font-mono text-[#dc2626] border-r border-[#151b20] font-bold\">Invariant to $n$ (Constant)</td>\n        <td class=\"p-2\">Heckman selection models, tailored follow-ups.</td>\n      </tr>\n      <tr class=\"bg-[#fff0b9]/40\">\n        <td class=\"p-2 font-bold font-mono text-[#b45309] border-r border-[#151b20]\">$\\text{Bias}_{\\text{measurement}}$</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Sensor drift, proxy mismatch, parser faults.</td>\n        <td class=\"p-2 font-mono text-[#dc2626] border-r border-[#151b20] font-bold\">Invariant to $n$ (Constant)</td>\n        <td class=\"p-2\">Hardware recalibration, golden validation probes.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The MSE Decomposition Law",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, looking at this MSE decomposition, Variance drops to zero as sample size n grows large, but the Bias vector stays completely constant! Does that mean collecting 10 million samples with a flawed instrument is useless?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Worse than useless, Kaito—it is dangerous! When n is large, your statistical standard error shrinks to zero, giving your team deceptive confidence in an estimate that is systematically wrong.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because Mean Squared Error is dominated by Bias squared once sample variance is extinguished.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. This is why data-centric engineering prioritizes bias elimination over brute-force sample collection.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Fundamental Estimator Decomposition</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Biemer (2010); Lohr (2021)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{MSE}(\\hat{\\theta}) = \\mathbb{E}\\left[(\\hat{\\theta} - \\theta)^2\\right] = \\text{Var}(\\hat{\\theta}) + \\text{Bias}^2(\\hat{\\theta})$$\n  </div>\n  <div class=\"text-sm md:text-base font-serif py-1 overflow-x-auto text-[#0e7490]\">\n    $$\\text{Bias}(\\hat{\\theta}) = \\text{Bias}_{\\text{coverage}} + \\text{Bias}_{\\text{selection}} + \\text{Bias}_{\\text{nonresponse}} + \\text{Bias}_{\\text{measurement}}$$\n  </div>\n</div>"
         }
       },
       {
         "id": "s4",
-        "title": "Mathematical Formulation of Acquisition Error Decomposition",
+        "title": "Representation Channel 1: Frame Coverage Bias Formulation",
         "type": "equation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Mathematical Formulation of Acquisition Error Decomposition",
+          "title": "Analytical Derivation of Frame Coverage Bias",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Mathematical Formulation of Acquisition Error Decomposition. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Bias}(\\hat{\\theta}) = \\text{Bias}_{\\text{coverage}} + \\text{Bias}_{\\text{selection}} + \\text{Bias}_{\\text{nonresponse}} + \\text{Bias}_{\\text{measurement}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Bias}_{\\text{coverage}}(\\bar{y}_c) = \\bar{Y}_c - \\bar{Y} = \\frac{N_u}{N} \\left( \\bar{Y}_c - \\bar{Y}_u \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Bias}(\\bar{y}_r) = \\frac{\\text{Cov}(Y, \\pi)}{\\bar{\\pi}}$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Mathematical Formulation of Acquisition Error Decomposition",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does mathematical formulation of acquisition error decomposition protect our system against silent distribution shift in production?"
+              "text": "Let us examine our first major bias vector term: Frame Coverage Bias. Let N denote total target population size, N sub c the covered sampling frame, and N sub u equals N minus N sub c the uncovered cohort.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Notice the analytical formula on this slide: Frame coverage bias is the product of two distinct terms: the undercoverage fraction N sub u over N, and the parameter disparity Y bar c minus Y bar u. Bias exists if and only if both terms are non-zero.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Bias}(\\hat{\\theta}) = \\text{Bias}_{\\text{coverage}} + \\text{Bias}_{\\text{selection}} + \\text{Bias}_{\\text{nonresponse}} + \\text{Bias}_{\\text{measurement}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Bias}_{\\text{coverage}}(\\bar{y}_c) = \\bar{Y}_c - \\bar{Y} = \\frac{N_u}{N} \\left( \\bar{Y}_c - \\bar{Y}_u \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Bias}(\\bar{y}_r) = \\frac{\\text{Cov}(Y, \\pi)}{\\bar{\\pi}}$$\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation: Frame Coverage Bias</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Groves et al. (2009)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{Bias}_{\\text{coverage}}(\\bar{y}_c) = \\bar{Y}_c - \\bar{Y} = \\frac{N_u}{N} \\left( \\bar{Y}_c - \\bar{Y}_u \\right)$$\n  </div>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs font-mono\">\n  <div class=\"p-3 rounded-xl bg-[#f0fbfd] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <strong class=\"text-sm font-bold block text-[#0e7490] mb-1\">Condition 1: Frame Omission Fraction</strong>\n    <div class=\"text-base font-serif my-1\">$$\\frac{N_u}{N} > 0$$</div>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">The sampling frame fails to cover 100% of the true physical population universe.</span>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <strong class=\"text-sm font-bold block text-[#c2410c] mb-1\">Condition 2: Cohort Parameter Disparity</strong>\n    <div class=\"text-base font-serif my-1\">$$\\bar{Y}_c \\ne \\bar{Y}_u$$</div>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">The covered cohort deviates systematically in target attribute from the omitted cohort.</span>\n  </div>\n</div>\n<div class=\"p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed\">\n  💡 <b>The Coverage Equivalence Principle:</b> If either $N_u / N = 0$ (perfect census frame) OR $\bar{Y}_c = \bar{Y}_u$ (omitted cohort is identical in target attribute to covered cohort), coverage bias collapses to zero. In practice, however, excluded populations almost always exhibit structural disparities.\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Mechanics of Frame Undercoverage",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, if our app has 10 million users, why can't we just define our target population as our existing app users? That would make N sub u zero and eliminate coverage bias!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You can, but that is defining the problem away! If your clinical diagnostic model or credit scoring service is deployed to the general public, your true target universe is the general public. Limiting your frame to current users guarantees catastrophic domain shift when deployed in the wild.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So frame coverage bias isn't an internal pipeline error—it is an external mismatch between our operational sampling frame and the target population we claim to serve.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Let us now examine what happens when participants in our frame choose not to respond.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation: Frame Coverage Bias</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Groves et al. (2009)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{Bias}_{\\text{coverage}}(\\bar{y}_c) = \\bar{Y}_c - \\bar{Y} = \\frac{N_u}{N} \\left( \\bar{Y}_c - \\bar{Y}_u \\right)$$\n  </div>\n</div>"
         }
       },
       {
         "id": "s5",
-        "title": "The 5-Stage Engineering Lifecycle for Data Acquisition",
-        "type": "figure",
+        "title": "Representation Channel 2: Non-Response Bias & Response Propensities",
+        "type": "equation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The 5-Stage Engineering Lifecycle for Data Acquisition",
+          "title": "Non-Response Bias & Response Propensities",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The 5-Stage Engineering Lifecycle for Data Acquisition. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  S1[\"Stage 1: Formulation<br/>Target Mapping & Proxy Specification\"]:::blue\n  S2[\"Stage 2: Source Scoping<br/>Frame Auditing & Ingestion Bounds\"]:::amber\n  S3[\"Stage 3: Instrument Design<br/>Pilot Study & Power Sizing\"]:::purple\n  S4[\"Stage 4: Execution<br/>In-Flight Telemetry & Quality Gates\"]:::red\n  S5[\"Stage 5: Packaging<br/>Lineage, Hashing & Provenance Log\"]:::green\n\n  S1 --> S2 --> S3 --> S4 --> S5\n  S4 -. Re-calibration Loop .-> S3</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 1: Objective Formulation &amp; Target Mapping</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Define the target population parameter $\\theta$ and document acceptable proxy tolerances.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 2: Source Scoping &amp; Frame Verification</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Cross-check coverage fraction $N_c / N$ and identify selection filters.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 3: Instrument Specification &amp; Pilot Auditing</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deploy pilot batches ($n \\ge n_{\\text{pilot}}$) to calculate preliminary variance $S^2$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 4: Execution &amp; In-Flight Quality Gates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Run automated telemetry checks monitoring attrition rates, schema violations, and rate-limit backoffs.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The 5-Stage Engineering Lifecycle for Data Acquisition",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the 5-stage engineering lifecycle for data acquisition, how does the architectural flow enforce system stability?"
+              "text": "Even with an exhaustive sampling frame, units may fail to respond or emit data. Let R sub i be a binary response indicator following response propensity pi sub i equals probability of R sub i equals 1 given covariates X sub i.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Groves and colleagues demonstrated that non-response bias equals the covariance between the target attribute Y and response propensity pi, divided by overall mean response rate pi bar. Bias vanishes if and only if response probability is uncorrelated with the outcome variable.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  S1[\"Stage 1: Formulation<br/>Target Mapping & Proxy Specification\"]:::blue\n  S2[\"Stage 2: Source Scoping<br/>Frame Auditing & Ingestion Bounds\"]:::amber\n  S3[\"Stage 3: Instrument Design<br/>Pilot Study & Power Sizing\"]:::purple\n  S4[\"Stage 4: Execution<br/>In-Flight Telemetry & Quality Gates\"]:::red\n  S5[\"Stage 5: Packaging<br/>Lineage, Hashing & Provenance Log\"]:::green\n\n  S1 --> S2 --> S3 --> S4 --> S5\n  S4 -. Re-calibration Loop .-> S3</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 1: Objective Formulation &amp; Target Mapping</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Define the target population parameter $\\theta$ and document acceptable proxy tolerances.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 2: Source Scoping &amp; Frame Verification</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Cross-check coverage fraction $N_c / N$ and identify selection filters.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 3: Instrument Specification &amp; Pilot Auditing</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deploy pilot batches ($n \\ge n_{\\text{pilot}}$) to calculate preliminary variance $S^2$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Stage 4: Execution &amp; In-Flight Quality Gates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Run automated telemetry checks monitoring attrition rates, schema violations, and rate-limit backoffs.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Non-Response Bias Covariance Theorem</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Groves et al. (2009); Heckman (1979)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{Bias}(\\bar{y}_r) = \\mathbb{E}[\\bar{y}_r] - \\bar{Y} = \\frac{\\text{Cov}(Y, \\pi)}{\\bar{\\pi}}$$\n  </div>\n  <div class=\"text-xs md:text-sm font-mono text-[#334155] mt-1\">\n    where $\\pi_i = \\mathbb{P}(R_i = 1 \\mid X_i)$ and $\\bar{\\pi} = \\mathbb{E}[\\pi_i]$ is the overall population response rate.\n  </div>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs font-mono\">\n  <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <strong class=\"text-sm font-bold block text-[#b45309] mb-1\">1. Tailored Design Method</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">Dillman et al. (2014): Multi-mode contact strategies, personalized timing, and token incentives increase overall baseline response rate $\\bar{\\pi}$, compressing the denominator impact.</span>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <strong class=\"text-sm font-bold block text-[#0e7490] mb-1\">2. Heckman Selection Correction</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">Heckman (1979): Models participation as a latent probit selection equation, calculating the Inverse Mills Ratio $\\lambda(z_i)$ to purge sample truncation bias from outcome regressions.</span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Non-Response & Covariance Bias",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this formula shows that bias depends on Covariance of Y and pi. What happens if our response rate is very low, say only 10%?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A low response rate acts as an error amplifier! Because pi bar is in the denominator, any non-zero covariance between who responds and what is measured gets multiplied tenfold. For example, if high-income individuals systematically refuse to report salary, your sample mean explodes with bias.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And that is why Heckman received the Nobel Prize—for developing the two-step selection estimator that corrects for non-random response truncation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Now let us dock at our interactive simulator to explore both coverage bias and response attrition in real time.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Non-Response Bias Covariance Theorem</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Groves et al. (2009); Heckman (1979)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{Bias}(\\bar{y}_r) = \\mathbb{E}[\\bar{y}_r] - \\bar{Y} = \\frac{\\text{Cov}(Y, \\pi)}{\\bar{\\pi}}$$\n  </div>\n</div>"
         }
       },
       {
         "id": "s6",
-        "title": "Interactive Lab: Production Implementation: Acquisition Error & Coverage Bias Simulator",
-        "type": "tool",
+        "title": "Interactive Lab: Total Acquisition Error (TAE) & Coverage Bias Simulator",
+        "type": "lab",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Production Implementation: Acquisition Error & Coverage Bias Simulator",
+          "title": "Interactive Lab: Total Acquisition Error Simulator",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Production Implementation: Acquisition Error & Coverage Bias Simulator. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Production Implementation: Acquisition Error &amp; Coverage Bias Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Below is an executable production simulation modeling frame undercoverage, non-response attrition, and bias estimation with automated assertions.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Production Implementation: Acquisition Error & Coverage Bias Simulator",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the production implementation: acquisition error & coverage bias simulator located below this player?"
+              "text": "We have docked at the Total Acquisition Error and Coverage Bias Simulator directly below! Look at the controls: Population Universe N, Frame Coverage Rate, Covered Cohort Mean, and Uncovered Cohort Mean.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Try dragging the Coverage Rate slider down from 75% to 40%—observe how theoretical coverage bias and total empirical bias expand immediately. Take a moment to experiment with the parameters.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Production Implementation: Acquisition Error &amp; Coverage Bias Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Below is an executable production simulation modeling frame undercoverage, non-response attrition, and bias estimation with automated assertions.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n      <span>🔬</span> Interactive Lab: Total Acquisition Error Simulator\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#151b20] px-2.5 py-0.5 rounded-full border border-[#151b20]\">\n      Production Implementation Benchmark\n    </span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed mb-3\">\n    Simulate frame undercoverage ($N_u / N > 0$) and selective response attrition in real time. Observe how upstream sampling omission creates systematic bias vectors that cannot be fixed by sample size alone.\n  </p>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs\">\n    <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Frame Undercoverage</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Coverage rate $N_c / N$ dictates what portion of the physical universe enters the eligible sampling frame.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Cohort Divergence Gap</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Parameter disparity $(\bar{Y}_c - \bar{Y}_u)$ multiplies with undercoverage fraction to yield net coverage bias.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#c2410c] block mb-1\">3. Non-Response Attrition</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Response propensity $\\pi_i = \text{sigmoid}(2.0 - 0.05 \\cdot y_i)$ skews realized respondent means.</span>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Total Acquisition Error Simulator",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, our speaker stage has traveled down to the Total Acquisition Error Simulator! How should readers test the trade-offs?",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at the four sliders in the simulator directly below us! Set the Coverage Rate to 50% and widen the gap between Covered and Uncovered Means. Notice how the Realized Respondent Mean diverges from the True Population Target. Try experimenting with the controls now!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n      <span>🔬</span> Interactive Lab: Total Acquisition Error Simulator\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#151b20] px-2.5 py-0.5 rounded-full border border-[#151b20]\">\n      Production Implementation Benchmark\n    </span>\n  </div>\n</div>"
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: Global Remote Sensing vs. On-The-Ground Sensor Networks",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: Calculating Frame Coverage Bias in Digital Health Surveys",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Global Remote Sensing vs. On-The-Ground Sensor Networks",
+          "title": "Active Checkpoint: Digital Health Frame Coverage Bias",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Global Remote Sensing vs. On-The-Ground Sensor Networks. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Sampling Frame Defect</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Ground station telemetry captured only commercial farms with cellular infrastructure ($N_c / N = 18\\%$). Smallholder subsistence farms ($82\\%$ of land area) were completely omitted, producing a severe negative coverage bias ($\\bar{Y}_c - \\bar{Y}_u \\approx +140\\%$ yield disparity).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Measurement Error Shift</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Satellite synthetic aperture radar (SAR) provided $100\\%$ spatial coverage but exhibited construct measurement variance ($\\sigma_{\\text{sensor}} = \\pm 22\\%$) under dense cloud cover.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Multi-Stage Hybrid Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">By formalizing the Total Acquisition Error model, engineers deployed a stratified two-phase design (; ): satellite SAR served as an auxiliary regressor for all regions, while low-cost solar ground sensors were deployed across a probability sample of subsistence plots to calibrate the satellite estimates, reducing overall yield MSE by $68\\%$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Global Remote Sensing vs. On-The-Ground Sensor Networks",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "Now, let us test your architectural intuition on our active checkpoint question above me.",
+              "dock": "quiz"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Here is your active checkpoint: A municipal health survey aims to estimate mean systolic blood pressure for a city of 500,000 residents. The digital app sampling frame reaches 350,000 smartphone owners with mean 118 millimeters of mercury, but completely omits 150,000 elderly residents whose true mean is 138. What is the exact frame coverage bias? Select Option A, B, or C above me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Sampling Frame Defect</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Ground station telemetry captured only commercial farms with cellular infrastructure ($N_c / N = 18\\%$). Smallholder subsistence farms ($82\\%$ of land area) were completely omitted, producing a severe negative coverage bias ($\\bar{Y}_c - \\bar{Y}_u \\approx +140\\%$ yield disparity).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Measurement Error Shift</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Satellite synthetic aperture radar (SAR) provided $100\\%$ spatial coverage but exhibited construct measurement variance ($\\sigma_{\\text{sensor}} = \\pm 22\\%$) under dense cloud cover.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Multi-Stage Hybrid Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">By formalizing the Total Acquisition Error model, engineers deployed a stratified two-phase design (; ): satellite SAR served as an auxiliary regressor for all regions, while low-cost solar ground sensors were deployed across a probability sample of subsistence plots to calibrate the satellite estimates, reducing overall yield MSE by $68\\%$.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wide\">💡 Architectural Challenge</span>\n    <span class=\"text-[10px] font-mono font-bold bg-[#e7f4c8] text-[#151b20] px-2 py-0.5 rounded border border-[#151b20]\">Formative Recall</span>\n  </div>\n  <p class=\"text-xs font-bold text-[#151b20] mb-3 font-sans\">\n    Question: A municipal health survey aims to estimate the mean systolic blood pressure of a city ($N = 500,000$). The digital app sampling frame reaches only smartphone owners ($N_c = 350,000$), whose true mean systolic pressure is $\bar{Y}_c = 118\\text{ mmHg}$. The uncovered population ($N_u = 150,000$, primarily elderly residents) has a true mean of $\bar{Y}_u = 138\\text{ mmHg}$. What is the exact frame coverage bias $\\text{Bias}_{\\text{coverage}}(\\bar{y}_c)$?\n  </p>\n  <div class=\"space-y-2 text-xs font-sans\">\n    <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n      <strong>A. $-6\\text{ mmHg}$:</strong> Undercoverage fraction is $\\frac{150,000}{500,000} = 0.30$. Coverage bias is $0.30 \\times (118 - 138) = -6\\text{ mmHg}$ (True mean is $124\\text{ mmHg}$).\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffdf7] border border-[#151b20]\">\n      <strong>B. $+20\\text{ mmHg}$:</strong> The raw difference between the uncovered and covered cohort means ($138 - 118 = 20\\text{ mmHg}$).\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffdf7] border border-[#151b20]\">\n      <strong>C. $0\\text{ mmHg}$:</strong> Because $350,000$ respondents provides overwhelming statistical power, eliminating sampling defects.\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Frame Coverage Challenge",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this health survey scenario is a classic production trap! A mobile app collects 350,000 responses, but misses 150,000 elderly residents. How should our engineers calculate the resulting coverage bias?",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Apply the coverage bias formula we derived on Slide 4! The undercoverage fraction N sub u over N times the cohort difference Y bar c minus Y bar u. Select Option A, B, or C above me to lock in your answer!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wide\">💡 Architectural Challenge</span>\n    <span class=\"text-[10px] font-mono font-bold bg-[#e7f4c8] text-[#151b20] px-2 py-0.5 rounded border border-[#151b20]\">Formative Recall</span>\n  </div>\n  <p class=\"text-xs font-bold text-[#151b20] mb-3 font-sans\">\n    Question: A municipal health survey aims to estimate the mean systolic blood pressure of a city ($N = 500,000$). The digital app sampling frame reaches only smartphone owners ($N_c = 350,000$), whose true mean systolic pressure is $\bar{Y}_c = 118\\text{ mmHg}$. The uncovered population ($N_u = 150,000$, primarily elderly residents) has a true mean of $\bar{Y}_u = 138\\text{ mmHg}$. What is the exact frame coverage bias $\\text{Bias}_{\\text{coverage}}(\\bar{y}_c)$?\n  </p>\n</div>"
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Sampling & Acquisition Error Workbench",
-        "type": "tool",
+        "title": "Finite Population Correction (FPC) & Sampling Uncertainty",
+        "type": "equation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Sampling & Acquisition Error Workbench",
+          "title": "Finite Population Correction (FPC) & Sampling Uncertainty",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Sampling & Acquisition Error Workbench. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Sampling &amp; Acquisition Error Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test coverage bias and finite population corrections interactively across synthetic universes.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Acquisition Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Sampling & Acquisition Error Workbench",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the sampling & acquisition error workbench located below this player?"
+              "text": "In textbook statistics, samples are typically assumed to be drawn from an infinite universe. In real-world data engineering, however, datasets are frequently drawn without replacement from finite bounded populations—such as daily IoT packet buffers or corporate customer registries.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "When the sampling fraction n over N exceeds 5%, sampling variance scales with the Finite Population Correction factor: square root of N minus n over N minus 1, approximately square root of 1 minus f. Omitting this correction severely overestimates sampling error and wastes data collection budget.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Sampling &amp; Acquisition Error Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test coverage bias and finite population corrections interactively across synthetic universes.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Acquisition Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Finite Population Variance Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Cochran (1977); Lohr (2021)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{Var}(\\bar{y}) = \\left( 1 - \\frac{n}{N} \\right) \\frac{S^2}{n} = \\text{FPC}^2 \\cdot \\frac{S^2}{n}$$\n  </div>\n  <div class=\"text-sm md:text-base font-serif py-1 overflow-x-auto text-[#0e7490]\">\n    $$\\text{FPC} = \\sqrt{\\frac{N - n}{N - 1}} \\approx \\sqrt{1 - f}, \\quad f = \\frac{n}{N}$$\n  </div>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs font-mono\">\n  <div class=\"p-3 rounded-xl bg-[#f0fbfd] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <strong class=\"text-sm font-bold block text-[#0e7490] mb-1\">Regime 1: Infinite Approximation ($f \\le 0.05$)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">When sample size is under 5% of universe $N$, $\\text{FPC} \\approx 1.0$. Finite correction is negligible and can be safely omitted.</span>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <strong class=\"text-sm font-bold block text-[#15803d] mb-1\">Regime 2: Substantial Exhaustion ($f > 0.05$)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">When auditing high fractions ($f = 0.20$ to $0.80$), $\\text{FPC}$ compresses standard error substantially. At $f = 1.0$, variance drops to exactly 0 (Census).</span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Mechanics of FPC",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why does sampling without replacement reduce our variance compared to an infinite population?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because every item you sample without replacement reduces the remaining uncertainty in the universe! If a warehouse has 1,000 items and you inspect 900 of them, you have directly observed 90% of reality. Your uncertainty only lives in the 100 unobserved items.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if we didn't apply FPC, our formulas would claim we had the same uncertainty as sampling 900 items from a universe of 10 billion!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. That is why finite population correction is essential for data engineering audits, edge telemetry, and batch quality checks.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Finite Population Variance Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Cochran (1977); Lohr (2021)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$\\text{Var}(\\bar{y}) = \\left( 1 - \\frac{n}{N} \\right) \\frac{S^2}{n} = \\text{FPC}^2 \\cdot \\frac{S^2}{n}$$\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Pilot Sizing & Statistical Power Derivation (Cochran 1977)",
+        "type": "equation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Pilot Sizing & Statistical Power Derivation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Before launching a full-scale multi-million dollar data collection campaign, engineering teams must run a calibrated pilot study. Cochran's classical formulation determines the minimum sample size required to guarantee margin of error delta at significance level alpha.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the formula accounts for both the infinite population threshold in the numerator and the finite population adjustment in the denominator. Running an uncalibrated pilot risks wasting budget on over-collection or failing statistical power gates.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Cochran's Sample Size Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Cochran (1977)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$n_{\\text{pilot}} \\ge \\frac{z_{\\alpha/2}^2 \\cdot \\sigma^2}{\\delta^2 + \\frac{z_{\\alpha/2}^2 \\cdot \\sigma^2}{N}}$$\n  </div>\n  <div class=\"text-xs md:text-sm font-mono text-[#334155] mt-1\">\n    where $\\delta$ is the maximum acceptable margin of error, $z_{\\alpha/2}$ is the critical standard score ($1.96$ for $95\\%$ confidence), and $\\sigma^2$ is empirical variance.\n  </div>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 my-2 text-xs font-mono text-center\">\n  <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-1\">1. Infinite Universe ($N \\to \\infty$)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Formula simplifies to standard $n_0 = \\frac{z^2 \\sigma^2}{\\delta^2}$.</span>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n    <strong class=\"text-[#b45309] block mb-1\">2. Bounded Finite Sizing</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Finite correction ensures $n_{\\text{pilot}} \\le N$ even under tight tolerance $\\delta$.</span>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n    <strong class=\"text-[#15803d] block mb-1\">3. Power Guarantee ($1 - \\beta$)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Guarantees that preliminary variance estimates $S^2$ converge within contractual SLA bounds.</span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Pilot Sizing & Budget Optimization",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in production we often don't know the population variance sigma squared before we collect the data! How can we size a pilot study without knowing sigma?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A classic engineering paradox, Kaito! The standard industrial practice is a two-phase sequential design: deploy a tiny initial reconnaissance probe of 50 to 100 samples to obtain a conservative upper bound on variance, then substitute that sample variance into Cochran's equation to size the full pilot.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That prevents both under-powered sample acquisition and burning budget on excessive observations.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Now let us examine the complete 5-stage lifecycle that coordinates these protocols.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Cochran's Sample Size Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Cochran (1977)</span>\n  </div>\n  <div class=\"text-base md:text-xl font-serif py-2 overflow-x-auto\">\n    $$n_{\\text{pilot}} \\ge \\frac{z_{\\alpha/2}^2 \\cdot \\sigma^2}{\\delta^2 + \\frac{z_{\\alpha/2}^2 \\cdot \\sigma^2}{N}}$$\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "The 5-Stage Engineering Lifecycle for Data Acquisition",
+        "type": "figure",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "The 5-Stage Engineering Lifecycle",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "A systematic data collection project progresses across five immutable stages: Objective Formulation, Source Scoping, Instrument Design, Execution with In-Flight Gates, and Lineage Packaging.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the critical feedback loop between Stage 4 and Stage 3: if automated in-flight quality telemetry detects abnormal attrition rates or schema violations during execution, the pipeline pauses and triggers an instrument recalibration before burning further collection budget.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Systematic 5-Stage Acquisition Pipeline</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Production Engineering Architecture</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart LR\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  S1[\"Stage 1: Formulation<br/>Target Mapping & Proxy Tolerances\"]:::blue\n  S2[\"Stage 2: Source Scoping<br/>Frame Auditing & Ingestion Bounds\"]:::amber\n  S3[\"Stage 3: Instrument Design<br/>Pilot Study & Power Sizing\"]:::purple\n  S4[\"Stage 4: Execution<br/>In-Flight Telemetry & Quality Gates\"]:::red\n  S5[\"Stage 5: Packaging<br/>Lineage, Hashing & Provenance Log\"]:::green\n\n  S1 --> S2 --> S3 --> S4 --> S5\n  S4 -. Re-calibration Loop .-> S3\n  </pre>\n</div>\n<div class=\"overflow-x-auto my-2 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] text-xs\">\n  <table class=\"w-full text-left bg-[#fffdf7] font-sans border-collapse\">\n    <thead>\n      <tr class=\"bg-[#eee4c8] border-b-2 border-[#151b20] text-[#151b20] font-mono text-[11px]\">\n        <th class=\"p-2 border-r border-[#151b20]\">Lifecycle Stage</th>\n        <th class=\"p-2 border-r border-[#151b20]\">Primary Objective</th>\n        <th class=\"p-2 border-r border-[#151b20]\">Architectural Gate Deliverable</th>\n        <th class=\"p-2\">Catastrophic Failure Mode</th>\n      </tr>\n    </thead>\n    <tbody class=\"divide-y divide-[#151b20]/20 text-[11px]\">\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#0e7490] border-r border-[#151b20]\">1. Formulation</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Define target parameter $\\theta$ and acceptable error margins.</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Data Contract Specification</td>\n        <td class=\"p-2\">Construct invalidity (optimizing the wrong proxy).</td>\n      </tr>\n      <tr class=\"bg-[#f0fbfd]/50\">\n        <td class=\"p-2 font-bold font-mono text-[#b45309] border-r border-[#151b20]\">2. Source Scoping</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Audit sampling frame fraction $N_c / N$ and accessibility.</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Frame Coverage Matrix</td>\n        <td class=\"p-2\">Silent undercoverage bias ($N_u / N > 0.40$).</td>\n      </tr>\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#7c3aed] border-r border-[#151b20]\">3. Instrument Design</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Deploy pilot study ($n \\ge n_{\\text{pilot}}$) and test sensors.</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Calibrated Variance Baseline $S^2$</td>\n        <td class=\"p-2\">Sensor saturation, ambiguous questionnaire wording.</td>\n      </tr>\n      <tr class=\"bg-[#ffd8ce]/40\">\n        <td class=\"p-2 font-bold font-mono text-[#dc2626] border-r border-[#151b20]\">4. Execution</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Live ingestion with automated telemetry and backoff gates.</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Real-Time Health Dashboard</td>\n        <td class=\"p-2\">Silent pipeline crashes, rate-limit bans, attrition spikes.</td>\n      </tr>\n      <tr class=\"bg-[#e7f4c8]/50\">\n        <td class=\"p-2 font-bold font-mono text-[#15803d] border-r border-[#151b20]\">5. Packaging</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Persist raw payloads with cryptographic SHA-256 hashes.</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Immutable DVC / S3 Artifact</td>\n        <td class=\"p-2\">Unversioned mutations, broken data lineage.</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The 5-Stage Engineering Lifecycle",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, looking at this 5-stage lifecycle, why is there a feedback loop from Stage 4 back to Stage 3? If execution fails, shouldn't we go back to Stage 1?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Not necessarily! Stage 1 formulated what you want to measure. The feedback loop from Stage 4 to Stage 3 is an in-flight circuit breaker: if your live telemetry shows a 60% attrition spike, your sensor or survey instrument is broken. You pause, recalibrate the instrument, and re-test.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Which saves the project from running a 3-month collection campaign that outputs totally invalid data.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Let us look deeper into what metrics Stage 4 quality gates monitor.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Systematic 5-Stage Acquisition Pipeline</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Production Engineering Architecture</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart LR\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  S1[\"Stage 1: Formulation<br/>Target Mapping & Proxy Tolerances\"]:::blue\n  S2[\"Stage 2: Source Scoping<br/>Frame Auditing & Ingestion Bounds\"]:::amber\n  S3[\"Stage 3: Instrument Design<br/>Pilot Study & Power Sizing\"]:::purple\n  S4[\"Stage 4: Execution<br/>In-Flight Telemetry & Quality Gates\"]:::red\n  S5[\"Stage 5: Packaging<br/>Lineage, Hashing & Provenance Log\"]:::green\n\n  S1 --> S2 --> S3 --> S4 --> S5\n  S4 -. Re-calibration Loop .-> S3\n  </pre>\n</div>"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Execution Telemetry & In-Flight Quality Gates (Stage 4 Deep Dive)",
+        "type": "equation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Execution Telemetry & In-Flight Quality Gates",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Stage 4 execution cannot operate as a black box. Production collection pipelines enforce four rigorous in-flight quality gates: Attrition Rate monitoring, Schema Conformity assertions, Exponential Backoff throttling, and Real-Time Distribution Drift tracking.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the mathematical formulation of the Attrition Rate rho sub t and the Kullback-Leibler divergence metric. If incoming batch distributions deviate beyond predefined tolerance thresholds, alerts trigger automated execution freezes.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs font-mono\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1 mb-1 border-b border-[#151b20]/20\">\n      <strong class=\"text-[#0e7490]\">Gate 1: In-Flight Attrition Rate</strong>\n      <span class=\"bg-[#c9f3f4] text-[10px] px-1.5 py-0.5 rounded border border-[#151b20] font-bold\">Threshold &lt; 15%</span>\n    </div>\n    <div class=\"text-sm font-serif my-1 text-center\">$$\\rho_t = 1 - \\frac{n_{\\text{valid}, t}}{n_{\\text{attempted}, t}}$$</div>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">Tracks real-time unit non-response and payload drops. Tripping threshold triggers automated pause.</span>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1 mb-1 border-b border-[#151b20]/20\">\n      <strong class=\"text-[#b45309]\">Gate 2: Exponential Backoff Retry</strong>\n      <span class=\"bg-[#fff0b9] text-[10px] px-1.5 py-0.5 rounded border border-[#151b20] font-bold\">Jittered Backoff</span>\n    </div>\n    <div class=\"text-sm font-serif my-1 text-center\">$$\\tau_{\\text{retry}} = \\min(\\tau_{\\max}, 2^k \\cdot \\tau_0) + U(0, \\epsilon)$$</div>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">Prevents HTTP 429 rate-limiting bans during scraping and API collection through random jitter.</span>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1 mb-1 border-b border-[#151b20]/20\">\n      <strong class=\"text-[#7c3aed]\">Gate 3: Schema Contract Conformity</strong>\n      <span class=\"bg-[#e2dfff] text-[10px] px-1.5 py-0.5 rounded border border-[#151b20] font-bold\">Pydantic / Great Expectations</span>\n    </div>\n    <div class=\"text-sm font-serif my-1 text-center\">$$V_t = \\sum_{i=1}^{n_t} \\mathbb{I}\\left(x_i \\notin \\mathcal{S}_{\\text{contract}}\\right) \\equiv 0$$</div>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">Enforces zero schema drift. Every incoming record is validated against strict typed contracts before saving.</span>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1 mb-1 border-b border-[#151b20]/20\">\n      <strong class=\"text-[#dc2626]\">Gate 4: Distribution Drift Divergence</strong>\n      <span class=\"bg-[#ffd8ce] text-[10px] px-1.5 py-0.5 rounded border border-[#151b20] font-bold\">KL / Wasserstein</span>\n    </div>\n    <div class=\"text-sm font-serif my-1 text-center\">$$D_{\\text{KL}}(P_t \\parallel P_{\\text{pilot}}) = \\sum_{x} P_t(x) \\log\\frac{P_t(x)}{P_{\\text{pilot}}(x)}$$</div>\n    <span class=\"text-[11px] text-[#334155] font-sans block\">Compares batch distribution against calibrated pilot baseline to detect silent sensor calibration shift.</span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: In-Flight Quality Gates",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why do we need both Gate 3 Schema validation and Gate 4 Distribution Drift? If a record passes our schema, isn't it valid?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Not at all, Kaito! A temperature sensor can send a completely valid floating-point number that passes Pydantic schema validation with flying colors, but if calibration drift causes every reading to jump by 15 degrees Celsius, your schema won't notice! Gate 4 catches distributional shift that schema validation cannot see.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So Schema validation catches structural corruption, while Distribution Drift catches semantic corruption.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Now let us explore our second interactive lab to experiment with finite population corrections and statistical pilot sizing.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 my-2 text-xs font-mono\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-1\">Gate 1: In-Flight Attrition Rate</strong>\n    <div class=\"text-sm font-serif my-1 text-center\">$$\\rho_t = 1 - \\frac{n_{\\text{valid}, t}}{n_{\\text{attempted}, t}}$$</div>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <strong class=\"text-[#dc2626] block mb-1\">Gate 4: Distribution Drift Divergence</strong>\n    <div class=\"text-sm font-serif my-1 text-center\">$$D_{\\text{KL}}(P_t \\parallel P_{\\text{pilot}}) = \\sum_{x} P_t(x) \\log\\frac{P_t(x)}{P_{\\text{pilot}}(x)}$$</div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Finite Population Correction & Power Sizer Workbench",
+        "type": "lab",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: FPC & Power Sizer Workbench",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We have docked at the Finite Population Correction and Power Sizer Workbench directly below! Look at the controls: Universe Size N, Planned Sample Size n, Variance sigma squared, and Target Margin of Error delta.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how increasing the sample fraction n over N past 15% causes the FPC factor to compress standard error sharply, reducing required sample sizes. Try adjusting the sliders above me now!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n      <span>⚡</span> Interactive Lab: FPC &amp; Power Sizer Workbench\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#151b20] px-2.5 py-0.5 rounded-full border border-[#151b20]\">\n      Section 6 Interactive Workbench\n    </span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed mb-3\">\n    Evaluate how the <b>Finite Population Correction factor</b> $\\text{FPC} = \\sqrt{(N-n)/(N-1)}$ shrinks estimator standard error across varying finite universes and sizes Cochran pilot requirements.\n  </p>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Sampling Fraction $f = n/N$</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Threshold at $5\\%$: values above $0.05$ yield dramatic variance efficiency gains.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Uncertainty Reduction</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Percentage standard error reduction $(1 - \\text{FPC}) \\times 100\\%$ compared to infinite population assumptions.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#c2410c] block mb-1\">3. Cochran Minimum Pilot</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Calculates exact minimum sample $n_{\\text{pilot}}$ to achieve margin of error $\\delta$ at $\\alpha = 0.05$.</span>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: FPC & Power Workbench",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, our speaker stage has traveled down to the FPC and Power Sizer Workbench! Look at how the Uncertainty Reduction metric changes as we increase sample fraction!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Watch closely! When sample fraction f reaches 25%, our standard error shrinks by over 13%! Experiment with the Universe Size N and Sample Size n sliders directly below us to test how finite population scaling works in practice.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n      <span>⚡</span> Interactive Lab: FPC &amp; Power Sizer Workbench\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#151b20] px-2.5 py-0.5 rounded-full border border-[#151b20]\">\n      Section 6 Interactive Workbench\n    </span>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: The FPC Scaling Impact on IoT Edge Telemetry",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint: IoT Edge Telemetry FPC Impact",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is our second active checkpoint question above me.",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is your active checkpoint: An engineer collects 5,000 telemetry packets from an IoT edge device that logs exactly 20,000 packets per day. By what percentage does the Finite Population Correction shrink the standard error compared to assuming an infinite population? Select Option A, B, or C above me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wide\">💡 Architectural Challenge</span>\n    <span class=\"text-[10px] font-mono font-bold bg-[#e7f4c8] text-[#151b20] px-2 py-0.5 rounded border border-[#151b20]\">Formative Recall</span>\n  </div>\n  <p class=\"text-xs font-bold text-[#151b20] mb-3 font-sans\">\n    Question: An engineer collects $n = 5,000$ telemetry packets from an IoT edge device that logs exactly $N = 20,000$ packets per day. By what percentage does the Finite Population Correction (FPC) shrink the standard error compared to assuming an infinite population?\n  </p>\n  <div class=\"space-y-2 text-xs font-sans\">\n    <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n      <strong>A. $13.4\\%$ reduction:</strong> Sampling fraction is $f = 5,000 / 20,000 = 0.25$. $\\text{FPC} = \\sqrt{1 - 0.25} = \\sqrt{0.75} \\approx 0.8660$, reducing uncertainty by $1 - 0.8660 = 13.4\\%$.\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffdf7] border border-[#151b20]\">\n      <strong>B. $25.0\\%$ reduction:</strong> Because the sampling fraction is $25\\%$, uncertainty shrinks linearly by $25\\%$.\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffdf7] border border-[#151b20]\">\n      <strong>C. $0.0\\%$ reduction:</strong> Because $5,000$ packets is sufficiently large that finite population adjustments become irrelevant.\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The FPC Scaling Challenge",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, 5,000 packets out of 20,000 per day gives a sampling fraction of exactly 0.25. Many engineers instinctively guess the uncertainty drops by 25%!",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the standard trap, Kaito! Remember that variance scales with 1 minus f, but standard error scales with the square root of 1 minus f! Square root of 0.75 is 0.866. Select Option A, B, or C above me to lock in your answer!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wide\">💡 Architectural Challenge</span>\n    <span class=\"text-[10px] font-mono font-bold bg-[#e7f4c8] text-[#151b20] px-2 py-0.5 rounded border border-[#151b20]\">Formative Recall</span>\n  </div>\n  <p class=\"text-xs font-bold text-[#151b20] mb-3 font-sans\">\n    Question: An engineer collects $n = 5,000$ telemetry packets from an IoT edge device that logs exactly $N = 20,000$ packets per day. By what percentage does the Finite Population Correction (FPC) shrink the standard error compared to assuming an infinite population?\n  </p>\n</div>"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Empirical Case Study: Global Remote Sensing vs. On-The-Ground Sensors",
+        "type": "casestudy",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Empirical Case Study: Sub-Saharan Agricultural Sensing",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Consider a real-world enterprise deployment: an international agricultural monitoring project evaluating crop yields across Sub-Saharan Africa. The engineering team faced a severe sampling frame defect: cellular ground stations covered only commercial farms, representing just 18% of land area.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Smallholder subsistence farms, representing 82% of land area, were completely omitted—creating a massive 140% yield disparity. Meanwhile, satellite synthetic aperture radar provided 100% spatial coverage, but had plus or minus 22% measurement noise under cloud cover.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "By formalizing the Total Acquisition Error model, engineers deployed a stratified two-phase hybrid design: satellite SAR served as an auxiliary regressor across all regions, while low-cost solar ground sensors calibrated estimates on subsistence plots, cutting overall yield Mean Squared Error by 68%.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2 font-mono\">\n    <div class=\"flex items-center gap-2 font-black text-[#0e7490] uppercase tracking-wide\">\n      <span>🔬</span> Empirical Case Study: Sub-Saharan Agricultural Yield Monitoring\n    </div>\n    <span class=\"px-2 py-0.5 rounded bg-[#eee4c8] text-[#151b20] font-bold border border-[#151b20]\">Cochran (1977); Lohr (2021)</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono my-2 text-center\">\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#c2410c] block mb-1\">1. Frame Undercoverage Defect</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Ground stations captured only commercial farms ($N_c / N = 18\\%$). Subsistence farms ($82\\%$) omitted entirely $\\to +140\\%$ yield disparity bias!</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Measurement Variance Shift</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Satellite radar gave $100\\%$ coverage but suffered construct noise $\\sigma_{\\text{sensor}} = \\pm 22\\%$ under heavy cloud cover.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">3. Two-Phase Hybrid Solution</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Satellite radar as universal auxiliary regressor calibrated by probability sample of solar sensors $\\to \\mathbf{68\\%}$ MSE reduction!</span>\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] font-sans text-[#151b20] leading-relaxed mt-2\">\n    💡 <b>Architectural Lesson:</b> Neither data source alone could solve the problem. Ground sensors had zero measurement noise but fatal coverage bias ($N_u / N = 0.82$). Satellites had zero coverage bias but high measurement noise. The Total Acquisition Error framework guided a mathematically optimal hybrid fusion.\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Sub-Saharan Agriculture Case Study",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this case study shows how ground telemetry and satellite imagery trade off against each other. Ground sensors had perfect accuracy but terrible coverage, while satellites had perfect coverage but noisy observations.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito! That is Representation Error versus Measurement Error in the flesh. Instead of choosing between them, the engineers used Cochran's two-phase sampling theory: they used the cheap satellite data as an auxiliary regressor and calibrated it with a small probability sample of ground sensors.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And that achieved a 68% reduction in overall Mean Squared Error without needing ground stations across all 82% of subsistence land.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Now let us examine the production Python code that simulates and verifies these error bounds.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2 font-mono\">\n    <div class=\"flex items-center gap-2 font-black text-[#0e7490] uppercase tracking-wide\">\n      <span>🔬</span> Empirical Case Study: Sub-Saharan Agricultural Yield Monitoring\n    </div>\n    <span class=\"px-2 py-0.5 rounded bg-[#eee4c8] text-[#151b20] font-bold border border-[#151b20]\">Cochran (1977); Lohr (2021)</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono my-2 text-center\">\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#c2410c] block mb-1\">1. Frame Undercoverage Defect</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Ground stations captured only commercial farms ($N_c / N = 18\\%$). Subsistence farms ($82\\%$) omitted entirely.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Measurement Variance Shift</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Satellite radar gave $100\\%$ coverage but suffered construct noise $\\pm 22\\%$ under cloud cover.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">3. Two-Phase Hybrid Solution</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">Two-phase stratified calibration reduced overall MSE by $\\mathbf{68\\%}$.</span>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Code: Acquisition Error & Coverage Bias Simulator",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Python Implementation & Verification",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is the production implementation of our Acquisition Error and Coverage Bias Simulator. The pipeline synthesizes a population universe of 100,000 records, models frame undercoverage, draws probability samples, and injects logistic response propensity mechanisms.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the automated assertions at the bottom of the script: we mathematically assert that theoretical coverage bias matches negative 6.25, and that realized respondent mean strictly diverges from the true population target. This guarantees contract conformity in automated CI/CD suites.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-2 font-mono\">\n    <span class=\"font-bold text-[#151b20]\">Python 3.12: Acquisition Error &amp; Coverage Bias Simulator</span>\n    <span class=\"text-[10px] bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-black\">NumPy / Automated Assertions</span>\n  </div>\n  <pre class=\"bg-[#151b20] text-[#f8fafc] p-3 rounded-lg overflow-x-auto text-[11px] font-mono leading-tight max-h-72\">\n<code><span class=\"text-[#22bfd7]\">import</span> numpy <span class=\"text-[#22bfd7]\">as</span> np\n<span class=\"text-[#22bfd7]\">from</span> typing <span class=\"text-[#22bfd7]\">import</span> Dict\n\n<span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">simulate_acquisition_pipeline</span>(\n    N: <span class=\"text-[#22bfd7]\">int</span> = 100000,\n    coverage_rate: <span class=\"text-[#22bfd7]\">float</span> = 0.75,\n    true_mean_covered: <span class=\"text-[#22bfd7]\">float</span> = 45.0,\n    true_mean_uncovered: <span class=\"text-[#22bfd7]\">float</span> = 70.0,\n    sample_size: <span class=\"text-[#22bfd7]\">int</span> = 3000\n) -> Dict[<span class=\"text-[#22bfd7]\">str</span>, <span class=\"text-[#22bfd7]\">float</span>]:\n    N_cov = <span class=\"text-[#22bfd7]\">int</span>(N * coverage_rate)\n    N_uncov = N - N_cov\n    Y_cov = np.random.normal(true_mean_covered, 10.0, size=N_cov)\n    Y_uncov = np.random.normal(true_mean_uncovered, 10.0, size=N_uncov)\n    true_pop_mean = <span class=\"text-[#22bfd7]\">float</span>((np.sum(Y_cov) + np.sum(Y_uncov)) / N)\n\n    <span class=\"text-[#94a3b8]\"># Theoretical frame coverage bias: (N_u / N) * (Y_bar_c - Y_bar_u)</span>\n    theoretical_cov_bias = (N_uncov / N) * (true_mean_covered - true_mean_uncovered)\n\n    <span class=\"text-[#94a3b8]\"># Sample drawn strictly from accessible frame</span>\n    sample_y = Y_cov[np.random.choice(N_cov, size=sample_size, replace=<span class=\"text-[#22bfd7]\">False</span>)]\n\n    <span class=\"text-[#94a3b8]\"># Logistic response propensity: pi_i = sigmoid(2.0 - 0.05 * y_i)</span>\n    response_probs = 1.0 / (1.0 + np.exp(-(2.0 - 0.05 * sample_y)))\n    responded = np.random.rand(sample_size) < response_probs\n    realized_mean = <span class=\"text-[#22bfd7]\">float</span>(np.mean(sample_y[responded]))\n\n    <span class=\"text-[#22bfd7]\">return</span> {\n        <span class=\"text-[#b7df69]\">\"true_pop_mean\"</span>: round(true_pop_mean, 4),\n        <span class=\"text-[#b7df69]\">\"theoretical_cov_bias\"</span>: round(theoretical_cov_bias, 4),\n        <span class=\"text-[#b7df69]\">\"realized_mean\"</span>: round(realized_mean, 4),\n        <span class=\"text-[#b7df69]\">\"total_empirical_bias\"</span>: round(realized_mean - true_pop_mean, 4)\n    }\n\n<span class=\"text-[#94a3b8]\"># Mathematical CI/CD Assertions</span>\nres = simulate_acquisition_pipeline()\n<span class=\"text-[#22bfd7]\">assert</span> np.isclose(res[<span class=\"text-[#b7df69]\">\"theoretical_cov_bias\"</span>], -6.25, atol=0.01)\n<span class=\"text-[#22bfd7]\">assert</span> res[<span class=\"text-[#b7df69]\">\"realized_mean\"</span>] < res[<span class=\"text-[#b7df69]\">\"true_pop_mean\"</span>]\n<span class=\"text-[#ffc83e]\">print</span>(<span class=\"text-[#b7df69]\">\"Mathematical Verification Succeeded!\"</span>)</code></pre>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Production Python Implementation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at line 26: the logistic response propensity makes higher values of y less likely to respond. How does that interact with the frame coverage bias?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "They compound together, Kaito! The frame undercoverage pulls the mean down from 70 to 45, and then the non-response mechanism drops higher values even further. Look at the assertion: theoretical coverage bias is exactly negative 6.25, and the realized respondent mean is suppressed below true population ground truth.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And putting these assertions in our CI/CD test suite ensures that downstream engineers cannot accidentally ingest uncalibrated samples into production training pools.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Now let us summarize our architectural takeaways and preview Lesson 2.2.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-xs\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-2 font-mono\">\n    <span class=\"font-bold text-[#151b20]\">Python 3.12: Acquisition Error &amp; Coverage Bias Simulator</span>\n    <span class=\"text-[10px] bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-black\">NumPy / Automated Assertions</span>\n  </div>\n  <pre class=\"bg-[#151b20] text-[#f8fafc] p-3 rounded-lg overflow-x-auto text-[11px] font-mono leading-tight max-h-72\">\n<code><span class=\"text-[#94a3b8]\"># Automated CI/CD Assertions</span>\nres = simulate_acquisition_pipeline()\n<span class=\"text-[#22bfd7]\">assert</span> np.isclose(res[<span class=\"text-[#b7df69]\">\"theoretical_cov_bias\"</span>], -6.25, atol=0.01)\n<span class=\"text-[#22bfd7]\">assert</span> res[<span class=\"text-[#b7df69]\">\"realized_mean\"</span>] < res[<span class=\"text-[#b7df69]\">\"true_pop_mean\"</span>]\n<span class=\"text-[#ffc83e]\">print</span>(<span class=\"text-[#b7df69]\">\"Mathematical Verification Succeeded!\"</span>)</code></pre>\n</div>"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Summary, Architectural Principles & Transition to Lesson 2.2",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Architectural Principles & Transition to Lesson 2.2",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 2.1 of Dataset Fundamentals! Today, we established that dataset errors are predominantly caused by upstream acquisition corruption rather than downstream model capacity.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "We formalized the Total Acquisition Error paradigm across Representation and Measurement channels, derived frame coverage bias and finite population corrections, and structured the 5-stage engineering lifecycle. In Lesson 2.2, we explore Data Sources: Primary, Secondary, and Real-Time Streaming Ingestion. Keep engineering with discipline!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#15803d] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-3 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-sm md:text-base text-[#15803d] uppercase tracking-wide\">\n      <span>🏆</span> Capstone Takeaways: The Data Collection Lifecycle\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      Masterclass Complete\n    </span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#f0fbfd] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#0e7490] mb-1\">1. The TAE Invariance Law</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">$\\text{MSE} = \\text{Var} + \\text{Bias}^2$. Sampling variance drops as $\\mathcal{O}(1/n)$, but systematic bias is invariant to sample size. Big data cannot fix biased sampling.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#b45309] mb-1\">2. Dual Error Channels</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">Representation errors govern who is observed (Coverage, Sampling, Non-response). Measurement errors govern what is observed (Construct, Sensor, Processing).</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#c2410c] mb-1\">3. Finite Population Scaling</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">When sampling fraction $f > 0.05$, the Finite Population Correction $\\sqrt{1-f}$ significantly compresses standard error and prevents over-budgeting.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#15803d] mb-1\">4. 5-Stage Lifecycle &amp; Telemetry</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">Rigid data contracts in Stage 1, calibrated pilot sizing in Stage 3, and automated attrition and drift gates in Stage 4 guarantee dataset reliability.</span>\n    </div>\n  </div>\n  <div class=\"pt-2 border-t-2 border-[#151b20]/15 flex items-center justify-between flex-wrap gap-3\">\n    <div class=\"text-xs font-mono text-[#334155]\">\n      Next Lesson: <b>2.2 Data Sources: Primary, Secondary &amp; Real-Time Streaming Ingestion</b>\n    </div>\n    <div class=\"flex items-center gap-2\">\n      <a href=\"?chapter=2&part=2\" class=\"cursor-pointer px-4 py-2 rounded-xl bg-[#22bfd7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] font-mono font-black text-xs shadow-[3px_3px_0px_#151b20] transition inline-flex items-center gap-1.5\">\n        <span>Advance to Lesson 2.2</span> <span>→</span>\n      </a>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Capstone Summary & Next Steps",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, what is the single most important rule an AI engineer should remember from Lesson 2.1?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Never assume big data cures upstream collection flaws! As we proved mathematically, Mean Squared Error is dominated by Bias squared. If your sampling frame has coverage defects or your instruments drift, collecting 10 million samples only guarantees with 100% certainty that your model converges to the wrong target.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And by enforcing the 5-stage engineering lifecycle and in-flight telemetry gates, we catch those flaws before they contaminate our downstream pipelines.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Join us in Lesson 2.2 as we explore Primary, Secondary, and Real-Time Streaming Ingestion architectures!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#15803d] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-3 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-sm md:text-base text-[#15803d] uppercase tracking-wide\">\n      <span>🏆</span> Capstone Takeaways: The Data Collection Lifecycle\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      Masterclass Complete\n    </span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#f0fbfd] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#0e7490] mb-1\">1. The TAE Invariance Law</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">$\\text{MSE} = \\text{Var} + \\text{Bias}^2$. Sampling variance drops as $\\mathcal{O}(1/n)$, but systematic bias is invariant to sample size. Big data cannot fix biased sampling.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#b45309] mb-1\">2. Dual Error Channels</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">Representation errors govern who is observed (Coverage, Sampling, Non-response). Measurement errors govern what is observed (Construct, Sensor, Processing).</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#c2410c] mb-1\">3. Finite Population Scaling</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">When sampling fraction $f > 0.05$, the Finite Population Correction $\\sqrt{1-f}$ significantly compresses standard error and prevents over-budgeting.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-sm font-bold block text-[#15803d] mb-1\">4. 5-Stage Lifecycle &amp; Telemetry</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans block\">Rigid data contracts in Stage 1, calibrated pilot sizing in Stage 3, and automated attrition and drift gates in Stage 4 guarantee dataset reliability.</span>\n    </div>\n  </div>\n  <div class=\"pt-2 border-t-2 border-[#151b20]/15 flex items-center justify-between flex-wrap gap-3\">\n    <div class=\"text-xs font-mono text-[#334155]\">\n      Next Lesson: <b>2.2 Data Sources: Primary, Secondary &amp; Real-Time Streaming Ingestion</b>\n    </div>\n    <div class=\"flex items-center gap-2\">\n      <a href=\"?chapter=2&part=2\" class=\"cursor-pointer px-4 py-2 rounded-xl bg-[#22bfd7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] font-mono font-black text-xs shadow-[3px_3px_0px_#151b20] transition inline-flex items-center gap-1.5\">\n        <span>Advance to Lesson 2.2</span> <span>→</span>\n      </a>\n    </div>\n  </div>\n</div>"
         }
       }
     ]

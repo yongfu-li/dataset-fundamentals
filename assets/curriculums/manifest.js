@@ -68,7 +68,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch2_p1",
     "title": "The Data Collection Lifecycle: Systematic Protocols & Acquisition Design",
     "trackName": "Data Collection & Ingestion",
-    "slidesCount": 8,
+    "slidesCount": 16,
     "docPath": "track2-data-collection/01-introduction-to-data-collection/"
   },
   {

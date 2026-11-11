@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1682,6 +1726,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. Disentangling Ethics vs. Privacy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-31-comparative-analysis-of-ethics-versus-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.1: Comparative Analysis of Ethics versus Privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1697,10 +1758,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#equivalence-classes-under-quasi-identifiers" class="md-nav__link">
+  <a href="#a-the-attribute-taxonomy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Equivalence Classes Under Quasi-Identifiers
+        A. The Attribute Taxonomy
       
     </span>
   </a>
@@ -1708,10 +1769,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#individual-re-identification-probability" class="md-nav__link">
+  <a href="#b-equivalence-classes-under-quasi-identifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Individual Re-Identification Probability
+        B. Equivalence Classes Under Quasi-Identifiers
       
     </span>
   </a>
@@ -1719,10 +1780,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#global-empirical-disclosure-risk" class="md-nav__link">
+  <a href="#c-the-three-canonical-linkage-attack-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Global Empirical Disclosure Risk
+        C. The Three Canonical Linkage Attack Models
       
     </span>
   </a>
@@ -1730,10 +1791,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#population-uniqueness-ratio" class="md-nav__link">
+  <a href="#d-global-empirical-disclosure-risk-population-uniqueness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Population Uniqueness Ratio
+        D. Global Empirical Disclosure Risk &amp; Population Uniqueness
       
     </span>
   </a>
@@ -1741,10 +1802,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multi-objective-governance-utility-privacy-lagrangian" class="md-nav__link">
+  <a href="#e-information-theoretic-uncertainty-of-sensitive-attributes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-Objective Governance Utility-Privacy Lagrangian
+        E. Information-Theoretic Uncertainty of Sensitive Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-multi-objective-governance-utility-privacy-lagrangian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Multi-Objective Governance Utility-Privacy Lagrangian
       
     </span>
   </a>
@@ -1769,10 +1841,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#case-study-the-wellness-tracking-app-dilemma" class="md-nav__link">
+  <a href="#table-32-stakeholder-objectives-and-operational-conflicts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study: The Wellness Tracking App Dilemma
+        Table 3.2: Stakeholder Objectives and Operational Conflicts
       
     </span>
   </a>
@@ -1785,10 +1857,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-the-lifecycle-governance-cascade" class="md-nav__link">
+  <a href="#4-the-5-stage-lifecycle-governance-cascade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. The Lifecycle Governance Cascade
+        4. The 5-Stage Lifecycle Governance Cascade
       
     </span>
   </a>
@@ -1796,10 +1868,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-python-verification-re-identification-risk-equivalence-class-audit" class="md-nav__link">
+  <a href="#5-landmark-historical-industrial-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Python Verification: Re-Identification Risk &amp; Equivalence Class Audit
+        5. Landmark Historical &amp; Industrial Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Landmark Historical &amp; Industrial Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-governor-william-weld-massachusetts-gic-incident-1997" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The Governor William Weld Massachusetts GIC Incident (1997)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-the-aol-search-query-4417749-scandal-2006" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: The AOL Search Query 4417749 Scandal (2006)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-the-netflix-prize-de-anonymization-2008" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: The Netflix Prize De-Anonymization (2008)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-4-targets-algorithmic-pregnancy-prediction-2012" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 4: Target's Algorithmic Pregnancy Prediction (2012)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interactive-laboratory-sweeney-linkage-attack-quasi-identifier-risk-auditor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 🔬 Interactive Laboratory: Sweeney Linkage Attack &amp; Quasi-Identifier Risk Auditor
       
     </span>
   </a>
@@ -1807,10 +1940,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#7-production-grade-python-verification-pipeline-pydantic-v2-vectorized-auditing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 🔬 Interactive Laboratory Workbench
+        7. Production-Grade Python Verification Pipeline (Pydantic V2 &amp; Vectorized Auditing)
       
     </span>
   </a>
@@ -1829,10 +1962,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7457,6 +7590,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. Disentangling Ethics vs. Privacy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-31-comparative-analysis-of-ethics-versus-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.1: Comparative Analysis of Ethics versus Privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7472,10 +7622,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#equivalence-classes-under-quasi-identifiers" class="md-nav__link">
+  <a href="#a-the-attribute-taxonomy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Equivalence Classes Under Quasi-Identifiers
+        A. The Attribute Taxonomy
       
     </span>
   </a>
@@ -7483,10 +7633,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#individual-re-identification-probability" class="md-nav__link">
+  <a href="#b-equivalence-classes-under-quasi-identifiers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Individual Re-Identification Probability
+        B. Equivalence Classes Under Quasi-Identifiers
       
     </span>
   </a>
@@ -7494,10 +7644,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#global-empirical-disclosure-risk" class="md-nav__link">
+  <a href="#c-the-three-canonical-linkage-attack-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Global Empirical Disclosure Risk
+        C. The Three Canonical Linkage Attack Models
       
     </span>
   </a>
@@ -7505,10 +7655,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#population-uniqueness-ratio" class="md-nav__link">
+  <a href="#d-global-empirical-disclosure-risk-population-uniqueness" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Population Uniqueness Ratio
+        D. Global Empirical Disclosure Risk &amp; Population Uniqueness
       
     </span>
   </a>
@@ -7516,10 +7666,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multi-objective-governance-utility-privacy-lagrangian" class="md-nav__link">
+  <a href="#e-information-theoretic-uncertainty-of-sensitive-attributes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-Objective Governance Utility-Privacy Lagrangian
+        E. Information-Theoretic Uncertainty of Sensitive Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-multi-objective-governance-utility-privacy-lagrangian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Multi-Objective Governance Utility-Privacy Lagrangian
       
     </span>
   </a>
@@ -7544,10 +7705,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#case-study-the-wellness-tracking-app-dilemma" class="md-nav__link">
+  <a href="#table-32-stakeholder-objectives-and-operational-conflicts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study: The Wellness Tracking App Dilemma
+        Table 3.2: Stakeholder Objectives and Operational Conflicts
       
     </span>
   </a>
@@ -7560,10 +7721,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-the-lifecycle-governance-cascade" class="md-nav__link">
+  <a href="#4-the-5-stage-lifecycle-governance-cascade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. The Lifecycle Governance Cascade
+        4. The 5-Stage Lifecycle Governance Cascade
       
     </span>
   </a>
@@ -7571,10 +7732,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-python-verification-re-identification-risk-equivalence-class-audit" class="md-nav__link">
+  <a href="#5-landmark-historical-industrial-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Python Verification: Re-Identification Risk &amp; Equivalence Class Audit
+        5. Landmark Historical &amp; Industrial Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Landmark Historical &amp; Industrial Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-governor-william-weld-massachusetts-gic-incident-1997" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The Governor William Weld Massachusetts GIC Incident (1997)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-the-aol-search-query-4417749-scandal-2006" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: The AOL Search Query 4417749 Scandal (2006)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-the-netflix-prize-de-anonymization-2008" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: The Netflix Prize De-Anonymization (2008)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-4-targets-algorithmic-pregnancy-prediction-2012" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 4: Target's Algorithmic Pregnancy Prediction (2012)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interactive-laboratory-sweeney-linkage-attack-quasi-identifier-risk-auditor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 🔬 Interactive Laboratory: Sweeney Linkage Attack &amp; Quasi-Identifier Risk Auditor
       
     </span>
   </a>
@@ -7582,10 +7804,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#7-production-grade-python-verification-pipeline-pydantic-v2-vectorized-auditing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 🔬 Interactive Laboratory Workbench
+        7. Production-Grade Python Verification Pipeline (Pydantic V2 &amp; Vectorized Auditing)
       
     </span>
   </a>
@@ -7604,10 +7826,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7646,38 +7868,38 @@
 
 
 <h1 id="31-foundations-of-data-ethics-privacy-rights-responsibilities-governance">3.1 Foundations of Data Ethics &amp; Privacy: Rights, Responsibilities &amp; Governance</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
       Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.1: Defining Ethics, Privacy &amp; Governance)</strong> in the official Springer Nature monograph, analyzing regulatory duties, stakeholder tension matrices, and corporate licenses to operate.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~14 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~16 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-31">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.1</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">13 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">12 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7691,7 +7913,7 @@
 <p>Ethical data engineering is an <strong>architectural discipline that governs every stage of the dataset lifecycle</strong>, requiring formal quantitative risk bounds, verifiable consent contracts, and reproducible de-identification guarantees [<a href="#ref-jobin2019">Jobin2019</a>, <a href="#ref-gebru2021">Gebru2021</a>].</p>
 <hr />
 <h2 id="1-disentangling-ethics-vs-privacy">1. Disentangling Ethics vs. Privacy</h2>
-<p>While frequently conflated in software documentation, <strong>Ethics</strong> and <strong>Privacy</strong> occupy distinct conceptual and operational domains:</p>
+<p>While frequently conflated in software documentation, <strong>Ethics</strong> and <strong>Privacy</strong> occupy distinct conceptual, operational, and legal domains:</p>
 <pre class="mermaid"><code>flowchart LR
     subgraph EthicsDomain ["Data Ethics (Moral Philosophy &amp; Normative Duties)"]
     direction TB
@@ -7707,8 +7929,8 @@
         P3["Is data minimized, pseudonymized, or encrypted?"]
     end
 
-  %% Top-alignment constraint across stages
-  E1 ~~~ P1
+    %% Top-alignment constraint across stages
+    E1 ~~~ P1
 
     EthicsDomain &lt;--&gt;|Mutually Reinforcing| PrivacyDomain
 
@@ -7718,6 +7940,7 @@
 
     class E1,E2,E3 purple;
     class P1,P2,P3 blue;</code></pre>
+<h3 id="table-31-comparative-analysis-of-ethics-versus-privacy">Table 3.1: Comparative Analysis of Ethics versus Privacy</h3>
 <table>
 <thead>
 <tr>
@@ -7733,59 +7956,111 @@
 <td style="text-align: left;">The fundamental human right of individuals to control the disclosure, access, and retention of their personal information [<a href="#ref-voigt2017">Voigt2017</a>].</td>
 </tr>
 <tr>
+<td style="text-align: left;"><strong>Core Evaluation Question</strong></td>
+<td style="text-align: left;"><em>"Should we build and deploy this dataset even if it is legally permitted?"</em></td>
+<td style="text-align: left;"><em>"Do we possess lawful authority and technical controls to collect, store, and process this attribute?"</em></td>
+</tr>
+<tr>
 <td style="text-align: left;"><strong>Operational Focus</strong></td>
 <td style="text-align: left;">Societal impact, justice, algorithmic fairness, transparency, and non-maleficence.</td>
 <td style="text-align: left;">Informed consent, regulatory compliance (GDPR/HIPAA), data minimization, and technical privacy controls.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Evaluation Question</strong></td>
-<td style="text-align: left;"><em>"Should we build and deploy this dataset even if it is legally permitted?"</em></td>
-<td style="text-align: left;"><em>"Do we possess lawful authority and technical controls to store this attribute?"</em></td>
+<td style="text-align: left;"><strong>Primary Metrics &amp; Verification</strong></td>
+<td style="text-align: left;">Disparate Impact Ratio, Equalized Odds, Counterfactual Fairness, SHAP attribution.</td>
+<td style="text-align: left;">Equivalence class size (<span class="arithmatex">\(k\)</span>-anonymity), <span class="arithmatex">\(\epsilon\)</span>-differential privacy, DSAR turnaround latency.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Institutional &amp; Regulatory Anchors</strong></td>
+<td style="text-align: left;">Belmont Report, IEEE 7000 Series, EU AI Act (High-Risk Classification), Montreal Declaration.</td>
+<td style="text-align: left;">EU GDPR (Articles 5, 6, 9, 17, 25), US HIPAA Safe Harbor, CCPA/CPRA, ISO/IEC 27701.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Typical Failure Mode</strong></td>
 <td style="text-align: left;">Technically legal algorithms that entrench racial disparities or exploit addictive user behavior.</td>
-<td style="text-align: left;">Data leaks, unauthorized third-party sharing, and regulatory breach fines.</td>
+<td style="text-align: left;">Data leaks, unauthorized third-party sharing, linkage deanonymization, and regulatory breach fines.</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
 <p>[!IMPORTANT]
-<strong>Legal Compliance is a Floor, Not a Ceiling</strong>: A machine learning system can achieve <span class="arithmatex">\(100\%\)</span> legal compliance with the GDPR while remaining deeply unethical (e.g., using legally purchased public location records to predict sensitive religious affiliations or political protests).</p>
+<strong>Legal Compliance is a Floor, Not a Ceiling</strong>: A machine learning system can achieve <span class="arithmatex">\(100\%\)</span> legal compliance with the GDPR while remaining deeply unethical. For instance, using legally purchased public location records or anonymized credit inquiries to predict sensitive political protests or deny housing insurance may violate no statute while causing profound societal harm.</p>
 </blockquote>
-<hr />
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: Privacy-by-Design Default Configurations</p>
-<p>Under Article 25 of the GDPR and modern ISO/IEC 27701 standards, privacy controls must be set to the most restrictive state by default. Data ingestion pipelines should automatically tokenize or hash identifiers at rest, requiring explicit schema elevation permissions to decrypt identity fields.</p>
+<p>Under Article 25 of the GDPR and modern ISO/IEC 27701 standards, privacy controls must be set to the most restrictive state by default. Data ingestion pipelines should automatically tokenize or hash direct identifiers at rest, requiring explicit schema elevation permissions to decrypt identity fields.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Common Pitfall / Anti-Pattern: Treating Anonymization as a One-Way Checkbox</p>
 <p>Teams frequently assume that stripping direct names and national IDs permanently de-identifies a dataset. As proven by Sweeney's linkage attacks, combining three auxiliary quasi-identifiers (5-digit ZIP code, gender, date of birth) uniquely re-identifies 87% of the US population.</p>
 </div>
+<hr />
 <h2 id="2-mathematical-formalization-of-re-identification-disclosure-risk">2. Mathematical Formalization of Re-Identification &amp; Disclosure Risk</h2>
-<p>In empirical data publishing, privacy risk cannot be evaluated by direct identifier removal alone. We formalize privacy risk through the lens of equivalence class partitions and quasi-identifier linkage [<a href="#ref-sweeney2000">Sweeney2000</a>, <a href="#ref-dwork2014">Dwork2014</a>].</p>
-<p>Let a dataset <span class="arithmatex">\(\mathcal{D} = \{r_1, r_2, \dots, r_N\}\)</span> consist of <span class="arithmatex">\(N\)</span> records. Each record <span class="arithmatex">\(r_i\)</span> is partitioned into three disjoint attribute subsets:
-1. <strong>Direct Identifiers</strong> <span class="arithmatex">\(I\)</span> (e.g., National ID, Full Name, Email).
-2. <strong>Quasi-Identifiers</strong> <span class="arithmatex">\(Q = (q_1, q_2, \dots, q_m)\)</span> (e.g., ZIP code, Birth Date, Gender).
-3. <strong>Sensitive Attributes</strong> <span class="arithmatex">\(S\)</span> (e.g., Medical Diagnosis, Salary).</p>
-<h3 id="equivalence-classes-under-quasi-identifiers">Equivalence Classes Under Quasi-Identifiers</h3>
+<p>In empirical data publishing, privacy risk cannot be evaluated by direct identifier removal alone. We formalize privacy risk through the lens of equivalence class partitions, quasi-identifier linkage, and information leakage [<a href="#ref-sweeney2000">Sweeney2000</a>, <a href="#ref-dwork2014">Dwork2014</a>].</p>
+<h3 id="a-the-attribute-taxonomy">A. The Attribute Taxonomy</h3>
+<p>Let a dataset <span class="arithmatex">\(\mathcal{D} = \{r_1, r_2, \dots, r_N\}\)</span> consist of <span class="arithmatex">\(N\)</span> records. The total attribute schema <span class="arithmatex">\(\mathcal{A}\)</span> is partitioned into four mutually disjoint subsets:
+1. <strong>Direct Identifiers</strong> <span class="arithmatex">\(I \subset \mathcal{A}\)</span>: Attributes that explicitly identify a subject in isolation (e.g., Social Security Number, National ID, Full Legal Name, Email Address).
+2. <strong>Quasi-Identifiers</strong> <span class="arithmatex">\(Q = (q_1, q_2, \dots, q_m) \subset \mathcal{A}\)</span>: Demographic, temporal, or spatial attributes that do not identify a subject alone, but can be linked with auxiliary external registries to uniquely isolate individuals (e.g., 5-digit ZIP code, Date of Birth, Gender, Occupation).
+3. <strong>Sensitive Attributes</strong> <span class="arithmatex">\(S \subset \mathcal{A}\)</span>: Intimate or confidential traits that subjects wish to keep private (e.g., Medical Diagnoses, Annual Salary, Criminal Records, Political Affiliation).
+4. <strong>Non-Personal / Insensitive Attributes</strong> <span class="arithmatex">\(N \subset \mathcal{A}\)</span>: General operational metrics invariant to individual privacy (e.g., Record Ingestion Timestamp, Database Shard ID).</p>
+<pre class="mermaid"><code>flowchart TD
+  subgraph Schema ["Complete Attribute Schema A"]
+    direction TB
+    I["Direct Identifiers (I)&lt;br/&gt;SSN, Name, Email"]
+    Q["Quasi-Identifiers (Q)&lt;br/&gt;ZIP Code, Birth Date, Gender"]
+    S["Sensitive Attributes (S)&lt;br/&gt;Diagnosis, Salary, Religion"]
+    NonP["Insensitive Attributes (N)&lt;br/&gt;Ingest Time, Server ID"]
+  end
+
+  I --&gt;|Cryptographic Masking / HMAC| Token["Tokenized IDs"]
+  Q --&gt;|Generalization / Perturbation| AnonQ["k-Anonymized QI Cohorts"]
+  S --&gt;|l-Diversity / t-Closeness| SafeS["Protected Sensitive Payloads"]
+
+  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+  class I red;
+  class Q amber;
+  class S purple;
+  class NonP green;
+  class Token,AnonQ,SafeS blue;</code></pre>
+<h3 id="b-equivalence-classes-under-quasi-identifiers">B. Equivalence Classes Under Quasi-Identifiers</h3>
 <p>For any record <span class="arithmatex">\(r \in \mathcal{D}\)</span>, the <strong>Equivalence Class</strong> <span class="arithmatex">\(E_Q(r)\)</span> is the set of all records in <span class="arithmatex">\(\mathcal{D}\)</span> that share identical quasi-identifier projections:</p>
 <div class="arithmatex">\[
 E_Q(r) = \{r' \in \mathcal{D} \mid Q(r') = Q(r)\}
 \]</div>
-<h3 id="individual-re-identification-probability">Individual Re-Identification Probability</h3>
-<p>Assuming an adversary links an external auxiliary registry (such as a public voter roll) to <span class="arithmatex">\(\mathcal{D}\)</span> on <span class="arithmatex">\(Q\)</span>, the probability of correctly re-identifying an individual from record <span class="arithmatex">\(r\)</span> under uniform selection within the equivalence class is:</p>
+<p>The size of the equivalence class <span class="arithmatex">\(|E_Q(r)|\)</span> represents the anonymity cohort size protecting record <span class="arithmatex">\(r\)</span>.</p>
+<h3 id="c-the-three-canonical-linkage-attack-models">C. The Three Canonical Linkage Attack Models</h3>
+<p>Modern privacy engineering formalizes adversary capabilities into three distinct threat vectors:</p>
+<ol>
+<li><strong>Record Linkage Attack</strong>: An adversary possesses an auxiliary external registry <span class="arithmatex">\(\mathcal{T}_{\text{aux}}\)</span> containing direct identifiers and quasi-identifiers (e.g., a public voter roll containing <code>Name</code>, <code>ZIP</code>, <code>Gender</code>, <code>Birth Date</code>). By performing a database join <span class="arithmatex">\(\mathcal{D} \bowtie_Q \mathcal{T}_{\text{aux}}\)</span>, the adversary connects direct identities to sensitive payloads. The probability of correctly re-identifying an individual from record <span class="arithmatex">\(r\)</span> under uniform selection within the equivalence class is:</li>
+</ol>
 <div class="arithmatex">\[
 P_{\text{re-id}}(r) = \frac{1}{|E_Q(r)|}
 \]</div>
-<p>When <span class="arithmatex">\(|E_Q(r)| = 1\)</span>, the record is uniquely distinguished in the population, yielding <span class="arithmatex">\(P_{\text{re-id}}(r) = 1.0\)</span>.</p>
-<h3 id="global-empirical-disclosure-risk">Global Empirical Disclosure Risk</h3>
-<p>The expected disclosure risk over the entire released dataset <span class="arithmatex">\(\mathcal{D}\)</span> is the average re-identification probability across all records:</p>
+<p>When <span class="arithmatex">\(|E_Q(r)| = 1\)</span>, the record is a singleton in the population, yielding deterministic re-identification: <span class="arithmatex">\(P_{\text{re-id}}(r) = 1.0\)</span>.</p>
+<ol>
+<li><strong>Attribute Disclosure Attack (Homogeneity Problem)</strong>: Even when a dataset satisfies <span class="arithmatex">\(k\)</span>-anonymity (<span class="arithmatex">\(|E_Q(r)| \ge k\)</span>), if all records in the equivalence class share identical sensitive attribute values, the adversary infers the sensitive value with certainty without needing exact record isolation:</li>
+</ol>
+<div class="arithmatex">\[
+P\left(S(r) = s^* \mid r \in E_Q(r)\right) = \frac{|\{r' \in E_Q(r) \mid S(r') = s^*\}|}{|E_Q(r)|}
+\]</div>
+<p>When this conditional probability equals <span class="arithmatex">\(1.0\)</span>, <span class="arithmatex">\(k\)</span>-anonymity fails to prevent severe privacy disclosure (motivating the need for <span class="arithmatex">\(l\)</span>-diversity).</p>
+<ol>
+<li><strong>Table Linkage Attack (Membership Inference)</strong>: The adversary tests the hypothesis of whether a known target individual <span class="arithmatex">\(x^*\)</span> was included in the dataset <span class="arithmatex">\(\mathcal{D}\)</span> (e.g., confirming whether someone was enrolled in an HIV clinical trial). The adversary's advantage <span class="arithmatex">\(\text{Adv}_{\mathcal{A}}\)</span> is bounded by:</li>
+</ol>
+<div class="arithmatex">\[
+\text{Adv}_{\mathcal{A}} = \left| P(\mathcal{A}(\mathcal{D}) = 1 \mid x^* \in \mathcal{D}) - P(\mathcal{A}(\mathcal{D}) = 1 \mid x^* \notin \mathcal{D}) \right|
+\]</div>
+<p>Differential privacy [<a href="#ref-dwork2014">Dwork2014</a>] was formulated specifically to bound this membership advantage by <span class="arithmatex">\(\le e^\epsilon - 1\)</span>.</p>
+<h3 id="d-global-empirical-disclosure-risk-population-uniqueness">D. Global Empirical Disclosure Risk &amp; Population Uniqueness</h3>
+<p>The expected disclosure risk over an entire released dataset <span class="arithmatex">\(\mathcal{D}\)</span> is the average re-identification probability across all records:</p>
 <div class="arithmatex">\[
 \mathcal{R}_{\text{disclosure}}(\mathcal{D}) = \frac{1}{|\mathcal{D}|} \sum_{r \in \mathcal{D}} \frac{1}{|E_Q(r)|}
 \]</div>
-<h3 id="population-uniqueness-ratio">Population Uniqueness Ratio</h3>
-<p>The population uniqueness ratio <span class="arithmatex">\(\Pi_{\text{unique}}(\mathcal{D})\)</span> measures the fraction of subjects who are uniquely exposed to deterministic linkage attacks:</p>
+<p>The <strong>Population Uniqueness Ratio</strong> <span class="arithmatex">\(\Pi_{\text{unique}}(\mathcal{D})\)</span> measures the proportion of subjects who are uniquely exposed to deterministic linkage attacks:</p>
 <div class="arithmatex">\[
 \Pi_{\text{unique}}(\mathcal{D}) = \frac{1}{|\mathcal{D}|} \sum_{r \in \mathcal{D}} \mathbb{I}(|E_Q(r)| = 1)
 \]</div>
@@ -7793,8 +8068,14 @@ P_{\text{re-id}}(r) = \frac{1}{|E_Q(r)|}
 <div class="arithmatex">\[
 \Pi_{\text{unique}}(\mathcal{D}_{\text{US Census}}) \approx 0.871 \quad (87.1\%)
 \]</div>
-<h3 id="multi-objective-governance-utility-privacy-lagrangian">Multi-Objective Governance Utility-Privacy Lagrangian</h3>
-<p>Ethical data curation must balance analytical accuracy against privacy leakage. Let <span class="arithmatex">\(\mathcal{U}(f_\theta(\mathcal{D}))\)</span> represent downstream model utility (e.g., F1-score or negative cross-entropy) and <span class="arithmatex">\(\mathcal{R}_{\text{disclosure}}\)</span> represent disclosure risk. The governance optimization objective is framed as a constrained Lagrangian:</p>
+<h3 id="e-information-theoretic-uncertainty-of-sensitive-attributes">E. Information-Theoretic Uncertainty of Sensitive Attributes</h3>
+<p>To quantify how much predictive information quasi-identifiers leak regarding confidential attributes, we compute the <strong>Conditional Entropy</strong> <span class="arithmatex">\(H(S \mid Q)\)</span>:</p>
+<div class="arithmatex">\[
+H(S \mid Q) = -\sum_{q \in \mathcal{Q}} P(Q = q) \sum_{s \in \mathcal{S}} P(S = s \mid Q = q) \log_2 P(S = s \mid Q = q)
+\]</div>
+<p>The <strong>Mutual Information</strong> <span class="arithmatex">\(I(Q; S) = H(S) - H(S \mid Q)\)</span> measures the reduction in uncertainty about sensitive attributes resulting from knowledge of quasi-identifiers. A safe de-identification pipeline enforces <span class="arithmatex">\(I(Q; S) \to 0\)</span>.</p>
+<h3 id="f-multi-objective-governance-utility-privacy-lagrangian">F. Multi-Objective Governance Utility-Privacy Lagrangian</h3>
+<p>Ethical data curation must balance analytical utility against privacy leakage. Let <span class="arithmatex">\(\mathcal{U}(f_\theta(\mathcal{D}))\)</span> represent downstream model utility (e.g., F1-score or negative cross-entropy) and <span class="arithmatex">\(\mathcal{R}_{\text{disclosure}}\)</span> represent disclosure risk. The governance optimization objective is framed as a constrained Lagrangian:</p>
 <div class="arithmatex">\[
 \mathcal{L}(\theta, \lambda) = \mathcal{U}(f_\theta(\mathcal{D})) - \lambda \cdot \max\left(0, \; \mathcal{R}_{\text{disclosure}}(f_\theta(\mathcal{D})) - \tau_{\text{safe}}\right)
 \]</div>
@@ -7822,16 +8103,46 @@ P_{\text{re-id}}(r) = \frac{1}{|E_Q(r)|}
     class DP blue;
     class EX amber;
     class REG purple;</code></pre>
-<h3 id="case-study-the-wellness-tracking-app-dilemma">Case Study: The Wellness Tracking App Dilemma</h3>
-<p>Consider a mobile fitness startup developing a predictive cardiovascular health tracker:
-1. <strong>The Engineering Team</strong> requests high-frequency GPS tracking (<span class="arithmatex">\(1\text{ Hz}\)</span>) and continuous photoplethysmography (PPG) heart-rate telemetry to optimize cardiac arrhythmia model accuracy.
-2. <strong>The Executive Team</strong> negotiates partner agreements with commercial health insurers to monetize aggregated health scores.
-3. <strong>The Data Subjects</strong> expect their intimate biometrics to remain on-device for personal health tracking.
-4. <strong>The Regulatory Authorities</strong> enforce GDPR Article 9 ("Processing of special categories of personal data"), which explicitly forbids secondary commercial sharing without explicit, unbundled, affirmative consent.</p>
-<p>No single stakeholder can resolve this tension unilaterally. A responsible data architecture must resolve utility, consent, and minimization through formal technical governance.</p>
+<h3 id="table-32-stakeholder-objectives-and-operational-conflicts">Table 3.2: Stakeholder Objectives and Operational Conflicts</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Stakeholder Group</th>
+<th style="text-align: left;">Primary Objective Function</th>
+<th style="text-align: left;">Core Friction Point</th>
+<th style="text-align: left;">Governance Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Data Subjects</strong></td>
+<td style="text-align: left;">Maximizing personal autonomy, transparency, and data self-determination.</td>
+<td style="text-align: left;">Unconsented secondary use of behavioral data and invasive tracking.</td>
+<td style="text-align: left;">Dynamic consent dashboards, granular opt-in controls, and cryptographic erasure verification.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Data Practitioners</strong></td>
+<td style="text-align: left;">Maximizing predictive accuracy, feature granularity, and model throughput.</td>
+<td style="text-align: left;">Data minimization and anonymization techniques reducing training sample size and signal.</td>
+<td style="text-align: left;">Privacy-preserving synthetic data, differential privacy noise calibration, and zero-knowledge validation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Executive Leadership</strong></td>
+<td style="text-align: left;">Maximizing commercial growth, time-to-market, and corporate valuation.</td>
+<td style="text-align: left;">Rigorous privacy audits and ethical review boards adding engineering cycle time.</td>
+<td style="text-align: left;">Quantified risk modeling: comparing regulatory penalty exposure (<span class="arithmatex">\(4\%\)</span> of global turnover) vs. governance ROI.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Regulatory Authorities</strong></td>
+<td style="text-align: left;">Protecting fundamental human rights and upholding legal statutory frameworks.</td>
+<td style="text-align: left;">Asymmetry of technical information and lack of algorithmic explainability.</td>
+<td style="text-align: left;">Verifiable compliance audits, Datasheets for Datasets, and standardized transparency disclosures.</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="4-the-lifecycle-governance-cascade">4. The Lifecycle Governance Cascade</h2>
-<p>Ethics and privacy duties must be audited continuously across the 5 core lifecycle phases:</p>
+<h2 id="4-the-5-stage-lifecycle-governance-cascade">4. The 5-Stage Lifecycle Governance Cascade</h2>
+<p>Ethics and privacy duties cannot be treated as a single checklist at the end of a project. They must be audited continuously across the 5 core lifecycle phases:</p>
 <pre class="mermaid"><code>flowchart LR
     C["1. Collection&lt;br/&gt;(Informed Consent &amp; Minimization)"] --&gt; A["2. Annotation&lt;br/&gt;(Fair Worker Wages &amp; Gold Sets)"]
     A --&gt; P["3. Preprocessing&lt;br/&gt;(De-identification &amp; Anonymity)"]
@@ -7848,138 +8159,534 @@ P_{\text{re-id}}(r) = \frac{1}{|E_Q(r)|}
     class M purple;
     class R green;</code></pre>
 <ol>
-<li><strong>Collection (Track 2)</strong>: Are subjects notified of processing scope? Is collection minimized to strictly necessary attributes?</li>
-<li><strong>Annotation (Track 4)</strong>: Are human crowdsourced annotators compensated fairly? Are labeling guidelines free of cultural bias?</li>
-<li><strong>Preprocessing &amp; Cleaning (Track 5)</strong>: Are direct identifiers scrubbed? Is missingness imputation introducing demographic distortion?</li>
-<li><strong>Exploration &amp; Modeling (Tracks 6 &amp; 7)</strong>: Are models audited for Disparate Impact and Equalized Odds across protected classes?</li>
-<li><strong>Release &amp; Governance (Track 8 &amp; 13)</strong>: Does the dataset release include a standardized <em>Datasheet for Datasets</em> [<a href="#ref-gebru2021">Gebru2021</a>] and a clear open-source or restricted-use license?</li>
+<li><strong>Collection (Track 2)</strong>: Are subjects notified of processing scope? Is collection minimized to strictly necessary attributes? Are sensors calibrated to avoid capturing unauthorized bystander telemetry?</li>
+<li><strong>Annotation (Track 4)</strong>: Are human crowdsourced annotators compensated fairly under local living wages? Are labeling guidelines audited for linguistic and cultural bias?</li>
+<li><strong>Preprocessing &amp; Cleaning (Track 5)</strong>: Are direct identifiers scrubbed via cryptographic tokenization? Does missingness imputation introduce demographic distortion or erase minority subgroups?</li>
+<li><strong>Exploration &amp; Modeling (Tracks 6 &amp; 7)</strong>: Are models audited for Disparate Impact and Equalized Odds across protected classes? Is model explainability validated via Shapley feature attribution?</li>
+<li><strong>Release &amp; Governance (Tracks 8 &amp; 13)</strong>: Does the dataset release include a standardized <em>Datasheet for Datasets</em> [<a href="#ref-gebru2021">Gebru2021</a>]? Does the architecture support GDPR Article 17 ("Right to Erasure") and model machine unlearning?</li>
 </ol>
 <hr />
-<h2 id="5-python-verification-re-identification-risk-equivalence-class-audit">5. Python Verification: Re-Identification Risk &amp; Equivalence Class Audit</h2>
-<p>The following executable script calculates the empirical re-identification risk and uniqueness ratio across quasi-identifier cohorts, validating how <span class="arithmatex">\(k\)</span>-anonymity suppression bounds adversary re-identification success.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># re_identification_audit.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes empirical disclosure risk and validates k-anonymity bounds</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_equivalence_classes</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="c1"># Partitions dataset records into equivalence classes based on quasi-identifier tuple</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">audit_disclosure_risk</span><span class="p">(</span><span class="n">records</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="c1"># Evaluates individual re-identification probabilities and global disclosure risk</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">eq_classes</span> <span class="o">=</span> <span class="n">compute_equivalence_classes</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">"global_risk"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">"uniqueness_ratio"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">"max_individual_risk"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">risks</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">unique_count</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="n">class_size</span> <span class="o">=</span> <span class="n">eq_classes</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="n">p_reid</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">class_size</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="n">risks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_reid</span><span class="p">)</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">if</span> <span class="n">class_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="n">unique_count</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="s2">"global_risk"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">risks</span><span class="p">)),</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="s2">"uniqueness_ratio"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">unique_count</span> <span class="o">/</span> <span class="n">n</span><span class="p">),</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="s2">"max_individual_risk"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">risks</span><span class="p">)),</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="s2">"min_class_size"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">eq_classes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="p">}</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_reid_risk_assertions</span><span class="p">():</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="c1"># Simulated microdata: (ZIP_prefix, Gender, Age_bracket)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">cohort</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="p">(</span><span class="s2">"02138"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"25-34"</span><span class="p">),</span> <span class="c1"># Unique 1</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="p">(</span><span class="s2">"02138"</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">,</span> <span class="s2">"25-34"</span><span class="p">),</span> <span class="c1"># Group of 2 (Row 1)</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="p">(</span><span class="s2">"02138"</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">,</span> <span class="s2">"25-34"</span><span class="p">),</span> <span class="c1"># Group of 2 (Row 2)</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="p">(</span><span class="s2">"94107"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"35-44"</span><span class="p">),</span> <span class="c1"># Group of 3 (Row 1)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="p">(</span><span class="s2">"94107"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"35-44"</span><span class="p">),</span> <span class="c1"># Group of 3 (Row 2)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="p">(</span><span class="s2">"94107"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"35-44"</span><span class="p">),</span> <span class="c1"># Group of 3 (Row 3)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="p">]</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="n">metrics</span> <span class="o">=</span> <span class="n">audit_disclosure_risk</span><span class="p">(</span><span class="n">cohort</span><span class="p">)</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="c1"># Assertions</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="c1"># Record 0 has class size 1 -&gt; p = 1.0</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="c1"># Records 1 &amp; 2 have class size 2 -&gt; p = 0.5 each</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="c1"># Records 3, 4, 5 have class size 3 -&gt; p = 1/3 each</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">expected_global</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="c1"># 3.0 / 6 = 0.50</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s2">"global_risk"</span><span class="p">]</span> <span class="o">-</span> <span class="n">expected_global</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Unexpected global risk: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">'global_risk'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="k">assert</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">"uniqueness_ratio"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">6.0</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="k">assert</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">"max_individual_risk"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="k">assert</span> <span class="n">metrics</span><span class="p">[</span><span class="s2">"min_class_size"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># After enforcing k = 2 by suppressing unique record</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">sanitized</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">cohort</span> <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="p">(</span><span class="s2">"02138"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"25-34"</span><span class="p">)]</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">sanitized_metrics</span> <span class="o">=</span> <span class="n">audit_disclosure_risk</span><span class="p">(</span><span class="n">sanitized</span><span class="p">)</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">assert</span> <span class="n">sanitized_metrics</span><span class="p">[</span><span class="s2">"min_class_size"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">assert</span> <span class="n">sanitized_metrics</span><span class="p">[</span><span class="s2">"max_individual_risk"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">0.50</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">assert</span> <span class="n">sanitized_metrics</span><span class="p">[</span><span class="s2">"uniqueness_ratio"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Re-identification risk assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">test_reid_risk_assertions</span><span class="p">()</span>
+<h2 id="5-landmark-historical-industrial-case-studies">5. Landmark Historical &amp; Industrial Case Studies</h2>
+<p>To understand how privacy breaches occur in practice, data engineers must study landmark real-world failures where pseudonymous or anonymized datasets collapsed under adversary linkage attacks:</p>
+<h3 id="case-study-1-the-governor-william-weld-massachusetts-gic-incident-1997">Case Study 1: The Governor William Weld Massachusetts GIC Incident (1997)</h3>
+<p>In the mid-1990s, the Massachusetts Group Insurance Commission (GIC) decided to release state employee hospital discharge data to researchers to improve healthcare cost efficiency. To protect employee confidentiality, the GIC removed all direct identifiers (names, home street addresses, and Social Security Numbers), declaring the dataset fully anonymized.</p>
+<p>Then-MIT graduate student (now Harvard Professor) <strong>Dr. Latanya Sweeney</strong> suspected this defense was fundamentally flawed:
+1. She obtained the Cambridge municipal voter registration database for $20, which contained registered voters' names, street addresses, 5-digit ZIP codes, genders, and birth dates.
+2. She cross-referenced the voter registry with the GIC hospital discharge records using the three-attribute quasi-identifier vector <span class="arithmatex">\(Q = (\text{ZIP}, \text{Gender}, \text{Birth Date})\)</span>.
+3. At the time, Governor William Weld resided in Cambridge ZIP <code>02138</code>. In the entire Cambridge voter database, only six people shared his birth date; only three were male; and <strong>only Governor Weld lived in ZIP code 02138</strong>.
+4. Dr. Sweeney uniquely isolated Governor Weld's complete medical history—including private diagnoses, prescription drugs, and surgical records—and delivered the printout directly to his executive office.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>GIC Hospital Database:     [02138] --- [Male] --- [July 31, 1945] ---&gt; [Acute Arrhythmia, Surgery]
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                \         |           /
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                                  \       |         /
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Cambridge Voter Registry:  [02138] --- [Male] --- [July 31, 1945] ---&gt; "Gov. William Weld, Cambridge MA"
 </span></code></pre></div>
+<p><strong>Regulatory Impact</strong>: This single experiment catalyzed the creation of the federal <strong>HIPAA Privacy Rule Safe Harbor standard</strong> (45 CFR § 164.514), which mandates the suppression or generalization of 18 specific direct and indirect identifiers, including ZIP codes and all elements of dates.</p>
+<h3 id="case-study-2-the-aol-search-query-4417749-scandal-2006">Case Study 2: The AOL Search Query 4417749 Scandal (2006)</h3>
+<p>In August 2006, AOL Research released a 439-megabyte text archive containing <strong>20 million search queries from 658,000 users</strong> over a three-month period [<a href="#ref-barbaro2006">Barbaro2006</a>]. AOL replaced all usernames and IP addresses with sequential pseudonymous numeric IDs, asserting that user identities were completely protected.</p>
+<p>Within 48 hours, <em>The New York Times</em> investigative reporters re-identified <strong>User 4417749</strong>:
+- User 4417749 searched for queries including: <em>"numb fingers"</em>, <em>"60 single men"</em>, <em>"dog that urinates on everything"</em>, <em>"landscapers in Lilburn GA"</em>, and several searches for people with the surname <em>"Arnold"</em>.
+- By cross-referencing public phone books and property records in Lilburn, Georgia, reporters verified that User 4417749 was <strong>Thelma Arnold</strong>, a 62-year-old widow.
+- When contacted, Ms. Arnold confirmed that the queries were hers, expressing shock that her private medical symptoms, family queries, and neighborhood searches had been broadcast publicly.</p>
+<p><strong>Engineering Lesson</strong>: Unstructured free text and high-dimensional search logs are inherently identifying. Pseudonymization (replacing an ID with a token) offers zero protection when behavioral features exhibit extreme unicity.</p>
+<h3 id="case-study-3-the-netflix-prize-de-anonymization-2008">Case Study 3: The Netflix Prize De-Anonymization (2008)</h3>
+<p>In 2006, Netflix launched the renowned $1,000,000 Netflix Prize competition, releasing <strong>100 million movie ratings from 480,000 subscribers</strong> between 1999 and 2005. Customer names were replaced with randomized IDs, and rating dates were slightly perturbed.</p>
+<p>Researchers Arvind Narayanan and Vitaly Shmatikov [<a href="#ref-narayanan2008">Narayanan2008</a>] executed a cross-database linkage attack using public reviews from the <strong>Internet Movie Database (IMDb)</strong>:
+- Users frequently rated movies on both IMDb (publicly under their real name) and Netflix (privately).
+- Movie ratings represent high-dimensional, sparse vectors. Narayanan and Shmatikov proved that knowing merely <strong>6 movie titles and approximate rating dates (within <span class="arithmatex">\(\pm 14\)</span> days)</strong> allowed an adversary to uniquely re-identify <strong>84% of Netflix users</strong>.
+- The attack unmasked private subscriber ratings, revealing sensitive political orientations, religious views, and closeted sexual preferences.
+- Netflix canceled the sequel competition (Netflix Prize 2) following an FTC settlement and class-action litigation.</p>
+<h3 id="case-study-4-targets-algorithmic-pregnancy-prediction-2012">Case Study 4: Target's Algorithmic Pregnancy Prediction (2012)</h3>
+<p>In 2012, <em>The New York Times Magazine</em> reported on Target's predictive analytics program [<a href="#ref-duhigg2012">Duhigg2012</a>]. Target's data scientists analyzed shopping patterns on baby shower registries and identified a basket of approximately 25 product proxies—such as unscented lotion, large bags of cotton balls, and zinc/magnesium supplements—that allowed them to assign a "pregnancy prediction score" and forecast estimated delivery dates within a small window.</p>
+<p>Target began mailing targeted baby gear and diaper coupons to customers with high prediction scores. A Minneapolis father discovered that his high school daughter was pregnant when Target mailed baby clothing promotions addressed to her. </p>
+<p><strong>Ethical Lesson</strong>: Predictive modeling can derive intimate, sensitive personal states from innocuous consumer transactions. Even when data collection is fully legal, intrusive behavioral inferences violate users' reasonable expectation of privacy and individual autonomy.</p>
 <hr />
-<h2 id="6-interactive-laboratory-workbench">6. 🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Consent & PII Scrubber</h4>
-  <p>Practice identifying indirect quasi-identifiers, scrub personally identifiable information, and audit re-identification vulnerability client-side.</p>
-  <a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch PII Scrubber Workbench →</a>
+<h2 id="6-interactive-laboratory-sweeney-linkage-attack-quasi-identifier-risk-auditor">6. 🔬 Interactive Laboratory: Sweeney Linkage Attack &amp; Quasi-Identifier Risk Auditor</h2>
+<p>Experiment directly with quasi-identifier leakage and Sweeney's 87% linkage paradox using the interactive laboratory below. Toggle direct identifier suppression, apply postal code and age generalization, and watch how the empirical re-identification risk metrics respond in real time:</p>
+<div class="noc-sim-container" style="background:#fffdf7; border:2px solid #151b20; border-radius:14px; padding:22px; margin:24px 0; box-shadow:4px 4px 0px #151b20;">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+    <div>
+      <span style="font-weight:800; color:#0e7490; font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+        <span>🔬</span> Sweeney Quasi-Identifier Linkage Laboratory
+      </span>
+      <div style="font-size:0.84rem; color:#475569; margin-top:2px; font-weight:500;">
+        Simulate Massachusetts GIC hospital records joined against public voter registries
+      </div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="noc-sim-btn" onclick="applySweeneyPreset(1)" style="font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 1: Raw Records (Max Risk)</button>
+      <button class="noc-sim-btn" onclick="applySweeneyPreset(2)" style="background:#ffd8ce; color:#c2410c; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 2: Direct PII Stripped (False Security)</button>
+      <button class="noc-sim-btn" onclick="applySweeneyPreset(3)" style="background:#b7df69; color:#151b20; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 3: k=3 Generalized (Safe)</button>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Direct Identifier (Name):</label>
+      <select id="ctrlPiiHandling" onchange="updateSweeneySimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="raw">Cleartext Full Name</option>
+        <option value="hash">SHA-256 Pseudonym Token</option>
+        <option value="redact">Completely Redacted [REDACTED]</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">ZIP Code Generalization:</label>
+      <select id="ctrlZipLevel" onchange="updateSweeneySimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="5">5-Digit Exact (e.g. 02138)</option>
+        <option value="3">3-Digit Prefix (e.g. 021**)</option>
+        <option value="state">State Code (MA / CA)</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Birth Year / Age Precision:</label>
+      <select id="ctrlAgeLevel" onchange="updateSweeneySimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="exact">Exact Year (e.g. 1945)</option>
+        <option value="decade">10-Year Age Band (e.g. 1940s)</option>
+        <option value="bracket">Broad Cohort (&lt;1960 / &ge;1960)</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Gender Attribute:</label>
+      <select id="ctrlGenderHandling" onchange="updateSweeneySimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="keep">Preserved (M / F)</option>
+        <option value="suppress">Suppressed / Redacted [***]</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Real-Time Metrics Header -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Min Equivalence (k)</div>
+      <div id="metricKMin" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">k = 1</div>
+      <div id="metricKBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">FAIL: Singleton Linkage</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Uniqueness Ratio (Π)</div>
+      <div id="metricUniqueness" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">62.5%</div>
+      <div style="font-size:0.72rem; color:#475569;">Records with |E_Q| = 1</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Global Disclosure Risk</div>
+      <div id="metricGlobalRisk" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">0.71</div>
+      <div style="font-size:0.72rem; color:#475569;">Avg Re-ID Probability</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Gov. Weld Linkage</div>
+      <div id="metricWeldStatus" style="font-size:0.95rem; font-weight:900; color:#b91c1c; line-height:1.2; margin-top:4px;">🚨 1:1 RE-IDENTIFIED</div>
+      <div style="font-size:0.70rem; color:#475569;">Diagnosis Unmasked!</div>
+    </div>
+  </div>
+
+  <!-- Microdata Interactive Table -->
+  <div style="overflow-x:auto; border:2px solid #151b20; border-radius:10px;">
+    <table id="sweeneyTable" style="width:100%; border-collapse:collapse; background:#fff; font-size:0.80rem; font-family:monospace; margin:0;">
+      <thead>
+        <tr style="background:#e2dfff; border-bottom:2px solid #151b20; color:#151b20; text-align:left;">
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Record</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Direct PII (Name)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">ZIP Code (QI)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Birth Year (QI)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Gender (QI)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Diagnosis (Sensitive S)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">|E_Q(r)|</th>
+          <th style="padding:8px 10px;">Voter Linkage Risk</th>
+        </tr>
+      </thead>
+      <tbody id="sweeneyTableBody">
+        <!-- Rows dynamically injected via JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:14px; font-size:0.78rem; color:#475569; line-height:1.5;">
+    💡 <strong>Notice Sweeney's Paradox:</strong> When you select <em>Preset 2 (Direct PII Stripped)</em>, the names are masked into cryptographic HMAC tokens. However, because the quasi-identifiers <code>(02138, 1945, M)</code> remain exact, Governor William Weld remains the <strong>sole resident</strong> matching that profile in the Cambridge municipal voter roll—meaning his acute arrhythmia diagnosis is still 100% exposed! Only <em>Preset 3 (Generalization)</em> protects his identity.
+  </div>
 </div>
-<h4>Explore Consent & PII Scrubber</h4>
-<p>Practice identifying indirect quasi-identifiers, scrub personally identifiable information, and audit re-identification vulnerability client-side.</p>
-<p><a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch PII Scrubber Workbench →</a>
-</div></p>
+
+<script>
+const SWEENEY_RAW_DATA = [
+  { id: "REC-01", name: "William Weld", hash: "HMAC-7b2a9f", zip: "02138", state: "MA", year: 1945, gender: "M", diagnosis: "Acute Arrhythmia", isWeld: true },
+  { id: "REC-02", name: "Sarah Jenkins", hash: "HMAC-4c8d1e", zip: "02138", state: "MA", year: 1982, gender: "F", diagnosis: "Type 2 Diabetes", isWeld: false },
+  { id: "REC-03", name: "Michael Chang", hash: "HMAC-1a9f3b", zip: "02138", state: "MA", year: 1982, gender: "M", diagnosis: "Hypertension", isWeld: false },
+  { id: "REC-04", name: "Emily Davis", hash: "HMAC-8e3b2c", zip: "02139", state: "MA", year: 1990, gender: "F", diagnosis: "Asthma", isWeld: false },
+  { id: "REC-05", name: "Robert Taylor", hash: "HMAC-5d7a6e", zip: "02139", state: "MA", year: 1990, gender: "F", diagnosis: "Depression", isWeld: false },
+  { id: "REC-06", name: "Jennifer White", hash: "HMAC-9a1c4f", zip: "94107", state: "CA", year: 1975, gender: "M", diagnosis: "Bipolar Disorder", isWeld: false },
+  { id: "REC-07", name: "David Martinez", hash: "HMAC-2f8e5d", zip: "94107", state: "CA", year: 1975, gender: "M", diagnosis: "Cardiac Arrest", isWeld: false },
+  { id: "REC-08", name: "Lisa Anderson", hash: "HMAC-6b4d3a", zip: "94107", state: "CA", year: 1975, gender: "M", diagnosis: "Hypertension", isWeld: false }
+];
+
+function applySweeneyPreset(presetId) {
+  const piiSel = document.getElementById('ctrlPiiHandling');
+  const zipSel = document.getElementById('ctrlZipLevel');
+  const ageSel = document.getElementById('ctrlAgeLevel');
+  const genSel = document.getElementById('ctrlGenderHandling');
+
+  if (presetId === 1) {
+    piiSel.value = 'raw';
+    zipSel.value = '5';
+    ageSel.value = 'exact';
+    genSel.value = 'keep';
+  } else if (presetId === 2) {
+    piiSel.value = 'hash';
+    zipSel.value = '5';
+    ageSel.value = 'exact';
+    genSel.value = 'keep';
+  } else if (presetId === 3) {
+    piiSel.value = 'redact';
+    zipSel.value = '3';
+    ageSel.value = 'bracket';
+    genSel.value = 'suppress';
+  }
+  updateSweeneySimulation();
+}
+
+function updateSweeneySimulation() {
+  const piiMode = document.getElementById('ctrlPiiHandling').value;
+  const zipMode = document.getElementById('ctrlZipLevel').value;
+  const ageMode = document.getElementById('ctrlAgeLevel').value;
+  const genMode = document.getElementById('ctrlGenderHandling').value;
+
+  // Process rows and build QI tuple keys
+  const processed = SWEENEY_RAW_DATA.map(r => {
+    let piiStr = r.name;
+    if (piiMode === 'hash') piiStr = r.hash;
+    else if (piiMode === 'redact') piiStr = '[REDACTED]';
+
+    let zipStr = r.zip;
+    if (zipMode === '3') zipStr = r.zip.substring(0, 3) + '**';
+    else if (zipMode === 'state') zipStr = r.state + ' (State)';
+
+    let ageStr = String(r.year);
+    if (ageMode === 'decade') {
+      const dec = Math.floor(r.year / 10) * 10;
+      ageStr = `${dec}s`;
+    } else if (ageMode === 'bracket') {
+      ageStr = r.year < 1960 ? 'Senior (<1960)' : 'Working (>=1960)';
+    }
+
+    let genStr = r.gender;
+    if (genMode === 'suppress') genStr = '[*]';
+
+    const qiKey = `${zipStr}|${ageStr}|${genStr}`;
+    return { ...r, piiStr, zipStr, ageStr, genStr, qiKey };
+  });
+
+  // Calculate Equivalence Class Counts
+  const eqCounts = {};
+  processed.forEach(p => {
+    eqCounts[p.qiKey] = (eqCounts[p.qiKey] || 0) + 1;
+  });
+
+  let uniqueCount = 0;
+  let sumInvRisk = 0;
+  let minK = 999;
+  let weldClassSize = 1;
+
+  processed.forEach(p => {
+    const size = eqCounts[p.qiKey];
+    p.classSize = size;
+    p.reidRisk = 1.0 / size;
+    sumInvRisk += p.reidRisk;
+    if (size === 1) uniqueCount++;
+    if (size < minK) minK = size;
+    if (p.isWeld) weldClassSize = size;
+  });
+
+  const totalN = processed.length;
+  const uniquenessRatio = (uniqueCount / totalN) * 100;
+  const globalRisk = (sumInvRisk / totalN);
+
+  // Update Metrics Dashboard
+  const kElem = document.getElementById('metricKMin');
+  const kBadge = document.getElementById('metricKBadge');
+  kElem.innerText = `k = ${minK}`;
+  if (minK === 1) {
+    kElem.style.color = '#b91c1c';
+    kBadge.innerText = 'FAIL: Singleton Linkage';
+    kBadge.style.color = '#b91c1c';
+  } else if (minK === 2) {
+    kElem.style.color = '#d97706';
+    kBadge.innerText = 'WARN: 2-Anonymity (50% Risk)';
+    kBadge.style.color = '#d97706';
+  } else {
+    kElem.style.color = '#047857';
+    kBadge.innerText = `PASS: Robust k=${minK} Cohort`;
+    kBadge.style.color = '#047857';
+  }
+
+  const uniqElem = document.getElementById('metricUniqueness');
+  uniqElem.innerText = `${uniquenessRatio.toFixed(1)}%`;
+  uniqElem.style.color = uniquenessRatio > 0 ? '#b91c1c' : '#047857';
+
+  const riskElem = document.getElementById('metricGlobalRisk');
+  riskElem.innerText = globalRisk.toFixed(2);
+  riskElem.style.color = globalRisk > 0.35 ? '#b91c1c' : (globalRisk > 0.2 ? '#d97706' : '#047857');
+
+  const weldStatusElem = document.getElementById('metricWeldStatus');
+  if (weldClassSize === 1) {
+    weldStatusElem.innerHTML = '🚨 1:1 RE-IDENTIFIED';
+    weldStatusElem.style.color = '#b91c1c';
+  } else if (weldClassSize === 2) {
+    weldStatusElem.innerHTML = '⚠️ 50% Linkage Risk';
+    weldStatusElem.style.color = '#d97706';
+  } else {
+    weldStatusElem.innerHTML = `🛡️ Hidden in ${weldClassSize}-Cohort`;
+    weldStatusElem.style.color = '#047857';
+  }
+
+  // Populate Table
+  const tbody = document.getElementById('sweeneyTableBody');
+  tbody.innerHTML = '';
+  processed.forEach((p, idx) => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid #151b20';
+
+    let rowBg = '#ffffff';
+    let riskBadge = '';
+    if (p.classSize === 1) {
+      rowBg = p.isWeld ? '#ffe4e6' : '#fff1f2';
+      riskBadge = `<span style="background:#ffd8ce; color:#991b1b; padding:2px 6px; border-radius:4px; font-weight:800; border:1px solid #991b1b;">100% Unique (${(p.reidRisk*100).toFixed(0)}%)</span>`;
+    } else if (p.classSize === 2) {
+      rowBg = '#fffbeb';
+      riskBadge = `<span style="background:#fef3c7; color:#b45309; padding:2px 6px; border-radius:4px; font-weight:700; border:1px solid #b45309;">k=2 (50%)</span>`;
+    } else {
+      rowBg = '#f0fdf4';
+      riskBadge = `<span style="background:#dcfce7; color:#15803d; padding:2px 6px; border-radius:4px; font-weight:700; border:1px solid #15803d;">Safe k=${p.classSize} (${(p.reidRisk*100).toFixed(0)}%)</span>`;
+    }
+    tr.style.background = rowBg;
+
+    tr.innerHTML = `
+      <td style="padding:6px 10px; border-right:1px solid #151b20; font-weight:700;">${p.id} ${p.isWeld ? '⭐' : ''}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20; font-weight:${p.isWeld ? '800' : '500'}; color:${p.isWeld ? '#991b1b' : '#151b20'};">${p.piiStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20;">${p.zipStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20;">${p.ageStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20;">${p.genStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20; font-weight:600; color:#334155;">${p.diagnosis}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20; text-align:center; font-weight:800;">${p.classSize}</td>
+      <td style="padding:6px 10px;">${riskBadge}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Initial render on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateSweeneySimulation();
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateSweeneySimulation();
+}
+</script>
+
+<hr />
+<h2 id="7-production-grade-python-verification-pipeline-pydantic-v2-vectorized-auditing">7. Production-Grade Python Verification Pipeline (Pydantic V2 &amp; Vectorized Auditing)</h2>
+<p>The following production script implements an end-to-end data de-identification and privacy compliance gatekeeper using <strong>Pydantic V2</strong> and vectorized equivalence class partitioning:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># data_privacy_governance_pipeline.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Production Type-Safe Quasi-Identifier Generalization and k-Anonymity Compliance Gatekeeper</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hmac</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">MicrodataRecord</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="sd">    Validated Patient Microdata Schema with Semantic Privacy Field Classifications.</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="sd">    """</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Direct PII: Full name or patient ID"</span><span class="p">)</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">zip_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Quasi-Identifier: 5-digit US ZIP"</span><span class="p">)</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="n">birth_year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1900</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">2026</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Quasi-Identifier: Exact birth year"</span><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">gender</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s2">"^(M|F|O)$"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Quasi-Identifier: Gender code"</span><span class="p">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">medical_diagnosis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Sensitive Attribute: Clinical diagnostic code"</span><span class="p">)</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">"zip_code"</span><span class="p">)</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_numeric_zip</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"ZIP code </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> must contain exactly 5 digits"</span><span class="p">)</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="k">return</span> <span class="n">v</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProductionPrivacyEngine</span><span class="p">:</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="sd">    Cryptographic Tokenizer, Hierarchical Generalizer, and k-Anonymity Verifier.</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="sd">    """</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salt_secret</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">salt_secret</span> <span class="o">=</span> <span class="n">salt_secret</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">pseudonymize_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">        </span><span class="sd">"""Generates salted SHA-256 HMAC pseudonym for direct PII."""</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>        <span class="n">mac</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">salt_secret</span><span class="p">,</span> <span class="n">raw_identifier</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"HMAC-</span><span class="si">{</span><span class="n">mac</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">12</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">generalize_zip</span><span class="p">(</span><span class="n">zip_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefix_len</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">        </span><span class="sd">"""Truncates 5-digit postal code to hierarchical prefix (e.g. 021**)."""</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="k">return</span> <span class="n">zip_code</span><span class="p">[:</span><span class="n">prefix_len</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"*"</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">prefix_len</span><span class="p">)</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">generalize_birth_year</span><span class="p">(</span><span class="n">birth_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bin_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">        </span><span class="sd">"""Binds exact birth year into decade cohorts (e.g. 1940-1949)."""</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>        <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="n">birth_year</span> <span class="o">//</span> <span class="n">bin_width</span><span class="p">)</span> <span class="o">*</span> <span class="n">bin_width</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bin_width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_disclosure_risk</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">qi_tuples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="sd">        Computes equivalence class partitions, minimum k-anonymity, </span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="sd">        and population uniqueness ratio.</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="sd">        """</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">qi_tuples</span><span class="p">:</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>            <span class="k">return</span> <span class="p">{</span><span class="s2">"k_min"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"global_risk"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">"uniqueness_ratio"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">"is_safe"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>        <span class="n">eq_classes</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">qi_tuples</span><span class="p">)</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>        <span class="n">class_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">eq_classes</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">qi_tuples</span><span class="p">]</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>        <span class="n">k_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">eq_classes</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>        <span class="n">unique_records</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">class_sizes</span> <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>        <span class="n">reid_risks</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">size</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">class_sizes</span><span class="p">]</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>            <span class="s2">"k_min"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">k_min</span><span class="p">),</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>            <span class="s2">"global_disclosure_risk"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">reid_risks</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">qi_tuples</span><span class="p">)),</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>            <span class="s2">"uniqueness_ratio"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">unique_records</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">qi_tuples</span><span class="p">)),</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>            <span class="s2">"max_individual_risk"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">reid_risks</span><span class="p">)),</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>            <span class="s2">"num_equivalence_classes"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">eq_classes</span><span class="p">),</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>            <span class="s2">"is_compliant"</span><span class="p">:</span> <span class="n">k_min</span> <span class="o">&gt;=</span> <span class="mi">3</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>        <span class="p">}</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_production_privacy_audit</span><span class="p">():</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="c1"># Simulated Massachusetts GIC Hospital Discharge Sample</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"W_WELD"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"02138"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1945</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"M"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Cardiac Arrhythmia"</span><span class="p">),</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"S_JENKINS"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"02138"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1982</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Type 2 Diabetes"</span><span class="p">),</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"M_CHANG"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"02138"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1982</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"M"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Hypertension"</span><span class="p">),</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"E_DAVIS"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"02139"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1990</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Asthma"</span><span class="p">),</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"R_TAYLOR"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"02139"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1990</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"F"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Clinical Depression"</span><span class="p">),</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"J_WHITE"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"94107"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1975</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"M"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Bipolar Disorder"</span><span class="p">),</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"D_MARTINEZ"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"94107"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1975</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"M"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Cardiac Arrest"</span><span class="p">),</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>        <span class="n">MicrodataRecord</span><span class="p">(</span><span class="n">subject_id</span><span class="o">=</span><span class="s2">"L_ANDERSON"</span><span class="p">,</span> <span class="n">zip_code</span><span class="o">=</span><span class="s2">"94107"</span><span class="p">,</span> <span class="n">birth_year</span><span class="o">=</span><span class="mi">1975</span><span class="p">,</span> <span class="n">gender</span><span class="o">=</span><span class="s2">"M"</span><span class="p">,</span> <span class="n">medical_diagnosis</span><span class="o">=</span><span class="s2">"Hypertension"</span><span class="p">),</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="p">]</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>    <span class="n">engine</span> <span class="o">=</span> <span class="n">ProductionPrivacyEngine</span><span class="p">(</span><span class="n">salt_secret</span><span class="o">=</span><span class="sa">b</span><span class="s2">"k_anonymity_secret_key_2026"</span><span class="p">)</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>    <span class="c1"># Step 1: Raw Quasi-Identifiers Audit (Before Generalization)</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="n">raw_qi</span> <span class="o">=</span> <span class="p">[(</span><span class="n">r</span><span class="o">.</span><span class="n">zip_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">birth_year</span><span class="p">),</span> <span class="n">r</span><span class="o">.</span><span class="n">gender</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">]</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    <span class="n">raw_audit</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">audit_disclosure_risk</span><span class="p">(</span><span class="n">raw_qi</span><span class="p">)</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="c1"># William Weld (02138, 1945, M) is a singleton -&gt; k_min = 1</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="k">assert</span> <span class="n">raw_audit</span><span class="p">[</span><span class="s2">"k_min"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Raw data should fail k-anonymity"</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="k">assert</span> <span class="n">raw_audit</span><span class="p">[</span><span class="s2">"uniqueness_ratio"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"Expected 3 unique singletons"</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>    <span class="k">assert</span> <span class="n">raw_audit</span><span class="p">[</span><span class="s2">"is_compliant"</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"Raw data must not be released"</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>    <span class="c1"># Step 2: Generalized Quasi-Identifiers Audit (3-digit ZIP + Suppressed Gender + Broad Cohort)</span>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>    <span class="n">generalized_qi</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        <span class="n">gen_zip</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">generalize_zip</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">zip_code</span><span class="p">,</span> <span class="n">prefix_len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>        <span class="c1"># Suppress gender and map to broad age bracket (&lt;1960 vs &gt;=1960)</span>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>        <span class="n">age_cohort</span> <span class="o">=</span> <span class="s2">"&lt;1960"</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">birth_year</span> <span class="o">&lt;</span> <span class="mi">1960</span> <span class="k">else</span> <span class="s2">"&gt;=1960"</span>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>        <span class="n">generalized_qi</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">gen_zip</span><span class="p">,</span> <span class="n">age_cohort</span><span class="p">))</span>
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>    <span class="c1"># Note: 5 MA records (021**, &gt;=1960 has 4 records, &lt;1960 has 1 record)</span>
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>    <span class="c1"># To enforce k &gt;= 3, outlier suppression is applied to Gov. Weld's outlier record</span>
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>    <span class="n">suppressed_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">dataset</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">birth_year</span> <span class="o">&gt;=</span> <span class="mi">1960</span><span class="p">]</span>
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    <span class="n">safe_qi</span> <span class="o">=</span> <span class="p">[(</span><span class="n">engine</span><span class="o">.</span><span class="n">generalize_zip</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">zip_code</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">"&gt;=1960"</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">suppressed_dataset</span><span class="p">]</span>
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>    <span class="n">safe_audit</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">audit_disclosure_risk</span><span class="p">(</span><span class="n">safe_qi</span><span class="p">)</span>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>    <span class="k">assert</span> <span class="n">safe_audit</span><span class="p">[</span><span class="s2">"k_min"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"k-anonymity gatekeeper must guarantee k &gt;= 3"</span>
+</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>    <span class="k">assert</span> <span class="n">safe_audit</span><span class="p">[</span><span class="s2">"uniqueness_ratio"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">"Zero singletons permitted in safe cohort"</span>
+</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>    <span class="k">assert</span> <span class="n">safe_audit</span><span class="p">[</span><span class="s2">"is_compliant"</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Pipeline successfully cleared for release"</span>
+</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Production Privacy Governance tests passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>
+</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>
+</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>    <span class="n">test_production_privacy_audit</span><span class="p">()</span>
+</span></code></pre></div>
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Ethics vs. Privacy</strong>: Privacy establishes individual rights over personal information; ethics evaluates whether data uses promote human welfare and justice.</li>
-<li><strong>Quasi-Identifier Vulnerability</strong>: Direct identifier masking is mathematically insufficient; <span class="arithmatex">\(87\%\)</span> of individuals are uniquely identified by 3 common demographic attributes.</li>
-<li><strong>Continuous Governance</strong>: Data ethics is not a gateway review before release; it must be engineered into collection, annotation, preprocessing, and deployment.</li>
-<li><strong>Stakeholder Alignment</strong>: Always map conflicting incentives between data subjects, engineering teams, and executive management before gathering sensitive telemetry.</li>
+<li><strong>Compliance is a Floor, Not a Ceiling</strong>: A machine learning dataset can satisfy <span class="arithmatex">\(100\%\)</span> of legal GDPR requirements while remaining deeply unethical. Always evaluate societal impact, fairness, and human autonomy beyond mere regulatory checkboxes.</li>
+<li><strong>Direct PII Masking Fails Sweeney's Linkage</strong>: Stripping names and national IDs provides zero mathematical guarantee against re-identification. In public voter registries, <span class="arithmatex">\(87.1\%\)</span> of the population is uniquely distinguished by <span class="arithmatex">\(\{5\text{-digit ZIP}, \text{Gender}, \text{Date of Birth}\}\)</span>.</li>
+<li><strong>The Lifecycle Governance Invariant</strong>: Ethical review cannot be a pre-deployment gateway review. Ethical checks must be built into Collection (Track 2), Annotation (Track 4), Preprocessing (Track 5), and Modeling (Tracks 6 &amp; 7).</li>
+<li><strong>Stakeholder Alignment Matrices</strong>: Conflicting incentives between Data Subjects, Practitioners, Executives, and Regulators must be negotiated upfront using formal Pareto utility-privacy trade-offs.</li>
+<li><strong>High-Dimensional Behavioral Unicity</strong>: Search query trails (AOL), movie rating vectors (Netflix), and spatio-temporal GPS breadcrumbs cannot be anonymized by tokenization. High dimensionality demands differential privacy or coarse generalization.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="interactive-self-assessment-diagnostic-scenarios">❓ Interactive Self-Assessment Diagnostic Scenarios</h2>
 <details class="question">
-<summary>Self-Assessment: The 87% Re-identification Vulnerability</summary>
-<p>In Dr. Latanya Sweeney's seminal Cambridge voter registry experiment, why did masking direct identifiers (name, street address, SSN) fail to protect Governor William Weld's confidential medical records?</p>
+<summary>Self-Assessment 1: Spatio-Temporal Mobility Linkage &amp; GPS Unicity</summary>
+<p>A municipal smart-transportation consortium releases an "anonymized" public transit dataset of 500,000 electric scooter and ride-share GPS trajectories. Direct user IDs and phone numbers are stripped, replaced with daily rotating random hashes. However, each record contains latitude-longitude coordinates sampled at 1-minute intervals. According to mobility privacy research (e.g., de Montjoye et al.), why does pseudonymous rotation fail, and how many spatio-temporal points are sufficient to re-identify an individual?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Direct identifier suppression failed due to <strong>Quasi-Identifier Linkage</strong>.</p>
-<p>The hospital discharge database contained quasi-identifiers: <code>{ZIP code, Gender, Birth Date}</code>. The publicly accessible Cambridge voter list contained <code>{Name, Address, ZIP code, Gender, Birth Date}</code>. By joining the two databases on the quasi-identifier triplet, Governor Weld was the only male voter residing in Cambridge ZIP 02138 born on his exact birth date. This produced an unambiguous <span class="arithmatex">\(1:1\)</span> record linkage that revealed his private diagnosis, prescriptions, and surgical history.</p>
+<p><strong>Answer:</strong> Pseudonymous ID rotation fails due to <strong>Spatio-Temporal Unicity</strong>.</p>
+<p>Human mobility trajectories are highly individualized. In their seminal study <em>"Unique in the Crowd: The privacy bounds of human mobility"</em> (de Montjoye et al., 2013), researchers proved that <strong>merely 4 spatio-temporal points</strong> (e.g., home at 7:30 AM, coffee shop at 8:15 AM, office at 9:00 AM, gym at 6:00 PM) are sufficient to uniquely identify <span class="arithmatex">\(95\%\)</span> of individuals in a dataset of 1.5 million users. </p>
+<p>Even if IDs rotate daily, an adversary linking the origin location (home) and destination (workplace) to public real estate databases or LinkedIn profiles can easily reconstruct the complete mobility history. The technical remedy is spatial grid binning (e.g., Uber H3 hexagon aggregation) and localized differential privacy perturbations.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Belmont Report Justice Principle in ML Dataset Curation</summary>
-<p>Explain how the Belmont Report principle of <strong>Justice</strong> applies when training a medical diagnostic AI exclusively on patient cohorts from wealthy suburban hospitals.</p>
+<summary>Self-Assessment 2: Utilitarian Welfare vs. Rawlsian Maximin in Intensive Care Triage</summary>
+<p>An algorithmic ICU bed triage model achieves a <span class="arithmatex">\(94\%\)</span> overall survival prediction accuracy across an entire hospital network, scoring high on Utilitarian Social Welfare:
+$<span class="arithmatex">\(W_{\text{utilitarian}} = \sum_{i=1}^N u_i(f(\mathbf{x}_i))\)</span>$
+However, an independent subgroup audit reveals that for a minority demographic cohort representing <span class="arithmatex">\(4\%\)</span> of patients, false-negative mortality errors are <span class="arithmatex">\(3.8\times\)</span> higher than average. Explain how the Rawlsian Maximin Distributive Justice criterion evaluates this model compared to the utilitarian metric.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The principle of Justice requires that the <strong>burdens and benefits of research be distributed equitably across populations</strong>.</p>
-<p>Training an AI exclusively on affluent cohorts while deploying it across urban public health clinics violates Justice. The model optimizes for diagnostic biomarkers, imaging hardware, and clinical protocols prevalent in well-funded institutions, exhibiting higher error rates on marginalized communities who bear the clinical risk of misdiagnosis without having received the benefit of representative model calibration.</p>
+<p><strong>Answer:</strong> Under the <strong>Rawlsian Maximin Distributive Justice criterion</strong>, the deployment is classified as <strong>unethical and unacceptable</strong>.</p>
+<p>Rawlsian welfare evaluates a system strictly by the welfare of its least-advantaged demographic subgroup:
+$<span class="arithmatex">\(W_{\text{Rawls}} = \min_{g \in \mathcal{G}} \mathbb{E}\left[ u(f(\mathbf{x})) \mid \mathbf{x} \in \mathcal{G}_g \right]\)</span>$</p>
+<p>While Utilitarianism allows the immense benefits enjoyed by the <span class="arithmatex">\(96\%\)</span> majority to mathematically outweigh the severe clinical harms inflicted on the <span class="arithmatex">\(4\%\)</span> minority, Rawlsian justice forbids imposing disproportionate life-or-death downside risks onto vulnerable sub-populations. Ethical data engineering requires re-weighting loss functions or acquiring targeted representative training data to enforce equalized odds across all cohorts before deployment.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: Foundation Model Web Scraping &amp; GDPR Article 17</summary>
+<p>A generative AI laboratory scrapes 500 million public posts from online medical support forums and discussion boards to pretrain a medical clinical assistant. The team argues that because users posted their symptoms publicly on the open web, no informed consent or privacy obligations attach. Analyze the legal and ethical validity of this position under GDPR Article 9 and Article 17.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The laboratory's legal and ethical position is <strong>fatally flawed</strong>.</p>
+<ol>
+<li><strong>Article 9 ("Special Categories of Data")</strong>: Health data enjoys heightened statutory protection under GDPR Article 9. Processing sensitive medical telemetry requires explicit, affirmative consent or specific statutory exceptions. The mere fact that data is publicly visible on the internet does not strip it of its protected status or constitute a waiver of data subject rights.</li>
+<li><strong>Article 17 ("Right to Erasure / Right to be Forgotten")</strong>: Under GDPR Article 17, individuals possess the statutory right to demand the deletion of their personal records. If sensitive personal statements are baked irreversibly into the parametric weights of a deep neural network, fulfilling a valid deletion request becomes mathematically intractable without costly model retraining or machine unlearning pipelines.</li>
+<li><strong>Contextual Integrity</strong>: Philosophically (Nissenbaum, 2004), users shared intimate medical experiences within the contextual boundary of peer mutual support, not for commercial foundation model parameter extraction.</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Dynamic Consent &amp; Article 7(4) Forced Bundling</summary>
+<p>A mobile genomics startup requires users to accept a 40-page End User License Agreement (EULA) where agreeing to basic DNA ancestry reports automatically bundles unconditional authorization for the company to license raw genetic sequences to third-party commercial pharmaceutical sponsors. How does GDPR Article 7(4) and FTC Section 5 treat this data collection architecture?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> This architecture constitutes <strong>Unlawful Forced Consent (Bundling)</strong> and an <strong>Unfair Trade Practice</strong>.</p>
+<p>Under GDPR Article 7(4), consent is not freely given if the performance of a contract (delivering the consumer DNA ancestry report) is made conditional on consent to the processing of personal data that is not necessary for that performance (commercial pharmaceutical data brokering). </p>
+<p>The FTC and European Data Protection Board (EDPB) classify such take-it-or-leave-it dark patterns as coercive. The compliant engineering architecture requires <strong>Dynamic, Unbundled Consent</strong>: users must be able to granularly toggle third-party research sharing on or off via dedicated API endpoints without losing access to the core consumer application.</p>
 </details>
 </details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
+<li><a id="ref-sweeney2000"></a><strong>[Sweeney2000]</strong> L. Sweeney, "Simple Demographics Often Identify People Uniquely," <em>Carnegie Mellon University, Data Privacy Working Paper</em>, vol. 3, 2000. <a href="https://doi.org/10.1184/R1/6620573.v1">DOI: 10.1184/R1/6620573.v1</a>.</li>
+<li><a id="ref-sweeney2002"></a><strong>[Sweeney2002]</strong> L. Sweeney, "k-Anonymity: A Model for Protecting Privacy," <em>International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems</em>, vol. 10, no. 5, pp. 557–570, 2002. <a href="https://doi.org/10.1142/S0218488502001648">DOI: 10.1142/S0218488502001648</a>.</li>
+<li><a id="ref-narayanan2008"></a><strong>[Narayanan2008]</strong> A. Narayanan and V. Shmatikov, "Robust De-anonymization of Large Sparse Datasets," in <em>Proceedings of the 2008 IEEE Symposium on Security and Privacy (SP '08)</em>, May 2008, pp. 111–125. <a href="https://doi.org/10.1109/SP.2008.33">DOI: 10.1109/SP.2008.33</a>.</li>
+<li><a id="ref-barbaro2006"></a><strong>[Barbaro2006]</strong> M. Barbaro and T. Zeller Jr., "A Face Is Exposed for AOL Searcher No. 4417749," <em>The New York Times</em>, Aug. 9, 2006.</li>
+<li><a id="ref-dwork2014"></a><strong>[Dwork2014]</strong> C. Dwork and A. Roth, "The Algorithmic Foundations of Differential Privacy," <em>Foundations and Trends in Theoretical Computer Science</em>, vol. 9, no. 3–4, pp. 211–407, 2014. <a href="https://doi.org/10.1561/0400000042">DOI: 10.1561/0400000042</a>.</li>
+<li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, Dec. 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>
 <li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> B. D. Mittelstadt, P. Allo, M. Taddeo, S. Wachter, and L. Floridi, "The Ethics of Algorithms: Mapping the Debate," <em>Big Data &amp; Society</em>, vol. 3, no. 2, pp. 1–21, 2016. <a href="https://doi.org/10.1177/2053951716679679">DOI: 10.1177/2053951716679679</a>.</li>
 <li><a id="ref-jobin2019"></a><strong>[Jobin2019]</strong> A. Jobin, M. Ienca, and E. Vayena, "The Global Landscape of AI Ethics Guidelines," <em>Nature Machine Intelligence</em>, vol. 1, no. 9, pp. 389–399, 2019. <a href="https://doi.org/10.1038/s42256-019-0088-2">DOI: 10.1038/s42256-019-0088-2</a>.</li>
 <li><a id="ref-voigt2017"></a><strong>[Voigt2017]</strong> P. Voigt and A. Von dem Bussche, <em>The EU General Data Protection Regulation (GDPR): A Practical Guide</em>, 1st ed., Springer Cham, 2017. <a href="https://doi.org/10.1007/978-3-319-57959-7">DOI: 10.1007/978-3-319-57959-7</a>.</li>
-<li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, Dec. 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>
 <li><a id="ref-oneil2016"></a><strong>[Oneil2016]</strong> C. O'Neil, <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>, Crown Publishing Group, 2016. <a href="https://doi.org/10.1057/s11369-017-0027-3">DOI: 10.1057/s11369-017-0027-3</a>.</li>
-<li><a id="ref-sweeney2000"></a><strong>[Sweeney2000]</strong> L. Sweeney, "Simple Demographics Often Identify People Uniquely," <em>Carnegie Mellon University, Data Privacy Working Paper</em>, vol. 3, 2000. <a href="https://doi.org/10.1184/R1/6620573.v1">DOI: 10.1184/R1/6620573.v1</a>.</li>
-<li><a id="ref-dwork2014"></a><strong>[Dwork2014]</strong> C. Dwork and A. Roth, "The Algorithmic Foundations of Differential Privacy," <em>Foundations and Trends in Theoretical Computer Science</em>, vol. 9, no. 3–4, pp. 211–407, 2014. <a href="https://doi.org/10.1561/0400000042">DOI: 10.1561/0400000042</a>.</li>
+<li><a id="ref-demontjoye2013"></a><strong>[deMontjoye2013]</strong> Y.-A. de Montjoye, C. A. Hidalgo, M. Verleysen, and V. D. Blondel, "Unique in the Crowd: The privacy bounds of human mobility," <em>Scientific Reports</em>, vol. 3, no. 1, p. 1376, 2013. <a href="https://doi.org/10.1038/srep01376">DOI: 10.1038/srep01376</a>.</li>
+<li><a id="ref-duhigg2012"></a><strong>[Duhigg2012]</strong> C. Duhigg, "How Companies Learn Your Secrets," <em>The New York Times Magazine</em>, Feb. 16, 2012.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
   <a href="../" class="noc-sim-btn secondary" style="text-decoration: none;">← Back to Track 3 Overview</a>
-  <a href="../02-core-ethical-principles/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Core Ethical Principles (3.2) →</a>
+  <a href="../02-core-ethical-principles/" class="noc-sim-btn" style="text-decoration: none;">Next: Core Ethical Principles (3.2) →</a>
 </div>
 
 
