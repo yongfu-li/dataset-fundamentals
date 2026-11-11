@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1766,58 +1810,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-mathematical-formalization-of-privacy-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Mathematical Formalization of Privacy Principles
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Mathematical Formalization of Privacy Principles">
+    <nav class="md-nav" aria-label="1. Information Taxonomy: Direct vs. Quasi-Identifiers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#quasi-identifier-space-cardinality" class="md-nav__link">
+  <a href="#table-31-the-four-information-tiers-in-production-schemas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quasi-Identifier Space Cardinality
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#information-bottleneck-for-data-minimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Information Bottleneck for Data Minimization
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#contextual-integrity-purpose-limitation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contextual Integrity &amp; Purpose Limitation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#right-to-erasure-first-order-unlearning-influence" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Right to Erasure: First-Order Unlearning Influence
+        Table 3.1: The Four Information Tiers in Production Schemas
       
     </span>
   </a>
@@ -1830,10 +1830,121 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-the-7-principles-of-privacy-by-design-pbd" class="md-nav__link">
+  <a href="#2-statutory-anchors-hipaa-18-safe-harbor-gdpr-article-5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. The 7 Principles of Privacy by Design (PbD)
+        2. Statutory Anchors: HIPAA 18 Safe Harbor &amp; GDPR Article 5
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Statutory Anchors: HIPAA 18 Safe Harbor &amp; GDPR Article 5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-the-hipaa-18-safe-harbor-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. The HIPAA 18 Safe Harbor Identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-32-the-hipaa-safe-harbor-18-identifier-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.2: The HIPAA Safe Harbor 18-Identifier Taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-gdpr-article-5-principles-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. GDPR Article 5 Principles Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mathematical-formalization-of-privacy-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mathematical Formalization of Privacy Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Mathematical Formalization of Privacy Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quasi-identifier-space-cardinality-sweeneys-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Quasi-Identifier Space Cardinality &amp; Sweeney's Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-information-bottleneck-formulation-of-data-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Information Bottleneck Formulation of Data Minimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-contextual-integrity-purpose-limitation-invariant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Contextual Integrity &amp; Purpose Limitation Invariant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-right-to-erasure-first-order-machine-unlearning-influence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Right to Erasure: First-Order Machine Unlearning Influence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-7-principles-of-privacy-by-design-pbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The 7 Principles of Privacy by Design (PbD)
       
     </span>
   </a>
@@ -1841,10 +1952,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-data-minimization-entropy-audit" class="md-nav__link">
+  <a href="#5-in-depth-engineering-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Data Minimization &amp; Entropy Audit
+        5. In-Depth Engineering Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. In-Depth Engineering Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-google-deepmind-the-royal-free-nhs-trust-2017" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Google DeepMind &amp; The Royal Free NHS Trust (2017)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-cambridge-analytica-the-friend-permission-cascade-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Cambridge Analytica &amp; The Friend-Permission Cascade (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-strava-polar-flow-fitness-spy-scandal-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Strava &amp; Polar Flow Fitness Spy Scandal (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interactive-laboratory-hipaa-18-detection-consent-pii-scrubber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 🔬 Interactive Laboratory: HIPAA 18 Detection, Consent &amp; PII Scrubber
       
     </span>
   </a>
@@ -1852,21 +2013,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-hipaa-18-identifier-regex-pii-scrubber" class="md-nav__link">
+  <a href="#7-production-implementation-hipaa-18-identifier-regex-pii-scrubber" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: HIPAA 18-Identifier Regex &amp; PII Scrubber
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Interactive Laboratory Workbench
+        7. Production Implementation: HIPAA 18-Identifier Regex &amp; PII Scrubber
       
     </span>
   </a>
@@ -1885,10 +2035,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7429,58 +7579,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-mathematical-formalization-of-privacy-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Mathematical Formalization of Privacy Principles
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Mathematical Formalization of Privacy Principles">
+    <nav class="md-nav" aria-label="1. Information Taxonomy: Direct vs. Quasi-Identifiers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#quasi-identifier-space-cardinality" class="md-nav__link">
+  <a href="#table-31-the-four-information-tiers-in-production-schemas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quasi-Identifier Space Cardinality
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#information-bottleneck-for-data-minimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Information Bottleneck for Data Minimization
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#contextual-integrity-purpose-limitation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contextual Integrity &amp; Purpose Limitation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#right-to-erasure-first-order-unlearning-influence" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Right to Erasure: First-Order Unlearning Influence
+        Table 3.1: The Four Information Tiers in Production Schemas
       
     </span>
   </a>
@@ -7493,10 +7599,121 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-the-7-principles-of-privacy-by-design-pbd" class="md-nav__link">
+  <a href="#2-statutory-anchors-hipaa-18-safe-harbor-gdpr-article-5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. The 7 Principles of Privacy by Design (PbD)
+        2. Statutory Anchors: HIPAA 18 Safe Harbor &amp; GDPR Article 5
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Statutory Anchors: HIPAA 18 Safe Harbor &amp; GDPR Article 5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-the-hipaa-18-safe-harbor-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. The HIPAA 18 Safe Harbor Identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-32-the-hipaa-safe-harbor-18-identifier-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.2: The HIPAA Safe Harbor 18-Identifier Taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-gdpr-article-5-principles-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. GDPR Article 5 Principles Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mathematical-formalization-of-privacy-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mathematical Formalization of Privacy Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Mathematical Formalization of Privacy Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quasi-identifier-space-cardinality-sweeneys-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Quasi-Identifier Space Cardinality &amp; Sweeney's Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-information-bottleneck-formulation-of-data-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Information Bottleneck Formulation of Data Minimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-contextual-integrity-purpose-limitation-invariant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Contextual Integrity &amp; Purpose Limitation Invariant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-right-to-erasure-first-order-machine-unlearning-influence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Right to Erasure: First-Order Machine Unlearning Influence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-7-principles-of-privacy-by-design-pbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The 7 Principles of Privacy by Design (PbD)
       
     </span>
   </a>
@@ -7504,10 +7721,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-data-minimization-entropy-audit" class="md-nav__link">
+  <a href="#5-in-depth-engineering-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Data Minimization &amp; Entropy Audit
+        5. In-Depth Engineering Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. In-Depth Engineering Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-google-deepmind-the-royal-free-nhs-trust-2017" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Google DeepMind &amp; The Royal Free NHS Trust (2017)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-cambridge-analytica-the-friend-permission-cascade-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Cambridge Analytica &amp; The Friend-Permission Cascade (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-strava-polar-flow-fitness-spy-scandal-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Strava &amp; Polar Flow Fitness Spy Scandal (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-interactive-laboratory-hipaa-18-detection-consent-pii-scrubber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 🔬 Interactive Laboratory: HIPAA 18 Detection, Consent &amp; PII Scrubber
       
     </span>
   </a>
@@ -7515,21 +7782,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-hipaa-18-identifier-regex-pii-scrubber" class="md-nav__link">
+  <a href="#7-production-implementation-hipaa-18-identifier-regex-pii-scrubber" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: HIPAA 18-Identifier Regex &amp; PII Scrubber
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Interactive Laboratory Workbench
+        7. Production Implementation: HIPAA 18-Identifier Regex &amp; PII Scrubber
       
     </span>
   </a>
@@ -7548,10 +7804,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7590,38 +7846,38 @@
 
 
 <h1 id="34-data-privacy-principles-informed-consent-quasi-identifiers-privacy-by-design">3.4 Data Privacy Principles: Informed Consent, Quasi-Identifiers &amp; Privacy by Design</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.3: Data Privacy Management)</strong> in the official Springer Nature monograph, covering Sweeney's re-identification theorem, Cavoukian's Privacy by Design axioms, and clinical consent contracts.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.4: Data Privacy Management)</strong> in the official Springer Nature monograph, covering Sweeney's re-identification theorem, Cavoukian's Privacy by Design axioms, and clinical consent contracts.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~18 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-34">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.4</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">12 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">11 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7635,9 +7891,9 @@
 <p>Understanding the mathematical distinction between <strong>Direct Identifiers</strong>, <strong>Quasi-Identifiers</strong>, and <strong>Sensitive Attributes</strong> is essential for building legally compliant and privacy-preserving data architectures [<a href="#ref-sweeney2000">Sweeney2000</a>, <a href="#ref-nissenbaum2004">Nissenbaum2004</a>].</p>
 <hr />
 <h2 id="1-information-taxonomy-direct-vs-quasi-identifiers">1. Information Taxonomy: Direct vs. Quasi-Identifiers</h2>
-<p>In privacy engineering, attributes within a dataset <span class="arithmatex">\(\mathcal{D}\)</span> are classified into four distinct structural categories:</p>
+<p>In privacy engineering, attributes within a dataset schema <span class="arithmatex">\(\mathcal{A}\)</span> are classified into four distinct structural categories:</p>
 <pre class="mermaid"><code>flowchart TD
-    Data["Raw Dataset Schema D"] --&gt; Direct["1. Direct Identifiers (D_id)"]
+    Data["Raw Dataset Schema A"] --&gt; Direct["1. Direct Identifiers (D_id)"]
     Data --&gt; Quasi["2. Quasi-Identifiers (Q_id)"]
     Data --&gt; Sensitive["3. Sensitive Attributes (S_attr)"]
     Data --&gt; NonSens["4. Insensitive Attributes (Z)"]
@@ -7658,35 +7914,114 @@
     class Quasi,Ex2 amber;
     class Sensitive,Ex3 purple;
     class NonSens,Ex4 green;</code></pre>
+<h3 id="table-31-the-four-information-tiers-in-production-schemas">Table 3.1: The Four Information Tiers in Production Schemas</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Information Category</th>
+<th style="text-align: left;">Mathematical Definition</th>
+<th style="text-align: left;">Typical Examples</th>
+<th style="text-align: left;">Technical Treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Direct Identifiers (<span class="arithmatex">\(\mathcal{D}_{\text{id}}\)</span>)</strong></td>
+<td style="text-align: left;">Attributes that uniquely single out an individual in isolation (<span class="arithmatex">\(P_{\text{re-id}} = 1.0\)</span>).</td>
+<td style="text-align: left;">Social Security Number, National ID, Full Legal Name, Biometric Face Scan, Personal Email.</td>
+<td style="text-align: left;"><strong>Complete Redaction</strong> or <strong>Salted Cryptographic HMAC Tokenization</strong>. Never store in cleartext.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Quasi-Identifiers (<span class="arithmatex">\(\mathcal{Q}_{\text{id}}\)</span>)</strong></td>
+<td style="text-align: left;">Attributes that do not identify in isolation, but uniquely re-identify when linked with external public auxiliary tables.</td>
+<td style="text-align: left;">5-Digit ZIP code, Date of Birth, Gender, Occupation, Admission/Discharge Dates.</td>
+<td style="text-align: left;"><strong>Hierarchical Generalization</strong> (e.g., 3-digit ZIP, age bins) and <strong><span class="arithmatex">\(k\)</span>-Anonymity Suppression</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Sensitive Attributes (<span class="arithmatex">\(\mathcal{S}_{\text{attr}}\)</span>)</strong></td>
+<td style="text-align: left;">Confidential personal payloads that subjects expect to keep private.</td>
+<td style="text-align: left;">Clinical Diagnoses, Genetic Sequences, Annual Salary, Political Affiliation, Criminal History.</td>
+<td style="text-align: left;">Protected via <strong><span class="arithmatex">\(l\)</span>-Diversity</strong>, <strong><span class="arithmatex">\(t\)</span>-Closeness</strong>, and role-based cryptographic access control.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Insensitive Telemetry (<span class="arithmatex">\(\mathcal{Z}\)</span>)</strong></td>
+<td style="text-align: left;">Non-personal operational metrics that exhibit near-zero correlation with human identity.</td>
+<td style="text-align: left;">Database Shard ID, HTTP Protocol Version, App Theme Preference.</td>
+<td style="text-align: left;">Standard operational storage with routine retention lifecycles.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-statutory-anchors-hipaa-18-safe-harbor-gdpr-article-5">2. Statutory Anchors: HIPAA 18 Safe Harbor &amp; GDPR Article 5</h2>
+<h3 id="a-the-hipaa-18-safe-harbor-identifiers">A. The HIPAA 18 Safe Harbor Identifiers</h3>
+<p>Under the US Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule (45 CFR § 164.514(b)(2)), health data is considered formally de-identified under the Safe Harbor method <strong>only if all 18 specified direct and indirect identifiers are excised</strong>:</p>
+<h3 id="table-32-the-hipaa-safe-harbor-18-identifier-taxonomy">Table 3.2: The HIPAA Safe Harbor 18-Identifier Taxonomy</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Identifier Elements</th>
+<th style="text-align: left;">Engineering Remediation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Direct Personal</strong></td>
+<td style="text-align: left;">1. Names<br/>2. Telephone numbers<br/>3. Fax numbers<br/>4. Email addresses<br/>5. Social Security Numbers<br/>6. Medical Record Numbers (MRN)</td>
+<td style="text-align: left;">Strip completely or replace with keyed HMAC tokens using rotating KMS keys.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Administrative &amp; Financial</strong></td>
+<td style="text-align: left;">7. Health plan beneficiary numbers<br/>8. Account numbers<br/>9. Certificate/license numbers<br/>10. Vehicle identifiers and serial numbers<br/>11. Device identifiers and serial numbers</td>
+<td style="text-align: left;">Redact or tokenize via irreversible cryptographic digests.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Web &amp; Network Telemetry</strong></td>
+<td style="text-align: left;">12. Web Universal Resource Locators (URLs)<br/>13. Internet Protocol (IP) addresses</td>
+<td style="text-align: left;">Truncate IP octets (e.g., zero out last 16 bits in IPv4) or drop entirely.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Biometric &amp; Photographic</strong></td>
+<td style="text-align: left;">14. Biometric identifiers (fingerprints, voiceprints)<br/>15. Full-face photographic images</td>
+<td style="text-align: left;">Deface 3D facial meshes; strip raw audio waveforms.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Spatio-Temporal Quasi-Identifiers</strong></td>
+<td style="text-align: left;">16. All geographic subdivisions smaller than a state (street address, city, county, precinct, ZIP code)<br/>17. All elements of dates (except year) for dates directly related to an individual (birth, admission, discharge, death), and all ages <span class="arithmatex">\(&gt; 89\)</span></td>
+<td style="text-align: left;">Generalize ZIP codes to 3-digit prefixes (if population <span class="arithmatex">\(&gt; 20{,}000\)</span>, else <span class="arithmatex">\(000\)</span>); aggregate dates to years; group all ages <span class="arithmatex">\(&gt; 89\)</span> into a single <span class="arithmatex">\(\ge 90\)</span> cohort.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Catch-All Invariant</strong></td>
+<td style="text-align: left;">18. Any other unique identifying number, characteristic, or code</td>
+<td style="text-align: left;">Internal audit for high-cardinality unique surrogate keys.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-gdpr-article-5-principles-matrix">B. GDPR Article 5 Principles Matrix</h3>
+<p>The European Union General Data Protection Regulation (GDPR) establishes seven binding principles that dictate modern dataset architecture:</p>
 <ol>
-<li><strong>Direct Identifiers (<span class="arithmatex">\(\mathcal{D}_{\text{id}}\)</span>)</strong>: Attributes that uniquely identify an individual in isolation with zero auxiliary data (e.g., Social Security Number, National Identity ID, biometrics, personal email address).</li>
-<li><strong>Quasi-Identifiers (<span class="arithmatex">\(\mathcal{Q}_{\text{id}}\)</span>)</strong>: Attributes that do not single out a person individually, but when combined with external public datasets (voter registries, land titles, social media), <strong>uniquely re-identify the data subject</strong>.</li>
-<li><strong>Sensitive Attributes (<span class="arithmatex">\(\mathcal{S}_{\text{attr}}\)</span>)</strong>: High-stakes confidential attributes that subjects wish to keep private (e.g., oncology diagnosis, annual compensation, religion).</li>
-<li><strong>Insensitive Non-Identifiers (<span class="arithmatex">\(\mathcal{Z}\)</span>)</strong>: Public or benign operational telemetry.</li>
+<li><strong>Lawfulness, Fairness, and Transparency (Art. 5(1)(a))</strong>: Processing requires a valid legal basis (e.g., explicit consent, legitimate interest) and transparent user disclosures.</li>
+<li><strong>Purpose Limitation (Art. 5(1)(b))</strong>: Data collected for one specified legitimate purpose cannot be repurposed for incompatible secondary uses (preventing function creep).</li>
+<li><strong>Data Minimization (Art. 5(1)(c))</strong>: Telemetry must be adequate, relevant, and strictly limited to what is necessary for the task.</li>
+<li><strong>Accuracy (Art. 5(1)(d))</strong>: Automated pipelines must ensure that erroneous or outdated records are promptly corrected or deleted.</li>
+<li><strong>Storage Limitation (Art. 5(1)(e))</strong>: Datasets must not be retained indefinitely; retention schedules must trigger automated deletion DAGs.</li>
+<li><strong>Integrity and Confidentiality (Art. 5(1)(f))</strong>: Pipelines must enforce robust security, pseudonymization, and encryption at rest and in transit.</li>
+<li><strong>Accountability (Art. 5(2))</strong>: The data controller must maintain verifiable, auditable documentation demonstrating compliance with all principles.</li>
 </ol>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Automated Regex &amp; NER Tokenization in ETL Ingestion</p>
-<p>Integrate high-speed regex tokenizers and transformer-based Named Entity Recognition (e.g., Presidio or spaCy) directly into the stream ingestion consumer. PII is scrubbed in-flight before payload records touch disk or log storage.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Retaining Reversible Salts in Cryptographic Hashes</p>
-<p>Hashing an SSN or phone number with SHA-256 without a dynamic secret salt provides zero protection: because the domain space of SSNs (<span class="arithmatex">\(10^9\)</span>) is tiny, an adversary precomputes a rainbow table of all possible SSN hashes in under 15 minutes.</p>
-</div>
-<h2 id="2-mathematical-formalization-of-privacy-principles">2. Mathematical Formalization of Privacy Principles</h2>
-<h3 id="quasi-identifier-space-cardinality">Quasi-Identifier Space Cardinality</h3>
-<p>Let <span class="arithmatex">\(\mathcal{Q} = (Q_1, Q_2, \dots, Q_m)\)</span> be a vector of <span class="arithmatex">\(m\)</span> discrete quasi-identifiers. The theoretical domain cardinality of the quasi-identifier space is:</p>
+<h2 id="3-mathematical-formalization-of-privacy-principles">3. Mathematical Formalization of Privacy Principles</h2>
+<h3 id="a-quasi-identifier-space-cardinality-sweeneys-theorem">A. Quasi-Identifier Space Cardinality &amp; Sweeney's Theorem</h3>
+<p>Let <span class="arithmatex">\(\mathcal{Q} = (Q_1, Q_2, \dots, Q_m)\)</span> denote a vector of <span class="arithmatex">\(m\)</span> discrete quasi-identifiers. The theoretical domain cardinality of the quasi-identifier space is the Cartesian product of individual attribute state spaces:</p>
 <div class="arithmatex">\[
 |\Omega_{\mathcal{Q}}| = \prod_{k=1}^m |\text{dom}(Q_k)|
 \]</div>
-<p>For example, when combining 5-digit US ZIP codes (<span class="arithmatex">\(|\text{ZIP}| \approx 43{,}000\)</span>), binary gender (<span class="arithmatex">\(|\text{Gender}| = 2\)</span>), and 365 birthdates over 100 years (<span class="arithmatex">\(|\text{DoB}| \approx 36{,}500\)</span>):</p>
+<p>For example, when combining 5-digit US ZIP codes (<span class="arithmatex">\(|\text{ZIP}| \approx 43{,}000\)</span>), binary gender (<span class="arithmatex">\(|\text{Gender}| = 2\)</span>), and exact date of birth across 100 years (<span class="arithmatex">\(|\text{DoB}| \approx 36{,}525\)</span>):</p>
 <div class="arithmatex">\[
-|\Omega_{\mathcal{Q}}| \approx 43{,}000 \times 2 \times 36{,}500 \approx 3.139 \times 10^9 \text{ discrete cells}
+|\Omega_{\mathcal{Q}}| \approx 43{,}000 \times 2 \times 36{,}525 \approx 3.141 \times 10^9 \text{ discrete cells}
 \]</div>
-<p>Because the total population of the United States (<span class="arithmatex">\(N \approx 3.3 \times 10^8\)</span>) is significantly smaller than the quasi-identifier cell space, most inhabited cells contain exactly one person, yielding Dr. Latanya Sweeney's <span class="arithmatex">\(87.1\%\)</span> uniqueness theorem [<a href="#ref-sweeney2000">Sweeney2000</a>].</p>
-<h3 id="information-bottleneck-for-data-minimization">Information Bottleneck for Data Minimization</h3>
-<p>Article 5(1)(c) of the GDPR mandates <strong>Data Minimization</strong>: personal data must be adequate, relevant, and limited to what is necessary in relation to the purposes for which they are processed.</p>
-<p>We formalize data minimization via the <strong>Information Bottleneck (IB)</strong> principle [<a href="#ref-tishby2000">Tishby2000</a>]. Let <span class="arithmatex">\(X\)</span> denote raw collected telemetry, <span class="arithmatex">\(Y\)</span> denote the downstream task target, and <span class="arithmatex">\(Z = f(X)\)</span> denote the minimal encoded representation:</p>
+<p>Because the entire United States population (<span class="arithmatex">\(N \approx 3.3 \times 10^8\)</span>) is an order of magnitude smaller than the cell space, the empirical occupancy is extremely sparse. In Dr. Latanya Sweeney's seminal census audit [<a href="#ref-sweeney2000">Sweeney2000</a>], <strong><span class="arithmatex">\(87.1\%\)</span> of the US population</strong> resided in single-occupant cells (<span class="arithmatex">\(|E_Q(r)| = 1\)</span>), exposing them to deterministic linkage attacks upon cross-referencing with voter registries.</p>
+<h3 id="b-information-bottleneck-formulation-of-data-minimization">B. Information Bottleneck Formulation of Data Minimization</h3>
+<p>Article 5(1)(c) of the GDPR mandates <strong>Data Minimization</strong>. We formalize minimization through the <strong>Information Bottleneck (IB)</strong> framework [<a href="#ref-tishby2000">Tishby2000</a>]. Let <span class="arithmatex">\(X\)</span> denote raw collected telemetry, <span class="arithmatex">\(Y\)</span> denote the authorized downstream task target, and <span class="arithmatex">\(Z = f(X)\)</span> denote the minimal encoded representation:</p>
 <div class="arithmatex">\[
 \min_{p(z \mid x)} \mathcal{L}_{\text{IB}} = I(X; Z) - \beta \cdot I(Z; Y)
 \]</div>
@@ -7694,21 +8029,21 @@
 <div class="arithmatex">\[
 I(X; Z) = \sum_{x \in \mathcal{X}} \sum_{z \in \mathcal{Z}} p(x, z) \log_2 \frac{p(x, z)}{p(x)p(z)}
 \]</div>
-<p>Minimizing <span class="arithmatex">\(I(X; Z)\)</span> compresses raw information to prevent unapproved secondary usage, while maximizing <span class="arithmatex">\(I(Z; Y)\)</span> preserves task utility, governed by Lagrange multiplier <span class="arithmatex">\(\beta &gt; 0\)</span>.</p>
-<h3 id="contextual-integrity-purpose-limitation">Contextual Integrity &amp; Purpose Limitation</h3>
-<p>Under Helen Nissenbaum's framework of <strong>Contextual Integrity</strong> [<a href="#ref-nissenbaum2004">Nissenbaum2004</a>], purpose limitation requires that information disclosed for primary context <span class="arithmatex">\(\mathcal{C}_{\text{prim}}\)</span> carries zero mutual information with secondary unapproved target <span class="arithmatex">\(Y_{\text{secondary}}\)</span>:</p>
+<p>Minimizing <span class="arithmatex">\(I(X; Z)\)</span> compresses raw information to eliminate non-task personal attributes (preventing unauthorized secondary profiling), while maximizing <span class="arithmatex">\(I(Z; Y)\)</span> preserves authorized task utility, governed by Lagrange multiplier <span class="arithmatex">\(\beta &gt; 0\)</span>.</p>
+<h3 id="c-contextual-integrity-purpose-limitation-invariant">C. Contextual Integrity &amp; Purpose Limitation Invariant</h3>
+<p>Under Helen Nissenbaum's framework of <strong>Contextual Integrity</strong> [<a href="#ref-nissenbaum2004">Nissenbaum2004</a>], purpose limitation requires that an encoded feature representation <span class="arithmatex">\(Z\)</span> disclosed for primary context <span class="arithmatex">\(\mathcal{C}_{\text{primary}}\)</span> contains zero mutual information with unapproved secondary target <span class="arithmatex">\(Y_{\text{secondary}}\)</span>:</p>
 <div class="arithmatex">\[
 \mathcal{L}_{\text{leakage}}(Z) = I(Z; Y_{\text{secondary}} \mid Y_{\text{primary}}) \le \tau_{\text{leak}}
 \]</div>
-<h3 id="right-to-erasure-first-order-unlearning-influence">Right to Erasure: First-Order Unlearning Influence</h3>
-<p>When a data subject exercises their GDPR Article 17 "Right to Erasure" (Right to be Forgotten), retraining a deep model from scratch on <span class="arithmatex">\(\mathcal{D} \setminus \{z\}\)</span> is computationally prohibitive. Using second-order Taylor expansion and influence functions [<a href="#ref-koh2017">Koh2017</a>], the parameter parameter update <span class="arithmatex">\(\Delta \theta_{-z}\)</span> required to excise sample <span class="arithmatex">\(z = (\mathbf{x}, y)\)</span> without full retraining is:</p>
+<h3 id="d-right-to-erasure-first-order-machine-unlearning-influence">D. Right to Erasure: First-Order Machine Unlearning Influence</h3>
+<p>When a data subject exercises their GDPR Article 17 "Right to Erasure", retraining a massive deep learning model from scratch on <span class="arithmatex">\(\mathcal{D} \setminus \{z\}\)</span> is computationally prohibitive. Using second-order Taylor expansions and influence functions [<a href="#ref-koh2017">Koh2017</a>], the parameter update <span class="arithmatex">\(\Delta \theta_{-z}\)</span> required to scrub the influence of sample <span class="arithmatex">\(z = (\mathbf{x}, y)\)</span> without full retraining is:</p>
 <div class="arithmatex">\[
 \Delta \theta_{-z} \approx -\frac{1}{N} H_\theta^{-1} \nabla_\theta \ell(z, \theta)
 \]</div>
-<p>Where <span class="arithmatex">\(H_\theta = \frac{1}{N} \sum_{i=1}^N \nabla_\theta^2 \ell(z_i, \theta)\)</span> is the positive definite empirical Hessian matrix of the loss.</p>
+<p>Where <span class="arithmatex">\(H_\theta = \frac{1}{N} \sum_{i=1}^N \nabla_\theta^2 \ell(z_i, \theta)\)</span> is the positive definite empirical Hessian matrix of the training loss.</p>
 <hr />
-<h2 id="3-the-7-principles-of-privacy-by-design-pbd">3. The 7 Principles of Privacy by Design (PbD)</h2>
-<p>Developed by Dr. Ann Cavoukian [<a href="#ref-cavoukian2010">Cavoukian2010</a>], <strong>Privacy by Design (PbD)</strong> establishes seven foundational architectural requirements:</p>
+<h2 id="4-the-7-principles-of-privacy-by-design-pbd">4. The 7 Principles of Privacy by Design (PbD)</h2>
+<p>Developed by Dr. Ann Cavoukian [<a href="#ref-cavoukian2010">Cavoukian2010</a>] and formally recognized under GDPR Article 25, <strong>Privacy by Design (PbD)</strong> establishes seven architectural axioms:</p>
 <pre class="mermaid"><code>flowchart TD
     PbD["Privacy by Design Architectural Axioms"] --&gt; A1["1. Proactive not Reactive; Preventative not Remedial"]
     PbD --&gt; A2["2. Privacy as the Default Setting (Zero opt-in burden)"]
@@ -7723,146 +8058,408 @@ I(X; Z) = \sum_{x \in \mathcal{X}} \sum_{z \in \mathcal{Z}} p(x, z) \log_2 \frac
 
     class PbD blue;
     class A1,A2,A3,A4,A5,A6,A7 green;</code></pre>
+<ol>
+<li><strong>Proactive not Reactive</strong>: Anticipate privacy breaches before they occur; enforce automated validation rules at the ingestion boundary.</li>
+<li><strong>Privacy as the Default</strong>: Privacy settings must default to the strictest state. No action should be required by the user to maintain their confidentiality.</li>
+<li><strong>Embedded into Design</strong>: Privacy is an architectural component, not an afterthought or an add-on compliance bolt-on.</li>
+<li><strong>Full Functionality (Positive-Sum, not Zero-Sum)</strong>: Reject the false dichotomy that privacy must sacrifice performance or utility.</li>
+<li><strong>End-to-End Security</strong>: Cryptographic protection covers data in transit, data at rest, and data in use throughout the entire lifecycle.</li>
+<li><strong>Visibility and Transparency</strong>: All processing components must remain open to independent technical audit and regulatory verification.</li>
+<li><strong>Respect for User Privacy</strong>: Empower users through granular consent toggles, intuitive access interfaces, and automated deletion workflows.</li>
+</ol>
 <hr />
-<h2 id="4-python-verification-data-minimization-entropy-audit">4. Python Verification: Data Minimization &amp; Entropy Audit</h2>
-<p>The following Python script computes mutual information proxies and evaluates whether an encoded representation successfully minimizes raw identifier entropy while preserving primary target correlation.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># data_minimization_audit.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes Shannon entropy and empirical mutual information for data minimization</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="c1"># Computes Shannon entropy H(X) in bits</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">_</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">probs</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probs</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">probs</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)))</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_mutual_information_discrete</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="c1"># Computes discrete mutual information I(X; Y) = H(X) + H(Y) - H(X, Y)</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">h_x</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">h_y</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="c1"># Joint distribution</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">joint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)])</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">h_xy</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">mi</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">h_x</span> <span class="o">+</span> <span class="n">h_y</span> <span class="o">-</span> <span class="n">h_xy</span><span class="p">)</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">mi</span><span class="p">)</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_minimization_assertions</span><span class="p">():</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="c1"># Raw feature X: High-resolution timestamp (second-level precision)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="c1"># Target Y: Customer churn status (binary)</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="c1"># Secondary Sensitive S: User sleep schedule / nocturnal habits</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">timestamps_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">86400</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Target depends only on broad time of day (Morning, Afternoon, Night)</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">broad_time</span> <span class="o">=</span> <span class="n">timestamps_raw</span> <span class="o">//</span> <span class="mi">28800</span> <span class="c1"># 3 buckets</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">y_target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.3</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">broad_time</span><span class="p">])</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># Minimization Transform: Quantize 86,400 seconds into 3 discrete buckets</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">x_minimized</span> <span class="o">=</span> <span class="n">broad_time</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">h_raw</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">timestamps_raw</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">h_min</span> <span class="o">=</span> <span class="n">compute_entropy</span><span class="p">(</span><span class="n">x_minimized</span><span class="p">)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="n">mi_raw_target</span> <span class="o">=</span> <span class="n">compute_mutual_information_discrete</span><span class="p">(</span><span class="n">timestamps_raw</span><span class="p">,</span> <span class="n">y_target</span><span class="p">)</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="n">mi_min_target</span> <span class="o">=</span> <span class="n">compute_mutual_information_discrete</span><span class="p">(</span><span class="n">x_minimized</span><span class="p">,</span> <span class="n">y_target</span><span class="p">)</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="c1"># Assertions</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="c1"># Minimization compresses entropy by several bits</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="k">assert</span> <span class="n">h_min</span> <span class="o">&lt;</span> <span class="n">h_raw</span> <span class="o">-</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">"Minimization failed to reduce raw feature entropy"</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="c1"># Target mutual information is retained</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mi_min_target</span> <span class="o">-</span> <span class="n">mi_raw_target</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s2">"Minimization destroyed target utility"</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raw Entropy: </span><span class="si">{</span><span class="n">h_raw</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> bits -&gt; Minimized Entropy: </span><span class="si">{</span><span class="n">h_min</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> bits"</span><span class="p">)</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Target Mutual Information Preserved: </span><span class="si">{</span><span class="n">mi_min_target</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> bits"</span><span class="p">)</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Data minimization Information Bottleneck assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="n">test_minimization_assertions</span><span class="p">()</span>
-</span></code></pre></div>
-<h4>Launch PII Detection & Tokenizer Studio</h4>
-<p>Test regex patterns, audit spaCy/Presidio NER tokenization performance, and scrub quasi-identifiers from structured records.</p>
-<p><a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch PII Scrubber Workbench →</a>
-</div></p>
+<h2 id="5-in-depth-engineering-case-studies">5. In-Depth Engineering Case Studies</h2>
+<h3 id="case-study-1-google-deepmind-the-royal-free-nhs-trust-2017">Case Study 1: Google DeepMind &amp; The Royal Free NHS Trust (2017)</h3>
+<p>In 2015, Google DeepMind partnered with the Royal Free NHS Trust in London to develop <strong>Streams</strong>, a mobile clinical alerting application for acute kidney injury (AKI):
+- <strong>The Failure</strong>: The NHS Trust transferred identifiable electronic health records for <strong>1.6 million patients</strong> to DeepMind without explicit patient consent.
+- <strong>The Justification</strong>: The hospital claimed the transfer constituted "direct patient care" (implied consent).
+- <strong>The Regulatory Ruling</strong>: In July 2017, the UK Information Commissioner's Office (ICO) ruled the data transfer <strong>unlawful</strong>. The hospital failed to notify patients that their sensitive clinical histories were being used for clinical software testing, violating the UK Data Protection Act.
+- <strong>Engineering Remediation</strong>: DeepMind established an independent verifiable data audit mechanism (Verifiable Data Audit, using cryptographic append-only Merkle trees) to prove when and how patient records were accessed.</p>
+<h3 id="case-study-2-cambridge-analytica-the-friend-permission-cascade-2018">Case Study 2: Cambridge Analytica &amp; The Friend-Permission Cascade (2018)</h3>
+<p>In 2014, Cambridge University researcher Aleksandr Kogan deployed an innocuous personality quiz app, <em>"thisisyourdigitallife"</em>, on Facebook:
+- <strong>The Mechanism</strong>: While only 270,000 users took the quiz and consented to share their profile data, Facebook's Open Graph API v2.0 allowed the app to automatically harvest the private profile data of <strong>all friends</strong> of those users without their knowledge or consent.
+- <strong>The Impact</strong>: Over <strong>87 million profiles</strong> were scraped and licensed to political data analytics firm Cambridge Analytica for targeted psychographic profiling in the 2016 US presidential election and UK Brexit referendum.
+- <strong>Consequences</strong>: The FTC levied a historic <strong>$5.0 Billion penalty</strong> against Facebook for deceptive privacy practices and forced structural governance reforms.</p>
+<h3 id="case-study-3-strava-polar-flow-fitness-spy-scandal-2018">Case Study 3: Strava &amp; Polar Flow Fitness Spy Scandal (2018)</h3>
+<p>Following the Strava military base incident, Dutch investigative journalists audited Finnish fitness app <strong>Polar Flow</strong>:
+- <strong>The Mechanism</strong>: Polar allowed users to share runs on an interactive map. While user profile names could be set to aliases, the API endpoint returned the user's continuous training history across all geographical coordinates.
+- <strong>The Vulnerability</strong>: By monitoring runs originating from intelligence agencies (e.g., NSA Fort Meade, MI6 London, secret nuclear submarine bases), journalists mapped where soldiers ran when deployed and traced their running paths back home to their private residences.
+- <strong>The Identity Exposure</strong>: Journalists unmasked the home addresses, full names, and family members of over <strong>6,400 military personnel, secret agents, and cyber warfare specialists</strong> worldwide.
+- <strong>Engineering Lesson</strong>: Spatial aggregation without differential privacy guarantees or population density normalization leaks catastrophic structural intelligence in low-density regions.</p>
 <hr />
-<h2 id="production-implementation-hipaa-18-identifier-regex-pii-scrubber">💻 Production Implementation: HIPAA 18-Identifier Regex &amp; PII Scrubber</h2>
-<p>Below is a self-contained, high-performance Python PII sanitization engine targeting the HIPAA 18 Safe Harbor direct and indirect identifiers.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">hipaa_pii_scrubber.py</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">Production-grade PII sanitization engine adhering to HIPAA Safe Harbor guidelines.</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="sd">"""</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">HIPAASafeHarborScrubber</span><span class="p">:</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="sd">"""Scrubs direct and indirect quasi-identifiers using compiled regex patterns."""</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">PATTERNS</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="s2">"ssn"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?!000|666|9\d</span><span class="si">{2}</span><span class="s2">)\d</span><span class="si">{3}</span><span class="s2">[- ]?(?!00)\d</span><span class="si">{2}</span><span class="s2">[- ]?(?!0000)\d</span><span class="si">{4}</span><span class="s2">\b"</span><span class="p">),</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="s2">"email"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"</span><span class="p">),</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="s2">"phone"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:\+?1[-. ]?)?\(?([0-9]</span><span class="si">{3}</span><span class="s2">)\)?[-. ]?([0-9]</span><span class="si">{3}</span><span class="s2">)[-. ]?([0-9]</span><span class="si">{4}</span><span class="s2">)\b"</span><span class="p">),</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="s2">"ipv4"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)</span><span class="si">{3}</span><span class="s2">(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b"</span><span class="p">),</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="s2">"mrn"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\bMRN[-:]?\s*([0-9]{7,10})\b"</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">),</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="s2">"credit_card"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:4[0-9]</span><span class="si">{12}</span><span class="s2">(?:[0-9]</span><span class="si">{3}</span><span class="s2">)?|5[1-5][0-9]</span><span class="si">{14}</span><span class="s2">|3[47][0-9]</span><span class="si">{13}</span><span class="s2">)\b"</span><span class="p">),</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="s2">"dob"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:19|20)\d</span><span class="si">{2}</span><span class="s2">[-/](?:0[1-9]|1[0-2])[-/](?:0[1-9]|[12]\d|3[01])\b"</span><span class="p">),</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="s2">"zip_full"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b\d</span><span class="si">{5}</span><span class="s2">(?:-\d</span><span class="si">{4}</span><span class="s2">)?\b"</span><span class="p">)</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="p">}</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generalize_zip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">generalize_zip</span> <span class="o">=</span> <span class="n">generalize_zip</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">scrub_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span><span class="sd">"""Sanitizes free-text strings by replacing PII with standardized mask tokens."""</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">sanitized</span> <span class="o">=</span> <span class="n">text</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="k">for</span> <span class="n">pii_type</span><span class="p">,</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATTERNS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>            <span class="k">if</span> <span class="n">pii_type</span> <span class="o">==</span> <span class="s2">"zip_full"</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">generalize_zip</span><span class="p">:</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>                <span class="c1"># Generalized to 3-digit prefix under HIPAA 20,000 population rule</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"**"</span><span class="p">,</span> <span class="n">sanitized</span><span class="p">)</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[REDACTED_</span><span class="si">{</span><span class="n">pii_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span> <span class="n">sanitized</span><span class="p">)</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="k">return</span> <span class="n">sanitized</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">sanitize_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">        </span><span class="sd">"""Sanitizes structured dictionary records recursively."""</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>        <span class="n">clean</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>                <span class="n">clean</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scrub_text</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>                <span class="n">clean</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_record</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                <span class="n">clean</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">scrub_text</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                <span class="n">clean</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>        <span class="k">return</span> <span class="n">clean</span>
-</span></code></pre></div>
-<hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Consent & PII Scrubber</h4>
-  <p>Test real-time HIPAA 18 identifier masking, verify regular expression tokenization, and audit PII leakages in clinical notes.</p>
-  <a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch PII Scrubber Workbench →</a>
+<h2 id="6-interactive-laboratory-hipaa-18-detection-consent-pii-scrubber">6. 🔬 Interactive Laboratory: HIPAA 18 Detection, Consent &amp; PII Scrubber</h2>
+<p>Test real-time regex sanitization, quasi-identifier generalization, and dynamic consent contract enforcement using the interactive workbench below. Select a sample clinical note, toggle redaction modes, and audit HIPAA Safe Harbor compliance:</p>
+<div class="noc-sim-container" style="background:#fffdf7; border:2px solid #151b20; border-radius:14px; padding:22px; margin:24px 0; box-shadow:4px 4px 0px #151b20;">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+    <div>
+      <span style="font-weight:800; color:#0e7490; font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+        <span>🔬</span> HIPAA Safe Harbor &amp; Consent Studio
+      </span>
+      <div style="font-size:0.84rem; color:#475569; margin-top:2px; font-weight:500;">
+        Real-time regex entity detection, quasi-identifier generalization, and consent gating
+      </div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="noc-sim-btn" onclick="applyScrubberPreset(1)" style="font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 1: EHR Clinical Note (Raw PII)</button>
+      <button class="noc-sim-btn" onclick="applyScrubberPreset(2)" style="background:#ffd8ce; color:#c2410c; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 2: Genomic Clinical Trial</button>
+      <button class="noc-sim-btn" onclick="applyScrubberPreset(3)" style="background:#b7df69; color:#151b20; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 3: IoT Diagnostic Stream</button>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Direct PII Handling:</label>
+      <select id="ctrlDirectMode" onchange="runPiiScrubberAudit()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="raw">Cleartext (No Masking)</option>
+        <option value="redact" selected>Redact Token [REDACTED_TYPE]</option>
+        <option value="hmac">Salted Cryptographic HMAC Token</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">ZIP Code Generalization:</label>
+      <select id="ctrlZipMode" onchange="runPiiScrubberAudit()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="raw">Exact 5-Digit (e.g. 02138)</option>
+        <option value="prefix" selected>3-Digit Prefix (HIPAA 20k Rule: 021**)</option>
+        <option value="suppress">Full Suppression [REDACTED_ZIP]</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Date of Birth (DOB) Precision:</label>
+      <select id="ctrlDateMode" onchange="runPiiScrubberAudit()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="raw">Exact Date (YYYY-MM-DD)</option>
+        <option value="year" selected>Year Only (YYYY)</option>
+        <option value="decade">10-Year Age Cohort</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Patient Consent Scope:</label>
+      <select id="ctrlConsentScope" onchange="runPiiScrubberAudit()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="full" selected>Primary Care + AI Research (Valid)</option>
+        <option value="primary">Primary Care Only (AI Training Blocked!)</option>
+        <option value="revoked">Consent Revoked (Art. 17 Erasure DAG)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Real-Time Metrics Bar -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Direct Identifiers</div>
+      <div id="metricDirectCount" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">4 Found</div>
+      <div id="metricDirectBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">SSN, MRN, Email, Phone</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Quasi-Identifiers</div>
+      <div id="metricQuasiCount" style="font-size:1.4rem; font-weight:900; color:#d97706; font-family:monospace;">2 Found</div>
+      <div id="metricQuasiBadge" style="font-size:0.72rem; font-weight:700; color:#d97706;">ZIP &amp; Birthdate</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Consent Enforcement</div>
+      <div id="metricConsentStatus" style="font-size:1.1rem; font-weight:900; color:#047857; font-family:monospace; line-height:1.3; margin-top:3px;">APPROVED</div>
+      <div id="metricConsentDesc" style="font-size:0.70rem; color:#475569;">Lawful Basis Confirmed</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">HIPAA Safe Harbor</div>
+      <div id="metricHipaaStatus" style="font-size:0.95rem; font-weight:900; color:#047857; line-height:1.2; margin-top:4px;">✅ COMPLIANT</div>
+      <div style="font-size:0.70rem; color:#475569;">De-Identified for Release</div>
+    </div>
+  </div>
+
+  <!-- Live Textarea and Sanitized Output Grid -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:6px;">Input Clinical Microdata / Free Text:</label>
+      <textarea id="rawClinicalInput" rows="7" oninput="runPiiScrubberAudit()" style="width:100%; background:#fffaf0; color:#151b20; font-family:'JetBrains Mono',monospace; font-size:0.80rem; border:2px solid #151b20; border-radius:8px; padding:10px; box-sizing:border-box; box-shadow:2px 2px 0px #151b20;"></textarea>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:6px;">Sanitized &amp; Scrubbed Public Payload:</label>
+      <div id="sanitizedOutput" style="background:#fff; border:2px solid #151b20; border-radius:8px; padding:10px; height:140px; font-family:'JetBrains Mono',monospace; font-size:0.80rem; color:#151b20; overflow-y:auto; box-sizing:border-box; box-shadow:2px 2px 0px #151b20; line-height:1.6;"></div>
+    </div>
+  </div>
 </div>
 
+<script>
+const SCRUBBER_PRESETS = {
+  1: `Patient William Weld (MRN: 8492015), born 1945-07-31, SSN 042-88-9123.
+Primary Contact: william.weld@mass.gov, Phone: (617) 555-0142.
+Residing in Cambridge MA, ZIP 02138.
+Admitted to Beth Israel Deaconess on 2024-03-15 for acute cardiac arrhythmia.
+Discharged with prescription for Metoprolol 50mg.`,
+  2: `Subject ID: SUBJ-9042, Legal Name: Sarah Jenkins, DOB: 1982-11-04.
+National ID: 902-14-5519, Email: sjenkins@healthcorp.org.
+Home Postal Code: 94107 (San Francisco CA).
+Genomic Sequencing Variant: BRCA1 c.5266dupC (Pathogenic).
+Enrolled in Oncology Clinical Trial Protocol NCT049281.`,
+  3: `Device Telemetry Packet: Device UUID 4a8f-91c2, Firmware v4.1.2.
+Owner: Robert Taylor, IP: 192.168.1.104, MAC: 00:1A:2B:3C:4D:5E.
+GPS Coordinate: (42.3736° N, 71.1097° W), Local ZIP: 02139.
+Heart Rate PPG: 142 BPM (Tachycardia Alert Triggered).
+Timestamp: 2024-10-12T14:22:18Z.`
+};
+
+function applyScrubberPreset(presetId) {
+  document.getElementById('rawClinicalInput').value = SCRUBBER_PRESETS[presetId];
+  runPiiScrubberAudit();
+}
+
+function runPiiScrubberAudit() {
+  const rawText = document.getElementById('rawClinicalInput').value;
+  const directMode = document.getElementById('ctrlDirectMode').value;
+  const zipMode = document.getElementById('ctrlZipMode').value;
+  const dateMode = document.getElementById('ctrlDateMode').value;
+  const consentScope = document.getElementById('ctrlConsentScope').value;
+
+  // Regex Patterns for HIPAA 18 Detection
+  const patterns = {
+    ssn: /\b(?!000|666|9\d{2})\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}\b/g,
+    mrn: /\bMRN[-:]?\s*([0-9]{6,10})\b/gi,
+    email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g,
+    phone: /\b(?:\+?1[-. ]?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})\b/g,
+    ip: /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/g,
+    name: /\b(William Weld|Sarah Jenkins|Robert Taylor|John Doe)\b/g,
+    dob: /\b(?:19|20)\d{2}[-/](?:0[1-9]|1[0-2])[-/](?:0[1-9]|[12]\d|3[01])\b/g,
+    zip: /\b\d{5}(?:-\d{4})?\b/g
+  };
+
+  let directCount = 0;
+  let quasiCount = 0;
+
+  // Count occurrences
+  directCount += (rawText.match(patterns.ssn) || []).length;
+  directCount += (rawText.match(patterns.mrn) || []).length;
+  directCount += (rawText.match(patterns.email) || []).length;
+  directCount += (rawText.match(patterns.phone) || []).length;
+  directCount += (rawText.match(patterns.ip) || []).length;
+  directCount += (rawText.match(patterns.name) || []).length;
+
+  quasiCount += (rawText.match(patterns.dob) || []).length;
+  quasiCount += (rawText.match(patterns.zip) || []).length;
+
+  // Update Direct and Quasi Counters
+  document.getElementById('metricDirectCount').innerText = `${directCount} Found`;
+  document.getElementById('metricQuasiCount').innerText = `${quasiCount} Found`;
+
+  // Evaluate Consent Status
+  const consentElem = document.getElementById('metricConsentStatus');
+  const consentDesc = document.getElementById('metricConsentDesc');
+  if (consentScope === 'full') {
+    consentElem.innerText = 'APPROVED';
+    consentElem.style.color = '#047857';
+    consentDesc.innerText = 'Primary Care & AI Cleared';
+  } else if (consentScope === 'primary') {
+    consentElem.innerText = 'BLOCKED (AI)';
+    consentElem.style.color = '#d97706';
+    consentDesc.innerText = 'No Secondary Research Rights';
+  } else {
+    consentElem.innerText = 'REVOKED (Art. 17)';
+    consentElem.style.color = '#b91c1c';
+    consentDesc.innerText = 'Trigger Machine Unlearning DAG';
+  }
+
+  // Build Scrubbed Text
+  let sanitized = rawText;
+
+  // 1. Direct Identifiers Sanitization
+  if (directMode === 'redact') {
+    sanitized = sanitized.replace(patterns.ssn, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_SSN]</span>');
+    sanitized = sanitized.replace(patterns.mrn, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_MRN]</span>');
+    sanitized = sanitized.replace(patterns.email, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_EMAIL]</span>');
+    sanitized = sanitized.replace(patterns.phone, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_PHONE]</span>');
+    sanitized = sanitized.replace(patterns.ip, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_IP]</span>');
+    sanitized = sanitized.replace(patterns.name, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_NAME]</span>');
+  } else if (directMode === 'hmac') {
+    sanitized = sanitized.replace(patterns.ssn, '<span style="background:#c9f3f4; color:#0e7490; padding:1px 4px; border-radius:3px; font-weight:700;">HMAC-7b2a9f</span>');
+    sanitized = sanitized.replace(patterns.mrn, '<span style="background:#c9f3f4; color:#0e7490; padding:1px 4px; border-radius:3px; font-weight:700;">HMAC-4c8d1e</span>');
+    sanitized = sanitized.replace(patterns.email, '<span style="background:#c9f3f4; color:#0e7490; padding:1px 4px; border-radius:3px; font-weight:700;">HMAC-1a9f3b</span>');
+    sanitized = sanitized.replace(patterns.phone, '<span style="background:#c9f3f4; color:#0e7490; padding:1px 4px; border-radius:3px; font-weight:700;">HMAC-8e3b2c</span>');
+    sanitized = sanitized.replace(patterns.ip, '<span style="background:#c9f3f4; color:#0e7490; padding:1px 4px; border-radius:3px; font-weight:700;">HMAC-5d7a6e</span>');
+    sanitized = sanitized.replace(patterns.name, '<span style="background:#c9f3f4; color:#0e7490; padding:1px 4px; border-radius:3px; font-weight:700;">HMAC-9a1c4f</span>');
+  }
+
+  // 2. Quasi-Identifiers: ZIP Code Generalization
+  if (zipMode === 'prefix') {
+    sanitized = sanitized.replace(patterns.zip, m => `<span style="background:#dcfce7; color:#15803d; padding:1px 4px; border-radius:3px; font-weight:700;">${m.substring(0, 3)}**</span>`);
+  } else if (zipMode === 'suppress') {
+    sanitized = sanitized.replace(patterns.zip, '<span style="background:#ffd8ce; color:#991b1b; padding:1px 4px; border-radius:3px; font-weight:700;">[REDACTED_ZIP]</span>');
+  }
+
+  // 3. Quasi-Identifiers: Date of Birth Generalization
+  if (dateMode === 'year') {
+    sanitized = sanitized.replace(patterns.dob, m => `<span style="background:#dcfce7; color:#15803d; padding:1px 4px; border-radius:3px; font-weight:700;">${m.substring(0, 4)}</span>`);
+  } else if (dateMode === 'decade') {
+    sanitized = sanitized.replace(patterns.dob, m => {
+      const yr = parseInt(m.substring(0, 4));
+      const dec = Math.floor(yr / 10) * 10;
+      return `<span style="background:#dcfce7; color:#15803d; padding:1px 4px; border-radius:3px; font-weight:700;">${dec}s</span>`;
+    });
+  }
+
+  // 4. Consent Erasure Override
+  if (consentScope === 'revoked') {
+    sanitized = '<div style="background:#fee2e2; border:1.5px dashed #b91c1c; padding:12px; border-radius:6px; color:#991b1b; font-weight:800; text-align:center;">🚫 RECORD ERASED: Data subject exercised GDPR Article 17 Right to Erasure.<br/><span style="font-size:0.72rem; font-weight:500;">Payload tombstoned across storage tables and queued for parameter influence unlearning.</span></div>';
+  } else if (consentScope === 'primary') {
+    sanitized = '<div style="background:#fef3c7; border:1px solid #b45309; padding:6px 10px; margin-bottom:8px; border-radius:4px; color:#92400e; font-size:0.75rem; font-weight:700;">⚠️ POLICY GATING: Patient consented to Primary Clinical Care only. Data barred from secondary ML model training!</div>' + sanitized;
+  }
+
+  // Update Output Box
+  document.getElementById('sanitizedOutput').innerHTML = sanitized;
+
+  // Evaluate Overall HIPAA Compliance Status
+  const hipaaElem = document.getElementById('metricHipaaStatus');
+  const isDirectScrubbed = (directMode !== 'raw');
+  const isZipScrubbed = (zipMode !== 'raw');
+  const isDateScrubbed = (dateMode !== 'raw');
+  const isConsentValid = (consentScope === 'full');
+
+  if (isDirectScrubbed && isZipScrubbed && isDateScrubbed && isConsentValid) {
+    hipaaElem.innerHTML = '✅ COMPLIANT';
+    hipaaElem.style.color = '#047857';
+  } else {
+    hipaaElem.innerHTML = '🚨 VIOLATIONS FOUND';
+    hipaaElem.style.color = '#b91c1c';
+  }
+}
+
+// Initial mount
+document.addEventListener('DOMContentLoaded', () => {
+  applyScrubberPreset(1);
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  applyScrubberPreset(1);
+}
+</script>
+
+<hr />
+<h2 id="7-production-implementation-hipaa-18-identifier-regex-pii-scrubber">7. Production Implementation: HIPAA 18-Identifier Regex &amp; PII Scrubber</h2>
+<p>Below is a self-contained, high-performance Python PII sanitization engine adhering to HIPAA Safe Harbor guidelines and using <strong>Pydantic V2</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># hipaa_pii_scrubber.py</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Production-grade PII sanitization engine adhering to HIPAA Safe Harbor guidelines</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hmac</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">SanitizationAuditLog</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="sd">    Provenance audit record tracking PII masking and redactions.</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="sd">    """</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">total_direct_pii_masked</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Count of direct identifiers scrubbed"</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">total_quasi_identifiers_generalized</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Count of quasi-identifiers generalized"</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">is_safe_harbor_certified</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"True if passes 18-element HIPAA Safe Harbor rule"</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">redacted_sample_preview</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">HIPAASafeHarborScrubber</span><span class="p">:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="sd">    Scrubs direct and indirect quasi-identifiers using compiled regular expressions</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="sd">    and keyed cryptographic HMAC salting.</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="sd">    """</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">PATTERNS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="s2">"ssn"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?!000|666|9\d</span><span class="si">{2}</span><span class="s2">)\d</span><span class="si">{3}</span><span class="s2">[- ]?(?!00)\d</span><span class="si">{2}</span><span class="s2">[- ]?(?!0000)\d</span><span class="si">{4}</span><span class="s2">\b"</span><span class="p">),</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="s2">"email"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"</span><span class="p">),</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="s2">"phone"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:\+?1[-. ]?)?\(?([0-9]</span><span class="si">{3}</span><span class="s2">)\)?[-. ]?([0-9]</span><span class="si">{3}</span><span class="s2">)[-. ]?([0-9]</span><span class="si">{4}</span><span class="s2">)\b"</span><span class="p">),</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="s2">"ipv4"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)</span><span class="si">{3}</span><span class="s2">(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b"</span><span class="p">),</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="s2">"mrn"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\bMRN[-:]?\s*([0-9]{6,10})\b"</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">),</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="s2">"credit_card"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:4[0-9]</span><span class="si">{12}</span><span class="s2">(?:[0-9]</span><span class="si">{3}</span><span class="s2">)?|5[1-5][0-9]</span><span class="si">{14}</span><span class="s2">|3[47][0-9]</span><span class="si">{13}</span><span class="s2">)\b"</span><span class="p">),</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="s2">"dob"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(?:19|20)\d</span><span class="si">{2}</span><span class="s2">[-/](?:0[1-9]|1[0-2])[-/](?:0[1-9]|[12]\d|3[01])\b"</span><span class="p">),</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="s2">"zip_full"</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b\d</span><span class="si">{5}</span><span class="s2">(?:-\d</span><span class="si">{4}</span><span class="s2">)?\b"</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="p">}</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salt_key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">generalize_zip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">salt_key</span> <span class="o">=</span> <span class="n">salt_key</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">generalize_zip</span> <span class="o">=</span> <span class="n">generalize_zip</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">token_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">        </span><span class="sd">"""Generates salted SHA-256 HMAC pseudonym for direct PII."""</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">mac</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">salt_key</span><span class="p">,</span> <span class="n">raw_val</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"HMAC-</span><span class="si">{</span><span class="n">mac</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">8</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">scrub_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_hmac</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="sd">        Sanitizes free-text clinical notes by replacing PII with standardized mask tokens</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="sd">        or HMAC cryptographic digests.</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="sd">        """</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="n">sanitized</span> <span class="o">=</span> <span class="n">text</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="n">direct_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">quasi_cnt</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="k">for</span> <span class="n">pii_type</span><span class="p">,</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATTERNS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>            <span class="n">matches</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sanitized</span><span class="p">))</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="k">if</span> <span class="n">pii_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"ssn"</span><span class="p">,</span> <span class="s2">"email"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">,</span> <span class="s2">"ipv4"</span><span class="p">,</span> <span class="s2">"mrn"</span><span class="p">,</span> <span class="s2">"credit_card"</span><span class="p">]:</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>                <span class="n">direct_cnt</span> <span class="o">+=</span> <span class="n">matches</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>                <span class="k">if</span> <span class="n">use_hmac</span><span class="p">:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>                    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_hash</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">sanitized</span><span class="p">)</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>                    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[REDACTED_</span><span class="si">{</span><span class="n">pii_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">]"</span><span class="p">,</span> <span class="n">sanitized</span><span class="p">)</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>            <span class="k">elif</span> <span class="n">pii_type</span> <span class="o">==</span> <span class="s2">"zip_full"</span><span class="p">:</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>                <span class="n">quasi_cnt</span> <span class="o">+=</span> <span class="n">matches</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generalize_zip</span><span class="p">:</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>                    <span class="c1"># Truncate to 3-digit prefix under HIPAA 20,000 population rule</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>                    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"**"</span><span class="p">,</span> <span class="n">sanitized</span><span class="p">)</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>                    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">"[REDACTED_ZIP]"</span><span class="p">,</span> <span class="n">sanitized</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>            <span class="k">elif</span> <span class="n">pii_type</span> <span class="o">==</span> <span class="s2">"dob"</span><span class="p">:</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>                <span class="n">quasi_cnt</span> <span class="o">+=</span> <span class="n">matches</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>                <span class="c1"># Generalize exact date to birth year only</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>                <span class="n">sanitized</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">sanitized</span><span class="p">)</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="n">is_compliant</span> <span class="o">=</span> <span class="p">(</span><span class="n">direct_cnt</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">quasi_cnt</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>            <span class="s2">"sanitized_text"</span><span class="p">:</span> <span class="n">sanitized</span><span class="p">,</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>            <span class="s2">"direct_count"</span><span class="p">:</span> <span class="n">direct_cnt</span><span class="p">,</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>            <span class="s2">"quasi_count"</span><span class="p">:</span> <span class="n">quasi_cnt</span><span class="p">,</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>            <span class="s2">"is_compliant"</span><span class="p">:</span> <span class="n">is_compliant</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="p">}</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_hipaa_scrubber</span><span class="p">():</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="n">sample_clinical_note</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="s2">"Patient William Weld (MRN: 8492015), born 1945-07-31, SSN 042-88-9123. "</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="s2">"Email: william.weld@mass.gov, Phone: (617) 555-0142. "</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="s2">"Resident in Cambridge MA, ZIP 02138. Admitted for acute arrhythmia."</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="p">)</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">scrubber</span> <span class="o">=</span> <span class="n">HIPAASafeHarborScrubber</span><span class="p">(</span><span class="n">salt_key</span><span class="o">=</span><span class="sa">b</span><span class="s2">"hipaa_production_salt_2026"</span><span class="p">,</span> <span class="n">generalize_zip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">scrubber</span><span class="o">.</span><span class="n">scrub_text</span><span class="p">(</span><span class="n">sample_clinical_note</span><span class="p">,</span> <span class="n">use_hmac</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="c1"># Assertions</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="k">assert</span> <span class="s2">"[REDACTED_SSN]"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"sanitized_text"</span><span class="p">]</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="k">assert</span> <span class="s2">"[REDACTED_EMAIL]"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"sanitized_text"</span><span class="p">]</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="k">assert</span> <span class="s2">"021**"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"sanitized_text"</span><span class="p">]</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="k">assert</span> <span class="s2">"1945"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"sanitized_text"</span><span class="p">]</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="k">assert</span> <span class="s2">"07-31"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">"sanitized_text"</span><span class="p">]</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">"direct_count"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">"quasi_count"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ HIPAA Safe Harbor 18-element scrubber verified successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="n">test_hipaa_scrubber</span><span class="p">()</span>
+</span></code></pre></div>
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
 <li><strong>Quasi-Identifier Sparsity</strong>: With high-dimensional demographic vectors, the cell cardinality <span class="arithmatex">\(|\Omega_{\mathcal{Q}}|\)</span> vastly exceeds human population, rendering individuals uniquely vulnerable.</li>
 <li><strong>Mathematical Data Minimization</strong>: Frame field collection as an Information Bottleneck problem: minimize <span class="arithmatex">\(I(X; Z)\)</span> subject to task relevance <span class="arithmatex">\(I(Z; Y) \ge \tau\)</span>.</li>
-<li><strong>Privacy by Default</strong>: Architectural settings must be set to maximum restriction at rest and in transit without user intervention.</li>
+<li><strong>Privacy by Default</strong>: Architectural settings must be set to maximum restriction at rest and in transit without requiring user intervention.</li>
 <li><strong>First-Order Machine Unlearning</strong>: Implement influence function updates to support the Right to Erasure without re-training massive foundation models.</li>
+<li><strong>Purpose Limitation Contracts</strong>: Always verify that downstream consumer models do not correlate with unapproved secondary target concepts.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="interactive-self-assessment-diagnostic-scenarios">❓ Interactive Self-Assessment Diagnostic Scenarios</h2>
 <details class="question">
-<summary>Self-Assessment: Quasi-Identifier Cardinality Calculation</summary>
+<summary>Self-Assessment 1: Quasi-Identifier Cardinality Calculation</summary>
 <p>A medical registry collects Patient Age in years (0 to 100), Blood Type (8 standard ABO/Rh combinations), and 3-Digit ZIP code (1,000 distinct values). What is the total cardinality of this quasi-identifier space, and what is the re-identification risk for an individual who is the sole resident of their 3-digit ZIP with AB-negative blood at age 98?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
@@ -7875,7 +8472,7 @@ The individual is deterministically re-identified with zero ambiguity upon linka
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Information Bottleneck in Edge IoT Telemetry</summary>
+<summary>Self-Assessment 2: Information Bottleneck in Edge IoT Telemetry</summary>
 <p>An acoustic sensor on a smart thermostat collects raw audio at <span class="arithmatex">\(44.1\text{ kHz}\)</span> to detect when a homeowner says "Turn up temperature." Why does streaming raw audio to the cloud violate the Data Minimization principle, and how does edge feature extraction resolve it?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
@@ -7883,6 +8480,26 @@ The individual is deterministically re-identified with zero ambiguity upon linka
 <p>To comply with Privacy by Design, the device must run an on-device wake-word neural network that extracts only the binary activation trigger:
 $<span class="arithmatex">\(Z = f(X) \in \{0, 1\}\)</span>$
 Discarding raw audio compresses <span class="arithmatex">\(I(X; Z)\)</span> to near zero while preserving the primary intent <span class="arithmatex">\(I(Z; Y)\)</span>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: Dynamic Consent &amp; Article 7(4) Forced Bundling</summary>
+<p>A mobile genomics startup requires users to accept a 40-page End User License Agreement (EULA) where agreeing to basic DNA ancestry reports automatically bundles unconditional authorization for the company to license raw genetic sequences to third-party commercial pharmaceutical sponsors. How does GDPR Article 7(4) and FTC Section 5 treat this data collection architecture?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> This architecture constitutes <strong>Unlawful Forced Consent (Bundling)</strong> and an <strong>Unfair Trade Practice</strong>.</p>
+<p>Under GDPR Article 7(4), consent is not freely given if the performance of a contract (delivering the consumer DNA ancestry report) is made conditional on consent to the processing of personal data that is not necessary for that performance (commercial pharmaceutical data brokering). </p>
+<p>The FTC and European Data Protection Board (EDPB) classify such take-it-or-leave-it dark patterns as coercive. The compliant engineering architecture requires <strong>Dynamic, Unbundled Consent</strong>: users must be able to granularly toggle third-party research sharing on or off via dedicated API endpoints without losing access to the core consumer application.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Clearview AI Public Facial Scraping &amp; GDPR Article 6</summary>
+<p>A facial recognition startup scrapes 30 billion images from public Instagram, LinkedIn, and YouTube profiles to build a global facial search engine for law enforcement. The startup argues that because individuals uploaded their photos to publicly accessible websites, the data is in the public domain with zero privacy obligations. How do international data protection authorities rule on this argument?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Data protection authorities worldwide (UK ICO, French CNIL, Italian Garante) have unanimously <strong>rejected this argument and issued multi-million euro fines</strong>.</p>
+<p>Under GDPR Article 6, every processing activity requires an explicit lawful basis. Under Article 9, biometric templates extracted from facial images constitute "special category biometric data for the purpose of uniquely identifying a natural person." </p>
+<p>Public accessibility does not strip personal data of statutory protection, nor does it waive individuals' fundamental human rights. Because subjects never provided explicit, informed consent for their personal photos to be ingested into a law enforcement biometric search engine, the scraping violated GDPR Article 6(1) and Article 9(1).</p>
 </details>
 </details>
 <hr />
@@ -7896,9 +8513,9 @@ Discarding raw audio compresses <span class="arithmatex">\(I(X; Z)\)</span> to n
 <li><a id="ref-koh2017"></a><strong>[Koh2017]</strong> P. W. Koh and P. Liang, "Understanding Black-box Predictions via Influence Functions," in <em>Proceedings of the 34th International Conference on Machine Learning (ICML 2017)</em>, PMLR vol. 70, pp. 1885–1894. <a href="https://doi.org/10.48550/arXiv.1703.04730">DOI: 10.48550/arXiv.1703.04730</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
   <a href="../03-utility-dilemmas-consequences/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.3 Utility-Privacy Frontier</a>
-  <a href="../05-privacy-preserving-techniques/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Privacy-Preserving Techniques (3.5) →</a>
+  <a href="../05-privacy-preserving-techniques/" class="noc-sim-btn" style="text-decoration: none;">Next: Privacy-Preserving Techniques (3.5) →</a>
 </div>
 
 

@@ -435,21 +435,60 @@
     .mermaid text,
     .mermaid tspan,
     .mermaid .nodeLabel,
-    .mermaid .nodeLabel *,
     .mermaid .label,
-    .mermaid .label *,
     .mermaid foreignObject,
     .mermaid foreignObject div,
-    .mermaid foreignObject span,
-    .mermaid foreignObject p,
     .mermaid .edgeLabel,
-    .mermaid .edgeLabel *,
     .mermaid .cluster text,
     .mermaid .cluster span {
       color: var(--ink, #151b20) !important;
       fill: var(--ink, #151b20) !important;
-      font-weight: 700 !important;
       text-align: center !important;
+    }
+
+    .mermaid .nodeLabel,
+    .mermaid .label,
+    .mermaid foreignObject div {
+      font-weight: 700;
+    }
+
+    .mermaid .cluster text,
+    .mermaid .cluster span {
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.04em;
+    }
+
+    .mermaid .nodeLabel b,
+    .mermaid .nodeLabel strong,
+    .mermaid foreignObject b,
+    .mermaid foreignObject strong {
+      font-weight: 800 !important;
+      font-size: 12px !important;
+      display: inline-block;
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+      color: var(--ink, #151b20) !important;
+    }
+
+    .mermaid .nodeLabel span,
+    .mermaid .nodeLabel small,
+    .mermaid foreignObject span,
+    .mermaid foreignObject small {
+      font-weight: 500 !important;
+      font-size: 10px !important;
+      line-height: 1.3 !important;
+      color: #334155 !important;
+      opacity: 0.9;
+      display: inline-block;
+    }
+
+    .mermaid .nodeLabel sub,
+    .mermaid .nodeLabel sup,
+    .mermaid foreignObject sub,
+    .mermaid foreignObject sup {
+      font-size: 8.5px !important;
+      line-height: 0;
     }
 
     .mermaid foreignObject {
@@ -5347,7 +5386,7 @@
       }
     }
 
-            function manualMoveSpeaker(targetKey, shouldSpeak = false) {
+                function manualMoveSpeaker(targetKey, shouldSpeak = false) {
       // Dynamic Tool Detection on Current Slide
       const topicData = curriculum[currentTopic];
       const curSlide = (topicData && topicData.slides) ? topicData.slides[currentSlideIndex] : null;
@@ -5359,28 +5398,26 @@
 
       const isL1Sim = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
       const isL2Sim = (currentTopic === 'ch1_p2' && (currentSlideIndex === 5 || currentSlideIndex === 11));
-      const isL2_1Sim = (currentTopic === 'ch2_p1' && (currentSlideIndex === 5 || currentSlideIndex === 11));
       const domSim = !!(document.getElementById('speakerDockSimulator') ||
-                        document.getElementById('taeSimWidget') ||
-                        document.getElementById('fpcSimWidget') ||
                         document.getElementById('empiricalCascadeWidget') ||
                         document.getElementById('empiricalSimWidget') ||
                         document.getElementById('multiStructureWidget') ||
                         document.getElementById('streamingWindowWidget'));
-      const hasSim = isL1Sim || isL2Sim || isL2_1Sim || hasTurnsSim || domSim;
+      const hasSim = isL1Sim || isL2Sim || hasTurnsSim || domSim;
 
       const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
       const isL2Quiz = (currentTopic === 'ch1_p2' && (currentSlideIndex === 6 || currentSlideIndex === 12));
-      const isL2_1Quiz = (currentTopic === 'ch2_p1' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const domQuiz = !!(document.getElementById('speakerDockCheckpoint') ||
                          document.getElementById('slideQuizCheckpoint'));
-      const hasQuiz = isL1Quiz || isL2Quiz || isL2_1Quiz || hasTurnsQuiz || domQuiz;
+      const hasQuiz = isL1Quiz || isL2Quiz || hasTurnsQuiz || domQuiz;
 
       // Do not navigate away if tool does not exist on this slide
       if (targetKey === 'sim' && !hasSim) return;
       if (targetKey === 'quiz' && !hasQuiz) return;
 
       moveSpeakerToDock(targetKey, true);
+
+      
 
       
 
@@ -5479,7 +5516,7 @@
       }
     }
 
-        function updateDockFocusPills(activeKey) {
+            function updateDockFocusPills(activeKey) {
       const label = document.getElementById('dockActiveLabel');
       const btnMain = document.getElementById('dockBtnMain');
       const btnSim = document.getElementById('dockBtnSim');
@@ -5515,10 +5552,6 @@
       const isStreamSim = (currentTopic === 'ch1_p2' && currentSlideIndex === 11);
       const isChk1 = (currentTopic === 'ch1_p2' && currentSlideIndex === 6);
       const isChk2 = (currentTopic === 'ch1_p2' && currentSlideIndex === 12);
-      const isTaeSim = (currentTopic === 'ch2_p1' && currentSlideIndex === 5);
-      const isFpcSim = (currentTopic === 'ch2_p1' && currentSlideIndex === 11);
-      const isL2_1Chk1 = (currentTopic === 'ch2_p1' && currentSlideIndex === 6);
-      const isL2_1Chk2 = (currentTopic === 'ch2_p1' && currentSlideIndex === 12);
 
       // Default activeKey to main if dock does not exist on this slide
       if ((activeKey === 'sim' && !hasSim) || (activeKey === 'quiz' && !hasQuiz)) {
@@ -5536,9 +5569,7 @@
       if (btnSim) {
         if (hasSim) {
           btnSim.classList.remove('hidden');
-          if (isTaeSim) btnSim.innerHTML = '⚡ TAE Simulator';
-          else if (isFpcSim) btnSim.innerHTML = '⚡ FPC & Power';
-          else if (isMultiStruct) btnSim.innerHTML = '⚡ Multi-Structure';
+          if (isMultiStruct) btnSim.innerHTML = '⚡ Multi-Structure';
           else if (isStreamSim) btnSim.innerHTML = '⚡ Streaming Sim';
           else if (isCascade) btnSim.innerHTML = '⚡ Cascade Simulator';
           else btnSim.innerHTML = '⚡ Simulator';
@@ -5550,9 +5581,7 @@
       if (btnQuiz) {
         if (hasQuiz) {
           btnQuiz.classList.remove('hidden');
-          if (isL2_1Chk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
-          else if (isL2_1Chk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
-          else if (isChk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
+          if (isChk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
           else if (isChk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
           else btnQuiz.innerHTML = '💡 Checkpoint';
         } else {
@@ -5572,16 +5601,12 @@
         if (activeKey === 'main') {
           label.innerText = (hasSim || hasQuiz) ? "1. Core Slide Content" : "Core Slide Content";
         } else if (activeKey === 'sim') {
-          if (isTaeSim) label.innerText = "2. Total Acquisition Error (TAE) & Coverage Bias Simulator";
-          else if (isFpcSim) label.innerText = "2. Finite Population Correction & Power Sizer Workbench";
-          else if (isMultiStruct) label.innerText = "2. Multi-Structure Inspector (SQL vs JSON vs Vector)";
+          if (isMultiStruct) label.innerText = "2. Multi-Structure Inspector (SQL vs JSON vs Vector)";
           else if (isStreamSim) label.innerText = "2. Dynamic Tumbling Window Simulator";
           else if (isCascade) label.innerText = "2. Data Quality Cascade Simulator";
           else label.innerText = "2. Empirical Risk & Bias Playground";
         } else if (activeKey === 'quiz') {
-          if (isL2_1Chk1) label.innerText = "3. Checkpoint: Calculating Frame Coverage Bias";
-          else if (isL2_1Chk2) label.innerText = "3. Checkpoint: The FPC Scaling Impact";
-          else if (isChk1) label.innerText = "3. Checkpoint: Schema-on-Read vs Columnar Storage";
+          if (isChk1) label.innerText = "3. Checkpoint: Schema-on-Read vs Columnar Storage";
           else if (isChk2) label.innerText = "3. Checkpoint: Watermark Triage & Late Arrivals";
           else label.innerText = "3. Active Recall Checkpoint";
         } else {
@@ -5589,6 +5614,8 @@
         }
       }
     }
+
+    
 
     
 
@@ -6177,6 +6204,7 @@
     window.toggleStreamSimulation = toggleStreamSimulation;
     window.burstHighTempEvents = burstHighTempEvents;
     window.clearStreamLog = clearStreamLog;
+    window.updateDockFocusPills = updateDockFocusPills;
 
     /* ========================================================
        Chapter 2.1 Interactive Simulation Engines

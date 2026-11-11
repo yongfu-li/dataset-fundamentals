@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1997,16 +2041,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gradient-inversion-vulnerability-deep-leakage-from-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradient Inversion Vulnerability (Deep Leakage from Gradients)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-python-verification-pet-metrics-laplace-calibration" class="md-nav__link">
+  <a href="#6-interactive-laboratory-pets-multi-metric-auditor-laplace-simulator" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Python Verification: PET Metrics &amp; Laplace Calibration
+        6. 🔬 Interactive Laboratory: PETs Multi-Metric Auditor &amp; Laplace Simulator
       
     </span>
   </a>
@@ -2014,21 +2069,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-mondrian-k-anonymity-laplace-dp-engine" class="md-nav__link">
+  <a href="#7-production-implementation-mondrian-k-anonymity-laplace-dp-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Mondrian k-Anonymity &amp; Laplace DP Engine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Interactive Laboratory Workbench
+        7. Production Implementation: Mondrian k-Anonymity &amp; Laplace DP Engine
       
     </span>
   </a>
@@ -2047,10 +2091,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7766,16 +7810,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gradient-inversion-vulnerability-deep-leakage-from-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradient Inversion Vulnerability (Deep Leakage from Gradients)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-python-verification-pet-metrics-laplace-calibration" class="md-nav__link">
+  <a href="#6-interactive-laboratory-pets-multi-metric-auditor-laplace-simulator" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Python Verification: PET Metrics &amp; Laplace Calibration
+        6. 🔬 Interactive Laboratory: PETs Multi-Metric Auditor &amp; Laplace Simulator
       
     </span>
   </a>
@@ -7783,21 +7838,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-mondrian-k-anonymity-laplace-dp-engine" class="md-nav__link">
+  <a href="#7-production-implementation-mondrian-k-anonymity-laplace-dp-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Mondrian k-Anonymity &amp; Laplace DP Engine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Interactive Laboratory Workbench
+        7. Production Implementation: Mondrian k-Anonymity &amp; Laplace DP Engine
       
     </span>
   </a>
@@ -7816,10 +7860,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#interactive-self-assessment-diagnostic-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        ❓ Interactive Self-Assessment Diagnostic Scenarios
       
     </span>
   </a>
@@ -7858,38 +7902,38 @@
 
 
 <h1 id="35-privacy-preserving-technologies-k-anonymity-l-diversity-t-closeness-differential-privacy">3.5 Privacy-Preserving Technologies: k-Anonymity, l-Diversity, t-Closeness &amp; Differential Privacy</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.4: Privacy-Preserving Techniques)</strong> in the official Springer Nature monograph, detailing equivalence class generalization, Earth Mover's Distance in t-closeness, and Laplace noise calibration in differential privacy.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.5: Privacy-Preserving Technologies)</strong> in the official Springer Nature monograph, detailing equivalence class generalization, Earth Mover's Distance in t-closeness, and Laplace noise calibration in differential privacy.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~18 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-35">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.5</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">22 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">20 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=5" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=5" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7927,8 +7971,8 @@
         G2["ZIP: 0213*, Age: [25-35], Male -&gt; Asthma"]
     end
 
-  %% Top-alignment constraint across stages
-  R1 ~~~ G1
+    %% Top-alignment constraint across stages
+    R1 ~~~ G1
 
     Raw --&gt;|Generalization &amp; Suppression| Gen
 
@@ -7944,16 +7988,9 @@
 </ol>
 <h3 id="vulnerabilities-homogeneity-background-knowledge-attacks">Vulnerabilities: Homogeneity &amp; Background Knowledge Attacks</h3>
 <p>While <span class="arithmatex">\(k\)</span>-anonymity prevents identity disclosure, it fails against <strong>attribute disclosure</strong>:
-- <strong>Homogeneity Attack</strong>: If all <span class="arithmatex">\(k\)</span> records in an equivalence class share the <em>same</em> sensitive attribute (e.g., all 4 patients in <span class="arithmatex">\([0213*, [30\text{--}40]]\)</span> have "Alzheimer's"), an adversary knowing the subject belongs to that group discovers their diagnosis with <span class="arithmatex">\(100\%\)</span> probability.</p>
+- <strong>Homogeneity Attack</strong>: If all <span class="arithmatex">\(k\)</span> records in an equivalence class share the <em>same</em> sensitive attribute (e.g., all 4 patients in <span class="arithmatex">\([0213*, [30\text{--}40]]\)</span> have "Alzheimer's"), an adversary knowing the subject belongs to that group discovers their diagnosis with <span class="arithmatex">\(100\%\)</span> probability.
+- <strong>Background Knowledge Attack</strong>: If an adversary knows a subject has a low genetic risk for disease X, they can eliminate X from the equivalence class and deduce the true condition.</p>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Differential Privacy Epsilon Budget Accounting</p>
-<p>In iterative model training or query interfaces, always maintain a centralized <strong>Privacy Budget Ledger</strong>. Each query or gradient descent step consumes a portion of the privacy loss budget (<span class="arithmatex">\(\epsilon\)</span>). Once cumulative <span class="arithmatex">\(\sum \epsilon_i \ge \epsilon_{\text{total}}\)</span>, the interface must terminate access to prevent mathematical reconstruction attacks.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: The High-Dimensional Curse in k-Anonymity</p>
-<p>As the number of quasi-identifiers <span class="arithmatex">\(m\)</span> increases (<span class="arithmatex">\(m &gt; 10\)</span>), achieving <span class="arithmatex">\(k\)</span>-anonymity requires catastrophic generalization or suppression of over 95% of data points, destroying data utility. In high-dimensional spaces, transition from syntactic <span class="arithmatex">\(k\)</span>-anonymity to formal Differential Privacy.</p>
-</div>
 <h2 id="2-l-diversity-protecting-attribute-diversity">2. l-Diversity: Protecting Attribute Diversity</h2>
 <p>To prevent homogeneity attacks, Machanavajjhala et al. [<a href="#ref-machanavajjhala2007">Machanavajjhala2007</a>] introduced <strong><span class="arithmatex">\(l\)</span>-Diversity</strong>, requiring that sensitive attributes within each equivalence class have at least <span class="arithmatex">\(l\)</span> "well-represented" values.</p>
 <h3 id="distinct-l-diversity">Distinct l-Diversity</h3>
@@ -7981,6 +8018,10 @@
 <div class="arithmatex">\[
 \mathcal{D}[P, Q] = \frac{1}{m - 1} \sum_{i=1}^{m - 1} \left| F_P(v_i) - F_Q(v_i) \right| \le t
 \]</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Global Distribution Q:     [Cancer: 2%,  Diabetes: 10%, Flu: 88%]
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Equivalence Class P:       [Cancer: 33%, Diabetes: 33%, Flu: 34%]  --&gt; EMD[P, Q] = 0.42 (Fails t &lt;= 0.15)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Equivalence Class P_safe:  [Cancer: 3%,  Diabetes: 11%, Flu: 86%]  --&gt; EMD[P, Q] = 0.02 (Satisfies t = 0.15)
+</span></code></pre></div>
 <hr />
 <h2 id="4-differential-privacy-cryptographic-output-guarantees">4. Differential Privacy: Cryptographic Output Guarantees</h2>
 <p>While partition-based methods (<span class="arithmatex">\(k, l, t\)</span>) depend on assumptions about adversary background knowledge, <strong>Differential Privacy (DP)</strong> [<a href="#ref-dwork2006">Dwork2006</a>, <a href="#ref-dwork2014">Dwork2014</a>] provides mathematically provable privacy guarantees independent of auxiliary information.</p>
@@ -8055,125 +8096,415 @@
 <div class="arithmatex">\[
 w_{t+1} = \sum_{k=1}^K \frac{n_k}{N} w_{t+1}^k, \quad \text{where } N = \sum_{k=1}^K n_k
 \]</div>
+<h3 id="gradient-inversion-vulnerability-deep-leakage-from-gradients">Gradient Inversion Vulnerability (Deep Leakage from Gradients)</h3>
+<p>Transmitting raw gradients is <strong>not automatically private</strong>. Under Deep Leakage from Gradients (DLG) [<a href="#ref-zhu2019">Zhu2019</a>], an adversary on the central server reconstructs original training images and text by matching dummy gradients:</p>
+<div class="arithmatex">\[
+\min_{\mathbf{x}', \mathbf{y}'} \left\| \nabla_\theta \ell(f(\mathbf{x}'; \theta), \mathbf{y}') - \nabla_\theta \mathcal{L}_{\text{observed}} \right\|_F^2
+\]</div>
+<p><strong>Remediation</strong>: Federated learning must be coupled with <strong>Differential Privacy (DP-SGD)</strong> and <strong>Secure Multi-Party Aggregation (SecAgg)</strong> using Shamir's Secret Sharing.</p>
 <hr />
-<h2 id="6-python-verification-pet-metrics-laplace-calibration">6. Python Verification: PET Metrics &amp; Laplace Calibration</h2>
-<p>The following Python script computes <span class="arithmatex">\(k\)</span>-anonymity, entropy <span class="arithmatex">\(l\)</span>-diversity, EMD <span class="arithmatex">\(t\)</span>-closeness, and verifies Laplace differential privacy noise bounds.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># pet_mathematical_verification.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Validates k-anonymity, l-diversity, t-closeness, and Laplace noise injection</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">verify_k_anonymity</span><span class="p">(</span><span class="n">cohorts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="c1"># Verifies that every equivalence class contains at least k records</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cohorts</span><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_entropy_l_diversity</span><span class="p">(</span><span class="n">sensitive_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="c1"># Computes Shannon entropy of sensitive values within an equivalence class</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">sensitive_values</span><span class="p">)</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sensitive_values</span><span class="p">)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="o">/</span> <span class="n">total</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="nb">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">probs</span><span class="p">))</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_emd_t_closeness</span><span class="p">(</span><span class="n">class_counts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">global_counts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">domain_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="c1"># Computes 1D Earth Mover's Distance between class and global distributions</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">total_class</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">class_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">total_global</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">global_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">class_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_class</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">domain_size</span><span class="p">)])</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">global_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_global</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">domain_size</span><span class="p">)])</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="c1"># Cumulative distributions</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">f_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">f_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">emd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_p</span> <span class="o">-</span> <span class="n">f_q</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">domain_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">emd</span><span class="p">)</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">def</span><span class="w"> </span><span class="nf">laplace_mechanism</span><span class="p">(</span><span class="n">true_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="c1"># Injects calibrated Laplace noise</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">scale</span> <span class="o">=</span> <span class="n">sensitivity</span> <span class="o">/</span> <span class="n">epsilon</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">true_value</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_pet_assertions</span><span class="p">():</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="c1"># 1. k-anonymity test</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="n">classes</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">"DiagA"</span><span class="p">,</span> <span class="s2">"DiagB"</span><span class="p">,</span> <span class="s2">"DiagC"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"DiagA"</span><span class="p">,</span> <span class="s2">"DiagA"</span><span class="p">,</span> <span class="s2">"DiagA"</span><span class="p">,</span> <span class="s2">"DiagB"</span><span class="p">]]</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="k">assert</span> <span class="n">verify_k_anonymity</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="k">assert</span> <span class="n">verify_k_anonymity</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="c1"># 2. Entropy l-diversity test</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="c1"># Class 1: 3 distinct equally balanced values -&gt; entropy = ln(3)</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">entropy_val</span> <span class="o">=</span> <span class="n">compute_entropy_l_diversity</span><span class="p">([</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">])</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">entropy_val</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">3.0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="c1"># 3. t-closeness test</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="c1"># Domain: 3 ordinal stages [0, 1, 2]</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">glob</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">sub</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span> <span class="c1"># Identical distribution -&gt; EMD = 0</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="n">emd_identical</span> <span class="o">=</span> <span class="n">compute_emd_t_closeness</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">glob</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="k">assert</span> <span class="n">emd_identical</span> <span class="o">==</span> <span class="mf">0.0</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="c1"># 4. Laplace noise test</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="c1"># Counting query: sensitivity = 1.0, epsilon = 0.5 -&gt; scale = 2.0 -&gt; variance = 8.0</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">laplace_mechanism</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">empirical_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="n">theoretical_var</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="c1"># 8.0</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">empirical_var</span> <span class="o">-</span> <span class="n">theoretical_var</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.6</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Variance mismatch: </span><span class="si">{</span><span class="n">empirical_var</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">theoretical_var</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All PET mathematical assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">test_pet_assertions</span><span class="p">()</span>
-</span></code></pre></div>
-<h4>Launch De-Identification & Privacy Risk Studio</h4>
-<p>Test k-Anonymity, l-Diversity, and t-Closeness metrics, simulate background knowledge attacks, and calculate re-identification probabilities.</p>
-<p><a href="../../tools/deid-risk/" class="noc-sim-btn">Launch De-ID Risk Workbench →</a>
-</div></p>
+<h2 id="6-interactive-laboratory-pets-multi-metric-auditor-laplace-simulator">6. 🔬 Interactive Laboratory: PETs Multi-Metric Auditor &amp; Laplace Simulator</h2>
+<p>Audit microdata across <span class="arithmatex">\(k\)</span>-Anonymity, <span class="arithmatex">\(l\)</span>-Diversity, <span class="arithmatex">\(t\)</span>-Closeness, and Differential Privacy in real time using the interactive workbench below. Select presets, observe how homogeneity and semantic similarity attacks are exposed, and inject calibrated Laplace noise:</p>
+<div class="noc-sim-container" style="background:#fffdf7; border:2px solid #151b20; border-radius:14px; padding:22px; margin:24px 0; box-shadow:4px 4px 0px #151b20;">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+    <div>
+      <span style="font-weight:800; color:#0e7490; font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+        <span>🔬</span> PETs Multi-Metric Auditor &amp; Laplace Simulator
+      </span>
+      <div style="font-size:0.84rem; color:#475569; margin-top:2px; font-weight:500;">
+        Test k-Anonymity, l-Diversity, t-Closeness, and Laplace Differential Privacy
+      </div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="noc-sim-btn" onclick="applyPetPreset(1)" style="font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 1: Raw (k=1 Re-ID)</button>
+      <button class="noc-sim-btn" onclick="applyPetPreset(2)" style="background:#ffd8ce; color:#c2410c; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 2: k=3 Homogeneity Trap</button>
+      <button class="noc-sim-btn" onclick="applyPetPreset(3)" style="background:#fff0b9; color:#151b20; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 3: l=3 Semantic Cluster</button>
+      <button class="noc-sim-btn" onclick="applyPetPreset(4)" style="background:#b7df69; color:#151b20; font-size:0.80rem; padding:6px 12px; cursor:pointer;">Preset 4: t=0.15 &amp; ε=1.0 Safe</button>
+    </div>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:10px; padding:14px; margin-bottom:16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">ZIP Generalization:</label>
+      <select id="ctrlPetZip" onchange="updatePetSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="5">5-Digit Exact (02138)</option>
+        <option value="3">3-Digit Prefix (021**)</option>
+        <option value="state">State Code (MA / CA)</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Age Bracket Generalization:</label>
+      <select id="ctrlPetAge" onchange="updatePetSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="exact">Exact Age (e.g. 29, 31)</option>
+        <option value="decade">10-Year Bins ([20-29], [30-39])</option>
+        <option value="broad">Broad Cohort (&lt;50 / &ge;50)</option>
+      </select>
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">
+        DP Budget (ε): <span id="lblPetEps" style="color:#0e7490; font-family:monospace; font-weight:900;">1.00</span>
+      </label>
+      <input type="range" id="ctrlPetEpsilon" min="0.1" max="5.0" step="0.1" value="1.0" oninput="updatePetSimulation()" style="width:100%; accent-color:#0e7490; cursor:pointer;" />
+    </div>
+
+    <div>
+      <label style="font-size:0.80rem; font-weight:800; color:#151b20; display:block; margin-bottom:4px;">Sensitive Payload Configuration:</label>
+      <select id="ctrlSensitiveMode" onchange="updatePetSimulation()" style="width:100%; padding:6px; border:2px solid #151b20; border-radius:6px; background:#fff; font-family:monospace; font-size:0.80rem;">
+        <option value="raw">Original Diagnoses</option>
+        <option value="homo">Homogeneous Cluster (All Cancer)</option>
+        <option value="semantic">Semantic Similarity Cluster (Gastrointestinal)</option>
+        <option value="diverse">Diverse Uniform Distribution</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Real-Time Metrics Bar -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:16px;">
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">k-Anonymity (Min Cohort)</div>
+      <div id="metricPetK" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">k = 1</div>
+      <div id="metricPetKBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">Singleton Linkage</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">l-Diversity (Min Entropy)</div>
+      <div id="metricPetL" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">l = 1</div>
+      <div id="metricPetLBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">Zero Diversity</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">t-Closeness (Max EMD)</div>
+      <div id="metricPetT" style="font-size:1.4rem; font-weight:900; color:#b91c1c; font-family:monospace;">0.65</div>
+      <div id="metricPetTBadge" style="font-size:0.72rem; font-weight:700; color:#b91c1c;">Distribution Skewed</div>
+    </div>
+
+    <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:10px; box-shadow:2px 2px 0px #151b20;">
+      <div style="font-size:0.75rem; font-weight:800; color:#475569; text-transform:uppercase;">Vulnerability Status</div>
+      <div id="metricPetStatus" style="font-size:0.95rem; font-weight:900; color:#b91c1c; line-height:1.2; margin-top:4px;">🚨 IDENTITY DISCLOSURE</div>
+      <div style="font-size:0.70rem; color:#475569;">Re-Identification Possible</div>
+    </div>
+  </div>
+
+  <!-- Interactive Data Table -->
+  <div style="overflow-x:auto; border:2px solid #151b20; border-radius:10px; margin-bottom:14px;">
+    <table id="petTable" style="width:100%; border-collapse:collapse; background:#fff; font-size:0.80rem; font-family:monospace; margin:0;">
+      <thead>
+        <tr style="background:#e2dfff; border-bottom:2px solid #151b20; color:#151b20; text-align:left;">
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">ID</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">ZIP Code (QI)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Age (QI)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Sensitive Diagnosis (S)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">|Class| (k)</th>
+          <th style="padding:8px 10px; border-right:1px solid #151b20;">Distinct l</th>
+          <th style="padding:8px 10px;">Security Status</th>
+        </tr>
+      </thead>
+      <tbody id="petTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Live DP Query Perturbation Widget -->
+  <div style="background:#fffaf0; border:2px solid #151b20; border-radius:8px; padding:12px; font-family:monospace; font-size:0.80rem; color:#151b20;">
+    <div style="font-weight:800; margin-bottom:6px; color:#0e7490;">Simultaneous Differential Privacy Query (Patient Count):</div>
+    <div style="display:flex; flex-wrap:wrap; gap:16px;">
+      <div>True Count: <strong>8</strong></div>
+      <div>Laplace Noise (ε = <span id="lblQueryEps">1.0</span>, Δf = 1): <strong id="lblPetNoise" style="color:#b91c1c;">+0.42</strong></div>
+      <div>Differentially Private Output: <strong id="lblPetReported" style="color:#047857;">8.42</strong></div>
+      <div>Variance (2b²): <strong id="lblPetVar">2.00</strong></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PET_SAMPLE_ROWS = [
+  { id: "P-101", zip: "02138", state: "MA", age: 28, diag: "Stomach Cancer", diag_cat: 0 },
+  { id: "P-102", zip: "02138", state: "MA", age: 29, diag: "Colon Cancer", diag_cat: 0 },
+  { id: "P-103", zip: "02138", state: "MA", age: 31, diag: "Ulcerative Colitis", diag_cat: 0 },
+  { id: "P-104", zip: "02139", state: "MA", age: 45, diag: "Type 2 Diabetes", diag_cat: 1 },
+  { id: "P-105", zip: "02139", state: "MA", age: 48, diag: "Hypertension", diag_cat: 2 },
+  { id: "P-106", zip: "94107", state: "CA", age: 52, diag: "Clinical Depression", diag_cat: 3 },
+  { id: "P-107", zip: "94107", state: "CA", age: 54, diag: "Bipolar Disorder", diag_cat: 3 },
+  { id: "P-108", zip: "94107", state: "CA", age: 55, diag: "Asthma", diag_cat: 4 }
+];
+
+function applyPetPreset(presetId) {
+  const zipSel = document.getElementById('ctrlPetZip');
+  const ageSel = document.getElementById('ctrlPetAge');
+  const epsSlider = document.getElementById('ctrlPetEpsilon');
+  const modeSel = document.getElementById('ctrlSensitiveMode');
+
+  if (presetId === 1) {
+    zipSel.value = '5';
+    ageSel.value = 'exact';
+    epsSlider.value = '5.0';
+    modeSel.value = 'raw';
+  } else if (presetId === 2) {
+    zipSel.value = '3';
+    ageSel.value = 'broad';
+    epsSlider.value = '2.0';
+    modeSel.value = 'homo';
+  } else if (presetId === 3) {
+    zipSel.value = '3';
+    ageSel.value = 'decade';
+    epsSlider.value = '1.5';
+    modeSel.value = 'semantic';
+  } else if (presetId === 4) {
+    zipSel.value = 'state';
+    ageSel.value = 'broad';
+    epsSlider.value = '1.0';
+    modeSel.value = 'diverse';
+  }
+  updatePetSimulation();
+}
+
+function updatePetSimulation() {
+  const zipMode = document.getElementById('ctrlPetZip').value;
+  const ageMode = document.getElementById('ctrlPetAge').value;
+  const eps = parseFloat(document.getElementById('ctrlPetEpsilon').value);
+  const sensMode = document.getElementById('ctrlSensitiveMode').value;
+
+  document.getElementById('lblPetEps').innerText = eps.toFixed(1);
+  document.getElementById('lblQueryEps').innerText = eps.toFixed(1);
+
+  // Process rows
+  const processed = PET_SAMPLE_ROWS.map((r, i) => {
+    let zStr = r.zip;
+    if (zipMode === '3') zStr = r.zip.substring(0, 3) + '**';
+    else if (zipMode === 'state') zStr = r.state + ' (State)';
+
+    let aStr = String(r.age);
+    if (ageMode === 'decade') {
+      const dec = Math.floor(r.age / 10) * 10;
+      aStr = `[${dec}-${dec + 9}]`;
+    } else if (ageMode === 'broad') {
+      aStr = r.age < 50 ? '<50' : '>=50';
+    }
+
+    let diagStr = r.diag;
+    let diagCat = r.diag_cat;
+    if (sensMode === 'homo') {
+      diagStr = "Colorectal Cancer";
+      diagCat = 0;
+    } else if (sensMode === 'semantic') {
+      const gStrs = ["Stomach Cancer", "Colon Cancer", "Esophageal Cancer", "Ulcerative Colitis"];
+      diagStr = gStrs[i % gStrs.length];
+      diagCat = 0;
+    } else if (sensMode === 'diverse') {
+      const dStrs = ["Asthma", "Diabetes", "Hypertension", "Depression", "Glaucoma", "Arthritis", "Eczema", "Migraine"];
+      diagStr = dStrs[i];
+      diagCat = i % 5;
+    }
+
+    const qiKey = `${zStr}|${aStr}`;
+    return { ...r, zStr, aStr, diagStr, diagCat, qiKey };
+  });
+
+  // Calculate Equivalence Classes
+  const eqClasses = {};
+  processed.forEach(p => {
+    if (!eqClasses[p.qiKey]) eqClasses[p.qiKey] = [];
+    eqClasses[p.qiKey].push(p);
+  });
+
+  let minK = 999;
+  let minL = 999;
+  let maxEMD = 0.0;
+
+  // Global category distribution
+  const globCounts = [0, 0, 0, 0, 0];
+  processed.forEach(p => globCounts[p.diagCat]++);
+  const globP = globCounts.map(c => c / processed.length);
+  const globCDF = [];
+  globP.reduce((acc, v, idx) => globCDF[idx] = acc + v, 0);
+
+  Object.values(eqClasses).forEach(cohort => {
+    const kSize = cohort.length;
+    if (kSize < minK) minK = kSize;
+
+    const distinctDiags = new Set(cohort.map(c => c.diagStr));
+    if (distinctDiags.size < minL) minL = distinctDiags.size;
+
+    // EMD calculation
+    const subCounts = [0, 0, 0, 0, 0];
+    cohort.forEach(c => subCounts[c.diagCat]++);
+    const subP = subCounts.map(c => c / cohort.length);
+    const subCDF = [];
+    subP.reduce((acc, v, idx) => subCDF[idx] = acc + v, 0);
+
+    let emd = 0;
+    for (let j = 0; j < 4; j++) {
+      emd += Math.abs(subCDF[j] - globCDF[j]);
+    }
+    emd = emd / 4.0;
+    if (emd > maxEMD) maxEMD = emd;
+
+    cohort.forEach(c => {
+      c.kSize = kSize;
+      c.distinctL = distinctDiags.size;
+      c.emd = emd;
+    });
+  });
+
+  // Update Metrics Dashboard
+  const kElem = document.getElementById('metricPetK');
+  const kBadge = document.getElementById('metricPetKBadge');
+  kElem.innerText = `k = ${minK}`;
+  if (minK === 1) {
+    kElem.style.color = '#b91c1c';
+    kBadge.innerText = 'FAIL: Singleton Linkage';
+    kBadge.style.color = '#b91c1c';
+  } else if (minK === 2) {
+    kElem.style.color = '#d97706';
+    kBadge.innerText = 'WARN: Weak (k=2)';
+    kBadge.style.color = '#d97706';
+  } else {
+    kElem.style.color = '#047857';
+    kBadge.innerText = `PASS: Robust k=${minK}`;
+    kBadge.style.color = '#047857';
+  }
+
+  const lElem = document.getElementById('metricPetL');
+  const lBadge = document.getElementById('metricPetLBadge');
+  lElem.innerText = `l = ${minL}`;
+  if (minL === 1) {
+    lElem.style.color = '#b91c1c';
+    lBadge.innerText = 'FAIL: Homogeneity Attack';
+    lBadge.style.color = '#b91c1c';
+  } else {
+    lElem.style.color = '#047857';
+    lBadge.innerText = `PASS: Distinct l=${minL}`;
+    lBadge.style.color = '#047857';
+  }
+
+  const tElem = document.getElementById('metricPetT');
+  const tBadge = document.getElementById('metricPetTBadge');
+  tElem.innerText = maxEMD.toFixed(2);
+  if (maxEMD > 0.25) {
+    tElem.style.color = '#b91c1c';
+    tBadge.innerText = 'FAIL: Skewed Distribution';
+    tBadge.style.color = '#b91c1c';
+  } else {
+    tElem.style.color = '#047857';
+    tBadge.innerText = 'PASS: t <= 0.25 Closeness';
+    tBadge.style.color = '#047857';
+  }
+
+  const statusElem = document.getElementById('metricPetStatus');
+  if (minK === 1) {
+    statusElem.innerHTML = '🚨 IDENTITY DISCLOSURE';
+    statusElem.style.color = '#b91c1c';
+  } else if (minL === 1) {
+    statusElem.innerHTML = '⚠️ HOMOGENEITY ATTACK';
+    statusElem.style.color = '#b91c1c';
+  } else if (maxEMD > 0.30) {
+    statusElem.innerHTML = '⚠️ SEMANTIC SIMILARITY';
+    statusElem.style.color = '#d97706';
+  } else {
+    statusElem.innerHTML = '🛡️ CERTIFIED PRIVACY';
+    statusElem.style.color = '#047857';
+  }
+
+  // Populate Table
+  const tbody = document.getElementById('petTableBody');
+  tbody.innerHTML = '';
+  processed.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid #151b20';
+
+    let rowBg = '#ffffff';
+    let badgeHtml = '';
+    if (p.kSize === 1) {
+      rowBg = '#fff1f2';
+      badgeHtml = '<span style="background:#ffd8ce; color:#991b1b; padding:2px 6px; border-radius:4px; font-weight:800;">1:1 Linkage (k=1)</span>';
+    } else if (p.distinctL === 1) {
+      rowBg = '#fef2f2';
+      badgeHtml = '<span style="background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:4px; font-weight:800;">Homogeneity (l=1)</span>';
+    } else if (p.emd > 0.30) {
+      rowBg = '#fffbeb';
+      badgeHtml = '<span style="background:#fef3c7; color:#b45309; padding:2px 6px; border-radius:4px; font-weight:700;">Semantic Skew</span>';
+    } else {
+      rowBg = '#f0fdf4';
+      badgeHtml = '<span style="background:#dcfce7; color:#15803d; padding:2px 6px; border-radius:4px; font-weight:700;">Safe Cohort</span>';
+    }
+    tr.style.background = rowBg;
+
+    tr.innerHTML = `
+      <td style="padding:6px 10px; border-right:1px solid #151b20; font-weight:700;">${p.id}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20;">${p.zStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20;">${p.aStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20; font-weight:600; color:#151b20;">${p.diagStr}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20; text-align:center; font-weight:800;">${p.kSize}</td>
+      <td style="padding:6px 10px; border-right:1px solid #151b20; text-align:center; font-weight:800;">${p.distinctL}</td>
+      <td style="padding:6px 10px;">${badgeHtml}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Laplace DP Query Simulation
+  const scale = 1.0 / eps;
+  const u = Math.random() - 0.5;
+  const noise = -scale * Math.sign(u) * Math.log(1.0 - 2.0 * Math.abs(u));
+  const noisyVal = Math.max(0, 8 + noise);
+  const variance = 2.0 * Math.pow(scale, 2);
+
+  document.getElementById('lblPetNoise').innerText = (noise >= 0 ? '+' : '') + noise.toFixed(2);
+  document.getElementById('lblPetReported').innerText = noisyVal.toFixed(2);
+  document.getElementById('lblPetVar').innerText = variance.toFixed(2);
+}
+
+// Initial mount
+document.addEventListener('DOMContentLoaded', () => {
+  applyPetPreset(1);
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  applyPetPreset(1);
+}
+</script>
+
 <hr />
-<h2 id="production-implementation-mondrian-k-anonymity-laplace-dp-engine">💻 Production Implementation: Mondrian k-Anonymity &amp; Laplace DP Engine</h2>
-<p>Below is a complete, runnable Python engine featuring the greedy multidimensional <strong>Mondrian <span class="arithmatex">\(k\)</span>-Anonymity</strong> algorithm and the <strong>Laplace Mechanism</strong> for <span class="arithmatex">\(\epsilon\)</span>-Differential Privacy.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sd">"""</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">privacy_preserving_engine.py</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">Mondrian k-Anonymity partitioner and Laplace Differential Privacy mechanism.</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="sd">"""</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<h2 id="7-production-implementation-mondrian-k-anonymity-laplace-dp-engine">7. Production Implementation: Mondrian k-Anonymity &amp; Laplace DP Engine</h2>
+<p>Below is a complete, runnable Python engine featuring the greedy multidimensional <strong>Mondrian <span class="arithmatex">\(k\)</span>-Anonymity</strong> algorithm and the <strong>Laplace Mechanism</strong> for <span class="arithmatex">\(\epsilon\)</span>-Differential Privacy using <strong>Pydantic V2</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># privacy_preserving_engine.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Production Mondrian k-Anonymity partitioner and Laplace Differential Privacy mechanism</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">LaplaceDPEngine</span><span class="p">:</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="sd">"""Guarantees epsilon-Differential Privacy via calibrated Laplace noise."""</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="k">if</span> <span class="n">epsilon</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Privacy budget epsilon must be strictly positive."</span><span class="p">)</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_noise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">true_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">        </span><span class="sd">"""Adds Laplace(0, Delta / epsilon) noise to satisfy epsilon-DP."""</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="n">scale</span> <span class="o">=</span> <span class="n">sensitivity</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="k">return</span> <span class="n">true_value</span> <span class="o">+</span> <span class="n">noise</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">private_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">        </span><span class="sd">"""Calculates bounded mean under epsilon-Differential Privacy."""</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="c1"># 1. Clip values to enforce global sensitivity bound</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">LaplaceDPEngine</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="sd">"""Guarantees epsilon-Differential Privacy via calibrated Laplace noise."""</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="k">if</span> <span class="n">epsilon</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Privacy budget epsilon must be strictly positive."</span><span class="p">)</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_noise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">true_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sensitivity</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="sd">"""Adds Laplace(0, Delta / epsilon) noise to satisfy epsilon-DP."""</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">scale</span> <span class="o">=</span> <span class="n">sensitivity</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">true_value</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">private_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="sd">"""Calculates bounded mean under epsilon-Differential Privacy."""</span>
 </span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="n">clipped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
 </span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span>
 </span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="c1"># Sensitivity of clipped sum is (upper - lower)</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="n">sum_sensitivity</span> <span class="o">=</span> <span class="n">upper_bound</span> <span class="o">-</span> <span class="n">lower_bound</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="c1"># Split epsilon: 50% for sum, 50% for count (if count is private)</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">noisy_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">clipped</span><span class="p">)),</span> <span class="n">sum_sensitivity</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">))</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        <span class="n">noisy_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)))</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="k">return</span> <span class="n">noisy_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">sum_sensitivity</span> <span class="o">=</span> <span class="n">upper_bound</span> <span class="o">-</span> <span class="n">lower_bound</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="c1"># Split epsilon: 50% for sum, 50% for count</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">noisy_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">clipped</span><span class="p">)),</span> <span class="n">sum_sensitivity</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">))</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">noisy_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)))</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="k">return</span> <span class="n">noisy_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
 </span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
 </span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="k">class</span><span class="w"> </span><span class="nc">MondrianKAnonymity</span><span class="p">:</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="sd">"""Greedy multidimensional partitioner for strict k-anonymity."""</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="sd">"""Greedy multidimensional recursive kd-tree partitioner for strict k-anonymity."""</span>
 </span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 </span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
 </span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
@@ -8204,27 +8535,42 @@ w_{t+1} = \sum_{k=1}^K \frac{n_k}{N} w_{t+1}^k, \quad \text{where } N = \sum_{k=
 </span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>                <span class="n">partitions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
 </span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>                <span class="k">continue</span>
 </span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>            <span class="c1"># Median split</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>            <span class="n">median_val</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">best_col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>            <span class="n">left</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">current</span><span class="p">[</span><span class="n">best_col</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_val</span><span class="p">]</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>            <span class="n">right</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">current</span><span class="p">[</span><span class="n">best_col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">median_val</span><span class="p">]</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>                <span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">])</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>                <span class="n">partitions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>        <span class="k">return</span> <span class="n">partitions</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>            <span class="n">median_val</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">best_col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>            <span class="n">left</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">current</span><span class="p">[</span><span class="n">best_col</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">median_val</span><span class="p">]</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>            <span class="n">right</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">current</span><span class="p">[</span><span class="n">best_col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">median_val</span><span class="p">]</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>                <span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">])</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>                <span class="n">partitions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>        <span class="k">return</span> <span class="n">partitions</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_production_pets_engine</span><span class="p">():</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="c1"># 1. Mondrian Partition Test</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>        <span class="s2">"zip"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">305</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>        <span class="s2">"diagnosis"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">]</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="p">})</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>    <span class="n">mondrian</span> <span class="o">=</span> <span class="n">MondrianKAnonymity</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    <span class="n">partitions</span> <span class="o">=</span> <span class="n">mondrian</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">qi_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">"age"</span><span class="p">,</span> <span class="s2">"zip"</span><span class="p">])</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">partitions</span><span class="p">),</span> <span class="s2">"All partitions must satisfy k &gt;= 3"</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>    <span class="c1"># 2. Differential Privacy Laplace Engine Test</span>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="n">dp_engine</span> <span class="o">=</span> <span class="n">LaplaceDPEngine</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">])</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="n">noisy_mean</span> <span class="o">=</span> <span class="n">dp_engine</span><span class="o">.</span><span class="n">private_mean</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">noisy_mean</span> <span class="o">-</span> <span class="mf">30.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">50.0</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Mondrian k-Anonymity and Laplace DP Engine tests passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>    <span class="n">test_production_pets_engine</span><span class="p">()</span>
 </span></code></pre></div>
-<hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore De-Identification Risk Checker</h4>
-  <p>Test k-Anonymity, l-Diversity, and t-Closeness metrics, simulate background knowledge attacks, and calculate re-identification probabilities.</p>
-  <a href="../../tools/deid-risk/" class="noc-sim-btn">Launch De-ID Risk Workbench →</a>
-</div>
-
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
 <ol>
@@ -8232,11 +8578,12 @@ w_{t+1} = \sum_{k=1}^K \frac{n_k}{N} w_{t+1}^k, \quad \text{where } N = \sum_{k=
 <li><strong><span class="arithmatex">\(t\)</span>-Closeness Prevents Semantic Leakage</strong>: Enforce Earth Mover's Distance bounds to ensure local sensitive distributions match the population distribution.</li>
 <li><strong>Differential Privacy Budget Math</strong>: Privacy budget <span class="arithmatex">\(\epsilon\)</span> is a non-renewable resource; multiple queries against the same dataset consume budget additively (<span class="arithmatex">\(\sum \epsilon_i\)</span>).</li>
 <li><strong>Federated Gradients Leak Data</strong>: Model weights and gradients can leak private records via inversion attacks; always pair FL with Secure Aggregation (SecAgg).</li>
+<li><strong>High-Dimensionality Destroys Partitioning</strong>: In tables with <span class="arithmatex">\(&gt;10\)</span> quasi-identifiers, <span class="arithmatex">\(k\)</span>-anonymity collapses; transition to formal Differential Privacy.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="interactive-self-assessment-diagnostic-scenarios">❓ Interactive Self-Assessment Diagnostic Scenarios</h2>
 <details class="question">
-<summary>Self-Assessment: The Semantic Similarity Attack on l-Diversity</summary>
+<summary>Self-Assessment 1: The Semantic Similarity Attack on l-Diversity</summary>
 <p>A medical clinic publishes a table with <span class="arithmatex">\(k=5\)</span> and <span class="arithmatex">\(l=3\)</span> distinct diversity for the sensitive attribute <code>Diagnosis</code>. In an equivalence class of 5 patients, the sensitive diagnoses are: <code>{"Ulcerative Colitis", "Crohn's Disease", "Colorectal Carcinoma"}</code>. How does an adversary breach privacy despite satisfying <span class="arithmatex">\(l=3\)</span> distinct diversity?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
@@ -8246,7 +8593,7 @@ w_{t+1} = \sum_{k=1}^K \frac{n_k}{N} w_{t+1}^k, \quad \text{where } N = \sum_{k=
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Laplace Mechanism Calibration in Differential Privacy</summary>
+<summary>Self-Assessment 2: Laplace Mechanism Calibration in Differential Privacy</summary>
 <p>A data analyst wants to release the count of patients diagnosed with a rare disease using the Laplace Mechanism with <span class="arithmatex">\(\epsilon = 0.5\)</span>. What is the <span class="arithmatex">\(L_1\)</span> global sensitivity <span class="arithmatex">\(\Delta f\)</span> of a counting query, and what is the variance <span class="arithmatex">\(\sigma^2\)</span> of the injected noise?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
@@ -8259,6 +8606,27 @@ $<span class="arithmatex">\(\sigma^2 = 2 b^2 = 2 \times (2.0)^2 = 8.0\)</span>$
 Standard deviation <span class="arithmatex">\(\sigma = \sqrt{8} \approx 2.83\)</span>. The released count will typically fluctuate by <span class="arithmatex">\(\pm 2.83\)</span> from the true count, providing provable deniability.</p>
 </details>
 </details>
+<details class="question">
+<summary>Self-Assessment 3: Reconstruction Attacks on Aggregate Tables (2010 US Census)</summary>
+<p>Why did the US Census Bureau discover that releasing billions of exact cross-tabulated aggregate counts from the 2010 Census allowed researchers to mathematically reconstruct exact individual records for 52 million Americans, and how does the Dinur-Nissim theorem explain it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> It exemplifies the <strong>Database Reconstruction Theorem (Dinur &amp; Nissim, 2003)</strong>.</p>
+<p>Dinur and Nissim proved that an adversary who can obtain answers to <span class="arithmatex">\(\mathcal{O}(n)\)</span> noisy linear queries with error bounded by <span class="arithmatex">\(o(\sqrt{n})\)</span> can reconstruct the entire private database of <span class="arithmatex">\(n\)</span> records. </p>
+<p>Because the 2010 Census published over 7.7 billion statistics from a population of 308 million people (over 25 statistics per resident), the system of equations was heavily overdetermined. By formulating the published tables as an integer linear programming problem, researchers reconstructed age, gender, race, and location for over 52 million people with 100% accuracy, demonstrating that releasing aggregate counts without Differential Privacy offers zero mathematical defense against modern solvers.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Gradient Inversion in Clinical Federated Learning</summary>
+<p>Three teaching hospitals train a federated convolutional neural network to detect brain glioblastomas from MRI scans. Each hospital computes local gradients <span class="arithmatex">\(\nabla_\theta \mathcal{L}\)</span> and uploads them to a central aggregation server. Why is this architecture vulnerable to Deep Leakage from Gradients (DLG), and what technical safeguard must be implemented?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> It is vulnerable because <strong>gradients encode pixel-level feature activations</strong>.</p>
+<p>In modern neural networks, the gradient of the loss with respect to early convolutional layer weights is a function of the input pixels: <span class="arithmatex">\(\frac{\partial \mathcal{L}}{\partial W_1} \propto \mathbf{x}^T \cdot \delta_1\)</span>. An honest-but-curious parameter server initializes a dummy input <span class="arithmatex">\(\mathbf{x}'\)</span> and optimizes it via gradient descent to match the received gradients:
+$<span class="arithmatex">\(\min_{\mathbf{x}'} \|\nabla_\theta \ell(f(\mathbf{x}')) - \nabla_\theta \mathcal{L}_{\text{observed}}\|^2\)</span>$</p>
+<p>In clinical MRI tasks, DLG reconstructs recognizable brain scans and facial contours within 300 iterations. The mandatory safeguard is <strong>Differentially Private SGD (DP-SGD)</strong>—clipping gradient norms and injecting Gaussian noise before upload—combined with <strong>Cryptographic Secure Aggregation (SecAgg)</strong> so the server only decrypts the summed total.</p>
+</details>
+</details>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
@@ -8269,11 +8637,13 @@ Standard deviation <span class="arithmatex">\(\sigma = \sqrt{8} \approx 2.83\)</
 <li><a id="ref-dwork2014"></a><strong>[Dwork2014]</strong> C. Dwork and A. Roth, "The Algorithmic Foundations of Differential Privacy," <em>Foundations and Trends in Theoretical Computer Science</em>, vol. 9, no. 3–4, pp. 211–407, 2014. <a href="https://doi.org/10.1561/0400000042">DOI: 10.1561/0400000042</a>.</li>
 <li><a id="ref-mcmahan2017"></a><strong>[McMahan2017]</strong> B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, "Communication-efficient Learning of Deep Networks from Decentralized Data," in <em>Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS 2017)</em>, PMLR vol. 54, pp. 1273–1282. <a href="https://doi.org/10.48550/arXiv.1602.05629">DOI: 10.48550/arXiv.1602.05629</a>.</li>
 <li><a id="ref-li2020"></a><strong>[Li2020]</strong> T. Li, A. K. Sahu, A. Talwalkar, and V. Smith, "Federated Learning: Challenges, Methods, and Future Directions," <em>IEEE Signal Processing Magazine</em>, vol. 37, no. 3, pp. 50–60, 2020. <a href="https://doi.org/10.1109/MSP.2020.2975749">DOI: 10.1109/MSP.2020.2975749</a>.</li>
+<li><a id="ref-zhu2019"></a><strong>[Zhu2019]</strong> L. Zhu, Z. Liu, and S. Han, "Deep Leakage from Gradients," in <em>Advances in Neural Information Processing Systems (NeurIPS 2019)</em>, vol. 32, pp. 14774–14784. <a href="https://doi.org/10.48550/arXiv.1906.08935">DOI: 10.48550/arXiv.1906.08935</a>.</li>
+<li><a id="ref-lefevre2006"></a><strong>[LeFevre2006]</strong> K. LeFevre, D. J. DeWitt, and R. Ramakrishnan, "Mondrian Multidimensional k-Anonymity," in <em>Proceedings of the 22nd International Conference on Data Engineering (ICDE '06)</em>, p. 25, 2006. <a href="https://doi.org/10.1109/ICDE.2006.101">DOI: 10.1109/ICDE.2006.101</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
   <a href="../04-data-privacy-principles/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.4 Data Privacy Principles</a>
-  <a href="../06-bias-and-fairness/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Bias & Fairness (3.6) →</a>
+  <a href="../06-bias-and-fairness/" class="noc-sim-btn" style="text-decoration: none;">Next: Bias & Fairness (3.6) →</a>
 </div>
 
 
