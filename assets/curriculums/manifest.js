@@ -14,7 +14,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch1_p2",
     "title": "Types of Datasets & Structural Taxonomies",
     "trackName": "Introduction to Datasets",
-    "slidesCount": 16,
+    "slidesCount": 15,
     "docPath": "track1-introduction-to-datasets/02-types-of-datasets/"
   },
   {
@@ -77,7 +77,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch2_p2",
     "title": "Data Sources: Primary, Secondary & Real-Time Streaming Ingestion",
     "trackName": "Data Collection & Ingestion",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track2-data-collection/02-sources-of-data/"
   },
   {

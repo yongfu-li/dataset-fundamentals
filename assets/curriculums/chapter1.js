@@ -2220,273 +2220,658 @@ var CHAPTER1_CURRICULUM = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 1.4. Today we examine characteristics of good datasets & quality dimensions, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations</span>\n    <span>•</span>\n    <span>Lesson 1.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Characteristics of Good Datasets &amp; Quality Dimensions\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into characteristics of good datasets &amp; quality dimensions with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Characteristics of Good Datasets & Quality Dimensions",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 1.4?"
+              "text": "Welcome to Lesson 1.4 of Dataset Fundamentals: Characteristics of Good Datasets and Quality Dimensions. In machine learning, your dataset is not merely a passive repository of numbers; it is an empirical measurement apparatus that dictates the upper bound of your model's real-world intelligence."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 1.4. Today we examine characteristics of good datasets & quality dimensions, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Grounding our curriculum in Section 1.3 and Chapters 5 and 8 of the Springer Nature monograph, today we dissect the Wang-Strong multidimensional quality framework, formulate mathematical metrics for accuracy, completeness, consistency, timeliness, and relevance, diagnose Little and Rubin missing data mechanisms, explore FAIR metadata architectures and Datasheets for Datasets, and implement declarative validation contracts in Polars."
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations</span>\n    <span>•</span>\n    <span>Lesson 1.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Characteristics of Good Datasets &amp; Quality Dimensions\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into characteristics of good datasets &amp; quality dimensions with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations of Data-Centric AI</span>\n    <span>•</span>\n    <span>Lesson 1.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Characteristics of Good Datasets &amp; Quality Dimensions\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Formalizing data quality from an ad-hoc intuitive checklist into a rigorous, multidimensional mathematical engineering discipline.\n  </p>\n  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Pillar 1</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Wang-Strong 5D</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Accuracy, Completeness, Consistency, Timeliness, Relevance.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Pillar 2</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Little &amp; Rubin</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">MCAR, MAR &amp; MNAR missingness taxonomy &amp; MICE imputation.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Pillar 3</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">FAIR &amp; Datasheets</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Machine-readable JSON-LD sidecars &amp; Gebru et al. governance.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Pillar 4</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Polars Contracts</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Vectorized declarative quality gates prior to model ingestion.</div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Illusion of Clean Data",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in machine learning tutorials, datasets always seem clean, tabular, and ready to feed directly into PyTorch or XGBoost. Why do production engineers spend up to eighty percent of their time wrestling with data quality?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because real-world data is collected by distributed sensors, human annotators, legacy databases, and mobile clients—all of which fail continuously. A model trained on corrupt data doesn't fail politely with an error code; it learns the corruptions and predicts disastrously with high statistical confidence!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if our training data has subtle systematic errors, our gradient descent optimizations will simply optimize for those exact defects!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! That is why data quality is an engineering discipline governed by rigorous mathematical definitions, not an intuitive gut check."
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations of Data-Centric AI</span>\n    <span>•</span>\n    <span>Lesson 1.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Characteristics of Good Datasets &amp; Quality Dimensions\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Formalizing data quality from an ad-hoc intuitive checklist into a rigorous, multidimensional mathematical engineering discipline.\n  </p>\n  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Pillar 1</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Wang-Strong 5D</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Accuracy, Completeness, Consistency, Timeliness, Relevance.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Pillar 2</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Little &amp; Rubin</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">MCAR, MAR &amp; MNAR missingness taxonomy &amp; MICE imputation.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Pillar 3</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">FAIR &amp; Datasheets</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Machine-readable JSON-LD sidecars &amp; Gebru et al. governance.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Pillar 4</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Polars Contracts</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Vectorized declarative quality gates prior to model ingestion.</div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s2",
-        "title": "The Multi-Dimensional Quality Framework",
-        "type": "figure",
+        "title": "The Multi-Dimensional Quality Framework (Wang & Strong 1996)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
           "title": "The Multi-Dimensional Quality Framework",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Multi-Dimensional Quality Framework. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Ingested Records\"] --> Gate{\"Data Quality Audit Gate\"}\n    \n    Gate --> Dim1[\"1. Accuracy<br/>(Ground-truth fidelity)\"]\n    Gate --> Dim2[\"2. Completeness<br/>(Null sparsity & coverage)\"]\n    Gate --> Dim3[\"3. Consistency<br/>(Uniform schema & invariants)\"]\n    Gate --> Dim4[\"4. Timeliness<br/>(Currency & staleness decay)\"]\n    Gate --> Dim5[\"5. Relevance<br/>(Mutual info with target Y)\"]\n    \n    Dim1 & Dim2 & Dim3 & Dim4 & Dim5 --> DQI[\"Composite Data Quality Index (DQI)<br/>DQI = ∑ w_j · Q_j\"]\n    DQI --> Train[\"Production Pipeline / Model Training\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Gate blue;\n    class Dim1,Dim2,Dim3,Dim4,Dim5 amber;\n    class DQI,Train green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Formalize dataset quality dimensions as executable integration tests using Great Expectations: assert non-null bounds, unique primary keys, and statistical distribution limits in your CI/CD pipeline prior to training model checkpoints.</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In both theoretical</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">statistics and production machine learning, data quality is multidimensional and fitness-dependent (Wang, 1996).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Quality cannot</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">be summarized by a single scalar metric—a dataset may possess $100\\%$ completeness while being semantically inaccurate, or it may be mathematically precise while being obsolete and stale.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Following the foundational</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">ontology of Wang &amp; Strong (1996) and Wand &amp; Wang (1996) (Wand, 1996), data engineering evaluates datasets across five primary quality dimensions: | Quality Dimension | Formal Definition | Mathematical Formulation | Failure Mode &amp; Degradation | | :--- | :--- | :--- | :--- | | Accuracy | The degree of closeness of recorded value $v$ to the underlying physical ground truth $v^$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| | Completeness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">| The extent to which expected records and attributes are populated without unhandled missingness.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Multi-Dimensional Quality Framework",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the multi-dimensional quality framework, how does the architectural flow enforce system stability?"
+              "text": "Data quality cannot be captured by a single scalar value. As established in the seminal work by Richard Wang and Diane Strong in 1996, data quality is defined as fitness for use by data consumers across multiple independent dimensions."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "A dataset may possess zero null values and one hundred percent completeness, yet be catastrophically inaccurate. Conversely, a table may be mathematically precise, yet completely obsolete due to temporal latency. We evaluate datasets across five foundational dimensions: Accuracy, Completeness, Consistency, Timeliness, and Relevance."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Ingested Records\"] --> Gate{\"Data Quality Audit Gate\"}\n    \n    Gate --> Dim1[\"1. Accuracy<br/>(Ground-truth fidelity)\"]\n    Gate --> Dim2[\"2. Completeness<br/>(Null sparsity & coverage)\"]\n    Gate --> Dim3[\"3. Consistency<br/>(Uniform schema & invariants)\"]\n    Gate --> Dim4[\"4. Timeliness<br/>(Currency & staleness decay)\"]\n    Gate --> Dim5[\"5. Relevance<br/>(Mutual info with target Y)\"]\n    \n    Dim1 & Dim2 & Dim3 & Dim4 & Dim5 --> DQI[\"Composite Data Quality Index (DQI)<br/>DQI = ∑ w_j · Q_j\"]\n    DQI --> Train[\"Production Pipeline / Model Training\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Gate blue;\n    class Dim1,Dim2,Dim3,Dim4,Dim5 amber;\n    class DQI,Train green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Formalize dataset quality dimensions as executable integration tests using Great Expectations: assert non-null bounds, unique primary keys, and statistical distribution limits in your CI/CD pipeline prior to training model checkpoints.</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In both theoretical</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">statistics and production machine learning, data quality is multidimensional and fitness-dependent (Wang, 1996).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Quality cannot</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">be summarized by a single scalar metric—a dataset may possess $100\\%$ completeness while being semantically inaccurate, or it may be mathematically precise while being obsolete and stale.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Following the foundational</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">ontology of Wang &amp; Strong (1996) and Wand &amp; Wang (1996) (Wand, 1996), data engineering evaluates datasets across five primary quality dimensions: | Quality Dimension | Formal Definition | Mathematical Formulation | Failure Mode &amp; Degradation | | :--- | :--- | :--- | :--- | | Accuracy | The degree of closeness of recorded value $v$ to the underlying physical ground truth $v^$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| | Completeness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">| The extent to which expected records and attributes are populated without unhandled missingness.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Foundational Ontology: Wang &amp; Strong (1996)</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3</span>\n    </div>\n    <div class=\"overflow-x-auto\">\n      <table class=\"w-full text-left font-mono text-[11px] border-collapse\">\n        <thead>\n          <tr class=\"bg-[#c9f3f4] text-[#151b20] border-b-2 border-[#151b20]\">\n            <th class=\"p-2 border-r border-[#151b20]\">Dimension</th>\n            <th class=\"p-2 border-r border-[#151b20]\">Formal Definition</th>\n            <th class=\"p-2 border-r border-[#151b20]\">Mathematical Metric</th>\n            <th class=\"p-2\">Primary Failure Mode</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-[#151b20]/20 bg-[#fffdf7]\">\n          <tr>\n            <td class=\"p-2 font-bold text-[#0e7490] border-r border-[#151b20]/20\">1. Accuracy</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Proximity of observed value $v$ to physical ground truth $v^*$.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Acc} = 1 - \\frac{1}{N}\\sum \\mathbf{1}_{\\|v - v^*\\| > \\epsilon}$$</td>\n            <td class=\"p-2 font-sans text-[#c2410c]\">Sensor miscalibration, typo insertion.</td>\n          </tr>\n          <tr class=\"bg-[#fffaf0]\">\n            <td class=\"p-2 font-bold text-[#15803d] border-r border-[#151b20]/20\">2. Completeness</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Extent to which expected records/attributes are non-null.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Comp} = 1 - \\frac{|\\text{NULL}|}{N}$$</td>\n            <td class=\"p-2 font-sans text-[#b45309]\">Attrition bias, selective non-response.</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#b45309] border-r border-[#151b20]/20\">3. Consistency</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Adherence to internal semantic constraints and invariants.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Cons} = \\frac{|\\mathbf{r} \\mid \\bigwedge C_k(\\mathbf{r})|}{N}$$</td>\n            <td class=\"p-2 font-sans text-[#c2410c]\">Date locale collisions, broken foreign keys.</td>\n          </tr>\n          <tr class=\"bg-[#f0fbfd]\">\n            <td class=\"p-2 font-bold text-[#7c3aed] border-r border-[#151b20]/20\">4. Timeliness</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Currency of record relative to query epoch and velocity.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Time} = e^{-\\lambda (t_q - t_e)}$$</td>\n            <td class=\"p-2 font-sans text-[#475569]\">Concept drift, stale fraud signals.</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#0284c7] border-r border-[#151b20]/20\">5. Relevance</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Mutual information between feature space $\\mathcal{X}$ and target $\\mathcal{Y}$.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Rel} = I(X; Y)$$</td>\n            <td class=\"p-2 font-sans text-[#c2410c]\">Spurious correlations, feature bloat.</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The 5 Dimensions",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, notice how each dimension can fail independently. Can you give me an example where a dataset scores a perfect one hundred percent on completeness, but completely destroys a model?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Easily! Imagine an automated financial trading feed where every trade price is present—so completeness is one hundred percent. But due to a network clock synchronization bug, all timestamps are shifted by five minutes into the future!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Consistency and timeliness are completely shattered! The model looks at future prices during training, resulting in total data leakage!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. That is why an elite ML engineer audits all five dimensions simultaneously using composite data quality gates."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Foundational Ontology: Wang &amp; Strong (1996)</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3</span>\n    </div>\n    <div class=\"overflow-x-auto\">\n      <table class=\"w-full text-left font-mono text-[11px] border-collapse\">\n        <thead>\n          <tr class=\"bg-[#c9f3f4] text-[#151b20] border-b-2 border-[#151b20]\">\n            <th class=\"p-2 border-r border-[#151b20]\">Dimension</th>\n            <th class=\"p-2 border-r border-[#151b20]\">Formal Definition</th>\n            <th class=\"p-2 border-r border-[#151b20]\">Mathematical Metric</th>\n            <th class=\"p-2\">Primary Failure Mode</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-[#151b20]/20 bg-[#fffdf7]\">\n          <tr>\n            <td class=\"p-2 font-bold text-[#0e7490] border-r border-[#151b20]/20\">1. Accuracy</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Proximity of observed value $v$ to physical ground truth $v^*$.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Acc} = 1 - \\frac{1}{N}\\sum \\mathbf{1}_{\\|v - v^*\\| > \\epsilon}$$</td>\n            <td class=\"p-2 font-sans text-[#c2410c]\">Sensor miscalibration, typo insertion.</td>\n          </tr>\n          <tr class=\"bg-[#fffaf0]\">\n            <td class=\"p-2 font-bold text-[#15803d] border-r border-[#151b20]/20\">2. Completeness</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Extent to which expected records/attributes are non-null.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Comp} = 1 - \\frac{|\\text{NULL}|}{N}$$</td>\n            <td class=\"p-2 font-sans text-[#b45309]\">Attrition bias, selective non-response.</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#b45309] border-r border-[#151b20]/20\">3. Consistency</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Adherence to internal semantic constraints and invariants.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Cons} = \\frac{|\\mathbf{r} \\mid \\bigwedge C_k(\\mathbf{r})|}{N}$$</td>\n            <td class=\"p-2 font-sans text-[#c2410c]\">Date locale collisions, broken foreign keys.</td>\n          </tr>\n          <tr class=\"bg-[#f0fbfd]\">\n            <td class=\"p-2 font-bold text-[#7c3aed] border-r border-[#151b20]/20\">4. Timeliness</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Currency of record relative to query epoch and velocity.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Time} = e^{-\\lambda (t_q - t_e)}$$</td>\n            <td class=\"p-2 font-sans text-[#475569]\">Concept drift, stale fraud signals.</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#0284c7] border-r border-[#151b20]/20\">5. Relevance</td>\n            <td class=\"p-2 border-r border-[#151b20]/20 font-sans\">Mutual information between feature space $\\mathcal{X}$ and target $\\mathcal{Y}$.</td>\n            <td class=\"p-2 border-r border-[#151b20]/20\">$$\\text{Rel} = I(X; Y)$$</td>\n            <td class=\"p-2 font-sans text-[#c2410c]\">Spurious correlations, feature bloat.</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s3",
-        "title": "Deep Dive into Common Defect Typologies: The Semantic Accuracy Catastrophe",
-        "type": "equation",
+        "title": "Dimension 1: Accuracy & Statistical Errors (Systematic vs. Random)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Deep Dive into Common Defect Typologies: The Semantic Accuracy Catastrophe",
+          "title": "Dimension 1: Accuracy & Statistical Errors",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Deep Dive into Common Defect Typologies: The Semantic Accuracy Catastrophe. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{D} = \\{ (T_1, \\$1{,}500.00), (T_2, \\$15{,}000.00), (T_3, \\$50.00) \\}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Detecting semantic inaccuracy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires parametric distribution auditing and extreme value screening (e.g., Mahalanobis distance or IQR fences).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Deep Dive into Common Defect Typologies: The Semantic Accuracy Catastrophe",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does deep dive into common defect typologies: the semantic accuracy catastrophe protect our system against silent distribution shift in production?"
+              "text": "Accuracy quantifies the degree of closeness between a recorded attribute value v and the true physical ground truth v-star. Formally, we define accuracy across an attribute column as one minus the fraction of records whose absolute deviation exceeds tolerance epsilon."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "We must distinguish between random measurement noise, which has zero mean and can be mitigated by law-of-large-numbers averaging, and systematic bias, which persistently skews observations in one direction. Consider a financial ledger where a fifteen-hundred-dollar entry receives a single trailing zero, becoming fifteen thousand dollars. That single semantic typo shifts the sample mean by over four hundred percent!"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{D} = \\{ (T_1, \\$1{,}500.00), (T_2, \\$15{,}000.00), (T_3, \\$50.00) \\}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Detecting semantic inaccuracy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires parametric distribution auditing and extreme value screening (e.g., Mahalanobis distance or IQR fences).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Ground Truth Fidelity Formulation</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3.1</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Acc}(A_j) = 1 - \\frac{1}{N}\\sum_{i=1}^N \\mathbf{1}_{\\{\\|v_{ij} - v_{ij}^*\\| > \\epsilon\\}}$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">Where $v_{ij}^*$ is verifiable physical reality and $\\epsilon \\ge 0$ is the instrument tolerance threshold.</div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Random Measurement Noise: $\\epsilon \\sim \\mathcal{N}(0, \\sigma^2)$</strong>\n        <p class=\"text-[#334155] font-sans\">Zero expected mean error $\\mathbb{E}[\\epsilon] = 0$. Can be filtered out via moving averages, Kalman filtering, or statistical sample size expansion.</p>\n      </div>\n      <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Systematic Sensor Bias: $\\mathbb{E}[\\epsilon] = \\mu_{\\text{bias}} \\ne 0$</strong>\n        <p class=\"text-[#334155] font-sans\">Persistent unidirectional error. Does NOT average out with large $N$. Shifts model loss landscape and guarantees production failure.</p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"font-bold text-xs text-[#b45309] font-mono mb-1\">Case Study: The Semantic Trailing-Zero Catastrophe</div>\n    <div class=\"font-mono text-[11px] text-[#151b20]\">\n      True Ledger: $\\{ \\$1{,}500, \\$1{,}500, \\$50 \\} \\implies \\bar{x} = \\$1{,}016.67$<br/>\n      Corrupt Ledger: $\\{ \\$1{,}500, \\mathbf{\\$15{,}000}, \\$50 \\} \\implies \\bar{x} = \\$5{,}516.67$ <span class=\"text-[#c2410c] font-bold\">(+442.6% shift!)</span>\n    </div>\n    <p class=\"text-[11px] text-[#475569] font-sans mt-1\">Because $\\$15{,}000.00$ is a valid positive float, syntax parsers approve it. Detecting it requires parametric distribution audits (e.g. Mahalanobis distance or IQR fences).</p>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Semantic Outliers",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at that trailing zero example. If our automated ingestion pipeline only checks data types—like verifying that amount is a positive floating point number—it completely misses the catastrophe!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito. Fifteen thousand dollars is a perfectly valid float. To catch semantic inaccuracies, you must apply statistical anomaly detection—such as verifying values against interquartile range fences, historical Z-scores, or domain-specific physical constraints."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So type safety is only syntactic validation. True data accuracy requires semantic and distribution validation!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on. Syntactic validity is the floor; semantic accuracy is the ceiling."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Ground Truth Fidelity Formulation</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3.1</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Acc}(A_j) = 1 - \\frac{1}{N}\\sum_{i=1}^N \\mathbf{1}_{\\{\\|v_{ij} - v_{ij}^*\\| > \\epsilon\\}}$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">Where $v_{ij}^*$ is verifiable physical reality and $\\epsilon \\ge 0$ is the instrument tolerance threshold.</div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Random Measurement Noise: $\\epsilon \\sim \\mathcal{N}(0, \\sigma^2)$</strong>\n        <p class=\"text-[#334155] font-sans\">Zero expected mean error $\\mathbb{E}[\\epsilon] = 0$. Can be filtered out via moving averages, Kalman filtering, or statistical sample size expansion.</p>\n      </div>\n      <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Systematic Sensor Bias: $\\mathbb{E}[\\epsilon] = \\mu_{\\text{bias}} \\ne 0$</strong>\n        <p class=\"text-[#334155] font-sans\">Persistent unidirectional error. Does NOT average out with large $N$. Shifts model loss landscape and guarantees production failure.</p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"font-bold text-xs text-[#b45309] font-mono mb-1\">Case Study: The Semantic Trailing-Zero Catastrophe</div>\n    <div class=\"font-mono text-[11px] text-[#151b20]\">\n      True Ledger: $\\{ \\$1{,}500, \\$1{,}500, \\$50 \\} \\implies \\bar{x} = \\$1{,}016.67$<br/>\n      Corrupt Ledger: $\\{ \\$1{,}500, \\mathbf{\\$15{,}000}, \\$50 \\} \\implies \\bar{x} = \\$5{,}516.67$ <span class=\"text-[#c2410c] font-bold\">(+442.6% shift!)</span>\n    </div>\n    <p class=\"text-[11px] text-[#475569] font-sans mt-1\">Because $\\$15{,}000.00$ is a valid positive float, syntax parsers approve it. Detecting it requires parametric distribution audits (e.g. Mahalanobis distance or IQR fences).</p>\n  </div>\n</div>"
         }
       },
       {
         "id": "s4",
-        "title": "Missingness Mechanisms: MCAR, MAR, and MNAR",
-        "type": "figure",
+        "title": "Dimension 2: Completeness & Missing Data Taxonomy (Little & Rubin)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Missingness Mechanisms: MCAR, MAR, and MNAR",
+          "title": "Dimension 2: Completeness & Missing Data Taxonomy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Missingness Mechanisms: MCAR, MAR, and MNAR. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Missing[\"Observed Missing Attribute: M\"] --> MCAR[\"MCAR<br/>Missing Completely at Random\"]\n    Missing --> MAR[\"MAR<br/>Missing at Random\"]\n    Missing --> MNAR[\"MNAR<br/>Missing Not at Random\"]\n\n    MCAR --> P1[\"P(M | X_obs, X_miss) = P(M)<br/>Cause: Transient sensor drop\"]\n    MAR --> P2[\"P(M | X_obs, X_miss) = P(M | X_obs)<br/>Cause: Patient omits optional field\"]\n    MNAR --> P3[\"P(M | X_obs, X_miss) = f(X_miss)<br/>Cause: High earner conceals income\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Missing blue;\n    class MCAR,P1 green;\n    class MAR,P2 amber;\n    class MNAR,P3 red;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When attributes contain</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">blank cells, data scientists cannot simply impute the mean or drop rows without diagnosing the underlying missingness mechanism (Little, 2019): In healthcare data (e.g., MIMIC-IV), missing diagnostic attributes are almost never MCAR.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A missing lab</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">test indicates the physician determined the patient was healthy enough not to warrant the test.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dropping missing rows</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">in this scenario severely biases downstream models toward critically ill patients.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Missingness Mechanisms: MCAR, MAR, and MNAR",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for missingness mechanisms: mcar, mar, and mnar, how does the architectural flow enforce system stability?"
+              "text": "Completeness measures the degree to which all expected values are observed without unhandled missingness. Across a dataset with N records and d attributes, overall completeness is one minus the total count of null entries divided by N times d."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "However, missing data is never just an absence of bytes. Following the foundational taxonomy of Roderick Little and Donald Rubin, missingness is governed by three distinct probability mechanisms: Missing Completely at Random (MCAR), Missing at Random (MAR), and Missing Not at Random (MNAR). Knowing which mechanism generated your nulls dictates whether imputation is valid or biased."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Missing[\"Observed Missing Attribute: M\"] --> MCAR[\"MCAR<br/>Missing Completely at Random\"]\n    Missing --> MAR[\"MAR<br/>Missing at Random\"]\n    Missing --> MNAR[\"MNAR<br/>Missing Not at Random\"]\n\n    MCAR --> P1[\"P(M | X_obs, X_miss) = P(M)<br/>Cause: Transient sensor drop\"]\n    MAR --> P2[\"P(M | X_obs, X_miss) = P(M | X_obs)<br/>Cause: Patient omits optional field\"]\n    MNAR --> P3[\"P(M | X_obs, X_miss) = f(X_miss)<br/>Cause: High earner conceals income\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Missing blue;\n    class MCAR,P1 green;\n    class MAR,P2 amber;\n    class MNAR,P3 red;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When attributes contain</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">blank cells, data scientists cannot simply impute the mean or drop rows without diagnosing the underlying missingness mechanism (Little, 2019): In healthcare data (e.g., MIMIC-IV), missing diagnostic attributes are almost never MCAR.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A missing lab</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">test indicates the physician determined the patient was healthy enough not to warrant the test.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dropping missing rows</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">in this scenario severely biases downstream models toward critically ill patients.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Completeness Formulation &amp; Null Sparsity</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Little &amp; Rubin (2019)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] text-center\">\n        <div class=\"text-[11px] text-[#0e7490] font-bold mb-1\">Column Completeness:</div>\n        <div class=\"text-sm font-black text-[#151b20]\">\n          $$\\text{Comp}(A_j) = 1 - \\frac{|\\{i \\mid v_{ij} \\in \\{\\text{NULL}, \\text{NaN}, \\text{\"\"}\\}\\}|}{N}$$\n        </div>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-lg border border-[#151b20] text-center\">\n        <div class=\"text-[11px] text-[#15803d] font-bold mb-1\">Dataset-Wide Completeness:</div>\n        <div class=\"text-sm font-black text-[#151b20]\">\n          $$\\text{Comp}(\\mathcal{D}) = 1 - \\frac{\\sum_{i=1}^N \\sum_{j=1}^d \\mathbf{1}_{\\{v_{ij} = \\text{NULL}\\}}}{N \\cdot d}$$\n        </div>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border border-[#151b20] font-mono text-xs\">\n      <span class=\"text-[#b45309] font-bold block mb-1\">The Missingness Indicator Matrix $M \\in \\{0, 1\\}^{N \\times d}$:</span>\n      <p class=\"text-[#334155] font-sans text-[11px]\">\n        Let $M_{ij} = 1$ if $v_{ij}$ is missing, and $M_{ij} = 0$ if observed. We decompose features into observed components $X_{\\text{obs}}$ and missing components $X_{\\text{miss}}$. The probability law governing $P(M \\mid X_{\\text{obs}}, X_{\\text{miss}})$ determines how we remediate nulls.\n      </p>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Danger of Mean Imputation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in many beginner data science notebooks, people simply run df.fillna(df.mean()) or drop all rows containing nulls. Why is that considered an anti-pattern in production?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because mean imputation artificially shrinks the variance of your feature distribution and distorts covariance structures! And if you do listwise deletion—dropping every row with a null—you risk discarding fifty percent of your dataset and introducing catastrophic selection bias."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So before imputing or dropping a single row, we must formally classify whether the data is MCAR, MAR, or MNAR!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. The statistical validity of your model hinges entirely on that diagnosis."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Completeness Formulation &amp; Null Sparsity</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Little &amp; Rubin (2019)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] text-center\">\n        <div class=\"text-[11px] text-[#0e7490] font-bold mb-1\">Column Completeness:</div>\n        <div class=\"text-sm font-black text-[#151b20]\">\n          $$\\text{Comp}(A_j) = 1 - \\frac{|\\{i \\mid v_{ij} \\in \\{\\text{NULL}, \\text{NaN}, \\text{\"\"}\\}\\}|}{N}$$\n        </div>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-lg border border-[#151b20] text-center\">\n        <div class=\"text-[11px] text-[#15803d] font-bold mb-1\">Dataset-Wide Completeness:</div>\n        <div class=\"text-sm font-black text-[#151b20]\">\n          $$\\text{Comp}(\\mathcal{D}) = 1 - \\frac{\\sum_{i=1}^N \\sum_{j=1}^d \\mathbf{1}_{\\{v_{ij} = \\text{NULL}\\}}}{N \\cdot d}$$\n        </div>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border border-[#151b20] font-mono text-xs\">\n      <span class=\"text-[#b45309] font-bold block mb-1\">The Missingness Indicator Matrix $M \\in \\{0, 1\\}^{N \\times d}$:</span>\n      <p class=\"text-[#334155] font-sans text-[11px]\">\n        Let $M_{ij} = 1$ if $v_{ij}$ is missing, and $M_{ij} = 0$ if observed. We decompose features into observed components $X_{\\text{obs}}$ and missing components $X_{\\text{miss}}$. The probability law governing $P(M \\mid X_{\\text{obs}}, X_{\\text{miss}})$ determines how we remediate nulls.\n      </p>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s5",
-        "title": "Consistency Violations: Format Ambiguities & Invariants",
-        "type": "bullets",
+        "title": "Missingness Deep Dive: MCAR vs. MAR vs. MNAR in Healthcare",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Consistency Violations: Format Ambiguities & Invariants",
+          "title": "Missingness Deep Dive: MCAR vs. MAR vs. MNAR",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Consistency Violations: Format Ambiguities & Invariants. In production engineering, this principle establishes reliability and reproducibility. \"03/04/2024\" (US Locale: March 4, 2024)"
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Record $A$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&quot;03/04/2024&quot; (US Locale: March 4, 2024)</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Record $B$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&quot;04/03/2024&quot; (UK/EU Locale: March 4, 2024)</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Record $C$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&quot;2024-04-03&quot; (ISO-8601: April 3, 2024)</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Consistency Violations: Format Ambiguities & Invariants",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what makes consistency violations: format ambiguities & invariants essential for robust machine learning?"
+              "text": "Let us dissect the three mechanisms of missingness. Missing Completely at Random, or MCAR, means the probability of missingness is completely independent of both observed and unobserved data. Think of a telemetry antenna dropping packets due to random atmospheric noise."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "In production engineering, this principle establishes reliability and reproducibility. \"03/04/2024\" (US Locale: March 4, 2024)"
+              "text": "Missing at Random, or MAR, means missingness depends systematically on observed features, but not on the missing value itself. In contrast, Missing Not at Random, or MNAR, means the unobserved value itself directly causes the missingness. In electronic health records like MIMIC-IV, a missing lab test is never MCAR—it means the clinician determined the patient was healthy enough not to need the test. Deleting missing rows here ruins downstream clinical safety!"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Record $A$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&quot;03/04/2024&quot; (US Locale: March 4, 2024)</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Record $B$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&quot;04/03/2024&quot; (UK/EU Locale: March 4, 2024)</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Record $C$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&quot;2024-04-03&quot; (ISO-8601: April 3, 2024)</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The Little &amp; Rubin Missing Data Spectrum</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Rubin (1976), Little (2019)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs\">\n      <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <div class=\"font-black text-[#15803d] text-xs uppercase mb-1\">1. MCAR</div>\n        <div class=\"text-[11px] font-bold mb-1\">Missing Completely at Random</div>\n        <div class=\"text-[10px] bg-[#fffdf7] p-1.5 rounded border border-[#151b20] mb-2\">\n          $$P(M \\mid X_{\\text{obs}}, X_{\\text{miss}}) = P(M)$$\n        </div>\n        <p class=\"text-[11px] text-[#334155] font-sans\"><strong>Physical Cause:</strong> Random cosmic ray, network packet drop.<br/><strong>Remediation:</strong> Complete case analysis or mean imputation is unbiased (though reduces power).</p>\n      </div>\n\n      <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <div class=\"font-black text-[#b45309] text-xs uppercase mb-1\">2. MAR</div>\n        <div class=\"text-[11px] font-bold mb-1\">Missing at Random</div>\n        <div class=\"text-[10px] bg-[#fffdf7] p-1.5 rounded border border-[#151b20] mb-2\">\n          $$P(M \\mid X_{\\text{obs}}, X_{\\text{miss}}) = P(M \\mid X_{\\text{obs}})$$\n        </div>\n        <p class=\"text-[11px] text-[#334155] font-sans\"><strong>Physical Cause:</strong> Younger patients omit optional surveys.<br/><strong>Remediation:</strong> Multiple Imputation by Chained Equations (MICE) or regression conditioned on $X_{\\text{obs}}$.</p>\n      </div>\n\n      <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <div class=\"font-black text-[#c2410c] text-xs uppercase mb-1\">3. MNAR</div>\n        <div class=\"text-[11px] font-bold mb-1\">Missing Not at Random</div>\n        <div class=\"text-[10px] bg-[#fffdf7] p-1.5 rounded border border-[#151b20] mb-2\">\n          $$P(M \\mid X) = f(X_{\\text{miss}})$$\n        </div>\n        <p class=\"text-[11px] text-[#334155] font-sans\"><strong>Physical Cause:</strong> High-income earners refuse to disclose wealth.<br/><strong>Remediation:</strong> Non-ignorable! Requires pattern-mixture modeling, Heckman selection, or domain priors.</p>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Clinical Missingness Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in intensive care unit data like MIMIC-IV, if arterial blood gas measurements are missing for eighty percent of patients, you're saying that's not random?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Far from it, Kaito! Critical care physicians only order arterial blood punctures when a patient is in acute respiratory failure. If a patient is stable, the doctor does not order the test. Missingness is highly informative!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if we impute normal values, or drop all patients missing blood gas tests, our model will only ever learn from critically dying patients!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. You induce severe selection bias and destroy the model's ability to generalize to outpatient or general ward populations."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The Little &amp; Rubin Missing Data Spectrum</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Rubin (1976), Little (2019)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs\">\n      <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <div class=\"font-black text-[#15803d] text-xs uppercase mb-1\">1. MCAR</div>\n        <div class=\"text-[11px] font-bold mb-1\">Missing Completely at Random</div>\n        <div class=\"text-[10px] bg-[#fffdf7] p-1.5 rounded border border-[#151b20] mb-2\">\n          $$P(M \\mid X_{\\text{obs}}, X_{\\text{miss}}) = P(M)$$\n        </div>\n        <p class=\"text-[11px] text-[#334155] font-sans\"><strong>Physical Cause:</strong> Random cosmic ray, network packet drop.<br/><strong>Remediation:</strong> Complete case analysis or mean imputation is unbiased (though reduces power).</p>\n      </div>\n\n      <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <div class=\"font-black text-[#b45309] text-xs uppercase mb-1\">2. MAR</div>\n        <div class=\"text-[11px] font-bold mb-1\">Missing at Random</div>\n        <div class=\"text-[10px] bg-[#fffdf7] p-1.5 rounded border border-[#151b20] mb-2\">\n          $$P(M \\mid X_{\\text{obs}}, X_{\\text{miss}}) = P(M \\mid X_{\\text{obs}})$$\n        </div>\n        <p class=\"text-[11px] text-[#334155] font-sans\"><strong>Physical Cause:</strong> Younger patients omit optional surveys.<br/><strong>Remediation:</strong> Multiple Imputation by Chained Equations (MICE) or regression conditioned on $X_{\\text{obs}}$.</p>\n      </div>\n\n      <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <div class=\"font-black text-[#c2410c] text-xs uppercase mb-1\">3. MNAR</div>\n        <div class=\"text-[11px] font-bold mb-1\">Missing Not at Random</div>\n        <div class=\"text-[10px] bg-[#fffdf7] p-1.5 rounded border border-[#151b20] mb-2\">\n          $$P(M \\mid X) = f(X_{\\text{miss}})$$\n        </div>\n        <p class=\"text-[11px] text-[#334155] font-sans\"><strong>Physical Cause:</strong> High-income earners refuse to disclose wealth.<br/><strong>Remediation:</strong> Non-ignorable! Requires pattern-mixture modeling, Heckman selection, or domain priors.</p>\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s6",
-        "title": "Metadata Engineering & The FAIR Data Paradigm: The Anatomy of a Production Metadata Sidecar",
-        "type": "figure",
+        "title": "Dimension 3: Consistency & Referential Invariants (Date Locale Collisions)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Metadata Engineering & The FAIR Data Paradigm: The Anatomy of a Production Metadata Sidecar",
+          "title": "Dimension 3: Consistency & Referential Invariants",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Metadata Engineering & The FAIR Data Paradigm: The Anatomy of a Production Metadata Sidecar. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph DatasetArtifact [\"Dataset Package (Self-Describing)\"]\n        D[(\"data.parquet<br/>Physical Records\")]\n        M[\"metadata.json<br/>Machine-Readable Schema\"]\n        R[\"README.md / Datasheet<br/>Context [[Gebru2021](#ref-gebru2021)]\"]\n    end\n\n    M --> F{\"FAIR Verification Engine\"}\n    F --> Findable[\"Findable<br/>Persistent DOI / PURL\"]\n    F --> Accessible[\"Accessible<br/>Standard HTTPS / S3 Protocol\"]\n    F --> Interoperable[\"Interoperable<br/>W3C DCAT / JSON-LD\"]\n    F --> Reusable[\"Reusable<br/>Open CC-BY / ODC-By\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class D,M,R blue;\n    class F amber;\n    class Findable,Accessible,Interoperable,Reusable green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">High-quality values</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">are useless if consumers cannot interpret their physical meaning.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Production dataset repositories</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">distribute metadata as a dedicated JSON-LD sidecar adhering to Schema.org/Dataset or DCAT-AP:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Metadata Engineering & The FAIR Data Paradigm: The Anatomy of a Production Metadata Sidecar",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for metadata engineering & the fair data paradigm: the anatomy of a production metadata sidecar, how does the architectural flow enforce system stability?"
+              "text": "Consistency measures the absence of internal contradictions, format collisions, or violated referential invariants across records. Mathematically, it is the fraction of records that satisfy all formal constraint predicates simultaneously."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "A classic consistency catastrophe is the date locale collision. If one ingestion source uses month-day-year while another uses day-month-year, a date like March fourth and April third become identical strings. When merged, temporal ordering breaks, corrupting time-series cross-validation splits and silently leaking future data into past features!"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph DatasetArtifact [\"Dataset Package (Self-Describing)\"]\n        D[(\"data.parquet<br/>Physical Records\")]\n        M[\"metadata.json<br/>Machine-Readable Schema\"]\n        R[\"README.md / Datasheet<br/>Context [[Gebru2021](#ref-gebru2021)]\"]\n    end\n\n    M --> F{\"FAIR Verification Engine\"}\n    F --> Findable[\"Findable<br/>Persistent DOI / PURL\"]\n    F --> Accessible[\"Accessible<br/>Standard HTTPS / S3 Protocol\"]\n    F --> Interoperable[\"Interoperable<br/>W3C DCAT / JSON-LD\"]\n    F --> Reusable[\"Reusable<br/>Open CC-BY / ODC-By\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class D,M,R blue;\n    class F amber;\n    class Findable,Accessible,Interoperable,Reusable green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">High-quality values</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">are useless if consumers cannot interpret their physical meaning.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Production dataset repositories</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">distribute metadata as a dedicated JSON-LD sidecar adhering to Schema.org/Dataset or DCAT-AP:</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Semantic Consistency &amp; Invariant Predicates</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3.3</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Cons}(R) = \\frac{|\\{\\mathbf{r}_i \\mid \\bigwedge_{k=1}^K \\text{Constraint}_k(\\mathbf{r}_i) = \\text{True}\\}|}{N}$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">Evaluates multi-attribute functional dependencies, foreign key bindings, and chronological invariants.</div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs mb-3\">\n      <strong class=\"text-[#c2410c] block mb-1\">The Date Locale Collision Disaster</strong>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]\">\n        <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"font-bold text-[#0e7490]\">Source A (US Locale):</span><br/>\n          <code>\"03/04/2024\"</code> → March 4, 2024\n        </div>\n        <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"font-bold text-[#b45309]\">Source B (UK Locale):</span><br/>\n          <code>\"04/03/2024\"</code> → March 4, 2024\n        </div>\n        <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"font-bold text-[#15803d]\">ISO-8601 Standard:</span><br/>\n          <code>\"2024-03-04\"</code> → Unambiguous\n        </div>\n      </div>\n      <p class=\"text-[11px] text-[#334155] font-sans mt-2\">\n        Without explicit ISO-8601 formatting, naive string parsers misorder chronological events by up to 30 days, causing subtle data leakage and corrupting forward-looking feature engineering.\n      </p>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Referential Invariants",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, besides date formats, what other consistency invariants are critical in tabular machine learning?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Referential and physical invariants! For example, in hospital analytics, discharge date must always be greater than or equal to admission date. A patient cannot be discharged before they are admitted!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in e-commerce, transaction total must equal the sum of item prices minus discounts plus tax!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. When these invariants fail, it signals upstream pipeline pipeline bugs, duplicate record ingestion, or corrupted transactional state."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Semantic Consistency &amp; Invariant Predicates</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3.3</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Cons}(R) = \\frac{|\\{\\mathbf{r}_i \\mid \\bigwedge_{k=1}^K \\text{Constraint}_k(\\mathbf{r}_i) = \\text{True}\\}|}{N}$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">Evaluates multi-attribute functional dependencies, foreign key bindings, and chronological invariants.</div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs mb-3\">\n      <strong class=\"text-[#c2410c] block mb-1\">The Date Locale Collision Disaster</strong>\n      <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]\">\n        <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"font-bold text-[#0e7490]\">Source A (US Locale):</span><br/>\n          <code>\"03/04/2024\"</code> → March 4, 2024\n        </div>\n        <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"font-bold text-[#b45309]\">Source B (UK Locale):</span><br/>\n          <code>\"04/03/2024\"</code> → March 4, 2024\n        </div>\n        <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"font-bold text-[#15803d]\">ISO-8601 Standard:</span><br/>\n          <code>\"2024-03-04\"</code> → Unambiguous\n        </div>\n      </div>\n      <p class=\"text-[11px] text-[#334155] font-sans mt-2\">\n        Without explicit ISO-8601 formatting, naive string parsers misorder chronological events by up to 30 days, causing subtle data leakage and corrupting forward-looking feature engineering.\n      </p>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s7",
-        "title": "Interactive Lab: Data Quality Health Radar & Defect Injector",
-        "type": "tool",
+        "title": "Active Checkpoint 1: Diagnosing Missing Data Mechanisms (Clinical Telemetry)",
+        "type": "quiz",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Data Quality Health Radar & Defect Injector",
+          "title": "Active Checkpoint 1: Missing Data Mechanisms",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Data Quality Health Radar & Defect Injector. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Active Recall Checkpoint 1! In an electronic healthcare dataset tracking patient blood glucose, thirty-five percent of outpatient glucose readings are missing. Statistical analysis reveals that missingness is heavily correlated with patient age and insurance type, but conditional on age and insurance, missingness is independent of the actual blood glucose level. Which missing data mechanism is this, and what is the appropriate remediation? Select your answer on the slide!"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Data Quality Health Radar &amp; Defect Injector</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test how localized corruptions and missingness propagate into composite quality scores:</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Clinical Scenario Diagnostic</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: In an EHR cohort of 50,000 diabetic patients, 35% of outpatient glucose records are NULL. Missingness probability correlates significantly with patient age ($p < 0.001$) and insurance tier ($p < 0.001$), but given age and insurance, is statistically independent of the true glucose level.\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        Which Little-Rubin mechanism governs this data, and what is the mathematically sound remediation?\n      </div>\n    </div>\n  </div>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Data Quality Health Radar & Defect Injector",
+          "title": "Socratic Debate: Checkpoint 1",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the data quality health radar & defect injector located below this player?"
+              "text": "Look at the clues in the prompt: missingness correlates with observed age and insurance, but conditional on those observed variables, it doesn't depend on the glucose level itself!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Exactly. Review the definitions of MCAR, MAR, and MNAR we just covered. Make your choice on the checkpoint card below to test your retention!"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Data Quality Health Radar &amp; Defect Injector</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test how localized corruptions and missingness propagate into composite quality scores:</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Clinical Scenario Diagnostic</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: In an EHR cohort of 50,000 diabetic patients, 35% of outpatient glucose records are NULL. Missingness probability correlates significantly with patient age ($p < 0.001$) and insurance tier ($p < 0.001$), but given age and insurance, is statistically independent of the true glucose level.\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        Which Little-Rubin mechanism governs this data, and what is the mathematically sound remediation?\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s8",
-        "title": "Production Engineering Implementation",
-        "type": "code",
+        "title": "Dimension 4: Timeliness, Volatility & Staleness Decay Law",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Engineering Implementation",
+          "title": "Dimension 4: Timeliness & Staleness Decay Law",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Engineering Implementation. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nDeclarative Data Quality Contract Auditor\nEvaluates Accuracy, Completeness, Consistency, and Timeliness constraints\nprior to training model ingestion.\n&quot;&quot;&quot;\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom datetime import datetime, timezone, timedelta\nfrom typing import Dict, Any\nimport polars as pl\n\n@dataclass\nclass QualityAuditReport:\n    completeness_score: float\n    accuracy_score: float\n    consistency_score: float\n    timeliness_score: float\n    composite_dqi: float\n    violations: list[str]\n\ndef audit_dataset_contract(df: pl.DataFrame) -&gt; QualityAuditReport:\n    &quot;&quot;&quot;\n    Executes vectorized audit checks across the 4 quantifiable dimensions.\n    &quot;&quot;&quot;\n    total_rows = len(df)\n    violations = []\n\n    # 1. Completeness Checks (No nulls in critical keys)\n    null_counts = df.select([\n        pl.col(&quot;patient_id</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Engineering Implementation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Timeliness measures how current the data is relative to the query epoch and real-world system velocity. As time elapses after an event, its predictive relevance decays exponentially."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "We formulate timeliness using an exponential decay function parameterized by half-life lambda. In high-frequency domains like cyber-fraud detection, user preferences and attack vectors shift weekly. Training on six-month-old features causes severe concept drift, rendering high-capacity models obsolete upon deployment."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nDeclarative Data Quality Contract Auditor\nEvaluates Accuracy, Completeness, Consistency, and Timeliness constraints\nprior to training model ingestion.\n&quot;&quot;&quot;\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom datetime import datetime, timezone, timedelta\nfrom typing import Dict, Any\nimport polars as pl\n\n@dataclass\nclass QualityAuditReport:\n    completeness_score: float\n    accuracy_score: float\n    consistency_score: float\n    timeliness_score: float\n    composite_dqi: float\n    violations: list[str]\n\ndef audit_dataset_contract(df: pl.DataFrame) -&gt; QualityAuditReport:\n    &quot;&quot;&quot;\n    Executes vectorized audit checks across the 4 quantifiable dimensions.\n    &quot;&quot;&quot;\n    total_rows = len(df)\n    violations = []\n\n    # 1. Completeness Checks (No nulls in critical keys)\n    null_counts = df.select([\n        pl.col(&quot;patient_id</code></pre>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Temporal Freshness &amp; Exponential Staleness Decay</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3.4</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Time}(r) = \\exp\\left( -\\lambda_{\\text{decay}} \\cdot (t_{\\text{query}} - t_{\\text{event}}) \\right)$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">\n        Where half-life $t_{1/2} = \\frac{\\ln 2}{\\lambda_{\\text{decay}}}$ defines the duration until predictive relevance degrades by 50%.\n      </div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs\">\n      <div class=\"p-2.5 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block\">High Volatility ($\\lambda \\gg 0$)</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Ad-tech click rates, financial tick data, fraud signatures. Half-life: <strong>Hours to Days</strong>.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block\">Medium Volatility</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Consumer purchasing preferences, macroeconomics. Half-life: <strong>Weeks to Months</strong>.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block\">Low Volatility ($\\lambda \u0007pprox 0$)</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Genomic sequences, physical constants, geological maps. Half-life: <strong>Decades</strong>.</span>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Freshness Dilemma",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, so collecting ten million customer interaction records from 2021 might actually harm our 2026 recommender system?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Without question, Kaito! Consumer tastes and cultural trends have moved on. Feeding stale 2021 records into your training set will bias the model toward obsolete products that no longer exist."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So more data is not always better if the data has suffered exponential timeliness decay!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. High-quality data is fresh data aligned with the real-world operational velocity of your domain."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Temporal Freshness &amp; Exponential Staleness Decay</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.3.4</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Time}(r) = \\exp\\left( -\\lambda_{\\text{decay}} \\cdot (t_{\\text{query}} - t_{\\text{event}}) \\right)$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">\n        Where half-life $t_{1/2} = \\frac{\\ln 2}{\\lambda_{\\text{decay}}}$ defines the duration until predictive relevance degrades by 50%.\n      </div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs\">\n      <div class=\"p-2.5 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block\">High Volatility ($\\lambda \\gg 0$)</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Ad-tech click rates, financial tick data, fraud signatures. Half-life: <strong>Hours to Days</strong>.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block\">Medium Volatility</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Consumer purchasing preferences, macroeconomics. Half-life: <strong>Weeks to Months</strong>.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block\">Low Volatility ($\\lambda \u0007pprox 0$)</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Genomic sequences, physical constants, geological maps. Half-life: <strong>Decades</strong>.</span>\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s9",
-        "title": "Summary & Next Steps",
-        "type": "bullets",
+        "title": "Dimension 5: Relevance & Task Mutual Information (Shannon Entropy)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Summary & Next Steps",
+          "title": "Dimension 5: Relevance & Task Mutual Information",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Summary & Next Steps. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">The Five Core Dimensions of Data Quality (Accuracy, Completeness, Consistency, Timeliness, Relevance).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Why localized defects compound geometrically into severe macroeconomic or clinical failures.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">machine-readable metadata</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The distinction between machine-readable metadata (JSON-LD sidecars) and human-readable documentation (FAIR principles).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Summary & Next Steps",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "Relevance measures the degree to which recorded attributes actually inform the target predictive task. In information theory, we quantify relevance through the Shannon Mutual Information between feature X and target label Y."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "If a feature has zero mutual information with the target, it provides pure noise. In high dimensions, adding hundreds of irrelevant telemetry columns induces the curse of dimensionality, creates spurious correlations, and causes tree-based or linear models to severely overfit on training noise."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">The Five Core Dimensions of Data Quality (Accuracy, Completeness, Consistency, Timeliness, Relevance).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Why localized defects compound geometrically into severe macroeconomic or clinical failures.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">machine-readable metadata</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The distinction between machine-readable metadata (JSON-LD sidecars) and human-readable documentation (FAIR principles).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Information-Theoretic Relevance</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Cover &amp; Thomas (2006)</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Rel}(X) = I(X; Y) = \\sum_{x \\in \\mathcal{X}} \\sum_{y \\in \\mathcal{Y}} P(x, y) \\log \\frac{P(x, y)}{P(x)P(y)}$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">\n        Mutual information measures the reduction in uncertainty of target $Y$ given knowledge of feature $X$: $I(X; Y) = H(Y) - H(Y \\mid X)$.\n      </div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">High Relevance: $I(X; Y) \\gg 0$</strong>\n        <p class=\"text-[#334155] font-sans\">Feature directly compresses the entropy of $Y$. Strong inductive bias and high generalization fidelity.</p>\n      </div>\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Zero Relevance: $I(X; Y) = 0$ (Spurious Noise)</strong>\n        <p class=\"text-[#334155] font-sans\">Feature is statistically independent of $Y$. Induces curse of dimensionality, inflates sample complexity, and causes overfitting.</p>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Curse of Spurious Features",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, some engineers believe that if storage is cheap, we should just throw every available feature into the training set and let deep learning figure it out. What is wrong with that philosophy?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That violates the fundamental laws of statistical learning! In finite samples, an overparameterized model will latch onto random coincidences between irrelevant features and training labels—spurious correlations that instantly disintegrate on unseen test distributions."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So pruning features with low mutual information actually improves generalization and protects against overfitting!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Feature engineering is not just feature generation; it is aggressive feature pruning for relevance."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Information-Theoretic Relevance</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Cover &amp; Thomas (2006)</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{Rel}(X) = I(X; Y) = \\sum_{x \\in \\mathcal{X}} \\sum_{y \\in \\mathcal{Y}} P(x, y) \\log \\frac{P(x, y)}{P(x)P(y)}$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">\n        Mutual information measures the reduction in uncertainty of target $Y$ given knowledge of feature $X$: $I(X; Y) = H(Y) - H(Y \\mid X)$.\n      </div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">High Relevance: $I(X; Y) \\gg 0$</strong>\n        <p class=\"text-[#334155] font-sans\">Feature directly compresses the entropy of $Y$. Strong inductive bias and high generalization fidelity.</p>\n      </div>\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Zero Relevance: $I(X; Y) = 0$ (Spurious Noise)</strong>\n        <p class=\"text-[#334155] font-sans\">Feature is statistically independent of $Y$. Induces curse of dimensionality, inflates sample complexity, and causes overfitting.</p>\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Interactive Lab: In-Browser Data Quality Health Radar & DQI Simulator",
+        "type": "tool",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: Data Quality Health Radar",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We have docked at the Data Quality Health Radar and Defect Injector! Look at the control toggles above me: you can inject missing values, semantic trailing-zero outliers, date format collisions, and stale temporal decay into a live batch of one thousand records."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the dimensional score breakdown updates dynamically, and observe the composite Data Quality Index. When DQI drops below seventy-five points, our automated CI CD quality gate rejects the pipeline immediately to prevent model poisoning!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">🔬 Interactive Quality Health Radar</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Live Simulator</span>\n    </div>\n    <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n      Toggle real-world defects to observe immediate dimensional degradation and automated pipeline gating:\n    </p>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Quality Health Radar",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at the toggles! When I check 'Date Format Collision' and 'Trailing Zeros', our Consistency drops to seventy percent and Accuracy drops to eighty-five percent!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Watch the composite DQI gauge on the right: it plunges to eighty-three point eight, triggering a Medium Quality Risk warning. Now activate 'Simulate Stale Data'—see what happens!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "The composite score drops down into the red zone—Pipeline Rejected! That is how automated quality gates prevent silent model corruption."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Never deploy code to production without declarative quality assertions."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">🔬 Interactive Quality Health Radar</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Live Simulator</span>\n    </div>\n    <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n      Toggle real-world defects to observe immediate dimensional degradation and automated pipeline gating:\n    </p>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Demographic Representation & Subgroup Disparity (The Majority Fallacy)",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Demographic Representation & Subgroup Disparity",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "A dataset can achieve ninety-five percent accuracy across all five quality dimensions and still be ethically and clinically dangerous if it suffers from demographic representation disparity. High aggregate performance often masks severe subpopulation failure."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Standard Empirical Risk Minimization optimizes the average loss across all samples equally. If ninety percent of your training dataset represents the majority demographic, gradient descent can completely ignore minority subgroups and still achieve ninety percent aggregate benchmark accuracy! Auditing datasets requires stratified subgroup evaluations."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The Mathematical Trap of Empirical Risk Minimization</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Buolamwini &amp; Gebru (2018)</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\mathcal{R}_{\\text{emp}}(\\theta) = \\frac{1}{N}\\sum_{i=1}^N \\mathcal{L}(f(x_i; \\theta), y_i) = \\sum_{g \\in \\mathcal{G}} \\frac{N_g}{N} \\mathcal{R}_g(\\theta)$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">\n        Because total risk is weighted by subgroup proportion $\\frac{N_g}{N}$, ERM naturally minimizes error on majority groups while tolerating catastrophic error rates on minority cohorts.\n      </div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">The Aggregate Accuracy Fallacy</strong>\n        <p class=\"text-[#334155] font-sans\">\n          A model with 92% overall accuracy can achieve 97% on Fitzpatrick Skin Types I &amp; II, but only 34% on Types V &amp; VI, completely failing underrepresented patients.\n        </p>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Minimax Fairness Optimization</strong>\n        <p class=\"text-[#334155] font-sans\">\n          $$\\min_\\theta \\max_{g \\in \\mathcal{G}} \\mathcal{R}_g(\\theta)$$\n          Minimizes the worst-case subgroup risk rather than naive population-average loss.\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Subgroup Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this explains why commercial facial recognition systems historically failed on darker skin tones! The models scored high on overall benchmark datasets because the benchmarks themselves were eighty percent lighter skin!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! Joy Buolamwini and Timnit Gebru exposed this in their landmark Gender Shades paper. When minority groups make up only a tiny fraction of the data, the optimizer treats them as negligible statistical outliers."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So checking aggregate test set accuracy is totally insufficient. We must compute disaggregated metrics across every demographic subgroup!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Fairness is not an afterthought; it is a fundamental pillar of data quality verification."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The Mathematical Trap of Empirical Risk Minimization</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Buolamwini &amp; Gebru (2018)</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\mathcal{R}_{\\text{emp}}(\\theta) = \\frac{1}{N}\\sum_{i=1}^N \\mathcal{L}(f(x_i; \\theta), y_i) = \\sum_{g \\in \\mathcal{G}} \\frac{N_g}{N} \\mathcal{R}_g(\\theta)$$\n      </div>\n      <div class=\"text-[11px] text-[#475569] font-sans mt-1\">\n        Because total risk is weighted by subgroup proportion $\\frac{N_g}{N}$, ERM naturally minimizes error on majority groups while tolerating catastrophic error rates on minority cohorts.\n      </div>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">The Aggregate Accuracy Fallacy</strong>\n        <p class=\"text-[#334155] font-sans\">\n          A model with 92% overall accuracy can achieve 97% on Fitzpatrick Skin Types I &amp; II, but only 34% on Types V &amp; VI, completely failing underrepresented patients.\n        </p>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Minimax Fairness Optimization</strong>\n        <p class=\"text-[#334155] font-sans\">\n          $$\\min_\\theta \\max_{g \\in \\mathcal{G}} \\mathcal{R}_g(\\theta)$$\n          Minimizes the worst-case subgroup risk rather than naive population-average loss.\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Metadata Engineering & The FAIR Data Paradigm (Wilkinson et al. 2016)",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Metadata Engineering & The FAIR Data Paradigm",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "High-quality records are useless if consumers and automated agents cannot discover, understand, or interpret their physical semantics. Metadata transforms raw byte arrays into reproducible scientific assets."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In 2016, Mark Wilkinson and colleagues published the FAIR guiding principles: Findable, Accessible, Interoperable, and Reusable. In modern data systems, we implement FAIR through machine-readable JSON-LD sidecars using Schema.org and DCAT-AP vocabularies."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The FAIR Data Paradigm</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Wilkinson et al. (Nature 2016)</span>\n    </div>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-2 font-mono text-xs mb-3\">\n      <div class=\"p-2.5 rounded-lg bg-[#c9f3f4] border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block\">Findable</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Persistent identifier (DOI/PURL), rich indexed search metadata.</span>\n      </div>\n      <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block\">Accessible</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Standard open protocol (HTTPS/S3), automated authorization.</span>\n      </div>\n      <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block\">Interoperable</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Formal shared vocabularies (JSON-LD, W3C DCAT, RDF schema).</span>\n      </div>\n      <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block\">Reusable</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Clear open license (CC-BY), detailed provenance &amp; lineage.</span>\n      </div>\n    </div>\n\n    <div class=\"p-3 bg-[#fffaf0] rounded-xl border border-[#151b20] font-mono text-[11px]\">\n      <span class=\"font-bold text-[#151b20] block mb-1\">Machine-Readable Metadata Sidecar: <code>dataset_metadata.jsonld</code></span>\n      <pre class=\"bg-[#fffdf7] p-2.5 rounded border border-[#151b20] overflow-x-auto text-[10px] text-[#151b20]\"><code>{\n  \"@context\": \"https://schema.org/\",\n  \"@type\": \"Dataset\",\n  \"name\": \"Global Ambient Clinical Telemetry\",\n  \"identifier\": \"https://doi.org/10.5281/zenodo.9482104\",\n  \"license\": \"https://creativecommons.org/licenses/by/4.0/\",\n  \"variableMeasured\": [\n    { \"@type\": \"PropertyValue\", \"name\": \"systolic_bp\", \"unitText\": \"mmHg\", \"minValue\": 50, \"maxValue\": 250 },\n    { \"@type\": \"PropertyValue\", \"name\": \"glucose_mg_dl\", \"unitText\": \"mg/dL\", \"minValue\": 20, \"maxValue\": 600 }\n  ]\n}</code></pre>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Machine-Readable FAIR",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, so putting a dataset on GitHub with a markdown README file isn't enough to satisfy FAIR principles?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A markdown README is human-readable, Kaito. But automated ETL agents, web crawlers, and feature store catalog engines cannot parse free-form prose to verify data units, bounds, or licensing constraints."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That is why JSON-LD sidecars are essential—software can inspect variable definitions and units programmatically before ever reading the binary payload!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Self-describing data packages make pipelines resilient, auditable, and truly interoperable."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The FAIR Data Paradigm</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Wilkinson et al. (Nature 2016)</span>\n    </div>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-2 font-mono text-xs mb-3\">\n      <div class=\"p-2.5 rounded-lg bg-[#c9f3f4] border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block\">Findable</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Persistent identifier (DOI/PURL), rich indexed search metadata.</span>\n      </div>\n      <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block\">Accessible</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Standard open protocol (HTTPS/S3), automated authorization.</span>\n      </div>\n      <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block\">Interoperable</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Formal shared vocabularies (JSON-LD, W3C DCAT, RDF schema).</span>\n      </div>\n      <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block\">Reusable</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Clear open license (CC-BY), detailed provenance &amp; lineage.</span>\n      </div>\n    </div>\n\n    <div class=\"p-3 bg-[#fffaf0] rounded-xl border border-[#151b20] font-mono text-[11px]\">\n      <span class=\"font-bold text-[#151b20] block mb-1\">Machine-Readable Metadata Sidecar: <code>dataset_metadata.jsonld</code></span>\n      <pre class=\"bg-[#fffdf7] p-2.5 rounded border border-[#151b20] overflow-x-auto text-[10px] text-[#151b20]\"><code>{\n  \"@context\": \"https://schema.org/\",\n  \"@type\": \"Dataset\",\n  \"name\": \"Global Ambient Clinical Telemetry\",\n  \"identifier\": \"https://doi.org/10.5281/zenodo.9482104\",\n  \"license\": \"https://creativecommons.org/licenses/by/4.0/\",\n  \"variableMeasured\": [\n    { \"@type\": \"PropertyValue\", \"name\": \"systolic_bp\", \"unitText\": \"mmHg\", \"minValue\": 50, \"maxValue\": 250 },\n    { \"@type\": \"PropertyValue\", \"name\": \"glucose_mg_dl\", \"unitText\": \"mg/dL\", \"minValue\": 20, \"maxValue\": 600 }\n  ]\n}</code></pre>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Representation Disparity in Clinical Vision",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Clinical Representation Disparity",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Recall Checkpoint 2! A computer vision benchmark for dermatological lesion classification reports a ninety-two percent Top-1 diagnostic accuracy across one hundred thousand images. However, an audit reveals that eighty-eight percent of training images represent Fitzpatrick skin types I and II, while only three percent represent skin types V and VI. How does this structural representation disparity impact real-world clinical safety? Make your choice on the slide!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Clinical Computer Vision Scenario</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: A deep convolutional neural network for melanoma detection achieves 92.4% aggregate diagnostic accuracy. The training set consists of 88% Fitzpatrick types I &amp; II (lighter skin) and only 3% Fitzpatrick types V &amp; VI (darker skin).\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        What is the primary real-world clinical danger of deploying this system?\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Checkpoint 2",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Eighty-eight percent Fitzpatrick types I and II, but only three percent types V and VI! Even though aggregate accuracy is ninety-two percent, what happens to patients with darker skin tones?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Review how Empirical Risk Minimization optimizes average loss over majority groups. Select the correct option below to analyze the clinical hazard!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Clinical Computer Vision Scenario</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: A deep convolutional neural network for melanoma detection achieves 92.4% aggregate diagnostic accuracy. The training set consists of 88% Fitzpatrick types I &amp; II (lighter skin) and only 3% Fitzpatrick types V &amp; VI (darker skin).\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        What is the primary real-world clinical danger of deploying this system?\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Datasheets for Datasets Architecture (Gebru et al. 2021: 7 Core Sections)",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Datasheets for Datasets Architecture",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In the hardware industry, no engineer would integrate an electrical component without reading its operating voltage, thermal tolerances, and failure limits from a standardized datasheet. In 2021, Timnit Gebru and co-authors proposed that every machine learning dataset must be accompanied by an equivalent Datasheet for Datasets."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A production datasheet organizes governance across seven standardized sections: Motivation, Composition, Collection Process, Preprocessing and Labeling, Uses, Distribution, and Maintenance. This document establishes legal, ethical, and operational provenance, explicitly detailing where the dataset should never be deployed."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The 7 Foundational Pillars of Dataset Governance</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Gebru et al. (CACM 2021)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 font-mono text-xs\">\n      <div class=\"p-2.5 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-0.5\">1. Motivation &amp; Creation</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Why was the dataset created? Who funded it? What was the original scientific hypothesis?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-0.5\">2. Composition &amp; Instances</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">What do instances represent? Are there demographic cohorts, sensitive attributes, or missing labels?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffaf0] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-0.5\">3. Collection Process</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">How was data acquired? What sampling mechanisms, APIs, or physical sensors were used?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#f5f3ff] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#7c3aed] block mb-0.5\">4. Preprocessing &amp; Cleaning</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Was raw data normalized, tokenized, or anonymized? Were outliers trimmed or imputed?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-0.5\">5. Uses &amp; Limitations</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">What tasks is it intended for? Crucially: what tasks should it <strong>NEVER</strong> be used for?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-0.5\">6. Distribution &amp; Licensing</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">How is it distributed? Under what copyright, CC, or proprietary commercial constraints?</span>\n      </div>\n    </div>\n    <div class=\"mt-2.5 p-2 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-[11px] text-center\">\n      <strong class=\"text-[#0e7490]\">7. Maintenance &amp; Deprecation:</strong> Who maintains errata? Is there an automated pipeline for retraction and updates?\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Datasheets for Datasets",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I love the analogy to hardware engineering. In electronics, you wouldn't plug a chip into a motherboard without reading its datasheet. Why did software engineers assume data could be used without a specification?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because early AI was academic and small scale, Kaito! But in modern enterprise systems, deploying an autonomous vehicle or clinical diagnostic tool on un-audited data can lead to catastrophic failure and legal liability."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the 'Uses and Limitations' section is vital—it explicitly defines where the dataset is dangerous to deploy!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. A dataset curated for healthy adult athletes must never be used to train pediatric triage models. Datasheets enforce that accountability."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The 7 Foundational Pillars of Dataset Governance</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Gebru et al. (CACM 2021)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 font-mono text-xs\">\n      <div class=\"p-2.5 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-0.5\">1. Motivation &amp; Creation</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Why was the dataset created? Who funded it? What was the original scientific hypothesis?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-0.5\">2. Composition &amp; Instances</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">What do instances represent? Are there demographic cohorts, sensitive attributes, or missing labels?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffaf0] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-0.5\">3. Collection Process</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">How was data acquired? What sampling mechanisms, APIs, or physical sensors were used?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#f5f3ff] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#7c3aed] block mb-0.5\">4. Preprocessing &amp; Cleaning</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">Was raw data normalized, tokenized, or anonymized? Were outliers trimmed or imputed?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-0.5\">5. Uses &amp; Limitations</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">What tasks is it intended for? Crucially: what tasks should it <strong>NEVER</strong> be used for?</span>\n      </div>\n      <div class=\"p-2.5 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-0.5\">6. Distribution &amp; Licensing</strong>\n        <span class=\"text-[11px] text-[#334155] font-sans\">How is it distributed? Under what copyright, CC, or proprietary commercial constraints?</span>\n      </div>\n    </div>\n    <div class=\"mt-2.5 p-2 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-[11px] text-center\">\n      <strong class=\"text-[#0e7490]\">7. Maintenance &amp; Deprecation:</strong> Who maintains errata? Is there an automated pipeline for retraction and updates?\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Engineering Lab: Defensive Quality Contracts with Polars",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Engineering Lab: Polars Quality Contracts",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us examine production engineering code that implements an automated, declarative Data Quality Contract Validator using Polars. Notice how we avoid slow Python loops and evaluate all four quantifiable quality dimensions in vectorized Rust expressions."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "We assert completeness over primary identifiers, physiological range boundaries on blood pressure, chronological invariants between admission and discharge dates, and temporal freshness against a 365-day cutoff. If the composite DQI falls below ninety percent, the CI pipeline fails before a single model weight is touched!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Vectorized Declarative Quality Contract in Polars</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">Production Grade</span>\n    </div>\n    <pre class=\"bg-[#f0fbfd] p-3 rounded-xl border-2 border-[#151b20] overflow-x-auto text-[11px] font-mono leading-relaxed text-[#151b20]\"><code>import polars as pl\nfrom dataclasses import dataclass\nfrom datetime import datetime, timezone, timedelta\n\ndef audit_dataset_contract(df: pl.DataFrame) -> dict:\n    total_rows = len(df)\n    \n    # 1. Completeness: Vectorized null check across primary keys\n    null_counts = df.select([\n        pl.col(\"patient_id\").null_count().alias(\"null_pid\"),\n        pl.col(\"admission_date\").null_count().alias(\"null_date\"),\n        pl.col(\"systolic_bp\").null_count().alias(\"null_bp\")\n    ])\n    total_nulls = sum(null_counts.to_dicts()[0].values())\n    comp_score = max(0.0, 1.0 - (total_nulls / (total_rows * 3)))\n\n    # 2. Accuracy: Physiological range invariants (50 <= BP <= 250)\n    valid_bp = df.filter((pl.col(\"systolic_bp\") >= 50) & (pl.col(\"systolic_bp\") <= 250))\n    acc_score = len(valid_bp) / total_rows\n\n    # 3. Consistency: Referential invariant (discharge_date >= admission_date)\n    valid_timeline = df.filter(pl.col(\"discharge_date\") >= pl.col(\"admission_date\"))\n    cons_score = len(valid_timeline) / total_rows\n\n    # 4. Timeliness: Staleness freshness decay (< 365 days)\n    cutoff = datetime.now(timezone.utc) - timedelta(days=365)\n    fresh_rows = df.filter(pl.col(\"admission_date\") >= cutoff)\n    time_score = len(fresh_rows) / total_rows\n\n    # Composite DQI (Weighted sum)\n    dqi = ((acc_score * 0.35) + (comp_score * 0.25) + (cons_score * 0.25) + (time_score * 0.15)) * 100\n    return {\"DQI\": round(dqi, 2), \"Acc\": acc_score, \"Comp\": comp_score, \"Cons\": cons_score, \"Pass\": dqi >= 90.0}</code></pre>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Vectorized Quality Contracts",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this Polars contract is brilliant! By writing the quality assertions as native columnar filter expressions, Polars evaluates all four dimensions across ten million rows in just milliseconds!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. No row iteration in Python. It executes entirely in parallel Rust threads, compiling our business constraints directly into vectorized SIMD instructions."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And integrating this into GitHub Actions or Airflow ensures that bad data is rejected automatically at the ingestion boundary before it ever enters training storage!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the hallmark of defensive data engineering: treat every incoming dataset as untrusted user input."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Vectorized Declarative Quality Contract in Polars</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">Production Grade</span>\n    </div>\n    <pre class=\"bg-[#f0fbfd] p-3 rounded-xl border-2 border-[#151b20] overflow-x-auto text-[11px] font-mono leading-relaxed text-[#151b20]\"><code>import polars as pl\nfrom dataclasses import dataclass\nfrom datetime import datetime, timezone, timedelta\n\ndef audit_dataset_contract(df: pl.DataFrame) -> dict:\n    total_rows = len(df)\n    \n    # 1. Completeness: Vectorized null check across primary keys\n    null_counts = df.select([\n        pl.col(\"patient_id\").null_count().alias(\"null_pid\"),\n        pl.col(\"admission_date\").null_count().alias(\"null_date\"),\n        pl.col(\"systolic_bp\").null_count().alias(\"null_bp\")\n    ])\n    total_nulls = sum(null_counts.to_dicts()[0].values())\n    comp_score = max(0.0, 1.0 - (total_nulls / (total_rows * 3)))\n\n    # 2. Accuracy: Physiological range invariants (50 <= BP <= 250)\n    valid_bp = df.filter((pl.col(\"systolic_bp\") >= 50) & (pl.col(\"systolic_bp\") <= 250))\n    acc_score = len(valid_bp) / total_rows\n\n    # 3. Consistency: Referential invariant (discharge_date >= admission_date)\n    valid_timeline = df.filter(pl.col(\"discharge_date\") >= pl.col(\"admission_date\"))\n    cons_score = len(valid_timeline) / total_rows\n\n    # 4. Timeliness: Staleness freshness decay (< 365 days)\n    cutoff = datetime.now(timezone.utc) - timedelta(days=365)\n    fresh_rows = df.filter(pl.col(\"admission_date\") >= cutoff)\n    time_score = len(fresh_rows) / total_rows\n\n    # Composite DQI (Weighted sum)\n    dqi = ((acc_score * 0.35) + (comp_score * 0.25) + (cons_score * 0.25) + (time_score * 0.15)) * 100\n    return {\"DQI\": round(dqi, 2), \"Acc\": acc_score, \"Comp\": comp_score, \"Cons\": cons_score, \"Pass\": dqi >= 90.0}</code></pre>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Summary, 5 Golden Rules & Forward Transition to Lesson 1.5",
+        "type": "title",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Summary & Forward Transition",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 1.4: Characteristics of Good Datasets and Quality Dimensions. We have codified the Wang-Strong multidimensional framework, derived mathematical formulas for accuracy, completeness, consistency, timeliness, and relevance, demystified Little-Rubin missing data mechanisms, and built declarative validation contracts in Polars."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In our upcoming Lesson 1.5, we turn from defining quality metrics to hands-on statistical profiling and exploratory data analysis. Join us as we build automated profiling pipelines to uncover hidden distributions, multi-collinearity, and data drift!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7]\">\n    <div class=\"flex items-center gap-2 mb-3 pb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"text-xl\">🏆</span>\n      <h3 class=\"font-black text-lg text-[#151b20]\">The 5 Golden Rules of Data Quality Engineering</h3>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">1. Quality is Multidimensional</strong>\n        <p class=\"text-[#334155] font-sans\">Never evaluate accuracy in isolation. Audit completeness, consistency, timeliness, and relevance simultaneously.</p>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2. Diagnose Missingness Before Imputing</strong>\n        <p class=\"text-[#334155] font-sans\">Distinguish MCAR, MAR, and MNAR. Use MICE for MAR, and avoid naive listwise deletion in clinical data.</p>\n      </div>\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">3. Disaggregate Demographic Audits</strong>\n        <p class=\"text-[#334155] font-sans\">Beware the aggregate accuracy fallacy. Evaluate minimax risk across all subpopulation cohorts.</p>\n      </div>\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">4. Standardize FAIR &amp; Datasheets</strong>\n        <p class=\"text-[#334155] font-sans\">Ship machine-readable JSON-LD sidecars for automated systems and Gebru datasheets for human governance.</p>\n      </div>\n    </div>\n    <div class=\"mt-4 p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20] font-mono text-xs text-center font-bold text-[#15803d]\">\n      ✓ Rule 5: Automate vectorized declarative contracts at every ingestion boundary with Polars.\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-3\">\n    <div>\n      <span class=\"font-mono text-xs font-black text-[#b45309] uppercase block\">Up Next in Track 1</span>\n      <h4 class=\"font-black text-sm text-[#151b20]\">Lesson 1.5: Exploratory Data Analysis &amp; Statistical Profiling</h4>\n    </div>\n    <a href=\"../05-exploratory-data-analysis/\" class=\"inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#151b20] text-[#fffdf7] font-mono text-xs font-bold hover:bg-[#ffc83e] hover:text-[#151b20] transition border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]\">\n      <span>Proceed to Lesson 1.5 →</span>\n    </a>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Lesson 1.4 Synthesis",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, what a journey! From the Wang-Strong framework to Little-Rubin missing data mechanisms, FAIR JSON-LD sidecars, and vectorized Polars contracts, data quality has transformed from an intuitive chore into a mathematical discipline."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the core ethos of Data-Centric AI, Kaito. Spending time engineering high-fidelity datasets yields far greater performance gains than obsessively tweaking neural network hyperparameters on corrupted inputs."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in Lesson 1.5, we will put this into practice by building automated statistical profiling and exploratory data analysis pipelines!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Join us in Lesson 1.5 to master automated data profiling and statistical discovery!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7]\">\n    <div class=\"flex items-center gap-2 mb-3 pb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"text-xl\">🏆</span>\n      <h3 class=\"font-black text-lg text-[#151b20]\">The 5 Golden Rules of Data Quality Engineering</h3>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">1. Quality is Multidimensional</strong>\n        <p class=\"text-[#334155] font-sans\">Never evaluate accuracy in isolation. Audit completeness, consistency, timeliness, and relevance simultaneously.</p>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2. Diagnose Missingness Before Imputing</strong>\n        <p class=\"text-[#334155] font-sans\">Distinguish MCAR, MAR, and MNAR. Use MICE for MAR, and avoid naive listwise deletion in clinical data.</p>\n      </div>\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">3. Disaggregate Demographic Audits</strong>\n        <p class=\"text-[#334155] font-sans\">Beware the aggregate accuracy fallacy. Evaluate minimax risk across all subpopulation cohorts.</p>\n      </div>\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">4. Standardize FAIR &amp; Datasheets</strong>\n        <p class=\"text-[#334155] font-sans\">Ship machine-readable JSON-LD sidecars for automated systems and Gebru datasheets for human governance.</p>\n      </div>\n    </div>\n    <div class=\"mt-4 p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20] font-mono text-xs text-center font-bold text-[#15803d]\">\n      ✓ Rule 5: Automate vectorized declarative contracts at every ingestion boundary with Polars.\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-3\">\n    <div>\n      <span class=\"font-mono text-xs font-black text-[#b45309] uppercase block\">Up Next in Track 1</span>\n      <h4 class=\"font-black text-sm text-[#151b20]\">Lesson 1.5: Exploratory Data Analysis &amp; Statistical Profiling</h4>\n    </div>\n    <a href=\"../05-exploratory-data-analysis/\" class=\"inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#151b20] text-[#fffdf7] font-mono text-xs font-bold hover:bg-[#ffc83e] hover:text-[#151b20] transition border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]\">\n      <span>Proceed to Lesson 1.5 →</span>\n    </a>\n  </div>\n</div>"
         }
       }
     ]
@@ -3421,5 +3806,4 @@ var CHAPTER1_CURRICULUM = {
     ]
   }
 };
-window.CURRICULUM_CH1 = CHAPTER1_CURRICULUM;
-window.CHAPTER1_CURRICULUM = CHAPTER1_CURRICULUM;
+if (typeof window !== 'undefined') { window.CURRICULUM_CH1 = CHAPTER1_CURRICULUM; }

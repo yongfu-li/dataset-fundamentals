@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2131,22 +2175,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-acoustic-signal-annotation-time-frequency-topologies" class="md-nav__link">
+  <a href="#1-acoustic-signal-annotation-time-frequency-topologies-spectrogram-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Acoustic Signal Annotation: Time-Frequency Topologies
+        1. Acoustic Signal Annotation: Time-Frequency Topologies &amp; Spectrogram Bounds
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Acoustic Signal Annotation: Time-Frequency Topologies">
+    <nav class="md-nav" aria-label="1. Acoustic Signal Annotation: Time-Frequency Topologies &amp; Spectrogram Bounds">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#temporal-jaccard-index-tiou" class="md-nav__link">
+  <a href="#11-the-short-time-fourier-transform-stft" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Temporal Jaccard Index (tIoU)
+        1.1 The Short-Time Fourier Transform (STFT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-gabor-heisenberg-uncertainty-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The Gabor-Heisenberg Uncertainty Trade-Off
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-temporal-jaccard-index-tiou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Temporal Jaccard Index (tIoU)
       
     </span>
   </a>
@@ -2171,15 +2237,49 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#spatio-temporal-video-iou-viou" class="md-nav__link">
+  <a href="#21-spatio-temporal-tubelets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spatio-Temporal Video IoU (vIoU)
+        2.1 Spatio-Temporal Tubelets
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#22-keyframe-interpolation-mathematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Keyframe Interpolation Mathematics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-spatio-temporal-volume-iou-viou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Spatio-Temporal Volume IoU (vIoU)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-multi-object-tracking-evaluation-mota-idf1-hota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Multi-Object Tracking Evaluation: MOTA, IDF1 &amp; HOTA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Multi-Object Tracking Evaluation: MOTA, IDF1 &amp; HOTA">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#multiple-object-tracking-accuracy-mota" class="md-nav__link">
@@ -2189,6 +2289,33 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identification-f1-idf1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identification F1 (IDF1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#higher-order-tracking-accuracy-hota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Higher Order Tracking Accuracy (HOTA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2210,10 +2337,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#knowledge-base-entity-linking-cosine-similarity" class="md-nav__link">
+  <a href="#31-column-type-annotation-cta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Knowledge Base Entity Linking Cosine Similarity
+        3.1 Column Type Annotation (CTA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cell-entity-linking-cel-cosine-disambiguation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Cell Entity Linking (CEL) &amp; Cosine Disambiguation
       
     </span>
   </a>
@@ -2226,10 +2364,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-temporal-iou-video-tubelet-iou-mota" class="md-nav__link">
+  <a href="#4-landmark-empirical-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Temporal IoU, Video Tubelet IoU &amp; MOTA
+        4. Landmark Empirical Case Studies
       
     </span>
   </a>
@@ -2237,10 +2375,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-interactive-laboratory-temporal-dynamics-spectrogram-multi-object-tracking-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. 🔬 Interactive Laboratory: Temporal Dynamics, Spectrogram &amp; Multi-Object Tracking Studio
       
     </span>
   </a>
@@ -2248,10 +2386,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#6-production-python-verification-engine-pydantic-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        6. Production Python Verification Engine (Pydantic V2)
       
     </span>
   </a>
@@ -2259,10 +2397,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#7-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        7. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -2270,10 +2408,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        8. 📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7422,22 +7560,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-acoustic-signal-annotation-time-frequency-topologies" class="md-nav__link">
+  <a href="#1-acoustic-signal-annotation-time-frequency-topologies-spectrogram-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Acoustic Signal Annotation: Time-Frequency Topologies
+        1. Acoustic Signal Annotation: Time-Frequency Topologies &amp; Spectrogram Bounds
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Acoustic Signal Annotation: Time-Frequency Topologies">
+    <nav class="md-nav" aria-label="1. Acoustic Signal Annotation: Time-Frequency Topologies &amp; Spectrogram Bounds">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#temporal-jaccard-index-tiou" class="md-nav__link">
+  <a href="#11-the-short-time-fourier-transform-stft" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Temporal Jaccard Index (tIoU)
+        1.1 The Short-Time Fourier Transform (STFT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-gabor-heisenberg-uncertainty-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The Gabor-Heisenberg Uncertainty Trade-Off
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-temporal-jaccard-index-tiou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Temporal Jaccard Index (tIoU)
       
     </span>
   </a>
@@ -7462,15 +7622,49 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#spatio-temporal-video-iou-viou" class="md-nav__link">
+  <a href="#21-spatio-temporal-tubelets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spatio-Temporal Video IoU (vIoU)
+        2.1 Spatio-Temporal Tubelets
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#22-keyframe-interpolation-mathematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Keyframe Interpolation Mathematics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-spatio-temporal-volume-iou-viou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Spatio-Temporal Volume IoU (vIoU)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-multi-object-tracking-evaluation-mota-idf1-hota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Multi-Object Tracking Evaluation: MOTA, IDF1 &amp; HOTA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Multi-Object Tracking Evaluation: MOTA, IDF1 &amp; HOTA">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#multiple-object-tracking-accuracy-mota" class="md-nav__link">
@@ -7480,6 +7674,33 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identification-f1-idf1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identification F1 (IDF1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#higher-order-tracking-accuracy-hota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Higher Order Tracking Accuracy (HOTA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -7501,10 +7722,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#knowledge-base-entity-linking-cosine-similarity" class="md-nav__link">
+  <a href="#31-column-type-annotation-cta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Knowledge Base Entity Linking Cosine Similarity
+        3.1 Column Type Annotation (CTA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cell-entity-linking-cel-cosine-disambiguation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Cell Entity Linking (CEL) &amp; Cosine Disambiguation
       
     </span>
   </a>
@@ -7517,10 +7749,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-temporal-iou-video-tubelet-iou-mota" class="md-nav__link">
+  <a href="#4-landmark-empirical-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Temporal IoU, Video Tubelet IoU &amp; MOTA
+        4. Landmark Empirical Case Studies
       
     </span>
   </a>
@@ -7528,10 +7760,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-interactive-laboratory-temporal-dynamics-spectrogram-multi-object-tracking-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. 🔬 Interactive Laboratory: Temporal Dynamics, Spectrogram &amp; Multi-Object Tracking Studio
       
     </span>
   </a>
@@ -7539,10 +7771,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#6-production-python-verification-engine-pydantic-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        6. Production Python Verification Engine (Pydantic V2)
       
     </span>
   </a>
@@ -7550,10 +7782,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#7-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        7. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7561,10 +7793,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        8. 📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7592,38 +7824,39 @@
 
 
 <h1 id="43-audio-video-and-tabular-annotation-temporal-dynamics-spectrograms-relational-semantics">4.3 Audio, Video, and Tabular Annotation: Temporal Dynamics, Spectrograms &amp; Relational Semantics</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Section Available</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 4: Data Annotation (§4.3: Temporal, Acoustic &amp; Relational Annotation)</strong> in the official Springer Nature monograph, exploring STFT spectrogram bounds, tubelet 3D IoU tracking, and Wikidata entity resolution.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Read <strong>Chapter 4: Data Annotation (§4.3: Temporal, Acoustic &amp; Relational Annotation)</strong> in the official Springer Nature monograph, exploring STFT spectrogram bounds, tubelet 3D volume IoU tracking, and Wikidata entity resolution.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
     <span>Explore Chapter 4 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-43">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 4.3</h3>
 <p>Experience Chapter 4 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">13 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">12 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=4&part=3" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=4&part=3" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7632,198 +7865,1087 @@
 </div>
 
 <hr />
-<p>Beyond static images and plain text, modern AI systems process complex dynamic signals: continuous audio waveforms, high-frame-rate video streams, and enterprise tabular databases [<a href="#ref-gemmeke2017">Gemmeke2017</a>, <a href="#ref-dasiopoulou2011">Dasiopoulou2011</a>].</p>
-<p>Annotating these modalities introduces <strong>temporal continuity</strong>, <strong>frequency-domain transformations</strong>, and <strong>relational schema alignment</strong>. Labeling errors across temporal boundaries or relational foreign keys propagate systematic drift through video object trackers and tabular foundation models.</p>
+<p>Modern deep learning architectures increasingly operate beyond static images and uncontextualized text strings, ingesting continuous multi-channel audio waveforms, high-framerate spatio-temporal video streams, and enterprise relational databases [<a href="#ref-gemmeke2017">Gemmeke2017</a>, <a href="#ref-milan2016">Milan2016</a>, <a href="#ref-bizer2009">Bizer2009</a>]. </p>
+<p>Annotating these complex modalities introduces fundamental challenges:
+1. <strong>Acoustic Event Detection</strong>: Resolving continuous one-dimensional pressure variations into discrete time-frequency bounding boundaries bounded by the Heisenberg-Gabor uncertainty principle.
+2. <strong>Video Trajectory Tracking</strong>: Preserving temporal identity persistence across occlusions and dynamic deformations via spatio-temporal tubelets and keyframe interpolation.
+3. <strong>Tabular Entity Resolution</strong>: Grounding polysemous text cells to structured Knowledge Graph nodes using contextual embeddings and relational schema priors.</p>
 <hr />
-<h2 id="1-acoustic-signal-annotation-time-frequency-topologies">1. Acoustic Signal Annotation: Time-Frequency Topologies</h2>
-<p>In Acoustic Event Detection (AED) and speech processing, raw 1D pressure waveforms <span class="arithmatex">\(x(t)\)</span> are transformed into 2D time-frequency representations via the <strong>Short-Time Fourier Transform (STFT)</strong>:</p>
-<div class="arithmatex">\[
-X(m, \omega) = \sum_{n=-\infty}^\infty x[n] \cdot w[n - m] \cdot e^{-j \omega n}
-\]</div>
-<p>Where <span class="arithmatex">\(w[n]\)</span> is a window function (e.g., Hann or Hamming) shifted by hop size <span class="arithmatex">\(m\)</span>.</p>
-<h3 id="temporal-jaccard-index-tiou">Temporal Jaccard Index (tIoU)</h3>
-<p>For audio event segment labeling, annotators specify temporal onset and offset intervals <span class="arithmatex">\(I_1 = [t_1^A, t_2^A]\)</span> and <span class="arithmatex">\(I_2 = [t_1^B, t_2^B]\)</span>. The temporal Intersection over Union (<strong>tIoU</strong>) evaluates timestamp alignment:</p>
-<div class="arithmatex">\[
-\text{tIoU}(I_1, I_2) = \frac{\max\left(0, \; \min(t_2^A, t_2^B) - \max(t_1^A, t_1^B)\right)}{\max(t_2^A, t_2^B) - \min(t_1^A, t_1^B)}
-\]</div>
+<h2 id="1-acoustic-signal-annotation-time-frequency-topologies-spectrogram-bounds">1. Acoustic Signal Annotation: Time-Frequency Topologies &amp; Spectrogram Bounds</h2>
+<p>Raw audio data consists of continuous air pressure fluctuations sampled at frequency <span class="arithmatex">\(f_s\)</span> (e.g., <span class="arithmatex">\(16\text{ kHz}\)</span> or <span class="arithmatex">\(44.1\text{ kHz}\)</span>), yielding a discrete time-domain sequence <span class="arithmatex">\(x[n] \in [-1.0, 1.0]\)</span>. Because human perception and acoustic event patterns are frequency-dependent, audio annotation relies heavily on <strong>time-frequency representations</strong>.</p>
 <pre class="mermaid"><code>flowchart LR
-    Wave["1D Audio Waveform x(t)"] --&gt; STFT["Short-Time Fourier Transform (STFT)"]
-    STFT --&gt; Mel["Mel-Scale Spectrogram S(m, f)"]
-    Mel --&gt; Bounding["Time-Frequency Bounding Boxes [t_start, t_end, f_min, f_max]"]
-    Mel --&gt; Transcribe["Phonetic &amp; Word Alignment CTC Tokens"]
+    A["Raw Audio Waveform x[n]"] --&gt; B["Windowing w[n - m]&lt;br/&gt;(Hann / Hamming)"]
+    B --&gt; C["Short-Time Fourier Transform&lt;br/&gt;X(m, ω)"]
+    C --&gt; D["Power Spectral Density&lt;br/&gt;|X(m, ω)|²"]
+    D --&gt; E["Mel Filterbank Mapping&lt;br/&gt;M(m, f_mel)"]
+    E --&gt; F["Time-Frequency Bounding Box&lt;br/&gt;[t_start, t_end, f_min, f_max]"]
 
-    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef neo fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef cyan fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class Wave,STFT blue;
-    class Mel amber;
-    class Bounding,Transcribe green;</code></pre>
+    class A,B neo;
+    class C,D cyan;
+    class E,F amber;</code></pre>
+<h3 id="11-the-short-time-fourier-transform-stft">1.1 The Short-Time Fourier Transform (STFT)</h3>
+<p>The discrete Short-Time Fourier Transform transforms <span class="arithmatex">\(x[n]\)</span> into a complex-valued time-frequency representation by sliding an analysis window <span class="arithmatex">\(w[n]\)</span> of length <span class="arithmatex">\(N\)</span> by a hop size <span class="arithmatex">\(H\)</span>:</p>
+<div class="arithmatex">\[
+X(m, \omega) = \sum_{n=-\infty}^\infty x[n] \cdot w[n - m \cdot H] \cdot e^{-j \omega n}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(m \in \mathbb{Z}\)</span> denotes the temporal frame index.
+- <span class="arithmatex">\(\omega = \frac{2\pi k}{N}\)</span> denotes discrete frequency bin <span class="arithmatex">\(k \in \{0, 1, \dots, N/2\}\)</span>.
+- The <strong>Power Spectrogram</strong> is the squared magnitude: <span class="arithmatex">\(P(m, \omega) = |X(m, \omega)|^2\)</span>.
+- The <strong>Mel-Scale Filterbank</strong> compresses linear frequencies onto a perceptually uniform pitch scale:
+  $$
+  m_{\text{mel}} = 2595 \cdot \log_{10}\left(1 + \frac{f}{700}\right)
+  $$</p>
+<h3 id="12-the-gabor-heisenberg-uncertainty-trade-off">1.2 The Gabor-Heisenberg Uncertainty Trade-Off</h3>
+<p>A critical failure mode in acoustic annotation is choosing an STFT window length <span class="arithmatex">\(N\)</span> without understanding the <strong>Gabor-Heisenberg limit</strong>:</p>
+<div class="arithmatex">\[
+\Delta t \cdot \Delta f \ge \frac{1}{4\pi}
+\]</div>
+<ul>
+<li><strong>Narrow Window (<span class="arithmatex">\(N = 256\)</span>, <span class="arithmatex">\(\approx 16\text{ ms}\)</span> at <span class="arithmatex">\(16\text{ kHz}\)</span>)</strong>: High temporal resolution (<span class="arithmatex">\(\Delta t \approx 16\text{ ms}\)</span>), but low frequency resolution (<span class="arithmatex">\(\Delta f \approx 62.5\text{ Hz}\)</span>). Ideal for localizing sharp transients (gunshots, door clicks, percussive onsets).</li>
+<li><strong>Wide Window (<span class="arithmatex">\(N = 2048\)</span>, <span class="arithmatex">\(\approx 128\text{ ms}\)</span> at <span class="arithmatex">\(16\text{ kHz}\)</span>)</strong>: Fine spectral resolution (<span class="arithmatex">\(\Delta f \approx 7.8\text{ Hz}\)</span>), enabling distinct harmonic pitch separation, but smearing onset/offset boundaries across <span class="arithmatex">\(128\text{ ms}\)</span>, degrading temporal alignment.</li>
+</ul>
+<h3 id="13-temporal-jaccard-index-tiou">1.3 Temporal Jaccard Index (tIoU)</h3>
+<p>For acoustic event detection (AED) and sound event localization, human annotators mark temporal intervals <span class="arithmatex">\(I = [t_{\text{start}}, t_{\text{end}}]\)</span>. Given a ground-truth interval <span class="arithmatex">\(I_{\text{gt}} = [t_1^A, t_2^A]\)</span> and an annotator prediction <span class="arithmatex">\(I_{\text{pred}} = [t_1^B, t_2^B]\)</span>, the <strong>Temporal Intersection over Union (tIoU)</strong> evaluates temporal boundary fidelity:</p>
+<div class="arithmatex">\[
+\text{tIoU}(I_{\text{gt}}, I_{\text{pred}}) = \frac{\max\left(0, \; \min(t_2^A, t_2^B) - \max(t_1^A, t_1^B)\right)}{\max(t_2^A, t_2^B) - \min(t_1^A, t_1^B)}
+\]</div>
+<p>In benchmark evaluations (e.g., AudioSet [<a href="#ref-gemmeke2017">Gemmeke2017</a>], DCASE Challenge), an annotation is considered a True Positive if <span class="arithmatex">\(\text{tIoU} \ge \alpha\)</span> (typically <span class="arithmatex">\(\alpha \in \{0.5, 0.75\}\)</span>).</p>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Keyframe Interpolation in Dense Video Annotation</p>
-<p>Annotating every single frame of a 60 FPS video requires 3,600 annotations per minute of footage. Annotate objects every 10–30 frames (<strong>keyframes</strong>) and use linear or optical-flow tracking algorithms to automatically interpolate bounding box trajectories for intermediate frames, reducing annotation hours by <span class="arithmatex">\(&gt;85\%\)</span>.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Temporal Timestamp Drift in Sensor-Video Alignment</p>
-<p>When labeling multimodal datasets (e.g., driver cabin video synchronized with CAN-bus steering angle), microsecond clock drift between un-synced hardware logs causes annotation labels from video to map to incorrect physical vehicle dynamics.</p>
-</div>
 <h2 id="2-video-annotation-spatio-temporal-tubelets-multi-object-tracking">2. Video Annotation: Spatio-Temporal Tubelets &amp; Multi-Object Tracking</h2>
-<p>In video surveillance and autonomous driving, static bounding boxes fail to capture trajectory dynamics. Annotators define <strong>Spatio-Temporal Tubelets</strong> <span class="arithmatex">\(\mathcal{T}\)</span> tracking an object across <span class="arithmatex">\(T\)</span> frames [<a href="#ref-milan2016">Milan2016</a>]:</p>
+<p>In video streams, annotating independent static bounding boxes frame-by-frame creates severe temporal jitter and destroys object identity continuity. Modern video annotation requires tracking identity persistence through continuous motion, occlusion, and scale variations.</p>
+<h3 id="21-spatio-temporal-tubelets">2.1 Spatio-Temporal Tubelets</h3>
+<p>A <strong>Tubelet</strong> <span class="arithmatex">\(\mathcal{T}_i\)</span> encapsulates the continuous trajectory of object instance <span class="arithmatex">\(i\)</span> across a temporal sequence of video frames <span class="arithmatex">\(t \in [t_{\text{start}}, t_{\text{end}}]\)</span> [<a href="#ref-milan2016">Milan2016</a>]:</p>
 <div class="arithmatex">\[
-\mathcal{T} = \left\{ [t, \; \text{ID}, \; x_t, \; y_t, \; w_t, \; h_t] \right\}_{t=t_{\text{start}}}^{t_{\text{end}}}
+\mathcal{T}_i = \left\{ \left( t, \; \mathbf{b}_i(t) \right) \right\}_{t=t_{\text{start}}}^{t_{\text{end}}}, \quad \mathbf{b}_i(t) = \left[ x_{\min}(t), y_{\min}(t), x_{\max}(t), y_{\max}(t) \right]
 \]</div>
-<h3 id="spatio-temporal-video-iou-viou">Spatio-Temporal Video IoU (vIoU)</h3>
-<p>Between two tubelets <span class="arithmatex">\(\mathcal{T}_A\)</span> and <span class="arithmatex">\(\mathcal{T}_B\)</span>, the volume Intersection over Union evaluates both temporal overlap and spatial bounding box accuracy across time:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant A as Human Annotator
+    participant KF as Keyframe Store
+    participant I as Optical Flow Interpolator
+    participant V as Verification Gate (vIoU)
+
+    A-&gt;&gt;KF: Annotate Keyframe t=0 (Box B_0)
+    A-&gt;&gt;KF: Annotate Keyframe t=30 (Box B_30)
+    KF-&gt;&gt;I: Request Spline/Flow Trajectory
+    I--&gt;&gt;KF: Synthesize Intermediate Boxes {B_1 ... B_29}
+    KF-&gt;&gt;V: Verify Volume IoU vs Ground Truth
+    V--&gt;&gt;A: Flag Drifting Segments (vIoU &lt; 0.7) for Manual Correction</code></pre>
+<h3 id="22-keyframe-interpolation-mathematics">2.2 Keyframe Interpolation Mathematics</h3>
+<p>Annotating every frame of a 30 FPS or 60 FPS video stream imposes immense labor costs (<span class="arithmatex">\(3{,}600\)</span> bounding boxes per minute of video). Instead, annotators label sparse <strong>Keyframes</strong> at regular intervals or motion inflection points, and automated interpolation infers intermediate frames.</p>
+<p>For bounding box parameters <span class="arithmatex">\(\mathbf{b} = [x_{\min}, y_{\min}, x_{\max}, y_{\max}]\)</span>, linear interpolation between keyframes <span class="arithmatex">\(t_k\)</span> and <span class="arithmatex">\(t_{k+1}\)</span> computes:</p>
 <div class="arithmatex">\[
-\text{vIoU}(\mathcal{T}_A, \mathcal{T}_B) = \frac{\sum_{t \in T_A \cap T_B} |B_A(t) \cap B_B(t)|}{\sum_{t \in T_A \cup T_B} |B_A(t) \cup B_B(t)|}
+\mathbf{b}(t) = (1 - \tau) \cdot \mathbf{b}(t_k) + \tau \cdot \mathbf{b}(t_{k+1}), \quad \tau = \frac{t - t_k}{t_{k+1} - t_k}, \quad t \in [t_k, t_{k+1}]
 \]</div>
-<h3 id="multiple-object-tracking-accuracy-mota">Multiple Object Tracking Accuracy (MOTA)</h3>
-<p>The canonical quality metric for multi-object tracking datasets balances False Negatives (<span class="arithmatex">\(\text{FN}\)</span>), False Positives (<span class="arithmatex">\(\text{FP}\)</span>), and identity switches (<span class="arithmatex">\(\text{IDSW}\)</span>):</p>
+<p>For non-linear curved motion or camera ego-motion panning, <strong>Catmull-Rom Splines</strong> or <strong>Dense Optical Flow Vector Warping</strong> <span class="arithmatex">\(\mathbf{b}(t) = \mathbf{b}(t-1) + \mathbf{u}(\mathbf{b}(t-1))\)</span> are applied to track non-linear acceleration.</p>
+<h3 id="23-spatio-temporal-volume-iou-viou">2.3 Spatio-Temporal Volume IoU (vIoU)</h3>
+<p>The spatial overlap between two video tubelets <span class="arithmatex">\(\mathcal{T}_A\)</span> and <span class="arithmatex">\(\mathcal{T}_B\)</span> evaluates both temporal span alignment and frame-wise spatial box precision:</p>
+<div class="arithmatex">\[
+\text{vIoU}(\mathcal{T}_A, \mathcal{T}_B) = \frac{\sum_{t \in T_A \cap T_B} \text{Area}\left( \mathbf{b}_A(t) \cap \mathbf{b}_B(t) \right)}{\sum_{t \in T_A \cup T_B} \text{Area}\left( \mathbf{b}_A(t) \cup \mathbf{b}_B(t) \right)}
+\]</div>
+<p>Where <span class="arithmatex">\(\mathbf{b}(t) = \emptyset\)</span> (Area <span class="arithmatex">\(= 0\)</span>) if the object is absent at frame <span class="arithmatex">\(t\)</span>.</p>
+<h3 id="24-multi-object-tracking-evaluation-mota-idf1-hota">2.4 Multi-Object Tracking Evaluation: MOTA, IDF1 &amp; HOTA</h3>
+<p>To evaluate annotated tracking sequences against ground truth, the computer vision community relies on standardized benchmark metrics:</p>
+<h4 id="multiple-object-tracking-accuracy-mota">Multiple Object Tracking Accuracy (MOTA)</h4>
+<p>Formulated by Bernardin and Stiefelhagen (2008) and standardized in MOTChallenge [<a href="#ref-milan2016">Milan2016</a>]:</p>
 <div class="arithmatex">\[
 \text{MOTA} = 1 - \frac{\sum_{t=1}^T \left( \text{FN}_t + \text{FP}_t + \text{IDSW}_t \right)}{\sum_{t=1}^T \text{GT}_t}
 \]</div>
-<p>Where <span class="arithmatex">\(\text{GT}_t\)</span> is the total count of ground truth objects present in frame <span class="arithmatex">\(t\)</span>.</p>
+<p>Where:
+- <span class="arithmatex">\(\text{FN}_t\)</span>: False Negatives (missed ground truth objects at frame <span class="arithmatex">\(t\)</span>).
+- <span class="arithmatex">\(\text{FP}_t\)</span>: False Positives (hallucinated annotations with no matching ground truth).
+- <span class="arithmatex">\(\text{IDSW}_t\)</span>: <strong>Identity Switches</strong> (tracking algorithm or human annotator assigns a previously tracked object a different instance ID).
+- <span class="arithmatex">\(\text{GT}_t\)</span>: Number of ground-truth target instances at frame <span class="arithmatex">\(t\)</span>.</p>
+<blockquote>
+<p>[!WARNING] The MOTA Identity Anomaly
+Because <span class="arithmatex">\(\text{IDSW}_t\)</span> is weighted identically to detection errors (<span class="arithmatex">\(\text{FN} + \text{FP}\)</span>), a model with flawless object localization that repeatedly swaps target IDs every 10 frames can still achieve a deceptive <span class="arithmatex">\(\text{MOTA} &gt; 95\%\)</span>. To penalize persistent track fragmentation, modern pipelines evaluate <strong>IDF1</strong> and <strong>HOTA</strong>.</p>
+</blockquote>
+<h4 id="identification-f1-idf1">Identification F1 (IDF1)</h4>
+<p>Standardized by Ristani et al. (2016), IDF1 measures the ratio of correctly identified trajectory detections over the average number of ground truth and computed detections:</p>
+<div class="arithmatex">\[
+\text{IDF1} = \frac{2 \cdot \text{IDTP}}{2 \cdot \text{IDTP} + \text{IDFP} + \text{IDFN}}
+\]</div>
+<h4 id="higher-order-tracking-accuracy-hota">Higher Order Tracking Accuracy (HOTA)</h4>
+<p>Formulated by Luiten et al. (2021) [<a href="#ref-luiten2021">Luiten2021</a>], HOTA explicitly decouples detection accuracy from association accuracy:</p>
+<div class="arithmatex">\[
+\text{HOTA} = \sqrt{\text{DetA} \cdot \text{AssA}}
+\]</div>
+<p>Where <span class="arithmatex">\(\text{DetA}\)</span> measures the spatial accuracy of localized detections, and <span class="arithmatex">\(\text{AssA}\)</span> evaluates the long-term temporal association consistency across all frames.</p>
 <hr />
 <h2 id="3-tabular-relational-annotation-schema-typing-entity-linking">3. Tabular &amp; Relational Annotation: Schema Typing &amp; Entity Linking</h2>
-<p>Standardized computer vision benchmarks such as Microsoft COCO [<a href="#ref-lin2014">Lin2014</a>] and text Named Entity Recognition schemas such as CoNLL-2003 [<a href="#ref-sang2003">Sang2003</a>] provide the baseline ground truth representations for multimodal data collections.</p>
-<p>Enterprise tabular datasets require annotating column semantic types and linking cell values to knowledge graph entities [<a href="#ref-bizer2009">Bizer2009</a>]:</p>
+<p>Enterprise databases, spreadsheets, and Web tables represent the world's most pervasive structured data modality [<a href="#ref-bizer2009">Bizer2009</a>, <a href="#ref-hassanzadeh2020">Hassanzadeh2020</a>]. Annotating tabular datasets requires solving two interconnected problems: <strong>Column Type Annotation (CTA)</strong> and <strong>Cell Entity Linking (CEL)</strong>.</p>
 <pre class="mermaid"><code>flowchart TD
-    Cell["Raw Cell Value: 'Copenhagen'"] --&gt; Candidate["Candidate Knowledge Base Entities"]
-    Candidate --&gt; E1["Q1748: Capital of Denmark"]
-    Candidate --&gt; E2["Q487621: Copenhagen (Film)"]
-    Candidate --&gt; E3["Q207438: Copenhagen (Band)"]
+    subgraph RawTable["Raw Tabular Relation"]
+        C1["Col 0: Landmark"]
+        C2["Col 1: Location"]
+        C3["Col 2: Founded"]
+        R1["'Eiffel Tower' | 'Paris' | '1889'"]
+    end
 
-    Context["Row Context: Header 'Capital City', Country 'Denmark'"] --&gt; Linker["Entity Linking Disambiguation (Cosine Sim)"]
-    Candidate &amp; Context --&gt; Linker
-    Linker --&gt; Resolved["Resolved Ground Truth Entity: Q1748"]
+    subgraph SemTyping["Column Type Annotation (CTA)"]
+        C1 --&gt;|Type Infer| T1["schema:TouristAttraction"]
+        C2 --&gt;|Type Infer| T2["schema:City"]
+        C3 --&gt;|Type Infer| T3["schema:Date"]
+    end
 
-    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    subgraph EntityDisambiguation["Cell Entity Linking (CEL)"]
+        R1 --&gt; CellVal["Cell: 'Paris'"]
+        CellVal --&gt; Cands["Candidate Entities in Wikidata:&lt;br/&gt;• Q90: Capital of France&lt;br/&gt;• Q16554: Paris, Texas&lt;br/&gt;• Q167527: Mythological Hero"]
+        Context["Row Context:&lt;br/&gt;'Eiffel Tower', '1889'"] --&gt; Ranker["Cosine Context Similarity&lt;br/&gt;Sim(c_i, e_j)"]
+        Cands &amp; Context --&gt; Ranker
+        Ranker --&gt; Resolved["Resolved Ground Truth Entity:&lt;br/&gt;Q90 (Paris, France)"]
+    end
 
-    class Cell,Context blue;
-    class Candidate,E1,E2,E3,Linker amber;
-    class Resolved green;</code></pre>
-<h3 id="knowledge-base-entity-linking-cosine-similarity">Knowledge Base Entity Linking Cosine Similarity</h3>
-<p>Disambiguating cell text <span class="arithmatex">\(c_i\)</span> against candidate entity <span class="arithmatex">\(e_j \in \mathcal{KB}\)</span> requires computing the contextual cosine similarity between embedding vectors:</p>
+    classDef table fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef cta fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef cel fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef success fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class RawTable,C1,C2,C3,R1 table;
+    class SemTyping,T1,T2,T3 cta;
+    class EntityDisambiguation,CellVal,Cands,Context,Ranker cel;
+    class Resolved success;</code></pre>
+<h3 id="31-column-type-annotation-cta">3.1 Column Type Annotation (CTA)</h3>
+<p>Given a table column <span class="arithmatex">\(C = \{c_1, c_2, \dots, c_M\}\)</span> containing textual or numeric literals, CTA assigns a semantic class <span class="arithmatex">\(T \in \mathcal{O}\)</span> from a target ontology (e.g., Schema.org, DBpedia, Wikidata):</p>
 <div class="arithmatex">\[
-\text{Sim}(c_i, e_j) = \frac{\mathbf{v}_{\text{context}}(c_i) \cdot \mathbf{v}_{\text{desc}}(e_j)}{\|\mathbf{v}_{\text{context}}(c_i)\|_2 \|\mathbf{v}_{\text{desc}}(e_j)\|_2}
+T^* = \arg\max_{T \in \mathcal{O}} \sum_{i=1}^M \log P(T \mid c_i, \text{Header}_C)
 \]</div>
+<h3 id="32-cell-entity-linking-cel-cosine-disambiguation">3.2 Cell Entity Linking (CEL) &amp; Cosine Disambiguation</h3>
+<p>Polysemy is rampant in tabular data. A cell containing <code>"Jordan"</code> might denote a sovereign nation (Wikidata: <code>Q810</code>), a basketball legend (<code>Q41421</code>), or a river (<code>Q40059</code>). Annotators disambiguate cell <span class="arithmatex">\(c_i\)</span> against candidate entities <span class="arithmatex">\(e_j \in \mathcal{KB}\)</span> by computing the contextual cosine similarity between their dense vector embeddings:</p>
+<div class="arithmatex">\[
+\text{Sim}(c_i, e_j) = \frac{\mathbf{v}_{\text{context}}(c_i) \cdot \mathbf{v}_{\text{entity}}(e_j)}{\|\mathbf{v}_{\text{context}}(c_i)\|_2 \cdot \|\mathbf{v}_{\text{entity}}(e_j)\|_2}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\mathbf{v}_{\text{context}}(c_i)\)</span> embeds the target cell text, column header, and co-occurring sibling values in row <span class="arithmatex">\(R_i\)</span>.
+- <span class="arithmatex">\(\mathbf{v}_{\text{entity}}(e_j)\)</span> embeds the canonical Wikidata entity label, description, and ontological type signatures.</p>
 <hr />
-<h2 id="4-python-verification-temporal-iou-video-tubelet-iou-mota">4. Python Verification: Temporal IoU, Video Tubelet IoU &amp; MOTA</h2>
-<p>The following Python script computes temporal audio IoU, multi-frame video tubelet IoU, and the MOTA tracking benchmark metric.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># multi_modal_annotation_sim.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes temporal IoU, video tubelet IoU, and MOTA tracking quality</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_temporal_iou</span><span class="p">(</span><span class="n">interval_a</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">interval_b</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="c1"># Computes 1D temporal IoU between [start, end] audio segments</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">inter_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">interval_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interval_b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">inter_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">interval_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">interval_b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">inter_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">inter_end</span> <span class="o">-</span> <span class="n">inter_start</span><span class="p">)</span>
+<h2 id="4-landmark-empirical-case-studies">4. Landmark Empirical Case Studies</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Benchmark / Dataset</th>
+<th style="text-align: left;">Modality</th>
+<th style="text-align: left;">Primary Annotation Pathology</th>
+<th style="text-align: left;">Engineering Resolution &amp; Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>AudioSet</strong> [<a href="#ref-gemmeke2017">Gemmeke2017</a>]</td>
+<td style="text-align: left;">Audio Waveforms (2.1M clips)</td>
+<td style="text-align: left;"><strong>Weak Clip-Level Labels vs. Strong Boundary Ground Truth</strong>: Clips tagged as containing "Dog Bark" lacked onset/offset boundaries, causing sound event classifiers to memorize background silence.</td>
+<td style="text-align: left;">Introduction of strong temporal annotations with strict <span class="arithmatex">\(\text{tIoU} \ge 0.5\)</span> consensus thresholds on 100k subsets, improving AED mAP by <span class="arithmatex">\(+14.2\%\)</span>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MOT16 / MOT20</strong> [<a href="#ref-milan2016">Milan2016</a>, <a href="#ref-dendorfer2020">Dendorfer2020</a>]</td>
+<td style="text-align: left;">High-Density Video Surveillance</td>
+<td style="text-align: left;"><strong>Occlusion Drift &amp; Identity Swapping</strong>: Dense crowd scenes caused human annotators to accidentally swap pedestrian IDs during cross-overs, inflating <span class="arithmatex">\(\text{IDSW}\)</span>.</td>
+<td style="text-align: left;">Adoption of bi-directional spatio-temporal tubelet verification with optical flow backtracking; introduced HOTA metric [<a href="#ref-luiten2021">Luiten2021</a>] to decouple localization from association.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DAVIS &amp; YouTube-VOS</strong> [<a href="#ref-perazzi2016">Perazzi2016</a>, <a href="#ref-xu2018">Xu2018</a>]</td>
+<td style="text-align: left;">Video Object Segmentation (VOS)</td>
+<td style="text-align: left;"><strong>Per-Frame Boundary Jitter</strong>: Independent per-frame polygon labeling generated severe temporal flicker along contour boundaries.</td>
+<td style="text-align: left;">Transitioned from isolated frame annotation to semi-supervised memory-based video mask propagation (STM), enforcing temporal boundary coherence.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SemTab Challenge</strong> [<a href="#ref-hassanzadeh2020">Hassanzadeh2020</a>]</td>
+<td style="text-align: left;">Web Tables &amp; Relational Spreadsheets</td>
+<td style="text-align: left;"><strong>Polysemic Cell Resolution</strong>: Ambiguous strings (e.g., city names, stock symbols) mislinked due to missing column header metadata.</td>
+<td style="text-align: left;">Multi-task relational graph neural networks aligning column types and row foreign-key relationships simultaneously, achieving <span class="arithmatex">\(&gt;93\%\)</span> F1 in Wikidata entity disambiguation.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-interactive-laboratory-temporal-dynamics-spectrogram-multi-object-tracking-studio">5. 🔬 Interactive Laboratory: Temporal Dynamics, Spectrogram &amp; Multi-Object Tracking Studio</h2>
+<p>Explore the multi-modal annotation workbench below. Toggle between acoustic spectrogram temporal boundary analysis, video tubelet keyframe tracking with real-time MOTA calculation, and tabular entity disambiguation.</p>
+<div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 4px 4px 0px #151b20;">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <div style="font-weight: 800; font-size: 1.15rem; color: #151b20;">🔬 Multi-Modal Annotation Laboratory</div>
+      <div style="font-size: 0.85rem; color: #64748b; margin-top: 2px;">Interactive Temporal IoU, Video Tubelet MOTA/IDF1, and Knowledge Base Entity Disambiguation</div>
+    </div>
+    <div style="display: flex; gap: 8px;" id="lab-tab-buttons">
+      <button onclick="switchLabTab('audio')" id="tab-btn-audio" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">1. Audio Spectrogram & tIoU</button>
+      <button onclick="switchLabTab('video')" id="tab-btn-video" style="background: #fffdf7; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">2. Video MOTA & Tracking</button>
+      <button onclick="switchLabTab('tabular')" id="tab-btn-tabular" style="background: #fffdf7; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">3. Tabular Entity Linker</button>
+    </div>
+  </div>
+
+  <!-- TAB 1: AUDIO SPECTROGRAM & tIoU -->
+  <div id="lab-pane-audio" style="display: block;">
+    <div style="display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start;">
+      <div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; margin-bottom: 8px;">Synthetic STFT Power Spectrogram (0.0s – 10.0s, 0Hz – 8000Hz)</div>
+        <canvas id="spectrogram-canvas" width="600" height="220" style="width: 100%; height: 220px; border: 2px solid #151b20; border-radius: 8px; background: #0f172a; display: block;"></canvas>
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-family: monospace; color: #64748b; margin-top: 4px;">
+          <span>0.0s</span>
+          <span>2.5s</span>
+          <span>5.0s</span>
+          <span>7.5s</span>
+          <span>10.0s</span>
+        </div>
+
+        <div style="margin-top: 16px; background: #fffaf0; border: 1.5px solid #151b20; border-radius: 8px; padding: 14px;">
+          <div style="font-weight: 700; font-size: 0.85rem; color: #151b20; margin-bottom: 10px;">Adjust Temporal Event Boundaries:</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700; color: #166534;">
+                <span>Ground Truth Interval:</span>
+                <span id="label-gt-interval" style="font-family: monospace;">[2.0s, 6.0s]</span>
+              </div>
+              <input type="range" id="gt-start-slider" min="0" max="8" step="0.2" value="2.0" oninput="updateAudioLab()" style="width: 100%; margin: 6px 0;">
+              <input type="range" id="gt-end-slider" min="2" max="10" step="0.2" value="6.0" oninput="updateAudioLab()" style="width: 100%;">
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700; color: #1e40af;">
+                <span>Annotator Prediction:</span>
+                <span id="label-pred-interval" style="font-family: monospace;">[3.0s, 7.5s]</span>
+              </div>
+              <input type="range" id="pred-start-slider" min="0" max="8" step="0.2" value="3.0" oninput="updateAudioLab()" style="width: 100%; margin: 6px 0;">
+              <input type="range" id="pred-end-slider" min="2" max="10" step="0.2" value="7.5" oninput="updateAudioLab()" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Metrics Sidebar -->
+      <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="font-weight: 800; font-size: 0.92rem; color: #151b20; margin-bottom: 12px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px;">Temporal IoU (tIoU) Metrics</div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Intersection Duration:</div>
+          <div id="metric-inter-len" style="font-size: 1.25rem; font-weight: 800; font-family: monospace; color: #151b20;">3.00 s</div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Union Duration:</div>
+          <div id="metric-union-len" style="font-size: 1.25rem; font-weight: 800; font-family: monospace; color: #151b20;">5.50 s</div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Computed tIoU Score:</div>
+          <div id="metric-tiou-val" style="font-size: 2rem; font-weight: 900; font-family: monospace; color: #2563eb;">0.5455</div>
+          <div style="height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-top: 6px;">
+            <div id="tiou-bar" style="height: 100%; width: 54.55%; background: #2563eb;"></div>
+          </div>
+        </div>
+
+        <div style="border-top: 1.5px solid #e2e8f0; padding-top: 12px;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #151b20; margin-bottom: 6px;">Benchmark Acceptance:</div>
+          <div id="badge-eval-50" style="display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; font-family: monospace; border: 1.5px solid #151b20; background: #e7f4c8; color: #166534; margin-right: 4px;">tIoU ≥ 0.50: PASS</div>
+          <div id="badge-eval-75" style="display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; font-family: monospace; border: 1.5px solid #151b20; background: #fee2e2; color: #991b1b;">tIoU ≥ 0.75: FAIL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: VIDEO MOTA & TRACKING -->
+  <div id="lab-pane-video" style="display: none;">
+    <div style="display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start;">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="font-size: 0.85rem; font-weight: 700; color: #151b20;">Spatio-Temporal Video Frame Simulation</div>
+          <div style="font-size: 0.8rem; font-weight: 800; color: #2563eb;" id="video-frame-indicator">Active Frame: 1 / 5</div>
+        </div>
+        <canvas id="video-canvas" width="600" height="220" style="width: 100%; height: 220px; border: 2px solid #151b20; border-radius: 8px; background: #1e293b; display: block;"></canvas>
+
+        <div style="display: flex; gap: 8px; margin-top: 12px; align-items: center;">
+          <button onclick="changeVideoFrame(-1)" style="background: #fffdf7; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">◀ Prev Frame</button>
+          <input type="range" id="video-frame-slider" min="1" max="5" step="1" value="1" oninput="setVideoFrame(parseInt(this.value))" style="flex: 1;">
+          <button onclick="changeVideoFrame(1)" style="background: #fffdf7; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Next Frame ▶</button>
+        </div>
+
+        <div style="margin-top: 16px; background: #fffaf0; border: 1.5px solid #151b20; border-radius: 8px; padding: 14px;">
+          <div style="font-weight: 700; font-size: 0.85rem; color: #151b20; margin-bottom: 10px;">Inject Tracking Error Scenarios:</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="toggleError('fn')" id="btn-toggle-fn" style="background: #fffdf7; border: 1.5px solid #151b20; padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Inject Missed Detection (FN)</button>
+            <button onclick="toggleError('fp')" id="btn-toggle-fp" style="background: #fffdf7; border: 1.5px solid #151b20; padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Inject False Alarm (FP)</button>
+            <button onclick="toggleError('idsw')" id="btn-toggle-idsw" style="background: #fffdf7; border: 1.5px solid #151b20; padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Inject Identity Switch (IDSW)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Metrics Sidebar -->
+      <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="font-weight: 800; font-size: 0.92rem; color: #151b20; margin-bottom: 12px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px;">Multi-Object Tracking Accuracy</div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 700;">TOTAL GT:</div>
+            <div style="font-size: 1.1rem; font-weight: 800; font-family: monospace; color: #151b20;">10 instances</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px;">
+            <div style="font-size: 0.7rem; color: #dc2626; font-weight: 700;">FN (Misses):</div>
+            <div id="val-fn" style="font-size: 1.1rem; font-weight: 800; font-family: monospace; color: #dc2626;">0</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px;">
+            <div style="font-size: 0.7rem; color: #d97706; font-weight: 700;">FP (Alarms):</div>
+            <div id="val-fp" style="font-size: 1.1rem; font-weight: 800; font-family: monospace; color: #d97706;">0</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px;">
+            <div style="font-size: 0.7rem; color: #7c3aed; font-weight: 700;">IDSW (Swaps):</div>
+            <div id="val-idsw" style="font-size: 1.1rem; font-weight: 800; font-family: monospace; color: #7c3aed;">0</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">MOTA Score:</div>
+          <div id="metric-mota-val" style="font-size: 2rem; font-weight: 900; font-family: monospace; color: #166534;">100.0%</div>
+          <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Formula: 1 - (FN + FP + IDSW) / GT</div>
+        </div>
+
+        <div style="border-top: 1.5px solid #e2e8f0; padding-top: 12px;">
+          <div style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">IDF1 Track Continuity:</div>
+          <div id="metric-idf1-val" style="font-size: 1.4rem; font-weight: 800; font-family: monospace; color: #2563eb;">100.0%</div>
+          <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">ID Switch penalizes IDF1 more heavily than MOTA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: TABULAR ENTITY LINKER -->
+  <div id="lab-pane-tabular" style="display: none;">
+    <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; margin-bottom: 12px;">Select an Ambiguous Table Cell to Run Context-Aware Knowledge Base Disambiguation:</div>
+
+    <div style="overflow-x: auto; margin-bottom: 20px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; border: 2px solid #151b20; background: #ffffff;">
+        <thead>
+          <tr style="background: #fff0b9; border-bottom: 2px solid #151b20;">
+            <th style="padding: 10px 14px; text-align: left; border-right: 1.5px solid #151b20;">Entity Text (Polysemic)</th>
+            <th style="padding: 10px 14px; text-align: left; border-right: 1.5px solid #151b20;">Row Context Attribute</th>
+            <th style="padding: 10px 14px; text-align: left; border-right: 1.5px solid #151b20;">Domain / Context</th>
+            <th style="padding: 10px 14px; text-align: center;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="row-paris" style="border-bottom: 1.5px solid #cbd5e1; background: #fffdf7;">
+            <td style="padding: 10px 14px; font-weight: 700; border-right: 1.5px solid #151b20;">"Paris"</td>
+            <td style="padding: 10px 14px; border-right: 1.5px solid #151b20;">Attribute: Eiffel Tower, Capital, 2.16M pop</td>
+            <td style="padding: 10px 14px; border-right: 1.5px solid #151b20; color: #64748b;">European Geography</td>
+            <td style="padding: 10px 14px; text-align: center;">
+              <button onclick="resolveEntity('paris')" style="background: #2563eb; color: #ffffff; border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; cursor: pointer;">Disambiguate</button>
+            </td>
+          </tr>
+          <tr id="row-jordan" style="border-bottom: 1.5px solid #cbd5e1;">
+            <td style="padding: 10px 14px; font-weight: 700; border-right: 1.5px solid #151b20;">"Jordan"</td>
+            <td style="padding: 10px 14px; border-right: 1.5px solid #151b20;">Attribute: Chicago Bulls, 6x Champion, NBA</td>
+            <td style="padding: 10px 14px; border-right: 1.5px solid #151b20; color: #64748b;">Athletics &amp; Sports</td>
+            <td style="padding: 10px 14px; text-align: center;">
+              <button onclick="resolveEntity('jordan')" style="background: #2563eb; color: #ffffff; border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; cursor: pointer;">Disambiguate</button>
+            </td>
+          </tr>
+          <tr id="row-apple" style="background: #fffdf7;">
+            <td style="padding: 10px 14px; font-weight: 700; border-right: 1.5px solid #151b20;">"Apple"</td>
+            <td style="padding: 10px 14px; border-right: 1.5px solid #151b20;">Attribute: Cupertino, NASDAQ: AAPL, iPhone</td>
+            <td style="padding: 10px 14px; border-right: 1.5px solid #151b20; color: #64748b;">Technology Enterprises</td>
+            <td style="padding: 10px 14px; text-align: center;">
+              <button onclick="resolveEntity('apple')" style="background: #2563eb; color: #ffffff; border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; cursor: pointer;">Disambiguate</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Candidate Resolution Card -->
+    <div id="entity-resolution-card" style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 18px; box-shadow: 2px 2px 0px #151b20;">
+      <div style="font-weight: 800; font-size: 0.95rem; color: #151b20; margin-bottom: 6px;" id="entity-card-title">Wikidata Candidate Disambiguation Ranking for: "Paris"</div>
+      <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 14px;">Context Cosine Similarity: Sim(context, entity_description)</div>
+
+      <div id="candidate-items-container" style="display: flex; flex-direction: column; gap: 10px;">
+        <!-- Dynamic candidate rows inserted by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- TAB SWITCHING LOGIC ---
+function switchLabTab(tab) {
+  document.getElementById('lab-pane-audio').style.display = tab === 'audio' ? 'block' : 'none';
+  document.getElementById('lab-pane-video').style.display = tab === 'video' ? 'block' : 'none';
+  document.getElementById('lab-pane-tabular').style.display = tab === 'tabular' ? 'block' : 'none';
+
+  var tabs = ['audio', 'video', 'tabular'];
+  tabs.forEach(function(t) {
+    var btn = document.getElementById('tab-btn-' + t);
+    if (t === tab) {
+      btn.style.background = '#2563eb';
+      btn.style.color = '#ffffff';
+    } else {
+      btn.style.background = '#fffdf7';
+      btn.style.color = '#151b20';
+    }
+  });
+
+  if (tab === 'audio') drawSpectrogram();
+  if (tab === 'video') drawVideoFrame();
+  if (tab === 'tabular') resolveEntity('paris');
+}
+
+// --- TAB 1: AUDIO SPECTROGRAM & tIoU ---
+var audioState = {
+  gtStart: 2.0,
+  gtEnd: 6.0,
+  predStart: 3.0,
+  predEnd: 7.5
+};
+
+function updateAudioLab() {
+  var gs = parseFloat(document.getElementById('gt-start-slider').value);
+  var ge = parseFloat(document.getElementById('gt-end-slider').value);
+  var ps = parseFloat(document.getElementById('pred-start-slider').value);
+  var pe = parseFloat(document.getElementById('pred-end-slider').value);
+
+  if (ge <= gs) ge = gs + 0.2;
+  if (pe <= ps) pe = ps + 0.2;
+
+  audioState.gtStart = gs;
+  audioState.gtEnd = ge;
+  audioState.predStart = ps;
+  audioState.predEnd = pe;
+
+  document.getElementById('label-gt-interval').innerText = '[' + gs.toFixed(1) + 's, ' + ge.toFixed(1) + 's]';
+  document.getElementById('label-pred-interval').innerText = '[' + ps.toFixed(1) + 's, ' + pe.toFixed(1) + 's]';
+
+  var interStart = Math.max(gs, ps);
+  var interEnd = Math.min(ge, pe);
+  var interLen = Math.max(0, interEnd - interStart);
+
+  var unionStart = Math.min(gs, ps);
+  var unionEnd = Math.max(ge, pe);
+  var unionLen = Math.max(0.001, unionEnd - unionStart);
+
+  var tiou = interLen / unionLen;
+
+  document.getElementById('metric-inter-len').innerText = interLen.toFixed(2) + ' s';
+  document.getElementById('metric-union-len').innerText = unionLen.toFixed(2) + ' s';
+  document.getElementById('metric-tiou-val').innerText = tiou.toFixed(4);
+  document.getElementById('tiou-bar').style.width = Math.min(100, Math.round(tiou * 100)) + '%';
+
+  var b50 = document.getElementById('badge-eval-50');
+  var b75 = document.getElementById('badge-eval-75');
+
+  if (tiou >= 0.5) {
+    b50.style.background = '#e7f4c8';
+    b50.style.color = '#166534';
+    b50.innerText = 'tIoU ≥ 0.50: PASS';
+  } else {
+    b50.style.background = '#fee2e2';
+    b50.style.color = '#991b1b';
+    b50.innerText = 'tIoU ≥ 0.50: FAIL';
+  }
+
+  if (tiou >= 0.75) {
+    b75.style.background = '#e7f4c8';
+    b75.style.color = '#166534';
+    b75.innerText = 'tIoU ≥ 0.75: PASS';
+  } else {
+    b75.style.background = '#fee2e2';
+    b75.style.color = '#991b1b';
+    b75.innerText = 'tIoU ≥ 0.75: FAIL';
+  }
+
+  drawSpectrogram();
+}
+
+function drawSpectrogram() {
+  var cvs = document.getElementById('spectrogram-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var W = cvs.width;
+  var H = cvs.height;
+
+  // Background
+  ctx.fillStyle = '#090d16';
+  ctx.fillRect(0, 0, W, H);
+
+  // Procedural synthetic spectrogram bands
+  for (var x = 0; x < W; x += 4) {
+    var t = (x / W) * 10.0;
+    for (var y = 0; y < H; y += 4) {
+      var freq = ((H - y) / H) * 8000;
+      // Acoustic harmonics around 2.5s-6.5s
+      var energy = 0.08 * Math.random();
+      if (t >= 2.0 && t <= 6.5) {
+        if (Math.abs(freq - 1200) < 300 || Math.abs(freq - 2400) < 400 || Math.abs(freq - 3600) < 300) {
+          energy += 0.65 + 0.3 * Math.sin(t * 15 + freq * 0.01);
+        }
+      }
+      energy = Math.min(1.0, Math.max(0.0, energy));
+      // Heatmap color: dark blue -> amber -> bright yellow
+      var r = Math.floor(energy * 255);
+      var g = Math.floor(Math.pow(energy, 1.5) * 200);
+      var b = Math.floor((1.0 - energy) * 120 * (energy > 0.1 ? 1 : 0));
+      ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+      ctx.fillRect(x, y, 4, 4);
+    }
+  }
+
+  // Draw GT Interval overlay (Green ribbon)
+  var xGt1 = (audioState.gtStart / 10.0) * W;
+  var xGt2 = (audioState.gtEnd / 10.0) * W;
+  ctx.fillStyle = 'rgba(34, 197, 94, 0.25)';
+  ctx.fillRect(xGt1, 0, xGt2 - xGt1, H);
+  ctx.strokeStyle = '#22c55e';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(xGt1, 0, xGt2 - xGt1, H);
+  ctx.fillStyle = '#22c55e';
+  ctx.font = 'bold 12px monospace';
+  ctx.fillText('Ground Truth', xGt1 + 8, 22);
+
+  // Draw Prediction Interval overlay (Blue ribbon)
+  var xPr1 = (audioState.predStart / 10.0) * W;
+  var xPr2 = (audioState.predEnd / 10.0) * W;
+  ctx.fillStyle = 'rgba(59, 130, 246, 0.25)';
+  ctx.fillRect(xPr1, 30, xPr2 - xPr1, H - 30);
+  ctx.strokeStyle = '#3b82f6';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 4]);
+  ctx.strokeRect(xPr1, 30, xPr2 - xPr1, H - 30);
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#60a5fa';
+  ctx.font = 'bold 12px monospace';
+  ctx.fillText('Prediction', xPr1 + 8, 50);
+}
+
+// --- TAB 2: VIDEO MOTA & TRACKING ---
+var videoState = {
+  currentFrame: 1,
+  hasFN: false,
+  hasFP: false,
+  hasIDSW: false
+};
+
+function setVideoFrame(f) {
+  videoState.currentFrame = Math.max(1, Math.min(5, f));
+  document.getElementById('video-frame-slider').value = videoState.currentFrame;
+  document.getElementById('video-frame-indicator').innerText = 'Active Frame: ' + videoState.currentFrame + ' / 5';
+  drawVideoFrame();
+}
+
+function changeVideoFrame(delta) {
+  setVideoFrame(videoState.currentFrame + delta);
+}
+
+function toggleError(errType) {
+  if (errType === 'fn') videoState.hasFN = !videoState.hasFN;
+  if (errType === 'fp') videoState.hasFP = !videoState.hasFP;
+  if (errType === 'idsw') videoState.hasIDSW = !videoState.hasIDSW;
+
+  document.getElementById('btn-toggle-fn').style.background = videoState.hasFN ? '#fee2e2' : '#fffdf7';
+  document.getElementById('btn-toggle-fp').style.background = videoState.hasFP ? '#fef3c7' : '#fffdf7';
+  document.getElementById('btn-toggle-idsw').style.background = videoState.hasIDSW ? '#ede9fe' : '#fffdf7';
+
+  updateVideoMetrics();
+  drawVideoFrame();
+}
+
+function updateVideoMetrics() {
+  var totalGt = 10; // 2 targets across 5 frames
+  var fn = videoState.hasFN ? 2 : 0;
+  var fp = videoState.hasFP ? 1 : 0;
+  var idsw = videoState.hasIDSW ? 1 : 0;
+
+  document.getElementById('val-fn').innerText = fn;
+  document.getElementById('val-fp').innerText = fp;
+  document.getElementById('val-idsw').innerText = idsw;
+
+  var mota = 1.0 - ((fn + fp + idsw) / totalGt);
+  document.getElementById('metric-mota-val').innerText = (mota * 100).toFixed(1) + '%';
+  document.getElementById('metric-mota-val').style.color = mota >= 0.8 ? '#166534' : '#dc2626';
+
+  // IDF1: IDTP correctly mapped instances
+  var idtp = totalGt - fn;
+  if (videoState.hasIDSW) idtp -= 2; // track fragmented after swap
+  var idfp = fp + (videoState.hasIDSW ? 2 : 0);
+  var idfn = fn + (videoState.hasIDSW ? 2 : 0);
+  var idf1 = (2 * idtp) / (2 * idtp + idfp + idfn);
+  document.getElementById('metric-idf1-val').innerText = (Math.max(0, idf1) * 100).toFixed(1) + '%';
+}
+
+function drawVideoFrame() {
+  var cvs = document.getElementById('video-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var W = cvs.width;
+  var H = cvs.height;
+
+  // Background Road Scene
+  ctx.fillStyle = '#1e293b';
+  ctx.fillRect(0, 0, W, H);
+
+  // Road lanes
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(0, H * 0.7);
+  ctx.lineTo(W, H * 0.7);
+  ctx.stroke();
+
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.setLineDash([12, 10]);
+  ctx.beginPath();
+  ctx.moveTo(0, H * 0.85);
+  ctx.lineTo(W, H * 0.85);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  var f = videoState.currentFrame;
+
+  // Object 1: Pedestrian Moving Right
+  var obj1_x = 60 + (f - 1) * 100;
+  var obj1_y = 70;
+  var id1 = 'ID:1';
+
+  // Object 2: Vehicle Moving Left
+  var obj2_x = 500 - (f - 1) * 90;
+  var obj2_y = 120;
+  var id2 = 'ID:2';
+
+  // ID Switch at Frame 4 or 5
+  if (videoState.hasIDSW && f >= 4) {
+    var tmp = id1;
+    id1 = id2;
+    id2 = tmp;
+  }
+
+  // Draw Object 1 (unless FN injected at frame 3)
+  if (!(videoState.hasFN && f === 3)) {
+    ctx.strokeStyle = '#22c55e';
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(obj1_x, obj1_y, 45, 75);
+    ctx.fillStyle = 'rgba(34, 197, 94, 0.2)';
+    ctx.fillRect(obj1_x, obj1_y, 45, 75);
+    ctx.fillStyle = '#22c55e';
+    ctx.font = 'bold 12px monospace';
+    ctx.fillText(id1 + ' [Pedestrian]', obj1_x, obj1_y - 6);
+  } else {
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 11px monospace';
+    ctx.fillText('MISSED DETECTION (FN)', obj1_x - 10, obj1_y + 30);
+  }
+
+  // Draw Object 2
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 2.5;
+  ctx.strokeRect(obj2_x, obj2_y, 80, 50);
+  ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+  ctx.fillRect(obj2_x, obj2_y, 80, 50);
+  ctx.fillStyle = '#38bdf8';
+  ctx.font = 'bold 12px monospace';
+  ctx.fillText(id2 + ' [Car]', obj2_x, obj2_y - 6);
+
+  // False Alarm (FP) hallucinated at Frame 2
+  if (videoState.hasFP && f === 2) {
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 4]);
+    ctx.strokeRect(280, 40, 50, 60);
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 11px monospace';
+    ctx.fillText('FALSE ALARM (FP)', 260, 32);
+  }
+}
+
+// --- TAB 3: TABULAR ENTITY LINKER ---
+var candidateDatabase = {
+  paris: [
+    { id: 'Q90', title: 'Paris (Capital of France)', desc: 'Capital city of France, located on the Seine river; site of Eiffel Tower.', sim: 0.9412, match: true },
+    { id: 'Q16554', title: 'Paris (City in Texas, USA)', desc: 'County seat of Lamar County, northeast Texas; population approx 25,000.', sim: 0.3821, match: false },
+    { id: 'Q167527', title: 'Paris (Mythological Prince of Troy)', desc: 'Son of King Priam in Homer\'s Iliad; eloped with Helen causing Trojan War.', sim: 0.1245, match: false }
+  ],
+  jordan: [
+    { id: 'Q41421', title: 'Michael Jordan', desc: 'American professional basketball icon, 6x NBA Finals MVP with Chicago Bulls.', sim: 0.9634, match: true },
+    { id: 'Q810', title: 'Jordan (Hashemite Kingdom)', desc: 'Arab country in Western Asia, on East Bank of Jordan River; capital Amman.', sim: 0.4120, match: false },
+    { id: 'Q40059', title: 'Jordan River', desc: '251-kilometre-long river in the Middle East flowing to Dead Sea.', sim: 0.1580, match: false }
+  ],
+  apple: [
+    { id: 'Q312', title: 'Apple Inc.', desc: 'American multinational technology company headquartered in Cupertino, CA; maker of iPhone.', sim: 0.9572, match: true },
+    { id: 'Q89', title: 'Apple (Fruit)', desc: 'Edible pome fruit produced by an apple tree (Malus domestica).', sim: 0.2104, match: false },
+    { id: 'Q186638', title: 'Apple Corps', desc: 'Multimedia corporation founded in London in 1968 by members of The Beatles.', sim: 0.3450, match: false }
+  ]
+};
+
+function resolveEntity(key) {
+  var data = candidateDatabase[key];
+  if (!data) return;
+
+  var titleMap = { paris: '"Paris"', jordan: '"Jordan"', apple: '"Apple"' };
+  document.getElementById('entity-card-title').innerText = 'Wikidata Candidate Disambiguation Ranking for: ' + titleMap[key];
+
+  var container = document.getElementById('candidate-items-container');
+  container.innerHTML = '';
+
+  data.forEach(function(item) {
+    var div = document.createElement('div');
+    div.style.background = item.match ? '#f0fdf4' : '#ffffff';
+    div.style.border = item.match ? '2px solid #22c55e' : '1.5px solid #cbd5e1';
+    div.style.borderRadius = '6px';
+    div.style.padding = '12px 16px';
+    div.style.display = 'flex';
+    div.style.justifyContent = 'space-between';
+    div.style.alignItems = 'center';
+    div.style.flexWrap = 'wrap';
+    div.style.gap = '10px';
+
+    div.innerHTML = '<div>' +
+      '<div style="font-weight: 800; font-size: 0.88rem; color: #151b20;">' + item.title + ' <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">(' + item.id + ')</span>' + (item.match ? ' <span style="background: #22c55e; color: #ffffff; padding: 2px 6px; border-radius: 4px; font-size: 0.68rem; font-weight: 800;">TOP MATCH</span>' : '') + '</div>' +
+      '<div style="font-size: 0.78rem; color: #475569; margin-top: 2px; max-width: 480px;">' + item.desc + '</div>' +
+    '</div>' +
+    '<div style="text-align: right;">' +
+      '<div style="font-size: 0.7rem; color: #64748b; font-weight: 700;">COSINE SIMILARITY:</div>' +
+      '<div style="font-size: 1.25rem; font-weight: 900; font-family: monospace; color: ' + (item.match ? '#166534' : '#64748b') + ';">' + item.sim.toFixed(4) + '</div>' +
+    '</div>';
+
+    container.appendChild(div);
+  });
+}
+
+// Initial draw
+window.addEventListener('load', function() {
+  updateAudioLab();
+  updateVideoMetrics();
+  drawVideoFrame();
+  resolveEntity('paris');
+});
+</script>
+
+<hr />
+<h2 id="6-production-python-verification-engine-pydantic-v2">6. Production Python Verification Engine (Pydantic V2)</h2>
+<p>The production Python engine below enforces schema validation on audio event intervals, video tubelets, and multi-object tracking metrics with automated CI/CD assertion gates.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">multi_modal_annotation_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production-grade multi-modal verification engine for Audio, Video, and Tabular Annotation.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Evaluates Temporal IoU (tIoU), Spatio-Temporal Video Tubelet IoU (vIoU), MOTA, IDF1,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">and Knowledge Base Entity Cosine Disambiguation.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">model_validator</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">union_start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">interval_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interval_b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">union_end</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">interval_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">interval_b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">union_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">union_end</span> <span class="o">-</span> <span class="n">union_start</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Pydantic V2 Models for Multi-Modal Annotation Schemas</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># =====================================================================</span>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">inter_len</span> <span class="o">/</span> <span class="n">union_len</span><span class="p">)</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_mota</span><span class="p">(</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">fn_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">fp_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">idsw_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">gt_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="c1"># Computes Multiple Object Tracking Accuracy (MOTA)</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">total_errors</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">fn_list</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">fp_list</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">idsw_list</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">total_gt</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">gt_list</span><span class="p">)</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">if</span> <span class="n">total_gt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">return</span> <span class="mf">0.0</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span><span class="n">total_errors</span> <span class="o">/</span> <span class="n">total_gt</span><span class="p">))</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">AudioEventInterval</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="sd">"""Represents a bounded acoustic event interval in seconds."""</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">event_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">t_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Event onset timestamp in seconds"</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">t_end</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Event offset timestamp in seconds"</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"after"</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_temporal_order</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"AudioEventInterval"</span><span class="p">:</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_end</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_start</span><span class="p">:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"t_end (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">t_end</span><span class="si">}</span><span class="s2">) must strictly exceed t_start (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">t_start</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_multimodal_assertions</span><span class="p">():</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="c1"># 1. Temporal audio IoU: [1.0, 4.0] vs [2.0, 5.0]</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Inter: [2, 4] -&gt; 2.0. Union: [1, 5] -&gt; 4.0 -&gt; IoU = 0.50</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">t_iou</span> <span class="o">=</span> <span class="n">compute_temporal_iou</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t_iou</span> <span class="o">-</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># Disjoint audio events</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="k">assert</span> <span class="n">compute_temporal_iou</span><span class="p">((</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">))</span> <span class="o">==</span> <span class="mf">0.0</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="c1"># 2. MOTA benchmark evaluation over 5 frames</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">gt</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span> <span class="c1"># 50 total ground truth instances</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="n">fn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>      <span class="c1"># 3 missed detections</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="n">fp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>      <span class="c1"># 2 false alarms</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="n">idsw</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>    <span class="c1"># 1 identity switch</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="n">mota_score</span> <span class="o">=</span> <span class="n">compute_mota</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">idsw</span><span class="p">,</span> <span class="n">gt</span><span class="p">)</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="c1"># Total errors = 3 + 2 + 1 = 6. MOTA = 1 - 6/50 = 1 - 0.12 = 0.88</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mota_score</span> <span class="o">-</span> <span class="mf">0.88</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">class</span><span class="w"> </span><span class="nc">BoundingBoxFrame</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="sd">"""Bounding box coordinates for an object in video frame t."""</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">frame_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">x_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">y_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">x_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">y_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"after"</span><span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_box_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"BoundingBoxFrame"</span><span class="p">:</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">:</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Coordinates must satisfy x_max &gt; x_min and y_max &gt; y_min"</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="nd">@property</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
 </span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Temporal Audio IoU: </span><span class="si">{</span><span class="n">t_iou</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tracking Dataset MOTA Score: </span><span class="si">{</span><span class="n">mota_score</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Temporal IoU and MOTA tracking assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">test_multimodal_assertions</span><span class="p">()</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="k">class</span><span class="w"> </span><span class="nc">VideoTubelet</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="sd">"""Spatio-temporal trajectory tubelet tracking an object across video frames."""</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="n">track_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">trajectory</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">BoundingBoxFrame</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Map of frame_id -&gt; BoundingBoxFrame"</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="c1"># Multi-Modal Geometric and Tracking Computation Engine</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="k">class</span><span class="w"> </span><span class="nc">MultiModalAnnotationEngine</span><span class="p">:</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_temporal_iou</span><span class="p">(</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="n">i1</span><span class="p">:</span> <span class="n">AudioEventInterval</span><span class="p">,</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="n">i2</span><span class="p">:</span> <span class="n">AudioEventInterval</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">        </span><span class="sd">"""Computes 1D Temporal Intersection over Union (tIoU) between two acoustic intervals."""</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="n">inter_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">i1</span><span class="o">.</span><span class="n">t_start</span><span class="p">,</span> <span class="n">i2</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>        <span class="n">inter_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i1</span><span class="o">.</span><span class="n">t_end</span><span class="p">,</span> <span class="n">i2</span><span class="o">.</span><span class="n">t_end</span><span class="p">)</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>        <span class="n">inter_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">inter_end</span> <span class="o">-</span> <span class="n">inter_start</span><span class="p">)</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="n">union_start</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i1</span><span class="o">.</span><span class="n">t_start</span><span class="p">,</span> <span class="n">i2</span><span class="o">.</span><span class="n">t_start</span><span class="p">)</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="n">union_end</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">i1</span><span class="o">.</span><span class="n">t_end</span><span class="p">,</span> <span class="n">i2</span><span class="o">.</span><span class="n">t_end</span><span class="p">)</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="n">union_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">union_end</span> <span class="o">-</span> <span class="n">union_start</span><span class="p">)</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">inter_len</span> <span class="o">/</span> <span class="n">union_len</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_keyframes</span><span class="p">(</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">b_start</span><span class="p">:</span> <span class="n">BoundingBoxFrame</span><span class="p">,</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="n">b_end</span><span class="p">:</span> <span class="n">BoundingBoxFrame</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">BoundingBoxFrame</span><span class="p">]:</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">        </span><span class="sd">"""Linearly interpolates bounding boxes across intermediate video frames."""</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="n">f_start</span> <span class="o">=</span> <span class="n">b_start</span><span class="o">.</span><span class="n">frame_id</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="n">f_end</span> <span class="o">=</span> <span class="n">b_end</span><span class="o">.</span><span class="n">frame_id</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>        <span class="k">if</span> <span class="n">f_end</span> <span class="o">&lt;=</span> <span class="n">f_start</span><span class="p">:</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"b_end.frame_id must be strictly greater than b_start.frame_id"</span><span class="p">)</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="n">interpolated</span> <span class="o">=</span> <span class="p">{</span><span class="n">f_start</span><span class="p">:</span> <span class="n">b_start</span><span class="p">,</span> <span class="n">f_end</span><span class="p">:</span> <span class="n">b_end</span><span class="p">}</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>        <span class="n">total_steps</span> <span class="o">=</span> <span class="n">f_end</span> <span class="o">-</span> <span class="n">f_start</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">f_start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f_end</span><span class="p">):</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>            <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">f_start</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_steps</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>            <span class="n">inter_box</span> <span class="o">=</span> <span class="n">BoundingBoxFrame</span><span class="p">(</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>                <span class="n">frame_id</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>                <span class="n">x_min</span><span class="o">=</span><span class="nb">round</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_start</span><span class="o">.</span><span class="n">x_min</span> <span class="o">+</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">b_end</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>                <span class="n">y_min</span><span class="o">=</span><span class="nb">round</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_start</span><span class="o">.</span><span class="n">y_min</span> <span class="o">+</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">b_end</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>                <span class="n">x_max</span><span class="o">=</span><span class="nb">round</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_start</span><span class="o">.</span><span class="n">x_max</span> <span class="o">+</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">b_end</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>                <span class="n">y_max</span><span class="o">=</span><span class="nb">round</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_start</span><span class="o">.</span><span class="n">y_max</span> <span class="o">+</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">b_end</span><span class="o">.</span><span class="n">y_max</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>            <span class="p">)</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>            <span class="n">interpolated</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">inter_box</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>        <span class="k">return</span> <span class="n">interpolated</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_video_viou</span><span class="p">(</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>        <span class="n">tubelet_a</span><span class="p">:</span> <span class="n">VideoTubelet</span><span class="p">,</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>        <span class="n">tubelet_b</span><span class="p">:</span> <span class="n">VideoTubelet</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a><span class="w">        </span><span class="sd">"""Computes 3D Spatio-Temporal Volume IoU (vIoU) between two video tubelets."""</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>        <span class="n">frames_a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">tubelet_a</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>        <span class="n">frames_b</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">tubelet_b</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>        <span class="n">common_frames</span> <span class="o">=</span> <span class="n">frames_a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">frames_b</span><span class="p">)</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>        <span class="n">all_frames</span> <span class="o">=</span> <span class="n">frames_a</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">frames_b</span><span class="p">)</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">all_frames</span><span class="p">:</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>            <span class="k">return</span> <span class="mf">0.0</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>        <span class="n">total_inter_vol</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>        <span class="n">total_union_vol</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">:</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>            <span class="n">box_a</span> <span class="o">=</span> <span class="n">tubelet_a</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>            <span class="n">box_b</span> <span class="o">=</span> <span class="n">tubelet_b</span><span class="o">.</span><span class="n">trajectory</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>            <span class="k">if</span> <span class="n">box_a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">box_b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>                <span class="c1"># Both present: compute 2D box intersection and union</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>                <span class="n">x1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">box_a</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="n">box_b</span><span class="o">.</span><span class="n">x_min</span><span class="p">)</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>                <span class="n">y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">box_a</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="n">box_b</span><span class="o">.</span><span class="n">y_min</span><span class="p">)</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>                <span class="n">x2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">box_a</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="n">box_b</span><span class="o">.</span><span class="n">x_max</span><span class="p">)</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>                <span class="n">y2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">box_a</span><span class="o">.</span><span class="n">y_max</span><span class="p">,</span> <span class="n">box_b</span><span class="o">.</span><span class="n">y_max</span><span class="p">)</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>                <span class="n">inter_w</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>                <span class="n">inter_h</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>                <span class="n">inter_area</span> <span class="o">=</span> <span class="n">inter_w</span> <span class="o">*</span> <span class="n">inter_h</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>                <span class="n">union_area</span> <span class="o">=</span> <span class="n">box_a</span><span class="o">.</span><span class="n">area</span> <span class="o">+</span> <span class="n">box_b</span><span class="o">.</span><span class="n">area</span> <span class="o">-</span> <span class="n">inter_area</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>                <span class="n">total_inter_vol</span> <span class="o">+=</span> <span class="n">inter_area</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>                <span class="n">total_union_vol</span> <span class="o">+=</span> <span class="n">union_area</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>            <span class="k">elif</span> <span class="n">box_a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>                <span class="n">total_union_vol</span> <span class="o">+=</span> <span class="n">box_a</span><span class="o">.</span><span class="n">area</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>            <span class="k">elif</span> <span class="n">box_b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>                <span class="n">total_union_vol</span> <span class="o">+=</span> <span class="n">box_b</span><span class="o">.</span><span class="n">area</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">total_inter_vol</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">total_union_vol</span><span class="p">)),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_tracking_mota_and_idf1</span><span class="p">(</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>        <span class="n">fn</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>        <span class="n">fp</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>        <span class="n">idsw</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>        <span class="n">total_gt</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>        <span class="n">idtp</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>        <span class="n">idfp</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>        <span class="n">idfn</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a><span class="w">        </span><span class="sd">"""Calculates MOTA and IDF1 multi-object tracking metrics."""</span>
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>        <span class="n">mota</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">((</span><span class="n">fn</span> <span class="o">+</span> <span class="n">fp</span> <span class="o">+</span> <span class="n">idsw</span><span class="p">)</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_gt</span><span class="p">))</span>
+</span><span id="__span-0-165"><a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>        <span class="n">idf1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idtp</span><span class="p">)</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">idtp</span> <span class="o">+</span> <span class="n">idfp</span> <span class="o">+</span> <span class="n">idfn</span><span class="p">))</span>
+</span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mota</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">idf1</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>
+</span><span id="__span-0-168"><a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">cosine_entity_similarity</span><span class="p">(</span>
+</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>        <span class="n">context_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>        <span class="n">candidate_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a><span class="w">        </span><span class="sd">"""Computes contextual cosine similarity for knowledge base entity linking."""</span>
+</span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>        <span class="n">norm_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">context_vec</span><span class="p">)</span>
+</span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>        <span class="n">norm_e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">candidate_vec</span><span class="p">)</span>
+</span><span id="__span-0-177"><a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a>        <span class="k">if</span> <span class="n">norm_c</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">norm_e</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-178"><a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>            <span class="k">return</span> <span class="mf">0.0</span>
+</span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">context_vec</span><span class="p">,</span> <span class="n">candidate_vec</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_c</span> <span class="o">*</span> <span class="n">norm_e</span><span class="p">)),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a>
+</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181" href="#__codelineno-0-181"></a>
+</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182" href="#__codelineno-0-182"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183" href="#__codelineno-0-183"></a><span class="c1"># Automated Assertion Suite for Annotation CI/CD Gates</span>
+</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184" href="#__codelineno-0-184"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185" href="#__codelineno-0-185"></a>
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186" href="#__codelineno-0-186"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_multimodal_assertions</span><span class="p">():</span>
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187" href="#__codelineno-0-187"></a>    <span class="c1"># Test 1: Temporal Audio Interval IoU</span>
+</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188" href="#__codelineno-0-188"></a>    <span class="n">gt_audio</span> <span class="o">=</span> <span class="n">AudioEventInterval</span><span class="p">(</span><span class="n">event_id</span><span class="o">=</span><span class="s2">"e1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"siren"</span><span class="p">,</span> <span class="n">t_start</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="mf">6.0</span><span class="p">)</span>
+</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189" href="#__codelineno-0-189"></a>    <span class="n">pred_audio</span> <span class="o">=</span> <span class="n">AudioEventInterval</span><span class="p">(</span><span class="n">event_id</span><span class="o">=</span><span class="s2">"e2"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"siren"</span><span class="p">,</span> <span class="n">t_start</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="mf">7.5</span><span class="p">)</span>
+</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190" href="#__codelineno-0-190"></a>
+</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191" href="#__codelineno-0-191"></a>    <span class="c1"># Intersection: [3.0, 6.0] -&gt; 3.0s; Union: [2.0, 7.5] -&gt; 5.5s; tIoU = 3/5.5 = 0.5455</span>
+</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192" href="#__codelineno-0-192"></a>    <span class="n">tiou</span> <span class="o">=</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">compute_temporal_iou</span><span class="p">(</span><span class="n">gt_audio</span><span class="p">,</span> <span class="n">pred_audio</span><span class="p">)</span>
+</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193" href="#__codelineno-0-193"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">tiou</span> <span class="o">-</span> <span class="mf">0.5455</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected ~0.5455, got </span><span class="si">{</span><span class="n">tiou</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194" href="#__codelineno-0-194"></a>
+</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195" href="#__codelineno-0-195"></a>    <span class="c1"># Disjoint intervals</span>
+</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196" href="#__codelineno-0-196"></a>    <span class="n">disjoint_audio</span> <span class="o">=</span> <span class="n">AudioEventInterval</span><span class="p">(</span><span class="n">event_id</span><span class="o">=</span><span class="s2">"e3"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"siren"</span><span class="p">,</span> <span class="n">t_start</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197" href="#__codelineno-0-197"></a>    <span class="k">assert</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">compute_temporal_iou</span><span class="p">(</span><span class="n">gt_audio</span><span class="p">,</span> <span class="n">disjoint_audio</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span>
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198" href="#__codelineno-0-198"></a>
+</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199" href="#__codelineno-0-199"></a>    <span class="c1"># Test 2: Video Keyframe Linear Interpolation</span>
+</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200" href="#__codelineno-0-200"></a>    <span class="n">k_start</span> <span class="o">=</span> <span class="n">BoundingBoxFrame</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
+</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201" href="#__codelineno-0-201"></a>    <span class="n">k_end</span> <span class="o">=</span> <span class="n">BoundingBoxFrame</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mf">80.0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">140.0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mf">180.0</span><span class="p">)</span>
+</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202" href="#__codelineno-0-202"></a>    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">interpolate_keyframes</span><span class="p">(</span><span class="n">k_start</span><span class="p">,</span> <span class="n">k_end</span><span class="p">)</span>
+</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203" href="#__codelineno-0-203"></a>
+</span><span id="__span-0-204"><a id="__codelineno-0-204" name="__codelineno-0-204" href="#__codelineno-0-204"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+</span><span id="__span-0-205"><a id="__codelineno-0-205" name="__codelineno-0-205" href="#__codelineno-0-205"></a>    <span class="c1"># Midpoint at frame 2 (tau = 0.5): x_min = 20, y_min = 40, x_max = 120, y_max = 140</span>
+</span><span id="__span-0-206"><a id="__codelineno-0-206" name="__codelineno-0-206" href="#__codelineno-0-206"></a>    <span class="n">mid_box</span> <span class="o">=</span> <span class="n">trajectory</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-0-207"><a id="__codelineno-0-207" name="__codelineno-0-207" href="#__codelineno-0-207"></a>    <span class="k">assert</span> <span class="n">mid_box</span><span class="o">.</span><span class="n">x_min</span> <span class="o">==</span> <span class="mf">20.0</span>
+</span><span id="__span-0-208"><a id="__codelineno-0-208" name="__codelineno-0-208" href="#__codelineno-0-208"></a>    <span class="k">assert</span> <span class="n">mid_box</span><span class="o">.</span><span class="n">y_min</span> <span class="o">==</span> <span class="mf">40.0</span>
+</span><span id="__span-0-209"><a id="__codelineno-0-209" name="__codelineno-0-209" href="#__codelineno-0-209"></a>    <span class="k">assert</span> <span class="n">mid_box</span><span class="o">.</span><span class="n">x_max</span> <span class="o">==</span> <span class="mf">120.0</span>
+</span><span id="__span-0-210"><a id="__codelineno-0-210" name="__codelineno-0-210" href="#__codelineno-0-210"></a>    <span class="k">assert</span> <span class="n">mid_box</span><span class="o">.</span><span class="n">y_max</span> <span class="o">==</span> <span class="mf">140.0</span>
+</span><span id="__span-0-211"><a id="__codelineno-0-211" name="__codelineno-0-211" href="#__codelineno-0-211"></a>
+</span><span id="__span-0-212"><a id="__codelineno-0-212" name="__codelineno-0-212" href="#__codelineno-0-212"></a>    <span class="c1"># Test 3: Spatio-Temporal Video Tubelet vIoU</span>
+</span><span id="__span-0-213"><a id="__codelineno-0-213" name="__codelineno-0-213" href="#__codelineno-0-213"></a>    <span class="n">tube_gt</span> <span class="o">=</span> <span class="n">VideoTubelet</span><span class="p">(</span><span class="n">track_id</span><span class="o">=</span><span class="s2">"t1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"car"</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="n">trajectory</span><span class="p">)</span>
+</span><span id="__span-0-214"><a id="__codelineno-0-214" name="__codelineno-0-214" href="#__codelineno-0-214"></a>    <span class="c1"># Identical tubelet has vIoU == 1.0</span>
+</span><span id="__span-0-215"><a id="__codelineno-0-215" name="__codelineno-0-215" href="#__codelineno-0-215"></a>    <span class="k">assert</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">compute_video_viou</span><span class="p">(</span><span class="n">tube_gt</span><span class="p">,</span> <span class="n">tube_gt</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
+</span><span id="__span-0-216"><a id="__codelineno-0-216" name="__codelineno-0-216" href="#__codelineno-0-216"></a>
+</span><span id="__span-0-217"><a id="__codelineno-0-217" name="__codelineno-0-217" href="#__codelineno-0-217"></a>    <span class="c1"># Test 4: MOTA and IDF1 Quality Metrics</span>
+</span><span id="__span-0-218"><a id="__codelineno-0-218" name="__codelineno-0-218" href="#__codelineno-0-218"></a>    <span class="c1"># Over 50 ground truth detections: 3 FNs, 2 FPs, 1 IDSW -&gt; MOTA = 1 - 6/50 = 0.88</span>
+</span><span id="__span-0-219"><a id="__codelineno-0-219" name="__codelineno-0-219" href="#__codelineno-0-219"></a>    <span class="c1"># IDTP = 47, IDFP = 3, IDFN = 3 -&gt; IDF1 = (2*47)/(94 + 6) = 94/100 = 0.94</span>
+</span><span id="__span-0-220"><a id="__codelineno-0-220" name="__codelineno-0-220" href="#__codelineno-0-220"></a>    <span class="n">mota</span><span class="p">,</span> <span class="n">idf1</span> <span class="o">=</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">compute_tracking_mota_and_idf1</span><span class="p">(</span>
+</span><span id="__span-0-221"><a id="__codelineno-0-221" name="__codelineno-0-221" href="#__codelineno-0-221"></a>        <span class="n">fn</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">idsw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_gt</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+</span><span id="__span-0-222"><a id="__codelineno-0-222" name="__codelineno-0-222" href="#__codelineno-0-222"></a>        <span class="n">idtp</span><span class="o">=</span><span class="mi">47</span><span class="p">,</span> <span class="n">idfp</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">idfn</span><span class="o">=</span><span class="mi">3</span>
+</span><span id="__span-0-223"><a id="__codelineno-0-223" name="__codelineno-0-223" href="#__codelineno-0-223"></a>    <span class="p">)</span>
+</span><span id="__span-0-224"><a id="__codelineno-0-224" name="__codelineno-0-224" href="#__codelineno-0-224"></a>    <span class="k">assert</span> <span class="n">mota</span> <span class="o">==</span> <span class="mf">0.88</span>
+</span><span id="__span-0-225"><a id="__codelineno-0-225" name="__codelineno-0-225" href="#__codelineno-0-225"></a>    <span class="k">assert</span> <span class="n">idf1</span> <span class="o">==</span> <span class="mf">0.94</span>
+</span><span id="__span-0-226"><a id="__codelineno-0-226" name="__codelineno-0-226" href="#__codelineno-0-226"></a>
+</span><span id="__span-0-227"><a id="__codelineno-0-227" name="__codelineno-0-227" href="#__codelineno-0-227"></a>    <span class="c1"># Test 5: Tabular Knowledge Base Cosine Disambiguation</span>
+</span><span id="__span-0-228"><a id="__codelineno-0-228" name="__codelineno-0-228" href="#__codelineno-0-228"></a>    <span class="n">v_context</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+</span><span id="__span-0-229"><a id="__codelineno-0-229" name="__codelineno-0-229" href="#__codelineno-0-229"></a>    <span class="n">v_cand_match</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">])</span>
+</span><span id="__span-0-230"><a id="__codelineno-0-230" name="__codelineno-0-230" href="#__codelineno-0-230"></a>    <span class="n">v_cand_other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+</span><span id="__span-0-231"><a id="__codelineno-0-231" name="__codelineno-0-231" href="#__codelineno-0-231"></a>
+</span><span id="__span-0-232"><a id="__codelineno-0-232" name="__codelineno-0-232" href="#__codelineno-0-232"></a>    <span class="n">sim_match</span> <span class="o">=</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">cosine_entity_similarity</span><span class="p">(</span><span class="n">v_context</span><span class="p">,</span> <span class="n">v_cand_match</span><span class="p">)</span>
+</span><span id="__span-0-233"><a id="__codelineno-0-233" name="__codelineno-0-233" href="#__codelineno-0-233"></a>    <span class="n">sim_other</span> <span class="o">=</span> <span class="n">MultiModalAnnotationEngine</span><span class="o">.</span><span class="n">cosine_entity_similarity</span><span class="p">(</span><span class="n">v_context</span><span class="p">,</span> <span class="n">v_cand_other</span><span class="p">)</span>
+</span><span id="__span-0-234"><a id="__codelineno-0-234" name="__codelineno-0-234" href="#__codelineno-0-234"></a>    <span class="k">assert</span> <span class="n">sim_match</span> <span class="o">&gt;</span> <span class="mf">0.99</span>
+</span><span id="__span-0-235"><a id="__codelineno-0-235" name="__codelineno-0-235" href="#__codelineno-0-235"></a>    <span class="k">assert</span> <span class="n">sim_other</span> <span class="o">&lt;</span> <span class="mf">0.20</span>
+</span><span id="__span-0-236"><a id="__codelineno-0-236" name="__codelineno-0-236" href="#__codelineno-0-236"></a>
+</span><span id="__span-0-237"><a id="__codelineno-0-237" name="__codelineno-0-237" href="#__codelineno-0-237"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Audio tIoU, Video vIoU/MOTA/IDF1, and Tabular Entity Disambiguation assertions passed!"</span><span class="p">)</span>
+</span><span id="__span-0-238"><a id="__codelineno-0-238" name="__codelineno-0-238" href="#__codelineno-0-238"></a>
+</span><span id="__span-0-239"><a id="__codelineno-0-239" name="__codelineno-0-239" href="#__codelineno-0-239"></a>
+</span><span id="__span-0-240"><a id="__codelineno-0-240" name="__codelineno-0-240" href="#__codelineno-0-240"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-241"><a id="__codelineno-0-241" name="__codelineno-0-241" href="#__codelineno-0-241"></a>    <span class="n">run_multimodal_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Image & Media Annotation Studio</h4>
-  <p>Test temporal segment tagging, bounding box interpolation across video sequences, and acoustic spectrogram labeling.</p>
-  <a href="../../tools/image-annotation/" class="noc-sim-btn">Launch Annotation Studio →</a>
-</div>
-<hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
-<ol>
-<li><strong>Temporal Jaccard Bounds</strong>: Audio boundaries must be calibrated on spectrogram energy dips; misaligned timestamps degrade temporal classification loss.</li>
-<li><strong>Video Tubelet Consistency</strong>: Multi-object tracking requires maintaining unique identity keys across occlusion events to minimize MOTA identity switches.</li>
-<li><strong>Relational Contextual Disambiguation</strong>: Tabular cell values must be resolved against knowledge graph URIs using context embeddings rather than raw text matching.</li>
-<li><strong>Volume IoU Optimization</strong>: In spatio-temporal video models, evaluate volume IoU (<span class="arithmatex">\(\text{vIoU}\)</span>) to penalize both spatial drift and temporal duration error simultaneously.</li>
-</ol>
-<hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="7-diagnostic-self-assessment-scenarios">7. Diagnostic Self-Assessment Scenarios</h2>
 <details class="question">
-<summary>Self-Assessment: Short-Time Fourier Transform Trade-Off</summary>
-<p>In acoustic event annotation, an engineer selects a very long STFT analysis window (<span class="arithmatex">\(N = 4096\)</span> samples at <span class="arithmatex">\(16\text{ kHz}\)</span>). How does this window choice affect temporal boundary precision versus pitch frequency resolution?</p>
+<summary>Scenario 1: Acoustic STFT Window Trade-Off in AudioSet Onset Labeling</summary>
+<p>An annotator processing a dataset of bird chirps and gunshot acoustic events configures the STFT window size to <span class="arithmatex">\(N = 4096\)</span> samples at a sampling rate of <span class="arithmatex">\(f_s = 16\text{ kHz}\)</span> to obtain very sharp spectral lines. When downstream models are trained on these annotations, temporal event detection accuracy drops drastically. Applying the Gabor-Heisenberg uncertainty theorem, explain the physical cause of this performance drop and state the optimal engineering correction.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> It creates high frequency resolution at the expense of <strong>Poor Temporal Boundary Precision (Gabor-Heisenberg Uncertainty)</strong>.</p>
-<p>The Fourier transform cannot localize events with infinite precision in both time and frequency simultaneously: <span class="arithmatex">\(\Delta t \cdot \Delta f \ge 1 / (4\pi)\)</span>. A large window (<span class="arithmatex">\(N = 4096\)</span> corresponds to <span class="arithmatex">\(256\text{ ms}\)</span>) provides fine spectral bins (<span class="arithmatex">\(\Delta f \approx 3.9\text{ Hz}\)</span>), enabling exact musical pitch identification, but smears transient acoustic events (such as a gun shot or glass shatter) across a quarter of a second, making accurate onset/offset tIoU annotation impossible.</p>
-</details>
-</details>
-<details class="question">
-<summary>Self-Assessment: The Impact of Identity Switches on MOTA</summary>
-<p>In an autonomous vehicle camera dataset of 100 frames containing 10 pedestrians each (1,000 total instances), a tracking model produces zero false positives and zero false negatives, but switches the tracked identity labels of two crossing pedestrians 10 times. What is the resulting MOTA score?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> 
-1. Total ground truth instances: <span class="arithmatex">\(\sum \text{GT}_t = 1{,}000\)</span>.
-2. Detection errors: <span class="arithmatex">\(\text{FN} = 0, \text{FP} = 0, \text{IDSW} = 10\)</span>.
-3. Compute MOTA:
-$<span class="arithmatex">\(\text{MOTA} = 1 - \frac{0 + 0 + 10}{1{,}000} = 1 - 0.01 = 0.99 \quad (99\%)\)</span>$
-The model achieves <span class="arithmatex">\(99\%\)</span> MOTA despite repeated track fragmentation. This illustrates why the modern <strong>IDF1</strong> (Identification F1) metric is often reported alongside MOTA, as IDF1 heavily penalizes persistent identity loss over long temporal tubelets.</p>
+<p><strong>Physical Cause (Gabor-Heisenberg Uncertainty):</strong>
+The time-frequency resolution trade-off dictates that:
+$<span class="arithmatex">\(\Delta t \cdot \Delta f \ge \frac{1}{4\pi}\)</span>$
+With window length <span class="arithmatex">\(N = 4096\)</span> at <span class="arithmatex">\(f_s = 16{,}000\text{ Hz}\)</span>, the temporal analysis window spans:
+$<span class="arithmatex">\(\Delta t = \frac{4096}{16000} = 0.256\text{ seconds} = 256\text{ ms}\)</span>$
+While this provides exceptionally fine frequency bins (<span class="arithmatex">\(\Delta f \approx 3.9\text{ Hz}\)</span>), it causes <strong>severe temporal smearing</strong>. Fast acoustic transients (such as a gunshot or avian chip lasting only <span class="arithmatex">\(20\text{–}50\text{ ms}\)</span>) are smeared across a quarter of a second. Consequently, human annotators marking onset/offset boundaries produce massive temporal boundary errors, driving down <span class="arithmatex">\(\text{tIoU}\)</span>.</p>
+<p><strong>Engineering Correction:</strong>
+Reduce the window length to <span class="arithmatex">\(N = 256\)</span> or <span class="arithmatex">\(N = 512\)</span> (<span class="arithmatex">\(16\text{–}32\text{ ms}\)</span>) with a hop size of <span class="arithmatex">\(H = 64\text{–}128\)</span> samples (<span class="arithmatex">\(4\text{–}8\text{ ms}\)</span>). This bounds temporal onset uncertainty to <span class="arithmatex">\(&lt;16\text{ ms}\)</span>, sufficient to achieve <span class="arithmatex">\(\text{tIoU} \ge 0.75\)</span> on transient audio events.</p>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<details class="question">
+<summary>Scenario 2: The Deceptive MOTA Score in Crowded Autonomous Driving Videos</summary>
+<p>In a 100-frame video benchmark with 10 pedestrians per frame (<span class="arithmatex">\(\sum \text{GT}_t = 1{,}000\)</span> instances), a tracking model produces zero False Positives (<span class="arithmatex">\(\text{FP} = 0\)</span>) and zero False Negatives (<span class="arithmatex">\(\text{FN} = 0\)</span>). However, two pedestrians walking past each other exchange their tracked instance IDs 15 times throughout the sequence (<span class="arithmatex">\(\text{IDSW} = 15\)</span>). 
+1. Compute the resulting MOTA score.
+2. Explain why this tracking output could lead to catastrophic failure in an autonomous braking system, and how IDF1 or HOTA detects this failure.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>1. Quantitative Calculation:</strong>
+$<span class="arithmatex">\(\text{MOTA} = 1 - \frac{\sum (\text{FN}_t + \text{FP}_t + \text{IDSW}_t)}{\sum \text{GT}_t} = 1 - \frac{0 + 0 + 15}{1{,}000} = 1 - 0.015 = 0.985 \quad (98.5\%)\)</span>$
+The model scores an apparently near-perfect <strong>98.5% MOTA</strong>.</p>
+<p><strong>2. Failure Mode Analysis:</strong>
+- <strong>Downstream Autonomy Risk:</strong> An autonomous vehicle relies on trajectory extrapolation (Kalman filtering / LSTM path predictors) to predict whether a pedestrian will step onto the roadway. Repeated identity switches fracture the velocity vector, causing trajectory prediction models to perceive erratic velocity spikes or teleportation, triggering phantom emergency braking or failing to anticipate pedestrian motion.
+- <strong>Detection by IDF1 / HOTA:</strong> Because IDF1 measures the longest continuous correctly identified trajectory tubelet (<span class="arithmatex">\(\text{IDTP}\)</span>), 15 identity switches split the pedestrian tubelets into fragmented sub-trajectories, dropping IDF1 down to <span class="arithmatex">\(\approx 70\%\)</span>. Similarly, HOTA's association accuracy component (<span class="arithmatex">\(\text{AssA}\)</span>) explicitly penalizes identity swapping, revealing the severe tracking breakdown that MOTA masks.</p>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Scenario 3: Non-Linear Camera Motion and Keyframe Interpolation Drift</summary>
+<p>A video annotation pipeline interpolates vehicle bounding boxes every 30 frames (at 30 FPS, a 1.0-second interval) using linear interpolation. While linear interpolation performs well on highway forward cruising, bounding box errors exceed <span class="arithmatex">\(40\%\)</span> when the vehicle negotiates a roundabout. Explain why linear interpolation fails in this scenario and specify the superior mathematical approach.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Failure Mechanism:</strong>
+In a roundabout, the physical motion of the vehicle and the ego-vehicle's camera perspective follow <strong>curvilinear angular dynamics</strong> (<span class="arithmatex">\(r(t) = R e^{j\omega t}\)</span>). The true vehicle trajectory in pixel space follows a non-linear parabolic curve:
+$<span class="arithmatex">\(\mathbf{x}_{\text{true}}(t) \propto [\cos(\omega t), \sin(\omega t)]\)</span>$
+Linear interpolation assumes constant zero acceleration (<span class="arithmatex">\(\ddot{\mathbf{x}} = 0\)</span>) along a straight chord between <span class="arithmatex">\(\mathbf{b}(t_k)\)</span> and <span class="arithmatex">\(\mathbf{b}(t_{k+1})\)</span>. Across a 1.0-second window, the straight chord cuts inside the true circular arc, causing the interpolated bounding box to severely drift off the vehicle body, resulting in <span class="arithmatex">\(\text{vIoU} &lt; 0.5\)</span>.</p>
+<p><strong>Engineering Correction:</strong>
+1. <strong>Adaptive Keyframing</strong>: Detect high angular velocity via vehicle yaw-rate IMU sensors or visual optical flow curvature; dynamically reduce keyframe spacing from 30 frames to 5–10 frames during rotational maneuvers.
+2. <strong>Dense Optical Flow Warping</strong>: Rather than geometric linear interpolation, propagate the bounding box using backward dense optical flow fields (<span class="arithmatex">\(u, v\)</span> vectors) computed via Farnebäck or RAFT algorithms:
+$<span class="arithmatex">\(\mathbf{b}(t) = \mathbf{b}(t-1) + \int_{\mathbf{b}(t-1)} \mathbf{v}_{\text{flow}}(x, y, t) \, dx \, dy\)</span>$</p>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Scenario 4: Knowledge Base Entity Ambiguity in Web Table Ingestion</summary>
+<p>An automated tabular ingestion pipeline encounters the string <code>"Washington"</code> in a relational column. The table contains three other columns: <code>Headquarters</code>, <code>Employees</code>, and <code>Founded</code>. Candidate knowledge base entities include <code>Q61</code> (Washington, D.C.), <code>Q1223</code> (Washington State), and <code>Q23</code> (George Washington). If the table header row is missing or uninformative (labeled <code>Col_1</code>), how should the entity resolution engine disambiguate the cell correctly?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Solution Methodology (Relational Context Embedding &amp; Attribute Compatibility):</strong>
+1. <strong>Row-Level Attribute Extraction</strong>: Even without a column header, the sibling cells in the same row provide discriminative ontological constraints:
+   - Sibling attributes: <code>Headquarters: "Seattle"</code>, <code>Employees: "120,000"</code>, <code>Founded: "1994"</code>.
+2. <strong>Ontological Type Compatibility Filtering</strong>:
+   - Entity <code>Q23</code> (George Washington) belongs to <code>schema:Person</code>, which has property <code>schema:birthDate</code>, not <code>schema:employees</code> or <code>schema:headquarters</code>. Incompatible candidate <span class="arithmatex">\(\to\)</span> score <span class="arithmatex">\(= 0.0\)</span>.
+   - Entity <code>Q61</code> (Washington D.C.) and <code>Q1223</code> (Washington State) belong to <code>schema:AdministrativeArea</code>.
+   - If the cell in fact refers to <code>Washington</code> as a corporation or institution, the system computes candidate entity embeddings across all entities carrying the name "Washington".
+3. <strong>Contextual Embedding Cosine Similarity</strong>:
+   Assemble context vector <span class="arithmatex">\(\mathbf{v}_{\text{context}} = \text{Encoder}("Washington \mid Seattle \mid 120,000 \mid 1994")\)</span> and compute:
+   $<span class="arithmatex">\(\text{Sim}(c_i, e_j) = \frac{\mathbf{v}_{\text{context}} \cdot \mathbf{v}_{e_j}}{\|\mathbf{v}_{\text{context}}\| \|\mathbf{v}_{e_j}\|}\)</span>$
+   Entities with matching business enterprise descriptions (or Washington-based corporations) will attain cosine similarities <span class="arithmatex">\(&gt;0.90\)</span>, resolving polysemic ambiguity without relying on column headers.</p>
+</details>
+</details>
+<hr />
+<h2 id="8-peer-reviewed-scholarly-references">8. 📚 Peer-Reviewed Scholarly References</h2>
 <ol>
-<li><a id="ref-gemmeke2017"></a><strong>[Gemmeke2017]</strong> J. F. Gemmeke et al., "Audio Set: An Ontology and Human-Labeled Dataset for Audio Events," in <em>Proceedings of the 2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, pp. 776–780. <a href="https://doi.org/10.1109/ICASSP.2017.7952261">DOI: 10.1109/ICASSP.2017.7952261</a>.</li>
-<li><a id="ref-milan2016"></a><strong>[Milan2016]</strong> A. Milan et al., "MOT16: A Benchmark for Multi-Object Tracking," <em>arXiv preprint arXiv:1603.00831</em>, 2016. <a href="https://doi.org/10.48550/arXiv.1603.00831">DOI: 10.48550/arXiv.1603.00831</a>.</li>
-<li><a id="ref-dasiopoulou2011"></a><strong>[Dasiopoulou2011]</strong> S. Dasiopoulou, E. Giannakidou, G. Litos, P. Malasiotis, and Y. Kompatsiaris, "A Survey of Semantic Image and Video Annotation Tools," in <em>Knowledge-Driven Multimedia Information Extraction and Ontology Evolution</em>, Springer, pp. 196–239, 2011. <a href="https://doi.org/10.1007/978-3-642-20795-2_8">DOI: 10.1007/978-3-642-20795-2_8</a>.</li>
+<li><a id="ref-gemmeke2017"></a><strong>[Gemmeke2017]</strong> J. F. Gemmeke, D. P. W. Ellis, D. Freedman, A. Jansen, W. Lawrence, R. C. Moore, M. Plakal, and M. Ritter, "Audio Set: An Ontology and Human-Labeled Dataset for Audio Events," in <em>Proceedings of the 2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, pp. 776–780, 2017. <a href="https://doi.org/10.1109/ICASSP.2017.7952261">DOI: 10.1109/ICASSP.2017.7952261</a>.</li>
+<li><a id="ref-milan2016"></a><strong>[Milan2016]</strong> A. Milan, L. Leal-Taixé, I. Reid, S. Roth, and K. Schindler, "MOT16: A Benchmark for Multi-Object Tracking," <em>arXiv preprint arXiv:1603.00831</em>, 2016. <a href="https://doi.org/10.48550/arXiv.1603.00831">DOI: 10.48550/arXiv.1603.00831</a>.</li>
+<li><a id="ref-luiten2021"></a><strong>[Luiten2021]</strong> J. Luiten, A. Osep, P. Dendorfer, P. Torr, A. Geiger, L. Leal-Taixé, and B. Leibe, "HOTA: A Higher Order Metric for Evaluating Multi-Object Tracking," <em>International Journal of Computer Vision (IJCV)</em>, vol. 129, no. 2, pp. 548–578, 2021. <a href="https://doi.org/10.1007/s11263-020-01375-2">DOI: 10.1007/s11263-020-01375-2</a>.</li>
+<li><a id="ref-dendorfer2020"></a><strong>[Dendorfer2020]</strong> P. Dendorfer, H. Rezatofighi, A. Milan, J. Shi, D. Cremers, I. Reid, S. Roth, K. Schindler, and L. Leal-Taixé, "MOT20: A Benchmark for Multi Object Tracking in Very Crowded Scenes," <em>arXiv preprint arXiv:2003.09003</em>, 2020. <a href="https://doi.org/10.48550/arXiv.2003.09003">DOI: 10.48550/arXiv.2003.09003</a>.</li>
+<li><a id="ref-perazzi2016"></a><strong>[Perazzi2016]</strong> F. Perazzi, J. Pont-Tuset, B. McWilliams, L. Van Gool, M. Gross, and A. Sorkine-Hornung, "A Benchmark Dataset and Evaluation Methodology for Video Object Segmentation," in <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, pp. 724–732, 2016. <a href="https://doi.org/10.1109/CVPR.2016.85">DOI: 10.1109/CVPR.2016.85</a>.</li>
+<li><a id="ref-xu2018"></a><strong>[Xu2018]</strong> N. Xu, L. Yang, Y. Fan, D. Yue, Y. Liang, J. Yang, and T. Huang, "YouTube-VOS: A Large-Scale Video Object Segmentation Benchmark," <em>arXiv preprint arXiv:1809.03327</em>, 2018. <a href="https://doi.org/10.48550/arXiv.1809.03327">DOI: 10.48550/arXiv.1809.03327</a>.</li>
 <li><a id="ref-bizer2009"></a><strong>[Bizer2009]</strong> C. Bizer, T. Heath, and T. Berners-Lee, "Linked Data - The Story So Far," <em>International Journal on Semantic Web and Information Systems</em>, vol. 5, no. 3, pp. 1–22, 2009. <a href="https://doi.org/10.4018/jswis.2009081901">DOI: 10.4018/jswis.2009081901</a>.</li>
-<li><a id="ref-lin2014"></a><strong>[Lin2014]</strong> T.-Y. Lin et al., "Microsoft COCO: Common Objects in Context," in <em>Computer Vision – ECCV 2014</em>, Lecture Notes in Computer Science, vol. 8693, pp. 740–755. <a href="https://doi.org/10.1007/978-3-319-10602-1_48">DOI: 10.1007/978-3-319-10602-1_48</a>.</li>
-<li><a id="ref-sang2003"></a><strong>[Sang2003]</strong> E. F. T. K. Sang and F. De Meulder, "Introduction to the CoNLL-2003 Shared Task: Language-Independent Named Entity Recognition," in <em>Proceedings of the Seventh Conference on Natural Language Learning (CoNLL-2003)</em>, pp. 142–147. <a href="https://doi.org/10.3115/1119176.1119195">DOI: 10.3115/1119176.1119195</a>.</li>
+<li><a id="ref-hassanzadeh2020"></a><strong>[Hassanzadeh2020]</strong> O. Hassanzadeh, K. Srinivas, V. Efthymiou, and E. Jimenez-Ruiz, "SemTab 2020: Semantic Web Challenge on Tabular Data to Knowledge Graph Matching," in <em>Proceedings of the Semantic Web Challenge on Tabular Data to Knowledge Graph Matching (SemTab 2020)</em>, CEUR Workshop Proceedings, vol. 2775, pp. 1–9, 2020.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../02-text-and-image-annotation/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 4.2 Text & Image Annotation</a>
-  <a href="../04-annotation-techniques/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Annotation Techniques (4.4) →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #151b20;">
+  <a href="../02-text-and-image-annotation/" class="noc-sim-btn secondary" style="text-decoration: none; border: 2px solid #151b20; background: #fffdf7; color: #151b20; font-weight: 700; padding: 8px 16px; border-radius: 6px; box-shadow: 2px 2px 0px #151b20;">← Previous: 4.2 Text &amp; Image Annotation</a>
+  <a href="../04-annotation-techniques/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb; color: #ffffff; border: 2px solid #151b20; font-weight: 700; padding: 8px 16px; border-radius: 6px; box-shadow: 2px 2px 0px #151b20;">Next: 4.4 Annotation Techniques →</a>
 </div>
 
 

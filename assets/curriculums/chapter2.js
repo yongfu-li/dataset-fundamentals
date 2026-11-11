@@ -769,10 +769,9 @@ window.CURRICULUM_CH2 = window.curriculum_chapter2 = {
   "ch2_p2": {
     "chapter": 2,
     "part": 2,
-    "key": "ch2_p2",
-    "badge": "◆ TRACK 2 • LESSON 2.2: DATA SOURCES: PRIMARY, SECONDARY & REAL-TIME STREAMING INGESTION",
-    "index": "Lesson 2 of 9",
-    "lessonTitle": "Data Sources: Primary, Secondary & Real-Time Streaming Ingestion",
+    "title": "Data Sources: Primary, Secondary & Real-Time Streaming Ingestion",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Comprehensive taxonomy of data sources, covariate shift importance weighting, the Kish-Sugiyama effective sample size penalty, Little's Law for queue stability, and production streaming pipelines with dead-letter queues.",
     "slides": [
       {
         "id": "s1",
@@ -784,180 +783,715 @@ window.CURRICULUM_CH2 = window.curriculum_chapter2 = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 2.2. Today we examine data sources: primary, secondary & real-time streaming ingestion, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 2: Foundations</span>\n    <span>•</span>\n    <span>Lesson 2.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Data Sources: Primary, Secondary &amp; Real-Time Streaming Ingestion\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into data sources: primary, secondary &amp; real-time streaming ingestion with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Data Sources: Primary, Secondary & Real-Time Streaming Ingestion",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 2.2?"
+              "text": "Welcome to Track 2, Lesson 2.2 of Dataset Fundamentals: Data Sources, Primary Generation, Secondary Repurposing, and Real-Time Streaming Ingestion. In production machine learning, the fundamental determinant of generalization is not algorithmic complexity, but source provenance and ingestion stability.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 2.2. Today we examine data sources: primary, secondary & real-time streaming ingestion, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Today, we formalize the orthogonal axes of Provenance Authority and Temporal Velocity. We derive covariate shift importance weighting, the Kish-Sugiyama effective sample size penalty, Little's Law for queue stability, and production streaming pipelines with dead-letter queues. Let us dive in.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 2: Foundations</span>\n    <span>•</span>\n    <span>Lesson 2.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Data Sources: Primary, Secondary &amp; Real-Time Streaming Ingestion\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into data sources: primary, secondary &amp; real-time streaming ingestion with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 2 • Acquisition Engineering • Lesson 2.2</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Data Sources: Primary, Secondary &amp; Streaming Ingestion\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Formalizing source typologies across <strong>Provenance Authority</strong> and <strong>Temporal Velocity</strong>, covariate shift importance weighting, and Little's Law queueing dynamics.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5 max-w-3xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Primary Generation</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Controlled sampling, exact design, linear unit cost ($C \\propto n$).</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Secondary Repurposing</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Observational frames, covariate shift, Kish-Sugiyama $n_{\\text{eff}}$ penalty.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">3. Streaming Telemetry</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Unbounded arrivals ($\\lambda$), Little's Law ($L = \\lambda W$), M/M/1 backpressure.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Data Sources: Primary, Secondary & Streaming Ingestion",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 2.2, Kaito! Today we explore where production datasets actually originate: primary collection, secondary repurposed registries, and real-time streaming telemetry.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Most teams just scrape secondary web data because it is cheap and fast, Nova. But then their models crash in production because of hidden distribution shifts!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Today we will prove mathematically how density ratio variance reduces effective sample size under covariate shift, and why streaming systems require Little's Law to prevent buffer overflows.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let us see the trade-offs and the formal queueing dynamics!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 2 • Acquisition Engineering • Lesson 2.2</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Data Sources: Primary, Secondary &amp; Streaming Ingestion\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Formalizing source typologies across <strong>Provenance Authority</strong> and <strong>Temporal Velocity</strong>, covariate shift importance weighting, and Little's Law queueing dynamics.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5 max-w-3xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Primary Generation</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Controlled sampling, exact design, linear unit cost ($C \\propto n$).</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Secondary Repurposing</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Observational frames, covariate shift, Kish-Sugiyama $n_{\\text{eff}}$ penalty.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">3. Streaming Telemetry</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Unbounded arrivals ($\\lambda$), Little's Law ($L = \\lambda W$), M/M/1 backpressure.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview: Mathematical Formalization of Sources and Distribution Shift",
-        "type": "equation",
+        "title": "Data Source Typologies: Provenance Authority vs. Temporal Velocity",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview: Mathematical Formalization of Sources and Distribution Shift",
+          "title": "Data Source Typologies: The Architectural Taxonomy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview: Mathematical Formalization of Sources and Distribution Shift. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{E}_{(X, Y) \\sim P_{\\text{target}}}\\left[ \\ell(f(X), Y) \\right] = \\mathcal{R}_{\\text{true}}(f)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$w(x) = \\frac{P(x)}{Q(x)}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{R}_{\\text{target}}(f) = \\mathbb{E}_{X \\sim P}\\left[ \\ell(f(X), Y) \\right] = \\mathbb{E}_{X \\sim Q}\\left[ w(X) \\cdot \\ell(f(X), Y) \\right]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Engineering robust datasets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires categorizing information sources along two orthogonal axes: Provenance Authority (Primary vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Secondary) and Temporal</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Velocity (Batch vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Primary data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is collected with direct experimental control over sampling probabilities and measurement protocols ( Lohr, 2021 ).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">While acquisition cost</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is low, the source distribution $Q(X, Y)$ diverges from target distribution $P(X, Y)$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview: Mathematical Formalization of Sources and Distribution Shift",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview: mathematical formalization of sources and distribution shift protect our system against silent distribution shift in production?"
+              "text": "Every dataset source is governed by two orthogonal engineering axes: Provenance Authority, which dictates whether you control the sampling distribution, and Temporal Velocity, which dictates whether records arrive in static batches or an unbounded live stream.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Primary data guarantees that the observed distribution matches the target population, but at high marginal cost. Secondary data is nearly free to acquire, but forces you to handle distribution shift. Streaming telemetry introduces queue buffer dynamics and Little's Law constraints.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{E}_{(X, Y) \\sim P_{\\text{target}}}\\left[ \\ell(f(X), Y) \\right] = \\mathcal{R}_{\\text{true}}(f)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$w(x) = \\frac{P(x)}{Q(x)}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{R}_{\\text{target}}(f) = \\mathbb{E}_{X \\sim P}\\left[ \\ell(f(X), Y) \\right] = \\mathbb{E}_{X \\sim Q}\\left[ w(X) \\cdot \\ell(f(X), Y) \\right]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Engineering robust datasets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires categorizing information sources along two orthogonal axes: Provenance Authority (Primary vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Secondary) and Temporal</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Velocity (Batch vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Primary data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is collected with direct experimental control over sampling probabilities and measurement protocols ( Lohr, 2021 ).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">While acquisition cost</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is low, the source distribution $Q(X, Y)$ diverges from target distribution $P(X, Y)$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[11px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Data Source Typologies &amp; Topologies</span>\n    <span class=\"text-[#475569] text-[9.5px] font-mono bg-[#eee4c8] px-2.5 py-0.5 rounded border border-[#151b20]\">Cochran (1977) &amp; Groves et al. (2009)</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart TD\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef channelHeader fill:#ffffff,stroke:#151b20,stroke-width:2px,stroke-dasharray: 4 2,color:#151b20;\n\n  Sources[\"<b>DATA SOURCE TYPOLOGY MATRIX</b><br/><span>Partitioned across Provenance Authority &amp; Temporal Velocity</span>\"]:::purple\n\n  subgraph Prim [\" \"]\n    H_Prim[\"<b>1. PRIMARY DATA GENERATION</b><br/><span>Experimental Control · Tailored Protocols</span>\"]:::channelHeader\n    P_Attr[\"<b>High Control &amp; Known Bias</b><br/><span>P(X, Y) explicitly engineered</span>\"]:::blue\n    P_Eng[\"<b>Production Exemplars</b><br/><span>Clinical Trials, Sensor Deployments, Double-Blind Labs</span>\"]:::blue\n  end\n\n  subgraph Sec [\" \"]\n    H_Sec[\"<b>2. SECONDARY REPURPOSED DATA</b><br/><span>Observational Frames · Zero Marginal Cost</span>\"]:::channelHeader\n    S_Attr[\"<b>Severe Covariate Shift Risk</b><br/><span>Q(X, Y) ≠ P(X, Y) · w(x) = P(x)/Q(x)</span>\"]:::amber\n    S_Eng[\"<b>Production Exemplars</b><br/><span>Insurance Claims, Web Scrapes, Public Registries</span>\"]:::amber\n  end\n\n  subgraph Stream [\" \"]\n    H_Stream[\"<b>3. REAL-TIME STREAMING TELEMETRY</b><br/><span>Unbounded Arrival · Volatile Velocity</span>\"]:::channelHeader\n    T_Attr[\"<b>Queueing &amp; Latency Bounds</b><br/><span>Arrival Rate λ · Little's Law: L = λW</span>\"]:::green\n    T_Eng[\"<b>Production Exemplars</b><br/><span>Kafka Topics, IoT Streams, Financial Feeds</span>\"]:::green\n  end\n\n  Sources --> H_Prim\n  H_Prim --> P_Attr\n  P_Attr --> P_Eng\n\n  Sources --> H_Sec\n  H_Sec --> S_Attr\n  S_Attr --> S_Eng\n\n  Sources --> H_Stream\n  H_Stream --> T_Attr\n  T_Attr --> T_Eng\n  </pre>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono mt-1\">\n  <div class=\"p-2 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-0.5\">Axis 1: Provenance Authority (Control)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Primary sources allow explicit design of inclusion propensities $\\pi_i$. Secondary sources require density-ratio reweighting to compensate for observational bias.</span>\n  </div>\n  <div class=\"p-2 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n    <strong class=\"text-[#15803d] block mb-0.5\">Axis 2: Temporal Velocity (Ingestion)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Batch systems prioritize storage throughput and schema validation. Streaming pipelines prioritize queue stability ($\rho < 1.0$), backpressure handling, and sliding-window concept drift detection.</span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Data Source Typologies: The Architectural Taxonomy",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Observe this taxonomy, Kaito. We have partitioned data sourcing into three core modalities: Primary generation, Secondary repurposing, and Real-Time streaming telemetry.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Notice how primary data gives us pristine probability distributions because we design the sampling frame, but the costs scale linearly with every sample!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Secondary data drastically reduces marginal cost, but the source distribution Q of X differs from the deployment distribution P. If we don't re-weight, our models will learn observational artifacts.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And streaming telemetry brings Poisson arrival bursts! If the arrival rate exceeds worker service capacity, the buffer explodes under Little's Law.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[11px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Data Source Typologies &amp; Topologies</span>\n    <span class=\"text-[#475569] text-[9.5px] font-mono bg-[#eee4c8] px-2.5 py-0.5 rounded border border-[#151b20]\">Cochran (1977) &amp; Groves et al. (2009)</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart TD\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef channelHeader fill:#ffffff,stroke:#151b20,stroke-width:2px,stroke-dasharray: 4 2,color:#151b20;\n\n  Sources[\"<b>DATA SOURCE TYPOLOGY MATRIX</b><br/><span>Partitioned across Provenance Authority &amp; Temporal Velocity</span>\"]:::purple\n\n  subgraph Prim [\" \"]\n    H_Prim[\"<b>1. PRIMARY DATA GENERATION</b><br/><span>Experimental Control · Tailored Protocols</span>\"]:::channelHeader\n    P_Attr[\"<b>High Control &amp; Known Bias</b><br/><span>P(X, Y) explicitly engineered</span>\"]:::blue\n    P_Eng[\"<b>Production Exemplars</b><br/><span>Clinical Trials, Sensor Deployments, Double-Blind Labs</span>\"]:::blue\n  end\n\n  subgraph Sec [\" \"]\n    H_Sec[\"<b>2. SECONDARY REPURPOSED DATA</b><br/><span>Observational Frames · Zero Marginal Cost</span>\"]:::channelHeader\n    S_Attr[\"<b>Severe Covariate Shift Risk</b><br/><span>Q(X, Y) ≠ P(X, Y) · w(x) = P(x)/Q(x)</span>\"]:::amber\n    S_Eng[\"<b>Production Exemplars</b><br/><span>Insurance Claims, Web Scrapes, Public Registries</span>\"]:::amber\n  end\n\n  subgraph Stream [\" \"]\n    H_Stream[\"<b>3. REAL-TIME STREAMING TELEMETRY</b><br/><span>Unbounded Arrival · Volatile Velocity</span>\"]:::channelHeader\n    T_Attr[\"<b>Queueing &amp; Latency Bounds</b><br/><span>Arrival Rate λ · Little's Law: L = λW</span>\"]:::green\n    T_Eng[\"<b>Production Exemplars</b><br/><span>Kafka Topics, IoT Streams, Financial Feeds</span>\"]:::green\n  end\n\n  Sources --> H_Prim\n  H_Prim --> P_Attr\n  P_Attr --> P_Eng\n\n  Sources --> H_Sec\n  H_Sec --> S_Attr\n  S_Attr --> S_Eng\n\n  Sources --> H_Stream\n  H_Stream --> T_Attr\n  T_Attr --> T_Eng\n  </pre>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono mt-1\">\n  <div class=\"p-2 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-0.5\">Axis 1: Provenance Authority (Control)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Primary sources allow explicit design of inclusion propensities $\\pi_i$. Secondary sources require density-ratio reweighting to compensate for observational bias.</span>\n  </div>\n  <div class=\"p-2 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n    <strong class=\"text-[#15803d] block mb-0.5\">Axis 2: Temporal Velocity (Ingestion)</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Batch systems prioritize storage throughput and schema validation. Streaming pipelines prioritize queue stability ($\rho < 1.0$), backpressure handling, and sliding-window concept drift detection.</span>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview: Architecture Flowchart",
-        "type": "figure",
+        "title": "Primary Data Generation: Direct Experimental Control & Unbiased Risk",
+        "type": "theory",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview: Architecture Flowchart",
+          "title": "Primary Data Generation & Unbiased Empirical Risk",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Sources[\"Data Source Topologies\"]:::purple\n\n  Primary[\"Primary Data Generation<br/>High Control, High Cost<br/>P(X, Y) explicitly designed\"]:::blue\n  Secondary[\"Secondary Repurposed Data<br/>Low Marginal Cost, Covariate Shift<br/>Q(X, Y) ≠ P(X, Y)\"]:::amber\n  Streaming[\"Real-Time Streaming Telemetry<br/>Continuous Arrival Rate λ<br/>Queue Buffer & Drift Dynamics\"]:::green\n\n  Sources --> Primary\n  Sources --> Secondary\n  Sources --> Streaming\n\n  Primary --> P_Eng[\"Clinical Trials, Tailored Sensors, Experiments\"]:::blue\n  Secondary --> S_Eng[\"Administrative Records, Scraping, Open Portals\"]:::amber\n  Streaming --> T_Eng[\"Kafka Topics, IoT Streams, Little's Law Buffer\"]:::green</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Engineering robust datasets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires categorizing information sources along two orthogonal axes: Provenance Authority (Primary vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Secondary) and Temporal</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Velocity (Batch vs.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "In Primary Data Generation, the data collection team possesses direct experimental sovereignty over the sampling mechanism, instrument calibration, and response protocols.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Because observations are sampled directly from the true target distribution P_target, the empirical loss is an unbiased estimator of true expected generalization risk, meaning the expectation of the empirical loss equals the true risk. However, marginal cost scales linearly with sample size.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Sources[\"Data Source Topologies\"]:::purple\n\n  Primary[\"Primary Data Generation<br/>High Control, High Cost<br/>P(X, Y) explicitly designed\"]:::blue\n  Secondary[\"Secondary Repurposed Data<br/>Low Marginal Cost, Covariate Shift<br/>Q(X, Y) ≠ P(X, Y)\"]:::amber\n  Streaming[\"Real-Time Streaming Telemetry<br/>Continuous Arrival Rate λ<br/>Queue Buffer & Drift Dynamics\"]:::green\n\n  Sources --> Primary\n  Sources --> Secondary\n  Sources --> Streaming\n\n  Primary --> P_Eng[\"Clinical Trials, Tailored Sensors, Experiments\"]:::blue\n  Secondary --> S_Eng[\"Administrative Records, Scraping, Open Portals\"]:::amber\n  Streaming --> T_Eng[\"Kafka Topics, IoT Streams, Little's Law Buffer\"]:::green</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Engineering robust datasets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires categorizing information sources along two orthogonal axes: Provenance Authority (Primary vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Secondary) and Temporal</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Velocity (Batch vs.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">🎯 Primary Data Mathematical Formulation</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Unbiased Estimator</span>\n    </div>\n    <p class=\"text-[#151b20] text-sm leading-relaxed mb-2\">\n      Observed pairs $(X_i, Y_i) \\sim P_{\\text{target}}(X, Y)$ are sampled identically and independently from the target population distribution.\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#0e7490]\">\n      $$\\mathbb{E}_{(X, Y) \\sim P_{\\text{target}}}\\left[ \\ell(f(X), Y) \\right] = \\mathcal{R}_{\\text{true}}(f)$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] font-mono text-xs block mb-1\">✅ Core Engineering Advantages</strong>\n      <ul class=\"space-y-1.5 text-[11px] text-[#334155] list-disc list-inside\">\n        <li><strong>Known Selection Probabilities:</strong> Inclusion propensity $\\pi_i$ is explicitly known and calibrated by design.</li>\n        <li><strong>Construct Alignment:</strong> Measurement instruments measure exact operational variables, eliminating proxy mismatch.</li>\n        <li><strong>Enforced Schema Integrity:</strong> Upstream validation guarantees zero missingness or formatting drift.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] font-mono text-xs block mb-1\">⚠️ Cost &amp; Scalability Constraints</strong>\n      <ul class=\"space-y-1.5 text-[11px] text-[#334155] list-disc list-inside\">\n        <li><strong>Linear Marginal Cost:</strong> $C_{\\text{total}} = C_0 + n \\cdot c_{\\text{sample}}$. Clinical trials can exceed $\\$2,000$ per subject.</li>\n        <li><strong>Extended Acquisition Latency:</strong> Months to years required for prospective human recruitment and field sampling.</li>\n        <li><strong>Sample Size Ceiling:</strong> Statistical power is strictly bounded by project budget and operational bandwidth.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Primary Data Generation & Unbiased Empirical Risk",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When we collect primary data, Kaito, we enforce absolute experimental control. Every feature is measured by calibrated instruments on subjects sampled directly from P_target.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Which means our empirical training loss is an unbiased estimator of true deployment risk! No covariate shift, no missing variables, no mystery.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "True, but notice the economic equation below: the total cost scales linearly with every single participant. In medical imaging or clinical registries, you can easily burn millions of dollars before gathering ten thousand records.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Which explains why companies are so eager to cut corners and ingest secondary datasets!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">🎯 Primary Data Mathematical Formulation</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Unbiased Estimator</span>\n    </div>\n    <p class=\"text-[#151b20] text-sm leading-relaxed mb-2\">\n      Observed pairs $(X_i, Y_i) \\sim P_{\\text{target}}(X, Y)$ are sampled identically and independently from the target population distribution.\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#0e7490]\">\n      $$\\mathbb{E}_{(X, Y) \\sim P_{\\text{target}}}\\left[ \\ell(f(X), Y) \\right] = \\mathcal{R}_{\\text{true}}(f)$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] font-mono text-xs block mb-1\">✅ Core Engineering Advantages</strong>\n      <ul class=\"space-y-1.5 text-[11px] text-[#334155] list-disc list-inside\">\n        <li><strong>Known Selection Probabilities:</strong> Inclusion propensity $\\pi_i$ is explicitly known and calibrated by design.</li>\n        <li><strong>Construct Alignment:</strong> Measurement instruments measure exact operational variables, eliminating proxy mismatch.</li>\n        <li><strong>Enforced Schema Integrity:</strong> Upstream validation guarantees zero missingness or formatting drift.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] font-mono text-xs block mb-1\">⚠️ Cost &amp; Scalability Constraints</strong>\n      <ul class=\"space-y-1.5 text-[11px] text-[#334155] list-disc list-inside\">\n        <li><strong>Linear Marginal Cost:</strong> $C_{\\text{total}} = C_0 + n \\cdot c_{\\text{sample}}$. Clinical trials can exceed $\\$2,000$ per subject.</li>\n        <li><strong>Extended Acquisition Latency:</strong> Months to years required for prospective human recruitment and field sampling.</li>\n        <li><strong>Sample Size Ceiling:</strong> Statistical power is strictly bounded by project budget and operational bandwidth.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Interactive Lab: Production Implementation: Streaming Ingestion Queue & Little's Law Simulator",
-        "type": "tool",
+        "title": "Secondary Repurposed Data & Covariate Shift: Importance Density Ratios",
+        "type": "theory",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Production Implementation: Streaming Ingestion Queue & Little's Law Simulator",
+          "title": "Secondary Data Ingestion & Covariate Shift Adaptation",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Production Implementation: Streaming Ingestion Queue & Little's Law Simulator. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Production Implementation: Streaming Ingestion Queue &amp; Little&#x27;s Law Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Below is an executable Python benchmark simulating a real-time streaming ingestion pipeline, verifying queue stability and Little&#x27;s Law with automated assertions.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Production Implementation: Streaming Ingestion Queue & Little's Law Simulator",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the production implementation: streaming ingestion queue & little's law simulator located below this player?"
+              "text": "Secondary data repurposes external records gathered for different objectives, such as hospital insurance billing codes or public web scrapes. While acquisition cost approaches zero, the source distribution Q of X differs from target distribution P of X.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Under the Covariate Shift assumption, the conditional concept mapping Q of Y given X equals P of Y given X, but the input feature marginals diverge. To reconstruct unbiased target risk, we must re-weight each observation by the Radon-Nikodym density ratio, w of x equals P of x over Q of x.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Production Implementation: Streaming Ingestion Queue &amp; Little&#x27;s Law Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Below is an executable Python benchmark simulating a real-time streaming ingestion pipeline, verifying queue stability and Little&#x27;s Law with automated assertions.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-1.5 font-mono\">\n      <span class=\"font-bold text-[#b45309] text-sm uppercase\">⚖️ Covariate Shift Condition &amp; Density Ratio</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Sugiyama &amp; Kawanabe (2012)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      Secondary source distribution $Q(X, Y)$ diverges from deployment target $P(X, Y)$. Under <strong>Covariate Shift</strong>, conditional concept mapping is invariant:\n    </p>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-center font-mono text-xs\">\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n        <span class=\"text-[#475569] block text-[10px]\">Conditional Invariance</span>\n        <strong class=\"text-[#151b20]\">$Q(Y \\mid X) = P(Y \\mid X), \\quad Q(X) \\ne P(X)$</strong>\n      </div>\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n        <span class=\"text-[#475569] block text-[10px]\">Importance Density Ratio</span>\n        <strong class=\"text-[#0e7490] font-black\">$w(x) = \\frac{P(x)}{Q(x)}$</strong>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <strong class=\"text-[#0e7490] font-mono text-xs block mb-1.5\">📐 Unbiased Risk Reconstruction via Importance Sampling</strong>\n    <p class=\"text-[#334155] text-xs leading-relaxed mb-2\">\n      By applying Radon-Nikodym derivative re-weighting, the expected target risk $\\mathcal{R}_{\\text{target}}(f)$ is recovered from samples drawn from secondary source $Q$:\n    </p>\n    <div class=\"p-2.5 rounded bg-[#f0fbfd] border border-[#151b20] font-mono text-center text-xs text-[#0e7490] font-bold\">\n      $$\\mathcal{R}_{\\text{target}}(f) = \\mathbb{E}_{X \\sim P}\\left[ \\ell(f(X), Y) \\right] = \\mathbb{E}_{X \\sim Q}\\left[ w(X) \\cdot \\ell(f(X), Y) \\right]$$\n    </div>\n    <p class=\"text-[11px] text-[#dc2626] font-mono mt-2 flex items-center gap-1\">\n      <span>⚠️ Support Vulnerability:</span> If $Q(x) \\to 0$ in regions where $P(x) > 0$, weights explode to infinity ($w(x) \\to \\infty$), resulting in unbounded variance!\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Secondary Data Ingestion & Covariate Shift Adaptation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is the critical distinction, Kaito: when you ingest secondary data, you are drawing from distribution Q, not your target distribution P.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Right! Like using insurance billing claims to train a disease diagnostic model. The billing codes reflect reimbursement policies, not clinical reality!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. To fix this, we apply importance sampling: we calculate the density ratio w of x equals P of x divided by Q of x, and weight each secondary loss term accordingly.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Nova, what happens if Q of x is near zero? Doesn't the weight explode to infinity and destabilize our gradient updates?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed it does! That exact weight explosion is why Kish and Sugiyama proved that high density ratio variance destroys effective sample size. Let us see the math on the next slide.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-1.5 font-mono\">\n      <span class=\"font-bold text-[#b45309] text-sm uppercase\">⚖️ Covariate Shift Condition &amp; Density Ratio</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Sugiyama &amp; Kawanabe (2012)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      Secondary source distribution $Q(X, Y)$ diverges from deployment target $P(X, Y)$. Under <strong>Covariate Shift</strong>, conditional concept mapping is invariant:\n    </p>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-center font-mono text-xs\">\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n        <span class=\"text-[#475569] block text-[10px]\">Conditional Invariance</span>\n        <strong class=\"text-[#151b20]\">$Q(Y \\mid X) = P(Y \\mid X), \\quad Q(X) \\ne P(X)$</strong>\n      </div>\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20]\">\n        <span class=\"text-[#475569] block text-[10px]\">Importance Density Ratio</span>\n        <strong class=\"text-[#0e7490] font-black\">$w(x) = \\frac{P(x)}{Q(x)}$</strong>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <strong class=\"text-[#0e7490] font-mono text-xs block mb-1.5\">📐 Unbiased Risk Reconstruction via Importance Sampling</strong>\n    <p class=\"text-[#334155] text-xs leading-relaxed mb-2\">\n      By applying Radon-Nikodym derivative re-weighting, the expected target risk $\\mathcal{R}_{\\text{target}}(f)$ is recovered from samples drawn from secondary source $Q$:\n    </p>\n    <div class=\"p-2.5 rounded bg-[#f0fbfd] border border-[#151b20] font-mono text-center text-xs text-[#0e7490] font-bold\">\n      $$\\mathcal{R}_{\\text{target}}(f) = \\mathbb{E}_{X \\sim P}\\left[ \\ell(f(X), Y) \\right] = \\mathbb{E}_{X \\sim Q}\\left[ w(X) \\cdot \\ell(f(X), Y) \\right]$$\n    </div>\n    <p class=\"text-[11px] text-[#dc2626] font-mono mt-2 flex items-center gap-1\">\n      <span>⚠️ Support Vulnerability:</span> If $Q(x) \\to 0$ in regions where $P(x) > 0$, weights explode to infinity ($w(x) \\to \\infty$), resulting in unbounded variance!\n    </p>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Empirical Case Study: Electronic Health Records vs. Prospective Clinical Registries",
-        "type": "bullets",
+        "title": "The Kish-Sugiyama Effective Sample Size: Quantifying Weight Variance",
+        "type": "theory",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Electronic Health Records vs. Prospective Clinical Registries",
+          "title": "Effective Sample Size Under Importance Weighting",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Electronic Health Records vs. Prospective Clinical Registries. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Secondary EHR Ingestion Pitfalls</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Hospitals repurposed secondary insurance billing claims (ICD-10 codes). Analysis revealed that billing codes denoted billing reimbursement thresholds rather than diagnostic severity, introducing an implicit covariate shift ($Q(Y \\mid X) \\ne P(Y \\mid X)$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Primary Clinical Registry Calibration</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A prospective primary registry ($N = 10,000$) captured standardized biomarkers (troponin, echocardiograms) at $15\\times$ higher cost per patient.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Importance-Weighted Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Using density ratio estimation $w(x) = P(x) / Q(x)$, researchers re-weighted the massive secondary EHR cohort against the unbiased primary registry (), preserving $92\\%$ of the statistical power of the primary cohort while cutting collection costs by $78\\%$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Electronic Health Records vs. Prospective Clinical Registries",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "When we re-weight secondary data using importance weights, our statistical degrees of freedom degrade. Kish and Sugiyama proved that the effective sample size, n sub eff, depends inversely on the variance of the density ratios.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "The analytical formula is n divided by one plus the variance of w of X under Q. If the variance of weights is 3.0, a nominal dataset of one thousand samples carries the statistical power of only two hundred and fifty independent samples. Seventy-five percent of your nominal sample is lost.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Secondary EHR Ingestion Pitfalls</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Hospitals repurposed secondary insurance billing claims (ICD-10 codes). Analysis revealed that billing codes denoted billing reimbursement thresholds rather than diagnostic severity, introducing an implicit covariate shift ($Q(Y \\mid X) \\ne P(Y \\mid X)$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Primary Clinical Registry Calibration</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A prospective primary registry ($N = 10,000$) captured standardized biomarkers (troponin, echocardiograms) at $15\\times$ higher cost per patient.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Importance-Weighted Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Using density ratio estimation $w(x) = P(x) / Q(x)$, researchers re-weighted the massive secondary EHR cohort against the unbiased primary registry (), preserving $92\\%$ of the statistical power of the primary cohort while cutting collection costs by $78\\%$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">📉 Kish-Sugiyama Effective Sample Size Theorem</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Kish (1965) &amp; Sugiyama (2012)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      Under non-uniform importance weights $w_i = w(x_i)$, the equivalent number of unweighted independent target samples $n_{\\text{eff}}$ is governed by:\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#0e7490]\">\n      $$n_{\\text{eff}} = \\frac{\\left( \\sum_{i=1}^n w(x_i) \\right)^2}{\\sum_{i=1}^n w^2(x_i)} = \\frac{n}{1 + \\text{Var}_Q(w(X))}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">1. Ideal Calibration ($\text{Var}=0$)</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">When $P(x) = Q(x)$, weights are constant ($w_i = 1.0$), yielding $n_{\\text{eff}} = n$. Full statistical efficiency.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Moderate Shift ($\text{Var}=3.0$)</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">$n_{\\text{eff}} = n / (1 + 3) = 0.25n$. A $75\\%$ reduction in effective statistical information!</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">3. Severe Shift ($\text{Var} \\ge 9.0$)</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">$n_{\\text{eff}} \\le 0.10n$. $100,000$ secondary rows behave like less than $10,000$ target records.</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] text-xs\">\n    <strong class=\"text-[#0e7490] font-mono block mb-1\">🛡️ Engineering Mitigation: Weight Truncation &amp; Regularization</strong>\n    <p class=\"text-[#334155] text-[11px] leading-relaxed\">\n      In production systems, raw density ratios are capped at threshold $M$: $w_{\\text{clipped}}(x) = \\min(w(x), M)$. This introduces a minor, controlled bias while dramatically suppressing $\\text{Var}_Q(w)$, rescuing $n_{\\text{eff}}$ from catastrophic collapse.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Effective Sample Size Under Importance Weighting",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look closely at this theorem, Kaito: n sub eff equals n divided by one plus the variance of w of X.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whoa. That means if our importance weights fluctuate widely with variance equal to 3, our 1,000 samples shrink to only 250 effective samples!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. You think you have a huge secondary dataset with great statistical power, but mathematically, seventy-five percent of that data is vaporized by weight variance.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if the shift is severe with variance of 9, you lose ninety percent of your effective data! Let's test this in the simulator next.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">📉 Kish-Sugiyama Effective Sample Size Theorem</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Kish (1965) &amp; Sugiyama (2012)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      Under non-uniform importance weights $w_i = w(x_i)$, the equivalent number of unweighted independent target samples $n_{\\text{eff}}$ is governed by:\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#0e7490]\">\n      $$n_{\\text{eff}} = \\frac{\\left( \\sum_{i=1}^n w(x_i) \\right)^2}{\\sum_{i=1}^n w^2(x_i)} = \\frac{n}{1 + \\text{Var}_Q(w(X))}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">1. Ideal Calibration ($\text{Var}=0$)</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">When $P(x) = Q(x)$, weights are constant ($w_i = 1.0$), yielding $n_{\\text{eff}} = n$. Full statistical efficiency.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Moderate Shift ($\text{Var}=3.0$)</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">$n_{\\text{eff}} = n / (1 + 3) = 0.25n$. A $75\\%$ reduction in effective statistical information!</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">3. Severe Shift ($\text{Var} \\ge 9.0$)</strong>\n      <span class=\"text-[11px] text-[#334155] font-sans\">$n_{\\text{eff}} \\le 0.10n$. $100,000$ secondary rows behave like less than $10,000$ target records.</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] text-xs\">\n    <strong class=\"text-[#0e7490] font-mono block mb-1\">🛡️ Engineering Mitigation: Weight Truncation &amp; Regularization</strong>\n    <p class=\"text-[#334155] text-[11px] leading-relaxed\">\n      In production systems, raw density ratios are capped at threshold $M$: $w_{\\text{clipped}}(x) = \\min(w(x), M)$. This introduces a minor, controlled bias while dramatically suppressing $\\text{Var}_Q(w)$, rescuing $n_{\\text{eff}}$ from catastrophic collapse.\n    </p>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Interactive Lab: Data Source & Streaming Ingestion Sandbox",
-        "type": "tool",
+        "title": "Interactive Lab: Covariate Shift & Importance Re-Weighting Workbench",
+        "type": "lab",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Data Source & Streaming Ingestion Sandbox",
+          "title": "Interactive Lab: Covariate Shift & Importance Re-Weighting Workbench",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Data Source & Streaming Ingestion Sandbox. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Welcome to Interactive Lab 1. Here, you can adjust the source and target distribution means, nominal secondary sample size, and empirical weight variance. Watch how the Kish-Sugiyama effective sample size dynamically calculates in real time.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Data Source &amp; Streaming Ingestion Sandbox</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate queue backpressure, Little&#x27;s Law latency, and importance weight adjustments live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Stream Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div id=\"slideToolContainer\" class=\"w-full my-2\"></div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Data Source & Streaming Ingestion Sandbox",
+          "title": "Interactive Lab: Covariate Shift & Importance Re-Weighting Workbench",
           "turns": [
             {
+              "speaker": "Dr. Nova",
+              "text": "Time for our first live workbench, Kaito! Let us experiment with real-time covariate shift and density ratio variance.",
+              "dock": "sim"
+            },
+            {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the data source & streaming ingestion sandbox located below this player?"
+              "text": "Awesome! I am dragging the Weight Variance slider up to 4.0... and look, our 1,000 secondary samples drop to just 200 effective samples! An eighty percent information penalty!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideToolContainer\" class=\"w-full my-2\"></div>\n"
+        }
+      },
+      {
+        "id": "s7",
+        "title": "Active Checkpoint 1: Calculating Effective Sample Size Under Covariate Shift",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 1: Calculating Effective Sample Size Under Covariate Shift",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us verify your comprehension with Active Checkpoint 1. A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size.",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideCheckpointContainer\" class=\"w-full my-2\"></div>\n"
+        },
+        "duo": {
+          "title": "Active Checkpoint 1: Calculating Effective Sample Size Under Covariate Shift",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is a practical engineering challenge from our curriculum, Kaito: an ingested dataset of one thousand samples with a density ratio variance of 3.0.",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let me apply the Kish formula: n divided by 1 plus variance... 1,000 divided by 4... That gives exactly 250 samples! Let us see if our students get it right!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideCheckpointContainer\" class=\"w-full my-2\"></div>\n"
+        }
+      },
+      {
+        "id": "s8",
+        "title": "Real-Time Streaming Telemetry: Poisson Arrival & Temporal Windows",
+        "type": "theory",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Real-Time Streaming Telemetry & Arrival Dynamics",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now we transition along the temporal velocity axis to real-time streaming telemetry. In streaming architectures, records arrive continuously at rate lambda from unbounded sources such as IoT sensors or financial tickers.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Event arrivals follow a Poisson process, where inter-arrival times are exponentially distributed. Because the total population N approaches infinity, standard offline uniform sampling is impossible, necessitating online reservoir sampling and temporal sliding windows.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Data Source &amp; Streaming Ingestion Sandbox</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate queue backpressure, Little&#x27;s Law latency, and importance weight adjustments live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Stream Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#15803d] text-sm uppercase\">⚡ Real-Time Poisson Arrival Dynamics</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Vitter (1985) &amp; Little (1961)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      Unbounded events arrive at average arrival rate $\\lambda$ records/second. Under standard Poisson event dynamics, the probability of receiving $k$ events in duration $\\tau$ is:\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#15803d]\">\n      $$\\mathbb{P}(K = k \\text{ events in duration } \\tau) = \\frac{(\\lambda \\tau)^k e^{-\\lambda \\tau}}{k!}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] font-mono text-xs block mb-1\">🌊 The Unbounded Stream Challenge</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        Because total volume $N \\to \\infty$ is unknown in advance, offline shuffling is mathematically impossible. We rely on two primary paradigms:\n      </p>\n      <ul class=\"space-y-1 text-[11px] text-[#334155] list-disc list-inside\">\n        <li><strong>Reservoir Sampling (Vitter, 1985):</strong> Maintain an exact, unbiased sample of size $k$ by replacing items with probability $k/t$.</li>\n        <li><strong>Sliding Windows:</strong> Ingest only records within temporal duration $\\Delta t_{\\text{window}}$, capturing localized concept drift.</li>\n      </ul>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] font-mono text-xs block mb-1\">⏱️ Inter-Arrival Distribution</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        Inter-arrival intervals $\\Delta t$ follow an exponential distribution with rate parameter $\\lambda$:\n      </p>\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20] font-mono text-center text-xs font-bold text-[#151b20]\">\n        $$f(\\Delta t) = \\lambda e^{-\\lambda \\Delta t}, \\quad \\mathbb{E}[\\Delta t] = \\frac{1}{\\lambda}$$\n      </div>\n      <p class=\"text-[10px] text-[#475569] font-mono mt-2\">\n        High variance in inter-arrivals creates bursty traffic clusters requiring buffer sizing.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Real-Time Streaming Telemetry & Arrival Dynamics",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now we move to streaming telemetry, Kaito! Think Kafka clusters and IoT sensor brokers handling millions of packets per second.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And unlike batch databases, the stream never ends! We don't have a fixed N, so how do we sample uniformly?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "We use online algorithms like Vitter's reservoir sampling, or sliding temporal windows. Each event arrives according to a Poisson process with rate lambda.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And because inter-arrival times are exponential, arrivals cluster into sudden bursts that can choke our ingest workers!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#15803d] text-sm uppercase\">⚡ Real-Time Poisson Arrival Dynamics</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Vitter (1985) &amp; Little (1961)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      Unbounded events arrive at average arrival rate $\\lambda$ records/second. Under standard Poisson event dynamics, the probability of receiving $k$ events in duration $\\tau$ is:\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#15803d]\">\n      $$\\mathbb{P}(K = k \\text{ events in duration } \\tau) = \\frac{(\\lambda \\tau)^k e^{-\\lambda \\tau}}{k!}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] font-mono text-xs block mb-1\">🌊 The Unbounded Stream Challenge</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        Because total volume $N \\to \\infty$ is unknown in advance, offline shuffling is mathematically impossible. We rely on two primary paradigms:\n      </p>\n      <ul class=\"space-y-1 text-[11px] text-[#334155] list-disc list-inside\">\n        <li><strong>Reservoir Sampling (Vitter, 1985):</strong> Maintain an exact, unbiased sample of size $k$ by replacing items with probability $k/t$.</li>\n        <li><strong>Sliding Windows:</strong> Ingest only records within temporal duration $\\Delta t_{\\text{window}}$, capturing localized concept drift.</li>\n      </ul>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] font-mono text-xs block mb-1\">⏱️ Inter-Arrival Distribution</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        Inter-arrival intervals $\\Delta t$ follow an exponential distribution with rate parameter $\\lambda$:\n      </p>\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20] font-mono text-center text-xs font-bold text-[#151b20]\">\n        $$f(\\Delta t) = \\lambda e^{-\\lambda \\Delta t}, \\quad \\mathbb{E}[\\Delta t] = \\frac{1}{\\lambda}$$\n      </div>\n      <p class=\"text-[10px] text-[#475569] font-mono mt-2\">\n        High variance in inter-arrivals creates bursty traffic clusters requiring buffer sizing.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Little's Law & M/M/1 Queue Dynamics: Traffic Intensity and Backpressure",
+        "type": "theory",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Little's Law & M/M/1 Queue Stability",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To prevent streaming pipelines from crashing under load, we govern queue buffers using Little's Law, proven by John Little in 1961. The steady-state average number of items in the system, L, equals arrival rate lambda multiplied by average residency latency W.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In an M/M/1 queue with worker service rate mu, traffic intensity rho equals lambda divided by mu. Stability requires rho to be strictly less than 1. If arrival rate lambda equals or exceeds service rate mu, queue depth diverges to infinity, causing buffer exhaustion and dropped packets.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">📏 Little's Law (Operations Research)</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Little (1961)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      In any stable, non-preemptive queueing system, average buffer occupancy $L$ is strictly proportional to arrival rate $\\lambda$ and average latency $W$:\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#0e7490]\">\n      $$L = \\lambda \\cdot W$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] font-mono text-xs block mb-1\">⚙️ M/M/1 Queue Formulation</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        With single ingestion worker processing at rate $\\mu$ records/second:\n      </p>\n      <div class=\"p-2 bg-[#f0fbfd] rounded border border-[#151b20] font-mono text-center text-xs space-y-1\">\n        <div>Traffic Intensity: <strong class=\"text-[#0e7490]\">$\\rho = \\frac{\\lambda}{\\mu} < 1.0$</strong></div>\n        <div>Total Residency Latency: <strong class=\"text-[#151b20]\">$W = \\frac{1}{\\mu - \\lambda}$</strong></div>\n        <div>Queue Waiting Latency: <strong class=\"text-[#151b20]\">$W_q = \\frac{\\rho}{\\mu (1 - \\rho)}$</strong></div>\n      </div>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] font-mono text-xs block mb-1\">💥 Catastrophic Instability (Divergence)</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        When arrival rate reaches or surpasses processing capacity ($\\lambda \\ge \\mu$):\n      </p>\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20] font-mono text-center text-xs font-bold text-[#dc2626]\">\n        $$\\lim_{\\rho \\to 1.0} L = \\infty, \\quad \\lim_{\\rho \\to 1.0} W = \\infty$$\n      </div>\n      <p class=\"text-[10px] text-[#475569] font-mono mt-1.5\">\n        Buffer overflow triggers packet drops, socket reset errors, and silent ingestion dropouts.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Little's Law & M/M/1 Queue Stability",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "This is one of the most elegant equations in computer science, Kaito: Little's Law. L equals lambda times W.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Mean buffer depth equals arrival rate multiplied by latency! So if our pipeline takes 40 milliseconds per packet and we get 2,000 packets a second, we have an average of 80 packets sitting in memory!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. And notice the traffic intensity ratio, rho equals lambda over mu. It must stay strictly below 1.0.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "If lambda hits mu, rho equals 1, and the denominator goes to zero! The queue length explodes to infinity! That is how streaming pipelines crash overnight.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">📏 Little's Law (Operations Research)</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] text-[10px]\">Little (1961)</span>\n    </div>\n    <p class=\"text-[#151b20] text-xs leading-relaxed mb-2\">\n      In any stable, non-preemptive queueing system, average buffer occupancy $L$ is strictly proportional to arrival rate $\\lambda$ and average latency $W$:\n    </p>\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-mono text-center text-sm font-bold text-[#0e7490]\">\n      $$L = \\lambda \\cdot W$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] font-mono text-xs block mb-1\">⚙️ M/M/1 Queue Formulation</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        With single ingestion worker processing at rate $\\mu$ records/second:\n      </p>\n      <div class=\"p-2 bg-[#f0fbfd] rounded border border-[#151b20] font-mono text-center text-xs space-y-1\">\n        <div>Traffic Intensity: <strong class=\"text-[#0e7490]\">$\\rho = \\frac{\\lambda}{\\mu} < 1.0$</strong></div>\n        <div>Total Residency Latency: <strong class=\"text-[#151b20]\">$W = \\frac{1}{\\mu - \\lambda}$</strong></div>\n        <div>Queue Waiting Latency: <strong class=\"text-[#151b20]\">$W_q = \\frac{\\rho}{\\mu (1 - \\rho)}$</strong></div>\n      </div>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] font-mono text-xs block mb-1\">💥 Catastrophic Instability (Divergence)</strong>\n      <p class=\"text-[11px] text-[#334155] leading-relaxed mb-2\">\n        When arrival rate reaches or surpasses processing capacity ($\\lambda \\ge \\mu$):\n      </p>\n      <div class=\"p-2 bg-[#fffdf7] rounded border border-[#151b20] font-mono text-center text-xs font-bold text-[#dc2626]\">\n        $$\\lim_{\\rho \\to 1.0} L = \\infty, \\quad \\lim_{\\rho \\to 1.0} W = \\infty$$\n      </div>\n      <p class=\"text-[10px] text-[#475569] font-mono mt-1.5\">\n        Buffer overflow triggers packet drops, socket reset errors, and silent ingestion dropouts.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Multi-Dimensional Source Trade-Off Matrix: Strategic Architecture",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Multi-Dimensional Source Trade-Off Matrix",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here we synthesize the operational trade-offs across all three data source modalities into an engineering decision matrix.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice that no source dominates unconditionally. Primary generation maximizes sampling control and minimizes covariate shift, but incurs high marginal cost. Secondary data reduces cost, but introduces schema friction and licensing complexity. Streaming requires active backpressure engineering.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"overflow-x-auto my-2 rounded-xl border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] text-xs\">\n  <table class=\"w-full text-left bg-[#fffdf7] font-sans border-collapse\">\n    <thead>\n      <tr class=\"bg-[#eee4c8] border-b-2 border-[#151b20] text-[#151b20] font-mono text-[11px]\">\n        <th class=\"p-2.5 border-r border-[#151b20]\">Engineering Dimension</th>\n        <th class=\"p-2.5 border-r border-[#151b20] text-[#0e7490]\">1. Primary Collection</th>\n        <th class=\"p-2.5 border-r border-[#151b20] text-[#b45309]\">2. Secondary Repurposed</th>\n        <th class=\"p-2.5 text-[#15803d]\">3. Streaming Telemetry</th>\n      </tr>\n    </thead>\n    <tbody class=\"divide-y divide-[#151b20]/20 text-[11px]\">\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Sampling Control</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Complete (inclusion $\\pi_i$ known)</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Absent (observational frame)</td>\n        <td class=\"p-2\">Sliding window / reservoir</td>\n      </tr>\n      <tr class=\"bg-[#f0fbfd]/50\">\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Marginal Cost</td>\n        <td class=\"p-2 border-r border-[#151b20]\">High ($C_{\\text{sample}} \\propto n$)</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Very Low ($\\approx \\text{storage}$)</td>\n        <td class=\"p-2\">Throughput / infra bound</td>\n      </tr>\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Covariate Shift Risk</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Minimal ($P = Q$)</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Severe ($w(x) \\ne 1.0$)</td>\n        <td class=\"p-2\">Non-stationary / concept drift</td>\n      </tr>\n      <tr class=\"bg-[#ffd8ce]/30\">\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Schema Uniformity</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Enforced by collection protocol</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Inconsistent / legacy structures</td>\n        <td class=\"p-2\">Dynamic JSON / AVRO / Protobuf</td>\n      </tr>\n      <tr class=\"bg-[#e7f4c8]/40\">\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Governance &amp; Licensing</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Explicit signed consent / IRB</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Multi-party licenses (CC, OGL)</td>\n        <td class=\"p-2\">Real-time PII scrubbing required</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+        },
+        "duo": {
+          "title": "Multi-Dimensional Source Trade-Off Matrix",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Review this matrix carefully, Kaito. Every architectural decision is an engineering compromise between experimental control, cost, and latency.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at the cost row: primary is expensive, secondary is almost free! But look at the covariate shift row right below it: secondary shift is severe, while primary is minimal.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. You pay for secondary data not with money at acquisition time, but with statistical variance and modeling complexity down the road.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And streaming telemetry introduces dynamic schema evolution and real-time scrubbing requirements. A complete engineering balance!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"overflow-x-auto my-2 rounded-xl border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] text-xs\">\n  <table class=\"w-full text-left bg-[#fffdf7] font-sans border-collapse\">\n    <thead>\n      <tr class=\"bg-[#eee4c8] border-b-2 border-[#151b20] text-[#151b20] font-mono text-[11px]\">\n        <th class=\"p-2.5 border-r border-[#151b20]\">Engineering Dimension</th>\n        <th class=\"p-2.5 border-r border-[#151b20] text-[#0e7490]\">1. Primary Collection</th>\n        <th class=\"p-2.5 border-r border-[#151b20] text-[#b45309]\">2. Secondary Repurposed</th>\n        <th class=\"p-2.5 text-[#15803d]\">3. Streaming Telemetry</th>\n      </tr>\n    </thead>\n    <tbody class=\"divide-y divide-[#151b20]/20 text-[11px]\">\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Sampling Control</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Complete (inclusion $\\pi_i$ known)</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Absent (observational frame)</td>\n        <td class=\"p-2\">Sliding window / reservoir</td>\n      </tr>\n      <tr class=\"bg-[#f0fbfd]/50\">\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Marginal Cost</td>\n        <td class=\"p-2 border-r border-[#151b20]\">High ($C_{\\text{sample}} \\propto n$)</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Very Low ($\\approx \\text{storage}$)</td>\n        <td class=\"p-2\">Throughput / infra bound</td>\n      </tr>\n      <tr>\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Covariate Shift Risk</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Minimal ($P = Q$)</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Severe ($w(x) \\ne 1.0$)</td>\n        <td class=\"p-2\">Non-stationary / concept drift</td>\n      </tr>\n      <tr class=\"bg-[#ffd8ce]/30\">\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Schema Uniformity</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Enforced by collection protocol</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Inconsistent / legacy structures</td>\n        <td class=\"p-2\">Dynamic JSON / AVRO / Protobuf</td>\n      </tr>\n      <tr class=\"bg-[#e7f4c8]/40\">\n        <td class=\"p-2 font-bold font-mono text-[#151b20] border-r border-[#151b20]\">Governance &amp; Licensing</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Explicit signed consent / IRB</td>\n        <td class=\"p-2 border-r border-[#151b20]\">Multi-party licenses (CC, OGL)</td>\n        <td class=\"p-2\">Real-time PII scrubbing required</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Production Streaming Architecture: Partitioning, Backpressure & Dead-Letter Queues",
+        "type": "architecture",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Streaming Pipeline Architecture",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In production machine learning systems, streaming ingestion pipelines are decoupled into partitioned event brokers like Apache Kafka, schema validation worker pools, and automated dead-letter queues.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "When malformed records or schema violations arrive, they are diverted into a Dead-Letter Queue rather than crashing the consumer group. If traffic intensity exceeds 0.85, backpressure controllers dynamically scale the worker pool.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[11px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Production Streaming Pipeline Architecture</span>\n    <span class=\"text-[#475569] text-[9.5px] font-mono bg-[#eee4c8] px-2.5 py-0.5 rounded border border-[#151b20]\">Kafka / Flink / Lakehouse Ingestion</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart LR\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Prod[\"<b>IoT &amp; Web Producers</b><br/><span>Poisson Arrivals (λ)</span>\"]:::purple\n  Gateway[\"<b>API Rate Limiter</b><br/><span>Token Bucket Filter</span>\"]:::blue\n  Kafka[\"<b>Kafka Topic (Partitions)</b><br/><span>M/M/1 Buffer (L = λW)</span>\"]:::amber\n  Workers[\"<b>Ingestion Workers</b><br/><span>Schema Validation &amp; PII</span>\"]:::blue\n  Lakehouse[\"<b>Production Lakehouse</b><br/><span>Delta / Parquet Store</span>\"]:::green\n  DLQ[\"<b>Dead-Letter Queue (DLQ)</b><br/><span>Malformed Payloads</span>\"]:::red\n\n  Prod --> Gateway\n  Gateway --> Kafka\n  Kafka --> Workers\n  Workers -->|Conforming Schema| Lakehouse\n  Workers -->|Schema Violation / Corrupt| DLQ\n  Workers -. Backpressure Control (ρ > 0.85) .-> Gateway\n  </pre>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono mt-1\">\n  <div class=\"p-2 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-0.5\">1. Token Bucket Limiter</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Shields ingest nodes by shedding malicious or bursty excess packets beyond burst allowance $B$.</span>\n  </div>\n  <div class=\"p-2 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n    <strong class=\"text-[#dc2626] block mb-0.5\">2. Dead-Letter Queue</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Isolates corrupted JSON or parsing faults without pausing consumer group partition offsets.</span>\n  </div>\n  <div class=\"p-2 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n    <strong class=\"text-[#15803d] block mb-0.5\">3. Reactive Backpressure</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Signals upstream producers to back off when queue occupancy $L$ exceeds $75\\%$ buffer capacity.</span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Production Streaming Pipeline Architecture",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the real-time pipeline is constructed, Kaito: producers push events into a partitioned Kafka broker, and consumer workers validate schemas before writing to the Lakehouse.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if an incoming JSON payload has broken schema or unparsed types, it doesn't crash the entire pipeline! It diverts straight into the Dead-Letter Queue!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Furthermore, when traffic intensity rho exceeds 0.85, the workers send a backpressure signal back to the API gateway to throttle ingestion rate lambda.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Keeping the queue stable under Little's Law! Let's simulate this directly in our next interactive lab.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[11px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>📐 Production Streaming Pipeline Architecture</span>\n    <span class=\"text-[#475569] text-[9.5px] font-mono bg-[#eee4c8] px-2.5 py-0.5 rounded border border-[#151b20]\">Kafka / Flink / Lakehouse Ingestion</span>\n  </div>\n  <pre class=\"mermaid bg-transparent\">\nflowchart LR\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Prod[\"<b>IoT &amp; Web Producers</b><br/><span>Poisson Arrivals (λ)</span>\"]:::purple\n  Gateway[\"<b>API Rate Limiter</b><br/><span>Token Bucket Filter</span>\"]:::blue\n  Kafka[\"<b>Kafka Topic (Partitions)</b><br/><span>M/M/1 Buffer (L = λW)</span>\"]:::amber\n  Workers[\"<b>Ingestion Workers</b><br/><span>Schema Validation &amp; PII</span>\"]:::blue\n  Lakehouse[\"<b>Production Lakehouse</b><br/><span>Delta / Parquet Store</span>\"]:::green\n  DLQ[\"<b>Dead-Letter Queue (DLQ)</b><br/><span>Malformed Payloads</span>\"]:::red\n\n  Prod --> Gateway\n  Gateway --> Kafka\n  Kafka --> Workers\n  Workers -->|Conforming Schema| Lakehouse\n  Workers -->|Schema Violation / Corrupt| DLQ\n  Workers -. Backpressure Control (ρ > 0.85) .-> Gateway\n  </pre>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-xs font-mono mt-1\">\n  <div class=\"p-2 rounded-lg bg-[#f0fbfd] border border-[#151b20]\">\n    <strong class=\"text-[#0e7490] block mb-0.5\">1. Token Bucket Limiter</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Shields ingest nodes by shedding malicious or bursty excess packets beyond burst allowance $B$.</span>\n  </div>\n  <div class=\"p-2 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n    <strong class=\"text-[#dc2626] block mb-0.5\">2. Dead-Letter Queue</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Isolates corrupted JSON or parsing faults without pausing consumer group partition offsets.</span>\n  </div>\n  <div class=\"p-2 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n    <strong class=\"text-[#15803d] block mb-0.5\">3. Reactive Backpressure</strong>\n    <span class=\"text-[11px] text-[#334155] font-sans\">Signals upstream producers to back off when queue occupancy $L$ exceeds $75\\%$ buffer capacity.</span>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Little's Law & M/M/1 Queue Stability Simulator",
+        "type": "lab",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: Little's Law & M/M/1 Queue Stability Simulator",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Interactive Lab 2. Here, you can adjust arrival rate lambda and worker processing rate mu in real time. Watch how traffic intensity rho, residency latency W, and buffer occupancy L respond dynamically.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideToolContainer\" class=\"w-full my-2\"></div>\n"
+        },
+        "duo": {
+          "title": "Interactive Lab: Little's Law & M/M/1 Queue Stability Simulator",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us explore queue stability live, Kaito! Watch what happens as arrival rate lambda approaches service rate mu.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let me push lambda up to 135 with mu at 140... Whoa! Traffic intensity hit 0.96! Latency jumped to 200 milliseconds and the buffer fill meter turned bright red! We are on the verge of total buffer overflow!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideToolContainer\" class=\"w-full my-2\"></div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Applying Little's Law to IoT Telemetry Ingestion",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Applying Little's Law to IoT Telemetry Ingestion",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Time for Active Checkpoint 2. An IoT sensor broker receives packets at arrival rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. If buffer capacity is 120 packets, calculate steady-state occupancy L and determine stability.",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideCheckpointContainer\" class=\"w-full my-2\"></div>\n"
+        },
+        "duo": {
+          "title": "Active Checkpoint 2: Applying Little's Law to IoT Telemetry Ingestion",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is an operational sizing scenario from the curriculum, Kaito: lambda is 2,000 packets per second, latency W is 0.040 seconds, and the buffer holds 120 packets.",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let's multiply arrival rate by latency: 2,000 times 0.040 gives an average occupancy L of 80 packets! Since 80 is under 120, the buffer handles steady-state traffic!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"slideCheckpointContainer\" class=\"w-full my-2\"></div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Empirical Case Study: Electronic Health Records vs. Clinical Registries",
+        "type": "case_study",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Empirical Case Study: EHR Claims vs. Clinical Registries",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Consider this landmark cardiovascular risk study analyzing 120,000 patient cohorts. Researchers initially ingested secondary insurance billing claims because they were immediately available at near-zero marginal cost.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "However, billing codes indicated reimbursement categories rather than underlying physiological pathology, causing severe covariate shift. By collecting a prospective primary cohort of 10,000 patients and computing density ratios, they re-weighted the secondary data, preserving 92% of statistical power while slashing costs by 78%.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">🏥 Cardiovascular Cohort Study ($N = 120,000$)</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#eee4c8] border border-[#151b20] text-[10px]\">Sugiyama &amp; Kawanabe (2012)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n      <div class=\"p-3 rounded-lg bg-[#ffd8ce]/50 border border-[#151b20]\">\n        <strong class=\"text-[#dc2626] font-mono block mb-1\">1. Secondary EHR Pitfall ($N=120,000$)</strong>\n        <p class=\"text-[11px] text-[#334155] leading-relaxed\">\n          Hospital ICD-10 billing claims were captured for financial reimbursement. Patients with severe comorbidities had $4\\times$ more diagnostic tests logged, creating an artificial correlation between observation frequency and mortality ($Q(Y|X) \\ne P(Y|X)$).\n        </p>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#c9f3f4]/50 border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] font-mono block mb-1\">2. Primary Clinical Registry ($N=10,000$)</strong>\n        <p class=\"text-[11px] text-[#334155] leading-relaxed\">\n          A prospective cohort gathered standardized biomarker measurements (troponin, echocardiograms) at $15\\times$ higher unit cost per patient, establishing pristine ground-truth $P_{\\text{target}}(X, Y)$.\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#e7f4c8] border border-[#151b20] font-mono text-xs\">\n      <strong class=\"text-[#15803d] block mb-1\">🚀 The Importance-Weighted Hybrid Solution</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed mb-2\">\n        Rather than discarding the massive secondary EHR cohort, researchers trained an auxiliary classifier to estimate density ratio $w(x) = P(x)/Q(x)$. Re-weighting the secondary EHR data against the primary registry achieved:\n      </p>\n      <div class=\"grid grid-cols-3 gap-2 text-center text-xs font-bold\">\n        <div class=\"p-1.5 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"text-[#475569] text-[9.5px] block font-normal\">Statistical Power</span>\n          <span class=\"text-[#15803d]\">92% Retained</span>\n        </div>\n        <div class=\"p-1.5 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"text-[#475569] text-[9.5px] block font-normal\">Acquisition Cost</span>\n          <span class=\"text-[#0e7490]\">78% Reduced</span>\n        </div>\n        <div class=\"p-1.5 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"text-[#475569] text-[9.5px] block font-normal\">Model Generalization</span>\n          <span class=\"text-[#151b20]\">AUC 0.89 vs 0.71</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Empirical Case Study: EHR Claims vs. Clinical Registries",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "This cardiovascular case study demonstrates the power of hybrid data sourcing, Kaito. The researchers had 120,000 secondary EHR records, but the billing codes were hopelessly biased.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because sicker patients get tested more often, so the model learned test frequency rather than cardiac pathology! A classic secondary data trap.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Right. So instead of spending millions to gather 120,000 primary patients, they recruited just 10,000 primary subjects and used importance density ratios to re-weight the secondary cohort.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And it worked! They saved 78% on collection costs while keeping 92% of the statistical power! That is how elite ML engineers bridge theory and budget.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-2 font-mono\">\n      <span class=\"font-bold text-[#0e7490] text-sm uppercase\">🏥 Cardiovascular Cohort Study ($N = 120,000$)</span>\n      <span class=\"px-2 py-0.5 rounded bg-[#eee4c8] border border-[#151b20] text-[10px]\">Sugiyama &amp; Kawanabe (2012)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n      <div class=\"p-3 rounded-lg bg-[#ffd8ce]/50 border border-[#151b20]\">\n        <strong class=\"text-[#dc2626] font-mono block mb-1\">1. Secondary EHR Pitfall ($N=120,000$)</strong>\n        <p class=\"text-[11px] text-[#334155] leading-relaxed\">\n          Hospital ICD-10 billing claims were captured for financial reimbursement. Patients with severe comorbidities had $4\\times$ more diagnostic tests logged, creating an artificial correlation between observation frequency and mortality ($Q(Y|X) \\ne P(Y|X)$).\n        </p>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#c9f3f4]/50 border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] font-mono block mb-1\">2. Primary Clinical Registry ($N=10,000$)</strong>\n        <p class=\"text-[11px] text-[#334155] leading-relaxed\">\n          A prospective cohort gathered standardized biomarker measurements (troponin, echocardiograms) at $15\\times$ higher unit cost per patient, establishing pristine ground-truth $P_{\\text{target}}(X, Y)$.\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#e7f4c8] border border-[#151b20] font-mono text-xs\">\n      <strong class=\"text-[#15803d] block mb-1\">🚀 The Importance-Weighted Hybrid Solution</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed mb-2\">\n        Rather than discarding the massive secondary EHR cohort, researchers trained an auxiliary classifier to estimate density ratio $w(x) = P(x)/Q(x)$. Re-weighting the secondary EHR data against the primary registry achieved:\n      </p>\n      <div class=\"grid grid-cols-3 gap-2 text-center text-xs font-bold\">\n        <div class=\"p-1.5 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"text-[#475569] text-[9.5px] block font-normal\">Statistical Power</span>\n          <span class=\"text-[#15803d]\">92% Retained</span>\n        </div>\n        <div class=\"p-1.5 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"text-[#475569] text-[9.5px] block font-normal\">Acquisition Cost</span>\n          <span class=\"text-[#0e7490]\">78% Reduced</span>\n        </div>\n        <div class=\"p-1.5 bg-[#fffdf7] rounded border border-[#151b20]\">\n          <span class=\"text-[#475569] text-[9.5px] block font-normal\">Model Generalization</span>\n          <span class=\"text-[#151b20]\">AUC 0.89 vs 0.71</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Code: Streaming Ingestion Queue & Little's Law Simulator",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Python Implementation & Automated Assertions",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 15 provides an executable discrete-event simulation of our streaming ingestion pipeline in Python. It models Poisson inter-arrival intervals, single-worker departure dynamics, and verifies Little's Law with automated assertions.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the automated checks at the bottom: we assert that traffic intensity rho is strictly less than 1.0, and verify that empirical latency W aligns with theoretical M/M/1 queuing within expected sampling tolerances.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2 font-sans text-xs\">\n  <div class=\"p-3 rounded-xl bg-[#151b20] text-[#f8fafc] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7]\">\n    <div class=\"flex items-center justify-between mb-2 pb-2 border-b border-slate-700 font-mono text-[11px]\">\n      <span class=\"text-cyan-400 font-bold\">streaming_ingestion_queue.py</span>\n      <span class=\"text-slate-400 text-[10px]\">Python 3.10+ • NumPy Discrete Event Simulation</span>\n    </div>\n    <pre class=\"overflow-x-auto text-[10.5px] font-mono leading-tight text-slate-200\"><code><span class=\"text-purple-400\">import</span> numpy <span class=\"text-purple-400\">as</span> np\n<span class=\"text-purple-400\">from</span> typing <span class=\"text-purple-400\">import</span> Dict, Any\n\n<span class=\"text-blue-400\">def</span> <span class=\"text-yellow-300\">simulate_streaming_ingestion</span>(\n    arrival_rate_lambda: <span class=\"text-cyan-300\">float</span> = <span class=\"text-amber-300\">120.0</span>,  <span class=\"text-slate-500\"># records / sec</span>\n    service_rate_mu: <span class=\"text-cyan-300\">float</span> = <span class=\"text-amber-300\">150.0</span>,      <span class=\"text-slate-500\"># worker capacity / sec</span>\n    simulation_seconds: <span class=\"text-cyan-300\">float</span> = <span class=\"text-amber-300\">50.0</span>,\n    seed: <span class=\"text-cyan-300\">int</span> = <span class=\"text-amber-300\">42</span>\n) -> Dict[<span class=\"text-cyan-300\">str</span>, Any]:\n    np.random.seed(seed)\n    rho = arrival_rate_lambda / service_rate_mu\n    theoretical_W = <span class=\"text-amber-300\">1.0</span> / (service_rate_mu - arrival_rate_lambda)  <span class=\"text-slate-500\"># System latency</span>\n    theoretical_L = arrival_rate_lambda * theoretical_W            <span class=\"text-slate-500\"># Little's Law</span>\n\n    <span class=\"text-slate-500\"># Generate Poisson arrivals via exponential inter-arrival intervals</span>\n    expected_n = <span class=\"text-cyan-300\">int</span>(arrival_rate_lambda * simulation_seconds * <span class=\"text-amber-300\">1.5</span>)\n    inter_arrivals = np.random.exponential(<span class=\"text-amber-300\">1.0</span> / arrival_rate_lambda, size=expected_n)\n    arrival_times = np.cumsum(inter_arrivals)\n    arrival_times = arrival_times[arrival_times <= simulation_seconds]\n    N = len(arrival_times)\n\n    <span class=\"text-slate-500\"># Single-server FIFO queue processing</span>\n    service_times = np.random.exponential(<span class=\"text-amber-300\">1.0</span> / service_rate_mu, size=N)\n    start_service = np.zeros(N)\n    departure_times = np.zeros(N)\n\n    curr_time = <span class=\"text-amber-300\">0.0</span>\n    <span class=\"text-purple-400\">for</span> i <span class=\"text-purple-400\">in</span> range(N):\n        start_service[i] = max(arrival_times[i], curr_time)\n        departure_times[i] = start_service[i] + service_times[i]\n        curr_time = departure_times[i]\n\n    empirical_W = float(np.mean(departure_times - arrival_times))\n    empirical_L = arrival_rate_lambda * empirical_W\n\n    <span class=\"text-purple-400\">return</span> {\n        <span class=\"text-green-300\">\"rho\"</span>: round(rho, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"theoretical_W\"</span>: round(theoretical_W, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"empirical_W\"</span>: round(empirical_W, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"theoretical_L\"</span>: round(theoretical_L, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"empirical_L\"</span>: round(empirical_L, <span class=\"text-amber-300\">4</span>)\n    }\n\n<span class=\"text-slate-500\"># Automated Ingestion Assertions</span>\nmetrics = simulate_streaming_ingestion(arrival_rate_lambda=<span class=\"text-amber-300\">100.0</span>, service_rate_mu=<span class=\"text-amber-300\">140.0</span>)\n<span class=\"text-purple-400\">assert</span> metrics[<span class=\"text-green-300\">\"rho\"</span>] < <span class=\"text-amber-300\">1.0</span>, <span class=\"text-red-400\">\"Queue unstable (rho >= 1.0)!\"</span>\n<span class=\"text-purple-400\">assert</span> np.isclose(metrics[<span class=\"text-green-300\">\"empirical_W\"</span>], metrics[<span class=\"text-green-300\">\"theoretical_W\"</span>], rtol=<span class=\"text-amber-300\">0.25</span>), <span class=\"text-red-400\">\"Little's Law violation!\"</span></code></pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Production Python Implementation & Automated Assertions",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 15 is our production Python implementation, Kaito. Notice how clean the discrete event loop is: arrivals and service times are drawn directly from exponential distributions.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the assertions at the bottom: first, verifying that traffic intensity rho is strictly less than 1.0, and second, asserting that empirical latency W matches theoretical Little's Law!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes! In production ingestion pipelines, automated unit tests like this run in CI/CD to prevent deployment of under-provisioned worker pools before launch.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Unit tests protecting our Little's Law stability! Love it.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2 font-sans text-xs\">\n  <div class=\"p-3 rounded-xl bg-[#151b20] text-[#f8fafc] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7]\">\n    <div class=\"flex items-center justify-between mb-2 pb-2 border-b border-slate-700 font-mono text-[11px]\">\n      <span class=\"text-cyan-400 font-bold\">streaming_ingestion_queue.py</span>\n      <span class=\"text-slate-400 text-[10px]\">Python 3.10+ • NumPy Discrete Event Simulation</span>\n    </div>\n    <pre class=\"overflow-x-auto text-[10.5px] font-mono leading-tight text-slate-200\"><code><span class=\"text-purple-400\">import</span> numpy <span class=\"text-purple-400\">as</span> np\n<span class=\"text-purple-400\">from</span> typing <span class=\"text-purple-400\">import</span> Dict, Any\n\n<span class=\"text-blue-400\">def</span> <span class=\"text-yellow-300\">simulate_streaming_ingestion</span>(\n    arrival_rate_lambda: <span class=\"text-cyan-300\">float</span> = <span class=\"text-amber-300\">120.0</span>,  <span class=\"text-slate-500\"># records / sec</span>\n    service_rate_mu: <span class=\"text-cyan-300\">float</span> = <span class=\"text-amber-300\">150.0</span>,      <span class=\"text-slate-500\"># worker capacity / sec</span>\n    simulation_seconds: <span class=\"text-cyan-300\">float</span> = <span class=\"text-amber-300\">50.0</span>,\n    seed: <span class=\"text-cyan-300\">int</span> = <span class=\"text-amber-300\">42</span>\n) -> Dict[<span class=\"text-cyan-300\">str</span>, Any]:\n    np.random.seed(seed)\n    rho = arrival_rate_lambda / service_rate_mu\n    theoretical_W = <span class=\"text-amber-300\">1.0</span> / (service_rate_mu - arrival_rate_lambda)  <span class=\"text-slate-500\"># System latency</span>\n    theoretical_L = arrival_rate_lambda * theoretical_W            <span class=\"text-slate-500\"># Little's Law</span>\n\n    <span class=\"text-slate-500\"># Generate Poisson arrivals via exponential inter-arrival intervals</span>\n    expected_n = <span class=\"text-cyan-300\">int</span>(arrival_rate_lambda * simulation_seconds * <span class=\"text-amber-300\">1.5</span>)\n    inter_arrivals = np.random.exponential(<span class=\"text-amber-300\">1.0</span> / arrival_rate_lambda, size=expected_n)\n    arrival_times = np.cumsum(inter_arrivals)\n    arrival_times = arrival_times[arrival_times <= simulation_seconds]\n    N = len(arrival_times)\n\n    <span class=\"text-slate-500\"># Single-server FIFO queue processing</span>\n    service_times = np.random.exponential(<span class=\"text-amber-300\">1.0</span> / service_rate_mu, size=N)\n    start_service = np.zeros(N)\n    departure_times = np.zeros(N)\n\n    curr_time = <span class=\"text-amber-300\">0.0</span>\n    <span class=\"text-purple-400\">for</span> i <span class=\"text-purple-400\">in</span> range(N):\n        start_service[i] = max(arrival_times[i], curr_time)\n        departure_times[i] = start_service[i] + service_times[i]\n        curr_time = departure_times[i]\n\n    empirical_W = float(np.mean(departure_times - arrival_times))\n    empirical_L = arrival_rate_lambda * empirical_W\n\n    <span class=\"text-purple-400\">return</span> {\n        <span class=\"text-green-300\">\"rho\"</span>: round(rho, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"theoretical_W\"</span>: round(theoretical_W, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"empirical_W\"</span>: round(empirical_W, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"theoretical_L\"</span>: round(theoretical_L, <span class=\"text-amber-300\">4</span>),\n        <span class=\"text-green-300\">\"empirical_L\"</span>: round(empirical_L, <span class=\"text-amber-300\">4</span>)\n    }\n\n<span class=\"text-slate-500\"># Automated Ingestion Assertions</span>\nmetrics = simulate_streaming_ingestion(arrival_rate_lambda=<span class=\"text-amber-300\">100.0</span>, service_rate_mu=<span class=\"text-amber-300\">140.0</span>)\n<span class=\"text-purple-400\">assert</span> metrics[<span class=\"text-green-300\">\"rho\"</span>] < <span class=\"text-amber-300\">1.0</span>, <span class=\"text-red-400\">\"Queue unstable (rho >= 1.0)!\"</span>\n<span class=\"text-purple-400\">assert</span> np.isclose(metrics[<span class=\"text-green-300\">\"empirical_W\"</span>], metrics[<span class=\"text-green-300\">\"theoretical_W\"</span>], rtol=<span class=\"text-amber-300\">0.25</span>), <span class=\"text-red-400\">\"Little's Law violation!\"</span></code></pre>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Summary, Architectural Principles & Transition to Lesson 2.3",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Summary & Transition to Lesson 2.3",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 2.2. Today, we established the mathematical and architectural foundations of data sourcing: primary generation for unbiased experimental ground truth, secondary repurposing calibrated via importance density ratios, and streaming telemetry sized via Little's Law.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 2.3, we transition from high-level source strategies to concrete acquisition instruments: designing psychometrically sound questionnaires, web scraping protocols, and automated API crawlers. Outstanding work today.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20]\">\n    <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] font-mono text-[10px] font-bold text-[#0e7490] uppercase\">\n      🎓 Lesson 2.2 Architectural Takeaways\n    </span>\n    <h2 class=\"text-base font-black text-[#151b20] mt-1 mb-2\">The Four Golden Rules of Systematic Data Sourcing</h2>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]\">\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-0.5\">1. Provenance Sovereignty</strong>\n        <span class=\"text-[#334155]\">Always audit whether $Q(X, Y) = P(X, Y)$. Primary data provides unbiased empirical risk; secondary data requires density ratios $w(x) = P(x)/Q(x)$.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-0.5\">2. Kish-Sugiyama Vigilance</strong>\n        <span class=\"text-[#334155]\">Never trust raw sample counts under covariate shift. High weight variance severely penalizes $n_{\\text{eff}} = n / (1 + \\text{Var}_Q(w))$.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-0.5\">3. Little's Law Queue Sizing</strong>\n        <span class=\"text-[#334155]\">In streaming ingestion, ensure traffic intensity $\\rho = \\lambda / \\mu < 1.0$. Average occupancy $L = \\lambda W$ must not exceed buffer bounds.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#dc2626] block mb-0.5\">4. Fault-Tolerant Decoupling</strong>\n        <span class=\"text-[#334155]\">Isolate malformed payloads into Dead-Letter Queues (DLQs) and install backpressure rate limiters to prevent buffer divergence.</span>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2\">\n    <div>\n      <span class=\"text-[10px] font-mono text-[#15803d] uppercase font-black block\">Next Horizon • Lesson 2.3</span>\n      <h3 class=\"text-xs font-bold text-[#151b20]\">Acquisition Instruments: Surveys, Questionnaires &amp; Web Scraping</h3>\n    </div>\n    <span class=\"px-3 py-1 rounded-full bg-[#fffdf7] border border-[#151b20] font-mono text-xs font-bold text-[#151b20]\">\n      Continue to 2.3 →\n    </span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Capstone Summary & Transition to Lesson 2.3",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Outstanding work today, Kaito! We have formalized the three primary sources of modern datasets and their core mathematical constraints.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "From density ratio re-weighting under covariate shift, to Little's Law queue stability and dead-letter queues in streaming pipelines! A complete masterclass.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 2.3, we take these strategies and build active instruments: psychometric survey design, automated web scraping bots, and API pagination.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "I cannot wait to start scraping and designing questionnaires. See you all in Lesson 2.3!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans text-xs\">\n  <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20]\">\n    <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] border border-[#151b20] font-mono text-[10px] font-bold text-[#0e7490] uppercase\">\n      🎓 Lesson 2.2 Architectural Takeaways\n    </span>\n    <h2 class=\"text-base font-black text-[#151b20] mt-1 mb-2\">The Four Golden Rules of Systematic Data Sourcing</h2>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]\">\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-0.5\">1. Provenance Sovereignty</strong>\n        <span class=\"text-[#334155]\">Always audit whether $Q(X, Y) = P(X, Y)$. Primary data provides unbiased empirical risk; secondary data requires density ratios $w(x) = P(x)/Q(x)$.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-0.5\">2. Kish-Sugiyama Vigilance</strong>\n        <span class=\"text-[#334155]\">Never trust raw sample counts under covariate shift. High weight variance severely penalizes $n_{\\text{eff}} = n / (1 + \\text{Var}_Q(w))$.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-0.5\">3. Little's Law Queue Sizing</strong>\n        <span class=\"text-[#334155]\">In streaming ingestion, ensure traffic intensity $\\rho = \\lambda / \\mu < 1.0$. Average occupancy $L = \\lambda W$ must not exceed buffer bounds.</span>\n      </div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg border border-[#151b20]\">\n        <strong class=\"text-[#dc2626] block mb-0.5\">4. Fault-Tolerant Decoupling</strong>\n        <span class=\"text-[#334155]\">Isolate malformed payloads into Dead-Letter Queues (DLQs) and install backpressure rate limiters to prevent buffer divergence.</span>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2\">\n    <div>\n      <span class=\"text-[10px] font-mono text-[#15803d] uppercase font-black block\">Next Horizon • Lesson 2.3</span>\n      <h3 class=\"text-xs font-bold text-[#151b20]\">Acquisition Instruments: Surveys, Questionnaires &amp; Web Scraping</h3>\n    </div>\n    <span class=\"px-3 py-1 rounded-full bg-[#fffdf7] border border-[#151b20] font-mono text-xs font-bold text-[#151b20]\">\n      Continue to 2.3 →\n    </span>\n  </div>\n</div>\n"
         }
       }
     ]

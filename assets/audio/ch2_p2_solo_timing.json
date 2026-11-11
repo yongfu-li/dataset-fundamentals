@@ -1,0 +1,313 @@
+{
+  "duration": 471.12,
+  "slides": [
+    {
+      "slideIndex": 0,
+      "startTime": 0.0,
+      "endTime": 39.072,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 0.0,
+          "endTime": 20.352,
+          "duration": 20.352,
+          "text": "Welcome to Track 2, Lesson 2.2 of Dataset Fundamentals: Data Sources, Primary Generation, Secondary Repurposing, and Real-Time Streaming Ingestion. In production machine learning, the fundamental determinant of generalization is not algorithmic complexity, but source provenance and ingestion stability."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 20.352,
+          "endTime": 39.072,
+          "duration": 18.72,
+          "text": "Today, we formalize the orthogonal axes of Provenance Authority and Temporal Velocity. We derive covariate shift importance weighting, the Kish-Sugiyama effective sample size penalty, Little's Law for queue stability, and production streaming pipelines with dead-letter queues. Let us dive in."
+        }
+      ]
+    },
+    {
+      "slideIndex": 1,
+      "startTime": 39.072,
+      "endTime": 73.056,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 39.072,
+          "endTime": 54.504,
+          "duration": 15.432,
+          "text": "Every dataset source is governed by two orthogonal engineering axes: Provenance Authority, which dictates whether you control the sampling distribution, and Temporal Velocity, which dictates whether records arrive in static batches or an unbounded live stream."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 54.504,
+          "endTime": 73.056,
+          "duration": 18.552,
+          "text": "Primary data guarantees that the observed distribution matches the target population, but at high marginal cost. Secondary data is nearly free to acquire, but forces you to handle distribution shift. Streaming telemetry introduces queue buffer dynamics and Little's Law constraints."
+        }
+      ]
+    },
+    {
+      "slideIndex": 2,
+      "startTime": 73.056,
+      "endTime": 103.584,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 73.056,
+          "endTime": 84.12,
+          "duration": 11.064,
+          "text": "In Primary Data Generation, the data collection team possesses direct experimental sovereignty over the sampling mechanism, instrument calibration, and response protocols."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 84.12,
+          "endTime": 103.584,
+          "duration": 19.464,
+          "text": "Because observations are sampled directly from the true target distribution P_target, the empirical loss is an unbiased estimator of true expected generalization risk, meaning the expectation of the empirical loss equals the true risk. However, marginal cost scales linearly with sample size."
+        }
+      ]
+    },
+    {
+      "slideIndex": 3,
+      "startTime": 103.584,
+      "endTime": 139.824,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 103.584,
+          "endTime": 119.76,
+          "duration": 16.176,
+          "text": "Secondary data repurposes external records gathered for different objectives, such as hospital insurance billing codes or public web scrapes. While acquisition cost approaches zero, the source distribution Q of X differs from target distribution P of X."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 119.76,
+          "endTime": 139.824,
+          "duration": 20.064,
+          "text": "Under the Covariate Shift assumption, the conditional concept mapping Q of Y given X equals P of Y given X, but the input feature marginals diverge. To reconstruct unbiased target risk, we must re-weight each observation by the Radon-Nikodym density ratio, w of x equals P of x over Q of x."
+        }
+      ]
+    },
+    {
+      "slideIndex": 4,
+      "startTime": 139.824,
+      "endTime": 174.168,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 139.824,
+          "endTime": 154.392,
+          "duration": 14.568,
+          "text": "When we re-weight secondary data using importance weights, our statistical degrees of freedom degrade. Kish and Sugiyama proved that the effective sample size, n sub eff, depends inversely on the variance of the density ratios."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 154.392,
+          "endTime": 174.168,
+          "duration": 19.776,
+          "text": "The analytical formula is n divided by one plus the variance of w of X under Q. If the variance of weights is 3.0, a nominal dataset of one thousand samples carries the statistical power of only two hundred and fifty independent samples. Seventy-five percent of your nominal sample is lost."
+        }
+      ]
+    },
+    {
+      "slideIndex": 5,
+      "startTime": 174.168,
+      "endTime": 190.584,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 174.168,
+          "endTime": 190.584,
+          "duration": 16.416,
+          "text": "Welcome to Interactive Lab 1. Here, you can adjust the source and target distribution means, nominal secondary sample size, and empirical weight variance. Watch how the Kish-Sugiyama effective sample size dynamically calculates in real time."
+        }
+      ]
+    },
+    {
+      "slideIndex": 6,
+      "startTime": 190.584,
+      "endTime": 206.928,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 190.584,
+          "endTime": 206.928,
+          "duration": 16.344,
+          "text": "Let us verify your comprehension with Active Checkpoint 1. A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size."
+        }
+      ]
+    },
+    {
+      "slideIndex": 7,
+      "startTime": 206.928,
+      "endTime": 238.464,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 206.928,
+          "endTime": 221.472,
+          "duration": 14.544,
+          "text": "Now we transition along the temporal velocity axis to real-time streaming telemetry. In streaming architectures, records arrive continuously at rate lambda from unbounded sources such as IoT sensors or financial tickers."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 221.472,
+          "endTime": 238.464,
+          "duration": 16.992,
+          "text": "Event arrivals follow a Poisson process, where inter-arrival times are exponentially distributed. Because the total population N approaches infinity, standard offline uniform sampling is impossible, necessitating online reservoir sampling and temporal sliding windows."
+        }
+      ]
+    },
+    {
+      "slideIndex": 8,
+      "startTime": 238.464,
+      "endTime": 276.072,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 238.464,
+          "endTime": 255.768,
+          "duration": 17.304,
+          "text": "To prevent streaming pipelines from crashing under load, we govern queue buffers using Little's Law, proven by John Little in 1961. The steady-state average number of items in the system, L, equals arrival rate lambda multiplied by average residency latency W."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 255.768,
+          "endTime": 276.072,
+          "duration": 20.304,
+          "text": "In an M/M/1 queue with worker service rate mu, traffic intensity rho equals lambda divided by mu. Stability requires rho to be strictly less than 1. If arrival rate lambda equals or exceeds service rate mu, queue depth diverges to infinity, causing buffer exhaustion and dropped packets."
+        }
+      ]
+    },
+    {
+      "slideIndex": 9,
+      "startTime": 276.072,
+      "endTime": 304.176,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 276.072,
+          "endTime": 283.56,
+          "duration": 7.488,
+          "text": "Here we synthesize the operational trade-offs across all three data source modalities into an engineering decision matrix."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 283.56,
+          "endTime": 304.176,
+          "duration": 20.616,
+          "text": "Notice that no source dominates unconditionally. Primary generation maximizes sampling control and minimizes covariate shift, but incurs high marginal cost. Secondary data reduces cost, but introduces schema friction and licensing complexity. Streaming requires active backpressure engineering."
+        }
+      ]
+    },
+    {
+      "slideIndex": 10,
+      "startTime": 304.176,
+      "endTime": 331.416,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 304.176,
+          "endTime": 316.44,
+          "duration": 12.264,
+          "text": "In production machine learning systems, streaming ingestion pipelines are decoupled into partitioned event brokers like Apache Kafka, schema validation worker pools, and automated dead-letter queues."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 316.44,
+          "endTime": 331.416,
+          "duration": 14.976,
+          "text": "When malformed records or schema violations arrive, they are diverted into a Dead-Letter Queue rather than crashing the consumer group. If traffic intensity exceeds 0.85, backpressure controllers dynamically scale the worker pool."
+        }
+      ]
+    },
+    {
+      "slideIndex": 11,
+      "startTime": 331.416,
+      "endTime": 346.92,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 331.416,
+          "endTime": 346.92,
+          "duration": 15.504,
+          "text": "Welcome to Interactive Lab 2. Here, you can adjust arrival rate lambda and worker processing rate mu in real time. Watch how traffic intensity rho, residency latency W, and buffer occupancy L respond dynamically."
+        }
+      ]
+    },
+    {
+      "slideIndex": 12,
+      "startTime": 346.92,
+      "endTime": 367.584,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 346.92,
+          "endTime": 367.584,
+          "duration": 20.664,
+          "text": "Time for Active Checkpoint 2. An IoT sensor broker receives packets at arrival rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. If buffer capacity is 120 packets, calculate steady-state occupancy L and determine stability."
+        }
+      ]
+    },
+    {
+      "slideIndex": 13,
+      "startTime": 367.584,
+      "endTime": 405.216,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 367.584,
+          "endTime": 382.248,
+          "duration": 14.664,
+          "text": "Consider this landmark cardiovascular risk study analyzing 120,000 patient cohorts. Researchers initially ingested secondary insurance billing claims because they were immediately available at near-zero marginal cost."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 382.248,
+          "endTime": 405.216,
+          "duration": 22.968,
+          "text": "However, billing codes indicated reimbursement categories rather than underlying physiological pathology, causing severe covariate shift. By collecting a prospective primary cohort of 10,000 patients and computing density ratios, they re-weighted the secondary data, preserving 92% of statistical power while slashing costs by 78%."
+        }
+      ]
+    },
+    {
+      "slideIndex": 14,
+      "startTime": 405.216,
+      "endTime": 435.624,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 405.216,
+          "endTime": 420.528,
+          "duration": 15.312,
+          "text": "Slide 15 provides an executable discrete-event simulation of our streaming ingestion pipeline in Python. It models Poisson inter-arrival intervals, single-worker departure dynamics, and verifies Little's Law with automated assertions."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 420.528,
+          "endTime": 435.624,
+          "duration": 15.096,
+          "text": "Notice the automated checks at the bottom: we assert that traffic intensity rho is strictly less than 1.0, and verify that empirical latency W aligns with theoretical M/M/1 queuing within expected sampling tolerances."
+        }
+      ]
+    },
+    {
+      "slideIndex": 15,
+      "startTime": 435.624,
+      "endTime": 471.12,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 435.624,
+          "endTime": 455.64,
+          "duration": 20.016,
+          "text": "Congratulations on completing Lesson 2.2. Today, we established the mathematical and architectural foundations of data sourcing: primary generation for unbiased experimental ground truth, secondary repurposing calibrated via importance density ratios, and streaming telemetry sized via Little's Law."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 455.64,
+          "endTime": 471.12,
+          "duration": 15.48,
+          "text": "In Lesson 2.3, we transition from high-level source strategies to concrete acquisition instruments: designing psychometrically sound questionnaires, web scraping protocols, and automated API crawlers. Outstanding work today."
+        }
+      ]
+    }
+  ]
+}

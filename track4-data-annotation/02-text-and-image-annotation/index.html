@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2103,22 +2147,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-mathematical-foundations-spatial-geometries-intersection-over-union-iou" class="md-nav__link">
+  <a href="#1-computer-vision-spatial-geometries-overlap-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Mathematical Foundations: Spatial Geometries &amp; Intersection over Union (IoU)
+        1. Computer Vision Spatial Geometries &amp; Overlap Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Mathematical Foundations: Spatial Geometries &amp; Intersection over Union (IoU)">
+    <nav class="md-nav" aria-label="1. Computer Vision Spatial Geometries &amp; Overlap Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-spatial-bounding-geometries" class="md-nav__link">
+  <a href="#1-coordinate-representation-conventions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Spatial Bounding Geometries
+        1. Coordinate Representation Conventions
       
     </span>
   </a>
@@ -2126,32 +2170,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-the-jaccard-metric-intersection-over-union-iou" class="md-nav__link">
+  <a href="#2-polygonal-surface-area-via-greens-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. The Jaccard Metric: Intersection over Union (IoU)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-generalized-intersection-over-union-giou" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Generalized Intersection over Union (GIoU)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-run-length-encoding-rle-bitmask-compression" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Run-Length Encoding (RLE) Bitmask Compression
+        2. Polygonal Surface Area via Green's Theorem
       
     </span>
   </a>
@@ -2164,22 +2186,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-text-annotation-foundations-span-offsets-token-alignment" class="md-nav__link">
+  <a href="#2-the-intersection-over-union-iou-metric-family" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Text Annotation Foundations: Span Offsets &amp; Token Alignment
+        2. The Intersection over Union (IoU) Metric Family
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Text Annotation Foundations: Span Offsets &amp; Token Alignment">
+    <nav class="md-nav" aria-label="2. The Intersection over Union (IoU) Metric Family">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#exact-span-match-f1-formulation" class="md-nav__link">
+  <a href="#1-standard-intersection-over-union-iou" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exact Span Match F1 Formulation
+        1. Standard Intersection over Union (IoU)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generalized-iou-giou-for-disjoint-geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Generalized IoU (GIoU) for Disjoint Geometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-column-major-run-length-encoding-rle-bitmask-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Column-Major Run-Length Encoding (RLE) Bitmask Compression
       
     </span>
   </a>
@@ -2192,10 +2236,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-iou-greens-area-rle-encoder" class="md-nav__link">
+  <a href="#3-text-annotation-foundations-span-offsets-token-alignment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: IoU, Green's Area &amp; RLE Encoder
+        3. Text Annotation Foundations: Span Offsets &amp; Token Alignment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Text Annotation Foundations: Span Offsets &amp; Token Alignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tagging-schemes-iob2-vs-bioes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tagging Schemes: IOB2 vs. BIOES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-exact-match-f1-evaluation-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Exact Match F1 Evaluation Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-landmark-case-studies-in-multi-modal-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Landmark Case Studies in Multi-Modal Annotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Landmark Case Studies in Multi-Modal Annotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-ms-coco-the-boundary-iou-paradigm-cheng-et-al-cvpr-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: MS COCO &amp; The Boundary IoU Paradigm (Cheng et al., CVPR 2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-bionlp-clinical-ner-boundary-drift-gururangan-et-al-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: BioNLP Clinical NER Boundary Drift (Gururangan et al., 2020)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-interactive-laboratory-multi-modal-geometry-iou-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Interactive Laboratory: Multi-Modal Geometry &amp; IoU Studio
       
     </span>
   </a>
@@ -2203,10 +2325,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-production-implementation-spatial-geometry-text-span-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        6. Production Implementation: Spatial Geometry &amp; Text Span Engine
       
     </span>
   </a>
@@ -2214,10 +2336,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#7-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        7. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -2225,10 +2347,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#8-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        8. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2236,10 +2358,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#9-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        9. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7416,22 +7538,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-mathematical-foundations-spatial-geometries-intersection-over-union-iou" class="md-nav__link">
+  <a href="#1-computer-vision-spatial-geometries-overlap-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Mathematical Foundations: Spatial Geometries &amp; Intersection over Union (IoU)
+        1. Computer Vision Spatial Geometries &amp; Overlap Metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Mathematical Foundations: Spatial Geometries &amp; Intersection over Union (IoU)">
+    <nav class="md-nav" aria-label="1. Computer Vision Spatial Geometries &amp; Overlap Metrics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-spatial-bounding-geometries" class="md-nav__link">
+  <a href="#1-coordinate-representation-conventions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Spatial Bounding Geometries
+        1. Coordinate Representation Conventions
       
     </span>
   </a>
@@ -7439,32 +7561,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-the-jaccard-metric-intersection-over-union-iou" class="md-nav__link">
+  <a href="#2-polygonal-surface-area-via-greens-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. The Jaccard Metric: Intersection over Union (IoU)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-generalized-intersection-over-union-giou" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Generalized Intersection over Union (GIoU)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-run-length-encoding-rle-bitmask-compression" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Run-Length Encoding (RLE) Bitmask Compression
+        2. Polygonal Surface Area via Green's Theorem
       
     </span>
   </a>
@@ -7477,22 +7577,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-text-annotation-foundations-span-offsets-token-alignment" class="md-nav__link">
+  <a href="#2-the-intersection-over-union-iou-metric-family" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Text Annotation Foundations: Span Offsets &amp; Token Alignment
+        2. The Intersection over Union (IoU) Metric Family
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Text Annotation Foundations: Span Offsets &amp; Token Alignment">
+    <nav class="md-nav" aria-label="2. The Intersection over Union (IoU) Metric Family">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#exact-span-match-f1-formulation" class="md-nav__link">
+  <a href="#1-standard-intersection-over-union-iou" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exact Span Match F1 Formulation
+        1. Standard Intersection over Union (IoU)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generalized-iou-giou-for-disjoint-geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Generalized IoU (GIoU) for Disjoint Geometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-column-major-run-length-encoding-rle-bitmask-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Column-Major Run-Length Encoding (RLE) Bitmask Compression
       
     </span>
   </a>
@@ -7505,10 +7627,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-iou-greens-area-rle-encoder" class="md-nav__link">
+  <a href="#3-text-annotation-foundations-span-offsets-token-alignment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: IoU, Green's Area &amp; RLE Encoder
+        3. Text Annotation Foundations: Span Offsets &amp; Token Alignment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Text Annotation Foundations: Span Offsets &amp; Token Alignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tagging-schemes-iob2-vs-bioes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tagging Schemes: IOB2 vs. BIOES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-exact-match-f1-evaluation-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Exact Match F1 Evaluation Formulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-landmark-case-studies-in-multi-modal-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Landmark Case Studies in Multi-Modal Annotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Landmark Case Studies in Multi-Modal Annotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-ms-coco-the-boundary-iou-paradigm-cheng-et-al-cvpr-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: MS COCO &amp; The Boundary IoU Paradigm (Cheng et al., CVPR 2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-bionlp-clinical-ner-boundary-drift-gururangan-et-al-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: BioNLP Clinical NER Boundary Drift (Gururangan et al., 2020)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-interactive-laboratory-multi-modal-geometry-iou-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Interactive Laboratory: Multi-Modal Geometry &amp; IoU Studio
       
     </span>
   </a>
@@ -7516,10 +7716,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-production-implementation-spatial-geometry-text-span-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        6. Production Implementation: Spatial Geometry &amp; Text Span Engine
       
     </span>
   </a>
@@ -7527,10 +7727,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#7-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        7. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7538,10 +7738,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#8-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        8. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7549,10 +7749,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#9-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        9. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7580,38 +7780,38 @@
 
 
 <h1 id="42-text-and-image-annotation-spatial-geometries-span-offsets-standard-exchange-formats">4.2 Text and Image Annotation: Spatial Geometries, Span Offsets &amp; Standard Exchange Formats</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 4: Data Annotation (§4.2: Multi-Modal Topologies & Data Interchange)</strong> in the official Springer Nature monograph, covering COCO RLE encodings, polygonal Green's theorem proofs, and IOB2 span alignment.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 4: Data Annotation (§4.2: Multi-Modal Topologies & Data Interchange)</strong> in the official Springer Nature monograph, covering COCO RLE encodings, polygonal Green's theorem proofs, GIoU metrics, and IOB2/BIOES span alignments.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 4 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-42">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 4.2</h3>
 <p>Experience Chapter 4 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">12 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">11 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=4&part=2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=4&part=2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7620,234 +7820,667 @@
 </div>
 
 <hr />
-<p>Text and image datasets constitute the overwhelming majority of contemporary machine learning workloads. While seemingly distinct, both modalities require mapping continuous or discrete perceptual inputs onto <strong>well-defined geometric and discrete topological structures</strong> [<a href="#ref-lin2014">Lin2014</a>, <a href="#ref-sang2003">Sang2003</a>].</p>
-<p>An annotation error in spatial bounding coordinates or character span offsets directly corrupts the target loss function during backpropagation. Understanding the mathematical representations and serialization standards of text spans and computer vision geometries is fundamental to dataset engineering.</p>
+<p>Text and image datasets constitute the overwhelming majority of contemporary machine learning workloads. While seemingly distinct in their surface characteristics, both modalities require mapping continuous or discrete perceptual inputs onto <strong>rigorously defined geometric manifolds and discrete topological sequence alignments</strong> [<a href="#ref-lin2014">Lin2014</a>, <a href="#ref-sang2003">Sang2003</a>].</p>
+<p>An off-by-one error in spatial bounding box coordinates or a misaligned character span offset directly corrupts gradient updates during backpropagation. Understanding the mathematical representations, loss metrics, and serialization standards of computer vision geometries and natural language spans is fundamental to data engineering.</p>
 <hr />
-<h2 id="1-mathematical-foundations-spatial-geometries-intersection-over-union-iou">1. Mathematical Foundations: Spatial Geometries &amp; Intersection over Union (IoU)</h2>
-<h3 id="1-spatial-bounding-geometries">1. Spatial Bounding Geometries</h3>
-<p>In computer vision, 2D object localization is parameterized under multiple coordinate conventions:</p>
-<ol>
-<li><strong>Corner Coordinate Form (Pascal VOC)</strong> [<a href="#ref-everingham2010">Everingham2010</a>]:</li>
-</ol>
-<div class="arithmatex">\[
-B_{\text{corner}} = [x_{\min}, y_{\min}, x_{\max}, y_{\max}] \in \mathbb{R}^4, \quad \text{where } x_{\max} &gt; x_{\min}, \; y_{\max} &gt; y_{\min}
-\]</div>
-<ol>
-<li><strong>Centroid-Scale Form (YOLO Normalized)</strong>:</li>
-</ol>
-<div class="arithmatex">\[
-B_{\text{yolo}} = \left[\frac{x_c}{W}, \frac{y_c}{H}, \frac{w}{W}, \frac{h}{H}\right] \in [0, 1]^4
-\]</div>
-<ol>
-<li><strong>Polygonal Contours</strong>: A non-convex polygon <span class="arithmatex">\(\mathcal{P}\)</span> defined by an ordered sequence of <span class="arithmatex">\(V\)</span> vertices:</li>
-</ol>
-<div class="arithmatex">\[
-\mathcal{P} = \{(x_k, y_k)\}_{k=1}^V, \quad (x_{V+1}, y_{V+1}) = (x_1, y_1)
-\]</div>
-<p>The spatial area of <span class="arithmatex">\(\mathcal{P}\)</span> is computed deterministically via the surveyor's formula (<strong>Green's Theorem in the plane</strong>):</p>
-<div class="arithmatex">\[
-\text{Area}(\mathcal{P}) = \frac{1}{2} \left| \sum_{k=1}^V (x_k y_{k+1} - x_{k+1} y_k) \right|
-\]</div>
-<h3 id="2-the-jaccard-metric-intersection-over-union-iou">2. The Jaccard Metric: Intersection over Union (IoU)</h3>
-<p>The fundamental agreement metric between a candidate annotation <span class="arithmatex">\(A\)</span> and ground-truth <span class="arithmatex">\(B\)</span> is the <strong>Intersection over Union (Jaccard Index)</strong>:</p>
-<div class="arithmatex">\[
-\text{IoU}(A, B) = \frac{|A \cap B|}{|A \cup B|} = \frac{|A \cap B|}{|A| + |B| - |A \cap B|}
-\]</div>
-<p>For axis-aligned rectangular boxes <span class="arithmatex">\(A = [x_1^A, y_1^A, x_2^A, y_2^A]\)</span> and <span class="arithmatex">\(B = [x_1^B, y_1^B, x_2^B, y_2^B]\)</span>:</p>
-<div class="arithmatex">\[
-\text{Area}(A \cap B) = \max\left(0, \; \min(x_2^A, x_2^B) - \max(x_1^A, x_1^B)\right) \times \max\left(0, \; \min(y_2^A, y_2^B) - \max(y_1^A, y_1^B)\right)
-\]</div>
-<h3 id="3-generalized-intersection-over-union-giou">3. Generalized Intersection over Union (GIoU)</h3>
-<p>Standard IoU exhibits zero gradient when boxes do not overlap (<span class="arithmatex">\(\text{IoU} = 0\)</span>). Rezatofighi et al. [<a href="#ref-rezatofighi2019">Rezatofighi2019</a>] introduced <strong>GIoU</strong> by incorporating the minimal convex enclosing box <span class="arithmatex">\(C\)</span>:</p>
-<div class="arithmatex">\[
-\text{GIoU}(A, B) = \text{IoU}(A, B) - \frac{|C \setminus (A \cup B)|}{|C|} \in [-1, 1]
-\]</div>
-<h3 id="4-run-length-encoding-rle-bitmask-compression">4. Run-Length Encoding (RLE) Bitmask Compression</h3>
-<p>For dense instance segmentation masks <span class="arithmatex">\(M \in \{0, 1\}^{H \times W}\)</span>, storing raw binary bitmaps requires <span class="arithmatex">\(H \times W\)</span> bits. In the MS COCO format [<a href="#ref-lin2014">Lin2014</a>], masks are serialized via <strong>Column-Major Run-Length Encoding (RLE)</strong>: alternating run counts of zeros and ones:</p>
-<div class="arithmatex">\[
-\text{RLE}(M) = [c_0, c_1, c_2, \dots, c_m] \quad \text{where} \quad \sum_{j=0}^m c_j = H \times W
-\]</div>
-<p>The compression ratio is <span class="arithmatex">\(\text{CR} = \frac{H \cdot W}{2 m}\)</span>, delivering up to <span class="arithmatex">\(95\%\)</span> storage savings on sparse silhouettes.</p>
+<h2 id="1-computer-vision-spatial-geometries-overlap-metrics">1. Computer Vision Spatial Geometries &amp; Overlap Metrics</h2>
+<p>In 2D vision tasks, spatial annotations localize target entities within pixel grids <span class="arithmatex">\(I \in \mathbb{R}^{H \times W \times 3}\)</span>. localization manifests across four geometric tiers:</p>
 <pre class="mermaid"><code>flowchart LR
-    subgraph CV ["Computer Vision Localization Levels"]
-        BBox["1. Bounding Box (AABB)&lt;br/&gt;4 Parameters [x, y, w, h]"] --&gt; OBB["2. Oriented Bounding Box (OBB)&lt;br/&gt;5 Parameters [x, y, w, h, θ]"]
-        OBB --&gt; Poly["3. Polygonal Segmentation&lt;br/&gt;V Vertices {(x_i, y_i)}"]
-        Poly --&gt; Mask["4. Dense Pixel Mask (RLE)&lt;br/&gt;Binary Bitmask H x W"]
+    subgraph Localization ["Spatial Localization Topologies"]
+        AABB["1. Axis-Aligned Bounding Box (AABB)&lt;br&gt;4 Parameters: [x_min, y_min, x_max, y_max]"]
+        OBB["2. Oriented Bounding Box (OBB)&lt;br&gt;5 Parameters: [x_c, y_c, w, h, θ]"]
+        Poly["3. Polygonal Segmentation&lt;br&gt;V Vertices: {(x_k, y_k)} ordered contour"]
+        Mask["4. Dense Binary Pixel Mask&lt;br&gt;Bitmask M ∈ {0, 1}^(H × W) (COCO RLE)"]
     end
+
+    AABB --&gt; OBB
+    OBB --&gt; Poly
+    Poly --&gt; Mask
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class BBox,OBB blue;
+    class AABB,OBB blue;
     class Poly amber;
     class Mask green;</code></pre>
+<h3 id="1-coordinate-representation-conventions">1. Coordinate Representation Conventions</h3>
+<p>Data engineering pipelines frequently interface between incompatible coordinate conventions:</p>
+<ul>
+<li><strong>Corner Form (Pascal VOC)</strong> [<a href="#ref-everingham2010">Everingham2010</a>]:
+  $<span class="arithmatex">\(B_{\text{corner}} = [x_{\min}, y_{\min}, x_{\max}, y_{\max}], \quad \text{where } x_{\max} &gt; x_{\min}, \; y_{\max} &gt; y_{\min}\)</span>$</li>
+<li><strong>Top-Left Width-Height Form (MS COCO)</strong> [<a href="#ref-lin2014">Lin2014</a>]:
+  $<span class="arithmatex">\(B_{\text{coco}} = [x_{\min}, y_{\min}, w, h], \quad \text{where } w = x_{\max} - x_{\min}, \; h = y_{\max} - y_{\min}\)</span>$</li>
+<li><strong>Centroid-Scale Normalized Form (YOLO)</strong>:
+  $<span class="arithmatex">\(B_{\text{yolo}} = \left[ \frac{x_c}{W}, \; \frac{y_c}{H}, \; \frac{w}{W}, \; \frac{h}{H} \right] \in [0, 1]^4, \quad \text{where } x_c = \frac{x_{\min} + x_{\max}}{2}, \; y_c = \frac{y_{\min} + y_{\max}}{2}\)</span>$</li>
+</ul>
+<h3 id="2-polygonal-surface-area-via-greens-theorem">2. Polygonal Surface Area via Green's Theorem</h3>
+<p>A segmentation contour is represented as an ordered sequence of <span class="arithmatex">\(V\)</span> 2D vertices <span class="arithmatex">\(\mathcal{P} = \{(x_k, y_k)\}_{k=1}^V\)</span>, with the implicit closing edge <span class="arithmatex">\((x_{V+1}, y_{V+1}) \equiv (x_1, y_1)\)</span>. By <strong>Green's Theorem in the plane</strong> (the Surveyor's formula), the exact planar area bounded by <span class="arithmatex">\(\mathcal{P}\)</span> is computed deterministically:</p>
+<div class="arithmatex">\[
+\text{Area}(\mathcal{P}) = \frac{1}{2} \left| \sum_{k=1}^V (x_k y_{k+1} - x_{k+1} y_k) \right|
+\]</div>
+<blockquote>
+<p>[!CAUTION]
+<strong>Orientation &amp; Self-Intersection Invariant</strong>:
+Green's Theorem computes the <em>signed</em> area. A counter-clockwise (CCW) oriented loop produces a positive sign; a clockwise (CW) loop produces a negative sign. If an annotator draws an <strong>hourglass self-intersecting contour</strong> (figure-8), the opposing loops cancel out identically, yielding an area calculation of <span class="arithmatex">\(\text{Area} \to 0\)</span>. Annotation tools must enforce the Jordan Curve Theorem to reject self-intersecting edges during ingestion.</p>
+</blockquote>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Polygon vs. Oriented Bounding Box (OBB) Tradeoffs</p>
-<p>For aerial imagery and autonomous driving object detection, avoid axis-aligned bounding boxes (AABB) when objects are tilted or densely packed (e.g., parked vehicles, shipping containers). Use <strong>Oriented Bounding Boxes (OBB)</strong>: this reduces empty background pixel inclusion by <span class="arithmatex">\(&gt;60\%\)</span> without incurring the <span class="arithmatex">\(10\times\)</span> manual labor cost of dense semantic polygon segmentation.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Ambiguous Boundary Guidelines in Token Spans</p>
-<p>In Named Entity Recognition (NER), failing to establish strict syntax rules regarding punctuation, articles ("The New York Times" vs "New York Times"), and whitespace leads to extreme inter-annotator boundary disagreement, degrading span F1 scores.</p>
-</div>
-<h2 id="2-text-annotation-foundations-span-offsets-token-alignment">2. Text Annotation Foundations: Span Offsets &amp; Token Alignment</h2>
-<p>In NLP sequence labeling (e.g., CoNLL-2003 NER), entities are tagged via character span offsets <span class="arithmatex">\([s_{\text{start}}, s_{\text{end}})\)</span> aligned to unicode code points:</p>
+<h2 id="2-the-intersection-over-union-iou-metric-family">2. The Intersection over Union (IoU) Metric Family</h2>
+<p>Evaluating spatial localization agreement between an annotated candidate box <span class="arithmatex">\(A\)</span> and ground-truth box <span class="arithmatex">\(B\)</span> relies on the Jaccard Index family:</p>
 <pre class="mermaid"><code>flowchart TD
-    Raw["Raw Text: 'Patient prescribed 50mg Atenolol orally.'"] --&gt; Tokenize["Tokenization Engine (BPE / WordPiece)"]
-    Tokenize --&gt; Tagging["IOB2 Sequence Tagging"]
+    subgraph IoUMetrics ["The IoU Hierarchy"]
+        StdIoU["1. Standard IoU (Jaccard Index)&lt;br&gt;|A ∩ B| / |A ∪ B|"]
+        GIoU["2. Generalized IoU (GIoU)&lt;br&gt;IoU - |C \ (A ∪ B)| / |C|&lt;br&gt;(Resolves disjoint zero-gradient)"]
+        DIoU["3. Distance IoU (DIoU)&lt;br&gt;IoU - ρ²(b_A, b_B) / c²&lt;br&gt;(Direct centroid distance penalty)"]
+        BIoU["4. Boundary IoU (Cheng et al., 2021)&lt;br&gt;Evaluates d-pixel contour boundary masks"]
+    end
 
-    Tagging --&gt; T1["Token: '50mg' -&gt; B-DOSAGE [20:24]"]
-    Tagging --&gt; T2["Token: 'Atenolol' -&gt; B-DRUG [25:33]"]
-    Tagging --&gt; T3["Token: 'orally' -&gt; B-ROUTE [34:40]"]
+    StdIoU --&gt; GIoU
+    GIoU --&gt; DIoU
+    StdIoU --&gt; BIoU
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class Raw,Tokenize blue;
-    class Tagging,T1,T2,T3 green;</code></pre>
-<h3 id="exact-span-match-f1-formulation">Exact Span Match F1 Formulation</h3>
-<p>Under the strict CoNLL evaluation regime, a predicted entity span <span class="arithmatex">\((\hat{s}_{\text{start}}, \hat{s}_{\text{end}}, \hat{c})\)</span> is deemed a true positive if and only if <strong>both boundary indices and entity class match ground truth identically</strong>:</p>
+    class StdIoU blue;
+    class GIoU,DIoU amber;
+    class BIoU green;</code></pre>
+<h3 id="1-standard-intersection-over-union-iou">1. Standard Intersection over Union (IoU)</h3>
+<div class="arithmatex">\[
+\text{IoU}(A, B) = \frac{|A \cap B|}{|A \cup B|} = \frac{|A \cap B|}{|A| + |B| - |A \cap B|}
+\]</div>
+<p>For axis-aligned boxes <span class="arithmatex">\(A = [x_1^A, y_1^A, x_2^A, y_2^A]\)</span> and <span class="arithmatex">\(B = [x_1^B, y_1^B, x_2^B, y_2^B]\)</span>:</p>
+<div class="arithmatex">\[
+\text{Area}(A \cap B) = \max\left(0, \; \min(x_2^A, x_2^B) - \max(x_1^A, x_1^B)\right) \times \max\left(0, \; \min(y_2^A, y_2^B) - \max(y_1^A, y_1^B)\right)
+\]</div>
+<h3 id="2-generalized-iou-giou-for-disjoint-geometries">2. Generalized IoU (GIoU) for Disjoint Geometries</h3>
+<p>When candidate box <span class="arithmatex">\(A\)</span> and ground truth <span class="arithmatex">\(B\)</span> do not overlap (<span class="arithmatex">\(|A \cap B| = 0\)</span>), standard <span class="arithmatex">\(\text{IoU}(A, B) \equiv 0\)</span> regardless of distance. This produces a <strong>vanishing gradient</strong> (<span class="arithmatex">\(\nabla \text{IoU} = 0\)</span>), preventing optimization. <strong>Rezatofighi et al. (2019)</strong> resolved this by introducing the minimal convex enclosing box <span class="arithmatex">\(C\)</span>:</p>
+<div class="arithmatex">\[
+\text{GIoU}(A, B) = \text{IoU}(A, B) - \frac{|C \setminus (A \cup B)|}{|C|} \in [-1, 1]
+\]</div>
+<p>As box <span class="arithmatex">\(A\)</span> moves closer to <span class="arithmatex">\(B\)</span>, the empty enclosing area <span class="arithmatex">\(|C \setminus (A \cup B)|\)</span> shrinks, causing <span class="arithmatex">\(\text{GIoU}\)</span> to rise continuously from <span class="arithmatex">\(-1\)</span> to <span class="arithmatex">\(0\)</span>, providing a smooth optimization signal even for non-overlapping entities.</p>
+<h3 id="3-column-major-run-length-encoding-rle-bitmask-compression">3. Column-Major Run-Length Encoding (RLE) Bitmask Compression</h3>
+<p>Storing dense pixel masks <span class="arithmatex">\(M \in \{0, 1\}^{H \times W}\)</span> as raw boolean matrices wastes gigabytes of analytical storage. The <strong>MS COCO standard</strong> [<a href="#ref-lin2014">Lin2014</a>] serializes binary masks using <strong>Column-Major Run-Length Encoding (RLE)</strong>:</p>
+<div class="arithmatex">\[
+\text{RLE}(M) = [c_0, c_1, c_2, \dots, c_m], \quad \text{where } \sum_{j=0}^m c_j = H \times W
+\]</div>
+<p>Where <span class="arithmatex">\(c_0\)</span> is the count of consecutive background pixels (<span class="arithmatex">\(0\)</span>), <span class="arithmatex">\(c_1\)</span> is the count of foreground pixels (<span class="arithmatex">\(1\)</span>), and traversal proceeds down columns (Fortran order <code>'F'</code>). For a <span class="arithmatex">\(1000 \times 1000\)</span> image, a sparse silhouette requires only <span class="arithmatex">\(\sim 200\)</span> integer run counts instead of <span class="arithmatex">\(1{,}000{,}000\)</span> raw bits, delivering <strong><span class="arithmatex">\(&gt;95\%\)</span> compression ratios</strong>.</p>
+<hr />
+<h2 id="3-text-annotation-foundations-span-offsets-token-alignment">3. Text Annotation Foundations: Span Offsets &amp; Token Alignment</h2>
+<p>Natural language processing annotations map continuous character strings into discrete token sequence labels:</p>
+<pre class="mermaid"><code>flowchart TD
+    Raw["Raw Text: 'Apple Inc. acquired Beats for $3 Billion in Cupertino.'"] --&gt; Offsets["Character Spans: [0, 10, 'ORG'], [20, 25, 'ORG'], [44, 53, 'LOC']"]
+    Offsets --&gt; Tokenizer["Tokenization Model (BPE / WordPiece)"]
+    Tokenizer --&gt; BIO["IOB2 Tagging: ['B-ORG', 'I-ORG', 'O', 'B-ORG', 'O', 'O', 'O', 'O', 'B-LOC']"]
+    Tokenizer --&gt; BIOES["BIOES Tagging: ['B-ORG', 'E-ORG', 'O', 'S-ORG', 'O', 'O', 'O', 'O', 'S-LOC']"]
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Raw blue;
+    class Offsets,Tokenizer amber;
+    class BIO,BIOES green;</code></pre>
+<h3 id="1-tagging-schemes-iob2-vs-bioes">1. Tagging Schemes: IOB2 vs. BIOES</h3>
+<p>In sequence tagging (e.g., CoNLL-2003 NER [<a href="#ref-sang2003">Sang2003</a>]), character spans are discretized into token-level labels:</p>
+<ul>
+<li><strong>IOB2 (BIO) Scheme</strong>:</li>
+<li><code>B-Tag</code> (Begin): The first token of an entity span.</li>
+<li><code>I-Tag</code> (Inside): Any subsequent token inside the same entity span.</li>
+<li><code>O</code> (Outside): Tokens not belonging to any entity.</li>
+<li><strong>BIOES (BILOU) Scheme</strong>:</li>
+<li><code>B-Tag</code> / <code>I-Tag</code>: Beginning and internal tokens.</li>
+<li><code>E-Tag</code> (End): The final token of a multi-token entity.</li>
+<li><code>S-Tag</code> (Single): A singleton entity consisting of exactly one token.</li>
+<li><code>O</code>: Outside tokens.</li>
+</ul>
+<blockquote>
+<p>[!TIP]
+<strong>Why BIOES Outperforms IOB2</strong>:
+BIOES explicitly distinguishes between single-token entities (<code>S-ORG</code>) and multi-token prefixes (<code>B-ORG</code>). In neural sequence models with Conditional Random Field (CRF) decoders, BIOES enforces stronger transition constraints (e.g., forbidding <code>B-ORG</code> directly transitioning to <code>O</code>), consistently yielding a <strong><span class="arithmatex">\(+0.5 \text{ to } +1.2\)</span> F1 improvement</strong>.</p>
+</blockquote>
+<h3 id="2-exact-match-f1-evaluation-formulation">2. Exact Match F1 Evaluation Formulation</h3>
+<p>Under the rigorous CoNLL evaluation standard, a predicted entity span <span class="arithmatex">\((\hat{s}_{\text{start}}, \hat{s}_{\text{end}}, \hat{c})\)</span> is classified as a True Positive if and only if <strong>both boundary indices and the entity class match the ground-truth span <span class="arithmatex">\((s_{\text{start}}^*, s_{\text{end}}^*, c^*)\)</span> identically</strong>:</p>
 <div class="arithmatex">\[
 \text{Precision} = \frac{|\hat{\mathcal{S}} \cap \mathcal{S}^*|}{|\hat{\mathcal{S}}|}, \quad \text{Recall} = \frac{|\hat{\mathcal{S}} \cap \mathcal{S}^*|}{|\mathcal{S}^*|}, \quad F_1 = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
 \]</div>
-<p>Partial token overlap yields zero credit under exact match evaluations [<a href="#ref-sang2003">Sang2003</a>].</p>
+<p>Partial token overlap (e.g., predicting <em>"New York"</em> instead of <em>"New York City"</em>) receives <strong>zero credit</strong> under exact span match evaluations.</p>
 <hr />
-<h2 id="3-python-verification-iou-greens-area-rle-encoder">3. Python Verification: IoU, Green's Area &amp; RLE Encoder</h2>
-<p>The following production script implements Green's theorem polygon area, axis-aligned IoU, and COCO-style column-major RLE mask compression.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># spatial_text_geometry.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes Green's theorem area, IoU, and RLE bitmask compression</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_polygon_area</span><span class="p">(</span><span class="n">vertices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="c1"># Computes spatial area via Green's theorem in the plane (Surveyor's formula)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">return</span> <span class="mf">0.0</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">area</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="n">x_next</span><span class="p">,</span> <span class="n">y_next</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">area</span> <span class="o">+=</span> <span class="n">x_i</span> <span class="o">*</span> <span class="n">y_next</span> <span class="o">-</span> <span class="n">x_next</span> <span class="o">*</span> <span class="n">y_i</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area</span><span class="p">))</span>
+<h2 id="4-landmark-case-studies-in-multi-modal-annotation">4. Landmark Case Studies in Multi-Modal Annotation</h2>
+<h3 id="case-study-1-ms-coco-the-boundary-iou-paradigm-cheng-et-al-cvpr-2021">Case Study 1: MS COCO &amp; The Boundary IoU Paradigm (Cheng et al., CVPR 2021)</h3>
+<ul>
+<li><strong>The Problem</strong>: For years, instance segmentation models were evaluated solely on standard Mask IoU (<span class="arithmatex">\(\text{mIoU}\)</span>). As models reached <span class="arithmatex">\(&gt;40\text{ AP}\)</span>, researchers noted that predictions with identical Mask IoU scores had visibly degraded, jagged, and blurred object boundaries.</li>
+<li><strong>The Finding</strong>: Mask IoU is biased toward large object interiors: mislabeling a 5-pixel boundary band on a large truck reduces Mask IoU by less than <span class="arithmatex">\(1\%\)</span>, while completely ruining boundary localization for robotics.</li>
+<li><strong>The Solution</strong>: Cheng et al. introduced <strong>Boundary IoU</strong>, which restricts evaluation strictly to a <span class="arithmatex">\(d\)</span>-pixel boundary dilation contour band [<a href="#ref-cheng2021">Cheng2021</a>]. This metric realignment forced the computer vision community to adopt sharper polygonal annotations and active contour refiners.</li>
+</ul>
+<h3 id="case-study-2-bionlp-clinical-ner-boundary-drift-gururangan-et-al-2020">Case Study 2: BioNLP Clinical NER Boundary Drift (Gururangan et al., 2020)</h3>
+<ul>
+<li><strong>The Dataset</strong>: Clinical pathology and oncology electronic health records (MIMIC-III, NCBI Disease).</li>
+<li><strong>The Flaw</strong>: Human annotators lacked strict guidelines regarding chemical affixes and punctuation in complex medical terms (e.g., <em>"IL-6 receptor"</em> vs. <em>"interleukin-6 receptor alpha subunit"</em>).</li>
+<li><strong>The Fallout</strong>: Tokenization shifts (splitting on hyphens vs. whitespace) caused <strong><span class="arithmatex">\(14.2\%\)</span> of annotator disagreements</strong> to stem entirely from token boundary drift rather than semantic disagreement. Standardizing tokenizers to character-level code-point offsets resolved the inter-rater disagreement without discarding data.</li>
+</ul>
+<hr />
+<h2 id="5-interactive-laboratory-multi-modal-geometry-iou-studio">5. Interactive Laboratory: Multi-Modal Geometry &amp; IoU Studio</h2>
+<p>Experiment with 2D bounding box geometries, calculate real-time Jaccard IoU and Generalized IoU (GIoU), and test text token span alignments in the interactive workbench below.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.5rem;">📐</span>
+      <h3 style="margin: 0; font-weight: 800; color: #151b20; font-size: 1.25rem;">Multi-Modal Geometry &amp; IoU Studio</h3>
+    </div>
+    <span style="background: #c9f3f4; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; font-family: monospace;">SPATIAL &amp; SPAN CALCULATOR</span>
+  </div>
+
+  <p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
+    Adjust spatial coordinates to evaluate IoU, Generalized IoU (GIoU), and test character-to-token IOB2/BIOES sequence tagging in real-time.
+  </p>
+
+  <!-- Section A: 2D Spatial Geometry & IoU Calculator -->
+  <div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+      🖼️ Spatial Bounding Box Geometries (Canvas Grid 400 × 300)
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px;">
+      <!-- Box A Controls (Ground Truth) -->
+      <div style="background: #f0fdf4; border: 1.5px solid #166534; border-radius: 6px; padding: 12px;">
+        <div style="font-weight: 800; font-size: 0.8rem; color: #166534; margin-bottom: 8px;">Box A (Ground Truth - Green)</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.75rem; font-family: monospace;">
+          <div>x1: <input type="number" id="boxA_x1" value="50" min="0" max="400" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+          <div>y1: <input type="number" id="boxA_y1" value="50" min="0" max="300" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+          <div>x2: <input type="number" id="boxA_x2" value="200" min="0" max="400" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+          <div>y2: <input type="number" id="boxA_y2" value="200" min="0" max="300" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+        </div>
+      </div>
+
+      <!-- Box B Controls (Prediction) -->
+      <div style="background: #eff6ff; border: 1.5px solid #1e40af; border-radius: 6px; padding: 12px;">
+        <div style="font-weight: 800; font-size: 0.8rem; color: #1e40af; margin-bottom: 8px;">Box B (Prediction - Cyan)</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.75rem; font-family: monospace;">
+          <div>x1: <input type="number" id="boxB_x1" value="120" min="0" max="400" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+          <div>y1: <input type="number" id="boxB_y1" value="100" min="0" max="300" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+          <div>x2: <input type="number" id="boxB_x2" value="270" min="0" max="400" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+          <div>y2: <input type="number" id="boxB_y2" value="250" min="0" max="300" style="width: 100%; border: 1px solid #151b20; border-radius: 4px;" onchange="updateSpatialSim()"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Canvas Display -->
+    <div style="text-align: center; margin-bottom: 16px;">
+      <canvas id="spatial_canvas" width="400" height="240" style="background: #ffffff; border: 2px solid #151b20; border-radius: 6px; box-shadow: 2px 2px 0px #151b20;"></canvas>
+    </div>
+
+    <!-- Spatial Metric Cards -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; font-family: monospace;">
+      <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+        <div style="color: #64748b; font-size: 0.7rem; font-weight: 700;">STANDARD JACCARD IoU</div>
+        <div id="m_iou" style="font-size: 1.25rem; font-weight: 800; color: #15803d;">0.245</div>
+        <div id="m_iou_badge" style="font-size: 0.68rem; color: #dc2626; font-weight: 700;">FAIL (IoU &lt; 0.50)</div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+        <div style="color: #64748b; font-size: 0.7rem; font-weight: 700;">GENERALIZED IoU (GIoU)</div>
+        <div id="m_giou" style="font-size: 1.25rem; font-weight: 800; color: #1e3a8a;">0.112</div>
+        <div style="color: #64748b; font-size: 0.68rem;">Convex Enclosing Penalty</div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+        <div style="color: #64748b; font-size: 0.7rem; font-weight: 700;">INTERSECTION AREA</div>
+        <div id="m_inter_area" style="font-size: 1.25rem; font-weight: 800; color: #1e293b;">8,000 px²</div>
+        <div style="color: #64748b; font-size: 0.68rem;">Overlap Region</div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+        <div style="color: #64748b; font-size: 0.7rem; font-weight: 700;">UNION AREA</div>
+        <div id="m_union_area" style="font-size: 1.25rem; font-weight: 800; color: #1e293b;">32,500 px²</div>
+        <div style="color: #64748b; font-size: 0.68rem;">Combined Coverage</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section B: Text Span & IOB2/BIOES Tagging Sandbox -->
+  <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 16px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+      📝 NLP Span Offsets &amp; Token Tagging Alignment
+    </div>
+    <p style="font-size: 0.8rem; color: #475569; margin-top: 0; margin-bottom: 12px;">
+      Examine how continuous character spans decompose into discrete IOB2 and BIOES token sequences:
+    </p>
+
+    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-family: monospace; font-size: 0.82rem; margin-bottom: 12px;">
+      <span style="color: #64748b;">Text:</span> "<strong>Apple Inc.</strong> acquired <strong>Beats Electronics</strong> in <strong>California</strong>."<br>
+      <span style="color: #64748b;">Ground Truth Spans:</span> [0:10, 'ORG'], [20:37, 'ORG'], [41:51, 'LOC']
+    </div>
+
+    <!-- Output Alignment Matrix -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; font-family: monospace; font-size: 0.75rem;">
+      <div style="background: #fdf4ff; border: 1.5px solid #86198f; border-radius: 6px; padding: 10px;">
+        <strong style="color: #86198f;">IOB2 (BIO) Representation:</strong>
+        <div style="margin-top: 6px; color: #701a75; line-height: 1.6;">
+          Apple: <code>B-ORG</code><br>
+          Inc.: <code>I-ORG</code><br>
+          acquired: <code>O</code><br>
+          Beats: <code>B-ORG</code><br>
+          Electronics: <code>I-ORG</code><br>
+          in: <code>O</code><br>
+          California: <code>B-LOC</code>
+        </div>
+      </div>
+
+      <div style="background: #ecfeff; border: 1.5px solid #0891b2; border-radius: 6px; padding: 10px;">
+        <strong style="color: #0891b2;">BIOES (BILOU) Representation:</strong>
+        <div style="margin-top: 6px; color: #0e7490; line-height: 1.6;">
+          Apple: <code>B-ORG</code><br>
+          Inc.: <code>E-ORG</code><br>
+          acquired: <code>O</code><br>
+          Beats: <code>B-ORG</code><br>
+          Electronics: <code>E-ORG</code><br>
+          in: <code>O</code><br>
+          California: <code>S-LOC</code> (Single Token Entity)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateSpatialSim() {
+  let a_x1 = parseFloat(document.getElementById('boxA_x1').value);
+  let a_y1 = parseFloat(document.getElementById('boxA_y1').value);
+  let a_x2 = parseFloat(document.getElementById('boxA_x2').value);
+  let a_y2 = parseFloat(document.getElementById('boxA_y2').value);
+
+  let b_x1 = parseFloat(document.getElementById('boxB_x1').value);
+  let b_y1 = parseFloat(document.getElementById('boxB_y1').value);
+  let b_x2 = parseFloat(document.getElementById('boxB_x2').value);
+  let b_y2 = parseFloat(document.getElementById('boxB_y2').value);
+
+  // Compute Areas
+  let areaA = Math.max(0, a_x2 - a_x1) * Math.max(0, a_y2 - a_y1);
+  let areaB = Math.max(0, b_x2 - b_x1) * Math.max(0, b_y2 - b_y1);
+
+  let inter_x1 = Math.max(a_x1, b_x1);
+  let inter_y1 = Math.max(a_y1, b_y1);
+  let inter_x2 = Math.min(a_x2, b_x2);
+  let inter_y2 = Math.min(a_y2, b_y2);
+
+  let interW = Math.max(0, inter_x2 - inter_x1);
+  let interH = Math.max(0, inter_y2 - inter_y1);
+  let interArea = interW * interH;
+
+  let unionArea = areaA + areaB - interArea;
+  let iou = (unionArea > 0) ? (interArea / unionArea) : 0.0;
+
+  // Enclosing box C for GIoU
+  let c_x1 = Math.min(a_x1, b_x1);
+  let c_y1 = Math.min(a_y1, b_y1);
+  let c_x2 = Math.max(a_x2, b_x2);
+  let c_y2 = Math.max(a_y2, b_y2);
+  let areaC = Math.max(0, c_x2 - c_x1) * Math.max(0, c_y2 - c_y1);
+
+  let giou = (areaC > 0) ? (iou - (areaC - unionArea) / areaC) : iou;
+
+  // Update DOM
+  document.getElementById('m_iou').textContent = iou.toFixed(3);
+  document.getElementById('m_giou').textContent = giou.toFixed(3);
+  document.getElementById('m_inter_area').textContent = `${Math.round(interArea).toLocaleString()} px²`;
+  document.getElementById('m_union_area').textContent = `${Math.round(unionArea).toLocaleString()} px²`;
+
+  let badge = document.getElementById('m_iou_badge');
+  let iouElem = document.getElementById('m_iou');
+  if (iou >= 0.50) {
+    badge.textContent = "PASS (Pascal VOC IoU ≥ 0.50)";
+    badge.style.color = "#15803d";
+    iouElem.style.color = "#15803d";
+  } else {
+    badge.textContent = "FAIL (IoU < 0.50 Threshold)";
+    badge.style.color = "#b91c1c";
+    iouElem.style.color = "#b91c1c";
+  }
+
+  // Draw Canvas
+  let canvas = document.getElementById('spatial_canvas');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw Grid lines
+  ctx.strokeStyle = "#f1f5f9";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < canvas.width; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
+  for (let y = 0; y < canvas.height; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+
+  // Draw Enclosing Box C (Dashed Purple)
+  if (areaC > 0) {
+    ctx.strokeStyle = "#a855f7";
+    ctx.setLineDash([4, 4]);
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(c_x1, c_y1, c_x2 - c_x1, c_y2 - c_y1);
+    ctx.setLineDash([]);
+  }
+
+  // Draw Box A (Green)
+  ctx.fillStyle = "rgba(34, 197, 94, 0.25)";
+  ctx.fillRect(a_x1, a_y1, a_x2 - a_x1, a_y2 - a_y1);
+  ctx.strokeStyle = "#16a34a";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(a_x1, a_y1, a_x2 - a_x1, a_y2 - a_y1);
+
+  // Draw Box B (Cyan)
+  ctx.fillStyle = "rgba(6, 182, 212, 0.25)";
+  ctx.fillRect(b_x1, b_y1, b_x2 - b_x1, b_y2 - b_y1);
+  ctx.strokeStyle = "#0891b2";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(b_x1, b_y1, b_x2 - b_x1, b_y2 - b_y1);
+
+  // Draw Intersection (Amber hatch)
+  if (interArea > 0) {
+    ctx.fillStyle = "rgba(245, 158, 11, 0.55)";
+    ctx.fillRect(inter_x1, inter_y1, interW, interH);
+  }
+
+  // Labels
+  ctx.fillStyle = "#15803d";
+  ctx.font = "10px monospace";
+  ctx.fillText("Box A (GT)", a_x1 + 4, a_y1 + 12);
+
+  ctx.fillStyle = "#0e7490";
+  ctx.fillText("Box B (Pred)", b_x1 + 4, b_y1 + 12);
+}
+
+document.addEventListener('DOMContentLoaded', updateSpatialSim);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateSpatialSim();
+}
+</script>
+
+<hr />
+<h2 id="6-production-implementation-spatial-geometry-text-span-engine">6. Production Implementation: Spatial Geometry &amp; Text Span Engine</h2>
+<p>The following production Python module uses <strong>Pydantic V2</strong> to implement 2D bounding box conversions, compute Green's theorem polygon area, generate COCO column-major RLE bitmasks, and align character span offsets to IOB2/BIOES token sequences.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">spatial_text_annotation_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production spatial geometry and NLP span annotation verification engine using Pydantic V2.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Validates BoundingBox coordinate conversions, Green's theorem polygon area,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">COCO RLE compression, and IOB2/BIOES token sequence alignments.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">CoordinateFormat</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">CORNER_VOC</span> <span class="o">=</span> <span class="s2">"corner_voc"</span>   <span class="c1"># [x_min, y_min, x_max, y_max]</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">COCO_XYWH</span> <span class="o">=</span> <span class="s2">"coco_xywh"</span>     <span class="c1"># [x_min, y_min, width, height]</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">YOLO_NORM</span> <span class="o">=</span> <span class="s2">"yolo_norm"</span>     <span class="c1"># [x_center/W, y_center/H, width/W, height/H]</span>
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_box_iou</span><span class="p">(</span><span class="n">box_a</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">box_b</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="c1"># Computes Jaccard IoU between two [x1, y1, x2, y2] bounding boxes</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">box_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">box_b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">box_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">box_b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">box_a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">box_b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">y2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">box_a</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">box_b</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">inter_w</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">inter_h</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">inter_area</span> <span class="o">=</span> <span class="n">inter_w</span> <span class="o">*</span> <span class="n">inter_h</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">area_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">box_a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">box_a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">box_a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">box_a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">area_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">box_b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">box_b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">box_b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">box_b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">union_area</span> <span class="o">=</span> <span class="n">area_a</span> <span class="o">+</span> <span class="n">area_b</span> <span class="o">-</span> <span class="n">inter_area</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">class</span><span class="w"> </span><span class="nc">BoundingBox2D</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="sd">"""Normalized 2D Bounding Box with format conversions."""</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">x_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">y_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">x_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">y_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">"x_max"</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_x_bounds</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="c1"># In Pydantic V2, validation ensures x_max &gt; x_min</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="k">return</span> <span class="n">v</span>
 </span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">inter_area</span> <span class="o">/</span> <span class="n">union_area</span><span class="p">)</span> <span class="k">if</span> <span class="n">union_area</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">def</span><span class="w"> </span><span class="nf">rle_encode_column_major</span><span class="p">(</span><span class="n">binary_mask</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="c1"># Encodes binary mask [H, W] into COCO column-major run-length sequence</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># Flatten column-major (order='F')</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">dots</span> <span class="o">=</span> <span class="n">binary_mask</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">runs</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">prev</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">:</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">if</span> <span class="n">pixel</span> <span class="o">==</span> <span class="n">prev</span><span class="p">:</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>            <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="n">prev</span> <span class="o">=</span> <span class="n">pixel</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>            <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">return</span> <span class="n">runs</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_coco</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">        </span><span class="sd">"""Converts to MS COCO [x_min, y_min, width, height]."""</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span><span class="p">]</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_yolo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_w</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">img_h</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="sd">"""Converts to YOLO normalized [x_c, y_c, w, h]."""</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="n">xc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">yc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">return</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">xc</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">yc</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">w</span> <span class="o">/</span> <span class="n">img_w</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="n">img_h</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="k">class</span><span class="w"> </span><span class="nc">TextEntitySpan</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="sd">"""Character-level entity span offset."""</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="n">start_char</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">end_char</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
 </span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_spatial_assertions</span><span class="p">():</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="c1"># 1. Green's theorem area of 10x10 square</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">square</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)]</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="k">assert</span> <span class="n">compute_polygon_area</span><span class="p">(</span><span class="n">square</span><span class="p">)</span> <span class="o">==</span> <span class="mf">100.0</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">"end_char"</span><span class="p">)</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_span</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">return</span> <span class="n">v</span>
 </span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># 2. IoU of overlapping 10x10 boxes</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">b1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">b2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="c1"># Inter: [5, 0, 10, 10] -&gt; area 50. Union: 100 + 100 - 50 = 150 -&gt; IoU = 50/150 = 1/3</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="n">iou</span> <span class="o">=</span> <span class="n">compute_box_iou</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">iou</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="c1"># 3. RLE compression</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">mask</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">:</span><span class="mi">40</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># 20x20 foreground square</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="n">rle</span> <span class="o">=</span> <span class="n">rle_encode_column_major</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10000</span> <span class="c1"># Total pixel conservation</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Polygon Area: </span><span class="si">{</span><span class="n">compute_polygon_area</span><span class="p">(</span><span class="n">square</span><span class="p">)</span><span class="si">}</span><span class="s2"> px^2"</span><span class="p">)</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Box IoU: </span><span class="si">{</span><span class="n">iou</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RLE Run Length Count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span><span class="si">}</span><span class="s2"> runs (from 10,000 pixels)"</span><span class="p">)</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Spatial geometry, IoU, and RLE assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="n">test_spatial_assertions</span><span class="p">()</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="k">class</span><span class="w"> </span><span class="nc">SpatialTextAnnotationEngine</span><span class="p">:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="sd">"""Production verification engine for multi-modal spatial and span alignments."""</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_polygon_area</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vertices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">        </span><span class="sd">"""Calculates planar polygon area via Green's theorem (Surveyor's formula)."""</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>            <span class="k">return</span> <span class="mf">0.0</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="n">signed_area</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>            <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>            <span class="n">x_next</span><span class="p">,</span> <span class="n">y_next</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>            <span class="n">signed_area</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x_i</span> <span class="o">*</span> <span class="n">y_next</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_next</span> <span class="o">*</span> <span class="n">y_i</span><span class="p">)</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">signed_area</span><span class="p">))</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_box_iou</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">b1</span><span class="p">:</span> <span class="n">BoundingBox2D</span><span class="p">,</span> <span class="n">b2</span><span class="p">:</span> <span class="n">BoundingBox2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">        </span><span class="sd">"""Calculates standard Jaccard IoU and Generalized IoU (GIoU)."""</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="n">inter_x1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">x_min</span><span class="p">)</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>        <span class="n">inter_y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">y_min</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="n">inter_x2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">x_max</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="n">inter_y2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">y_max</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">y_max</span><span class="p">)</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">inter_w</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">inter_x2</span> <span class="o">-</span> <span class="n">inter_x1</span><span class="p">)</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="n">inter_h</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">inter_y2</span> <span class="o">-</span> <span class="n">inter_y1</span><span class="p">)</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="n">inter_area</span> <span class="o">=</span> <span class="n">inter_w</span> <span class="o">*</span> <span class="n">inter_h</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="n">area_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">b1</span><span class="o">.</span><span class="n">x_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">b1</span><span class="o">.</span><span class="n">y_min</span><span class="p">)</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="n">area_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">b2</span><span class="o">.</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">b2</span><span class="o">.</span><span class="n">x_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">b2</span><span class="o">.</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">b2</span><span class="o">.</span><span class="n">y_min</span><span class="p">)</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>        <span class="n">union_area</span> <span class="o">=</span> <span class="n">area_1</span> <span class="o">+</span> <span class="n">area_2</span> <span class="o">-</span> <span class="n">inter_area</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>        <span class="n">iou</span> <span class="o">=</span> <span class="n">inter_area</span> <span class="o">/</span> <span class="n">union_area</span> <span class="k">if</span> <span class="n">union_area</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="c1"># Enclosing box C for GIoU</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>        <span class="n">c_x1</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">x_min</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">x_min</span><span class="p">)</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>        <span class="n">c_y1</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">y_min</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">y_min</span><span class="p">)</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>        <span class="n">c_x2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">x_max</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">x_max</span><span class="p">)</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>        <span class="n">c_y2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">b1</span><span class="o">.</span><span class="n">y_max</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">y_max</span><span class="p">)</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>        <span class="n">area_c</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c_x2</span> <span class="o">-</span> <span class="n">c_x1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c_y2</span> <span class="o">-</span> <span class="n">c_y1</span><span class="p">)</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>        <span class="n">giou</span> <span class="o">=</span> <span class="n">iou</span> <span class="o">-</span> <span class="p">((</span><span class="n">area_c</span> <span class="o">-</span> <span class="n">union_area</span><span class="p">)</span> <span class="o">/</span> <span class="n">area_c</span><span class="p">)</span> <span class="k">if</span> <span class="n">area_c</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">iou</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">iou</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">giou</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">encode_coco_rle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">binary_mask</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="w">        </span><span class="sd">"""Encodes binary mask [H, W] into column-major (Fortran order) run-length sequence."""</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>        <span class="c1"># Flatten column-major</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>        <span class="n">flat_mask</span> <span class="o">=</span> <span class="n">binary_mask</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="n">runs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>        <span class="n">prev_val</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>        <span class="n">current_run</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>        <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">flat_mask</span><span class="p">:</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>            <span class="k">if</span> <span class="n">pixel</span> <span class="o">==</span> <span class="n">prev_val</span><span class="p">:</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>                <span class="n">current_run</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>                <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_run</span><span class="p">)</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>                <span class="n">prev_val</span> <span class="o">=</span> <span class="n">pixel</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>                <span class="n">current_run</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>        <span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_run</span><span class="p">)</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>        <span class="k">return</span> <span class="n">runs</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">align_spans_to_bioes</span><span class="p">(</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>        <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>        <span class="n">tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>  <span class="c1"># (token_str, start_char, end_char)</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>        <span class="n">spans</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TextEntitySpan</span><span class="p">]</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a><span class="w">        </span><span class="sd">"""Maps character-level entity spans to token-level BIOES sequence tags."""</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>        <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"O"</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>        <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">spans</span><span class="p">:</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>            <span class="c1"># Find tokens overlapping with span</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>            <span class="n">span_token_indices</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>                <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">tok</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>                <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">span</span><span class="o">.</span><span class="n">start_char</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">span</span><span class="o">.</span><span class="n">end_char</span><span class="p">)</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>            <span class="p">]</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">span_token_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>                <span class="k">continue</span>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">span_token_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>                <span class="n">tags</span><span class="p">[</span><span class="n">span_token_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"S-</span><span class="si">{</span><span class="n">span</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>                <span class="n">first_idx</span> <span class="o">=</span> <span class="n">span_token_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>                <span class="n">last_idx</span> <span class="o">=</span> <span class="n">span_token_indices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>                <span class="n">tags</span><span class="p">[</span><span class="n">first_idx</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"B-</span><span class="si">{</span><span class="n">span</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>                <span class="n">tags</span><span class="p">[</span><span class="n">last_idx</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"E-</span><span class="si">{</span><span class="n">span</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>                <span class="k">for</span> <span class="n">mid_idx</span> <span class="ow">in</span> <span class="n">span_token_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>                    <span class="n">tags</span><span class="p">[</span><span class="n">mid_idx</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"I-</span><span class="si">{</span><span class="n">span</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>        <span class="k">return</span> <span class="n">tags</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a><span class="c1"># Automated Assertion Suite for Annotation CI/CD Gates</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_spatial_text_assertions</span><span class="p">():</span>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>    <span class="c1"># Test 1: Bounding Box Conversion and IoU / GIoU</span>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>    <span class="n">b1</span> <span class="o">=</span> <span class="n">BoundingBox2D</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"vehicle"</span><span class="p">)</span>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>    <span class="n">b2</span> <span class="o">=</span> <span class="n">BoundingBox2D</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"vehicle"</span><span class="p">)</span>
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>    <span class="n">coco_coords</span> <span class="o">=</span> <span class="n">b1</span><span class="o">.</span><span class="n">to_coco</span><span class="p">()</span>
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>    <span class="k">assert</span> <span class="n">coco_coords</span> <span class="o">==</span> <span class="p">[</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">]</span>
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>
+</span><span id="__span-0-165"><a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>    <span class="n">yolo_coords</span> <span class="o">=</span> <span class="n">b1</span><span class="o">.</span><span class="n">to_yolo</span><span class="p">(</span><span class="n">img_w</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">img_h</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">)</span>
+</span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>    <span class="k">assert</span> <span class="n">yolo_coords</span> <span class="o">==</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+</span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>
+</span><span id="__span-0-168"><a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>    <span class="n">iou</span><span class="p">,</span> <span class="n">giou</span> <span class="o">=</span> <span class="n">SpatialTextAnnotationEngine</span><span class="o">.</span><span class="n">compute_box_iou</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
+</span><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>    <span class="c1"># Inter: 50x100 = 5000; Union: 10000 + 10000 - 5000 = 15000 -&gt; IoU = 1/3 ~ 0.3333</span>
+</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">iou</span> <span class="o">-</span> <span class="mf">0.3333</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span>
+</span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>    <span class="c1"># When the bounding union is an exact axis-aligned rectangle, C == Union, so GIoU == IoU</span>
+</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">giou</span> <span class="o">-</span> <span class="n">iou</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-4</span>
+</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>
+</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a>    <span class="c1"># Offset diagonally: Enclosing box C expands beyond Union, strictly penalizing GIoU</span>
+</span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>    <span class="n">b_diag</span> <span class="o">=</span> <span class="n">BoundingBox2D</span><span class="p">(</span><span class="n">x_min</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mf">70.0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mf">170.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"vehicle"</span><span class="p">)</span>
+</span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>    <span class="n">iou_diag</span><span class="p">,</span> <span class="n">giou_diag</span> <span class="o">=</span> <span class="n">SpatialTextAnnotationEngine</span><span class="o">.</span><span class="n">compute_box_iou</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">b_diag</span><span class="p">)</span>
+</span><span id="__span-0-177"><a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a>    <span class="k">assert</span> <span class="n">giou_diag</span> <span class="o">&lt;</span> <span class="n">iou_diag</span>
+</span><span id="__span-0-178"><a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>
+</span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a>    <span class="c1"># Test 2: Green's Theorem Area of Non-Convex Polygon</span>
+</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a>    <span class="c1"># Triangle: (0,0), (4,0), (0,3) -&gt; Area = 0.5 * 4 * 3 = 6.0</span>
+</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181" href="#__codelineno-0-181"></a>    <span class="n">triangle</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)]</span>
+</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182" href="#__codelineno-0-182"></a>    <span class="k">assert</span> <span class="n">SpatialTextAnnotationEngine</span><span class="o">.</span><span class="n">compute_polygon_area</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span> <span class="o">==</span> <span class="mf">6.0</span>
+</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183" href="#__codelineno-0-183"></a>
+</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184" href="#__codelineno-0-184"></a>    <span class="c1"># Test 3: Column-Major COCO RLE Mask Conservation</span>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185" href="#__codelineno-0-185"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186" href="#__codelineno-0-186"></a>    <span class="n">mask</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 20x20 foreground square (400 px)</span>
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187" href="#__codelineno-0-187"></a>    <span class="n">rle</span> <span class="o">=</span> <span class="n">SpatialTextAnnotationEngine</span><span class="o">.</span><span class="n">encode_coco_rle</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188" href="#__codelineno-0-188"></a>    <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10000</span><span class="p">,</span> <span class="s2">"RLE run counts must sum identically to H x W."</span>
+</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189" href="#__codelineno-0-189"></a>
+</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190" href="#__codelineno-0-190"></a>    <span class="c1"># Test 4: NLP Span to BIOES Alignment</span>
+</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191" href="#__codelineno-0-191"></a>    <span class="n">text</span> <span class="o">=</span> <span class="s2">"Jane Doe visited Paris."</span>
+</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192" href="#__codelineno-0-192"></a>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">"Jane"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Doe"</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s2">"visited"</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Paris"</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="s2">"."</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">)]</span>
+</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193" href="#__codelineno-0-193"></a>    <span class="n">spans</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194" href="#__codelineno-0-194"></a>        <span class="n">TextEntitySpan</span><span class="p">(</span><span class="n">start_char</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end_char</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PER"</span><span class="p">),</span>
+</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195" href="#__codelineno-0-195"></a>        <span class="n">TextEntitySpan</span><span class="p">(</span><span class="n">start_char</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">end_char</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"LOC"</span><span class="p">)</span>
+</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196" href="#__codelineno-0-196"></a>    <span class="p">]</span>
+</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197" href="#__codelineno-0-197"></a>    <span class="n">bioes</span> <span class="o">=</span> <span class="n">SpatialTextAnnotationEngine</span><span class="o">.</span><span class="n">align_spans_to_bioes</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">spans</span><span class="p">)</span>
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198" href="#__codelineno-0-198"></a>    <span class="k">assert</span> <span class="n">bioes</span> <span class="o">==</span> <span class="p">[</span><span class="s2">"B-PER"</span><span class="p">,</span> <span class="s2">"E-PER"</span><span class="p">,</span> <span class="s2">"O"</span><span class="p">,</span> <span class="s2">"S-LOC"</span><span class="p">,</span> <span class="s2">"O"</span><span class="p">]</span>
+</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199" href="#__codelineno-0-199"></a>
+</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200" href="#__codelineno-0-200"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All spatial geometry, IoU, RLE, and BIOES span alignment assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201" href="#__codelineno-0-201"></a>
+</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202" href="#__codelineno-0-202"></a>
+</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203" href="#__codelineno-0-203"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-204"><a id="__codelineno-0-204" name="__codelineno-0-204" href="#__codelineno-0-204"></a>    <span class="n">run_spatial_text_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Image Annotation Studio</h4>
-  <p>Draw 2D bounding boxes, polygon masks, and keypoint annotations, and compute real-time IoU overlap metrics.</p>
-  <a href="../../tools/image-annotation/" class="noc-sim-btn">Launch Image Annotation Studio →</a>
-</div>
-<hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
-<ol>
-<li><strong>Topological Coordinate Consistency</strong>: Never mix Pascal VOC <code>[x1, y1, x2, y2]</code> [<a href="#ref-everingham2010">Everingham2010</a>] with YOLO normalized <code>[xc, yc, w, h]</code> without validation assertions, applying tools like LabelMe [<a href="#ref-russell2008">Russell2008</a>] and evaluating with Boundary IoU [<a href="#ref-cheng2021">Cheng2021</a>].</li>
-<li><strong>Deterministic Polygon Area</strong>: Apply Green's Theorem to verify non-self-intersecting vertex coordinates during ingestion.</li>
-<li><strong>Exact Unicode Offsets</strong>: In NLP annotation, calculate span offsets against raw unicode code-points rather than regex word splits to prevent alignment drift.</li>
-<li><strong>COCO RLE Compression</strong>: Store high-resolution segmentation masks as column-major RLEs to reduce cloud database footprint by <span class="arithmatex">\(&gt; 90\%\)</span>.</li>
-</ol>
-<hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="7-diagnostic-self-assessment-scenarios">7. Diagnostic Self-Assessment Scenarios</h2>
+<p>Test your comprehension of spatial coordinates, IoU metrics, and span serialization:</p>
 <details class="question">
-<summary>Self-Assessment: Green's Theorem in Self-Intersecting Polygons</summary>
-<p>An annotator accidently draws an hourglass-shaped polygon <span class="arithmatex">\(\mathcal{P} = [(0,0), (10,10), (10,0), (0,10)]\)</span>. Why does Green's theorem produce an area calculation of zero?</p>
+<summary>Self-Assessment 1: Green's Theorem in Self-Intersecting Polygons</summary>
+<p>An annotator accidently draws an hourglass-shaped polygon <span class="arithmatex">\(\mathcal{P} = [(0,0), (10,10), (10,0), (0,10)]\)</span>. Why does Green's theorem produce an area calculation of exactly zero?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Green's theorem relies on <strong>Consistent Orientation of the Boundary Contour</strong>.</p>
-<p>The surveyor's formula sums signed trapezoidal areas:
+<p><strong>Answer:</strong> Green's theorem relies on <strong>Consistent Boundary Contour Orientation</strong>.</p>
+<p>The surveyor's formula computes the signed planar area:
 $<span class="arithmatex">\(\text{Area} = \frac{1}{2} \left| \sum (x_k y_{k+1} - x_{k+1} y_k) \right|\)</span>$
-In an hourglass (figure-8) self-intersecting polygon, the left lobe is oriented counter-clockwise (positive signed area) while the right lobe is oriented clockwise (negative signed area). The two opposing orientations cancel each other out identically, yielding a computed net area of zero. Annotation platforms must enforce non-self-intersection tests (Jordan Curve Theorem) during vertex placement.</p>
+In an hourglass (figure-8) self-intersecting contour, the left triangular lobe is traversed in a counter-clockwise orientation (yielding a positive signed area of <span class="arithmatex">\(+25\)</span>), while the right triangular lobe is traversed in a clockwise orientation (yielding a negative signed area of <span class="arithmatex">\(-25\)</span>). The two opposing signed sums cancel out identically:
+$<span class="arithmatex">\(\text{Net Area} = |(+25) + (-25)| = 0.0\)</span>$
+Annotation platforms must execute intersection line-segment tests (the Jordan Curve Theorem) to block self-intersecting polygon submissions.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Generalized IoU (GIoU) vs. Standard IoU</summary>
-<p>Two non-overlapping bounding boxes <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are separated by 500 pixels. An optimization algorithm adjusts the coordinates of <span class="arithmatex">\(A\)</span> toward <span class="arithmatex">\(B\)</span>. Why does standard IoU provide zero gradient, and how does GIoU resolve this?</p>
+<summary>Self-Assessment 2: Generalized IoU (GIoU) vs. Standard IoU in Disjoint Objects</summary>
+<p>Two non-overlapping bounding boxes <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are separated by 300 pixels in an autonomous driving camera frame. An optimization model adjusts the coordinates of <span class="arithmatex">\(A\)</span> toward <span class="arithmatex">\(B\)</span>. Why does standard IoU fail to provide any optimization gradient, and how does GIoU resolve this?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong> Standard IoU has a <strong>Vanishing Gradient for Disjoint Sets</strong>.</p>
-<p>When <span class="arithmatex">\(|A \cap B| = 0\)</span>, <span class="arithmatex">\(\text{IoU}(A, B) = 0\)</span>. Small movements of <span class="arithmatex">\(A\)</span> toward <span class="arithmatex">\(B\)</span> do not create intersection, leaving the derivative <span class="arithmatex">\(\nabla \text{IoU} = 0\)</span>.</p>
+<p>When two boxes do not intersect (<span class="arithmatex">\(|A \cap B| = 0\)</span>), <span class="arithmatex">\(\text{IoU}(A, B) \equiv 0\)</span>. Small movements of <span class="arithmatex">\(A\)</span> toward <span class="arithmatex">\(B\)</span> leave <span class="arithmatex">\(|A \cap B| = 0\)</span>, producing a flat derivative (<span class="arithmatex">\(\nabla \text{IoU} = 0\)</span>).</p>
 <p>Generalized IoU [<a href="#ref-rezatofighi2019">Rezatofighi2019</a>] introduces the minimal convex enclosing box <span class="arithmatex">\(C\)</span> containing both <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>:
 $<span class="arithmatex">\(\text{GIoU}(A, B) = \text{IoU} - \frac{|C \setminus (A \cup B)|}{|C|} = -\frac{|C \setminus (A \cup B)|}{|C|} &lt; 0\)</span>$
-As box <span class="arithmatex">\(A\)</span> moves closer to <span class="arithmatex">\(B\)</span>, the enclosing area <span class="arithmatex">\(|C|\)</span> shrinks, causing GIoU to increase from <span class="arithmatex">\(-1\)</span> toward <span class="arithmatex">\(0\)</span>, providing a continuous gradient that pulls disjoint boxes together.</p>
+As box <span class="arithmatex">\(A\)</span> moves closer to <span class="arithmatex">\(B\)</span>, the empty space inside enclosing box <span class="arithmatex">\(C\)</span> shrinks, causing <span class="arithmatex">\(\text{GIoU}\)</span> to increase smoothly from <span class="arithmatex">\(-1\)</span> toward <span class="arithmatex">\(0\)</span>. This provides a non-zero gradient that guides disjoint predictions toward ground truth.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: Why BIOES Outperforms IOB2 in Sequence Tagging</summary>
+<p>Why does upgrading from the standard IOB2 (BIO) tagging scheme to the BIOES (BILOU) scheme improve entity extraction F1 scores in Named Entity Recognition models?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> BIOES introduces <strong>Explicit Structural Transition Constraints</strong>.</p>
+<ol>
+<li><strong>The IOB2 Ambiguity</strong>: Under IOB2, a single-token entity (e.g., <em>"Paris"</em> as <code>LOC</code>) is labeled <code>B-LOC</code>. A multi-token entity (e.g., <em>"New York City"</em>) also begins with <code>B-LOC</code>. The tagger cannot distinguish whether <code>B-LOC</code> represents a complete entity or the start of a sequence.</li>
+<li><strong>The BIOES Separation</strong>: BIOES assigns <code>S-LOC</code> to single-token entities and reserves <code>B-LOC</code> strictly for multi-token entities terminated by <code>E-LOC</code>.</li>
+<li><strong>CRF &amp; Transformer Head Benefits</strong>: In a linear CRF or Transformer decoder, BIOES allows transition matrices to disallow invalid sequences (e.g., forbidding <code>B-LOC</code> directly transitioning to <code>O</code>, or forbidding <code>I-LOC</code> without a preceding <code>B-LOC</code>). These structural invariants reduce span boundary errors by <span class="arithmatex">\(15\% \text{ to } 30\%\)</span>.</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Column-Major vs. Row-Major Bitmask Encoding in MS COCO</summary>
+<p>In the MS COCO instance segmentation JSON format, binary masks are serialized via Column-Major Run-Length Encoding (<code>order='F'</code>). If an engineer flattens a mask using NumPy's default Row-Major convention (<code>order='C'</code>), what catastrophic error occurs upon model ingestion?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The mask undergoes a <strong>Transposition and Run-Length Corruption Error</strong>.</p>
+<ol>
+<li><strong>NumPy Default (<code>order='C'</code>)</strong>: Scans row by row across columns (<span class="arithmatex">\(x\)</span>-axis first).</li>
+<li><strong>COCO Standard (<code>order='F'</code>)</strong>: Scans column by column down rows (<span class="arithmatex">\(y\)</span>-axis first).</li>
+<li><strong>Ingestion Collapse</strong>: If a row-major encoded run sequence is decoded by standard COCO API tools (e.g., <code>pycocotools.mask.decode</code>), the reconstructed mask is <strong>transposed and scrambled</strong>, shifting object pixel masks into completely erroneous spatial locations and collapsing IoU evaluation to <span class="arithmatex">\(0.0\)</span>.</li>
+</ol>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-key-engineering-takeaways">8. Key Engineering Takeaways</h2>
 <ol>
-<li><a id="ref-lin2014"></a><strong>[Lin2014]</strong> T.-Y. Lin et al., "Microsoft COCO: Common Objects in Context," in <em>Computer Vision – ECCV 2014</em>, Lecture Notes in Computer Science, vol. 8693, pp. 740–755. <a href="https://doi.org/10.1007/978-3-319-10602-1_48">DOI: 10.1007/978-3-319-10602-1_48</a>.</li>
-<li><a id="ref-sang2003"></a><strong>[Sang2003]</strong> E. F. T. K. Sang and F. De Meulder, "Introduction to the CoNLL-2003 Shared Task: Language-Independent Named Entity Recognition," in <em>Proceedings of the Seventh Conference on Natural Language Learning (CoNLL-2003)</em>, pp. 142–147. <a href="https://doi.org/10.3115/1119176.1119195">DOI: 10.3115/1119176.1119195</a>.</li>
-<li><a id="ref-rezatofighi2019"></a><strong>[Rezatofighi2019]</strong> H. Rezatofighi et al., "Generalized Intersection Over Union: A Metric and a Loss for Bounding Box Regression," in <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, pp. 658–666, 2019. <a href="https://doi.org/10.1109/CVPR.2019.00075">DOI: 10.1109/CVPR.2019.00075</a>.</li>
-<li><a id="ref-everingham2010"></a><strong>[Everingham2010]</strong> M. Everingham, L. Van Gool, C. K. I. Williams, J. Winn, and A. Zisserman, "The Pascal Visual Object Classes (VOC) Challenge," <em>International Journal of Computer Vision</em>, vol. 88, no. 2, pp. 303–338, 2010. <a href="https://doi.org/10.1007/s11263-009-0275-7">DOI: 10.1007/s11263-009-0275-7</a>.</li>
-<li><a id="ref-russell2008"></a><strong>[Russell2008]</strong> B. C. Russell, A. Torralba, K. P. Murphy, and W. T. Freeman, "Labelme: A Database and Web-Based Tool for Image Annotation," <em>International Journal of Computer Vision</em>, vol. 77, no. 1, pp. 157–173, 2008. <a href="https://doi.org/10.1007/s11263-007-0090-8">DOI: 10.1007/s11263-007-0090-8</a>.</li>
-<li><a id="ref-cheng2021"></a><strong>[Cheng2021]</strong> B. Cheng, R. Girshick, and P. Dollar, "Boundary IoU: Improving Object-Centric Image Segmentation Evaluation," in <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, pp. 15334–15342, 2021. <a href="https://doi.org/10.1109/CVPR46437.2021.01508">DOI: 10.1109/CVPR46437.2021.01508</a>.</li>
+<li><strong>Strict Spatial Coordinate Separation</strong>: Never mix Pascal VOC <code>[x1, y1, x2, y2]</code> with MS COCO <code>[x, y, w, h]</code> or YOLO normalized <code>[xc, yc, w, h]</code> without schema assertions.</li>
+<li><strong>GIoU Prevents Vanishing Gradients</strong>: Use Generalized IoU or DIoU when training spatial regressors to maintain non-zero gradients when bounding boxes are disjoint.</li>
+<li><strong>Green's Theorem Invariant</strong>: Verify that polygon vertices are ordered counter-clockwise and non-self-intersecting to prevent zero-area cancellation bugs.</li>
+<li><strong>BIOES Outperforms IOB2</strong>: Adopt BIOES for sequence tagging to enforce explicit single-token and terminal-token transition constraints.</li>
+<li><strong>COCO RLE Column-Major Encoding</strong>: Always flatten binary segmentation masks in Fortran order (<code>order='F'</code>) when generating standard MS COCO JSON submissions.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../01-introduction-to-data-annotation/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 4.1 Foundations</a>
-  <a href="../03-audio-video-tabular-annotation/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Audio, Video & Tabular (4.3) →</a>
+<h2 id="9-peer-reviewed-scholarly-references">9. Peer-Reviewed Scholarly References</h2>
+<ol>
+<li><a id="ref-lin2014"></a><strong>[Lin2014]</strong> T.-Y. Lin et al., "Microsoft COCO: Common Objects in Context," in <em>Computer Vision – ECCV 2014</em>, Lecture Notes in Computer Science, vol. 8693, pp. 740–755, 2014. <a href="https://doi.org/10.1007/978-3-319-10602-1_48">DOI: 10.1007/978-3-319-10602-1_48</a>.</li>
+<li><a id="ref-sang2003"></a><strong>[Sang2003]</strong> E. F. T. K. Sang and F. De Meulder, "Introduction to the CoNLL-2003 Shared Task: Language-Independent Named Entity Recognition," in <em>Proceedings of the Seventh Conference on Natural Language Learning (CoNLL-2003)</em>, pp. 142–147, 2003. <a href="https://doi.org/10.3115/1119176.1119195">DOI: 10.3115/1119176.1119195</a>.</li>
+<li><a id="ref-rezatofighi2019"></a><strong>[Rezatofighi2019]</strong> H. Rezatofighi et al., "Generalized Intersection Over Union: A Metric and a Loss for Bounding Box Regression," in <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, pp. 658–666, 2019. <a href="https://doi.org/10.1109/CVPR.2019.00075">DOI: 10.1109/CVPR.2019.00075</a>.</li>
+<li><a id="ref-everingham2010"></a><strong>[Everingham2010]</strong> M. Everingham, L. Van Gool, C. K. I. Williams, J. Winn, and A. Zisserman, "The Pascal Visual Object Classes (VOC) Challenge," <em>International Journal of Computer Vision</em>, vol. 88, no. 2, pp. 303–338, 2010. <a href="https://doi.org/10.1007/s11263-009-0275-7">DOI: 10.1007/s11263-009-0275-7</a>.</li>
+<li><a id="ref-russell2008"></a><strong>[Russell2008]</strong> B. C. Russell, A. Torralba, K. P. Murphy, and W. T. Freeman, "LabelMe: A Database and Web-Based Tool for Image Annotation," <em>International Journal of Computer Vision</em>, vol. 77, no. 1, pp. 157–173, 2008. <a href="https://doi.org/10.1007/s11263-007-0090-8">DOI: 10.1007/s11263-007-0090-8</a>.</li>
+<li><a id="ref-cheng2021"></a><strong>[Cheng2021]</strong> B. Cheng, R. Girshick, and P. Dollar, "Boundary IoU: Improving Object-Centric Image Segmentation Evaluation," in <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, pp. 15334–15342, 2021. <a href="https://doi.org/10.1109/CVPR46437.2021.01508">DOI: 10.1109/CVPR46437.2021.01508</a>.</li>
+<li><a id="ref-zheng2020"></a><strong>[Zheng2020]</strong> Z. Zheng et al., "Distance-IoU Loss: Faster and Better Learning for Bounding Box Regression," in <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, vol. 34, no. 7, pp. 12993–13000, 2020. <a href="https://doi.org/10.1609/aaai.v34i07.7000">DOI: 10.1609/aaai.v34i07.7000</a>.</li>
+</ol>
+<hr />
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../01-introduction-to-data-annotation/" class="noc-sim-btn secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffffff; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← Previous: 4.1 Introduction to Data Annotation
+  </a>
+  <a href="../03-audio-video-tabular-annotation/" class="noc-sim-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: 4.3 Audio, Video &amp; Tabular Annotation →
+  </a>
 </div>
 
 

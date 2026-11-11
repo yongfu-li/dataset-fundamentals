@@ -1,0 +1,516 @@
+{
+  "duration": 604.608,
+  "slides": [
+    {
+      "slideIndex": 0,
+      "startTime": 0.0,
+      "endTime": 40.296,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 0.0,
+          "endTime": 13.152,
+          "duration": 13.152,
+          "text": "Welcome to Lesson 2.2, Kaito! Today we explore where production datasets actually originate: primary collection, secondary repurposed registries, and real-time streaming telemetry."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 13.152,
+          "endTime": 23.184,
+          "duration": 10.032,
+          "text": "Most teams just scrape secondary web data because it is cheap and fast, Nova. But then their models crash in production because of hidden distribution shifts!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 23.184,
+          "endTime": 36.432,
+          "duration": 13.248,
+          "text": "Exactly. Today we will prove mathematically how density ratio variance reduces effective sample size under covariate shift, and why streaming systems require Little's Law to prevent buffer overflows."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 36.432,
+          "endTime": 40.296,
+          "duration": 3.864,
+          "text": "Let us see the trade-offs and the formal queueing dynamics!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 1,
+      "startTime": 40.296,
+      "endTime": 85.728,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 40.296,
+          "endTime": 52.248,
+          "duration": 11.952,
+          "text": "Observe this taxonomy, Kaito. We have partitioned data sourcing into three core modalities: Primary generation, Secondary repurposing, and Real-Time streaming telemetry."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 52.248,
+          "endTime": 61.368,
+          "duration": 9.12,
+          "text": "Notice how primary data gives us pristine probability distributions because we design the sampling frame, but the costs scale linearly with every sample!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 61.368,
+          "endTime": 75.96,
+          "duration": 14.592,
+          "text": "Precisely. Secondary data drastically reduces marginal cost, but the source distribution Q of X differs from the deployment distribution P. If we don't re-weight, our models will learn observational artifacts."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 75.96,
+          "endTime": 85.728,
+          "duration": 9.768,
+          "text": "And streaming telemetry brings Poisson arrival bursts! If the arrival rate exceeds worker service capacity, the buffer explodes under Little's Law."
+        }
+      ]
+    },
+    {
+      "slideIndex": 2,
+      "startTime": 85.728,
+      "endTime": 128.568,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 85.728,
+          "endTime": 98.04,
+          "duration": 12.312,
+          "text": "When we collect primary data, Kaito, we enforce absolute experimental control. Every feature is measured by calibrated instruments on subjects sampled directly from P_target."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 98.04,
+          "endTime": 108.024,
+          "duration": 9.984,
+          "text": "Which means our empirical training loss is an unbiased estimator of true deployment risk! No covariate shift, no missing variables, no mystery."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 108.024,
+          "endTime": 122.952,
+          "duration": 14.928,
+          "text": "True, but notice the economic equation below: the total cost scales linearly with every single participant. In medical imaging or clinical registries, you can easily burn millions of dollars before gathering ten thousand records."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 122.952,
+          "endTime": 128.568,
+          "duration": 5.616,
+          "text": "Which explains why companies are so eager to cut corners and ingest secondary datasets!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 3,
+      "startTime": 128.568,
+      "endTime": 183.792,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 128.568,
+          "endTime": 137.664,
+          "duration": 9.096,
+          "text": "Here is the critical distinction, Kaito: when you ingest secondary data, you are drawing from distribution Q, not your target distribution P."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 137.664,
+          "endTime": 148.776,
+          "duration": 11.112,
+          "text": "Right! Like using insurance billing claims to train a disease diagnostic model. The billing codes reflect reimbursement policies, not clinical reality!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 148.776,
+          "endTime": 161.952,
+          "duration": 13.176,
+          "text": "Exactly. To fix this, we apply importance sampling: we calculate the density ratio w of x equals P of x divided by Q of x, and weight each secondary loss term accordingly."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 161.952,
+          "endTime": 171.048,
+          "duration": 9.096,
+          "text": "Wait, Nova, what happens if Q of x is near zero? Doesn't the weight explode to infinity and destabilize our gradient updates?"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 171.048,
+          "endTime": 183.792,
+          "duration": 12.744,
+          "text": "Indeed it does! That exact weight explosion is why Kish and Sugiyama proved that high density ratio variance destroys effective sample size. Let us see the math on the next slide."
+        }
+      ]
+    },
+    {
+      "slideIndex": 4,
+      "startTime": 183.792,
+      "endTime": 222.264,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 183.792,
+          "endTime": 191.592,
+          "duration": 7.8,
+          "text": "Look closely at this theorem, Kaito: n sub eff equals n divided by one plus the variance of w of X."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 191.592,
+          "endTime": 201.768,
+          "duration": 10.176,
+          "text": "Whoa. That means if our importance weights fluctuate widely with variance equal to 3, our 1,000 samples shrink to only 250 effective samples!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 201.768,
+          "endTime": 213.264,
+          "duration": 11.496,
+          "text": "Exactly. You think you have a huge secondary dataset with great statistical power, but mathematically, seventy-five percent of that data is vaporized by weight variance."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 213.264,
+          "endTime": 222.264,
+          "duration": 9.0,
+          "text": "And if the shift is severe with variance of 9, you lose ninety percent of your effective data! Let's test this in the simulator next."
+        }
+      ]
+    },
+    {
+      "slideIndex": 5,
+      "startTime": 222.264,
+      "endTime": 244.992,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 222.264,
+          "endTime": 230.712,
+          "duration": 8.448,
+          "text": "Time for our first live workbench, Kaito! Let us experiment with real-time covariate shift and density ratio variance."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 230.712,
+          "endTime": 244.992,
+          "duration": 14.28,
+          "text": "Awesome! I am dragging the Weight Variance slider up to 4.0... and look, our 1,000 secondary samples drop to just 200 effective samples! An eighty percent information penalty!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 6,
+      "startTime": 244.992,
+      "endTime": 268.92,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 244.992,
+          "endTime": 255.024,
+          "duration": 10.032,
+          "text": "Here is a practical engineering challenge from our curriculum, Kaito: an ingested dataset of one thousand samples with a density ratio variance of 3.0."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 255.024,
+          "endTime": 268.92,
+          "duration": 13.896,
+          "text": "Let me apply the Kish formula: n divided by 1 plus variance... 1,000 divided by 4... That gives exactly 250 samples! Let us see if our students get it right!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 7,
+      "startTime": 268.92,
+      "endTime": 303.384,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 268.92,
+          "endTime": 278.28,
+          "duration": 9.36,
+          "text": "Now we move to streaming telemetry, Kaito! Think Kafka clusters and IoT sensor brokers handling millions of packets per second."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 278.28,
+          "endTime": 286.2,
+          "duration": 7.92,
+          "text": "And unlike batch databases, the stream never ends! We don't have a fixed N, so how do we sample uniformly?"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 286.2,
+          "endTime": 296.088,
+          "duration": 9.888,
+          "text": "We use online algorithms like Vitter's reservoir sampling, or sliding temporal windows. Each event arrives according to a Poisson process with rate lambda."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 296.088,
+          "endTime": 303.384,
+          "duration": 7.296,
+          "text": "And because inter-arrival times are exponential, arrivals cluster into sudden bursts that can choke our ingest workers!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 8,
+      "startTime": 303.384,
+      "endTime": 345.672,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 303.384,
+          "endTime": 311.712,
+          "duration": 8.328,
+          "text": "This is one of the most elegant equations in computer science, Kaito: Little's Law. L equals lambda times W."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 311.712,
+          "endTime": 324.432,
+          "duration": 12.72,
+          "text": "Mean buffer depth equals arrival rate multiplied by latency! So if our pipeline takes 40 milliseconds per packet and we get 2,000 packets a second, we have an average of 80 packets sitting in memory!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 324.432,
+          "endTime": 334.32,
+          "duration": 9.888,
+          "text": "Exactly. And notice the traffic intensity ratio, rho equals lambda over mu. It must stay strictly below 1.0."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 334.32,
+          "endTime": 345.672,
+          "duration": 11.352,
+          "text": "If lambda hits mu, rho equals 1, and the denominator goes to zero! The queue length explodes to infinity! That is how streaming pipelines crash overnight."
+        }
+      ]
+    },
+    {
+      "slideIndex": 9,
+      "startTime": 345.672,
+      "endTime": 386.448,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 345.672,
+          "endTime": 356.208,
+          "duration": 10.536,
+          "text": "Review this matrix carefully, Kaito. Every architectural decision is an engineering compromise between experimental control, cost, and latency."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 356.208,
+          "endTime": 367.896,
+          "duration": 11.688,
+          "text": "Look at the cost row: primary is expensive, secondary is almost free! But look at the covariate shift row right below it: secondary shift is severe, while primary is minimal."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 367.896,
+          "endTime": 377.592,
+          "duration": 9.696,
+          "text": "Exactly. You pay for secondary data not with money at acquisition time, but with statistical variance and modeling complexity down the road."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 377.592,
+          "endTime": 386.448,
+          "duration": 8.856,
+          "text": "And streaming telemetry introduces dynamic schema evolution and real-time scrubbing requirements. A complete engineering balance!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 10,
+      "startTime": 386.448,
+      "endTime": 426.768,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 386.448,
+          "endTime": 397.656,
+          "duration": 11.208,
+          "text": "Notice how the real-time pipeline is constructed, Kaito: producers push events into a partitioned Kafka broker, and consumer workers validate schemas before writing to the Lakehouse."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 397.656,
+          "endTime": 407.664,
+          "duration": 10.008,
+          "text": "And if an incoming JSON payload has broken schema or unparsed types, it doesn't crash the entire pipeline! It diverts straight into the Dead-Letter Queue!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 407.664,
+          "endTime": 419.664,
+          "duration": 12.0,
+          "text": "Exactly. Furthermore, when traffic intensity rho exceeds 0.85, the workers send a backpressure signal back to the API gateway to throttle ingestion rate lambda."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 419.664,
+          "endTime": 426.768,
+          "duration": 7.104,
+          "text": "Keeping the queue stable under Little's Law! Let's simulate this directly in our next interactive lab."
+        }
+      ]
+    },
+    {
+      "slideIndex": 11,
+      "startTime": 426.768,
+      "endTime": 453.048,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 426.768,
+          "endTime": 434.712,
+          "duration": 7.944,
+          "text": "Let us explore queue stability live, Kaito! Watch what happens as arrival rate lambda approaches service rate mu."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 434.712,
+          "endTime": 453.048,
+          "duration": 18.336,
+          "text": "Let me push lambda up to 135 with mu at 140... Whoa! Traffic intensity hit 0.96! Latency jumped to 200 milliseconds and the buffer fill meter turned bright red! We are on the verge of total buffer overflow!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 12,
+      "startTime": 453.048,
+      "endTime": 479.064,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 453.048,
+          "endTime": 466.296,
+          "duration": 13.248,
+          "text": "Here is an operational sizing scenario from the curriculum, Kaito: lambda is 2,000 packets per second, latency W is 0.040 seconds, and the buffer holds 120 packets."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 466.296,
+          "endTime": 479.064,
+          "duration": 12.768,
+          "text": "Let's multiply arrival rate by latency: 2,000 times 0.040 gives an average occupancy L of 80 packets! Since 80 is under 120, the buffer handles steady-state traffic!"
+        }
+      ]
+    },
+    {
+      "slideIndex": 13,
+      "startTime": 479.064,
+      "endTime": 527.64,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 479.064,
+          "endTime": 492.192,
+          "duration": 13.128,
+          "text": "This cardiovascular case study demonstrates the power of hybrid data sourcing, Kaito. The researchers had 120,000 secondary EHR records, but the billing codes were hopelessly biased."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 492.192,
+          "endTime": 501.72,
+          "duration": 9.528,
+          "text": "Because sicker patients get tested more often, so the model learned test frequency rather than cardiac pathology! A classic secondary data trap."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 501.72,
+          "endTime": 515.544,
+          "duration": 13.824,
+          "text": "Right. So instead of spending millions to gather 120,000 primary patients, they recruited just 10,000 primary subjects and used importance density ratios to re-weight the secondary cohort."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 515.544,
+          "endTime": 527.64,
+          "duration": 12.096,
+          "text": "And it worked! They saved 78% on collection costs while keeping 92% of the statistical power! That is how elite ML engineers bridge theory and budget."
+        }
+      ]
+    },
+    {
+      "slideIndex": 14,
+      "startTime": 527.64,
+      "endTime": 567.576,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 527.64,
+          "endTime": 539.592,
+          "duration": 11.952,
+          "text": "Slide 15 is our production Python implementation, Kaito. Notice how clean the discrete event loop is: arrivals and service times are drawn directly from exponential distributions."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 539.592,
+          "endTime": 550.944,
+          "duration": 11.352,
+          "text": "And the assertions at the bottom: first, verifying that traffic intensity rho is strictly less than 1.0, and second, asserting that empirical latency W matches theoretical Little's Law!"
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 550.944,
+          "endTime": 562.296,
+          "duration": 11.352,
+          "text": "Yes! In production ingestion pipelines, automated unit tests like this run in CI/CD to prevent deployment of under-provisioned worker pools before launch."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 562.296,
+          "endTime": 567.576,
+          "duration": 5.28,
+          "text": "Unit tests protecting our Little's Law stability! Love it."
+        }
+      ]
+    },
+    {
+      "slideIndex": 15,
+      "startTime": 567.576,
+      "endTime": 604.608,
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 567.576,
+          "endTime": 576.84,
+          "duration": 9.264,
+          "text": "Outstanding work today, Kaito! We have formalized the three primary sources of modern datasets and their core mathematical constraints."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 576.84,
+          "endTime": 586.992,
+          "duration": 10.152,
+          "text": "From density ratio re-weighting under covariate shift, to Little's Law queue stability and dead-letter queues in streaming pipelines! A complete masterclass."
+        },
+        {
+          "speaker": "Dr. Nova",
+          "startTime": 586.992,
+          "endTime": 597.624,
+          "duration": 10.632,
+          "text": "In Lesson 2.3, we take these strategies and build active instruments: psychometric survey design, automated web scraping bots, and API pagination."
+        },
+        {
+          "speaker": "Kaito",
+          "startTime": 597.624,
+          "endTime": 604.608,
+          "duration": 6.984,
+          "text": "I cannot wait to start scraping and designing questionnaires. See you all in Lesson 2.3!"
+        }
+      ]
+    }
+  ]
+}
