@@ -1874,7 +1874,7 @@
     let selectedNovaVoice = null;
     let selectedKaitoVoice = null;
 
-    const curriculum = {};
+    var curriculum = window.curriculum || {};
     const loadedChapters = new Set();
 
     if (window.CURRICULUM_CH1) {
@@ -3295,15 +3295,6 @@
        Traveling Adaptive Virtual Speakers Engine
        ======================================================== */
     let currentSpeakerDock = 'main';
-      // Clear any temporary interactive banners from previous slide
-      const oldSimBanner = document.getElementById('simExplorationBanner');
-      if (oldSimBanner) oldSimBanner.remove();
-      const oldQuizBanner = document.getElementById('checkpointPromptBanner');
-      if (oldQuizBanner) oldQuizBanner.remove();
-      const oldCompBanner = document.getElementById('checkpointCompleteBanner');
-      if (oldCompBanner) oldCompBanner.remove();
-      isWaitingForExploration = false;
-      isWaitingForQuiz = false;
 
     function moveSpeakerToDock(targetKey, smoothScroll = false) {
       const arena = document.getElementById('avatarArena');
