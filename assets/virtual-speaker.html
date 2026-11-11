@@ -1094,8 +1094,9 @@
     </div> <!-- Closes slideCard -->
 
 
-    <!-- Hidden HTML5 Audio Element for Deterministic Timeline Sync -->
+    <!-- Hidden HTML5 Audio Elements for Deterministic Timeline Sync & Interactive Exploration -->
     <audio id="neuralAudio" preload="auto"></audio>
+    <audio id="interactiveAudio" preload="auto"></audio>
 
     <!-- 1. Capeur Formative 'Pause and Guess' Active Recall Card -->
     <div id="pauseAndGuessCard"
@@ -1398,6 +1399,8 @@
     let currentTiming = null;
     let isNeuralAudioActive = false;
     let neuralAudio = null;
+    let interactiveAudio = null;
+    let interactiveTimer = null;
     let inFreeMode = false;
     let isAskingPauseGuess = false;
     let hasAnsweredPauseGuess = false;
@@ -3059,7 +3062,7 @@
       }
 
       if (typeof speakFeedback === 'function') {
-        speakFeedback(verbalFeedback);
+        speakFeedback(verbalFeedback, isCorrect);
       }
     }
 
@@ -3223,14 +3226,12 @@
         leaveFreeMode();
       }
 
-      // If docked at simulator or checkpoint, speak the local interactive turn via WebSpeech
+      // If docked at simulator or checkpoint, speak the local interactive turn via dedicated player
       if (currentSpeakerDock === 'sim' || currentSpeakerDock === 'quiz' || isWaitingForExploration || isWaitingForQuiz) {
         if (isSpeaking) {
           stopSpeech();
         } else {
-          isSpeaking = true;
-          updatePlayButtons(true);
-          playCurrentTurn();
+          playInteractiveDockAudio(currentSpeakerDock);
         }
         return;
       }
@@ -3310,6 +3311,10 @@
       // Traveling Speaker Shift: Smoothly move the avatar stage to the designated section!
       if (turn.dock) {
         moveSpeakerToDock(turn.dock, true);
+        if (turn.dock === 'sim' || turn.dock === 'quiz') {
+          playInteractiveDockAudio(turn.dock);
+          return;
+        }
       }
 
       setSubtitles(turn.speaker, turn.text, currentTurnIndex + 1, turns.length);
@@ -3423,11 +3428,7 @@
       if (banner) banner.remove();
       isWaitingForExploration = false;
 
-      // Advance to next turn (Transition to Checkpoint)
-      currentTurnIndex++;
-      isSpeaking = true;
-      updatePlayButtons(true);
-      playCurrentTurn();
+      manualMoveSpeaker('quiz', true);
     }
 
     function pauseForCheckpointAnswer(customSpeaker, customText) {
@@ -3469,23 +3470,229 @@
       setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
     }
 
-    function speakFeedback(text) {
-      if (!('speechSynthesis' in window)) return;
-      window.speechSynthesis.cancel();
+    function playInteractiveDockAudio(dockKey) {
+      dockKey = dockKey || currentSpeakerDock || 'sim';
+      if (!interactiveAudio) {
+        interactiveAudio = document.getElementById('interactiveAudio');
+      }
+
+      // Stop previous background speech or neural audio
+      if (neuralAudio && !neuralAudio.paused) {
+        neuralAudio.pause();
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      if (interactiveTimer) {
+        clearTimeout(interactiveTimer);
+        interactiveTimer = null;
+      }
+
+      const isDuo = currentMode === 'duo';
+      let audioPath = '';
+      let defaultSpeaker = isDuo ? 'Dr. Nova & Kaito' : 'Dr. Nova';
+      let spokenText = '';
+
+      if (dockKey === 'sim') {
+        audioPath = isDuo ? './audio/ch1_p1_sim_duo.mp3' : './audio/ch1_p1_sim_solo.mp3';
+        spokenText = isDuo
+          ? "Dr. Nova, look at our empirical simulator! What happens to our risk when selection bias creeps into the training data? Watch closely, Kaito! As selection bias beta increases, empirical risk stays deceptively low, but true risk explodes. Try adjusting the sliders above to see it firsthand!"
+          : "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!";
+      } else if (dockKey === 'quiz') {
+        audioPath = isDuo ? './audio/ch1_p1_quiz_duo.mp3' : './audio/ch1_p1_quiz_solo.mp3';
+        spokenText = isDuo
+          ? "Dr. Nova, in our active checkpoint question, if a pipeline suffers from selection bias beta greater than zero, can we fix it by simply collecting 10x more data? Exactly the question every ML engineer faces, Kaito! Let's challenge our readers: select Option A or Option B above to test your architectural intuition."
+          : "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!";
+      }
+
+      setSubtitles(defaultSpeaker, spokenText, currentTurnIndex + 1, currentTurnIndex + 1);
+      isSpeaking = true;
+      updatePlayButtons(true);
+
+      const startVisualFallback = (durationMs = 9500) => {
+        if (isDuo) {
+          highlightActiveAvatar('Kaito');
+          animateTalking('Kaito', true);
+          animateTalking('Dr. Nova', false);
+          setTimeout(() => {
+            if (isSpeaking) {
+              highlightActiveAvatar('Dr. Nova');
+              animateTalking('Dr. Nova', true);
+              animateTalking('Kaito', false);
+            }
+          }, Math.min(3500, durationMs / 2));
+        } else {
+          highlightActiveAvatar('Dr. Nova');
+          animateTalking('Dr. Nova', true);
+        }
+
+        interactiveTimer = setTimeout(() => {
+          stopSpeech();
+          if (dockKey === 'sim') {
+            pauseForToolExploration();
+          } else if (dockKey === 'quiz') {
+            pauseForCheckpointAnswer();
+          }
+        }, durationMs);
+      };
+
+      if (interactiveAudio) {
+        interactiveAudio.pause();
+        interactiveAudio.src = audioPath;
+        interactiveAudio.playbackRate = engineSpeed || 1.0;
+        interactiveAudio.preservesPitch = true;
+
+        interactiveAudio.ontimeupdate = () => {
+          const t = interactiveAudio.currentTime;
+          if (isDuo) {
+            const splitTime = (dockKey === 'sim') ? 4.2 : 3.5;
+            if (t < splitTime) {
+              highlightActiveAvatar('Kaito');
+              animateTalking('Kaito', true);
+              animateTalking('Dr. Nova', false);
+            } else {
+              highlightActiveAvatar('Dr. Nova');
+              animateTalking('Dr. Nova', true);
+              animateTalking('Kaito', false);
+            }
+          } else {
+            highlightActiveAvatar('Dr. Nova');
+            animateTalking('Dr. Nova', true);
+          }
+        };
+
+        interactiveAudio.onended = () => {
+          isSpeaking = false;
+          updatePlayButtons(false);
+          animateTalking('both', false);
+          if (dockKey === 'sim') {
+            pauseForToolExploration();
+          } else if (dockKey === 'quiz') {
+            pauseForCheckpointAnswer();
+          }
+        };
+
+        interactiveAudio.onerror = (e) => {
+          console.warn(`[InteractiveAudio] Audio '${audioPath}' load error, using WebSpeech fallback:`, e);
+          playInteractiveWebSpeech(spokenText, isDuo, dockKey, startVisualFallback);
+        };
+
+        const playPromise = interactiveAudio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => {
+            console.warn("[InteractiveAudio] play() blocked or rejected:", err);
+            playInteractiveWebSpeech(spokenText, isDuo, dockKey, startVisualFallback);
+          });
+        }
+      } else {
+        playInteractiveWebSpeech(spokenText, isDuo, dockKey, startVisualFallback);
+      }
+    }
+
+    function playInteractiveWebSpeech(text, isDuo, dockKey, fallbackVisual) {
+      if (!('speechSynthesis' in window)) {
+        fallbackVisual();
+        return;
+      }
+      try {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.resume();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        const voices = window.speechSynthesis.getVoices();
+        const safeVoice = voices.find(v => v.lang.startsWith('en') && v.localService && !v.name.includes('Online')) ||
+                          voices.find(v => v.lang.startsWith('en') && !v.name.includes('Online')) ||
+                          selectedNovaVoice;
+        if (safeVoice) utterance.voice = safeVoice;
+        utterance.rate = playbackSpeed || 1.0;
+
+        utterance.onstart = () => {
+          animateTalking('Dr. Nova', true);
+        };
+        utterance.onend = () => {
+          isSpeaking = false;
+          updatePlayButtons(false);
+          animateTalking('both', false);
+          if (dockKey === 'sim') {
+            pauseForToolExploration();
+          } else if (dockKey === 'quiz') {
+            pauseForCheckpointAnswer();
+          }
+        };
+        utterance.onerror = (err) => {
+          console.warn("[WebSpeech] speak error, falling back to visual lip-sync timer:", err);
+          fallbackVisual();
+        };
+
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {
+        console.warn("[WebSpeech] speak exception:", e);
+        fallbackVisual();
+      }
+    }
+
+    function speakFeedback(text, isCorrect = true) {
+      if (!interactiveAudio) {
+        interactiveAudio = document.getElementById('interactiveAudio');
+      }
+      if (neuralAudio && !neuralAudio.paused) {
+        neuralAudio.pause();
+      }
+      if (interactiveTimer) {
+        clearTimeout(interactiveTimer);
+        interactiveTimer = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
 
       setSubtitles("Dr. Nova (Feedback)", text, currentTurnIndex + 1, currentTurnIndex + 1);
       highlightActiveAvatar("Dr. Nova");
       animateTalking("Dr. Nova", true);
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      if (selectedNovaVoice) utterance.voice = selectedNovaVoice;
-      utterance.pitch = novaPitch;
-      utterance.rate = playbackSpeed * 1.04;
+      const feedbackSrc = isCorrect ? './audio/ch1_p1_quiz_correct.mp3' : './audio/ch1_p1_quiz_incorrect.mp3';
 
-      utterance.onend = () => {
-        animateTalking("Dr. Nova", false);
+      const fallbackWebSpeech = () => {
+        if (!('speechSynthesis' in window)) {
+          setTimeout(() => animateTalking("Dr. Nova", false), 4500);
+          return;
+        }
+        try {
+          const utterance = new SpeechSynthesisUtterance(text);
+          const voices = window.speechSynthesis.getVoices();
+          const safeVoice = voices.find(v => v.lang.startsWith('en') && v.localService && !v.name.includes('Online')) ||
+                            voices.find(v => v.lang.startsWith('en') && !v.name.includes('Online')) ||
+                            selectedNovaVoice;
+          if (safeVoice) utterance.voice = safeVoice;
+          utterance.pitch = novaPitch;
+          utterance.rate = playbackSpeed * 1.04;
+          utterance.onend = () => animateTalking("Dr. Nova", false);
+          utterance.onerror = () => {
+            setTimeout(() => animateTalking("Dr. Nova", false), 4500);
+          };
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          setTimeout(() => animateTalking("Dr. Nova", false), 4500);
+        }
       };
-      window.speechSynthesis.speak(utterance);
+
+      if (interactiveAudio) {
+        interactiveAudio.pause();
+        interactiveAudio.src = feedbackSrc;
+        interactiveAudio.playbackRate = engineSpeed || 1.0;
+        interactiveAudio.onended = () => {
+          animateTalking("Dr. Nova", false);
+        };
+        interactiveAudio.onerror = () => {
+          fallbackWebSpeech();
+        };
+        const p = interactiveAudio.play();
+        if (p !== undefined) {
+          p.catch(() => fallbackWebSpeech());
+        }
+      } else {
+        fallbackWebSpeech();
+      }
     }
 
     function completeCheckpointAndAdvance() {
@@ -3534,11 +3741,19 @@
 
     function stopSpeech() {
       if (turnTimeout) clearTimeout(turnTimeout);
+      if (interactiveTimer) {
+        clearTimeout(interactiveTimer);
+        interactiveTimer = null;
+      }
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
       if (neuralAudio) {
         neuralAudio.pause();
+      }
+      const interactiveEl = document.getElementById('interactiveAudio');
+      if (interactiveEl && !interactiveEl.paused) {
+        interactiveEl.pause();
       }
       isSpeaking = false;
       updatePlayButtons(false);
@@ -3692,9 +3907,13 @@
       }
 
       if (shouldSpeak) {
-        isSpeaking = true;
-        updatePlayButtons(true);
-        playCurrentTurn();
+        if (targetKey === 'sim' || targetKey === 'quiz') {
+          playInteractiveDockAudio(targetKey);
+        } else {
+          isSpeaking = true;
+          updatePlayButtons(true);
+          playCurrentTurn();
+        }
       }
     }
 
