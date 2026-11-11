@@ -7128,20 +7128,20 @@
 
 
 <h1 id="web-data-engineering-terminal-interactive-telemetry-workbench">💻 Web Data Engineering Terminal &amp; Interactive Telemetry Workbench</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(34, 191, 215, 0.16), rgba(255, 200, 62, 0.16)); border: 2px solid #151b20; border-radius: 12px; box-shadow: 4px 4px 0px #151b20; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Unified Monograph Terminal Reference: Data Engineering &amp; Telemetry Workbench</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
+    <div style="font-size: 0.88rem; color: #151b20; margin-top: 4px;">
       Directly executes analytical workflows spanning all 13 curriculum tracks: vectorized transformations, missingness imputation, algorithmic fairness audits, $k$-anonymity de-identification, and DVC pipeline lineage graphs.
     </div>
   </div>
   <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-    <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
+    <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; color: #151b20; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none;">
       <span>Monograph Hub →</span>
     </a>
-    <a href="../../tools/" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(30, 41, 59, 0.85); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
+    <a href="../../tools/" style="display: inline-flex; align-items: center; gap: 6px; background: #22bfd7; color: #151b20; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-decoration: none;">
       <span>Data Studio Hub (21 Tools) →</span>
     </a>
   </div>
@@ -7188,7 +7188,7 @@
 
     <!-- Quick Command Launcher Toolbar -->
     <div class="noc-term-toolbar">
-      <span style="font-size:0.76rem; color:#94a3b8; font-weight:700; margin-right:0.2rem; flex-shrink:0;">⚡ Quick Runs:</span>
+      <span style="font-size:0.76rem; color:#151b20; font-weight:800; margin-right:0.2rem; flex-shrink:0;">⚡ Quick Runs:</span>
       <button class="noc-term-pill" onclick="quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12')">📊 data-sample (Normal)</button>
       <button class="noc-term-pill" onclick="quickRun('data-sample --dist lognormal --n 800 --skew 1.8')">📈 data-sample (Skewed)</button>
       <button class="noc-term-pill accent" onclick="quickRun('data-clean --input /workspace/datasets/customers.csv --impute mean --outliers iqr')">🧹 data-clean (Impute+IQR)</button>
@@ -7222,9 +7222,9 @@
   <!-- LIVE INTERACTIVE VISUALIZER WINDOW -->
   <div class="noc-viz-window" id="vizWindow">
     <div class="noc-viz-header">
-      <div style="font-weight:700; font-size:0.88rem; color:#93c5fd; display:flex; align-items:center; gap:6px;">
+      <div style="font-weight:700; font-size:0.88rem; color:#0e7490; display:flex; align-items:center; gap:6px;">
         <span>📊 Live Telemetry &amp; Dataset Visualizer</span>
-        <span id="vizActiveLabel" style="font-size:0.75rem; color:#34d399; background:rgba(16,185,129,0.15); padding:2px 8px; border-radius:4px; font-weight:600;">ACTIVE</span>
+        <span id="vizActiveLabel" style="font-size:0.75rem; color:#059669; background:rgba(16,185,129,0.15); padding:2px 8px; border-radius:4px; font-weight:600;">ACTIVE</span>
       </div>
 
       <!-- View Switcher Tabs -->
@@ -7239,14 +7239,14 @@
     <div class="noc-viz-body">
       <canvas id="nocVizCanvas" class="noc-viz-canvas" width="820" height="380"></canvas>
 
-      <!-- Live Telemetry HUD (Theme-Adaptive & High-Contrast) -->
+      <!-- Live Telemetry HUD (Bright Neo-Brutalist High-Contrast) -->
       <div class="noc-viz-hud">
-        <div><b>Active Dataset:</b> <span id="hudDataset" style="color:#38bdf8;">/workspace/datasets/customers.csv</span></div>
-        <div><b>Records (N):</b> <span id="hudRecords" style="color:#34d399;">1,000</span></div>
-        <div><b>Memory Footprint:</b> <span id="hudMemory" style="color:#c084fc;">184.2 KB (Arrow)</span></div>
-        <div><b>Quality DQI:</b> <span id="hudDqi" style="color:#38bdf8;">89.4 / 100</span></div>
-        <div><b>Fairness Metric:</b> <span id="hudFairness" style="color:#4ade80;">DI = 0.88 (Compliant)</span></div>
-        <div><b>Pipeline Lineage:</b> <span id="hudLineage" style="color:#fbbf24;">Git: e722d2b (Linked)</span></div>
+        <div><b>Active Dataset:</b> <span id="hudDataset" style="color:#0e7490; font-weight:800;">/workspace/datasets/customers.csv</span></div>
+        <div><b>Records (N):</b> <span id="hudRecords" style="color:#059669; font-weight:800;">1,000</span></div>
+        <div><b>Memory Footprint:</b> <span id="hudMemory" style="color:#7c3aed; font-weight:800;">184.2 KB (Arrow)</span></div>
+        <div><b>Quality DQI:</b> <span id="hudDqi" style="color:#0e7490; font-weight:800;">89.4 / 100</span></div>
+        <div><b>Fairness Metric:</b> <span id="hudFairness" style="color:#059669; font-weight:800;">DI = 0.88 (Compliant)</span></div>
+        <div><b>Pipeline Lineage:</b> <span id="hudLineage" style="color:#d97706; font-weight:800;">Git: e722d2b (Linked)</span></div>
       </div>
     </div>
   </div>
@@ -7664,7 +7664,7 @@ function checkPendingCodeExecution() {
         termPrint(`
 <div style="background:rgba(37,99,235,0.15); border:1px solid #3b82f6; border-radius:8px; padding:10px 14px; margin:8px 0;">
   <div style="color:#60a5fa; font-weight:bold; font-size:0.9rem;">🚀 [Terminal Code Bridge] Linked from: ${escapeHtml(payload.title || 'Curriculum')}</div>
-  <div style="color:#cbd5e1; font-size:0.8rem; margin-top:2px;">Mounted live code snippet to: <span style="color:#38bdf8; font-family:monospace;">${fullPath}</span></div>
+  <div style="color:#151b20; font-size:0.8rem; margin-top:2px;">Mounted live code snippet to: <span style="color:#0e7490; font-family:monospace;">${fullPath}</span></div>
 </div>
 `);
         // Auto-execute the python command in bash
@@ -7688,8 +7688,8 @@ function termReset() {
   if (title) title.innerText = currentPwd;
   const prompt = document.getElementById('termPrompt');
   if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
-  termPrint('<span style="color:#38bdf8; font-weight:bold;">✨ Session initialized. Virtual filesystem mounted at /workspace.</span>');
-  termPrint('<span style="color:#94a3b8;">Type <span style="color:#4ade80; font-weight:bold;">help</span> to inspect data engineering tools. Tab autocompletes commands &amp; files.</span>');
+  termPrint('<span style="color:#0e7490; font-weight:bold;">✨ Session initialized. Virtual filesystem mounted at /workspace.</span>');
+  termPrint('<span style="color:#475569;">Type <span style="color:#059669; font-weight:bold;">help</span> to inspect data engineering tools. Tab autocompletes commands &amp; files.</span>');
 
   if (!checkPendingCodeExecution()) {
     quickRun('data-sample --dist gaussian --n 1000 --mean 75 --std 12');
@@ -7793,10 +7793,10 @@ async function executeCommand(rawCmd) {
   historyIndex = cmdHistory.length;
 
   if (isPythonRepl) {
-    termPrint(`<span style="color:#64748b;">&gt;&gt;&gt;</span> <span style="color:#f8fafc; font-weight:bold;">${escapeHtml(trimmed)}</span>`);
+    termPrint(`<span style="color:#64748b;">&gt;&gt;&gt;</span> <span style="color:#151b20; font-weight:bold;">${escapeHtml(trimmed)}</span>`);
     if (trimmed === 'exit()' || trimmed === 'quit()' || trimmed === 'exit') {
       isPythonRepl = false;
-      termPrint('<span style="color:#94a3b8;">[Exited Python environment. Returned to bash.]</span>');
+      termPrint('<span style="color:#475569;">[Exited Python environment. Returned to bash.]</span>');
       const prompt = document.getElementById('termPrompt');
       if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
       return;
@@ -7805,7 +7805,7 @@ async function executeCommand(rawCmd) {
     return;
   }
 
-  termPrint(`<span style="color:#64748b;">guest@dataset-lab:${currentPwd}$</span> <span style="color:#f8fafc; font-weight:bold;">${escapeHtml(trimmed)}</span>`);
+  termPrint(`<span style="color:#64748b;">guest@dataset-lab:${currentPwd}$</span> <span style="color:#151b20; font-weight:bold;">${escapeHtml(trimmed)}</span>`);
 
   const parts = trimmed.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [];
   const cmd = parts[0];
@@ -7825,7 +7825,7 @@ async function executeCommand(rawCmd) {
       termClear();
       break;
     case 'pwd':
-      termPrint(`<span style="color:#38bdf8;">${currentPwd}</span>`);
+      termPrint(`<span style="color:#0e7490;">${currentPwd}</span>`);
       break;
     case 'cd':
       cmdCd(args[0]);
@@ -7903,16 +7903,16 @@ async function executeCommand(rawCmd) {
       await cmdGradeCapstone();
       break;
     case 'date':
-      termPrint(`<span style="color:#94a3b8;">${new Date().toUTCString()}</span>`);
+      termPrint(`<span style="color:#475569;">${new Date().toUTCString()}</span>`);
       break;
     case 'whoami':
-      termPrint('<span style="color:#4ade80;">guest</span> (Dataset Engineering Fellow • Spring 2026)');
+      termPrint('<span style="color:#059669;">guest</span> (Dataset Engineering Fellow • Spring 2026)');
       break;
     case 'env':
-      termPrint('<span style="color:#94a3b8;">SHELL=/bin/bash<br/>USER=guest<br/>DATASET_BACKEND=Polars-Arrow-v1.0<br/>VFS_ROOT=/workspace<br/>COLORTERM=truecolor<br/>TERM=xterm-256color</span>');
+      termPrint('<span style="color:#475569;">SHELL=/bin/bash<br/>USER=guest<br/>DATASET_BACKEND=Polars-Arrow-v1.0<br/>VFS_ROOT=/workspace<br/>COLORTERM=truecolor<br/>TERM=xterm-256color</span>');
       break;
     default:
-      termPrint(`bash: command not found: <span style="color:#f87171;">${escapeHtml(cmd)}</span>. Type <span style="color:#38bdf8;">help</span> for available commands.`, true);
+      termPrint(`bash: command not found: <span style="color:#dc2626;">${escapeHtml(cmd)}</span>. Type <span style="color:#0e7490;">help</span> for available commands.`, true);
   }
 }
 
@@ -7926,30 +7926,30 @@ function escapeHtml(s) {
 // ============================================================================
 function cmdHelp() {
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold; margin-bottom:6px;">🌟 Web Data Engineering Terminal &amp; Interactive Telemetry Workbench</div>
-<div style="color:#94a3b8; margin-bottom:8px;">Standard Unix utilities &amp; Curriculum CLI Data Toolchain:</div>
-<table style="width:100%; border-collapse:collapse; font-size:0.81rem; color:#cbd5e1; line-height:1.6;">
-  <tr><td style="color:#4ade80; width:180px; font-weight:bold;">data-sample</td><td>Sample distributions: <code>--dist &lt;gaussian|lognormal|poisson|uniform&gt; --n 1000</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-clean</td><td>Imputation &amp; Tukey IQR fences: <code>--input &lt;file&gt; --impute mean --outliers iqr</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-audit</td><td>5-Dimension quality &amp; PII audit: <code>--input &lt;file&gt; --pii</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-fairness</td><td>Evaluate disparate impact ratio &amp; ROC: <code>--sensitive gender</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-iaa</td><td>Inter-annotator agreement: <code>--annotators &lt;file.json&gt;</code> (Fleiss' κ)</td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-anonymize</td><td>k-Anonymity &amp; DP Laplace noise: <code>--k 5 --epsilon 0.8</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-convert</td><td>Physical columnar migration: <code>--from csv --to parquet &lt;file&gt;</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-datasheet</td><td>Generate Gebru et al. Datasheets for Datasets contract</td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">data-handoff</td><td>Bidirectional handoff with Data Studio Hub (21 Tools): <code>--import|--export|--status</code></td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">dvc &lt;dag|status|repro&gt;</td><td>Data Version Control pipeline graphs &amp; cryptographic content hashes</td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">python &lt;file.py&gt;</td><td>Execute Python 3.12 / Polars script (or type <code>python</code> for interactive REPL)</td></tr>
-  <tr><td style="color:#4ade80; font-weight:bold;">grade-capstone</td><td>Execute automated grading across all 13 curriculum tracks</td></tr>
-  <tr><td style="color:#38bdf8;">ls [-l|-la|-a] [dir]</td><td>List directory contents with permissions &amp; byte sizes</td></tr>
-  <tr><td style="color:#38bdf8;">cd [dir]</td><td>Change directory (supports <code>cd datasets</code>, <code>cd ..</code>, <code>cd ~</code>)</td></tr>
-  <tr><td style="color:#38bdf8;">cat &lt;file&gt;...</td><td>Print complete file contents</td></tr>
-  <tr><td style="color:#38bdf8;">head [-n N] &lt;file&gt;</td><td>Display first N lines of dataset (default 10)</td></tr>
-  <tr><td style="color:#38bdf8;">tail [-n N] &lt;file&gt;</td><td>Display last N lines of dataset (default 10)</td></tr>
-  <tr><td style="color:#38bdf8;">grep [-i] &lt;pat&gt; &lt;file&gt;</td><td>Search matching lines in file</td></tr>
-  <tr><td style="color:#38bdf8;">wc [-l] &lt;file&gt;</td><td>Count lines, words, and characters</td></tr>
-  <tr><td style="color:#38bdf8;">tree [dir]</td><td>Visual ASCII directory tree representation</td></tr>
-  <tr><td style="color:#38bdf8;">clear / cls</td><td>Clear screen buffer (or press Ctrl+L)</td></tr>
+<div style="color:#0e7490; font-weight:bold; margin-bottom:6px;">🌟 Web Data Engineering Terminal &amp; Interactive Telemetry Workbench</div>
+<div style="color:#475569; margin-bottom:8px;">Standard Unix utilities &amp; Curriculum CLI Data Toolchain:</div>
+<table style="width:100%; border-collapse:collapse; font-size:0.81rem; color:#151b20; line-height:1.6;">
+  <tr><td style="color:#059669; width:180px; font-weight:bold;">data-sample</td><td>Sample distributions: <code>--dist &lt;gaussian|lognormal|poisson|uniform&gt; --n 1000</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-clean</td><td>Imputation &amp; Tukey IQR fences: <code>--input &lt;file&gt; --impute mean --outliers iqr</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-audit</td><td>5-Dimension quality &amp; PII audit: <code>--input &lt;file&gt; --pii</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-fairness</td><td>Evaluate disparate impact ratio &amp; ROC: <code>--sensitive gender</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-iaa</td><td>Inter-annotator agreement: <code>--annotators &lt;file.json&gt;</code> (Fleiss' κ)</td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-anonymize</td><td>k-Anonymity &amp; DP Laplace noise: <code>--k 5 --epsilon 0.8</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-convert</td><td>Physical columnar migration: <code>--from csv --to parquet &lt;file&gt;</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-datasheet</td><td>Generate Gebru et al. Datasheets for Datasets contract</td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">data-handoff</td><td>Bidirectional handoff with Data Studio Hub (21 Tools): <code>--import|--export|--status</code></td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">dvc &lt;dag|status|repro&gt;</td><td>Data Version Control pipeline graphs &amp; cryptographic content hashes</td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">python &lt;file.py&gt;</td><td>Execute Python 3.12 / Polars script (or type <code>python</code> for interactive REPL)</td></tr>
+  <tr><td style="color:#059669; font-weight:bold;">grade-capstone</td><td>Execute automated grading across all 13 curriculum tracks</td></tr>
+  <tr><td style="color:#0e7490;">ls [-l|-la|-a] [dir]</td><td>List directory contents with permissions &amp; byte sizes</td></tr>
+  <tr><td style="color:#0e7490;">cd [dir]</td><td>Change directory (supports <code>cd datasets</code>, <code>cd ..</code>, <code>cd ~</code>)</td></tr>
+  <tr><td style="color:#0e7490;">cat &lt;file&gt;...</td><td>Print complete file contents</td></tr>
+  <tr><td style="color:#0e7490;">head [-n N] &lt;file&gt;</td><td>Display first N lines of dataset (default 10)</td></tr>
+  <tr><td style="color:#0e7490;">tail [-n N] &lt;file&gt;</td><td>Display last N lines of dataset (default 10)</td></tr>
+  <tr><td style="color:#0e7490;">grep [-i] &lt;pat&gt; &lt;file&gt;</td><td>Search matching lines in file</td></tr>
+  <tr><td style="color:#0e7490;">wc [-l] &lt;file&gt;</td><td>Count lines, words, and characters</td></tr>
+  <tr><td style="color:#0e7490;">tree [dir]</td><td>Visual ASCII directory tree representation</td></tr>
+  <tr><td style="color:#0e7490;">clear / cls</td><td>Clear screen buffer (or press Ctrl+L)</td></tr>
 </table>
 `);
 }
@@ -7985,13 +7985,13 @@ function cmdLs(args) {
     return;
   }
   if (node.type === 'file') {
-    termPrint(`<div><span style="color:#f8fafc;">${targetDir.split('/').pop()}</span></div>`);
+    termPrint(`<div><span style="color:#151b20;">${targetDir.split('/').pop()}</span></div>`);
     return;
   }
 
   const children = showAll ? ['.', '..', ...node.children] : node.children;
   if (isLong) {
-    let out = `<div style="color:#94a3b8; font-size:0.8rem; margin-bottom:4px;">total ${children.length}</div>`;
+    let out = `<div style="color:#475569; font-size:0.8rem; margin-bottom:4px;">total ${children.length}</div>`;
     children.forEach(c => {
       let isD = false;
       let size = 1024;
@@ -8033,7 +8033,7 @@ function cmdCat(args) {
     } else if (node.type === 'dir') {
       termPrint(`cat: ${file}: Is a directory`, true);
     } else {
-      termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(node.content)}</pre>`);
+      termPrint(`<pre style="margin:4px 0; color:#151b20; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(node.content)}</pre>`);
     }
   }
 }
@@ -8049,7 +8049,7 @@ function cmdHead(args) {
   const { node } = getVfsNode(file);
   if (!node || node.type !== 'file') { termPrint(`head: cannot open '${file}': No such file`, true); return; }
   const lines = node.content.split('\n').slice(0, count).join('\n');
-  termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(lines)}</pre>`);
+  termPrint(`<pre style="margin:4px 0; color:#151b20; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(lines)}</pre>`);
 }
 
 function cmdTail(args) {
@@ -8063,7 +8063,7 @@ function cmdTail(args) {
   const { node } = getVfsNode(file);
   if (!node || node.type !== 'file') { termPrint(`tail: cannot open '${file}': No such file`, true); return; }
   const lines = node.content.split('\n').slice(-count).join('\n');
-  termPrint(`<pre style="margin:4px 0; color:#cbd5e1; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(lines)}</pre>`);
+  termPrint(`<pre style="margin:4px 0; color:#151b20; font-family:monospace; font-size:0.82rem; white-space:pre-wrap;">${escapeHtml(lines)}</pre>`);
 }
 
 function cmdWc(args) {
@@ -8074,7 +8074,7 @@ function cmdWc(args) {
   const lines = node.content.split('\n').length;
   const words = node.content.trim().split(/\s+/).filter(Boolean).length;
   const bytes = new Blob([node.content]).size;
-  termPrint(`<span style="color:#cbd5e1; font-family:monospace;">${lines.toString().padStart(6)} ${words.toString().padStart(6)} ${bytes.toString().padStart(7)} ${file}</span>`);
+  termPrint(`<span style="color:#151b20; font-family:monospace;">${lines.toString().padStart(6)} ${words.toString().padStart(6)} ${bytes.toString().padStart(7)} ${file}</span>`);
 }
 
 function cmdGrep(args) {
@@ -8089,19 +8089,19 @@ function cmdGrep(args) {
   const regex = new RegExp(pat, ignoreCase ? 'i' : '');
   const matches = lines.filter(l => regex.test(l));
   if (matches.length === 0) {
-    termPrint(`<span style="color:#94a3b8;">No matching lines found for pattern: '${pat}'</span>`);
+    termPrint(`<span style="color:#475569;">No matching lines found for pattern: '${pat}'</span>`);
   } else {
     const formatted = matches.map(l => {
       const highlighted = l.replace(regex, m => `<span style="color:#f43f5e; font-weight:bold;">${escapeHtml(m)}</span>`);
       return `<div>${highlighted}</div>`;
     }).join('');
-    termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1;">${formatted}</div>`);
+    termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#151b20;">${formatted}</div>`);
   }
 }
 
 function cmdTree(dir) {
   const target = normalizePath(dir || '/workspace');
-  let output = `<span style="color:#38bdf8; font-weight:bold;">${target}</span>\n`;
+  let output = `<span style="color:#0e7490; font-weight:bold;">${target}</span>\n`;
 
   function buildTree(path, prefix = '') {
     const node = VFS[path];
@@ -8135,7 +8135,7 @@ function cmdTouch(path) {
   }
   VFS[norm] = { type: 'file', content: '' };
   if (!VFS[parent].children.includes(name)) VFS[parent].children.push(name);
-  termPrint(`<span style="color:#4ade80;">Created empty file:</span> <span style="color:#38bdf8;">${norm}</span>`);
+  termPrint(`<span style="color:#059669;">Created empty file:</span> <span style="color:#0e7490;">${norm}</span>`);
 }
 
 function cmdMkdir(dir) {
@@ -8150,7 +8150,7 @@ function cmdMkdir(dir) {
   }
   VFS[norm] = { type: 'dir', children: [] };
   if (!VFS[parent].children.includes(name)) VFS[parent].children.push(name);
-  termPrint(`<span style="color:#4ade80;">Created directory:</span> <span style="color:#38bdf8;">${norm}</span>`);
+  termPrint(`<span style="color:#059669;">Created directory:</span> <span style="color:#0e7490;">${norm}</span>`);
 }
 
 function cmdRm(args) {
@@ -8188,7 +8188,7 @@ function cmdEcho(args) {
     }
     VFS[norm] = { type: 'file', content: text + '\n' };
     if (!VFS[parent].children.includes(name)) VFS[parent].children.push(name);
-    termPrint(`<span style="color:#4ade80;">Redirected output to:</span> ${norm}`);
+    termPrint(`<span style="color:#059669;">Redirected output to:</span> ${norm}`);
   } else {
     termPrint(`<div>${escapeHtml(line.replace(/^["']|["']$/g, ''))}</div>`);
   }
@@ -8196,7 +8196,7 @@ function cmdEcho(args) {
 
 function cmdHistoryList() {
   const lines = cmdHistory.map((cmd, i) => `  <span style="color:#64748b;">${(i+1).toString().padStart(4)}</span>  ${escapeHtml(cmd)}`).join('<br/>');
-  termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1;">${lines}</div>`);
+  termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#151b20;">${lines}</div>`);
 }
 
 // ============================================================================
@@ -8256,11 +8256,11 @@ function cmdDataSample(args) {
   }
 
   termPrint(`
-<div style="color:#4ade80; font-weight:bold;">🚀 [data-sample] Generated ${n} records via ${dist.toUpperCase()} distribution:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • <b>Moments:</b> Mean = <span style="color:#38bdf8;">${m.toFixed(2)}</span>, StdDev = <span style="color:#38bdf8;">${s.toFixed(2)}</span>, Skewness = <span style="color:#f59e0b;">${skew}</span><br/>
-  • <b>Quantiles:</b> Q1 = ${q1.toFixed(2)}, Median (Q2) = <span style="color:#4ade80;">${q2.toFixed(2)}</span>, Q3 = ${q3.toFixed(2)}, IQR = ${(q3-q1).toFixed(2)}<br/>
-  • <b>Output File:</b> <span style="color:#38bdf8;">/workspace/datasets/sample.csv</span> (Vectorized Arrow In-Memory)<br/>
+<div style="color:#059669; font-weight:bold;">🚀 [data-sample] Generated ${n} records via ${dist.toUpperCase()} distribution:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • <b>Moments:</b> Mean = <span style="color:#0e7490;">${m.toFixed(2)}</span>, StdDev = <span style="color:#0e7490;">${s.toFixed(2)}</span>, Skewness = <span style="color:#f59e0b;">${skew}</span><br/>
+  • <b>Quantiles:</b> Q1 = ${q1.toFixed(2)}, Median (Q2) = <span style="color:#059669;">${q2.toFixed(2)}</span>, Q3 = ${q3.toFixed(2)}, IQR = ${(q3-q1).toFixed(2)}<br/>
+  • <b>Output File:</b> <span style="color:#0e7490;">/workspace/datasets/sample.csv</span> (Vectorized Arrow In-Memory)<br/>
   • <b>Telemetry HUD:</b> Visualizer updated with live histogram and empirical kernel density.
 </div>
 `);
@@ -8297,17 +8297,17 @@ function cmdDataClean(args) {
   const composite = ((currentDqi.acc*0.3) + (currentDqi.comp*0.25) + (currentDqi.cons*0.25) + (currentDqi.time*0.1) + (currentDqi.rel*0.1)).toFixed(1);
 
   termPrint(`
-<div style="color:#34d399; font-weight:bold;">🧹 [data-clean] Executing Automated Sanitization Pipeline:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • Target Dataset: <span style="color:#38bdf8;">${file}</span> (${rows} raw records)<br/>
-  • <b>1. Missingness Imputation:</b> ${nullCount} null cells resolved via strategy: <span style="color:#fbbf24;">${impute.toUpperCase()}</span><br/>
-  • <b>2. Outlier Fencing:</b> ${outlierCount} extreme anomalies capped via <span style="color:#fbbf24;">Tukey IQR [Q1-1.5*IQR, Q3+1.5*IQR]</span><br/>
+<div style="color:#059669; font-weight:bold;">🧹 [data-clean] Executing Automated Sanitization Pipeline:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • Target Dataset: <span style="color:#0e7490;">${file}</span> (${rows} raw records)<br/>
+  • <b>1. Missingness Imputation:</b> ${nullCount} null cells resolved via strategy: <span style="color:#d97706;">${impute.toUpperCase()}</span><br/>
+  • <b>2. Outlier Fencing:</b> ${outlierCount} extreme anomalies capped via <span style="color:#d97706;">Tukey IQR [Q1-1.5*IQR, Q3+1.5*IQR]</span><br/>
   • <b>3. Deduplication:</b> ${duplicateCount} duplicate primary keys removed<br/>
   • <b>4. Contract Validation:</b> Passed against <code>/workspace/schemas/customer_contract.json</code><br/>
   -------------------------------------------------------------<br/>
-  • Sanitized Artifact: <span style="color:#4ade80;">/workspace/datasets/cleaned.csv</span> (${cleanRows} verified rows)<br/>
-  • Parquet Output: <span style="color:#38bdf8;">/workspace/data/curated_features.parquet</span> (Snappy compressed)<br/>
-  • <span style="color:#4ade80; font-weight:bold;">Composite Quality Index (DQI): ${composite} / 100.0 (GRADE: A+)</span>
+  • Sanitized Artifact: <span style="color:#059669;">/workspace/datasets/cleaned.csv</span> (${cleanRows} verified rows)<br/>
+  • Parquet Output: <span style="color:#0e7490;">/workspace/data/curated_features.parquet</span> (Snappy compressed)<br/>
+  • <span style="color:#059669; font-weight:bold;">Composite Quality Index (DQI): ${composite} / 100.0 (GRADE: A+)</span>
 </div>
 `);
 
@@ -8332,18 +8332,18 @@ function cmdDataAudit(args) {
   • <b>GDPR Art. 9 Risk:</b> Medium (Direct identifiers require SHA-256 pseudonymization)<br/>` : '';
 
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">🔍 [data-audit] 5-Dimensional Quality Assessment Report:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • Target Asset: <span style="color:#38bdf8;">${file}</span><br/>
-  • 1. <b>Accuracy:</b> <span style="color:#4ade80;">94.0%</span> (0 implausible values detected)<br/>
+<div style="color:#0e7490; font-weight:bold;">🔍 [data-audit] 5-Dimensional Quality Assessment Report:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • Target Asset: <span style="color:#0e7490;">${file}</span><br/>
+  • 1. <b>Accuracy:</b> <span style="color:#059669;">94.0%</span> (0 implausible values detected)<br/>
   • 2. <b>Completeness:</b> <span style="color:#f59e0b;">89.0%</span> (11% nulls in secondary contact fields)<br/>
   • 3. <b>Consistency:</b> <span style="color:#f59e0b;">86.0%</span> (Mixed ISO-8601 timestamps normalized)<br/>
-  • 4. <b>Timeliness:</b> <span style="color:#4ade80;">96.0%</span> (Max record age: 14 days, below 90d SLA)<br/>
-  • 5. <b>Relevance:</b> <span style="color:#4ade80;">92.0%</span> (High mutual information with target churn)<br/>
+  • 4. <b>Timeliness:</b> <span style="color:#059669;">96.0%</span> (Max record age: 14 days, below 90d SLA)<br/>
+  • 5. <b>Relevance:</b> <span style="color:#059669;">92.0%</span> (High mutual information with target churn)<br/>
   ${piiSection}
   -------------------------------------------------------------<br/>
-  <span style="font-weight:bold; color:#4ade80;">🏆 Composite Data Quality Index (DQI): ${composite} / 100.0 (GRADE: A-)</span><br/>
-  • Status: <span style="background:rgba(16,185,129,0.2); color:#4ade80; padding:2px 6px; border-radius:4px; font-weight:bold;">PRODUCTION APPROVED</span>
+  <span style="font-weight:bold; color:#059669;">🏆 Composite Data Quality Index (DQI): ${composite} / 100.0 (GRADE: A-)</span><br/>
+  • Status: <span style="background:rgba(16,185,129,0.2); color:#059669; padding:2px 6px; border-radius:4px; font-weight:bold;">PRODUCTION APPROVED</span>
 </div>
 `);
 
@@ -8364,15 +8364,15 @@ function cmdDataFairness(args) {
 
   termPrint(`
 <div style="color:#a855f7; font-weight:bold;">⚖️ [data-fairness] Algorithmic Fairness &amp; Bias Evaluation:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • Asset Evaluated: <span style="color:#38bdf8;">${file}</span><br/>
-  • Sensitive Attribute: <span style="color:#38bdf8;">${sens}</span> (Unprivileged: Female | Privileged: Male)<br/>
-  • <b>Disparate Impact Ratio (DIR):</b> <span style="color:#4ade80; font-weight:bold;">0.884</span> (EEOC 80% Rule: Compliant: DIR &ge; 0.80)<br/>
-  • <b>Statistical Parity Difference:</b> <span style="color:#38bdf8;">-0.058</span> (Within acceptable [-0.10, +0.10] tolerance)<br/>
-  • <b>Equal Opportunity Difference:</b> <span style="color:#4ade80;">-0.024</span> (TPR gap across protected classes)<br/>
-  • <b>Average Odds Difference:</b> <span style="color:#4ade80;">-0.019</span><br/>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • Asset Evaluated: <span style="color:#0e7490;">${file}</span><br/>
+  • Sensitive Attribute: <span style="color:#0e7490;">${sens}</span> (Unprivileged: Female | Privileged: Male)<br/>
+  • <b>Disparate Impact Ratio (DIR):</b> <span style="color:#059669; font-weight:bold;">0.884</span> (EEOC 80% Rule: Compliant: DIR &ge; 0.80)<br/>
+  • <b>Statistical Parity Difference:</b> <span style="color:#0e7490;">-0.058</span> (Within acceptable [-0.10, +0.10] tolerance)<br/>
+  • <b>Equal Opportunity Difference:</b> <span style="color:#059669;">-0.024</span> (TPR gap across protected classes)<br/>
+  • <b>Average Odds Difference:</b> <span style="color:#059669;">-0.019</span><br/>
   -------------------------------------------------------------<br/>
-  <span style="color:#4ade80; font-weight:bold;">✅ Fairness Compliance Verdict: NO UNLAWFUL ADVERSE IMPACT DETECTED</span>
+  <span style="color:#059669; font-weight:bold;">✅ Fairness Compliance Verdict: NO UNLAWFUL ADVERSE IMPACT DETECTED</span>
 </div>
 `);
 
@@ -8387,12 +8387,12 @@ function cmdDataIaa(args) {
   }
 
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">🤝 [data-iaa] Inter-Annotator Agreement (IAA) Reliability Analysis:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • Input Annotations: <span style="color:#38bdf8;">${file}</span> (50 items, 3 independent raters)<br/>
-  • <b>Fleiss' Kappa (κ):</b> <span style="color:#4ade80; font-weight:bold;">0.814</span> (Landis &amp; Koch: "Almost Perfect Agreement")<br/>
-  • <b>Cohen's Pairwise Mean (κ_avg):</b> <span style="color:#4ade80;">0.826</span> (Pairwise inter-rater correlation)<br/>
-  • <b>Krippendorff's Alpha (α):</b> <span style="color:#4ade80; font-weight:bold;">0.809</span> (Reliable for high-stakes clinical decisions)<br/>
+<div style="color:#0e7490; font-weight:bold;">🤝 [data-iaa] Inter-Annotator Agreement (IAA) Reliability Analysis:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • Input Annotations: <span style="color:#0e7490;">${file}</span> (50 items, 3 independent raters)<br/>
+  • <b>Fleiss' Kappa (κ):</b> <span style="color:#059669; font-weight:bold;">0.814</span> (Landis &amp; Koch: "Almost Perfect Agreement")<br/>
+  • <b>Cohen's Pairwise Mean (κ_avg):</b> <span style="color:#059669;">0.826</span> (Pairwise inter-rater correlation)<br/>
+  • <b>Krippendorff's Alpha (α):</b> <span style="color:#059669; font-weight:bold;">0.809</span> (Reliable for high-stakes clinical decisions)<br/>
   • <b>Disputed Items:</b> Item #14 (Ambiguous tone), Item #38 (Mixed sentiment polarity)<br/>
   • Consensus Protocol: Majority voting applied; disputed items flagged for senior adjudicator.
 </div>
@@ -8412,15 +8412,15 @@ function cmdDataAnonymize(args) {
 
   termPrint(`
 <div style="color:#f59e0b; font-weight:bold;">🛡️ [data-anonymize] Privacy Engineering &amp; De-Identification Protocol:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • Source Table: <span style="color:#38bdf8;">${file}</span><br/>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • Source Table: <span style="color:#0e7490;">${file}</span><br/>
   • <b>Direct Identifiers:</b> Redacted via SHA-256 salted hash (SSN, Full Name)<br/>
   • <b>k-Anonymity (k=${k}):</b> Quasi-identifiers generalized into equivalence classes<br/>
     &nbsp;&nbsp;- Age binned into 10-year brackets (e.g. [50-59], [20-29])<br/>
     &nbsp;&nbsp;- Zip Code truncated to 3-digit prefix (e.g. 021**, 941**)<br/>
   • <b>Differential Privacy (ε=${eps}):</b> Calibrated Laplace noise injected into continuous aggregations<br/>
-  • Output: <span style="color:#38bdf8;">/workspace/datasets/anonymized_patients.parquet</span><br/>
-  • Compliance Verification: <span style="color:#4ade80; font-weight:bold;">HIPAA Safe Harbor (§164.514) &amp; GDPR Art. 25 Compatible</span>
+  • Output: <span style="color:#0e7490;">/workspace/datasets/anonymized_patients.parquet</span><br/>
+  • Compliance Verification: <span style="color:#059669; font-weight:bold;">HIPAA Safe Harbor (§164.514) &amp; GDPR Art. 25 Compatible</span>
 </div>
 `);
 
@@ -8439,13 +8439,13 @@ function cmdDataConvert(args) {
   }
 
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">📦 [data-convert] Columnar Physical Format Serialization Engine:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+<div style="color:#0e7490; font-weight:bold;">📦 [data-convert] Columnar Physical Format Serialization Engine:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
   • Ingested Table: <span style="color:#f59e0b;">${file}</span> (${fromFmt.toUpperCase()})<br/>
   • Columnar Encoding: Dictionary Encoding on strings + Snappy Block Compression<br/>
-  • Generated Target: <span style="color:#4ade80;">/workspace/data/converted_table.${toFmt}</span><br/>
-  • <b>Storage Reduction:</b> 1,024 KB &rarr; <span style="color:#4ade80; font-weight:bold;">214 KB (4.78x compression ratio)</span><br/>
-  • <b>Query Acceleration:</b> Estimated <span style="color:#38bdf8; font-weight:bold;">6.2x analytical speedup</span> via Projection Pushdown.
+  • Generated Target: <span style="color:#059669;">/workspace/data/converted_table.${toFmt}</span><br/>
+  • <b>Storage Reduction:</b> 1,024 KB &rarr; <span style="color:#059669; font-weight:bold;">214 KB (4.78x compression ratio)</span><br/>
+  • <b>Query Acceleration:</b> Estimated <span style="color:#0e7490; font-weight:bold;">6.2x analytical speedup</span> via Projection Pushdown.
 </div>
 `);
 
@@ -8459,15 +8459,15 @@ function cmdDataDatasheet(args) {
   }
 
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">📋 [data-datasheet] Generated Gebru et al. Dataset Contract:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • Target Dataset: <span style="color:#38bdf8;">${file}</span><br/>
+<div style="color:#0e7490; font-weight:bold;">📋 [data-datasheet] Generated Gebru et al. Dataset Contract:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • Target Dataset: <span style="color:#0e7490;">${file}</span><br/>
   • <b>1. Motivation:</b> Customer churn prediction with ethical algorithmic fairness guardrails<br/>
   • <b>2. Composition:</b> 1,000 synthetic records, 5 core features, zero real-world personal data<br/>
   • <b>3. Collection Process:</b> Synthetically sampled with calibrated covariance matrices<br/>
   • <b>4. Preprocessing:</b> Imputed column means, Tukey IQR outlier bounds applied<br/>
   • <b>5. Recommended Uses:</b> Training benchmark models and demographic parity audits<br/>
-  • Contract Artifact Saved: <span style="color:#4ade80;">/workspace/schemas/datasheet.md</span>
+  • Contract Artifact Saved: <span style="color:#059669;">/workspace/schemas/datasheet.md</span>
 </div>
 `);
 }
@@ -8484,11 +8484,11 @@ function cmdDataHandoff(args) {
 
   if (isImport) {
     if (handoffData && handoffData.table) {
-      termPrint(`<span style="color:#4ade80;">🔄 [data-handoff] Successfully imported active dataset from Data Studio Hub:</span>`);
-      termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#cbd5e1;">• Source: ${handoffData.source || 'interactive-tool'}<br/>• Staged to: <span style="color:#38bdf8;">/workspace/datasets/handoff.csv</span></div>`);
+      termPrint(`<span style="color:#059669;">🔄 [data-handoff] Successfully imported active dataset from Data Studio Hub:</span>`);
+      termPrint(`<div style="font-family:monospace; font-size:0.82rem; color:#151b20;">• Source: ${handoffData.source || 'interactive-tool'}<br/>• Staged to: <span style="color:#0e7490;">/workspace/datasets/handoff.csv</span></div>`);
       VFS['/workspace/datasets/handoff.csv'] = { type: 'file', content: JSON.stringify(handoffData.table) };
     } else {
-      termPrint('<span style="color:#fbbf24;">⚠️ [data-handoff] No active dataset found in sessionStorage. Launch any tool from Data Studio Hub to handoff data.</span>');
+      termPrint('<span style="color:#d97706;">⚠️ [data-handoff] No active dataset found in sessionStorage. Launch any tool from Data Studio Hub to handoff data.</span>');
     }
   } else if (isExport) {
     try {
@@ -8499,15 +8499,15 @@ function cmdDataHandoff(args) {
         table: { dataset: "/workspace/datasets/customers.csv", records: 1000 }
       };
       sessionStorage.setItem("dsetools:handoff:v1", JSON.stringify(payload));
-      termPrint('<span style="color:#4ade80;">✅ [data-handoff] Exported active terminal session to sessionStorage! Any Data Studio tool can now consume this dataset.</span>');
+      termPrint('<span style="color:#059669;">✅ [data-handoff] Exported active terminal session to sessionStorage! Any Data Studio tool can now consume this dataset.</span>');
     } catch (e) {
       termPrint('data-handoff: export failed', true);
     }
   } else {
     termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">🔄 [data-handoff] Inter-Tool Ecosystem Synchronization Status:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
-  • <b>SessionStorage Pipeline:</b> ${handoffData ? '<span style="color:#4ade80;">CONNECTED (Data Ready)</span>' : '<span style="color:#94a3b8;">IDLE</span>'}<br/>
+<div style="color:#0e7490; font-weight:bold;">🔄 [data-handoff] Inter-Tool Ecosystem Synchronization Status:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
+  • <b>SessionStorage Pipeline:</b> ${handoffData ? '<span style="color:#059669;">CONNECTED (Data Ready)</span>' : '<span style="color:#475569;">IDLE</span>'}<br/>
   • <b>Active Source:</b> ${handoffData?.source || 'None (Open a Data Studio Hub tool to bridge)'}<br/>
   • Commands: <code>data-handoff --import</code> to pull table, <code>data-handoff --export</code> to broadcast session.
 </div>
@@ -8520,35 +8520,35 @@ function cmdDvc(args) {
 
   if (sub === 'status') {
     termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">🌲 [DVC] Pipeline Integrity &amp; Checksum Audit:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+<div style="color:#0e7490; font-weight:bold;">🌲 [DVC] Pipeline Integrity &amp; Checksum Audit:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
   • Configuration: <code>/workspace/pipelines/dvc.yaml</code><br/>
-  • Stage <b>ingest</b>: <span style="color:#4ade80;">UP TO DATE</span> (hash: 3b7f1a8c9e20)<br/>
-  • Stage <b>clean</b>:  <span style="color:#4ade80;">UP TO DATE</span> (hash: 8d29c011f421)<br/>
-  • Stage <b>train</b>:  <span style="color:#4ade80;">UP TO DATE</span> (hash: e491fa33b005)<br/>
+  • Stage <b>ingest</b>: <span style="color:#059669;">UP TO DATE</span> (hash: 3b7f1a8c9e20)<br/>
+  • Stage <b>clean</b>:  <span style="color:#059669;">UP TO DATE</span> (hash: 8d29c011f421)<br/>
+  • Stage <b>train</b>:  <span style="color:#059669;">UP TO DATE</span> (hash: e491fa33b005)<br/>
   • Data Lineage: Git commit <code>e722d2b</code> linked. Zero data drift detected.
 </div>
 `);
   } else if (sub === 'repro') {
     termPrint(`
-<div style="color:#fbbf24; font-weight:bold;">🌲 [DVC] Reproducing pipeline execution DAG:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+<div style="color:#d97706; font-weight:bold;">🌲 [DVC] Reproducing pipeline execution DAG:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
   Running stage 'ingest': python scripts/ingest.py &rarr; [raw_staged.parquet]<br/>
   Running stage 'clean':  python scripts/clean.py &rarr; [curated_features.parquet]<br/>
   Running stage 'train':  python scripts/train.py &rarr; [models.joblib]<br/>
-  <span style="color:#4ade80; font-weight:bold;">Pipeline reproduced cleanly in 0.42s (Cached).</span>
+  <span style="color:#059669; font-weight:bold;">Pipeline reproduced cleanly in 0.42s (Cached).</span>
 </div>
 `);
   } else {
     // dag
     termPrint(`
-<div style="color:#38bdf8; font-weight:bold;">🌲 [DVC] Data Version Control &amp; DAG Execution Graph:</div>
-<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#cbd5e1; line-height:1.5;">
+<div style="color:#0e7490; font-weight:bold;">🌲 [DVC] Data Version Control &amp; DAG Execution Graph:</div>
+<div style="font-family:monospace; font-size:0.82rem; margin-top:4px; color:#151b20; line-height:1.5;">
   Stage: <b>ingest</b> &rarr; [raw_staged.parquet] (hash: <span style="color:#64748b;">3b7f1a...</span>)<br/>
   &nbsp;&nbsp;└── Stage: <b>clean</b> &rarr; [curated_features.parquet] (hash: <span style="color:#64748b;">8d29c0...</span>)<br/>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Stage: <b>train</b> &rarr; [models.joblib] (hash: <span style="color:#64748b;">e491fa...</span>)<br/>
   -------------------------------------------------------------<br/>
-  Lineage Integrity: <span style="color:#4ade80; font-weight:bold;">100% REPRODUCIBLE (Git commit e722d2b linked)</span><br/>
+  Lineage Integrity: <span style="color:#059669; font-weight:bold;">100% REPRODUCIBLE (Git commit e722d2b linked)</span><br/>
   Visualizer: Interactive DAG graph rendered in workbench tab.
 </div>
 `);
@@ -8560,8 +8560,8 @@ function cmdDvc(args) {
 // Comprehensive Automated Capstone Verification
 // ============================================================================
 async function cmdGradeCapstone() {
-  termPrint('<div style="color:#fbbf24; font-weight:bold;">🎓 Initiating Automated Capstone Verification Battery...</div>');
-  termPrint('<div style="color:#94a3b8; font-size:0.82rem; margin-bottom:8px;">Executing 5 algorithmic &amp; structural test suites on current workspace:</div>');
+  termPrint('<div style="color:#d97706; font-weight:bold;">🎓 Initiating Automated Capstone Verification Battery...</div>');
+  termPrint('<div style="color:#475569; font-size:0.82rem; margin-bottom:8px;">Executing 5 algorithmic &amp; structural test suites on current workspace:</div>');
 
   let passedTests = 0;
   const totalTests = 5;
@@ -8575,9 +8575,9 @@ async function cmdGradeCapstone() {
       throw new Error("Invalid schema definition");
     }
     passedTests++;
-    termPrint('<span style="color:#4ade80;">✔ [PASS]</span> <span style="color:#cbd5e1;">Test 1: JSON Schema Contract Validation</span> (<code style="color:#38bdf8;">customer_contract.json</code> validated)');
+    termPrint('<span style="color:#059669;">✔ [PASS]</span> <span style="color:#151b20;">Test 1: JSON Schema Contract Validation</span> (<code style="color:#0e7490;">customer_contract.json</code> validated)');
   } catch(e) {
-    termPrint(`<span style="color:#f87171;">✘ [FAIL]</span> <span style="color:#cbd5e1;">Test 1: Schema Contract:</span> ${escapeHtml(e.message)}`);
+    termPrint(`<span style="color:#dc2626;">✘ [FAIL]</span> <span style="color:#151b20;">Test 1: Schema Contract:</span> ${escapeHtml(e.message)}`);
   }
 
   // Test 2: Dataset Integrity & Missingness Completeness
@@ -8591,9 +8591,9 @@ async function cmdGradeCapstone() {
       throw new Error("Missing required fields (customer_id, monthly_spend)");
     }
     passedTests++;
-    termPrint(`<span style="color:#4ade80;">✔ [PASS]</span> <span style="color:#cbd5e1;">Test 2: Dataset Integrity &amp; Missingness Completeness</span> (${lines.length - 1} records parsed)`);
+    termPrint(`<span style="color:#059669;">✔ [PASS]</span> <span style="color:#151b20;">Test 2: Dataset Integrity &amp; Missingness Completeness</span> (${lines.length - 1} records parsed)`);
   } catch(e) {
-    termPrint(`<span style="color:#f87171;">✘ [FAIL]</span> <span style="color:#cbd5e1;">Test 2: Missingness Audit:</span> ${escapeHtml(e.message)}`);
+    termPrint(`<span style="color:#dc2626;">✘ [FAIL]</span> <span style="color:#151b20;">Test 2: Missingness Audit:</span> ${escapeHtml(e.message)}`);
   }
 
   // Test 3: Algorithmic Fairness & Disparate Impact Evaluation
@@ -8613,9 +8613,9 @@ async function cmdGradeCapstone() {
     const femaleRate = femaleCount ? (femaleApproved / femaleCount) : 0;
     const dir = maleRate ? (femaleRate / maleRate) : 1;
     passedTests++;
-    termPrint(`<span style="color:#4ade80;">✔ [PASS]</span> <span style="color:#cbd5e1;">Test 3: Algorithmic Fairness Audit</span> (Evaluated DIR = <b>${dir.toFixed(3)}</b>; Four-Fifths rule compliant)`);
+    termPrint(`<span style="color:#059669;">✔ [PASS]</span> <span style="color:#151b20;">Test 3: Algorithmic Fairness Audit</span> (Evaluated DIR = <b>${dir.toFixed(3)}</b>; Four-Fifths rule compliant)`);
   } catch(e) {
-    termPrint(`<span style="color:#f87171;">✘ [FAIL]</span> <span style="color:#cbd5e1;">Test 3: Fairness Audit:</span> ${escapeHtml(e.message)}`);
+    termPrint(`<span style="color:#dc2626;">✘ [FAIL]</span> <span style="color:#151b20;">Test 3: Fairness Audit:</span> ${escapeHtml(e.message)}`);
   }
 
   // Test 4: Content-Addressed Storage & Merkle Hash Lineage
@@ -8625,9 +8625,9 @@ async function cmdGradeCapstone() {
     scripts.forEach(p => { if (VFS[p]) totalBytes += VFS[p].content.length; });
     if (totalBytes < 50) throw new Error("Scripts payload truncated");
     passedTests++;
-    termPrint(`<span style="color:#4ade80;">✔ [PASS]</span> <span style="color:#cbd5e1;">Test 4: Content-Addressed Storage &amp; Merkle Lineage</span> (${totalBytes} bytes verified)`);
+    termPrint(`<span style="color:#059669;">✔ [PASS]</span> <span style="color:#151b20;">Test 4: Content-Addressed Storage &amp; Merkle Lineage</span> (${totalBytes} bytes verified)`);
   } catch(e) {
-    termPrint(`<span style="color:#f87171;">✘ [FAIL]</span> <span style="color:#cbd5e1;">Test 4: Merkle Lineage:</span> ${escapeHtml(e.message)}`);
+    termPrint(`<span style="color:#dc2626;">✘ [FAIL]</span> <span style="color:#151b20;">Test 4: Merkle Lineage:</span> ${escapeHtml(e.message)}`);
   }
 
   // Test 5: WebAssembly Python Execution Engine
@@ -8636,9 +8636,9 @@ async function cmdGradeCapstone() {
     const testRes = await py.runPythonAsync("sum([10, 20, 30, 40])");
     if (testRes !== 100) throw new Error("Kernel math mismatch");
     passedTests++;
-    termPrint('<span style="color:#4ade80;">✔ [PASS]</span> <span style="color:#cbd5e1;">Test 5: WebAssembly Python 3.12 Runtime Verification</span> (WASM kernel functional)');
+    termPrint('<span style="color:#059669;">✔ [PASS]</span> <span style="color:#151b20;">Test 5: WebAssembly Python 3.12 Runtime Verification</span> (WASM kernel functional)');
   } catch(e) {
-    termPrint('<span style="color:#fbbf24;">⚠ [SKIP]</span> <span style="color:#cbd5e1;">Test 5: WASM Kernel Offline / Network-Gated</span> (Fallback verification applied)');
+    termPrint('<span style="color:#d97706;">⚠ [SKIP]</span> <span style="color:#151b20;">Test 5: WASM Kernel Offline / Network-Gated</span> (Fallback verification applied)');
     passedTests++;
   }
 
@@ -8679,11 +8679,11 @@ async function cmdGradeCapstone() {
 
   termPrint(`
 <div style="background:rgba(16,185,129,0.15); border:1px solid #10b981; border-radius:8px; padding:12px; margin-top:8px;">
-  <div style="color:#34d399; font-weight:bold; font-size:0.95rem;">🏆 CAPSTONE EXAMINATION VERIFIED (${passedTests}/${totalTests} Tests Passed • ${score}%)</div>
-  <div style="color:#cbd5e1; font-size:0.82rem; margin-top:4px; line-height:1.6;">
+  <div style="color:#059669; font-weight:bold; font-size:0.95rem;">🏆 CAPSTONE EXAMINATION VERIFIED (${passedTests}/${totalTests} Tests Passed • ${score}%)</div>
+  <div style="color:#151b20; font-size:0.82rem; margin-top:4px; line-height:1.6;">
     Candidate workspace verified compliant across schemas, missingness distributions, algorithmic fairness, and runtime execution.<br/>
-    <b>Verification Token:</b> <code style="color:#38bdf8; font-family:monospace; background:rgba(0,0,0,0.2); padding:2px 6px; border-radius:4px;">${certId}</code><br/>
-    <b>SHA-256 Digest:</b> <code style="color:#a5f3fc; font-family:monospace; font-size:0.75rem;">${shaHex}</code><br/>
+    <b>Verification Token:</b> <code style="color:#0e7490; font-family:monospace; background:rgba(21, 27, 32, 0.06); border: 1px solid rgba(21, 27, 32, 0.2); padding:2px 6px; border-radius:4px;">${certId}</code><br/>
+    <b>SHA-256 Digest:</b> <code style="color:#0e7490; font-family:monospace; font-size:0.75rem;">${shaHex}</code><br/>
     <b>Status:</b> Registered to local browser session ledger &amp; verifiable in Public Leaderboard!
   </div>
 </div>
@@ -8704,16 +8704,16 @@ async function getPyodide() {
     throw new Error("Pyodide WebAssembly runtime not loaded or CDN unreachable.");
   }
 
-  termPrint('<span style="color:#38bdf8;">⏳ Initializing in-browser WebAssembly Python 3.12 (Pyodide v0.26.4)...</span>');
+  termPrint('<span style="color:#0e7490;">⏳ Initializing in-browser WebAssembly Python 3.12 (Pyodide v0.26.4)...</span>');
 
   pyodideLoadingPromise = (async () => {
     const py = await loadPyodide({
       stdout: (text) => termPrint(escapeHtml(text)),
-      stderr: (text) => termPrint(`<span style="color:#f87171;">${escapeHtml(text)}</span>`, true)
+      stderr: (text) => termPrint(`<span style="color:#dc2626;">${escapeHtml(text)}</span>`, true)
     });
     pyodideInstance = py;
     syncVfsToPyodide(py);
-    termPrint('<span style="color:#4ade80; font-weight:bold;">✔ WebAssembly Python 3.12 runtime ready. POSIX virtual filesystem mounted.</span>');
+    termPrint('<span style="color:#059669; font-weight:bold;">✔ WebAssembly Python 3.12 runtime ready. POSIX virtual filesystem mounted.</span>');
     return py;
   })();
 
@@ -8739,13 +8739,13 @@ function syncVfsToPyodide(py) {
 async function cmdPython(args) {
   if (args.length === 0) {
     isPythonRepl = true;
-    termPrint('<span style="color:#38bdf8; font-weight:bold;">Python 3.12 (Pyodide WebAssembly Kernel)</span>');
-    termPrint('<span style="color:#94a3b8;">[WASM POSIX runtime • In-browser standard library: math, csv, json, re, statistics, hashlib]</span>');
+    termPrint('<span style="color:#0e7490; font-weight:bold;">Python 3.12 (Pyodide WebAssembly Kernel)</span>');
+    termPrint('<span style="color:#475569;">[WASM POSIX runtime • In-browser standard library: math, csv, json, re, statistics, hashlib]</span>');
     termPrint('<span style="color:#64748b;">Type expressions like "import math; math.sqrt(256)" or "sum(range(10))".</span>');
-    termPrint('<span style="color:#cbd5e1;">Type <span style="color:#f59e0b; font-weight:bold;">exit()</span> or <span style="color:#f59e0b; font-weight:bold;">quit()</span> to return to bash shell.</span>');
+    termPrint('<span style="color:#151b20;">Type <span style="color:#f59e0b; font-weight:bold;">exit()</span> or <span style="color:#f59e0b; font-weight:bold;">quit()</span> to return to bash shell.</span>');
     const prompt = document.getElementById('termPrompt');
     if (prompt) prompt.innerText = '>>> ';
-    getPyodide().catch(err => termPrint(`<span style="color:#f87171;">WASM Load Notice: ${escapeHtml(err.message)}</span>`, true));
+    getPyodide().catch(err => termPrint(`<span style="color:#dc2626;">WASM Load Notice: ${escapeHtml(err.message)}</span>`, true));
     return;
   }
 
@@ -8763,11 +8763,11 @@ async function cmdPython(args) {
   const targetPath = normalizePath(args[0]);
   const { node } = getVfsNode(targetPath);
   if (!node) {
-    termPrint(`<span style="color:#f87171;">python3: can't open file '${escapeHtml(args[0])}': [Errno 2] No such file or directory</span>`, true);
+    termPrint(`<span style="color:#dc2626;">python3: can't open file '${escapeHtml(args[0])}': [Errno 2] No such file or directory</span>`, true);
     return;
   }
   if (node.type === 'dir') {
-    termPrint(`<span style="color:#f87171;">python3: [Errno 21] Is a directory: '${escapeHtml(args[0])}'</span>`, true);
+    termPrint(`<span style="color:#dc2626;">python3: [Errno 21] Is a directory: '${escapeHtml(args[0])}'</span>`, true);
     return;
   }
 
@@ -8781,13 +8781,13 @@ async function handlePythonReplInput(input) {
     isPythonRepl = false;
     const prompt = document.getElementById('termPrompt');
     if (prompt) prompt.innerText = `guest@dataset-lab:${currentPwd}$ `;
-    termPrint('<span style="color:#94a3b8;">Exited Python REPL. Back in bash.</span>');
+    termPrint('<span style="color:#475569;">Exited Python REPL. Back in bash.</span>');
     return;
   }
 
   if (trimmed === 'help()' || trimmed === 'help') {
-    termPrint('<span style="color:#38bdf8;">WebAssembly Python 3.12 REPL. Standard libraries available:</span>');
-    termPrint('<span style="color:#cbd5e1;">• <code>import math, statistics, csv, json, hashlib, re</code><br/>• <code>statistics.mean([10, 20, 30, 40])</code><br/>• <code>open("/workspace/datasets/customers.csv").readline()</code><br/>• <code>exit()</code> to return to bash shell</span>');
+    termPrint('<span style="color:#0e7490;">WebAssembly Python 3.12 REPL. Standard libraries available:</span>');
+    termPrint('<span style="color:#151b20;">• <code>import math, statistics, csv, json, hashlib, re</code><br/>• <code>statistics.mean([10, 20, 30, 40])</code><br/>• <code>open("/workspace/datasets/customers.csv").readline()</code><br/>• <code>exit()</code> to return to bash shell</span>');
     return;
   }
 
@@ -8795,24 +8795,24 @@ async function handlePythonReplInput(input) {
     const py = await getPyodide();
     const result = await py.runPythonAsync(trimmed);
     if (result !== undefined && result !== null) {
-      termPrint(`<span style="color:#a5f3fc;">${escapeHtml(String(result))}</span>`);
+      termPrint(`<span style="color:#0e7490;">${escapeHtml(String(result))}</span>`);
     }
   } catch (err) {
     // If Pyodide CDN is blocked or unavailable, fall back to safe arithmetic
     if (/^[0-9\.\s\+\-\*\/\%\(\)]+$/.test(trimmed)) {
       try {
         const res = Function(`'use strict'; return (${trimmed})`)();
-        termPrint(`<span style="color:#a5f3fc;">${res}</span>`);
+        termPrint(`<span style="color:#0e7490;">${res}</span>`);
         return;
       } catch(e) {}
     }
-    termPrint(`<span style="color:#f87171;">${escapeHtml(err.message || String(err))}</span>`, true);
+    termPrint(`<span style="color:#dc2626;">${escapeHtml(err.message || String(err))}</span>`, true);
   }
 }
 
 async function runPythonScript(code, fullPath) {
   termPrint(`
-<div style="color:#38bdf8; font-weight:bold; margin-bottom:4px;">
+<div style="color:#0e7490; font-weight:bold; margin-bottom:4px;">
   🐍 [Python 3.12 WASM Engine] Executing <code>${escapeHtml(fullPath)}</code>:
 </div>
 `);
@@ -8824,7 +8824,7 @@ async function runPythonScript(code, fullPath) {
     if (result !== undefined && result !== null) {
       termPrint(`<div>${escapeHtml(String(result))}</div>`);
     }
-    termPrint('<span style="color:#34d399; font-weight:bold;">✔ Process exited with code 0.</span>');
+    termPrint('<span style="color:#059669; font-weight:bold;">✔ Process exited with code 0.</span>');
 
     if (fullPath.includes('clean.py')) {
       updateHud("/workspace/data/curated_features.parquet", 8, "24.5 KB (Parquet)", "98.5 / 100", "DI = 0.94");
@@ -8832,7 +8832,7 @@ async function runPythonScript(code, fullPath) {
       updateHud("orders_stream.parquet", 2, "14.2 KB (Arrow RAM)", "99.8 / 100", "DI = 1.00");
     }
   } catch (err) {
-    termPrint(`<span style="color:#f87171;">Python Execution Error: ${escapeHtml(err.message || String(err))}</span>`, true);
+    termPrint(`<span style="color:#dc2626;">Python Execution Error: ${escapeHtml(err.message || String(err))}</span>`, true);
   }
 }
 
@@ -8955,7 +8955,7 @@ function renderDistributionView(ctx, width, height) {
   const w = width / numBins;
 
   // Background Grid Lines
-  ctx.strokeStyle = '#1e293b';
+  ctx.strokeStyle = 'rgba(21, 27, 32, 0.08)';
   ctx.lineWidth = 1;
   for (let y = 40; y < height - 40; y += 40) {
     ctx.beginPath();
@@ -8964,26 +8964,28 @@ function renderDistributionView(ctx, width, height) {
     ctx.stroke();
   }
 
-  // Draw Histogram Bars
+  // Draw Histogram Bars - Bright Cyan / Lime Neo-Brutalist
   for (let i = 0; i < numBins; i++) {
     const h = (bins[i] / maxFreq) * (height - 90);
     const x = i * w;
     const y = height - h - 40;
 
     const grad = ctx.createLinearGradient(x, y, x, height - 40);
-    grad.addColorStop(0, '#38bdf8');
-    grad.addColorStop(1, '#1e3a8a');
+    grad.addColorStop(0, '#22bfd7');
+    grad.addColorStop(1, '#ffc83e');
 
     ctx.fillStyle = grad;
     ctx.fillRect(x + 2, y, Math.max(1, w - 4), h);
-    ctx.strokeStyle = '#60a5fa';
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.5;
     ctx.strokeRect(x + 2, y, Math.max(1, w - 4), h);
   }
 
   // Title & Labels
-  ctx.fillStyle = '#94a3b8';
-  ctx.font = '12px Inter, sans-serif';
+  ctx.fillStyle = '#151b20';
+  ctx.font = 'bold 12px Inter, sans-serif';
   ctx.fillText('Histogram & Empirical PDF Density', 20, 26);
+  ctx.font = '11px Inter, sans-serif';
   ctx.fillText('Min: ' + minVal.toFixed(1), 20, height - 15);
   ctx.fillText('Max: ' + maxVal.toFixed(1), Math.max(20, width - 90), height - 15);
 
@@ -8993,7 +8995,7 @@ function renderDistributionView(ctx, width, height) {
   const meanX = ((mean - minVal) / range) * width;
   const medX = ((median - minVal) / range) * width;
 
-  ctx.strokeStyle = '#f43f5e';
+  ctx.strokeStyle = '#e11d48';
   ctx.lineWidth = 2;
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
@@ -9001,16 +9003,17 @@ function renderDistributionView(ctx, width, height) {
   ctx.lineTo(meanX, height - 40);
   ctx.stroke();
 
-  ctx.strokeStyle = '#4ade80';
+  ctx.strokeStyle = '#059669';
   ctx.beginPath();
   ctx.moveTo(medX, 35);
   ctx.lineTo(medX, height - 40);
   ctx.stroke();
   ctx.setLineDash([]);
 
-  ctx.fillStyle = '#f43f5e';
+  ctx.fillStyle = '#e11d48';
+  ctx.font = 'bold 11px Inter, sans-serif';
   ctx.fillText('Mean (' + mean.toFixed(1) + ')', Math.min(width - 90, meanX + 6), 50);
-  ctx.fillStyle = '#4ade80';
+  ctx.fillStyle = '#059669';
   ctx.fillText('Median (' + median.toFixed(1) + ')', Math.min(width - 90, medX + 6), 68);
 }
 
@@ -9028,7 +9031,7 @@ function renderRadarView(ctx, width, height) {
   const count = dims.length;
 
   // Concentric Radar Webs
-  ctx.strokeStyle = '#334155';
+  ctx.strokeStyle = 'rgba(21, 27, 32, 0.15)';
   ctx.lineWidth = 1;
   for (let r = 0.25; r <= 1.0; r += 0.25) {
     ctx.beginPath();
@@ -9044,12 +9047,12 @@ function renderRadarView(ctx, width, height) {
   }
 
   // Axis Spokes & Labels
-  ctx.font = '11px Inter, sans-serif';
+  ctx.font = 'bold 11px Inter, sans-serif';
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
     const x = cx + Math.cos(angle) * radius;
     const y = cy + Math.sin(angle) * radius;
-    ctx.strokeStyle = '#475569';
+    ctx.strokeStyle = 'rgba(21, 27, 32, 0.2)';
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(x, y);
@@ -9057,7 +9060,7 @@ function renderRadarView(ctx, width, height) {
 
     const lx = cx + Math.cos(angle) * (radius + 24);
     const ly = cy + Math.sin(angle) * (radius + 18);
-    ctx.fillStyle = '#38bdf8';
+    ctx.fillStyle = '#0e7490';
     ctx.textAlign = 'center';
     ctx.fillText(`${dims[i].label} (${dims[i].val}%)`, lx, ly);
   }
@@ -9073,17 +9076,17 @@ function renderRadarView(ctx, width, height) {
     else ctx.lineTo(x, y);
   }
   ctx.closePath();
-  ctx.fillStyle = 'rgba(56, 189, 248, 0.28)';
+  ctx.fillStyle = 'rgba(34, 191, 215, 0.22)';
   ctx.fill();
-  ctx.strokeStyle = '#38bdf8';
+  ctx.strokeStyle = '#0e7490';
   ctx.lineWidth = 2.5;
   ctx.stroke();
 }
 
 function renderFairnessView(ctx, width, height) {
   // Title
-  ctx.fillStyle = '#cbd5e1';
-  ctx.font = '12px Inter, sans-serif';
+  ctx.fillStyle = '#151b20';
+  ctx.font = 'bold 12px Inter, sans-serif';
   ctx.textAlign = 'left';
   ctx.fillText('Algorithmic Disparity & ROC Curves (Privileged vs Unprivileged)', 25, 26);
 
@@ -9093,8 +9096,8 @@ function renderFairnessView(ctx, width, height) {
   const padRight = 35;
   const padTop = 45;
 
-  ctx.strokeStyle = '#334155';
-  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = '#151b20';
+  ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(padLeft, padTop);
   ctx.lineTo(padLeft, height - padBottom);
@@ -9102,8 +9105,8 @@ function renderFairnessView(ctx, width, height) {
   ctx.stroke();
 
   // Labels
-  ctx.fillStyle = '#94a3b8';
-  ctx.font = '10px Inter, sans-serif';
+  ctx.fillStyle = '#151b20';
+  ctx.font = 'bold 10px Inter, sans-serif';
   ctx.fillText('False Positive Rate (FPR)', width / 2 - 40, height - 15);
   ctx.save();
   ctx.translate(20, height / 2 + 35);
@@ -9112,7 +9115,7 @@ function renderFairnessView(ctx, width, height) {
   ctx.restore();
 
   // Diagonal Random Guess Line
-  ctx.strokeStyle = '#475569';
+  ctx.strokeStyle = 'rgba(21, 27, 32, 0.3)';
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
   ctx.moveTo(padLeft, height - padBottom);
@@ -9121,7 +9124,7 @@ function renderFairnessView(ctx, width, height) {
   ctx.setLineDash([]);
 
   // Privileged Curve
-  ctx.strokeStyle = '#38bdf8';
+  ctx.strokeStyle = '#0e7490';
   ctx.lineWidth = 2.5;
   ctx.beginPath();
   ctx.moveTo(padLeft, height - padBottom);
@@ -9129,7 +9132,7 @@ function renderFairnessView(ctx, width, height) {
   ctx.stroke();
 
   // Unprivileged Curve
-  ctx.strokeStyle = '#f59e0b';
+  ctx.strokeStyle = '#d97706';
   ctx.lineWidth = 2.5;
   ctx.beginPath();
   ctx.moveTo(padLeft, height - padBottom);
@@ -9138,17 +9141,18 @@ function renderFairnessView(ctx, width, height) {
 
   // Legend
   const legendX = Math.max(padLeft + 20, width - 230);
-  ctx.fillStyle = '#38bdf8';
+  ctx.font = 'bold 11px Inter, sans-serif';
+  ctx.fillStyle = '#0e7490';
   ctx.fillText('— Privileged Group (AUC = 0.89)', legendX, 70);
-  ctx.fillStyle = '#f59e0b';
+  ctx.fillStyle = '#d97706';
   ctx.fillText('— Unprivileged Group (AUC = 0.86)', legendX, 88);
-  ctx.fillStyle = '#4ade80';
+  ctx.fillStyle = '#059669';
   ctx.fillText('Disparate Impact: 0.88 (EEOC 80% Pass)', legendX, 110);
 }
 
 function renderDvcView(ctx, width, height) {
-  ctx.fillStyle = '#cbd5e1';
-  ctx.font = '12px Inter, sans-serif';
+  ctx.fillStyle = '#151b20';
+  ctx.font = 'bold 12px Inter, sans-serif';
   ctx.textAlign = 'left';
   ctx.fillText('DVC Content-Addressable Pipeline Lineage Graph', 25, 26);
 
@@ -9161,7 +9165,7 @@ function renderDvcView(ctx, width, height) {
   ];
 
   // Draw Connecting Arrows
-  ctx.strokeStyle = '#3b82f6';
+  ctx.strokeStyle = '#151b20';
   ctx.lineWidth = 2;
   for (let i = 0; i < nodes.length - 1; i++) {
     const n1 = nodes[i];
@@ -9172,7 +9176,7 @@ function renderDvcView(ctx, width, height) {
     ctx.stroke();
 
     // Arrowhead
-    ctx.fillStyle = '#3b82f6';
+    ctx.fillStyle = '#151b20';
     ctx.beginPath();
     ctx.moveTo(n2.x - 48, n2.y);
     ctx.lineTo(n2.x - 56, n2.y - 5);
@@ -9184,8 +9188,8 @@ function renderDvcView(ctx, width, height) {
   // Draw Node Boxes
   nodes.forEach(n => {
     const isData = n.type === 'data';
-    ctx.fillStyle = isData ? '#1e293b' : '#0f172a';
-    ctx.strokeStyle = isData ? '#38bdf8' : '#a855f7';
+    ctx.fillStyle = isData ? '#c9f3f4' : '#fff0b9';
+    ctx.strokeStyle = '#151b20';
     ctx.lineWidth = 2;
 
     ctx.beginPath();
@@ -9193,11 +9197,11 @@ function renderDvcView(ctx, width, height) {
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = '#f8fafc';
-    ctx.font = '10px Inter, sans-serif';
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 10px Inter, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText(n.name, n.x, n.y - 2);
-    ctx.fillStyle = isData ? '#38bdf8' : '#a855f7';
+    ctx.fillStyle = '#151b20';
     ctx.font = '8px Inter, sans-serif';
     ctx.fillText(isData ? 'DVC ARTIFACT' : 'STAGE DAG', n.x, n.y + 12);
   });
