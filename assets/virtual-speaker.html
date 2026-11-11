@@ -5283,6 +5283,324 @@
       setTimeout(populateVoiceSelectors, 1000);
       setTimeout(populateVoiceSelectors, 2500);
     }
+
+    /* ========================================================
+       Lesson 1.2 Interactive Lab Widgets Implementation
+       ======================================================== */
+    const SQL_ORDERS_DATA = [
+      { id: 'ord_101', customer: 'cust_901', amount: 149.99, curr: 'USD', created: '2026-03-01 10:14', status: 'COMPLETED' },
+      { id: 'ord_102', customer: 'cust_412', amount: 49.50, curr: 'USD', created: '2026-03-01 10:19', status: 'COMPLETED' },
+      { id: 'ord_103', customer: 'cust_883', amount: 289.00, curr: 'USD', created: '2026-03-01 10:22', status: 'PROCESSING' },
+      { id: 'ord_104', customer: 'cust_104', amount: 19.99, curr: 'USD', created: '2026-03-01 10:25', status: 'REFUNDED' }
+    ];
+
+    const SAMPLE_JSON_ORDER = {
+      order_id: "ord_101",
+      customer: {
+        id: "cust_901",
+        email: "sarah.chen@ai-enterprise.io",
+        tier: "ENTERPRISE",
+        address: { city: "San Francisco", state: "CA", country: "USA" }
+      },
+      items: [
+        { sku: "GPU-H100-SXM", qty: 2, price: 32000.00, desc: "NVIDIA H100 Tensor Core 80GB" },
+        { sku: "CABLE-QSFP-100G", qty: 8, price: 85.00, desc: "100GbE QSFP28 Direct Attach Copper" }
+      ],
+      payment: { gateway: "STRIPE", txn_id: "ch_3N9kLx2eZvKYlo2C0", authorized: true },
+      timestamp: "2026-03-01T10:14:22Z"
+    };
+
+    function initMultiStructureWidget() {
+      runSqlFilter('all');
+      const jsonBox = document.getElementById('jsonSourceBlock');
+      if (jsonBox) {
+        jsonBox.innerHTML = `<pre class="text-[10px] whitespace-pre-wrap">${JSON.stringify(SAMPLE_JSON_ORDER, null, 2)}</pre>`;
+      }
+      setJsonPreset('customer');
+    }
+
+    function switchMultiStructTab(tab) {
+      const vStruct = document.getElementById('viewMultiStruct');
+      const vSemi = document.getElementById('viewMultiSemi');
+      const vVector = document.getElementById('viewMultiVector');
+
+      const bStruct = document.getElementById('tabBtnStruct');
+      const bSemi = document.getElementById('tabBtnSemi');
+      const bVector = document.getElementById('tabBtnVector');
+
+      const activeTabClass = "cursor-pointer px-3 py-1.5 rounded-lg border-2 border-[#151b20] font-black bg-[#ffc83e] text-[#151b20] shadow-[2px_2px_0px_#151b20] transition";
+      const inactiveTabClass = "cursor-pointer px-3 py-1.5 rounded-lg border-2 border-[#151b20] font-bold bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] shadow-[2px_2px_0px_#151b20] transition";
+
+      if (vStruct) vStruct.classList.add('hidden');
+      if (vSemi) vSemi.classList.add('hidden');
+      if (vVector) vVector.classList.add('hidden');
+
+      if (bStruct) bStruct.className = inactiveTabClass;
+      if (bSemi) bSemi.className = inactiveTabClass;
+      if (bVector) bVector.className = inactiveTabClass;
+
+      if (tab === 'struct') {
+        if (vStruct) vStruct.classList.remove('hidden');
+        if (bStruct) bStruct.className = activeTabClass;
+      } else if (tab === 'semi') {
+        if (vSemi) vSemi.classList.remove('hidden');
+        if (bSemi) bSemi.className = activeTabClass;
+      } else if (tab === 'vector') {
+        if (vVector) vVector.classList.remove('hidden');
+        if (bVector) bVector.className = activeTabClass;
+      }
+    }
+
+    function runSqlFilter(filterType) {
+      const tbody = document.getElementById('sqlTableBody');
+      if (!tbody) return;
+
+      let filtered = SQL_ORDERS_DATA;
+      if (filterType === 'high') {
+        filtered = SQL_ORDERS_DATA.filter(o => o.amount > 100);
+      } else if (filterType === 'completed') {
+        filtered = SQL_ORDERS_DATA.filter(o => o.status === 'COMPLETED');
+      }
+
+      tbody.innerHTML = filtered.map(row => `
+        <tr class="border-b border-[#151b20]/15 hover:bg-[#fff0b9]/40 transition">
+          <td class="p-1.5 font-bold border-r border-[#151b20]/20 text-[#0e7490]">${row.id}</td>
+          <td class="p-1.5 border-r border-[#151b20]/20">${row.customer}</td>
+          <td class="p-1.5 font-black border-r border-[#151b20]/20 text-[#151b20]">$${row.amount.toFixed(2)}</td>
+          <td class="p-1.5 border-r border-[#151b20]/20">${row.curr}</td>
+          <td class="p-1.5 border-r border-[#151b20]/20 text-[10px]">${row.created}</td>
+          <td class="p-1.5 font-black ${row.status === 'COMPLETED' ? 'text-[#15803d]' : row.status === 'PROCESSING' ? 'text-[#b45309]' : 'text-[#dc2626]'}">${row.status}</td>
+        </tr>
+      `).join('');
+    }
+
+    function setJsonPreset(preset) {
+      const resBox = document.getElementById('jsonResultBlock');
+      if (!resBox) return;
+
+      if (preset === 'customer') {
+        resBox.innerText = JSON.stringify(SAMPLE_JSON_ORDER.customer, null, 2);
+      } else if (preset === 'items') {
+        resBox.innerText = JSON.stringify(SAMPLE_JSON_ORDER.items.map(it => it.sku), null, 2);
+      } else if (preset === 'expensive') {
+        resBox.innerText = JSON.stringify(SAMPLE_JSON_ORDER.items.filter(it => it.price > 100), null, 2);
+      }
+    }
+
+    /* Live Dynamic Tumbling Window Streaming Simulator */
+    let streamSimState = {
+      running: true,
+      buffer: [],
+      maxBatchTemp: 64.0,
+      watermarkSec: 5,
+      lateDrops: 0,
+      history: [],
+      lastWatermarkTime: Date.now()
+    };
+
+    function initStreamingSimulator() {
+      streamSimState.running = true;
+      streamSimState.buffer = [];
+      streamSimState.lateDrops = 0;
+      streamSimState.history = [];
+      for (let i = 0; i < 40; i++) {
+        streamSimState.history.push(65.0 + (Math.random() * 4 - 2));
+      }
+
+      drawStreamCanvas();
+
+      if (window.streamInterval) clearInterval(window.streamInterval);
+      window.streamInterval = setInterval(() => {
+        if (!streamSimState.running) return;
+        generateStreamTick(false, false);
+      }, 1000);
+    }
+
+    function generateStreamTick(isLate = false, isHigh = false) {
+      const now = Date.now();
+      const eventTime = isLate ? now - 9000 : now; // 9s late if injected
+      const temp = isHigh ? (76.0 + Math.random() * 4) : (64.0 + Math.random() * 5);
+
+      const watermark = now - (streamSimState.watermarkSec * 1000);
+
+      const log = document.getElementById('streamEventLog');
+      const timeStr = new Date(eventTime).toTimeString().split(' ')[0];
+
+      if (eventTime < watermark) {
+        // Late Arrival Quarantined to DLQ!
+        streamSimState.lateDrops++;
+        const lateDropsEl = document.getElementById('metricLateDrops');
+        if (lateDropsEl) lateDropsEl.innerText = `${streamSimState.lateDrops} packets`;
+
+        if (log) {
+          const entry = document.createElement('div');
+          entry.className = 'text-[#dc2626] font-bold';
+          entry.innerText = `⚠️ [DLQ DROP] Late tick rejected! t_event=${timeStr} < Watermark (${new Date(watermark).toTimeString().split(' ')[0]}). Temp: ${temp.toFixed(1)}°C`;
+          log.prepend(entry);
+        }
+        return;
+      }
+
+      // Valid tick inside active window
+      streamSimState.buffer.push({ time: eventTime, temp: temp });
+      streamSimState.history.push(temp);
+      if (streamSimState.history.length > 50) streamSimState.history.shift();
+
+      // Update Window Buffer count
+      const countEl = document.getElementById('metricWindowCount');
+      if (countEl) countEl.innerText = `${streamSimState.buffer.length} / 6 events`;
+
+      // Update Watermark display
+      const wmEl = document.getElementById('metricWatermark');
+      if (wmEl) wmEl.innerText = new Date(watermark).toTimeString().split(' ')[0];
+
+      // Update Max Temp
+      const currentMax = Math.max(...streamSimState.buffer.map(e => e.temp));
+      const maxEl = document.getElementById('metricMaxTemp');
+      const statusEl = document.getElementById('metricTempStatus');
+      if (maxEl) maxEl.innerText = `${currentMax.toFixed(1)}°C`;
+      if (statusEl) {
+        if (currentMax > 72.0) {
+          statusEl.innerText = '🚨 HIGH ALERT (>72°C)';
+          statusEl.className = 'text-[9px] text-[#dc2626] font-black';
+        } else {
+          statusEl.innerText = 'NORMAL (<72°C)';
+          statusEl.className = 'text-[9px] text-[#15803d] font-bold';
+        }
+      }
+
+      if (log) {
+        const entry = document.createElement('div');
+        entry.className = temp > 72.0 ? 'text-[#c2410c] font-black' : 'text-[#151b20]';
+        entry.innerText = `● [TICK] Event: ${timeStr} | Temp: ${temp.toFixed(1)}°C | Buffer: ${streamSimState.buffer.length}/6`;
+        log.prepend(entry);
+      }
+
+      // Check if tumbling window is full (6 events)
+      if (streamSimState.buffer.length >= 6) {
+        const windowMax = Math.max(...streamSimState.buffer.map(e => e.temp));
+        const windowAvg = streamSimState.buffer.reduce((acc, e) => acc + e.temp, 0) / streamSimState.buffer.length;
+
+        if (log) {
+          const flushEntry = document.createElement('div');
+          flushEntry.className = 'p-1 rounded bg-[#fff0b9] border border-[#151b20] font-black text-[#151b20] my-0.5';
+          flushEntry.innerText = `📦 [WINDOW FLUSH] 6-Event Tumbling Window Evaluated: Avg=${windowAvg.toFixed(1)}°C, Max=${windowMax.toFixed(1)}°C ${windowMax > 72.0 ? '🚨 [TRIGGER INCIDENT]' : '✓ [PASSED]'}`;
+          log.prepend(flushEntry);
+        }
+
+        streamSimState.buffer = [];
+        if (countEl) countEl.innerText = `0 / 6 events`;
+      }
+
+      drawStreamCanvas();
+    }
+
+    function drawStreamCanvas() {
+      const canvas = document.getElementById('streamWaveCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw subtle grid lines
+      ctx.strokeStyle = 'rgba(21, 27, 32, 0.1)';
+      ctx.lineWidth = 1;
+      for (let y = 15; y < h; y += 20) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Draw 72°C threshold dashed line
+      const thresholdY = h - ((72 - 55) / (85 - 55)) * h;
+      ctx.strokeStyle = '#dc2626';
+      ctx.setLineDash([4, 4]);
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, thresholdY);
+      ctx.lineTo(w, thresholdY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#dc2626';
+      ctx.font = '10px monospace';
+      ctx.fillText('72°C Alarm Threshold', w - 130, thresholdY - 4);
+
+      // Draw temperature wave
+      const data = streamSimState.history;
+      if (data.length < 2) return;
+
+      const step = w / (data.length - 1);
+      ctx.beginPath();
+      for (let i = 0; i < data.length; i++) {
+        const val = data[i];
+        const y = h - ((val - 55) / (85 - 55)) * h;
+        const x = i * step;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+
+      ctx.strokeStyle = '#0e7490';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Highlight latest point
+      const lastVal = data[data.length - 1];
+      const lastX = (data.length - 1) * step;
+      const lastY = h - ((lastVal - 55) / (85 - 55)) * h;
+
+      ctx.beginPath();
+      ctx.arc(lastX, lastY, 4, 0, 2 * Math.PI);
+      ctx.fillStyle = lastVal > 72.0 ? '#dc2626' : '#22bfd7';
+      ctx.fill();
+      ctx.strokeStyle = '#151b20';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    function toggleStreamSimulation() {
+      streamSimState.running = !streamSimState.running;
+      const btn = document.getElementById('btnToggleStream');
+      if (btn) {
+        btn.innerText = streamSimState.running ? '⏸ Pause Stream' : '▶ Resume Stream';
+        btn.className = streamSimState.running
+          ? 'cursor-pointer px-3 py-1.5 rounded-lg border-2 border-[#151b20] font-mono font-black text-xs bg-[#c9f3f4] hover:bg-[#22bfd7] text-[#151b20] shadow-[2px_2px_0px_#151b20] transition'
+          : 'cursor-pointer px-3 py-1.5 rounded-lg border-2 border-[#151b20] font-mono font-black text-xs bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] shadow-[2px_2px_0px_#151b20] transition';
+      }
+    }
+
+    function burstHighTempEvents() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => generateStreamTick(false, true), i * 200);
+      }
+    }
+
+    function injectLateArrivalRecord() {
+      generateStreamTick(true, false);
+    }
+
+    function clearStreamLog() {
+      const log = document.getElementById('streamEventLog');
+      if (log) log.innerHTML = '<div class="text-[#0e7490]">● [SYSTEM] Event log cleared.</div>';
+    }
+
+    // Expose functions globally on window for test automation & CDP orchestration
+    window.changeTopic = changeTopic;
+    window.goToSlide = goToSlide;
+    window.nextSlide = nextSlide;
+    window.prevSlide = prevSlide;
+    window.moveSpeakerToDock = moveSpeakerToDock;
+    window.switchMultiStructTab = switchMultiStructTab;
+    window.runSqlFilter = runSqlFilter;
+    window.setJsonPreset = setJsonPreset;
+    window.injectLateArrivalRecord = injectLateArrivalRecord;
+    window.toggleStreamSimulation = toggleStreamSimulation;
+    window.burstHighTempEvents = burstHighTempEvents;
+    window.clearStreamLog = clearStreamLog;
+    
   </script>
 
 
