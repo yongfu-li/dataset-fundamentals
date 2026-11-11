@@ -1,0 +1,134 @@
+{
+  "ch4_p2_spatial_sim_solo.mp3": {
+    "duration": 22.056,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the 2D Spatial Geometry and IoU Studio. Here you can manipulate bounding box coordinates in real time. Notice how when Box A and Box B become disjoint, standard IoU drops straight to zero with zero gradient, while Generalized IoU penalizes the minimal enclosing box C, providing a continuous optimization signal.",
+        "start": 0.0,
+        "end": 22.056
+      }
+    ]
+  },
+  "ch4_p2_spatial_sim_duo.mp3": {
+    "duration": 9.36,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Notice how GIoU stays negative when the boxes don't touch, Dr. Nova! That enclosing box penalty is what guides the model to overlap!",
+        "start": 0.0,
+        "end": 9.36
+      }
+    ]
+  },
+  "ch4_p2_chk1_solo.mp3": {
+    "duration": 11.616,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Let's check your understanding of spatial overlap metrics. Answer this diagnostic question to test how standard IoU and Generalized IoU handle disjoint bounding boxes.",
+        "start": 0.0,
+        "end": 11.616
+      }
+    ]
+  },
+  "ch4_p2_chk1_duo.mp3": {
+    "duration": 7.032,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Kaito, let's see if our engineers understand why standard IoU fails when bounding boxes don't intersect!",
+        "start": 0.0,
+        "end": 7.032
+      }
+    ]
+  },
+  "ch4_p2_chk1_feedback_correct.mp3": {
+    "duration": 20.664,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on, Machine Learning Engineer! When bounding boxes do not overlap, standard IoU is zero, creating a flat optimization surface with vanishing gradients. GIoU resolves this by measuring the empty space inside the minimal enclosing box C, providing continuous gradients even at zero intersection.",
+        "start": 0.0,
+        "end": 20.664
+      }
+    ]
+  },
+  "ch4_p2_chk1_feedback_incorrect.mp3": {
+    "duration": 22.032,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember that when intersection is zero, standard IoU is exactly 0.0, not infinite. The issue is vanishing gradients: any small movement of a disjoint box still has zero intersection, so the gradient is zero. GIoU uses the minimal enclosing box C to maintain non-zero gradients.",
+        "start": 0.0,
+        "end": 22.032
+      }
+    ]
+  },
+  "ch4_p2_span_sim_solo.mp3": {
+    "duration": 22.176,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "In this NLP Span and Sequence Tagging Workbench, observe how continuous character offsets are discretized into token-level IOB2 and BIOES representations. Notice how BIOES explicitly flags single-token entities with S-tags and ends of multi-token entities with E-tags, establishing structural constraints that prevent boundary errors.",
+        "start": 0.0,
+        "end": 22.176
+      }
+    ]
+  },
+  "ch4_p2_span_sim_duo.mp3": {
+    "duration": 9.096,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at the California token, Dr. Nova! Under IOB2 it's just B-LOC, but in BIOES it's S-LOC, meaning singleton!",
+        "start": 0.0,
+        "end": 9.096
+      }
+    ]
+  },
+  "ch4_p2_chk2_solo.mp3": {
+    "duration": 10.416,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Time for Checkpoint 2. Let's analyze sequence tagging schemes and evaluate why BIOES outperforms standard IOB2 in neural sequence decoding.",
+        "start": 0.0,
+        "end": 10.416
+      }
+    ]
+  },
+  "ch4_p2_chk2_duo.mp3": {
+    "duration": 9.888,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Let's test our understanding of NLP sequence invariants, Kaito! Why do production NER models prefer BIOES over standard IOB2?",
+        "start": 0.0,
+        "end": 9.888
+      }
+    ]
+  },
+  "ch4_p2_chk2_feedback_correct.mp3": {
+    "duration": 22.224,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Excellent analysis! Under IOB2, both single-token entities and multi-token entity prefixes receive the identical B-tag, creating structural ambiguity. BIOES separates singletons into S-tags and multi-token endings into E-tags, allowing CRF and Transformer decoders to enforce valid transition constraints.",
+        "start": 0.0,
+        "end": 22.224
+      }
+    ]
+  },
+  "ch4_p2_chk2_feedback_incorrect.mp3": {
+    "duration": 20.976,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Sequence tagging schemes don't change GPU memory or correct grammatical syntax. The true mathematical advantage of BIOES is structural: by explicitly encoding singletons as S-tags and end tokens as E-tags, decoders can eliminate invalid sequence transitions and reduce boundary drift.",
+        "start": 0.0,
+        "end": 20.976
+      }
+    ]
+  }
+}

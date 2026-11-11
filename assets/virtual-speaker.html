@@ -1600,7 +1600,7 @@
       // 2. Active sentence & slide sync
       if (currentTiming && currentTiming.sentences) {
         // Slide 2 Interactive Tool Pause Hook for Neural Audio
-        if (currentSlideIndex === 1 && t >= 32.5 && !isWaitingForExploration && !isWaitingForQuiz) {
+        if (currentTopic === 'ch1_p1' && currentSlideIndex === 1 && t >= 32.5 && !isWaitingForExploration && !isWaitingForQuiz) {
           neuralAudio.pause();
           moveSpeakerToDock('sim', true);
           pauseForToolExploration();
@@ -3596,6 +3596,24 @@
       const isL4_1TransSimSlide = isLesson4_1 && (slideIndex === 11);  // Slide 12: Asymmetric Transition Matrix & Loss Workbench
       const isL4_1Chk2Slide = isLesson4_1 && (slideIndex === 12);      // Slide 13: Checkpoint 2 (Clinical Asymmetric Noise)
 
+      const isLesson4_2 = (currentTopic === 'ch4_p2');
+      const isL4_2SpatialSimSlide = isLesson4_2 && (slideIndex === 5); // Slide 6: 2D Spatial Geometry & IoU / GIoU Studio
+      const isL4_2Chk1Slide = isLesson4_2 && (slideIndex === 6);       // Slide 7: Checkpoint 1 (Disjoint Bounding Boxes & GIoU)
+      const isL4_2SpanSimSlide = isLesson4_2 && (slideIndex === 11);   // Slide 12: NLP Span Offsets & IOB2/BIOES Tagging Workbench
+      const isL4_2Chk2Slide = isLesson4_2 && (slideIndex === 12);      // Slide 13: Checkpoint 2 (Sequence Tagging Invariants)
+
+      const isLesson2_3 = (currentTopic === 'ch2_p3');
+      const isL2_3IpwSimSlide = isLesson2_3 && (slideIndex === 5);       // Slide 6: Survey IPW Workbench
+      const isL2_3Chk1Slide = isLesson2_3 && (slideIndex === 6);         // Slide 7: Checkpoint 1 (Non-Response Bias)
+      const isL2_3ScrapingSimSlide = isLesson2_3 && (slideIndex === 11); // Slide 12: Scraping Rate Limiter & Structural Drift
+      const isL2_3Chk2Slide = isLesson2_3 && (slideIndex === 12);        // Slide 13: Checkpoint 2 (Crawl-Delay Throughput)
+
+      const isLesson3_1 = (currentTopic === 'ch3_p1');
+      const isL3_1SweeneySimSlide = isLesson3_1 && (slideIndex === 5);   // Slide 6: Sweeney Linkage Attack Lab
+      const isL3_1Chk1Slide = isLesson3_1 && (slideIndex === 6);         // Slide 7: Checkpoint 1 (Sweeney's Paradox)
+      const isL3_1LagrangeSimSlide = isLesson3_1 && (slideIndex === 11); // Slide 12: Utility-Privacy Lagrangian Workbench
+      const isL3_1Chk2Slide = isLesson3_1 && (slideIndex === 12);        // Slide 13: Checkpoint 2 (Mobility Unicity & GDPR)
+
       const toolContainer = document.getElementById('slideToolContainer');
       const checkpointContainer = document.getElementById('slideCheckpointContainer');
 
@@ -4155,7 +4173,7 @@
           </div>
 
           <p class="text-xs text-[#151b20]/80 font-sans mb-3">
-            Tune the classification decision threshold $\tau$ to find the profit-maximizing balance between Precision, Recall, and Net Revenue:
+            Tune the classification decision threshold $\\tau$ to find the profit-maximizing balance between Precision, Recall, and Net Revenue:
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3 font-mono text-xs">
@@ -4169,7 +4187,7 @@
             </div>
             <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
               <div class="flex justify-between items-center mb-1">
-                <label class="font-bold text-[#151b20]">Decision Threshold (\(\tau\)):</label>
+                <label class="font-bold text-[#151b20]">Decision Threshold ($\\tau$):</label>
                 <span id="churnTauVal" class="text-xs font-black text-[#0e7490] bg-[#fffdf7] px-2 py-0.5 rounded border border-[#151b20]">0.35</span>
               </div>
               <input type="range" id="churnTauRange" min="0.05" max="0.95" step="0.05" value="0.35" oninput="updateChurnSimulation()" class="w-full cursor-pointer accent-[#0e7490] mt-1.5" />
@@ -4184,10 +4202,10 @@
                 <span class="inline-block w-3 h-0.5 bg-[#0e7490]"></span> Net Profit Curve
               </span>
               <span class="inline-flex items-center gap-1.5 text-[#15803d]">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#15803d]"></span> Peak Optimal Threshold (\(\tau^*\))
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#15803d]"></span> Peak Optimal Threshold ($\\tau^*$)
               </span>
               <span class="inline-flex items-center gap-1.5 text-[#b45309]">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#b45309]"></span> Current Threshold (\(\tau\))
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#b45309]"></span> Current Threshold ($\\tau$)
               </span>
             </div>
           </div>
@@ -4196,32 +4214,32 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 font-mono text-xs">
             <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
               <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Precision</span>
-              <div id="churnMetricPrec" class="text-base font-black text-[#0e7490] mt-0.5">74%</div>
+              <div id="churnMetricPrec" class="text-base font-black text-[#0e7490] mt-0.5">53%</div>
             </div>
             <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
               <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Recall</span>
-              <div id="churnMetricRec" class="text-base font-black text-[#15803d] mt-0.5">86%</div>
+              <div id="churnMetricRec" class="text-base font-black text-[#15803d] mt-0.5">77%</div>
             </div>
             <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
               <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">F1-Score</span>
-              <div id="churnMetricF1" class="text-base font-black text-[#b45309] mt-0.5">0.79</div>
+              <div id="churnMetricF1" class="text-base font-black text-[#b45309] mt-0.5">0.63</div>
             </div>
             <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
               <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">True Churn Saved</span>
-              <div id="churnMetricSaved" class="text-base font-black text-[#7c3aed] mt-0.5">34 Users</div>
+              <div id="churnMetricSaved" class="text-base font-black text-[#7c3aed] mt-0.5">9 Users</div>
             </div>
           </div>
 
           <div class="p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] text-center mb-3">
             <span class="text-[10px] font-mono font-bold text-[#15803d] uppercase tracking-wider block">Net Economic Value Generated</span>
-            <div id="churnMetricProfit" class="text-2xl font-black text-[#15803d] my-0.5">+$6,240</div>
+            <div id="churnMetricProfit" class="text-2xl font-black text-[#15803d] my-0.5">+$1,840</div>
             <div class="text-[11px] font-sans text-[#151b20]/80">
-              Formula: \(\text{TP} \cdot (\text{LTV} \cdot P_{save} - C_{offer}) - \text{FP} \cdot C_{offer}\).
+              Formula: $\\text{TP} \\cdot (\\text{LTV} \\cdot P_{save} - C_{offer}) - \\text{FP} \\cdot C_{offer}$.
             </div>
           </div>
 
           <div class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
-            💡 <b>Economic Principle:</b> Default \(\tau=0.50\) captures fewer churners (Net: \(+\$5,200\)). Lowering \(\tau \to 0.35\) sacrifices minor precision to prevent catastrophic customer lifetime value loss, maximizing bottom-line profit!
+            💡 <b>Economic Principle:</b> Default $\\tau=0.50$ captures fewer churners ($+\\$1,700$ net). Lowering $\\tau \\to 0.30$ sacrifices minor precision to prevent catastrophic lifetime value loss, lifting net profit!
           </div>
         `;
         toolContainer.appendChild(churnCard);
@@ -4231,8 +4249,11 @@
         simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
         toolContainer.appendChild(simDock);
 
-        // Run initial simulation
-        setTimeout(() => { if (typeof updateChurnSimulation === 'function') updateChurnSimulation(); }, 50);
+        // Run initial simulation & render math inside widget
+        setTimeout(() => {
+          if (typeof updateChurnSimulation === 'function') updateChurnSimulation();
+          if (window.renderMathInElement) renderMathInElement(churnCard, { delimiters: [{ left: '$$', right: '$$', display: false }, { left: '$', right: '$', display: false }] });
+        }, 50);
       } else if (isL5DistSimSlide && toolContainer) {
         // Slide 10: Distribution Profiler & Transformation Lab
         const distCard = document.createElement('div');
@@ -5028,6 +5049,643 @@
         if (typeof updateTransSim === 'function') {
           updateTransSim();
         }
+      } else if (isL4_2SpatialSimSlide && toolContainer) {
+        // Slide 6: 2D Spatial Geometry & IoU / GIoU Studio
+        const spatialCard = document.createElement('div');
+        spatialCard.id = 'spatialSimWidget';
+        spatialCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        spatialCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>📐</span> Interactive Lab: 2D Spatial Geometry &amp; IoU / GIoU Studio
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Rezatofighi et al. (CVPR 2019)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Manipulate Ground Truth Box A and Prediction Box B. Observe how standard IoU collapses to zero when boxes are disjoint, whereas Generalized IoU (GIoU) provides smooth negative gradients based on enclosing box $C$:
+          </p>
+
+          <!-- Quick Preset Buttons -->
+          <div class="flex flex-wrap gap-2 mb-3 font-mono text-[11px]">
+            <span class="text-xs font-bold text-[#151b20] self-center mr-1">Presets:</span>
+            <button onclick="setSpatialPreset('disjoint')" type="button" class="px-2.5 py-1 bg-[#ffd8ce] hover:bg-[#fca5a5] text-[#b91c1c] font-black border-2 border-[#151b20] rounded-md shadow-[1px_1px_0px_#151b20] cursor-pointer">
+              Disjoint (Negative GIoU)
+            </button>
+            <button onclick="setSpatialPreset('partial')" type="button" class="px-2.5 py-1 bg-[#fff0b9] hover:bg-[#fde047] text-[#b45309] font-black border-2 border-[#151b20] rounded-md shadow-[1px_1px_0px_#151b20] cursor-pointer">
+              Partial Overlap (IoU ~ 0.33)
+            </button>
+            <button onclick="setSpatialPreset('voc')" type="button" class="px-2.5 py-1 bg-[#c9f3f4] hover:bg-[#67e8f9] text-[#0e7490] font-black border-2 border-[#151b20] rounded-md shadow-[1px_1px_0px_#151b20] cursor-pointer">
+              Pascal VOC Pass (IoU &ge; 0.50)
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3">
+            <!-- Box A Controls (Ground Truth - Green) -->
+            <div class="bg-[#f0fdf4] p-3 rounded-xl border-2 border-[#166534] shadow-[2px_2px_0px_#151b20]">
+              <div class="font-bold text-[#166534] mb-1.5 flex justify-between">
+                <span>Box A (Ground Truth - Green):</span>
+                <span id="lbl_boxA_coords">[50, 40, 200, 180]</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
+                <div>x1: <input type="number" id="boxA_x1" value="50" min="0" max="400" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+                <div>y1: <input type="number" id="boxA_y1" value="40" min="0" max="220" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+                <div>x2: <input type="number" id="boxA_x2" value="200" min="0" max="400" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+                <div>y2: <input type="number" id="boxA_y2" value="180" min="0" max="220" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+              </div>
+            </div>
+
+            <!-- Box B Controls (Prediction - Cyan) -->
+            <div class="bg-[#eff6ff] p-3 rounded-xl border-2 border-[#1e40af] shadow-[2px_2px_0px_#151b20]">
+              <div class="font-bold text-[#1e40af] mb-1.5 flex justify-between">
+                <span>Box B (Prediction - Cyan):</span>
+                <span id="lbl_boxB_coords">[130, 90, 280, 210]</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px]">
+                <div>x1: <input type="number" id="boxB_x1" value="130" min="0" max="400" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+                <div>y1: <input type="number" id="boxB_y1" value="90" min="0" max="220" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+                <div>x2: <input type="number" id="boxB_x2" value="280" min="0" max="400" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+                <div>y2: <input type="number" id="boxB_y2" value="210" min="0" max="220" oninput="updateSpatialSim()" class="w-full p-1 bg-white border border-[#151b20] rounded"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canvas Preview -->
+          <div class="bg-white p-2 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 text-center">
+            <canvas id="spatial_canvas" width="400" height="220" class="mx-auto block max-w-full rounded border border-[#e2e8f0]"></canvas>
+            <div class="flex flex-wrap justify-center gap-4 px-2 pt-1.5 text-[10px] text-[#475569] font-mono">
+              <span><span style="color:#16a34a;">■</span> Box A (GT)</span>
+              <span><span style="color:#0891b2;">■</span> Box B (Pred)</span>
+              <span><span style="color:#d97706;">■</span> Intersection</span>
+              <span><span style="color:#a855f7;">---</span> Enclosing Box C</span>
+            </div>
+          </div>
+
+          <!-- Real-Time Metrics -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-[#f0fdf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Standard Jaccard IoU</div>
+              <div id="m_iou" class="text-sm md:text-base font-black text-[#15803d]">0.214</div>
+              <div id="m_iou_badge" class="text-[10px] font-black text-[#b91c1c]">FAIL (IoU &lt; 0.50)</div>
+            </div>
+
+            <div class="bg-[#eff6ff] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#0284c7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Generalized IoU (GIoU)</div>
+              <div id="m_giou" class="text-sm md:text-base font-black text-[#1e40af]">0.068</div>
+              <div id="m_giou_status" class="text-[10px] text-[#0369a1] font-bold">Enclosing Box Gradient</div>
+            </div>
+
+            <div class="bg-[#fffdf7] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Intersection Area</div>
+              <div id="m_inter_area" class="text-sm md:text-base font-black text-[#1e293b]">6,300 px&sup2;</div>
+              <div class="text-[10px] text-[#475569]">Overlap $|A \\cap B|$</div>
+            </div>
+
+            <div class="bg-[#fffdf7] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Union Area</div>
+              <div id="m_union_area" class="text-sm md:text-base font-black text-[#1e293b]">29,700 px&sup2;</div>
+              <div class="text-[10px] text-[#475569]">Coverage $|A \\cup B|$</div>
+            </div>
+          </div>
+        `;
+        toolContainer.appendChild(spatialCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateSpatialSim === 'function') {
+          updateSpatialSim();
+        }
+      } else if (isL4_2SpanSimSlide && toolContainer) {
+        // Slide 12: NLP Span Offsets & IOB2/BIOES Tagging Workbench
+        const spanCard = document.createElement('div');
+        spanCard.id = 'spanSimWidget';
+        spanCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#86198f] transition-all duration-300';
+        spanCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#86198f] uppercase tracking-wide">
+              <span>📝</span> Interactive Lab: NLP Span Offsets &amp; IOB2/BIOES Tagging Workbench
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ecfeff] text-[#0891b2] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              CoNLL-2003 Standard
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Inspect how continuous Unicode character spans decompose into discrete subword tokens and contrast IOB2 versus BIOES sequence tag representations:
+          </p>
+
+          <!-- Sentence Preset Selector -->
+          <div class="bg-[#f8fafc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-bold text-[#151b20]">Choose Sample Sentence:</span>
+              <span id="lbl_span_meta" class="text-[10px] text-[#64748b]">7 Tokens • 3 Entity Spans</span>
+            </div>
+            <select id="sel_span_preset" onchange="updateSpanSim()" class="w-full p-2 bg-white border-2 border-[#151b20] rounded-lg font-bold text-xs cursor-pointer mb-2">
+              <option value="apple" selected>"Apple Inc. acquired Beats Electronics in California."</option>
+              <option value="clinic">"Dr. Jane Smith visited Paris and Berlin on Monday."</option>
+              <option value="pharma">"Pfizer tested Paxlovid across New York hospitals."</option>
+            </select>
+            <div id="span_highlight_text" class="p-2.5 bg-white rounded border border-[#cbd5e1] text-xs text-[#1e293b] leading-relaxed">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Token-to-Tag Comparison Table -->
+          <div class="bg-white p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 overflow-x-auto">
+            <table class="w-full text-left font-mono text-xs border-collapse">
+              <thead>
+                <tr class="border-b-2 border-[#151b20] bg-[#f1f5f9] text-[#151b20]">
+                  <th class="p-2">Token</th>
+                  <th class="p-2">Char Span</th>
+                  <th class="p-2">IOB2 Tag</th>
+                  <th class="p-2">BIOES Tag</th>
+                  <th class="p-2">Structural Invariant</th>
+                </tr>
+              </thead>
+              <tbody id="spanTableBody" class="divide-y divide-[#e2e8f0]">
+                <!-- Populated dynamically by updateSpanSim() -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Summary Metric Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-[#fdf4ff] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#86198f]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Total Tokens</div>
+              <div id="span_stat_tokens" class="text-sm md:text-base font-black text-[#86198f]">7</div>
+              <div class="text-[10px] text-[#701a75]">Discrete Sequence</div>
+            </div>
+
+            <div class="bg-[#ecfeff] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#0891b2]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Entity Spans</div>
+              <div id="span_stat_spans" class="text-sm md:text-base font-black text-[#0e7490]">3 Spans</div>
+              <div class="text-[10px] text-[#0e7490]">Ground Truth</div>
+            </div>
+
+            <div class="bg-[#f0fdf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Singletons (S-Tag)</div>
+              <div id="span_stat_singletons" class="text-sm md:text-base font-black text-[#15803d]">1 Token</div>
+              <div class="text-[10px] text-[#15803d]">Explicit Closure</div>
+            </div>
+
+            <div class="bg-[#fffdf7] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Multi-Tokens (B/E)</div>
+              <div id="span_stat_multitoken" class="text-sm md:text-base font-black text-[#0e7490]">2 Spans</div>
+              <div class="text-[10px] text-[#0e7490]">Bounded Sequence</div>
+            </div>
+          </div>
+        `;
+        toolContainer.appendChild(spanCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateSpanSim === 'function') {
+          updateSpanSim();
+        }
+      } else if (isL2_3IpwSimSlide && toolContainer) {
+        // Slide 6: Survey Non-Response & IPW Debiasing Workbench
+        const ipwCard = document.createElement('div');
+        ipwCard.id = 'ipwSimWidget';
+        ipwCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        ipwCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>📋</span> Interactive Lab: Survey Non-Response &amp; IPW Debiasing Workbench
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Groves et al. (2009) &amp; Horvitz-Thompson (1952)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tweak total survey sample size $n$, response rate $f_r$, and respondent vs. non-respondent scores to observe how attrition magnifies bias and how Inverse Propensity Weighting restores the true population mean:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3">
+            <!-- Slider 1: Survey Size n -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">1. Dispatched Cohort Size $n$:</span>
+                <span id="ipwValN" class="text-[#0e7490] font-black">10,000 users</span>
+              </div>
+              <input type="range" id="ipwSliderN" min="1000" max="50000" step="1000" value="10000" oninput="updateIpwSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>1,000</span>
+                <span>50,000</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Response Rate fr -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">2. Response Rate $f_r$:</span>
+                <span id="ipwValFr" class="text-[#b45309] font-black">20% (2,000 resp)</span>
+              </div>
+              <input type="range" id="ipwSliderFr" min="10" max="90" step="5" value="20" oninput="updateIpwSim()" class="w-full accent-[#b45309] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>10% (Severe Attrition)</span>
+                <span>90% (High Participation)</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Respondent Mean Yr -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">3. Respondent Mean $\\bar{Y}_r$:</span>
+                <span id="ipwValYr" class="text-[#15803d] font-black">8.5 / 10</span>
+              </div>
+              <input type="range" id="ipwSliderYr" min="1.0" max="10.0" step="0.5" value="8.5" oninput="updateIpwSim()" class="w-full accent-[#15803d] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>1.0</span>
+                <span>10.0</span>
+              </div>
+            </div>
+
+            <!-- Slider 4: Non-Respondent Mean Ynr -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">4. Non-Respondent Mean $\\bar{Y}_{nr}$:</span>
+                <span id="ipwValYnr" class="text-[#dc2626] font-black">4.5 / 10</span>
+              </div>
+              <input type="range" id="ipwSliderYnr" min="1.0" max="10.0" step="0.5" value="4.5" oninput="updateIpwSim()" class="w-full accent-[#dc2626] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>1.0</span>
+                <span>10.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Metrics Panel -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-[#f0fbfd] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">True Population $\\bar{Y}$</div>
+              <div id="ipwMetricTrueMean" class="text-sm md:text-base font-black text-[#0e7490]">5.30</div>
+            </div>
+            <div class="bg-[#fff5f2] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#f38469]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Non-Response Bias</div>
+              <div id="ipwMetricBias" class="text-sm md:text-base font-black text-[#dc2626]">+3.20 pts</div>
+            </div>
+            <div class="bg-[#f6fcf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">IPW Corrected $\\hat{\\bar{Y}}_{\\text{IPW}}$</div>
+              <div id="ipwMetricDebiased" class="text-sm md:text-base font-black text-[#15803d]">5.30</div>
+            </div>
+            <div class="bg-[#fdf8e2] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#b45309]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Latent Gap $\\Delta \\bar{Y}$</div>
+              <div id="ipwMetricGap" class="text-sm md:text-base font-black text-[#b45309]">4.00 pts</div>
+            </div>
+          </div>
+
+          <!-- Visual Distortion Gauge -->
+          <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] mt-3">
+            <div class="flex justify-between text-xs font-mono font-bold mb-1.5">
+              <span>Unweighted Non-Response Distortion Severity:</span>
+              <span id="ipwStatusBadge" class="text-[#dc2626] font-black">Severe Inflation (+3.20 pts)</span>
+            </div>
+            <div class="w-full h-4 bg-[#fffdf7] border-2 border-[#151b20] rounded-full overflow-hidden p-0.5">
+              <div id="ipwProgressBar" class="h-full bg-[#dc2626] rounded-full transition-all duration-300" style="width: 64%;"></div>
+            </div>
+          </div>
+        `;
+        toolContainer.appendChild(ipwCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateIpwSim === 'function') {
+          updateIpwSim();
+        }
+      } else if (isL2_3ScrapingSimSlide && toolContainer) {
+        // Slide 12: Web Scraping Rate Limiter & Structural Drift Simulator
+        const scrapCard = document.createElement('div');
+        scrapCard.id = 'scrapingSimWidget';
+        scrapCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        scrapCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>🕷️</span> Interactive Lab: Scraping Politeness &amp; Structural Drift Simulator
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              RFC 9309 &amp; Jaccard Verification
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tune <code>robots.txt</code> crawl-delay $T_{\\text{crawl-delay}}$, crawler concurrency rate, and DOM tag mutation percentage to observe DoS threshold breaches and automated circuit breaker trips:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono mb-3">
+            <!-- Slider 1: Crawl Delay -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">1. Crawl-delay $T_{\\text{delay}}$:</span>
+                <span id="scrapValDelay" class="text-[#0e7490] font-black">0.5 s</span>
+              </div>
+              <input type="range" id="scrapSliderDelay" min="0.1" max="5.0" step="0.1" value="0.5" oninput="updateScrapingSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Fast (0.1s)</span>
+                <span>Strict (5.0s)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Target Concurrency Rate -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">2. Target Worker Rate:</span>
+                <span id="scrapValRate" class="text-[#15803d] font-black">1.5 req/s</span>
+              </div>
+              <input type="range" id="scrapSliderRate" min="0.5" max="10.0" step="0.5" value="1.5" oninput="updateScrapingSim()" class="w-full accent-[#15803d] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Polite (0.5)</span>
+                <span>Aggressive (10.0)</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: DOM Tag Mutation Rate -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">3. DOM Tag Drift Rate:</span>
+                <span id="scrapValDriftPct" class="text-[#b45309] font-black">15%</span>
+              </div>
+              <input type="range" id="scrapSliderDrift" min="0" max="80" step="5" value="15" oninput="updateScrapingSim()" class="w-full accent-[#b45309] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Static (0%)</span>
+                <span>SPA Redesign (80%)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Metrics Panel -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-[#f0fbfd] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Max Permitted RPS</div>
+              <div id="scrapMetricMaxRps" class="text-sm md:text-base font-black text-[#0e7490]">2.0 req/s</div>
+            </div>
+            <div class="bg-[#f6fcf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">RFC 9309 Compliance</div>
+              <div id="scrapMetricPolite" class="text-sm md:text-base font-black text-[#15803d]">COMPLIANT</div>
+            </div>
+            <div class="bg-[#fdf8e2] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#b45309]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Jaccard Drift $D_J$</div>
+              <div id="scrapMetricDj" class="text-sm md:text-base font-black text-[#b45309]">0.150</div>
+            </div>
+            <div class="bg-[#f6fcf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Pipeline Status</div>
+              <div id="scrapMetricStatus" class="text-sm md:text-base font-black text-[#15803d]">ACTIVE</div>
+            </div>
+          </div>
+
+          <!-- Visual Drift & Politeness Bar -->
+          <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] mt-3">
+            <div class="flex justify-between text-xs font-mono font-bold mb-1.5">
+              <span>Structural Drift Circuit Breaker ($\\tau = 0.35$):</span>
+              <span id="scrapStatusBadge" class="text-[#15803d] font-black">Healthy Extraction ($D_J &lt; 0.35$)</span>
+            </div>
+            <div class="w-full h-4 bg-[#fffdf7] border-2 border-[#151b20] rounded-full overflow-hidden p-0.5">
+              <div id="scrapProgressBar" class="h-full bg-[#15803d] rounded-full transition-all duration-300" style="width: 15%;"></div>
+            </div>
+          </div>
+        `;
+        toolContainer.appendChild(scrapCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateScrapingSim === 'function') {
+          updateScrapingSim();
+        }
+      } else if (isL3_1SweeneySimSlide && toolContainer) {
+        // Slide 6: Sweeney Quasi-Identifier Linkage Laboratory
+        const sweeneyCard = document.createElement('div');
+        sweeneyCard.id = 'sweeneySimWidget';
+        sweeneyCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        sweeneyCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>🔬</span> Interactive Lab: Sweeney Quasi-Identifier Linkage Laboratory
+            </div>
+            <div class="flex gap-1.5 flex-wrap">
+              <button type="button" onclick="applySweeneyLabPreset(1)" class="cursor-pointer px-2 py-1 rounded-lg text-[10px] font-mono font-black bg-[#f6f0dc] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">Preset 1: Raw</button>
+              <button type="button" onclick="applySweeneyLabPreset(2)" class="cursor-pointer px-2 py-1 rounded-lg text-[10px] font-mono font-black bg-[#ffd8ce] hover:bg-[#fca5a5] text-[#991b1b] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">Preset 2: PII Hashed</button>
+              <button type="button" onclick="applySweeneyLabPreset(3)" class="cursor-pointer px-2 py-1 rounded-lg text-[10px] font-mono font-black bg-[#b7df69] hover:bg-[#a3e635] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">Preset 3: k≥3 Safe</button>
+            </div>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-2.5">
+            Simulate Massachusetts GIC hospital records joined against public Cambridge voter registries. Test why direct HMAC hashing leaves Gov. Weld exposed ($|E_Q| = 1$) until quasi-identifiers are generalized and outliers are gated:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 text-[11px] font-mono mb-3">
+            <div class="bg-[#f6f0dc] p-2 rounded-xl border-2 border-[#151b20]">
+              <label class="font-black text-[#151b20] block mb-1">Direct PII (Name):</label>
+              <select id="vsSweeneyPii" onchange="updateSweeneyLab()" class="w-full p-1 bg-white border border-[#151b20] rounded font-bold cursor-pointer">
+                <option value="raw">Cleartext Name</option>
+                <option value="hash" selected>SHA-256 HMAC</option>
+                <option value="redact">[REDACTED]</option>
+              </select>
+            </div>
+            <div class="bg-[#f6f0dc] p-2 rounded-xl border-2 border-[#151b20]">
+              <label class="font-black text-[#151b20] block mb-1">ZIP Generalization:</label>
+              <select id="vsSweeneyZip" onchange="updateSweeneyLab()" class="w-full p-1 bg-white border border-[#151b20] rounded font-bold cursor-pointer">
+                <option value="5" selected>5-Digit (02138)</option>
+                <option value="3">3-Digit (021**)</option>
+                <option value="state">State (MA / CA)</option>
+              </select>
+            </div>
+            <div class="bg-[#f6f0dc] p-2 rounded-xl border-2 border-[#151b20]">
+              <label class="font-black text-[#151b20] block mb-1">Birth Year Cohort:</label>
+              <select id="vsSweeneyAge" onchange="updateSweeneyLab()" class="w-full p-1 bg-white border border-[#151b20] rounded font-bold cursor-pointer">
+                <option value="exact" selected>Exact (1945)</option>
+                <option value="decade">Decade (1940s)</option>
+                <option value="bracket">Broad (&lt;1960 / ≥1960)</option>
+              </select>
+            </div>
+            <div class="bg-[#f6f0dc] p-2 rounded-xl border-2 border-[#151b20]">
+              <label class="font-black text-[#151b20] block mb-1">Gender Field:</label>
+              <select id="vsSweeneyGen" onchange="updateSweeneyLab()" class="w-full p-1 bg-white border border-[#151b20] rounded font-bold cursor-pointer">
+                <option value="keep" selected>Preserved (M/F)</option>
+                <option value="suppress">Suppressed [*]</option>
+              </select>
+            </div>
+            <div class="bg-[#f6f0dc] p-2 rounded-xl border-2 border-[#151b20]">
+              <label class="font-black text-[#151b20] block mb-1">Outlier Gate ($k&lt;3$):</label>
+              <select id="vsSweeneyGate" onchange="updateSweeneyLab()" class="w-full p-1 bg-white border border-[#151b20] rounded font-bold cursor-pointer">
+                <option value="keep" selected>Keep Outliers</option>
+                <option value="suppress">Suppress Outliers</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono mb-3">
+            <div class="bg-[#fffdf7] p-2 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Min Equivalence (k)</div>
+              <div id="vsSweeneyKMin" class="text-sm md:text-base font-black text-[#b91c1c]">k = 1</div>
+              <div id="vsSweeneyKBadge" class="text-[10px] font-bold text-[#b91c1c]">FAIL: Singleton</div>
+            </div>
+            <div class="bg-[#fffdf7] p-2 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Uniqueness Ratio (Π)</div>
+              <div id="vsSweeneyUniq" class="text-sm md:text-base font-black text-[#b91c1c]">37.5%</div>
+              <div class="text-[10px] text-[#475569]">Singletons $|E_Q|=1$</div>
+            </div>
+            <div class="bg-[#fffdf7] p-2 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Disclosure Risk</div>
+              <div id="vsSweeneyRisk" class="text-sm md:text-base font-black text-[#b91c1c]">0.63</div>
+              <div class="text-[10px] text-[#475569]">Mean $1/|E_Q|$</div>
+            </div>
+            <div class="bg-[#fffdf7] p-2 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Gov. Weld Status</div>
+              <div id="vsSweeneyWeld" class="text-xs font-black text-[#b91c1c] mt-0.5">🚨 1:1 RE-IDENTIFIED</div>
+              <div id="vsSweeneyWeldSub" class="text-[10px] text-[#475569]">Arrhythmia Unmasked</div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto border-2 border-[#151b20] rounded-xl bg-white">
+            <table class="w-full border-collapse font-mono text-[10.5px]">
+              <thead>
+                <tr class="bg-[#e2dfff] border-b-2 border-[#151b20] text-[#151b20] text-left">
+                  <th class="p-1.5 border-r border-[#151b20]">ID</th>
+                  <th class="p-1.5 border-r border-[#151b20]">Direct PII</th>
+                  <th class="p-1.5 border-r border-[#151b20]">ZIP (QI)</th>
+                  <th class="p-1.5 border-r border-[#151b20]">Birth (QI)</th>
+                  <th class="p-1.5 border-r border-[#151b20]">Sex (QI)</th>
+                  <th class="p-1.5 border-r border-[#151b20]">Diagnosis ($S$)</th>
+                  <th class="p-1.5 border-r border-[#151b20]">$|E_Q|$</th>
+                  <th class="p-1.5">Linkage Risk</th>
+                </tr>
+              </thead>
+              <tbody id="vsSweeneyTableBody"></tbody>
+            </table>
+          </div>
+        `;
+        toolContainer.appendChild(sweeneyCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateSweeneyLab === 'function') {
+          updateSweeneyLab();
+        }
+      } else if (isL3_1LagrangeSimSlide && toolContainer) {
+        // Slide 12: Utility-Privacy Lagrangian & Behavioral Unicity Workbench
+        const lagrangeCard = document.createElement('div');
+        lagrangeCard.id = 'lagrangeSimWidget';
+        lagrangeCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        lagrangeCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>⚖️</span> Interactive Lab: Utility-Privacy Lagrangian &amp; Unicity Workbench
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Lagrangian &amp; de Montjoye (2013)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tune spatial-temporal coarsening granularity $g$, adversarial auxiliary points $m$, HIPAA risk ceiling $\\tau_{\\text{safe}}$, and shadow price $\\lambda$ to optimize $\\mathcal{L}(\\theta, \\lambda) = \\mathcal{U} - \\lambda \\max(0, \\mathcal{R} - \\tau_{\\text{safe}})$:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono mb-3">
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>1. Coarsening Level $g$:</span>
+                <span id="lagValLevel" class="text-[#0e7490] font-black">Lvl 1 (Raw)</span>
+              </div>
+              <input type="range" id="lagSliderLevel" min="1" max="5" step="1" value="1" oninput="updateLagrangeSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Exact GPS</span>
+                <span>H3 + DP</span>
+              </div>
+            </div>
+
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>2. Adversary Points $m$:</span>
+                <span id="lagValDim" class="text-[#dc2626] font-black">4 points</span>
+              </div>
+              <input type="range" id="lagSliderDim" min="1" max="8" step="1" value="4" oninput="updateLagrangeSim()" class="w-full accent-[#dc2626] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>1 point</span>
+                <span>8 points</span>
+              </div>
+            </div>
+
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>3. Ceiling $\\tau_{\\text{safe}}$:</span>
+                <span id="lagValTau" class="text-[#15803d] font-black">0.05 (5%)</span>
+              </div>
+              <input type="range" id="lagSliderTau" min="0.02" max="0.25" step="0.01" value="0.05" oninput="updateLagrangeSim()" class="w-full accent-[#15803d] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Strict (0.02)</span>
+                <span>Relaxed (0.25)</span>
+              </div>
+            </div>
+
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>4. Shadow Price $\\lambda$:</span>
+                <span id="lagValLambda" class="text-[#b45309] font-black">4.0</span>
+              </div>
+              <input type="range" id="lagSliderLambda" min="0.5" max="10.0" step="0.5" value="4.0" oninput="updateLagrangeSim()" class="w-full accent-[#b45309] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Low (0.5)</span>
+                <span>Strict (10.0)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono mb-3">
+            <div class="bg-[#f0fbfd] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Model Utility $\\mathcal{U}$</div>
+              <div id="lagMetricUtil" class="text-sm md:text-base font-black text-[#0e7490]">0.950</div>
+              <div class="text-[10px] text-[#475569]">Downstream F1 Score</div>
+            </div>
+
+            <div class="bg-[#fff5f2] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#f38469]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Disclosure Risk $\\mathcal{R}$</div>
+              <div id="lagMetricRisk" class="text-sm md:text-base font-black text-[#dc2626]">95.0%</div>
+              <div id="lagMetricLeak" class="text-[10px] text-[#b91c1c] font-bold">I(Q;S): 3.42 bits</div>
+            </div>
+
+            <div class="bg-[#fffdf7] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Lagrangian $\\mathcal{L}$</div>
+              <div id="lagMetricObj" class="text-sm md:text-base font-black text-[#dc2626]">-2.650</div>
+              <div id="lagMetricPen" class="text-[10px] text-[#b45309] font-bold">Penalty: -3.600</div>
+            </div>
+
+            <div class="bg-[#f6fcf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">HIPAA / GDPR Gate</div>
+              <div id="lagStatusBadge" class="text-xs font-black text-[#dc2626] mt-1">VIOLATION (&gt; τ_safe)</div>
+            </div>
+          </div>
+
+          <div id="lagAlertBanner" class="p-2.5 rounded-xl border-2 border-[#b91c1c] bg-[#fee2e2] text-xs text-[#7f1d1d] font-sans leading-relaxed">
+            <strong>🚨 Unicity Violation:</strong> With 4 uncoarsened spatio-temporal points, re-identification risk hits 95%, triggering massive Lagrangian penalty. Increase coarsening to Level 4 (H3 Grid + DP) to satisfy $\\mathcal{R} \\le \\tau_{\\text{safe}}$.
+          </div>
+        `;
+        toolContainer.appendChild(lagrangeCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateLagrangeSim === 'function') {
+          updateLagrangeSim();
+        }
       }
 
       // 4. Interactive Active Checkpoint (Capeur Formative Assessment)
@@ -5217,7 +5875,7 @@
                 <strong>A.</strong> Extreme underfitting caused by an excessively high regularization parameter lambda.
               </button>
               <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
-                <strong>B.</strong> Adversarial concept drift ($P(Y \mid X)$ shifts as fraudsters change evasion strategies), requiring rolling temporal validation and weekly retraining.
+                <strong>B.</strong> Adversarial concept drift ($P(Y \\mid X)$ shifts as fraudsters change evasion strategies), requiring rolling temporal validation and weekly retraining.
               </button>
               <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <strong>C.</strong> Memory fragmentation in the Redis feature cache caused silent missing value imputation.
@@ -5639,6 +6297,210 @@
           quizDock.id = 'speakerDockCheckpoint';
           quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
           checkpointContainer.appendChild(quizDock);
+        } else if (isL2_3Chk1Slide) {
+          // Slide 7: Checkpoint 1 (Quantifying Non-Response Bias)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#b45309] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Quantifying Non-Response Bias
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: In a customer satisfaction survey sent to $n = 10,000$ users, the response rate is $f_r = 20\\%$ ($2,000$ respondents). The respondent mean score is $\\bar{y}_r = 8.5 / 10$. Subsequent phone audits of non-respondents reveal their true mean satisfaction is $\\bar{y}_{nr} = 4.5 / 10$. Calculate the true overall satisfaction $\\bar{Y}$ and the non-response bias $\\text{Bias}(\\bar{y}_r)$.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. $\\bar{Y} = 5.30$; $\\text{Bias} = +3.20$ pts:</strong> $(0.20)(8.5) + (0.80)(4.5) = 5.30$; $8.50 - 5.30 = +3.20$.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. $\\bar{Y} = 6.50$; $\\text{Bias} = +2.00$ pts:</strong> By taking the unweighted midpoint average $(8.5 + 4.5) / 2$.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. $\\bar{Y} = 8.50$; $\\text{Bias} = 0.00$ pts:</strong> Assuming non-respondents behave identically to respondents.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL2_3Chk2Slide) {
+          // Slide 13: Checkpoint 2 (Crawl-Delay Throughput Calculation)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Crawl-Delay Throughput Calculation
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: A remote website publishes a <code>robots.txt</code> file containing <code>Crawl-delay: 0.5</code>. What is the absolute maximum permissible request rate per second ($\\text{RPS}_{\\max}$) an ethical automated collector can send to this host across all concurrent threads?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. $2.0\\text{ req/s}$:</strong> $\\text{RPS}_{\\max} = \\frac{1}{T_{\\text{crawl-delay}}} = \\frac{1}{0.5\\text{ s}} = 2.0\\text{ requests/sec}$.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. $0.5\\text{ req/s}$:</strong> Confusing crawl-delay interval in seconds with requests per second.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. $5.0\\text{ req/s}$:</strong> Assuming each thread queries concurrently every $0.5$ seconds.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL4_2Chk1Slide) {
+          // Slide 7: Checkpoint 1 (Disjoint Bounding Boxes & GIoU Optimization Gradients)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#b45309] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Disjoint Bounding Boxes &amp; GIoU Optimization Gradients
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: Two non-overlapping bounding boxes $A$ and $B$ in an autonomous driving camera frame are separated by 300 pixels ($|A \\cap B| = 0$). Why does standard Jaccard IoU fail to provide an optimization gradient, and how does Generalized IoU (GIoU) resolve this?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. Standard IoU collapses to 0.0 (Vanishing Gradient); GIoU uses minimal enclosing box $C$:</strong> $\\nabla \\text{IoU} = 0$ everywhere when disjoint, whereas $\\text{GIoU} = -\\frac{|C \\setminus (A \\cup B)|}{|C|} &lt; 0$ smoothly rises toward 0 as $A$ approaches $B$.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. Standard IoU yields division by zero ($\\infty$) on disjoint boxes:</strong> When intersection is 0, the union also equals 0, producing NaN loss gradients that crash CUDA kernels.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. Standard IoU requires 3D LiDAR coordinates; GIoU projects to 2D pixels:</strong> Standard IoU is strictly a metric for 3D point cloud volumes, not 2D camera frames.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL4_2Chk2Slide) {
+          // Slide 13: Checkpoint 2 (Sequence Tagging Structural Invariants & BIOES)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#86198f] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#86198f] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Sequence Tagging Structural Invariants &amp; The IOB2 Trap
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: Why does upgrading from the standard IOB2 (BIO) tagging scheme to the BIOES (BILOU) scheme consistently improve Named Entity Recognition F1 scores in neural sequence models with CRF decoders?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. BIOES isolates singletons (<code>S-Tag</code>) &amp; endings (<code>E-Tag</code>) for CRF transition constraints:</strong> IOB2 conflates singletons and prefixes under <code>B-Tag</code>, whereas BIOES enables CRF matrices to forbid illegal paths like <code>B-Tag</code> &rarr; <code>O</code>.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. BIOES compresses token strings into 8-bit quantized vectors:</strong> Replacing 3 labels with 5 labels cuts Transformer self-attention GPU memory consumption by 50%.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. BIOES automatically fixes spelling and grammar mistakes in user queries:</strong> Additional end tags perform morphological dictionary lookups prior to embedding.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL3_1Chk1Slide) {
+          // Slide 7: Checkpoint 1 (Sweeney's Paradox & Direct Identifier Fallacy)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#b45309] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint 1: Sweeney's Paradox &amp; Direct Identifier Fallacy
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: A healthcare consortium releases 250,000 hospital discharge records. They replace Patient Name and SSN with salted SHA-256 HMAC tokens, while retaining 5-digit ZIP code, Gender, and Date of Birth for epidemiological modeling. Why does this release fail HIPAA de-identification guarantees?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. Quasi-Identifier Linkage (~87.1% unique):</strong> Salted HMAC only masks direct identifiers $I$; joining $(Q_{\\text{ZIP}}, Q_{\\text{Gender}}, Q_{\\text{DOB}})$ against public voter rolls uniquely re-identifies $\\sim 87.1\\%$ of the US population (Sweeney 2000).
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. Cryptographic Hash Collision:</strong> SHA-256 HMAC tokens collide across 250,000 records, allowing attackers to invert direct patient names via rainbow tables.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. Safe Under 2-Anonymity:</strong> Because medical diagnoses vary within each ZIP code, HMAC tokenization guarantees $P_{\\text{re-id}} \\le 0.50$ without generalizing dates or ZIPs.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL3_1Chk2Slide) {
+          // Slide 13: Checkpoint 2 (Mobility Unicity & GDPR Special Categories)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint 2: Mobility Trajectory Unicity &amp; GDPR Art. 9/17
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: A mobility vendor publishes 500,000 scooter GPS trajectories at 1-minute resolution using daily rotating random hashes. Meanwhile, an AI lab scrapes public medical forum posts claiming public visibility waives privacy obligations. Why do BOTH pipelines violate modern privacy governance?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. Spatio-temporal unicity (4 points $\\to$ 95%) &amp; GDPR Art. 9/17:</strong> Rotating hashes fail 4-point trajectory linkage (de Montjoye 2013), while scraped health posts remain Special Category data under Art. 9 subject to Art. 17 erasure &amp; Contextual Integrity.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. Rotating hashes satisfy k-anonymity; public web posts waive GDPR:</strong> Midnight hash rotation prevents cross-day linkage, and publicly accessible URLs fall outside GDPR scope.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. GPS coordinates are insensitive attributes ($N$):</strong> Latitude-longitude breadcrumbs carry zero re-identification risk unless paired with user phone numbers.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
         }
       }
 
@@ -5802,181 +6664,51 @@
       const isL4_1 = (currentTopic === 'ch4_p1');
       const isL4_1Chk1 = isL4_1 && (currentSlideIndex === 6);
       const isL4_1Chk2 = isL4_1 && (currentSlideIndex === 12);
+      const isL4_2 = (currentTopic === 'ch4_p2');
+      const isL4_2Chk1 = isL4_2 && (currentSlideIndex === 6);
+      const isL4_2Chk2 = isL4_2 && (currentSlideIndex === 12);
+      const isL3_1 = (currentTopic === 'ch3_p1');
+      const isL3_1Sweeney = isL3_1 && (currentSlideIndex === 5);
+      const isL3_1Lagrange = isL3_1 && (currentSlideIndex === 11);
+      const isL3_1Chk1 = isL3_1 && (currentSlideIndex === 6);
+      const isL3_1Chk2 = isL3_1 && (currentSlideIndex === 12);
+      const isL2_3 = (currentTopic === 'ch2_p3');
+      const isL2_3Chk1 = isL2_3 && (currentSlideIndex === 6);
+      const isL2_3Chk2 = isL2_3 && (currentSlideIndex === 12);
       const isLesson3 = (currentTopic === 'ch1_p3');
       const isL3Chk1 = isLesson3 && (currentSlideIndex === 6);
       const isL3Chk2 = isLesson3 && (currentSlideIndex === 12);
       const isLesson4 = (currentTopic === 'ch1_p4');
       const isL4Chk1 = isLesson4 && (currentSlideIndex === 6);
       const isL4Chk2 = isLesson4 && (currentSlideIndex === 12);
+      const isLesson5 = (currentTopic === 'ch1_p5');
+      const isL5Chk1 = isLesson5 && (currentSlideIndex === 6);
+      const isL5Chk2 = isLesson5 && (currentSlideIndex === 12);
+      const isLesson6 = (currentTopic === 'ch1_p6');
+      const isL6Chk1 = isLesson6 && (currentSlideIndex === 6);
+      const isL6Chk2 = isLesson6 && (currentSlideIndex === 12);
 
       if (isCorrect) {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#b7df69] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black scale-[1.02]';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#f0fbfd] border-2 border-[#151b20] text-[#151b20] text-xs font-sans leading-relaxed';
         if (isL6Chk1) {
           feedback.innerHTML = `✅ <b>Adaptive Overfitting Diagnosed:</b> Repeated model selection driven by scalar leaderboard feedback acts as an implicit gradient optimization loop over static test noise. Over hundreds of iterations, architectures overfit to that specific sample, causing generalization collapse on fresh replication sets like ImageNet-v2!`;
+          verbalFeedback = 'Spot on! That is the benchmark re-use fallacy. Even when test labels are sealed, repeatedly evaluating models on the same test set and using scalar feedback to select architectures acts as an implicit gradient optimization loop over that specific test set noise. This causes severe performance degradation on fresh replication benchmarks like ImageNet-v2!';
         } else if (isL6Chk2) {
-          feedback.innerHTML = `✅ <b>Adversarial Concept Drift Diagnosed:</b> In credit card fraud, fraudsters dynamically change evasion tactics once historical patterns are blocked. The conditional probability distribution $P(Y \mid X)$ shifts over time, causing precision collapse. The solution requires rolling temporal validation and continuous weekly retraining!`;
-        } else         if (isL5Chk1) {
+          feedback.innerHTML = `✅ <b>Adversarial Concept Drift Diagnosed:</b> In credit card fraud, fraudsters dynamically change evasion tactics once historical patterns are blocked. The conditional probability distribution $P(Y \\mid X)$ shifts over time, causing precision collapse. The solution requires rolling temporal validation and continuous weekly retraining!`;
+          verbalFeedback = 'Outstanding diagnosis! That is adversarial concept drift. Unlike natural images where cat anatomy never changes, fraudsters actively alter transaction amounts, IP geolocations, and merchant tactics once existing patterns are blocked. The conditional probability P of Y given X shifts over time. The solution requires rolling-window validation and weekly retraining!';
+        } else if (isL5Chk1) {
           feedback.innerHTML = `✅ <b>Lookahead Target Leakage Diagnosed:</b> The feature <code>oil_filter_replacement_count_next_7_days</code> accesses information from the future that is unavailable at inference time $t_0$. Technicians replaced filters in response to gearbox warnings, embedding the target label into the input feature!`;
           verbalFeedback = 'Spot on! That is direct lookahead target leakage. In historical logs, technicians replaced oil filters immediately after gearbox failure alerts, embedding the target label into the input feature. When evaluated in cross-validation, the model memorized this future proxy. Always enforce strict temporal boundaries when generating rolling window aggregations!';
         } else if (isL5Chk2) {
           feedback.innerHTML = `✅ <b>Identity Contamination Diagnosed:</b> When multiple chest X-rays from the same patient appear across both train and test folds, deep neural networks memorize patient-specific anatomical or hardware markers. Deploy <code>GroupKFold</code> grouped strictly by <code>patient_id</code>!`;
           verbalFeedback = 'Outstanding diagnosis! Random train-test splitting distributes scans from the same patient across both training and test sets. Deep convolutional networks easily learn idiosyncratic anatomical markers, implant signatures, or patient-specific radiograph hardware settings rather than generalized pathology patterns. The split must be partitioned strictly by patient identifier using GroupKFold!';
-        } else if (isL6Chk1) {
-          if (isDuo) {
-            audioPath = './audio/ch1_p6_chk1_duo.mp3';
-            totalDuration = 16.19;
-            interactiveSentences = [
-              buildTimedSentence("Kaito", "Wait, if individual test labels are completely concealed, how does information leak back to the researchers?", 0.0, 5.0),
-              buildTimedSentence("Dr. Nova", "Think about what the leaderboard returns: a single scalar validation accuracy! Select the correct answer below to test your retention!", 5.35, 16.19)
-            ];
-          } else {
-            audioPath = './audio/ch1_p6_chk1_solo.mp3';
-            totalDuration = 22.08;
-            interactiveSentences = [
-              buildTimedSentence("Dr. Nova", "Active Recall Checkpoint 1! In academic competitions like ImageNet or GLUE, the test set remains fixed for years while thousands of research labs submit models iteratively. Explain why adaptive overfitting occurs even if no single researcher has direct access to test set labels. Select the correct mechanism on the slide!", 0.0, 22.08)
-            ];
-          }
-        } else if (isL6Chk2) {
-          if (isDuo) {
-            audioPath = './audio/ch1_p6_chk2_duo.mp3';
-            totalDuration = 14.438;
-            interactiveSentences = [
-              buildTimedSentence("Kaito", "Transaction volumes didn't change, and merchants didn't change. Why did the fraud precision suddenly collapse?", 0.0, 5.0),
-              buildTimedSentence("Dr. Nova", "Select the correct option below to analyze adversarial concept drift and temporal domain shift!", 5.35, 14.438)
-            ];
-          } else {
-            audioPath = './audio/ch1_p6_chk2_solo.mp3';
-            totalDuration = 26.712;
-            interactiveSentences = [
-              buildTimedSentence("Dr. Nova", "Active Recall Checkpoint 2! A credit card fraud detection model trained on transactions from January through June experiences a severe drop in precision by October, from 82% down to 34%, despite total transaction volume and merchant distributions remaining constant. What statistical phenomenon explains this degradation, and how should dataset management mitigate it? Make your choice on the slide!", 0.0, 26.712)
-            ];
-          }        } else if (isL5Chk1) {
-          if (isDuo) {
-            audioPath = './audio/ch1_p5_chk1_duo.mp3';
-            totalDuration = 18.422;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Kaito",
-                "Look at that feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?",
-                0.0,
-                9.500
-              ),
-              buildTimedSentence(
-                "Dr. Nova",
-                "Click the correct answer on the checkpoint card below to test your retention!",
-                9.850,
-                18.422
-              )
-            ];
-          } else {
-            audioPath = './audio/ch1_p5_chk1_solo.mp3';
-            totalDuration = 34.464;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Dr. Nova",
-                "Active Recall Checkpoint 1! A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures forty-eight hours in advance. One engineered feature is oil_filter_replacement_count_next_7_days, which achieves an astonishing 0.99 ROC-AUC during five-fold cross-validation. But when deployed live, model performance collapses to near random chance at 0.52 ROC-AUC. What occurred? Select your answer on the slide!",
-                0.0,
-                34.464
-              )
-            ];
-          }
-        } else if (isL5Chk2) {
-          if (isDuo) {
-            audioPath = './audio/ch1_p5_chk2_duo.mp3';
-            totalDuration = 15.254;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Kaito",
-                "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?",
-                0.0,
-                9.800
-              ),
-              buildTimedSentence(
-                "Dr. Nova",
-                "Select the correct option below to analyze the clinical data contamination hazard!",
-                10.150,
-                15.254
-              )
-            ];
-          } else {
-            audioPath = './audio/ch1_p5_chk2_solo.mp3';
-            totalDuration = 23.568;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Dr. Nova",
-                "Active Recall Checkpoint 2! In a hospital chest X-ray classification dataset containing one hundred thousand scans from twenty-five thousand unique patients, each patient has an average of four sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization? Make your choice on the slide!",
-                0.0,
-                23.568
-              )
-            ];
-          }
         } else if (isL4Chk1) {
           feedback.innerHTML = `✅ <b>Missing at Random (MAR) Diagnosed:</b> Because missingness depends on observed features (age and insurance) but not the missing glucose itself, the data is MAR. Listwise deletion introduces demographic selection bias; deploy Multiple Imputation by Chained Equations (MICE) or conditioned regression imputation.`;
           verbalFeedback = 'Spot on! Because missingness depends strictly on observed covariates rather than the missing value itself, the data satisfies the Missing at Random assumption. Listwise deletion would introduce severe demographic bias; instead, we deploy Multiple Imputation by Chained Equations or regression imputation conditioned on age and insurance!';
         } else if (isL4Chk2) {
           feedback.innerHTML = `✅ <b>Subpopulation Performance Disparity Diagnosed:</b> 92% aggregate accuracy masks severe failure on darker skin tones (Fitzpatrick V/VI). Standard Empirical Risk Minimization optimizes average loss over majority classes. Mitigate via stratified subgroup audits and minimax fairness constraints.`;
           verbalFeedback = 'Outstanding diagnosis! High aggregate accuracy masks catastrophic failure modes in underrepresented cohorts. Empirical risk minimization naturally optimizes loss on majority classes, leading to delayed malignant melanoma diagnoses for darker-skinned patients. Auditing requires stratified evaluations and minimax fairness constraints!';
-        } else if (isL4Chk1) {
-          if (isDuo) {
-            audioPath = './audio/ch1_p4_chk1_duo.mp3';
-            totalDuration = 15.830;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Kaito",
-                "Thirty-five percent missing glucose readings, correlated with age and insurance! Look at the options below. Which mechanism and remediation strategy applies?",
-                0.0,
-                11.256
-              ),
-              buildTimedSentence(
-                "Dr. Nova",
-                "Click the correct answer on the checkpoint card to test your retention!",
-                11.606,
-                15.830
-              )
-            ];
-          } else {
-            audioPath = './audio/ch1_p4_chk1_solo.mp3';
-            totalDuration = 26.904;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Dr. Nova",
-                "Active Recall Checkpoint 1! In an electronic healthcare dataset tracking patient blood glucose, thirty-five percent of outpatient glucose readings are missing. Missingness correlates heavily with patient age and insurance type, but given age and insurance, is statistically independent of blood glucose itself. Which missing data mechanism is this, and what is the mathematically sound remediation? Select your answer on the slide!",
-                0.0,
-                26.904
-              )
-            ];
-          }
-        } else if (isL4Chk2) {
-          if (isDuo) {
-            audioPath = './audio/ch1_p4_chk2_duo.mp3';
-            totalDuration = 14.558;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Kaito",
-                "Eighty-eight percent lighter skin versus three percent darker skin! High overall accuracy, but what happens to the underrepresented minority cohort?",
-                0.0,
-                9.552
-              ),
-              buildTimedSentence(
-                "Dr. Nova",
-                "Select the correct option below to analyze the clinical safety hazard!",
-                9.902,
-                14.558
-              )
-            ];
-          } else {
-            audioPath = './audio/ch1_p4_chk2_solo.mp3';
-            totalDuration = 27.288;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Dr. Nova",
-                "Active Recall Checkpoint 2! A computer vision benchmark for dermatological lesion classification reports ninety-two percent Top-1 diagnostic accuracy across one hundred thousand images. But eighty-eight percent of training images represent Fitzpatrick skin types I and II, while only three percent represent skin types V and VI. How does this structural disparity impact real-world clinical safety? Make your choice on the slide!",
-                0.0,
-                27.288
-              )
-            ];
-          }
         } else if (isL3Chk1) {
           feedback.innerHTML = `🎉 <b>Outstanding!</b> In Apache Parquet, the <code>amount</code> column is stored as a contiguous binary byte block ($k=1$), bypassing over $98\%$ of on-disk bytes through projection pushdown. Combined with vectorized SIMD CPU instructions, this yields 50x-100x query speedups!`;
           verbalFeedback = 'Spot on! In Apache Parquet, the amount column is stored as a contiguous binary byte block. The query engine reads only that single column, bypassing over ninety-eight percent of on-disk bytes, and computes averages using vectorized SIMD CPU instructions!';
@@ -6007,6 +6739,30 @@
         } else if (isL4_1Chk2) {
           feedback.innerHTML = `🎉 <b>Precisely Correct!</b> Because noise is directional ($0.25$ vs $0.00$), standard ERM shifts the decision boundary toward the over-reported Benign class, creating dangerous false negatives. When $T$ is invertible, the Natarajan correction $\\ell^* = T^{-1}\\ell$ satisfies $\\mathbb{E}[\\ell^*] = \\ell$, pulling the boundary back to optimal clinical sensitivity!`;
           verbalFeedback = 'Precisely correct! Because noise is asymmetric, standard empirical risk minimization shifts the decision boundary toward Benign Nevus, leading to lethal false negatives. Multiplying the loss vector by T inverse guarantees that expected gradients are unbiased, restoring optimal clinical sensitivity!';
+        } else if (isL4_2Chk1) {
+          feedback.innerHTML = `🎉 <b>Spot on, Machine Learning Engineer!</b> When boxes do not intersect ($|A \\cap B| = 0$), standard IoU collapses identically to $0.0$, yielding a vanishing gradient ($\\nabla \\text{IoU} = 0$). GIoU adds a normalized penalty for empty enclosing space inside $C$, returning negative values ($< 0$) that rise smoothly toward $0$ as $A$ moves closer to $B$!`;
+          verbalFeedback = 'Spot on, Machine Learning Engineer! When bounding boxes do not overlap, standard IoU is zero, creating a flat optimization surface with vanishing gradients. GIoU resolves this by measuring the empty space inside the minimal enclosing box C, providing continuous gradients even at zero intersection.';
+        } else if (isL3_1Chk1) {
+          feedback.innerHTML = `🎉 <b>Spot on!</b> Salted HMAC only masks direct identifiers $I$. As Dr. Latanya Sweeney proved (2000), joining $(Q_{\\text{ZIP}}, Q_{\\text{Gender}}, Q_{\\text{DOB}})$ against public voter rolls uniquely re-identifies $\\mathbf{87.1\\%}$ of the US population!`;
+          verbalFeedback = 'Spot on! Salted HMAC only masks direct identifiers I. As Dr. Latanya Sweeney proved in 2000, joining the three-attribute quasi-identifier tuple of 5-digit ZIP, gender, and date of birth against public voter rolls uniquely re-identifies 87.1 percent of the United States population!';
+        } else if (isL3_1Chk2) {
+          feedback.innerHTML = `🎉 <b>Precisely Correct!</b> De Montjoye et al. (2013) proved just <strong>4 spatio-temporal points</strong> identify $95\\%$ of commuters regardless of rotating hashes. Meanwhile, public health forum posts remain protected Special Category data under <strong>GDPR Art. 9</strong>, bound by Contextual Integrity and <strong>Art. 17 erasure</strong>!`;
+          verbalFeedback = 'Precisely correct! De Montjoye proved that just 4 spatio-temporal points uniquely identify 95 percent of users regardless of rotating hashes. Meanwhile, public medical forum posts remain Special Category health data under GDPR Article 9, protected by Contextual Integrity and Article 17 erasure rights!';
+        } else if (isL4_2Chk2) {
+          feedback.innerHTML = `🎉 <b>Excellent Analysis!</b> Under IOB2, both singletons and multi-token heads receive <code>B-Tag</code>, creating boundary ambiguity. BIOES isolates singletons with <code>S-Tag</code> and multi-token endings with <code>E-Tag</code>, letting Linear-Chain CRF decoders assign $-\\infty$ to invalid jumps like <code>B-Tag</code> &rarr; <code>O</code>!`;
+          verbalFeedback = 'Excellent analysis! Under IOB2, both single-token entities and multi-token entity prefixes receive the identical B-tag, creating structural ambiguity. BIOES separates singletons into S-tags and multi-token endings into E-tags, allowing CRF and Transformer decoders to enforce valid transition constraints.';
+        } else if (isL2_3Chk1) {
+          feedback.innerHTML = `🎉 <b>Outstanding!</b> True satisfaction $\\bar{Y} = (0.20)(8.5) + (0.80)(4.5) = 1.70 + 3.60 = \\mathbf{5.30 / 10}$. Therefore, the non-response bias is $8.50 - 5.30 = \\mathbf{+3.20\\text{ points}}$! Uncorrected surveys grossly overstate satisfaction.`;
+          verbalFeedback = 'Outstanding! By the non-response theorem: true satisfaction Y bar equals 0.20 times 8.5 plus 0.80 times 4.5, which equals 5.30. Therefore, non-response bias equals 8.50 minus 5.30, or exactly plus 3.20 points! The naive survey grossly overestimates customer satisfaction.';
+        } else if (isL2_3Chk2) {
+          feedback.innerHTML = `🎉 <b>Precisely Correct!</b> By RFC 9309 pacing: $\\text{RPS}_{\\max} = \\frac{1}{T_{\\text{crawl-delay}}} = \\frac{1}{0.5\\text{ s}} = \\mathbf{2.0\\text{ requests/second}}$ across all concurrent threads!`;
+          verbalFeedback = 'Precisely correct! The maximum permissible request rate is the reciprocal of the crawl delay: 1 divided by 0.5 seconds equals 2.0 requests per second. Exceeding this rate violates RFC 9309 etiquette and risks automated IP bans.';
+        } else if (isL2_3Chk1) {
+          feedback.innerHTML = `❌ <b>Incorrect:</b> Remember $\\bar{Y}$ is weighted by response fractions: $(0.20)(8.5) + (0.80)(4.5) = \\mathbf{5.30}$. Subtracting $5.30$ from $8.50$ yields a bias of $\\mathbf{+3.20\\text{ points}}$.`;
+          verbalFeedback = 'Not quite. Remember that true population mean is a convex combination: 0.20 times 8.5 plus 0.80 times 4.5 equals 5.30. Subtracting 5.30 from 8.50 yields a bias of plus 3.20 points.';
+        } else if (isL2_3Chk2) {
+          feedback.innerHTML = `❌ <b>Incorrect:</b> Recall the reciprocal formula: $\\text{RPS}_{\\max} = \\frac{1}{\\text{Crawl-delay}} = \\frac{1}{0.5} = \\mathbf{2.0\\text{ req/s}}$.`;
+          verbalFeedback = 'That is incorrect. Recall the reciprocal formula: RPS max equals 1 divided by Crawl-delay. One divided by 0.5 seconds equals 2.0 requests per second.';
         } else if (isChk1) {
           feedback.innerHTML = `🎉 <b>Outstanding!</b> Schema-on-read JSON forces full-document deserialization and CPU string parsing per row on every query, whereas columnar Parquet enables vectorized SIMD compression and zero-copy projection pushdown.`;
           verbalFeedback = 'Outstanding! Schema-on-read forces CPU-intensive string parsing and pointer dereferencing on every read, whereas columnar formats like Parquet store homogeneous columns contiguously with vectorized SIMD compression and zero-copy projection pushdown!';
@@ -6025,9 +6781,11 @@
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] text-[#151b20] text-xs font-sans leading-relaxed';
         if (isL6Chk1) {
           feedback.innerHTML = `❌ <b>Benchmark Fallacy:</b> Even with sealed test labels, using scalar test accuracy feedback to guide architecture and hyperparameter iterations causes adaptive overfitting to test noise!`;
+          verbalFeedback = 'Not quite. Remember our evaluation hygiene: repeated hyperparameter tuning against scalar leaderboard feedback causes adaptive overfitting to test noise, turning the test set into an implicit training set!';
         } else if (isL6Chk2) {
-          feedback.innerHTML = `❌ <b>Concept Drift Diagnostic Error:</b> When input distributions and volumes remain stable while classifier precision collapses in adversarial domains, the cause is concept drift $P(Y \mid X)$ from fraudsters adapting their tactics.`;
-        } else         if (isL5Chk1) {
+          feedback.innerHTML = `❌ <b>Concept Drift Diagnostic Error:</b> When input distributions and volumes remain stable while classifier precision collapses in adversarial domains, the cause is concept drift $P(Y \\mid X)$ from fraudsters adapting their tactics.`;
+          verbalFeedback = 'Careful! When input distributions remain stable but model precision collapses in adversarial domains like fraud, you are observing concept drift P of Y given X, driven by fraudsters changing evasion tactics.';
+        } else if (isL5Chk1) {
           feedback.innerHTML = `❌ <b>Leakage Diagnosis Error:</b> An ROC-AUC of 0.99 in CV that plummets to 0.52 in production is the classic signature of lookahead target leakage. Features referencing future time windows ($t+7$) are physically unavailable at inference time.`;
           verbalFeedback = 'Not quite. Remember our temporal boundaries: you cannot use events from the future to predict the present! The feature embedded future maintenance actions, causing massive lookahead target leakage.';
         } else if (isL5Chk2) {
@@ -6039,54 +6797,6 @@
         } else if (isL4Chk2) {
           feedback.innerHTML = `❌ <b>Representation Trap:</b> High aggregate accuracy does not guarantee safety. In skewed distributions (88% vs 3%), the majority class dominates the objective function, tolerating catastrophic error rates on underrepresented demographic cohorts.`;
           verbalFeedback = 'Careful! Standard Empirical Risk Minimization weights each sample equally. A model can achieve over ninety percent aggregate accuracy while failing catastrophically on underrepresented demographic groups.';
-        } else if (isL2_2Chk1) {
-          if (isDuo) {
-            audioPath = './audio/ch2_p2_chk1_duo.mp3';
-            totalDuration = 13.344;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Kaito",
-                "Let me calculate: n divided by 1 plus variance... 1,000 divided by 4... That gives exactly 250 samples! Let us see if our students get it right!",
-                0.0,
-                13.344
-              )
-            ];
-          } else {
-            audioPath = './audio/ch2_p2_chk1_solo.mp3';
-            totalDuration = 13.800;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Dr. Nova",
-                "Active Checkpoint 1: A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size.",
-                0.0,
-                13.800
-              )
-            ];
-          }
-        } else if (isL2_2Chk2) {
-          if (isDuo) {
-            audioPath = './audio/ch2_p2_chk2_duo.mp3';
-            totalDuration = 14.904;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Kaito",
-                "Let us apply Little's Law: 2,000 packets per second times 0.040 seconds gives an average occupancy L of 80 packets! Since 80 is less than 120, the buffer handles steady-state traffic without continuous overflow!",
-                0.0,
-                14.904
-              )
-            ];
-          } else {
-            audioPath = './audio/ch2_p2_chk2_solo.mp3';
-            totalDuration = 18.600;
-            interactiveSentences = [
-              buildTimedSentence(
-                "Dr. Nova",
-                "Active Checkpoint 2: An IoT sensor broker receives incoming packets at rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. The buffer holds 120 packets. Calculate L and evaluate stability.",
-                0.0,
-                18.600
-              )
-            ];
-          }
         } else if (isL3Chk1) {
           feedback.innerHTML = `❌ <b>Common Architectural Trap:</b> Row stores must read all 85 attributes into memory for every single row to extract <code>amount</code>. Parquet reads only the target column contiguously from disk with vectorized SIMD compression.`;
           verbalFeedback = 'Not quite. Remember our projection law: in a row store, the engine must parse every single column off disk just to get amount. Parquet skips ninety-eight percent of data through columnar projection pushdown!';
@@ -6105,6 +6815,18 @@
         } else if (isL4_1Chk2) {
           feedback.innerHTML = `❌ <b>Clinical Risk Trap:</b> Asymmetric noise is not mere class imbalance. The directional label flipping pulls the empirical risk minimum toward Benign Nevus, causing lethal missed diagnoses. The inverse operator $T^{-1}$ mathematically de-biases the expected gradient updates!`;
           verbalFeedback = 'Not quite. Asymmetric noise is not mere class imbalance. The directional label corruption systematically shifts the empirical loss minimum away from true Bayes risk. Natarajan\'s inverse transition operator mathematically restores an unbiased risk estimator.';
+        } else if (isL4_2Chk1) {
+          feedback.innerHTML = `❌ <b>Optimization Trap:</b> Remember that when $|A \\cap B| = 0$, the denominator $|A \\cup B| = |A| + |B| > 0$, so standard IoU equals $0.0$, NOT division by zero! The actual problem is a flat derivative ($\\nabla \\text{IoU} = 0$). GIoU preserves gradients via minimal convex enclosing box $C$.`;
+          verbalFeedback = 'Not quite. Remember that when intersection is zero, standard IoU is exactly 0.0, not infinite. The issue is vanishing gradients: any small movement of a disjoint box still has zero intersection, so the gradient is zero. GIoU uses the minimal enclosing box C to maintain non-zero gradients.';
+        } else if (isL3_1Chk1) {
+          feedback.innerHTML = `❌ <b>Pseudonymization Trap:</b> SHA-256 does not collide across 250k records, nor does it establish 2-anonymity. Adversaries bypass direct identifiers entirely by joining exact $(Q_{\\text{ZIP}}, Q_{\\text{Gender}}, Q_{\\text{DOB}})$ against voter registries—uniquely isolating $87.1\\%$ of US residents!`;
+          verbalFeedback = 'Careful! SHA-256 does not collide across 250,000 records, nor does it create 2-anonymity. Adversaries bypass direct identifiers entirely by joining the ungeneralized quasi-identifiers—ZIP code, gender, and birth date—against public voter rolls, uniquely isolating roughly 87.1 percent of individuals!';
+        } else if (isL3_1Chk2) {
+          feedback.innerHTML = `❌ <b>Unicity &amp; Statutory Trap:</b> Daily rotating hashes cannot prevent 4-point trajectory linkage ($95\\%$ unicity), and posting medical symptoms publicly does NOT waive GDPR Art. 9 health protections, Contextual Integrity, or Art. 17 erasure duties!`;
+          verbalFeedback = 'Not quite! Daily rotating hashes cannot defend against 4-point spatio-temporal unicity, which re-identifies 95 percent of people via home-to-work trajectories. Nor does posting symptoms publicly on a medical forum waive GDPR Article 9 health protections or Article 17 erasure obligations!';
+        } else if (isL4_2Chk2) {
+          feedback.innerHTML = `❌ <b>Sequence Structure Trap:</b> Sequence tagging schemes don't quantize vectors or correct user spelling! The real advantage of BIOES is structural: isolating singletons (<code>S-Tag</code>) and sequence closures (<code>E-Tag</code>) so CRF decoders can enforce valid span transitions.`;
+          verbalFeedback = 'Not quite. Sequence tagging schemes do not change GPU memory or correct grammatical syntax. The true mathematical advantage of BIOES is structural: by explicitly encoding singletons as S-tags and end tokens as E-tags, decoders can eliminate invalid sequence transitions and reduce boundary drift.';
         } else if (isChk1) {
           feedback.innerHTML = `❌ <b>Common Architectural Trap:</b> JSON is a row-oriented text format requiring full lexical parsing and key duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with dictionary and run-length encoding.`;
           verbalFeedback = 'Not quite. Remember that JSON is a text-based format requiring full lexical parsing and field name duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with run-length and dictionary encoding.';
@@ -6130,7 +6852,31 @@
         const compBanner = document.createElement('div');
         compBanner.id = 'checkpointCompleteBanner';
         compBanner.className = 'w-full p-3 bg-[#b7df69] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
-        const bannerMsg = isChk1
+        const bannerMsg = isL3_1Chk1
+          ? "You've mastered Sweeney's Quasi-Identifier Linkage Paradox!"
+          : isL3_1Chk2
+          ? "You've mastered Spatio-Temporal Unicity & GDPR Art. 9/17 Governance!"
+          : isL6Chk1
+          ? "You've mastered Adaptive Overfitting & the Benchmark Re-Use Fallacy!"
+          : isL6Chk2
+          ? "You've mastered Adversarial Concept Drift & Rolling Temporal Validation!"
+          : isL5Chk1
+          ? "You've mastered Temporal Boundary Hygiene & Lookahead Leakage Prevention!"
+          : isL5Chk2
+          ? "You've mastered Entity-Level GroupKFold Partitioning!"
+          : isL4Chk1
+          ? "You've mastered Little & Rubin's MAR Mechanism & MICE Imputation!"
+          : isL4Chk2
+          ? "You've mastered Subpopulation Disparity & Minimax Fairness Audits!"
+          : isL4_1Chk1
+          ? "You've mastered PAC Sample Complexity Expansion Under Label Noise!"
+          : isL4_1Chk2
+          ? "You've mastered Asymmetric Transition Matrices & Natarajan Loss Unbiasing!"
+          : isL4_2Chk1
+          ? "You've mastered Disjoint Bounding Box Gradients & Generalized IoU (GIoU)!"
+          : isL4_2Chk2
+          ? "You've mastered BIOES Structural Tagging & Linear-Chain CRF Invariants!"
+          : isChk1
           ? "You've mastered Schema-on-Read vs Columnar Storage Trade-Offs!"
           : isChk2
           ? "You've mastered Streaming Watermarks, Windows & Late Arrival Handling!"
@@ -6499,7 +7245,9 @@
       const isMultiStruct = isLesson2 && (currentSlideIndex === 5);
       const isStreamSim = isLesson2 && (currentSlideIndex === 11);
       const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
-      const targetWidgetId = isMultiStruct ? 'multiStructureWidget' : (isStreamSim ? 'streamingWindowWidget' : (isCascade ? 'empiricalCascadeWidget' : 'empiricalSimWidget'));
+      const isL3_1Sweeney = (currentTopic === 'ch3_p1' && currentSlideIndex === 5);
+      const isL3_1Lagrange = (currentTopic === 'ch3_p1' && currentSlideIndex === 11);
+      const targetWidgetId = isL3_1Sweeney ? 'sweeneySimWidget' : (isL3_1Lagrange ? 'lagrangeSimWidget' : (isMultiStruct ? 'multiStructureWidget' : (isStreamSim ? 'streamingWindowWidget' : (isCascade ? 'empiricalCascadeWidget' : 'empiricalSimWidget'))));
       const simWidget = document.getElementById(targetWidgetId);
       if (simWidget) {
         simWidget.classList.add('spotlight-active');
@@ -6512,7 +7260,11 @@
         const banner = document.createElement('div');
         banner.id = 'simExplorationBanner';
         banner.className = 'w-full p-3 bg-[#c9f3f4] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
-        const subDesc = isMultiStruct
+        const subDesc = isL3_1Sweeney
+          ? "Toggle <b>Presets 1–3</b>, <b>ZIP/Birth generalization</b>, and the <b>Outlier Gate</b> above to neutralize Sweeney's linkage attack!"
+          : isL3_1Lagrange
+          ? "Adjust <b>Coarsening Level</b>, <b>Adversary Points m</b>, and <b>Shadow Price λ</b> above to satisfy <b>R ≤ τ<sub>safe</sub></b>!"
+          : isMultiStruct
           ? "Explore <b>Relational SQL</b>, <b>Semi-Structured JSON</b>, and <b>Vector Embeddings</b> above to compare query latency and schema adaptability!"
           : isStreamSim
           ? "Observe the <b>Live Sensor Waveform</b>, inject <b>Late Arrival Readings</b>, and verify the <b>Watermark DLQ Quarantine</b> above!"
@@ -6572,7 +7324,7 @@
         const banner = document.createElement('div');
         banner.id = 'checkpointPromptBanner';
         banner.className = 'w-full p-3 bg-[#fff0b9] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
-        const optDesc = isCascade ? "Option A, Option B, or Option C" : "Option A or Option B";
+        const optDesc = (isCascade || document.querySelectorAll('#slideQuizCheckpoint .quiz-btn').length >= 3) ? "Option A, Option B, or Option C" : "Option A or Option B";
         banner.innerHTML = `
           <div class="flex items-center gap-2.5">
             <span class="text-xl animate-pulse">💡</span>
@@ -6670,13 +7422,32 @@
       const isL2_2 = (currentTopic === 'ch2_p2');
       const isL2_2Cov = isL2_2 && (currentSlideIndex === 5);
       const isL2_2Littles = isL2_2 && (currentSlideIndex === 11);
-      const isL4_1Noise = isL4_1 && (currentSlideIndex === 5);
-      const isL4_1Trans = isL4_1 && (currentSlideIndex === 11);
       const isL2_2Chk1 = isL2_2 && (currentSlideIndex === 6);
       const isL2_2Chk2 = isL2_2 && (currentSlideIndex === 12);
+
       const isL4_1 = (currentTopic === 'ch4_p1');
+      const isL4_1Noise = isL4_1 && (currentSlideIndex === 5);
+      const isL4_1Trans = isL4_1 && (currentSlideIndex === 11);
       const isL4_1Chk1 = isL4_1 && (currentSlideIndex === 6);
       const isL4_1Chk2 = isL4_1 && (currentSlideIndex === 12);
+
+      const isL4_2 = (currentTopic === 'ch4_p2');
+      const isL4_2Spatial = isL4_2 && (currentSlideIndex === 5);
+      const isL4_2Span = isL4_2 && (currentSlideIndex === 11);
+      const isL4_2Chk1 = isL4_2 && (currentSlideIndex === 6);
+      const isL4_2Chk2 = isL4_2 && (currentSlideIndex === 12);
+      const isL3_1 = (currentTopic === 'ch3_p1');
+      const isL3_1Sweeney = isL3_1 && (currentSlideIndex === 5);
+      const isL3_1Lagrange = isL3_1 && (currentSlideIndex === 11);
+      const isL3_1Chk1 = isL3_1 && (currentSlideIndex === 6);
+      const isL3_1Chk2 = isL3_1 && (currentSlideIndex === 12);
+
+      const isL2_3 = (currentTopic === 'ch2_p3');
+      const isL2_3Ipw = isL2_3 && (currentSlideIndex === 5);
+      const isL2_3Scraping = isL2_3 && (currentSlideIndex === 11);
+      const isL2_3Chk1 = isL2_3 && (currentSlideIndex === 6);
+      const isL2_3Chk2 = isL2_3 && (currentSlideIndex === 12);
+
       const isLesson3 = (currentTopic === 'ch1_p3');
       const isL3Storage = isLesson3 && (currentSlideIndex === 9);
       const isL3Chk1 = isLesson3 && (currentSlideIndex === 6);
@@ -6686,6 +7457,16 @@
       const isL4Quality = isLesson4 && (currentSlideIndex === 9);
       const isL4Chk1 = isLesson4 && (currentSlideIndex === 6);
       const isL4Chk2 = isLesson4 && (currentSlideIndex === 12);
+
+      const isLesson5 = (currentTopic === 'ch1_p5');
+      const isL5Dist = isLesson5 && (currentSlideIndex === 9);
+      const isL5Chk1 = isLesson5 && (currentSlideIndex === 6);
+      const isL5Chk2 = isLesson5 && (currentSlideIndex === 12);
+
+      const isLesson6 = (currentTopic === 'ch1_p6');
+      const isL6Churn = isLesson6 && (currentSlideIndex === 9);
+      const isL6Chk1 = isLesson6 && (currentSlideIndex === 6);
+      const isL6Chk2 = isLesson6 && (currentSlideIndex === 12);
 
       if (dockKey === 'sim') {
         if (isL2_1Tae) {
@@ -6762,7 +7543,8 @@
             interactiveSentences = [
               buildTimedSentence("Dr. Nova", "We have docked at the Customer Churn Decision and Profit Workbench! Look at the controls above me: you can adjust the classification decision threshold tau from 0.05 to 0.95 and watch how the confusion matrix and net economic profit curve respond in real time. Notice how the default threshold of 0.5 leaves thousands of dollars on the table compared to our optimal asymmetric threshold tau-star!", 0.0, 25.68)
             ];
-          }        } else if (isL5Dist) {
+          }
+        } else if (isL5Dist) {
           if (isDuo) {
             audioPath = './audio/ch1_p5_sim_duo.mp3';
             totalDuration = 24.302;
@@ -6915,6 +7697,150 @@
                 "Welcome to the Asymmetric Transition Matrix and Loss Correction Workbench! Adjust false negative confusion T 0 1 and false positive confusion T 1 0. Watch the matrix determinant and see how the inverted operator T inverse de-biases the risk gradients.",
                 0.0,
                 16.968
+              )
+            ];
+          }
+        } else if (isL3_1Sweeney) {
+          if (isDuo) {
+            audioPath = './audio/ch3_p1_sweeney_sim_duo.mp3';
+            totalDuration = 16.296;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at the live hospital table above us, Nova! Even with cryptographic HMAC hashes on every name, Governor Weld's equivalence class size is still 1! Try adjusting ZIP generalization and the k-anonymity outlier gate to protect every record!",
+                0.0,
+                16.296
+              )
+            ];
+          } else {
+            audioPath = './audio/ch3_p1_sweeney_sim_solo.mp3';
+            totalDuration = 21.552;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Sweeney Quasi-Identifier Linkage Laboratory! Click Preset 2 to see why replacing names with SHA-256 HMAC hashes still leaves Governor William Weld 1-to-1 re-identified. Then switch to Preset 3 to apply 3-digit ZIP generalization, gender suppression, and our k-anonymity outlier gate.",
+                0.0,
+                21.552
+              )
+            ];
+          }
+        } else if (isL3_1Lagrange) {
+          if (isDuo) {
+            audioPath = './audio/ch3_p1_lagrange_sim_duo.mp3';
+            totalDuration = 17.016;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at the Lagrangian gauge, Nova! With 4 known GPS points at Level 1 raw precision, disclosure risk hits 95 percent and the compliance penalty blows up! Let's coarsen to Level 4 H3 grid aggregation to see the utility-privacy balance turn green!",
+                0.0,
+                17.016
+              )
+            ];
+          } else {
+            audioPath = './audio/ch3_p1_lagrange_sim_solo.mp3';
+            totalDuration = 21.216;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Welcome to the Utility-Privacy Lagrangian and Behavioral Unicity Workbench! Adjust spatial-temporal coarsening, adversarial auxiliary dimensions m, regulatory risk ceiling tau safe, and shadow price lambda. Watch how excess disclosure risk triggers massive Lagrangian penalties until coarse aggregation restores compliance.",
+                0.0,
+                21.216
+              )
+            ];
+          }
+        } else if (isL4_2Spatial) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p2_spatial_sim_duo.mp3';
+            totalDuration = 9.36;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Notice how GIoU stays negative when the boxes don't touch, Dr. Nova! That enclosing box penalty is what guides the model to overlap!",
+                0.0,
+                9.36
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p2_spatial_sim_solo.mp3';
+            totalDuration = 22.06;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Welcome to the 2D Spatial Geometry and IoU Studio. Here you can manipulate bounding box coordinates in real time. Notice how when Box A and Box B become disjoint, standard IoU drops straight to zero with zero gradient, while Generalized IoU penalizes the minimal enclosing box C, providing a continuous optimization signal.",
+                0.0,
+                22.06
+              )
+            ];
+          }
+        } else if (isL4_2Span) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p2_span_sim_duo.mp3';
+            totalDuration = 9.10;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at the California token, Dr. Nova! Under IOB2 it's just B-LOC, but in BIOES it's S-LOC, meaning singleton!",
+                0.0,
+                9.10
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p2_span_sim_solo.mp3';
+            totalDuration = 22.18;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "In this NLP Span and Sequence Tagging Workbench, observe how continuous character offsets are discretized into token-level IOB2 and BIOES representations. Notice how BIOES explicitly flags single-token entities with S-tags and ends of multi-token entities with E-tags, establishing structural constraints that prevent boundary errors.",
+                0.0,
+                22.18
+              )
+            ];
+          }
+        } else if (isL2_3Ipw) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p3_ipw_sim_duo.mp3';
+            totalDuration = 15.144;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at that, Nova! When I pull response rate down to twenty percent with an eighty-five respondent mean and forty-five non-respondent mean, the unweighted bias shoots up to plus 3.2 points! That's a massive distortion on a ten-point scale!",
+                0.0,
+                15.144
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p3_ipw_sim_solo.mp3';
+            totalDuration = 17.136;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Welcome to the Survey Non-Response and IPW Debiasing Workbench! Adjust the response rate and respondent mean sliders. Notice how the non-response bias formula accurately captures the distortion, and observe how Inverse Propensity Weighting restores the true mean.",
+                0.0,
+                17.136
+              )
+            ];
+          }
+        } else if (isL2_3Scraping) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p3_scraping_sim_duo.mp3';
+            totalDuration = 19.992;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Watch this, Nova! Crawl-delay is 0.5 seconds, meaning max RPS is 2.0. But when I push concurrent workers to 6, actual RPS hits 6.0 and the DoS safety badge flashes critical red! And pushing mutation rate to 45% trips the Jaccard circuit breaker!",
+                0.0,
+                19.992
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p3_scraping_sim_solo.mp3';
+            totalDuration = 19.416;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Welcome to the Web Scraping Rate Limiter and Structural Drift Simulator! Adjust crawl delay, worker concurrency, and DOM mutation rate. Observe how exceeding maximum allowable requests per second violates RFC 9309 politeness, and watch the Jaccard distance trip the circuit breaker.",
+                0.0,
+                19.416
               )
             ];
           }
@@ -7071,30 +7997,206 @@
         }
       } else if (dockKey === 'quiz') {
         if (isL6Chk1) {
-        feedbackDuration = isCorrect ? 23.952 : 13.608;
-        feedbackSrc = isCorrect ? './audio/ch1_p6_chk1_feedback_correct.mp3' : './audio/ch1_p6_chk1_feedback_incorrect.mp3';
-      } else if (isL6Chk2) {
-        feedbackDuration = isCorrect ? 26.304 : 14.112;
-        feedbackSrc = isCorrect ? './audio/ch1_p6_chk2_feedback_correct.mp3' : './audio/ch1_p6_chk2_feedback_incorrect.mp3';
-      } else         if (isL5Chk1) {
-        feedbackDuration = isCorrect ? 24.216 : 12.864;
-        feedbackSrc = isCorrect ? './audio/ch1_p5_chk1_feedback_correct.mp3' : './audio/ch1_p5_chk1_feedback_incorrect.mp3';
-      } else if (isL5Chk2) {
-        feedbackDuration = isCorrect ? 25.272 : 13.368;
-        feedbackSrc = isCorrect ? './audio/ch1_p5_chk2_feedback_correct.mp3' : './audio/ch1_p5_chk2_feedback_incorrect.mp3';
-      } else if (isL4Chk1) {
-        feedbackDuration = isCorrect ? 21.216 : 15.384;
-        feedbackSrc = isCorrect ? './audio/ch1_p4_chk1_feedback_correct.mp3' : './audio/ch1_p4_chk1_feedback_incorrect.mp3';
-      } else if (isL4Chk2) {
-        feedbackDuration = isCorrect ? 22.704 : 13.320;
-        feedbackSrc = isCorrect ? './audio/ch1_p4_chk2_feedback_correct.mp3' : './audio/ch1_p4_chk2_feedback_incorrect.mp3';
-      } else if (isL3Chk1) {
-        feedbackDuration = isCorrect ? 17.160 : 13.584;
-        feedbackSrc = isCorrect ? './audio/ch1_p3_chk1_feedback_correct.mp3' : './audio/ch1_p3_chk1_feedback_incorrect.mp3';
-      } else if (isL3Chk2) {
-        feedbackDuration = isCorrect ? 16.128 : 13.992;
-        feedbackSrc = isCorrect ? './audio/ch1_p3_chk2_feedback_correct.mp3' : './audio/ch1_p3_chk2_feedback_incorrect.mp3';
-      } else if (isL2_1Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p6_chk1_duo.mp3';
+            totalDuration = 16.19;
+            interactiveSentences = [
+              buildTimedSentence("Kaito", "Wait, if individual test labels are completely concealed, how does information leak back to the researchers?", 0.0, 5.0),
+              buildTimedSentence("Dr. Nova", "Think about what the leaderboard returns: a single scalar validation accuracy! Select the correct answer below to test your retention!", 5.35, 16.19)
+            ];
+          } else {
+            audioPath = './audio/ch1_p6_chk1_solo.mp3';
+            totalDuration = 22.08;
+            interactiveSentences = [
+              buildTimedSentence("Dr. Nova", "Active Recall Checkpoint 1! In academic competitions like ImageNet or GLUE, the test set remains fixed for years while thousands of research labs submit models iteratively. Explain why adaptive overfitting occurs even if no single researcher has direct access to test set labels. Select the correct mechanism on the slide!", 0.0, 22.08)
+            ];
+          }
+        } else if (isL6Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p6_chk2_duo.mp3';
+            totalDuration = 14.438;
+            interactiveSentences = [
+              buildTimedSentence("Kaito", "Transaction volumes didn't change, and merchants didn't change. Why did the fraud precision suddenly collapse?", 0.0, 5.0),
+              buildTimedSentence("Dr. Nova", "Select the correct option below to analyze adversarial concept drift and temporal domain shift!", 5.35, 14.438)
+            ];
+          } else {
+            audioPath = './audio/ch1_p6_chk2_solo.mp3';
+            totalDuration = 26.712;
+            interactiveSentences = [
+              buildTimedSentence("Dr. Nova", "Active Recall Checkpoint 2! A credit card fraud detection model trained on transactions from January through June experiences a severe drop in precision by October, from 82% down to 34%, despite total transaction volume and merchant distributions remaining constant. What statistical phenomenon explains this degradation, and how should dataset management mitigate it? Make your choice on the slide!", 0.0, 26.712)
+            ];
+          }
+        } else if (isL5Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p5_chk1_duo.mp3';
+            totalDuration = 18.422;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at that feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?",
+                0.0,
+                9.500
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Click the correct answer on the checkpoint card below to test your retention!",
+                9.850,
+                18.422
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p5_chk1_solo.mp3';
+            totalDuration = 34.464;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Recall Checkpoint 1! A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures forty-eight hours in advance. One engineered feature is oil_filter_replacement_count_next_7_days, which achieves an astonishing 0.99 ROC-AUC during five-fold cross-validation. But when deployed live, model performance collapses to near random chance at 0.52 ROC-AUC. What occurred? Select your answer on the slide!",
+                0.0,
+                34.464
+              )
+            ];
+          }
+        } else if (isL5Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p5_chk2_duo.mp3';
+            totalDuration = 15.254;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?",
+                0.0,
+                9.800
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Select the correct option below to analyze the clinical data contamination hazard!",
+                10.150,
+                15.254
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p5_chk2_solo.mp3';
+            totalDuration = 23.568;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Recall Checkpoint 2! In a hospital chest X-ray classification dataset containing one hundred thousand scans from twenty-five thousand unique patients, each patient has an average of four sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization? Make your choice on the slide!",
+                0.0,
+                23.568
+              )
+            ];
+          }
+
+        } else if (isL4Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p4_chk1_duo.mp3';
+            totalDuration = 15.830;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Thirty-five percent missing glucose readings, correlated with age and insurance! Look at the options below. Which mechanism and remediation strategy applies?",
+                0.0,
+                11.256
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Click the correct answer on the checkpoint card to test your retention!",
+                11.606,
+                15.830
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p4_chk1_solo.mp3';
+            totalDuration = 26.904;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Recall Checkpoint 1! In an electronic healthcare dataset tracking patient blood glucose, thirty-five percent of outpatient glucose readings are missing. Missingness correlates heavily with patient age and insurance type, but given age and insurance, is statistically independent of blood glucose itself. Which missing data mechanism is this, and what is the mathematically sound remediation? Select your answer on the slide!",
+                0.0,
+                26.904
+              )
+            ];
+          }
+        } else if (isL4Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p4_chk2_duo.mp3';
+            totalDuration = 14.558;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Eighty-eight percent lighter skin versus three percent darker skin! High overall accuracy, but what happens to the underrepresented minority cohort?",
+                0.0,
+                9.552
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Select the correct option below to analyze the clinical safety hazard!",
+                9.902,
+                14.558
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p4_chk2_solo.mp3';
+            totalDuration = 27.288;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Recall Checkpoint 2! A computer vision benchmark for dermatological lesion classification reports ninety-two percent Top-1 diagnostic accuracy across one hundred thousand images. But eighty-eight percent of training images represent Fitzpatrick skin types I and II, while only three percent represent skin types V and VI. How does this structural disparity impact real-world clinical safety? Make your choice on the slide!",
+                0.0,
+                27.288
+              )
+            ];
+          }
+
+        } else if (isL2_2Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p2_chk1_duo.mp3';
+            totalDuration = 13.344;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Let me calculate: n divided by 1 plus variance... 1,000 divided by 4... That gives exactly 250 samples! Let us see if our students get it right!",
+                0.0,
+                13.344
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p2_chk1_solo.mp3';
+            totalDuration = 13.800;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 1: A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size.",
+                0.0,
+                13.800
+              )
+            ];
+          }
+        } else if (isL2_2Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p2_chk2_duo.mp3';
+            totalDuration = 14.904;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Let us apply Little's Law: 2,000 packets per second times 0.040 seconds gives an average occupancy L of 80 packets! Since 80 is less than 120, the buffer handles steady-state traffic without continuous overflow!",
+                0.0,
+                14.904
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p2_chk2_solo.mp3';
+            totalDuration = 18.600;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 2: An IoT sensor broker receives incoming packets at rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. The buffer holds 120 packets. Calculate L and evaluate stability.",
+                0.0,
+                18.600
+              )
+            ];
+          }
+        } else if (isL2_1Chk1) {
           if (isDuo) {
             audioPath = './audio/ch2_p1_chk1_duo.mp3';
             totalDuration = 21.542;
@@ -7199,6 +8301,150 @@
                 "Active Checkpoint 2: In a clinical oncology dataset, annotators mislabel Melanoma as Benign Nevus with probability 0.25, but never mislabel Nevus as Melanoma. Why does standard Cross-Entropy fail, and how does T inverse fix it? Select Option A, B, or C above me!",
                 0.0,
                 19.728
+              )
+            ];
+          }
+        } else if (isL3_1Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch3_p1_chk1_duo.mp3';
+            totalDuration = 14.064;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Salted SHA-256 HMAC tokens for every name and SSN, yet 5-digit ZIP, gender, and birth date stayed exact! Select Option A, B, or C above me to diagnose the exact disclosure vulnerability!",
+                0.0,
+                14.064
+              )
+            ];
+          } else {
+            audioPath = './audio/ch3_p1_chk1_solo.mp3';
+            totalDuration = 21.024;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 1: A healthcare consortium replaces patient names and Social Security Numbers with salted SHA-256 HMAC tokens, while keeping 5-digit ZIP code, gender, and date of birth exact. Why does this fail HIPAA privacy guarantees? Select Option A, B, or C above me!",
+                0.0,
+                21.024
+              )
+            ];
+          }
+        } else if (isL3_1Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch3_p1_chk2_duo.mp3';
+            totalDuration = 11.712;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Daily rotating hashes for 1-minute GPS trajectories, plus scraping public medical support posts! Evaluate both claims carefully and choose Option A, B, or C above me!",
+                0.0,
+                11.712
+              )
+            ];
+          } else {
+            audioPath = './audio/ch3_p1_chk2_solo.mp3';
+            totalDuration = 22.752;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 2: A mobility vendor releases 500,000 scooter GPS trajectories with daily rotating random hashes at 1-minute resolution, while an AI lab scrapes public medical forum posts claiming public visibility waives GDPR. Why do both pipelines fail privacy governance? Select Option A, B, or C above me!",
+                0.0,
+                22.752
+              )
+            ];
+          }
+        } else if (isL4_2Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p2_chk1_duo.mp3';
+            totalDuration = 7.03;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Kaito, let's see if our engineers understand why standard IoU fails when bounding boxes don't intersect!",
+                0.0,
+                7.03
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p2_chk1_solo.mp3';
+            totalDuration = 11.62;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Let's check your understanding of spatial overlap metrics. Answer this diagnostic question to test how standard IoU and Generalized IoU handle disjoint bounding boxes.",
+                0.0,
+                11.62
+              )
+            ];
+          }
+        } else if (isL4_2Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p2_chk2_duo.mp3';
+            totalDuration = 9.89;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Let's test our understanding of NLP sequence invariants, Kaito! Why do production NER models prefer BIOES over standard IOB2?",
+                0.0,
+                9.89
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p2_chk2_solo.mp3';
+            totalDuration = 10.42;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Time for Checkpoint 2. Let's analyze sequence tagging schemes and evaluate why BIOES outperforms standard IOB2 in neural sequence decoding.",
+                0.0,
+                10.42
+              )
+            ];
+          }
+        } else if (isL2_3Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p3_chk1_duo.mp3';
+            totalDuration = 19.776;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Let us calculate: twenty percent times 8.5 plus eighty percent times 4.5... That gives 1.70 plus 3.60, which equals 5.30! And 8.5 minus 5.30 equals plus 3.20 points! Let's see if our students get it right!",
+                0.0,
+                19.776
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p3_chk1_solo.mp3';
+            totalDuration = 18.408;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 1: A customer survey of ten thousand users achieves a twenty percent response rate. Respondent mean is 8.5 out of 10. A follow-up phone audit reveals non-respondent mean is 4.5. Calculate true satisfaction and non-response bias.",
+                0.0,
+                18.408
+              )
+            ];
+          }
+        } else if (isL2_3Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch2_p3_chk2_duo.mp3';
+            totalDuration = 14.688;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Remember the reciprocal rule: RPS max equals one divided by Crawl-delay. One divided by 0.5 seconds equals 2.0 requests per second! Let's challenge our engineers to pick the right option above us!",
+                0.0,
+                14.688
+              )
+            ];
+          } else {
+            audioPath = './audio/ch2_p3_chk2_solo.mp3';
+            totalDuration = 16.632;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 2: A remote website publishes a robots.txt file with Crawl-delay: 0.5. What is the maximum permissible request rate per second across all concurrent threads? Select Option A, B, or C above me.",
+                0.0,
+                16.632
               )
             ];
           }
@@ -7521,17 +8767,58 @@
       const isL4_1 = (currentTopic === 'ch4_p1');
       const isL4_1Chk1 = isL4_1 && (currentSlideIndex === 6);
       const isL4_1Chk2 = isL4_1 && (currentSlideIndex === 12);
+      const isL2_3 = (currentTopic === 'ch2_p3');
+      const isL2_3Chk1 = isL2_3 && (currentSlideIndex === 6);
+      const isL2_3Chk2 = isL2_3 && (currentSlideIndex === 12);
       const isLesson3 = (currentTopic === 'ch1_p3');
       const isL3Chk1 = isLesson3 && (currentSlideIndex === 6);
       const isL3Chk2 = isLesson3 && (currentSlideIndex === 12);
       const isLesson4 = (currentTopic === 'ch1_p4');
       const isL4Chk1 = isLesson4 && (currentSlideIndex === 6);
       const isL4Chk2 = isLesson4 && (currentSlideIndex === 12);
+      const isLesson5 = (currentTopic === 'ch1_p5');
+      const isL5Chk1 = isLesson5 && (currentSlideIndex === 6);
+      const isL5Chk2 = isLesson5 && (currentSlideIndex === 12);
+      const isLesson6 = (currentTopic === 'ch1_p6');
+      const isL6Chk1 = isLesson6 && (currentSlideIndex === 6);
+      const isL6Chk2 = isLesson6 && (currentSlideIndex === 12);
+      const isL4_2 = (currentTopic === 'ch4_p2');
+      const isL4_2Chk1 = isL4_2 && (currentSlideIndex === 6);
+      const isL4_2Chk2 = isL4_2 && (currentSlideIndex === 12);
+      const isL3_1 = (currentTopic === 'ch3_p1');
+      const isL3_1Sweeney = isL3_1 && (currentSlideIndex === 5);
+      const isL3_1Lagrange = isL3_1 && (currentSlideIndex === 11);
+      const isL3_1Chk1 = isL3_1 && (currentSlideIndex === 6);
+      const isL3_1Chk2 = isL3_1 && (currentSlideIndex === 12);
 
       let feedbackDuration = 12.0;
       let feedbackSrc = '';
 
-      if (isL2_1Chk1) {
+      if (isL6Chk1) {
+        feedbackDuration = isCorrect ? 23.952 : 13.608;
+        feedbackSrc = isCorrect ? './audio/ch1_p6_chk1_feedback_correct.mp3' : './audio/ch1_p6_chk1_feedback_incorrect.mp3';
+      } else if (isL6Chk2) {
+        feedbackDuration = isCorrect ? 26.304 : 14.112;
+        feedbackSrc = isCorrect ? './audio/ch1_p6_chk2_feedback_correct.mp3' : './audio/ch1_p6_chk2_feedback_incorrect.mp3';
+      } else if (isL5Chk1) {
+        feedbackDuration = isCorrect ? 24.216 : 12.864;
+        feedbackSrc = isCorrect ? './audio/ch1_p5_chk1_feedback_correct.mp3' : './audio/ch1_p5_chk1_feedback_incorrect.mp3';
+      } else if (isL5Chk2) {
+        feedbackDuration = isCorrect ? 25.272 : 13.368;
+        feedbackSrc = isCorrect ? './audio/ch1_p5_chk2_feedback_correct.mp3' : './audio/ch1_p5_chk2_feedback_incorrect.mp3';
+      } else if (isL4Chk1) {
+        feedbackDuration = isCorrect ? 21.216 : 15.384;
+        feedbackSrc = isCorrect ? './audio/ch1_p4_chk1_feedback_correct.mp3' : './audio/ch1_p4_chk1_feedback_incorrect.mp3';
+      } else if (isL4Chk2) {
+        feedbackDuration = isCorrect ? 22.704 : 13.320;
+        feedbackSrc = isCorrect ? './audio/ch1_p4_chk2_feedback_correct.mp3' : './audio/ch1_p4_chk2_feedback_incorrect.mp3';
+      } else if (isL3Chk1) {
+        feedbackDuration = isCorrect ? 17.160 : 13.584;
+        feedbackSrc = isCorrect ? './audio/ch1_p3_chk1_feedback_correct.mp3' : './audio/ch1_p3_chk1_feedback_incorrect.mp3';
+      } else if (isL3Chk2) {
+        feedbackDuration = isCorrect ? 16.128 : 13.992;
+        feedbackSrc = isCorrect ? './audio/ch1_p3_chk2_feedback_correct.mp3' : './audio/ch1_p3_chk2_feedback_incorrect.mp3';
+      } else if (isL2_1Chk1) {
         feedbackDuration = isCorrect ? 21.264 : 19.656;
         feedbackSrc = isCorrect ? './audio/ch2_p1_chk1_feedback_correct.mp3' : './audio/ch2_p1_chk1_feedback_incorrect.mp3';
       } else if (isL2_1Chk2) {
@@ -7549,6 +8836,24 @@
       } else if (isL4_1Chk2) {
         feedbackDuration = isCorrect ? 19.248 : 17.376;
         feedbackSrc = isCorrect ? './audio/ch4_p1_chk2_feedback_correct.mp3' : './audio/ch4_p1_chk2_feedback_incorrect.mp3';
+      } else if (isL3_1Chk1) {
+        feedbackDuration = isCorrect ? 21.432 : 24.144;
+        feedbackSrc = isCorrect ? './audio/ch3_p1_chk1_feedback_correct.mp3' : './audio/ch3_p1_chk1_feedback_incorrect.mp3';
+      } else if (isL3_1Chk2) {
+        feedbackDuration = isCorrect ? 21.648 : 20.784;
+        feedbackSrc = isCorrect ? './audio/ch3_p1_chk2_feedback_correct.mp3' : './audio/ch3_p1_chk2_feedback_incorrect.mp3';
+      } else if (isL4_2Chk1) {
+        feedbackDuration = isCorrect ? 20.664 : 22.032;
+        feedbackSrc = isCorrect ? './audio/ch4_p2_chk1_feedback_correct.mp3' : './audio/ch4_p2_chk1_feedback_incorrect.mp3';
+      } else if (isL4_2Chk2) {
+        feedbackDuration = isCorrect ? 22.224 : 20.976;
+        feedbackSrc = isCorrect ? './audio/ch4_p2_chk2_feedback_correct.mp3' : './audio/ch4_p2_chk2_feedback_incorrect.mp3';
+      } else if (isL2_3Chk1) {
+        feedbackDuration = isCorrect ? 27.408 : 20.640;
+        feedbackSrc = isCorrect ? './audio/ch2_p3_chk1_feedback_correct.mp3' : './audio/ch2_p3_chk1_feedback_incorrect.mp3';
+      } else if (isL2_3Chk2) {
+        feedbackDuration = isCorrect ? 18.336 : 13.344;
+        feedbackSrc = isCorrect ? './audio/ch2_p3_chk2_feedback_correct.mp3' : './audio/ch2_p3_chk2_feedback_incorrect.mp3';
       } else if (isChk1) {
         feedbackDuration = isCorrect ? 15.912 : 16.920;
         feedbackSrc = isCorrect ? './audio/ch1_p2_chk1_feedback_correct.mp3' : './audio/ch1_p2_chk1_feedback_incorrect.mp3';
@@ -7746,8 +9051,18 @@
       if (targetKey === 'sim') {
         const sim = document.getElementById('taeSimWidget') ||
                     document.getElementById('fpcSimWidget') ||
+                    document.getElementById('covShiftWidget') ||
+                    document.getElementById('littlesLawWidget') ||
+                    document.getElementById('noiseSimWidget') ||
+                    document.getElementById('transSimWidget') ||
+                    document.getElementById('spatialSimWidget') ||
+                    document.getElementById('spanSimWidget') ||
                     document.getElementById('multiStructureWidget') ||
                     document.getElementById('streamingWindowWidget') ||
+                    document.getElementById('storageBenchmarkWidget') ||
+                    document.getElementById('qualityRadarWidget') ||
+                    document.getElementById('distributionProfilerWidget') ||
+                    document.getElementById('churnDecisionWidget') ||
                     document.getElementById('empiricalCascadeWidget') ||
                     document.getElementById('empiricalSimWidget');
         if (sim) {
@@ -7787,11 +9102,20 @@
       const domSim = !!(document.getElementById('speakerDockSimulator') ||
                         document.getElementById('empiricalCascadeWidget') ||
                         document.getElementById('empiricalSimWidget') ||
+                        document.getElementById('noiseSimWidget') ||
+                        document.getElementById('transSimWidget') ||
+                        document.getElementById('spatialSimWidget') ||
+                        document.getElementById('spanSimWidget') ||
+                        document.getElementById('covShiftWidget') ||
+                        document.getElementById('littlesLawWidget') ||
                         document.getElementById('multiStructureWidget') ||
                         document.getElementById('streamingWindowWidget') ||
                         document.getElementById('storageBenchmarkWidget') ||
                         document.getElementById('qualityRadarWidget') ||
-                        document.getElementById('distributionProfilerWidget'));
+                        document.getElementById('distributionProfilerWidget') ||
+                        document.getElementById('sweeneySimWidget') ||
+                        document.getElementById('lagrangeSimWidget') ||
+                        document.getElementById('churnDecisionWidget'));
       const hasSim = isL1Sim || isL2Sim || isL3Sim || isL4Sim || isL5Sim || isL6Sim || hasTurnsSim || domSim;
 
       const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
@@ -7934,11 +9258,20 @@
       const domSim = !!(document.getElementById('speakerDockSimulator') ||
                         document.getElementById('empiricalCascadeWidget') ||
                         document.getElementById('empiricalSimWidget') ||
+                        document.getElementById('noiseSimWidget') ||
+                        document.getElementById('transSimWidget') ||
+                        document.getElementById('spatialSimWidget') ||
+                        document.getElementById('spanSimWidget') ||
+                        document.getElementById('covShiftWidget') ||
+                        document.getElementById('littlesLawWidget') ||
                         document.getElementById('multiStructureWidget') ||
                         document.getElementById('streamingWindowWidget') ||
                         document.getElementById('storageBenchmarkWidget') ||
                         document.getElementById('qualityRadarWidget') ||
-                        document.getElementById('distributionProfilerWidget'));
+                        document.getElementById('distributionProfilerWidget') ||
+                        document.getElementById('sweeneySimWidget') ||
+                        document.getElementById('lagrangeSimWidget') ||
+                        document.getElementById('churnDecisionWidget'));
       const hasSim = isL1Sim || isL2Sim || isL3Sim || isL4Sim || isL5Sim || isL6Sim || hasTurnsSim || domSim;
 
       const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
@@ -7973,10 +9306,16 @@
       if (btnSim) {
         if (hasSim) {
           btnSim.classList.remove('hidden');
+          const isChurnSim = (currentTopic === 'ch1_p6' && currentSlideIndex === 9);
           const isDistSim = (currentTopic === 'ch1_p5' && currentSlideIndex === 9);
           const isQualitySim = (currentTopic === 'ch1_p4' && currentSlideIndex === 9);
           const isStorageSim = (currentTopic === 'ch1_p3' && currentSlideIndex === 9);
-          if (isDistSim) btnSim.innerHTML = '⚡ Distribution Lab';
+          const isSweeneySim = (currentTopic === 'ch3_p1' && currentSlideIndex === 5);
+          const isLagrangeSim = (currentTopic === 'ch3_p1' && currentSlideIndex === 11);
+          if (isSweeneySim) btnSim.innerHTML = '⚡ Sweeney Lab';
+          else if (isLagrangeSim) btnSim.innerHTML = '⚡ Lagrangian Lab';
+          else if (isChurnSim) btnSim.innerHTML = '⚡ Churn Workbench';
+          else if (isDistSim) btnSim.innerHTML = '⚡ Distribution Lab';
           else if (isQualitySim) btnSim.innerHTML = '⚡ Quality Radar';
           else if (isStorageSim) btnSim.innerHTML = '⚡ Storage Benchmark';
           else if (isMultiStruct) btnSim.innerHTML = '⚡ Multi-Structure';
@@ -7999,8 +9338,10 @@
           const isL5Chk2 = (currentTopic === 'ch1_p5' && currentSlideIndex === 12);
           const isL6Chk1 = (currentTopic === 'ch1_p6' && currentSlideIndex === 6);
           const isL6Chk2 = (currentTopic === 'ch1_p6' && currentSlideIndex === 12);
-          if (isChk1 || isL3Chk1 || isL4Chk1 || isL5Chk1 || isL6Chk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
-          else if (isChk2 || isL3Chk2 || isL4Chk2 || isL5Chk2 || isL6Chk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
+          const isL3_1Chk1Pill = (currentTopic === 'ch3_p1' && currentSlideIndex === 6);
+          const isL3_1Chk2Pill = (currentTopic === 'ch3_p1' && currentSlideIndex === 12);
+          if (isChk1 || isL3Chk1 || isL4Chk1 || isL5Chk1 || isL6Chk1 || isL3_1Chk1Pill) btnQuiz.innerHTML = '💡 Checkpoint 1';
+          else if (isChk2 || isL3Chk2 || isL4Chk2 || isL5Chk2 || isL6Chk2 || isL3_1Chk2Pill) btnQuiz.innerHTML = '💡 Checkpoint 2';
           else btnQuiz.innerHTML = '💡 Checkpoint';
         } else {
           btnQuiz.classList.add('hidden');
@@ -8019,7 +9360,13 @@
         if (activeKey === 'main') {
           label.innerText = (hasSim || hasQuiz) ? "1. Core Slide Content" : "Core Slide Content";
         } else if (activeKey === 'sim') {
-          if (isMultiStruct) label.innerText = "2. Multi-Structure Inspector (SQL vs JSON vs Vector)";
+          if (currentTopic === 'ch3_p1' && currentSlideIndex === 5) label.innerText = "2. Sweeney Quasi-Identifier Linkage Lab";
+          else if (currentTopic === 'ch3_p1' && currentSlideIndex === 11) label.innerText = "2. Utility-Privacy Lagrangian & Unicity Workbench";
+          else if (currentTopic === 'ch1_p6' && currentSlideIndex === 9) label.innerText = "2. Churn Decision & Economic Profit Workbench";
+          else if (currentTopic === 'ch1_p5' && currentSlideIndex === 9) label.innerText = "2. Distribution Profiler & Transformation Lab";
+          else if (currentTopic === 'ch1_p4' && currentSlideIndex === 9) label.innerText = "2. Data Quality Health Radar";
+          else if (currentTopic === 'ch1_p3' && currentSlideIndex === 9) label.innerText = "2. Storage Format Benchmark Engine";
+          else if (isMultiStruct) label.innerText = "2. Multi-Structure Inspector (SQL vs JSON vs Vector)";
           else if (isStreamSim) label.innerText = "2. Dynamic Tumbling Window Simulator";
           else if (isCascade) label.innerText = "2. Data Quality Cascade Simulator";
           else label.innerText = "2. Empirical Risk & Bias Playground";
@@ -9000,6 +10347,669 @@
       }
     }
     window.updateTransSim = updateTransSim;
+
+    function setSpatialPreset(mode) {
+      const a1 = document.getElementById('boxA_x1'), a2 = document.getElementById('boxA_y1'),
+            a3 = document.getElementById('boxA_x2'), a4 = document.getElementById('boxA_y2');
+      const b1 = document.getElementById('boxB_x1'), b2 = document.getElementById('boxB_y1'),
+            b3 = document.getElementById('boxB_x2'), b4 = document.getElementById('boxB_y2');
+      if (!a1 || !b1) return;
+
+      if (mode === 'disjoint') {
+        a1.value = 30; a2.value = 30; a3.value = 140; a4.value = 140;
+        b1.value = 240; b2.value = 90; b3.value = 360; b4.value = 190;
+      } else if (mode === 'partial') {
+        a1.value = 50; a2.value = 50; a3.value = 170; a4.value = 170;
+        b1.value = 110; b2.value = 50; b3.value = 230; b4.value = 170;
+      } else if (mode === 'voc') {
+        a1.value = 60; a2.value = 40; a3.value = 240; a4.value = 180;
+        b1.value = 90; b2.value = 55; b3.value = 260; b4.value = 190;
+      }
+      updateSpatialSim();
+    }
+    window.setSpatialPreset = setSpatialPreset;
+
+    function updateSpatialSim() {
+      const a_x1 = parseFloat(document.getElementById('boxA_x1')?.value ?? 50);
+      const a_y1 = parseFloat(document.getElementById('boxA_y1')?.value ?? 40);
+      const a_x2 = parseFloat(document.getElementById('boxA_x2')?.value ?? 200);
+      const a_y2 = parseFloat(document.getElementById('boxA_y2')?.value ?? 180);
+
+      const b_x1 = parseFloat(document.getElementById('boxB_x1')?.value ?? 130);
+      const b_y1 = parseFloat(document.getElementById('boxB_y1')?.value ?? 90);
+      const b_x2 = parseFloat(document.getElementById('boxB_x2')?.value ?? 280);
+      const b_y2 = parseFloat(document.getElementById('boxB_y2')?.value ?? 210);
+
+      const lblA = document.getElementById('lbl_boxA_coords');
+      const lblB = document.getElementById('lbl_boxB_coords');
+      if (lblA) lblA.textContent = `[${Math.round(a_x1)}, ${Math.round(a_y1)}, ${Math.round(a_x2)}, ${Math.round(a_y2)}]`;
+      if (lblB) lblB.textContent = `[${Math.round(b_x1)}, ${Math.round(b_y1)}, ${Math.round(b_x2)}, ${Math.round(b_y2)}]`;
+
+      const areaA = Math.max(0, a_x2 - a_x1) * Math.max(0, a_y2 - a_y1);
+      const areaB = Math.max(0, b_x2 - b_x1) * Math.max(0, b_y2 - b_y1);
+
+      const inter_x1 = Math.max(a_x1, b_x1);
+      const inter_y1 = Math.max(a_y1, b_y1);
+      const inter_x2 = Math.min(a_x2, b_x2);
+      const inter_y2 = Math.min(a_y2, b_y2);
+
+      const interW = Math.max(0, inter_x2 - inter_x1);
+      const interH = Math.max(0, inter_y2 - inter_y1);
+      const interArea = interW * interH;
+      const unionArea = areaA + areaB - interArea;
+      const iou = (unionArea > 0) ? (interArea / unionArea) : 0.0;
+
+      // Enclosing box C
+      const c_x1 = Math.min(a_x1, b_x1);
+      const c_y1 = Math.min(a_y1, b_y1);
+      const c_x2 = Math.max(a_x2, b_x2);
+      const c_y2 = Math.max(a_y2, b_y2);
+      const areaC = Math.max(0, c_x2 - c_x1) * Math.max(0, c_y2 - c_y1);
+
+      const giou = (areaC > 0) ? (iou - (areaC - unionArea) / areaC) : iou;
+
+      const elIou = document.getElementById('m_iou');
+      const elGiou = document.getElementById('m_giou');
+      const elInter = document.getElementById('m_inter_area');
+      const elUnion = document.getElementById('m_union_area');
+      const elBadge = document.getElementById('m_iou_badge');
+      const elGStatus = document.getElementById('m_giou_status');
+
+      if (elIou) elIou.textContent = iou.toFixed(3);
+      if (elGiou) elGiou.textContent = giou.toFixed(3);
+      if (elInter) elInter.textContent = `${Math.round(interArea).toLocaleString()} px²`;
+      if (elUnion) elUnion.textContent = `${Math.round(unionArea).toLocaleString()} px²`;
+
+      if (elBadge && elIou) {
+        if (iou >= 0.50) {
+          elBadge.textContent = "PASS (Pascal VOC IoU ≥ 0.50)";
+          elBadge.style.color = "#15803d";
+          elIou.style.color = "#15803d";
+        } else if (interArea === 0) {
+          elBadge.textContent = "DISJOINT (Zero Gradient: ∇IoU = 0)";
+          elBadge.style.color = "#b91c1c";
+          elIou.style.color = "#b91c1c";
+        } else {
+          elBadge.textContent = "FAIL (IoU < 0.50 Threshold)";
+          elBadge.style.color = "#b45309";
+          elIou.style.color = "#b45309";
+        }
+      }
+
+      if (elGStatus && elGiou) {
+        if (interArea === 0) {
+          elGStatus.textContent = "Non-Zero Negative Gradient";
+          elGStatus.style.color = "#0284c7";
+          elGiou.style.color = "#dc2626";
+        } else {
+          elGStatus.textContent = "Enclosing Box Penalty Active";
+          elGStatus.style.color = "#0369a1";
+          elGiou.style.color = "#1e40af";
+        }
+      }
+
+      const canvas = document.getElementById('spatial_canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Grid lines
+      ctx.strokeStyle = "#f1f5f9";
+      ctx.lineWidth = 1;
+      for (let x = 0; x <= canvas.width; x += 20) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y <= canvas.height; y += 20) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Enclosing Box C (Dashed Purple)
+      if (areaC > 0) {
+        ctx.strokeStyle = "#a855f7";
+        ctx.setLineDash([4, 4]);
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(c_x1, c_y1, c_x2 - c_x1, c_y2 - c_y1);
+        ctx.setLineDash([]);
+      }
+
+      // Box A (Green)
+      ctx.fillStyle = "rgba(34, 197, 94, 0.25)";
+      ctx.fillRect(a_x1, a_y1, a_x2 - a_x1, a_y2 - a_y1);
+      ctx.strokeStyle = "#16a34a";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(a_x1, a_y1, a_x2 - a_x1, a_y2 - a_y1);
+
+      // Box B (Cyan)
+      ctx.fillStyle = "rgba(6, 182, 212, 0.25)";
+      ctx.fillRect(b_x1, b_y1, b_x2 - b_x1, b_y2 - b_y1);
+      ctx.strokeStyle = "#0891b2";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(b_x1, b_y1, b_x2 - b_x1, b_y2 - b_y1);
+
+      // Intersection (Amber)
+      if (interArea > 0) {
+        ctx.fillStyle = "rgba(245, 158, 11, 0.55)";
+        ctx.fillRect(inter_x1, inter_y1, interW, interH);
+      }
+
+      ctx.fillStyle = "#15803d";
+      ctx.font = "bold 10px monospace";
+      ctx.fillText("Box A (GT)", Math.max(4, a_x1 + 4), Math.max(12, a_y1 + 12));
+
+      ctx.fillStyle = "#0e7490";
+      ctx.fillText("Box B (Pred)", Math.max(4, b_x1 + 4), Math.max(12, b_y1 + 12));
+    }
+    window.updateSpatialSim = updateSpatialSim;
+
+    function updateSpanSim() {
+      const sel = document.getElementById('sel_span_preset');
+      const preset = sel ? sel.value : 'apple';
+
+      const PRESETS = {
+        apple: {
+          text: 'Apple Inc. acquired Beats Electronics in California.',
+          highlighted: '"<mark class="bg-[#c9f3f4] px-1 rounded font-bold border border-[#151b20]">Apple Inc.</mark> <span class="text-[10px] text-[#0e7490]">[ORG]</span> acquired <mark class="bg-[#c9f3f4] px-1 rounded font-bold border border-[#151b20]">Beats Electronics</mark> <span class="text-[10px] text-[#0e7490]">[ORG]</span> in <mark class="bg-[#fff0b9] px-1 rounded font-bold border border-[#151b20]">California</mark> <span class="text-[10px] text-[#b45309]">[LOC]</span>."',
+          tokens: [
+            { tok: 'Apple', span: '[0:5]', iob2: 'B-ORG', bioes: 'B-ORG', note: 'Starts multi-token entity' },
+            { tok: 'Inc.', span: '[6:10]', iob2: 'I-ORG', bioes: 'E-ORG', note: 'Explicitly terminates ORG span' },
+            { tok: 'acquired', span: '[11:19]', iob2: 'O', bioes: 'O', note: 'Outside entity' },
+            { tok: 'Beats', span: '[20:25]', iob2: 'B-ORG', bioes: 'B-ORG', note: 'Starts multi-token entity' },
+            { tok: 'Electronics', span: '[26:37]', iob2: 'I-ORG', bioes: 'E-ORG', note: 'Explicitly terminates ORG span' },
+            { tok: 'in', span: '[38:40]', iob2: 'O', bioes: 'O', note: 'Outside entity' },
+            { tok: 'California', span: '[41:51]', iob2: 'B-LOC', bioes: 'S-LOC', note: 'Singleton entity explicitly closed!' }
+          ],
+          spans: 3, singletons: 1, multitokens: 2
+        },
+        clinic: {
+          text: 'Dr. Jane Smith visited Paris and Berlin on Monday.',
+          highlighted: '"Dr. <mark class="bg-[#ffd8ce] px-1 rounded font-bold border border-[#151b20]">Jane Smith</mark> <span class="text-[10px] text-[#b91c1c]">[PER]</span> visited <mark class="bg-[#fff0b9] px-1 rounded font-bold border border-[#151b20]">Paris</mark> <span class="text-[10px] text-[#b45309]">[LOC]</span> and <mark class="bg-[#fff0b9] px-1 rounded font-bold border border-[#151b20]">Berlin</mark> <span class="text-[10px] text-[#b45309]">[LOC]</span> on <mark class="bg-[#e7f4c8] px-1 rounded font-bold border border-[#151b20]">Monday</mark> <span class="text-[10px] text-[#15803d]">[DATE]</span>."',
+          tokens: [
+            { tok: 'Dr.', span: '[0:3]', iob2: 'O', bioes: 'O', note: 'Title prefix outside entity' },
+            { tok: 'Jane', span: '[4:8]', iob2: 'B-PER', bioes: 'B-PER', note: 'Starts multi-token PER' },
+            { tok: 'Smith', span: '[9:14]', iob2: 'I-PER', bioes: 'E-PER', note: 'Terminates multi-token PER' },
+            { tok: 'visited', span: '[15:22]', iob2: 'O', bioes: 'O', note: 'Outside entity' },
+            { tok: 'Paris', span: '[23:28]', iob2: 'B-LOC', bioes: 'S-LOC', note: 'Singleton entity explicitly closed!' },
+            { tok: 'and', span: '[29:32]', iob2: 'O', bioes: 'O', note: 'Outside conjunction' },
+            { tok: 'Berlin', span: '[33:39]', iob2: 'B-LOC', bioes: 'S-LOC', note: 'Singleton entity explicitly closed!' },
+            { tok: 'on', span: '[40:42]', iob2: 'O', bioes: 'O', note: 'Outside preposition' },
+            { tok: 'Monday', span: '[43:49]', iob2: 'B-DATE', bioes: 'S-DATE', note: 'Singleton temporal entity!' }
+          ],
+          spans: 4, singletons: 3, multitokens: 1
+        },
+        pharma: {
+          text: 'Pfizer tested Paxlovid across New York hospitals.',
+          highlighted: '"<mark class="bg-[#c9f3f4] px-1 rounded font-bold border border-[#151b20]">Pfizer</mark> <span class="text-[10px] text-[#0e7490]">[ORG]</span> tested <mark class="bg-[#e7f4c8] px-1 rounded font-bold border border-[#151b20]">Paxlovid</mark> <span class="text-[10px] text-[#15803d]">[DRUG]</span> across <mark class="bg-[#fff0b9] px-1 rounded font-bold border border-[#151b20]">New York</mark> <span class="text-[10px] text-[#b45309]">[LOC]</span> hospitals."',
+          tokens: [
+            { tok: 'Pfizer', span: '[0:6]', iob2: 'B-ORG', bioes: 'S-ORG', note: 'Singleton ORG explicitly closed!' },
+            { tok: 'tested', span: '[7:13]', iob2: 'O', bioes: 'O', note: 'Outside entity' },
+            { tok: 'Paxlovid', span: '[14:22]', iob2: 'B-DRUG', bioes: 'S-DRUG', note: 'Singleton DRUG explicitly closed!' },
+            { tok: 'across', span: '[23:29]', iob2: 'O', bioes: 'O', note: 'Outside preposition' },
+            { tok: 'New', span: '[30:33]', iob2: 'B-LOC', bioes: 'B-LOC', note: 'Starts multi-token LOC' },
+            { tok: 'York', span: '[34:38]', iob2: 'I-LOC', bioes: 'E-LOC', note: 'Terminates multi-token LOC' },
+            { tok: 'hospitals', span: '[39:48]', iob2: 'O', bioes: 'O', note: 'Outside noun' }
+          ],
+          spans: 3, singletons: 2, multitokens: 1
+        }
+      };
+
+      const data = PRESETS[preset] || PRESETS.apple;
+      const metaEl = document.getElementById('lbl_span_meta');
+      const textEl = document.getElementById('span_highlight_text');
+      const tbody = document.getElementById('spanTableBody');
+
+      if (metaEl) metaEl.textContent = `${data.tokens.length} Tokens • ${data.spans} Entity Spans`;
+      if (textEl) textEl.innerHTML = data.highlighted;
+
+      const sTok = document.getElementById('span_stat_tokens');
+      const sSpans = document.getElementById('span_stat_spans');
+      const sSing = document.getElementById('span_stat_singletons');
+      const sMulti = document.getElementById('span_stat_multitoken');
+
+      if (sTok) sTok.textContent = data.tokens.length;
+      if (sSpans) sSpans.textContent = `${data.spans} Spans`;
+      if (sSing) sSing.textContent = `${data.singletons} Token${data.singletons > 1 ? 's' : ''}`;
+      if (sMulti) sMulti.textContent = `${data.multitokens} Span${data.multitokens > 1 ? 's' : ''}`;
+
+      if (tbody) {
+        tbody.innerHTML = data.tokens.map(row => {
+          const isSingle = row.bioes.startsWith('S-');
+          const isEnd = row.bioes.startsWith('E-');
+          const bioesClass = isSingle
+            ? 'bg-[#e7f4c8] text-[#15803d] font-black border border-[#15803d]'
+            : isEnd
+              ? 'bg-[#c9f3f4] text-[#0e7490] font-black border border-[#0e7490]'
+              : row.bioes.startsWith('B-')
+                ? 'bg-[#fff0b9] text-[#b45309] font-bold border border-[#b45309]'
+                : 'text-[#64748b]';
+
+          return `
+            <tr class="hover:bg-[#f8fafc]">
+              <td class="p-2 font-bold text-[#151b20]">${row.tok}</td>
+              <td class="p-2 text-[#64748b]">${row.span}</td>
+              <td class="p-2"><span class="px-1.5 py-0.5 rounded bg-[#fdf4ff] text-[#86198f] border border-[#86198f]/40">${row.iob2}</span></td>
+              <td class="p-2"><span class="px-1.5 py-0.5 rounded ${bioesClass}">${row.bioes}</span></td>
+              <td class="p-2 text-[11px] text-[#475569]">${row.note}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+    window.updateSpanSim = updateSpanSim;
+
+    // --- Lesson 2.3 Simulation Engines ---
+    function updateIpwSim() {
+      const nEl = document.getElementById('ipwSliderN');
+      const frEl = document.getElementById('ipwSliderFr');
+      const yrEl = document.getElementById('ipwSliderYr');
+      const ynrEl = document.getElementById('ipwSliderYnr');
+
+      if (!nEl || !frEl || !yrEl || !ynrEl) return;
+
+      const N = parseInt(nEl.value, 10);
+      const frPct = parseFloat(frEl.value);
+      const yr = parseFloat(yrEl.value);
+      const ynr = parseFloat(ynrEl.value);
+
+      const nResp = Math.round(N * (frPct / 100.0));
+      document.getElementById('ipwValN').innerText = N.toLocaleString() + ' users';
+      document.getElementById('ipwValFr').innerText = frPct.toFixed(0) + '% (' + nResp.toLocaleString() + ' resp)';
+      document.getElementById('ipwValYr').innerText = yr.toFixed(1) + ' / 10';
+      document.getElementById('ipwValYnr').innerText = ynr.toFixed(1) + ' / 10';
+
+      const fr = frPct / 100.0;
+      const trueMean = fr * yr + (1.0 - fr) * ynr;
+      const bias = yr - trueMean;
+      const gap = Math.abs(yr - ynr);
+
+      document.getElementById('ipwMetricTrueMean').innerText = trueMean.toFixed(2);
+      document.getElementById('ipwMetricBias').innerText = (bias >= 0 ? '+' : '') + bias.toFixed(2) + ' pts';
+      document.getElementById('ipwMetricDebiased').innerText = trueMean.toFixed(2);
+      document.getElementById('ipwMetricGap').innerText = gap.toFixed(2) + ' pts';
+
+      const absBias = Math.abs(bias);
+      const pctBar = Math.min(100, (absBias / 5.0) * 100.0);
+      const barEl = document.getElementById('ipwProgressBar');
+      const badgeEl = document.getElementById('ipwStatusBadge');
+
+      if (barEl) {
+        barEl.style.width = pctBar.toFixed(1) + '%';
+        if (absBias >= 2.0) {
+          barEl.className = 'h-full bg-[#dc2626] rounded-full transition-all duration-300';
+        } else if (absBias >= 0.8) {
+          barEl.className = 'h-full bg-[#b45309] rounded-full transition-all duration-300';
+        } else {
+          barEl.className = 'h-full bg-[#15803d] rounded-full transition-all duration-300';
+        }
+      }
+
+      if (badgeEl) {
+        const signStr = (bias >= 0 ? '+' : '') + bias.toFixed(2);
+        if (absBias >= 2.0) {
+          badgeEl.className = 'text-[#dc2626] font-black';
+          badgeEl.innerText = 'Severe Distortion (' + signStr + ' pts)';
+        } else if (absBias >= 0.8) {
+          badgeEl.className = 'text-[#b45309] font-black';
+          badgeEl.innerText = 'Moderate Distortion (' + signStr + ' pts)';
+        } else {
+          badgeEl.className = 'text-[#15803d] font-black';
+          badgeEl.innerText = 'Low Distortion (' + signStr + ' pts)';
+        }
+      }
+    }
+    window.updateIpwSim = updateIpwSim;
+
+    function updateScrapingSim() {
+      const delayEl = document.getElementById('scrapSliderDelay');
+      const rateEl = document.getElementById('scrapSliderRate');
+      const driftEl = document.getElementById('scrapSliderDrift');
+
+      if (!delayEl || !rateEl || !driftEl) return;
+
+      const delay = parseFloat(delayEl.value);
+      const targetRate = parseFloat(rateEl.value);
+      const driftPct = parseFloat(driftEl.value);
+
+      document.getElementById('scrapValDelay').innerText = delay.toFixed(1) + ' s';
+      document.getElementById('scrapValRate').innerText = targetRate.toFixed(1) + ' req/s';
+      document.getElementById('scrapValDriftPct').innerText = driftPct.toFixed(0) + '%';
+
+      const maxRps = 1.0 / delay;
+      const isPolite = (targetRate <= maxRps + 1e-6);
+      const dj = driftPct / 100.0;
+      const isDriftOk = (dj < 0.35);
+
+      document.getElementById('scrapMetricMaxRps').innerText = maxRps.toFixed(1) + ' req/s';
+
+      const politeEl = document.getElementById('scrapMetricPolite');
+      if (politeEl) {
+        if (isPolite) {
+          politeEl.className = 'text-sm md:text-base font-black text-[#15803d]';
+          politeEl.innerText = 'COMPLIANT';
+        } else {
+          politeEl.className = 'text-sm md:text-base font-black text-[#dc2626]';
+          politeEl.innerText = 'DoS VIOLATION';
+        }
+      }
+
+      document.getElementById('scrapMetricDj').innerText = dj.toFixed(3);
+
+      const statusEl = document.getElementById('scrapMetricStatus');
+      const badgeEl = document.getElementById('scrapStatusBadge');
+      const barEl = document.getElementById('scrapProgressBar');
+
+      if (statusEl) {
+        if (!isDriftOk) {
+          statusEl.className = 'text-sm md:text-base font-black text-[#dc2626]';
+          statusEl.innerText = 'HALTED (BREAKER)';
+        } else if (!isPolite) {
+          statusEl.className = 'text-sm md:text-base font-black text-[#b45309]';
+          statusEl.innerText = 'THROTTLED';
+        } else {
+          statusEl.className = 'text-sm md:text-base font-black text-[#15803d]';
+          statusEl.innerText = 'ACTIVE';
+        }
+      }
+
+      if (barEl) {
+        barEl.style.width = Math.min(100, driftPct) + '%';
+        if (dj >= 0.35) {
+          barEl.className = 'h-full bg-[#dc2626] rounded-full transition-all duration-300';
+        } else if (dj >= 0.15) {
+          barEl.className = 'h-full bg-[#b45309] rounded-full transition-all duration-300';
+        } else {
+          barEl.className = 'h-full bg-[#15803d] rounded-full transition-all duration-300';
+        }
+      }
+
+      if (badgeEl) {
+        if (dj >= 0.35) {
+          badgeEl.className = 'text-[#dc2626] font-black';
+          badgeEl.innerText = 'CIRCUIT BREAKER TRIPPED (Dj ≥ 0.35)';
+        } else if (dj >= 0.15) {
+          badgeEl.className = 'text-[#b45309] font-black';
+          badgeEl.innerText = 'Warning Layout Drift (0.15 ≤ Dj < 0.35)';
+        } else {
+          badgeEl.className = 'text-[#15803d] font-black';
+          badgeEl.innerText = 'Healthy Extraction (Dj < 0.35)';
+        }
+      }
+    }
+    window.updateScrapingSim = updateScrapingSim;
+
+    // --- Lesson 3.1 Simulation Engines ---
+    const VS_SWEENEY_RAW_DATA = [
+      { id: "REC-01", name: "William Weld", hash: "HMAC-7b2a9f", zip: "02138", state: "MA", year: 1945, gender: "M", diagnosis: "Acute Arrhythmia", isWeld: true },
+      { id: "REC-02", name: "Sarah Jenkins", hash: "HMAC-4c8d1e", zip: "02138", state: "MA", year: 1982, gender: "F", diagnosis: "Type 2 Diabetes", isWeld: false },
+      { id: "REC-03", name: "Michael Chang", hash: "HMAC-1a9f3b", zip: "02138", state: "MA", year: 1982, gender: "M", diagnosis: "Hypertension", isWeld: false },
+      { id: "REC-04", name: "Emily Davis", hash: "HMAC-8e3b2c", zip: "02139", state: "MA", year: 1990, gender: "F", diagnosis: "Asthma", isWeld: false },
+      { id: "REC-05", name: "Robert Taylor", hash: "HMAC-5d7a6e", zip: "02139", state: "MA", year: 1990, gender: "F", diagnosis: "Depression", isWeld: false },
+      { id: "REC-06", name: "Jennifer White", hash: "HMAC-9a1c4f", zip: "94107", state: "CA", year: 1975, gender: "M", diagnosis: "Bipolar Disorder", isWeld: false },
+      { id: "REC-07", name: "David Martinez", hash: "HMAC-2f8e5d", zip: "94107", state: "CA", year: 1975, gender: "M", diagnosis: "Cardiac Arrest", isWeld: false },
+      { id: "REC-08", name: "Lisa Anderson", hash: "HMAC-6b4d3a", zip: "94107", state: "CA", year: 1975, gender: "M", diagnosis: "Hypertension", isWeld: false }
+    ];
+
+    function applySweeneyLabPreset(presetId) {
+      const pii = document.getElementById('vsSweeneyPii');
+      const zip = document.getElementById('vsSweeneyZip');
+      const age = document.getElementById('vsSweeneyAge');
+      const gen = document.getElementById('vsSweeneyGen');
+      const gate = document.getElementById('vsSweeneyGate');
+      if (!pii || !zip || !age || !gen || !gate) return;
+
+      if (presetId === 1) {
+        pii.value = 'raw';
+        zip.value = '5';
+        age.value = 'exact';
+        gen.value = 'keep';
+        gate.value = 'keep';
+      } else if (presetId === 2) {
+        pii.value = 'hash';
+        zip.value = '5';
+        age.value = 'exact';
+        gen.value = 'keep';
+        gate.value = 'keep';
+      } else if (presetId === 3) {
+        pii.value = 'redact';
+        zip.value = '3';
+        age.value = 'bracket';
+        gen.value = 'suppress';
+        gate.value = 'suppress';
+      }
+      updateSweeneyLab();
+    }
+    window.applySweeneyLabPreset = applySweeneyLabPreset;
+
+    function updateSweeneyLab() {
+      const piiEl = document.getElementById('vsSweeneyPii');
+      const zipEl = document.getElementById('vsSweeneyZip');
+      const ageEl = document.getElementById('vsSweeneyAge');
+      const genEl = document.getElementById('vsSweeneyGen');
+      const gateEl = document.getElementById('vsSweeneyGate');
+      const tbody = document.getElementById('vsSweeneyTableBody');
+      if (!piiEl || !zipEl || !ageEl || !genEl || !gateEl || !tbody) return;
+
+      const piiMode = piiEl.value;
+      const zipMode = zipEl.value;
+      const ageMode = ageEl.value;
+      const genMode = genEl.value;
+      const gateMode = gateEl.value;
+
+      const processed = VS_SWEENEY_RAW_DATA.map(r => {
+        let piiStr = r.name;
+        if (piiMode === 'hash') piiStr = r.hash;
+        else if (piiMode === 'redact') piiStr = '[REDACTED]';
+
+        let zipStr = r.zip;
+        if (zipMode === '3') zipStr = r.zip.substring(0, 3) + '**';
+        else if (zipMode === 'state') zipStr = r.state + ' (State)';
+
+        let ageStr = String(r.year);
+        if (ageMode === 'decade') {
+          ageStr = `${Math.floor(r.year / 10) * 10}s`;
+        } else if (ageMode === 'bracket') {
+          ageStr = r.year < 1960 ? 'Senior (<1960)' : 'Adult (>=1960)';
+        }
+
+        let genStr = genMode === 'suppress' ? '[*]' : r.gender;
+        const qiKey = `${zipStr}|${ageStr}|${genStr}`;
+        return { ...r, piiStr, zipStr, ageStr, genStr, qiKey, suppressed: false };
+      });
+
+      const rawCounts = {};
+      processed.forEach(p => { rawCounts[p.qiKey] = (rawCounts[p.qiKey] || 0) + 1; });
+
+      let activeRows = processed;
+      if (gateMode === 'suppress') {
+        processed.forEach(p => {
+          if (rawCounts[p.qiKey] < 3) p.suppressed = true;
+        });
+        activeRows = processed.filter(p => !p.suppressed);
+      }
+
+      const eqCounts = {};
+      activeRows.forEach(p => { eqCounts[p.qiKey] = (eqCounts[p.qiKey] || 0) + 1; });
+
+      let uniqueCount = 0;
+      let sumInvRisk = 0;
+      let minK = activeRows.length > 0 ? 999 : 0;
+      let weldState = 'suppressed';
+      let weldSize = 0;
+
+      activeRows.forEach(p => {
+        const size = eqCounts[p.qiKey];
+        p.classSize = size;
+        p.reidRisk = 1.0 / size;
+        sumInvRisk += p.reidRisk;
+        if (size === 1) uniqueCount++;
+        if (size < minK) minK = size;
+        if (p.isWeld) {
+          weldState = 'active';
+          weldSize = size;
+        }
+      });
+
+      const totalActive = activeRows.length || 1;
+      const uniquenessPct = (uniqueCount / totalActive) * 100.0;
+      const globalRisk = sumInvRisk / totalActive;
+
+      const kElem = document.getElementById('vsSweeneyKMin');
+      const kBadge = document.getElementById('vsSweeneyKBadge');
+      if (kElem && kBadge) {
+        kElem.innerText = `k = ${minK}`;
+        if (minK <= 1) {
+          kElem.style.color = '#b91c1c';
+          kBadge.innerText = 'FAIL: Singleton Linkage';
+          kBadge.style.color = '#b91c1c';
+        } else if (minK === 2) {
+          kElem.style.color = '#d97706';
+          kBadge.innerText = 'WARN: k=2 (50% Risk)';
+          kBadge.style.color = '#d97706';
+        } else {
+          kElem.style.color = '#047857';
+          kBadge.innerText = `PASS: Robust k=${minK} Cohort`;
+          kBadge.style.color = '#047857';
+        }
+      }
+
+      const uniqElem = document.getElementById('vsSweeneyUniq');
+      if (uniqElem) {
+        uniqElem.innerText = `${uniquenessPct.toFixed(1)}%`;
+        uniqElem.style.color = uniquenessPct > 0 ? '#b91c1c' : '#047857';
+      }
+
+      const riskElem = document.getElementById('vsSweeneyRisk');
+      if (riskElem) {
+        riskElem.innerText = globalRisk.toFixed(2);
+        riskElem.style.color = globalRisk > 0.35 ? '#b91c1c' : (globalRisk > 0.20 ? '#d97706' : '#047857');
+      }
+
+      const weldElem = document.getElementById('vsSweeneyWeld');
+      const weldSub = document.getElementById('vsSweeneyWeldSub');
+      if (weldElem && weldSub) {
+        if (weldState === 'suppressed') {
+          weldElem.innerText = '🛡️ OUTLIER SUPPRESSED';
+          weldElem.style.color = '#047857';
+          weldSub.innerText = 'HIPAA k≥3 Gate Active';
+        } else if (weldSize === 1) {
+          weldElem.innerText = '🚨 1:1 RE-IDENTIFIED';
+          weldElem.style.color = '#b91c1c';
+          weldSub.innerText = 'Diagnosis Unmasked!';
+        } else if (weldSize === 2) {
+          weldElem.innerText = '⚠️ 50% Linkage Risk';
+          weldElem.style.color = '#d97706';
+          weldSub.innerText = 'k=2 Borderline Cohort';
+        } else {
+          weldElem.innerText = `🛡️ Hidden in ${weldSize}-Cohort`;
+          weldElem.style.color = '#047857';
+          weldSub.innerText = 'Linkage Neutralized';
+        }
+      }
+
+      tbody.innerHTML = '';
+      processed.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #151b20';
+        if (p.suppressed) {
+          tr.style.background = '#f1f5f9';
+          tr.style.opacity = '0.65';
+          tr.innerHTML = `
+            <td class="p-1.5 border-r border-[#151b20] font-bold">${p.id} ${p.isWeld ? '⭐' : ''}</td>
+            <td class="p-1.5 border-r border-[#151b20] italic text-[#64748b]" colspan="5">[OUTLIER RECORD SUPPRESSED BY k≥3 GATE]</td>
+            <td class="p-1.5 border-r border-[#151b20] text-center font-black">0</td>
+            <td class="p-1.5"><span style="background:#dcfce7; color:#15803d; padding:1px 6px; border-radius:4px; font-weight:800; border:1px solid #15803d;">Suppressed (Safe)</span></td>
+          `;
+        } else {
+          let rowBg = '#f0fdf4';
+          let riskBadge = `<span style="background:#dcfce7; color:#15803d; padding:1px 6px; border-radius:4px; font-weight:800; border:1px solid #15803d;">k=${p.classSize} (${(p.reidRisk*100).toFixed(0)}%)</span>`;
+          if (p.classSize === 1) {
+            rowBg = p.isWeld ? '#ffe4e6' : '#fff1f2';
+            riskBadge = `<span style="background:#ffd8ce; color:#991b1b; padding:1px 6px; border-radius:4px; font-weight:800; border:1px solid #991b1b;">100% Unique</span>`;
+          } else if (p.classSize === 2) {
+            rowBg = '#fffbeb';
+            riskBadge = `<span style="background:#fef3c7; color:#b45309; padding:1px 6px; border-radius:4px; font-weight:700; border:1px solid #b45309;">k=2 (50%)</span>`;
+          }
+          tr.style.background = rowBg;
+          tr.innerHTML = `
+            <td class="p-1.5 border-r border-[#151b20] font-bold">${p.id} ${p.isWeld ? '⭐' : ''}</td>
+            <td class="p-1.5 border-r border-[#151b20]" style="font-weight:${p.isWeld ? '800' : '500'}; color:${p.isWeld ? '#991b1b' : '#151b20'};">${p.piiStr}</td>
+            <td class="p-1.5 border-r border-[#151b20]">${p.zipStr}</td>
+            <td class="p-1.5 border-r border-[#151b20]">${p.ageStr}</td>
+            <td class="p-1.5 border-r border-[#151b20]">${p.genStr}</td>
+            <td class="p-1.5 border-r border-[#151b20] font-semibold text-[#334155]">${p.diagnosis}</td>
+            <td class="p-1.5 border-r border-[#151b20] text-center font-black">${p.classSize}</td>
+            <td class="p-1.5">${riskBadge}</td>
+          `;
+        }
+        tbody.appendChild(tr);
+      });
+    }
+    window.updateSweeneyLab = updateSweeneyLab;
+
+    function updateLagrangeSim() {
+      const lvlEl = document.getElementById('lagSliderLevel');
+      const dimEl = document.getElementById('lagSliderDim');
+      const tauEl = document.getElementById('lagSliderTau');
+      const lamEl = document.getElementById('lagSliderLambda');
+      if (!lvlEl || !dimEl || !tauEl || !lamEl) return;
+
+      const lvl = parseInt(lvlEl.value, 10);
+      const m = parseInt(dimEl.value, 10);
+      const tau = parseFloat(tauEl.value);
+      const lam = parseFloat(lamEl.value);
+
+      const levelLabels = {
+        1: 'Lvl 1 (Raw GPS)',
+        2: 'Lvl 2 (ZIP-5 + Day)',
+        3: 'Lvl 3 (ZIP-3 + Week)',
+        4: 'Lvl 4 (H3 Grid + DP)',
+        5: 'Lvl 5 (State Macro)'
+      };
+      const baseUtil = { 1: 0.950, 2: 0.915, 3: 0.875, 4: 0.825, 5: 0.640 };
+      const basePerPointRisk = { 1: 0.527, 2: 0.360, 3: 0.145, 4: 0.011, 5: 0.003 };
+
+      const utility = baseUtil[lvl];
+      // Unicity saturation curve calibrated to de Montjoye (4 points at Lvl 1 -> ~0.95)
+      const risk = Math.min(0.995, 1.0 - Math.pow(1.0 - basePerPointRisk[lvl], m));
+      const excess = Math.max(0.0, risk - tau);
+      const penalty = lam * excess;
+      const lagrangian = utility - penalty;
+      const miBits = Math.max(0.05, (4.2 - 0.85 * (lvl - 1)) * (0.45 + 0.14 * m));
+
+      document.getElementById('lagValLevel').innerText = levelLabels[lvl];
+      document.getElementById('lagValDim').innerText = `${m} point${m > 1 ? 's' : ''}`;
+      document.getElementById('lagValTau').innerText = `${tau.toFixed(2)} (${(tau*100).toFixed(0)}%)`;
+      document.getElementById('lagValLambda').innerText = lam.toFixed(1);
+
+      document.getElementById('lagMetricUtil').innerText = utility.toFixed(3);
+      const riskEl = document.getElementById('lagMetricRisk');
+      riskEl.innerText = `${(risk * 100).toFixed(1)}%`;
+      riskEl.style.color = risk > tau ? '#dc2626' : '#15803d';
+
+      document.getElementById('lagMetricLeak').innerText = `I(Q;S): ${miBits.toFixed(2)} bits`;
+      const objEl = document.getElementById('lagMetricObj');
+      objEl.innerText = lagrangian.toFixed(3);
+      objEl.style.color = lagrangian < 0.5 ? '#dc2626' : '#0e7490';
+      document.getElementById('lagMetricPen').innerText = `Penalty: -${penalty.toFixed(3)}`;
+
+      const badgeEl = document.getElementById('lagStatusBadge');
+      const bannerEl = document.getElementById('lagAlertBanner');
+      if (risk <= tau) {
+        badgeEl.innerText = 'COMPLIANT (R ≤ τ_safe)';
+        badgeEl.style.color = '#15803d';
+        bannerEl.style.background = '#dcfce7';
+        bannerEl.style.border = '2px solid #15803d';
+        bannerEl.style.color = '#14532d';
+        bannerEl.innerHTML = `<strong>✓ Pareto Safe Zone:</strong> At ${levelLabels[lvl]} against ${m} adversary dimensions, disclosure risk (${(risk*100).toFixed(1)}%) stays within ceiling ${(tau*100).toFixed(0)}% with zero Lagrangian penalty and utility ${utility.toFixed(3)}.`;
+      } else {
+        badgeEl.innerText = 'VIOLATION (R > τ_safe)';
+        badgeEl.style.color = '#dc2626';
+        bannerEl.style.background = '#fee2e2';
+        bannerEl.style.border = '2px solid #b91c1c';
+        bannerEl.style.color = '#7f1d1d';
+        bannerEl.innerHTML = `<strong>🚨 Unicity Violation:</strong> With ${m} auxiliary dimensions at ${levelLabels[lvl]}, disclosure risk hits ${(risk*100).toFixed(1)}% (&gt; ${(tau*100).toFixed(0)}% ceiling), imposing a -${penalty.toFixed(3)} Lagrangian penalty. Increase coarsening granularity!`;
+      }
+    }
+    window.updateLagrangeSim = updateLagrangeSim;
     
   </script>
 

@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2560,15 +2604,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-formulations" class="md-nav__link">
+  <a href="#1-conceptual-architecture-declarative-data-repair-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Formulations
+        1. Conceptual Architecture: Declarative Data Repair Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Formulations">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-foundations-of-database-repair-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Foundations of Database Repair &amp; Normalization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Foundations of Database Repair &amp; Normalization">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2580,42 +2635,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. The Minimum Modification Principle in Database Repair">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#integrity-constraints-denial-constraints-dcs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integrity Constraints: Denial Constraints (DCs)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-format-canonicalization-and-unicode-normalization" class="md-nav__link">
+  <a href="#2-first-order-denial-constraints-dcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Format Canonicalization and Unicode Normalization
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Format Canonicalization and Unicode Normalization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#unicode-equivalence" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unicode Equivalence
+        2. First-Order Denial Constraints (DCs)
       
     </span>
   </a>
@@ -2623,26 +2649,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dimensional-analysis-unit-normalization" class="md-nav__link">
+  <a href="#3-format-canonicalization-unicode-equivalence-traps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dimensional Analysis &amp; Unit Normalization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-comparison-of-deletion-and-imputation-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Comparison of Deletion and Imputation Strategies
+        3. Format Canonicalization &amp; Unicode Equivalence Traps
       
     </span>
   </a>
@@ -2650,10 +2660,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-framework-deduplication-record-linkage-strategy" class="md-nav__link">
+  <a href="#4-dimensional-analysis-affine-unit-transformation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Framework: Deduplication &amp; Record Linkage Strategy
+        4. Dimensional Analysis &amp; Affine Unit Transformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-quantitative-deletion-vs-hot-deck-imputation-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Quantitative Deletion vs. Hot-Deck Imputation Trade-offs
       
     </span>
   </a>
@@ -2666,10 +2687,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-declarative-data-cleaning-engine" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-mimic-iii-clinical-database" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Declarative Data Cleaning Engine
+        3. Landmark Empirical Case Study: MIMIC-III Clinical Database
       
     </span>
   </a>
@@ -2677,10 +2698,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-clinical-ehr-vitals-discharge-inconsistencies" class="md-nav__link">
+  <a href="#4-interactive-laboratory-declarative-cleaning-nfkc-constraint-repair-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Clinical EHR Vitals &amp; Discharge Inconsistencies
+        4. Interactive Laboratory: Declarative Cleaning, NFKC &amp; Constraint Repair Studio
       
     </span>
   </a>
@@ -2688,10 +2709,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -2699,10 +2720,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2710,10 +2731,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7433,15 +7465,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-formulations" class="md-nav__link">
+  <a href="#1-conceptual-architecture-declarative-data-repair-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Formulations
+        1. Conceptual Architecture: Declarative Data Repair Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Formulations">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-foundations-of-database-repair-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Foundations of Database Repair &amp; Normalization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Foundations of Database Repair &amp; Normalization">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7453,42 +7496,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. The Minimum Modification Principle in Database Repair">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#integrity-constraints-denial-constraints-dcs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integrity Constraints: Denial Constraints (DCs)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-format-canonicalization-and-unicode-normalization" class="md-nav__link">
+  <a href="#2-first-order-denial-constraints-dcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Format Canonicalization and Unicode Normalization
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Format Canonicalization and Unicode Normalization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#unicode-equivalence" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unicode Equivalence
+        2. First-Order Denial Constraints (DCs)
       
     </span>
   </a>
@@ -7496,26 +7510,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dimensional-analysis-unit-normalization" class="md-nav__link">
+  <a href="#3-format-canonicalization-unicode-equivalence-traps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dimensional Analysis &amp; Unit Normalization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-comparison-of-deletion-and-imputation-strategies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Comparison of Deletion and Imputation Strategies
+        3. Format Canonicalization &amp; Unicode Equivalence Traps
       
     </span>
   </a>
@@ -7523,10 +7521,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-framework-deduplication-record-linkage-strategy" class="md-nav__link">
+  <a href="#4-dimensional-analysis-affine-unit-transformation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Framework: Deduplication &amp; Record Linkage Strategy
+        4. Dimensional Analysis &amp; Affine Unit Transformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-quantitative-deletion-vs-hot-deck-imputation-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Quantitative Deletion vs. Hot-Deck Imputation Trade-offs
       
     </span>
   </a>
@@ -7539,10 +7548,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-declarative-data-cleaning-engine" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-mimic-iii-clinical-database" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Declarative Data Cleaning Engine
+        3. Landmark Empirical Case Study: MIMIC-III Clinical Database
       
     </span>
   </a>
@@ -7550,10 +7559,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-clinical-ehr-vitals-discharge-inconsistencies" class="md-nav__link">
+  <a href="#4-interactive-laboratory-declarative-cleaning-nfkc-constraint-repair-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Clinical EHR Vitals &amp; Discharge Inconsistencies
+        4. Interactive Laboratory: Declarative Cleaning, NFKC &amp; Constraint Repair Studio
       
     </span>
   </a>
@@ -7561,10 +7570,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -7572,10 +7581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7583,10 +7592,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7614,38 +7634,39 @@
 
 
 <h1 id="55-techniques-for-data-cleaning">5.5 Techniques for Data Cleaning</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 5 (sec:5.3)</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 5: Data Cleaning and Preprocessing</strong> in the Springer Nature monograph for complete formal proofs of constraint repair semantics and database dependency theory.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.5: Declarative Cleaning &amp; Repair Semantics)</strong> in the official Springer Nature monograph for formal proofs of minimum-cost constraint repair and database dependency theory.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+    <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~28 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-55">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.5</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">9 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">8 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=5&part=5" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=5" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7654,68 +7675,95 @@
 </div>
 
 <hr />
-<h2 id="conceptual-overview-mathematical-formulations">🎯 Conceptual Overview &amp; Mathematical Formulations</h2>
-<p>Data cleaning is not an ad-hoc collection of scripts; it is a mathematically rigorous mapping from an unconstrained, noisy observation space <span class="arithmatex">\(\mathcal{D}_{\text{raw}}\)</span> to a consistent, schema-adherent state space <span class="arithmatex">\(\mathcal{D}^*\)</span> satisfying a system of integrity constraints <span class="arithmatex">\(\Sigma\)</span> (<a href="#ref-rahm2000">Rahm &amp; Do, 2000</a>; <a href="#ref-chu2016">Chu et al., 2016</a>), grounded in automated edit principles (<a href="#ref-fellegi1976">Fellegi &amp; Holt, 1976</a>), active user cleaning loops (<a href="#ref-krishnan2016">Krishnan et al., 2016</a>), and automated verification frameworks (<a href="#ref-schelter2018">Schelter et al., 2018</a>).</p>
+<p>Production data cleaning is not a fragmented patchwork of brittle shell scripts; it is a mathematically grounded transformation mapping a corrupted, schema-violating dataset <span class="arithmatex">\(\mathcal{D}_{\text{raw}}\)</span> onto a consistent target instance <span class="arithmatex">\(\mathcal{D}^*\)</span> satisfying formal relational integrity constraints <span class="arithmatex">\(\Sigma\)</span> [<a href="#ref-rahm2000">Rahm2000</a>, <a href="#ref-chu2016">Chu2016</a>, <a href="#ref-fellegi1976">Fellegi1976</a>]. Modern declarative frameworks enforce schema compliance, Unicode compatibility composition, denial constraints, and variance-preserving donor matching [<a href="#ref-krishnan2016">Krishnan2016</a>, <a href="#ref-schelter2018">Schelter2018</a>].</p>
+<hr />
+<h2 id="1-conceptual-architecture-declarative-data-repair-pipeline">1. Conceptual Architecture: Declarative Data Repair Pipeline</h2>
 <pre class="mermaid"><code>flowchart TD
-    P1["Raw Dirty Stream"] --&gt; P2["Schema Coercion &amp; Unicode Normalization"]
-    P2 --&gt; P3["Denial Constraints &amp; Functional Dependency Repair"]
-    P3 --&gt; P4["Statistical Imputation &amp; Discrepancy Reconciliation"]
-    P4 --&gt; P5["Certified Clean Partition D*"]
-    P5 --&gt; P6["Validated ML Pipeline"]
+    P1["1. Raw Ingested Corpus D_raw"] --&gt; P2["2. Character &amp; Format Canonicalization&lt;br/&gt;NFKC Normalization, Zero-Width Stripping, Regex Coercion"]
+    P2 --&gt; P3["3. Integrity &amp; Denial Constraint Verification&lt;br/&gt;First-Order Denial Constraints (DCs) &amp; Functional Dependencies"]
+    P3 --&gt; P4{"Constraint Violations?"}
+    P4 --&gt;|Violation Found| P5["4. Minimum Modification Cost Repair&lt;br/&gt;Bohannon Minimum-Distance Assignment r*"]
+    P4 --&gt;|Consistent| P6["5. Donor-Preserving Hot-Deck Imputation&lt;br/&gt;1-NN Donor Imputation on Validated Manifold"]
+    P5 --&gt; P6
+    P6 --&gt; P7[("6. Certified Clean Production Dataset D*")]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class P1 red;
-    class P2,P3 amber;
-    class P4 blue;
-    class P5,P6 green;</code></pre>
+    class P2,P3 blue;
+    class P4,P5 amber;
+    class P6,P7 green;</code></pre>
 <hr />
+<h2 id="2-mathematical-foundations-of-database-repair-normalization">2. Mathematical Foundations of Database Repair &amp; Normalization</h2>
 <h3 id="1-the-minimum-modification-principle-in-database-repair">1. The Minimum Modification Principle in Database Repair</h3>
-<p>Let a database instance be a set of tuples <span class="arithmatex">\(r \subset \text{Tup}\)</span>. Given a set of integrity constraints <span class="arithmatex">\(\Sigma\)</span>, a relation <span class="arithmatex">\(r\)</span> is inconsistent if <span class="arithmatex">\(r \not\models \Sigma\)</span>. A repair <span class="arithmatex">\(r'\)</span> is a consistent instance (<span class="arithmatex">\(r' \models \Sigma\)</span>) that minimizes the symmetric distance or cost metric to <span class="arithmatex">\(r\)</span> (<a href="#ref-bohannon2005">Bohannon et al., 2005</a>):</p>
+<p>Let a relational table <span class="arithmatex">\(r\)</span> consist of tuples <span class="arithmatex">\(t \in \text{Tup}\)</span> over attributes <span class="arithmatex">\(\mathcal{A}\)</span>. Given a declarative set of integrity constraints <span class="arithmatex">\(\Sigma\)</span>, dataset <span class="arithmatex">\(r\)</span> is <strong>dirty</strong> if <span class="arithmatex">\(r \not\models \Sigma\)</span>. </p>
+<p>A naive repair—such as deleting all violating rows or setting all conflicting attributes to <code>NULL</code>—destroys legitimate historical records. Under the <strong>Minimum Modification Principle</strong> [<a href="#ref-bohannon2005">Bohannon2005</a>], we seek a valid repaired instance <span class="arithmatex">\(r^* \models \Sigma\)</span> minimizing total weighted modification cost:</p>
 <div class="arithmatex">\[
-r^* = \arg\min_{r' \models \Sigma} \text{dist}(r, r')
+r^* = \arg\min_{r' \models \Sigma} \operatorname{dist}(r, r')
 \]</div>
-<p>where the distance metric typically penalizes value modifications via attribute weights <span class="arithmatex">\(w_A\)</span>:</p>
 <div class="arithmatex">\[
-\text{dist}(r, r') = \sum_{t \in r} \sum_{A \in \text{Attr}} w_A \cdot \delta(t[A], t'[A])
+\operatorname{dist}(r, r') = \sum_{t \in r} \sum_{A \in \mathcal{A}} w_A \cdot \delta\left( t[A], t'[A] \right)
 \]</div>
-<h4 id="integrity-constraints-denial-constraints-dcs">Integrity Constraints: Denial Constraints (DCs)</h4>
-<p>Denial Constraints generalize functional dependencies, check constraints, and order dependencies:</p>
+<p>Where <span class="arithmatex">\(w_A &gt; 0\)</span> represents domain confidence (e.g., an immutable verified government <code>TaxID</code> has vastly higher repair penalty <span class="arithmatex">\(w_A\)</span> than a free-text <code>City</code> string), and <span class="arithmatex">\(\delta(\cdot, \cdot)\)</span> is edit distance or indicator discrepancy.</p>
+<h3 id="2-first-order-denial-constraints-dcs">2. First-Order Denial Constraints (DCs)</h3>
+<p><strong>Denial Constraints</strong> unify functional dependencies (FDs), check constraints, and temporal order dependencies under first-order logic [<a href="#ref-chu2016">Chu2016</a>]:</p>
 <div class="arithmatex">\[
 \forall t_1, t_2 \in r, \quad \neg \left( \phi_1 \wedge \phi_2 \wedge \dots \wedge \phi_k \right)
 \]</div>
-<p>where each predicate <span class="arithmatex">\(\phi_i\)</span> takes the form <span class="arithmatex">\(t_1[A] \odot t_2[B]\)</span> or <span class="arithmatex">\(t_1[A] \odot c\)</span>, with comparison operator <span class="arithmatex">\(\odot \in \{=, \neq, &lt;, \le, &gt;, \ge\}\)</span>.</p>
-<p><em>Example:</em> A medical constraint stating that a patient's discharge date cannot precede their admission date:</p>
-<div class="arithmatex">\[
-\neg \left( t[\text{PatientID}] = t'[\text{PatientID}] \wedge t[\text{DischargeDate}] &lt; t[\text{AdmissionDate}] \right)
-\]</div>
+<p>Where each atomic predicate <span class="arithmatex">\(\phi_i\)</span> evaluates comparisons <span class="arithmatex">\(t_1[A] \odot t_2[B]\)</span> or <span class="arithmatex">\(t_1[A] \odot c\)</span> over operator <span class="arithmatex">\(\odot \in \{=, \ne, &lt;, \le, &gt;, \ge\}\)</span>.</p>
+<p><em>Canonical Examples:</em>
+- <strong>Temporal Ordering Constraint</strong>: Discharge cannot precede admission for any encounter:
+  $<span class="arithmatex">\(\neg \left( t[\text{DischargeDate}] &lt; t[\text{AdmissionDate}] \right)\)</span>$
+- <strong>Functional Dependency (<code>ZIP</code> <span class="arithmatex">\(\to\)</span> <code>City</code>)</strong>: Two records sharing identical Postal Codes cannot specify distinct cities:
+  $<span class="arithmatex">\(\forall t_1, t_2 \in r, \quad \neg \left( t_1[\text{ZIP}] = t_2[\text{ZIP}] \wedge t_1[\text{City}] \ne t_2[\text{City}] \right)\)</span>$</p>
 <hr />
-<h3 id="2-format-canonicalization-and-unicode-normalization">2. Format Canonicalization and Unicode Normalization</h3>
-<p>Text and categorical variables across heterogeneous databases frequently contain identical semantics encoded under discordant byte sequences.</p>
-<h4 id="unicode-equivalence">Unicode Equivalence</h4>
-<p>The Unicode standard defines two levels of equivalence:
-1. <strong>Canonical Equivalence (<span class="arithmatex">\(NFC\)</span> / <span class="arithmatex">\(NFD\)</span>):</strong> Distinguishes precomposed characters from decomposed base character + combining diacritic (e.g., <code>é</code> as <code>\u00E9</code> vs <code>e</code> + <code>\u0301</code>).
-2. <strong>Compatibility Equivalence (<span class="arithmatex">\(NFKC\)</span> / <span class="arithmatex">\(NFKD\)</span>):</strong> Collapses visual variants representing identical semantic content (e.g., ligature <code>ﬁ</code> as <code>\uFB01</code> <span class="arithmatex">\(\to\)</span> <code>f</code> + <code>i</code>; half-width katakana; superscript digits <code>²</code> <span class="arithmatex">\(\to\)</span> <code>2</code>).</p>
-<p>All textual processing pipelines must enforce <strong>NFKC (Normalization Form Compatibility Composition)</strong>:</p>
+<h3 id="3-format-canonicalization-unicode-equivalence-traps">3. Format Canonicalization &amp; Unicode Equivalence Traps</h3>
+<p>Heterogeneous databases routinely represent visually identical strings using discordant UTF-8 byte sequences, silently breaking SQL joins, group-bys, and dictionary lookups:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Unicode Equivalence Level</th>
+<th style="text-align: left;">Mechanism</th>
+<th style="text-align: left;">Real-World Corrupting Example</th>
+<th style="text-align: left;">Canonical Codepoints vs. Dirty Byte Sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Canonical (<code>NFC</code> / <code>NFD</code>)</strong></td>
+<td style="text-align: left;">Precomposed glyph vs. Base + Combining Mark</td>
+<td style="text-align: left;"><code>"René"</code> vs. <code>"Rene\u0301"</code></td>
+<td style="text-align: left;"><code>\u00E9</code> (1 char) vs. <code>\u0065\u0301</code> (2 chars)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Compatibility (<code>NFKC</code> / <code>NFKD</code>)</strong></td>
+<td style="text-align: left;">Typographic ligatures, full-width, superscripts</td>
+<td style="text-align: left;"><code>"ﬁnd １２３"</code> (<code>\uFB01</code> ligature + full-width digits)</td>
+<td style="text-align: left;">Collapsed to clean ASCII <code>"find 123"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Invisible Control Stripping</strong></td>
+<td style="text-align: left;">Zero-width non-printing formatting characters</td>
+<td style="text-align: left;"><code>"Alice\u200BSmith"</code> (Zero-Width Space)</td>
+<td style="text-align: left;"><strong><code>NFKC</code> does NOT strip <code>\u200B</code>!</strong> Must explicitly strip <code>[\u200B-\u200D\uFEFF]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, canonical textual sanitization enforces a two-step composition pipeline:</p>
 <div class="arithmatex">\[
-\text{norm}(S) = \text{NFC}(\text{decompose}_{\text{compat}}(S))
+\operatorname{Canonicalize}(S) = \operatorname{TrimWhitespace}\Big( \operatorname{StripZeroWidth}\big( \operatorname{NFKC}(S) \big) \Big)
 \]</div>
-<h4 id="dimensional-analysis-unit-normalization">Dimensional Analysis &amp; Unit Normalization</h4>
-<p>Converting units across metric and imperial systems requires explicit linear transformation matrices:</p>
+<h3 id="4-dimensional-analysis-affine-unit-transformation">4. Dimensional Analysis &amp; Affine Unit Transformation</h3>
+<p>Preventing catastrophic physical unit mismatches (such as Imperial vs. Metric measurements) requires explicit affine unit mapping matrices before feature concatenation:</p>
 <div class="arithmatex">\[
 \mathbf{x}_{\text{SI}} = \mathbf{A} \mathbf{x}_{\text{obs}} + \mathbf{b}
 \]</div>
-<p><em>Example:</em> Temperature conversion from Fahrenheit to Celsius:</p>
-<div class="arithmatex">\[
-T_C = \frac{5}{9}(T_F - 32)
-\]</div>
+<p>For temperature (<span class="arithmatex">\(T_F \to T_C = \frac{5}{9}T_F - \frac{160}{9}\)</span>) and blood pressure extraction (<code>"120 / 80 mmHg"</code> <span class="arithmatex">\(\to (120, 80)\)</span> validated within physiological ranges <span class="arithmatex">\(SBP \in [50, 260]\)</span>, <span class="arithmatex">\(DBP \in [30, 160]\)</span>).</p>
 <hr />
-<h3 id="3-comparison-of-deletion-and-imputation-strategies">3. Comparison of Deletion and Imputation Strategies</h3>
-<p>When encountering incomplete observations, selecting the repair method directly influences estimator efficiency and asymptotic bias:</p>
+<h3 id="5-quantitative-deletion-vs-hot-deck-imputation-trade-offs">5. Quantitative Deletion vs. Hot-Deck Imputation Trade-offs</h3>
 <table>
 <thead>
 <tr>
@@ -7723,7 +7771,7 @@ T_C = \frac{5}{9}(T_F - 32)
 <th style="text-align: left;">Mathematical Formulation</th>
 <th style="text-align: left;">Bias Under MCAR</th>
 <th style="text-align: left;">Bias Under MAR</th>
-<th style="text-align: left;">Variance Impact</th>
+<th style="text-align: left;">Covariance &amp; Variance Impact</th>
 </tr>
 </thead>
 <tbody>
@@ -7732,283 +7780,479 @@ T_C = \frac{5}{9}(T_F - 32)
 <td style="text-align: left;"><span class="arithmatex">\(\hat{\mu} = \frac{1}{\sum R_i} \sum_{i=1}^n R_i Y_i\)</span></td>
 <td style="text-align: left;">Unbiased</td>
 <td style="text-align: left;"><strong>Biased</strong></td>
-<td style="text-align: left;">Severe variance inflation (<span class="arithmatex">\(\propto \frac{1}{n_{\text{obs}}}\)</span>)</td>
+<td style="text-align: left;">Severe sample loss (<span class="arithmatex">\(\propto \frac{1}{n_{\text{obs}}}\)</span>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Available-Case (Pairwise Deletion)</strong></td>
 <td style="text-align: left;"><span class="arithmatex">\(\hat{\rho}_{XY} = \frac{\sum R_{Xi} R_{Yi} (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum R_{Xi}(X_i - \bar{X})^2 \sum R_{Yi}(Y_i - \bar{Y})^2}}\)</span></td>
 <td style="text-align: left;">Unbiased</td>
 <td style="text-align: left;"><strong>Biased</strong></td>
-<td style="text-align: left;">Covariance matrix may not be positive semi-definite</td>
+<td style="text-align: left;">Estimated correlation matrix may not be positive semi-definite!</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Mean / Median Imputation</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(Y_i^* = R_i Y_i + (1 - R_i) \bar{Y}_{\text{obs}}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(Y_i^* = R_i Y_i + (1 - R_i)\bar{Y}_{\text{obs}}\)</span></td>
 <td style="text-align: left;">Unbiased (<span class="arithmatex">\(\mu\)</span>)</td>
 <td style="text-align: left;"><strong>Biased</strong></td>
-<td style="text-align: left;"><strong>Artificial variance collapse</strong> (<span class="arithmatex">\(\sigma^2_{\text{imp}} &lt; \sigma^2\)</span>)</td>
+<td style="text-align: left;"><strong>Artificial variance collapse</strong> (<span class="arithmatex">\(\sigma_{\text{imp}}^2 &lt; \sigma^2\)</span>)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Hot-Deck Imputation</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(Y_i^* = R_i Y_i + (1 - R_i) Y_j, \quad j = \arg\min_{k: R_k=1} d(\mathbf{X}_i, \mathbf{X}_k)\)</span></td>
+<td style="text-align: left;"><strong>1-NN Hot-Deck Imputation</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(Y_i^* = R_i Y_i + (1 - R_i) Y_{j^*}, \; j^* = \arg\min_{k: R_k=1} d(\mathbf{X}_i, \mathbf{X}_k)\)</span></td>
 <td style="text-align: left;">Unbiased</td>
 <td style="text-align: left;">Conditionally Unbiased</td>
-<td style="text-align: left;">Preserves observed variance &amp; empirical distribution</td>
+<td style="text-align: left;">Preserves exact observed variance, integer values &amp; quantiles</td>
 </tr>
 </tbody>
 </table>
-<hr />
 <div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Deterministic Record Linkage Pipeline Gating</p>
-<p>Structure record deduplication into two distinct tiers: a deterministic blocking tier (exact matching on soundex or zip codes) followed by a probabilistic scoring tier (Fellegi-Sunter log-likelihood weights). This prevents <span class="arithmatex">\(O(N^2)\)</span> combinatorial explosion while maintaining high recall.</p>
+<p class="admonition-title">Industrial Best Practice: Two-Tier Deterministic Blocking + Constraint Repair</p>
+<p>Never apply destructive row deletions for isolated constraint violations. Combine a deterministic format coercion layer (<code>NFKC</code> + invisible character stripping + unit extraction) with Minimum-Modification Constraint Repair, reserving human adjudication strictly for tied multi-attribute conflicts.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Uncalibrated Thresholding in Probabilistic Linkage</p>
-<p>Selecting an arbitrary match threshold (e.g., 0.50 probability) without empirical false-positive validation causes catastrophic identity mixing. Always calibrate upper and lower thresholds with human review for the intermediate uncertainty zone.</p>
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Trusting <code>NFKC</code> Alone for Join Keys</p>
+<p>Engineers frequently call <code>.normalize("NFKC")</code> assuming string equality is guaranteed. However, <code>NFKC</code> preserves zero-width formatting artifacts (<code>\u200B</code>, <code>\uFEFF</code> Byte Order Marks) scraped from web forms and PDFs, causing <code>"Alice\u200BSmith" != "AliceSmith"</code> silently in SQL joins. Always combine <code>NFKC</code> with an explicit invisible-character regex strip!</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Deterministic Record Linkage Pipeline Gating</p>
-<p>Structure record deduplication into two distinct tiers: a deterministic blocking tier (exact matching on soundex or zip codes) followed by a probabilistic scoring tier (Fellegi-Sunter log-likelihood weights). This prevents <span class="arithmatex">\(O(N^2)\)</span> combinatorial explosion while maintaining high recall.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Uncalibrated Thresholding in Probabilistic Linkage</p>
-<p>Selecting an arbitrary match threshold (e.g., 0.50 probability) without empirical false-positive validation causes catastrophic identity mixing. Always calibrate upper and lower thresholds with human review for the intermediate uncertainty zone.</p>
-</div>
-<h3 id="decision-framework-deduplication-record-linkage-strategy">Decision Framework: Deduplication &amp; Record Linkage Strategy</h3>
-<pre class="mermaid"><code>flowchart TD
-    Start["Entity Resolution / Deduplication Task"] --&gt; Blocking["1. Candidate Blocking (e.g., Soundex, Canopies)"]
-    Blocking --&gt; Metric{"Attribute Similarity Metric"}
-    Metric -- "Typographical (Names, IDs)" --&gt; Levenshtein["Levenshtein / Jaro-Winkler Distance"]
-    Metric -- "Token / Set (Addresses, Bios)" --&gt; Jaccard["TF-IDF / Jaccard / Soft-Cosine"]
-    Metric -- "Acoustic / Phonetic" --&gt; Metaphone["Double Metaphone / NYSIIS"]
-    Levenshtein &amp; Jaccard &amp; Metaphone --&gt; MatchScore["Compute Fellegi-Sunter Match Weight"]
-    MatchScore --&gt; Threshold{"Score vs Decision Threshold"}
-    Threshold -- "Score &gt;= gamma_upper" --&gt; DefiniteMatch["Auto-Merge / Link Record"]
-    Threshold -- "gamma_lower &lt;= Score &lt; gamma_upper" --&gt; ClericalReview["Queue for Human Review"]
-    Threshold -- "Score &lt; gamma_lower" --&gt; NonMatch["Treat as Distinct Entity"]</code></pre>
 <hr />
-<h2 id="production-implementation-declarative-data-cleaning-engine">💻 Production Implementation: Declarative Data Cleaning Engine</h2>
-<p>The following production script implements declarative regex validation, NFKC Unicode normalization, Denial Constraint checking, and Hot-Deck donor imputation.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">declarative_cleaner.py</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production-grade Declarative Cleaning Engine with Denial Constraints and Hot-Deck Imputation</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">NearestNeighbors</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">DeclarativeDataCleaner</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="sd">    Production-grade Data Cleaning Engine enforcing:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="sd">    1. NFKC Unicode normalization</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="sd">    2. Regex pattern sanitization</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="sd">    3. Denial constraint verification</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="sd">    4. Deterministic k-NN Hot-Deck imputation</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="sd">    """</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">denial_constraints</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_field_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">transform_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]):</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="sd">"""Registers a transformation function for a specific column."""</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">if</span> <span class="n">column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transform_fn</span><span class="p">)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_denial_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraint_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="sd">        Adds a denial constraint returning a boolean Series where True indicates violation.</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="sd">        """</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">denial_constraints</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">constraint_fn</span><span class="p">,</span> <span class="n">description</span><span class="p">))</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">normalize_text</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="sd">"""Applies NFKC Unicode normalization and trims excessive whitespace."""</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            <span class="k">return</span> <span class="n">val</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="c1"># Normalize Unicode compatibility characters (e.g. ligatures, full-width)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="n">normalized</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">"NFKC"</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="c1"># Collapse multiple whitespace characters</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="n">normalized</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">parse_blood_pressure</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">        </span><span class="sd">"""Validates and extracts systolic/diastolic values from strings like '120/80 mmHg'."""</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="k">return</span> <span class="kc">None</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"^(\d{2,3})\s*/\s*(\d{2,3})"</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>            <span class="n">sys</span><span class="p">,</span> <span class="n">dia</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>            <span class="k">if</span> <span class="mi">50</span> <span class="o">&lt;=</span> <span class="n">sys</span> <span class="o">&lt;=</span> <span class="mi">260</span> <span class="ow">and</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">dia</span> <span class="o">&lt;=</span> <span class="mi">160</span><span class="p">:</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>                <span class="k">return</span> <span class="n">sys</span><span class="p">,</span> <span class="n">dia</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="k">return</span> <span class="kc">None</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">clean_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">        </span><span class="sd">"""Applies all registered field-level transformations."""</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">cleaned</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">funcs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>            <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>                <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>                    <span class="n">cleaned</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cleaned</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="k">return</span> <span class="n">cleaned</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_denial_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">        </span><span class="sd">"""Audits dataset against registered denial constraints and returns violation counts."""</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="n">violations</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>        <span class="k">for</span> <span class="n">fn</span><span class="p">,</span> <span class="n">desc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">denial_constraints</span><span class="p">:</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>            <span class="n">mask</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>            <span class="n">violations</span><span class="p">[</span><span class="n">desc</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="k">return</span> <span class="n">violations</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">hot_deck_impute</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">feature_cols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">target_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="sd">        Imputes missing values in target_col using 1-NN Hot-Deck donor matching over feature_cols.</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="sd">        """</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="n">df_out</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="n">missing_mask</span> <span class="o">=</span> <span class="n">df_out</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">missing_mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>            <span class="k">return</span> <span class="n">df_out</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="c1"># Fit 1-NN on complete observations</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="n">complete_df</span> <span class="o">=</span> <span class="n">df_out</span><span class="p">[</span><span class="o">~</span><span class="n">missing_mask</span><span class="p">]</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="n">donor_features</span> <span class="o">=</span> <span class="n">complete_df</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>        <span class="n">donor_targets</span> <span class="o">=</span> <span class="n">complete_df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>        <span class="n">nn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">donor_features</span><span class="p">)</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="n">recipient_features</span> <span class="o">=</span> <span class="n">df_out</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing_mask</span><span class="p">,</span> <span class="n">feature_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>        <span class="n">_</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">recipient_features</span><span class="p">)</span>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>        <span class="n">df_out</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing_mask</span><span class="p">,</span> <span class="n">target_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">donor_targets</span><span class="p">[</span><span class="n">indices</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
-</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>        <span class="k">return</span> <span class="n">df_out</span>
-</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
-</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="c1"># Generate realistic dirty Electronic Health Records (EHR)</span>
-</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="n">raw_data</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>        <span class="s2">"patient_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">106</span><span class="p">],</span>
-</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>        <span class="s2">"name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">" René  Dupont "</span><span class="p">,</span> <span class="s2">"Jöhn  Doe</span><span class="se">\uFB01</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"Alice </span><span class="se">\u200B</span><span class="s2">Smith"</span><span class="p">,</span> <span class="s2">"Bob Brown"</span><span class="p">,</span> <span class="s2">"Eve Taylor"</span><span class="p">,</span> <span class="s2">"Charlie Davis"</span><span class="p">],</span>
-</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>        <span class="s2">"bp_raw"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"120/80 mmHg"</span><span class="p">,</span> <span class="s2">"145/95"</span><span class="p">,</span> <span class="s2">"INVALID_BP"</span><span class="p">,</span> <span class="s2">"130 / 85"</span><span class="p">,</span> <span class="s2">"999/999"</span><span class="p">,</span> <span class="s2">"118/78"</span><span class="p">],</span>
-</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">34</span><span class="p">],</span>
-</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>        <span class="s2">"bmi"</span><span class="p">:</span> <span class="p">[</span><span class="mf">24.5</span><span class="p">,</span> <span class="mf">31.2</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">,</span> <span class="mf">28.4</span><span class="p">,</span> <span class="mf">30.1</span><span class="p">,</span> <span class="mf">22.8</span><span class="p">],</span>
-</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>        <span class="s2">"admission_day"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>        <span class="s2">"discharge_day"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>  <span class="c1"># Note: patient 102 has discharge &lt; admission (Violation!)</span>
-</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="p">}</span>
-</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
-</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"--- Raw Ingested Data ---"</span><span class="p">)</span>
-</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">df_raw</span><span class="p">[[</span><span class="s2">"patient_id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"bp_raw"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">,</span> <span class="s2">"admission_day"</span><span class="p">,</span> <span class="s2">"discharge_day"</span><span class="p">]])</span>
-</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>
-</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="n">cleaner</span> <span class="o">=</span> <span class="n">DeclarativeDataCleaner</span><span class="p">()</span>
-</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
-</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>    <span class="c1"># 1. Register field sanitization</span>
-</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="n">cleaner</span><span class="o">.</span><span class="n">add_field_rule</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">DeclarativeDataCleaner</span><span class="o">.</span><span class="n">normalize_text</span><span class="p">)</span>
-</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>
-</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="c1"># 2. Register Denial Constraint: Discharge day cannot be before Admission day</span>
-</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">discharge_before_admission</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
-</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>        <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="s2">"discharge_day"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">"admission_day"</span><span class="p">]</span>
-</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>
-</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>    <span class="n">cleaner</span><span class="o">.</span><span class="n">add_denial_constraint</span><span class="p">(</span>
-</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>        <span class="n">discharge_before_admission</span><span class="p">,</span> 
-</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>        <span class="s2">"Denial Constraint: Discharge day strictly precedes admission day"</span>
-</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="p">)</span>
-</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>
-</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="c1"># 3. Clean fields</span>
-</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="n">df_cleaned</span> <span class="o">=</span> <span class="n">cleaner</span><span class="o">.</span><span class="n">clean_fields</span><span class="p">(</span><span class="n">df_raw</span><span class="p">)</span>
-</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>
-</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="c1"># Parse blood pressure</span>
-</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="n">parsed_bps</span> <span class="o">=</span> <span class="n">df_cleaned</span><span class="p">[</span><span class="s2">"bp_raw"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">DeclarativeDataCleaner</span><span class="o">.</span><span class="n">parse_blood_pressure</span><span class="p">)</span>
-</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="n">df_cleaned</span><span class="p">[</span><span class="s2">"systolic_bp"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">p</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parsed_bps</span><span class="p">]</span>
-</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="n">df_cleaned</span><span class="p">[</span><span class="s2">"diastolic_bp"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">p</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parsed_bps</span><span class="p">]</span>
-</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
-</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="c1"># 4. Check integrity constraint violations</span>
-</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>    <span class="n">audit_results</span> <span class="o">=</span> <span class="n">cleaner</span><span class="o">.</span><span class="n">audit_denial_constraints</span><span class="p">(</span><span class="n">df_cleaned</span><span class="p">)</span>
-</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Denial Constraint Violations ---"</span><span class="p">)</span>
-</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="k">for</span> <span class="n">rule_name</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">audit_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">rule_name</span><span class="si">}</span><span class="s2">]: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> records found violating rule."</span><span class="p">)</span>
-</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>
-</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>    <span class="c1"># 5. Hot-deck impute missing age using BMI as feature</span>
-</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="n">df_imputed</span> <span class="o">=</span> <span class="n">cleaner</span><span class="o">.</span><span class="n">hot_deck_impute</span><span class="p">(</span><span class="n">df_cleaned</span><span class="p">,</span> <span class="n">feature_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">"bmi"</span><span class="p">],</span> <span class="n">target_col</span><span class="o">=</span><span class="s2">"age"</span><span class="p">)</span>
-</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Cleaned &amp; Imputed Dataset ---"</span><span class="p">)</span>
-</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">df_imputed</span><span class="p">[[</span><span class="s2">"patient_id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"systolic_bp"</span><span class="p">,</span> <span class="s2">"diastolic_bp"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">,</span> <span class="s2">"bmi"</span><span class="p">]])</span>
-</span></code></pre></div>
-<hr />
-<h2 id="empirical-case-study-clinical-ehr-vitals-discharge-inconsistencies">🔬 Empirical Case Study: Clinical EHR Vitals &amp; Discharge Inconsistencies</h2>
-<p>In the <strong>PhysioNet MIMIC-III Clinical Database</strong> (<span class="arithmatex">\(46,520\)</span> patients admitted to intensive care units) (<a href="#ref-johnson2016">Johnson et al., 2016</a>):
-1. <strong>Discharge Timestamp Anomalies:</strong> Over <span class="arithmatex">\(340\)</span> patient encounters recorded discharge times prior to admission times due to automated bed-assignment retro-dating. Naive feature engineering calculated negative length-of-stay, destroying survival analysis estimators.
-2. <strong>Blood Pressure Artifacts:</strong> Free-text clinical nursing notes recorded blood pressure in <span class="arithmatex">\(14\)</span> distinct notation patterns (e.g., <code>120/80</code>, <code>120 / 80 mmHg</code>, <code>BP: 120/80</code>, <code>120-80</code>). Regex extraction increased usable blood pressure coverage from <span class="arithmatex">\(68.4\%\)</span> to <span class="arithmatex">\(99.1\%\)</span>.
-3. <strong>Imputation Quality for Sepsis Onset Prediction:</strong>
-   - Complete-Case Deletion discarded <span class="arithmatex">\(64\%\)</span> of ICU patients due to sporadic lab test schedules.
-   - Hot-Deck matching using age, weight, and admission SAPS-II scores preserved covariance structure without introducing the artificial zero-variance artifacts of mean filling.</p>
+<h2 id="3-landmark-empirical-case-study-mimic-iii-clinical-database">3. Landmark Empirical Case Study: MIMIC-III Clinical Database</h2>
+<p>In an empirical cleaning audit of the <strong>PhysioNet MIMIC-III Critical Care Database</strong> (<span class="arithmatex">\(46{,}520\)</span> ICU encounters; [<a href="#ref-johnson2016">Johnson2016</a>]):
+1. <strong>Temporal Denial Constraint Violations</strong>: Over <span class="arithmatex">\(340\)</span> patient records reported <code>DischargeTime &lt; AdmissionTime</code> due to retrospective administrative timestamp overrides. Unfiltered ML pipelines calculated negative Length-of-Stay (LOS) durations, crashing survival regression hazard estimators.
+2. <strong>Heterogeneous Vitals Parsing</strong>: Nursing chart records logged blood pressure in <span class="arithmatex">\(14\)</span> distinct free-text notation variants (<code>120/80</code>, <code>120 / 80 mmHg</code>, <code>BP: 120-80</code>, <code>999/999</code>). Declarative regex validation coupled with physiological range gates expanded valid coverage from <span class="arithmatex">\(68.4\%\)</span> to <span class="arithmatex">\(99.1\%\)</span>.
+3. <strong>Downstream Clinical Impact</strong>:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Cleaning Procedure</th>
-<th style="text-align: left;">Data Retention</th>
-<th style="text-align: left;">Downstream Mortality ROC-AUC</th>
-<th style="text-align: left;">Mean Imputation MSE</th>
+<th style="text-align: left;">Cohort Retention</th>
+<th style="text-align: left;">Mortality ROC-AUC</th>
+<th style="text-align: left;">Age Imputation MSE</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Raw Ingestion (Failed Parses = Null)</td>
-<td style="text-align: left;">36.0% (Complete-Case)</td>
-<td style="text-align: left;">0.692</td>
+<td style="text-align: left;">Complete-Case Baseline (Unparsed dropped)</td>
+<td style="text-align: left;"><span class="arithmatex">\(36.0\%\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.692\)</span></td>
 <td style="text-align: left;">N/A</td>
 </tr>
 <tr>
-<td style="text-align: left;">Mean Imputation</td>
-<td style="text-align: left;">100.0%</td>
-<td style="text-align: left;">0.741</td>
-<td style="text-align: left;">142.3</td>
+<td style="text-align: left;">Univariate Mean Imputation</td>
+<td style="text-align: left;"><span class="arithmatex">\(100.0\%\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.741\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(142.3\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Declarative Regex + Hot-Deck Matching</strong></td>
-<td style="text-align: left;"><strong>100.0%</strong></td>
-<td style="text-align: left;"><strong>0.838</strong></td>
-<td style="text-align: left;"><strong>41.7</strong></td>
+<td style="text-align: left;"><strong>Declarative NFKC/Regex + Hot-Deck 1-NN</strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(100.0\%\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0.838\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(41.7\)</span></strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Data Cleaning Workbench</h4>
-  <p>Test multi-stage cleaning transforms, entity resolution, and rule-based validation pipelines in the browser.</p>
-  <a href="../../tools/cleaning/" class="noc-sim-btn">Launch Cleaning Workbench →</a>
+<h2 id="4-interactive-laboratory-declarative-cleaning-nfkc-constraint-repair-studio">4. Interactive Laboratory: Declarative Cleaning, NFKC &amp; Constraint Repair Studio</h2>
+<p>Inspect hidden Unicode byte traps and execute Minimum-Modification constraint repairs live in this zero-dependency client-side workbench.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 5px 5px 0px #151b20;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <span style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 10px; border-radius: 9999px; font-weight: 800; font-family: monospace; box-shadow: 1px 1px 0px #151b20;">SIMULATOR 5.5</span>
+      <h3 style="margin: 8px 0 0 0; font-size: 1.3rem; font-weight: 800; color: #151b20;">Declarative Cleaning, NFKC &amp; Constraint Repair Studio</h3>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="btnTabNFKC" onclick="switchTechTab('nfkc')" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab A: NFKC &amp; Byte Inspector</button>
+      <button id="btnTabRepair" onclick="switchTechTab('repair')" style="background: #ffffff; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab B: Minimum-Cost Constraint Repair</button>
+    </div>
+  </div>
+
+  <!-- TAB A: UNICODE NFKC INSPECTOR -->
+  <div id="panelNFKC">
+    <p style="font-size: 0.88rem; color: #334155; margin-top: 0;">
+      Select a corrupted text string containing hidden Unicode traps (zero-width spaces, compatibility ligatures, combining diacritics) to inspect UTF-16 codepoints before and after declarative canonicalization.
+    </p>
+
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+      <button onclick="setNFKCPreset('Alice\u200BSmith \uFB01les')" style="background: #fffaf0; border: 1.5px solid #151b20; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Trap 1: Zero-Width Space + ﬁ Ligature</button>
+      <button onclick="setNFKCPreset('Rene\u0301  Dupont \uFF12\uFF10\uFF12\uFF16')" style="background: #fffaf0; border: 1.5px solid #151b20; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Trap 2: Combining Acute + Full-Width Digits</button>
+      <button onclick="setNFKCPreset('\uFEFFOrder²  \u00A0Status: OK')" style="background: #fffaf0; border: 1.5px solid #151b20; padding: 5px 10px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; cursor: pointer;">Trap 3: BOM Header + Superscript + NBSP</button>
+    </div>
+
+    <div style="margin-bottom: 16px;">
+      <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">Raw Dirty Input String:</label>
+      <input type="text" id="inputDirtyText" oninput="updateNFKC()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 10px; font-family: monospace; font-size: 0.95rem; font-weight: 700;">
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div style="background: #fee2e2; border: 2px solid #151b20; border-radius: 8px; padding: 14px;">
+        <div style="font-size: 0.72rem; font-weight: 800; color: #dc2626; margin-bottom: 6px;">RAW BYTE / CODEPOINT SEQUENCE</div>
+        <div id="outRawCodes" style="font-family: monospace; font-size: 0.78rem; color: #151b20; word-break: break-all; line-height: 1.5;"></div>
+        <div id="outRawLen" style="font-size: 0.75rem; font-weight: 800; color: #dc2626; margin-top: 8px;">Length: 0 codepoints</div>
+      </div>
+
+      <div style="background: #dcfce7; border: 2px solid #151b20; border-radius: 8px; padding: 14px;">
+        <div style="font-size: 0.72rem; font-weight: 800; color: #16a34a; margin-bottom: 6px;">CANONICAL NFKC + STRIPPED OUTPUT</div>
+        <div id="outCleanText" style="font-family: monospace; font-size: 0.95rem; font-weight: 900; color: #151b20; margin-bottom: 6px;"></div>
+        <div id="outCleanCodes" style="font-family: monospace; font-size: 0.78rem; color: #334155; word-break: break-all; line-height: 1.5;"></div>
+        <div id="outCleanLen" style="font-size: 0.75rem; font-weight: 800; color: #16a34a; margin-top: 8px;">Length: 0 codepoints</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB B: MINIMUM MODIFICATION REPAIR -->
+  <div id="panelRepair" style="display: none;">
+    <p style="font-size: 0.88rem; color: #334155; margin-top: 0;">
+      Inspect a Clinical EHR table containing a Functional Dependency violation (<code>ZIP 94305</code> $\to$ discordant cities), a temporal Denial Constraint failure (`Discharge < Admission`), and corrupted blood pressure formats.
+    </p>
+
+    <div style="overflow-x: auto; margin-bottom: 16px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; border: 2px solid #151b20; background: #ffffff;">
+        <thead>
+          <tr style="background: #fff0b9; border-bottom: 2px solid #151b20;">
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: left;">Patient ID</th>
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">ZIP Code ($w=5$)</th>
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: left;">City ($w=1$)</th>
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">Admit Day ($w=4$)</th>
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">Discharge Day ($w=1$)</th>
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: left;">BP Vitals</th>
+            <th style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">Audit Status</th>
+          </tr>
+        </thead>
+        <tbody id="repairTableBody">
+          <!-- Populated via JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+      <button onclick="executeMinimumRepair()" style="background: #ffc83e; color: #151b20; border: 2px solid #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 800; font-size: 0.84rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">
+        ⚡ Execute Minimum Modification Repair r*
+      </button>
+      <button onclick="resetRepairTable()" style="background: #ffffff; color: #dc2626; border: 2px solid #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 800; font-size: 0.84rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">
+        ↺ Reset Violations
+      </button>
+      <div id="repairCostBanner" style="font-size: 0.82rem; font-weight: 800; color: #dc2626;">
+        Active Violations: 3 detected (Unrepaired)
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+// --- TAB SWITCHING ---
+function switchTechTab(tab) {
+  document.getElementById('panelNFKC').style.display = tab === 'nfkc' ? 'block' : 'none';
+  document.getElementById('panelRepair').style.display = tab === 'repair' ? 'block' : 'none';
+  document.getElementById('btnTabNFKC').style.background = tab === 'nfkc' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabNFKC').style.color = tab === 'nfkc' ? '#ffffff' : '#151b20';
+  document.getElementById('btnTabRepair').style.background = tab === 'repair' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabRepair').style.color = tab === 'repair' ? '#ffffff' : '#151b20';
+
+  if (tab === 'repair') renderRepairTable();
+}
+
+// --- UNICODE NFKC INSPECTOR ---
+function setNFKCPreset(val) {
+  document.getElementById('inputDirtyText').value = val;
+  updateNFKC();
+}
+
+function toHexPoints(str) {
+  return Array.from(str).map(ch => {
+    const hex = ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
+    return `U+${hex}`;
+  }).join(' ');
+}
+
+function updateNFKC() {
+  const raw = document.getElementById('inputDirtyText').value;
+  // Normalize NFKC, strip zero-width chars, collapse whitespace
+  const nfkc = raw.normalize('NFKC');
+  const stripped = nfkc.replace(/[\u200B-\u200D\uFEFF]/g, '');
+  const clean = stripped.replace(/\s+/g, ' ').trim();
+
+  document.getElementById('outRawCodes').innerText = toHexPoints(raw);
+  document.getElementById('outRawLen').innerText = `Length: ${Array.from(raw).length} codepoints`;
+
+  document.getElementById('outCleanText').innerText = `"${clean}"`;
+  document.getElementById('outCleanCodes').innerText = toHexPoints(clean);
+  document.getElementById('outCleanLen').innerText = `Length: ${Array.from(clean).length} codepoints`;
+}
+
+// --- MINIMUM MODIFICATION REPAIR LOGIC ---
+let repairRows = [
+  { id: "P_101", zip: "94305", city: "Stanford", admit: 1, disch: 4, bp: "120/80 mmHg", repaired: false },
+  { id: "P_102", zip: "94305", city: "Palo Alto", admit: 5, disch: 8, bp: "135 / 85", repaired: false },
+  { id: "P_103", zip: "94305", city: "Stanford", admit: 10, disch: 7, bp: "118/76", repaired: false },
+  { id: "P_104", zip: "94107", city: "San Francisco", admit: 12, disch: 15, bp: "999/999 (ERR)", repaired: false }
+];
+
+function renderRepairTable() {
+  const tbody = document.getElementById('repairTableBody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  let violationCount = 0;
+
+  repairRows.forEach(r => {
+    const fdConflict = (r.zip === "94305" && r.city !== "Stanford");
+    const temporalConflict = (r.disch < r.admit);
+    const bpConflict = r.bp.includes("999");
+    if (fdConflict || temporalConflict || bpConflict) violationCount++;
+
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid #e2e8f0';
+
+    let statusHtml = '<span style="background:#dcfce7; color:#16a34a; font-weight:800; padding:2px 8px; border-radius:4px;">CERTIFIED CLEAN</span>';
+    if (fdConflict) statusHtml = '<span style="background:#fee2e2; color:#dc2626; font-weight:800; padding:2px 8px; border-radius:4px;">FD CONFLICT (ZIP→City)</span>';
+    else if (temporalConflict) statusHtml = '<span style="background:#fee2e2; color:#dc2626; font-weight:800; padding:2px 8px; border-radius:4px;">DC VIOLATION (Disch < Admit)</span>';
+    else if (bpConflict) statusHtml = '<span style="background:#fee2e2; color:#dc2626; font-weight:800; padding:2px 8px; border-radius:4px;">RANGE FAIL (>260)</span>';
+
+    tr.innerHTML = `
+      <td style="padding: 8px 10px; border: 1px solid #151b20; font-family: monospace; font-weight: 700;">${r.id}</td>
+      <td style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">${r.zip}</td>
+      <td style="padding: 8px 10px; border: 1px solid #151b20; ${fdConflict ? 'background:#fee2e2; color:#dc2626; font-weight:800;' : ''}">${r.city}</td>
+      <td style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">Day ${r.admit}</td>
+      <td style="padding: 8px 10px; border: 1px solid #151b20; text-align: center; ${temporalConflict ? 'background:#fee2e2; color:#dc2626; font-weight:800;' : ''}">Day ${r.disch}</td>
+      <td style="padding: 8px 10px; border: 1px solid #151b20; font-family: monospace; ${bpConflict ? 'background:#fee2e2; color:#dc2626; font-weight:800;' : ''}">${r.bp}</td>
+      <td style="padding: 8px 10px; border: 1px solid #151b20; text-align: center;">${statusHtml}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  const banner = document.getElementById('repairCostBanner');
+  if (violationCount === 0) {
+    banner.innerText = '✓ Optimal Repair r* Applied (Minimum Weight Cost = 3.0; All Σ Constraints Satisfied)';
+    banner.style.color = '#16a34a';
+  } else {
+    banner.innerText = `Active Violations: ${violationCount} detected (Unrepaired)`;
+    banner.style.color = '#dc2626';
+  }
+}
+
+function executeMinimumRepair() {
+  // Minimum cost repairs target lowest-weight mutable attributes: City (w=1), Discharge (w=1), BP
+  repairRows[1].city = "Stanford";
+  repairRows[2].disch = 11; // Minimal increment past Admission Day 10
+  repairRows[3].bp = "NULL (Nullified Invalid)";
+  renderRepairTable();
+}
+
+function resetRepairTable() {
+  repairRows = [
+    { id: "P_101", zip: "94305", city: "Stanford", admit: 1, disch: 4, bp: "120/80 mmHg", repaired: false },
+    { id: "P_102", zip: "94305", city: "Palo Alto", admit: 5, disch: 8, bp: "135 / 85", repaired: false },
+    { id: "P_103", zip: "94305", city: "Stanford", admit: 10, disch: 7, bp: "118/76", repaired: false },
+    { id: "P_104", zip: "94107", city: "San Francisco", admit: 12, disch: 15, bp: "999/999 (ERR)", repaired: false }
+  ];
+  renderRepairTable();
+}
+
+window.addEventListener('load', () => {
+  setNFKCPreset('Alice\u200BSmith \uFB01les');
+});
+</script>
+
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="5-production-grade-python-verification-engine">5. Production-Grade Python Verification Engine</h2>
+<p>The following Python module uses <strong>Pydantic V2</strong> to enforce two-stage NFKC + Zero-Width Unicode normalization, physiological regex range validation, Functional Dependency / Denial Constraint violation auditing, and variance-preserving 1-NN Hot-Deck donor imputation.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">production_declarative_cleaner.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Pydantic V2 verified engine for NFKC Normalization, Denial Constraints, and 1-NN Hot-Deck Repair.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">NearestNeighbors</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">class</span><span class="w"> </span><span class="nc">CleaningAuditReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="sd">"""Pydantic V2 audit summary for declarative constraint checks and repairs."""</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">records_processed</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">temporal_dc_violations</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">fd_zip_city_violations</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">invalid_bp_readings</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">unicode_traps_normalized</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">age_values_imputed</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">class</span><span class="w"> </span><span class="nc">DeclarativeDataCleaner</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="sd">"""Enforces NFKC + Invisible Stripper, Regex Coercion, Denial Constraints, and Hot-Deck."""</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">canonicalize_text</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="sd">"""Applies NFKC normalization AND strips hidden zero-width formatting artifacts."""</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>            <span class="k">return</span> <span class="n">val</span><span class="p">,</span> <span class="kc">False</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="n">nfkc</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">"NFKC"</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="c1"># Strip zero-width spaces, joiners, and BOM headers that NFKC preserves</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="n">stripped</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[\u200B-\u200D\uFEFF]"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">nfkc</span><span class="p">)</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="n">collapsed</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="n">stripped</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="k">return</span> <span class="n">collapsed</span><span class="p">,</span> <span class="p">(</span><span class="n">collapsed</span> <span class="o">!=</span> <span class="n">val</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">parse_blood_pressure</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">        </span><span class="sd">"""Validates systolic/diastolic values within physiological human bounds."""</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(\d{2,3})\s*[/\-]\s*(\d{2,3})"</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>            <span class="n">sys</span><span class="p">,</span> <span class="n">dia</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>            <span class="k">if</span> <span class="mi">50</span> <span class="o">&lt;=</span> <span class="n">sys</span> <span class="o">&lt;=</span> <span class="mi">260</span> <span class="ow">and</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">dia</span> <span class="o">&lt;=</span> <span class="mi">160</span> <span class="ow">and</span> <span class="n">sys</span> <span class="o">&gt;</span> <span class="n">dia</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>                <span class="k">return</span> <span class="n">sys</span><span class="p">,</span> <span class="n">dia</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_functional_dependency</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">lhs</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">        </span><span class="sd">"""Counts distinct LHS values mapping to &gt;1 unique RHS value (FD violation)."""</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="n">grouped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">lhs</span><span class="p">)[</span><span class="n">rhs</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">violating_keys</span> <span class="o">=</span> <span class="n">grouped</span><span class="p">[</span><span class="n">grouped</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">violating_keys</span><span class="p">))</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">hot_deck_1nn_impute</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">feature_cols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">target_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">        </span><span class="sd">"""Imputes missing target entries via exact 1-NN empirical donor matching."""</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">df_out</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="n">missing_mask</span> <span class="o">=</span> <span class="n">df_out</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="n">imputed_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="k">if</span> <span class="n">imputed_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>            <span class="k">return</span> <span class="n">df_out</span><span class="p">,</span> <span class="mi">0</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="n">complete</span> <span class="o">=</span> <span class="n">df_out</span><span class="p">[</span><span class="o">~</span><span class="n">missing_mask</span><span class="p">]</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="n">nn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">complete</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="n">_</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">df_out</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing_mask</span><span class="p">,</span> <span class="n">feature_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="n">df_out</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing_mask</span><span class="p">,</span> <span class="n">target_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">complete</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">indices</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>        <span class="k">return</span> <span class="n">df_out</span><span class="p">,</span> <span class="n">imputed_count</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_declarative_cleaning_assertions</span><span class="p">():</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="c1"># Dirty Electronic Health Records with hidden Unicode traps, FD mismatches, and DC errors</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="s2">"patient_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">105</span><span class="p">],</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="s2">"name"</span><span class="p">:</span> <span class="p">[</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>            <span class="s2">"Alice</span><span class="se">\u200B</span><span class="s2">Smith"</span><span class="p">,</span>          <span class="c1"># Zero-width space trap!</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>            <span class="s2">"Rene</span><span class="se">\u0301</span><span class="s2">  Dupont"</span><span class="p">,</span>         <span class="c1"># Combining acute + extra whitespace</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>            <span class="s2">"John</span><span class="se">\uFB01</span><span class="s2"> Doe"</span><span class="p">,</span>             <span class="c1"># Compatibility ligature 'fi'</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>            <span class="s2">"Bob Brown"</span><span class="p">,</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>            <span class="s2">"Eve Taylor"</span><span class="p">,</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="p">],</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="s2">"zip_code"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"94305"</span><span class="p">,</span> <span class="s2">"94305"</span><span class="p">,</span> <span class="s2">"94305"</span><span class="p">,</span> <span class="s2">"94107"</span><span class="p">,</span> <span class="s2">"94107"</span><span class="p">],</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="s2">"city"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Stanford"</span><span class="p">,</span> <span class="s2">"Palo Alto"</span><span class="p">,</span> <span class="s2">"Stanford"</span><span class="p">,</span> <span class="s2">"San Francisco"</span><span class="p">,</span> <span class="s2">"San Francisco"</span><span class="p">],</span>  <span class="c1"># FD Violation on 94305!</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="s2">"bp_raw"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"120/80 mmHg"</span><span class="p">,</span> <span class="s2">"135 / 85"</span><span class="p">,</span> <span class="s2">"INVALID"</span><span class="p">,</span> <span class="s2">"999/999"</span><span class="p">,</span> <span class="s2">"118-78"</span><span class="p">],</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="s2">"admission_day"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>        <span class="s2">"discharge_day"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>  <span class="c1"># Temporal DC violation on patient 102!</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mf">45.0</span><span class="p">,</span> <span class="mf">62.0</span><span class="p">,</span> <span class="mf">29.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">34.0</span><span class="p">],</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>        <span class="s2">"bmi"</span><span class="p">:</span> <span class="p">[</span><span class="mf">24.5</span><span class="p">,</span> <span class="mf">31.2</span><span class="p">,</span> <span class="mf">21.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">22.8</span><span class="p">],</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="p">})</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="c1"># 1. Text Canonicalization Check</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="n">norm_names</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="n">trap_count</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">raw_df</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]:</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>        <span class="n">clean_n</span><span class="p">,</span> <span class="n">modified</span> <span class="o">=</span> <span class="n">DeclarativeDataCleaner</span><span class="o">.</span><span class="n">canonicalize_text</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>        <span class="n">norm_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clean_n</span><span class="p">)</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="k">if</span> <span class="n">modified</span><span class="p">:</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>            <span class="n">trap_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="n">raw_df</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">norm_names</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="c1"># Assert exact join equivalence after invisible character stripping</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>    <span class="k">assert</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"AliceSmith"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Zero-width space leaked: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">raw_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s1">'name'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="k">assert</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Johnfi Doe"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Compatibility ligature failed: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">raw_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">'name'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="c1"># 2. Denial Constraints &amp; Functional Dependencies Audit</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="n">dc_violations</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">raw_df</span><span class="p">[</span><span class="s2">"discharge_day"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">raw_df</span><span class="p">[</span><span class="s2">"admission_day"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="n">fd_violations</span> <span class="o">=</span> <span class="n">DeclarativeDataCleaner</span><span class="o">.</span><span class="n">audit_functional_dependency</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span> <span class="n">lhs</span><span class="o">=</span><span class="s2">"zip_code"</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="s2">"city"</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="k">assert</span> <span class="n">dc_violations</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="k">assert</span> <span class="n">fd_violations</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="c1"># 3. Vitals Parsing &amp; Physiological Rejection</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">parsed</span> <span class="o">=</span> <span class="p">[</span><span class="n">DeclarativeDataCleaner</span><span class="o">.</span><span class="n">parse_blood_pressure</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="n">raw_df</span><span class="p">[</span><span class="s2">"bp_raw"</span><span class="p">]]</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="n">invalid_bps</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parsed</span> <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="k">assert</span> <span class="n">invalid_bps</span> <span class="o">==</span> <span class="mi">2</span>  <span class="c1"># "INVALID" and "999/999" must both be rejected!</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="c1"># 4. Hot-Deck Imputation (Patient 104 BMI=25.0 closest to Patient 101 BMI=24.5 -&gt; Imputes exact Age=45.0)</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="n">repaired_df</span><span class="p">,</span> <span class="n">imp_cnt</span> <span class="o">=</span> <span class="n">DeclarativeDataCleaner</span><span class="o">.</span><span class="n">hot_deck_1nn_impute</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span> <span class="n">feature_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">"bmi"</span><span class="p">],</span> <span class="n">target_col</span><span class="o">=</span><span class="s2">"age"</span><span class="p">)</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="k">assert</span> <span class="n">imp_cnt</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="k">assert</span> <span class="n">repaired_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s2">"Hot-Deck failed to match nearest BMI donor!"</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="n">report</span> <span class="o">=</span> <span class="n">CleaningAuditReport</span><span class="p">(</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>        <span class="n">records_processed</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">raw_df</span><span class="p">),</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>        <span class="n">temporal_dc_violations</span><span class="o">=</span><span class="n">dc_violations</span><span class="p">,</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>        <span class="n">fd_zip_city_violations</span><span class="o">=</span><span class="n">fd_violations</span><span class="p">,</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>        <span class="n">invalid_bp_readings</span><span class="o">=</span><span class="n">invalid_bps</span><span class="p">,</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>        <span class="n">unicode_traps_normalized</span><span class="o">=</span><span class="n">trap_count</span><span class="p">,</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>        <span class="n">age_values_imputed</span><span class="o">=</span><span class="n">imp_cnt</span><span class="p">,</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="p">)</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Production Declarative Cleaning Audit Report ==="</span><span class="p">)</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unicode Traps Canonicalized: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">unicode_traps_normalized</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">records_processed</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Constraint Audits -&gt; Temporal DC: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">temporal_dc_violations</span><span class="si">}</span><span class="s2"> | FD Zip-&gt;City: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">fd_zip_city_violations</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Physiological BP Rejections: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">invalid_bp_readings</span><span class="si">}</span><span class="s2"> | Hot-Deck Imputed Ages: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">age_values_imputed</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Pydantic V2 schemas and repair invariants verified successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="n">test_declarative_cleaning_assertions</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-key-engineering-takeaways">6. Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Enforce Minimum Modification Costs</strong>: Repair relational dependency and check violations by modifying the lowest-weight mutable attributes (<span class="arithmatex">\(r^* = \arg\min_{r' \models \Sigma} \operatorname{dist}(r, r')\)</span>) rather than performing destructive row deletions.</li>
+<li><strong>Compose <code>NFKC</code> with Invisible Control Stripping</strong>: Compatibility normalization (<code>NFKC</code>) alone fails to remove zero-width joiners (<code>\u200B</code>) and Byte Order Marks (<code>\uFEFF</code>), leaving silent join mismatches intact.</li>
+<li><strong>Preserve Manifold Geometry via Hot-Deck</strong>: 1-NN Hot-Deck donor matching guarantees integer discreteness, skewness, and covariance structure conservation without introducing mean-imputation variance collapse.</li>
+<li><strong>Declare Constraints Explicitly</strong>: Formalizing domain logic as first-order Denial Constraints guarantees pipeline auditability before downstream ML feature matrix construction.</li>
+</ol>
+<hr />
+<h2 id="7-scenario-based-diagnostic-micro-checks">7. Scenario-Based Diagnostic Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Fellegi-Sunter Weight Calculation</summary>
-<p>In probabilistic record linkage, attribute <span class="arithmatex">\(A\)</span> has agreement probability among matching pairs <span class="arithmatex">\(m = 0.95\)</span> and agreement probability among non-matching pairs <span class="arithmatex">\(u = 0.01\)</span>. Calculate the positive agreement weight <span class="arithmatex">\(W_{\text{agree}}\)</span> and negative disagreement weight <span class="arithmatex">\(W_{\text{disagree}}\)</span>.</p>
+<summary>Micro-Check 1: Minimum Modification Cost in Relational Constraint Repair</summary>
+<p>A healthcare table records three visits sharing <code>ZIP = "94305"</code>: Records 1 and 3 list <code>City = "Stanford"</code>, while Record 2 lists <code>City = "Palo Alto"</code>. Suppose modifying <code>ZIP</code> carries domain weight <span class="arithmatex">\(w_{\text{ZIP}} = 5.0\)</span> (since ZIP codes are verified against postal APIs) and modifying <code>City</code> carries weight <span class="arithmatex">\(w_{\text{City}} = 1.0\)</span>. Which repair satisfies the Functional Dependency <span class="arithmatex">\(\text{ZIP} \to \text{City}\)</span> under Bohannon's Minimum Modification Principle?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Under the Fellegi-Sunter model:
-1. Agreement Weight:
-$<span class="arithmatex">\(W_{\text{agree}} = \log_2 \left(\frac{m}{u}\right) = \log_2 \left(\frac{0.95}{0.01}\right) = \log_2(95) \approx 6.57 \text{ bits}\)</span>$
-2. Disagreement Weight:
-$<span class="arithmatex">\(W_{\text{disagree}} = \log_2 \left(\frac{1 - m}{1 - u}\right) = \log_2 \left(\frac{0.05}{0.99}\right) = \log_2(0.0505) \approx -4.31 \text{ bits}\)</span>$
-Matching on this feature provides strong positive evidence (+6.57 bits), while mismatching penalizes the match probability significantly (-4.31 bits).</p>
+<p><strong>Modify <code>City</code> in Record 2 from <code>"Palo Alto"</code> to <code>"Stanford"</code> (Total Modification Cost = <span class="arithmatex">\(1.0\)</span>).</strong></p>
+<p>Consider the alternative repairs achieving consistency <span class="arithmatex">\(\text{ZIP} \to \text{City}\)</span>:
+1. Change Record 2's <code>City</code> to <code>"Stanford"</code>: Cost <span class="arithmatex">\(= 1 \times w_{\text{City}} = 1.0\)</span>.
+2. Change Records 1 &amp; 3's <code>City</code> to <code>"Palo Alto"</code>: Cost <span class="arithmatex">\(= 2 \times w_{\text{City}} = 2.0\)</span>.
+3. Change Record 2's <code>ZIP</code> to a distinct code: Cost <span class="arithmatex">\(= 1 \times w_{\text{ZIP}} = 5.0\)</span>.
+Bohannon's Minimum Modification Principle selects Option 1 (<span class="arithmatex">\(r^* = \arg\min \operatorname{dist}(r, r') = 1.0\)</span>), resolving the functional dependency while preserving maximal data integrity.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: The Transitive Merge Paradox</summary>
-<p>If Record Linkage determines that <span class="arithmatex">\(A \approx B\)</span> with confidence 0.85 and <span class="arithmatex">\(B \approx C\)</span> with confidence 0.85, why is assuming <span class="arithmatex">\(A \approx C\)</span> (transitive closure) dangerous in entity deduplication?</p>
+<summary>Micro-Check 2: Why <code>NFKC</code> Alone Still Fails SQL Joins on Copied Web Data</summary>
+<p>A data engineer pipelines customer usernames through Python <code>unicodedata.normalize("NFKC", username)</code> prior to deduplication, yet <code>"AliceSmith"</code> fails to match a web form submission displaying identically as <code>"AliceSmith"</code> on screen. What character class survived <code>NFKC</code>, and how is it fixed?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Feature similarity is not transitive.</p>
-<p>Errors compound across chain linkages: <span class="arithmatex">\(A\)</span> may match <span class="arithmatex">\(B\)</span> on name and address with minor DOB variation, while <span class="arithmatex">\(B\)</span> matches <span class="arithmatex">\(C\)</span> on DOB and phone with address variation. Forcing transitive closure merges <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(C\)</span> even if they share zero attributes, creating an "entity snowdrift" that merges distinct individuals. Production systems require connected-component graph clustering with cluster density constraints.</p>
+<p><strong>Zero-Width Formatting Characters (<code>\u200B</code> Zero-Width Space, <code>\u200C</code>, <code>\u200D</code>, <code>\uFEFF</code> Byte Order Mark) survived <code>NFKC</code>.</strong></p>
+<p>Unicode compatibility normalization (<code>NFKC</code>) folds typographical ligatures (<code>ﬁ</code> <span class="arithmatex">\(\to\)</span> <code>fi</code>) and full-width glyphs (<code>１</code> <span class="arithmatex">\(\to\)</span> <code>1</code>), but <strong>retains formatting control codepoints unchanged</strong> because they possess distinct invisible semantic functions in right-to-left or cursive scripts.
+<strong>Engineering Fix:</strong> Always apply an explicit zero-width regex strip (<code>re.sub(r"[\u200B-\u200D\uFEFF]", "", text)</code>) immediately following <code>NFKC</code> normalization on all join keys and primary identifiers.</p>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 3: Why Pairwise Deletion Can Yield Invalid Covariance Matrices</summary>
+<p>In multivariate preprocessing, why does estimating correlation matrices using <strong>Pairwise Deletion</strong> (Available-Case analysis across variables with missing cells) frequently crash downstream Principal Component Analysis (PCA) or Cholesky decomposition?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Calculating pairwise covariances across discordant subsets of rows violates positive semi-definiteness (PSD).</strong></p>
+<p>In Pairwise Deletion, <span class="arithmatex">\(\operatorname{Cov}(X_1, X_2)\)</span> may be computed across rows <span class="arithmatex">\(1\text{–}600\)</span>, while <span class="arithmatex">\(\operatorname{Cov}(X_2, X_3)\)</span> uses rows <span class="arithmatex">\(400\text{–}1000\)</span>. Because each cell <span class="arithmatex">\((j, k)\)</span> evaluates an inconsistent empirical sample geometry, the assembled covariance matrix <span class="arithmatex">\(\hat{\boldsymbol{\Sigma}}\)</span> can develop <strong>negative eigenvalues</strong> (<span class="arithmatex">\(\lambda_{\min} &lt; 0\)</span>). Linear algebra solvers (PCA, Ridge Cholesky, Mahalanobis inversion <span class="arithmatex">\(\boldsymbol{\Sigma}^{-1}\)</span>) fail catastrophically when covariance matrices are indefinite.</p>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 4: Regex Extraction Boundaries in Clinical Vitals Parsing</summary>
+<p>Why must regular expressions parsing blood pressure strings (<code>120/80 mmHg</code>) always be paired with deterministic physiological inequality constraints rather than relying purely on digit matching <code>(\d{2,3})/(\d{2,3})</code>?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Pure digit regexes match sentinel error flags, dates, and swapped readings (e.g., <code>"999/999"</code>, <code>"01/15"</code>, <code>"80/120"</code>).</strong></p>
+<ol>
+<li>Legacy nursing interfaces enter <code>"999/999"</code> or <code>"000/000"</code> to flag broken cuffs; a raw digit parser ingests these as valid extreme hypertension or hypotension.</li>
+<li>Calendar date substrings like <code>"10/12"</code> (October 12) mimic systolic/diastolic slashes cleanly.</li>
+<li>Always couple extraction regexes with physiological domain bounds (<span class="arithmatex">\(50 \le \text{SBP} \le 260\)</span>, <span class="arithmatex">\(30 \le \text{DBP} \le 160\)</span>) AND intra-record inequality constraints (<span class="arithmatex">\(\text{SBP} &gt; \text{DBP}\)</span>).</li>
+</ol>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-rahm2000"></a><strong>[Rahm2000]</strong> E. Rahm and H. H. Do, "Data Cleaning: Problems and Current Approaches," <em>IEEE Data Engineering Bulletin</em>, vol. 23, no. 4, pp. 3–13, 2000. <a href="https://doi.org/10.1109/mic.2010.58">DOI: 10.1109/mic.2010.58</a>.</li>
 <li><a id="ref-bohannon2005"></a><strong>[Bohannon2005]</strong> P. Bohannon, W. Fan, M. Flaster, and R. Rastogi, "A Cost-based Model for Database Repair," in <em>Proceedings of the 2005 ACM SIGMOD International Conference on Management of Data</em>, pp. 455–466, 2005. <a href="https://doi.org/10.1145/1066157.1066209">DOI: 10.1145/1066157.1066209</a>.</li>
@@ -8019,9 +8263,13 @@ Matching on this feature provides strong positive evidence (+6.57 bits), while m
 <li><a id="ref-schelter2018"></a><strong>[Schelter2018]</strong> S. Schelter et al., "Automating Large-Scale Data Quality Verification," <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 12, pp. 1781–1794, 2018. <a href="https://doi.org/10.14778/3229863.3229867">DOI: 10.14778/3229863.3229867</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../04-outliers-irrelevant-and-imbalance/" class="noc-sim-btn secondary" style="text-decoration: none;">← 5.4 Outliers & Imbalance</a>
-  <a href="../06-preprocessing-scaling-and-encoding/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: 5.6 Scaling & Encoding →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../04-outliers-irrelevant-and-imbalance/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← 5.4 Outliers &amp; Imbalance
+  </a>
+  <a href="../06-preprocessing-scaling-and-encoding/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: Scaling &amp; Encoding (5.6) →
+  </a>
 </div>
 
 

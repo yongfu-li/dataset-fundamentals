@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2532,34 +2576,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-derivations" class="md-nav__link">
+  <a href="#1-conceptual-overview-diagnostic-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Derivations
+        1. Conceptual Overview &amp; Diagnostic Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Derivations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-outlier-detection-univariate-vs-multivariate-geometry" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-outlier-detection-univariate-breakdown-multivariate-geometry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Outlier Detection: Univariate vs. Multivariate Geometry
+        2. Outlier Detection: Univariate Breakdown &amp; Multivariate Geometry
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Outlier Detection: Univariate vs. Multivariate Geometry">
+    <nav class="md-nav" aria-label="2. Outlier Detection: Univariate Breakdown &amp; Multivariate Geometry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#univariate-formulations-and-breakdown-points" class="md-nav__link">
+  <a href="#1-univariate-formulations-breakdown-points-the-masking-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Univariate Formulations and Breakdown Points
+        1. Univariate Formulations, Breakdown Points &amp; The Masking Theorem
       
     </span>
   </a>
@@ -2567,10 +2610,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multivariate-geometry-mahalanobis-distance-and-isolation-forest" class="md-nav__link">
+  <a href="#2-multivariate-geometry-mahalanobis-distance-mcd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multivariate Geometry: Mahalanobis Distance and Isolation Forest
+        2. Multivariate Geometry: Mahalanobis Distance &amp; MCD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-non-linear-subspace-isolation-isolation-forests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Non-Linear Subspace Isolation: Isolation Forests
       
     </span>
   </a>
@@ -2581,35 +2635,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-irrelevant-features-and-the-curse-of-dimensionality" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3-irrelevant-features-class-imbalance-dynamics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Irrelevant Features and the Curse of Dimensionality
+        3. Irrelevant Features &amp; Class Imbalance Dynamics
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-class-imbalance-and-the-accuracy-paradox" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Class Imbalance and the Accuracy Paradox
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Class Imbalance and the Accuracy Paradox">
+    <nav class="md-nav" aria-label="3. Irrelevant Features &amp; Class Imbalance Dynamics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#synthetic-minority-over-sampling-technique-smote" class="md-nav__link">
+  <a href="#1-irrelevant-features-the-curse-of-dimensionality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Synthetic Minority Over-sampling Technique (SMOTE)
+        1. Irrelevant Features &amp; The Curse of Dimensionality
       
     </span>
   </a>
@@ -2617,10 +2660,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cost-sensitive-loss-reweighting" class="md-nav__link">
+  <a href="#2-class-imbalance-smote-synthesis-cost-sensitive-learning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cost-Sensitive Loss Reweighting
+        2. Class Imbalance, SMOTE Synthesis &amp; Cost-Sensitive Learning
       
     </span>
   </a>
@@ -2631,17 +2674,12 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-robust-detection-resampling-pipeline" class="md-nav__link">
+  <a href="#4-landmark-empirical-case-study-ieee-cis-fraud-sensor-telemetry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Robust Detection &amp; Resampling Pipeline
+        4. Landmark Empirical Case Study: IEEE-CIS Fraud &amp; Sensor Telemetry
       
     </span>
   </a>
@@ -2649,10 +2687,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-credit-card-fraud-sensor-telemetry" class="md-nav__link">
+  <a href="#5-interactive-laboratory-outliers-mahalanobis-smote-resampling-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Credit Card Fraud &amp; Sensor Telemetry
+        5. Interactive Laboratory: Outliers, Mahalanobis &amp; SMOTE Resampling Studio
       
     </span>
   </a>
@@ -2660,10 +2698,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        6. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -2671,10 +2709,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        7. Scenario-Based Diagnostic Micro-Checks
       
     </span>
   </a>
@@ -2682,10 +2720,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7433,34 +7471,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-derivations" class="md-nav__link">
+  <a href="#1-conceptual-overview-diagnostic-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Derivations
+        1. Conceptual Overview &amp; Diagnostic Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Derivations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-outlier-detection-univariate-vs-multivariate-geometry" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-outlier-detection-univariate-breakdown-multivariate-geometry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Outlier Detection: Univariate vs. Multivariate Geometry
+        2. Outlier Detection: Univariate Breakdown &amp; Multivariate Geometry
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Outlier Detection: Univariate vs. Multivariate Geometry">
+    <nav class="md-nav" aria-label="2. Outlier Detection: Univariate Breakdown &amp; Multivariate Geometry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#univariate-formulations-and-breakdown-points" class="md-nav__link">
+  <a href="#1-univariate-formulations-breakdown-points-the-masking-theorem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Univariate Formulations and Breakdown Points
+        1. Univariate Formulations, Breakdown Points &amp; The Masking Theorem
       
     </span>
   </a>
@@ -7468,10 +7505,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multivariate-geometry-mahalanobis-distance-and-isolation-forest" class="md-nav__link">
+  <a href="#2-multivariate-geometry-mahalanobis-distance-mcd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multivariate Geometry: Mahalanobis Distance and Isolation Forest
+        2. Multivariate Geometry: Mahalanobis Distance &amp; MCD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-non-linear-subspace-isolation-isolation-forests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Non-Linear Subspace Isolation: Isolation Forests
       
     </span>
   </a>
@@ -7482,35 +7530,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-irrelevant-features-and-the-curse-of-dimensionality" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3-irrelevant-features-class-imbalance-dynamics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Irrelevant Features and the Curse of Dimensionality
+        3. Irrelevant Features &amp; Class Imbalance Dynamics
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-class-imbalance-and-the-accuracy-paradox" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Class Imbalance and the Accuracy Paradox
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Class Imbalance and the Accuracy Paradox">
+    <nav class="md-nav" aria-label="3. Irrelevant Features &amp; Class Imbalance Dynamics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#synthetic-minority-over-sampling-technique-smote" class="md-nav__link">
+  <a href="#1-irrelevant-features-the-curse-of-dimensionality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Synthetic Minority Over-sampling Technique (SMOTE)
+        1. Irrelevant Features &amp; The Curse of Dimensionality
       
     </span>
   </a>
@@ -7518,10 +7555,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cost-sensitive-loss-reweighting" class="md-nav__link">
+  <a href="#2-class-imbalance-smote-synthesis-cost-sensitive-learning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cost-Sensitive Loss Reweighting
+        2. Class Imbalance, SMOTE Synthesis &amp; Cost-Sensitive Learning
       
     </span>
   </a>
@@ -7532,17 +7569,12 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-robust-detection-resampling-pipeline" class="md-nav__link">
+  <a href="#4-landmark-empirical-case-study-ieee-cis-fraud-sensor-telemetry" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Robust Detection &amp; Resampling Pipeline
+        4. Landmark Empirical Case Study: IEEE-CIS Fraud &amp; Sensor Telemetry
       
     </span>
   </a>
@@ -7550,10 +7582,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-credit-card-fraud-sensor-telemetry" class="md-nav__link">
+  <a href="#5-interactive-laboratory-outliers-mahalanobis-smote-resampling-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Credit Card Fraud &amp; Sensor Telemetry
+        5. Interactive Laboratory: Outliers, Mahalanobis &amp; SMOTE Resampling Studio
       
     </span>
   </a>
@@ -7561,10 +7593,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        6. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -7572,10 +7604,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        7. Scenario-Based Diagnostic Micro-Checks
       
     </span>
   </a>
@@ -7583,10 +7615,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7614,38 +7646,39 @@
 
 
 <h1 id="54-outliers-irrelevant-features-and-imbalance">5.4 Outliers, Irrelevant Features, and Imbalance</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 5 (sec:5.2.4–5.2.6)</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 5: Data Cleaning and Preprocessing</strong> in the Springer Nature monograph for complete proofs on breakdown points and resampling theory.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.4: Outliers, Noise Dimensions &amp; Class Imbalance)</strong> in the official Springer Nature monograph for formal proofs of breakdown points, Mahalanobis ellipsoids, and SMOTE synthesis theory.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+    <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-54">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.4</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">9 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">8 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=5&part=4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7654,410 +7687,727 @@
 </div>
 
 <hr />
-<h2 id="conceptual-overview-mathematical-derivations">🎯 Conceptual Overview &amp; Mathematical Derivations</h2>
-<p>Once duplicate records are unified and schema inconsistencies resolved, datasets routinely present three structural pathologies that degrade machine learning estimators: <strong>outliers</strong> (extreme deviations from sample mass, detectable via distance and density metrics; <a href="#ref-breunig2000">Breunig et al., 2000</a>), <strong>irrelevant features</strong> (uninformative noise dimensions inflating hypothesis complexity), and <strong>class imbalance</strong> (extreme disparity in label priors; <a href="#ref-he2009">He &amp; Garcia, 2009</a>). Blindly deleting extreme values or computing unweighted metrics leads to catastrophic model failure.</p>
-<pre class="mermaid"><code>flowchart TD
-    Raw["Raw Tabular Ingestion"] --&gt; S1["1. Outlier Screening"]
-    Raw --&gt; S2["2. Relevance Filtering"]
-    Raw --&gt; S3["3. Imbalance Mitigation"]
-
-    subgraph Outliers ["1. Outlier Screening"]
-        direction TB
-        O1["Erroneous Artifact? -&gt; Winsorize / Trim / Nullify"]
-        O2["Genuine Rare Event? -&gt; Robust Scaling / Tree Models"]
-        O1 ~~~ O2
-    end
-
-    subgraph Relevance ["2. Feature Relevance Filtering"]
-        direction TB
-        R1["Variance Threshold: Var(X) &lt; ε -&gt; Drop"]
-        R2["Mutual Information: I(X; Y) ≈ 0 -&gt; Drop"]
-        R1 ~~~ R2
-    end
-
-    subgraph Imbalance ["3. Class Imbalance Mitigation"]
-        direction TB
-        I1["Imbalance Ratio: IR = N_maj / N_min &gt;&gt; 1"]
-        I2["Resampling: SMOTE / Tomek Links"]
-        I3["Loss Re-weighting: w_c = N / (C * N_c)"]
-        I1 --&gt; I2 --&gt; I3
-    end
-
-    S1 --&gt; Outliers
-    S2 --&gt; Relevance
-    S3 --&gt; Imbalance
-
-    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
-
-    class Raw purple;
-    class S1,Outliers,O1,O2 red;
-    class S2,Relevance,R1,R2 amber;
-    class S3,Imbalance,I1,I2,I3 blue;</code></pre>
+<p>Once duplicate records are resolved and missing entries are imputed, real-world datasets routinely exhibit three structural pathologies that destabilize downstream machine learning estimators: <strong>outliers</strong> (extreme spatial or statistical deviations; [<a href="#ref-hawkins1980">Hawkins1980</a>, <a href="#ref-breunig2000">Breunig2000</a>]), <strong>irrelevant features</strong> (noise dimensions inflating hypothesis space volume and triggering distance concentration; [<a href="#ref-beyer1999">Beyer1999</a>]), and <strong>severe class imbalance</strong> (label prior skew creating the accuracy paradox; [<a href="#ref-he2009">He2009</a>, <a href="#ref-chawla2002">Chawla2002</a>]).</p>
+<p>Blindly trimming extreme values or evaluating models on unweighted accuracy metrics leads to catastrophic failure in fraud detection, clinical triage, and telemetry monitoring.</p>
 <hr />
-<h3 id="1-outlier-detection-univariate-vs-multivariate-geometry">1. Outlier Detection: Univariate vs. Multivariate Geometry</h3>
+<h2 id="1-conceptual-overview-diagnostic-pipeline">1. Conceptual Overview &amp; Diagnostic Pipeline</h2>
 <pre class="mermaid"><code>flowchart TD
-  Start["Inspect Anomaly &amp; Distribution Shape"] --&gt; CheckDist{"Is Distribution Gaussian&lt;br/&gt;or Multi-Modal / Heavy-Tailed?"}
+    Raw["Raw Cleaned Corpus X ∈ R^(N x D)"] --&gt; Branch{"Diagnostic Pathology Screening"}
 
-  CheckDist -- "Univariate Gaussian" --&gt; Univariate["Z-Score (|z| &gt; 3)&lt;br/&gt;or Tukey's IQR (Q1 - 1.5 IQR, Q3 + 1.5 IQR)"]
-  CheckDist -- "Multivariate Continuous" --&gt; Multi["Mahalanobis Distance (cov matrix)&lt;br/&gt;or Minimum Covariance Determinant (MCD)"]
-  CheckDist -- "High-Dimensional Non-Linear" --&gt; Isolation["Isolation Forest (iForest)&lt;br/&gt;or Local Outlier Factor (LOF)"]
+    Branch --&gt; Out["1. Outlier Detection Geometry&lt;br/&gt;Gaussian -&gt; Modified MAD (epsilon* = 50%)&lt;br/&gt;Multivariate -&gt; Mahalanobis MCD Ellipsoid&lt;br/&gt;Non-Linear -&gt; Isolation Forest Path Length"]
+    Branch --&gt; Rel["2. Noise Feature Filtering&lt;br/&gt;Zero Variance: Var(X) &lt; eps&lt;br/&gt;Zero Mutual Information: I(X; Y) ≈ 0"]
+    Branch --&gt; Imb["3. Class Imbalance Remediation&lt;br/&gt;Imbalance Ratio: IR = N_maj / N_min &gt;&gt; 1&lt;br/&gt;SMOTE Convex Interpolation &amp; Cost-Sensitive Loss"]
 
-  Univariate &amp; Multi &amp; Isolation --&gt; Classify{"Root Cause of Anomaly?"}
-  Classify -- "Measurement / Sensor Error" --&gt; Correct["Winsorization / Clipping&lt;br/&gt;or Set to NaN &amp; Impute"]
-  Classify -- "Genuine Rare Event (Fraud, Disease)" --&gt; Retain["Retain &amp; Engineer Indicator Feature&lt;br/&gt;is_outlier = 1"]
+    Out --&gt; OutAction{"Error vs Rare Event?"}
+    OutAction --&gt;|Sensor Artifact| Wins["Winsorize / Clip / NaN-Impute"]
+    OutAction --&gt;|Genuine Anomaly| Flag["Preserve &amp; Add Indicator Feature (is_outlier)"]
 
-  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
-  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
-  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    Rel --&gt; CleanFeat["Pruned Informative Feature Subspace"]
+    Imb --&gt; Balance["Leak-Free Resampling Inside Training Fold"]
 
-  class Start blue;
-  class CheckDist,Classify amber;
-  class Univariate,Multi,Isolation,Correct,Retain green;</code></pre>
-<p>An outlier is an observation that deviates so significantly from other observations as to arouse suspicion that it was generated by a different mechanism (<a href="#ref-hawkins1980">Hawkins, 1980</a>).</p>
-<h4 id="univariate-formulations-and-breakdown-points">Univariate Formulations and Breakdown Points</h4>
-<p>The classic parametric detector relies on the standard score (<span class="arithmatex">\(Z\)</span>-score):</p>
-<div class="arithmatex">\[
-z_i = \frac{x_i - \mu}{\sigma}, \quad \text{flagged if } |z_i| &gt; \tau \ (\text{typically } \tau = 3)
-\]</div>
-<p>However, both sample mean <span class="arithmatex">\(\mu\)</span> and sample standard deviation <span class="arithmatex">\(\sigma\)</span> have a <strong>finite-sample breakdown point</strong> of <span class="arithmatex">\(\epsilon^* = \frac{1}{n}\)</span>, meaning a single corrupted point <span class="arithmatex">\(x \to \infty\)</span> can inflate <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\sigma\)</span> arbitrarily, producing the <em>masking effect</em> (outliers mask subsequent outliers).</p>
-<p>To achieve the maximum possible breakdown point (<span class="arithmatex">\(\epsilon^* = 50\%\)</span>), robust statistics employs the <strong>Median Absolute Deviation (MAD)</strong>:</p>
-<div class="arithmatex">\[
-\text{MAD} = \text{median}\left(|x_i - \text{median}(x)|\right)
-\]</div>
-<p>The <strong>Modified <span class="arithmatex">\(Z\)</span>-Score</strong> (<span class="arithmatex">\(M_i\)</span>) evaluates:</p>
-<div class="arithmatex">\[
-M_i = \frac{0.6745 \cdot (x_i - \tilde{x})}{\text{MAD}}
-\]</div>
-<p>where the factor <span class="arithmatex">\(0.6745\)</span> satisfies <span class="arithmatex">\(\mathbb{E}[\text{MAD}] = 0.6745 \sigma\)</span> under a Gaussian distribution <span class="arithmatex">\(\mathcal{N}(\mu, \sigma^2)\)</span>. Observations with <span class="arithmatex">\(|M_i| &gt; 3.5\)</span> are flagged.</p>
-<p>Alternatively, non-parametric detection relies on <strong>Tukey's Fences</strong> using the interquartile range (<span class="arithmatex">\(\text{IQR} = Q_3 - Q_1\)</span>):</p>
-<div class="arithmatex">\[
-\text{Inner Fences (Mild Outliers): } [Q_1 - 1.5 \cdot \text{IQR}, \; Q_3 + 1.5 \cdot \text{IQR}]
-\]</div>
-<div class="arithmatex">\[
-\text{Outer Fences (Extreme Outliers): } [Q_1 - 3.0 \cdot \text{IQR}, \; Q_3 + 3.0 \cdot \text{IQR}]
-\]</div>
-<h4 id="multivariate-geometry-mahalanobis-distance-and-isolation-forest">Multivariate Geometry: Mahalanobis Distance and Isolation Forest</h4>
-<p>Univariate thresholds fail when an observation lies within the marginal distributions of each variable individually but violates the joint covariance structure.</p>
-<pre class="mermaid"><code>flowchart LR
-    subgraph MultivariateSpace ["Multivariate Geometry vs Univariate Marginals"]
-        direction TB
-        M1["Feature 1 &amp; Feature 2 Joint Covariance: Σ &gt; 0"]
-        M2["Observation x: Within 1D Marginals [μ1 ± 3σ1] and [μ2 ± 3σ2]"]
-        M3["Violates Joint Covariance Structure: D_M(x) &gt;&gt; Critical Threshold"]
-        M1 --&gt; M2 --&gt; M3
-    end
+    Wins &amp; Flag &amp; CleanFeat &amp; Balance --&gt; ModelReady[("Robust Model-Ready Training Fold")]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#f3e8ff,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class MultivariateSpace,M1 blue;
-    class M2 amber;
-    class M3 red;</code></pre>
-<p>For multivariate vector <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span> sampled from distribution with mean <span class="arithmatex">\(\boldsymbol{\mu}\)</span> and covariance <span class="arithmatex">\(\boldsymbol{\Sigma}\)</span>, the <strong>Mahalanobis Distance</strong> accounts for dimensional correlation:</p>
+    class Raw,Branch purple;
+    class Out,OutAction red;
+    class Rel,CleanFeat amber;
+    class Imb,Balance blue;
+    class Wins,Flag,ModelReady green;</code></pre>
+<hr />
+<h2 id="2-outlier-detection-univariate-breakdown-multivariate-geometry">2. Outlier Detection: Univariate Breakdown &amp; Multivariate Geometry</h2>
+<p>An outlier is an observation deviating so substantially from the remaining sample mass as to arouse suspicion that it was generated by an entirely distinct stochastic mechanism [<a href="#ref-hawkins1980">Hawkins1980</a>].</p>
+<h3 id="1-univariate-formulations-breakdown-points-the-masking-theorem">1. Univariate Formulations, Breakdown Points &amp; The Masking Theorem</h3>
+<p>The classical parametric <span class="arithmatex">\(Z\)</span>-score relies on the empirical mean <span class="arithmatex">\(\mu\)</span> and standard deviation <span class="arithmatex">\(\sigma\)</span>:</p>
+<div class="arithmatex">\[
+z_i = \frac{x_i - \mu}{\sigma}, \qquad \text{flagged if } |z_i| &gt; \tau \quad (\text{typically } \tau = 3.0)
+\]</div>
+<p>However, both <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\sigma\)</span> have a <strong>finite-sample breakdown point of <span class="arithmatex">\(\epsilon^* = \frac{1}{n}\)</span></strong>: a single arbitrary outlier <span class="arithmatex">\(x \to \infty\)</span> inflates <span class="arithmatex">\(\sigma \to \infty\)</span>. Worse, when multiple clustered outliers enter at fraction <span class="arithmatex">\(p\)</span>, they trigger the <strong>Masking Effect</strong>.</p>
+<blockquote>
+<p>[!WARNING] The Mathematical Masking Limit
+Suppose a dataset is contaminated by a fraction <span class="arithmatex">\(p\)</span> of identical extreme outliers at distance <span class="arithmatex">\(\Delta \to \infty\)</span>. As <span class="arithmatex">\(\Delta \to \infty\)</span>, the classical <span class="arithmatex">\(Z\)</span>-score of those extreme outliers converges to:
+$<span class="arithmatex">\(\lim_{\Delta \to \infty} |z_{\text{outlier}}| = \sqrt{\frac{1 - p}{p}}\)</span>$
+Consequently, whenever contamination exceeds <span class="arithmatex">\(p &gt; \frac{1}{1 + \tau^2}\)</span> (i.e. <strong><span class="arithmatex">\(p &gt; 10\%\)</span> for <span class="arithmatex">\(|Z| &gt; 3\)</span></strong>), <strong>zero</strong> outliers are flagged regardless of how massive their numerical magnitude is!</p>
+</blockquote>
+<p>To achieve the theoretical maximum breakdown point (<span class="arithmatex">\(\epsilon^* = 50\%\)</span>), robust statistics deploys the <strong>Median Absolute Deviation (MAD)</strong>:</p>
+<div class="arithmatex">\[
+\text{MAD} = \operatorname{median}\left( \left| x_i - \operatorname{median}(\mathbf{x}) \right| \right)
+\]</div>
+<div class="arithmatex">\[
+M_i = \frac{0.6745 \cdot (x_i - \tilde{x})}{\text{MAD}}, \qquad \text{flagged if } |M_i| &gt; 3.5
+\]</div>
+<p>Where the normalizing constant <span class="arithmatex">\(0.6745 = \Phi^{-1}(0.75)\)</span> ensures consistency with the Gaussian standard deviation <span class="arithmatex">\(\mathbb{E}[\text{MAD}] = 0.6745 \sigma\)</span>.</p>
+<p>Non-parametric detectors alternatively use <strong>Tukey's Fences</strong> via the interquartile range (<span class="arithmatex">\(\text{IQR} = Q_3 - Q_1\)</span>):</p>
+<div class="arithmatex">\[
+\text{Inner Fences (Mild Outliers): } \left[ Q_1 - 1.5 \cdot \text{IQR}, \; Q_3 + 1.5 \cdot \text{IQR} \right]
+\]</div>
+<h3 id="2-multivariate-geometry-mahalanobis-distance-mcd">2. Multivariate Geometry: Mahalanobis Distance &amp; MCD</h3>
+<p>Univariate bounding boxes miss <strong>off-axis anomalies</strong> that reside safely inside each 1D marginal distribution (<span class="arithmatex">\(|z_1| &lt; 2, |z_2| &lt; 2\)</span>) yet radically violate the joint covariance structure <span class="arithmatex">\(\boldsymbol{\Sigma}\)</span>.</p>
+<p>For feature vector <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span>, the <strong>Mahalanobis Distance</strong> measures standardized ellipsoidal distance adjusted for feature correlation:</p>
 <div class="arithmatex">\[
 D_M(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}
 \]</div>
-<p>Under multivariate normality <span class="arithmatex">\(\mathbf{x} \sim \mathcal{N}_d(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>, the squared distance follows a chi-squared distribution:</p>
+<p>Under multivariate normality <span class="arithmatex">\(\mathbf{x} \sim \mathcal{N}_d(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span>, squared distance follows a chi-squared distribution:</p>
 <div class="arithmatex">\[
 D_M^2(\mathbf{x}) \sim \chi^2_d
 \]</div>
-<p>A point is flagged as an outlier at significance level <span class="arithmatex">\(\alpha\)</span> if <span class="arithmatex">\(D_M^2(\mathbf{x}) &gt; \chi^2_d(1 - \alpha)\)</span>. To prevent masking in covariance estimation, the <strong>Minimum Covariance Determinant (MCD)</strong> estimator (<a href="#ref-rousseeuw1999">Rousseeuw &amp; Driessen, 1999</a>) estimates <span class="arithmatex">\(\boldsymbol{\mu}_{\text{MCD}}\)</span> and <span class="arithmatex">\(\boldsymbol{\Sigma}_{\text{MCD}}\)</span> using the subset of <span class="arithmatex">\(h\)</span> observations (<span class="arithmatex">\(0.5n &lt; h &lt; n\)</span>) with the minimal covariance matrix determinant.</p>
-<p>For high-dimensional, non-Gaussian spaces, <strong>Isolation Forests</strong> (<a href="#ref-liu2008">Liu et al., 2008</a>) isolate anomalies by recursively partitioning feature space via random axis-aligned splits. The average path length <span class="arithmatex">\(h(\mathbf{x})\)</span> over <span class="arithmatex">\(t\)</span> isolation trees yields anomaly score <span class="arithmatex">\(s(\mathbf{x}, n)\)</span>:</p>
+<p>Observations exceeding <span class="arithmatex">\(\chi^2_{d}(1 - \alpha)\)</span> are flagged. To guard the covariance matrix itself against masking, the <strong>Minimum Covariance Determinant (MCD)</strong> estimator [<a href="#ref-rousseeuw1999">Rousseeuw1999</a>] computes <span class="arithmatex">\(\boldsymbol{\mu}_{\text{MCD}}\)</span> and <span class="arithmatex">\(\boldsymbol{\Sigma}_{\text{MCD}}\)</span> solely from the sub-sample of size <span class="arithmatex">\(h\)</span> (<span class="arithmatex">\(0.5n &lt; h &lt; n\)</span>) yielding the smallest covariance determinant.</p>
+<h3 id="3-non-linear-subspace-isolation-isolation-forests">3. Non-Linear Subspace Isolation: Isolation Forests</h3>
+<p>In non-Gaussian high-dimensional manifolds, <strong>Isolation Forests</strong> [<a href="#ref-liu2008">Liu2008</a>] partition the space using random orthogonal hyperplane splits. Outliers exhibit isolated density, requiring far fewer random splits (<span class="arithmatex">\(h(\mathbf{x})\)</span>) to segregate from the sample mass. Averaged over <span class="arithmatex">\(t\)</span> trees, the normalized anomaly score <span class="arithmatex">\(s(\mathbf{x}, n) \in (0, 1]\)</span> is:</p>
 <div class="arithmatex">\[
 s(\mathbf{x}, n) = 2^{-\frac{\mathbb{E}[h(\mathbf{x})]}{c(n)}}
 \]</div>
-<p>where <span class="arithmatex">\(c(n)\)</span> is the average path length of unsuccessful searches in a Binary Search Tree (BST) over <span class="arithmatex">\(n\)</span> instances:</p>
-<div class="arithmatex">\[
-c(n) = 2 \ln(n - 1) + 0.5772156649 \ (\text{Euler-Mascheroni constant}) - \frac{2(n - 1)}{n}
-\]</div>
-<p>When <span class="arithmatex">\(s(\mathbf{x}, n) \to 1\)</span>, path length <span class="arithmatex">\(\mathbb{E}[h(\mathbf{x})] \to 0\)</span>, identifying an easily isolated outlier.</p>
+<p>Where <span class="arithmatex">\(c(n) = 2 H_{n-1} - \frac{2(n - 1)}{n}\)</span> is the expected unsuccessful Binary Search Tree search depth (<span class="arithmatex">\(H_k \approx \ln k + 0.57721566\)</span>). Values <span class="arithmatex">\(s(\mathbf{x}, n) \to 1\)</span> signify immediate root-level anomaly isolation.</p>
 <hr />
-<h3 id="2-irrelevant-features-and-the-curse-of-dimensionality">2. Irrelevant Features and the Curse of Dimensionality</h3>
-<p>Irrelevant features increase hypothesis space volume without contributing mutual information to the response <span class="arithmatex">\(Y\)</span>. As dimension <span class="arithmatex">\(d\)</span> grows, distance metrics degenerate:</p>
+<h2 id="3-irrelevant-features-class-imbalance-dynamics">3. Irrelevant Features &amp; Class Imbalance Dynamics</h2>
+<h3 id="1-irrelevant-features-the-curse-of-dimensionality">1. Irrelevant Features &amp; The Curse of Dimensionality</h3>
+<p>Injecting pure random noise features into high-dimensional data triggers <strong>Distance Concentration</strong> [<a href="#ref-beyer1999">Beyer1999</a>]: as dimension <span class="arithmatex">\(d \to \infty\)</span>, the contrast between the farthest neighbor and nearest neighbor vanishes:</p>
 <div class="arithmatex">\[
 \lim_{d \to \infty} \frac{\text{dist}_{\max} - \text{dist}_{\min}}{\text{dist}_{\min}} \to 0
 \]</div>
-<p>causing nearest-neighbor and kernel methods to lose discriminative capability (<a href="#ref-beyer1999">Beyer et al., 1999</a>).</p>
-<p>Filtering criteria include:
-1. <strong>Zero / Near-Zero Variance:</strong></p>
+<p>Noise dimensions should be pruned via <strong>Variance Thresholding</strong> (<span class="arithmatex">\(\operatorname{Var}(X) &lt; \epsilon\)</span>) and <strong>Mutual Information</strong> <span class="arithmatex">\(I(X; Y)\)</span>:</p>
 <div class="arithmatex">\[
-\text{Var}(X) = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 &lt; \epsilon \quad (\text{e.g., constant columns or quasi-identifiers})
+I(X; Y) = \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_2 \frac{p(x, y)}{p(x) p(y)}
 \]</div>
-<ol>
-<li><strong>Mutual Information (MI):</strong></li>
-</ol>
-<div class="arithmatex">\[
-I(X; Y) = \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_2 \frac{p(x, y)}{p(x)p(y)}
-\]</div>
-<p>Features with <span class="arithmatex">\(I(X; Y) \le \delta\)</span> provide negligible reduction in label uncertainty <span class="arithmatex">\(H(Y) - H(Y \mid X)\)</span> and should be pruned prior to model fitting.</p>
-<hr />
-<h3 id="3-class-imbalance-and-the-accuracy-paradox">3. Class Imbalance and the Accuracy Paradox</h3>
-<p>Let dataset <span class="arithmatex">\(\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^n\)</span> with binary label <span class="arithmatex">\(y_i \in \{0, 1\}\)</span>. The <strong>Imbalance Ratio (IR)</strong> is defined as:</p>
-<div class="arithmatex">\[
-\text{IR} = \frac{N_{\text{majority}}}{N_{\text{minority}}}
-\]</div>
-<p>When <span class="arithmatex">\(\text{IR} = 99:1\)</span>, a trivial dummy classifier <span class="arithmatex">\(f_{\text{dummy}}(\mathbf{x}) = 0\)</span> achieves <span class="arithmatex">\(99\%\)</span> classification accuracy while exhibiting <span class="arithmatex">\(0\%\)</span> recall on the target class.</p>
-<h4 id="synthetic-minority-over-sampling-technique-smote">Synthetic Minority Over-sampling Technique (SMOTE)</h4>
-<p>Rather than simple duplication (which causes severe overfitting), SMOTE (<a href="#ref-chawla2002">Chawla et al., 2002</a>) synthesizes virtual samples along feature space line segments joining <span class="arithmatex">\(k\)</span>-nearest minority neighbors:</p>
-<div class="arithmatex">\[
-\mathbf{x}_{\text{new}} = \mathbf{x}_i + \lambda (\mathbf{x}_{zi} - \mathbf{x}_i), \quad \lambda \sim \mathcal{U}(0, 1)
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{x}_{zi} \in \mathcal{N}_k(\mathbf{x}_i)\)</span> is a randomly selected neighbor from the minority class.</p>
-<h4 id="cost-sensitive-loss-reweighting">Cost-Sensitive Loss Reweighting</h4>
-<p>Alternatively, modifying the empirical risk objective incorporates class priors directly without modifying physical batch distributions:</p>
-<div class="arithmatex">\[
-\mathcal{L}_{\text{CS}}(\theta) = -\frac{1}{n} \sum_{i=1}^n w_{y_i} \left[ y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i) \right]
-\]</div>
-<p>where balanced weighting sets:</p>
-<div class="arithmatex">\[
-w_c = \frac{N}{C \cdot N_c}
-\]</div>
-<p>with <span class="arithmatex">\(C\)</span> equal to total classes and <span class="arithmatex">\(N_c\)</span> observations in class <span class="arithmatex">\(c\)</span>.</p>
-<hr />
+<h3 id="2-class-imbalance-smote-synthesis-cost-sensitive-learning">2. Class Imbalance, SMOTE Synthesis &amp; Cost-Sensitive Learning</h3>
+<p>When the <strong>Imbalance Ratio</strong> <span class="arithmatex">\(\text{IR} = \frac{N_{\text{majority}}}{N_{\text{minority}}} \gg 1\)</span> (e.g., <span class="arithmatex">\(99:1\)</span>), standard unweighted models collapse onto predicting the majority prior (<strong>The Accuracy Paradox</strong>: <span class="arithmatex">\(99\%\)</span> accuracy with <span class="arithmatex">\(0\%\)</span> minority recall; [<a href="#ref-he2009">He2009</a>]).</p>
+<ul>
+<li><strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong> [<a href="#ref-chawla2002">Chawla2002</a>] eliminates naive duplication overfitting by drawing convex interpolations between minority instance <span class="arithmatex">\(\mathbf{x}_i\)</span> and one of its <span class="arithmatex">\(k\)</span>-nearest minority neighbors <span class="arithmatex">\(\mathbf{x}_{zi}\)</span>:
+  $<span class="arithmatex">\(\mathbf{x}_{\text{new}} = \mathbf{x}_i + \lambda \cdot (\mathbf{x}_{zi} - \mathbf{x}_i), \qquad \lambda \sim \mathcal{U}(0, 1)\)</span>$</li>
+<li><strong>Cost-Sensitive Cross-Entropy Loss</strong> modifies the gradient objective directly without altering sample counts:
+  $<span class="arithmatex">\(\mathcal{L}_{\text{CS}}(\theta) = -\frac{1}{n} \sum_{i=1}^n w_{y_i} \left[ y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i) \right], \qquad w_c = \frac{N}{C \cdot N_c}\)</span>$</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: Borderline-SMOTE vs. Naive Random Oversampling</p>
-<p>Naive random oversampling duplicates existing minority class instances, causing decision trees to overfit to narrow geometric points. Deploy <strong>Borderline-SMOTE</strong> or <strong>ADASYN</strong>: synthesize examples only along the decision boundary where minority instances are adjacent to majority class neighbors, expanding the model's margin without synthesizing noise in empty regions.</p>
+<p>Naive random oversampling duplicates existing minority instances identically, forcing tree models to memorize narrow geometric coordinates. Production pipelines deploy <strong>Borderline-SMOTE</strong> or <strong>ADASYN</strong>, synthesizing points exclusively near the ambiguous majority-minority frontier to expand true decision margin geometry.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Trimming Outliers in Skewed Heavy-Tailed Domains</p>
-<p>Applying Z-score trimming (<span class="arithmatex">\(\pm 3\sigma\)</span>) to power-law or log-normal distributions (e.g., website pageviews, financial transaction amounts, earthquake magnitudes) is mathematically invalid. In heavy-tailed distributions, extreme values are genuine realizations of the underlying physical process, not measurement errors.</p>
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Z-Score Trimming in Heavy-Tailed Domains</p>
+<p>Never apply <span class="arithmatex">\(\pm 3\sigma\)</span> Gaussian trimming to power-law or log-normal distributions (e-commerce revenue, transaction velocity, telemetry spikes). Extreme values are authentic signal realizations rather than corrupted errors; apply log-scaling (<span class="arithmatex">\(\ln(1 + x)\)</span>) or robust IQR Winsorization instead.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Borderline-SMOTE vs. Naive Random Oversampling</p>
-<p>Naive random oversampling duplicates existing minority class instances, causing decision trees to overfit to narrow geometric points. Deploy <strong>Borderline-SMOTE</strong> or <strong>ADASYN</strong>: synthesize examples only along the decision boundary where minority instances are adjacent to majority class neighbors, expanding the model's margin without synthesizing noise in empty regions.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Trimming Outliers in Skewed Heavy-Tailed Domains</p>
-<p>Applying Z-score trimming (<span class="arithmatex">\(\pm 3\sigma\)</span>) to power-law or log-normal distributions (e.g., website pageviews, financial transaction amounts, earthquake magnitudes) is mathematically invalid. In heavy-tailed distributions, extreme values are genuine realizations of the underlying physical process, not measurement errors.</p>
-</div>
-<h2 id="production-implementation-robust-detection-resampling-pipeline">💻 Production Implementation: Robust Detection &amp; Resampling Pipeline</h2>
-<p>Below is a self-contained, leak-free pipeline implementing Tukey Fences, Modified MAD Z-Scores, Mahalanobis Distance, and Class-Weighted SMOTE modeling.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">robust_cleaning_pipeline.py</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production-grade Outlier Screening and Imbalance-Aware Feature Preprocessing</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.covariance</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinCovDet</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">try</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">HAS_IMBLEARN</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">HAS_IMBLEARN</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">class</span><span class="w"> </span><span class="nc">RobustOutlierFilter</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="sd">    Robust Multimodal Outlier Detection using MAD and Minimum Covariance Determinant (MCD).</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="sd">    Prevents data leakage by fitting parameters strictly on training partitions.</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="sd">    """</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mad_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">use_mcd</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">mcd_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mad_threshold</span> <span class="o">=</span> <span class="n">mad_threshold</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">use_mcd</span> <span class="o">=</span> <span class="n">use_mcd</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mcd_alpha</span> <span class="o">=</span> <span class="n">mcd_alpha</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">chi2_threshold_</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="n">X_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_mat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="c1"># Avoid division by zero in zero-variance features</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_mcd</span> <span class="ow">and</span> <span class="n">X_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>            <span class="c1"># Fit robust Minimum Covariance Determinant estimator</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span> <span class="o">=</span> <span class="n">MinCovDet</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_mat</span><span class="p">)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">chi2_threshold_</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcd_alpha</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">X_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">return</span> <span class="bp">self</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="sd">        Winsorizes univariate outliers based on training MAD bounds.</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="sd">        """</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="n">X_out</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="n">X_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_out</span><span class="p">)</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="c1"># Calculate Modified Z-Scores</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">mod_z</span> <span class="o">=</span> <span class="mf">0.6745</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_mat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="c1"># Clip values exceeding MAD threshold (Winsorization)</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="n">lower_bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mad_threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">/</span> <span class="mf">0.6745</span><span class="p">)</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="n">upper_bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mad_threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">/</span> <span class="mf">0.6745</span><span class="p">)</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>            <span class="n">X_out</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">X_out</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">lower_bounds</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">upper_bounds</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="k">return</span> <span class="n">X_out</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">detect_multivariate_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">        </span><span class="sd">"""Returns boolean mask where True indicates a multivariate outlier."""</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_mcd</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"MCD is not configured or fitted."</span><span class="p">)</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="n">mahal_sq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span><span class="o">.</span><span class="n">mahalanobis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>        <span class="k">return</span> <span class="n">mahal_sq</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">chi2_threshold_</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">2000</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="n">n_features</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="c1"># Generate synthetic features: 98% inliers, 2% extreme sensor spikes</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="n">X_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="c1"># Inject heavy skew and sensor corruption</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="n">X_clean</span><span class="p">[:</span><span class="mi">40</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="c1"># Binary target with 95:5 class imbalance (IR = 19:1)</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="n">prob</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">X_clean</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">-</span> <span class="n">X_clean</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">2.0</span><span class="p">)))</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="n">y</span><span class="p">[</span><span class="n">prob</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_clean</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">"sensor_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">)])</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Target distribution: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="c1"># 1. Leak-Free Train-Test Split</span>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
-</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>
-</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="c1"># 2. Fit Outlier Filter strictly on Train</span>
-</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="n">outlier_filter</span> <span class="o">=</span> <span class="n">RobustOutlierFilter</span><span class="p">(</span><span class="n">mad_threshold</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">use_mcd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="n">outlier_filter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>
-</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="n">train_outliers</span> <span class="o">=</span> <span class="n">outlier_filter</span><span class="o">.</span><span class="n">detect_multivariate_outliers</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Identified </span><span class="si">{</span><span class="n">train_outliers</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> multivariate training outliers via MCD (Chi2 p &lt; 0.01)"</span><span class="p">)</span>
-</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>
-</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="c1"># 3. Transform (Winsorize)</span>
-</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>    <span class="n">X_train_clean</span> <span class="o">=</span> <span class="n">outlier_filter</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="n">X_test_clean</span> <span class="o">=</span> <span class="n">outlier_filter</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>
-</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="c1"># 4. Synthesize Minority Samples via SMOTE strictly on Training Set</span>
-</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="k">if</span> <span class="n">HAS_IMBLEARN</span><span class="p">:</span>
-</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>        <span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">k_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>        <span class="n">X_train_resampled</span><span class="p">,</span> <span class="n">y_train_resampled</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train_clean</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>        <span class="c1"># Fallback: Random oversampling when imblearn is not installed</span>
-</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>        <span class="n">idx_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>        <span class="n">idx_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>        <span class="n">idx_1_over</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">idx_1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">idx_0</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>        <span class="n">res_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">idx_0</span><span class="p">,</span> <span class="n">idx_1_over</span><span class="p">])</span>
-</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>        <span class="n">X_train_resampled</span> <span class="o">=</span> <span class="n">X_train_clean</span><span class="p">[</span><span class="n">res_idx</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X_train_clean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="n">X_train_clean</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">res_idx</span><span class="p">]</span>
-</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>        <span class="n">y_train_resampled</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">res_idx</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">res_idx</span><span class="p">]</span>
-</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Resampled training set shape: </span><span class="si">{</span><span class="n">X_train_resampled</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Balanced labels: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_train_resampled</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>
-</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="c1"># 5. Fit Estimator on Balanced Partition</span>
-</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>    <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_resampled</span><span class="p">,</span> <span class="n">y_train_resampled</span><span class="p">)</span>
-</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>
-</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="c1"># 6. Evaluate on Unaltered Test Set</span>
-</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_clean</span><span class="p">)</span>
-</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="n">y_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_clean</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
-</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>
-</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Test Set Classification Performance ---"</span><span class="p">)</span>
-</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test ROC-AUC: </span><span class="si">{</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_proba</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span></code></pre></div>
 <hr />
-<h2 id="empirical-case-study-credit-card-fraud-sensor-telemetry">🔬 Empirical Case Study: Credit Card Fraud &amp; Sensor Telemetry</h2>
-<p>In the <strong>IEEE-CIS Fraud Detection benchmark</strong> (<span class="arithmatex">\(N = 590,540\)</span>, <span class="arithmatex">\(\text{IR} \approx 28:1\)</span>, <span class="arithmatex">\(3.5\%\)</span> positive class):
-1. <strong>Univariate Z-scores failed:</strong> In transaction amount (<code>TransactionAmt</code>), valid corporate transactions (<span class="arithmatex">\(&gt;\$10,000\)</span>) exhibited <span class="arithmatex">\(Z &gt; 15\)</span>, while bot attacks occurred in tiny micropayments (<span class="arithmatex">\(\$0.50\)</span>). Deleting values with <span class="arithmatex">\(Z &gt; 3\)</span> eliminated <span class="arithmatex">\(83\%\)</span> of commercial transaction fraud detection capability.
-2. <strong>Multivariate MCD Resolution:</strong> Pairing transaction amount with device velocity (<code>V_cols</code>) using robust covariance revealed that bot swarms formed a dense off-axis multivariate anomaly cluster (<span class="arithmatex">\(D_M^2 &gt; 45.2, p &lt; 0.0001\)</span>).
-3. <strong>Resampling Strategy Comparison:</strong>
-   - <em>Naive Random Oversampling:</em> Produced severe memorization and overfitting on tree depths <span class="arithmatex">\(&gt;12\)</span>.
-   - <em>Class-Weighted Cross-Entropy (<span class="arithmatex">\(w_1 = 28.0\)</span>):</em> Matched SMOTE ROC-AUC (<span class="arithmatex">\(0.942\)</span>) while reducing preprocessing time by <span class="arithmatex">\(87\%\)</span>.</p>
+<h2 id="4-landmark-empirical-case-study-ieee-cis-fraud-sensor-telemetry">4. Landmark Empirical Case Study: IEEE-CIS Fraud &amp; Sensor Telemetry</h2>
+<p>In the <strong>IEEE-CIS Fraud Detection benchmark</strong> (<span class="arithmatex">\(N = 590{,}540\)</span>, <span class="arithmatex">\(\text{IR} \approx 28:1\)</span>, <span class="arithmatex">\(3.5\%\)</span> fraud prevalence):
+1. <strong>Univariate <span class="arithmatex">\(Z\)</span>-score Failure</strong>: Valid corporate invoice payments (<span class="arithmatex">\(&gt;\$10{,}000\)</span>) produced <span class="arithmatex">\(Z &gt; 15\)</span>, while automated bot fraud executed micro-transactions (<span class="arithmatex">\(\$0.50\)</span>). Naively filtering <span class="arithmatex">\(|Z| &gt; 3\)</span> discarded <span class="arithmatex">\(83\%\)</span> of legitimate enterprise fraud monitoring targets.
+2. <strong>Multivariate MCD Separation</strong>: Combining transaction magnitude with device velocity via MCD robust covariance isolated bot swarms along a crisp off-axis anomaly cluster (<span class="arithmatex">\(D_M^2 &gt; 45.2, p &lt; 0.0001\)</span>).
+3. <strong>Resampling Comparison</strong>:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Strategy</th>
+<th style="text-align: left;">Mitigation Strategy</th>
 <th style="text-align: left;">Precision (Class 1)</th>
 <th style="text-align: left;">Recall (Class 1)</th>
 <th style="text-align: left;">PR-AUC</th>
-<th style="text-align: left;">Training Time (s)</th>
+<th style="text-align: left;">Training Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;">Baseline (Uncleaned, Unweighted)</td>
-<td style="text-align: left;">0.842</td>
-<td style="text-align: left;">0.412</td>
-<td style="text-align: left;">0.612</td>
-<td style="text-align: left;">14.2s</td>
+<td style="text-align: left;"><span class="arithmatex">\(0.842\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.412\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.612\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(14.2\text{ s}\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;">Extreme Trim (<span class="arithmatex">\(Z &gt; 3\)</span> dropped)</td>
-<td style="text-align: left;">0.518</td>
-<td style="text-align: left;">0.284</td>
-<td style="text-align: left;">0.389</td>
-<td style="text-align: left;">11.8s (Data Loss)</td>
+<td style="text-align: left;">Extreme Trim ($</td>
+<td style="text-align: left;">Z</td>
+<td style="text-align: left;">&gt; 3$ dropped)</td>
+<td style="text-align: left;"><span class="arithmatex">\(0.518\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.284\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;">Robust MAD Winsorization</td>
-<td style="text-align: left;">0.855</td>
-<td style="text-align: left;">0.490</td>
-<td style="text-align: left;">0.684</td>
-<td style="text-align: left;">16.5s</td>
+<td style="text-align: left;">Robust MAD Winsorization Only</td>
+<td style="text-align: left;"><span class="arithmatex">\(0.855\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.490\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.684\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(16.5\text{ s}\)</span></td>
 </tr>
 <tr>
 <td style="text-align: left;">Robust MAD + SMOTE Oversampling</td>
-<td style="text-align: left;">0.792</td>
-<td style="text-align: left;">0.814</td>
-<td style="text-align: left;">0.826</td>
-<td style="text-align: left;">54.3s</td>
+<td style="text-align: left;"><span class="arithmatex">\(0.792\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.814\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.826\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(54.3\text{ s}\)</span></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Robust MAD + Cost-Sensitive Weights</strong></td>
-<td style="text-align: left;"><strong>0.821</strong></td>
-<td style="text-align: left;"><strong>0.806</strong></td>
-<td style="text-align: left;"><strong>0.835</strong></td>
-<td style="text-align: left;"><strong>17.1s</strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0.821\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0.806\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0.835\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(17.1\text{ s}\)</span></strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Class Imbalance Resampling Lab</h4>
-  <p>Simulate SMOTE, ADASYN, and Tomek Links on synthetic 2D datasets and visualize decision boundary adaptations.</p>
-  <a href="../../tools/class-imbalance/" class="noc-sim-btn">Launch Imbalance Workbench →</a>
+<h2 id="5-interactive-laboratory-outliers-mahalanobis-smote-resampling-studio">5. Interactive Laboratory: Outliers, Mahalanobis &amp; SMOTE Resampling Studio</h2>
+<p>Visualize multivariate anomaly geometry and SMOTE minority boundary synthesis in this zero-dependency interactive Canvas studio.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 5px 5px 0px #151b20;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <span style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 10px; border-radius: 9999px; font-weight: 800; font-family: monospace; box-shadow: 1px 1px 0px #151b20;">SIMULATOR 5.4</span>
+      <h3 style="margin: 8px 0 0 0; font-size: 1.3rem; font-weight: 800; color: #151b20;">Outliers, Mahalanobis Ellipsoids &amp; SMOTE Resampling Studio</h3>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="btnTabSMOTE" onclick="switchOutlierTab('smote')" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab A: Class Imbalance &amp; SMOTE Canvas</button>
+      <button id="btnTabMahal" onclick="switchOutlierTab('mahal')" style="background: #ffffff; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab B: Mahalanobis &amp; Masking Breakdown</button>
+    </div>
+  </div>
+
+  <!-- TAB A: CLASS IMBALANCE & SMOTE -->
+  <div id="panelSMOTE">
+    <div style="display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start;">
+      <div>
+        <div style="position: relative; border: 2px solid #151b20; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <canvas id="smoteCanvas" width="560" height="360" style="display: block; width: 100%; height: auto;"></canvas>
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+            🔵 Majority (45) • 🟠 Minority (8) • 🟡 Synthetic SMOTE Nodes
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <label style="font-weight: 800; font-size: 0.8rem; color: #151b20; display: block; margin-bottom: 6px;">
+          Imbalance Mitigation Strategy
+        </label>
+        <select id="selectSmoteStrategy" onchange="updateSmoteSim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-weight: 700; font-size: 0.82rem; background: #ffffff; margin-bottom: 16px;">
+          <option value="baseline">Baseline (Raw 5.6:1 Imbalanced Pool)</option>
+          <option value="random">Naive Random Oversampling (Exact Duplicates)</option>
+          <option value="smote" selected>SMOTE Convex Interpolation (k=3)</option>
+          <option value="borderline">Borderline-SMOTE (Frontier-Focused)</option>
+        </select>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">EFFECTIVE IMBALANCE RATIO (IR)</div>
+            <div id="statSmoteIR" style="font-size: 1.25rem; font-weight: 900; color: #2563eb;">1.0 : 1 (Balanced)</div>
+          </div>
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">MINORITY RECALL (SENSITIVITY)</div>
+            <div id="statSmoteRecall" style="font-size: 1.25rem; font-weight: 900; color: #16a34a;">87.5%</div>
+          </div>
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">SYNTHETIC GENERALIZATION MARGIN</div>
+            <div id="statSmoteNote" style="font-size: 0.8rem; font-weight: 700; color: #0e7490;">Smooth convex manifold expansion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB B: MAHALANOBIS & MASKING -->
+  <div id="panelMahal" style="display: none;">
+    <div style="display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start;">
+      <div>
+        <div style="position: relative; border: 2px solid #151b20; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <canvas id="mahalCanvas" width="560" height="360" style="display: block; width: 100%; height: auto;"></canvas>
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+            Dashed Box: Univariate 1D Marginals (±3σ) • Green Ellipse: 99% Mahalanobis Bound
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <label style="font-weight: 800; font-size: 0.8rem; color: #151b20; display: block; margin-bottom: 6px;">
+          Inject Structural Anomaly Regime
+        </label>
+        <select id="selectAnomalyRegime" onchange="updateMahalSim()" style="width: 100%; border: 2px solid #151b20; border-radius: 6px; padding: 8px; font-weight: 700; font-size: 0.82rem; background: #ffffff; margin-bottom: 16px;">
+          <option value="offaxis" selected>Off-Axis Covariance Anomaly (Hidden in 1D)</option>
+          <option value="masking">15% Outlier Cluster (Breaks Classical Z-Score!)</option>
+        </select>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">CLASSICAL Z-SCORE (|Z| > 3)</div>
+            <div id="statClassicZCatch" style="font-size: 1.15rem; font-weight: 900; color: #dc2626;">0% Caught (BLIND!)</div>
+          </div>
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">ROBUST MAD / MCD MAHALANOBIS</div>
+            <div id="statRobustCatch" style="font-size: 1.15rem; font-weight: 900; color: #16a34a;">100% Isolated!</div>
+          </div>
+          <div style="background: #fff0b9; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px; font-size: 0.75rem; color: #151b20;">
+            <strong>Insight:</strong> <span id="statMahalInsight">An off-axis point violates joint correlation even while staying strictly inside both ±3σ 1D marginals!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+// --- TAB SWITCHING ---
+function switchOutlierTab(tab) {
+  document.getElementById('panelSMOTE').style.display = tab === 'smote' ? 'block' : 'none';
+  document.getElementById('panelMahal').style.display = tab === 'mahal' ? 'block' : 'none';
+  document.getElementById('btnTabSMOTE').style.background = tab === 'smote' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabSMOTE').style.color = tab === 'smote' ? '#ffffff' : '#151b20';
+  document.getElementById('btnTabMahal').style.background = tab === 'mahal' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabMahal').style.color = tab === 'mahal' ? '#ffffff' : '#151b20';
+
+  if (tab === 'smote') updateSmoteSim();
+  if (tab === 'mahal') updateMahalSim();
+}
+
+// --- SMOTE SIMULATOR ---
+const smoteMaj = [];
+const smoteMin = [
+  { x: 0.62, y: 0.65 }, { x: 0.70, y: 0.58 }, { x: 0.74, y: 0.70 },
+  { x: 0.66, y: 0.76 }, { x: 0.80, y: 0.62 }, { x: 0.78, y: 0.78 },
+  { x: 0.58, y: 0.55 }, { x: 0.85, y: 0.72 }
+];
+
+function initSmoteData() {
+  if (smoteMaj.length > 0) return;
+  const rng = (seed) => {
+    let s = seed;
+    return () => { s = Math.sin(s) * 10000; return s - Math.floor(s); };
+  };
+  const rand = rng(77);
+  for (let i = 0; i < 45; i++) {
+    smoteMaj.push({
+      x: 0.12 + rand() * 0.50,
+      y: 0.15 + rand() * 0.55
+    });
+  }
+}
+
+function updateSmoteSim() {
+  initSmoteData();
+  const strat = document.getElementById('selectSmoteStrategy').value;
+  const cv = document.getElementById('smoteCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Background decision regions
+  ctx.fillStyle = 'rgba(37, 99, 235, 0.08)';
+  ctx.fillRect(0, 0, w, h);
+
+  // Minority classification boundary varies by strategy
+  ctx.fillStyle = 'rgba(249, 115, 22, 0.14)';
+  ctx.beginPath();
+  if (strat === 'baseline') {
+    // Severely shrunk toward upper-right corner -> misses lower-left minority points!
+    ctx.arc(w * 0.82, h * 0.25, 75, 0, Math.PI * 2);
+  } else if (strat === 'random') {
+    // Tight lumpy overfitting pockets around exact points
+    smoteMin.forEach(p => {
+      ctx.moveTo(p.x * w + 28, (1 - p.y) * h);
+      ctx.arc(p.x * w, (1 - p.y) * h, 28, 0, Math.PI * 2);
+    });
+  } else if (strat === 'smote') {
+    // Expanded smooth convex boundary
+    ctx.ellipse(w * 0.71, h * 0.32, 130, 95, -0.4, 0, Math.PI * 2);
+  } else {
+    // Borderline-SMOTE pushed directly toward majority frontier
+    ctx.ellipse(w * 0.68, h * 0.35, 145, 100, -0.5, 0, Math.PI * 2);
+  }
+  ctx.fill();
+  ctx.strokeStyle = '#ea580c';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([5, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Draw Majority points
+  smoteMaj.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x * w, (1 - p.y) * h, 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#2563eb';
+    ctx.fill();
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+  });
+
+  // Draw Synthetic Points & Lines
+  if (strat === 'smote' || strat === 'borderline') {
+    const startIdx = strat === 'borderline' ? 0 : 0;
+    const pairs = [[0, 6], [0, 1], [1, 2], [2, 3], [3, 5], [1, 4], [4, 7], [6, 3]];
+    pairs.forEach(([i, j]) => {
+      const p1 = smoteMin[i], p2 = smoteMin[j];
+      ctx.strokeStyle = '#eab308';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(p1.x * w, (1 - p1.y) * h);
+      ctx.lineTo(p2.x * w, (1 - p2.y) * h);
+      ctx.stroke();
+
+      // Synthetic midpoints
+      [0.35, 0.68].forEach(lam => {
+        const sx = p1.x + lam * (p2.x - p1.x);
+        const sy = p1.y + lam * (p2.y - p1.y);
+        ctx.beginPath();
+        ctx.arc(sx * w, (1 - sy) * h, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffc83e';
+        ctx.fill();
+        ctx.strokeStyle = '#151b20';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      });
+    });
+  } else if (strat === 'random') {
+    smoteMin.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x * w, (1 - p.y) * h, 10, 0, Math.PI * 2);
+      ctx.strokeStyle = '#eab308';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+  }
+
+  // Draw Original Minority points
+  smoteMin.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x * w, (1 - p.y) * h, 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#ea580c';
+    ctx.fill();
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+
+  // Update Metrics
+  if (strat === 'baseline') {
+    document.getElementById('statSmoteIR').innerText = '5.6 : 1 (Skewed)';
+    document.getElementById('statSmoteRecall').innerText = '37.5% (Fails Frontier!)';
+    document.getElementById('statSmoteRecall').style.color = '#dc2626';
+    document.getElementById('statSmoteNote').innerText = 'Boundary pushed away by majority prior';
+  } else if (strat === 'random') {
+    document.getElementById('statSmoteIR').innerText = '1.0 : 1 (Duplicated)';
+    document.getElementById('statSmoteRecall').innerText = '62.5% (Overfitted)';
+    document.getElementById('statSmoteRecall').style.color = '#d97706';
+    document.getElementById('statSmoteNote').innerText = 'High variance pockets around exact copies';
+  } else if (strat === 'smote') {
+    document.getElementById('statSmoteIR').innerText = '1.0 : 1 (Balanced)';
+    document.getElementById('statSmoteRecall').innerText = '87.5%';
+    document.getElementById('statSmoteRecall').style.color = '#16a34a';
+    document.getElementById('statSmoteNote').innerText = 'Smooth convex manifold interpolation';
+  } else {
+    document.getElementById('statSmoteIR').innerText = '1.0 : 1 (Frontier Focused)';
+    document.getElementById('statSmoteRecall').innerText = '100.0%';
+    document.getElementById('statSmoteRecall').style.color = '#16a34a';
+    document.getElementById('statSmoteNote').innerText = 'Maximum margin pushed against majority fence';
+  }
+}
+
+// --- MAHALANOBIS SIMULATOR ---
+function updateMahalSim() {
+  const regime = document.getElementById('selectAnomalyRegime').value;
+  const cv = document.getElementById('mahalCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Draw correlated inliers along y = x
+  const rng = (seed) => {
+    let s = seed;
+    return () => { s = Math.sin(s) * 10000; return s - Math.floor(s); };
+  };
+  const rand = rng(314);
+
+  for (let i = 0; i < 65; i++) {
+    const u = (rand() - 0.5) * 0.45;
+    const v = u + (rand() - 0.5) * 0.12;
+    const px = w * (0.5 + u);
+    const py = h * (0.5 - v);
+    ctx.beginPath();
+    ctx.arc(px, py, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#2563eb';
+    ctx.fill();
+  }
+
+  if (regime === 'offaxis') {
+    // 1D Marginals Box (+-3 sigma)
+    ctx.strokeStyle = '#64748b';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.strokeRect(w * 0.22, h * 0.18, w * 0.56, h * 0.64);
+    ctx.setLineDash([]);
+
+    // Mahalanobis Ellipse (tilted 45 deg)
+    ctx.save();
+    ctx.translate(w * 0.5, h * 0.5);
+    ctx.rotate(-Math.PI / 4);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 175, 48, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(22, 163, 74, 0.08)';
+    ctx.fill();
+    ctx.restore();
+
+    // Off-Axis Point inside 1D Box but way outside Green Ellipse
+    const ox = w * 0.68, oy = h * 0.72;
+    ctx.beginPath();
+    ctx.arc(ox, oy, 8, 0, Math.PI * 2);
+    ctx.fillStyle = '#dc2626';
+    ctx.fill();
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    document.getElementById('statClassicZCatch').innerText = '0% Caught (Inside 1D Box!)';
+    document.getElementById('statRobustCatch').innerText = '100% Isolated (D_M^2 = 34.8)';
+    document.getElementById('statMahalInsight').innerText = 'Red anomaly lies safely inside both ±3σ dashed boxes, yet blatantly violates diagonal correlation.';
+  } else {
+    // Masking cluster (15% outliers in top right)
+    for (let i = 0; i < 12; i++) {
+      const px = w * (0.82 + (rand() - 0.5) * 0.08);
+      const py = h * (0.18 + (rand() - 0.5) * 0.08);
+      ctx.beginPath();
+      ctx.arc(px, py, 6, 0, Math.PI * 2);
+      ctx.fillStyle = '#dc2626';
+      ctx.fill();
+      ctx.strokeStyle = '#151b20';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Swollen Z-score envelope absorbing the cluster!
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.strokeRect(w * 0.12, h * 0.06, w * 0.80, h * 0.85);
+    ctx.setLineDash([]);
+
+    // Robust MAD / MCD boundary ignores the 15% cluster
+    ctx.save();
+    ctx.translate(w * 0.5, h * 0.5);
+    ctx.rotate(-Math.PI / 4);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 175, 48, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    ctx.restore();
+
+    document.getElementById('statClassicZCatch').innerText = '0 / 12 Caught (Z=2.38 < 3.0!)';
+    document.getElementById('statRobustCatch').innerText = '12 / 12 Isolated via MAD!';
+    document.getElementById('statMahalInsight').innerText = 'Because contamination p=15% > 10%, classical standard deviation swells exponentially, hiding all outliers inside the red dashed box.';
+  }
+}
+
+window.addEventListener('load', () => {
+  updateSmoteSim();
+});
+</script>
+
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="6-production-grade-python-verification-engine">6. Production-Grade Python Verification Engine</h2>
+<p>The following Python verification suite uses <strong>Pydantic V2</strong> to test the <strong>Masking Effect Threshold</strong> (<span class="arithmatex">\(p &gt; 10\% \implies 0\%\)</span> catch rate for classical <span class="arithmatex">\(Z\)</span>-score vs. <span class="arithmatex">\(100\%\)</span> via MAD), off-axis <strong>MCD Mahalanobis anomaly isolation</strong>, and leak-free <strong>SMOTE imbalanced classification</strong>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">production_outliers_and_imbalance.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Pydantic V2 verified engine demonstrating Masking Breakdown, MCD Ellipsoids, and Leak-Free SMOTE.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.covariance</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinCovDet</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutlierVerificationReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="sd">"""Pydantic V2 validation schema for breakdown point &amp; masking benchmarks."""</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">contamination_fraction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">lt</span><span class="o">=</span><span class="mf">0.50</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">classical_z_caught</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">modified_mad_caught</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">total_injected_outliers</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">off_axis_mahalanobis_sq</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">chi2_critical_bound</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">off_axis_detected_by_mcd</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">class</span><span class="w"> </span><span class="nc">RobustOutlierFilter</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="sd">"""Leak-free univariate MAD Winsorizer and multivariate MCD detector."""</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mad_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">use_mcd</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">mcd_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">):</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mad_threshold</span> <span class="o">=</span> <span class="n">mad_threshold</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">use_mcd</span> <span class="o">=</span> <span class="n">use_mcd</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mcd_alpha</span> <span class="o">=</span> <span class="n">mcd_alpha</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">chi2_threshold_</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="n">X_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_mat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_mcd</span> <span class="ow">and</span> <span class="n">X_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span> <span class="o">=</span> <span class="n">MinCovDet</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_mat</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">chi2_threshold_</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcd_alpha</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">X_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">X_out</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="n">lower</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mad_threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">/</span> <span class="mf">0.6745</span><span class="p">)</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">upper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">medians_</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mad_threshold</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mads_</span> <span class="o">/</span> <span class="mf">0.6745</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="n">X_out</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">X_out</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">lower</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">upper</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="k">return</span> <span class="n">X_out</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">detect_multivariate_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">mahal_sq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mcd_</span><span class="o">.</span><span class="n">mahalanobis</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="k">return</span> <span class="n">mahal_sq</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">chi2_threshold_</span><span class="p">,</span> <span class="n">mahal_sq</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="k">def</span><span class="w"> </span><span class="nf">smote_oversample_minority</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="sd">"""Pure numpy SMOTE convex linear interpolation for leak-free training resampling."""</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="n">X_min</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">X_maj</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">n_to_synthesize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_maj</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_min</span><span class="p">)</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="k">if</span> <span class="n">n_to_synthesize</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">synthetic</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_to_synthesize</span><span class="p">):</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_min</span><span class="p">))</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="n">anchor</span> <span class="o">=</span> <span class="n">X_min</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="c1"># Find 3 nearest neighbors within minority class</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>        <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X_min</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="n">nn_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dists</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="nb">min</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_min</span><span class="p">))]</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="n">neighbor</span> <span class="o">=</span> <span class="n">X_min</span><span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nn_indices</span><span class="p">)]</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="n">lam</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">synthetic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchor</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="p">(</span><span class="n">neighbor</span> <span class="o">-</span> <span class="n">anchor</span><span class="p">))</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="n">X_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">synthetic</span><span class="p">)])</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="n">y_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_to_synthesize</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)])</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="k">return</span> <span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_outliers_and_imbalance_assertions</span><span class="p">():</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="c1"># 1. Masking Effect Breakdown Test (15.2% contamination &gt; 10% limit)</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="n">inliers_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="n">n_outliers</span> <span class="o">=</span> <span class="mi">18</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="n">corrupted_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">inliers_1d</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_outliers</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">)])</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="n">z_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">corrupted_1d</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">corrupted_1d</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">corrupted_1d</span><span class="p">))</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="n">caught_classic</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">z_scores</span> <span class="o">&gt;</span> <span class="mf">3.0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="n">med</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">corrupted_1d</span><span class="p">)</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="n">mad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">corrupted_1d</span> <span class="o">-</span> <span class="n">med</span><span class="p">))</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="n">mod_z</span> <span class="o">=</span> <span class="mf">0.6745</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">corrupted_1d</span> <span class="o">-</span> <span class="n">med</span><span class="p">)</span> <span class="o">/</span> <span class="n">mad</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="n">caught_mad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">mod_z</span> <span class="o">&gt;</span> <span class="mf">3.5</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="c1"># 2. Off-Axis Multivariate Anomaly Hidden Inside 1D Marginals</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>    <span class="n">cov_2d</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="n">inliers_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">cov_2d</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="n">off_axis_pt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">]])</span>  <span class="c1"># Passes |z1|&lt;2.5 and |z2|&lt;2.5</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="n">filter_2d</span> <span class="o">=</span> <span class="n">RobustOutlierFilter</span><span class="p">(</span><span class="n">use_mcd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mcd_alpha</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">inliers_2d</span><span class="p">))</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="n">mask_off</span><span class="p">,</span> <span class="n">mahal_sq_arr</span> <span class="o">=</span> <span class="n">filter_2d</span><span class="o">.</span><span class="n">detect_multivariate_outliers</span><span class="p">(</span><span class="n">off_axis_pt</span><span class="p">)</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="n">report</span> <span class="o">=</span> <span class="n">OutlierVerificationReport</span><span class="p">(</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>        <span class="n">contamination_fraction</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">n_outliers</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">corrupted_1d</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>        <span class="n">classical_z_caught</span><span class="o">=</span><span class="n">caught_classic</span><span class="p">,</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>        <span class="n">modified_mad_caught</span><span class="o">=</span><span class="n">caught_mad</span><span class="p">,</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>        <span class="n">total_injected_outliers</span><span class="o">=</span><span class="n">n_outliers</span><span class="p">,</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>        <span class="n">off_axis_mahalanobis_sq</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">mahal_sq_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>        <span class="n">chi2_critical_bound</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">filter_2d</span><span class="o">.</span><span class="n">chi2_threshold_</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>        <span class="n">off_axis_detected_by_mcd</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">mask_off</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="p">)</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">classical_z_caught</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Classical Z-score must suffer complete masking failure!"</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>    <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">modified_mad_caught</span> <span class="o">==</span> <span class="n">n_outliers</span><span class="p">,</span> <span class="s2">"Modified MAD must recover 100</span><span class="si">% o</span><span class="s2">f masked outliers!"</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">off_axis_detected_by_mcd</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"MCD failed to catch off-axis multivariate violation!"</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="c1"># 3. Leak-Free SMOTE vs Imbalanced Baseline Benchmark</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="n">X_imb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="n">y_imb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="n">signal</span> <span class="o">=</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">X_imb</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">X_imb</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="n">y_imb</span><span class="p">[</span><span class="n">signal</span> <span class="o">&gt;</span> <span class="mf">2.2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># ~6% minority class</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="n">X_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_imb</span><span class="p">,</span> <span class="n">y_imb</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_imb</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="n">clf_base</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="n">recall_base</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_te</span><span class="p">,</span> <span class="n">clf_base</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">))</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>    <span class="n">X_tr_smote</span><span class="p">,</span> <span class="n">y_tr_smote</span> <span class="o">=</span> <span class="n">smote_oversample_minority</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="n">clf_smote</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr_smote</span><span class="p">,</span> <span class="n">y_tr_smote</span><span class="p">)</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="n">recall_smote</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_te</span><span class="p">,</span> <span class="n">clf_smote</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">))</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>    <span class="k">assert</span> <span class="n">recall_smote</span> <span class="o">&gt;=</span> <span class="n">recall_base</span><span class="p">,</span> <span class="s2">"SMOTE should improve or preserve minority class recall!"</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Production Outliers &amp; Imbalance Verification ==="</span><span class="p">)</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Masking Breakdown Test (15.2% corrupt): Classical Z=</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">classical_z_caught</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_outliers</span><span class="si">}</span><span class="s2"> vs MAD=</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">modified_mad_caught</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_outliers</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Off-Axis Anomaly Mahalanobis D^2: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">off_axis_mahalanobis_sq</span><span class="si">}</span><span class="s2"> (Crit Bound: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">chi2_critical_bound</span><span class="si">}</span><span class="s2">) -&gt; Isolated: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">off_axis_detected_by_mcd</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Minority Recall: Baseline=</span><span class="si">{</span><span class="n">recall_base</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% vs Leak-Free SMOTE=</span><span class="si">{</span><span class="n">recall_smote</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Pydantic V2 schemas and statistical invariants verified successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="n">test_outliers_and_imbalance_assertions</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="7-scenario-based-diagnostic-micro-checks">7. Scenario-Based Diagnostic Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Isolation Forest Average Path Length Invariant</summary>
-<p>Explain why anomalous data points have systematically shorter average path lengths <span class="arithmatex">\(h(x)\)</span> in an <strong>Isolation Forest</strong> compared to nominal inlier data points.</p>
+<summary>Micro-Check 1: Isolation Forest Average Path Length Invariant</summary>
+<p>Explain why anomalous data points yield systematically shorter average path lengths <span class="arithmatex">\(h(\mathbf{x})\)</span> in an <strong>Isolation Forest</strong> compared to densely clustered inliers.</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> In an Isolation Forest, trees are constructed by randomly selecting a feature and randomly selecting a split value between the minimum and maximum.</p>
-<p>Because anomalies are structurally few in number and geometrically isolated in feature space, a random orthogonal hyperplane split has a high probability of separating an anomaly from the rest of the cohort near the root of the tree. Consequently, anomalies achieve short traversal path lengths (<span class="arithmatex">\(h(x) \ll c(n)\)</span>), while nominal clustered points require deep recursive splits (<span class="arithmatex">\(h(x) \to O(\log n)\)</span>) to isolate.</p>
+<p><strong>Anomalies lie in sparse perimeter regions, allowing random orthogonal hyperplane splits to separate them near the tree root.</strong></p>
+<p>In an Isolation Forest, decision trees split recursively on a randomly chosen feature at a randomly chosen threshold between <code>min</code> and <code>max</code>:
+1. <strong>Clustered Inliers</strong>: Densely packed observations overlap closely across coordinates, requiring dozens of sequential hyperplane cuts to isolate a single member (<span class="arithmatex">\(h(\mathbf{x}) \sim \mathcal{O}(\ln n)\)</span>).
+2. <strong>Sparse Outliers</strong>: Extreme anomalies occupy broad, empty coordinate bands outside the main density core. Almost any random cut across that wide coordinate range immediately places the outlier in a leaf node near the root (<span class="arithmatex">\(h(\mathbf{x}) \ll c(n) \implies s(\mathbf{x}, n) \to 1\)</span>).</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Data Leakage in Preprocessing and Resampling</summary>
-<p>A data scientist applies SMOTE oversampling to an imbalanced dataset containing 10,000 instances to achieve a 50:50 class balance (yielding 18,000 instances), and then performs 5-fold cross-validation. Explain why this constitutes severe data leakage and produces artificially inflated validation metrics.</p>
+<summary>Micro-Check 2: Information Leakage from SMOTE Prior to Cross-Validation</summary>
+<p>A data scientist applies SMOTE oversampling to an imbalanced dataset of <span class="arithmatex">\(10{,}000\)</span> records (<span class="arithmatex">\(90:10\)</span> split) to balance it to <span class="arithmatex">\(18{,}000\)</span> records, and <em>then</em> executes 5-fold cross-validation. Why does this create severe data leakage and falsely inflated recall scores?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Applying SMOTE <strong>before</strong> cross-validation causes <strong>Information Leakage across the validation split</strong>.</p>
-<p>Synthetic instances generated from training observations end up in the validation folds, while their parent donor instances remain in the training fold. The model effectively tests on interpolated copies of instances it trained on, memorizing feature geometries rather than generalizing. Resampling must strictly occur <strong>inside each training fold independently</strong>, leaving validation folds untouched and representative of the true empirical test distribution.</p>
+<p><strong>Synthesized minority instances created before splitting leak geometric neighborhood copies across train and validation boundaries.</strong></p>
+<p>Under SMOTE, a synthetic observation <span class="arithmatex">\(\mathbf{x}_{\text{new}}\)</span> lies directly along the line segment between parent observations <span class="arithmatex">\(\mathbf{x}_i\)</span> and <span class="arithmatex">\(\mathbf{x}_{zi}\)</span>.
+1. If <span class="arithmatex">\(\mathbf{x}_{\text{new}}\)</span> is placed into validation Fold 5 while parents <span class="arithmatex">\(\mathbf{x}_i\)</span> and <span class="arithmatex">\(\mathbf{x}_{zi}\)</span> are in training Folds 1–4, the classifier evaluates on near-identical convex neighbors of its own training instances.
+2. Validation metrics report near-perfect recall/F1 (<span class="arithmatex">\(0.98+\)</span>) during cross-validation, while real-world deployment recall plunges precipitously.
+3. <strong>Golden Pipeline Rule</strong>: Resampling (<code>SMOTE</code>, <code>ADASYN</code>) must <strong>never</strong> touch validation or test data; wrap SMOTE exclusively inside each training fold of an <code>imblearn.pipeline.Pipeline</code>.</p>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 3: The Breakdown Point &amp; Complete Masking Threshold</summary>
+<p>Suppose a data stream contains <span class="arithmatex">\(85\)</span> nominal temperature measurements centered around <span class="arithmatex">\(22.0^\circ\text{C}\)</span> (<span class="arithmatex">\(\sigma = 1.0\)</span>) and <span class="arithmatex">\(15\)</span> broken sensor readings stuck at <span class="arithmatex">\(+500^\circ\text{C}\)</span> (<span class="arithmatex">\(15\%\)</span> contamination). Explain mathematically why flagging <span class="arithmatex">\(|Z| &gt; 3.0\)</span> fails to catch <strong>any</strong> of the <span class="arithmatex">\(500^\circ\text{C}\)</span> errors.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Contamination <span class="arithmatex">\(p = 15\%\)</span> exceeds the theoretical <span class="arithmatex">\(Z\)</span>-score masking limit <span class="arithmatex">\(p_{\text{mask}} = \frac{1}{1 + \tau^2} = \frac{1}{10} = 10\%\)</span>.</strong></p>
+<p>With <span class="arithmatex">\(15\%\)</span> of the array inflated to <span class="arithmatex">\(+500\)</span>, the contaminated empirical mean becomes <span class="arithmatex">\(\mu \approx 93.7\)</span> and standard deviation explodes to <span class="arithmatex">\(\sigma \approx 170.8\)</span>.
+Calculating the resulting <span class="arithmatex">\(Z\)</span>-score of the <span class="arithmatex">\(+500\)</span> sensor spike:
+$<span class="arithmatex">\(Z(500) = \frac{500 - 93.7}{170.8} \approx 2.38 &lt; 3.0\)</span>$
+The upper <span class="arithmatex">\(3\sigma\)</span> threshold inflates all the way to <span class="arithmatex">\(93.7 + 3(170.8) = 606.1^\circ\text{C}\)</span>, absorbing every corrupted observation cleanly inside "normal" acceptance bounds! Using <strong>Median Absolute Deviation (MAD)</strong> retains median <span class="arithmatex">\(\tilde{x} \approx 22.0\)</span> and <span class="arithmatex">\(\text{MAD} \approx 0.7\)</span>, exposing <span class="arithmatex">\(M_i &gt; 450\)</span> instantly.</p>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 4: Off-Axis Multivariate Anomalies Evading Univariate Bounds</summary>
+<p>In telemetry checking engine RPM (<span class="arithmatex">\(X_1\)</span>) vs. Fuel Flow Rate (<span class="arithmatex">\(X_2\)</span>), nominal performance exhibits <span class="arithmatex">\(r = 0.96\)</span> positive linear correlation. A sensor sends <code>(RPM = High [+2.2 SD], Fuel Flow = Idle [-2.2 SD])</code>. Why do univariate <span class="arithmatex">\(|Z| &gt; 3\)</span> filters miss this defect, and how does Mahalanobis distance isolate it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>The reading lies safely inside both 1D marginal boundaries (<span class="arithmatex">\(|-2.2| &lt; 3\)</span> and <span class="arithmatex">\(|+2.2| &lt; 3\)</span>) while standing orthogonal to the joint covariance ellipse.</strong></p>
+<p>Univariate rules project multi-dimensional vectors onto isolated axes, creating an axis-aligned rectangular acceptance box that covers vast empty corners off the diagonal correlation axis.
+Mahalanobis distance rotates and rescales along the eigenvectors of <span class="arithmatex">\(\boldsymbol{\Sigma}\)</span>:
+$<span class="arithmatex">\(D_M^2(\mathbf{x}) = \mathbf{x}^\top \begin{bmatrix} 1 &amp; 0.96 \\ 0.96 &amp; 1 \end{bmatrix}^{-1} \mathbf{x}\)</span>$
+Because movement perpendicular to the tight covariance axis (<span class="arithmatex">\(r=0.96\)</span>) scales inversely by <span class="arithmatex">\(1 - r^2 \approx 0.078\)</span>, a vector of <code>[+2.2, -2.2]</code> yields <span class="arithmatex">\(D_M^2 \approx 245.5 \gg \chi^2_{2, 0.999} = 13.82\)</span>, immediately triggering an off-axis anomaly alert.</p>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-hawkins1980"></a><strong>[Hawkins1980]</strong> D. M. Hawkins, <em>Identification of Outliers</em>, London: Chapman and Hall, 1980. <a href="https://doi.org/10.1007/978-94-015-3994-4">DOI: 10.1007/978-94-015-3994-4</a>.</li>
 <li><a id="ref-rousseeuw1999"></a><strong>[Rousseeuw1999]</strong> P. J. Rousseeuw and K. Van Driessen, "A Fast Algorithm for the Minimum Covariance Determinant Estimator," <em>Technometrics</em>, vol. 41, no. 3, pp. 212–223, 1999. <a href="https://doi.org/10.1080/00401706.1999.10485670">DOI: 10.1080/00401706.1999.10485670</a>.</li>
@@ -8068,9 +8418,13 @@ w_c = \frac{N}{C \cdot N_c}
 <li><a id="ref-beyer1999"></a><strong>[Beyer1999]</strong> K. Beyer, J. Goldstein, R. Ramakrishnan, and U. Shaft, "When Is 'Nearest Neighbor' Meaningful?," in <em>International Conference on Database Theory (ICDT)</em>, pp. 217–235, 1999. <a href="https://doi.org/10.1007/3-540-49257-7_15">DOI: 10.1007/3-540-49257-7_15</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../03-duplicates-and-inconsistency/" class="noc-sim-btn secondary" style="text-decoration: none;">← 5.3 Duplicates & Inconsistency</a>
-  <a href="../05-cleaning-techniques/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: 5.5 Cleaning Techniques →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../03-duplicates-and-inconsistency/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← 5.3 Duplicates &amp; Inconsistency
+  </a>
+  <a href="../05-cleaning-techniques/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: Cleaning Techniques (5.5) →
+  </a>
 </div>
 
 

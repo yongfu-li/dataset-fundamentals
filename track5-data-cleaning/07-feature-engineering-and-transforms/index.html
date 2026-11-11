@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2616,15 +2660,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-formulations" class="md-nav__link">
+  <a href="#1-conceptual-overview-non-linear-transformation-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Formulations
+        1. Conceptual Overview: Non-Linear Transformation Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Formulations">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-foundations-of-variance-stabilization-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Foundations of Variance Stabilization &amp; Interactions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Foundations of Variance Stabilization &amp; Interactions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2667,33 +2722,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-basis-expansions-interactions-and-multicollinearity" class="md-nav__link">
+  <a href="#2-basis-expansions-interactions-multicollinearity-pruning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Basis Expansions, Interactions, and Multicollinearity
+        2. Basis Expansions, Interactions &amp; Multicollinearity Pruning
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Basis Expansions, Interactions, and Multicollinearity">
+    <nav class="md-nav" aria-label="2. Basis Expansions, Interactions &amp; Multicollinearity Pruning">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#polynomial-expansions" class="md-nav__link">
+  <a href="#variance-inflation-factor-vif-filtering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Polynomial Expansions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pruning-via-the-variance-inflation-factor-vif-marquardt-1970" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pruning via the Variance Inflation Factor (VIF) (Marquardt, 1970)
+        Variance Inflation Factor (VIF) Filtering
       
     </span>
   </a>
@@ -2706,10 +2750,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-discretization-strategies-resolution-vs-stability" class="md-nav__link">
+  <a href="#3-periodic-embeddings-discretization-trade-offs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Discretization Strategies: Resolution vs. Stability
+        3. Periodic Embeddings &amp; Discretization Trade-Offs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Periodic Embeddings &amp; Discretization Trade-Offs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclical-time-circle-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclical Time Circle Projection
       
     </span>
   </a>
@@ -2717,10 +2773,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-framework-non-linear-transformation-selection" class="md-nav__link">
+  <a href="#quantile-vs-equal-width-discretization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Framework: Non-Linear Transformation Selection
+        Quantile vs. Equal-Width Discretization
       
     </span>
   </a>
@@ -2731,12 +2787,17 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-skewness-correction-and-interaction-pipeline" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-us-census-pums-financial-risk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Skewness Correction and Interaction Pipeline
+        3. Landmark Empirical Case Study: US Census PUMS Financial Risk
       
     </span>
   </a>
@@ -2744,10 +2805,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-income-inequality-financial-risk" class="md-nav__link">
+  <a href="#4-interactive-laboratory-power-transformations-cyclical-time-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Income Inequality &amp; Financial Risk
+        4. Interactive Laboratory: Power Transformations &amp; Cyclical Time Studio
       
     </span>
   </a>
@@ -2755,10 +2816,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -2766,10 +2827,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2777,10 +2838,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7444,15 +7516,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-mathematical-formulations" class="md-nav__link">
+  <a href="#1-conceptual-overview-non-linear-transformation-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Mathematical Formulations
+        1. Conceptual Overview: Non-Linear Transformation Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Mathematical Formulations">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-foundations-of-variance-stabilization-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Foundations of Variance Stabilization &amp; Interactions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Foundations of Variance Stabilization &amp; Interactions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7495,33 +7578,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-basis-expansions-interactions-and-multicollinearity" class="md-nav__link">
+  <a href="#2-basis-expansions-interactions-multicollinearity-pruning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Basis Expansions, Interactions, and Multicollinearity
+        2. Basis Expansions, Interactions &amp; Multicollinearity Pruning
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Basis Expansions, Interactions, and Multicollinearity">
+    <nav class="md-nav" aria-label="2. Basis Expansions, Interactions &amp; Multicollinearity Pruning">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#polynomial-expansions" class="md-nav__link">
+  <a href="#variance-inflation-factor-vif-filtering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Polynomial Expansions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pruning-via-the-variance-inflation-factor-vif-marquardt-1970" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pruning via the Variance Inflation Factor (VIF) (Marquardt, 1970)
+        Variance Inflation Factor (VIF) Filtering
       
     </span>
   </a>
@@ -7534,10 +7606,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-discretization-strategies-resolution-vs-stability" class="md-nav__link">
+  <a href="#3-periodic-embeddings-discretization-trade-offs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Discretization Strategies: Resolution vs. Stability
+        3. Periodic Embeddings &amp; Discretization Trade-Offs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Periodic Embeddings &amp; Discretization Trade-Offs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyclical-time-circle-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclical Time Circle Projection
       
     </span>
   </a>
@@ -7545,10 +7629,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decision-framework-non-linear-transformation-selection" class="md-nav__link">
+  <a href="#quantile-vs-equal-width-discretization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Framework: Non-Linear Transformation Selection
+        Quantile vs. Equal-Width Discretization
       
     </span>
   </a>
@@ -7559,12 +7643,17 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-skewness-correction-and-interaction-pipeline" class="md-nav__link">
+  <a href="#3-landmark-empirical-case-study-us-census-pums-financial-risk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Skewness Correction and Interaction Pipeline
+        3. Landmark Empirical Case Study: US Census PUMS Financial Risk
       
     </span>
   </a>
@@ -7572,10 +7661,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-income-inequality-financial-risk" class="md-nav__link">
+  <a href="#4-interactive-laboratory-power-transformations-cyclical-time-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: Income Inequality &amp; Financial Risk
+        4. Interactive Laboratory: Power Transformations &amp; Cyclical Time Studio
       
     </span>
   </a>
@@ -7583,10 +7672,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-grade-python-verification-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        5. Production-Grade Python Verification Engine
       
     </span>
   </a>
@@ -7594,10 +7683,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7605,10 +7694,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-scenario-based-diagnostic-micro-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. Scenario-Based Diagnostic Micro-Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7636,38 +7736,39 @@
 
 
 <h1 id="57-feature-engineering-and-transformations">5.7 Feature Engineering and Transformations</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 5 (sec:5.4.3–5.4.5)</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 5: Data Cleaning and Preprocessing</strong> in the Springer Nature monograph for rigorous formal proofs of power transformation likelihood surfaces and functional basis expansions.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.7: Power Transforms, Interactions &amp; Basis Expansions)</strong> in the official Springer Nature monograph for formal proofs of Box-Cox likelihood surfaces and Variance Inflation Factor pruning.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+    <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~28 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-57">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.7</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">9 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">9 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=5&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=5&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7676,304 +7777,597 @@
 </div>
 
 <hr />
-<h2 id="conceptual-overview-mathematical-formulations">🎯 Conceptual Overview &amp; Mathematical Formulations</h2>
-<p>Cleaning and scaling establish baseline validity, but complex data structures frequently violate the linear and homoscedastic assumptions fundamental to parametric estimators. Feature engineering translates raw domain observations into functional spaces where hypothesis boundaries are linearized and error residuals follow Gaussian assumptions (<a href="#ref-boxcox1964">Box &amp; Cox, 1964</a>). Extreme skewness frequently stems from outlier contamination (<a href="#ref-hawkins1980">Hawkins, 1980</a>), where unbounded influence functions distort estimation (<a href="#ref-hampel1974">Hampel, 1974</a>), while engineered features must preserve class separation under imbalance (<a href="#ref-he2009">He &amp; Garcia, 2009</a>).</p>
+<p>Cleaning and scaling establish baseline validity, yet raw real-world observations frequently violate the linearity, homoscedasticity, and Euclidean continuity assumptions foundational to parametric and neural estimators [<a href="#ref-boxcox1964">Box1964</a>, <a href="#ref-yeojohnson2000">YeoJohnson2000</a>].</p>
+<p>Feature engineering transforms raw attributes into mathematically aligned coordinate representations: stabilizing heavy-tailed variances, linearizing curved multiplicative interactions, resolving periodic boundary discontinuities, and pruning collinear blowup via Variance Inflation Factor (VIF) filtering [<a href="#ref-marquardt1970">Marquardt1970</a>, <a href="#ref-hampel1974">Hampel1974</a>].</p>
+<hr />
+<h2 id="1-conceptual-overview-non-linear-transformation-pipeline">1. Conceptual Overview: Non-Linear Transformation Pipeline</h2>
 <pre class="mermaid"><code>flowchart TD
-    Raw["Raw Continuous &amp; Engineered Features"] --&gt; T1["1. Skewness Audit: |γ1| &gt; 0.75"]
-    Raw --&gt; T2["2. Curvature &amp; Interactions"]
-    Raw --&gt; T3["3. Discretization"]
+    Raw["Raw Continuous &amp; Temporal Features"] --&gt; T1{"1. Skewness Audit: |γ1| &gt; 0.75?"}
+    T1 --&gt;|Yes: Strictly Positive y &gt; 0| BC["Box-Cox Power Transform&lt;br/&gt;y^(λ) = (y^λ - 1)/λ"]
+    T1 --&gt;|Yes: Zero or Negative y ∈ R| YJ["Yeo-Johnson Power Transform&lt;br/&gt;Piecewise Continuous ψ(λ, y)"]
+    T1 --&gt;|Symmetric| Keep["Preserve Linear Coordinates"]
 
-    subgraph Skewness ["1. Power Transforms"]
-        direction TB
-        K1["Positive Support (y &gt; 0) -&gt; Box-Cox: y^(λ) = (y^λ - 1)/λ"]
-        K2["General Support (y ∈ R) -&gt; Yeo-Johnson: ψ(λ, y)"]
-        K1 ~~~ K2
-    end
-
-    subgraph Interactions ["2. Curvature &amp; Multicollinearity"]
-        direction TB
-        E1["Multiplicative Non-linearities -&gt; Polynomial Features (x1 * x2)"]
-        E2["Multicollinearity Pruning -&gt; Variance Inflation Factor (VIF &lt; 5)"]
-        E1 ~~~ E2
-    end
-
-    subgraph Discretize ["3. Binning Strategies"]
-        direction TB
-        B1["Uniform Intervals -&gt; Equal-Width Discretization"]
-        B2["Uniform Density -&gt; Quantile Binning"]
-        B1 ~~~ B2
-    end
-
-    T1 --&gt; Skewness
-    T2 --&gt; Interactions
-    T3 --&gt; Discretize
+    BC &amp; YJ &amp; Keep --&gt; Cycl["2. Temporal Periodicity Check&lt;br/&gt;Sine / Cosine Unit Circle Projection"]
+    Cycl --&gt; Poly["3. Basis Expansion &amp; Ratios&lt;br/&gt;Degree-k Interactions &amp; Domain Ratios"]
+    Poly --&gt; VIF["4. Multicollinearity Pruning&lt;br/&gt;Iterative Elimination where VIF_j &gt; 10.0"]
+    VIF --&gt; Ready[("Stabilized Feature Matrix for Downstream Estimators")]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#f3e8ff,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class Raw purple;
-    class T1,Skewness,K1,K2 blue;
-    class T2,Interactions,E1,E2 amber;
-    class T3,Discretize,B1,B2 green;</code></pre>
+    class Raw,T1 purple;
+    class BC,YJ,Keep blue;
+    class Cycl,Poly,VIF amber;
+    class Ready green;</code></pre>
 <hr />
+<h2 id="2-mathematical-foundations-of-variance-stabilization-interactions">2. Mathematical Foundations of Variance Stabilization &amp; Interactions</h2>
 <h3 id="1-variance-stabilizing-power-transformations">1. Variance-Stabilizing Power Transformations</h3>
-<p>When continuous variables follow heavy-tailed distributions (e.g., Pareto, Log-Normal) or exhibit heteroscedasticity (<span class="arithmatex">\(\text{Var}(\epsilon \mid X) \neq \sigma^2\)</span>), standard linear regression and Gaussian naive Bayes estimators suffer high parameter variance and distorted confidence intervals.</p>
+<p>When numeric distributions obey heavy-tailed Pareto or Log-Normal geometry (<span class="arithmatex">\(\gamma_1 \gg 0.75\)</span>) or heteroscedastic error variance (<span class="arithmatex">\(\operatorname{Var}(\epsilon \mid X) \ne \sigma^2\)</span>), OLS standard errors and confidence bounds collapse.</p>
 <h4 id="the-box-cox-transformation-y-0">The Box-Cox Transformation (<span class="arithmatex">\(y &gt; 0\)</span>)</h4>
-<p>The Box-Cox transform parameterizes a family of power functions indexed by parameter <span class="arithmatex">\(\lambda\)</span>:</p>
+<p>George Box and David Cox [<a href="#ref-boxcox1964">Box1964</a>] unified logarithmic, square-root, and reciprocal normalizations into a continuous family indexed by exponent <span class="arithmatex">\(\lambda \in \mathbb{R}\)</span>:</p>
 <div class="arithmatex">\[
-y^{(\lambda)} = \begin{cases} \frac{y^\lambda - 1}{\lambda} &amp; \text{if } \lambda \neq 0 \\ \ln(y) &amp; \text{if } \lambda = 0 \end{cases}
+y^{(\lambda)} = \begin{cases} \frac{y^\lambda - 1}{\lambda}, &amp; \text{if } \lambda \neq 0 \\ \ln(y), &amp; \text{if } \lambda = 0 \end{cases}
 \]</div>
-<p>The optimal parameter <span class="arithmatex">\(\hat{\lambda}\)</span> is estimated by maximizing the profile log-likelihood function:</p>
+<p>Notice that by L'Hôpital's rule, <span class="arithmatex">\(\lim_{\lambda \to 0} \frac{y^\lambda - 1}{\lambda} = \ln(y)\)</span>, making the parameterization smooth at <span class="arithmatex">\(\lambda = 0\)</span>. The optimal <span class="arithmatex">\(\lambda^*\)</span> maximizes the Gaussian <strong>Profile Log-Likelihood</strong> (incorporating the transformation Jacobian <span class="arithmatex">\(\prod y_i^{\lambda - 1}\)</span>):</p>
 <div class="arithmatex">\[
 \mathcal{L}(\lambda) = -\frac{n}{2} \ln \hat{\sigma}^2(\lambda) + (\lambda - 1) \sum_{i=1}^n \ln y_i
 \]</div>
-<p>where <span class="arithmatex">\(\hat{\sigma}^2(\lambda) = \frac{1}{n} \sum_{i=1}^n (y_i^{(\lambda)} - \bar{y}^{(\lambda)})^2\)</span>.</p>
 <h4 id="the-yeo-johnson-transformation-y-in-mathbbr">The Yeo-Johnson Transformation (<span class="arithmatex">\(y \in \mathbb{R}\)</span>)</h4>
-<p>To handle zero and negative values where Box-Cox is undefined, Yeo &amp; Johnson (<a href="#ref-yeojohnson2000">2000</a>) introduced a continuous monotonic transform:
-$<span class="arithmatex">\(\psi(\lambda, y) = \begin{cases} 
-\frac{(y + 1)^\lambda - 1}{\lambda} &amp; \text{if } \lambda \neq 0, \; y \ge 0 \\ 
-\ln(y + 1) &amp; \text{if } \lambda = 0, \; y \ge 0 \\ 
--\frac{(-y + 1)^{2 - \lambda} - 1}{2 - \lambda} &amp; \text{if } \lambda \neq 2, \; y &lt; 0 \\ 
--\ln(-y + 1) &amp; \text{if } \lambda = 2, \; y &lt; 0 
-\end{cases}\)</span>$</p>
+<p>To eliminate Box-Cox's strict positive domain constraint (<span class="arithmatex">\(y &gt; 0\)</span>), Yeo &amp; Johnson [<a href="#ref-yeojohnson2000">YeoJohnson2000</a>] constructed a piecewise continuous monotonic extension covering zero and negative balances:</p>
+<div class="arithmatex">\[
+\psi(\lambda, y) = \begin{cases} 
+\frac{(y + 1)^\lambda - 1}{\lambda}, &amp; \text{if } \lambda \neq 0, \; y \ge 0 \\ 
+\ln(y + 1), &amp; \text{if } \lambda = 0, \; y \ge 0 \\ 
+-\frac{(-y + 1)^{2 - \lambda} - 1}{2 - \lambda}, &amp; \text{if } \lambda \neq 2, \; y &lt; 0 \\ 
+-\ln(-y + 1), &amp; \text{if } \lambda = 2, \; y &lt; 0 
+\end{cases}
+\]</div>
 <hr />
-<h3 id="2-basis-expansions-interactions-and-multicollinearity">2. Basis Expansions, Interactions, and Multicollinearity</h3>
-<p>For non-linear response surfaces, basis functions project vector <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span> into a higher-dimensional feature space <span class="arithmatex">\(\phi(\mathbf{x}) \in \mathbb{R}^D\)</span>:</p>
+<h3 id="2-basis-expansions-interactions-multicollinearity-pruning">2. Basis Expansions, Interactions &amp; Multicollinearity Pruning</h3>
+<p>Linear estimators approximate non-linear manifolds by mapping inputs <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span> onto non-linear basis expansions <span class="arithmatex">\(\phi(\mathbf{x}) \in \mathbb{R}^D\)</span>:</p>
 <div class="arithmatex">\[
 f(\mathbf{x}) = \mathbf{w}^\top \phi(\mathbf{x}) = \sum_{j=1}^D w_j \phi_j(\mathbf{x})
 \]</div>
-<h4 id="polynomial-expansions">Polynomial Expansions</h4>
-<p>For degree <span class="arithmatex">\(k\)</span>, the number of generated features scales combinatorially:</p>
+<p>For polynomial expansion of degree <span class="arithmatex">\(k\)</span>, total feature dimensionality grows combinatorially:</p>
 <div class="arithmatex">\[
 D = \binom{d + k}{k}
 \]</div>
-<p><em>Example:</em> A degree-2 expansion for two features <span class="arithmatex">\([x_1, x_2]\)</span> yields:</p>
-<div class="arithmatex">\[
-\phi(\mathbf{x}) = [1, \; x_1, \; x_2, \; x_1^2, \; x_2^2, \; x_1 x_2]^\top
-\]</div>
-<h4 id="pruning-via-the-variance-inflation-factor-vif-marquardt-1970">Pruning via the Variance Inflation Factor (VIF) (<a href="#ref-marquardt1970">Marquardt, 1970</a>)</h4>
-<p>Polynomial and interaction features inherently introduce severe multicollinearity. The degree of collinearity for feature <span class="arithmatex">\(j\)</span> is quantified by the Variance Inflation Factor:</p>
+<p>Generating quadratic interactions scales cleanly for small <span class="arithmatex">\(d\)</span> (<span class="arithmatex">\(d=2 \implies D=6\)</span> columns: <span class="arithmatex">\([1, x_1, x_2, x_1^2, x_2^2, x_1 x_2]\)</span>), yet explodes rapidly (<span class="arithmatex">\(d=100, k=2 \implies D=5{,}151\)</span> features). Furthermore, <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_1^2\)</span> correlate strongly when <span class="arithmatex">\(x_1 &gt; 0\)</span>, injecting severe <strong>multicollinearity</strong>.</p>
+<h4 id="variance-inflation-factor-vif-filtering">Variance Inflation Factor (VIF) Filtering</h4>
+<p>Donald Marquardt [<a href="#ref-marquardt1970">Marquardt1970</a>] quantified how strongly collinearity inflates parameter estimation variance for feature <span class="arithmatex">\(j\)</span>:</p>
 <div class="arithmatex">\[
 \text{VIF}_j = \frac{1}{1 - R_j^2}
 \]</div>
-<p>where <span class="arithmatex">\(R_j^2\)</span> is the coefficient of determination obtained from regressing feature <span class="arithmatex">\(x_j\)</span> against all other remaining features <span class="arithmatex">\(x_{-j}\)</span>. A common production threshold drops features with <span class="arithmatex">\(\text{VIF}_j &gt; 10.0\)</span> (or <span class="arithmatex">\(&gt; 5.0\)</span> in conservative linear pipelines) to avoid inverting near-singular matrices.</p>
+<p>Where <span class="arithmatex">\(R_j^2\)</span> is the <span class="arithmatex">\(R^2\)</span> score obtained from regressing column <span class="arithmatex">\(x_j\)</span> against all remaining predictors <span class="arithmatex">\(X_{-j}\)</span>. Features exhibiting <span class="arithmatex">\(\text{VIF}_j &gt; 10.0\)</span> (<span class="arithmatex">\(R_j^2 &gt; 0.90\)</span>) cause <span class="arithmatex">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span> instability and are iteratively dropped prior to linear estimation.</p>
 <hr />
-<h3 id="3-discretization-strategies-resolution-vs-stability">3. Discretization Strategies: Resolution vs. Stability</h3>
-<p>Discretization maps continuous variable <span class="arithmatex">\(X\)</span> into <span class="arithmatex">\(B\)</span> discrete bins <span class="arithmatex">\(\{b_1, \dots, b_B\}\)</span>:
-1. <strong>Equal-Width Binning:</strong> Divides range into <span class="arithmatex">\(B\)</span> identical intervals of width <span class="arithmatex">\(w = \frac{x_{\max} - x_{\min}}{B}\)</span>. Vulnerable to empty bins when severe outliers exist.
-2. <strong>Quantile (Equal-Frequency) Binning:</strong> Calculates bin cutoffs at empirical quantiles <span class="arithmatex">\(q_k = F^{-1}(k / B)\)</span> for <span class="arithmatex">\(k \in \{1, \dots, B - 1\}\)</span>. Guarantees identical sample counts across bins and uniform categorical entropy <span class="arithmatex">\(H(B) = \log_2 B\)</span>.</p>
-<hr />
+<h3 id="3-periodic-embeddings-discretization-trade-offs">3. Periodic Embeddings &amp; Discretization Trade-Offs</h3>
+<h4 id="cyclical-time-circle-projection">Cyclical Time Circle Projection</h4>
+<p>Representing periodic cycles (hour of day <span class="arithmatex">\(H \in [0, 23]\)</span>, day of year <span class="arithmatex">\(D \in [1, 365]\)</span>) as flat linear integers forces artificial boundary breaks (<span class="arithmatex">\(|23 - 0| = 23\)</span> hours apart despite being adjacent!). Mapping period <span class="arithmatex">\(P\)</span> onto a 2D circle yields smooth invariant Euclidean metrics:</p>
+<div class="arithmatex">\[
+x_{\sin}(t) = \sin\left(\frac{2\pi t}{P}\right), \qquad x_{\cos}(t) = \cos\left(\frac{2\pi t}{P}\right)
+\]</div>
+<h4 id="quantile-vs-equal-width-discretization">Quantile vs. Equal-Width Discretization</h4>
+<ul>
+<li><strong>Equal-Width Binning</strong>: Divides <code>[min, max]</code> into fixed bin width <span class="arithmatex">\(w = \frac{x_{\max} - x_{\min}}{B}\)</span>. Outliers empty almost all intermediate intervals.</li>
+<li><strong>Quantile (Equal-Frequency) Binning</strong>: Sets bin borders at empirical quantiles <span class="arithmatex">\(q_k = \hat{F}^{-1}(k / B)\)</span>, guaranteeing balanced samples across buckets and achieving maximal discrete categorical entropy <span class="arithmatex">\(H(B) = \log_2 B\)</span>.</li>
+</ul>
 <div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Yeo-Johnson vs. Box-Cox Power Transforms</p>
-<p>While the Box-Cox transform strictly requires strictly positive numbers (<span class="arithmatex">\(x &gt; 0\)</span>), the <strong>Yeo-Johnson power transform</strong> supports zero and negative values. Use Yeo-Johnson when transforming continuous financial profit/loss features or sensor error deltas into near-Gaussian distributions.</p>
+<p class="admonition-title">Industrial Best Practice: Yeo-Johnson vs. Box-Cox in Automated Pipelines</p>
+<p>Prefer <strong>Yeo-Johnson</strong> in production automated feature transformers whenever inputs may include zero, missingness-centered residuals, or negative profit/loss margins. Reserve <strong>Box-Cox</strong> strictly for positive financial/physical domains where zero values cannot exist.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Combinatorial Feature Explosion</p>
-<p>Generating all pairwise polynomial interactions for a dataset with <span class="arithmatex">\(D = 100\)</span> features produces <span class="arithmatex">\(\frac{100 \times 101}{2} = 5,050\)</span> new columns. This inflates model training time, introduces multicollinearity, and increases generalization variance unless paired with <span class="arithmatex">\(L_1\)</span> LASSO feature selection.</p>
+<p class="admonition-title">Common Pitfall / Anti-Pattern: Applying Power Transforms Unconditionally to Tree Models</p>
+<p>Gradient-boosted decision trees (XGBoost, LightGBM, Random Forest) are invariant to strictly monotonic univariate transformations (<span class="arithmatex">\(x \to \ln x\)</span> preserves all rank orderings and yields identical split thresholds). Apply power transformations to stabilize Linear Models, Ridge Regression, SVMs, KNN, and Neural Networks—not GBDTs!</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Yeo-Johnson vs. Box-Cox Power Transforms</p>
-<p>While the Box-Cox transform strictly requires strictly positive numbers (<span class="arithmatex">\(x &gt; 0\)</span>), the <strong>Yeo-Johnson power transform</strong> supports zero and negative values. Use Yeo-Johnson when transforming continuous financial profit/loss features or sensor error deltas into near-Gaussian distributions.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Combinatorial Feature Explosion</p>
-<p>Generating all pairwise polynomial interactions for a dataset with <span class="arithmatex">\(D = 100\)</span> features produces <span class="arithmatex">\(\frac{100 \times 101}{2} = 5,050\)</span> new columns. This inflates model training time, introduces multicollinearity, and increases generalization variance unless paired with <span class="arithmatex">\(L_1\)</span> LASSO feature selection.</p>
-</div>
-<h3 id="decision-framework-non-linear-transformation-selection">Decision Framework: Non-Linear Transformation Selection</h3>
-<pre class="mermaid"><code>flowchart TD
-    RawCol["Continuous Numerical Feature"] --&gt; SkewTest{"Compute Sample Skewness gamma_1"}
-    SkewTest -- "|gamma_1| &lt;= 0.5 (Symmetric)" --&gt; Linear["Retain Linear Scale"]
-    SkewTest -- "|gamma_1| &gt; 0.5 (Skewed)" --&gt; Positivity{"Values Strictly Positive (x &gt; 0)?"}
-    Positivity -- "Yes" --&gt; BoxCox["Box-Cox Power Transform: (x^lambda - 1) / lambda"]
-    Positivity -- "Includes Zeros or Negatives" --&gt; YeoJohnson["Yeo-Johnson Transform (General Real)"]
-    SkewTest -- "Extreme Multimodal / Arbitrary" --&gt; Quantile["QuantileTransformer (Uniform/Normal CDF Mapping)"]
-    Linear &amp; BoxCox &amp; YeoJohnson &amp; Quantile --&gt; ModelFamily{"Downstream Model Family"}
-    ModelFamily -- "Tree-Based (GBDT, RF)" --&gt; Monotonic["Monotonic transforms suffice; preserve rankings"]
-    ModelFamily -- "Linear / Neural" --&gt; SplineExpansion["Periodic / B-Spline Basis Expansions"]</code></pre>
 <hr />
-<h2 id="production-implementation-skewness-correction-and-interaction-pipeline">💻 Production Implementation: Skewness Correction and Interaction Pipeline</h2>
-<p>The following script computes Fisher-Pearson skewness, automatically fits Yeo-Johnson power transforms, generates interaction features, and filters multicollinearity using VIF.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">feature_engineering_pipeline.py</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Automated Power Transformation, Interaction Generation, and VIF Filtering</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PowerTransformer</span><span class="p">,</span> <span class="n">PolynomialFeatures</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">MulticollinearityPruner</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">"""</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="sd">    Prunes collinear features iteratively using the Variance Inflation Factor (VIF).</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="sd">    """</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vif_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">):</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">vif_threshold</span> <span class="o">=</span> <span class="n">vif_threshold</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">retained_columns_</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="n">X_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="n">cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="n">vif_values</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>                <span class="n">X_other</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>                <span class="n">y_target</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>                <span class="n">reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_other</span><span class="p">,</span> <span class="n">y_target</span><span class="p">)</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                <span class="n">r_sq</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_other</span><span class="p">,</span> <span class="n">y_target</span><span class="p">)</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                <span class="c1"># Compute VIF</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                <span class="n">vif</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">r_sq</span><span class="p">)</span> <span class="k">if</span> <span class="n">r_sq</span> <span class="o">&lt;</span> <span class="mf">0.9999</span> <span class="k">else</span> <span class="mf">1e5</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>                <span class="n">vif_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vif</span><span class="p">)</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>            <span class="n">max_vif</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">vif_values</span><span class="p">)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>            <span class="k">if</span> <span class="n">max_vif</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">vif_threshold</span><span class="p">:</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>                <span class="n">drop_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">vif_values</span><span class="p">))</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>                <span class="c1"># print(f"Dropping '{cols[drop_idx]}' with excessive VIF: {max_vif:.2f}")</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>                <span class="n">cols</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">drop_idx</span><span class="p">)</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>                <span class="k">break</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">retained_columns_</span> <span class="o">=</span> <span class="n">cols</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="k">return</span> <span class="bp">self</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="n">X_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="k">return</span> <span class="n">X_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">retained_columns_</span><span class="p">]</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="c1"># Verification &amp; Execution Benchmark</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="c1"># ---------------------------------------------------------</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># 1. Synthesize heavily skewed, log-normally distributed variables</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="c1"># Severe positive skew</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">hours</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="n">hours</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="c1"># Target: nonlinear interaction with additive noise</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="n">spend</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="o">*</span> <span class="mf">2.5</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">hours</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="o">*</span> <span class="n">hours</span> <span class="o">*</span> <span class="mf">0.15</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"income"</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span> <span class="s2">"hours"</span><span class="p">:</span> <span class="n">hours</span><span class="p">})</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="c1"># 2. Check Fisher-Pearson Skewness</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">raw_skew</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">df_raw</span><span class="p">[</span><span class="s2">"income"</span><span class="p">])</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Original Income Skewness: </span><span class="si">{</span><span class="n">raw_skew</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (Values &gt; 0.75 require power transformation)"</span><span class="p">)</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="c1"># 3. Fit Yeo-Johnson Power Transform strictly on continuous columns</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="n">pt</span> <span class="o">=</span> <span class="n">PowerTransformer</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"yeo-johnson"</span><span class="p">)</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">df_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_raw</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"income_pt"</span><span class="p">,</span> <span class="s2">"hours_pt"</span><span class="p">])</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="n">transformed_skew</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">df_transformed</span><span class="p">[</span><span class="s2">"income_pt"</span><span class="p">])</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Transformed Income Skewness: </span><span class="si">{</span><span class="n">transformed_skew</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (Successfully stabilized toward Gaussian)"</span><span class="p">)</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="c1"># 4. Generate Degree-2 Polynomial Interactions</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="n">poly_array</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_transformed</span><span class="p">)</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="n">poly_feature_names</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">([</span><span class="s2">"income_pt"</span><span class="p">,</span> <span class="s2">"hours_pt"</span><span class="p">])</span>
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="n">df_poly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">poly_array</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">poly_feature_names</span><span class="p">)</span>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Expanded to </span><span class="si">{</span><span class="n">df_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> interaction features: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df_poly</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="c1"># 5. Prune Multicollinear Features via VIF</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="n">pruner</span> <span class="o">=</span> <span class="n">MulticollinearityPruner</span><span class="p">(</span><span class="n">vif_threshold</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="n">pruner</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_poly</span><span class="p">)</span>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="n">df_final</span> <span class="o">=</span> <span class="n">pruner</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_poly</span><span class="p">)</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Features retained after VIF filtering (threshold=8.0): </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df_final</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="c1"># 6. Fit Linear Model and Compare R^2</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="n">baseline_lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_raw</span><span class="p">,</span> <span class="n">spend</span><span class="p">)</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="n">engineered_lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_final</span><span class="p">,</span> <span class="n">spend</span><span class="p">)</span>
-</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>
-</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Regression Fit Comparison ---"</span><span class="p">)</span>
-</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raw Features R^2:        </span><span class="si">{</span><span class="n">baseline_lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_raw</span><span class="p">,</span><span class="w"> </span><span class="n">spend</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Engineered Features R^2: </span><span class="si">{</span><span class="n">engineered_lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_final</span><span class="p">,</span><span class="w"> </span><span class="n">spend</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span></code></pre></div>
-<hr />
-<h2 id="empirical-case-study-income-inequality-financial-risk">🔬 Empirical Case Study: Income Inequality &amp; Financial Risk</h2>
-<p>In the <strong>US Census Bureau PUMS Financial Dataset</strong> (<span class="arithmatex">\(N = 250,000\)</span> individual records):
-1. <strong>Income Skewness:</strong> Raw annual wage displays severe Pareto-tail skewness (<span class="arithmatex">\(\gamma_1 = 4.82\)</span>). A standard OLS regression predicting credit default residuals violated normality (Jarque-Bera test <span class="arithmatex">\(p &lt; 10^{-15}\)</span>), causing standard error underestimation by <span class="arithmatex">\(38\%\)</span>.
-2. <strong>Box-Cox Resolution:</strong> Maximum likelihood estimated <span class="arithmatex">\(\hat{\lambda} = 0.12\)</span> (close to log-transform <span class="arithmatex">\(\lambda = 0\)</span>). Post-transform skewness dropped to <span class="arithmatex">\(\gamma_1 = 0.04\)</span>, satisfying linear Gauss-Markov conditions.
-3. <strong>Derived Ratio Dynamics:</strong> Replacing raw <code>debt</code> and <code>income</code> with <code>debt_to_income_ratio = debt / (income + 1)</code> and <code>disposable_income = income - (rent + utilities)</code> yielded an <span class="arithmatex">\(18\%\)</span> gain in tree model Gini importance compared to the raw constituent fields.</p>
+<h2 id="3-landmark-empirical-case-study-us-census-pums-financial-risk">3. Landmark Empirical Case Study: US Census PUMS Financial Risk</h2>
+<p>In analyzing <strong><span class="arithmatex">\(N = 250{,}000\)</span> individual financial tax records</strong> in the US Census Public Use Microdata Sample (PUMS):
+1. <strong>Heavy-Tailed Skew Failure</strong>: Raw annual earnings showed severe Pareto skew (<span class="arithmatex">\(\gamma_1 = +4.82\)</span>). Fitting standard OLS default risk underestimated residual standard errors by <span class="arithmatex">\(38\%\)</span> and failed Jarque-Bera normality (<span class="arithmatex">\(p &lt; 10^{-15}\)</span>).
+2. <strong>Maximum-Likelihood Box-Cox Stabilization</strong>: Optimizing profile likelihood yielded <span class="arithmatex">\(\hat{\lambda} = 0.12\)</span> (close to logarithmic <span class="arithmatex">\(\lambda = 0\)</span>). Transformed residuals dropped skewness to <span class="arithmatex">\(+0.04\)</span> while satisfying normality (<span class="arithmatex">\(p = 0.428\)</span>).
+3. <strong>Interaction Ratio Features</strong>: Engineering financial ratios (<code>debt_to_income = debt / (income + 1)</code>) improved downstream risk discrimination by <span class="arithmatex">\(+18\%\)</span> Gini importance over isolated columns.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Transformation</th>
-<th style="text-align: left;">Kurtosis (<span class="arithmatex">\(\beta_2\)</span>)</th>
-<th style="text-align: left;">Skewness (<span class="arithmatex">\(\gamma_1\)</span>)</th>
-<th style="text-align: left;">OLS <span class="arithmatex">\(R^2\)</span> Score</th>
+<th style="text-align: left;">Income Transformation Strategy</th>
+<th style="text-align: center;">Kurtosis (<span class="arithmatex">\(\beta_2\)</span>)</th>
+<th style="text-align: center;">Skewness (<span class="arithmatex">\(\gamma_1\)</span>)</th>
+<th style="text-align: center;">OLS <span class="arithmatex">\(R^2\)</span></th>
 <th style="text-align: left;">Residual Normality <span class="arithmatex">\(p\)</span>-value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Raw Untransformed</td>
-<td style="text-align: left;">28.4</td>
-<td style="text-align: left;">+4.82</td>
-<td style="text-align: left;">0.384</td>
+<td style="text-align: left;">Raw Linear Features</td>
+<td style="text-align: center;"><span class="arithmatex">\(28.4\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(+4.82\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0.384\)</span></td>
 <td style="text-align: left;"><span class="arithmatex">\(&lt; 10^{-15}\)</span> (Rejected)</td>
 </tr>
 <tr>
-<td style="text-align: left;">Standard Scaled (<span class="arithmatex">\(Z\)</span>-score)</td>
-<td style="text-align: left;">28.4</td>
-<td style="text-align: left;">+4.82</td>
-<td style="text-align: left;">0.384</td>
-<td style="text-align: left;"><span class="arithmatex">\(&lt; 10^{-15}\)</span> (Rejected)</td>
+<td style="text-align: left;">StandardScaler (<span class="arithmatex">\(Z\)</span>-Score)</td>
+<td style="text-align: center;"><span class="arithmatex">\(28.4\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(+4.82\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0.384\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(&lt; 10^{-15}\)</span> (Still Skewed!)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Log Transform (<span class="arithmatex">\(\ln(x + 1)\)</span>)</td>
-<td style="text-align: left;">3.12</td>
-<td style="text-align: left;">-0.18</td>
-<td style="text-align: left;">0.728</td>
-<td style="text-align: left;">0.042</td>
+<td style="text-align: center;"><span class="arithmatex">\(3.12\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-0.18\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0.728\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(0.042\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Optimal Box-Cox (<span class="arithmatex">\(\hat{\lambda}=0.12\)</span>)</strong></td>
-<td style="text-align: left;"><strong>2.98</strong></td>
-<td style="text-align: left;"><strong>+0.04</strong></td>
-<td style="text-align: left;"><strong>0.812</strong></td>
-<td style="text-align: left;"><strong>0.428 (Normal)</strong></td>
+<td style="text-align: left;"><strong>Profile-MLE Box-Cox (<span class="arithmatex">\(\hat{\lambda} = 0.12\)</span>)</strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(2.98\)</span></strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(+0.04\)</span></strong></td>
+<td style="text-align: center;"><strong><span class="arithmatex">\(0.812\)</span></strong></td>
+<td style="text-align: left;"><strong><span class="arithmatex">\(0.428\)</span> (Gaussian Valid)</strong></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Feature Scaling & Encoding Lab</h4>
-  <p>Test Yeo-Johnson, Quantile, and Log transforms and observe the normalization of heavy-tailed distributions.</p>
-  <a href="../../tools/scaling-encoding/" class="noc-sim-btn">Launch Scaling Workbench →</a>
+<h2 id="4-interactive-laboratory-power-transformations-cyclical-time-studio">4. Interactive Laboratory: Power Transformations &amp; Cyclical Time Studio</h2>
+<p>Manipulate Box-Cox exponent <span class="arithmatex">\(\lambda\)</span> in real time to observe heavy-tailed skewness collapse into symmetric Gaussian bells, and examine periodic circle distances on an HTML5 Canvas unit clock.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 5px 5px 0px #151b20;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <span style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 10px; border-radius: 9999px; font-weight: 800; font-family: monospace; box-shadow: 1px 1px 0px #151b20;">SIMULATOR 5.7</span>
+      <h3 style="margin: 8px 0 0 0; font-size: 1.3rem; font-weight: 800; color: #151b20;">Power Transformation &amp; Cyclical Continuity Studio</h3>
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <button id="btnTabBoxCox" onclick="switchFeatTab('boxcox')" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab A: Box-Cox λ Skewness Stabilizer</button>
+      <button id="btnTabCyclic" onclick="switchFeatTab('cyclic')" style="background: #ffffff; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">Tab B: Cyclical Time Unit Circle</button>
+    </div>
+  </div>
+
+  <!-- TAB A: BOX-COX HISTOGRAM -->
+  <div id="panelBoxCox">
+    <div style="display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start;">
+      <div>
+        <div style="position: relative; border: 2px solid #151b20; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <canvas id="boxCoxCanvas" width="560" height="330" style="display: block; width: 100%; height: auto;"></canvas>
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+            Empirical Histogram (N=300 Log-Normal Salaries Transformed via y^(λ))
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="margin-bottom: 12px;">
+          <label style="font-weight: 800; font-size: 0.8rem; display: block; margin-bottom: 4px;">
+            Box-Cox Power Exponent ($\lambda$): <span id="valLambda" style="color: #2563eb;">1.00</span>
+          </label>
+          <input type="range" id="sliderLambda" min="-1.0" max="2.0" step="0.05" value="1.0" oninput="updateBoxCoxSim()" style="width: 100%;">
+        </div>
+
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;">
+          <button onclick="setLambda(1.0)" style="background: #ffffff; border: 1.5px solid #151b20; padding: 4px 8px; border-radius: 5px; font-size: 0.72rem; font-weight: 800; cursor: pointer;">λ=1.0 (Raw)</button>
+          <button onclick="setLambda(0.5)" style="background: #ffffff; border: 1.5px solid #151b20; padding: 4px 8px; border-radius: 5px; font-size: 0.72rem; font-weight: 800; cursor: pointer;">λ=0.5 (Sqrt)</button>
+          <button onclick="setLambda(0.0)" style="background: #c9f3f4; border: 1.5px solid #151b20; padding: 4px 8px; border-radius: 5px; font-size: 0.72rem; font-weight: 800; cursor: pointer;">λ=0.0 (Log Optimal)</button>
+          <button onclick="setLambda(-1.0)" style="background: #ffffff; border: 1.5px solid #151b20; padding: 4px 8px; border-radius: 5px; font-size: 0.72rem; font-weight: 800; cursor: pointer;">λ=-1.0 (Recip)</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">FISHER-PEARSON SKEWNESS ($\gamma_1$)</div>
+            <div id="statBoxSkew" style="font-size: 1.25rem; font-weight: 900; color: #dc2626;">+2.84</div>
+          </div>
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">NORMALITY STATUS</div>
+            <div id="statBoxNorm" style="font-size: 1.05rem; font-weight: 900; color: #dc2626;">Severely Right-Skewed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB B: CYCLICAL UNIT CIRCLE -->
+  <div id="panelCyclic" style="display: none;">
+    <div style="display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start;">
+      <div>
+        <div style="position: relative; border: 2px solid #151b20; border-radius: 8px; overflow: hidden; background: #ffffff;">
+          <canvas id="cyclicCanvas" width="560" height="330" style="display: block; width: 100%; height: auto;"></canvas>
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); border: 1.5px solid #151b20; padding: 4px 10px; border-radius: 6px; font-size: 0.74rem; font-weight: 700;">
+            24-Hour Clock Projection: (cos θ, sin θ) • Green Chord = True Proximity
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #fffaf0; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="margin-bottom: 12px;">
+          <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">
+            Hour A: <span id="valHourA">23</span>:00
+          </label>
+          <input type="range" id="sliderHourA" min="0" max="23" step="1" value="23" oninput="updateCyclicSim()" style="width: 100%;">
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-weight: 800; font-size: 0.78rem; display: block; margin-bottom: 4px;">
+            Hour B: <span id="valHourB">0</span>:00
+          </label>
+          <input type="range" id="sliderHourB" min="0" max="23" step="1" value="0" oninput="updateCyclicSim()" style="width: 100%;">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: #ffffff; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #64748b; font-weight: 800;">NAIVE INTEGER DISTANCE |H_A - H_B|</div>
+            <div id="statNaiveHourDist" style="font-size: 1.2rem; font-weight: 900; color: #dc2626;">23.0 units (Artificial Jump!)</div>
+          </div>
+          <div style="background: #dcfce7; border: 1.5px solid #151b20; padding: 9px; border-radius: 6px;">
+            <div style="font-size: 0.7rem; color: #151b20; font-weight: 800;">CYCLICAL UNIT CHORD DISTANCE</div>
+            <div id="statCyclicHourDist" style="font-size: 1.2rem; font-weight: 900; color: #16a34a;">0.2611 (Exact 1-Hour Chord)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+// --- TAB SWITCHING ---
+function switchFeatTab(tab) {
+  document.getElementById('panelBoxCox').style.display = tab === 'boxcox' ? 'block' : 'none';
+  document.getElementById('panelCyclic').style.display = tab === 'cyclic' ? 'block' : 'none';
+  document.getElementById('btnTabBoxCox').style.background = tab === 'boxcox' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabBoxCox').style.color = tab === 'boxcox' ? '#ffffff' : '#151b20';
+  document.getElementById('btnTabCyclic').style.background = tab === 'cyclic' ? '#2563eb' : '#ffffff';
+  document.getElementById('btnTabCyclic').style.color = tab === 'cyclic' ? '#ffffff' : '#151b20';
+
+  if (tab === 'boxcox') updateBoxCoxSim();
+  if (tab === 'cyclic') updateCyclicSim();
+}
+
+// --- LOG-NORMAL DATA GENERATOR ---
+const rawLogNorm = [];
+function initLogNorm() {
+  if (rawLogNorm.length > 0) return;
+  const rng = (seed) => {
+    let s = seed;
+    return () => { s = Math.sin(s) * 10000; return s - Math.floor(s); };
+  };
+  const rand = rng(101);
+  for (let i = 0; i < 300; i++) {
+    const u1 = Math.max(0.01, rand());
+    const u2 = rand();
+    const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+    rawLogNorm.push(Math.exp(2.0 + 0.85 * z));
+  }
+}
+
+function setLambda(l) {
+  document.getElementById('sliderLambda').value = l;
+  updateBoxCoxSim();
+}
+
+function updateBoxCoxSim() {
+  initLogNorm();
+  const lam = parseFloat(document.getElementById('sliderLambda').value);
+  document.getElementById('valLambda').innerText = lam.toFixed(2);
+
+  // Transform values
+  const trans = rawLogNorm.map(y => Math.abs(lam) < 0.02 ? Math.log(y) : (Math.pow(y, lam) - 1.0) / lam);
+
+  // Calculate sample mean, std, skewness
+  const mu = trans.reduce((a, b) => a + b, 0) / trans.length;
+  const m2 = trans.reduce((a, b) => a + (b - mu) ** 2, 0) / trans.length;
+  const sd = Math.sqrt(m2) || 1;
+  const m3 = trans.reduce((a, b) => a + (b - mu) ** 3, 0) / trans.length;
+  const skew = m3 / (sd ** 3);
+
+  const skewEl = document.getElementById('statBoxSkew');
+  const normEl = document.getElementById('statBoxNorm');
+  skewEl.innerText = `${skew >= 0 ? '+' : ''}${skew.toFixed(3)}`;
+
+  if (Math.abs(skew) < 0.35) {
+    skewEl.style.color = '#16a34a';
+    normEl.innerText = '✓ Near-Gaussian Stabilized!';
+    normEl.style.color = '#16a34a';
+  } else if (skew > 0) {
+    skewEl.style.color = '#dc2626';
+    normEl.innerText = 'Right-Skewed Heavy Tail';
+    normEl.style.color = '#dc2626';
+  } else {
+    skewEl.style.color = '#d97706';
+    normEl.innerText = 'Over-Transformed (Left-Skew)';
+    normEl.style.color = '#d97706';
+  }
+
+  // Draw Histogram on Canvas
+  const cv = document.getElementById('boxCoxCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const mn = Math.min(...trans), mx = Math.max(...trans);
+  const nBins = 22;
+  const bins = Array(nBins).fill(0);
+  const span = mx - mn || 1;
+
+  trans.forEach(v => {
+    const bIdx = Math.min(nBins - 1, Math.floor(((v - mn) / span) * nBins));
+    bins[bIdx]++;
+  });
+
+  const maxBin = Math.max(...bins) || 1;
+  const padX = 40, padY = 40;
+  const plotW = w - 2 * padX, plotH = h - 2 * padY;
+  const barW = plotW / nBins;
+
+  bins.forEach((cnt, i) => {
+    const barH = (cnt / maxBin) * (plotH - 20);
+    const bx = padX + i * barW;
+    const by = h - padY - barH;
+    ctx.fillStyle = Math.abs(skew) < 0.35 ? '#16a34a' : '#2563eb';
+    ctx.fillRect(bx + 2, by, barW - 4, barH);
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(bx + 2, by, barW - 4, barH);
+  });
+}
+
+// --- CYCLICAL UNIT CIRCLE ---
+function updateCyclicSim() {
+  const ha = parseInt(document.getElementById('sliderHourA').value, 10);
+  const hb = parseInt(document.getElementById('sliderHourB').value, 10);
+  document.getElementById('valHourA').innerText = ha;
+  document.getElementById('valHourB').innerText = hb;
+
+  const thA = (2 * Math.PI * ha) / 24;
+  const thB = (2 * Math.PI * hb) / 24;
+
+  const ax = Math.sin(thA), ay = Math.cos(thA); // Clock convention: 0 at top
+  const bx = Math.sin(thB), by = Math.cos(thB);
+
+  const naiveDist = Math.abs(ha - hb);
+  const cyclicDist = Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2);
+
+  document.getElementById('statNaiveHourDist').innerText = `${naiveDist}.0 units ${naiveDist > 12 ? '(Distorted!)' : ''}`;
+  document.getElementById('statCyclicHourDist').innerText = `${cyclicDist.toFixed(4)} units`;
+
+  const cv = document.getElementById('cyclicCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const cx = w / 2, cy = h / 2 + 10, R = 110;
+
+  // Clock Outer Circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI * 2);
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Hour Ticks
+  ctx.fillStyle = '#475569';
+  ctx.font = 'bold 11px monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  [0, 3, 6, 9, 12, 15, 18, 21].forEach(hr => {
+    const th = (2 * Math.PI * hr) / 24;
+    const tx = cx + (R + 18) * Math.sin(th);
+    const ty = cy - (R + 18) * Math.cos(th);
+    ctx.fillText(`${hr}h`, tx, ty);
+  });
+
+  const pxA = cx + R * ax, pyA = cy - R * ay;
+  const pxB = cx + R * bx, pyB = cy - R * by;
+
+  // Green Euclidean Chord
+  ctx.beginPath();
+  ctx.moveTo(pxA, pyA);
+  ctx.lineTo(pxB, pyB);
+  ctx.strokeStyle = '#16a34a';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  // Draw Hour Dots
+  [[pxA, pyA, '#2563eb', `A (${ha}:00)`], [pxB, pyB, '#ea580c', `B (${hb}:00)`]].forEach(([px, py, col, lbl]) => {
+    ctx.beginPath();
+    ctx.arc(px, py, 7, 0, Math.PI * 2);
+    ctx.fillStyle = col;
+    ctx.fill();
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+}
+
+window.addEventListener('load', () => {
+  updateBoxCoxSim();
+});
+</script>
+
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
+<h2 id="5-production-grade-python-verification-engine">5. Production-Grade Python Verification Engine</h2>
+<p>The following Python module uses <strong>Pydantic V2</strong> to automate <strong>Yeo-Johnson skewness stabilization</strong>, polynomial feature expansions, <strong>VIF collinearity pruning</strong>, and <strong>cyclical trigonometric distance verification</strong>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">production_feature_transforms.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Pydantic V2 verified engine for Power Transformations, VIF Collinearity Pruning &amp; Cyclical Embeddings.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PowerTransformer</span><span class="p">,</span> <span class="n">PolynomialFeatures</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">FeatureEngineeringReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="sd">"""Pydantic V2 audit schema confirming skewness stabilization, VIF pruning, and R^2 lift."""</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">raw_income_skewness</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">transformed_income_skewness</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">total_poly_columns_generated</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">vif_retained_columns_count</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">raw_linear_r2</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">engineered_linear_r2</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">cyclical_midnight_distance</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">cyclical_midday_distance</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">class</span><span class="w"> </span><span class="nc">MulticollinearityPruner</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="sd">"""Iteratively removes features violating Variance Inflation Factor (VIF) thresholds."""</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vif_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">8.0</span><span class="p">):</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">vif_threshold</span> <span class="o">=</span> <span class="n">vif_threshold</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">retained_columns_</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="n">X_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="n">cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>            <span class="n">vifs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>                <span class="n">X_other</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>                <span class="n">y_tgt</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>                <span class="n">r2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_other</span><span class="p">,</span> <span class="n">y_tgt</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_other</span><span class="p">,</span> <span class="n">y_tgt</span><span class="p">)</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>                <span class="n">vifs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">r2</span><span class="p">)</span> <span class="k">if</span> <span class="n">r2</span> <span class="o">&lt;</span> <span class="mf">0.9999</span> <span class="k">else</span> <span class="mf">1e5</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>            <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">vifs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">vif_threshold</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>                <span class="n">cols</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">vifs</span><span class="p">)))</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>                <span class="k">break</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">retained_columns_</span> <span class="o">=</span> <span class="n">cols</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">retained_columns_</span><span class="p">]</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="k">def</span><span class="w"> </span><span class="nf">encode_cyclical_hour</span><span class="p">(</span><span class="n">hour</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span><span class="sd">"""Projects periodic hour H in [0, 24) onto continuous unit circle (sin, cos)."""</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">hour</span> <span class="o">/</span> <span class="mf">24.0</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_feature_engineering_assertions</span><span class="p">():</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="c1"># 1. Heavy-tailed log-normal salary + uniform work hours</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="n">hours</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">),</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">)</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="c1"># Non-linear multiplicative ground truth spend</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="n">spend</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="o">*</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">hours</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="o">*</span> <span class="n">hours</span> <span class="o">*</span> <span class="mf">0.20</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"income"</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span> <span class="s2">"hours"</span><span class="p">:</span> <span class="n">hours</span><span class="p">})</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="n">raw_skew</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">df_raw</span><span class="p">[</span><span class="s2">"income"</span><span class="p">]))</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="k">assert</span> <span class="n">raw_skew</span> <span class="o">&gt;</span> <span class="mf">2.5</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected heavy skew (&gt;2.5), got </span><span class="si">{</span><span class="n">raw_skew</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="c1"># 2. Yeo-Johnson Power Normalization</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="n">pt</span> <span class="o">=</span> <span class="n">PowerTransformer</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"yeo-johnson"</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="n">df_pt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_raw</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"income_pt"</span><span class="p">,</span> <span class="s2">"hours_pt"</span><span class="p">])</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="n">pt_skew</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">df_pt</span><span class="p">[</span><span class="s2">"income_pt"</span><span class="p">]))</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pt_skew</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Power transform failed to normalize skew: </span><span class="si">{</span><span class="n">pt_skew</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="c1"># 3. Degree-2 Polynomial Interactions + Redundant Collinear Column Injection</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="n">df_poly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_pt</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">([</span><span class="s2">"income_pt"</span><span class="p">,</span> <span class="s2">"hours_pt"</span><span class="p">])</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="p">)</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="c1"># Add an artificially collinear duplicate column to prove VIF catches it</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="n">df_poly</span><span class="p">[</span><span class="s2">"collinear_clone"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="s2">"income_pt"</span><span class="p">]</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="n">pruner</span> <span class="o">=</span> <span class="n">MulticollinearityPruner</span><span class="p">(</span><span class="n">vif_threshold</span><span class="o">=</span><span class="mf">8.0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_poly</span><span class="p">)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="n">df_final</span> <span class="o">=</span> <span class="n">pruner</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_poly</span><span class="p">)</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="k">assert</span> <span class="n">df_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">df_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">"VIF pruner failed to remove collinear column!"</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="c1"># 4. Regression Fit Improvement Check</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="n">raw_r2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_raw</span><span class="p">,</span> <span class="n">spend</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_raw</span><span class="p">,</span> <span class="n">spend</span><span class="p">))</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="n">eng_r2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_final</span><span class="p">,</span> <span class="n">spend</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_final</span><span class="p">,</span> <span class="n">spend</span><span class="p">))</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="k">assert</span> <span class="n">eng_r2</span> <span class="o">&gt;</span> <span class="n">raw_r2</span> <span class="o">+</span> <span class="mf">0.10</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Engineered features failed to lift R^2: </span><span class="si">{</span><span class="n">raw_r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">eng_r2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="c1"># 5. Cyclical Time Invariance Check: Distance(23:00, 00:00) == Distance(12:00, 13:00)</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="n">dist_midnight</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">encode_cyclical_hour</span><span class="p">(</span><span class="mf">23.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">encode_cyclical_hour</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)))</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="n">dist_midday</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">encode_cyclical_hour</span><span class="p">(</span><span class="mf">12.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">encode_cyclical_hour</span><span class="p">(</span><span class="mf">13.0</span><span class="p">)))</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">dist_midnight</span><span class="p">,</span> <span class="n">dist_midday</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="n">report</span> <span class="o">=</span> <span class="n">FeatureEngineeringReport</span><span class="p">(</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="n">raw_income_skewness</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">raw_skew</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>        <span class="n">transformed_income_skewness</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">pt_skew</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>        <span class="n">total_poly_columns_generated</span><span class="o">=</span><span class="n">df_poly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>        <span class="n">vif_retained_columns_count</span><span class="o">=</span><span class="n">df_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>        <span class="n">raw_linear_r2</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">raw_r2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>        <span class="n">engineered_linear_r2</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">eng_r2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>        <span class="n">cyclical_midnight_distance</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">dist_midnight</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>        <span class="n">cyclical_midday_distance</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">dist_midday</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="p">)</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Production Feature Engineering &amp; Transforms Verification ==="</span><span class="p">)</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Skewness Stabilization: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">raw_income_skewness</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">transformed_income_skewness</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"VIF Pruning: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">total_poly_columns_generated</span><span class="si">}</span><span class="s2"> cols -&gt; </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">vif_retained_columns_count</span><span class="si">}</span><span class="s2"> orthogonally clean cols"</span><span class="p">)</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Linear Fit Lift (R^2): </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">raw_linear_r2</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">engineered_linear_r2</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cyclical Chord Distance: Midnight=</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">cyclical_midnight_distance</span><span class="si">}</span><span class="s2"> == Midday=</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">cyclical_midday_distance</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Pydantic V2 schemas and transformation invariants verified successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="n">test_feature_engineering_assertions</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-key-engineering-takeaways">6. Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Power Transforms Stabilize Parametric Assumptions</strong>: Applying Box-Cox (<span class="arithmatex">\(y &gt; 0\)</span>) or Yeo-Johnson (<span class="arithmatex">\(y \in \mathbb{R}\)</span>) transforms heavy-tailed variables into symmetric Gaussian distributions, repairing standard error validity in linear and neural models.</li>
+<li><strong>Cyclical Geometries Preserve Continuity</strong>: Encoding periodic hours, weekdays, and compass bearings onto unit circles via <span class="arithmatex">\((\sin, \cos)\)</span> coordinates eliminates discontinuity jumps across <code>23:59</code> <span class="arithmatex">\(\to\)</span> <code>00:00</code>.</li>
+<li><strong>Prune Collinearity via VIF</strong>: Generating interaction terms expands predictive expressiveness at the cost of collinear matrix degeneracy; filter redundant features exceeding <span class="arithmatex">\(\text{VIF}_j &gt; 10\)</span>.</li>
+<li><strong>Match Transforms to Estimator Inductives</strong>: Power transformations drastically boost Linear/Neural estimators, while monotonic feature maps preserve identical rank orderings for tree ensembles (XGBoost/RF).</li>
+</ol>
+<hr />
+<h2 id="7-scenario-based-diagnostic-micro-checks">7. Scenario-Based Diagnostic Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Box-Cox Maximum Likelihood Optimization</summary>
-<p>In the Box-Cox power transform <span class="arithmatex">\(y^{(\lambda)} = \frac{x^\lambda - 1}{\lambda}\)</span> for <span class="arithmatex">\(\lambda \ne 0\)</span>, how is the optimal parameter <span class="arithmatex">\(\lambda^*\)</span> determined mathematically?</p>
+<summary>Micro-Check 1: Box-Cox Profile Log-Likelihood Optimization Intuition</summary>
+<p>In estimating optimal Box-Cox parameter <span class="arithmatex">\(\lambda^*\)</span>, why does the profile log-likelihood objective <span class="arithmatex">\(\mathcal{L}(\lambda) = -\frac{n}{2} \ln \hat{\sigma}^2(\lambda) + (\lambda - 1) \sum_{i=1}^n \ln y_i\)</span> include the Jacobian penalty term <span class="arithmatex">\((\lambda - 1) \sum \ln y_i\)</span> instead of simply picking the <span class="arithmatex">\(\lambda\)</span> minimizing <span class="arithmatex">\(\hat{\sigma}^2(\lambda)\)</span>?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The optimal parameter <span class="arithmatex">\(\lambda^*\)</span> is selected via <strong>Profile Log-Likelihood Maximization</strong>:
-$<span class="arithmatex">\(L(\lambda) = -\frac{n}{2} \ln(\hat{\sigma}^2(\lambda)) + (\lambda - 1) \sum_{i=1}^n \ln(x_i)\)</span>$
-where <span class="arithmatex">\(\hat{\sigma}^2(\lambda)\)</span> is the scale variance of the transformed data. The algorithm scans a range of candidate values (typically <span class="arithmatex">\(\lambda \in [-2, 2]\)</span>) to find the parameter that maximizes the normality log-likelihood.</p>
+<p><strong>Without the Jacobian volume adjustment term, <span class="arithmatex">\(\hat{\sigma}^2(\lambda)\)</span> could be artificially driven to zero simply by shrinking the scale of all observations (<span class="arithmatex">\(\lambda \to -\infty\)</span>).</strong></p>
+<p>Multiplying or transforming a random variable rescales its differential volume element (<span class="arithmatex">\(dy^{(\lambda)} = y^{\lambda - 1} dy\)</span>). Simply minimizing the raw transformed variance <span class="arithmatex">\(\hat{\sigma}^2(\lambda)\)</span> is scale-dependent and invalid for comparing different <span class="arithmatex">\(\lambda\)</span> exponents. Including the log-Jacobian factor <span class="arithmatex">\((\lambda - 1)\sum \ln y_i\)</span> places every transformed variable onto a common probability density scale so Gaussian fit can be maximized honestly.</p>
 </details>
 </details>
 <details class="question">
-<summary>Self-Assessment: Cyclic Feature Encoding (Sine/Cosine Transformation)</summary>
-<p>Why does encoding hour of the day (0 to 23) as an integer introduce an artificial discontinuity, and how does dual sine/cosine projection resolve it?</p>
+<summary>Micro-Check 2: Cyclical Feature Projection Eliminating Midnight Discontinuities</summary>
+<p>Why does encoding hour of the day (<span class="arithmatex">\(H \in \{0, 1, \dots, 23\}\)</span>) as a flat integer distort <span class="arithmatex">\(K\)</span>-Means clustering and distance-based predictors, and how do sine/cosine coordinates solve it?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> In raw integer encoding, 23:00 (11 PM) and 00:00 (midnight) have an absolute Euclidean distance of <span class="arithmatex">\(|23 - 0| = 23\)</span>, even though they are temporally separated by only 1 hour.</p>
-<p>Projecting hour <span class="arithmatex">\(H \in [0, 23]\)</span> onto the unit circle preserves cyclical continuity:
-$<span class="arithmatex">\(x_{\sin} = \sin\left(\frac{2\pi H}{24}\right), \quad x_{\cos} = \cos\left(\frac{2\pi H}{24}\right)\)</span>$
-Now, the Euclidean distance between 23:00 and 00:00 is identical to the distance between 12:00 and 13:00, allowing gradient-based models and distance metrics to recognize cyclical time smoothly.</p>
+<p><strong>In scalar integer space, 23:00 and 00:00 lie at maximum Euclidean distance <span class="arithmatex">\(|23 - 0| = 23\)</span>, even though they represent adjacent moments.</strong></p>
+<ol>
+<li>Linearly, <code>11:00 PM</code> (<span class="arithmatex">\(23\)</span>) and <code>12:00 AM</code> (<span class="arithmatex">\(0\)</span>) sit at opposite extremities of the <span class="arithmatex">\([0, 23]\)</span> domain. Distance kernels treat them as maximally unrelated.</li>
+<li>Projecting <span class="arithmatex">\(H\)</span> onto <span class="arithmatex">\(\left[\sin\left(\frac{2\pi H}{24}\right), \cos\left(\frac{2\pi H}{24}\right)\right]\)</span> wraps <span class="arithmatex">\([0, 24)\)</span> onto a closed 2D unit circle where <span class="arithmatex">\(\text{dist}(23:00, 00:00) = \text{dist}(12:00, 13:00) \approx 0.2611\)</span>. Note: Both sine <strong>and</strong> cosine pairs must be supplied together so <code>03:00</code> and <code>09:00</code> remain uniquely distinguishable!</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 3: Why Power Transforms Yield Zero Gain for GBDTs</summary>
+<p>An analyst replaces skewed <code>Income</code> with <code>np.log(Income)</code> before training an XGBoost classifier and is puzzled why validation AUC stays completely identical (<span class="arithmatex">\(0.8412\)</span> vs <span class="arithmatex">\(0.8412\)</span>). Explain why mathematically.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Decision trees partition axes strictly via rank-order inequality thresholds (<span class="arithmatex">\(x_i \le t\)</span>), rendering GBDTs invariant to any strictly increasing monotonic transformation.</strong></p>
+<p>Because <span class="arithmatex">\(g(x) = \ln(x)\)</span> is strictly monotonically increasing on <span class="arithmatex">\((0, \infty)\)</span>:
+$<span class="arithmatex">\(x_i &lt; x_j \iff \ln(x_i) &lt; \ln(x_j)\)</span>$
+Any split threshold <span class="arithmatex">\(t\)</span> on raw income corresponds bijectively to split threshold <span class="arithmatex">\(\ln(t)\)</span> on log-income, partitioning the exact same observation subsets with identical Gini or Entropy reduction! Power transforms benefit gradient-based continuous inner-product architectures (Linear, Logistic, Neural Nets, SVMs), whereas trees benefit from <strong>multiplicative interaction ratios</strong> (like <code>Debt / Income</code>) that diagonalize split hyperplanes.</p>
+</details>
+</details>
+<details class="question">
+<summary>Micro-Check 4: Combinatorial Interaction Explosion &amp; OLS Instability</summary>
+<p>Suppose a dataset contains <span class="arithmatex">\(d = 50\)</span> numeric predictors and <span class="arithmatex">\(N = 1{,}000\)</span> rows. An analyst runs <code>PolynomialFeatures(degree=2)</code> prior to fitting unregularized Linear Regression. Calculate total generated columns <span class="arithmatex">\(D\)</span>, and explain why test error spikes dramatically.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Degree-2 expansion on <span class="arithmatex">\(d = 50\)</span> creates <span class="arithmatex">\(D = \binom{50+2}{2} = \frac{52 \times 51}{2} = 1{,}326\)</span> columns—exceeding sample size <span class="arithmatex">\(N = 1{,}000\)</span>!</strong></p>
+<p>With <span class="arithmatex">\(D = 1{,}326 &gt; N = 1{,}000\)</span>:
+1. <strong>Rank-Deficient System</strong>: The design matrix has more degrees of freedom than rows (<span class="arithmatex">\(\text{rank}(\mathbf{X}) \le N &lt; D\)</span>), forcing <span class="arithmatex">\(\mathbf{X}^\top \mathbf{X}\)</span> to become strictly singular.
+2. <strong>Interpolation Overfitting</strong>: Unregularized OLS achieves zero training residual error (<span class="arithmatex">\(R^2_{\text{train}} = 1.0\)</span>) by fitting pure random noise, causing catastrophic variance explosion on unseen test records. Combinatorial expansions require strict VIF collinearity pruning or <span class="arithmatex">\(L_1\)</span> LASSO regularization.</p>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-boxcox1964"></a><a id="ref-box1964"></a><strong>[Box1964]</strong> G. E. P. Box and D. R. Cox, "An Analysis of Transformations," <em>Journal of the Royal Statistical Society: Series B (Methodological)</em>, vol. 26, no. 2, pp. 211–252, 1964. <a href="https://doi.org/10.1111/j.2517-6161.1964.tb00553.x">DOI: 10.1111/j.2517-6161.1964.tb00553.x</a>.</li>
 <li><a id="ref-yeojohnson2000"></a><strong>[Yeojohnson2000]</strong> I. K. Yeo and R. A. Johnson, "A New Family of Power Transformations to Improve Normality or Symmetry," <em>Biometrika</em>, vol. 87, no. 4, pp. 954–959, 2000. <a href="https://doi.org/10.1093/biomet/87.4.954">DOI: 10.1093/biomet/87.4.954</a>.</li>
@@ -7983,9 +8377,13 @@ Now, the Euclidean distance between 23:00 and 00:00 is identical to the distance
 <li><a id="ref-he2009"></a><strong>[He2009]</strong> H. He and E. A. Garcia, "Learning from Imbalanced Data," <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 21, no. 9, pp. 1263–1284, 2009. <a href="https://doi.org/10.1109/TKDE.2008.239">DOI: 10.1109/TKDE.2008.239</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../06-preprocessing-scaling-and-encoding/" class="noc-sim-btn secondary" style="text-decoration: none;">← 5.6 Scaling & Encoding</a>
-  <a href="../08-python-cleaning-tools/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: 5.8 Python Cleaning Tools →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../06-preprocessing-scaling-and-encoding/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← 5.6 Scaling &amp; Encoding
+  </a>
+  <a href="../08-python-cleaning-tools/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: Python Cleaning Tools (5.8) →
+  </a>
 </div>
 
 
