@@ -1,2733 +1,1733 @@
-window.LESSON_TIMINGS = window.LESSON_TIMINGS || {
-  "ch1_p1_duo": {
+window.LESSON_TIMINGS = {
+  "ch1_p1_solo": {
     "lessonKey": "ch1_p1",
-    "mode": "duo",
-    "duration": 302.425,
-    "slidesCount": 12,
+    "mode": "solo",
+    "duration": 277.3,
+    "slidesCount": 16,
     "sentences": [
       {
         "slide": 1,
         "slideId": "s1",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 1.1?",
-        "start": 0.1,
-        "end": 5.787,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 0.1
-          },
-          {
-            "w": "Nova,",
-            "t": 0.506
-          },
-          {
-            "w": "what",
-            "t": 0.912
-          },
-          {
-            "w": "is",
-            "t": 1.319
-          },
-          {
-            "w": "the",
-            "t": 1.725
-          },
-          {
-            "w": "core",
-            "t": 2.131
-          },
-          {
-            "w": "architectural",
-            "t": 2.538
-          },
-          {
-            "w": "challenge",
-            "t": 2.944
-          },
-          {
-            "w": "we",
-            "t": 3.35
-          },
-          {
-            "w": "are",
-            "t": 3.756
-          },
-          {
-            "w": "solving",
-            "t": 4.162
-          },
-          {
-            "w": "in",
-            "t": 4.569
-          },
-          {
-            "w": "Lesson",
-            "t": 4.975
-          },
-          {
-            "w": "1.1?",
-            "t": 5.381
-          }
-        ]
-      },
-      {
-        "slide": 1,
-        "slideId": "s1",
         "speaker": "Dr. Nova",
-        "text": "Welcome to Lesson 1.1.",
-        "start": 6.287,
-        "end": 8.9,
+        "text": "Welcome to Lesson 1.1 of Dataset Fundamentals. Today we establish the foundational principles of Data-Centric AI, examining why model architectures cannot compensate for structurally flawed data, and how empirical samples formalize what a dataset truly is.",
+        "start": 0.1,
+        "end": 16.636,
         "words": [
           {
             "w": "Welcome",
-            "t": 6.287
+            "t": 0.1
           },
           {
             "w": "to",
-            "t": 6.941
+            "t": 0.559
           },
           {
             "w": "Lesson",
-            "t": 7.594
+            "t": 1.019
           },
           {
-            "w": "1.1.",
-            "t": 8.247
-          }
-        ]
-      },
-      {
-        "slide": 1,
-        "slideId": "s1",
-        "speaker": "Dr. Nova",
-        "text": "Today we examine what is a dataset?",
-        "start": 8.85,
-        "end": 11.75,
-        "words": [
+            "w": "1.1",
+            "t": 1.478
+          },
+          {
+            "w": "of",
+            "t": 1.937
+          },
+          {
+            "w": "Dataset",
+            "t": 2.397
+          },
+          {
+            "w": "Fundamentals.",
+            "t": 2.856
+          },
           {
             "w": "Today",
-            "t": 8.85
+            "t": 3.315
           },
           {
             "w": "we",
-            "t": 9.264
+            "t": 3.775
           },
           {
-            "w": "examine",
-            "t": 9.679
-          },
-          {
-            "w": "what",
-            "t": 10.093
-          },
-          {
-            "w": "is",
-            "t": 10.507
-          },
-          {
-            "w": "a",
-            "t": 10.921
-          },
-          {
-            "w": "dataset?",
-            "t": 11.336
-          }
-        ]
-      },
-      {
-        "slide": 1,
-        "slideId": "s1",
-        "speaker": "Dr. Nova",
-        "text": "records, attributes & data quality cascades, establishing the mathematical foundations and production discipline required to guarantee dataset reliability.",
-        "start": 11.75,
-        "end": 21.575,
-        "words": [
-          {
-            "w": "records,",
-            "t": 11.75
-          },
-          {
-            "w": "attributes",
-            "t": 12.296
-          },
-          {
-            "w": "&",
-            "t": 12.842
-          },
-          {
-            "w": "data",
-            "t": 13.387
-          },
-          {
-            "w": "quality",
-            "t": 13.933
-          },
-          {
-            "w": "cascades,",
-            "t": 14.479
-          },
-          {
-            "w": "establishing",
-            "t": 15.025
+            "w": "establish",
+            "t": 4.234
           },
           {
             "w": "the",
-            "t": 15.571
+            "t": 4.693
           },
           {
-            "w": "mathematical",
-            "t": 16.117
+            "w": "foundational",
+            "t": 5.153
           },
           {
-            "w": "foundations",
-            "t": 16.663
-          },
-          {
-            "w": "and",
-            "t": 17.208
-          },
-          {
-            "w": "production",
-            "t": 17.754
-          },
-          {
-            "w": "discipline",
-            "t": 18.3
-          },
-          {
-            "w": "required",
-            "t": 18.846
-          },
-          {
-            "w": "to",
-            "t": 19.392
-          },
-          {
-            "w": "guarantee",
-            "t": 19.938
-          },
-          {
-            "w": "dataset",
-            "t": 20.483
-          },
-          {
-            "w": "reliability.",
-            "t": 21.029
-          }
-        ]
-      },
-      {
-        "slide": 2,
-        "slideId": "s2",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, how does formal mathematical foundations: mathematical definition of an empirical sample protect our system against silent distribution shift in production?",
-        "start": 22.675,
-        "end": 32.65,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 22.675
-          },
-          {
-            "w": "Nova,",
-            "t": 23.128
-          },
-          {
-            "w": "how",
-            "t": 23.582
-          },
-          {
-            "w": "does",
-            "t": 24.035
-          },
-          {
-            "w": "formal",
-            "t": 24.489
-          },
-          {
-            "w": "mathematical",
-            "t": 24.942
-          },
-          {
-            "w": "foundations:",
-            "t": 25.395
-          },
-          {
-            "w": "mathematical",
-            "t": 25.849
-          },
-          {
-            "w": "definition",
-            "t": 26.302
+            "w": "principles",
+            "t": 5.612
           },
           {
             "w": "of",
-            "t": 26.756
+            "t": 6.071
           },
           {
-            "w": "an",
-            "t": 27.209
+            "w": "Data-Centric",
+            "t": 6.531
           },
           {
-            "w": "empirical",
-            "t": 27.663
+            "w": "AI,",
+            "t": 6.99
           },
           {
-            "w": "sample",
-            "t": 28.116
-          },
-          {
-            "w": "protect",
-            "t": 28.569
-          },
-          {
-            "w": "our",
-            "t": 29.023
-          },
-          {
-            "w": "system",
-            "t": 29.476
-          },
-          {
-            "w": "against",
-            "t": 29.93
-          },
-          {
-            "w": "silent",
-            "t": 30.383
-          },
-          {
-            "w": "distribution",
-            "t": 30.836
-          },
-          {
-            "w": "shift",
-            "t": 31.29
-          },
-          {
-            "w": "in",
-            "t": 31.743
-          },
-          {
-            "w": "production?",
-            "t": 32.197
-          }
-        ]
-      },
-      {
-        "slide": 2,
-        "slideId": "s2",
-        "speaker": "Dr. Nova",
-        "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds.",
-        "start": 33.15,
-        "end": 42.738,
-        "words": [
-          {
-            "w": "Formalizing",
-            "t": 33.15
-          },
-          {
-            "w": "the",
-            "t": 33.655
-          },
-          {
-            "w": "empirical",
-            "t": 34.159
-          },
-          {
-            "w": "sample",
-            "t": 34.664
-          },
-          {
-            "w": "mathematically",
-            "t": 35.168
-          },
-          {
-            "w": "reveals",
-            "t": 35.673
-          },
-          {
-            "w": "that",
-            "t": 36.178
-          },
-          {
-            "w": "empirical",
-            "t": 36.682
-          },
-          {
-            "w": "risk",
-            "t": 37.187
-          },
-          {
-            "w": "only",
-            "t": 37.691
-          },
-          {
-            "w": "approximates",
-            "t": 38.196
-          },
-          {
-            "w": "true",
-            "t": 38.701
-          },
-          {
-            "w": "generalization",
-            "t": 39.205
-          },
-          {
-            "w": "risk",
-            "t": 39.71
-          },
-          {
-            "w": "when",
-            "t": 40.214
-          },
-          {
-            "w": "the",
-            "t": 40.719
-          },
-          {
-            "w": "i.i.d.",
-            "t": 41.224
-          },
-          {
-            "w": "assumption",
-            "t": 41.728
-          },
-          {
-            "w": "holds.",
-            "t": 42.233
-          }
-        ]
-      },
-      {
-        "slide": 2,
-        "slideId": "s2",
-        "speaker": "Dr. Nova",
-        "text": "When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that.",
-        "start": 42.688,
-        "end": 50.913,
-        "words": [
-          {
-            "w": "When",
-            "t": 42.688
-          },
-          {
-            "w": "upstream",
-            "t": 43.144
-          },
-          {
-            "w": "sampling",
-            "t": 43.601
-          },
-          {
-            "w": "is",
-            "t": 44.058
-          },
-          {
-            "w": "biased,",
-            "t": 44.515
-          },
-          {
-            "w": "the",
-            "t": 44.972
-          },
-          {
-            "w": "empirical",
-            "t": 45.429
-          },
-          {
-            "w": "risk",
-            "t": 45.886
-          },
-          {
-            "w": "diverges",
-            "t": 46.343
-          },
-          {
-            "w": "asymptotically",
-            "t": 46.8
-          },
-          {
-            "w": "from",
-            "t": 47.257
-          },
-          {
-            "w": "true",
-            "t": 47.714
-          },
-          {
-            "w": "risk\u2014no",
-            "t": 48.171
-          },
-          {
-            "w": "model",
-            "t": 48.628
-          },
-          {
-            "w": "tuning",
-            "t": 49.085
-          },
-          {
-            "w": "can",
-            "t": 49.542
-          },
-          {
-            "w": "fix",
-            "t": 49.999
-          },
-          {
-            "w": "that.",
-            "t": 50.456
-          }
-        ]
-      },
-      {
-        "slide": 3,
-        "slideId": "s3",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, looking at this workflow diagram for formal mathematical foundations: architecture flowchart, how does the architectural flow enforce system stability?",
-        "start": 52.013,
-        "end": 61.713,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 52.013
-          },
-          {
-            "w": "Nova,",
-            "t": 52.474
-          },
-          {
-            "w": "looking",
-            "t": 52.936
-          },
-          {
-            "w": "at",
-            "t": 53.398
-          },
-          {
-            "w": "this",
-            "t": 53.86
-          },
-          {
-            "w": "workflow",
-            "t": 54.322
-          },
-          {
-            "w": "diagram",
-            "t": 54.784
-          },
-          {
-            "w": "for",
-            "t": 55.246
-          },
-          {
-            "w": "formal",
-            "t": 55.708
-          },
-          {
-            "w": "mathematical",
-            "t": 56.17
-          },
-          {
-            "w": "foundations:",
-            "t": 56.632
-          },
-          {
-            "w": "architecture",
-            "t": 57.093
-          },
-          {
-            "w": "flowchart,",
-            "t": 57.555
-          },
-          {
-            "w": "how",
-            "t": 58.017
-          },
-          {
-            "w": "does",
-            "t": 58.479
-          },
-          {
-            "w": "the",
-            "t": 58.941
-          },
-          {
-            "w": "architectural",
-            "t": 59.403
-          },
-          {
-            "w": "flow",
-            "t": 59.865
-          },
-          {
-            "w": "enforce",
-            "t": 60.327
-          },
-          {
-            "w": "system",
-            "t": 60.789
-          },
-          {
-            "w": "stability?",
-            "t": 61.251
-          }
-        ]
-      },
-      {
-        "slide": 3,
-        "slideId": "s3",
-        "speaker": "Dr. Nova",
-        "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations.",
-        "start": 62.213,
-        "end": 70.675,
-        "words": [
-          {
-            "w": "This",
-            "t": 62.213
-          },
-          {
-            "w": "architecture",
-            "t": 62.777
-          },
-          {
-            "w": "diagram",
-            "t": 63.341
-          },
-          {
-            "w": "visualizes",
-            "t": 63.905
-          },
-          {
-            "w": "how",
-            "t": 64.469
-          },
-          {
-            "w": "physical",
-            "t": 65.033
-          },
-          {
-            "w": "observations",
-            "t": 65.598
-          },
-          {
-            "w": "transition",
-            "t": 66.162
-          },
-          {
-            "w": "across",
-            "t": 66.726
-          },
-          {
-            "w": "sampling",
-            "t": 67.29
-          },
-          {
-            "w": "boundaries",
-            "t": 67.854
-          },
-          {
-            "w": "into",
-            "t": 68.418
-          },
-          {
-            "w": "discrete",
-            "t": 68.983
-          },
-          {
-            "w": "tensor",
-            "t": 69.547
-          },
-          {
-            "w": "representations.",
-            "t": 70.111
-          }
-        ]
-      },
-      {
-        "slide": 3,
-        "slideId": "s3",
-        "speaker": "Dr. Nova",
-        "text": "Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution.",
-        "start": 70.625,
-        "end": 77.588,
-        "words": [
-          {
-            "w": "Tracking",
-            "t": 70.625
-          },
-          {
-            "w": "each",
-            "t": 71.205
-          },
-          {
-            "w": "transition",
-            "t": 71.785
-          },
-          {
-            "w": "stage",
-            "t": 72.366
-          },
-          {
-            "w": "prevents",
-            "t": 72.946
-          },
-          {
-            "w": "undocumented",
-            "t": 73.526
-          },
-          {
-            "w": "transformations",
-            "t": 74.106
-          },
-          {
-            "w": "from",
-            "t": 74.686
-          },
-          {
-            "w": "corrupting",
-            "t": 75.267
-          },
-          {
-            "w": "the",
-            "t": 75.847
-          },
-          {
-            "w": "empirical",
-            "t": 76.427
-          },
-          {
-            "w": "distribution.",
-            "t": 77.007
-          }
-        ]
-      },
-      {
-        "slide": 4,
-        "slideId": "s4",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, how does the attribute space & feature schema protect our system against silent distribution shift in production?",
-        "start": 78.688,
-        "end": 86.075,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 78.688
-          },
-          {
-            "w": "Nova,",
-            "t": 79.076
-          },
-          {
-            "w": "how",
-            "t": 79.465
-          },
-          {
-            "w": "does",
-            "t": 79.854
-          },
-          {
-            "w": "the",
-            "t": 80.243
-          },
-          {
-            "w": "attribute",
-            "t": 80.632
-          },
-          {
-            "w": "space",
-            "t": 81.02
-          },
-          {
-            "w": "&",
-            "t": 81.409
-          },
-          {
-            "w": "feature",
-            "t": 81.798
-          },
-          {
-            "w": "schema",
-            "t": 82.187
-          },
-          {
-            "w": "protect",
-            "t": 82.576
-          },
-          {
-            "w": "our",
-            "t": 82.964
-          },
-          {
-            "w": "system",
-            "t": 83.353
-          },
-          {
-            "w": "against",
-            "t": 83.742
-          },
-          {
-            "w": "silent",
-            "t": 84.131
-          },
-          {
-            "w": "distribution",
-            "t": 84.52
-          },
-          {
-            "w": "shift",
-            "t": 84.909
-          },
-          {
-            "w": "in",
-            "t": 85.297
-          },
-          {
-            "w": "production?",
-            "t": 85.686
-          }
-        ]
-      },
-      {
-        "slide": 4,
-        "slideId": "s4",
-        "speaker": "Dr. Nova",
-        "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds.",
-        "start": 86.575,
-        "end": 96.163,
-        "words": [
-          {
-            "w": "Formalizing",
-            "t": 86.575
-          },
-          {
-            "w": "the",
-            "t": 87.08
-          },
-          {
-            "w": "empirical",
-            "t": 87.584
-          },
-          {
-            "w": "sample",
-            "t": 88.089
-          },
-          {
-            "w": "mathematically",
-            "t": 88.593
-          },
-          {
-            "w": "reveals",
-            "t": 89.098
-          },
-          {
-            "w": "that",
-            "t": 89.603
-          },
-          {
-            "w": "empirical",
-            "t": 90.107
-          },
-          {
-            "w": "risk",
-            "t": 90.612
-          },
-          {
-            "w": "only",
-            "t": 91.116
-          },
-          {
-            "w": "approximates",
-            "t": 91.621
-          },
-          {
-            "w": "true",
-            "t": 92.126
-          },
-          {
-            "w": "generalization",
-            "t": 92.63
-          },
-          {
-            "w": "risk",
-            "t": 93.135
-          },
-          {
-            "w": "when",
-            "t": 93.639
-          },
-          {
-            "w": "the",
-            "t": 94.144
-          },
-          {
-            "w": "i.i.d.",
-            "t": 94.649
-          },
-          {
-            "w": "assumption",
-            "t": 95.153
-          },
-          {
-            "w": "holds.",
-            "t": 95.658
-          }
-        ]
-      },
-      {
-        "slide": 4,
-        "slideId": "s4",
-        "speaker": "Dr. Nova",
-        "text": "When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that.",
-        "start": 96.113,
-        "end": 104.338,
-        "words": [
-          {
-            "w": "When",
-            "t": 96.113
-          },
-          {
-            "w": "upstream",
-            "t": 96.569
-          },
-          {
-            "w": "sampling",
-            "t": 97.026
-          },
-          {
-            "w": "is",
-            "t": 97.483
-          },
-          {
-            "w": "biased,",
-            "t": 97.94
-          },
-          {
-            "w": "the",
-            "t": 98.397
-          },
-          {
-            "w": "empirical",
-            "t": 98.854
-          },
-          {
-            "w": "risk",
-            "t": 99.311
-          },
-          {
-            "w": "diverges",
-            "t": 99.768
-          },
-          {
-            "w": "asymptotically",
-            "t": 100.225
-          },
-          {
-            "w": "from",
-            "t": 100.682
-          },
-          {
-            "w": "true",
-            "t": 101.139
-          },
-          {
-            "w": "risk\u2014no",
-            "t": 101.596
-          },
-          {
-            "w": "model",
-            "t": 102.053
-          },
-          {
-            "w": "tuning",
-            "t": 102.51
-          },
-          {
-            "w": "can",
-            "t": 102.967
-          },
-          {
-            "w": "fix",
-            "t": 103.424
-          },
-          {
-            "w": "that.",
-            "t": 103.881
-          }
-        ]
-      },
-      {
-        "slide": 5,
-        "slideId": "s5",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, looking at this workflow diagram for records vs. attributes: terminology across computing paradigms, how does the architectural flow enforce system stability?",
-        "start": 105.438,
-        "end": 115.9,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 105.438
-          },
-          {
-            "w": "Nova,",
-            "t": 105.892
-          },
-          {
-            "w": "looking",
-            "t": 106.347
-          },
-          {
-            "w": "at",
-            "t": 106.802
-          },
-          {
-            "w": "this",
-            "t": 107.257
-          },
-          {
-            "w": "workflow",
-            "t": 107.712
-          },
-          {
-            "w": "diagram",
-            "t": 108.167
-          },
-          {
-            "w": "for",
-            "t": 108.622
-          },
-          {
-            "w": "records",
-            "t": 109.077
-          },
-          {
-            "w": "vs.",
-            "t": 109.532
-          },
-          {
-            "w": "attributes:",
-            "t": 109.986
-          },
-          {
-            "w": "terminology",
-            "t": 110.441
-          },
-          {
-            "w": "across",
-            "t": 110.896
-          },
-          {
-            "w": "computing",
-            "t": 111.351
-          },
-          {
-            "w": "paradigms,",
-            "t": 111.806
-          },
-          {
-            "w": "how",
-            "t": 112.261
-          },
-          {
-            "w": "does",
-            "t": 112.716
-          },
-          {
-            "w": "the",
-            "t": 113.171
-          },
-          {
-            "w": "architectural",
-            "t": 113.626
-          },
-          {
-            "w": "flow",
-            "t": 114.08
-          },
-          {
-            "w": "enforce",
-            "t": 114.535
-          },
-          {
-            "w": "system",
-            "t": 114.99
-          },
-          {
-            "w": "stability?",
-            "t": 115.445
-          }
-        ]
-      },
-      {
-        "slide": 5,
-        "slideId": "s5",
-        "speaker": "Dr. Nova",
-        "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations.",
-        "start": 116.4,
-        "end": 124.863,
-        "words": [
-          {
-            "w": "This",
-            "t": 116.4
-          },
-          {
-            "w": "architecture",
-            "t": 116.964
-          },
-          {
-            "w": "diagram",
-            "t": 117.528
-          },
-          {
-            "w": "visualizes",
-            "t": 118.093
-          },
-          {
-            "w": "how",
-            "t": 118.657
-          },
-          {
-            "w": "physical",
-            "t": 119.221
-          },
-          {
-            "w": "observations",
-            "t": 119.785
-          },
-          {
-            "w": "transition",
-            "t": 120.349
-          },
-          {
-            "w": "across",
-            "t": 120.913
-          },
-          {
-            "w": "sampling",
-            "t": 121.478
-          },
-          {
-            "w": "boundaries",
-            "t": 122.042
-          },
-          {
-            "w": "into",
-            "t": 122.606
-          },
-          {
-            "w": "discrete",
-            "t": 123.17
-          },
-          {
-            "w": "tensor",
-            "t": 123.734
-          },
-          {
-            "w": "representations.",
-            "t": 124.298
-          }
-        ]
-      },
-      {
-        "slide": 5,
-        "slideId": "s5",
-        "speaker": "Dr. Nova",
-        "text": "Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution.",
-        "start": 124.813,
-        "end": 131.775,
-        "words": [
-          {
-            "w": "Tracking",
-            "t": 124.813
-          },
-          {
-            "w": "each",
-            "t": 125.393
-          },
-          {
-            "w": "transition",
-            "t": 125.973
-          },
-          {
-            "w": "stage",
-            "t": 126.553
-          },
-          {
-            "w": "prevents",
-            "t": 127.133
-          },
-          {
-            "w": "undocumented",
-            "t": 127.714
-          },
-          {
-            "w": "transformations",
-            "t": 128.294
-          },
-          {
-            "w": "from",
-            "t": 128.874
-          },
-          {
-            "w": "corrupting",
-            "t": 129.454
-          },
-          {
-            "w": "the",
-            "t": 130.034
-          },
-          {
-            "w": "empirical",
-            "t": 130.615
-          },
-          {
-            "w": "distribution.",
-            "t": 131.195
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, how does the law of data quality cascades protect our system against silent distribution shift in production?",
-        "start": 132.875,
-        "end": 140.1,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 132.875
-          },
-          {
-            "w": "Nova,",
-            "t": 133.255
-          },
-          {
-            "w": "how",
-            "t": 133.636
-          },
-          {
-            "w": "does",
-            "t": 134.016
-          },
-          {
-            "w": "the",
-            "t": 134.396
-          },
-          {
-            "w": "law",
-            "t": 134.776
-          },
-          {
-            "w": "of",
-            "t": 135.157
-          },
-          {
-            "w": "data",
-            "t": 135.537
-          },
-          {
-            "w": "quality",
-            "t": 135.917
-          },
-          {
-            "w": "cascades",
-            "t": 136.297
-          },
-          {
-            "w": "protect",
-            "t": 136.678
-          },
-          {
-            "w": "our",
-            "t": 137.058
-          },
-          {
-            "w": "system",
-            "t": 137.438
-          },
-          {
-            "w": "against",
-            "t": 137.818
-          },
-          {
-            "w": "silent",
-            "t": 138.199
-          },
-          {
-            "w": "distribution",
-            "t": 138.579
-          },
-          {
-            "w": "shift",
-            "t": 138.959
-          },
-          {
-            "w": "in",
-            "t": 139.339
-          },
-          {
-            "w": "production?",
-            "t": 139.72
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Dr. Nova",
-        "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds.",
-        "start": 140.6,
-        "end": 150.188,
-        "words": [
-          {
-            "w": "Formalizing",
-            "t": 140.6
-          },
-          {
-            "w": "the",
-            "t": 141.105
-          },
-          {
-            "w": "empirical",
-            "t": 141.609
-          },
-          {
-            "w": "sample",
-            "t": 142.114
-          },
-          {
-            "w": "mathematically",
-            "t": 142.618
-          },
-          {
-            "w": "reveals",
-            "t": 143.123
-          },
-          {
-            "w": "that",
-            "t": 143.628
-          },
-          {
-            "w": "empirical",
-            "t": 144.132
-          },
-          {
-            "w": "risk",
-            "t": 144.637
-          },
-          {
-            "w": "only",
-            "t": 145.141
-          },
-          {
-            "w": "approximates",
-            "t": 145.646
-          },
-          {
-            "w": "true",
-            "t": 146.151
-          },
-          {
-            "w": "generalization",
-            "t": 146.655
-          },
-          {
-            "w": "risk",
-            "t": 147.16
-          },
-          {
-            "w": "when",
-            "t": 147.664
-          },
-          {
-            "w": "the",
-            "t": 148.169
-          },
-          {
-            "w": "i.i.d.",
-            "t": 148.674
-          },
-          {
-            "w": "assumption",
-            "t": 149.178
-          },
-          {
-            "w": "holds.",
-            "t": 149.683
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Dr. Nova",
-        "text": "When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that.",
-        "start": 150.137,
-        "end": 158.363,
-        "words": [
-          {
-            "w": "When",
-            "t": 150.137
-          },
-          {
-            "w": "upstream",
-            "t": 150.594
-          },
-          {
-            "w": "sampling",
-            "t": 151.051
-          },
-          {
-            "w": "is",
-            "t": 151.508
-          },
-          {
-            "w": "biased,",
-            "t": 151.965
-          },
-          {
-            "w": "the",
-            "t": 152.422
-          },
-          {
-            "w": "empirical",
-            "t": 152.879
-          },
-          {
-            "w": "risk",
-            "t": 153.336
-          },
-          {
-            "w": "diverges",
-            "t": 153.793
-          },
-          {
-            "w": "asymptotically",
-            "t": 154.25
-          },
-          {
-            "w": "from",
-            "t": 154.707
-          },
-          {
-            "w": "true",
-            "t": 155.164
-          },
-          {
-            "w": "risk\u2014no",
-            "t": 155.621
-          },
-          {
-            "w": "model",
-            "t": 156.078
-          },
-          {
-            "w": "tuning",
-            "t": 156.535
-          },
-          {
-            "w": "can",
-            "t": 156.992
-          },
-          {
-            "w": "fix",
-            "t": 157.449
-          },
-          {
-            "w": "that.",
-            "t": 157.906
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, looking at this workflow diagram for the law of data quality cascades: architecture flowchart, how does the architectural flow enforce system stability?",
-        "start": 159.462,
-        "end": 169.087,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 159.462
-          },
-          {
-            "w": "Nova,",
-            "t": 159.864
-          },
-          {
-            "w": "looking",
-            "t": 160.265
-          },
-          {
-            "w": "at",
-            "t": 160.666
-          },
-          {
-            "w": "this",
-            "t": 161.067
-          },
-          {
-            "w": "workflow",
-            "t": 161.468
-          },
-          {
-            "w": "diagram",
-            "t": 161.869
-          },
-          {
-            "w": "for",
-            "t": 162.27
-          },
-          {
-            "w": "the",
-            "t": 162.671
-          },
-          {
-            "w": "law",
-            "t": 163.072
-          },
-          {
-            "w": "of",
-            "t": 163.473
-          },
-          {
-            "w": "data",
-            "t": 163.874
-          },
-          {
-            "w": "quality",
-            "t": 164.275
-          },
-          {
-            "w": "cascades:",
-            "t": 164.676
-          },
-          {
-            "w": "architecture",
-            "t": 165.077
-          },
-          {
-            "w": "flowchart,",
-            "t": 165.478
-          },
-          {
-            "w": "how",
-            "t": 165.879
-          },
-          {
-            "w": "does",
-            "t": 166.28
-          },
-          {
-            "w": "the",
-            "t": 166.681
-          },
-          {
-            "w": "architectural",
-            "t": 167.082
-          },
-          {
-            "w": "flow",
-            "t": 167.483
-          },
-          {
-            "w": "enforce",
-            "t": 167.884
-          },
-          {
-            "w": "system",
-            "t": 168.285
-          },
-          {
-            "w": "stability?",
-            "t": 168.686
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Dr. Nova",
-        "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations.",
-        "start": 169.587,
-        "end": 178.05,
-        "words": [
-          {
-            "w": "This",
-            "t": 169.587
-          },
-          {
-            "w": "architecture",
-            "t": 170.152
-          },
-          {
-            "w": "diagram",
-            "t": 170.716
-          },
-          {
-            "w": "visualizes",
-            "t": 171.28
-          },
-          {
-            "w": "how",
-            "t": 171.844
-          },
-          {
-            "w": "physical",
-            "t": 172.408
-          },
-          {
-            "w": "observations",
-            "t": 172.972
-          },
-          {
-            "w": "transition",
-            "t": 173.537
-          },
-          {
-            "w": "across",
-            "t": 174.101
-          },
-          {
-            "w": "sampling",
-            "t": 174.665
-          },
-          {
-            "w": "boundaries",
-            "t": 175.229
-          },
-          {
-            "w": "into",
-            "t": 175.793
-          },
-          {
-            "w": "discrete",
-            "t": 176.357
-          },
-          {
-            "w": "tensor",
-            "t": 176.922
-          },
-          {
-            "w": "representations.",
-            "t": 177.486
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Dr. Nova",
-        "text": "Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution.",
-        "start": 178.0,
-        "end": 184.962,
-        "words": [
-          {
-            "w": "Tracking",
-            "t": 178.0
-          },
-          {
-            "w": "each",
-            "t": 178.58
-          },
-          {
-            "w": "transition",
-            "t": 179.16
-          },
-          {
-            "w": "stage",
-            "t": 179.741
-          },
-          {
-            "w": "prevents",
-            "t": 180.321
-          },
-          {
-            "w": "undocumented",
-            "t": 180.901
-          },
-          {
-            "w": "transformations",
-            "t": 181.481
-          },
-          {
-            "w": "from",
-            "t": 182.061
-          },
-          {
-            "w": "corrupting",
-            "t": 182.642
-          },
-          {
-            "w": "the",
-            "t": 183.222
-          },
-          {
-            "w": "empirical",
-            "t": 183.802
-          },
-          {
-            "w": "distribution.",
-            "t": 184.382
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, what is the critical industrial lesson from this case study?",
-        "start": 186.062,
-        "end": 191.012,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 186.062
-          },
-          {
-            "w": "Nova,",
-            "t": 186.475
-          },
-          {
-            "w": "what",
-            "t": 186.887
-          },
-          {
-            "w": "is",
-            "t": 187.3
-          },
-          {
-            "w": "the",
-            "t": 187.712
-          },
-          {
-            "w": "critical",
-            "t": 188.125
-          },
-          {
-            "w": "industrial",
-            "t": 188.537
-          },
-          {
-            "w": "lesson",
-            "t": 188.95
-          },
-          {
-            "w": "from",
-            "t": 189.362
-          },
-          {
-            "w": "this",
-            "t": 189.775
-          },
-          {
-            "w": "case",
-            "t": 190.188
-          },
-          {
-            "w": "study?",
-            "t": 190.6
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Dr. Nova",
-        "text": "Systems collapse when models mistake collection artifacts for real-world signals.",
-        "start": 191.512,
-        "end": 196.8,
-        "words": [
-          {
-            "w": "Systems",
-            "t": 191.512
-          },
-          {
-            "w": "collapse",
-            "t": 192.041
-          },
-          {
-            "w": "when",
-            "t": 192.57
-          },
-          {
-            "w": "models",
-            "t": 193.099
-          },
-          {
-            "w": "mistake",
-            "t": 193.627
-          },
-          {
-            "w": "collection",
-            "t": 194.156
-          },
-          {
-            "w": "artifacts",
-            "t": 194.685
-          },
-          {
-            "w": "for",
-            "t": 195.214
-          },
-          {
-            "w": "real-world",
-            "t": 195.742
-          },
-          {
-            "w": "signals.",
-            "t": 196.271
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Dr. Nova",
-        "text": "In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds.",
-        "start": 196.75,
-        "end": 209.525,
-        "words": [
-          {
-            "w": "In",
-            "t": 196.75
-          },
-          {
-            "w": "ICU",
-            "t": 197.261
-          },
-          {
-            "w": "sepsis",
-            "t": 197.772
-          },
-          {
-            "w": "models,",
-            "t": 198.283
-          },
-          {
-            "w": "observation",
-            "t": 198.794
-          },
-          {
-            "w": "frequency",
-            "t": 199.305
-          },
-          {
-            "w": "became",
-            "t": 199.816
-          },
-          {
-            "w": "a",
-            "t": 200.327
-          },
-          {
-            "w": "confounder;",
-            "t": 200.838
-          },
-          {
-            "w": "in",
-            "t": 201.349
-          },
-          {
-            "w": "autonomous",
-            "t": 201.86
-          },
-          {
-            "w": "robotics,",
-            "t": 202.371
-          },
-          {
-            "w": "a",
-            "t": 202.882
-          },
-          {
-            "w": "50-millisecond",
-            "t": 203.393
-          },
-          {
-            "w": "timestamp",
-            "t": 203.904
-          },
-          {
-            "w": "jitter",
-            "t": 204.415
-          },
-          {
-            "w": "causes",
-            "t": 204.926
-          },
-          {
-            "w": "a",
-            "t": 205.437
-          },
-          {
-            "w": "1.4-meter",
-            "t": 205.948
-          },
-          {
-            "w": "bounding",
-            "t": 206.459
-          },
-          {
-            "w": "box",
-            "t": 206.97
-          },
-          {
-            "w": "dislocation",
-            "t": 207.481
-          },
-          {
-            "w": "at",
-            "t": 207.992
-          },
-          {
-            "w": "highway",
-            "t": 208.503
-          },
-          {
-            "w": "speeds.",
-            "t": 209.014
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, what is the critical industrial lesson from this case study?",
-        "start": 210.625,
-        "end": 215.575,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 210.625
-          },
-          {
-            "w": "Nova,",
-            "t": 211.037
-          },
-          {
-            "w": "what",
-            "t": 211.45
-          },
-          {
-            "w": "is",
-            "t": 211.862
-          },
-          {
-            "w": "the",
-            "t": 212.275
-          },
-          {
-            "w": "critical",
-            "t": 212.687
-          },
-          {
-            "w": "industrial",
-            "t": 213.1
-          },
-          {
-            "w": "lesson",
-            "t": 213.512
-          },
-          {
-            "w": "from",
-            "t": 213.925
-          },
-          {
-            "w": "this",
-            "t": 214.337
-          },
-          {
-            "w": "case",
-            "t": 214.75
-          },
-          {
-            "w": "study?",
-            "t": 215.162
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Dr. Nova",
-        "text": "Systems collapse when models mistake collection artifacts for real-world signals.",
-        "start": 216.075,
-        "end": 221.362,
-        "words": [
-          {
-            "w": "Systems",
-            "t": 216.075
-          },
-          {
-            "w": "collapse",
-            "t": 216.604
-          },
-          {
-            "w": "when",
-            "t": 217.132
-          },
-          {
-            "w": "models",
-            "t": 217.661
-          },
-          {
-            "w": "mistake",
-            "t": 218.19
-          },
-          {
-            "w": "collection",
-            "t": 218.719
-          },
-          {
-            "w": "artifacts",
-            "t": 219.247
-          },
-          {
-            "w": "for",
-            "t": 219.776
-          },
-          {
-            "w": "real-world",
-            "t": 220.305
-          },
-          {
-            "w": "signals.",
-            "t": 220.834
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Dr. Nova",
-        "text": "In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds.",
-        "start": 221.312,
-        "end": 234.087,
-        "words": [
-          {
-            "w": "In",
-            "t": 221.312
-          },
-          {
-            "w": "ICU",
-            "t": 221.823
-          },
-          {
-            "w": "sepsis",
-            "t": 222.334
-          },
-          {
-            "w": "models,",
-            "t": 222.845
-          },
-          {
-            "w": "observation",
-            "t": 223.356
-          },
-          {
-            "w": "frequency",
-            "t": 223.867
-          },
-          {
-            "w": "became",
-            "t": 224.378
-          },
-          {
-            "w": "a",
-            "t": 224.889
-          },
-          {
-            "w": "confounder;",
-            "t": 225.4
-          },
-          {
-            "w": "in",
-            "t": 225.911
-          },
-          {
-            "w": "autonomous",
-            "t": 226.422
-          },
-          {
-            "w": "robotics,",
-            "t": 226.933
-          },
-          {
-            "w": "a",
-            "t": 227.444
-          },
-          {
-            "w": "50-millisecond",
-            "t": 227.955
-          },
-          {
-            "w": "timestamp",
-            "t": 228.466
-          },
-          {
-            "w": "jitter",
-            "t": 228.977
-          },
-          {
-            "w": "causes",
-            "t": 229.488
-          },
-          {
-            "w": "a",
-            "t": 229.999
-          },
-          {
-            "w": "1.4-meter",
-            "t": 230.51
-          },
-          {
-            "w": "bounding",
-            "t": 231.021
-          },
-          {
-            "w": "box",
-            "t": 231.532
-          },
-          {
-            "w": "dislocation",
-            "t": 232.043
-          },
-          {
-            "w": "at",
-            "t": 232.554
-          },
-          {
-            "w": "highway",
-            "t": 233.065
-          },
-          {
-            "w": "speeds.",
-            "t": 233.576
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, what specific failure mode should I look for when I use the interactive schema & quality inspector located below this player?",
-        "start": 235.187,
-        "end": 243.05,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 235.187
-          },
-          {
-            "w": "Nova,",
-            "t": 235.529
-          },
-          {
-            "w": "what",
-            "t": 235.871
-          },
-          {
-            "w": "specific",
-            "t": 236.213
-          },
-          {
-            "w": "failure",
-            "t": 236.555
-          },
-          {
-            "w": "mode",
-            "t": 236.897
-          },
-          {
-            "w": "should",
-            "t": 237.239
-          },
-          {
-            "w": "I",
-            "t": 237.58
-          },
-          {
-            "w": "look",
-            "t": 237.922
-          },
-          {
-            "w": "for",
-            "t": 238.264
-          },
-          {
-            "w": "when",
-            "t": 238.606
-          },
-          {
-            "w": "I",
-            "t": 238.948
-          },
-          {
-            "w": "use",
-            "t": 239.29
-          },
-          {
-            "w": "the",
-            "t": 239.632
-          },
-          {
-            "w": "interactive",
-            "t": 239.973
-          },
-          {
-            "w": "schema",
-            "t": 240.315
-          },
-          {
-            "w": "&",
-            "t": 240.657
-          },
-          {
-            "w": "quality",
-            "t": 240.999
-          },
-          {
-            "w": "inspector",
-            "t": 241.341
-          },
-          {
-            "w": "located",
-            "t": 241.683
-          },
-          {
-            "w": "below",
-            "t": 242.024
-          },
-          {
-            "w": "this",
-            "t": 242.366
-          },
-          {
-            "w": "player?",
-            "t": 242.708
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Scroll directly beneath this presentation player to the live laboratory.",
-        "start": 243.55,
-        "end": 248.162,
-        "words": [
-          {
-            "w": "Scroll",
-            "t": 243.55
-          },
-          {
-            "w": "directly",
-            "t": 244.011
-          },
-          {
-            "w": "beneath",
-            "t": 244.472
-          },
-          {
-            "w": "this",
-            "t": 244.934
-          },
-          {
-            "w": "presentation",
-            "t": 245.395
-          },
-          {
-            "w": "player",
-            "t": 245.856
-          },
-          {
-            "w": "to",
-            "t": 246.317
-          },
-          {
-            "w": "the",
-            "t": 246.779
-          },
-          {
-            "w": "live",
-            "t": 247.24
-          },
-          {
-            "w": "laboratory.",
-            "t": 247.701
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors.",
-        "start": 248.112,
-        "end": 255.475,
-        "words": [
-          {
-            "w": "Run",
-            "t": 248.112
-          },
-          {
-            "w": "the",
-            "t": 248.603
-          },
-          {
-            "w": "failure",
-            "t": 249.094
-          },
-          {
-            "w": "injection",
-            "t": 249.585
-          },
-          {
-            "w": "to",
-            "t": 250.076
-          },
-          {
-            "w": "observe",
-            "t": 250.567
-          },
-          {
-            "w": "how",
-            "t": 251.057
-          },
-          {
-            "w": "unvalidated",
-            "t": 251.548
-          },
-          {
-            "w": "anomalies",
-            "t": 252.039
-          },
-          {
-            "w": "trigger",
-            "t": 252.53
-          },
-          {
-            "w": "compounding",
-            "t": 253.021
-          },
-          {
-            "w": "cascades",
-            "t": 253.512
-          },
-          {
-            "w": "across",
-            "t": 254.002
-          },
-          {
-            "w": "downstream",
-            "t": 254.493
-          },
-          {
-            "w": "tensors.",
-            "t": 254.984
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Hands-on testing proves why boundary schema contracts are mandatory.",
-        "start": 255.475,
-        "end": 260.0,
-        "words": [
-          {
-            "w": "Hands-on",
-            "t": 255.475
-          },
-          {
-            "w": "testing",
-            "t": 255.978
-          },
-          {
-            "w": "proves",
-            "t": 256.481
+            "w": "examining",
+            "t": 7.449
           },
           {
             "w": "why",
-            "t": 256.983
-          },
-          {
-            "w": "boundary",
-            "t": 257.486
-          },
-          {
-            "w": "schema",
-            "t": 257.989
-          },
-          {
-            "w": "contracts",
-            "t": 258.492
-          },
-          {
-            "w": "are",
-            "t": 258.994
-          },
-          {
-            "w": "mandatory.",
-            "t": 259.497
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, where should this defensive type-safe schema validation execute?",
-        "start": 261.1,
-        "end": 266.112,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 261.1
-          },
-          {
-            "w": "Nova,",
-            "t": 261.601
-          },
-          {
-            "w": "where",
-            "t": 262.102
-          },
-          {
-            "w": "should",
-            "t": 262.604
-          },
-          {
-            "w": "this",
-            "t": 263.105
-          },
-          {
-            "w": "defensive",
-            "t": 263.606
-          },
-          {
-            "w": "type-safe",
-            "t": 264.107
-          },
-          {
-            "w": "schema",
-            "t": 264.609
-          },
-          {
-            "w": "validation",
-            "t": 265.11
-          },
-          {
-            "w": "execute?",
-            "t": 265.611
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Dr. Nova",
-        "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory.",
-        "start": 266.612,
-        "end": 272.25,
-        "words": [
-          {
-            "w": "Always",
-            "t": 266.612
-          },
-          {
-            "w": "enforce",
-            "t": 267.046
-          },
-          {
-            "w": "schema",
-            "t": 267.48
-          },
-          {
-            "w": "contracts",
-            "t": 267.913
-          },
-          {
-            "w": "at",
-            "t": 268.347
-          },
-          {
-            "w": "the",
-            "t": 268.781
-          },
-          {
-            "w": "ingestion",
-            "t": 269.214
-          },
-          {
-            "w": "boundary",
-            "t": 269.648
-          },
-          {
-            "w": "before",
-            "t": 270.082
-          },
-          {
-            "w": "raw",
-            "t": 270.515
-          },
-          {
-            "w": "records",
-            "t": 270.949
-          },
-          {
-            "w": "enter",
-            "t": 271.383
-          },
-          {
-            "w": "memory.",
-            "t": 271.816
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Dr. Nova",
-        "text": "Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors.",
-        "start": 272.2,
-        "end": 280.475,
-        "words": [
-          {
-            "w": "Using",
-            "t": 272.2
-          },
-          {
-            "w": "Pydantic",
-            "t": 272.717
-          },
-          {
-            "w": "or",
-            "t": 273.234
-          },
-          {
-            "w": "zero-copy",
-            "t": 273.752
-          },
-          {
-            "w": "Arrow",
-            "t": 274.269
-          },
-          {
-            "w": "prevents",
-            "t": 274.786
-          },
-          {
-            "w": "unvalidated",
-            "t": 275.303
-          },
-          {
-            "w": "floats",
-            "t": 275.82
-          },
-          {
-            "w": "and",
-            "t": 276.337
-          },
-          {
-            "w": "untyped",
-            "t": 276.855
-          },
-          {
-            "w": "strings",
-            "t": 277.372
-          },
-          {
-            "w": "from",
-            "t": 277.889
-          },
-          {
-            "w": "silently",
-            "t": 278.406
-          },
-          {
-            "w": "polluting",
-            "t": 278.923
-          },
-          {
-            "w": "downstream",
-            "t": 279.441
-          },
-          {
-            "w": "tensors.",
-            "t": 279.958
-          }
-        ]
-      },
-      {
-        "slide": 12,
-        "slideId": "s12",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?",
-        "start": 281.575,
-        "end": 288.1,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 281.575
-          },
-          {
-            "w": "Nova,",
-            "t": 281.959
-          },
-          {
-            "w": "what",
-            "t": 282.343
-          },
-          {
-            "w": "is",
-            "t": 282.726
-          },
-          {
-            "w": "the",
-            "t": 283.11
-          },
-          {
-            "w": "single",
-            "t": 283.494
-          },
-          {
-            "w": "most",
-            "t": 283.878
-          },
-          {
-            "w": "vital",
-            "t": 284.262
-          },
-          {
-            "w": "principle",
-            "t": 284.646
-          },
-          {
-            "w": "for",
-            "t": 285.029
-          },
-          {
-            "w": "data",
-            "t": 285.413
-          },
-          {
-            "w": "engineers",
-            "t": 285.797
-          },
-          {
-            "w": "to",
-            "t": 286.181
-          },
-          {
-            "w": "remember",
-            "t": 286.565
-          },
-          {
-            "w": "from",
-            "t": 286.949
-          },
-          {
-            "w": "this",
-            "t": 287.332
-          },
-          {
-            "w": "lesson?",
-            "t": 287.716
-          }
-        ]
-      },
-      {
-        "slide": 12,
-        "slideId": "s12",
-        "speaker": "Dr. Nova",
-        "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code.",
-        "start": 288.6,
-        "end": 297.037,
-        "words": [
-          {
-            "w": "Data-Centric",
-            "t": 288.6
-          },
-          {
-            "w": "AI",
-            "t": 289.044
-          },
-          {
-            "w": "requires",
-            "t": 289.488
-          },
-          {
-            "w": "treating",
-            "t": 289.932
-          },
-          {
-            "w": "dataset",
-            "t": 290.376
-          },
-          {
-            "w": "curation",
-            "t": 290.82
-          },
-          {
-            "w": "with",
-            "t": 291.264
-          },
-          {
-            "w": "the",
-            "t": 291.709
-          },
-          {
-            "w": "exact",
-            "t": 292.153
-          },
-          {
-            "w": "same",
-            "t": 292.597
-          },
-          {
-            "w": "rigor,",
-            "t": 293.041
-          },
-          {
-            "w": "versioning,",
-            "t": 293.485
-          },
-          {
-            "w": "and",
-            "t": 293.929
-          },
-          {
-            "w": "defensive",
-            "t": 294.373
-          },
-          {
-            "w": "auditing",
-            "t": 294.817
-          },
-          {
-            "w": "as",
-            "t": 295.261
-          },
-          {
-            "w": "neural",
-            "t": 295.705
+            "t": 7.909
           },
           {
             "w": "model",
-            "t": 296.149
+            "t": 8.368
           },
           {
-            "w": "code.",
-            "t": 296.593
+            "w": "architectures",
+            "t": 8.827
+          },
+          {
+            "w": "cannot",
+            "t": 9.287
+          },
+          {
+            "w": "compensate",
+            "t": 9.746
+          },
+          {
+            "w": "for",
+            "t": 10.205
+          },
+          {
+            "w": "structurally",
+            "t": 10.665
+          },
+          {
+            "w": "flawed",
+            "t": 11.124
+          },
+          {
+            "w": "data,",
+            "t": 11.583
+          },
+          {
+            "w": "and",
+            "t": 12.043
+          },
+          {
+            "w": "how",
+            "t": 12.502
+          },
+          {
+            "w": "empirical",
+            "t": 12.961
+          },
+          {
+            "w": "samples",
+            "t": 13.421
+          },
+          {
+            "w": "formalize",
+            "t": 13.88
+          },
+          {
+            "w": "what",
+            "t": 14.339
+          },
+          {
+            "w": "a",
+            "t": 14.799
+          },
+          {
+            "w": "dataset",
+            "t": 15.258
+          },
+          {
+            "w": "truly",
+            "t": 15.717
+          },
+          {
+            "w": "is.",
+            "t": 16.177
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Mathematically, a dataset D sub N is a finite empirical sample of N input-target pairs drawn from an unobservable joint distribution P sub X,Y. Empirical Risk Minimization only guarantees generalization if the i.i.d. assumption holds across both training and deployment.",
+        "start": 17.386,
+        "end": 33.658,
+        "words": [
+          {
+            "w": "Mathematically,",
+            "t": 17.386
+          },
+          {
+            "w": "a",
+            "t": 17.793
+          },
+          {
+            "w": "dataset",
+            "t": 18.2
+          },
+          {
+            "w": "D",
+            "t": 18.606
+          },
+          {
+            "w": "sub",
+            "t": 19.013
+          },
+          {
+            "w": "N",
+            "t": 19.42
+          },
+          {
+            "w": "is",
+            "t": 19.827
+          },
+          {
+            "w": "a",
+            "t": 20.234
+          },
+          {
+            "w": "finite",
+            "t": 20.64
+          },
+          {
+            "w": "empirical",
+            "t": 21.047
+          },
+          {
+            "w": "sample",
+            "t": 21.454
+          },
+          {
+            "w": "of",
+            "t": 21.861
+          },
+          {
+            "w": "N",
+            "t": 22.268
+          },
+          {
+            "w": "input-target",
+            "t": 22.674
+          },
+          {
+            "w": "pairs",
+            "t": 23.081
+          },
+          {
+            "w": "drawn",
+            "t": 23.488
+          },
+          {
+            "w": "from",
+            "t": 23.895
+          },
+          {
+            "w": "an",
+            "t": 24.302
+          },
+          {
+            "w": "unobservable",
+            "t": 24.708
+          },
+          {
+            "w": "joint",
+            "t": 25.115
+          },
+          {
+            "w": "distribution",
+            "t": 25.522
+          },
+          {
+            "w": "P",
+            "t": 25.929
+          },
+          {
+            "w": "sub",
+            "t": 26.336
+          },
+          {
+            "w": "X,Y.",
+            "t": 26.742
+          },
+          {
+            "w": "Empirical",
+            "t": 27.149
+          },
+          {
+            "w": "Risk",
+            "t": 27.556
+          },
+          {
+            "w": "Minimization",
+            "t": 27.963
+          },
+          {
+            "w": "only",
+            "t": 28.37
+          },
+          {
+            "w": "guarantees",
+            "t": 28.776
+          },
+          {
+            "w": "generalization",
+            "t": 29.183
+          },
+          {
+            "w": "if",
+            "t": 29.59
+          },
+          {
+            "w": "the",
+            "t": 29.997
+          },
+          {
+            "w": "i.i.d.",
+            "t": 30.404
+          },
+          {
+            "w": "assumption",
+            "t": 30.81
+          },
+          {
+            "w": "holds",
+            "t": 31.217
+          },
+          {
+            "w": "across",
+            "t": 31.624
+          },
+          {
+            "w": "both",
+            "t": 32.031
+          },
+          {
+            "w": "training",
+            "t": 32.438
+          },
+          {
+            "w": "and",
+            "t": 32.844
+          },
+          {
+            "w": "deployment.",
+            "t": 33.251
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "This architectural flowchart traces physical reality through sensors and observers into discrete tensors. Notice that measurement noise and selection filters occur before any data ever enters memory, meaning downstream models are blind to errors introduced at this boundary.",
+        "start": 34.408,
+        "end": 50.272,
+        "words": [
+          {
+            "w": "This",
+            "t": 34.408
+          },
+          {
+            "w": "architectural",
+            "t": 34.825
+          },
+          {
+            "w": "flowchart",
+            "t": 35.243
+          },
+          {
+            "w": "traces",
+            "t": 35.66
+          },
+          {
+            "w": "physical",
+            "t": 36.078
+          },
+          {
+            "w": "reality",
+            "t": 36.495
+          },
+          {
+            "w": "through",
+            "t": 36.913
+          },
+          {
+            "w": "sensors",
+            "t": 37.33
+          },
+          {
+            "w": "and",
+            "t": 37.748
+          },
+          {
+            "w": "observers",
+            "t": 38.165
+          },
+          {
+            "w": "into",
+            "t": 38.583
+          },
+          {
+            "w": "discrete",
+            "t": 39.0
+          },
+          {
+            "w": "tensors.",
+            "t": 39.418
+          },
+          {
+            "w": "Notice",
+            "t": 39.835
+          },
+          {
+            "w": "that",
+            "t": 40.253
+          },
+          {
+            "w": "measurement",
+            "t": 40.67
+          },
+          {
+            "w": "noise",
+            "t": 41.088
+          },
+          {
+            "w": "and",
+            "t": 41.505
+          },
+          {
+            "w": "selection",
+            "t": 41.923
+          },
+          {
+            "w": "filters",
+            "t": 42.34
+          },
+          {
+            "w": "occur",
+            "t": 42.757
+          },
+          {
+            "w": "before",
+            "t": 43.175
+          },
+          {
+            "w": "any",
+            "t": 43.592
+          },
+          {
+            "w": "data",
+            "t": 44.01
+          },
+          {
+            "w": "ever",
+            "t": 44.427
+          },
+          {
+            "w": "enters",
+            "t": 44.845
+          },
+          {
+            "w": "memory,",
+            "t": 45.262
+          },
+          {
+            "w": "meaning",
+            "t": 45.68
+          },
+          {
+            "w": "downstream",
+            "t": 46.097
+          },
+          {
+            "w": "models",
+            "t": 46.515
+          },
+          {
+            "w": "are",
+            "t": 46.932
+          },
+          {
+            "w": "blind",
+            "t": 47.35
+          },
+          {
+            "w": "to",
+            "t": 47.767
+          },
+          {
+            "w": "errors",
+            "t": 48.185
+          },
+          {
+            "w": "introduced",
+            "t": 48.602
+          },
+          {
+            "w": "at",
+            "t": 49.02
+          },
+          {
+            "w": "this",
+            "t": 49.437
+          },
+          {
+            "w": "boundary.",
+            "t": 49.855
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Each record x sub i exists in a Cartesian product space of M attribute domains, F 1 through F M. Rigorous schema engineering requires defining continuous metric ranges, discrete categories, and explicit nullability constraints for every attribute.",
+        "start": 51.022,
+        "end": 66.622,
+        "words": [
+          {
+            "w": "Each",
+            "t": 51.022
+          },
+          {
+            "w": "record",
+            "t": 51.444
+          },
+          {
+            "w": "x",
+            "t": 51.865
+          },
+          {
+            "w": "sub",
+            "t": 52.287
+          },
+          {
+            "w": "i",
+            "t": 52.708
+          },
+          {
+            "w": "exists",
+            "t": 53.13
+          },
+          {
+            "w": "in",
+            "t": 53.552
+          },
+          {
+            "w": "a",
+            "t": 53.973
+          },
+          {
+            "w": "Cartesian",
+            "t": 54.395
+          },
+          {
+            "w": "product",
+            "t": 54.817
+          },
+          {
+            "w": "space",
+            "t": 55.238
+          },
+          {
+            "w": "of",
+            "t": 55.66
+          },
+          {
+            "w": "M",
+            "t": 56.081
+          },
+          {
+            "w": "attribute",
+            "t": 56.503
+          },
+          {
+            "w": "domains,",
+            "t": 56.925
+          },
+          {
+            "w": "F",
+            "t": 57.346
+          },
+          {
+            "w": "1",
+            "t": 57.768
+          },
+          {
+            "w": "through",
+            "t": 58.19
+          },
+          {
+            "w": "F",
+            "t": 58.611
+          },
+          {
+            "w": "M.",
+            "t": 59.033
+          },
+          {
+            "w": "Rigorous",
+            "t": 59.454
+          },
+          {
+            "w": "schema",
+            "t": 59.876
+          },
+          {
+            "w": "engineering",
+            "t": 60.298
+          },
+          {
+            "w": "requires",
+            "t": 60.719
+          },
+          {
+            "w": "defining",
+            "t": 61.141
+          },
+          {
+            "w": "continuous",
+            "t": 61.563
+          },
+          {
+            "w": "metric",
+            "t": 61.984
+          },
+          {
+            "w": "ranges,",
+            "t": 62.406
+          },
+          {
+            "w": "discrete",
+            "t": 62.827
+          },
+          {
+            "w": "categories,",
+            "t": 63.249
+          },
+          {
+            "w": "and",
+            "t": 63.671
+          },
+          {
+            "w": "explicit",
+            "t": 64.092
+          },
+          {
+            "w": "nullability",
+            "t": 64.514
+          },
+          {
+            "w": "constraints",
+            "t": 64.936
+          },
+          {
+            "w": "for",
+            "t": 65.357
+          },
+          {
+            "w": "every",
+            "t": 65.779
+          },
+          {
+            "w": "attribute.",
+            "t": 66.2
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Across all computing systems, datasets rest on two orthogonal axes: records representing discrete entities or temporal observations, and attributes representing standardized measurement dimensions. Violating row-level independence corrupts statistical inference.",
+        "start": 67.372,
+        "end": 84.124,
+        "words": [
+          {
+            "w": "Across",
+            "t": 67.372
+          },
+          {
+            "w": "all",
+            "t": 67.95
+          },
+          {
+            "w": "computing",
+            "t": 68.527
+          },
+          {
+            "w": "systems,",
+            "t": 69.105
+          },
+          {
+            "w": "datasets",
+            "t": 69.683
+          },
+          {
+            "w": "rest",
+            "t": 70.26
+          },
+          {
+            "w": "on",
+            "t": 70.838
+          },
+          {
+            "w": "two",
+            "t": 71.416
+          },
+          {
+            "w": "orthogonal",
+            "t": 71.993
+          },
+          {
+            "w": "axes:",
+            "t": 72.571
+          },
+          {
+            "w": "records",
+            "t": 73.149
+          },
+          {
+            "w": "representing",
+            "t": 73.726
+          },
+          {
+            "w": "discrete",
+            "t": 74.304
+          },
+          {
+            "w": "entities",
+            "t": 74.882
+          },
+          {
+            "w": "or",
+            "t": 75.459
+          },
+          {
+            "w": "temporal",
+            "t": 76.037
+          },
+          {
+            "w": "observations,",
+            "t": 76.614
+          },
+          {
+            "w": "and",
+            "t": 77.192
+          },
+          {
+            "w": "attributes",
+            "t": 77.77
+          },
+          {
+            "w": "representing",
+            "t": 78.347
+          },
+          {
+            "w": "standardized",
+            "t": 78.925
+          },
+          {
+            "w": "measurement",
+            "t": 79.503
+          },
+          {
+            "w": "dimensions.",
+            "t": 80.08
+          },
+          {
+            "w": "Violating",
+            "t": 80.658
+          },
+          {
+            "w": "row-level",
+            "t": 81.236
+          },
+          {
+            "w": "independence",
+            "t": 81.813
+          },
+          {
+            "w": "corrupts",
+            "t": 82.391
+          },
+          {
+            "w": "statistical",
+            "t": 82.969
+          },
+          {
+            "w": "inference.",
+            "t": 83.546
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "This matrix maps how records and attributes are conceptualized across paradigms: rows and columns in SQL, instances and features in machine learning, and columnar chunks in Parquet and Arrow. Understanding memory layout enables zero-copy vectorized processing.",
+        "start": 84.874,
+        "end": 101.338,
+        "words": [
+          {
+            "w": "This",
+            "t": 84.874
+          },
+          {
+            "w": "matrix",
+            "t": 85.331
+          },
+          {
+            "w": "maps",
+            "t": 85.789
+          },
+          {
+            "w": "how",
+            "t": 86.246
+          },
+          {
+            "w": "records",
+            "t": 86.703
+          },
+          {
+            "w": "and",
+            "t": 87.161
+          },
+          {
+            "w": "attributes",
+            "t": 87.618
+          },
+          {
+            "w": "are",
+            "t": 88.075
+          },
+          {
+            "w": "conceptualized",
+            "t": 88.533
+          },
+          {
+            "w": "across",
+            "t": 88.99
+          },
+          {
+            "w": "paradigms:",
+            "t": 89.447
+          },
+          {
+            "w": "rows",
+            "t": 89.905
+          },
+          {
+            "w": "and",
+            "t": 90.362
+          },
+          {
+            "w": "columns",
+            "t": 90.819
+          },
+          {
+            "w": "in",
+            "t": 91.277
+          },
+          {
+            "w": "SQL,",
+            "t": 91.734
+          },
+          {
+            "w": "instances",
+            "t": 92.191
+          },
+          {
+            "w": "and",
+            "t": 92.649
+          },
+          {
+            "w": "features",
+            "t": 93.106
+          },
+          {
+            "w": "in",
+            "t": 93.563
+          },
+          {
+            "w": "machine",
+            "t": 94.021
+          },
+          {
+            "w": "learning,",
+            "t": 94.478
+          },
+          {
+            "w": "and",
+            "t": 94.935
+          },
+          {
+            "w": "columnar",
+            "t": 95.393
+          },
+          {
+            "w": "chunks",
+            "t": 95.85
+          },
+          {
+            "w": "in",
+            "t": 96.307
+          },
+          {
+            "w": "Parquet",
+            "t": 96.765
+          },
+          {
+            "w": "and",
+            "t": 97.222
+          },
+          {
+            "w": "Arrow.",
+            "t": 97.679
+          },
+          {
+            "w": "Understanding",
+            "t": 98.137
+          },
+          {
+            "w": "memory",
+            "t": 98.594
+          },
+          {
+            "w": "layout",
+            "t": 99.051
+          },
+          {
+            "w": "enables",
+            "t": 99.509
+          },
+          {
+            "w": "zero-copy",
+            "t": 99.966
+          },
+          {
+            "w": "vectorized",
+            "t": 100.423
+          },
+          {
+            "w": "processing.",
+            "t": 100.881
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Formulated by Sambasivan and colleagues at Google Research, the Law of Data Quality Cascades proves that final system error is lower-bounded by the sum of squared stage errors plus non-linear cross-stage coupling. Early data defects compound non-linearly downstream.",
+        "start": 102.088,
+        "end": 118.24,
+        "words": [
+          {
+            "w": "Formulated",
+            "t": 102.088
+          },
+          {
+            "w": "by",
+            "t": 102.513
+          },
+          {
+            "w": "Sambasivan",
+            "t": 102.938
+          },
+          {
+            "w": "and",
+            "t": 103.363
+          },
+          {
+            "w": "colleagues",
+            "t": 103.788
+          },
+          {
+            "w": "at",
+            "t": 104.213
+          },
+          {
+            "w": "Google",
+            "t": 104.638
+          },
+          {
+            "w": "Research,",
+            "t": 105.063
+          },
+          {
+            "w": "the",
+            "t": 105.488
+          },
+          {
+            "w": "Law",
+            "t": 105.913
+          },
+          {
+            "w": "of",
+            "t": 106.339
+          },
+          {
+            "w": "Data",
+            "t": 106.764
+          },
+          {
+            "w": "Quality",
+            "t": 107.189
+          },
+          {
+            "w": "Cascades",
+            "t": 107.614
+          },
+          {
+            "w": "proves",
+            "t": 108.039
+          },
+          {
+            "w": "that",
+            "t": 108.464
+          },
+          {
+            "w": "final",
+            "t": 108.889
+          },
+          {
+            "w": "system",
+            "t": 109.314
+          },
+          {
+            "w": "error",
+            "t": 109.739
+          },
+          {
+            "w": "is",
+            "t": 110.164
+          },
+          {
+            "w": "lower-bounded",
+            "t": 110.589
+          },
+          {
+            "w": "by",
+            "t": 111.014
+          },
+          {
+            "w": "the",
+            "t": 111.439
+          },
+          {
+            "w": "sum",
+            "t": 111.864
+          },
+          {
+            "w": "of",
+            "t": 112.289
+          },
+          {
+            "w": "squared",
+            "t": 112.714
+          },
+          {
+            "w": "stage",
+            "t": 113.139
+          },
+          {
+            "w": "errors",
+            "t": 113.564
+          },
+          {
+            "w": "plus",
+            "t": 113.989
+          },
+          {
+            "w": "non-linear",
+            "t": 114.415
+          },
+          {
+            "w": "cross-stage",
+            "t": 114.84
+          },
+          {
+            "w": "coupling.",
+            "t": 115.265
+          },
+          {
+            "w": "Early",
+            "t": 115.69
+          },
+          {
+            "w": "data",
+            "t": 116.115
+          },
+          {
+            "w": "defects",
+            "t": 116.54
+          },
+          {
+            "w": "compound",
+            "t": 116.965
+          },
+          {
+            "w": "non-linearly",
+            "t": 117.39
+          },
+          {
+            "w": "downstream.",
+            "t": 117.815
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Data cascades manifest across four distinct pipeline stages: hardware sensor drift, dirty cleaning and leakage during preparation, validation blind spots during training, and feedback loops in production deployment. Auditing must happen at every boundary.",
+        "start": 118.99,
+        "end": 134.998,
+        "words": [
+          {
+            "w": "Data",
+            "t": 118.99
+          },
+          {
+            "w": "cascades",
+            "t": 119.461
+          },
+          {
+            "w": "manifest",
+            "t": 119.932
+          },
+          {
+            "w": "across",
+            "t": 120.402
+          },
+          {
+            "w": "four",
+            "t": 120.873
+          },
+          {
+            "w": "distinct",
+            "t": 121.344
+          },
+          {
+            "w": "pipeline",
+            "t": 121.815
+          },
+          {
+            "w": "stages:",
+            "t": 122.286
+          },
+          {
+            "w": "hardware",
+            "t": 122.757
+          },
+          {
+            "w": "sensor",
+            "t": 123.227
+          },
+          {
+            "w": "drift,",
+            "t": 123.698
+          },
+          {
+            "w": "dirty",
+            "t": 124.169
+          },
+          {
+            "w": "cleaning",
+            "t": 124.64
+          },
+          {
+            "w": "and",
+            "t": 125.111
+          },
+          {
+            "w": "leakage",
+            "t": 125.582
+          },
+          {
+            "w": "during",
+            "t": 126.052
+          },
+          {
+            "w": "preparation,",
+            "t": 126.523
+          },
+          {
+            "w": "validation",
+            "t": 126.994
+          },
+          {
+            "w": "blind",
+            "t": 127.465
+          },
+          {
+            "w": "spots",
+            "t": 127.936
+          },
+          {
+            "w": "during",
+            "t": 128.406
+          },
+          {
+            "w": "training,",
+            "t": 128.877
+          },
+          {
+            "w": "and",
+            "t": 129.348
+          },
+          {
+            "w": "feedback",
+            "t": 129.819
+          },
+          {
+            "w": "loops",
+            "t": 130.29
+          },
+          {
+            "w": "in",
+            "t": 130.761
+          },
+          {
+            "w": "production",
+            "t": 131.231
+          },
+          {
+            "w": "deployment.",
+            "t": 131.702
+          },
+          {
+            "w": "Auditing",
+            "t": 132.173
+          },
+          {
+            "w": "must",
+            "t": 132.644
+          },
+          {
+            "w": "happen",
+            "t": 133.115
+          },
+          {
+            "w": "at",
+            "t": 133.586
+          },
+          {
+            "w": "every",
+            "t": 134.056
+          },
+          {
+            "w": "boundary.",
+            "t": 134.527
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "In this real-world ICU case study, sepsis prediction models trained on bedside blood pressure cuffs logged every fifteen minutes failed when deployed on arterial lines recording at one hundred hertz. The model had learned nurse visit frequency rather than physiological disease onset.",
+        "start": 135.748,
+        "end": 152.404,
+        "words": [
+          {
+            "w": "In",
+            "t": 135.748
+          },
+          {
+            "w": "this",
+            "t": 136.145
+          },
+          {
+            "w": "real-world",
+            "t": 136.541
+          },
+          {
+            "w": "ICU",
+            "t": 136.938
+          },
+          {
+            "w": "case",
+            "t": 137.334
+          },
+          {
+            "w": "study,",
+            "t": 137.731
+          },
+          {
+            "w": "sepsis",
+            "t": 138.127
+          },
+          {
+            "w": "prediction",
+            "t": 138.524
+          },
+          {
+            "w": "models",
+            "t": 138.921
+          },
+          {
+            "w": "trained",
+            "t": 139.317
+          },
+          {
+            "w": "on",
+            "t": 139.714
+          },
+          {
+            "w": "bedside",
+            "t": 140.11
+          },
+          {
+            "w": "blood",
+            "t": 140.507
+          },
+          {
+            "w": "pressure",
+            "t": 140.903
+          },
+          {
+            "w": "cuffs",
+            "t": 141.3
+          },
+          {
+            "w": "logged",
+            "t": 141.697
+          },
+          {
+            "w": "every",
+            "t": 142.093
+          },
+          {
+            "w": "fifteen",
+            "t": 142.49
+          },
+          {
+            "w": "minutes",
+            "t": 142.886
+          },
+          {
+            "w": "failed",
+            "t": 143.283
+          },
+          {
+            "w": "when",
+            "t": 143.679
+          },
+          {
+            "w": "deployed",
+            "t": 144.076
+          },
+          {
+            "w": "on",
+            "t": 144.473
+          },
+          {
+            "w": "arterial",
+            "t": 144.869
+          },
+          {
+            "w": "lines",
+            "t": 145.266
+          },
+          {
+            "w": "recording",
+            "t": 145.662
+          },
+          {
+            "w": "at",
+            "t": 146.059
+          },
+          {
+            "w": "one",
+            "t": 146.455
+          },
+          {
+            "w": "hundred",
+            "t": 146.852
+          },
+          {
+            "w": "hertz.",
+            "t": 147.249
+          },
+          {
+            "w": "The",
+            "t": 147.645
+          },
+          {
+            "w": "model",
+            "t": 148.042
+          },
+          {
+            "w": "had",
+            "t": 148.438
+          },
+          {
+            "w": "learned",
+            "t": 148.835
+          },
+          {
+            "w": "nurse",
+            "t": 149.231
+          },
+          {
+            "w": "visit",
+            "t": 149.628
+          },
+          {
+            "w": "frequency",
+            "t": 150.025
+          },
+          {
+            "w": "rather",
+            "t": 150.421
+          },
+          {
+            "w": "than",
+            "t": 150.818
+          },
+          {
+            "w": "physiological",
+            "t": 151.214
+          },
+          {
+            "w": "disease",
+            "t": 151.611
+          },
+          {
+            "w": "onset.",
+            "t": 152.007
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "In autonomous driving, an autonomous vehicle traveling at one hundred kilometers per hour covers twenty-eight millimeters every millisecond. A temporal logging jitter of merely twenty milliseconds displaces an obstacle's bounding box by over half a meter, causing phantom braking or collision.",
+        "start": 153.154,
+        "end": 170.386,
+        "words": [
+          {
+            "w": "In",
+            "t": 153.154
+          },
+          {
+            "w": "autonomous",
+            "t": 153.574
+          },
+          {
+            "w": "driving,",
+            "t": 153.995
+          },
+          {
+            "w": "an",
+            "t": 154.415
+          },
+          {
+            "w": "autonomous",
+            "t": 154.835
+          },
+          {
+            "w": "vehicle",
+            "t": 155.255
+          },
+          {
+            "w": "traveling",
+            "t": 155.676
+          },
+          {
+            "w": "at",
+            "t": 156.096
+          },
+          {
+            "w": "one",
+            "t": 156.516
+          },
+          {
+            "w": "hundred",
+            "t": 156.937
+          },
+          {
+            "w": "kilometers",
+            "t": 157.357
+          },
+          {
+            "w": "per",
+            "t": 157.777
+          },
+          {
+            "w": "hour",
+            "t": 158.198
+          },
+          {
+            "w": "covers",
+            "t": 158.618
+          },
+          {
+            "w": "twenty-eight",
+            "t": 159.038
+          },
+          {
+            "w": "millimeters",
+            "t": 159.458
+          },
+          {
+            "w": "every",
+            "t": 159.879
+          },
+          {
+            "w": "millisecond.",
+            "t": 160.299
+          },
+          {
+            "w": "A",
+            "t": 160.719
+          },
+          {
+            "w": "temporal",
+            "t": 161.14
+          },
+          {
+            "w": "logging",
+            "t": 161.56
+          },
+          {
+            "w": "jitter",
+            "t": 161.98
+          },
+          {
+            "w": "of",
+            "t": 162.4
+          },
+          {
+            "w": "merely",
+            "t": 162.821
+          },
+          {
+            "w": "twenty",
+            "t": 163.241
+          },
+          {
+            "w": "milliseconds",
+            "t": 163.661
+          },
+          {
+            "w": "displaces",
+            "t": 164.082
+          },
+          {
+            "w": "an",
+            "t": 164.502
+          },
+          {
+            "w": "obstacle's",
+            "t": 164.922
+          },
+          {
+            "w": "bounding",
+            "t": 165.342
+          },
+          {
+            "w": "box",
+            "t": 165.763
+          },
+          {
+            "w": "by",
+            "t": 166.183
+          },
+          {
+            "w": "over",
+            "t": 166.603
+          },
+          {
+            "w": "half",
+            "t": 167.024
+          },
+          {
+            "w": "a",
+            "t": 167.444
+          },
+          {
+            "w": "meter,",
+            "t": 167.864
+          },
+          {
+            "w": "causing",
+            "t": 168.285
+          },
+          {
+            "w": "phantom",
+            "t": 168.705
+          },
+          {
+            "w": "braking",
+            "t": 169.125
+          },
+          {
+            "w": "or",
+            "t": 169.545
+          },
+          {
+            "w": "collision.",
+            "t": 169.966
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Directly beneath this presentation player is our live laboratory workbench. Use it to inject anomalous nulls, corrupt categorical distributions, and trigger out-of-range sensor readings to observe how defensive boundary schemas prevent pipeline failures.",
+        "start": 171.136,
+        "end": 186.736,
+        "words": [
+          {
+            "w": "Directly",
+            "t": 171.136
+          },
+          {
+            "w": "beneath",
+            "t": 171.609
+          },
+          {
+            "w": "this",
+            "t": 172.081
+          },
+          {
+            "w": "presentation",
+            "t": 172.554
+          },
+          {
+            "w": "player",
+            "t": 173.027
+          },
+          {
+            "w": "is",
+            "t": 173.5
+          },
+          {
+            "w": "our",
+            "t": 173.972
+          },
+          {
+            "w": "live",
+            "t": 174.445
+          },
+          {
+            "w": "laboratory",
+            "t": 174.918
+          },
+          {
+            "w": "workbench.",
+            "t": 175.391
+          },
+          {
+            "w": "Use",
+            "t": 175.863
+          },
+          {
+            "w": "it",
+            "t": 176.336
+          },
+          {
+            "w": "to",
+            "t": 176.809
+          },
+          {
+            "w": "inject",
+            "t": 177.281
+          },
+          {
+            "w": "anomalous",
+            "t": 177.754
+          },
+          {
+            "w": "nulls,",
+            "t": 178.227
+          },
+          {
+            "w": "corrupt",
+            "t": 178.7
+          },
+          {
+            "w": "categorical",
+            "t": 179.172
+          },
+          {
+            "w": "distributions,",
+            "t": 179.645
+          },
+          {
+            "w": "and",
+            "t": 180.118
+          },
+          {
+            "w": "trigger",
+            "t": 180.591
+          },
+          {
+            "w": "out-of-range",
+            "t": 181.063
+          },
+          {
+            "w": "sensor",
+            "t": 181.536
+          },
+          {
+            "w": "readings",
+            "t": 182.009
+          },
+          {
+            "w": "to",
+            "t": 182.481
+          },
+          {
+            "w": "observe",
+            "t": 182.954
+          },
+          {
+            "w": "how",
+            "t": 183.427
+          },
+          {
+            "w": "defensive",
+            "t": 183.9
+          },
+          {
+            "w": "boundary",
+            "t": 184.372
+          },
+          {
+            "w": "schemas",
+            "t": 184.845
+          },
+          {
+            "w": "prevent",
+            "t": 185.318
+          },
+          {
+            "w": "pipeline",
+            "t": 185.791
+          },
+          {
+            "w": "failures.",
+            "t": 186.263
           }
         ]
       },
@@ -2735,113 +1735,851 @@ window.LESSON_TIMINGS = window.LESSON_TIMINGS || {
         "slide": 12,
         "slideId": "s12",
         "speaker": "Dr. Nova",
-        "text": "Fixing defects at the boundary guarantees downstream reliability.",
-        "start": 296.987,
-        "end": 301.425,
+        "text": "Production data engineering requires defensive boundary contracts. This Pydantic V2 schema demonstrates strict type enforcement, regex validation for identifiers, bounded float ranges, and custom field validators that reject corrupted records before they enter memory.",
+        "start": 187.486,
+        "end": 204.91,
         "words": [
           {
-            "w": "Fixing",
-            "t": 296.987
+            "w": "Production",
+            "t": 187.486
           },
           {
-            "w": "defects",
-            "t": 297.542
+            "w": "data",
+            "t": 187.998
           },
           {
-            "w": "at",
-            "t": 298.097
+            "w": "engineering",
+            "t": 188.511
           },
           {
-            "w": "the",
-            "t": 298.652
+            "w": "requires",
+            "t": 189.023
+          },
+          {
+            "w": "defensive",
+            "t": 189.536
           },
           {
             "w": "boundary",
-            "t": 299.206
+            "t": 190.048
           },
           {
-            "w": "guarantees",
-            "t": 299.761
+            "w": "contracts.",
+            "t": 190.561
           },
           {
-            "w": "downstream",
-            "t": 300.316
+            "w": "This",
+            "t": 191.073
           },
           {
-            "w": "reliability.",
-            "t": 300.87
+            "w": "Pydantic",
+            "t": 191.586
+          },
+          {
+            "w": "V2",
+            "t": 192.098
+          },
+          {
+            "w": "schema",
+            "t": 192.611
+          },
+          {
+            "w": "demonstrates",
+            "t": 193.123
+          },
+          {
+            "w": "strict",
+            "t": 193.636
+          },
+          {
+            "w": "type",
+            "t": 194.148
+          },
+          {
+            "w": "enforcement,",
+            "t": 194.661
+          },
+          {
+            "w": "regex",
+            "t": 195.173
+          },
+          {
+            "w": "validation",
+            "t": 195.686
+          },
+          {
+            "w": "for",
+            "t": 196.198
+          },
+          {
+            "w": "identifiers,",
+            "t": 196.71
+          },
+          {
+            "w": "bounded",
+            "t": 197.223
+          },
+          {
+            "w": "float",
+            "t": 197.735
+          },
+          {
+            "w": "ranges,",
+            "t": 198.248
+          },
+          {
+            "w": "and",
+            "t": 198.76
+          },
+          {
+            "w": "custom",
+            "t": 199.273
+          },
+          {
+            "w": "field",
+            "t": 199.785
+          },
+          {
+            "w": "validators",
+            "t": 200.298
+          },
+          {
+            "w": "that",
+            "t": 200.81
+          },
+          {
+            "w": "reject",
+            "t": 201.323
+          },
+          {
+            "w": "corrupted",
+            "t": 201.835
+          },
+          {
+            "w": "records",
+            "t": 202.348
+          },
+          {
+            "w": "before",
+            "t": 202.86
+          },
+          {
+            "w": "they",
+            "t": 203.373
+          },
+          {
+            "w": "enter",
+            "t": 203.885
+          },
+          {
+            "w": "memory.",
+            "t": 204.398
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "When processing millions of records per second, row-by-row validation is too slow. This Polars and Apache Arrow pipeline performs vectorized schema auditing using SIMD C++ kernels, filtering corrupt rows in columnar memory without incurring serialization overhead.",
+        "start": 205.66,
+        "end": 222.772,
+        "words": [
+          {
+            "w": "When",
+            "t": 205.66
+          },
+          {
+            "w": "processing",
+            "t": 206.135
+          },
+          {
+            "w": "millions",
+            "t": 206.611
+          },
+          {
+            "w": "of",
+            "t": 207.086
+          },
+          {
+            "w": "records",
+            "t": 207.561
+          },
+          {
+            "w": "per",
+            "t": 208.037
+          },
+          {
+            "w": "second,",
+            "t": 208.512
+          },
+          {
+            "w": "row-by-row",
+            "t": 208.987
+          },
+          {
+            "w": "validation",
+            "t": 209.463
+          },
+          {
+            "w": "is",
+            "t": 209.938
+          },
+          {
+            "w": "too",
+            "t": 210.413
+          },
+          {
+            "w": "slow.",
+            "t": 210.889
+          },
+          {
+            "w": "This",
+            "t": 211.364
+          },
+          {
+            "w": "Polars",
+            "t": 211.839
+          },
+          {
+            "w": "and",
+            "t": 212.315
+          },
+          {
+            "w": "Apache",
+            "t": 212.79
+          },
+          {
+            "w": "Arrow",
+            "t": 213.265
+          },
+          {
+            "w": "pipeline",
+            "t": 213.741
+          },
+          {
+            "w": "performs",
+            "t": 214.216
+          },
+          {
+            "w": "vectorized",
+            "t": 214.691
+          },
+          {
+            "w": "schema",
+            "t": 215.167
+          },
+          {
+            "w": "auditing",
+            "t": 215.642
+          },
+          {
+            "w": "using",
+            "t": 216.117
+          },
+          {
+            "w": "SIMD",
+            "t": 216.593
+          },
+          {
+            "w": "C++",
+            "t": 217.068
+          },
+          {
+            "w": "kernels,",
+            "t": 217.543
+          },
+          {
+            "w": "filtering",
+            "t": 218.019
+          },
+          {
+            "w": "corrupt",
+            "t": 218.494
+          },
+          {
+            "w": "rows",
+            "t": 218.969
+          },
+          {
+            "w": "in",
+            "t": 219.445
+          },
+          {
+            "w": "columnar",
+            "t": 219.92
+          },
+          {
+            "w": "memory",
+            "t": 220.395
+          },
+          {
+            "w": "without",
+            "t": 220.871
+          },
+          {
+            "w": "incurring",
+            "t": 221.346
+          },
+          {
+            "w": "serialization",
+            "t": 221.821
+          },
+          {
+            "w": "overhead.",
+            "t": 222.297
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Test your architectural diagnosis skills across three industry scenarios: handling sensor drift, detecting target leakage, and resolving temporal sampling misalignments. Click each option to evaluate your intuition against empirical data engineering principles.",
+        "start": 223.522,
+        "end": 239.674,
+        "words": [
+          {
+            "w": "Test",
+            "t": 223.522
+          },
+          {
+            "w": "your",
+            "t": 224.027
+          },
+          {
+            "w": "architectural",
+            "t": 224.531
+          },
+          {
+            "w": "diagnosis",
+            "t": 225.036
+          },
+          {
+            "w": "skills",
+            "t": 225.541
+          },
+          {
+            "w": "across",
+            "t": 226.046
+          },
+          {
+            "w": "three",
+            "t": 226.55
+          },
+          {
+            "w": "industry",
+            "t": 227.055
+          },
+          {
+            "w": "scenarios:",
+            "t": 227.56
+          },
+          {
+            "w": "handling",
+            "t": 228.065
+          },
+          {
+            "w": "sensor",
+            "t": 228.57
+          },
+          {
+            "w": "drift,",
+            "t": 229.074
+          },
+          {
+            "w": "detecting",
+            "t": 229.579
+          },
+          {
+            "w": "target",
+            "t": 230.084
+          },
+          {
+            "w": "leakage,",
+            "t": 230.588
+          },
+          {
+            "w": "and",
+            "t": 231.093
+          },
+          {
+            "w": "resolving",
+            "t": 231.598
+          },
+          {
+            "w": "temporal",
+            "t": 232.103
+          },
+          {
+            "w": "sampling",
+            "t": 232.607
+          },
+          {
+            "w": "misalignments.",
+            "t": 233.112
+          },
+          {
+            "w": "Click",
+            "t": 233.617
+          },
+          {
+            "w": "each",
+            "t": 234.122
+          },
+          {
+            "w": "option",
+            "t": 234.626
+          },
+          {
+            "w": "to",
+            "t": 235.131
+          },
+          {
+            "w": "evaluate",
+            "t": 235.636
+          },
+          {
+            "w": "your",
+            "t": 236.141
+          },
+          {
+            "w": "intuition",
+            "t": 236.645
+          },
+          {
+            "w": "against",
+            "t": 237.15
+          },
+          {
+            "w": "empirical",
+            "t": 237.655
+          },
+          {
+            "w": "data",
+            "t": 238.16
+          },
+          {
+            "w": "engineering",
+            "t": 238.665
+          },
+          {
+            "w": "principles.",
+            "t": 239.169
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Our curriculum is grounded in seminal empirical literature: Sambasivan's paper on Everyone wants to do the model work but not the data work, Sculley's hidden technical debt in machine learning systems, and Geirhos's analysis of shortcut learning.",
+        "start": 240.424,
+        "end": 254.464,
+        "words": [
+          {
+            "w": "Our",
+            "t": 240.424
+          },
+          {
+            "w": "curriculum",
+            "t": 240.803
+          },
+          {
+            "w": "is",
+            "t": 241.183
+          },
+          {
+            "w": "grounded",
+            "t": 241.562
+          },
+          {
+            "w": "in",
+            "t": 241.942
+          },
+          {
+            "w": "seminal",
+            "t": 242.321
+          },
+          {
+            "w": "empirical",
+            "t": 242.701
+          },
+          {
+            "w": "literature:",
+            "t": 243.08
+          },
+          {
+            "w": "Sambasivan's",
+            "t": 243.46
+          },
+          {
+            "w": "paper",
+            "t": 243.839
+          },
+          {
+            "w": "on",
+            "t": 244.219
+          },
+          {
+            "w": "Everyone",
+            "t": 244.598
+          },
+          {
+            "w": "wants",
+            "t": 244.978
+          },
+          {
+            "w": "to",
+            "t": 245.357
+          },
+          {
+            "w": "do",
+            "t": 245.736
+          },
+          {
+            "w": "the",
+            "t": 246.116
+          },
+          {
+            "w": "model",
+            "t": 246.495
+          },
+          {
+            "w": "work",
+            "t": 246.875
+          },
+          {
+            "w": "but",
+            "t": 247.254
+          },
+          {
+            "w": "not",
+            "t": 247.634
+          },
+          {
+            "w": "the",
+            "t": 248.013
+          },
+          {
+            "w": "data",
+            "t": 248.393
+          },
+          {
+            "w": "work,",
+            "t": 248.772
+          },
+          {
+            "w": "Sculley's",
+            "t": 249.152
+          },
+          {
+            "w": "hidden",
+            "t": 249.531
+          },
+          {
+            "w": "technical",
+            "t": 249.91
+          },
+          {
+            "w": "debt",
+            "t": 250.29
+          },
+          {
+            "w": "in",
+            "t": 250.669
+          },
+          {
+            "w": "machine",
+            "t": 251.049
+          },
+          {
+            "w": "learning",
+            "t": 251.428
+          },
+          {
+            "w": "systems,",
+            "t": 251.808
+          },
+          {
+            "w": "and",
+            "t": 252.187
+          },
+          {
+            "w": "Geirhos's",
+            "t": 252.567
+          },
+          {
+            "w": "analysis",
+            "t": 252.946
+          },
+          {
+            "w": "of",
+            "t": 253.326
+          },
+          {
+            "w": "shortcut",
+            "t": 253.705
+          },
+          {
+            "w": "learning.",
+            "t": 254.085
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "To summarize Lesson 1.1: treat dataset engineering as the foundation of reliable machine learning. Remember that empirical risk is only a proxy for generalization, data quality cascades compound non-linearly, and strict boundary validation is essential. In Lesson 1.2, we explore structural dataset taxonomies.",
+        "start": 255.214,
+        "end": 276.55,
+        "words": [
+          {
+            "w": "To",
+            "t": 255.214
+          },
+          {
+            "w": "summarize",
+            "t": 255.71
+          },
+          {
+            "w": "Lesson",
+            "t": 256.206
+          },
+          {
+            "w": "1.1:",
+            "t": 256.703
+          },
+          {
+            "w": "treat",
+            "t": 257.199
+          },
+          {
+            "w": "dataset",
+            "t": 257.695
+          },
+          {
+            "w": "engineering",
+            "t": 258.191
+          },
+          {
+            "w": "as",
+            "t": 258.687
+          },
+          {
+            "w": "the",
+            "t": 259.183
+          },
+          {
+            "w": "foundation",
+            "t": 259.68
+          },
+          {
+            "w": "of",
+            "t": 260.176
+          },
+          {
+            "w": "reliable",
+            "t": 260.672
+          },
+          {
+            "w": "machine",
+            "t": 261.168
+          },
+          {
+            "w": "learning.",
+            "t": 261.664
+          },
+          {
+            "w": "Remember",
+            "t": 262.161
+          },
+          {
+            "w": "that",
+            "t": 262.657
+          },
+          {
+            "w": "empirical",
+            "t": 263.153
+          },
+          {
+            "w": "risk",
+            "t": 263.649
+          },
+          {
+            "w": "is",
+            "t": 264.145
+          },
+          {
+            "w": "only",
+            "t": 264.642
+          },
+          {
+            "w": "a",
+            "t": 265.138
+          },
+          {
+            "w": "proxy",
+            "t": 265.634
+          },
+          {
+            "w": "for",
+            "t": 266.13
+          },
+          {
+            "w": "generalization,",
+            "t": 266.626
+          },
+          {
+            "w": "data",
+            "t": 267.122
+          },
+          {
+            "w": "quality",
+            "t": 267.619
+          },
+          {
+            "w": "cascades",
+            "t": 268.115
+          },
+          {
+            "w": "compound",
+            "t": 268.611
+          },
+          {
+            "w": "non-linearly,",
+            "t": 269.107
+          },
+          {
+            "w": "and",
+            "t": 269.603
+          },
+          {
+            "w": "strict",
+            "t": 270.1
+          },
+          {
+            "w": "boundary",
+            "t": 270.596
+          },
+          {
+            "w": "validation",
+            "t": 271.092
+          },
+          {
+            "w": "is",
+            "t": 271.588
+          },
+          {
+            "w": "essential.",
+            "t": 272.084
+          },
+          {
+            "w": "In",
+            "t": 272.581
+          },
+          {
+            "w": "Lesson",
+            "t": 273.077
+          },
+          {
+            "w": "1.2,",
+            "t": 273.573
+          },
+          {
+            "w": "we",
+            "t": 274.069
+          },
+          {
+            "w": "explore",
+            "t": 274.565
+          },
+          {
+            "w": "structural",
+            "t": 275.061
+          },
+          {
+            "w": "dataset",
+            "t": 275.558
+          },
+          {
+            "w": "taxonomies.",
+            "t": 276.054
           }
         ]
       }
     ]
   },
-  "ch1_p1_solo": {
+  "ch1_p1_duo": {
     "lessonKey": "ch1_p1",
-    "mode": "solo",
-    "duration": 253.437,
-    "slidesCount": 12,
+    "mode": "duo",
+    "duration": 328.044,
+    "slidesCount": 16,
     "sentences": [
       {
         "slide": 1,
         "slideId": "s1",
-        "speaker": "Dr. Nova",
-        "text": "Welcome to Lesson 1.1.",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what is the core architectural challenge we are addressing in this lesson?",
         "start": 0.1,
-        "end": 2.712,
+        "end": 5.428,
         "words": [
           {
-            "w": "Welcome",
+            "w": "Dr.",
             "t": 0.1
           },
           {
-            "w": "to",
-            "t": 0.753
-          },
-          {
-            "w": "Lesson",
-            "t": 1.406
-          },
-          {
-            "w": "1.1.",
-            "t": 2.059
-          }
-        ]
-      },
-      {
-        "slide": 1,
-        "slideId": "s1",
-        "speaker": "Dr. Nova",
-        "text": "Today we examine what is a dataset?",
-        "start": 2.663,
-        "end": 5.562,
-        "words": [
-          {
-            "w": "Today",
-            "t": 2.663
-          },
-          {
-            "w": "we",
-            "t": 3.077
-          },
-          {
-            "w": "examine",
-            "t": 3.491
+            "w": "Nova,",
+            "t": 0.481
           },
           {
             "w": "what",
-            "t": 3.905
+            "t": 0.861
           },
           {
             "w": "is",
-            "t": 4.32
+            "t": 1.242
           },
           {
-            "w": "a",
-            "t": 4.734
+            "w": "the",
+            "t": 1.622
           },
           {
-            "w": "dataset?",
-            "t": 5.148
+            "w": "core",
+            "t": 2.003
+          },
+          {
+            "w": "architectural",
+            "t": 2.383
+          },
+          {
+            "w": "challenge",
+            "t": 2.764
+          },
+          {
+            "w": "we",
+            "t": 3.145
+          },
+          {
+            "w": "are",
+            "t": 3.525
+          },
+          {
+            "w": "addressing",
+            "t": 3.906
+          },
+          {
+            "w": "in",
+            "t": 4.286
+          },
+          {
+            "w": "this",
+            "t": 4.667
+          },
+          {
+            "w": "lesson?",
+            "t": 5.047
           }
         ]
       },
@@ -2849,2091 +2587,2203 @@ window.LESSON_TIMINGS = window.LESSON_TIMINGS || {
         "slide": 1,
         "slideId": "s1",
         "speaker": "Dr. Nova",
-        "text": "records, attributes & data quality cascades, establishing the mathematical foundations and production discipline required to guarantee dataset reliability.",
-        "start": 5.562,
-        "end": 15.387,
+        "text": "Kaito, the core challenge is understanding that modern AI models do not learn the real world directly—they learn exclusively through empirical datasets. When datasets contain hidden artifacts, models learn those artifacts with high statistical confidence.",
+        "start": 5.778,
+        "end": 21.258,
         "words": [
           {
-            "w": "records,",
-            "t": 5.562
-          },
-          {
-            "w": "attributes",
-            "t": 6.108
-          },
-          {
-            "w": "&",
-            "t": 6.654
-          },
-          {
-            "w": "data",
-            "t": 7.2
-          },
-          {
-            "w": "quality",
-            "t": 7.746
-          },
-          {
-            "w": "cascades,",
-            "t": 8.292
-          },
-          {
-            "w": "establishing",
-            "t": 8.837
+            "w": "Kaito,",
+            "t": 5.778
           },
           {
             "w": "the",
-            "t": 9.383
+            "t": 6.22
           },
           {
-            "w": "mathematical",
-            "t": 9.929
+            "w": "core",
+            "t": 6.663
           },
           {
-            "w": "foundations",
-            "t": 10.475
-          },
-          {
-            "w": "and",
-            "t": 11.021
-          },
-          {
-            "w": "production",
-            "t": 11.567
-          },
-          {
-            "w": "discipline",
-            "t": 12.112
-          },
-          {
-            "w": "required",
-            "t": 12.658
-          },
-          {
-            "w": "to",
-            "t": 13.204
-          },
-          {
-            "w": "guarantee",
-            "t": 13.75
-          },
-          {
-            "w": "dataset",
-            "t": 14.296
-          },
-          {
-            "w": "reliability.",
-            "t": 14.842
-          }
-        ]
-      },
-      {
-        "slide": 2,
-        "slideId": "s2",
-        "speaker": "Dr. Nova",
-        "text": "Formal Mathematical Foundations: Mathematical Definition of an Empirical Sample.",
-        "start": 16.488,
-        "end": 22.225,
-        "words": [
-          {
-            "w": "Formal",
-            "t": 16.488
-          },
-          {
-            "w": "Mathematical",
-            "t": 17.125
-          },
-          {
-            "w": "Foundations:",
-            "t": 17.762
-          },
-          {
-            "w": "Mathematical",
-            "t": 18.4
-          },
-          {
-            "w": "Definition",
-            "t": 19.038
-          },
-          {
-            "w": "of",
-            "t": 19.675
-          },
-          {
-            "w": "an",
-            "t": 20.312
-          },
-          {
-            "w": "Empirical",
-            "t": 20.95
-          },
-          {
-            "w": "Sample.",
-            "t": 21.588
-          }
-        ]
-      },
-      {
-        "slide": 2,
-        "slideId": "s2",
-        "speaker": "Dr. Nova",
-        "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds.",
-        "start": 22.175,
-        "end": 31.762,
-        "words": [
-          {
-            "w": "Formalizing",
-            "t": 22.175
-          },
-          {
-            "w": "the",
-            "t": 22.68
-          },
-          {
-            "w": "empirical",
-            "t": 23.184
-          },
-          {
-            "w": "sample",
-            "t": 23.689
-          },
-          {
-            "w": "mathematically",
-            "t": 24.193
-          },
-          {
-            "w": "reveals",
-            "t": 24.698
-          },
-          {
-            "w": "that",
-            "t": 25.203
-          },
-          {
-            "w": "empirical",
-            "t": 25.707
-          },
-          {
-            "w": "risk",
-            "t": 26.212
-          },
-          {
-            "w": "only",
-            "t": 26.716
-          },
-          {
-            "w": "approximates",
-            "t": 27.221
-          },
-          {
-            "w": "true",
-            "t": 27.726
-          },
-          {
-            "w": "generalization",
-            "t": 28.23
-          },
-          {
-            "w": "risk",
-            "t": 28.735
-          },
-          {
-            "w": "when",
-            "t": 29.239
-          },
-          {
-            "w": "the",
-            "t": 29.744
-          },
-          {
-            "w": "i.i.d.",
-            "t": 30.249
-          },
-          {
-            "w": "assumption",
-            "t": 30.753
-          },
-          {
-            "w": "holds.",
-            "t": 31.258
-          }
-        ]
-      },
-      {
-        "slide": 2,
-        "slideId": "s2",
-        "speaker": "Dr. Nova",
-        "text": "When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that.",
-        "start": 31.762,
-        "end": 39.987,
-        "words": [
-          {
-            "w": "When",
-            "t": 31.762
-          },
-          {
-            "w": "upstream",
-            "t": 32.219
-          },
-          {
-            "w": "sampling",
-            "t": 32.676
+            "w": "challenge",
+            "t": 7.105
           },
           {
             "w": "is",
-            "t": 33.133
+            "t": 7.547
           },
           {
-            "w": "biased,",
-            "t": 33.59
-          },
-          {
-            "w": "the",
-            "t": 34.047
-          },
-          {
-            "w": "empirical",
-            "t": 34.504
-          },
-          {
-            "w": "risk",
-            "t": 34.961
-          },
-          {
-            "w": "diverges",
-            "t": 35.418
-          },
-          {
-            "w": "asymptotically",
-            "t": 35.875
-          },
-          {
-            "w": "from",
-            "t": 36.332
-          },
-          {
-            "w": "true",
-            "t": 36.789
-          },
-          {
-            "w": "risk\u2014no",
-            "t": 37.246
-          },
-          {
-            "w": "model",
-            "t": 37.703
-          },
-          {
-            "w": "tuning",
-            "t": 38.16
-          },
-          {
-            "w": "can",
-            "t": 38.617
-          },
-          {
-            "w": "fix",
-            "t": 39.074
-          },
-          {
-            "w": "that.",
-            "t": 39.531
-          }
-        ]
-      },
-      {
-        "slide": 3,
-        "slideId": "s3",
-        "speaker": "Dr. Nova",
-        "text": "Formal Mathematical Foundations: Architecture Flowchart.",
-        "start": 41.088,
-        "end": 45.275,
-        "words": [
-          {
-            "w": "Formal",
-            "t": 41.088
-          },
-          {
-            "w": "Mathematical",
-            "t": 41.925
-          },
-          {
-            "w": "Foundations:",
-            "t": 42.763
-          },
-          {
-            "w": "Architecture",
-            "t": 43.6
-          },
-          {
-            "w": "Flowchart.",
-            "t": 44.438
-          }
-        ]
-      },
-      {
-        "slide": 3,
-        "slideId": "s3",
-        "speaker": "Dr. Nova",
-        "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations.",
-        "start": 45.225,
-        "end": 53.688,
-        "words": [
-          {
-            "w": "This",
-            "t": 45.225
-          },
-          {
-            "w": "architecture",
-            "t": 45.789
-          },
-          {
-            "w": "diagram",
-            "t": 46.353
-          },
-          {
-            "w": "visualizes",
-            "t": 46.918
-          },
-          {
-            "w": "how",
-            "t": 47.482
-          },
-          {
-            "w": "physical",
-            "t": 48.046
-          },
-          {
-            "w": "observations",
-            "t": 48.61
-          },
-          {
-            "w": "transition",
-            "t": 49.174
-          },
-          {
-            "w": "across",
-            "t": 49.738
-          },
-          {
-            "w": "sampling",
-            "t": 50.303
-          },
-          {
-            "w": "boundaries",
-            "t": 50.867
-          },
-          {
-            "w": "into",
-            "t": 51.431
-          },
-          {
-            "w": "discrete",
-            "t": 51.995
-          },
-          {
-            "w": "tensor",
-            "t": 52.559
-          },
-          {
-            "w": "representations.",
-            "t": 53.123
-          }
-        ]
-      },
-      {
-        "slide": 3,
-        "slideId": "s3",
-        "speaker": "Dr. Nova",
-        "text": "Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution.",
-        "start": 53.688,
-        "end": 60.65,
-        "words": [
-          {
-            "w": "Tracking",
-            "t": 53.688
-          },
-          {
-            "w": "each",
-            "t": 54.268
-          },
-          {
-            "w": "transition",
-            "t": 54.848
-          },
-          {
-            "w": "stage",
-            "t": 55.428
-          },
-          {
-            "w": "prevents",
-            "t": 56.008
-          },
-          {
-            "w": "undocumented",
-            "t": 56.589
-          },
-          {
-            "w": "transformations",
-            "t": 57.169
-          },
-          {
-            "w": "from",
-            "t": 57.749
-          },
-          {
-            "w": "corrupting",
-            "t": 58.329
-          },
-          {
-            "w": "the",
-            "t": 58.909
-          },
-          {
-            "w": "empirical",
-            "t": 59.49
-          },
-          {
-            "w": "distribution.",
-            "t": 60.07
-          }
-        ]
-      },
-      {
-        "slide": 4,
-        "slideId": "s4",
-        "speaker": "Dr. Nova",
-        "text": "The Attribute Space & Feature Schema.",
-        "start": 61.75,
-        "end": 64.738,
-        "words": [
-          {
-            "w": "The",
-            "t": 61.75
-          },
-          {
-            "w": "Attribute",
-            "t": 62.248
-          },
-          {
-            "w": "Space",
-            "t": 62.746
-          },
-          {
-            "w": "&",
-            "t": 63.244
-          },
-          {
-            "w": "Feature",
-            "t": 63.742
-          },
-          {
-            "w": "Schema.",
-            "t": 64.24
-          }
-        ]
-      },
-      {
-        "slide": 4,
-        "slideId": "s4",
-        "speaker": "Dr. Nova",
-        "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds.",
-        "start": 64.688,
-        "end": 74.275,
-        "words": [
-          {
-            "w": "Formalizing",
-            "t": 64.688
-          },
-          {
-            "w": "the",
-            "t": 65.192
-          },
-          {
-            "w": "empirical",
-            "t": 65.697
-          },
-          {
-            "w": "sample",
-            "t": 66.201
-          },
-          {
-            "w": "mathematically",
-            "t": 66.706
-          },
-          {
-            "w": "reveals",
-            "t": 67.211
+            "w": "understanding",
+            "t": 7.989
           },
           {
             "w": "that",
-            "t": 67.715
+            "t": 8.432
           },
           {
-            "w": "empirical",
-            "t": 68.22
-          },
-          {
-            "w": "risk",
-            "t": 68.724
-          },
-          {
-            "w": "only",
-            "t": 69.229
-          },
-          {
-            "w": "approximates",
-            "t": 69.734
-          },
-          {
-            "w": "true",
-            "t": 70.238
-          },
-          {
-            "w": "generalization",
-            "t": 70.743
-          },
-          {
-            "w": "risk",
-            "t": 71.247
-          },
-          {
-            "w": "when",
-            "t": 71.752
-          },
-          {
-            "w": "the",
-            "t": 72.257
-          },
-          {
-            "w": "i.i.d.",
-            "t": 72.761
-          },
-          {
-            "w": "assumption",
-            "t": 73.266
-          },
-          {
-            "w": "holds.",
-            "t": 73.77
-          }
-        ]
-      },
-      {
-        "slide": 4,
-        "slideId": "s4",
-        "speaker": "Dr. Nova",
-        "text": "When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that.",
-        "start": 74.275,
-        "end": 82.5,
-        "words": [
-          {
-            "w": "When",
-            "t": 74.275
-          },
-          {
-            "w": "upstream",
-            "t": 74.732
-          },
-          {
-            "w": "sampling",
-            "t": 75.189
-          },
-          {
-            "w": "is",
-            "t": 75.646
-          },
-          {
-            "w": "biased,",
-            "t": 76.103
-          },
-          {
-            "w": "the",
-            "t": 76.56
-          },
-          {
-            "w": "empirical",
-            "t": 77.017
-          },
-          {
-            "w": "risk",
-            "t": 77.474
-          },
-          {
-            "w": "diverges",
-            "t": 77.931
-          },
-          {
-            "w": "asymptotically",
-            "t": 78.388
-          },
-          {
-            "w": "from",
-            "t": 78.844
-          },
-          {
-            "w": "true",
-            "t": 79.301
-          },
-          {
-            "w": "risk\u2014no",
-            "t": 79.758
-          },
-          {
-            "w": "model",
-            "t": 80.215
-          },
-          {
-            "w": "tuning",
-            "t": 80.672
-          },
-          {
-            "w": "can",
-            "t": 81.129
-          },
-          {
-            "w": "fix",
-            "t": 81.586
-          },
-          {
-            "w": "that.",
-            "t": 82.043
-          }
-        ]
-      },
-      {
-        "slide": 5,
-        "slideId": "s5",
-        "speaker": "Dr. Nova",
-        "text": "Records vs. Attributes: Terminology Across Computing Paradigms.",
-        "start": 83.6,
-        "end": 88.638,
-        "words": [
-          {
-            "w": "Records",
-            "t": 83.6
-          },
-          {
-            "w": "vs.",
-            "t": 84.32
-          },
-          {
-            "w": "Attributes:",
-            "t": 85.039
-          },
-          {
-            "w": "Terminology",
-            "t": 85.759
-          },
-          {
-            "w": "Across",
-            "t": 86.479
-          },
-          {
-            "w": "Computing",
-            "t": 87.198
-          },
-          {
-            "w": "Paradigms.",
-            "t": 87.918
-          }
-        ]
-      },
-      {
-        "slide": 5,
-        "slideId": "s5",
-        "speaker": "Dr. Nova",
-        "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations.",
-        "start": 88.588,
-        "end": 97.05,
-        "words": [
-          {
-            "w": "This",
-            "t": 88.588
-          },
-          {
-            "w": "architecture",
-            "t": 89.152
-          },
-          {
-            "w": "diagram",
-            "t": 89.716
-          },
-          {
-            "w": "visualizes",
-            "t": 90.28
-          },
-          {
-            "w": "how",
-            "t": 90.844
-          },
-          {
-            "w": "physical",
-            "t": 91.408
-          },
-          {
-            "w": "observations",
-            "t": 91.972
-          },
-          {
-            "w": "transition",
-            "t": 92.537
-          },
-          {
-            "w": "across",
-            "t": 93.101
-          },
-          {
-            "w": "sampling",
-            "t": 93.665
-          },
-          {
-            "w": "boundaries",
-            "t": 94.229
-          },
-          {
-            "w": "into",
-            "t": 94.793
-          },
-          {
-            "w": "discrete",
-            "t": 95.358
-          },
-          {
-            "w": "tensor",
-            "t": 95.922
-          },
-          {
-            "w": "representations.",
-            "t": 96.486
-          }
-        ]
-      },
-      {
-        "slide": 5,
-        "slideId": "s5",
-        "speaker": "Dr. Nova",
-        "text": "Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution.",
-        "start": 97.05,
-        "end": 104.013,
-        "words": [
-          {
-            "w": "Tracking",
-            "t": 97.05
-          },
-          {
-            "w": "each",
-            "t": 97.63
-          },
-          {
-            "w": "transition",
-            "t": 98.21
-          },
-          {
-            "w": "stage",
-            "t": 98.791
-          },
-          {
-            "w": "prevents",
-            "t": 99.371
-          },
-          {
-            "w": "undocumented",
-            "t": 99.951
-          },
-          {
-            "w": "transformations",
-            "t": 100.531
-          },
-          {
-            "w": "from",
-            "t": 101.111
-          },
-          {
-            "w": "corrupting",
-            "t": 101.692
-          },
-          {
-            "w": "the",
-            "t": 102.272
-          },
-          {
-            "w": "empirical",
-            "t": 102.852
-          },
-          {
-            "w": "distribution.",
-            "t": 103.432
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Dr. Nova",
-        "text": "The Law of Data Quality Cascades.",
-        "start": 105.112,
-        "end": 107.962,
-        "words": [
-          {
-            "w": "The",
-            "t": 105.112
-          },
-          {
-            "w": "Law",
-            "t": 105.587
-          },
-          {
-            "w": "of",
-            "t": 106.062
-          },
-          {
-            "w": "Data",
-            "t": 106.537
-          },
-          {
-            "w": "Quality",
-            "t": 107.012
-          },
-          {
-            "w": "Cascades.",
-            "t": 107.487
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Dr. Nova",
-        "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds.",
-        "start": 107.912,
-        "end": 117.5,
-        "words": [
-          {
-            "w": "Formalizing",
-            "t": 107.912
-          },
-          {
-            "w": "the",
-            "t": 108.417
-          },
-          {
-            "w": "empirical",
-            "t": 108.922
-          },
-          {
-            "w": "sample",
-            "t": 109.426
-          },
-          {
-            "w": "mathematically",
-            "t": 109.931
-          },
-          {
-            "w": "reveals",
-            "t": 110.436
-          },
-          {
-            "w": "that",
-            "t": 110.94
-          },
-          {
-            "w": "empirical",
-            "t": 111.445
-          },
-          {
-            "w": "risk",
-            "t": 111.949
-          },
-          {
-            "w": "only",
-            "t": 112.454
-          },
-          {
-            "w": "approximates",
-            "t": 112.959
-          },
-          {
-            "w": "true",
-            "t": 113.463
-          },
-          {
-            "w": "generalization",
-            "t": 113.968
-          },
-          {
-            "w": "risk",
-            "t": 114.472
-          },
-          {
-            "w": "when",
-            "t": 114.977
-          },
-          {
-            "w": "the",
-            "t": 115.482
-          },
-          {
-            "w": "i.i.d.",
-            "t": 115.986
-          },
-          {
-            "w": "assumption",
-            "t": 116.491
-          },
-          {
-            "w": "holds.",
-            "t": 116.995
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Dr. Nova",
-        "text": "When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that.",
-        "start": 117.5,
-        "end": 125.725,
-        "words": [
-          {
-            "w": "When",
-            "t": 117.5
-          },
-          {
-            "w": "upstream",
-            "t": 117.957
-          },
-          {
-            "w": "sampling",
-            "t": 118.414
-          },
-          {
-            "w": "is",
-            "t": 118.871
-          },
-          {
-            "w": "biased,",
-            "t": 119.328
-          },
-          {
-            "w": "the",
-            "t": 119.785
-          },
-          {
-            "w": "empirical",
-            "t": 120.242
-          },
-          {
-            "w": "risk",
-            "t": 120.699
-          },
-          {
-            "w": "diverges",
-            "t": 121.156
-          },
-          {
-            "w": "asymptotically",
-            "t": 121.612
-          },
-          {
-            "w": "from",
-            "t": 122.069
-          },
-          {
-            "w": "true",
-            "t": 122.526
-          },
-          {
-            "w": "risk\u2014no",
-            "t": 122.983
-          },
-          {
-            "w": "model",
-            "t": 123.44
-          },
-          {
-            "w": "tuning",
-            "t": 123.897
-          },
-          {
-            "w": "can",
-            "t": 124.354
-          },
-          {
-            "w": "fix",
-            "t": 124.811
-          },
-          {
-            "w": "that.",
-            "t": 125.268
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Dr. Nova",
-        "text": "The Law of Data Quality Cascades: Architecture Flowchart.",
-        "start": 126.825,
-        "end": 131.025,
-        "words": [
-          {
-            "w": "The",
-            "t": 126.825
-          },
-          {
-            "w": "Law",
-            "t": 127.35
-          },
-          {
-            "w": "of",
-            "t": 127.875
-          },
-          {
-            "w": "Data",
-            "t": 128.4
-          },
-          {
-            "w": "Quality",
-            "t": 128.925
-          },
-          {
-            "w": "Cascades:",
-            "t": 129.45
-          },
-          {
-            "w": "Architecture",
-            "t": 129.975
-          },
-          {
-            "w": "Flowchart.",
-            "t": 130.5
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Dr. Nova",
-        "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations.",
-        "start": 130.975,
-        "end": 139.437,
-        "words": [
-          {
-            "w": "This",
-            "t": 130.975
-          },
-          {
-            "w": "architecture",
-            "t": 131.539
-          },
-          {
-            "w": "diagram",
-            "t": 132.103
-          },
-          {
-            "w": "visualizes",
-            "t": 132.667
-          },
-          {
-            "w": "how",
-            "t": 133.232
-          },
-          {
-            "w": "physical",
-            "t": 133.796
-          },
-          {
-            "w": "observations",
-            "t": 134.36
-          },
-          {
-            "w": "transition",
-            "t": 134.924
-          },
-          {
-            "w": "across",
-            "t": 135.488
-          },
-          {
-            "w": "sampling",
-            "t": 136.052
-          },
-          {
-            "w": "boundaries",
-            "t": 136.617
-          },
-          {
-            "w": "into",
-            "t": 137.181
-          },
-          {
-            "w": "discrete",
-            "t": 137.745
-          },
-          {
-            "w": "tensor",
-            "t": 138.309
-          },
-          {
-            "w": "representations.",
-            "t": 138.873
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Dr. Nova",
-        "text": "Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution.",
-        "start": 139.437,
-        "end": 146.4,
-        "words": [
-          {
-            "w": "Tracking",
-            "t": 139.437
-          },
-          {
-            "w": "each",
-            "t": 140.018
-          },
-          {
-            "w": "transition",
-            "t": 140.598
-          },
-          {
-            "w": "stage",
-            "t": 141.178
-          },
-          {
-            "w": "prevents",
-            "t": 141.758
-          },
-          {
-            "w": "undocumented",
-            "t": 142.339
-          },
-          {
-            "w": "transformations",
-            "t": 142.919
-          },
-          {
-            "w": "from",
-            "t": 143.499
-          },
-          {
-            "w": "corrupting",
-            "t": 144.079
-          },
-          {
-            "w": "the",
-            "t": 144.659
-          },
-          {
-            "w": "empirical",
-            "t": 145.24
-          },
-          {
-            "w": "distribution.",
-            "t": 145.82
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Dr. Nova",
-        "text": "Real-World Case Studies: The MIMIC-IV Clinical Record Shift.",
-        "start": 147.5,
-        "end": 151.912,
-        "words": [
-          {
-            "w": "Real-World",
-            "t": 147.5
-          },
-          {
-            "w": "Case",
-            "t": 148.052
-          },
-          {
-            "w": "Studies:",
-            "t": 148.603
-          },
-          {
-            "w": "The",
-            "t": 149.155
-          },
-          {
-            "w": "MIMIC-IV",
-            "t": 149.706
-          },
-          {
-            "w": "Clinical",
-            "t": 150.258
-          },
-          {
-            "w": "Record",
-            "t": 150.809
-          },
-          {
-            "w": "Shift.",
-            "t": 151.361
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Dr. Nova",
-        "text": "Systems collapse when models mistake collection artifacts for real-world signals.",
-        "start": 151.862,
-        "end": 157.15,
-        "words": [
-          {
-            "w": "Systems",
-            "t": 151.862
-          },
-          {
-            "w": "collapse",
-            "t": 152.391
-          },
-          {
-            "w": "when",
-            "t": 152.92
-          },
-          {
-            "w": "models",
-            "t": 153.449
-          },
-          {
-            "w": "mistake",
-            "t": 153.977
-          },
-          {
-            "w": "collection",
-            "t": 154.506
-          },
-          {
-            "w": "artifacts",
-            "t": 155.035
-          },
-          {
-            "w": "for",
-            "t": 155.564
-          },
-          {
-            "w": "real-world",
-            "t": 156.092
-          },
-          {
-            "w": "signals.",
-            "t": 156.621
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Dr. Nova",
-        "text": "In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds.",
-        "start": 157.15,
-        "end": 169.925,
-        "words": [
-          {
-            "w": "In",
-            "t": 157.15
-          },
-          {
-            "w": "ICU",
-            "t": 157.661
-          },
-          {
-            "w": "sepsis",
-            "t": 158.172
-          },
-          {
-            "w": "models,",
-            "t": 158.683
-          },
-          {
-            "w": "observation",
-            "t": 159.194
-          },
-          {
-            "w": "frequency",
-            "t": 159.705
-          },
-          {
-            "w": "became",
-            "t": 160.216
-          },
-          {
-            "w": "a",
-            "t": 160.727
-          },
-          {
-            "w": "confounder;",
-            "t": 161.238
-          },
-          {
-            "w": "in",
-            "t": 161.749
-          },
-          {
-            "w": "autonomous",
-            "t": 162.26
-          },
-          {
-            "w": "robotics,",
-            "t": 162.771
-          },
-          {
-            "w": "a",
-            "t": 163.282
-          },
-          {
-            "w": "50-millisecond",
-            "t": 163.793
-          },
-          {
-            "w": "timestamp",
-            "t": 164.304
-          },
-          {
-            "w": "jitter",
-            "t": 164.815
-          },
-          {
-            "w": "causes",
-            "t": 165.326
-          },
-          {
-            "w": "a",
-            "t": 165.837
-          },
-          {
-            "w": "1.4-meter",
-            "t": 166.348
-          },
-          {
-            "w": "bounding",
-            "t": 166.859
-          },
-          {
-            "w": "box",
-            "t": 167.37
-          },
-          {
-            "w": "dislocation",
-            "t": 167.881
-          },
-          {
-            "w": "at",
-            "t": 168.392
-          },
-          {
-            "w": "highway",
-            "t": 168.903
-          },
-          {
-            "w": "speeds.",
-            "t": 169.414
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Dr. Nova",
-        "text": "Autonomous Robotics: LiDAR Time-Stamp Jitter (KITTI & nuScenes).",
-        "start": 171.025,
-        "end": 176.0,
-        "words": [
-          {
-            "w": "Autonomous",
-            "t": 171.025
-          },
-          {
-            "w": "Robotics:",
-            "t": 171.647
-          },
-          {
-            "w": "LiDAR",
-            "t": 172.269
-          },
-          {
-            "w": "Time-Stamp",
-            "t": 172.891
-          },
-          {
-            "w": "Jitter",
-            "t": 173.512
-          },
-          {
-            "w": "(KITTI",
-            "t": 174.134
-          },
-          {
-            "w": "&",
-            "t": 174.756
-          },
-          {
-            "w": "nuScenes).",
-            "t": 175.378
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Dr. Nova",
-        "text": "Systems collapse when models mistake collection artifacts for real-world signals.",
-        "start": 175.95,
-        "end": 181.237,
-        "words": [
-          {
-            "w": "Systems",
-            "t": 175.95
-          },
-          {
-            "w": "collapse",
-            "t": 176.479
-          },
-          {
-            "w": "when",
-            "t": 177.007
-          },
-          {
-            "w": "models",
-            "t": 177.536
-          },
-          {
-            "w": "mistake",
-            "t": 178.065
-          },
-          {
-            "w": "collection",
-            "t": 178.594
-          },
-          {
-            "w": "artifacts",
-            "t": 179.122
-          },
-          {
-            "w": "for",
-            "t": 179.651
-          },
-          {
-            "w": "real-world",
-            "t": 180.18
-          },
-          {
-            "w": "signals.",
-            "t": 180.709
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Dr. Nova",
-        "text": "In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds.",
-        "start": 181.237,
-        "end": 194.012,
-        "words": [
-          {
-            "w": "In",
-            "t": 181.237
-          },
-          {
-            "w": "ICU",
-            "t": 181.748
-          },
-          {
-            "w": "sepsis",
-            "t": 182.259
-          },
-          {
-            "w": "models,",
-            "t": 182.77
-          },
-          {
-            "w": "observation",
-            "t": 183.281
-          },
-          {
-            "w": "frequency",
-            "t": 183.792
-          },
-          {
-            "w": "became",
-            "t": 184.303
-          },
-          {
-            "w": "a",
-            "t": 184.814
-          },
-          {
-            "w": "confounder;",
-            "t": 185.325
-          },
-          {
-            "w": "in",
-            "t": 185.836
-          },
-          {
-            "w": "autonomous",
-            "t": 186.347
-          },
-          {
-            "w": "robotics,",
-            "t": 186.858
-          },
-          {
-            "w": "a",
-            "t": 187.369
-          },
-          {
-            "w": "50-millisecond",
-            "t": 187.88
-          },
-          {
-            "w": "timestamp",
-            "t": 188.391
-          },
-          {
-            "w": "jitter",
-            "t": 188.902
-          },
-          {
-            "w": "causes",
-            "t": 189.413
-          },
-          {
-            "w": "a",
-            "t": 189.924
-          },
-          {
-            "w": "1.4-meter",
-            "t": 190.435
-          },
-          {
-            "w": "bounding",
-            "t": 190.946
-          },
-          {
-            "w": "box",
-            "t": 191.457
-          },
-          {
-            "w": "dislocation",
-            "t": 191.968
-          },
-          {
-            "w": "at",
-            "t": 192.479
-          },
-          {
-            "w": "highway",
-            "t": 192.99
-          },
-          {
-            "w": "speeds.",
-            "t": 193.501
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Interactive Lab: Interactive Schema & Quality Inspector.",
-        "start": 195.112,
-        "end": 199.487,
-        "words": [
-          {
-            "w": "Interactive",
-            "t": 195.112
-          },
-          {
-            "w": "Lab:",
-            "t": 195.737
-          },
-          {
-            "w": "Interactive",
-            "t": 196.362
-          },
-          {
-            "w": "Schema",
-            "t": 196.987
-          },
-          {
-            "w": "&",
-            "t": 197.612
-          },
-          {
-            "w": "Quality",
-            "t": 198.237
-          },
-          {
-            "w": "Inspector.",
-            "t": 198.862
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Scroll directly beneath this presentation player to the live laboratory.",
-        "start": 199.437,
-        "end": 204.05,
-        "words": [
-          {
-            "w": "Scroll",
-            "t": 199.437
-          },
-          {
-            "w": "directly",
-            "t": 199.899
-          },
-          {
-            "w": "beneath",
-            "t": 200.36
-          },
-          {
-            "w": "this",
-            "t": 200.821
-          },
-          {
-            "w": "presentation",
-            "t": 201.282
-          },
-          {
-            "w": "player",
-            "t": 201.744
-          },
-          {
-            "w": "to",
-            "t": 202.205
-          },
-          {
-            "w": "the",
-            "t": 202.666
-          },
-          {
-            "w": "live",
-            "t": 203.127
-          },
-          {
-            "w": "laboratory.",
-            "t": 203.589
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors.",
-        "start": 204.05,
-        "end": 211.412,
-        "words": [
-          {
-            "w": "Run",
-            "t": 204.05
-          },
-          {
-            "w": "the",
-            "t": 204.541
-          },
-          {
-            "w": "failure",
-            "t": 205.032
-          },
-          {
-            "w": "injection",
-            "t": 205.522
-          },
-          {
-            "w": "to",
-            "t": 206.013
-          },
-          {
-            "w": "observe",
-            "t": 206.504
-          },
-          {
-            "w": "how",
-            "t": 206.995
-          },
-          {
-            "w": "unvalidated",
-            "t": 207.486
-          },
-          {
-            "w": "anomalies",
-            "t": 207.977
-          },
-          {
-            "w": "trigger",
-            "t": 208.467
-          },
-          {
-            "w": "compounding",
-            "t": 208.958
-          },
-          {
-            "w": "cascades",
-            "t": 209.449
-          },
-          {
-            "w": "across",
-            "t": 209.94
-          },
-          {
-            "w": "downstream",
-            "t": 210.431
-          },
-          {
-            "w": "tensors.",
-            "t": 210.922
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Hands-on testing proves why boundary schema contracts are mandatory.",
-        "start": 211.412,
-        "end": 215.937,
-        "words": [
-          {
-            "w": "Hands-on",
-            "t": 211.412
-          },
-          {
-            "w": "testing",
-            "t": 211.915
-          },
-          {
-            "w": "proves",
-            "t": 212.418
-          },
-          {
-            "w": "why",
-            "t": 212.921
-          },
-          {
-            "w": "boundary",
-            "t": 213.424
-          },
-          {
-            "w": "schema",
-            "t": 213.926
-          },
-          {
-            "w": "contracts",
-            "t": 214.429
-          },
-          {
-            "w": "are",
-            "t": 214.932
-          },
-          {
-            "w": "mandatory.",
-            "t": 215.435
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Dr. Nova",
-        "text": "Synthesizable Production Data Engineering Schema (Python & Pydantic).",
-        "start": 217.037,
-        "end": 222.225,
-        "words": [
-          {
-            "w": "Synthesizable",
-            "t": 217.037
-          },
-          {
-            "w": "Production",
-            "t": 217.686
-          },
-          {
-            "w": "Data",
-            "t": 218.334
-          },
-          {
-            "w": "Engineering",
-            "t": 218.983
-          },
-          {
-            "w": "Schema",
-            "t": 219.631
-          },
-          {
-            "w": "(Python",
-            "t": 220.28
-          },
-          {
-            "w": "&",
-            "t": 220.928
-          },
-          {
-            "w": "Pydantic).",
-            "t": 221.577
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Dr. Nova",
-        "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory.",
-        "start": 222.175,
-        "end": 227.812,
-        "words": [
-          {
-            "w": "Always",
-            "t": 222.175
-          },
-          {
-            "w": "enforce",
-            "t": 222.609
-          },
-          {
-            "w": "schema",
-            "t": 223.042
-          },
-          {
-            "w": "contracts",
-            "t": 223.476
-          },
-          {
-            "w": "at",
-            "t": 223.91
-          },
-          {
-            "w": "the",
-            "t": 224.343
-          },
-          {
-            "w": "ingestion",
-            "t": 224.777
-          },
-          {
-            "w": "boundary",
-            "t": 225.211
-          },
-          {
-            "w": "before",
-            "t": 225.644
-          },
-          {
-            "w": "raw",
-            "t": 226.078
-          },
-          {
-            "w": "records",
-            "t": 226.512
-          },
-          {
-            "w": "enter",
-            "t": 226.945
-          },
-          {
-            "w": "memory.",
-            "t": 227.379
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Dr. Nova",
-        "text": "Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors.",
-        "start": 227.812,
-        "end": 236.087,
-        "words": [
-          {
-            "w": "Using",
-            "t": 227.812
-          },
-          {
-            "w": "Pydantic",
-            "t": 228.33
-          },
-          {
-            "w": "or",
-            "t": 228.847
-          },
-          {
-            "w": "zero-copy",
-            "t": 229.364
-          },
-          {
-            "w": "Arrow",
-            "t": 229.881
-          },
-          {
-            "w": "prevents",
-            "t": 230.398
-          },
-          {
-            "w": "unvalidated",
-            "t": 230.916
-          },
-          {
-            "w": "floats",
-            "t": 231.433
-          },
-          {
-            "w": "and",
-            "t": 231.95
-          },
-          {
-            "w": "untyped",
-            "t": 232.467
-          },
-          {
-            "w": "strings",
-            "t": 232.984
-          },
-          {
-            "w": "from",
-            "t": 233.502
-          },
-          {
-            "w": "silently",
-            "t": 234.019
-          },
-          {
-            "w": "polluting",
-            "t": 234.536
-          },
-          {
-            "w": "downstream",
-            "t": 235.053
-          },
-          {
-            "w": "tensors.",
-            "t": 235.57
-          }
-        ]
-      },
-      {
-        "slide": 12,
-        "slideId": "s12",
-        "speaker": "Dr. Nova",
-        "text": "Summary & Next Steps.",
-        "start": 237.187,
-        "end": 239.612,
-        "words": [
-          {
-            "w": "Summary",
-            "t": 237.187
-          },
-          {
-            "w": "&",
-            "t": 237.794
-          },
-          {
-            "w": "Next",
-            "t": 238.4
-          },
-          {
-            "w": "Steps.",
-            "t": 239.006
-          }
-        ]
-      },
-      {
-        "slide": 12,
-        "slideId": "s12",
-        "speaker": "Dr. Nova",
-        "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code.",
-        "start": 239.562,
-        "end": 248.0,
-        "words": [
-          {
-            "w": "Data-Centric",
-            "t": 239.562
+            "w": "modern",
+            "t": 8.874
           },
           {
             "w": "AI",
-            "t": 240.007
+            "t": 9.316
           },
           {
-            "w": "requires",
-            "t": 240.451
+            "w": "models",
+            "t": 9.759
           },
           {
-            "w": "treating",
-            "t": 240.895
+            "w": "do",
+            "t": 10.201
           },
           {
-            "w": "dataset",
-            "t": 241.339
+            "w": "not",
+            "t": 10.643
           },
           {
-            "w": "curation",
-            "t": 241.783
-          },
-          {
-            "w": "with",
-            "t": 242.227
+            "w": "learn",
+            "t": 11.085
           },
           {
             "w": "the",
-            "t": 242.671
+            "t": 11.528
           },
           {
-            "w": "exact",
-            "t": 243.115
+            "w": "real",
+            "t": 11.97
           },
           {
-            "w": "same",
-            "t": 243.559
+            "w": "world",
+            "t": 12.412
           },
           {
-            "w": "rigor,",
-            "t": 244.003
+            "w": "directly—they",
+            "t": 12.855
           },
           {
-            "w": "versioning,",
-            "t": 244.447
+            "w": "learn",
+            "t": 13.297
           },
           {
-            "w": "and",
-            "t": 244.891
+            "w": "exclusively",
+            "t": 13.739
           },
           {
-            "w": "defensive",
-            "t": 245.336
+            "w": "through",
+            "t": 14.181
           },
           {
-            "w": "auditing",
-            "t": 245.78
+            "w": "empirical",
+            "t": 14.624
+          },
+          {
+            "w": "datasets.",
+            "t": 15.066
+          },
+          {
+            "w": "When",
+            "t": 15.508
+          },
+          {
+            "w": "datasets",
+            "t": 15.951
+          },
+          {
+            "w": "contain",
+            "t": 16.393
+          },
+          {
+            "w": "hidden",
+            "t": 16.835
+          },
+          {
+            "w": "artifacts,",
+            "t": 17.277
+          },
+          {
+            "w": "models",
+            "t": 17.72
+          },
+          {
+            "w": "learn",
+            "t": 18.162
+          },
+          {
+            "w": "those",
+            "t": 18.604
+          },
+          {
+            "w": "artifacts",
+            "t": 19.047
+          },
+          {
+            "w": "with",
+            "t": 19.489
+          },
+          {
+            "w": "high",
+            "t": 19.931
+          },
+          {
+            "w": "statistical",
+            "t": 20.373
+          },
+          {
+            "w": "confidence.",
+            "t": 20.816
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how does defining a dataset as an empirical sample D sub N change how we approach data collection?",
+        "start": 22.008,
+        "end": 28.944,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 22.008
+          },
+          {
+            "w": "Nova,",
+            "t": 22.355
+          },
+          {
+            "w": "how",
+            "t": 22.702
+          },
+          {
+            "w": "does",
+            "t": 23.048
+          },
+          {
+            "w": "defining",
+            "t": 23.395
+          },
+          {
+            "w": "a",
+            "t": 23.742
+          },
+          {
+            "w": "dataset",
+            "t": 24.089
           },
           {
             "w": "as",
-            "t": 246.224
+            "t": 24.436
           },
           {
-            "w": "neural",
-            "t": 246.668
+            "w": "an",
+            "t": 24.782
+          },
+          {
+            "w": "empirical",
+            "t": 25.129
+          },
+          {
+            "w": "sample",
+            "t": 25.476
+          },
+          {
+            "w": "D",
+            "t": 25.823
+          },
+          {
+            "w": "sub",
+            "t": 26.17
+          },
+          {
+            "w": "N",
+            "t": 26.516
+          },
+          {
+            "w": "change",
+            "t": 26.863
+          },
+          {
+            "w": "how",
+            "t": 27.21
+          },
+          {
+            "w": "we",
+            "t": 27.557
+          },
+          {
+            "w": "approach",
+            "t": 27.904
+          },
+          {
+            "w": "data",
+            "t": 28.25
+          },
+          {
+            "w": "collection?",
+            "t": 28.597
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Because the true distribution P sub X,Y is fundamentally unobservable, our empirical sample D sub N is only a discrete window into reality. If that sampling window is biased, minimizing empirical loss guarantees that our model will diverge from real-world performance.",
+        "start": 29.294,
+        "end": 45.686,
+        "words": [
+          {
+            "w": "Because",
+            "t": 29.294
+          },
+          {
+            "w": "the",
+            "t": 29.694
+          },
+          {
+            "w": "true",
+            "t": 30.094
+          },
+          {
+            "w": "distribution",
+            "t": 30.493
+          },
+          {
+            "w": "P",
+            "t": 30.893
+          },
+          {
+            "w": "sub",
+            "t": 31.293
+          },
+          {
+            "w": "X,Y",
+            "t": 31.693
+          },
+          {
+            "w": "is",
+            "t": 32.093
+          },
+          {
+            "w": "fundamentally",
+            "t": 32.492
+          },
+          {
+            "w": "unobservable,",
+            "t": 32.892
+          },
+          {
+            "w": "our",
+            "t": 33.292
+          },
+          {
+            "w": "empirical",
+            "t": 33.692
+          },
+          {
+            "w": "sample",
+            "t": 34.092
+          },
+          {
+            "w": "D",
+            "t": 34.491
+          },
+          {
+            "w": "sub",
+            "t": 34.891
+          },
+          {
+            "w": "N",
+            "t": 35.291
+          },
+          {
+            "w": "is",
+            "t": 35.691
+          },
+          {
+            "w": "only",
+            "t": 36.091
+          },
+          {
+            "w": "a",
+            "t": 36.49
+          },
+          {
+            "w": "discrete",
+            "t": 36.89
+          },
+          {
+            "w": "window",
+            "t": 37.29
+          },
+          {
+            "w": "into",
+            "t": 37.69
+          },
+          {
+            "w": "reality.",
+            "t": 38.09
+          },
+          {
+            "w": "If",
+            "t": 38.49
+          },
+          {
+            "w": "that",
+            "t": 38.889
+          },
+          {
+            "w": "sampling",
+            "t": 39.289
+          },
+          {
+            "w": "window",
+            "t": 39.689
+          },
+          {
+            "w": "is",
+            "t": 40.089
+          },
+          {
+            "w": "biased,",
+            "t": 40.489
+          },
+          {
+            "w": "minimizing",
+            "t": 40.888
+          },
+          {
+            "w": "empirical",
+            "t": 41.288
+          },
+          {
+            "w": "loss",
+            "t": 41.688
+          },
+          {
+            "w": "guarantees",
+            "t": 42.088
+          },
+          {
+            "w": "that",
+            "t": 42.488
+          },
+          {
+            "w": "our",
+            "t": 42.887
           },
           {
             "w": "model",
-            "t": 247.112
+            "t": 43.287
           },
           {
-            "w": "code.",
-            "t": 247.556
+            "w": "will",
+            "t": 43.687
+          },
+          {
+            "w": "diverge",
+            "t": 44.087
+          },
+          {
+            "w": "from",
+            "t": 44.487
+          },
+          {
+            "w": "real-world",
+            "t": 44.886
+          },
+          {
+            "w": "performance.",
+            "t": 45.286
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, looking at this flowchart, at which stage does the most dangerous dataset corruption occur?",
+        "start": 46.436,
+        "end": 52.796,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 46.436
+          },
+          {
+            "w": "Nova,",
+            "t": 46.834
+          },
+          {
+            "w": "looking",
+            "t": 47.231
+          },
+          {
+            "w": "at",
+            "t": 47.629
+          },
+          {
+            "w": "this",
+            "t": 48.026
+          },
+          {
+            "w": "flowchart,",
+            "t": 48.423
+          },
+          {
+            "w": "at",
+            "t": 48.821
+          },
+          {
+            "w": "which",
+            "t": 49.218
+          },
+          {
+            "w": "stage",
+            "t": 49.616
+          },
+          {
+            "w": "does",
+            "t": 50.014
+          },
+          {
+            "w": "the",
+            "t": 50.411
+          },
+          {
+            "w": "most",
+            "t": 50.809
+          },
+          {
+            "w": "dangerous",
+            "t": 51.206
+          },
+          {
+            "w": "dataset",
+            "t": 51.603
+          },
+          {
+            "w": "corruption",
+            "t": 52.001
+          },
+          {
+            "w": "occur?",
+            "t": 52.398
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Right at the physical observer boundary, Kaito. Once an uncalibrated sensor or subjective annotator introduces distortion, downstream normalization and loss functions treat that distortion as valid signal.",
+        "start": 53.146,
+        "end": 66.562,
+        "words": [
+          {
+            "w": "Right",
+            "t": 53.146
+          },
+          {
+            "w": "at",
+            "t": 53.643
+          },
+          {
+            "w": "the",
+            "t": 54.14
+          },
+          {
+            "w": "physical",
+            "t": 54.637
+          },
+          {
+            "w": "observer",
+            "t": 55.134
+          },
+          {
+            "w": "boundary,",
+            "t": 55.63
+          },
+          {
+            "w": "Kaito.",
+            "t": 56.127
+          },
+          {
+            "w": "Once",
+            "t": 56.624
+          },
+          {
+            "w": "an",
+            "t": 57.121
+          },
+          {
+            "w": "uncalibrated",
+            "t": 57.618
+          },
+          {
+            "w": "sensor",
+            "t": 58.115
+          },
+          {
+            "w": "or",
+            "t": 58.612
+          },
+          {
+            "w": "subjective",
+            "t": 59.109
+          },
+          {
+            "w": "annotator",
+            "t": 59.606
+          },
+          {
+            "w": "introduces",
+            "t": 60.102
+          },
+          {
+            "w": "distortion,",
+            "t": 60.599
+          },
+          {
+            "w": "downstream",
+            "t": 61.096
+          },
+          {
+            "w": "normalization",
+            "t": 61.593
+          },
+          {
+            "w": "and",
+            "t": 62.09
+          },
+          {
+            "w": "loss",
+            "t": 62.587
+          },
+          {
+            "w": "functions",
+            "t": 63.084
+          },
+          {
+            "w": "treat",
+            "t": 63.581
+          },
+          {
+            "w": "that",
+            "t": 64.078
+          },
+          {
+            "w": "distortion",
+            "t": 64.574
+          },
+          {
+            "w": "as",
+            "t": 65.071
+          },
+          {
+            "w": "valid",
+            "t": 65.568
+          },
+          {
+            "w": "signal.",
+            "t": 66.065
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do we need to formalize each attribute domain F sub j mathematically?",
+        "start": 67.312,
+        "end": 72.784,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 67.312
+          },
+          {
+            "w": "Nova,",
+            "t": 67.677
+          },
+          {
+            "w": "why",
+            "t": 68.042
+          },
+          {
+            "w": "do",
+            "t": 68.406
+          },
+          {
+            "w": "we",
+            "t": 68.771
+          },
+          {
+            "w": "need",
+            "t": 69.136
+          },
+          {
+            "w": "to",
+            "t": 69.501
+          },
+          {
+            "w": "formalize",
+            "t": 69.866
+          },
+          {
+            "w": "each",
+            "t": 70.23
+          },
+          {
+            "w": "attribute",
+            "t": 70.595
+          },
+          {
+            "w": "domain",
+            "t": 70.96
+          },
+          {
+            "w": "F",
+            "t": 71.325
+          },
+          {
+            "w": "sub",
+            "t": 71.69
+          },
+          {
+            "w": "j",
+            "t": 72.054
+          },
+          {
+            "w": "mathematically?",
+            "t": 72.419
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Because without explicit domain constraints, untyped floats, string corruptions, and out-of-range sensor spikes will silently pollute vectorized tensors, degrading gradient descent without throwing an obvious runtime exception.",
+        "start": 73.134,
+        "end": 86.358,
+        "words": [
+          {
+            "w": "Because",
+            "t": 73.134
+          },
+          {
+            "w": "without",
+            "t": 73.624
+          },
+          {
+            "w": "explicit",
+            "t": 74.114
+          },
+          {
+            "w": "domain",
+            "t": 74.603
+          },
+          {
+            "w": "constraints,",
+            "t": 75.093
+          },
+          {
+            "w": "untyped",
+            "t": 75.583
+          },
+          {
+            "w": "floats,",
+            "t": 76.073
+          },
+          {
+            "w": "string",
+            "t": 76.562
+          },
+          {
+            "w": "corruptions,",
+            "t": 77.052
+          },
+          {
+            "w": "and",
+            "t": 77.542
+          },
+          {
+            "w": "out-of-range",
+            "t": 78.032
+          },
+          {
+            "w": "sensor",
+            "t": 78.522
+          },
+          {
+            "w": "spikes",
+            "t": 79.011
+          },
+          {
+            "w": "will",
+            "t": 79.501
+          },
+          {
+            "w": "silently",
+            "t": 79.991
+          },
+          {
+            "w": "pollute",
+            "t": 80.481
+          },
+          {
+            "w": "vectorized",
+            "t": 80.97
+          },
+          {
+            "w": "tensors,",
+            "t": 81.46
+          },
+          {
+            "w": "degrading",
+            "t": 81.95
+          },
+          {
+            "w": "gradient",
+            "t": 82.44
+          },
+          {
+            "w": "descent",
+            "t": 82.93
+          },
+          {
+            "w": "without",
+            "t": 83.419
+          },
+          {
+            "w": "throwing",
+            "t": 83.909
+          },
+          {
+            "w": "an",
+            "t": 84.399
+          },
+          {
+            "w": "obvious",
+            "t": 84.889
+          },
+          {
+            "w": "runtime",
+            "t": 85.378
+          },
+          {
+            "w": "exception.",
+            "t": 85.868
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how do engineers accidentally violate row-level record independence in practice?",
+        "start": 87.108,
+        "end": 93.204,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 87.108
+          },
+          {
+            "w": "Nova,",
+            "t": 87.616
+          },
+          {
+            "w": "how",
+            "t": 88.124
+          },
+          {
+            "w": "do",
+            "t": 88.632
+          },
+          {
+            "w": "engineers",
+            "t": 89.14
+          },
+          {
+            "w": "accidentally",
+            "t": 89.648
+          },
+          {
+            "w": "violate",
+            "t": 90.156
+          },
+          {
+            "w": "row-level",
+            "t": 90.664
+          },
+          {
+            "w": "record",
+            "t": 91.172
+          },
+          {
+            "w": "independence",
+            "t": 91.68
+          },
+          {
+            "w": "in",
+            "t": 92.188
+          },
+          {
+            "w": "practice?",
+            "t": 92.696
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "By mixing temporal observations of the same user across training and validation splits. If multiple records share unmodeled latent dependencies, your model experiences severe validation leakage.",
+        "start": 93.554,
+        "end": 105.914,
+        "words": [
+          {
+            "w": "By",
+            "t": 93.554
+          },
+          {
+            "w": "mixing",
+            "t": 94.029
+          },
+          {
+            "w": "temporal",
+            "t": 94.505
+          },
+          {
+            "w": "observations",
+            "t": 94.98
+          },
+          {
+            "w": "of",
+            "t": 95.456
+          },
+          {
+            "w": "the",
+            "t": 95.931
+          },
+          {
+            "w": "same",
+            "t": 96.406
+          },
+          {
+            "w": "user",
+            "t": 96.882
+          },
+          {
+            "w": "across",
+            "t": 97.357
+          },
+          {
+            "w": "training",
+            "t": 97.832
+          },
+          {
+            "w": "and",
+            "t": 98.308
+          },
+          {
+            "w": "validation",
+            "t": 98.783
+          },
+          {
+            "w": "splits.",
+            "t": 99.259
+          },
+          {
+            "w": "If",
+            "t": 99.734
+          },
+          {
+            "w": "multiple",
+            "t": 100.209
+          },
+          {
+            "w": "records",
+            "t": 100.685
+          },
+          {
+            "w": "share",
+            "t": 101.16
+          },
+          {
+            "w": "unmodeled",
+            "t": 101.636
+          },
+          {
+            "w": "latent",
+            "t": 102.111
+          },
+          {
+            "w": "dependencies,",
+            "t": 102.586
+          },
+          {
+            "w": "your",
+            "t": 103.062
+          },
+          {
+            "w": "model",
+            "t": 103.537
+          },
+          {
+            "w": "experiences",
+            "t": 104.012
+          },
+          {
+            "w": "severe",
+            "t": 104.488
+          },
+          {
+            "w": "validation",
+            "t": 104.963
+          },
+          {
+            "w": "leakage.",
+            "t": 105.439
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does storage layout matter when we are designing machine learning datasets?",
+        "start": 106.664,
+        "end": 112.112,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 106.664
+          },
+          {
+            "w": "Nova,",
+            "t": 107.053
+          },
+          {
+            "w": "why",
+            "t": 107.442
+          },
+          {
+            "w": "does",
+            "t": 107.831
+          },
+          {
+            "w": "storage",
+            "t": 108.221
+          },
+          {
+            "w": "layout",
+            "t": 108.61
+          },
+          {
+            "w": "matter",
+            "t": 108.999
+          },
+          {
+            "w": "when",
+            "t": 109.388
+          },
+          {
+            "w": "we",
+            "t": 109.777
+          },
+          {
+            "w": "are",
+            "t": 110.166
+          },
+          {
+            "w": "designing",
+            "t": 110.555
+          },
+          {
+            "w": "machine",
+            "t": 110.945
+          },
+          {
+            "w": "learning",
+            "t": 111.334
+          },
+          {
+            "w": "datasets?",
+            "t": 111.723
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Because training requires columnar pushdown for feature extraction, while inference requires fast row-level lookups. Choosing the wrong physical format creates massive I/O bottlenecks during model ingestion.",
+        "start": 112.462,
+        "end": 125.038,
+        "words": [
+          {
+            "w": "Because",
+            "t": 112.462
+          },
+          {
+            "w": "training",
+            "t": 112.946
+          },
+          {
+            "w": "requires",
+            "t": 113.429
+          },
+          {
+            "w": "columnar",
+            "t": 113.913
+          },
+          {
+            "w": "pushdown",
+            "t": 114.397
+          },
+          {
+            "w": "for",
+            "t": 114.88
+          },
+          {
+            "w": "feature",
+            "t": 115.364
+          },
+          {
+            "w": "extraction,",
+            "t": 115.848
+          },
+          {
+            "w": "while",
+            "t": 116.332
+          },
+          {
+            "w": "inference",
+            "t": 116.815
+          },
+          {
+            "w": "requires",
+            "t": 117.299
+          },
+          {
+            "w": "fast",
+            "t": 117.783
+          },
+          {
+            "w": "row-level",
+            "t": 118.266
+          },
+          {
+            "w": "lookups.",
+            "t": 118.75
+          },
+          {
+            "w": "Choosing",
+            "t": 119.234
+          },
+          {
+            "w": "the",
+            "t": 119.717
+          },
+          {
+            "w": "wrong",
+            "t": 120.201
+          },
+          {
+            "w": "physical",
+            "t": 120.685
+          },
+          {
+            "w": "format",
+            "t": 121.168
+          },
+          {
+            "w": "creates",
+            "t": 121.652
+          },
+          {
+            "w": "massive",
+            "t": 122.136
+          },
+          {
+            "w": "I/O",
+            "t": 122.62
+          },
+          {
+            "w": "bottlenecks",
+            "t": 123.103
+          },
+          {
+            "w": "during",
+            "t": 123.587
+          },
+          {
+            "w": "model",
+            "t": 124.071
+          },
+          {
+            "w": "ingestion.",
+            "t": 124.554
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does Sambasivan's equation show that data quality errors compound rather than average out?",
+        "start": 125.788,
+        "end": 132.172,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 125.788
+          },
+          {
+            "w": "Nova,",
+            "t": 126.187
+          },
+          {
+            "w": "why",
+            "t": 126.586
+          },
+          {
+            "w": "does",
+            "t": 126.985
+          },
+          {
+            "w": "Sambasivan's",
+            "t": 127.384
+          },
+          {
+            "w": "equation",
+            "t": 127.783
+          },
+          {
+            "w": "show",
+            "t": 128.182
+          },
+          {
+            "w": "that",
+            "t": 128.581
+          },
+          {
+            "w": "data",
+            "t": 128.98
+          },
+          {
+            "w": "quality",
+            "t": 129.379
+          },
+          {
+            "w": "errors",
+            "t": 129.778
+          },
+          {
+            "w": "compound",
+            "t": 130.177
+          },
+          {
+            "w": "rather",
+            "t": 130.576
+          },
+          {
+            "w": "than",
+            "t": 130.975
+          },
+          {
+            "w": "average",
+            "t": 131.374
+          },
+          {
+            "w": "out?",
+            "t": 131.773
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Because downstream pipeline stages, such as feature imputation and model calibration, are conditioned on upstream outputs. A tiny five percent label noise early on can trigger a fifty percent collapse in downstream safety-critical edge cases.",
+        "start": 132.522,
+        "end": 147.498,
+        "words": [
+          {
+            "w": "Because",
+            "t": 132.522
+          },
+          {
+            "w": "downstream",
+            "t": 132.95
+          },
+          {
+            "w": "pipeline",
+            "t": 133.378
+          },
+          {
+            "w": "stages,",
+            "t": 133.806
+          },
+          {
+            "w": "such",
+            "t": 134.234
+          },
+          {
+            "w": "as",
+            "t": 134.661
+          },
+          {
+            "w": "feature",
+            "t": 135.089
+          },
+          {
+            "w": "imputation",
+            "t": 135.517
+          },
+          {
+            "w": "and",
+            "t": 135.945
+          },
+          {
+            "w": "model",
+            "t": 136.373
+          },
+          {
+            "w": "calibration,",
+            "t": 136.801
+          },
+          {
+            "w": "are",
+            "t": 137.229
+          },
+          {
+            "w": "conditioned",
+            "t": 137.657
+          },
+          {
+            "w": "on",
+            "t": 138.085
+          },
+          {
+            "w": "upstream",
+            "t": 138.512
+          },
+          {
+            "w": "outputs.",
+            "t": 138.94
+          },
+          {
+            "w": "A",
+            "t": 139.368
+          },
+          {
+            "w": "tiny",
+            "t": 139.796
+          },
+          {
+            "w": "five",
+            "t": 140.224
+          },
+          {
+            "w": "percent",
+            "t": 140.652
+          },
+          {
+            "w": "label",
+            "t": 141.08
+          },
+          {
+            "w": "noise",
+            "t": 141.508
+          },
+          {
+            "w": "early",
+            "t": 141.935
+          },
+          {
+            "w": "on",
+            "t": 142.363
+          },
+          {
+            "w": "can",
+            "t": 142.791
+          },
+          {
+            "w": "trigger",
+            "t": 143.219
+          },
+          {
+            "w": "a",
+            "t": 143.647
+          },
+          {
+            "w": "fifty",
+            "t": 144.075
+          },
+          {
+            "w": "percent",
+            "t": 144.503
+          },
+          {
+            "w": "collapse",
+            "t": 144.931
+          },
+          {
+            "w": "in",
+            "t": 145.359
+          },
+          {
+            "w": "downstream",
+            "t": 145.786
+          },
+          {
+            "w": "safety-critical",
+            "t": 146.214
+          },
+          {
+            "w": "edge",
+            "t": 146.642
+          },
+          {
+            "w": "cases.",
+            "t": 147.07
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, which of these four cascade stages is the most difficult to diagnose after deployment?",
+        "start": 148.248,
+        "end": 154.248,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 148.248
+          },
+          {
+            "w": "Nova,",
+            "t": 148.623
+          },
+          {
+            "w": "which",
+            "t": 148.998
+          },
+          {
+            "w": "of",
+            "t": 149.373
+          },
+          {
+            "w": "these",
+            "t": 149.748
+          },
+          {
+            "w": "four",
+            "t": 150.123
+          },
+          {
+            "w": "cascade",
+            "t": 150.498
+          },
+          {
+            "w": "stages",
+            "t": 150.873
+          },
+          {
+            "w": "is",
+            "t": 151.248
+          },
+          {
+            "w": "the",
+            "t": 151.623
+          },
+          {
+            "w": "most",
+            "t": 151.998
+          },
+          {
+            "w": "difficult",
+            "t": 152.373
+          },
+          {
+            "w": "to",
+            "t": 152.748
+          },
+          {
+            "w": "diagnose",
+            "t": 153.123
+          },
+          {
+            "w": "after",
+            "t": 153.498
+          },
+          {
+            "w": "deployment?",
+            "t": 153.873
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "The feedback loop in production, Kaito. When a model's biased predictions influence what future data is collected and annotated, the system creates a self-reinforcing bias spiral that is invisible to offline metrics.",
+        "start": 154.598,
+        "end": 167.894,
+        "words": [
+          {
+            "w": "The",
+            "t": 154.598
+          },
+          {
+            "w": "feedback",
+            "t": 155.014
+          },
+          {
+            "w": "loop",
+            "t": 155.429
+          },
+          {
+            "w": "in",
+            "t": 155.845
+          },
+          {
+            "w": "production,",
+            "t": 156.26
+          },
+          {
+            "w": "Kaito.",
+            "t": 156.675
+          },
+          {
+            "w": "When",
+            "t": 157.091
+          },
+          {
+            "w": "a",
+            "t": 157.507
+          },
+          {
+            "w": "model's",
+            "t": 157.922
+          },
+          {
+            "w": "biased",
+            "t": 158.338
+          },
+          {
+            "w": "predictions",
+            "t": 158.753
+          },
+          {
+            "w": "influence",
+            "t": 159.169
+          },
+          {
+            "w": "what",
+            "t": 159.584
+          },
+          {
+            "w": "future",
+            "t": 160.0
+          },
+          {
+            "w": "data",
+            "t": 160.415
+          },
+          {
+            "w": "is",
+            "t": 160.831
+          },
+          {
+            "w": "collected",
+            "t": 161.246
+          },
+          {
+            "w": "and",
+            "t": 161.662
+          },
+          {
+            "w": "annotated,",
+            "t": 162.077
+          },
+          {
+            "w": "the",
+            "t": 162.493
+          },
+          {
+            "w": "system",
+            "t": 162.908
+          },
+          {
+            "w": "creates",
+            "t": 163.324
+          },
+          {
+            "w": "a",
+            "t": 163.739
+          },
+          {
+            "w": "self-reinforcing",
+            "t": 164.155
+          },
+          {
+            "w": "bias",
+            "t": 164.57
+          },
+          {
+            "w": "spiral",
+            "t": 164.986
+          },
+          {
+            "w": "that",
+            "t": 165.401
+          },
+          {
+            "w": "is",
+            "t": 165.817
+          },
+          {
+            "w": "invisible",
+            "t": 166.232
+          },
+          {
+            "w": "to",
+            "t": 166.648
+          },
+          {
+            "w": "offline",
+            "t": 167.063
+          },
+          {
+            "w": "metrics.",
+            "t": 167.479
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how did recording blood pressure more frequently on arterial lines cause the sepsis model to fail?",
+        "start": 168.644,
+        "end": 175.46,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 168.644
+          },
+          {
+            "w": "Nova,",
+            "t": 169.023
+          },
+          {
+            "w": "how",
+            "t": 169.401
+          },
+          {
+            "w": "did",
+            "t": 169.78
+          },
+          {
+            "w": "recording",
+            "t": 170.159
+          },
+          {
+            "w": "blood",
+            "t": 170.537
+          },
+          {
+            "w": "pressure",
+            "t": 170.916
+          },
+          {
+            "w": "more",
+            "t": 171.295
+          },
+          {
+            "w": "frequently",
+            "t": 171.673
+          },
+          {
+            "w": "on",
+            "t": 172.052
+          },
+          {
+            "w": "arterial",
+            "t": 172.431
+          },
+          {
+            "w": "lines",
+            "t": 172.809
+          },
+          {
+            "w": "cause",
+            "t": 173.188
+          },
+          {
+            "w": "the",
+            "t": 173.567
+          },
+          {
+            "w": "sepsis",
+            "t": 173.945
+          },
+          {
+            "w": "model",
+            "t": 174.324
+          },
+          {
+            "w": "to",
+            "t": 174.703
+          },
+          {
+            "w": "fail?",
+            "t": 175.081
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Because nurses only checked arm cuffs frequently when a patient was deteriorating! The model used observation frequency as a shortcut feature. When the new hospital monitored everyone continuously, that statistical correlation evaporated.",
+        "start": 175.81,
+        "end": 190.762,
+        "words": [
+          {
+            "w": "Because",
+            "t": 175.81
+          },
+          {
+            "w": "nurses",
+            "t": 176.277
+          },
+          {
+            "w": "only",
+            "t": 176.745
+          },
+          {
+            "w": "checked",
+            "t": 177.212
+          },
+          {
+            "w": "arm",
+            "t": 177.679
+          },
+          {
+            "w": "cuffs",
+            "t": 178.146
+          },
+          {
+            "w": "frequently",
+            "t": 178.614
+          },
+          {
+            "w": "when",
+            "t": 179.081
+          },
+          {
+            "w": "a",
+            "t": 179.548
+          },
+          {
+            "w": "patient",
+            "t": 180.015
+          },
+          {
+            "w": "was",
+            "t": 180.483
+          },
+          {
+            "w": "deteriorating!",
+            "t": 180.95
+          },
+          {
+            "w": "The",
+            "t": 181.417
+          },
+          {
+            "w": "model",
+            "t": 181.884
+          },
+          {
+            "w": "used",
+            "t": 182.352
+          },
+          {
+            "w": "observation",
+            "t": 182.819
+          },
+          {
+            "w": "frequency",
+            "t": 183.286
+          },
+          {
+            "w": "as",
+            "t": 183.753
+          },
+          {
+            "w": "a",
+            "t": 184.221
+          },
+          {
+            "w": "shortcut",
+            "t": 184.688
+          },
+          {
+            "w": "feature.",
+            "t": 185.155
+          },
+          {
+            "w": "When",
+            "t": 185.622
+          },
+          {
+            "w": "the",
+            "t": 186.09
+          },
+          {
+            "w": "new",
+            "t": 186.557
+          },
+          {
+            "w": "hospital",
+            "t": 187.024
+          },
+          {
+            "w": "monitored",
+            "t": 187.491
+          },
+          {
+            "w": "everyone",
+            "t": 187.959
+          },
+          {
+            "w": "continuously,",
+            "t": 188.426
+          },
+          {
+            "w": "that",
+            "t": 188.893
+          },
+          {
+            "w": "statistical",
+            "t": 189.36
+          },
+          {
+            "w": "correlation",
+            "t": 189.828
+          },
+          {
+            "w": "evaporated.",
+            "t": 190.295
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, can sensor fusion algorithms compensate for asynchronous LiDAR timestamp jitter?",
+        "start": 191.512,
+        "end": 197.584,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 191.512
+          },
+          {
+            "w": "Nova,",
+            "t": 192.018
+          },
+          {
+            "w": "can",
+            "t": 192.524
+          },
+          {
+            "w": "sensor",
+            "t": 193.03
+          },
+          {
+            "w": "fusion",
+            "t": 193.536
+          },
+          {
+            "w": "algorithms",
+            "t": 194.042
+          },
+          {
+            "w": "compensate",
+            "t": 194.548
+          },
+          {
+            "w": "for",
+            "t": 195.054
+          },
+          {
+            "w": "asynchronous",
+            "t": 195.56
+          },
+          {
+            "w": "LiDAR",
+            "t": 196.066
+          },
+          {
+            "w": "timestamp",
+            "t": 196.572
+          },
+          {
+            "w": "jitter?",
+            "t": 197.078
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Only if exact hardware timestamping is synchronized at the nanosecond level across clock domains. If timestamps drift, spatial point clouds warp along the vehicle velocity vector, invalidating 3D bounding box tracking.",
+        "start": 197.934,
+        "end": 212.022,
+        "words": [
+          {
+            "w": "Only",
+            "t": 197.934
+          },
+          {
+            "w": "if",
+            "t": 198.388
+          },
+          {
+            "w": "exact",
+            "t": 198.843
+          },
+          {
+            "w": "hardware",
+            "t": 199.297
+          },
+          {
+            "w": "timestamping",
+            "t": 199.752
+          },
+          {
+            "w": "is",
+            "t": 200.206
+          },
+          {
+            "w": "synchronized",
+            "t": 200.661
+          },
+          {
+            "w": "at",
+            "t": 201.115
+          },
+          {
+            "w": "the",
+            "t": 201.57
+          },
+          {
+            "w": "nanosecond",
+            "t": 202.024
+          },
+          {
+            "w": "level",
+            "t": 202.479
+          },
+          {
+            "w": "across",
+            "t": 202.933
+          },
+          {
+            "w": "clock",
+            "t": 203.387
+          },
+          {
+            "w": "domains.",
+            "t": 203.842
+          },
+          {
+            "w": "If",
+            "t": 204.296
+          },
+          {
+            "w": "timestamps",
+            "t": 204.751
+          },
+          {
+            "w": "drift,",
+            "t": 205.205
+          },
+          {
+            "w": "spatial",
+            "t": 205.66
+          },
+          {
+            "w": "point",
+            "t": 206.114
+          },
+          {
+            "w": "clouds",
+            "t": 206.569
+          },
+          {
+            "w": "warp",
+            "t": 207.023
+          },
+          {
+            "w": "along",
+            "t": 207.477
+          },
+          {
+            "w": "the",
+            "t": 207.932
+          },
+          {
+            "w": "vehicle",
+            "t": 208.386
+          },
+          {
+            "w": "velocity",
+            "t": 208.841
+          },
+          {
+            "w": "vector,",
+            "t": 209.295
+          },
+          {
+            "w": "invalidating",
+            "t": 209.75
+          },
+          {
+            "w": "3D",
+            "t": 210.204
+          },
+          {
+            "w": "bounding",
+            "t": 210.659
+          },
+          {
+            "w": "box",
+            "t": 211.113
+          },
+          {
+            "w": "tracking.",
+            "t": 211.568
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what should students test first in the interactive laboratory below?",
+        "start": 212.772,
+        "end": 218.028,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 212.772
+          },
+          {
+            "w": "Nova,",
+            "t": 213.21
+          },
+          {
+            "w": "what",
+            "t": 213.648
+          },
+          {
+            "w": "should",
+            "t": 214.086
+          },
+          {
+            "w": "students",
+            "t": 214.524
+          },
+          {
+            "w": "test",
+            "t": 214.962
+          },
+          {
+            "w": "first",
+            "t": 215.4
+          },
+          {
+            "w": "in",
+            "t": 215.838
+          },
+          {
+            "w": "the",
+            "t": 216.276
+          },
+          {
+            "w": "interactive",
+            "t": 216.714
+          },
+          {
+            "w": "laboratory",
+            "t": 217.152
+          },
+          {
+            "w": "below?",
+            "t": 217.59
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Inject out-of-bounds numerical values and examine how the automated schema validator detects structural anomalies before dirty tensors reach model training.",
+        "start": 218.378,
+        "end": 227.33,
+        "words": [
+          {
+            "w": "Inject",
+            "t": 218.378
+          },
+          {
+            "w": "out-of-bounds",
+            "t": 218.826
+          },
+          {
+            "w": "numerical",
+            "t": 219.273
+          },
+          {
+            "w": "values",
+            "t": 219.721
+          },
+          {
+            "w": "and",
+            "t": 220.168
+          },
+          {
+            "w": "examine",
+            "t": 220.616
+          },
+          {
+            "w": "how",
+            "t": 221.064
+          },
+          {
+            "w": "the",
+            "t": 221.511
+          },
+          {
+            "w": "automated",
+            "t": 221.959
+          },
+          {
+            "w": "schema",
+            "t": 222.406
+          },
+          {
+            "w": "validator",
+            "t": 222.854
+          },
+          {
+            "w": "detects",
+            "t": 223.302
+          },
+          {
+            "w": "structural",
+            "t": 223.749
+          },
+          {
+            "w": "anomalies",
+            "t": 224.197
+          },
+          {
+            "w": "before",
+            "t": 224.644
+          },
+          {
+            "w": "dirty",
+            "t": 225.092
+          },
+          {
+            "w": "tensors",
+            "t": 225.54
+          },
+          {
+            "w": "reach",
+            "t": 225.987
+          },
+          {
+            "w": "model",
+            "t": 226.435
+          },
+          {
+            "w": "training.",
+            "t": 226.882
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, where in our production pipeline should this Pydantic schema validation execute?",
+        "start": 228.08,
+        "end": 233.744,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 228.08
+          },
+          {
+            "w": "Nova,",
+            "t": 228.516
+          },
+          {
+            "w": "where",
+            "t": 228.951
+          },
+          {
+            "w": "in",
+            "t": 229.387
+          },
+          {
+            "w": "our",
+            "t": 229.823
+          },
+          {
+            "w": "production",
+            "t": 230.258
+          },
+          {
+            "w": "pipeline",
+            "t": 230.694
+          },
+          {
+            "w": "should",
+            "t": 231.13
+          },
+          {
+            "w": "this",
+            "t": 231.566
+          },
+          {
+            "w": "Pydantic",
+            "t": 232.001
+          },
+          {
+            "w": "schema",
+            "t": 232.437
+          },
+          {
+            "w": "validation",
+            "t": 232.873
+          },
+          {
+            "w": "execute?",
+            "t": 233.308
           }
         ]
       },
@@ -4941,41 +4791,877 @@ window.LESSON_TIMINGS = window.LESSON_TIMINGS || {
         "slide": 12,
         "slideId": "s12",
         "speaker": "Dr. Nova",
-        "text": "Fixing defects at the boundary guarantees downstream reliability.",
-        "start": 248.0,
-        "end": 252.437,
+        "text": "Directly at the ingestion API boundary, Kaito. Any record that violates schema contracts must be quarantined immediately to dead-letter queues rather than silently coerced into invalid training data.",
+        "start": 234.094,
+        "end": 246.742,
         "words": [
           {
-            "w": "Fixing",
-            "t": 248.0
-          },
-          {
-            "w": "defects",
-            "t": 248.555
+            "w": "Directly",
+            "t": 234.094
           },
           {
             "w": "at",
-            "t": 249.109
+            "t": 234.546
           },
           {
             "w": "the",
-            "t": 249.664
+            "t": 234.997
           },
           {
-            "w": "boundary",
-            "t": 250.219
+            "w": "ingestion",
+            "t": 235.449
           },
           {
-            "w": "guarantees",
-            "t": 250.773
+            "w": "API",
+            "t": 235.901
           },
           {
-            "w": "downstream",
-            "t": 251.328
+            "w": "boundary,",
+            "t": 236.353
           },
           {
-            "w": "reliability.",
-            "t": 251.883
+            "w": "Kaito.",
+            "t": 236.804
+          },
+          {
+            "w": "Any",
+            "t": 237.256
+          },
+          {
+            "w": "record",
+            "t": 237.708
+          },
+          {
+            "w": "that",
+            "t": 238.159
+          },
+          {
+            "w": "violates",
+            "t": 238.611
+          },
+          {
+            "w": "schema",
+            "t": 239.063
+          },
+          {
+            "w": "contracts",
+            "t": 239.515
+          },
+          {
+            "w": "must",
+            "t": 239.966
+          },
+          {
+            "w": "be",
+            "t": 240.418
+          },
+          {
+            "w": "quarantined",
+            "t": 240.87
+          },
+          {
+            "w": "immediately",
+            "t": 241.321
+          },
+          {
+            "w": "to",
+            "t": 241.773
+          },
+          {
+            "w": "dead-letter",
+            "t": 242.225
+          },
+          {
+            "w": "queues",
+            "t": 242.677
+          },
+          {
+            "w": "rather",
+            "t": 243.128
+          },
+          {
+            "w": "than",
+            "t": 243.58
+          },
+          {
+            "w": "silently",
+            "t": 244.032
+          },
+          {
+            "w": "coerced",
+            "t": 244.483
+          },
+          {
+            "w": "into",
+            "t": 244.935
+          },
+          {
+            "w": "invalid",
+            "t": 245.387
+          },
+          {
+            "w": "training",
+            "t": 245.839
+          },
+          {
+            "w": "data.",
+            "t": 246.29
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how does columnar Arrow memory achieve zero-copy validation on massive datasets?",
+        "start": 247.492,
+        "end": 253.588,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 247.492
+          },
+          {
+            "w": "Nova,",
+            "t": 247.961
+          },
+          {
+            "w": "how",
+            "t": 248.43
+          },
+          {
+            "w": "does",
+            "t": 248.899
+          },
+          {
+            "w": "columnar",
+            "t": 249.368
+          },
+          {
+            "w": "Arrow",
+            "t": 249.837
+          },
+          {
+            "w": "memory",
+            "t": 250.306
+          },
+          {
+            "w": "achieve",
+            "t": 250.774
+          },
+          {
+            "w": "zero-copy",
+            "t": 251.243
+          },
+          {
+            "w": "validation",
+            "t": 251.712
+          },
+          {
+            "w": "on",
+            "t": 252.181
+          },
+          {
+            "w": "massive",
+            "t": 252.65
+          },
+          {
+            "w": "datasets?",
+            "t": 253.119
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "By running vectorized bitmap checks directly on columnar arrays. Arrow validates null counts and numeric ranges across millions of rows in milliseconds, keeping ingestion pipelines blazing fast.",
+        "start": 253.938,
+        "end": 266.61,
+        "words": [
+          {
+            "w": "By",
+            "t": 253.938
+          },
+          {
+            "w": "running",
+            "t": 254.407
+          },
+          {
+            "w": "vectorized",
+            "t": 254.877
+          },
+          {
+            "w": "bitmap",
+            "t": 255.346
+          },
+          {
+            "w": "checks",
+            "t": 255.815
+          },
+          {
+            "w": "directly",
+            "t": 256.285
+          },
+          {
+            "w": "on",
+            "t": 256.754
+          },
+          {
+            "w": "columnar",
+            "t": 257.223
+          },
+          {
+            "w": "arrays.",
+            "t": 257.693
+          },
+          {
+            "w": "Arrow",
+            "t": 258.162
+          },
+          {
+            "w": "validates",
+            "t": 258.631
+          },
+          {
+            "w": "null",
+            "t": 259.101
+          },
+          {
+            "w": "counts",
+            "t": 259.57
+          },
+          {
+            "w": "and",
+            "t": 260.039
+          },
+          {
+            "w": "numeric",
+            "t": 260.509
+          },
+          {
+            "w": "ranges",
+            "t": 260.978
+          },
+          {
+            "w": "across",
+            "t": 261.447
+          },
+          {
+            "w": "millions",
+            "t": 261.917
+          },
+          {
+            "w": "of",
+            "t": 262.386
+          },
+          {
+            "w": "rows",
+            "t": 262.855
+          },
+          {
+            "w": "in",
+            "t": 263.325
+          },
+          {
+            "w": "milliseconds,",
+            "t": 263.794
+          },
+          {
+            "w": "keeping",
+            "t": 264.263
+          },
+          {
+            "w": "ingestion",
+            "t": 264.733
+          },
+          {
+            "w": "pipelines",
+            "t": 265.202
+          },
+          {
+            "w": "blazing",
+            "t": 265.671
+          },
+          {
+            "w": "fast.",
+            "t": 266.141
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how should data practitioners approach these diagnostic triage questions?",
+        "start": 267.36,
+        "end": 272.88,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 267.36
+          },
+          {
+            "w": "Nova,",
+            "t": 267.862
+          },
+          {
+            "w": "how",
+            "t": 268.364
+          },
+          {
+            "w": "should",
+            "t": 268.865
+          },
+          {
+            "w": "data",
+            "t": 269.367
+          },
+          {
+            "w": "practitioners",
+            "t": 269.869
+          },
+          {
+            "w": "approach",
+            "t": 270.371
+          },
+          {
+            "w": "these",
+            "t": 270.873
+          },
+          {
+            "w": "diagnostic",
+            "t": 271.375
+          },
+          {
+            "w": "triage",
+            "t": 271.876
+          },
+          {
+            "w": "questions?",
+            "t": 272.378
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Always trace errors back to the data collection mechanism, Kaito. When a model exhibits unexplained degradation, eighty percent of the time the root cause is upstream data drift rather than optimizer hyperparameters.",
+        "start": 273.23,
+        "end": 286.454,
+        "words": [
+          {
+            "w": "Always",
+            "t": 273.23
+          },
+          {
+            "w": "trace",
+            "t": 273.643
+          },
+          {
+            "w": "errors",
+            "t": 274.057
+          },
+          {
+            "w": "back",
+            "t": 274.47
+          },
+          {
+            "w": "to",
+            "t": 274.883
+          },
+          {
+            "w": "the",
+            "t": 275.296
+          },
+          {
+            "w": "data",
+            "t": 275.709
+          },
+          {
+            "w": "collection",
+            "t": 276.123
+          },
+          {
+            "w": "mechanism,",
+            "t": 276.536
+          },
+          {
+            "w": "Kaito.",
+            "t": 276.949
+          },
+          {
+            "w": "When",
+            "t": 277.363
+          },
+          {
+            "w": "a",
+            "t": 277.776
+          },
+          {
+            "w": "model",
+            "t": 278.189
+          },
+          {
+            "w": "exhibits",
+            "t": 278.602
+          },
+          {
+            "w": "unexplained",
+            "t": 279.016
+          },
+          {
+            "w": "degradation,",
+            "t": 279.429
+          },
+          {
+            "w": "eighty",
+            "t": 279.842
+          },
+          {
+            "w": "percent",
+            "t": 280.255
+          },
+          {
+            "w": "of",
+            "t": 280.668
+          },
+          {
+            "w": "the",
+            "t": 281.082
+          },
+          {
+            "w": "time",
+            "t": 281.495
+          },
+          {
+            "w": "the",
+            "t": 281.908
+          },
+          {
+            "w": "root",
+            "t": 282.322
+          },
+          {
+            "w": "cause",
+            "t": 282.735
+          },
+          {
+            "w": "is",
+            "t": 283.148
+          },
+          {
+            "w": "upstream",
+            "t": 283.561
+          },
+          {
+            "w": "data",
+            "t": 283.975
+          },
+          {
+            "w": "drift",
+            "t": 284.388
+          },
+          {
+            "w": "rather",
+            "t": 284.801
+          },
+          {
+            "w": "than",
+            "t": 285.214
+          },
+          {
+            "w": "optimizer",
+            "t": 285.627
+          },
+          {
+            "w": "hyperparameters.",
+            "t": 286.041
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why is Sambasivan's research on Data Cascades cited so widely across modern data engineering?",
+        "start": 287.204,
+        "end": 293.972,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 287.204
+          },
+          {
+            "w": "Nova,",
+            "t": 287.627
+          },
+          {
+            "w": "why",
+            "t": 288.05
+          },
+          {
+            "w": "is",
+            "t": 288.473
+          },
+          {
+            "w": "Sambasivan's",
+            "t": 288.896
+          },
+          {
+            "w": "research",
+            "t": 289.319
+          },
+          {
+            "w": "on",
+            "t": 289.742
+          },
+          {
+            "w": "Data",
+            "t": 290.165
+          },
+          {
+            "w": "Cascades",
+            "t": 290.588
+          },
+          {
+            "w": "cited",
+            "t": 291.011
+          },
+          {
+            "w": "so",
+            "t": 291.434
+          },
+          {
+            "w": "widely",
+            "t": 291.857
+          },
+          {
+            "w": "across",
+            "t": 292.28
+          },
+          {
+            "w": "modern",
+            "t": 292.703
+          },
+          {
+            "w": "data",
+            "t": 293.126
+          },
+          {
+            "w": "engineering?",
+            "t": 293.549
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Because Sambasivan proved empirically that over ninety percent of production AI failures stem from data practices rather than neural network architectures. Data-Centric AI is the direct response to this finding.",
+        "start": 294.322,
+        "end": 307.258,
+        "words": [
+          {
+            "w": "Because",
+            "t": 294.322
+          },
+          {
+            "w": "Sambasivan",
+            "t": 294.753
+          },
+          {
+            "w": "proved",
+            "t": 295.184
+          },
+          {
+            "w": "empirically",
+            "t": 295.616
+          },
+          {
+            "w": "that",
+            "t": 296.047
+          },
+          {
+            "w": "over",
+            "t": 296.478
+          },
+          {
+            "w": "ninety",
+            "t": 296.909
+          },
+          {
+            "w": "percent",
+            "t": 297.34
+          },
+          {
+            "w": "of",
+            "t": 297.772
+          },
+          {
+            "w": "production",
+            "t": 298.203
+          },
+          {
+            "w": "AI",
+            "t": 298.634
+          },
+          {
+            "w": "failures",
+            "t": 299.065
+          },
+          {
+            "w": "stem",
+            "t": 299.496
+          },
+          {
+            "w": "from",
+            "t": 299.928
+          },
+          {
+            "w": "data",
+            "t": 300.359
+          },
+          {
+            "w": "practices",
+            "t": 300.79
+          },
+          {
+            "w": "rather",
+            "t": 301.221
+          },
+          {
+            "w": "than",
+            "t": 301.652
+          },
+          {
+            "w": "neural",
+            "t": 302.084
+          },
+          {
+            "w": "network",
+            "t": 302.515
+          },
+          {
+            "w": "architectures.",
+            "t": 302.946
+          },
+          {
+            "w": "Data-Centric",
+            "t": 303.377
+          },
+          {
+            "w": "AI",
+            "t": 303.808
+          },
+          {
+            "w": "is",
+            "t": 304.24
+          },
+          {
+            "w": "the",
+            "t": 304.671
+          },
+          {
+            "w": "direct",
+            "t": 305.102
+          },
+          {
+            "w": "response",
+            "t": 305.533
+          },
+          {
+            "w": "to",
+            "t": 305.964
+          },
+          {
+            "w": "this",
+            "t": 306.396
+          },
+          {
+            "w": "finding.",
+            "t": 306.827
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what is the single most important mindset shift for engineers entering Data-Centric AI?",
+        "start": 308.008,
+        "end": 314.584,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 308.008
+          },
+          {
+            "w": "Nova,",
+            "t": 308.446
+          },
+          {
+            "w": "what",
+            "t": 308.885
+          },
+          {
+            "w": "is",
+            "t": 309.323
+          },
+          {
+            "w": "the",
+            "t": 309.762
+          },
+          {
+            "w": "single",
+            "t": 310.2
+          },
+          {
+            "w": "most",
+            "t": 310.638
+          },
+          {
+            "w": "important",
+            "t": 311.077
+          },
+          {
+            "w": "mindset",
+            "t": 311.515
+          },
+          {
+            "w": "shift",
+            "t": 311.954
+          },
+          {
+            "w": "for",
+            "t": 312.392
+          },
+          {
+            "w": "engineers",
+            "t": 312.83
+          },
+          {
+            "w": "entering",
+            "t": 313.269
+          },
+          {
+            "w": "Data-Centric",
+            "t": 313.707
+          },
+          {
+            "w": "AI?",
+            "t": 314.146
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Stop treating datasets as static, infallible inputs. Datasets are complex engineered systems that require continuous auditing, schema enforcement, and versioned lineage from sensor to serving.",
+        "start": 314.934,
+        "end": 327.294,
+        "words": [
+          {
+            "w": "Stop",
+            "t": 314.934
+          },
+          {
+            "w": "treating",
+            "t": 315.428
+          },
+          {
+            "w": "datasets",
+            "t": 315.923
+          },
+          {
+            "w": "as",
+            "t": 316.417
+          },
+          {
+            "w": "static,",
+            "t": 316.912
+          },
+          {
+            "w": "infallible",
+            "t": 317.406
+          },
+          {
+            "w": "inputs.",
+            "t": 317.9
+          },
+          {
+            "w": "Datasets",
+            "t": 318.395
+          },
+          {
+            "w": "are",
+            "t": 318.889
+          },
+          {
+            "w": "complex",
+            "t": 319.384
+          },
+          {
+            "w": "engineered",
+            "t": 319.878
+          },
+          {
+            "w": "systems",
+            "t": 320.372
+          },
+          {
+            "w": "that",
+            "t": 320.867
+          },
+          {
+            "w": "require",
+            "t": 321.361
+          },
+          {
+            "w": "continuous",
+            "t": 321.856
+          },
+          {
+            "w": "auditing,",
+            "t": 322.35
+          },
+          {
+            "w": "schema",
+            "t": 322.844
+          },
+          {
+            "w": "enforcement,",
+            "t": 323.339
+          },
+          {
+            "w": "and",
+            "t": 323.833
+          },
+          {
+            "w": "versioned",
+            "t": 324.328
+          },
+          {
+            "w": "lineage",
+            "t": 324.822
+          },
+          {
+            "w": "from",
+            "t": 325.316
+          },
+          {
+            "w": "sensor",
+            "t": 325.811
+          },
+          {
+            "w": "to",
+            "t": 326.305
+          },
+          {
+            "w": "serving.",
+            "t": 326.8
           }
         ]
       }

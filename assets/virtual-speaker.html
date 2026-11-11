@@ -177,6 +177,7 @@
 
     /* ========================================================
        High-Readability Manga Slide Content Theming System
+       ZERO DARK BACKDROPS - Full Manga Aesthetic
        ======================================================== */
     #slideContent {
       color: #151b20 !important;
@@ -190,18 +191,63 @@
     #slideContent [class*="bg-gray-"],
     #slideContent [class*="bg-black"],
     #slideContent [class*="bg-navy"],
+    #slideContent [class*="bg-blue-9"],
+    #slideContent [class*="bg-sky-9"],
     #slideContent .bg-slate-900,
     #slideContent .bg-slate-800,
-    #slideContent .bg-gradient-to-br {
-      background: #fffdf7 !important;
+    #slideContent .bg-gradient-to-br,
+    #slideContent [class*="from-"],
+    #slideContent [class*="to-"],
+    #slideContent [class*="via-"] {
+      background-color: #fffdf7 !important;
+      background-image: none !important;
       border: 2px solid #151b20 !important;
       box-shadow: 4px 4px 0px #151b20 !important;
       border-radius: 14px !important;
       color: #151b20 !important;
-      margin-top: 10px !important;
-      margin-bottom: 10px !important;
-      padding: 14px 16px !important;
-      transition: all 0.2s ease !important;
+    }
+
+    /* SPECIFIC FIX FOR INTRO PILLS & BADGES (Eliminating dark backdrops like bg-cyan-950) */
+    #slideContent .rounded-full,
+    #slideContent [class*="rounded-full"][class*="bg-cyan-"],
+    #slideContent [class*="rounded-full"][class*="bg-slate-"],
+    #slideContent [class*="rounded-full"][class*="bg-blue-"],
+    #slideContent [class*="rounded-full"][class*="bg-sky-"],
+    #slideContent [class*="rounded-full"][class*="bg-zinc-"],
+    #slideContent [class*="bg-cyan-950"],
+    #slideContent [class*="bg-cyan-900"],
+    #slideContent [class*="bg-cyan-800"],
+    #slideContent [class*="bg-slate-950"],
+    #slideContent [class*="bg-slate-900"],
+    #slideContent [class*="bg-slate-800"],
+    #slideContent [class*="bg-blue-950"] {
+      background-color: #c9f3f4 !important;
+      background-image: none !important;
+      color: #0e7490 !important;
+      border: 1.5px solid #151b20 !important;
+      box-shadow: 2px 2px 0px #151b20 !important;
+      font-weight: 800 !important;
+    }
+
+    /* All text inside pills/badges */
+    #slideContent .rounded-full,
+    #slideContent .rounded-full *,
+    #slideContent [class*="bg-cyan-950"] * {
+      color: #0e7490 !important;
+    }
+
+    /* Inner subcards inside containers (e.g. recommended experiments or secondary boxes) */
+    #slideContent [class*="bg-[#050811]"],
+    #slideContent [class*="bg-[#0b0f19]"],
+    #slideContent [class*="bg-[#0f172a]"] {
+      background-color: #f6f0dc !important;
+      border: 1.5px solid #151b20 !important;
+      box-shadow: 2px 2px 0px #151b20 !important;
+      border-radius: 10px !important;
+      color: #151b20 !important;
+      margin-top: 8px !important;
+      margin-bottom: 8px !important;
+      padding: 10px 12px !important;
     }
 
     /* Math Formulation & Equation Display Containers */
@@ -283,6 +329,21 @@
       background: #fff5f2 !important;
       border: 2px solid #151b20 !important;
       box-shadow: 4px 4px 0px #f38469 !important;
+    }
+
+    /* Warning Callouts / Anti-Patterns */
+    #slideContent [class*="border-amber"],
+    #slideContent [class*="bg-amber"],
+    #slideContent [class*="border-yellow"],
+    #slideContent [class*="bg-yellow"] {
+      background: #fff0b9 !important;
+      border: 2px solid #151b20 !important;
+      box-shadow: 4px 4px 0px #151b20 !important;
+      color: #151b20 !important;
+    }
+    #slideContent [class*="border-amber"] *,
+    #slideContent [class*="bg-amber"] * {
+      color: #151b20 !important;
     }
 
     /* Production Engineering / Success Callouts */
@@ -519,6 +580,55 @@
       padding: 2px 4px;
       transition: all 0.25s ease;
     }
+
+    /* ========================================================
+       Traveling Adaptive Virtual Speaker Stage & Spotlights
+       ======================================================== */
+    #avatarArena {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .speaker-dock-slot {
+      min-height: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .spotlight-active {
+      box-shadow: 0 0 0 4px #22bfd7, 6px 6px 0px #151b20 !important;
+      border-color: #0e7490 !important;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Site Tour Overlay & Spotlight Frame */
+    #siteTourOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(12, 18, 34, 0.75);
+      backdrop-filter: blur(2px);
+      transition: opacity 0.3s ease;
+    }
+
+    #siteTourSpotlight {
+      position: fixed;
+      z-index: 101;
+      border: 3.5px solid #ffc83e;
+      border-radius: 16px;
+      box-shadow: 0 0 0 9999px rgba(12, 18, 34, 0.75), 0 0 25px rgba(255, 200, 62, 0.75);
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #siteTourCard {
+      position: fixed;
+      z-index: 102;
+      background: #fffdf7;
+      border: 2px solid #151b20;
+      border-radius: 18px;
+      box-shadow: 8px 8px 0px #22bfd7;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
   </style>
 </head>
 
@@ -546,7 +656,7 @@
 
     <!-- Chapter 1 Lesson Selector Dropdown -->
     <div class="flex flex-wrap items-center gap-2">
-      <div
+      <div id="topicSelectContainer"
         class="flex items-center gap-2 bg-[#fffaf0] px-3 py-1.5 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] text-sm">
         <label for="topicSelect" class="text-[#151b20] font-mono font-bold">Lesson:</label>
         <select id="topicSelect" onchange="changeTopic(this.value)"
@@ -556,7 +666,7 @@
       </div>
 
       <!-- Mode Toggle: Solo vs Duo -->
-      <div
+      <div id="lectureModeGroup"
         class="flex items-center gap-1 bg-[#fffaf0] p-1 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] text-sm">
         <button id="btnSolo" onclick="setLectureMode('solo')"
           class="px-3 py-1.5 rounded-lg font-bold transition-all bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs">
@@ -567,6 +677,14 @@
           Manga Socratic Duo
         </button>
       </div>
+
+      <!-- Quick Site Tour Button -->
+      <button id="btnHeaderTour" onclick="startSiteTour()" type="button"
+        title="Start Guided Tour of the Lecture Studio"
+        class="cursor-pointer px-3 py-2 rounded-xl bg-[#c9f3f4] hover:bg-[#b7df69] text-[#0e7490] hover:text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center gap-1.5 transition active:translate-y-0.5 select-none">
+        <span class="text-sm">🎯</span>
+        <span>Site Tour</span>
+      </button>
     </div>
   </header>
 
@@ -574,7 +692,7 @@
   <main class="max-w-5xl mx-auto flex flex-col gap-4 sm:gap-5 px-2 sm:px-4">
 
     <!-- 1. Keynote Slide Canvas (Self-contained, Presenters Within Slides at Bottom-Left & Bottom-Right) -->
-    <div
+    <div id="slideCard"
       class="relative bg-[#fffaf0] border-2 border-[#151b20] rounded-3xl p-5 sm:p-7 md:p-8 shadow-[8px_8px_0px_#22bfd7,0_16px_36px_rgba(21,27,32,0.08)] flex flex-col justify-between min-h-[460px] overflow-hidden">
       <!-- Top Cyan Accent Bar with Slide Deck Progress -->
       <div
@@ -604,43 +722,27 @@
         <div id="slideContent" class="space-y-4 text-[15px] sm:text-[16px] leading-relaxed">
           <!-- Dynamically populated -->
         </div>
-      </div>
 
-      <!-- Slide Carousel Navigation & Progress Controls Bar -->
-      <div
-        class="mt-6 pt-4 border-t-2 border-[#151b20]/20 flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
-        <div class="flex items-center gap-1.5">
-          <button onclick="prevSlide()" id="prevSlideBtn"
-            class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
-            <span>◀</span> Prev Slide
-          </button>
-          <span id="slideDeckCounter"
-            class="px-2 sm:px-2.5 py-1.5 rounded-lg bg-[#ffc83e] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-[#151b20] font-black">
-            Slide 1 of 14
-          </span>
-          <button onclick="nextSlide()" id="nextSlideBtn"
-            class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
-            Next Slide <span>▶</span>
-          </button>
-        </div>
+        <!-- Traveling Dock Slot 1: Directly Under Main Slide Content -->
+        <div id="speakerDockInitial" class="speaker-dock-slot transition-all duration-500 w-full mt-2 mb-3">
+          <div id="avatarArena"
+          class="flex flex-col w-full my-2 p-3 bg-[#fffaf0] border-2 border-[#151b20] rounded-2xl shadow-[4px_4px_0px_#22bfd7] relative gap-2 transition-all duration-500">
 
-        <!-- Slide Selector Dot Pills -->
-        <div id="slidePillDots"
-          class="flex items-center gap-1.5 overflow-x-auto max-w-xs sm:max-w-md py-1 scrollbar-none">
-          <!-- Dynamically populated dot buttons -->
-        </div>
+          <!-- Traveling Presenter Focus Indicator & Navigation Bar -->
+          <div id="dockFocusBar" class="w-full flex items-center justify-between px-3 py-1.5 bg-[#f6f0dc] border-2 border-[#151b20] rounded-xl shadow-[2px_2px_0px_#151b20] text-xs font-mono flex-wrap gap-1.5 mb-1 transition-all">
+            <div class="flex items-center gap-1.5 font-bold text-[#151b20]">
+              <span class="text-sm">📍</span>
+              <span class="text-[11px] uppercase tracking-wider text-[#0e7490] font-black">Speaker Focus:</span>
+              <span id="dockActiveLabel" class="text-[10px] font-bold text-[#151b20] bg-[#fffdf7] px-2 py-0.5 rounded border border-[#151b20]">1. Core Slide Content</span>
+            </div>
+            <div class="inline-flex items-center rounded-lg bg-[#eee4c8] p-0.5 border border-[#151b20] gap-0.5" id="dockPillGroup">
+              <button type="button" onclick="manualMoveSpeaker('main')" id="dockBtnMain" title="Focus speakers on main slide content" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]">📄 Core Slide</button>
+              <button type="button" onclick="manualMoveSpeaker('sim')" id="dockBtnSim" title="Move speakers to interactive simulator" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">⚡ Simulator</button>
+              <button type="button" onclick="manualMoveSpeaker('quiz')" id="dockBtnQuiz" title="Move speakers to active recall checkpoint" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">💡 Checkpoint</button>
+            </div>
+          </div>
 
-        <!-- Auto-Advance Toggle -->
-        <label class="flex items-center gap-2 cursor-pointer text-[#151b20] font-bold select-none">
-          <input type="checkbox" id="autoAdvanceToggle" checked onchange="onAutoAdvanceChange(this.checked)"
-            class="accent-[#0e7490] rounded">
-          <span>Auto-Advance Deck</span>
-        </label>
-      </div>
-
-      <!-- Presenters Stage Dock: Subtitles Shifted In Between the 2 Avatars -->
-      <div id="avatarArena"
-        class="flex items-end justify-between w-full mt-4 pt-3 border-t-2 border-[#151b20]/20 relative gap-2 sm:gap-4">
+          <div class="flex items-end justify-between w-full relative gap-2 sm:gap-4">
 
         <!-- Bottom-Left Edge: Dr. Nova Avatar Pod -->
         <div id="novaAvatarCard"
@@ -837,9 +939,48 @@
           </button>
         </div>
 
+        </div> <!-- Closes inner flex items-end row -->
+      </div> <!-- Closes avatarArena -->
+        </div>
       </div>
 
-    </div>
+      <!-- Slide Carousel Navigation & Progress Controls Bar -->
+      <div id="slideCarouselControls" class="mt-6 pt-4 border-t-2 border-[#151b20]/20 flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
+        <div class="flex items-center gap-1.5">
+          <button onclick="prevSlide()" id="prevSlideBtn"
+            class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
+            <span>◀</span> Prev Slide
+          </button>
+          <span id="slideDeckCounter"
+            class="px-2 sm:px-2.5 py-1.5 rounded-lg bg-[#ffc83e] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-[#151b20] font-black">
+            Slide 1 of 14
+          </span>
+          <button onclick="nextSlide()" id="nextSlideBtn"
+            class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
+            Next Slide <span>▶</span>
+          </button>
+        </div>
+
+        <!-- Slide Selector Dot Pills -->
+        <div id="slidePillDots"
+          class="flex items-center gap-1.5 overflow-x-auto max-w-xs sm:max-w-md py-1 scrollbar-none">
+          <!-- Dynamically populated dot buttons -->
+        </div>
+
+        <!-- Auto-Advance Toggle -->
+        <label class="flex items-center gap-2 cursor-pointer text-[#151b20] font-bold select-none">
+          <input type="checkbox" id="autoAdvanceToggle" checked onchange="onAutoAdvanceChange(this.checked)"
+            class="accent-[#0e7490] rounded">
+          <span>Auto-Advance Deck</span>
+        </label>
+      </div>
+
+      <!-- Traveling Dock Slot 2: Deck Bottom Slot (Fallback Anchor) -->
+      <div id="speakerDockBottom" class="speaker-dock-slot transition-all duration-500 w-full mt-2">
+        <!-- Fallback speaker dock anchor -->
+      
+    </div> <!-- Closes speakerDockBottom -->
+  </div> <!-- Closes slideCard -->
 
 
     <!-- Hidden HTML5 Audio Element for Deterministic Timeline Sync -->
@@ -2242,6 +2383,16 @@
       const titleEl = document.getElementById('slideTitle');
       if (titleEl) titleEl.innerText = slide.title;
 
+            // Rescue traveling speaker stage back into permanent initial dock before clearing slide content
+      const initialDock = document.getElementById('speakerDockInitial');
+      const arena = document.getElementById('avatarArena');
+      if (arena && initialDock && arena.parentElement !== initialDock) {
+        initialDock.appendChild(arena);
+      }
+      currentSpeakerDock = 'main';
+      updateDockFocusPills('main');
+      clearSpotlights();
+
       const contentEl = document.getElementById('slideContent');
       if (contentEl) {
         contentEl.innerHTML = slideData.contentHtml;
@@ -2276,6 +2427,9 @@
         // 1b. Enhance Slide with Capeur-Grade Interactive Widgets
         enhanceSlideInteractivity(contentEl, slide, currentSlideIndex);
       }
+
+      // Reset traveling speaker stage to initial dock under slide
+      moveSpeakerToDock('main', false);
 
       // 2. Render Slide Selector Dots
       renderSlidePillDots(totalSlides);
@@ -2461,6 +2615,12 @@
           </div>
         `;
         contentEl.appendChild(simCard);
+
+        // Traveling Speaker Dock Slot 2: Directly Adjacent to Simulator
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        contentEl.appendChild(simDock);
       }
 
       // 4. Interactive Active Checkpoint (Capeur Formative Assessment)
@@ -2489,6 +2649,12 @@
           <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
         `;
         contentEl.appendChild(quizCard);
+
+        // Traveling Speaker Dock Slot 3: Directly Adjacent to Checkpoint Quiz
+        const quizDock = document.createElement('div');
+        quizDock.id = 'speakerDockCheckpoint';
+        quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        contentEl.appendChild(quizDock);
       }
 
       // Re-run KaTeX math rendering on newly added elements
@@ -2574,6 +2740,7 @@
 
     /* Simulation Calculation Handler */
     function runEmpiricalSim() {
+      moveSpeakerToDock('sim', false);
       const nSlider = document.getElementById('simNSlider');
       const biasSlider = document.getElementById('simBiasSlider');
       if (!nSlider || !biasSlider) return;
@@ -2619,6 +2786,7 @@
 
     /* Active Checkpoint Quiz Handler */
     function answerSlideQuiz(isCorrect, btnEl) {
+      moveSpeakerToDock('quiz', true);
       const feedback = document.getElementById('quizFeedbackBox');
       if (!feedback) return;
 
@@ -2771,22 +2939,29 @@
       const poseBadge = document.getElementById('poseBadge');
 
       if (currentMode === 'solo') {
-        novaCard.className = "speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300";
-        poseBadge.innerText = "Dr. Nova: Keynote";
-        poseBadge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold";
+        if (novaCard) novaCard.className = "speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300";
+        if (poseBadge) {
+          poseBadge.innerText = "Dr. Nova: Keynote";
+          poseBadge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold";
+        }
         return;
       }
 
-      if (speaker.toLowerCase().includes('kaito')) {
-        kaitoCard.className = "speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300";
-        novaCard.className = "speaker-sway avatar-inactive flex-shrink-0 flex flex-col items-center transition-all duration-300";
-        poseBadge.innerText = "Kaito: Inquiring";
-        poseBadge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#ffd8ce] text-[#151b20] border border-[#151b20] font-bold";
+      const spk = (speaker || '').toLowerCase();
+      if (spk.includes('kaito')) {
+        if (kaitoCard) kaitoCard.className = "speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300";
+        if (novaCard) novaCard.className = "speaker-sway avatar-inactive flex-shrink-0 flex flex-col items-center transition-all duration-300";
+        if (poseBadge) {
+          poseBadge.innerText = "Kaito: Inquiring";
+          poseBadge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#ffd8ce] text-[#151b20] border border-[#151b20] font-bold";
+        }
       } else {
-        novaCard.className = "speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300";
-        kaitoCard.className = "speaker-sway avatar-inactive flex-shrink-0 flex flex-col items-center transition-all duration-300";
-        poseBadge.innerText = "Dr. Nova: Explaining";
-        poseBadge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold";
+        if (novaCard) novaCard.className = "speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300";
+        if (kaitoCard) kaitoCard.className = "speaker-sway avatar-inactive flex-shrink-0 flex flex-col items-center transition-all duration-300";
+        if (poseBadge) {
+          poseBadge.innerText = "Dr. Nova: Explaining";
+          poseBadge.className = "text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold";
+        }
       }
     }
 
@@ -2909,6 +3084,19 @@
     // Keyboard navigation (Arrow keys for slides, Space for speech)
     window.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+      if (isTourActive) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          endSiteTour();
+        } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
+          e.preventDefault();
+          nextTourStep();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevTourStep();
+        }
+        return;
+      }
       if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         e.preventDefault();
         nextSlide();
@@ -2935,6 +3123,261 @@
       animateTalking('both', false);
       cancelAnimationFrame(engineRaf);
     }
+
+    
+    /* ========================================================
+       Traveling Adaptive Virtual Speakers Engine
+       ======================================================== */
+    let currentSpeakerDock = 'main';
+
+    function moveSpeakerToDock(targetKey, smoothScroll = false) {
+      const arena = document.getElementById('avatarArena');
+      if (!arena) return;
+
+      let targetDock = null;
+      if (targetKey === 'main') {
+        targetDock = document.getElementById('speakerDockInitial');
+      } else if (targetKey === 'sim') {
+        targetDock = document.getElementById('speakerDockSimulator') || document.getElementById('speakerDockInitial');
+      } else if (targetKey === 'quiz') {
+        targetDock = document.getElementById('speakerDockCheckpoint') || document.getElementById('speakerDockInitial');
+      } else {
+        targetDock = document.getElementById('speakerDockBottom') || document.getElementById('speakerDockInitial');
+      }
+
+      if (!targetDock) return;
+
+      // Smooth gliding re-parenting
+      if (arena.parentElement !== targetDock) {
+        arena.style.opacity = '0.35';
+        arena.style.transform = 'translateY(8px)';
+        targetDock.appendChild(arena);
+        requestAnimationFrame(() => {
+          arena.style.opacity = '1';
+          arena.style.transform = 'translateY(0)';
+        });
+      }
+
+      currentSpeakerDock = targetKey;
+      updateDockFocusPills(targetKey);
+      clearSpotlights();
+
+      if (targetKey === 'sim') {
+        const sim = document.getElementById('empiricalSimWidget');
+        if (sim) {
+          sim.classList.add('spotlight-active');
+          if (smoothScroll) sim.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } else if (targetKey === 'quiz') {
+        const quiz = document.getElementById('slideQuizCheckpoint');
+        if (quiz) {
+          quiz.classList.add('spotlight-active');
+          if (smoothScroll) quiz.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } else if (targetKey === 'main') {
+        const slideCard = document.getElementById('slideCard');
+        if (slideCard && smoothScroll) {
+          slideCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    function manualMoveSpeaker(targetKey) {
+      moveSpeakerToDock(targetKey, true);
+    }
+
+    function updateDockFocusPills(activeKey) {
+      const label = document.getElementById('dockActiveLabel');
+      const btnMain = document.getElementById('dockBtnMain');
+      const btnSim = document.getElementById('dockBtnSim');
+      const btnQuiz = document.getElementById('dockBtnQuiz');
+
+      const inactiveClass = "cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]";
+      const activeClass = "cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]";
+
+      if (btnMain) btnMain.className = activeKey === 'main' ? activeClass : inactiveClass;
+      if (btnSim) btnSim.className = activeKey === 'sim' ? activeClass : inactiveClass;
+      if (btnQuiz) btnQuiz.className = activeKey === 'quiz' ? activeClass : inactiveClass;
+
+      if (label) {
+        if (activeKey === 'main') label.innerText = "1. Core Slide Content";
+        else if (activeKey === 'sim') label.innerText = "2. Empirical Risk & Bias Playground";
+        else if (activeKey === 'quiz') label.innerText = "3. Active Recall Checkpoint";
+        else label.innerText = "Lecture Deck Stage";
+      }
+    }
+
+    function clearSpotlights() {
+      document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
+    }
+
+    /* ========================================================
+       Interactive Site Tour System (Partitioning Module Coordinator Pattern)
+       ======================================================== */
+    const TOUR_STEPS = [
+      {
+        targetId: 'studioHeaderTrack',
+        fallbackId: 'slideCard',
+        title: '1. Welcome to the Lecture Studio',
+        text: 'Explore comprehensive dataset engineering tracks with dual-presenter voice lectures, interactive empirical simulations, and live checkpoints.',
+        placement: 'bottom'
+      },
+      {
+        targetId: 'topicSelectContainer',
+        fallbackId: 'slideCard',
+        title: '2. Track & Lesson Selector',
+        text: 'Switch seamlessly across 131 lessons from Chapter 1.1 through Chapter 13, covering every stage from data collection to vector embeddings.',
+        placement: 'bottom'
+      },
+      {
+        targetId: 'slideCard',
+        title: '3. High-Contrast Manga Slides',
+        text: 'Each slide is grounded in rigorous mathematical formulations, system diagrams, and interactive LaTeX formulas with one-click copy buttons.',
+        placement: 'bottom'
+      },
+      {
+        targetId: 'avatarArena',
+        fallbackId: 'slideCard',
+        title: '4. Traveling Virtual Speakers',
+        text: 'Dr. Nova and Kaito guide you through concepts with lip-sync animations and cinema subtitles. The presenter stage dynamically travels down to interactive sections as you learn!',
+        placement: 'bottom'
+      },
+      {
+        targetId: 'dockFocusBar',
+        fallbackId: 'avatarArena',
+        title: '5. Speaker Focus & Dock Controls',
+        text: 'Jump the virtual speakers between Core Slide, Empirical Simulator, and Active Checkpoint at any time using these one-click focus buttons.',
+        placement: 'bottom'
+      },
+      {
+        targetId: 'empiricalSimWidget',
+        fallbackId: 'slideCard',
+        title: '6. Empirical Risk & Bias Playground',
+        text: 'Slide sample size N and selection bias β in real time to observe how data collection defects create catastrophic model divergence in production.',
+        placement: 'top'
+      },
+      {
+        targetId: 'characterVoiceStudio',
+        fallbackId: 'slideCarouselControls',
+        title: '7. Playback & Voice Studio Controls',
+        text: 'Play audio lessons, scrub timecodes, adjust speed (0.8x–1.5x), toggle CC subtitles, and navigate with Arrow keys or the spacebar.',
+        placement: 'top'
+      }
+    ];
+
+    let currentTourStep = 0;
+    let isTourActive = false;
+
+    function startSiteTour() {
+      currentTourStep = 0;
+      isTourActive = true;
+      const overlay = document.getElementById('siteTourOverlay');
+      if (overlay) overlay.classList.remove('hidden');
+      renderTourStep(currentTourStep);
+    }
+
+    function endSiteTour() {
+      isTourActive = false;
+      const overlay = document.getElementById('siteTourOverlay');
+      if (overlay) overlay.classList.add('hidden');
+      try {
+        localStorage.setItem('dataset_site_tour_completed', 'true');
+      } catch (e) {}
+    }
+
+    function renderTourStep(stepIdx) {
+      if (stepIdx < 0 || stepIdx >= TOUR_STEPS.length) {
+        endSiteTour();
+        return;
+      }
+      currentTourStep = stepIdx;
+      const step = TOUR_STEPS[stepIdx];
+
+      const badge = document.getElementById('tourStepBadge');
+      const title = document.getElementById('tourTitle');
+      const desc = document.getElementById('tourDescription');
+      const prevBtn = document.getElementById('tourPrevBtn');
+      const nextBtn = document.getElementById('tourNextBtn');
+
+      if (badge) badge.innerText = `Step ${stepIdx + 1} of ${TOUR_STEPS.length}`;
+      if (title) title.innerText = step.title;
+      if (desc) desc.innerText = step.text;
+
+      if (prevBtn) {
+        prevBtn.disabled = stepIdx === 0;
+        prevBtn.style.opacity = stepIdx === 0 ? '0.4' : '1';
+        prevBtn.style.pointerEvents = stepIdx === 0 ? 'none' : 'auto';
+      }
+      if (nextBtn) {
+        nextBtn.innerText = stepIdx === TOUR_STEPS.length - 1 ? 'Finish 🚀' : 'Next ▶';
+      }
+
+      positionTourOverlay(step);
+    }
+
+    function nextTourStep() {
+      if (currentTourStep < TOUR_STEPS.length - 1) {
+        renderTourStep(currentTourStep + 1);
+      } else {
+        endSiteTour();
+      }
+    }
+
+    function prevTourStep() {
+      if (currentTourStep > 0) {
+        renderTourStep(currentTourStep - 1);
+      }
+    }
+
+    function positionTourOverlay(step) {
+      let targetEl = document.getElementById(step.targetId);
+      if (!targetEl && step.fallbackId) {
+        targetEl = document.getElementById(step.fallbackId);
+      }
+      if (!targetEl) targetEl = document.getElementById('slideCard');
+      if (!targetEl) return;
+
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      setTimeout(() => {
+        const rect = targetEl.getBoundingClientRect();
+        const spotlight = document.getElementById('siteTourSpotlight');
+        const card = document.getElementById('siteTourCard');
+        if (!spotlight || !card) return;
+
+        const pad = 8;
+        const sTop = Math.max(4, rect.top - pad);
+        const sLeft = Math.max(4, rect.left - pad);
+        const sWidth = Math.max(40, rect.width + (pad * 2));
+        const sHeight = Math.max(30, rect.height + (pad * 2));
+
+        spotlight.style.top = `${sTop}px`;
+        spotlight.style.left = `${sLeft}px`;
+        spotlight.style.width = `${sWidth}px`;
+        spotlight.style.height = `${sHeight}px`;
+
+        const cardWidth = Math.min(window.innerWidth * 0.9, 360);
+        let cardLeft = rect.left + (rect.width / 2) - (cardWidth / 2);
+        cardLeft = Math.max(12, Math.min(window.innerWidth - cardWidth - 16, cardLeft));
+
+        let cardTop;
+        if (step.placement === 'top' || (rect.bottom + 230 > window.innerHeight && rect.top > 240)) {
+          cardTop = Math.max(16, rect.top - 215);
+        } else {
+          cardTop = Math.min(window.innerHeight - 230, rect.bottom + 16);
+        }
+
+        card.style.top = `${cardTop}px`;
+        card.style.left = `${cardLeft}px`;
+        card.style.width = `${cardWidth}px`;
+      }, 200);
+    }
+
+    window.addEventListener('resize', () => {
+      if (isTourActive) {
+        positionTourOverlay(TOUR_STEPS[currentTourStep]);
+      }
+    });
 
     function animateTalking(speaker, speaking) {
       const novaMouth = document.getElementById('novaMouth');
@@ -2972,6 +3415,27 @@
       const chapterParam = params.get('chapter');
       const partParam = params.get('part');
       let topicParam = params.get('topic');
+      const modeParam = params.get('mode');
+      const tourParam = params.get('tour');
+      if (tourParam === '1' || tourParam === 'true') {
+        setTimeout(() => startSiteTour(), 600);
+      }
+
+      if (modeParam === 'duo' || modeParam === 'solo') {
+        currentMode = modeParam;
+        const btnSolo = document.getElementById('btnSolo');
+        const btnDuo = document.getElementById('btnDuo');
+        const kaitoCard = document.getElementById('kaitoAvatarCard');
+        if (modeParam === 'duo') {
+          if (btnDuo) btnDuo.className = "px-3 py-1.5 rounded-lg font-bold transition-all bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs";
+          if (btnSolo) btnSolo.className = "px-3 py-1.5 rounded-lg font-bold transition-all text-[#151b20] hover:bg-[#eee4c8] text-xs";
+          if (kaitoCard) kaitoCard.classList.remove('hidden');
+        } else {
+          if (btnSolo) btnSolo.className = "px-3 py-1.5 rounded-lg font-bold transition-all bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs";
+          if (btnDuo) btnDuo.className = "px-3 py-1.5 rounded-lg font-bold transition-all text-[#151b20] hover:bg-[#eee4c8] text-xs";
+          if (kaitoCard) kaitoCard.classList.add('hidden');
+        }
+      }
 
       let targetKey = 'ch1_p1';
 
@@ -3003,6 +3467,35 @@
       setTimeout(populateVoiceSelectors, 2500);
     }
   </script>
+
+
+  <!-- Floating Guided Tour Launcher (Inspired by Partitioning Module Coordinator) -->
+  <button id="btnFloatingTour" onclick="startSiteTour()" type="button"
+    title="Start Interactive Guided Tour"
+    class="fixed bottom-5 right-5 z-50 px-4 py-2.5 rounded-full bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] font-mono font-black text-xs md:text-sm border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center gap-2 transition hover:scale-105 active:translate-y-0.5 select-none cursor-pointer">
+    <span class="text-base animate-bounce">🧭</span>
+    <span>Site Tour / 使用引导</span>
+  </button>
+
+  <!-- Site Tour Spotlight Overlay & Guided Modal Card -->
+  <div id="siteTourOverlay" class="hidden">
+    <div id="siteTourSpotlight"></div>
+    <div id="siteTourCard" class="w-80 sm:w-96 p-4 max-w-[92vw]">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/20">
+        <span id="tourStepBadge" class="px-2 py-0.5 rounded-md bg-[#ffc83e] text-[#151b20] font-mono font-black text-[11px] border border-[#151b20]">Step 1 of 7</span>
+        <button type="button" onclick="endSiteTour()" class="cursor-pointer text-xs font-mono font-bold text-[#151b20]/70 hover:text-[#151b20] px-2 py-0.5 rounded hover:bg-[#eee4c8]">✕ Esc</button>
+      </div>
+      <h3 id="tourTitle" class="text-sm sm:text-base font-black text-[#151b20] mb-1.5 font-sans leading-snug">Welcome to the Lecture Studio</h3>
+      <p id="tourDescription" class="text-xs text-[#151b20]/80 mb-4 leading-relaxed font-sans">Learn how to explore slides, engage with interactive empirical simulations, and follow traveling virtual presenters.</p>
+      <div class="flex items-center justify-between pt-2 border-t border-[#151b20]/15 gap-2">
+        <button type="button" onclick="endSiteTour()" class="cursor-pointer px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-[#151b20]/70 hover:bg-[#eee4c8]">Skip</button>
+        <div class="flex items-center gap-2">
+          <button type="button" id="tourPrevBtn" onclick="prevTourStep()" class="cursor-pointer px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-bold transition">◀ Back</button>
+          <button type="button" id="tourNextBtn" onclick="nextTourStep()" class="cursor-pointer px-3.5 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-black transition">Next ▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
