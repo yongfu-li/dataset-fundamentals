@@ -2,16 +2,16 @@ window.LESSON_TIMINGS = {
   "ch1_p1_solo": {
     "lessonKey": "ch1_p1",
     "mode": "solo",
-    "duration": 277.3,
+    "duration": 594.942,
     "slidesCount": 16,
     "sentences": [
       {
         "slide": 1,
         "slideId": "s1",
         "speaker": "Dr. Nova",
-        "text": "Welcome to Lesson 1.1 of Dataset Fundamentals. Today we establish the foundational principles of Data-Centric AI, examining why model architectures cannot compensate for structurally flawed data, and how empirical samples formalize what a dataset truly is.",
+        "text": "Welcome to Lesson 1.1 of Dataset Fundamentals: What is a Dataset? Records, Attributes, and Data Quality Cascades. In modern machine learning, models do not observe the physical world directly—they perceive reality exclusively through the discrete window of an empirical dataset.",
         "start": 0.1,
-        "end": 16.636,
+        "end": 18.412,
         "words": [
           {
             "w": "Welcome",
@@ -19,143 +19,409 @@ window.LESSON_TIMINGS = {
           },
           {
             "w": "to",
-            "t": 0.559
+            "t": 0.558
           },
           {
             "w": "Lesson",
-            "t": 1.019
+            "t": 1.016
           },
           {
             "w": "1.1",
-            "t": 1.478
+            "t": 1.473
           },
           {
             "w": "of",
-            "t": 1.937
+            "t": 1.931
           },
           {
             "w": "Dataset",
-            "t": 2.397
+            "t": 2.389
           },
           {
-            "w": "Fundamentals.",
-            "t": 2.856
+            "w": "Fundamentals:",
+            "t": 2.847
           },
           {
-            "w": "Today",
-            "t": 3.315
+            "w": "What",
+            "t": 3.305
           },
           {
-            "w": "we",
-            "t": 3.775
-          },
-          {
-            "w": "establish",
-            "t": 4.234
-          },
-          {
-            "w": "the",
-            "t": 4.693
-          },
-          {
-            "w": "foundational",
-            "t": 5.153
-          },
-          {
-            "w": "principles",
-            "t": 5.612
-          },
-          {
-            "w": "of",
-            "t": 6.071
-          },
-          {
-            "w": "Data-Centric",
-            "t": 6.531
-          },
-          {
-            "w": "AI,",
-            "t": 6.99
-          },
-          {
-            "w": "examining",
-            "t": 7.449
-          },
-          {
-            "w": "why",
-            "t": 7.909
-          },
-          {
-            "w": "model",
-            "t": 8.368
-          },
-          {
-            "w": "architectures",
-            "t": 8.827
-          },
-          {
-            "w": "cannot",
-            "t": 9.287
-          },
-          {
-            "w": "compensate",
-            "t": 9.746
-          },
-          {
-            "w": "for",
-            "t": 10.205
-          },
-          {
-            "w": "structurally",
-            "t": 10.665
-          },
-          {
-            "w": "flawed",
-            "t": 11.124
-          },
-          {
-            "w": "data,",
-            "t": 11.583
-          },
-          {
-            "w": "and",
-            "t": 12.043
-          },
-          {
-            "w": "how",
-            "t": 12.502
-          },
-          {
-            "w": "empirical",
-            "t": 12.961
-          },
-          {
-            "w": "samples",
-            "t": 13.421
-          },
-          {
-            "w": "formalize",
-            "t": 13.88
-          },
-          {
-            "w": "what",
-            "t": 14.339
+            "w": "is",
+            "t": 3.762
           },
           {
             "w": "a",
-            "t": 14.799
+            "t": 4.22
+          },
+          {
+            "w": "Dataset?",
+            "t": 4.678
+          },
+          {
+            "w": "Records,",
+            "t": 5.136
+          },
+          {
+            "w": "Attributes,",
+            "t": 5.594
+          },
+          {
+            "w": "and",
+            "t": 6.051
+          },
+          {
+            "w": "Data",
+            "t": 6.509
+          },
+          {
+            "w": "Quality",
+            "t": 6.967
+          },
+          {
+            "w": "Cascades.",
+            "t": 7.425
+          },
+          {
+            "w": "In",
+            "t": 7.883
+          },
+          {
+            "w": "modern",
+            "t": 8.34
+          },
+          {
+            "w": "machine",
+            "t": 8.798
+          },
+          {
+            "w": "learning,",
+            "t": 9.256
+          },
+          {
+            "w": "models",
+            "t": 9.714
+          },
+          {
+            "w": "do",
+            "t": 10.172
+          },
+          {
+            "w": "not",
+            "t": 10.629
+          },
+          {
+            "w": "observe",
+            "t": 11.087
+          },
+          {
+            "w": "the",
+            "t": 11.545
+          },
+          {
+            "w": "physical",
+            "t": 12.003
+          },
+          {
+            "w": "world",
+            "t": 12.461
+          },
+          {
+            "w": "directly—they",
+            "t": 12.918
+          },
+          {
+            "w": "perceive",
+            "t": 13.376
+          },
+          {
+            "w": "reality",
+            "t": 13.834
+          },
+          {
+            "w": "exclusively",
+            "t": 14.292
+          },
+          {
+            "w": "through",
+            "t": 14.75
+          },
+          {
+            "w": "the",
+            "t": 15.207
+          },
+          {
+            "w": "discrete",
+            "t": 15.665
+          },
+          {
+            "w": "window",
+            "t": 16.123
+          },
+          {
+            "w": "of",
+            "t": 16.581
+          },
+          {
+            "w": "an",
+            "t": 17.039
+          },
+          {
+            "w": "empirical",
+            "t": 17.496
+          },
+          {
+            "w": "dataset.",
+            "t": 17.954
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Over the past decade, research focused heavily on model-centric engineering: adding layers, tuning attention heads, and scaling parameters. Yet empirical investigations by Google Research reveal that over eighty percent of real-world AI failures stem from data cascades—hidden defects in collection and preparation that compound down the line. Today, we establish the mathematical and engineering discipline needed to guarantee dataset reliability.",
+        "start": 18.762,
+        "end": 45.93,
+        "words": [
+          {
+            "w": "Over",
+            "t": 18.762
+          },
+          {
+            "w": "the",
+            "t": 19.215
+          },
+          {
+            "w": "past",
+            "t": 19.668
+          },
+          {
+            "w": "decade,",
+            "t": 20.12
+          },
+          {
+            "w": "research",
+            "t": 20.573
+          },
+          {
+            "w": "focused",
+            "t": 21.026
+          },
+          {
+            "w": "heavily",
+            "t": 21.479
+          },
+          {
+            "w": "on",
+            "t": 21.932
+          },
+          {
+            "w": "model-centric",
+            "t": 22.384
+          },
+          {
+            "w": "engineering:",
+            "t": 22.837
+          },
+          {
+            "w": "adding",
+            "t": 23.29
+          },
+          {
+            "w": "layers,",
+            "t": 23.743
+          },
+          {
+            "w": "tuning",
+            "t": 24.196
+          },
+          {
+            "w": "attention",
+            "t": 24.648
+          },
+          {
+            "w": "heads,",
+            "t": 25.101
+          },
+          {
+            "w": "and",
+            "t": 25.554
+          },
+          {
+            "w": "scaling",
+            "t": 26.007
+          },
+          {
+            "w": "parameters.",
+            "t": 26.46
+          },
+          {
+            "w": "Yet",
+            "t": 26.912
+          },
+          {
+            "w": "empirical",
+            "t": 27.365
+          },
+          {
+            "w": "investigations",
+            "t": 27.818
+          },
+          {
+            "w": "by",
+            "t": 28.271
+          },
+          {
+            "w": "Google",
+            "t": 28.724
+          },
+          {
+            "w": "Research",
+            "t": 29.176
+          },
+          {
+            "w": "reveal",
+            "t": 29.629
+          },
+          {
+            "w": "that",
+            "t": 30.082
+          },
+          {
+            "w": "over",
+            "t": 30.535
+          },
+          {
+            "w": "eighty",
+            "t": 30.988
+          },
+          {
+            "w": "percent",
+            "t": 31.44
+          },
+          {
+            "w": "of",
+            "t": 31.893
+          },
+          {
+            "w": "real-world",
+            "t": 32.346
+          },
+          {
+            "w": "AI",
+            "t": 32.799
+          },
+          {
+            "w": "failures",
+            "t": 33.252
+          },
+          {
+            "w": "stem",
+            "t": 33.704
+          },
+          {
+            "w": "from",
+            "t": 34.157
+          },
+          {
+            "w": "data",
+            "t": 34.61
+          },
+          {
+            "w": "cascades—hidden",
+            "t": 35.063
+          },
+          {
+            "w": "defects",
+            "t": 35.516
+          },
+          {
+            "w": "in",
+            "t": 35.968
+          },
+          {
+            "w": "collection",
+            "t": 36.421
+          },
+          {
+            "w": "and",
+            "t": 36.874
+          },
+          {
+            "w": "preparation",
+            "t": 37.327
+          },
+          {
+            "w": "that",
+            "t": 37.78
+          },
+          {
+            "w": "compound",
+            "t": 38.232
+          },
+          {
+            "w": "down",
+            "t": 38.685
+          },
+          {
+            "w": "the",
+            "t": 39.138
+          },
+          {
+            "w": "line.",
+            "t": 39.591
+          },
+          {
+            "w": "Today,",
+            "t": 40.044
+          },
+          {
+            "w": "we",
+            "t": 40.496
+          },
+          {
+            "w": "establish",
+            "t": 40.949
+          },
+          {
+            "w": "the",
+            "t": 41.402
+          },
+          {
+            "w": "mathematical",
+            "t": 41.855
+          },
+          {
+            "w": "and",
+            "t": 42.308
+          },
+          {
+            "w": "engineering",
+            "t": 42.76
+          },
+          {
+            "w": "discipline",
+            "t": 43.213
+          },
+          {
+            "w": "needed",
+            "t": 43.666
+          },
+          {
+            "w": "to",
+            "t": 44.119
+          },
+          {
+            "w": "guarantee",
+            "t": 44.572
           },
           {
             "w": "dataset",
-            "t": 15.258
+            "t": 45.024
           },
           {
-            "w": "truly",
-            "t": 15.717
-          },
-          {
-            "w": "is.",
-            "t": 16.177
+            "w": "reliability.",
+            "t": 45.477
           }
         ]
       },
@@ -163,169 +429,729 @@ window.LESSON_TIMINGS = {
         "slide": 2,
         "slideId": "s2",
         "speaker": "Dr. Nova",
-        "text": "Mathematically, a dataset D sub N is a finite empirical sample of N input-target pairs drawn from an unobservable joint distribution P sub X,Y. Empirical Risk Minimization only guarantees generalization if the i.i.d. assumption holds across both training and deployment.",
-        "start": 17.386,
-        "end": 33.658,
+        "text": "Formal Mathematical Foundations: Mathematical Definition of an Empirical Sample. In computer science and statistical learning, a dataset D sub N is formalized as a finite empirical sample of N observations drawn from the joint distribution P sub X,Y.",
+        "start": 46.68,
+        "end": 63.072,
         "words": [
           {
-            "w": "Mathematically,",
-            "t": 17.386
+            "w": "Formal",
+            "t": 46.68
           },
           {
-            "w": "a",
-            "t": 17.793
+            "w": "Mathematical",
+            "t": 47.111
           },
           {
-            "w": "dataset",
-            "t": 18.2
+            "w": "Foundations:",
+            "t": 47.543
           },
           {
-            "w": "D",
-            "t": 18.606
+            "w": "Mathematical",
+            "t": 47.974
           },
           {
-            "w": "sub",
-            "t": 19.013
-          },
-          {
-            "w": "N",
-            "t": 19.42
-          },
-          {
-            "w": "is",
-            "t": 19.827
-          },
-          {
-            "w": "a",
-            "t": 20.234
-          },
-          {
-            "w": "finite",
-            "t": 20.64
-          },
-          {
-            "w": "empirical",
-            "t": 21.047
-          },
-          {
-            "w": "sample",
-            "t": 21.454
+            "w": "Definition",
+            "t": 48.405
           },
           {
             "w": "of",
-            "t": 21.861
-          },
-          {
-            "w": "N",
-            "t": 22.268
-          },
-          {
-            "w": "input-target",
-            "t": 22.674
-          },
-          {
-            "w": "pairs",
-            "t": 23.081
-          },
-          {
-            "w": "drawn",
-            "t": 23.488
-          },
-          {
-            "w": "from",
-            "t": 23.895
+            "t": 48.837
           },
           {
             "w": "an",
-            "t": 24.302
-          },
-          {
-            "w": "unobservable",
-            "t": 24.708
-          },
-          {
-            "w": "joint",
-            "t": 25.115
-          },
-          {
-            "w": "distribution",
-            "t": 25.522
-          },
-          {
-            "w": "P",
-            "t": 25.929
-          },
-          {
-            "w": "sub",
-            "t": 26.336
-          },
-          {
-            "w": "X,Y.",
-            "t": 26.742
+            "t": 49.268
           },
           {
             "w": "Empirical",
-            "t": 27.149
+            "t": 49.7
           },
           {
-            "w": "Risk",
-            "t": 27.556
+            "w": "Sample.",
+            "t": 50.131
           },
           {
-            "w": "Minimization",
-            "t": 27.963
+            "w": "In",
+            "t": 50.562
           },
           {
-            "w": "only",
-            "t": 28.37
+            "w": "computer",
+            "t": 50.994
           },
           {
-            "w": "guarantees",
-            "t": 28.776
-          },
-          {
-            "w": "generalization",
-            "t": 29.183
-          },
-          {
-            "w": "if",
-            "t": 29.59
-          },
-          {
-            "w": "the",
-            "t": 29.997
-          },
-          {
-            "w": "i.i.d.",
-            "t": 30.404
-          },
-          {
-            "w": "assumption",
-            "t": 30.81
-          },
-          {
-            "w": "holds",
-            "t": 31.217
-          },
-          {
-            "w": "across",
-            "t": 31.624
-          },
-          {
-            "w": "both",
-            "t": 32.031
-          },
-          {
-            "w": "training",
-            "t": 32.438
+            "w": "science",
+            "t": 51.425
           },
           {
             "w": "and",
-            "t": 32.844
+            "t": 51.856
           },
           {
-            "w": "deployment.",
-            "t": 33.251
+            "w": "statistical",
+            "t": 52.288
+          },
+          {
+            "w": "learning,",
+            "t": 52.719
+          },
+          {
+            "w": "a",
+            "t": 53.151
+          },
+          {
+            "w": "dataset",
+            "t": 53.582
+          },
+          {
+            "w": "D",
+            "t": 54.013
+          },
+          {
+            "w": "sub",
+            "t": 54.445
+          },
+          {
+            "w": "N",
+            "t": 54.876
+          },
+          {
+            "w": "is",
+            "t": 55.307
+          },
+          {
+            "w": "formalized",
+            "t": 55.739
+          },
+          {
+            "w": "as",
+            "t": 56.17
+          },
+          {
+            "w": "a",
+            "t": 56.601
+          },
+          {
+            "w": "finite",
+            "t": 57.033
+          },
+          {
+            "w": "empirical",
+            "t": 57.464
+          },
+          {
+            "w": "sample",
+            "t": 57.896
+          },
+          {
+            "w": "of",
+            "t": 58.327
+          },
+          {
+            "w": "N",
+            "t": 58.758
+          },
+          {
+            "w": "observations",
+            "t": 59.19
+          },
+          {
+            "w": "drawn",
+            "t": 59.621
+          },
+          {
+            "w": "from",
+            "t": 60.052
+          },
+          {
+            "w": "the",
+            "t": 60.484
+          },
+          {
+            "w": "joint",
+            "t": 60.915
+          },
+          {
+            "w": "distribution",
+            "t": 61.347
+          },
+          {
+            "w": "P",
+            "t": 61.778
+          },
+          {
+            "w": "sub",
+            "t": 62.209
+          },
+          {
+            "w": "X,Y.",
+            "t": 62.641
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Because the true distribution is unobservable, our models minimize Empirical Risk as a proxy. But this proxy only guarantees generalization if the i.i.d. assumption holds. When upstream collection introduces selection bias, empirical risk diverges catastrophically from real-world loss.",
+        "start": 63.422,
+        "end": 81.806,
+        "words": [
+          {
+            "w": "Because",
+            "t": 63.422
+          },
+          {
+            "w": "the",
+            "t": 63.906
+          },
+          {
+            "w": "true",
+            "t": 64.39
+          },
+          {
+            "w": "distribution",
+            "t": 64.873
+          },
+          {
+            "w": "is",
+            "t": 65.357
+          },
+          {
+            "w": "unobservable,",
+            "t": 65.841
+          },
+          {
+            "w": "our",
+            "t": 66.325
+          },
+          {
+            "w": "models",
+            "t": 66.809
+          },
+          {
+            "w": "minimize",
+            "t": 67.292
+          },
+          {
+            "w": "Empirical",
+            "t": 67.776
+          },
+          {
+            "w": "Risk",
+            "t": 68.26
+          },
+          {
+            "w": "as",
+            "t": 68.744
+          },
+          {
+            "w": "a",
+            "t": 69.227
+          },
+          {
+            "w": "proxy.",
+            "t": 69.711
+          },
+          {
+            "w": "But",
+            "t": 70.195
+          },
+          {
+            "w": "this",
+            "t": 70.679
+          },
+          {
+            "w": "proxy",
+            "t": 71.163
+          },
+          {
+            "w": "only",
+            "t": 71.646
+          },
+          {
+            "w": "guarantees",
+            "t": 72.13
+          },
+          {
+            "w": "generalization",
+            "t": 72.614
+          },
+          {
+            "w": "if",
+            "t": 73.098
+          },
+          {
+            "w": "the",
+            "t": 73.582
+          },
+          {
+            "w": "i.i.d.",
+            "t": 74.065
+          },
+          {
+            "w": "assumption",
+            "t": 74.549
+          },
+          {
+            "w": "holds.",
+            "t": 75.033
+          },
+          {
+            "w": "When",
+            "t": 75.517
+          },
+          {
+            "w": "upstream",
+            "t": 76.001
+          },
+          {
+            "w": "collection",
+            "t": 76.484
+          },
+          {
+            "w": "introduces",
+            "t": 76.968
+          },
+          {
+            "w": "selection",
+            "t": 77.452
+          },
+          {
+            "w": "bias,",
+            "t": 77.936
+          },
+          {
+            "w": "empirical",
+            "t": 78.419
+          },
+          {
+            "w": "risk",
+            "t": 78.903
+          },
+          {
+            "w": "diverges",
+            "t": 79.387
+          },
+          {
+            "w": "catastrophically",
+            "t": 79.871
+          },
+          {
+            "w": "from",
+            "t": 80.355
+          },
+          {
+            "w": "real-world",
+            "t": 80.838
+          },
+          {
+            "w": "loss.",
+            "t": 81.322
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!",
+        "start": 82.156,
+        "end": 100.492,
+        "words": [
+          {
+            "w": "We",
+            "t": 82.156
+          },
+          {
+            "w": "have",
+            "t": 82.573
+          },
+          {
+            "w": "docked",
+            "t": 82.989
+          },
+          {
+            "w": "at",
+            "t": 83.406
+          },
+          {
+            "w": "the",
+            "t": 83.823
+          },
+          {
+            "w": "Empirical",
+            "t": 84.24
+          },
+          {
+            "w": "Simulator!",
+            "t": 84.656
+          },
+          {
+            "w": "Look",
+            "t": 85.073
+          },
+          {
+            "w": "at",
+            "t": 85.49
+          },
+          {
+            "w": "the",
+            "t": 85.907
+          },
+          {
+            "w": "two",
+            "t": 86.323
+          },
+          {
+            "w": "sliders",
+            "t": 86.74
+          },
+          {
+            "w": "above",
+            "t": 87.157
+          },
+          {
+            "w": "me:",
+            "t": 87.573
+          },
+          {
+            "w": "Sample",
+            "t": 87.99
+          },
+          {
+            "w": "Size",
+            "t": 88.407
+          },
+          {
+            "w": "N",
+            "t": 88.824
+          },
+          {
+            "w": "and",
+            "t": 89.24
+          },
+          {
+            "w": "Upstream",
+            "t": 89.657
+          },
+          {
+            "w": "Selection",
+            "t": 90.074
+          },
+          {
+            "w": "Bias",
+            "t": 90.491
+          },
+          {
+            "w": "beta.",
+            "t": 90.907
+          },
+          {
+            "w": "Try",
+            "t": 91.324
+          },
+          {
+            "w": "dragging",
+            "t": 91.741
+          },
+          {
+            "w": "the",
+            "t": 92.157
+          },
+          {
+            "w": "Selection",
+            "t": 92.574
+          },
+          {
+            "w": "Bias",
+            "t": 92.991
+          },
+          {
+            "w": "slider",
+            "t": 93.408
+          },
+          {
+            "w": "up",
+            "t": 93.824
+          },
+          {
+            "w": "to",
+            "t": 94.241
+          },
+          {
+            "w": "35%—watch",
+            "t": 94.658
+          },
+          {
+            "w": "how",
+            "t": 95.075
+          },
+          {
+            "w": "the",
+            "t": 95.491
+          },
+          {
+            "w": "empirical",
+            "t": 95.908
+          },
+          {
+            "w": "risk",
+            "t": 96.325
+          },
+          {
+            "w": "stays",
+            "t": 96.741
+          },
+          {
+            "w": "low,",
+            "t": 97.158
+          },
+          {
+            "w": "while",
+            "t": 97.575
+          },
+          {
+            "w": "the",
+            "t": 97.992
+          },
+          {
+            "w": "true",
+            "t": 98.408
+          },
+          {
+            "w": "production",
+            "t": 98.825
+          },
+          {
+            "w": "risk",
+            "t": 99.242
+          },
+          {
+            "w": "diverges",
+            "t": 99.659
+          },
+          {
+            "w": "catastrophically!",
+            "t": 100.075
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Now, let us test your architectural intuition on our active checkpoint question above me.",
+        "start": 100.842,
+        "end": 106.482,
+        "words": [
+          {
+            "w": "Now,",
+            "t": 100.842
+          },
+          {
+            "w": "let",
+            "t": 101.245
+          },
+          {
+            "w": "us",
+            "t": 101.648
+          },
+          {
+            "w": "test",
+            "t": 102.051
+          },
+          {
+            "w": "your",
+            "t": 102.453
+          },
+          {
+            "w": "architectural",
+            "t": 102.856
+          },
+          {
+            "w": "intuition",
+            "t": 103.259
+          },
+          {
+            "w": "on",
+            "t": 103.662
+          },
+          {
+            "w": "our",
+            "t": 104.065
+          },
+          {
+            "w": "active",
+            "t": 104.468
+          },
+          {
+            "w": "checkpoint",
+            "t": 104.871
+          },
+          {
+            "w": "question",
+            "t": 105.273
+          },
+          {
+            "w": "above",
+            "t": 105.676
+          },
+          {
+            "w": "me.",
+            "t": 106.079
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!",
+        "start": 106.832,
+        "end": 121.064,
+        "words": [
+          {
+            "w": "Here",
+            "t": 106.832
+          },
+          {
+            "w": "is",
+            "t": 107.227
+          },
+          {
+            "w": "your",
+            "t": 107.623
+          },
+          {
+            "w": "active",
+            "t": 108.018
+          },
+          {
+            "w": "checkpoint:",
+            "t": 108.413
+          },
+          {
+            "w": "If",
+            "t": 108.809
+          },
+          {
+            "w": "your",
+            "t": 109.204
+          },
+          {
+            "w": "dataset",
+            "t": 109.599
+          },
+          {
+            "w": "collection",
+            "t": 109.995
+          },
+          {
+            "w": "pipeline",
+            "t": 110.39
+          },
+          {
+            "w": "has",
+            "t": 110.785
+          },
+          {
+            "w": "selection",
+            "t": 111.181
+          },
+          {
+            "w": "bias",
+            "t": 111.576
+          },
+          {
+            "w": "(beta",
+            "t": 111.971
+          },
+          {
+            "w": ">",
+            "t": 112.367
+          },
+          {
+            "w": "0),",
+            "t": 112.762
+          },
+          {
+            "w": "will",
+            "t": 113.157
+          },
+          {
+            "w": "gathering",
+            "t": 113.553
+          },
+          {
+            "w": "10x",
+            "t": 113.948
+          },
+          {
+            "w": "more",
+            "t": 114.343
+          },
+          {
+            "w": "data",
+            "t": 114.739
+          },
+          {
+            "w": "(N",
+            "t": 115.134
+          },
+          {
+            "w": "to",
+            "t": 115.529
+          },
+          {
+            "w": "1,000,000)",
+            "t": 115.925
+          },
+          {
+            "w": "eliminate",
+            "t": 116.32
+          },
+          {
+            "w": "the",
+            "t": 116.715
+          },
+          {
+            "w": "generalization",
+            "t": 117.111
+          },
+          {
+            "w": "gap?",
+            "t": 117.506
+          },
+          {
+            "w": "Select",
+            "t": 117.901
+          },
+          {
+            "w": "Option",
+            "t": 118.297
+          },
+          {
+            "w": "A",
+            "t": 118.692
+          },
+          {
+            "w": "or",
+            "t": 119.087
+          },
+          {
+            "w": "Option",
+            "t": 119.483
+          },
+          {
+            "w": "B",
+            "t": 119.878
+          },
+          {
+            "w": "above",
+            "t": 120.273
+          },
+          {
+            "w": "me!",
+            "t": 120.669
           }
         ]
       },
@@ -333,161 +1159,323 @@ window.LESSON_TIMINGS = {
         "slide": 3,
         "slideId": "s3",
         "speaker": "Dr. Nova",
-        "text": "This architectural flowchart traces physical reality through sensors and observers into discrete tensors. Notice that measurement noise and selection filters occur before any data ever enters memory, meaning downstream models are blind to errors introduced at this boundary.",
-        "start": 34.408,
-        "end": 50.272,
+        "text": "Every observation x sub i exists within a multidimensional Cartesian product space of attribute domains F 1 through F D. A formal schema tuple S defines domain bounds, semantic datatypes, and nullability rules for every feature.",
+        "start": 121.814,
+        "end": 136.718,
         "words": [
           {
-            "w": "This",
-            "t": 34.408
+            "w": "Every",
+            "t": 121.814
           },
           {
-            "w": "architectural",
-            "t": 34.825
+            "w": "observation",
+            "t": 122.228
           },
           {
-            "w": "flowchart",
-            "t": 35.243
+            "w": "x",
+            "t": 122.642
           },
           {
-            "w": "traces",
-            "t": 35.66
+            "w": "sub",
+            "t": 123.056
           },
           {
-            "w": "physical",
-            "t": 36.078
+            "w": "i",
+            "t": 123.47
           },
           {
-            "w": "reality",
-            "t": 36.495
+            "w": "exists",
+            "t": 123.884
+          },
+          {
+            "w": "within",
+            "t": 124.298
+          },
+          {
+            "w": "a",
+            "t": 124.712
+          },
+          {
+            "w": "multidimensional",
+            "t": 125.126
+          },
+          {
+            "w": "Cartesian",
+            "t": 125.54
+          },
+          {
+            "w": "product",
+            "t": 125.954
+          },
+          {
+            "w": "space",
+            "t": 126.368
+          },
+          {
+            "w": "of",
+            "t": 126.782
+          },
+          {
+            "w": "attribute",
+            "t": 127.196
+          },
+          {
+            "w": "domains",
+            "t": 127.61
+          },
+          {
+            "w": "F",
+            "t": 128.024
+          },
+          {
+            "w": "1",
+            "t": 128.438
           },
           {
             "w": "through",
-            "t": 36.913
+            "t": 128.852
           },
           {
-            "w": "sensors",
-            "t": 37.33
+            "w": "F",
+            "t": 129.266
+          },
+          {
+            "w": "D.",
+            "t": 129.68
+          },
+          {
+            "w": "A",
+            "t": 130.094
+          },
+          {
+            "w": "formal",
+            "t": 130.508
+          },
+          {
+            "w": "schema",
+            "t": 130.922
+          },
+          {
+            "w": "tuple",
+            "t": 131.336
+          },
+          {
+            "w": "S",
+            "t": 131.75
+          },
+          {
+            "w": "defines",
+            "t": 132.164
+          },
+          {
+            "w": "domain",
+            "t": 132.578
+          },
+          {
+            "w": "bounds,",
+            "t": 132.992
+          },
+          {
+            "w": "semantic",
+            "t": 133.406
+          },
+          {
+            "w": "datatypes,",
+            "t": 133.82
           },
           {
             "w": "and",
-            "t": 37.748
+            "t": 134.234
           },
           {
-            "w": "observers",
-            "t": 38.165
+            "w": "nullability",
+            "t": 134.648
           },
           {
-            "w": "into",
-            "t": 38.583
+            "w": "rules",
+            "t": 135.062
+          },
+          {
+            "w": "for",
+            "t": 135.476
+          },
+          {
+            "w": "every",
+            "t": 135.89
+          },
+          {
+            "w": "feature.",
+            "t": 136.304
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Real-world pipelines combine five primary attribute domains: continuous physical metric ranges, discrete categorical vocabularies, binary Boolean flags, temporal timestamps with microsecond resolution, and high-dimensional vector embeddings. Treating them as generic untyped strings is the leading cause of silent pipeline failures.",
+        "start": 137.068,
+        "end": 158.26,
+        "words": [
+          {
+            "w": "Real-world",
+            "t": 137.068
+          },
+          {
+            "w": "pipelines",
+            "t": 137.598
+          },
+          {
+            "w": "combine",
+            "t": 138.128
+          },
+          {
+            "w": "five",
+            "t": 138.657
+          },
+          {
+            "w": "primary",
+            "t": 139.187
+          },
+          {
+            "w": "attribute",
+            "t": 139.717
+          },
+          {
+            "w": "domains:",
+            "t": 140.247
+          },
+          {
+            "w": "continuous",
+            "t": 140.777
+          },
+          {
+            "w": "physical",
+            "t": 141.306
+          },
+          {
+            "w": "metric",
+            "t": 141.836
+          },
+          {
+            "w": "ranges,",
+            "t": 142.366
           },
           {
             "w": "discrete",
-            "t": 39.0
+            "t": 142.896
           },
           {
-            "w": "tensors.",
-            "t": 39.418
+            "w": "categorical",
+            "t": 143.426
           },
           {
-            "w": "Notice",
-            "t": 39.835
+            "w": "vocabularies,",
+            "t": 143.955
           },
           {
-            "w": "that",
-            "t": 40.253
+            "w": "binary",
+            "t": 144.485
           },
           {
-            "w": "measurement",
-            "t": 40.67
+            "w": "Boolean",
+            "t": 145.015
           },
           {
-            "w": "noise",
-            "t": 41.088
+            "w": "flags,",
+            "t": 145.545
+          },
+          {
+            "w": "temporal",
+            "t": 146.075
+          },
+          {
+            "w": "timestamps",
+            "t": 146.604
+          },
+          {
+            "w": "with",
+            "t": 147.134
+          },
+          {
+            "w": "microsecond",
+            "t": 147.664
+          },
+          {
+            "w": "resolution,",
+            "t": 148.194
           },
           {
             "w": "and",
-            "t": 41.505
+            "t": 148.724
           },
           {
-            "w": "selection",
-            "t": 41.923
+            "w": "high-dimensional",
+            "t": 149.253
           },
           {
-            "w": "filters",
-            "t": 42.34
+            "w": "vector",
+            "t": 149.783
           },
           {
-            "w": "occur",
-            "t": 42.757
+            "w": "embeddings.",
+            "t": 150.313
           },
           {
-            "w": "before",
-            "t": 43.175
+            "w": "Treating",
+            "t": 150.843
           },
           {
-            "w": "any",
-            "t": 43.592
+            "w": "them",
+            "t": 151.373
           },
           {
-            "w": "data",
-            "t": 44.01
+            "w": "as",
+            "t": 151.902
           },
           {
-            "w": "ever",
-            "t": 44.427
+            "w": "generic",
+            "t": 152.432
           },
           {
-            "w": "enters",
-            "t": 44.845
+            "w": "untyped",
+            "t": 152.962
           },
           {
-            "w": "memory,",
-            "t": 45.262
+            "w": "strings",
+            "t": 153.492
           },
           {
-            "w": "meaning",
-            "t": 45.68
+            "w": "is",
+            "t": 154.022
           },
           {
-            "w": "downstream",
-            "t": 46.097
+            "w": "the",
+            "t": 154.551
           },
           {
-            "w": "models",
-            "t": 46.515
+            "w": "leading",
+            "t": 155.081
           },
           {
-            "w": "are",
-            "t": 46.932
+            "w": "cause",
+            "t": 155.611
           },
           {
-            "w": "blind",
-            "t": 47.35
+            "w": "of",
+            "t": 156.141
           },
           {
-            "w": "to",
-            "t": 47.767
+            "w": "silent",
+            "t": 156.671
           },
           {
-            "w": "errors",
-            "t": 48.185
+            "w": "pipeline",
+            "t": 157.2
           },
           {
-            "w": "introduced",
-            "t": 48.602
-          },
-          {
-            "w": "at",
-            "t": 49.02
-          },
-          {
-            "w": "this",
-            "t": 49.437
-          },
-          {
-            "w": "boundary.",
-            "t": 49.855
+            "w": "failures.",
+            "t": 157.73
           }
         ]
       },
@@ -495,157 +1483,323 @@ window.LESSON_TIMINGS = {
         "slide": 4,
         "slideId": "s4",
         "speaker": "Dr. Nova",
-        "text": "Each record x sub i exists in a Cartesian product space of M attribute domains, F 1 through F M. Rigorous schema engineering requires defining continuous metric ranges, discrete categories, and explicit nullability constraints for every attribute.",
-        "start": 51.022,
-        "end": 66.622,
+        "text": "In empirical datasets, attributes are rarely completely observed. We formalize this using the Missingness Indicator Matrix M in zero one to the N by D, where M i j equals one if attribute j of record i is unobserved.",
+        "start": 159.01,
+        "end": 173.386,
         "words": [
           {
-            "w": "Each",
-            "t": 51.022
+            "w": "In",
+            "t": 159.01
           },
           {
-            "w": "record",
-            "t": 51.444
+            "w": "empirical",
+            "t": 159.379
           },
           {
-            "w": "x",
-            "t": 51.865
+            "w": "datasets,",
+            "t": 159.747
           },
           {
-            "w": "sub",
-            "t": 52.287
+            "w": "attributes",
+            "t": 160.116
           },
           {
-            "w": "i",
-            "t": 52.708
+            "w": "are",
+            "t": 160.484
           },
           {
-            "w": "exists",
-            "t": 53.13
+            "w": "rarely",
+            "t": 160.853
           },
           {
-            "w": "in",
-            "t": 53.552
+            "w": "completely",
+            "t": 161.222
           },
           {
-            "w": "a",
-            "t": 53.973
+            "w": "observed.",
+            "t": 161.59
           },
           {
-            "w": "Cartesian",
-            "t": 54.395
+            "w": "We",
+            "t": 161.959
           },
           {
-            "w": "product",
-            "t": 54.817
+            "w": "formalize",
+            "t": 162.328
           },
           {
-            "w": "space",
-            "t": 55.238
+            "w": "this",
+            "t": 162.696
           },
           {
-            "w": "of",
-            "t": 55.66
+            "w": "using",
+            "t": 163.065
+          },
+          {
+            "w": "the",
+            "t": 163.433
+          },
+          {
+            "w": "Missingness",
+            "t": 163.802
+          },
+          {
+            "w": "Indicator",
+            "t": 164.171
+          },
+          {
+            "w": "Matrix",
+            "t": 164.539
           },
           {
             "w": "M",
-            "t": 56.081
+            "t": 164.908
+          },
+          {
+            "w": "in",
+            "t": 165.276
+          },
+          {
+            "w": "zero",
+            "t": 165.645
+          },
+          {
+            "w": "one",
+            "t": 166.014
+          },
+          {
+            "w": "to",
+            "t": 166.382
+          },
+          {
+            "w": "the",
+            "t": 166.751
+          },
+          {
+            "w": "N",
+            "t": 167.12
+          },
+          {
+            "w": "by",
+            "t": 167.488
+          },
+          {
+            "w": "D,",
+            "t": 167.857
+          },
+          {
+            "w": "where",
+            "t": 168.225
+          },
+          {
+            "w": "M",
+            "t": 168.594
+          },
+          {
+            "w": "i",
+            "t": 168.963
+          },
+          {
+            "w": "j",
+            "t": 169.331
+          },
+          {
+            "w": "equals",
+            "t": 169.7
+          },
+          {
+            "w": "one",
+            "t": 170.068
+          },
+          {
+            "w": "if",
+            "t": 170.437
           },
           {
             "w": "attribute",
-            "t": 56.503
+            "t": 170.806
           },
           {
-            "w": "domains,",
-            "t": 56.925
+            "w": "j",
+            "t": 171.174
           },
           {
-            "w": "F",
-            "t": 57.346
+            "w": "of",
+            "t": 171.543
           },
           {
-            "w": "1",
-            "t": 57.768
+            "w": "record",
+            "t": 171.912
           },
           {
-            "w": "through",
-            "t": 58.19
+            "w": "i",
+            "t": 172.28
           },
           {
-            "w": "F",
-            "t": 58.611
+            "w": "is",
+            "t": 172.649
           },
           {
-            "w": "M.",
-            "t": 59.033
+            "w": "unobserved.",
+            "t": 173.017
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Donald Rubin established three distinct missing data regimes: Missing Completely at Random, Missing at Random, and Missing Not at Random. If data is MNAR—such as critically ill patients skipping diagnostic surveys—imputing the median destroys clinical prediction accuracy.",
+        "start": 173.736,
+        "end": 190.968,
+        "words": [
+          {
+            "w": "Donald",
+            "t": 173.736
           },
           {
-            "w": "Rigorous",
-            "t": 59.454
+            "w": "Rubin",
+            "t": 174.202
           },
           {
-            "w": "schema",
-            "t": 59.876
+            "w": "established",
+            "t": 174.667
           },
           {
-            "w": "engineering",
-            "t": 60.298
+            "w": "three",
+            "t": 175.133
           },
           {
-            "w": "requires",
-            "t": 60.719
+            "w": "distinct",
+            "t": 175.599
           },
           {
-            "w": "defining",
-            "t": 61.141
+            "w": "missing",
+            "t": 176.065
           },
           {
-            "w": "continuous",
-            "t": 61.563
+            "w": "data",
+            "t": 176.53
           },
           {
-            "w": "metric",
-            "t": 61.984
+            "w": "regimes:",
+            "t": 176.996
           },
           {
-            "w": "ranges,",
-            "t": 62.406
+            "w": "Missing",
+            "t": 177.462
           },
           {
-            "w": "discrete",
-            "t": 62.827
+            "w": "Completely",
+            "t": 177.928
           },
           {
-            "w": "categories,",
-            "t": 63.249
+            "w": "at",
+            "t": 178.393
+          },
+          {
+            "w": "Random,",
+            "t": 178.859
+          },
+          {
+            "w": "Missing",
+            "t": 179.325
+          },
+          {
+            "w": "at",
+            "t": 179.79
+          },
+          {
+            "w": "Random,",
+            "t": 180.256
           },
           {
             "w": "and",
-            "t": 63.671
+            "t": 180.722
           },
           {
-            "w": "explicit",
-            "t": 64.092
+            "w": "Missing",
+            "t": 181.188
           },
           {
-            "w": "nullability",
-            "t": 64.514
+            "w": "Not",
+            "t": 181.653
           },
           {
-            "w": "constraints",
-            "t": 64.936
+            "w": "at",
+            "t": 182.119
           },
           {
-            "w": "for",
-            "t": 65.357
+            "w": "Random.",
+            "t": 182.585
           },
           {
-            "w": "every",
-            "t": 65.779
+            "w": "If",
+            "t": 183.051
           },
           {
-            "w": "attribute.",
-            "t": 66.2
+            "w": "data",
+            "t": 183.516
+          },
+          {
+            "w": "is",
+            "t": 183.982
+          },
+          {
+            "w": "MNAR—such",
+            "t": 184.448
+          },
+          {
+            "w": "as",
+            "t": 184.914
+          },
+          {
+            "w": "critically",
+            "t": 185.379
+          },
+          {
+            "w": "ill",
+            "t": 185.845
+          },
+          {
+            "w": "patients",
+            "t": 186.311
+          },
+          {
+            "w": "skipping",
+            "t": 186.776
+          },
+          {
+            "w": "diagnostic",
+            "t": 187.242
+          },
+          {
+            "w": "surveys—imputing",
+            "t": 187.708
+          },
+          {
+            "w": "the",
+            "t": 188.174
+          },
+          {
+            "w": "median",
+            "t": 188.639
+          },
+          {
+            "w": "destroys",
+            "t": 189.105
+          },
+          {
+            "w": "clinical",
+            "t": 189.571
+          },
+          {
+            "w": "prediction",
+            "t": 190.037
+          },
+          {
+            "w": "accuracy.",
+            "t": 190.502
           }
         ]
       },
@@ -653,125 +1807,243 @@ window.LESSON_TIMINGS = {
         "slide": 5,
         "slideId": "s5",
         "speaker": "Dr. Nova",
-        "text": "Across all computing systems, datasets rest on two orthogonal axes: records representing discrete entities or temporal observations, and attributes representing standardized measurement dimensions. Violating row-level independence corrupts statistical inference.",
-        "start": 67.372,
-        "end": 84.124,
+        "text": "Across all computing systems, datasets rest on two orthogonal axes: records representing discrete entities or temporal observations, and attributes representing standardized measurement dimensions.",
+        "start": 191.718,
+        "end": 204.102,
         "words": [
           {
             "w": "Across",
-            "t": 67.372
+            "t": 191.718
           },
           {
             "w": "all",
-            "t": 67.95
+            "t": 192.256
           },
           {
             "w": "computing",
-            "t": 68.527
+            "t": 192.795
           },
           {
             "w": "systems,",
-            "t": 69.105
+            "t": 193.333
           },
           {
             "w": "datasets",
-            "t": 69.683
+            "t": 193.872
           },
           {
             "w": "rest",
-            "t": 70.26
+            "t": 194.41
           },
           {
             "w": "on",
-            "t": 70.838
+            "t": 194.949
           },
           {
             "w": "two",
-            "t": 71.416
+            "t": 195.487
           },
           {
             "w": "orthogonal",
-            "t": 71.993
+            "t": 196.025
           },
           {
             "w": "axes:",
-            "t": 72.571
+            "t": 196.564
           },
           {
             "w": "records",
-            "t": 73.149
+            "t": 197.102
           },
           {
             "w": "representing",
-            "t": 73.726
+            "t": 197.641
           },
           {
             "w": "discrete",
-            "t": 74.304
+            "t": 198.179
           },
           {
             "w": "entities",
-            "t": 74.882
+            "t": 198.718
           },
           {
             "w": "or",
-            "t": 75.459
+            "t": 199.256
           },
           {
             "w": "temporal",
-            "t": 76.037
+            "t": 199.795
           },
           {
             "w": "observations,",
-            "t": 76.614
+            "t": 200.333
           },
           {
             "w": "and",
-            "t": 77.192
+            "t": 200.871
           },
           {
             "w": "attributes",
-            "t": 77.77
+            "t": 201.41
           },
           {
             "w": "representing",
-            "t": 78.347
+            "t": 201.948
           },
           {
             "w": "standardized",
-            "t": 78.925
+            "t": 202.487
           },
           {
             "w": "measurement",
-            "t": 79.503
+            "t": 203.025
           },
           {
             "w": "dimensions.",
-            "t": 80.08
-          },
+            "t": 203.564
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Crucially, statistical learning theory requires row-level independence. If multiple records share unmodeled dependencies—such as multiple hospital admissions for the same patient split across train and test folds—your evaluation suffers from severe validation leakage.",
+        "start": 204.452,
+        "end": 220.988,
+        "words": [
           {
-            "w": "Violating",
-            "t": 80.658
-          },
-          {
-            "w": "row-level",
-            "t": 81.236
-          },
-          {
-            "w": "independence",
-            "t": 81.813
-          },
-          {
-            "w": "corrupts",
-            "t": 82.391
+            "w": "Crucially,",
+            "t": 204.452
           },
           {
             "w": "statistical",
-            "t": 82.969
+            "t": 204.953
           },
           {
-            "w": "inference.",
-            "t": 83.546
+            "w": "learning",
+            "t": 205.454
+          },
+          {
+            "w": "theory",
+            "t": 205.955
+          },
+          {
+            "w": "requires",
+            "t": 206.456
+          },
+          {
+            "w": "row-level",
+            "t": 206.957
+          },
+          {
+            "w": "independence.",
+            "t": 207.459
+          },
+          {
+            "w": "If",
+            "t": 207.96
+          },
+          {
+            "w": "multiple",
+            "t": 208.461
+          },
+          {
+            "w": "records",
+            "t": 208.962
+          },
+          {
+            "w": "share",
+            "t": 209.463
+          },
+          {
+            "w": "unmodeled",
+            "t": 209.964
+          },
+          {
+            "w": "dependencies—such",
+            "t": 210.465
+          },
+          {
+            "w": "as",
+            "t": 210.966
+          },
+          {
+            "w": "multiple",
+            "t": 211.467
+          },
+          {
+            "w": "hospital",
+            "t": 211.968
+          },
+          {
+            "w": "admissions",
+            "t": 212.469
+          },
+          {
+            "w": "for",
+            "t": 212.971
+          },
+          {
+            "w": "the",
+            "t": 213.472
+          },
+          {
+            "w": "same",
+            "t": 213.973
+          },
+          {
+            "w": "patient",
+            "t": 214.474
+          },
+          {
+            "w": "split",
+            "t": 214.975
+          },
+          {
+            "w": "across",
+            "t": 215.476
+          },
+          {
+            "w": "train",
+            "t": 215.977
+          },
+          {
+            "w": "and",
+            "t": 216.478
+          },
+          {
+            "w": "test",
+            "t": 216.979
+          },
+          {
+            "w": "folds—your",
+            "t": 217.48
+          },
+          {
+            "w": "evaluation",
+            "t": 217.981
+          },
+          {
+            "w": "suffers",
+            "t": 218.483
+          },
+          {
+            "w": "from",
+            "t": 218.984
+          },
+          {
+            "w": "severe",
+            "t": 219.485
+          },
+          {
+            "w": "validation",
+            "t": 219.986
+          },
+          {
+            "w": "leakage.",
+            "t": 220.487
           }
         ]
       },
@@ -779,153 +2051,267 @@ window.LESSON_TIMINGS = {
         "slide": 6,
         "slideId": "s6",
         "speaker": "Dr. Nova",
-        "text": "This matrix maps how records and attributes are conceptualized across paradigms: rows and columns in SQL, instances and features in machine learning, and columnar chunks in Parquet and Arrow. Understanding memory layout enables zero-copy vectorized processing.",
-        "start": 84.874,
-        "end": 101.338,
+        "text": "This matrix maps how records and attributes are conceptualized across five major paradigms: rows and columns in relational SQL, instances and features in machine learning, and columnar record batches in Apache Parquet and Arrow.",
+        "start": 221.738,
+        "end": 236.066,
         "words": [
           {
             "w": "This",
-            "t": 84.874
+            "t": 221.738
           },
           {
             "w": "matrix",
-            "t": 85.331
+            "t": 222.159
           },
           {
             "w": "maps",
-            "t": 85.789
+            "t": 222.581
           },
           {
             "w": "how",
-            "t": 86.246
+            "t": 223.002
           },
           {
             "w": "records",
-            "t": 86.703
+            "t": 223.424
           },
           {
             "w": "and",
-            "t": 87.161
+            "t": 223.845
           },
           {
             "w": "attributes",
-            "t": 87.618
+            "t": 224.266
           },
           {
             "w": "are",
-            "t": 88.075
+            "t": 224.688
           },
           {
             "w": "conceptualized",
-            "t": 88.533
+            "t": 225.109
           },
           {
             "w": "across",
-            "t": 88.99
+            "t": 225.531
+          },
+          {
+            "w": "five",
+            "t": 225.952
+          },
+          {
+            "w": "major",
+            "t": 226.374
           },
           {
             "w": "paradigms:",
-            "t": 89.447
+            "t": 226.795
           },
           {
             "w": "rows",
-            "t": 89.905
+            "t": 227.216
           },
           {
             "w": "and",
-            "t": 90.362
+            "t": 227.638
           },
           {
             "w": "columns",
-            "t": 90.819
+            "t": 228.059
           },
           {
             "w": "in",
-            "t": 91.277
+            "t": 228.481
+          },
+          {
+            "w": "relational",
+            "t": 228.902
           },
           {
             "w": "SQL,",
-            "t": 91.734
+            "t": 229.323
           },
           {
             "w": "instances",
-            "t": 92.191
+            "t": 229.745
           },
           {
             "w": "and",
-            "t": 92.649
+            "t": 230.166
           },
           {
             "w": "features",
-            "t": 93.106
+            "t": 230.588
           },
           {
             "w": "in",
-            "t": 93.563
+            "t": 231.009
           },
           {
             "w": "machine",
-            "t": 94.021
+            "t": 231.43
           },
           {
             "w": "learning,",
-            "t": 94.478
+            "t": 231.852
           },
           {
             "w": "and",
-            "t": 94.935
+            "t": 232.273
           },
           {
             "w": "columnar",
-            "t": 95.393
+            "t": 232.695
           },
           {
-            "w": "chunks",
-            "t": 95.85
+            "w": "record",
+            "t": 233.116
+          },
+          {
+            "w": "batches",
+            "t": 233.538
           },
           {
             "w": "in",
-            "t": 96.307
+            "t": 233.959
+          },
+          {
+            "w": "Apache",
+            "t": 234.38
           },
           {
             "w": "Parquet",
-            "t": 96.765
+            "t": 234.802
           },
           {
             "w": "and",
-            "t": 97.222
+            "t": 235.223
           },
           {
             "w": "Arrow.",
-            "t": 97.679
+            "t": 235.645
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Notice how the terminology changes, but the mathematical abstraction remains identical. Mastering cross-paradigm translation allows machine learning engineers to communicate fluently with database administrators and distributed systems architects.",
+        "start": 236.416,
+        "end": 251.464,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 236.416
           },
           {
-            "w": "Understanding",
-            "t": 98.137
+            "w": "how",
+            "t": 236.953
           },
           {
-            "w": "memory",
-            "t": 98.594
+            "w": "the",
+            "t": 237.491
           },
           {
-            "w": "layout",
-            "t": 99.051
+            "w": "terminology",
+            "t": 238.028
           },
           {
-            "w": "enables",
-            "t": 99.509
+            "w": "changes,",
+            "t": 238.566
           },
           {
-            "w": "zero-copy",
-            "t": 99.966
+            "w": "but",
+            "t": 239.103
           },
           {
-            "w": "vectorized",
-            "t": 100.423
+            "w": "the",
+            "t": 239.641
           },
           {
-            "w": "processing.",
-            "t": 100.881
+            "w": "mathematical",
+            "t": 240.178
+          },
+          {
+            "w": "abstraction",
+            "t": 240.715
+          },
+          {
+            "w": "remains",
+            "t": 241.253
+          },
+          {
+            "w": "identical.",
+            "t": 241.79
+          },
+          {
+            "w": "Mastering",
+            "t": 242.328
+          },
+          {
+            "w": "cross-paradigm",
+            "t": 242.865
+          },
+          {
+            "w": "translation",
+            "t": 243.403
+          },
+          {
+            "w": "allows",
+            "t": 243.94
+          },
+          {
+            "w": "machine",
+            "t": 244.477
+          },
+          {
+            "w": "learning",
+            "t": 245.015
+          },
+          {
+            "w": "engineers",
+            "t": 245.552
+          },
+          {
+            "w": "to",
+            "t": 246.09
+          },
+          {
+            "w": "communicate",
+            "t": 246.627
+          },
+          {
+            "w": "fluently",
+            "t": 247.165
+          },
+          {
+            "w": "with",
+            "t": 247.702
+          },
+          {
+            "w": "database",
+            "t": 248.239
+          },
+          {
+            "w": "administrators",
+            "t": 248.777
+          },
+          {
+            "w": "and",
+            "t": 249.314
+          },
+          {
+            "w": "distributed",
+            "t": 249.852
+          },
+          {
+            "w": "systems",
+            "t": 250.389
+          },
+          {
+            "w": "architects.",
+            "t": 250.927
           }
         ]
       },
@@ -933,161 +2319,323 @@ window.LESSON_TIMINGS = {
         "slide": 7,
         "slideId": "s7",
         "speaker": "Dr. Nova",
-        "text": "Formulated by Sambasivan and colleagues at Google Research, the Law of Data Quality Cascades proves that final system error is lower-bounded by the sum of squared stage errors plus non-linear cross-stage coupling. Early data defects compound non-linearly downstream.",
-        "start": 102.088,
-        "end": 118.24,
+        "text": "Mechanical sympathy describes software that honors the physical hardware beneath it. CPUs transfer data in 64-byte cache lines. In a row-store, consecutive bytes belong to different attributes of the same record, causing massive cache thrashing during batch matrix multiplication.",
+        "start": 252.214,
+        "end": 270.43,
         "words": [
           {
-            "w": "Formulated",
-            "t": 102.088
+            "w": "Mechanical",
+            "t": 252.214
           },
           {
-            "w": "by",
-            "t": 102.513
+            "w": "sympathy",
+            "t": 252.681
           },
           {
-            "w": "Sambasivan",
-            "t": 102.938
+            "w": "describes",
+            "t": 253.148
           },
           {
-            "w": "and",
-            "t": 103.363
-          },
-          {
-            "w": "colleagues",
-            "t": 103.788
-          },
-          {
-            "w": "at",
-            "t": 104.213
-          },
-          {
-            "w": "Google",
-            "t": 104.638
-          },
-          {
-            "w": "Research,",
-            "t": 105.063
-          },
-          {
-            "w": "the",
-            "t": 105.488
-          },
-          {
-            "w": "Law",
-            "t": 105.913
-          },
-          {
-            "w": "of",
-            "t": 106.339
-          },
-          {
-            "w": "Data",
-            "t": 106.764
-          },
-          {
-            "w": "Quality",
-            "t": 107.189
-          },
-          {
-            "w": "Cascades",
-            "t": 107.614
-          },
-          {
-            "w": "proves",
-            "t": 108.039
+            "w": "software",
+            "t": 253.615
           },
           {
             "w": "that",
-            "t": 108.464
+            "t": 254.082
           },
           {
-            "w": "final",
-            "t": 108.889
-          },
-          {
-            "w": "system",
-            "t": 109.314
-          },
-          {
-            "w": "error",
-            "t": 109.739
-          },
-          {
-            "w": "is",
-            "t": 110.164
-          },
-          {
-            "w": "lower-bounded",
-            "t": 110.589
-          },
-          {
-            "w": "by",
-            "t": 111.014
+            "w": "honors",
+            "t": 254.549
           },
           {
             "w": "the",
-            "t": 111.439
+            "t": 255.016
           },
           {
-            "w": "sum",
-            "t": 111.864
+            "w": "physical",
+            "t": 255.484
           },
           {
-            "w": "of",
-            "t": 112.289
+            "w": "hardware",
+            "t": 255.951
           },
           {
-            "w": "squared",
-            "t": 112.714
+            "w": "beneath",
+            "t": 256.418
           },
           {
-            "w": "stage",
-            "t": 113.139
+            "w": "it.",
+            "t": 256.885
           },
           {
-            "w": "errors",
-            "t": 113.564
+            "w": "CPUs",
+            "t": 257.352
           },
           {
-            "w": "plus",
-            "t": 113.989
-          },
-          {
-            "w": "non-linear",
-            "t": 114.415
-          },
-          {
-            "w": "cross-stage",
-            "t": 114.84
-          },
-          {
-            "w": "coupling.",
-            "t": 115.265
-          },
-          {
-            "w": "Early",
-            "t": 115.69
+            "w": "transfer",
+            "t": 257.819
           },
           {
             "w": "data",
-            "t": 116.115
+            "t": 258.286
           },
           {
-            "w": "defects",
-            "t": 116.54
+            "w": "in",
+            "t": 258.753
           },
           {
-            "w": "compound",
-            "t": 116.965
+            "w": "64-byte",
+            "t": 259.22
           },
           {
-            "w": "non-linearly",
-            "t": 117.39
+            "w": "cache",
+            "t": 259.687
           },
           {
-            "w": "downstream.",
-            "t": 117.815
+            "w": "lines.",
+            "t": 260.154
+          },
+          {
+            "w": "In",
+            "t": 260.621
+          },
+          {
+            "w": "a",
+            "t": 261.088
+          },
+          {
+            "w": "row-store,",
+            "t": 261.556
+          },
+          {
+            "w": "consecutive",
+            "t": 262.023
+          },
+          {
+            "w": "bytes",
+            "t": 262.49
+          },
+          {
+            "w": "belong",
+            "t": 262.957
+          },
+          {
+            "w": "to",
+            "t": 263.424
+          },
+          {
+            "w": "different",
+            "t": 263.891
+          },
+          {
+            "w": "attributes",
+            "t": 264.358
+          },
+          {
+            "w": "of",
+            "t": 264.825
+          },
+          {
+            "w": "the",
+            "t": 265.292
+          },
+          {
+            "w": "same",
+            "t": 265.759
+          },
+          {
+            "w": "record,",
+            "t": 266.226
+          },
+          {
+            "w": "causing",
+            "t": 266.693
+          },
+          {
+            "w": "massive",
+            "t": 267.16
+          },
+          {
+            "w": "cache",
+            "t": 267.628
+          },
+          {
+            "w": "thrashing",
+            "t": 268.095
+          },
+          {
+            "w": "during",
+            "t": 268.562
+          },
+          {
+            "w": "batch",
+            "t": 269.029
+          },
+          {
+            "w": "matrix",
+            "t": 269.496
+          },
+          {
+            "w": "multiplication.",
+            "t": 269.963
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "In a columnar store like Apache Arrow, consecutive bytes belong to the exact same feature across adjacent records. This enables CPU vector registers to compute SIMD operations—Single Instruction Multiple Data—processing hundreds of millions of values per second.",
+        "start": 270.78,
+        "end": 287.94,
+        "words": [
+          {
+            "w": "In",
+            "t": 270.78
+          },
+          {
+            "w": "a",
+            "t": 271.244
+          },
+          {
+            "w": "columnar",
+            "t": 271.708
+          },
+          {
+            "w": "store",
+            "t": 272.171
+          },
+          {
+            "w": "like",
+            "t": 272.635
+          },
+          {
+            "w": "Apache",
+            "t": 273.099
+          },
+          {
+            "w": "Arrow,",
+            "t": 273.563
+          },
+          {
+            "w": "consecutive",
+            "t": 274.026
+          },
+          {
+            "w": "bytes",
+            "t": 274.49
+          },
+          {
+            "w": "belong",
+            "t": 274.954
+          },
+          {
+            "w": "to",
+            "t": 275.418
+          },
+          {
+            "w": "the",
+            "t": 275.882
+          },
+          {
+            "w": "exact",
+            "t": 276.345
+          },
+          {
+            "w": "same",
+            "t": 276.809
+          },
+          {
+            "w": "feature",
+            "t": 277.273
+          },
+          {
+            "w": "across",
+            "t": 277.737
+          },
+          {
+            "w": "adjacent",
+            "t": 278.201
+          },
+          {
+            "w": "records.",
+            "t": 278.664
+          },
+          {
+            "w": "This",
+            "t": 279.128
+          },
+          {
+            "w": "enables",
+            "t": 279.592
+          },
+          {
+            "w": "CPU",
+            "t": 280.056
+          },
+          {
+            "w": "vector",
+            "t": 280.519
+          },
+          {
+            "w": "registers",
+            "t": 280.983
+          },
+          {
+            "w": "to",
+            "t": 281.447
+          },
+          {
+            "w": "compute",
+            "t": 281.911
+          },
+          {
+            "w": "SIMD",
+            "t": 282.375
+          },
+          {
+            "w": "operations—Single",
+            "t": 282.838
+          },
+          {
+            "w": "Instruction",
+            "t": 283.302
+          },
+          {
+            "w": "Multiple",
+            "t": 283.766
+          },
+          {
+            "w": "Data—processing",
+            "t": 284.23
+          },
+          {
+            "w": "hundreds",
+            "t": 284.694
+          },
+          {
+            "w": "of",
+            "t": 285.157
+          },
+          {
+            "w": "millions",
+            "t": 285.621
+          },
+          {
+            "w": "of",
+            "t": 286.085
+          },
+          {
+            "w": "values",
+            "t": 286.549
+          },
+          {
+            "w": "per",
+            "t": 287.012
+          },
+          {
+            "w": "second.",
+            "t": 287.476
           }
         ]
       },
@@ -1095,145 +2643,335 @@ window.LESSON_TIMINGS = {
         "slide": 8,
         "slideId": "s8",
         "speaker": "Dr. Nova",
-        "text": "Data cascades manifest across four distinct pipeline stages: hardware sensor drift, dirty cleaning and leakage during preparation, validation blind spots during training, and feedback loops in production deployment. Auditing must happen at every boundary.",
-        "start": 118.99,
-        "end": 134.998,
+        "text": "The Law of Data Quality Cascades, formulated by Sambasivan and colleagues at Google Research, proves that production system error compounds non-linearly across pipeline transformations. Upstream noise epsilon 1 does not merely add to downstream error; it interacts multiplicatively.",
+        "start": 288.69,
+        "end": 306.09,
         "words": [
           {
+            "w": "The",
+            "t": 288.69
+          },
+          {
+            "w": "Law",
+            "t": 289.148
+          },
+          {
+            "w": "of",
+            "t": 289.606
+          },
+          {
             "w": "Data",
-            "t": 118.99
+            "t": 290.064
           },
           {
-            "w": "cascades",
-            "t": 119.461
+            "w": "Quality",
+            "t": 290.522
           },
           {
-            "w": "manifest",
-            "t": 119.932
+            "w": "Cascades,",
+            "t": 290.979
           },
           {
-            "w": "across",
-            "t": 120.402
+            "w": "formulated",
+            "t": 291.437
           },
           {
-            "w": "four",
-            "t": 120.873
+            "w": "by",
+            "t": 291.895
           },
           {
-            "w": "distinct",
-            "t": 121.344
-          },
-          {
-            "w": "pipeline",
-            "t": 121.815
-          },
-          {
-            "w": "stages:",
-            "t": 122.286
-          },
-          {
-            "w": "hardware",
-            "t": 122.757
-          },
-          {
-            "w": "sensor",
-            "t": 123.227
-          },
-          {
-            "w": "drift,",
-            "t": 123.698
-          },
-          {
-            "w": "dirty",
-            "t": 124.169
-          },
-          {
-            "w": "cleaning",
-            "t": 124.64
+            "w": "Sambasivan",
+            "t": 292.353
           },
           {
             "w": "and",
-            "t": 125.111
+            "t": 292.811
           },
           {
-            "w": "leakage",
-            "t": 125.582
-          },
-          {
-            "w": "during",
-            "t": 126.052
-          },
-          {
-            "w": "preparation,",
-            "t": 126.523
-          },
-          {
-            "w": "validation",
-            "t": 126.994
-          },
-          {
-            "w": "blind",
-            "t": 127.465
-          },
-          {
-            "w": "spots",
-            "t": 127.936
-          },
-          {
-            "w": "during",
-            "t": 128.406
-          },
-          {
-            "w": "training,",
-            "t": 128.877
-          },
-          {
-            "w": "and",
-            "t": 129.348
-          },
-          {
-            "w": "feedback",
-            "t": 129.819
-          },
-          {
-            "w": "loops",
-            "t": 130.29
-          },
-          {
-            "w": "in",
-            "t": 130.761
-          },
-          {
-            "w": "production",
-            "t": 131.231
-          },
-          {
-            "w": "deployment.",
-            "t": 131.702
-          },
-          {
-            "w": "Auditing",
-            "t": 132.173
-          },
-          {
-            "w": "must",
-            "t": 132.644
-          },
-          {
-            "w": "happen",
-            "t": 133.115
+            "w": "colleagues",
+            "t": 293.269
           },
           {
             "w": "at",
-            "t": 133.586
+            "t": 293.727
           },
           {
-            "w": "every",
-            "t": 134.056
+            "w": "Google",
+            "t": 294.185
           },
           {
-            "w": "boundary.",
-            "t": 134.527
+            "w": "Research,",
+            "t": 294.643
+          },
+          {
+            "w": "proves",
+            "t": 295.101
+          },
+          {
+            "w": "that",
+            "t": 295.558
+          },
+          {
+            "w": "production",
+            "t": 296.016
+          },
+          {
+            "w": "system",
+            "t": 296.474
+          },
+          {
+            "w": "error",
+            "t": 296.932
+          },
+          {
+            "w": "compounds",
+            "t": 297.39
+          },
+          {
+            "w": "non-linearly",
+            "t": 297.848
+          },
+          {
+            "w": "across",
+            "t": 298.306
+          },
+          {
+            "w": "pipeline",
+            "t": 298.764
+          },
+          {
+            "w": "transformations.",
+            "t": 299.222
+          },
+          {
+            "w": "Upstream",
+            "t": 299.679
+          },
+          {
+            "w": "noise",
+            "t": 300.137
+          },
+          {
+            "w": "epsilon",
+            "t": 300.595
+          },
+          {
+            "w": "1",
+            "t": 301.053
+          },
+          {
+            "w": "does",
+            "t": 301.511
+          },
+          {
+            "w": "not",
+            "t": 301.969
+          },
+          {
+            "w": "merely",
+            "t": 302.427
+          },
+          {
+            "w": "add",
+            "t": 302.885
+          },
+          {
+            "w": "to",
+            "t": 303.343
+          },
+          {
+            "w": "downstream",
+            "t": 303.801
+          },
+          {
+            "w": "error;",
+            "t": 304.258
+          },
+          {
+            "w": "it",
+            "t": 304.716
+          },
+          {
+            "w": "interacts",
+            "t": 305.174
+          },
+          {
+            "w": "multiplicatively.",
+            "t": 305.632
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Notice the mathematical formulation: final production loss scales with raw noise raised to the power gamma, where gamma is strictly greater than one. A minor two percent sensor drift early on can trigger a fifty percent collapse in production model safety.",
+        "start": 306.44,
+        "end": 321.656,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 306.44
+          },
+          {
+            "w": "the",
+            "t": 306.811
+          },
+          {
+            "w": "mathematical",
+            "t": 307.182
+          },
+          {
+            "w": "formulation:",
+            "t": 307.553
+          },
+          {
+            "w": "final",
+            "t": 307.924
+          },
+          {
+            "w": "production",
+            "t": 308.296
+          },
+          {
+            "w": "loss",
+            "t": 308.667
+          },
+          {
+            "w": "scales",
+            "t": 309.038
+          },
+          {
+            "w": "with",
+            "t": 309.409
+          },
+          {
+            "w": "raw",
+            "t": 309.78
+          },
+          {
+            "w": "noise",
+            "t": 310.151
+          },
+          {
+            "w": "raised",
+            "t": 310.522
+          },
+          {
+            "w": "to",
+            "t": 310.893
+          },
+          {
+            "w": "the",
+            "t": 311.265
+          },
+          {
+            "w": "power",
+            "t": 311.636
+          },
+          {
+            "w": "gamma,",
+            "t": 312.007
+          },
+          {
+            "w": "where",
+            "t": 312.378
+          },
+          {
+            "w": "gamma",
+            "t": 312.749
+          },
+          {
+            "w": "is",
+            "t": 313.12
+          },
+          {
+            "w": "strictly",
+            "t": 313.491
+          },
+          {
+            "w": "greater",
+            "t": 313.862
+          },
+          {
+            "w": "than",
+            "t": 314.234
+          },
+          {
+            "w": "one.",
+            "t": 314.605
+          },
+          {
+            "w": "A",
+            "t": 314.976
+          },
+          {
+            "w": "minor",
+            "t": 315.347
+          },
+          {
+            "w": "two",
+            "t": 315.718
+          },
+          {
+            "w": "percent",
+            "t": 316.089
+          },
+          {
+            "w": "sensor",
+            "t": 316.46
+          },
+          {
+            "w": "drift",
+            "t": 316.831
+          },
+          {
+            "w": "early",
+            "t": 317.203
+          },
+          {
+            "w": "on",
+            "t": 317.574
+          },
+          {
+            "w": "can",
+            "t": 317.945
+          },
+          {
+            "w": "trigger",
+            "t": 318.316
+          },
+          {
+            "w": "a",
+            "t": 318.687
+          },
+          {
+            "w": "fifty",
+            "t": 319.058
+          },
+          {
+            "w": "percent",
+            "t": 319.429
+          },
+          {
+            "w": "collapse",
+            "t": 319.8
+          },
+          {
+            "w": "in",
+            "t": 320.172
+          },
+          {
+            "w": "production",
+            "t": 320.543
+          },
+          {
+            "w": "model",
+            "t": 320.914
+          },
+          {
+            "w": "safety.",
+            "t": 321.285
           }
         ]
       },
@@ -1241,177 +2979,255 @@ window.LESSON_TIMINGS = {
         "slide": 9,
         "slideId": "s9",
         "speaker": "Dr. Nova",
-        "text": "In this real-world ICU case study, sepsis prediction models trained on bedside blood pressure cuffs logged every fifteen minutes failed when deployed on arterial lines recording at one hundred hertz. The model had learned nurse visit frequency rather than physiological disease onset.",
-        "start": 135.748,
-        "end": 152.404,
+        "text": "Data cascades propagate across four distinct pipeline phases: hardware ingestion drift, dirty data preparation, evaluation blind spots during validation, and feedback loops in live serving.",
+        "start": 322.406,
+        "end": 334.67,
         "words": [
           {
-            "w": "In",
-            "t": 135.748
+            "w": "Data",
+            "t": 322.406
           },
           {
-            "w": "this",
-            "t": 136.145
+            "w": "cascades",
+            "t": 322.897
           },
           {
-            "w": "real-world",
-            "t": 136.541
+            "w": "propagate",
+            "t": 323.387
           },
           {
-            "w": "ICU",
-            "t": 136.938
+            "w": "across",
+            "t": 323.878
           },
           {
-            "w": "case",
-            "t": 137.334
+            "w": "four",
+            "t": 324.368
           },
           {
-            "w": "study,",
-            "t": 137.731
+            "w": "distinct",
+            "t": 324.859
           },
           {
-            "w": "sepsis",
-            "t": 138.127
+            "w": "pipeline",
+            "t": 325.349
           },
           {
-            "w": "prediction",
-            "t": 138.524
+            "w": "phases:",
+            "t": 325.84
           },
           {
-            "w": "models",
-            "t": 138.921
+            "w": "hardware",
+            "t": 326.33
           },
           {
-            "w": "trained",
-            "t": 139.317
+            "w": "ingestion",
+            "t": 326.821
           },
           {
-            "w": "on",
-            "t": 139.714
+            "w": "drift,",
+            "t": 327.312
           },
           {
-            "w": "bedside",
-            "t": 140.11
+            "w": "dirty",
+            "t": 327.802
           },
           {
-            "w": "blood",
-            "t": 140.507
+            "w": "data",
+            "t": 328.293
           },
           {
-            "w": "pressure",
-            "t": 140.903
+            "w": "preparation,",
+            "t": 328.783
           },
           {
-            "w": "cuffs",
-            "t": 141.3
+            "w": "evaluation",
+            "t": 329.274
           },
           {
-            "w": "logged",
-            "t": 141.697
+            "w": "blind",
+            "t": 329.764
           },
           {
-            "w": "every",
-            "t": 142.093
+            "w": "spots",
+            "t": 330.255
           },
           {
-            "w": "fifteen",
-            "t": 142.49
+            "w": "during",
+            "t": 330.746
           },
           {
-            "w": "minutes",
-            "t": 142.886
+            "w": "validation,",
+            "t": 331.236
           },
           {
-            "w": "failed",
-            "t": 143.283
+            "w": "and",
+            "t": 331.727
           },
           {
-            "w": "when",
-            "t": 143.679
+            "w": "feedback",
+            "t": 332.217
           },
           {
-            "w": "deployed",
-            "t": 144.076
+            "w": "loops",
+            "t": 332.708
           },
           {
-            "w": "on",
-            "t": 144.473
+            "w": "in",
+            "t": 333.198
           },
           {
-            "w": "arterial",
-            "t": 144.869
+            "w": "live",
+            "t": 333.689
           },
           {
-            "w": "lines",
-            "t": 145.266
+            "w": "serving.",
+            "t": 334.179
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Notice the critical dashed arrow returning from production deployment back to raw ingestion. When an AI model's biased predictions dictate what future data is captured and annotated, the system enters an irreversible bias spiral.",
+        "start": 335.02,
+        "end": 348.628,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 335.02
           },
           {
-            "w": "recording",
-            "t": 145.662
+            "w": "the",
+            "t": 335.42
           },
           {
-            "w": "at",
-            "t": 146.059
+            "w": "critical",
+            "t": 335.82
           },
           {
-            "w": "one",
-            "t": 146.455
+            "w": "dashed",
+            "t": 336.221
           },
           {
-            "w": "hundred",
-            "t": 146.852
+            "w": "arrow",
+            "t": 336.621
           },
           {
-            "w": "hertz.",
-            "t": 147.249
+            "w": "returning",
+            "t": 337.021
           },
           {
-            "w": "The",
-            "t": 147.645
+            "w": "from",
+            "t": 337.421
           },
           {
-            "w": "model",
-            "t": 148.042
+            "w": "production",
+            "t": 337.822
           },
           {
-            "w": "had",
-            "t": 148.438
+            "w": "deployment",
+            "t": 338.222
           },
           {
-            "w": "learned",
-            "t": 148.835
+            "w": "back",
+            "t": 338.622
           },
           {
-            "w": "nurse",
-            "t": 149.231
+            "w": "to",
+            "t": 339.022
           },
           {
-            "w": "visit",
-            "t": 149.628
+            "w": "raw",
+            "t": 339.423
           },
           {
-            "w": "frequency",
-            "t": 150.025
+            "w": "ingestion.",
+            "t": 339.823
           },
           {
-            "w": "rather",
-            "t": 150.421
+            "w": "When",
+            "t": 340.223
           },
           {
-            "w": "than",
-            "t": 150.818
+            "w": "an",
+            "t": 340.623
           },
           {
-            "w": "physiological",
-            "t": 151.214
+            "w": "AI",
+            "t": 341.024
           },
           {
-            "w": "disease",
-            "t": 151.611
+            "w": "model's",
+            "t": 341.424
           },
           {
-            "w": "onset.",
-            "t": 152.007
+            "w": "biased",
+            "t": 341.824
+          },
+          {
+            "w": "predictions",
+            "t": 342.224
+          },
+          {
+            "w": "dictate",
+            "t": 342.624
+          },
+          {
+            "w": "what",
+            "t": 343.025
+          },
+          {
+            "w": "future",
+            "t": 343.425
+          },
+          {
+            "w": "data",
+            "t": 343.825
+          },
+          {
+            "w": "is",
+            "t": 344.225
+          },
+          {
+            "w": "captured",
+            "t": 344.626
+          },
+          {
+            "w": "and",
+            "t": 345.026
+          },
+          {
+            "w": "annotated,",
+            "t": 345.426
+          },
+          {
+            "w": "the",
+            "t": 345.826
+          },
+          {
+            "w": "system",
+            "t": 346.227
+          },
+          {
+            "w": "enters",
+            "t": 346.627
+          },
+          {
+            "w": "an",
+            "t": 347.027
+          },
+          {
+            "w": "irreversible",
+            "t": 347.427
+          },
+          {
+            "w": "bias",
+            "t": 347.828
+          },
+          {
+            "w": "spiral.",
+            "t": 348.228
           }
         ]
       },
@@ -1419,173 +3235,347 @@ window.LESSON_TIMINGS = {
         "slide": 10,
         "slideId": "s10",
         "speaker": "Dr. Nova",
-        "text": "In autonomous driving, an autonomous vehicle traveling at one hundred kilometers per hour covers twenty-eight millimeters every millisecond. A temporal logging jitter of merely twenty milliseconds displaces an obstacle's bounding box by over half a meter, causing phantom braking or collision.",
-        "start": 153.154,
-        "end": 170.386,
+        "text": "In this real-world ICU case study, sepsis prediction models trained on bedside blood pressure cuffs logged every fifteen minutes failed when deployed on arterial lines recording at one hundred hertz. The model had learned nurse visit frequency rather than physiological disease onset.",
+        "start": 349.378,
+        "end": 366.034,
         "words": [
           {
             "w": "In",
-            "t": 153.154
+            "t": 349.378
           },
           {
-            "w": "autonomous",
-            "t": 153.574
+            "w": "this",
+            "t": 349.775
           },
           {
-            "w": "driving,",
-            "t": 153.995
+            "w": "real-world",
+            "t": 350.171
           },
           {
-            "w": "an",
-            "t": 154.415
+            "w": "ICU",
+            "t": 350.568
           },
           {
-            "w": "autonomous",
-            "t": 154.835
+            "w": "case",
+            "t": 350.964
           },
           {
-            "w": "vehicle",
-            "t": 155.255
+            "w": "study,",
+            "t": 351.361
           },
           {
-            "w": "traveling",
-            "t": 155.676
+            "w": "sepsis",
+            "t": 351.757
           },
           {
-            "w": "at",
-            "t": 156.096
+            "w": "prediction",
+            "t": 352.154
           },
           {
-            "w": "one",
-            "t": 156.516
+            "w": "models",
+            "t": 352.551
           },
           {
-            "w": "hundred",
-            "t": 156.937
+            "w": "trained",
+            "t": 352.947
           },
           {
-            "w": "kilometers",
-            "t": 157.357
+            "w": "on",
+            "t": 353.344
           },
           {
-            "w": "per",
-            "t": 157.777
+            "w": "bedside",
+            "t": 353.74
           },
           {
-            "w": "hour",
-            "t": 158.198
+            "w": "blood",
+            "t": 354.137
           },
           {
-            "w": "covers",
-            "t": 158.618
+            "w": "pressure",
+            "t": 354.533
           },
           {
-            "w": "twenty-eight",
-            "t": 159.038
+            "w": "cuffs",
+            "t": 354.93
           },
           {
-            "w": "millimeters",
-            "t": 159.458
+            "w": "logged",
+            "t": 355.327
           },
           {
             "w": "every",
-            "t": 159.879
+            "t": 355.723
           },
           {
-            "w": "millisecond.",
-            "t": 160.299
+            "w": "fifteen",
+            "t": 356.12
           },
           {
-            "w": "A",
-            "t": 160.719
+            "w": "minutes",
+            "t": 356.516
           },
           {
-            "w": "temporal",
-            "t": 161.14
+            "w": "failed",
+            "t": 356.913
           },
           {
-            "w": "logging",
-            "t": 161.56
+            "w": "when",
+            "t": 357.309
           },
           {
-            "w": "jitter",
-            "t": 161.98
+            "w": "deployed",
+            "t": 357.706
           },
           {
-            "w": "of",
-            "t": 162.4
+            "w": "on",
+            "t": 358.103
           },
           {
-            "w": "merely",
-            "t": 162.821
+            "w": "arterial",
+            "t": 358.499
           },
           {
-            "w": "twenty",
-            "t": 163.241
+            "w": "lines",
+            "t": 358.896
           },
           {
-            "w": "milliseconds",
-            "t": 163.661
+            "w": "recording",
+            "t": 359.292
           },
           {
-            "w": "displaces",
-            "t": 164.082
+            "w": "at",
+            "t": 359.689
           },
           {
-            "w": "an",
-            "t": 164.502
+            "w": "one",
+            "t": 360.085
           },
           {
-            "w": "obstacle's",
-            "t": 164.922
+            "w": "hundred",
+            "t": 360.482
           },
           {
-            "w": "bounding",
-            "t": 165.342
+            "w": "hertz.",
+            "t": 360.879
           },
           {
-            "w": "box",
-            "t": 165.763
+            "w": "The",
+            "t": 361.275
           },
           {
-            "w": "by",
-            "t": 166.183
+            "w": "model",
+            "t": 361.672
           },
           {
-            "w": "over",
-            "t": 166.603
+            "w": "had",
+            "t": 362.068
           },
           {
-            "w": "half",
-            "t": 167.024
+            "w": "learned",
+            "t": 362.465
           },
           {
-            "w": "a",
-            "t": 167.444
+            "w": "nurse",
+            "t": 362.861
           },
           {
-            "w": "meter,",
-            "t": 167.864
+            "w": "visit",
+            "t": 363.258
           },
           {
-            "w": "causing",
-            "t": 168.285
+            "w": "frequency",
+            "t": 363.655
           },
           {
-            "w": "phantom",
-            "t": 168.705
+            "w": "rather",
+            "t": 364.051
           },
           {
-            "w": "braking",
-            "t": 169.125
+            "w": "than",
+            "t": 364.448
           },
           {
-            "w": "or",
-            "t": 169.545
+            "w": "physiological",
+            "t": 364.844
           },
           {
-            "w": "collision.",
-            "t": 169.966
+            "w": "disease",
+            "t": 365.241
+          },
+          {
+            "w": "onset.",
+            "t": 365.637
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Furthermore, when data engineers imputed zero for unmeasured Troponin tests, neural networks learned that missing tests indicated healthy patients. In reality, troponin is only ordered when doctors suspect acute myocardial infarction—imputing zero led the model to recommend discharging critical patients.",
+        "start": 366.384,
+        "end": 385.896,
+        "words": [
+          {
+            "w": "Furthermore,",
+            "t": 366.384
+          },
+          {
+            "w": "when",
+            "t": 366.872
+          },
+          {
+            "w": "data",
+            "t": 367.36
+          },
+          {
+            "w": "engineers",
+            "t": 367.847
+          },
+          {
+            "w": "imputed",
+            "t": 368.335
+          },
+          {
+            "w": "zero",
+            "t": 368.823
+          },
+          {
+            "w": "for",
+            "t": 369.311
+          },
+          {
+            "w": "unmeasured",
+            "t": 369.799
+          },
+          {
+            "w": "Troponin",
+            "t": 370.286
+          },
+          {
+            "w": "tests,",
+            "t": 370.774
+          },
+          {
+            "w": "neural",
+            "t": 371.262
+          },
+          {
+            "w": "networks",
+            "t": 371.75
+          },
+          {
+            "w": "learned",
+            "t": 372.238
+          },
+          {
+            "w": "that",
+            "t": 372.725
+          },
+          {
+            "w": "missing",
+            "t": 373.213
+          },
+          {
+            "w": "tests",
+            "t": 373.701
+          },
+          {
+            "w": "indicated",
+            "t": 374.189
+          },
+          {
+            "w": "healthy",
+            "t": 374.677
+          },
+          {
+            "w": "patients.",
+            "t": 375.164
+          },
+          {
+            "w": "In",
+            "t": 375.652
+          },
+          {
+            "w": "reality,",
+            "t": 376.14
+          },
+          {
+            "w": "troponin",
+            "t": 376.628
+          },
+          {
+            "w": "is",
+            "t": 377.116
+          },
+          {
+            "w": "only",
+            "t": 377.603
+          },
+          {
+            "w": "ordered",
+            "t": 378.091
+          },
+          {
+            "w": "when",
+            "t": 378.579
+          },
+          {
+            "w": "doctors",
+            "t": 379.067
+          },
+          {
+            "w": "suspect",
+            "t": 379.555
+          },
+          {
+            "w": "acute",
+            "t": 380.042
+          },
+          {
+            "w": "myocardial",
+            "t": 380.53
+          },
+          {
+            "w": "infarction—imputing",
+            "t": 381.018
+          },
+          {
+            "w": "zero",
+            "t": 381.506
+          },
+          {
+            "w": "led",
+            "t": 381.994
+          },
+          {
+            "w": "the",
+            "t": 382.481
+          },
+          {
+            "w": "model",
+            "t": 382.969
+          },
+          {
+            "w": "to",
+            "t": 383.457
+          },
+          {
+            "w": "recommend",
+            "t": 383.945
+          },
+          {
+            "w": "discharging",
+            "t": 384.433
+          },
+          {
+            "w": "critical",
+            "t": 384.92
+          },
+          {
+            "w": "patients.",
+            "t": 385.408
           }
         ]
       },
@@ -1593,141 +3583,335 @@ window.LESSON_TIMINGS = {
         "slide": 11,
         "slideId": "s11",
         "speaker": "Dr. Nova",
-        "text": "Directly beneath this presentation player is our live laboratory workbench. Use it to inject anomalous nulls, corrupt categorical distributions, and trigger out-of-range sensor readings to observe how defensive boundary schemas prevent pipeline failures.",
-        "start": 171.136,
-        "end": 186.736,
+        "text": "In autonomous driving datasets like KITTI and nuScenes, clock synchronization between rolling-shutter cameras, LiDAR scanners, and CAN-bus telemetry is safety-critical. A vehicle traveling at one hundred kilometers per hour moves at twenty-seven point eight millimeters every single millisecond.",
+        "start": 386.646,
+        "end": 404.43,
         "words": [
           {
-            "w": "Directly",
-            "t": 171.136
+            "w": "In",
+            "t": 386.646
           },
           {
-            "w": "beneath",
-            "t": 171.609
+            "w": "autonomous",
+            "t": 387.114
           },
           {
-            "w": "this",
-            "t": 172.081
+            "w": "driving",
+            "t": 387.582
           },
           {
-            "w": "presentation",
-            "t": 172.554
+            "w": "datasets",
+            "t": 388.05
           },
           {
-            "w": "player",
-            "t": 173.027
+            "w": "like",
+            "t": 388.518
           },
           {
-            "w": "is",
-            "t": 173.5
-          },
-          {
-            "w": "our",
-            "t": 173.972
-          },
-          {
-            "w": "live",
-            "t": 174.445
-          },
-          {
-            "w": "laboratory",
-            "t": 174.918
-          },
-          {
-            "w": "workbench.",
-            "t": 175.391
-          },
-          {
-            "w": "Use",
-            "t": 175.863
-          },
-          {
-            "w": "it",
-            "t": 176.336
-          },
-          {
-            "w": "to",
-            "t": 176.809
-          },
-          {
-            "w": "inject",
-            "t": 177.281
-          },
-          {
-            "w": "anomalous",
-            "t": 177.754
-          },
-          {
-            "w": "nulls,",
-            "t": 178.227
-          },
-          {
-            "w": "corrupt",
-            "t": 178.7
-          },
-          {
-            "w": "categorical",
-            "t": 179.172
-          },
-          {
-            "w": "distributions,",
-            "t": 179.645
+            "w": "KITTI",
+            "t": 388.986
           },
           {
             "w": "and",
-            "t": 180.118
+            "t": 389.454
           },
           {
-            "w": "trigger",
-            "t": 180.591
+            "w": "nuScenes,",
+            "t": 389.922
           },
           {
-            "w": "out-of-range",
-            "t": 181.063
+            "w": "clock",
+            "t": 390.39
           },
           {
-            "w": "sensor",
-            "t": 181.536
+            "w": "synchronization",
+            "t": 390.858
           },
           {
-            "w": "readings",
-            "t": 182.009
+            "w": "between",
+            "t": 391.326
+          },
+          {
+            "w": "rolling-shutter",
+            "t": 391.794
+          },
+          {
+            "w": "cameras,",
+            "t": 392.262
+          },
+          {
+            "w": "LiDAR",
+            "t": 392.73
+          },
+          {
+            "w": "scanners,",
+            "t": 393.198
+          },
+          {
+            "w": "and",
+            "t": 393.666
+          },
+          {
+            "w": "CAN-bus",
+            "t": 394.134
+          },
+          {
+            "w": "telemetry",
+            "t": 394.602
+          },
+          {
+            "w": "is",
+            "t": 395.07
+          },
+          {
+            "w": "safety-critical.",
+            "t": 395.538
+          },
+          {
+            "w": "A",
+            "t": 396.006
+          },
+          {
+            "w": "vehicle",
+            "t": 396.474
+          },
+          {
+            "w": "traveling",
+            "t": 396.942
+          },
+          {
+            "w": "at",
+            "t": 397.41
+          },
+          {
+            "w": "one",
+            "t": 397.878
+          },
+          {
+            "w": "hundred",
+            "t": 398.346
+          },
+          {
+            "w": "kilometers",
+            "t": 398.814
+          },
+          {
+            "w": "per",
+            "t": 399.282
+          },
+          {
+            "w": "hour",
+            "t": 399.75
+          },
+          {
+            "w": "moves",
+            "t": 400.218
+          },
+          {
+            "w": "at",
+            "t": 400.686
+          },
+          {
+            "w": "twenty-seven",
+            "t": 401.154
+          },
+          {
+            "w": "point",
+            "t": 401.622
+          },
+          {
+            "w": "eight",
+            "t": 402.09
+          },
+          {
+            "w": "millimeters",
+            "t": 402.558
+          },
+          {
+            "w": "every",
+            "t": 403.026
+          },
+          {
+            "w": "single",
+            "t": 403.494
+          },
+          {
+            "w": "millisecond.",
+            "t": 403.962
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "A tiny temporal clock jitter of merely twenty milliseconds displaces an oncoming vehicle's LiDAR point cloud by zero point five six meters! Sensor fusion networks classify the vehicle into the wrong highway lane, inducing lethal phantom braking or failure to yield.",
+        "start": 404.78,
+        "end": 421.34,
+        "words": [
+          {
+            "w": "A",
+            "t": 404.78
+          },
+          {
+            "w": "tiny",
+            "t": 405.184
+          },
+          {
+            "w": "temporal",
+            "t": 405.588
+          },
+          {
+            "w": "clock",
+            "t": 405.992
+          },
+          {
+            "w": "jitter",
+            "t": 406.396
+          },
+          {
+            "w": "of",
+            "t": 406.8
+          },
+          {
+            "w": "merely",
+            "t": 407.203
+          },
+          {
+            "w": "twenty",
+            "t": 407.607
+          },
+          {
+            "w": "milliseconds",
+            "t": 408.011
+          },
+          {
+            "w": "displaces",
+            "t": 408.415
+          },
+          {
+            "w": "an",
+            "t": 408.819
+          },
+          {
+            "w": "oncoming",
+            "t": 409.223
+          },
+          {
+            "w": "vehicle's",
+            "t": 409.627
+          },
+          {
+            "w": "LiDAR",
+            "t": 410.031
+          },
+          {
+            "w": "point",
+            "t": 410.435
+          },
+          {
+            "w": "cloud",
+            "t": 410.839
+          },
+          {
+            "w": "by",
+            "t": 411.242
+          },
+          {
+            "w": "zero",
+            "t": 411.646
+          },
+          {
+            "w": "point",
+            "t": 412.05
+          },
+          {
+            "w": "five",
+            "t": 412.454
+          },
+          {
+            "w": "six",
+            "t": 412.858
+          },
+          {
+            "w": "meters!",
+            "t": 413.262
+          },
+          {
+            "w": "Sensor",
+            "t": 413.666
+          },
+          {
+            "w": "fusion",
+            "t": 414.07
+          },
+          {
+            "w": "networks",
+            "t": 414.474
+          },
+          {
+            "w": "classify",
+            "t": 414.878
+          },
+          {
+            "w": "the",
+            "t": 415.281
+          },
+          {
+            "w": "vehicle",
+            "t": 415.685
+          },
+          {
+            "w": "into",
+            "t": 416.089
+          },
+          {
+            "w": "the",
+            "t": 416.493
+          },
+          {
+            "w": "wrong",
+            "t": 416.897
+          },
+          {
+            "w": "highway",
+            "t": 417.301
+          },
+          {
+            "w": "lane,",
+            "t": 417.705
+          },
+          {
+            "w": "inducing",
+            "t": 418.109
+          },
+          {
+            "w": "lethal",
+            "t": 418.513
+          },
+          {
+            "w": "phantom",
+            "t": 418.917
+          },
+          {
+            "w": "braking",
+            "t": 419.32
+          },
+          {
+            "w": "or",
+            "t": 419.724
+          },
+          {
+            "w": "failure",
+            "t": 420.128
           },
           {
             "w": "to",
-            "t": 182.481
+            "t": 420.532
           },
           {
-            "w": "observe",
-            "t": 182.954
-          },
-          {
-            "w": "how",
-            "t": 183.427
-          },
-          {
-            "w": "defensive",
-            "t": 183.9
-          },
-          {
-            "w": "boundary",
-            "t": 184.372
-          },
-          {
-            "w": "schemas",
-            "t": 184.845
-          },
-          {
-            "w": "prevent",
-            "t": 185.318
-          },
-          {
-            "w": "pipeline",
-            "t": 185.791
-          },
-          {
-            "w": "failures.",
-            "t": 186.263
+            "w": "yield.",
+            "t": 420.936
           }
         ]
       },
@@ -1735,145 +3919,315 @@ window.LESSON_TIMINGS = {
         "slide": 12,
         "slideId": "s12",
         "speaker": "Dr. Nova",
-        "text": "Production data engineering requires defensive boundary contracts. This Pydantic V2 schema demonstrates strict type enforcement, regex validation for identifiers, bounded float ranges, and custom field validators that reject corrupted records before they enter memory.",
-        "start": 187.486,
-        "end": 204.91,
+        "text": "Section 5 of Lesson 1.1 features our live in-browser Data Quality Laboratory. In enterprise data engineering, raw CSV ingestion streams must be continuously audited for missing cells, type anomalies, and numerical outliers before records enter feature stores.",
+        "start": 422.09,
+        "end": 439.418,
         "words": [
           {
-            "w": "Production",
-            "t": 187.486
+            "w": "Section",
+            "t": 422.09
+          },
+          {
+            "w": "5",
+            "t": 422.558
+          },
+          {
+            "w": "of",
+            "t": 423.027
+          },
+          {
+            "w": "Lesson",
+            "t": 423.495
+          },
+          {
+            "w": "1.1",
+            "t": 423.963
+          },
+          {
+            "w": "features",
+            "t": 424.432
+          },
+          {
+            "w": "our",
+            "t": 424.9
+          },
+          {
+            "w": "live",
+            "t": 425.368
+          },
+          {
+            "w": "in-browser",
+            "t": 425.837
+          },
+          {
+            "w": "Data",
+            "t": 426.305
+          },
+          {
+            "w": "Quality",
+            "t": 426.773
+          },
+          {
+            "w": "Laboratory.",
+            "t": 427.242
+          },
+          {
+            "w": "In",
+            "t": 427.71
+          },
+          {
+            "w": "enterprise",
+            "t": 428.178
           },
           {
             "w": "data",
-            "t": 187.998
+            "t": 428.647
           },
           {
-            "w": "engineering",
-            "t": 188.511
+            "w": "engineering,",
+            "t": 429.115
           },
           {
-            "w": "requires",
-            "t": 189.023
+            "w": "raw",
+            "t": 429.583
           },
           {
-            "w": "defensive",
-            "t": 189.536
+            "w": "CSV",
+            "t": 430.052
           },
           {
-            "w": "boundary",
-            "t": 190.048
+            "w": "ingestion",
+            "t": 430.52
           },
           {
-            "w": "contracts.",
-            "t": 190.561
+            "w": "streams",
+            "t": 430.988
           },
           {
-            "w": "This",
-            "t": 191.073
+            "w": "must",
+            "t": 431.456
           },
           {
-            "w": "Pydantic",
-            "t": 191.586
+            "w": "be",
+            "t": 431.925
           },
           {
-            "w": "V2",
-            "t": 192.098
+            "w": "continuously",
+            "t": 432.393
           },
           {
-            "w": "schema",
-            "t": 192.611
-          },
-          {
-            "w": "demonstrates",
-            "t": 193.123
-          },
-          {
-            "w": "strict",
-            "t": 193.636
-          },
-          {
-            "w": "type",
-            "t": 194.148
-          },
-          {
-            "w": "enforcement,",
-            "t": 194.661
-          },
-          {
-            "w": "regex",
-            "t": 195.173
-          },
-          {
-            "w": "validation",
-            "t": 195.686
+            "w": "audited",
+            "t": 432.861
           },
           {
             "w": "for",
-            "t": 196.198
+            "t": 433.33
           },
           {
-            "w": "identifiers,",
-            "t": 196.71
+            "w": "missing",
+            "t": 433.798
           },
           {
-            "w": "bounded",
-            "t": 197.223
+            "w": "cells,",
+            "t": 434.266
           },
           {
-            "w": "float",
-            "t": 197.735
+            "w": "type",
+            "t": 434.735
           },
           {
-            "w": "ranges,",
-            "t": 198.248
+            "w": "anomalies,",
+            "t": 435.203
           },
           {
             "w": "and",
-            "t": 198.76
+            "t": 435.671
           },
           {
-            "w": "custom",
-            "t": 199.273
+            "w": "numerical",
+            "t": 436.14
           },
           {
-            "w": "field",
-            "t": 199.785
-          },
-          {
-            "w": "validators",
-            "t": 200.298
-          },
-          {
-            "w": "that",
-            "t": 200.81
-          },
-          {
-            "w": "reject",
-            "t": 201.323
-          },
-          {
-            "w": "corrupted",
-            "t": 201.835
-          },
-          {
-            "w": "records",
-            "t": 202.348
+            "w": "outliers",
+            "t": 436.608
           },
           {
             "w": "before",
-            "t": 202.86
+            "t": 437.076
           },
           {
-            "w": "they",
-            "t": 203.373
+            "w": "records",
+            "t": 437.545
           },
           {
             "w": "enter",
-            "t": 203.885
+            "t": 438.013
           },
           {
-            "w": "memory.",
-            "t": 204.398
+            "w": "feature",
+            "t": 438.481
+          },
+          {
+            "w": "stores.",
+            "t": 438.95
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "When you inject corrupt noise—such as negative transaction quantities or unparseable timestamps—the automated auditor computes a real-time Cascade Risk Index. When this index exceeds zero point three, defensive gates immediately quarantine the batch to prevent model degradation.",
+        "start": 439.768,
+        "end": 457.168,
+        "words": [
+          {
+            "w": "When",
+            "t": 439.768
+          },
+          {
+            "w": "you",
+            "t": 440.238
+          },
+          {
+            "w": "inject",
+            "t": 440.709
+          },
+          {
+            "w": "corrupt",
+            "t": 441.179
+          },
+          {
+            "w": "noise—such",
+            "t": 441.649
+          },
+          {
+            "w": "as",
+            "t": 442.119
+          },
+          {
+            "w": "negative",
+            "t": 442.59
+          },
+          {
+            "w": "transaction",
+            "t": 443.06
+          },
+          {
+            "w": "quantities",
+            "t": 443.53
+          },
+          {
+            "w": "or",
+            "t": 444.0
+          },
+          {
+            "w": "unparseable",
+            "t": 444.471
+          },
+          {
+            "w": "timestamps—the",
+            "t": 444.941
+          },
+          {
+            "w": "automated",
+            "t": 445.411
+          },
+          {
+            "w": "auditor",
+            "t": 445.882
+          },
+          {
+            "w": "computes",
+            "t": 446.352
+          },
+          {
+            "w": "a",
+            "t": 446.822
+          },
+          {
+            "w": "real-time",
+            "t": 447.292
+          },
+          {
+            "w": "Cascade",
+            "t": 447.763
+          },
+          {
+            "w": "Risk",
+            "t": 448.233
+          },
+          {
+            "w": "Index.",
+            "t": 448.703
+          },
+          {
+            "w": "When",
+            "t": 449.173
+          },
+          {
+            "w": "this",
+            "t": 449.644
+          },
+          {
+            "w": "index",
+            "t": 450.114
+          },
+          {
+            "w": "exceeds",
+            "t": 450.584
+          },
+          {
+            "w": "zero",
+            "t": 451.054
+          },
+          {
+            "w": "point",
+            "t": 451.525
+          },
+          {
+            "w": "three,",
+            "t": 451.995
+          },
+          {
+            "w": "defensive",
+            "t": 452.465
+          },
+          {
+            "w": "gates",
+            "t": 452.936
+          },
+          {
+            "w": "immediately",
+            "t": 453.406
+          },
+          {
+            "w": "quarantine",
+            "t": 453.876
+          },
+          {
+            "w": "the",
+            "t": 454.346
+          },
+          {
+            "w": "batch",
+            "t": 454.817
+          },
+          {
+            "w": "to",
+            "t": 455.287
+          },
+          {
+            "w": "prevent",
+            "t": 455.757
+          },
+          {
+            "w": "model",
+            "t": 456.227
+          },
+          {
+            "w": "degradation.",
+            "t": 456.698
           }
         ]
       },
@@ -1881,153 +4235,331 @@ window.LESSON_TIMINGS = {
         "slide": 13,
         "slideId": "s13",
         "speaker": "Dr. Nova",
-        "text": "When processing millions of records per second, row-by-row validation is too slow. This Polars and Apache Arrow pipeline performs vectorized schema auditing using SIMD C++ kernels, filtering corrupt rows in columnar memory without incurring serialization overhead.",
-        "start": 205.66,
-        "end": 222.772,
+        "text": "In production MLOps engineering, untyped Python dictionaries and raw Pandas dataframes are strictly banned at the ingestion boundary. Instead, we write synthesizable Pydantic V2 models with explicit field constraints, regex pattern matching, and custom validators.",
+        "start": 457.918,
+        "end": 475.102,
         "words": [
           {
-            "w": "When",
-            "t": 205.66
+            "w": "In",
+            "t": 457.918
           },
           {
-            "w": "processing",
-            "t": 206.135
+            "w": "production",
+            "t": 458.409
           },
           {
-            "w": "millions",
-            "t": 206.611
+            "w": "MLOps",
+            "t": 458.9
           },
           {
-            "w": "of",
-            "t": 207.086
+            "w": "engineering,",
+            "t": 459.391
           },
           {
-            "w": "records",
-            "t": 207.561
+            "w": "untyped",
+            "t": 459.882
           },
           {
-            "w": "per",
-            "t": 208.037
+            "w": "Python",
+            "t": 460.373
           },
           {
-            "w": "second,",
-            "t": 208.512
-          },
-          {
-            "w": "row-by-row",
-            "t": 208.987
-          },
-          {
-            "w": "validation",
-            "t": 209.463
-          },
-          {
-            "w": "is",
-            "t": 209.938
-          },
-          {
-            "w": "too",
-            "t": 210.413
-          },
-          {
-            "w": "slow.",
-            "t": 210.889
-          },
-          {
-            "w": "This",
-            "t": 211.364
-          },
-          {
-            "w": "Polars",
-            "t": 211.839
+            "w": "dictionaries",
+            "t": 460.864
           },
           {
             "w": "and",
-            "t": 212.315
+            "t": 461.355
           },
           {
-            "w": "Apache",
-            "t": 212.79
+            "w": "raw",
+            "t": 461.846
           },
           {
-            "w": "Arrow",
-            "t": 213.265
+            "w": "Pandas",
+            "t": 462.337
           },
           {
-            "w": "pipeline",
-            "t": 213.741
+            "w": "dataframes",
+            "t": 462.828
           },
           {
-            "w": "performs",
-            "t": 214.216
+            "w": "are",
+            "t": 463.319
           },
           {
-            "w": "vectorized",
-            "t": 214.691
+            "w": "strictly",
+            "t": 463.81
           },
           {
-            "w": "schema",
-            "t": 215.167
+            "w": "banned",
+            "t": 464.301
           },
           {
-            "w": "auditing",
-            "t": 215.642
+            "w": "at",
+            "t": 464.792
           },
           {
-            "w": "using",
-            "t": 216.117
+            "w": "the",
+            "t": 465.283
           },
           {
-            "w": "SIMD",
-            "t": 216.593
+            "w": "ingestion",
+            "t": 465.774
           },
           {
-            "w": "C++",
-            "t": 217.068
+            "w": "boundary.",
+            "t": 466.265
           },
           {
-            "w": "kernels,",
-            "t": 217.543
+            "w": "Instead,",
+            "t": 466.755
           },
           {
-            "w": "filtering",
-            "t": 218.019
+            "w": "we",
+            "t": 467.246
           },
           {
-            "w": "corrupt",
-            "t": 218.494
+            "w": "write",
+            "t": 467.737
           },
           {
-            "w": "rows",
-            "t": 218.969
+            "w": "synthesizable",
+            "t": 468.228
           },
           {
-            "w": "in",
-            "t": 219.445
+            "w": "Pydantic",
+            "t": 468.719
           },
           {
-            "w": "columnar",
-            "t": 219.92
+            "w": "V2",
+            "t": 469.21
           },
           {
-            "w": "memory",
-            "t": 220.395
+            "w": "models",
+            "t": 469.701
           },
           {
-            "w": "without",
-            "t": 220.871
+            "w": "with",
+            "t": 470.192
           },
           {
-            "w": "incurring",
-            "t": 221.346
+            "w": "explicit",
+            "t": 470.683
           },
           {
-            "w": "serialization",
-            "t": 221.821
+            "w": "field",
+            "t": 471.174
           },
           {
-            "w": "overhead.",
-            "t": 222.297
+            "w": "constraints,",
+            "t": 471.665
+          },
+          {
+            "w": "regex",
+            "t": 472.156
+          },
+          {
+            "w": "pattern",
+            "t": 472.647
+          },
+          {
+            "w": "matching,",
+            "t": 473.138
+          },
+          {
+            "w": "and",
+            "t": 473.629
+          },
+          {
+            "w": "custom",
+            "t": 474.12
+          },
+          {
+            "w": "validators.",
+            "t": 474.611
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Notice our RetailTransactionRecord schema: unit prices must be strictly positive and finite, customer identifiers must match valid regex patterns, and transaction dates must be valid ISO calendars. If an upstream supplier sends invalid data, Pydantic halts execution before dirty tensors reach GPU memory.",
+        "start": 475.452,
+        "end": 495.78,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 475.452
+          },
+          {
+            "w": "our",
+            "t": 475.925
+          },
+          {
+            "w": "RetailTransactionRecord",
+            "t": 476.397
+          },
+          {
+            "w": "schema:",
+            "t": 476.87
+          },
+          {
+            "w": "unit",
+            "t": 477.343
+          },
+          {
+            "w": "prices",
+            "t": 477.816
+          },
+          {
+            "w": "must",
+            "t": 478.288
+          },
+          {
+            "w": "be",
+            "t": 478.761
+          },
+          {
+            "w": "strictly",
+            "t": 479.234
+          },
+          {
+            "w": "positive",
+            "t": 479.707
+          },
+          {
+            "w": "and",
+            "t": 480.179
+          },
+          {
+            "w": "finite,",
+            "t": 480.652
+          },
+          {
+            "w": "customer",
+            "t": 481.125
+          },
+          {
+            "w": "identifiers",
+            "t": 481.598
+          },
+          {
+            "w": "must",
+            "t": 482.07
+          },
+          {
+            "w": "match",
+            "t": 482.543
+          },
+          {
+            "w": "valid",
+            "t": 483.016
+          },
+          {
+            "w": "regex",
+            "t": 483.489
+          },
+          {
+            "w": "patterns,",
+            "t": 483.961
+          },
+          {
+            "w": "and",
+            "t": 484.434
+          },
+          {
+            "w": "transaction",
+            "t": 484.907
+          },
+          {
+            "w": "dates",
+            "t": 485.38
+          },
+          {
+            "w": "must",
+            "t": 485.852
+          },
+          {
+            "w": "be",
+            "t": 486.325
+          },
+          {
+            "w": "valid",
+            "t": 486.798
+          },
+          {
+            "w": "ISO",
+            "t": 487.271
+          },
+          {
+            "w": "calendars.",
+            "t": 487.743
+          },
+          {
+            "w": "If",
+            "t": 488.216
+          },
+          {
+            "w": "an",
+            "t": 488.689
+          },
+          {
+            "w": "upstream",
+            "t": 489.162
+          },
+          {
+            "w": "supplier",
+            "t": 489.634
+          },
+          {
+            "w": "sends",
+            "t": 490.107
+          },
+          {
+            "w": "invalid",
+            "t": 490.58
+          },
+          {
+            "w": "data,",
+            "t": 491.053
+          },
+          {
+            "w": "Pydantic",
+            "t": 491.525
+          },
+          {
+            "w": "halts",
+            "t": 491.998
+          },
+          {
+            "w": "execution",
+            "t": 492.471
+          },
+          {
+            "w": "before",
+            "t": 492.944
+          },
+          {
+            "w": "dirty",
+            "t": 493.416
+          },
+          {
+            "w": "tensors",
+            "t": 493.889
+          },
+          {
+            "w": "reach",
+            "t": 494.362
+          },
+          {
+            "w": "GPU",
+            "t": 494.835
+          },
+          {
+            "w": "memory.",
+            "t": 495.307
           }
         ]
       },
@@ -2035,137 +4567,287 @@ window.LESSON_TIMINGS = {
         "slide": 14,
         "slideId": "s14",
         "speaker": "Dr. Nova",
-        "text": "Test your architectural diagnosis skills across three industry scenarios: handling sensor drift, detecting target leakage, and resolving temporal sampling misalignments. Click each option to evaluate your intuition against empirical data engineering principles.",
-        "start": 223.522,
-        "end": 239.674,
+        "text": "While Pydantic is ideal for single-record API endpoints, batch pipelines ingesting millions of records per second require vectorized columnar processing. This Polars and Apache Arrow pipeline audits batch schemas using C++ SIMD kernels.",
+        "start": 496.53,
+        "end": 512.634,
         "words": [
           {
-            "w": "Test",
-            "t": 223.522
+            "w": "While",
+            "t": 496.53
           },
           {
-            "w": "your",
-            "t": 224.027
+            "w": "Pydantic",
+            "t": 497.018
           },
           {
-            "w": "architectural",
-            "t": 224.531
+            "w": "is",
+            "t": 497.506
           },
           {
-            "w": "diagnosis",
-            "t": 225.036
+            "w": "ideal",
+            "t": 497.994
           },
           {
-            "w": "skills",
-            "t": 225.541
+            "w": "for",
+            "t": 498.482
           },
           {
-            "w": "across",
-            "t": 226.046
+            "w": "single-record",
+            "t": 498.97
           },
           {
-            "w": "three",
-            "t": 226.55
+            "w": "API",
+            "t": 499.458
           },
           {
-            "w": "industry",
-            "t": 227.055
+            "w": "endpoints,",
+            "t": 499.946
           },
           {
-            "w": "scenarios:",
-            "t": 227.56
+            "w": "batch",
+            "t": 500.434
           },
           {
-            "w": "handling",
-            "t": 228.065
+            "w": "pipelines",
+            "t": 500.922
           },
           {
-            "w": "sensor",
-            "t": 228.57
+            "w": "ingesting",
+            "t": 501.41
           },
           {
-            "w": "drift,",
-            "t": 229.074
+            "w": "millions",
+            "t": 501.898
           },
           {
-            "w": "detecting",
-            "t": 229.579
+            "w": "of",
+            "t": 502.386
           },
           {
-            "w": "target",
-            "t": 230.084
+            "w": "records",
+            "t": 502.874
           },
           {
-            "w": "leakage,",
-            "t": 230.588
+            "w": "per",
+            "t": 503.362
+          },
+          {
+            "w": "second",
+            "t": 503.85
+          },
+          {
+            "w": "require",
+            "t": 504.338
+          },
+          {
+            "w": "vectorized",
+            "t": 504.826
+          },
+          {
+            "w": "columnar",
+            "t": 505.314
+          },
+          {
+            "w": "processing.",
+            "t": 505.802
+          },
+          {
+            "w": "This",
+            "t": 506.29
+          },
+          {
+            "w": "Polars",
+            "t": 506.778
           },
           {
             "w": "and",
-            "t": 231.093
+            "t": 507.266
           },
           {
-            "w": "resolving",
-            "t": 231.598
+            "w": "Apache",
+            "t": 507.754
           },
           {
-            "w": "temporal",
-            "t": 232.103
+            "w": "Arrow",
+            "t": 508.242
           },
           {
-            "w": "sampling",
-            "t": 232.607
+            "w": "pipeline",
+            "t": 508.73
           },
           {
-            "w": "misalignments.",
-            "t": 233.112
+            "w": "audits",
+            "t": 509.218
           },
           {
-            "w": "Click",
-            "t": 233.617
+            "w": "batch",
+            "t": 509.706
           },
           {
-            "w": "each",
-            "t": 234.122
+            "w": "schemas",
+            "t": 510.194
           },
           {
-            "w": "option",
-            "t": 234.626
+            "w": "using",
+            "t": 510.682
           },
           {
-            "w": "to",
-            "t": 235.131
+            "w": "C++",
+            "t": 511.17
           },
           {
-            "w": "evaluate",
-            "t": 235.636
+            "w": "SIMD",
+            "t": 511.658
           },
           {
-            "w": "your",
-            "t": 236.141
+            "w": "kernels.",
+            "t": 512.146
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Notice our vectorized filter: it audits regex patterns, positive IDs, and finite prices across ten million records in just one hundred and forty-two milliseconds, splitting clean data from quarantined anomalies with zero memory duplication.",
+        "start": 512.984,
+        "end": 527.864,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 512.984
           },
           {
-            "w": "intuition",
-            "t": 236.645
+            "w": "our",
+            "t": 513.422
           },
           {
-            "w": "against",
-            "t": 237.15
+            "w": "vectorized",
+            "t": 513.859
           },
           {
-            "w": "empirical",
-            "t": 237.655
+            "w": "filter:",
+            "t": 514.297
+          },
+          {
+            "w": "it",
+            "t": 514.735
+          },
+          {
+            "w": "audits",
+            "t": 515.172
+          },
+          {
+            "w": "regex",
+            "t": 515.61
+          },
+          {
+            "w": "patterns,",
+            "t": 516.048
+          },
+          {
+            "w": "positive",
+            "t": 516.485
+          },
+          {
+            "w": "IDs,",
+            "t": 516.923
+          },
+          {
+            "w": "and",
+            "t": 517.36
+          },
+          {
+            "w": "finite",
+            "t": 517.798
+          },
+          {
+            "w": "prices",
+            "t": 518.236
+          },
+          {
+            "w": "across",
+            "t": 518.673
+          },
+          {
+            "w": "ten",
+            "t": 519.111
+          },
+          {
+            "w": "million",
+            "t": 519.549
+          },
+          {
+            "w": "records",
+            "t": 519.986
+          },
+          {
+            "w": "in",
+            "t": 520.424
+          },
+          {
+            "w": "just",
+            "t": 520.862
+          },
+          {
+            "w": "one",
+            "t": 521.299
+          },
+          {
+            "w": "hundred",
+            "t": 521.737
+          },
+          {
+            "w": "and",
+            "t": 522.175
+          },
+          {
+            "w": "forty-two",
+            "t": 522.612
+          },
+          {
+            "w": "milliseconds,",
+            "t": 523.05
+          },
+          {
+            "w": "splitting",
+            "t": 523.488
+          },
+          {
+            "w": "clean",
+            "t": 523.925
           },
           {
             "w": "data",
-            "t": 238.16
+            "t": 524.363
           },
           {
-            "w": "engineering",
-            "t": 238.665
+            "w": "from",
+            "t": 524.8
           },
           {
-            "w": "principles.",
-            "t": 239.169
+            "w": "quarantined",
+            "t": 525.238
+          },
+          {
+            "w": "anomalies",
+            "t": 525.676
+          },
+          {
+            "w": "with",
+            "t": 526.113
+          },
+          {
+            "w": "zero",
+            "t": 526.551
+          },
+          {
+            "w": "memory",
+            "t": 526.989
+          },
+          {
+            "w": "duplication.",
+            "t": 527.426
           }
         ]
       },
@@ -2173,157 +4855,413 @@ window.LESSON_TIMINGS = {
         "slide": 15,
         "slideId": "s15",
         "speaker": "Dr. Nova",
-        "text": "Our curriculum is grounded in seminal empirical literature: Sambasivan's paper on Everyone wants to do the model work but not the data work, Sculley's hidden technical debt in machine learning systems, and Geirhos's analysis of shortcut learning.",
-        "start": 240.424,
-        "end": 254.464,
+        "text": "Section 7 tests your architectural triage across three real-world production failure scenarios: clinical sepsis triage drift, LiDAR temporal asynchrony, and e-commerce target leakage.",
+        "start": 528.614,
+        "end": 540.158,
         "words": [
           {
-            "w": "Our",
-            "t": 240.424
+            "w": "Section",
+            "t": 528.614
           },
           {
-            "w": "curriculum",
-            "t": 240.803
+            "w": "7",
+            "t": 529.116
           },
           {
-            "w": "is",
-            "t": 241.183
+            "w": "tests",
+            "t": 529.618
           },
           {
-            "w": "grounded",
-            "t": 241.562
+            "w": "your",
+            "t": 530.12
           },
           {
-            "w": "in",
-            "t": 241.942
+            "w": "architectural",
+            "t": 530.622
           },
           {
-            "w": "seminal",
-            "t": 242.321
+            "w": "triage",
+            "t": 531.124
           },
           {
-            "w": "empirical",
-            "t": 242.701
+            "w": "across",
+            "t": 531.625
           },
           {
-            "w": "literature:",
-            "t": 243.08
+            "w": "three",
+            "t": 532.127
           },
           {
-            "w": "Sambasivan's",
-            "t": 243.46
+            "w": "real-world",
+            "t": 532.629
           },
           {
-            "w": "paper",
-            "t": 243.839
+            "w": "production",
+            "t": 533.131
           },
           {
-            "w": "on",
-            "t": 244.219
+            "w": "failure",
+            "t": 533.633
           },
           {
-            "w": "Everyone",
-            "t": 244.598
+            "w": "scenarios:",
+            "t": 534.135
           },
           {
-            "w": "wants",
-            "t": 244.978
+            "w": "clinical",
+            "t": 534.637
           },
           {
-            "w": "to",
-            "t": 245.357
+            "w": "sepsis",
+            "t": 535.139
           },
           {
-            "w": "do",
-            "t": 245.736
+            "w": "triage",
+            "t": 535.641
           },
           {
-            "w": "the",
-            "t": 246.116
+            "w": "drift,",
+            "t": 536.143
           },
           {
-            "w": "model",
-            "t": 246.495
+            "w": "LiDAR",
+            "t": 536.645
           },
           {
-            "w": "work",
-            "t": 246.875
+            "w": "temporal",
+            "t": 537.147
           },
           {
-            "w": "but",
-            "t": 247.254
-          },
-          {
-            "w": "not",
-            "t": 247.634
-          },
-          {
-            "w": "the",
-            "t": 248.013
-          },
-          {
-            "w": "data",
-            "t": 248.393
-          },
-          {
-            "w": "work,",
-            "t": 248.772
-          },
-          {
-            "w": "Sculley's",
-            "t": 249.152
-          },
-          {
-            "w": "hidden",
-            "t": 249.531
-          },
-          {
-            "w": "technical",
-            "t": 249.91
-          },
-          {
-            "w": "debt",
-            "t": 250.29
-          },
-          {
-            "w": "in",
-            "t": 250.669
-          },
-          {
-            "w": "machine",
-            "t": 251.049
-          },
-          {
-            "w": "learning",
-            "t": 251.428
-          },
-          {
-            "w": "systems,",
-            "t": 251.808
+            "w": "asynchrony,",
+            "t": 537.648
           },
           {
             "w": "and",
-            "t": 252.187
+            "t": 538.15
           },
           {
-            "w": "Geirhos's",
-            "t": 252.567
+            "w": "e-commerce",
+            "t": 538.652
           },
           {
-            "w": "analysis",
-            "t": 252.946
+            "w": "target",
+            "t": 539.154
+          },
+          {
+            "w": "leakage.",
+            "t": 539.656
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "When an AI model displays sudden degradation in production, never assume the model weights are broken. Eighty percent of the time, the root cause is upstream data drift, uncalibrated clock domains, or leaky feature store joins.",
+        "start": 540.508,
+        "end": 554.764,
+        "words": [
+          {
+            "w": "When",
+            "t": 540.508
+          },
+          {
+            "w": "an",
+            "t": 540.904
+          },
+          {
+            "w": "AI",
+            "t": 541.3
+          },
+          {
+            "w": "model",
+            "t": 541.696
+          },
+          {
+            "w": "displays",
+            "t": 542.092
+          },
+          {
+            "w": "sudden",
+            "t": 542.488
+          },
+          {
+            "w": "degradation",
+            "t": 542.884
+          },
+          {
+            "w": "in",
+            "t": 543.28
+          },
+          {
+            "w": "production,",
+            "t": 543.676
+          },
+          {
+            "w": "never",
+            "t": 544.072
+          },
+          {
+            "w": "assume",
+            "t": 544.468
+          },
+          {
+            "w": "the",
+            "t": 544.864
+          },
+          {
+            "w": "model",
+            "t": 545.26
+          },
+          {
+            "w": "weights",
+            "t": 545.656
+          },
+          {
+            "w": "are",
+            "t": 546.052
+          },
+          {
+            "w": "broken.",
+            "t": 546.448
+          },
+          {
+            "w": "Eighty",
+            "t": 546.844
+          },
+          {
+            "w": "percent",
+            "t": 547.24
           },
           {
             "w": "of",
-            "t": 253.326
+            "t": 547.636
           },
           {
-            "w": "shortcut",
-            "t": 253.705
+            "w": "the",
+            "t": 548.032
           },
           {
-            "w": "learning.",
-            "t": 254.085
+            "w": "time,",
+            "t": 548.428
+          },
+          {
+            "w": "the",
+            "t": 548.824
+          },
+          {
+            "w": "root",
+            "t": 549.22
+          },
+          {
+            "w": "cause",
+            "t": 549.616
+          },
+          {
+            "w": "is",
+            "t": 550.012
+          },
+          {
+            "w": "upstream",
+            "t": 550.408
+          },
+          {
+            "w": "data",
+            "t": 550.804
+          },
+          {
+            "w": "drift,",
+            "t": 551.2
+          },
+          {
+            "w": "uncalibrated",
+            "t": 551.596
+          },
+          {
+            "w": "clock",
+            "t": 551.992
+          },
+          {
+            "w": "domains,",
+            "t": 552.388
+          },
+          {
+            "w": "or",
+            "t": 552.784
+          },
+          {
+            "w": "leaky",
+            "t": 553.18
+          },
+          {
+            "w": "feature",
+            "t": 553.576
+          },
+          {
+            "w": "store",
+            "t": 553.972
+          },
+          {
+            "w": "joins.",
+            "t": 554.368
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Our curriculum is grounded in seminal peer-reviewed literature: Sambasivan's CHI 2021 study on Data Cascades in High-Stakes AI, Sculley's NeurIPS 2015 paper on Hidden Technical Debt in Machine Learning, and Geirhos's Nature 2020 framework on Shortcut Learning.",
+        "start": 555.514,
+        "end": 572.506,
+        "words": [
+          {
+            "w": "Our",
+            "t": 555.514
+          },
+          {
+            "w": "curriculum",
+            "t": 555.973
+          },
+          {
+            "w": "is",
+            "t": 556.432
+          },
+          {
+            "w": "grounded",
+            "t": 556.892
+          },
+          {
+            "w": "in",
+            "t": 557.351
+          },
+          {
+            "w": "seminal",
+            "t": 557.81
+          },
+          {
+            "w": "peer-reviewed",
+            "t": 558.269
+          },
+          {
+            "w": "literature:",
+            "t": 558.729
+          },
+          {
+            "w": "Sambasivan's",
+            "t": 559.188
+          },
+          {
+            "w": "CHI",
+            "t": 559.647
+          },
+          {
+            "w": "2021",
+            "t": 560.106
+          },
+          {
+            "w": "study",
+            "t": 560.566
+          },
+          {
+            "w": "on",
+            "t": 561.025
+          },
+          {
+            "w": "Data",
+            "t": 561.484
+          },
+          {
+            "w": "Cascades",
+            "t": 561.943
+          },
+          {
+            "w": "in",
+            "t": 562.403
+          },
+          {
+            "w": "High-Stakes",
+            "t": 562.862
+          },
+          {
+            "w": "AI,",
+            "t": 563.321
+          },
+          {
+            "w": "Sculley's",
+            "t": 563.78
+          },
+          {
+            "w": "NeurIPS",
+            "t": 564.24
+          },
+          {
+            "w": "2015",
+            "t": 564.699
+          },
+          {
+            "w": "paper",
+            "t": 565.158
+          },
+          {
+            "w": "on",
+            "t": 565.617
+          },
+          {
+            "w": "Hidden",
+            "t": 566.077
+          },
+          {
+            "w": "Technical",
+            "t": 566.536
+          },
+          {
+            "w": "Debt",
+            "t": 566.995
+          },
+          {
+            "w": "in",
+            "t": 567.454
+          },
+          {
+            "w": "Machine",
+            "t": 567.914
+          },
+          {
+            "w": "Learning,",
+            "t": 568.373
+          },
+          {
+            "w": "and",
+            "t": 568.832
+          },
+          {
+            "w": "Geirhos's",
+            "t": 569.291
+          },
+          {
+            "w": "Nature",
+            "t": 569.751
+          },
+          {
+            "w": "2020",
+            "t": 570.21
+          },
+          {
+            "w": "framework",
+            "t": 570.669
+          },
+          {
+            "w": "on",
+            "t": 571.128
+          },
+          {
+            "w": "Shortcut",
+            "t": 571.588
+          },
+          {
+            "w": "Learning.",
+            "t": 572.047
           }
         ]
       },
@@ -2332,180 +5270,180 @@ window.LESSON_TIMINGS = {
         "slideId": "s16",
         "speaker": "Dr. Nova",
         "text": "To summarize Lesson 1.1: treat dataset engineering as the foundation of reliable machine learning. Remember that empirical risk is only a proxy for generalization, data quality cascades compound non-linearly, and strict boundary validation is essential. In Lesson 1.2, we explore structural dataset taxonomies.",
-        "start": 255.214,
-        "end": 276.55,
+        "start": 572.856,
+        "end": 594.192,
         "words": [
           {
             "w": "To",
-            "t": 255.214
+            "t": 572.856
           },
           {
             "w": "summarize",
-            "t": 255.71
+            "t": 573.352
           },
           {
             "w": "Lesson",
-            "t": 256.206
+            "t": 573.848
           },
           {
             "w": "1.1:",
-            "t": 256.703
+            "t": 574.345
           },
           {
             "w": "treat",
-            "t": 257.199
+            "t": 574.841
           },
           {
             "w": "dataset",
-            "t": 257.695
+            "t": 575.337
           },
           {
             "w": "engineering",
-            "t": 258.191
+            "t": 575.833
           },
           {
             "w": "as",
-            "t": 258.687
+            "t": 576.329
           },
           {
             "w": "the",
-            "t": 259.183
+            "t": 576.825
           },
           {
             "w": "foundation",
-            "t": 259.68
+            "t": 577.322
           },
           {
             "w": "of",
-            "t": 260.176
+            "t": 577.818
           },
           {
             "w": "reliable",
-            "t": 260.672
+            "t": 578.314
           },
           {
             "w": "machine",
-            "t": 261.168
+            "t": 578.81
           },
           {
             "w": "learning.",
-            "t": 261.664
+            "t": 579.306
           },
           {
             "w": "Remember",
-            "t": 262.161
+            "t": 579.803
           },
           {
             "w": "that",
-            "t": 262.657
+            "t": 580.299
           },
           {
             "w": "empirical",
-            "t": 263.153
+            "t": 580.795
           },
           {
             "w": "risk",
-            "t": 263.649
+            "t": 581.291
           },
           {
             "w": "is",
-            "t": 264.145
+            "t": 581.787
           },
           {
             "w": "only",
-            "t": 264.642
+            "t": 582.284
           },
           {
             "w": "a",
-            "t": 265.138
+            "t": 582.78
           },
           {
             "w": "proxy",
-            "t": 265.634
+            "t": 583.276
           },
           {
             "w": "for",
-            "t": 266.13
+            "t": 583.772
           },
           {
             "w": "generalization,",
-            "t": 266.626
+            "t": 584.268
           },
           {
             "w": "data",
-            "t": 267.122
+            "t": 584.764
           },
           {
             "w": "quality",
-            "t": 267.619
+            "t": 585.261
           },
           {
             "w": "cascades",
-            "t": 268.115
+            "t": 585.757
           },
           {
             "w": "compound",
-            "t": 268.611
+            "t": 586.253
           },
           {
             "w": "non-linearly,",
-            "t": 269.107
+            "t": 586.749
           },
           {
             "w": "and",
-            "t": 269.603
+            "t": 587.245
           },
           {
             "w": "strict",
-            "t": 270.1
+            "t": 587.742
           },
           {
             "w": "boundary",
-            "t": 270.596
+            "t": 588.238
           },
           {
             "w": "validation",
-            "t": 271.092
+            "t": 588.734
           },
           {
             "w": "is",
-            "t": 271.588
+            "t": 589.23
           },
           {
             "w": "essential.",
-            "t": 272.084
+            "t": 589.726
           },
           {
             "w": "In",
-            "t": 272.581
+            "t": 590.223
           },
           {
             "w": "Lesson",
-            "t": 273.077
+            "t": 590.719
           },
           {
             "w": "1.2,",
-            "t": 273.573
+            "t": 591.215
           },
           {
             "w": "we",
-            "t": 274.069
+            "t": 591.711
           },
           {
             "w": "explore",
-            "t": 274.565
+            "t": 592.207
           },
           {
             "w": "structural",
-            "t": 275.061
+            "t": 592.703
           },
           {
             "w": "dataset",
-            "t": 275.558
+            "t": 593.2
           },
           {
             "w": "taxonomies.",
-            "t": 276.054
+            "t": 593.696
           }
         ]
       }
@@ -2514,16 +5452,16 @@ window.LESSON_TIMINGS = {
   "ch1_p1_duo": {
     "lessonKey": "ch1_p1",
     "mode": "duo",
-    "duration": 328.044,
+    "duration": 687.622,
     "slidesCount": 16,
     "sentences": [
       {
         "slide": 1,
         "slideId": "s1",
         "speaker": "Kaito",
-        "text": "Dr. Nova, what is the core architectural challenge we are addressing in this lesson?",
+        "text": "Dr. Nova, in industry teams usually spend ninety percent of their compute and time on neural architectures and loss tuning. Why is Lesson 1.1 claiming that dataset engineering is where the battle is actually won or lost?",
         "start": 0.1,
-        "end": 5.428,
+        "end": 13.252,
         "words": [
           {
             "w": "Dr.",
@@ -2531,55 +5469,147 @@ window.LESSON_TIMINGS = {
           },
           {
             "w": "Nova,",
-            "t": 0.481
-          },
-          {
-            "w": "what",
-            "t": 0.861
-          },
-          {
-            "w": "is",
-            "t": 1.242
-          },
-          {
-            "w": "the",
-            "t": 1.622
-          },
-          {
-            "w": "core",
-            "t": 2.003
-          },
-          {
-            "w": "architectural",
-            "t": 2.383
-          },
-          {
-            "w": "challenge",
-            "t": 2.764
-          },
-          {
-            "w": "we",
-            "t": 3.145
-          },
-          {
-            "w": "are",
-            "t": 3.525
-          },
-          {
-            "w": "addressing",
-            "t": 3.906
+            "t": 0.455
           },
           {
             "w": "in",
-            "t": 4.286
+            "t": 0.811
           },
           {
-            "w": "this",
-            "t": 4.667
+            "w": "industry",
+            "t": 1.166
           },
           {
-            "w": "lesson?",
-            "t": 5.047
+            "w": "teams",
+            "t": 1.522
+          },
+          {
+            "w": "usually",
+            "t": 1.877
+          },
+          {
+            "w": "spend",
+            "t": 2.233
+          },
+          {
+            "w": "ninety",
+            "t": 2.588
+          },
+          {
+            "w": "percent",
+            "t": 2.944
+          },
+          {
+            "w": "of",
+            "t": 3.299
+          },
+          {
+            "w": "their",
+            "t": 3.655
+          },
+          {
+            "w": "compute",
+            "t": 4.01
+          },
+          {
+            "w": "and",
+            "t": 4.366
+          },
+          {
+            "w": "time",
+            "t": 4.721
+          },
+          {
+            "w": "on",
+            "t": 5.076
+          },
+          {
+            "w": "neural",
+            "t": 5.432
+          },
+          {
+            "w": "architectures",
+            "t": 5.787
+          },
+          {
+            "w": "and",
+            "t": 6.143
+          },
+          {
+            "w": "loss",
+            "t": 6.498
+          },
+          {
+            "w": "tuning.",
+            "t": 6.854
+          },
+          {
+            "w": "Why",
+            "t": 7.209
+          },
+          {
+            "w": "is",
+            "t": 7.565
+          },
+          {
+            "w": "Lesson",
+            "t": 7.92
+          },
+          {
+            "w": "1.1",
+            "t": 8.276
+          },
+          {
+            "w": "claiming",
+            "t": 8.631
+          },
+          {
+            "w": "that",
+            "t": 8.986
+          },
+          {
+            "w": "dataset",
+            "t": 9.342
+          },
+          {
+            "w": "engineering",
+            "t": 9.697
+          },
+          {
+            "w": "is",
+            "t": 10.053
+          },
+          {
+            "w": "where",
+            "t": 10.408
+          },
+          {
+            "w": "the",
+            "t": 10.764
+          },
+          {
+            "w": "battle",
+            "t": 11.119
+          },
+          {
+            "w": "is",
+            "t": 11.475
+          },
+          {
+            "w": "actually",
+            "t": 11.83
+          },
+          {
+            "w": "won",
+            "t": 12.186
+          },
+          {
+            "w": "or",
+            "t": 12.541
+          },
+          {
+            "w": "lost?",
+            "t": 12.897
           }
         ]
       },
@@ -2587,149 +5617,421 @@ window.LESSON_TIMINGS = {
         "slide": 1,
         "slideId": "s1",
         "speaker": "Dr. Nova",
-        "text": "Kaito, the core challenge is understanding that modern AI models do not learn the real world directly—they learn exclusively through empirical datasets. When datasets contain hidden artifacts, models learn those artifacts with high statistical confidence.",
-        "start": 5.778,
-        "end": 21.258,
+        "text": "Because a machine learning model is an inductive function that maps inputs to outputs according to empirical loss minimization. If the empirical sample is biased, incomplete, or corrupted, gradient descent will optimize the model to fit those exact defects with high statistical confidence. Scaling the model merely locks in the error.",
+        "start": 13.602,
+        "end": 33.882,
         "words": [
           {
-            "w": "Kaito,",
-            "t": 5.778
+            "w": "Because",
+            "t": 13.602
           },
           {
-            "w": "the",
-            "t": 6.22
+            "w": "a",
+            "t": 14.0
           },
           {
-            "w": "core",
-            "t": 6.663
+            "w": "machine",
+            "t": 14.397
           },
           {
-            "w": "challenge",
-            "t": 7.105
+            "w": "learning",
+            "t": 14.795
+          },
+          {
+            "w": "model",
+            "t": 15.193
           },
           {
             "w": "is",
-            "t": 7.547
+            "t": 15.59
           },
           {
-            "w": "understanding",
-            "t": 7.989
+            "w": "an",
+            "t": 15.988
+          },
+          {
+            "w": "inductive",
+            "t": 16.386
+          },
+          {
+            "w": "function",
+            "t": 16.783
           },
           {
             "w": "that",
-            "t": 8.432
+            "t": 17.181
           },
           {
-            "w": "modern",
-            "t": 8.874
+            "w": "maps",
+            "t": 17.578
           },
           {
-            "w": "AI",
-            "t": 9.316
+            "w": "inputs",
+            "t": 17.976
           },
           {
-            "w": "models",
-            "t": 9.759
+            "w": "to",
+            "t": 18.374
           },
           {
-            "w": "do",
-            "t": 10.201
+            "w": "outputs",
+            "t": 18.771
           },
           {
-            "w": "not",
-            "t": 10.643
+            "w": "according",
+            "t": 19.169
           },
           {
-            "w": "learn",
-            "t": 11.085
-          },
-          {
-            "w": "the",
-            "t": 11.528
-          },
-          {
-            "w": "real",
-            "t": 11.97
-          },
-          {
-            "w": "world",
-            "t": 12.412
-          },
-          {
-            "w": "directly—they",
-            "t": 12.855
-          },
-          {
-            "w": "learn",
-            "t": 13.297
-          },
-          {
-            "w": "exclusively",
-            "t": 13.739
-          },
-          {
-            "w": "through",
-            "t": 14.181
+            "w": "to",
+            "t": 19.567
           },
           {
             "w": "empirical",
-            "t": 14.624
+            "t": 19.964
           },
           {
-            "w": "datasets.",
-            "t": 15.066
+            "w": "loss",
+            "t": 20.362
           },
           {
-            "w": "When",
-            "t": 15.508
+            "w": "minimization.",
+            "t": 20.76
           },
           {
-            "w": "datasets",
-            "t": 15.951
+            "w": "If",
+            "t": 21.157
           },
           {
-            "w": "contain",
-            "t": 16.393
+            "w": "the",
+            "t": 21.555
           },
           {
-            "w": "hidden",
-            "t": 16.835
+            "w": "empirical",
+            "t": 21.953
           },
           {
-            "w": "artifacts,",
-            "t": 17.277
+            "w": "sample",
+            "t": 22.35
           },
           {
-            "w": "models",
-            "t": 17.72
+            "w": "is",
+            "t": 22.748
           },
           {
-            "w": "learn",
-            "t": 18.162
+            "w": "biased,",
+            "t": 23.146
+          },
+          {
+            "w": "incomplete,",
+            "t": 23.543
+          },
+          {
+            "w": "or",
+            "t": 23.941
+          },
+          {
+            "w": "corrupted,",
+            "t": 24.338
+          },
+          {
+            "w": "gradient",
+            "t": 24.736
+          },
+          {
+            "w": "descent",
+            "t": 25.134
+          },
+          {
+            "w": "will",
+            "t": 25.531
+          },
+          {
+            "w": "optimize",
+            "t": 25.929
+          },
+          {
+            "w": "the",
+            "t": 26.327
+          },
+          {
+            "w": "model",
+            "t": 26.724
+          },
+          {
+            "w": "to",
+            "t": 27.122
+          },
+          {
+            "w": "fit",
+            "t": 27.52
           },
           {
             "w": "those",
-            "t": 18.604
+            "t": 27.917
           },
           {
-            "w": "artifacts",
-            "t": 19.047
+            "w": "exact",
+            "t": 28.315
+          },
+          {
+            "w": "defects",
+            "t": 28.713
           },
           {
             "w": "with",
-            "t": 19.489
+            "t": 29.11
           },
           {
             "w": "high",
-            "t": 19.931
+            "t": 29.508
           },
           {
             "w": "statistical",
-            "t": 20.373
+            "t": 29.906
           },
           {
             "w": "confidence.",
-            "t": 20.816
+            "t": 30.303
+          },
+          {
+            "w": "Scaling",
+            "t": 30.701
+          },
+          {
+            "w": "the",
+            "t": 31.098
+          },
+          {
+            "w": "model",
+            "t": 31.496
+          },
+          {
+            "w": "merely",
+            "t": 31.894
+          },
+          {
+            "w": "locks",
+            "t": 32.291
+          },
+          {
+            "w": "in",
+            "t": 32.689
+          },
+          {
+            "w": "the",
+            "t": 33.087
+          },
+          {
+            "w": "error.",
+            "t": 33.484
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "So if the raw data is flawed, even a state-of-the-art transformer will fail in production?",
+        "start": 34.232,
+        "end": 39.752,
+        "words": [
+          {
+            "w": "So",
+            "t": 34.232
+          },
+          {
+            "w": "if",
+            "t": 34.6
+          },
+          {
+            "w": "the",
+            "t": 34.968
+          },
+          {
+            "w": "raw",
+            "t": 35.336
+          },
+          {
+            "w": "data",
+            "t": 35.704
+          },
+          {
+            "w": "is",
+            "t": 36.072
+          },
+          {
+            "w": "flawed,",
+            "t": 36.44
+          },
+          {
+            "w": "even",
+            "t": 36.808
+          },
+          {
+            "w": "a",
+            "t": 37.176
+          },
+          {
+            "w": "state-of-the-art",
+            "t": 37.544
+          },
+          {
+            "w": "transformer",
+            "t": 37.912
+          },
+          {
+            "w": "will",
+            "t": 38.28
+          },
+          {
+            "w": "fail",
+            "t": 38.648
+          },
+          {
+            "w": "in",
+            "t": 39.016
+          },
+          {
+            "w": "production?",
+            "t": 39.384
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Today we formalize what a dataset is mathematically, dissect universal record-attribute abstractions across five paradigms, analyze the Law of Data Quality Cascades, and write synthesizable production schemas with Pydantic and Polars.",
+        "start": 40.102,
+        "end": 56.134,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 40.102
+          },
+          {
+            "w": "Today",
+            "t": 40.603
+          },
+          {
+            "w": "we",
+            "t": 41.104
+          },
+          {
+            "w": "formalize",
+            "t": 41.605
+          },
+          {
+            "w": "what",
+            "t": 42.106
+          },
+          {
+            "w": "a",
+            "t": 42.607
+          },
+          {
+            "w": "dataset",
+            "t": 43.108
+          },
+          {
+            "w": "is",
+            "t": 43.609
+          },
+          {
+            "w": "mathematically,",
+            "t": 44.11
+          },
+          {
+            "w": "dissect",
+            "t": 44.611
+          },
+          {
+            "w": "universal",
+            "t": 45.112
+          },
+          {
+            "w": "record-attribute",
+            "t": 45.613
+          },
+          {
+            "w": "abstractions",
+            "t": 46.114
+          },
+          {
+            "w": "across",
+            "t": 46.615
+          },
+          {
+            "w": "five",
+            "t": 47.116
+          },
+          {
+            "w": "paradigms,",
+            "t": 47.617
+          },
+          {
+            "w": "analyze",
+            "t": 48.118
+          },
+          {
+            "w": "the",
+            "t": 48.619
+          },
+          {
+            "w": "Law",
+            "t": 49.12
+          },
+          {
+            "w": "of",
+            "t": 49.621
+          },
+          {
+            "w": "Data",
+            "t": 50.122
+          },
+          {
+            "w": "Quality",
+            "t": 50.623
+          },
+          {
+            "w": "Cascades,",
+            "t": 51.124
+          },
+          {
+            "w": "and",
+            "t": 51.625
+          },
+          {
+            "w": "write",
+            "t": 52.126
+          },
+          {
+            "w": "synthesizable",
+            "t": 52.627
+          },
+          {
+            "w": "production",
+            "t": 53.128
+          },
+          {
+            "w": "schemas",
+            "t": 53.629
+          },
+          {
+            "w": "with",
+            "t": 54.13
+          },
+          {
+            "w": "Pydantic",
+            "t": 54.631
+          },
+          {
+            "w": "and",
+            "t": 55.132
+          },
+          {
+            "w": "Polars.",
+            "t": 55.633
           }
         ]
       },
@@ -2738,88 +6040,88 @@ window.LESSON_TIMINGS = {
         "slideId": "s2",
         "speaker": "Kaito",
         "text": "Dr. Nova, how does defining a dataset as an empirical sample D sub N change how we approach data collection?",
-        "start": 22.008,
-        "end": 28.944,
+        "start": 56.884,
+        "end": 63.82,
         "words": [
           {
             "w": "Dr.",
-            "t": 22.008
+            "t": 56.884
           },
           {
             "w": "Nova,",
-            "t": 22.355
+            "t": 57.231
           },
           {
             "w": "how",
-            "t": 22.702
+            "t": 57.578
           },
           {
             "w": "does",
-            "t": 23.048
+            "t": 57.924
           },
           {
             "w": "defining",
-            "t": 23.395
+            "t": 58.271
           },
           {
             "w": "a",
-            "t": 23.742
+            "t": 58.618
           },
           {
             "w": "dataset",
-            "t": 24.089
+            "t": 58.965
           },
           {
             "w": "as",
-            "t": 24.436
+            "t": 59.312
           },
           {
             "w": "an",
-            "t": 24.782
+            "t": 59.658
           },
           {
             "w": "empirical",
-            "t": 25.129
+            "t": 60.005
           },
           {
             "w": "sample",
-            "t": 25.476
+            "t": 60.352
           },
           {
             "w": "D",
-            "t": 25.823
+            "t": 60.699
           },
           {
             "w": "sub",
-            "t": 26.17
+            "t": 61.046
           },
           {
             "w": "N",
-            "t": 26.516
+            "t": 61.392
           },
           {
             "w": "change",
-            "t": 26.863
+            "t": 61.739
           },
           {
             "w": "how",
-            "t": 27.21
+            "t": 62.086
           },
           {
             "w": "we",
-            "t": 27.557
+            "t": 62.433
           },
           {
             "w": "approach",
-            "t": 27.904
+            "t": 62.78
           },
           {
             "w": "data",
-            "t": 28.25
+            "t": 63.126
           },
           {
             "w": "collection?",
-            "t": 28.597
+            "t": 63.473
           }
         ]
       },
@@ -2827,247 +6129,785 @@ window.LESSON_TIMINGS = {
         "slide": 2,
         "slideId": "s2",
         "speaker": "Dr. Nova",
-        "text": "Because the true distribution P sub X,Y is fundamentally unobservable, our empirical sample D sub N is only a discrete window into reality. If that sampling window is biased, minimizing empirical loss guarantees that our model will diverge from real-world performance.",
-        "start": 29.294,
-        "end": 45.686,
+        "text": "Because the true population distribution P sub X,Y is fundamentally unobservable, our empirical sample D sub N is only a discrete window into reality. If that sampling window is biased, minimizing empirical loss guarantees that our model will diverge from real-world performance.",
+        "start": 64.17,
+        "end": 81.234,
         "words": [
           {
             "w": "Because",
-            "t": 29.294
+            "t": 64.17
           },
           {
             "w": "the",
-            "t": 29.694
+            "t": 64.576
           },
           {
             "w": "true",
-            "t": 30.094
+            "t": 64.983
+          },
+          {
+            "w": "population",
+            "t": 65.389
           },
           {
             "w": "distribution",
-            "t": 30.493
+            "t": 65.795
           },
           {
             "w": "P",
-            "t": 30.893
+            "t": 66.201
           },
           {
             "w": "sub",
-            "t": 31.293
+            "t": 66.608
           },
           {
             "w": "X,Y",
-            "t": 31.693
+            "t": 67.014
           },
           {
             "w": "is",
-            "t": 32.093
+            "t": 67.42
           },
           {
             "w": "fundamentally",
-            "t": 32.492
+            "t": 67.827
           },
           {
             "w": "unobservable,",
-            "t": 32.892
+            "t": 68.233
           },
           {
             "w": "our",
-            "t": 33.292
+            "t": 68.639
           },
           {
             "w": "empirical",
-            "t": 33.692
+            "t": 69.045
           },
           {
             "w": "sample",
-            "t": 34.092
+            "t": 69.452
           },
           {
             "w": "D",
-            "t": 34.491
+            "t": 69.858
           },
           {
             "w": "sub",
-            "t": 34.891
+            "t": 70.264
           },
           {
             "w": "N",
-            "t": 35.291
+            "t": 70.671
           },
           {
             "w": "is",
-            "t": 35.691
+            "t": 71.077
           },
           {
             "w": "only",
-            "t": 36.091
+            "t": 71.483
           },
           {
             "w": "a",
-            "t": 36.49
+            "t": 71.889
           },
           {
             "w": "discrete",
-            "t": 36.89
+            "t": 72.296
           },
           {
             "w": "window",
-            "t": 37.29
+            "t": 72.702
           },
           {
             "w": "into",
-            "t": 37.69
+            "t": 73.108
           },
           {
             "w": "reality.",
-            "t": 38.09
+            "t": 73.515
           },
           {
             "w": "If",
-            "t": 38.49
+            "t": 73.921
           },
           {
             "w": "that",
-            "t": 38.889
+            "t": 74.327
           },
           {
             "w": "sampling",
-            "t": 39.289
+            "t": 74.733
           },
           {
             "w": "window",
-            "t": 39.689
+            "t": 75.14
           },
           {
             "w": "is",
-            "t": 40.089
+            "t": 75.546
           },
           {
             "w": "biased,",
-            "t": 40.489
+            "t": 75.952
           },
           {
             "w": "minimizing",
-            "t": 40.888
+            "t": 76.359
           },
           {
             "w": "empirical",
-            "t": 41.288
+            "t": 76.765
           },
           {
             "w": "loss",
-            "t": 41.688
+            "t": 77.171
           },
           {
             "w": "guarantees",
-            "t": 42.088
+            "t": 77.577
           },
           {
             "w": "that",
-            "t": 42.488
+            "t": 77.984
           },
           {
             "w": "our",
-            "t": 42.887
+            "t": 78.39
           },
           {
             "w": "model",
-            "t": 43.287
+            "t": 78.796
           },
           {
             "w": "will",
-            "t": 43.687
+            "t": 79.203
           },
           {
             "w": "diverge",
-            "t": 44.087
+            "t": 79.609
           },
           {
             "w": "from",
-            "t": 44.487
+            "t": 80.015
           },
           {
             "w": "real-world",
-            "t": 44.886
+            "t": 80.421
           },
           {
             "w": "performance.",
-            "t": 45.286
+            "t": 80.828
           }
         ]
       },
       {
-        "slide": 3,
-        "slideId": "s3",
+        "slide": 2,
+        "slideId": "s2",
         "speaker": "Kaito",
-        "text": "Dr. Nova, looking at this flowchart, at which stage does the most dangerous dataset corruption occur?",
-        "start": 46.436,
-        "end": 52.796,
+        "text": "Can you show me how this divergence looks when we actually train models?",
+        "start": 81.584,
+        "end": 85.976,
         "words": [
           {
-            "w": "Dr.",
-            "t": 46.436
+            "w": "Can",
+            "t": 81.584
           },
           {
-            "w": "Nova,",
-            "t": 46.834
+            "w": "you",
+            "t": 81.922
           },
           {
-            "w": "looking",
-            "t": 47.231
+            "w": "show",
+            "t": 82.26
           },
           {
-            "w": "at",
-            "t": 47.629
+            "w": "me",
+            "t": 82.598
+          },
+          {
+            "w": "how",
+            "t": 82.935
           },
           {
             "w": "this",
-            "t": 48.026
+            "t": 83.273
           },
           {
-            "w": "flowchart,",
-            "t": 48.423
+            "w": "divergence",
+            "t": 83.611
           },
           {
-            "w": "at",
-            "t": 48.821
+            "w": "looks",
+            "t": 83.949
           },
           {
-            "w": "which",
-            "t": 49.218
+            "w": "when",
+            "t": 84.287
+          },
+          {
+            "w": "we",
+            "t": 84.625
+          },
+          {
+            "w": "actually",
+            "t": 84.962
+          },
+          {
+            "w": "train",
+            "t": 85.3
+          },
+          {
+            "w": "models?",
+            "t": 85.638
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Watch closely as our speaker stage travels down to the Empirical Simulator directly below!",
+        "start": 86.326,
+        "end": 92.062,
+        "words": [
+          {
+            "w": "Watch",
+            "t": 86.326
+          },
+          {
+            "w": "closely",
+            "t": 86.736
+          },
+          {
+            "w": "as",
+            "t": 87.145
+          },
+          {
+            "w": "our",
+            "t": 87.555
+          },
+          {
+            "w": "speaker",
+            "t": 87.965
           },
           {
             "w": "stage",
-            "t": 49.616
+            "t": 88.375
           },
           {
-            "w": "does",
-            "t": 50.014
+            "w": "travels",
+            "t": 88.784
+          },
+          {
+            "w": "down",
+            "t": 89.194
+          },
+          {
+            "w": "to",
+            "t": 89.604
           },
           {
             "w": "the",
-            "t": 50.411
+            "t": 90.013
           },
           {
-            "w": "most",
-            "t": 50.809
+            "w": "Empirical",
+            "t": 90.423
           },
           {
-            "w": "dangerous",
-            "t": 51.206
+            "w": "Simulator",
+            "t": 90.833
+          },
+          {
+            "w": "directly",
+            "t": 91.243
+          },
+          {
+            "w": "below!",
+            "t": 91.652
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Look at the simulator sliders above us: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!",
+        "start": 92.412,
+        "end": 108.252,
+        "words": [
+          {
+            "w": "Look",
+            "t": 92.412
+          },
+          {
+            "w": "at",
+            "t": 92.84
+          },
+          {
+            "w": "the",
+            "t": 93.268
+          },
+          {
+            "w": "simulator",
+            "t": 93.696
+          },
+          {
+            "w": "sliders",
+            "t": 94.124
+          },
+          {
+            "w": "above",
+            "t": 94.553
+          },
+          {
+            "w": "us:",
+            "t": 94.981
+          },
+          {
+            "w": "Sample",
+            "t": 95.409
+          },
+          {
+            "w": "Size",
+            "t": 95.837
+          },
+          {
+            "w": "N",
+            "t": 96.265
+          },
+          {
+            "w": "and",
+            "t": 96.693
+          },
+          {
+            "w": "Upstream",
+            "t": 97.121
+          },
+          {
+            "w": "Selection",
+            "t": 97.549
+          },
+          {
+            "w": "Bias",
+            "t": 97.977
+          },
+          {
+            "w": "beta.",
+            "t": 98.406
+          },
+          {
+            "w": "Try",
+            "t": 98.834
+          },
+          {
+            "w": "dragging",
+            "t": 99.262
+          },
+          {
+            "w": "the",
+            "t": 99.69
+          },
+          {
+            "w": "Selection",
+            "t": 100.118
+          },
+          {
+            "w": "Bias",
+            "t": 100.546
+          },
+          {
+            "w": "slider",
+            "t": 100.974
+          },
+          {
+            "w": "up",
+            "t": 101.402
+          },
+          {
+            "w": "to",
+            "t": 101.83
+          },
+          {
+            "w": "35%—watch",
+            "t": 102.258
+          },
+          {
+            "w": "how",
+            "t": 102.687
+          },
+          {
+            "w": "the",
+            "t": 103.115
+          },
+          {
+            "w": "empirical",
+            "t": 103.543
+          },
+          {
+            "w": "risk",
+            "t": 103.971
+          },
+          {
+            "w": "stays",
+            "t": 104.399
+          },
+          {
+            "w": "low,",
+            "t": 104.827
+          },
+          {
+            "w": "while",
+            "t": 105.255
+          },
+          {
+            "w": "the",
+            "t": 105.683
+          },
+          {
+            "w": "true",
+            "t": 106.111
+          },
+          {
+            "w": "production",
+            "t": 106.54
+          },
+          {
+            "w": "risk",
+            "t": 106.968
+          },
+          {
+            "w": "diverges",
+            "t": 107.396
+          },
+          {
+            "w": "catastrophically!",
+            "t": 107.824
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "Fascinating! Now let us test our architectural intuition on the challenge question.",
+        "start": 108.602,
+        "end": 114.89,
+        "words": [
+          {
+            "w": "Fascinating!",
+            "t": 108.602
+          },
+          {
+            "w": "Now",
+            "t": 109.126
+          },
+          {
+            "w": "let",
+            "t": 109.65
+          },
+          {
+            "w": "us",
+            "t": 110.174
+          },
+          {
+            "w": "test",
+            "t": 110.698
+          },
+          {
+            "w": "our",
+            "t": 111.222
+          },
+          {
+            "w": "architectural",
+            "t": 111.746
+          },
+          {
+            "w": "intuition",
+            "t": 112.27
+          },
+          {
+            "w": "on",
+            "t": 112.794
+          },
+          {
+            "w": "the",
+            "t": 113.318
+          },
+          {
+            "w": "challenge",
+            "t": 113.842
+          },
+          {
+            "w": "question.",
+            "t": 114.366
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!",
+        "start": 115.24,
+        "end": 129.472,
+        "words": [
+          {
+            "w": "Here",
+            "t": 115.24
+          },
+          {
+            "w": "is",
+            "t": 115.635
+          },
+          {
+            "w": "your",
+            "t": 116.031
+          },
+          {
+            "w": "active",
+            "t": 116.426
+          },
+          {
+            "w": "checkpoint:",
+            "t": 116.821
+          },
+          {
+            "w": "If",
+            "t": 117.217
+          },
+          {
+            "w": "your",
+            "t": 117.612
           },
           {
             "w": "dataset",
-            "t": 51.603
+            "t": 118.007
           },
           {
-            "w": "corruption",
-            "t": 52.001
+            "w": "collection",
+            "t": 118.403
           },
           {
-            "w": "occur?",
-            "t": 52.398
+            "w": "pipeline",
+            "t": 118.798
+          },
+          {
+            "w": "has",
+            "t": 119.193
+          },
+          {
+            "w": "selection",
+            "t": 119.589
+          },
+          {
+            "w": "bias",
+            "t": 119.984
+          },
+          {
+            "w": "(beta",
+            "t": 120.379
+          },
+          {
+            "w": ">",
+            "t": 120.775
+          },
+          {
+            "w": "0),",
+            "t": 121.17
+          },
+          {
+            "w": "will",
+            "t": 121.565
+          },
+          {
+            "w": "gathering",
+            "t": 121.961
+          },
+          {
+            "w": "10x",
+            "t": 122.356
+          },
+          {
+            "w": "more",
+            "t": 122.751
+          },
+          {
+            "w": "data",
+            "t": 123.147
+          },
+          {
+            "w": "(N",
+            "t": 123.542
+          },
+          {
+            "w": "to",
+            "t": 123.937
+          },
+          {
+            "w": "1,000,000)",
+            "t": 124.333
+          },
+          {
+            "w": "eliminate",
+            "t": 124.728
+          },
+          {
+            "w": "the",
+            "t": 125.123
+          },
+          {
+            "w": "generalization",
+            "t": 125.519
+          },
+          {
+            "w": "gap?",
+            "t": 125.914
+          },
+          {
+            "w": "Select",
+            "t": 126.309
+          },
+          {
+            "w": "Option",
+            "t": 126.705
+          },
+          {
+            "w": "A",
+            "t": 127.1
+          },
+          {
+            "w": "or",
+            "t": 127.495
+          },
+          {
+            "w": "Option",
+            "t": 127.891
+          },
+          {
+            "w": "B",
+            "t": 128.286
+          },
+          {
+            "w": "above",
+            "t": 128.681
+          },
+          {
+            "w": "me!",
+            "t": 129.077
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do we need to formalize each attribute domain F sub j mathematically rather than just storing everything in a flexible Pandas DataFrame?",
+        "start": 130.222,
+        "end": 138.742,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 130.222
+          },
+          {
+            "w": "Nova,",
+            "t": 130.563
+          },
+          {
+            "w": "why",
+            "t": 130.904
+          },
+          {
+            "w": "do",
+            "t": 131.244
+          },
+          {
+            "w": "we",
+            "t": 131.585
+          },
+          {
+            "w": "need",
+            "t": 131.926
+          },
+          {
+            "w": "to",
+            "t": 132.267
+          },
+          {
+            "w": "formalize",
+            "t": 132.608
+          },
+          {
+            "w": "each",
+            "t": 132.948
+          },
+          {
+            "w": "attribute",
+            "t": 133.289
+          },
+          {
+            "w": "domain",
+            "t": 133.63
+          },
+          {
+            "w": "F",
+            "t": 133.971
+          },
+          {
+            "w": "sub",
+            "t": 134.312
+          },
+          {
+            "w": "j",
+            "t": 134.652
+          },
+          {
+            "w": "mathematically",
+            "t": 134.993
+          },
+          {
+            "w": "rather",
+            "t": 135.334
+          },
+          {
+            "w": "than",
+            "t": 135.675
+          },
+          {
+            "w": "just",
+            "t": 136.016
+          },
+          {
+            "w": "storing",
+            "t": 136.356
+          },
+          {
+            "w": "everything",
+            "t": 136.697
+          },
+          {
+            "w": "in",
+            "t": 137.038
+          },
+          {
+            "w": "a",
+            "t": 137.379
+          },
+          {
+            "w": "flexible",
+            "t": 137.72
+          },
+          {
+            "w": "Pandas",
+            "t": 138.06
+          },
+          {
+            "w": "DataFrame?",
+            "t": 138.401
           }
         ]
       },
@@ -3075,117 +6915,365 @@ window.LESSON_TIMINGS = {
         "slide": 3,
         "slideId": "s3",
         "speaker": "Dr. Nova",
-        "text": "Right at the physical observer boundary, Kaito. Once an uncalibrated sensor or subjective annotator introduces distortion, downstream normalization and loss functions treat that distortion as valid signal.",
-        "start": 53.146,
-        "end": 66.562,
+        "text": "Because without explicit domain contracts, untyped floats, silent string coercions, and out-of-range sensor spikes will silently pollute vectorized tensors. Pandas will convert missing integers into floats, and negative timestamps into NaN, degrading gradient descent without throwing an obvious runtime exception.",
+        "start": 139.092,
+        "end": 158.052,
         "words": [
           {
-            "w": "Right",
-            "t": 53.146
+            "w": "Because",
+            "t": 139.092
           },
           {
-            "w": "at",
-            "t": 53.643
+            "w": "without",
+            "t": 139.566
           },
           {
-            "w": "the",
-            "t": 54.14
+            "w": "explicit",
+            "t": 140.04
           },
           {
-            "w": "physical",
-            "t": 54.637
+            "w": "domain",
+            "t": 140.514
           },
           {
-            "w": "observer",
-            "t": 55.134
+            "w": "contracts,",
+            "t": 140.988
           },
           {
-            "w": "boundary,",
-            "t": 55.63
+            "w": "untyped",
+            "t": 141.462
           },
           {
-            "w": "Kaito.",
-            "t": 56.127
+            "w": "floats,",
+            "t": 141.936
           },
           {
-            "w": "Once",
-            "t": 56.624
+            "w": "silent",
+            "t": 142.41
           },
           {
-            "w": "an",
-            "t": 57.121
+            "w": "string",
+            "t": 142.884
           },
           {
-            "w": "uncalibrated",
-            "t": 57.618
-          },
-          {
-            "w": "sensor",
-            "t": 58.115
-          },
-          {
-            "w": "or",
-            "t": 58.612
-          },
-          {
-            "w": "subjective",
-            "t": 59.109
-          },
-          {
-            "w": "annotator",
-            "t": 59.606
-          },
-          {
-            "w": "introduces",
-            "t": 60.102
-          },
-          {
-            "w": "distortion,",
-            "t": 60.599
-          },
-          {
-            "w": "downstream",
-            "t": 61.096
-          },
-          {
-            "w": "normalization",
-            "t": 61.593
+            "w": "coercions,",
+            "t": 143.358
           },
           {
             "w": "and",
-            "t": 62.09
+            "t": 143.832
           },
           {
-            "w": "loss",
-            "t": 62.587
+            "w": "out-of-range",
+            "t": 144.306
           },
           {
-            "w": "functions",
-            "t": 63.084
+            "w": "sensor",
+            "t": 144.78
           },
           {
-            "w": "treat",
-            "t": 63.581
+            "w": "spikes",
+            "t": 145.254
           },
           {
-            "w": "that",
-            "t": 64.078
+            "w": "will",
+            "t": 145.728
           },
           {
-            "w": "distortion",
-            "t": 64.574
+            "w": "silently",
+            "t": 146.202
+          },
+          {
+            "w": "pollute",
+            "t": 146.676
+          },
+          {
+            "w": "vectorized",
+            "t": 147.15
+          },
+          {
+            "w": "tensors.",
+            "t": 147.624
+          },
+          {
+            "w": "Pandas",
+            "t": 148.098
+          },
+          {
+            "w": "will",
+            "t": 148.572
+          },
+          {
+            "w": "convert",
+            "t": 149.046
+          },
+          {
+            "w": "missing",
+            "t": 149.52
+          },
+          {
+            "w": "integers",
+            "t": 149.994
+          },
+          {
+            "w": "into",
+            "t": 150.468
+          },
+          {
+            "w": "floats,",
+            "t": 150.942
+          },
+          {
+            "w": "and",
+            "t": 151.416
+          },
+          {
+            "w": "negative",
+            "t": 151.89
+          },
+          {
+            "w": "timestamps",
+            "t": 152.364
+          },
+          {
+            "w": "into",
+            "t": 152.838
+          },
+          {
+            "w": "NaN,",
+            "t": 153.312
+          },
+          {
+            "w": "degrading",
+            "t": 153.786
+          },
+          {
+            "w": "gradient",
+            "t": 154.26
+          },
+          {
+            "w": "descent",
+            "t": 154.734
+          },
+          {
+            "w": "without",
+            "t": 155.208
+          },
+          {
+            "w": "throwing",
+            "t": 155.682
+          },
+          {
+            "w": "an",
+            "t": 156.156
+          },
+          {
+            "w": "obvious",
+            "t": 156.63
+          },
+          {
+            "w": "runtime",
+            "t": 157.104
+          },
+          {
+            "w": "exception.",
+            "t": 157.578
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "So defining attribute domains is our first line of defensive engineering against corrupt gradients?",
+        "start": 158.402,
+        "end": 164.354,
+        "words": [
+          {
+            "w": "So",
+            "t": 158.402
+          },
+          {
+            "w": "defining",
+            "t": 158.827
+          },
+          {
+            "w": "attribute",
+            "t": 159.252
+          },
+          {
+            "w": "domains",
+            "t": 159.677
+          },
+          {
+            "w": "is",
+            "t": 160.103
+          },
+          {
+            "w": "our",
+            "t": 160.528
+          },
+          {
+            "w": "first",
+            "t": 160.953
+          },
+          {
+            "w": "line",
+            "t": 161.378
+          },
+          {
+            "w": "of",
+            "t": 161.803
+          },
+          {
+            "w": "defensive",
+            "t": 162.228
+          },
+          {
+            "w": "engineering",
+            "t": 162.653
+          },
+          {
+            "w": "against",
+            "t": 163.079
+          },
+          {
+            "w": "corrupt",
+            "t": 163.504
+          },
+          {
+            "w": "gradients?",
+            "t": 163.929
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. A production data engineer defines the schema S as a legal contract: any record that violates attribute domains is quarantined at the boundary before it ever enters model memory.",
+        "start": 164.704,
+        "end": 176.944,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 164.704
+          },
+          {
+            "w": "A",
+            "t": 165.112
+          },
+          {
+            "w": "production",
+            "t": 165.52
+          },
+          {
+            "w": "data",
+            "t": 165.928
+          },
+          {
+            "w": "engineer",
+            "t": 166.336
+          },
+          {
+            "w": "defines",
+            "t": 166.744
+          },
+          {
+            "w": "the",
+            "t": 167.152
+          },
+          {
+            "w": "schema",
+            "t": 167.56
+          },
+          {
+            "w": "S",
+            "t": 167.968
           },
           {
             "w": "as",
-            "t": 65.071
+            "t": 168.376
           },
           {
-            "w": "valid",
-            "t": 65.568
+            "w": "a",
+            "t": 168.784
           },
           {
-            "w": "signal.",
-            "t": 66.065
+            "w": "legal",
+            "t": 169.192
+          },
+          {
+            "w": "contract:",
+            "t": 169.6
+          },
+          {
+            "w": "any",
+            "t": 170.008
+          },
+          {
+            "w": "record",
+            "t": 170.416
+          },
+          {
+            "w": "that",
+            "t": 170.824
+          },
+          {
+            "w": "violates",
+            "t": 171.232
+          },
+          {
+            "w": "attribute",
+            "t": 171.64
+          },
+          {
+            "w": "domains",
+            "t": 172.048
+          },
+          {
+            "w": "is",
+            "t": 172.456
+          },
+          {
+            "w": "quarantined",
+            "t": 172.864
+          },
+          {
+            "w": "at",
+            "t": 173.272
+          },
+          {
+            "w": "the",
+            "t": 173.68
+          },
+          {
+            "w": "boundary",
+            "t": 174.088
+          },
+          {
+            "w": "before",
+            "t": 174.496
+          },
+          {
+            "w": "it",
+            "t": 174.904
+          },
+          {
+            "w": "ever",
+            "t": 175.312
+          },
+          {
+            "w": "enters",
+            "t": 175.72
+          },
+          {
+            "w": "model",
+            "t": 176.128
+          },
+          {
+            "w": "memory.",
+            "t": 176.536
           }
         ]
       },
@@ -3193,69 +7281,93 @@ window.LESSON_TIMINGS = {
         "slide": 4,
         "slideId": "s4",
         "speaker": "Kaito",
-        "text": "Dr. Nova, why do we need to formalize each attribute domain F sub j mathematically?",
-        "start": 67.312,
-        "end": 72.784,
+        "text": "Dr. Nova, in Kaggle competitions everyone just calls scikit-learn's SimpleImputer with median strategy. Why is that considered reckless in production systems?",
+        "start": 177.694,
+        "end": 187.75,
         "words": [
           {
             "w": "Dr.",
-            "t": 67.312
+            "t": 177.694
           },
           {
             "w": "Nova,",
-            "t": 67.677
+            "t": 178.173
           },
           {
-            "w": "why",
-            "t": 68.042
+            "w": "in",
+            "t": 178.652
           },
           {
-            "w": "do",
-            "t": 68.406
+            "w": "Kaggle",
+            "t": 179.131
           },
           {
-            "w": "we",
-            "t": 68.771
+            "w": "competitions",
+            "t": 179.609
           },
           {
-            "w": "need",
-            "t": 69.136
+            "w": "everyone",
+            "t": 180.088
           },
           {
-            "w": "to",
-            "t": 69.501
+            "w": "just",
+            "t": 180.567
           },
           {
-            "w": "formalize",
-            "t": 69.866
+            "w": "calls",
+            "t": 181.046
           },
           {
-            "w": "each",
-            "t": 70.23
+            "w": "scikit-learn's",
+            "t": 181.525
           },
           {
-            "w": "attribute",
-            "t": 70.595
+            "w": "SimpleImputer",
+            "t": 182.004
           },
           {
-            "w": "domain",
-            "t": 70.96
+            "w": "with",
+            "t": 182.483
           },
           {
-            "w": "F",
-            "t": 71.325
+            "w": "median",
+            "t": 182.961
           },
           {
-            "w": "sub",
-            "t": 71.69
+            "w": "strategy.",
+            "t": 183.44
           },
           {
-            "w": "j",
-            "t": 72.054
+            "w": "Why",
+            "t": 183.919
           },
           {
-            "w": "mathematically?",
-            "t": 72.419
+            "w": "is",
+            "t": 184.398
+          },
+          {
+            "w": "that",
+            "t": 184.877
+          },
+          {
+            "w": "considered",
+            "t": 185.356
+          },
+          {
+            "w": "reckless",
+            "t": 185.835
+          },
+          {
+            "w": "in",
+            "t": 186.313
+          },
+          {
+            "w": "production",
+            "t": 186.792
+          },
+          {
+            "w": "systems?",
+            "t": 187.271
           }
         ]
       },
@@ -3263,117 +7375,345 @@ window.LESSON_TIMINGS = {
         "slide": 4,
         "slideId": "s4",
         "speaker": "Dr. Nova",
-        "text": "Because without explicit domain constraints, untyped floats, string corruptions, and out-of-range sensor spikes will silently pollute vectorized tensors, degrading gradient descent without throwing an obvious runtime exception.",
-        "start": 73.134,
-        "end": 86.358,
+        "text": "Because mean and median imputation only work under pure MCAR! If data is Missing Not at Random—like high-risk patients who are too unstable to undergo an MRI—imputing normal values actively conceals mortality risk from the neural network.",
+        "start": 188.1,
+        "end": 203.604,
         "words": [
           {
             "w": "Because",
-            "t": 73.134
+            "t": 188.1
           },
           {
-            "w": "without",
-            "t": 73.624
-          },
-          {
-            "w": "explicit",
-            "t": 74.114
-          },
-          {
-            "w": "domain",
-            "t": 74.603
-          },
-          {
-            "w": "constraints,",
-            "t": 75.093
-          },
-          {
-            "w": "untyped",
-            "t": 75.583
-          },
-          {
-            "w": "floats,",
-            "t": 76.073
-          },
-          {
-            "w": "string",
-            "t": 76.562
-          },
-          {
-            "w": "corruptions,",
-            "t": 77.052
+            "w": "mean",
+            "t": 188.519
           },
           {
             "w": "and",
-            "t": 77.542
+            "t": 188.938
           },
           {
-            "w": "out-of-range",
-            "t": 78.032
+            "w": "median",
+            "t": 189.357
           },
           {
-            "w": "sensor",
-            "t": 78.522
+            "w": "imputation",
+            "t": 189.776
           },
           {
-            "w": "spikes",
-            "t": 79.011
+            "w": "only",
+            "t": 190.195
           },
           {
-            "w": "will",
-            "t": 79.501
+            "w": "work",
+            "t": 190.614
           },
           {
-            "w": "silently",
-            "t": 79.991
+            "w": "under",
+            "t": 191.033
           },
           {
-            "w": "pollute",
-            "t": 80.481
+            "w": "pure",
+            "t": 191.452
           },
           {
-            "w": "vectorized",
-            "t": 80.97
+            "w": "MCAR!",
+            "t": 191.871
           },
           {
-            "w": "tensors,",
-            "t": 81.46
+            "w": "If",
+            "t": 192.29
           },
           {
-            "w": "degrading",
-            "t": 81.95
+            "w": "data",
+            "t": 192.709
           },
           {
-            "w": "gradient",
-            "t": 82.44
+            "w": "is",
+            "t": 193.128
           },
           {
-            "w": "descent",
-            "t": 82.93
+            "w": "Missing",
+            "t": 193.547
           },
           {
-            "w": "without",
-            "t": 83.419
+            "w": "Not",
+            "t": 193.966
           },
           {
-            "w": "throwing",
-            "t": 83.909
+            "w": "at",
+            "t": 194.385
+          },
+          {
+            "w": "Random—like",
+            "t": 194.804
+          },
+          {
+            "w": "high-risk",
+            "t": 195.223
+          },
+          {
+            "w": "patients",
+            "t": 195.642
+          },
+          {
+            "w": "who",
+            "t": 196.062
+          },
+          {
+            "w": "are",
+            "t": 196.481
+          },
+          {
+            "w": "too",
+            "t": 196.9
+          },
+          {
+            "w": "unstable",
+            "t": 197.319
+          },
+          {
+            "w": "to",
+            "t": 197.738
+          },
+          {
+            "w": "undergo",
+            "t": 198.157
           },
           {
             "w": "an",
-            "t": 84.399
+            "t": 198.576
           },
           {
-            "w": "obvious",
-            "t": 84.889
+            "w": "MRI—imputing",
+            "t": 198.995
           },
           {
-            "w": "runtime",
-            "t": 85.378
+            "w": "normal",
+            "t": 199.414
           },
           {
-            "w": "exception.",
-            "t": 85.868
+            "w": "values",
+            "t": 199.833
+          },
+          {
+            "w": "actively",
+            "t": 200.252
+          },
+          {
+            "w": "conceals",
+            "t": 200.671
+          },
+          {
+            "w": "mortality",
+            "t": 201.09
+          },
+          {
+            "w": "risk",
+            "t": 201.509
+          },
+          {
+            "w": "from",
+            "t": 201.928
+          },
+          {
+            "w": "the",
+            "t": 202.347
+          },
+          {
+            "w": "neural",
+            "t": 202.766
+          },
+          {
+            "w": "network.",
+            "t": 203.185
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "So the fact that a field is missing is often more predictive than the actual numerical value?",
+        "start": 203.954,
+        "end": 209.498,
+        "words": [
+          {
+            "w": "So",
+            "t": 203.954
+          },
+          {
+            "w": "the",
+            "t": 204.28
+          },
+          {
+            "w": "fact",
+            "t": 204.606
+          },
+          {
+            "w": "that",
+            "t": 204.932
+          },
+          {
+            "w": "a",
+            "t": 205.258
+          },
+          {
+            "w": "field",
+            "t": 205.585
+          },
+          {
+            "w": "is",
+            "t": 205.911
+          },
+          {
+            "w": "missing",
+            "t": 206.237
+          },
+          {
+            "w": "is",
+            "t": 206.563
+          },
+          {
+            "w": "often",
+            "t": 206.889
+          },
+          {
+            "w": "more",
+            "t": 207.215
+          },
+          {
+            "w": "predictive",
+            "t": 207.541
+          },
+          {
+            "w": "than",
+            "t": 207.867
+          },
+          {
+            "w": "the",
+            "t": 208.194
+          },
+          {
+            "w": "actual",
+            "t": 208.52
+          },
+          {
+            "w": "numerical",
+            "t": 208.846
+          },
+          {
+            "w": "value?",
+            "t": 209.172
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. In production medical and financial pipelines, we always append a binary missingness indicator column M sub i j to preserve the latent observation signal.",
+        "start": 209.848,
+        "end": 220.84,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 209.848
+          },
+          {
+            "w": "In",
+            "t": 210.288
+          },
+          {
+            "w": "production",
+            "t": 210.727
+          },
+          {
+            "w": "medical",
+            "t": 211.167
+          },
+          {
+            "w": "and",
+            "t": 211.607
+          },
+          {
+            "w": "financial",
+            "t": 212.046
+          },
+          {
+            "w": "pipelines,",
+            "t": 212.486
+          },
+          {
+            "w": "we",
+            "t": 212.926
+          },
+          {
+            "w": "always",
+            "t": 213.365
+          },
+          {
+            "w": "append",
+            "t": 213.805
+          },
+          {
+            "w": "a",
+            "t": 214.245
+          },
+          {
+            "w": "binary",
+            "t": 214.684
+          },
+          {
+            "w": "missingness",
+            "t": 215.124
+          },
+          {
+            "w": "indicator",
+            "t": 215.564
+          },
+          {
+            "w": "column",
+            "t": 216.004
+          },
+          {
+            "w": "M",
+            "t": 216.443
+          },
+          {
+            "w": "sub",
+            "t": 216.883
+          },
+          {
+            "w": "i",
+            "t": 217.323
+          },
+          {
+            "w": "j",
+            "t": 217.762
+          },
+          {
+            "w": "to",
+            "t": 218.202
+          },
+          {
+            "w": "preserve",
+            "t": 218.642
+          },
+          {
+            "w": "the",
+            "t": 219.081
+          },
+          {
+            "w": "latent",
+            "t": 219.521
+          },
+          {
+            "w": "observation",
+            "t": 219.961
+          },
+          {
+            "w": "signal.",
+            "t": 220.4
           }
         ]
       },
@@ -3382,56 +7722,56 @@ window.LESSON_TIMINGS = {
         "slideId": "s5",
         "speaker": "Kaito",
         "text": "Dr. Nova, how do engineers accidentally violate row-level record independence in practice?",
-        "start": 87.108,
-        "end": 93.204,
+        "start": 221.59,
+        "end": 227.686,
         "words": [
           {
             "w": "Dr.",
-            "t": 87.108
+            "t": 221.59
           },
           {
             "w": "Nova,",
-            "t": 87.616
+            "t": 222.098
           },
           {
             "w": "how",
-            "t": 88.124
+            "t": 222.606
           },
           {
             "w": "do",
-            "t": 88.632
+            "t": 223.114
           },
           {
             "w": "engineers",
-            "t": 89.14
+            "t": 223.622
           },
           {
             "w": "accidentally",
-            "t": 89.648
+            "t": 224.13
           },
           {
             "w": "violate",
-            "t": 90.156
+            "t": 224.638
           },
           {
             "w": "row-level",
-            "t": 90.664
+            "t": 225.146
           },
           {
             "w": "record",
-            "t": 91.172
+            "t": 225.654
           },
           {
             "w": "independence",
-            "t": 91.68
+            "t": 226.162
           },
           {
             "w": "in",
-            "t": 92.188
+            "t": 226.67
           },
           {
             "w": "practice?",
-            "t": 92.696
+            "t": 227.178
           }
         ]
       },
@@ -3439,1845 +7779,3781 @@ window.LESSON_TIMINGS = {
         "slide": 5,
         "slideId": "s5",
         "speaker": "Dr. Nova",
-        "text": "By mixing temporal observations of the same user across training and validation splits. If multiple records share unmodeled latent dependencies, your model experiences severe validation leakage.",
-        "start": 93.554,
-        "end": 105.914,
+        "text": "By mixing repeated observations of the same physical entity across training and validation splits! If patient forty-two appears in both training and test sets, the model memorizes patient-specific biological quirks rather than generalizing general disease pathophysiology.",
+        "start": 228.036,
+        "end": 244.668,
         "words": [
           {
             "w": "By",
-            "t": 93.554
+            "t": 228.036
           },
           {
             "w": "mixing",
-            "t": 94.029
+            "t": 228.498
           },
           {
-            "w": "temporal",
-            "t": 94.505
+            "w": "repeated",
+            "t": 228.96
           },
           {
             "w": "observations",
-            "t": 94.98
+            "t": 229.422
           },
           {
             "w": "of",
-            "t": 95.456
+            "t": 229.884
           },
           {
             "w": "the",
-            "t": 95.931
+            "t": 230.346
           },
           {
             "w": "same",
-            "t": 96.406
-          },
-          {
-            "w": "user",
-            "t": 96.882
-          },
-          {
-            "w": "across",
-            "t": 97.357
-          },
-          {
-            "w": "training",
-            "t": 97.832
-          },
-          {
-            "w": "and",
-            "t": 98.308
-          },
-          {
-            "w": "validation",
-            "t": 98.783
-          },
-          {
-            "w": "splits.",
-            "t": 99.259
-          },
-          {
-            "w": "If",
-            "t": 99.734
-          },
-          {
-            "w": "multiple",
-            "t": 100.209
-          },
-          {
-            "w": "records",
-            "t": 100.685
-          },
-          {
-            "w": "share",
-            "t": 101.16
-          },
-          {
-            "w": "unmodeled",
-            "t": 101.636
-          },
-          {
-            "w": "latent",
-            "t": 102.111
-          },
-          {
-            "w": "dependencies,",
-            "t": 102.586
-          },
-          {
-            "w": "your",
-            "t": 103.062
-          },
-          {
-            "w": "model",
-            "t": 103.537
-          },
-          {
-            "w": "experiences",
-            "t": 104.012
-          },
-          {
-            "w": "severe",
-            "t": 104.488
-          },
-          {
-            "w": "validation",
-            "t": 104.963
-          },
-          {
-            "w": "leakage.",
-            "t": 105.439
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, why does storage layout matter when we are designing machine learning datasets?",
-        "start": 106.664,
-        "end": 112.112,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 106.664
-          },
-          {
-            "w": "Nova,",
-            "t": 107.053
-          },
-          {
-            "w": "why",
-            "t": 107.442
-          },
-          {
-            "w": "does",
-            "t": 107.831
-          },
-          {
-            "w": "storage",
-            "t": 108.221
-          },
-          {
-            "w": "layout",
-            "t": 108.61
-          },
-          {
-            "w": "matter",
-            "t": 108.999
-          },
-          {
-            "w": "when",
-            "t": 109.388
-          },
-          {
-            "w": "we",
-            "t": 109.777
-          },
-          {
-            "w": "are",
-            "t": 110.166
-          },
-          {
-            "w": "designing",
-            "t": 110.555
-          },
-          {
-            "w": "machine",
-            "t": 110.945
-          },
-          {
-            "w": "learning",
-            "t": 111.334
-          },
-          {
-            "w": "datasets?",
-            "t": 111.723
-          }
-        ]
-      },
-      {
-        "slide": 6,
-        "slideId": "s6",
-        "speaker": "Dr. Nova",
-        "text": "Because training requires columnar pushdown for feature extraction, while inference requires fast row-level lookups. Choosing the wrong physical format creates massive I/O bottlenecks during model ingestion.",
-        "start": 112.462,
-        "end": 125.038,
-        "words": [
-          {
-            "w": "Because",
-            "t": 112.462
-          },
-          {
-            "w": "training",
-            "t": 112.946
-          },
-          {
-            "w": "requires",
-            "t": 113.429
-          },
-          {
-            "w": "columnar",
-            "t": 113.913
-          },
-          {
-            "w": "pushdown",
-            "t": 114.397
-          },
-          {
-            "w": "for",
-            "t": 114.88
-          },
-          {
-            "w": "feature",
-            "t": 115.364
-          },
-          {
-            "w": "extraction,",
-            "t": 115.848
-          },
-          {
-            "w": "while",
-            "t": 116.332
-          },
-          {
-            "w": "inference",
-            "t": 116.815
-          },
-          {
-            "w": "requires",
-            "t": 117.299
-          },
-          {
-            "w": "fast",
-            "t": 117.783
-          },
-          {
-            "w": "row-level",
-            "t": 118.266
-          },
-          {
-            "w": "lookups.",
-            "t": 118.75
-          },
-          {
-            "w": "Choosing",
-            "t": 119.234
-          },
-          {
-            "w": "the",
-            "t": 119.717
-          },
-          {
-            "w": "wrong",
-            "t": 120.201
+            "t": 230.808
           },
           {
             "w": "physical",
-            "t": 120.685
+            "t": 231.27
           },
           {
-            "w": "format",
-            "t": 121.168
-          },
-          {
-            "w": "creates",
-            "t": 121.652
-          },
-          {
-            "w": "massive",
-            "t": 122.136
-          },
-          {
-            "w": "I/O",
-            "t": 122.62
-          },
-          {
-            "w": "bottlenecks",
-            "t": 123.103
-          },
-          {
-            "w": "during",
-            "t": 123.587
-          },
-          {
-            "w": "model",
-            "t": 124.071
-          },
-          {
-            "w": "ingestion.",
-            "t": 124.554
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, why does Sambasivan's equation show that data quality errors compound rather than average out?",
-        "start": 125.788,
-        "end": 132.172,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 125.788
-          },
-          {
-            "w": "Nova,",
-            "t": 126.187
-          },
-          {
-            "w": "why",
-            "t": 126.586
-          },
-          {
-            "w": "does",
-            "t": 126.985
-          },
-          {
-            "w": "Sambasivan's",
-            "t": 127.384
-          },
-          {
-            "w": "equation",
-            "t": 127.783
-          },
-          {
-            "w": "show",
-            "t": 128.182
-          },
-          {
-            "w": "that",
-            "t": 128.581
-          },
-          {
-            "w": "data",
-            "t": 128.98
-          },
-          {
-            "w": "quality",
-            "t": 129.379
-          },
-          {
-            "w": "errors",
-            "t": 129.778
-          },
-          {
-            "w": "compound",
-            "t": 130.177
-          },
-          {
-            "w": "rather",
-            "t": 130.576
-          },
-          {
-            "w": "than",
-            "t": 130.975
-          },
-          {
-            "w": "average",
-            "t": 131.374
-          },
-          {
-            "w": "out?",
-            "t": 131.773
-          }
-        ]
-      },
-      {
-        "slide": 7,
-        "slideId": "s7",
-        "speaker": "Dr. Nova",
-        "text": "Because downstream pipeline stages, such as feature imputation and model calibration, are conditioned on upstream outputs. A tiny five percent label noise early on can trigger a fifty percent collapse in downstream safety-critical edge cases.",
-        "start": 132.522,
-        "end": 147.498,
-        "words": [
-          {
-            "w": "Because",
-            "t": 132.522
-          },
-          {
-            "w": "downstream",
-            "t": 132.95
-          },
-          {
-            "w": "pipeline",
-            "t": 133.378
-          },
-          {
-            "w": "stages,",
-            "t": 133.806
-          },
-          {
-            "w": "such",
-            "t": 134.234
-          },
-          {
-            "w": "as",
-            "t": 134.661
-          },
-          {
-            "w": "feature",
-            "t": 135.089
-          },
-          {
-            "w": "imputation",
-            "t": 135.517
-          },
-          {
-            "w": "and",
-            "t": 135.945
-          },
-          {
-            "w": "model",
-            "t": 136.373
-          },
-          {
-            "w": "calibration,",
-            "t": 136.801
-          },
-          {
-            "w": "are",
-            "t": 137.229
-          },
-          {
-            "w": "conditioned",
-            "t": 137.657
-          },
-          {
-            "w": "on",
-            "t": 138.085
-          },
-          {
-            "w": "upstream",
-            "t": 138.512
-          },
-          {
-            "w": "outputs.",
-            "t": 138.94
-          },
-          {
-            "w": "A",
-            "t": 139.368
-          },
-          {
-            "w": "tiny",
-            "t": 139.796
-          },
-          {
-            "w": "five",
-            "t": 140.224
-          },
-          {
-            "w": "percent",
-            "t": 140.652
-          },
-          {
-            "w": "label",
-            "t": 141.08
-          },
-          {
-            "w": "noise",
-            "t": 141.508
-          },
-          {
-            "w": "early",
-            "t": 141.935
-          },
-          {
-            "w": "on",
-            "t": 142.363
-          },
-          {
-            "w": "can",
-            "t": 142.791
-          },
-          {
-            "w": "trigger",
-            "t": 143.219
-          },
-          {
-            "w": "a",
-            "t": 143.647
-          },
-          {
-            "w": "fifty",
-            "t": 144.075
-          },
-          {
-            "w": "percent",
-            "t": 144.503
-          },
-          {
-            "w": "collapse",
-            "t": 144.931
-          },
-          {
-            "w": "in",
-            "t": 145.359
-          },
-          {
-            "w": "downstream",
-            "t": 145.786
-          },
-          {
-            "w": "safety-critical",
-            "t": 146.214
-          },
-          {
-            "w": "edge",
-            "t": 146.642
-          },
-          {
-            "w": "cases.",
-            "t": 147.07
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, which of these four cascade stages is the most difficult to diagnose after deployment?",
-        "start": 148.248,
-        "end": 154.248,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 148.248
-          },
-          {
-            "w": "Nova,",
-            "t": 148.623
-          },
-          {
-            "w": "which",
-            "t": 148.998
-          },
-          {
-            "w": "of",
-            "t": 149.373
-          },
-          {
-            "w": "these",
-            "t": 149.748
-          },
-          {
-            "w": "four",
-            "t": 150.123
-          },
-          {
-            "w": "cascade",
-            "t": 150.498
-          },
-          {
-            "w": "stages",
-            "t": 150.873
-          },
-          {
-            "w": "is",
-            "t": 151.248
-          },
-          {
-            "w": "the",
-            "t": 151.623
-          },
-          {
-            "w": "most",
-            "t": 151.998
-          },
-          {
-            "w": "difficult",
-            "t": 152.373
-          },
-          {
-            "w": "to",
-            "t": 152.748
-          },
-          {
-            "w": "diagnose",
-            "t": 153.123
-          },
-          {
-            "w": "after",
-            "t": 153.498
-          },
-          {
-            "w": "deployment?",
-            "t": 153.873
-          }
-        ]
-      },
-      {
-        "slide": 8,
-        "slideId": "s8",
-        "speaker": "Dr. Nova",
-        "text": "The feedback loop in production, Kaito. When a model's biased predictions influence what future data is collected and annotated, the system creates a self-reinforcing bias spiral that is invisible to offline metrics.",
-        "start": 154.598,
-        "end": 167.894,
-        "words": [
-          {
-            "w": "The",
-            "t": 154.598
-          },
-          {
-            "w": "feedback",
-            "t": 155.014
-          },
-          {
-            "w": "loop",
-            "t": 155.429
-          },
-          {
-            "w": "in",
-            "t": 155.845
-          },
-          {
-            "w": "production,",
-            "t": 156.26
-          },
-          {
-            "w": "Kaito.",
-            "t": 156.675
-          },
-          {
-            "w": "When",
-            "t": 157.091
-          },
-          {
-            "w": "a",
-            "t": 157.507
-          },
-          {
-            "w": "model's",
-            "t": 157.922
-          },
-          {
-            "w": "biased",
-            "t": 158.338
-          },
-          {
-            "w": "predictions",
-            "t": 158.753
-          },
-          {
-            "w": "influence",
-            "t": 159.169
-          },
-          {
-            "w": "what",
-            "t": 159.584
-          },
-          {
-            "w": "future",
-            "t": 160.0
-          },
-          {
-            "w": "data",
-            "t": 160.415
-          },
-          {
-            "w": "is",
-            "t": 160.831
-          },
-          {
-            "w": "collected",
-            "t": 161.246
-          },
-          {
-            "w": "and",
-            "t": 161.662
-          },
-          {
-            "w": "annotated,",
-            "t": 162.077
-          },
-          {
-            "w": "the",
-            "t": 162.493
-          },
-          {
-            "w": "system",
-            "t": 162.908
-          },
-          {
-            "w": "creates",
-            "t": 163.324
-          },
-          {
-            "w": "a",
-            "t": 163.739
-          },
-          {
-            "w": "self-reinforcing",
-            "t": 164.155
-          },
-          {
-            "w": "bias",
-            "t": 164.57
-          },
-          {
-            "w": "spiral",
-            "t": 164.986
-          },
-          {
-            "w": "that",
-            "t": 165.401
-          },
-          {
-            "w": "is",
-            "t": 165.817
-          },
-          {
-            "w": "invisible",
-            "t": 166.232
-          },
-          {
-            "w": "to",
-            "t": 166.648
-          },
-          {
-            "w": "offline",
-            "t": 167.063
-          },
-          {
-            "w": "metrics.",
-            "t": 167.479
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, how did recording blood pressure more frequently on arterial lines cause the sepsis model to fail?",
-        "start": 168.644,
-        "end": 175.46,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 168.644
-          },
-          {
-            "w": "Nova,",
-            "t": 169.023
-          },
-          {
-            "w": "how",
-            "t": 169.401
-          },
-          {
-            "w": "did",
-            "t": 169.78
-          },
-          {
-            "w": "recording",
-            "t": 170.159
-          },
-          {
-            "w": "blood",
-            "t": 170.537
-          },
-          {
-            "w": "pressure",
-            "t": 170.916
-          },
-          {
-            "w": "more",
-            "t": 171.295
-          },
-          {
-            "w": "frequently",
-            "t": 171.673
-          },
-          {
-            "w": "on",
-            "t": 172.052
-          },
-          {
-            "w": "arterial",
-            "t": 172.431
-          },
-          {
-            "w": "lines",
-            "t": 172.809
-          },
-          {
-            "w": "cause",
-            "t": 173.188
-          },
-          {
-            "w": "the",
-            "t": 173.567
-          },
-          {
-            "w": "sepsis",
-            "t": 173.945
-          },
-          {
-            "w": "model",
-            "t": 174.324
-          },
-          {
-            "w": "to",
-            "t": 174.703
-          },
-          {
-            "w": "fail?",
-            "t": 175.081
-          }
-        ]
-      },
-      {
-        "slide": 9,
-        "slideId": "s9",
-        "speaker": "Dr. Nova",
-        "text": "Because nurses only checked arm cuffs frequently when a patient was deteriorating! The model used observation frequency as a shortcut feature. When the new hospital monitored everyone continuously, that statistical correlation evaporated.",
-        "start": 175.81,
-        "end": 190.762,
-        "words": [
-          {
-            "w": "Because",
-            "t": 175.81
-          },
-          {
-            "w": "nurses",
-            "t": 176.277
-          },
-          {
-            "w": "only",
-            "t": 176.745
-          },
-          {
-            "w": "checked",
-            "t": 177.212
-          },
-          {
-            "w": "arm",
-            "t": 177.679
-          },
-          {
-            "w": "cuffs",
-            "t": 178.146
-          },
-          {
-            "w": "frequently",
-            "t": 178.614
-          },
-          {
-            "w": "when",
-            "t": 179.081
-          },
-          {
-            "w": "a",
-            "t": 179.548
-          },
-          {
-            "w": "patient",
-            "t": 180.015
-          },
-          {
-            "w": "was",
-            "t": 180.483
-          },
-          {
-            "w": "deteriorating!",
-            "t": 180.95
-          },
-          {
-            "w": "The",
-            "t": 181.417
-          },
-          {
-            "w": "model",
-            "t": 181.884
-          },
-          {
-            "w": "used",
-            "t": 182.352
-          },
-          {
-            "w": "observation",
-            "t": 182.819
-          },
-          {
-            "w": "frequency",
-            "t": 183.286
-          },
-          {
-            "w": "as",
-            "t": 183.753
-          },
-          {
-            "w": "a",
-            "t": 184.221
-          },
-          {
-            "w": "shortcut",
-            "t": 184.688
-          },
-          {
-            "w": "feature.",
-            "t": 185.155
-          },
-          {
-            "w": "When",
-            "t": 185.622
-          },
-          {
-            "w": "the",
-            "t": 186.09
-          },
-          {
-            "w": "new",
-            "t": 186.557
-          },
-          {
-            "w": "hospital",
-            "t": 187.024
-          },
-          {
-            "w": "monitored",
-            "t": 187.491
-          },
-          {
-            "w": "everyone",
-            "t": 187.959
-          },
-          {
-            "w": "continuously,",
-            "t": 188.426
-          },
-          {
-            "w": "that",
-            "t": 188.893
-          },
-          {
-            "w": "statistical",
-            "t": 189.36
-          },
-          {
-            "w": "correlation",
-            "t": 189.828
-          },
-          {
-            "w": "evaporated.",
-            "t": 190.295
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, can sensor fusion algorithms compensate for asynchronous LiDAR timestamp jitter?",
-        "start": 191.512,
-        "end": 197.584,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 191.512
-          },
-          {
-            "w": "Nova,",
-            "t": 192.018
-          },
-          {
-            "w": "can",
-            "t": 192.524
-          },
-          {
-            "w": "sensor",
-            "t": 193.03
-          },
-          {
-            "w": "fusion",
-            "t": 193.536
-          },
-          {
-            "w": "algorithms",
-            "t": 194.042
-          },
-          {
-            "w": "compensate",
-            "t": 194.548
-          },
-          {
-            "w": "for",
-            "t": 195.054
-          },
-          {
-            "w": "asynchronous",
-            "t": 195.56
-          },
-          {
-            "w": "LiDAR",
-            "t": 196.066
-          },
-          {
-            "w": "timestamp",
-            "t": 196.572
-          },
-          {
-            "w": "jitter?",
-            "t": 197.078
-          }
-        ]
-      },
-      {
-        "slide": 10,
-        "slideId": "s10",
-        "speaker": "Dr. Nova",
-        "text": "Only if exact hardware timestamping is synchronized at the nanosecond level across clock domains. If timestamps drift, spatial point clouds warp along the vehicle velocity vector, invalidating 3D bounding box tracking.",
-        "start": 197.934,
-        "end": 212.022,
-        "words": [
-          {
-            "w": "Only",
-            "t": 197.934
-          },
-          {
-            "w": "if",
-            "t": 198.388
-          },
-          {
-            "w": "exact",
-            "t": 198.843
-          },
-          {
-            "w": "hardware",
-            "t": 199.297
-          },
-          {
-            "w": "timestamping",
-            "t": 199.752
-          },
-          {
-            "w": "is",
-            "t": 200.206
-          },
-          {
-            "w": "synchronized",
-            "t": 200.661
-          },
-          {
-            "w": "at",
-            "t": 201.115
-          },
-          {
-            "w": "the",
-            "t": 201.57
-          },
-          {
-            "w": "nanosecond",
-            "t": 202.024
-          },
-          {
-            "w": "level",
-            "t": 202.479
+            "w": "entity",
+            "t": 231.732
           },
           {
             "w": "across",
-            "t": 202.933
-          },
-          {
-            "w": "clock",
-            "t": 203.387
-          },
-          {
-            "w": "domains.",
-            "t": 203.842
-          },
-          {
-            "w": "If",
-            "t": 204.296
-          },
-          {
-            "w": "timestamps",
-            "t": 204.751
-          },
-          {
-            "w": "drift,",
-            "t": 205.205
-          },
-          {
-            "w": "spatial",
-            "t": 205.66
-          },
-          {
-            "w": "point",
-            "t": 206.114
-          },
-          {
-            "w": "clouds",
-            "t": 206.569
-          },
-          {
-            "w": "warp",
-            "t": 207.023
-          },
-          {
-            "w": "along",
-            "t": 207.477
-          },
-          {
-            "w": "the",
-            "t": 207.932
-          },
-          {
-            "w": "vehicle",
-            "t": 208.386
-          },
-          {
-            "w": "velocity",
-            "t": 208.841
-          },
-          {
-            "w": "vector,",
-            "t": 209.295
-          },
-          {
-            "w": "invalidating",
-            "t": 209.75
-          },
-          {
-            "w": "3D",
-            "t": 210.204
-          },
-          {
-            "w": "bounding",
-            "t": 210.659
-          },
-          {
-            "w": "box",
-            "t": 211.113
-          },
-          {
-            "w": "tracking.",
-            "t": 211.568
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, what should students test first in the interactive laboratory below?",
-        "start": 212.772,
-        "end": 218.028,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 212.772
-          },
-          {
-            "w": "Nova,",
-            "t": 213.21
-          },
-          {
-            "w": "what",
-            "t": 213.648
-          },
-          {
-            "w": "should",
-            "t": 214.086
-          },
-          {
-            "w": "students",
-            "t": 214.524
-          },
-          {
-            "w": "test",
-            "t": 214.962
-          },
-          {
-            "w": "first",
-            "t": 215.4
-          },
-          {
-            "w": "in",
-            "t": 215.838
-          },
-          {
-            "w": "the",
-            "t": 216.276
-          },
-          {
-            "w": "interactive",
-            "t": 216.714
-          },
-          {
-            "w": "laboratory",
-            "t": 217.152
-          },
-          {
-            "w": "below?",
-            "t": 217.59
-          }
-        ]
-      },
-      {
-        "slide": 11,
-        "slideId": "s11",
-        "speaker": "Dr. Nova",
-        "text": "Inject out-of-bounds numerical values and examine how the automated schema validator detects structural anomalies before dirty tensors reach model training.",
-        "start": 218.378,
-        "end": 227.33,
-        "words": [
-          {
-            "w": "Inject",
-            "t": 218.378
-          },
-          {
-            "w": "out-of-bounds",
-            "t": 218.826
-          },
-          {
-            "w": "numerical",
-            "t": 219.273
-          },
-          {
-            "w": "values",
-            "t": 219.721
-          },
-          {
-            "w": "and",
-            "t": 220.168
-          },
-          {
-            "w": "examine",
-            "t": 220.616
-          },
-          {
-            "w": "how",
-            "t": 221.064
-          },
-          {
-            "w": "the",
-            "t": 221.511
-          },
-          {
-            "w": "automated",
-            "t": 221.959
-          },
-          {
-            "w": "schema",
-            "t": 222.406
-          },
-          {
-            "w": "validator",
-            "t": 222.854
-          },
-          {
-            "w": "detects",
-            "t": 223.302
-          },
-          {
-            "w": "structural",
-            "t": 223.749
-          },
-          {
-            "w": "anomalies",
-            "t": 224.197
-          },
-          {
-            "w": "before",
-            "t": 224.644
-          },
-          {
-            "w": "dirty",
-            "t": 225.092
-          },
-          {
-            "w": "tensors",
-            "t": 225.54
-          },
-          {
-            "w": "reach",
-            "t": 225.987
-          },
-          {
-            "w": "model",
-            "t": 226.435
-          },
-          {
-            "w": "training.",
-            "t": 226.882
-          }
-        ]
-      },
-      {
-        "slide": 12,
-        "slideId": "s12",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, where in our production pipeline should this Pydantic schema validation execute?",
-        "start": 228.08,
-        "end": 233.744,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 228.08
-          },
-          {
-            "w": "Nova,",
-            "t": 228.516
-          },
-          {
-            "w": "where",
-            "t": 228.951
-          },
-          {
-            "w": "in",
-            "t": 229.387
-          },
-          {
-            "w": "our",
-            "t": 229.823
-          },
-          {
-            "w": "production",
-            "t": 230.258
-          },
-          {
-            "w": "pipeline",
-            "t": 230.694
-          },
-          {
-            "w": "should",
-            "t": 231.13
-          },
-          {
-            "w": "this",
-            "t": 231.566
-          },
-          {
-            "w": "Pydantic",
-            "t": 232.001
-          },
-          {
-            "w": "schema",
-            "t": 232.437
-          },
-          {
-            "w": "validation",
-            "t": 232.873
-          },
-          {
-            "w": "execute?",
-            "t": 233.308
-          }
-        ]
-      },
-      {
-        "slide": 12,
-        "slideId": "s12",
-        "speaker": "Dr. Nova",
-        "text": "Directly at the ingestion API boundary, Kaito. Any record that violates schema contracts must be quarantined immediately to dead-letter queues rather than silently coerced into invalid training data.",
-        "start": 234.094,
-        "end": 246.742,
-        "words": [
-          {
-            "w": "Directly",
-            "t": 234.094
-          },
-          {
-            "w": "at",
-            "t": 234.546
-          },
-          {
-            "w": "the",
-            "t": 234.997
-          },
-          {
-            "w": "ingestion",
-            "t": 235.449
-          },
-          {
-            "w": "API",
-            "t": 235.901
-          },
-          {
-            "w": "boundary,",
-            "t": 236.353
-          },
-          {
-            "w": "Kaito.",
-            "t": 236.804
-          },
-          {
-            "w": "Any",
-            "t": 237.256
-          },
-          {
-            "w": "record",
-            "t": 237.708
-          },
-          {
-            "w": "that",
-            "t": 238.159
-          },
-          {
-            "w": "violates",
-            "t": 238.611
-          },
-          {
-            "w": "schema",
-            "t": 239.063
-          },
-          {
-            "w": "contracts",
-            "t": 239.515
-          },
-          {
-            "w": "must",
-            "t": 239.966
-          },
-          {
-            "w": "be",
-            "t": 240.418
-          },
-          {
-            "w": "quarantined",
-            "t": 240.87
-          },
-          {
-            "w": "immediately",
-            "t": 241.321
-          },
-          {
-            "w": "to",
-            "t": 241.773
-          },
-          {
-            "w": "dead-letter",
-            "t": 242.225
-          },
-          {
-            "w": "queues",
-            "t": 242.677
-          },
-          {
-            "w": "rather",
-            "t": 243.128
-          },
-          {
-            "w": "than",
-            "t": 243.58
-          },
-          {
-            "w": "silently",
-            "t": 244.032
-          },
-          {
-            "w": "coerced",
-            "t": 244.483
-          },
-          {
-            "w": "into",
-            "t": 244.935
-          },
-          {
-            "w": "invalid",
-            "t": 245.387
+            "t": 232.194
           },
           {
             "w": "training",
-            "t": 245.839
-          },
-          {
-            "w": "data.",
-            "t": 246.29
-          }
-        ]
-      },
-      {
-        "slide": 13,
-        "slideId": "s13",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, how does columnar Arrow memory achieve zero-copy validation on massive datasets?",
-        "start": 247.492,
-        "end": 253.588,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 247.492
-          },
-          {
-            "w": "Nova,",
-            "t": 247.961
-          },
-          {
-            "w": "how",
-            "t": 248.43
-          },
-          {
-            "w": "does",
-            "t": 248.899
-          },
-          {
-            "w": "columnar",
-            "t": 249.368
-          },
-          {
-            "w": "Arrow",
-            "t": 249.837
-          },
-          {
-            "w": "memory",
-            "t": 250.306
-          },
-          {
-            "w": "achieve",
-            "t": 250.774
-          },
-          {
-            "w": "zero-copy",
-            "t": 251.243
-          },
-          {
-            "w": "validation",
-            "t": 251.712
-          },
-          {
-            "w": "on",
-            "t": 252.181
-          },
-          {
-            "w": "massive",
-            "t": 252.65
-          },
-          {
-            "w": "datasets?",
-            "t": 253.119
-          }
-        ]
-      },
-      {
-        "slide": 13,
-        "slideId": "s13",
-        "speaker": "Dr. Nova",
-        "text": "By running vectorized bitmap checks directly on columnar arrays. Arrow validates null counts and numeric ranges across millions of rows in milliseconds, keeping ingestion pipelines blazing fast.",
-        "start": 253.938,
-        "end": 266.61,
-        "words": [
-          {
-            "w": "By",
-            "t": 253.938
-          },
-          {
-            "w": "running",
-            "t": 254.407
-          },
-          {
-            "w": "vectorized",
-            "t": 254.877
-          },
-          {
-            "w": "bitmap",
-            "t": 255.346
-          },
-          {
-            "w": "checks",
-            "t": 255.815
-          },
-          {
-            "w": "directly",
-            "t": 256.285
-          },
-          {
-            "w": "on",
-            "t": 256.754
-          },
-          {
-            "w": "columnar",
-            "t": 257.223
-          },
-          {
-            "w": "arrays.",
-            "t": 257.693
-          },
-          {
-            "w": "Arrow",
-            "t": 258.162
-          },
-          {
-            "w": "validates",
-            "t": 258.631
-          },
-          {
-            "w": "null",
-            "t": 259.101
-          },
-          {
-            "w": "counts",
-            "t": 259.57
+            "t": 232.656
           },
           {
             "w": "and",
-            "t": 260.039
+            "t": 233.118
           },
           {
-            "w": "numeric",
-            "t": 260.509
+            "w": "validation",
+            "t": 233.58
           },
           {
-            "w": "ranges",
-            "t": 260.978
+            "w": "splits!",
+            "t": 234.042
           },
           {
-            "w": "across",
-            "t": 261.447
+            "w": "If",
+            "t": 234.504
           },
           {
-            "w": "millions",
-            "t": 261.917
+            "w": "patient",
+            "t": 234.966
           },
           {
-            "w": "of",
-            "t": 262.386
+            "w": "forty-two",
+            "t": 235.428
           },
           {
-            "w": "rows",
-            "t": 262.855
+            "w": "appears",
+            "t": 235.89
           },
           {
             "w": "in",
-            "t": 263.325
+            "t": 236.352
           },
           {
-            "w": "milliseconds,",
-            "t": 263.794
+            "w": "both",
+            "t": 236.814
           },
           {
-            "w": "keeping",
-            "t": 264.263
+            "w": "training",
+            "t": 237.276
           },
           {
-            "w": "ingestion",
-            "t": 264.733
+            "w": "and",
+            "t": 237.738
           },
           {
-            "w": "pipelines",
-            "t": 265.202
+            "w": "test",
+            "t": 238.2
           },
           {
-            "w": "blazing",
-            "t": 265.671
-          },
-          {
-            "w": "fast.",
-            "t": 266.141
-          }
-        ]
-      },
-      {
-        "slide": 14,
-        "slideId": "s14",
-        "speaker": "Kaito",
-        "text": "Dr. Nova, how should data practitioners approach these diagnostic triage questions?",
-        "start": 267.36,
-        "end": 272.88,
-        "words": [
-          {
-            "w": "Dr.",
-            "t": 267.36
-          },
-          {
-            "w": "Nova,",
-            "t": 267.862
-          },
-          {
-            "w": "how",
-            "t": 268.364
-          },
-          {
-            "w": "should",
-            "t": 268.865
-          },
-          {
-            "w": "data",
-            "t": 269.367
-          },
-          {
-            "w": "practitioners",
-            "t": 269.869
-          },
-          {
-            "w": "approach",
-            "t": 270.371
-          },
-          {
-            "w": "these",
-            "t": 270.873
-          },
-          {
-            "w": "diagnostic",
-            "t": 271.375
-          },
-          {
-            "w": "triage",
-            "t": 271.876
-          },
-          {
-            "w": "questions?",
-            "t": 272.378
-          }
-        ]
-      },
-      {
-        "slide": 14,
-        "slideId": "s14",
-        "speaker": "Dr. Nova",
-        "text": "Always trace errors back to the data collection mechanism, Kaito. When a model exhibits unexplained degradation, eighty percent of the time the root cause is upstream data drift rather than optimizer hyperparameters.",
-        "start": 273.23,
-        "end": 286.454,
-        "words": [
-          {
-            "w": "Always",
-            "t": 273.23
-          },
-          {
-            "w": "trace",
-            "t": 273.643
-          },
-          {
-            "w": "errors",
-            "t": 274.057
-          },
-          {
-            "w": "back",
-            "t": 274.47
-          },
-          {
-            "w": "to",
-            "t": 274.883
+            "w": "sets,",
+            "t": 238.662
           },
           {
             "w": "the",
-            "t": 275.296
-          },
-          {
-            "w": "data",
-            "t": 275.709
-          },
-          {
-            "w": "collection",
-            "t": 276.123
-          },
-          {
-            "w": "mechanism,",
-            "t": 276.536
-          },
-          {
-            "w": "Kaito.",
-            "t": 276.949
-          },
-          {
-            "w": "When",
-            "t": 277.363
-          },
-          {
-            "w": "a",
-            "t": 277.776
+            "t": 239.124
           },
           {
             "w": "model",
-            "t": 278.189
+            "t": 239.586
           },
           {
-            "w": "exhibits",
-            "t": 278.602
+            "w": "memorizes",
+            "t": 240.048
           },
           {
-            "w": "unexplained",
-            "t": 279.016
+            "w": "patient-specific",
+            "t": 240.51
           },
           {
-            "w": "degradation,",
-            "t": 279.429
+            "w": "biological",
+            "t": 240.972
           },
           {
-            "w": "eighty",
-            "t": 279.842
-          },
-          {
-            "w": "percent",
-            "t": 280.255
-          },
-          {
-            "w": "of",
-            "t": 280.668
-          },
-          {
-            "w": "the",
-            "t": 281.082
-          },
-          {
-            "w": "time",
-            "t": 281.495
-          },
-          {
-            "w": "the",
-            "t": 281.908
-          },
-          {
-            "w": "root",
-            "t": 282.322
-          },
-          {
-            "w": "cause",
-            "t": 282.735
-          },
-          {
-            "w": "is",
-            "t": 283.148
-          },
-          {
-            "w": "upstream",
-            "t": 283.561
-          },
-          {
-            "w": "data",
-            "t": 283.975
-          },
-          {
-            "w": "drift",
-            "t": 284.388
+            "w": "quirks",
+            "t": 241.434
           },
           {
             "w": "rather",
-            "t": 284.801
+            "t": 241.896
           },
           {
             "w": "than",
-            "t": 285.214
+            "t": 242.358
           },
           {
-            "w": "optimizer",
-            "t": 285.627
+            "w": "generalizing",
+            "t": 242.82
           },
           {
-            "w": "hyperparameters.",
-            "t": 286.041
+            "w": "general",
+            "t": 243.282
+          },
+          {
+            "w": "disease",
+            "t": 243.744
+          },
+          {
+            "w": "pathophysiology.",
+            "t": 244.206
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "So record independence is not just an academic assumption—it determines whether our test accuracy is real or an illusion.",
+        "start": 245.018,
+        "end": 252.242,
+        "words": [
+          {
+            "w": "So",
+            "t": 245.018
+          },
+          {
+            "w": "record",
+            "t": 245.398
+          },
+          {
+            "w": "independence",
+            "t": 245.778
+          },
+          {
+            "w": "is",
+            "t": 246.159
+          },
+          {
+            "w": "not",
+            "t": 246.539
+          },
+          {
+            "w": "just",
+            "t": 246.919
+          },
+          {
+            "w": "an",
+            "t": 247.299
+          },
+          {
+            "w": "academic",
+            "t": 247.679
+          },
+          {
+            "w": "assumption—it",
+            "t": 248.06
+          },
+          {
+            "w": "determines",
+            "t": 248.44
+          },
+          {
+            "w": "whether",
+            "t": 248.82
+          },
+          {
+            "w": "our",
+            "t": 249.2
+          },
+          {
+            "w": "test",
+            "t": 249.581
+          },
+          {
+            "w": "accuracy",
+            "t": 249.961
+          },
+          {
+            "w": "is",
+            "t": 250.341
+          },
+          {
+            "w": "real",
+            "t": 250.721
+          },
+          {
+            "w": "or",
+            "t": 251.101
+          },
+          {
+            "w": "an",
+            "t": 251.482
+          },
+          {
+            "w": "illusion.",
+            "t": 251.862
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is why stratified group splitting by entity identifier is mandatory in production evaluation.",
+        "start": 252.592,
+        "end": 260.656,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 252.592
+          },
+          {
+            "w": "That",
+            "t": 253.13
+          },
+          {
+            "w": "is",
+            "t": 253.667
+          },
+          {
+            "w": "why",
+            "t": 254.205
+          },
+          {
+            "w": "stratified",
+            "t": 254.742
+          },
+          {
+            "w": "group",
+            "t": 255.28
+          },
+          {
+            "w": "splitting",
+            "t": 255.818
+          },
+          {
+            "w": "by",
+            "t": 256.355
+          },
+          {
+            "w": "entity",
+            "t": 256.893
+          },
+          {
+            "w": "identifier",
+            "t": 257.43
+          },
+          {
+            "w": "is",
+            "t": 257.968
+          },
+          {
+            "w": "mandatory",
+            "t": 258.506
+          },
+          {
+            "w": "in",
+            "t": 259.043
+          },
+          {
+            "w": "production",
+            "t": 259.581
+          },
+          {
+            "w": "evaluation.",
+            "t": 260.118
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does storage layout matter when we are designing machine learning datasets? Aren't all arrays the same in Python memory?",
+        "start": 261.406,
+        "end": 270.094,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 261.406
+          },
+          {
+            "w": "Nova,",
+            "t": 261.801
+          },
+          {
+            "w": "why",
+            "t": 262.196
+          },
+          {
+            "w": "does",
+            "t": 262.591
+          },
+          {
+            "w": "storage",
+            "t": 262.986
+          },
+          {
+            "w": "layout",
+            "t": 263.381
+          },
+          {
+            "w": "matter",
+            "t": 263.775
+          },
+          {
+            "w": "when",
+            "t": 264.17
+          },
+          {
+            "w": "we",
+            "t": 264.565
+          },
+          {
+            "w": "are",
+            "t": 264.96
+          },
+          {
+            "w": "designing",
+            "t": 265.355
+          },
+          {
+            "w": "machine",
+            "t": 265.75
+          },
+          {
+            "w": "learning",
+            "t": 266.145
+          },
+          {
+            "w": "datasets?",
+            "t": 266.54
+          },
+          {
+            "w": "Aren't",
+            "t": 266.935
+          },
+          {
+            "w": "all",
+            "t": 267.33
+          },
+          {
+            "w": "arrays",
+            "t": 267.725
+          },
+          {
+            "w": "the",
+            "t": 268.119
+          },
+          {
+            "w": "same",
+            "t": 268.514
+          },
+          {
+            "w": "in",
+            "t": 268.909
+          },
+          {
+            "w": "Python",
+            "t": 269.304
+          },
+          {
+            "w": "memory?",
+            "t": 269.699
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Not at all, Kaito! Training requires columnar projection: reading only five features out of five hundred. In a row-store database, you must scan all five hundred columns off disk. In columnar Parquet, you read only the requested byte vectors, eliminating ninety percent of I/O latency.",
+        "start": 270.444,
+        "end": 289.884,
+        "words": [
+          {
+            "w": "Not",
+            "t": 270.444
+          },
+          {
+            "w": "at",
+            "t": 270.876
+          },
+          {
+            "w": "all,",
+            "t": 271.308
+          },
+          {
+            "w": "Kaito!",
+            "t": 271.74
+          },
+          {
+            "w": "Training",
+            "t": 272.172
+          },
+          {
+            "w": "requires",
+            "t": 272.604
+          },
+          {
+            "w": "columnar",
+            "t": 273.036
+          },
+          {
+            "w": "projection:",
+            "t": 273.468
+          },
+          {
+            "w": "reading",
+            "t": 273.9
+          },
+          {
+            "w": "only",
+            "t": 274.332
+          },
+          {
+            "w": "five",
+            "t": 274.764
+          },
+          {
+            "w": "features",
+            "t": 275.196
+          },
+          {
+            "w": "out",
+            "t": 275.628
+          },
+          {
+            "w": "of",
+            "t": 276.06
+          },
+          {
+            "w": "five",
+            "t": 276.492
+          },
+          {
+            "w": "hundred.",
+            "t": 276.924
+          },
+          {
+            "w": "In",
+            "t": 277.356
+          },
+          {
+            "w": "a",
+            "t": 277.788
+          },
+          {
+            "w": "row-store",
+            "t": 278.22
+          },
+          {
+            "w": "database,",
+            "t": 278.652
+          },
+          {
+            "w": "you",
+            "t": 279.084
+          },
+          {
+            "w": "must",
+            "t": 279.516
+          },
+          {
+            "w": "scan",
+            "t": 279.948
+          },
+          {
+            "w": "all",
+            "t": 280.38
+          },
+          {
+            "w": "five",
+            "t": 280.812
+          },
+          {
+            "w": "hundred",
+            "t": 281.244
+          },
+          {
+            "w": "columns",
+            "t": 281.676
+          },
+          {
+            "w": "off",
+            "t": 282.108
+          },
+          {
+            "w": "disk.",
+            "t": 282.54
+          },
+          {
+            "w": "In",
+            "t": 282.972
+          },
+          {
+            "w": "columnar",
+            "t": 283.404
+          },
+          {
+            "w": "Parquet,",
+            "t": 283.836
+          },
+          {
+            "w": "you",
+            "t": 284.268
+          },
+          {
+            "w": "read",
+            "t": 284.7
+          },
+          {
+            "w": "only",
+            "t": 285.132
+          },
+          {
+            "w": "the",
+            "t": 285.564
+          },
+          {
+            "w": "requested",
+            "t": 285.996
+          },
+          {
+            "w": "byte",
+            "t": 286.428
+          },
+          {
+            "w": "vectors,",
+            "t": 286.86
+          },
+          {
+            "w": "eliminating",
+            "t": 287.292
+          },
+          {
+            "w": "ninety",
+            "t": 287.724
+          },
+          {
+            "w": "percent",
+            "t": 288.156
+          },
+          {
+            "w": "of",
+            "t": 288.588
+          },
+          {
+            "w": "I/O",
+            "t": 289.02
+          },
+          {
+            "w": "latency.",
+            "t": 289.452
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "So physical layout directly determines whether our training pipeline is GPU-bound or disk-bound!",
+        "start": 290.234,
+        "end": 295.97,
+        "words": [
+          {
+            "w": "So",
+            "t": 290.234
+          },
+          {
+            "w": "physical",
+            "t": 290.675
+          },
+          {
+            "w": "layout",
+            "t": 291.116
+          },
+          {
+            "w": "directly",
+            "t": 291.558
+          },
+          {
+            "w": "determines",
+            "t": 291.999
+          },
+          {
+            "w": "whether",
+            "t": 292.44
+          },
+          {
+            "w": "our",
+            "t": 292.881
+          },
+          {
+            "w": "training",
+            "t": 293.323
+          },
+          {
+            "w": "pipeline",
+            "t": 293.764
+          },
+          {
+            "w": "is",
+            "t": 294.205
+          },
+          {
+            "w": "GPU-bound",
+            "t": 294.646
+          },
+          {
+            "w": "or",
+            "t": 295.088
+          },
+          {
+            "w": "disk-bound!",
+            "t": 295.529
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. That is the essence of mechanical sympathy.",
+        "start": 296.32,
+        "end": 301.072,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 296.32
+          },
+          {
+            "w": "That",
+            "t": 296.914
+          },
+          {
+            "w": "is",
+            "t": 297.508
+          },
+          {
+            "w": "the",
+            "t": 298.102
+          },
+          {
+            "w": "essence",
+            "t": 298.696
+          },
+          {
+            "w": "of",
+            "t": 299.29
+          },
+          {
+            "w": "mechanical",
+            "t": 299.884
+          },
+          {
+            "w": "sympathy.",
+            "t": 300.478
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why is reading a CSV file into a Python DataFrame ten times slower than reading a Parquet file?",
+        "start": 301.822,
+        "end": 308.518,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 301.822
+          },
+          {
+            "w": "Nova,",
+            "t": 302.157
+          },
+          {
+            "w": "why",
+            "t": 302.492
+          },
+          {
+            "w": "is",
+            "t": 302.826
+          },
+          {
+            "w": "reading",
+            "t": 303.161
+          },
+          {
+            "w": "a",
+            "t": 303.496
+          },
+          {
+            "w": "CSV",
+            "t": 303.831
+          },
+          {
+            "w": "file",
+            "t": 304.166
+          },
+          {
+            "w": "into",
+            "t": 304.5
+          },
+          {
+            "w": "a",
+            "t": 304.835
+          },
+          {
+            "w": "Python",
+            "t": 305.17
+          },
+          {
+            "w": "DataFrame",
+            "t": 305.505
+          },
+          {
+            "w": "ten",
+            "t": 305.84
+          },
+          {
+            "w": "times",
+            "t": 306.174
+          },
+          {
+            "w": "slower",
+            "t": 306.509
+          },
+          {
+            "w": "than",
+            "t": 306.844
+          },
+          {
+            "w": "reading",
+            "t": 307.179
+          },
+          {
+            "w": "a",
+            "t": 307.514
+          },
+          {
+            "w": "Parquet",
+            "t": 307.848
+          },
+          {
+            "w": "file?",
+            "t": 308.183
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Because CSV is an unstructured ASCII text stream. The CPU must parse every comma and string character, allocate individual Python objects on the heap, and thrash CPU caches. Parquet stores binary columnar bytes directly formatted for memory loading.",
+        "start": 308.868,
+        "end": 326.052,
+        "words": [
+          {
+            "w": "Because",
+            "t": 308.868
+          },
+          {
+            "w": "CSV",
+            "t": 309.32
+          },
+          {
+            "w": "is",
+            "t": 309.772
+          },
+          {
+            "w": "an",
+            "t": 310.225
+          },
+          {
+            "w": "unstructured",
+            "t": 310.677
+          },
+          {
+            "w": "ASCII",
+            "t": 311.129
+          },
+          {
+            "w": "text",
+            "t": 311.581
+          },
+          {
+            "w": "stream.",
+            "t": 312.033
+          },
+          {
+            "w": "The",
+            "t": 312.486
+          },
+          {
+            "w": "CPU",
+            "t": 312.938
+          },
+          {
+            "w": "must",
+            "t": 313.39
+          },
+          {
+            "w": "parse",
+            "t": 313.842
+          },
+          {
+            "w": "every",
+            "t": 314.295
+          },
+          {
+            "w": "comma",
+            "t": 314.747
+          },
+          {
+            "w": "and",
+            "t": 315.199
+          },
+          {
+            "w": "string",
+            "t": 315.651
+          },
+          {
+            "w": "character,",
+            "t": 316.103
+          },
+          {
+            "w": "allocate",
+            "t": 316.556
+          },
+          {
+            "w": "individual",
+            "t": 317.008
+          },
+          {
+            "w": "Python",
+            "t": 317.46
+          },
+          {
+            "w": "objects",
+            "t": 317.912
+          },
+          {
+            "w": "on",
+            "t": 318.364
+          },
+          {
+            "w": "the",
+            "t": 318.817
+          },
+          {
+            "w": "heap,",
+            "t": 319.269
+          },
+          {
+            "w": "and",
+            "t": 319.721
+          },
+          {
+            "w": "thrash",
+            "t": 320.173
+          },
+          {
+            "w": "CPU",
+            "t": 320.625
+          },
+          {
+            "w": "caches.",
+            "t": 321.078
+          },
+          {
+            "w": "Parquet",
+            "t": 321.53
+          },
+          {
+            "w": "stores",
+            "t": 321.982
+          },
+          {
+            "w": "binary",
+            "t": 322.434
+          },
+          {
+            "w": "columnar",
+            "t": 322.887
+          },
+          {
+            "w": "bytes",
+            "t": 323.339
+          },
+          {
+            "w": "directly",
+            "t": 323.791
+          },
+          {
+            "w": "formatted",
+            "t": 324.243
+          },
+          {
+            "w": "for",
+            "t": 324.695
+          },
+          {
+            "w": "memory",
+            "t": 325.148
+          },
+          {
+            "w": "loading.",
+            "t": 325.6
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "And with Apache Arrow, we can share memory between Python and C++ with zero copying overhead?",
+        "start": 326.402,
+        "end": 332.69,
+        "words": [
+          {
+            "w": "And",
+            "t": 326.402
+          },
+          {
+            "w": "with",
+            "t": 326.795
+          },
+          {
+            "w": "Apache",
+            "t": 327.188
+          },
+          {
+            "w": "Arrow,",
+            "t": 327.581
+          },
+          {
+            "w": "we",
+            "t": 327.974
+          },
+          {
+            "w": "can",
+            "t": 328.367
+          },
+          {
+            "w": "share",
+            "t": 328.76
+          },
+          {
+            "w": "memory",
+            "t": 329.153
+          },
+          {
+            "w": "between",
+            "t": 329.546
+          },
+          {
+            "w": "Python",
+            "t": 329.939
+          },
+          {
+            "w": "and",
+            "t": 330.332
+          },
+          {
+            "w": "C++",
+            "t": 330.725
+          },
+          {
+            "w": "with",
+            "t": 331.118
+          },
+          {
+            "w": "zero",
+            "t": 331.511
+          },
+          {
+            "w": "copying",
+            "t": 331.904
+          },
+          {
+            "w": "overhead?",
+            "t": 332.297
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Arrow standardized the in-memory columnar format so analytics engines can inspect millions of records without moving a single byte.",
+        "start": 333.04,
+        "end": 342.688,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 333.04
+          },
+          {
+            "w": "Arrow",
+            "t": 333.522
+          },
+          {
+            "w": "standardized",
+            "t": 334.005
+          },
+          {
+            "w": "the",
+            "t": 334.487
+          },
+          {
+            "w": "in-memory",
+            "t": 334.97
+          },
+          {
+            "w": "columnar",
+            "t": 335.452
+          },
+          {
+            "w": "format",
+            "t": 335.934
+          },
+          {
+            "w": "so",
+            "t": 336.417
+          },
+          {
+            "w": "analytics",
+            "t": 336.899
+          },
+          {
+            "w": "engines",
+            "t": 337.382
+          },
+          {
+            "w": "can",
+            "t": 337.864
+          },
+          {
+            "w": "inspect",
+            "t": 338.346
+          },
+          {
+            "w": "millions",
+            "t": 338.829
+          },
+          {
+            "w": "of",
+            "t": 339.311
+          },
+          {
+            "w": "records",
+            "t": 339.794
+          },
+          {
+            "w": "without",
+            "t": 340.276
+          },
+          {
+            "w": "moving",
+            "t": 340.758
+          },
+          {
+            "w": "a",
+            "t": 341.241
+          },
+          {
+            "w": "single",
+            "t": 341.723
+          },
+          {
+            "w": "byte.",
+            "t": 342.206
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does Sambasivan's equation show that data quality errors compound rather than average out over large datasets?",
+        "start": 343.438,
+        "end": 350.902,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 343.438
+          },
+          {
+            "w": "Nova,",
+            "t": 343.831
+          },
+          {
+            "w": "why",
+            "t": 344.224
+          },
+          {
+            "w": "does",
+            "t": 344.617
+          },
+          {
+            "w": "Sambasivan's",
+            "t": 345.009
+          },
+          {
+            "w": "equation",
+            "t": 345.402
+          },
+          {
+            "w": "show",
+            "t": 345.795
+          },
+          {
+            "w": "that",
+            "t": 346.188
+          },
+          {
+            "w": "data",
+            "t": 346.581
+          },
+          {
+            "w": "quality",
+            "t": 346.974
+          },
+          {
+            "w": "errors",
+            "t": 347.366
+          },
+          {
+            "w": "compound",
+            "t": 347.759
+          },
+          {
+            "w": "rather",
+            "t": 348.152
+          },
+          {
+            "w": "than",
+            "t": 348.545
+          },
+          {
+            "w": "average",
+            "t": 348.938
+          },
+          {
+            "w": "out",
+            "t": 349.331
+          },
+          {
+            "w": "over",
+            "t": 349.723
+          },
+          {
+            "w": "large",
+            "t": 350.116
+          },
+          {
+            "w": "datasets?",
+            "t": 350.509
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Because machine learning models are trained using optimization algorithms that seek any predictive correlation, including spurious artifacts! When raw sensor noise passes into feature normalization, it skews the entire distribution manifold.",
+        "start": 351.252,
+        "end": 366.18,
+        "words": [
+          {
+            "w": "Because",
+            "t": 351.252
+          },
+          {
+            "w": "machine",
+            "t": 351.734
+          },
+          {
+            "w": "learning",
+            "t": 352.215
+          },
+          {
+            "w": "models",
+            "t": 352.697
+          },
+          {
+            "w": "are",
+            "t": 353.178
+          },
+          {
+            "w": "trained",
+            "t": 353.66
+          },
+          {
+            "w": "using",
+            "t": 354.141
+          },
+          {
+            "w": "optimization",
+            "t": 354.623
+          },
+          {
+            "w": "algorithms",
+            "t": 355.104
+          },
+          {
+            "w": "that",
+            "t": 355.586
+          },
+          {
+            "w": "seek",
+            "t": 356.067
+          },
+          {
+            "w": "any",
+            "t": 356.549
+          },
+          {
+            "w": "predictive",
+            "t": 357.031
+          },
+          {
+            "w": "correlation,",
+            "t": 357.512
+          },
+          {
+            "w": "including",
+            "t": 357.994
+          },
+          {
+            "w": "spurious",
+            "t": 358.475
+          },
+          {
+            "w": "artifacts!",
+            "t": 358.957
+          },
+          {
+            "w": "When",
+            "t": 359.438
+          },
+          {
+            "w": "raw",
+            "t": 359.92
+          },
+          {
+            "w": "sensor",
+            "t": 360.401
+          },
+          {
+            "w": "noise",
+            "t": 360.883
+          },
+          {
+            "w": "passes",
+            "t": 361.365
+          },
+          {
+            "w": "into",
+            "t": 361.846
+          },
+          {
+            "w": "feature",
+            "t": 362.328
+          },
+          {
+            "w": "normalization,",
+            "t": 362.809
+          },
+          {
+            "w": "it",
+            "t": 363.291
+          },
+          {
+            "w": "skews",
+            "t": 363.772
+          },
+          {
+            "w": "the",
+            "t": 364.254
+          },
+          {
+            "w": "entire",
+            "t": 364.735
+          },
+          {
+            "w": "distribution",
+            "t": 365.217
+          },
+          {
+            "w": "manifold.",
+            "t": 365.698
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "So if we spend months tuning hyperparameters instead of fixing the ingestion pipeline, we are treating symptoms instead of the disease.",
+        "start": 366.53,
+        "end": 374.258,
+        "words": [
+          {
+            "w": "So",
+            "t": 366.53
+          },
+          {
+            "w": "if",
+            "t": 366.898
+          },
+          {
+            "w": "we",
+            "t": 367.266
+          },
+          {
+            "w": "spend",
+            "t": 367.634
+          },
+          {
+            "w": "months",
+            "t": 368.002
+          },
+          {
+            "w": "tuning",
+            "t": 368.37
+          },
+          {
+            "w": "hyperparameters",
+            "t": 368.738
+          },
+          {
+            "w": "instead",
+            "t": 369.106
+          },
+          {
+            "w": "of",
+            "t": 369.474
+          },
+          {
+            "w": "fixing",
+            "t": 369.842
+          },
+          {
+            "w": "the",
+            "t": 370.21
+          },
+          {
+            "w": "ingestion",
+            "t": 370.578
+          },
+          {
+            "w": "pipeline,",
+            "t": 370.946
+          },
+          {
+            "w": "we",
+            "t": 371.314
+          },
+          {
+            "w": "are",
+            "t": 371.682
+          },
+          {
+            "w": "treating",
+            "t": 372.05
+          },
+          {
+            "w": "symptoms",
+            "t": 372.418
+          },
+          {
+            "w": "instead",
+            "t": 372.786
+          },
+          {
+            "w": "of",
+            "t": 373.154
+          },
+          {
+            "w": "the",
+            "t": 373.522
+          },
+          {
+            "w": "disease.",
+            "t": 373.89
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Upstream data hygiene delivers ten times the return on investment compared to hyperparameter optimization.",
+        "start": 374.608,
+        "end": 382.84,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 374.608
+          },
+          {
+            "w": "Upstream",
+            "t": 375.157
+          },
+          {
+            "w": "data",
+            "t": 375.706
+          },
+          {
+            "w": "hygiene",
+            "t": 376.254
+          },
+          {
+            "w": "delivers",
+            "t": 376.803
+          },
+          {
+            "w": "ten",
+            "t": 377.352
+          },
+          {
+            "w": "times",
+            "t": 377.901
+          },
+          {
+            "w": "the",
+            "t": 378.45
+          },
+          {
+            "w": "return",
+            "t": 378.998
+          },
+          {
+            "w": "on",
+            "t": 379.547
+          },
+          {
+            "w": "investment",
+            "t": 380.096
+          },
+          {
+            "w": "compared",
+            "t": 380.645
+          },
+          {
+            "w": "to",
+            "t": 381.194
+          },
+          {
+            "w": "hyperparameter",
+            "t": 381.742
+          },
+          {
+            "w": "optimization.",
+            "t": 382.291
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, which of these four cascade stages is the most difficult to diagnose once an AI system is already live in production?",
+        "start": 383.59,
+        "end": 391.078,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 383.59
+          },
+          {
+            "w": "Nova,",
+            "t": 383.916
+          },
+          {
+            "w": "which",
+            "t": 384.241
+          },
+          {
+            "w": "of",
+            "t": 384.567
+          },
+          {
+            "w": "these",
+            "t": 384.892
+          },
+          {
+            "w": "four",
+            "t": 385.218
+          },
+          {
+            "w": "cascade",
+            "t": 385.543
+          },
+          {
+            "w": "stages",
+            "t": 385.869
+          },
+          {
+            "w": "is",
+            "t": 386.195
+          },
+          {
+            "w": "the",
+            "t": 386.52
+          },
+          {
+            "w": "most",
+            "t": 386.846
+          },
+          {
+            "w": "difficult",
+            "t": 387.171
+          },
+          {
+            "w": "to",
+            "t": 387.497
+          },
+          {
+            "w": "diagnose",
+            "t": 387.822
+          },
+          {
+            "w": "once",
+            "t": 388.148
+          },
+          {
+            "w": "an",
+            "t": 388.473
+          },
+          {
+            "w": "AI",
+            "t": 388.799
+          },
+          {
+            "w": "system",
+            "t": 389.125
+          },
+          {
+            "w": "is",
+            "t": 389.45
+          },
+          {
+            "w": "already",
+            "t": 389.776
+          },
+          {
+            "w": "live",
+            "t": 390.101
+          },
+          {
+            "w": "in",
+            "t": 390.427
+          },
+          {
+            "w": "production?",
+            "t": 390.752
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "The feedback loop, Kaito! When a credit scoring or hiring algorithm rejects certain demographics, the company never collects positive performance outcomes for those individuals. The model creates its own self-fulfilling prophecy.",
+        "start": 391.428,
+        "end": 406.26,
+        "words": [
+          {
+            "w": "The",
+            "t": 391.428
+          },
+          {
+            "w": "feedback",
+            "t": 391.906
+          },
+          {
+            "w": "loop,",
+            "t": 392.385
+          },
+          {
+            "w": "Kaito!",
+            "t": 392.863
+          },
+          {
+            "w": "When",
+            "t": 393.342
+          },
+          {
+            "w": "a",
+            "t": 393.82
+          },
+          {
+            "w": "credit",
+            "t": 394.299
+          },
+          {
+            "w": "scoring",
+            "t": 394.777
+          },
+          {
+            "w": "or",
+            "t": 395.256
+          },
+          {
+            "w": "hiring",
+            "t": 395.734
+          },
+          {
+            "w": "algorithm",
+            "t": 396.213
+          },
+          {
+            "w": "rejects",
+            "t": 396.691
+          },
+          {
+            "w": "certain",
+            "t": 397.169
+          },
+          {
+            "w": "demographics,",
+            "t": 397.648
+          },
+          {
+            "w": "the",
+            "t": 398.126
+          },
+          {
+            "w": "company",
+            "t": 398.605
+          },
+          {
+            "w": "never",
+            "t": 399.083
+          },
+          {
+            "w": "collects",
+            "t": 399.562
+          },
+          {
+            "w": "positive",
+            "t": 400.04
+          },
+          {
+            "w": "performance",
+            "t": 400.519
+          },
+          {
+            "w": "outcomes",
+            "t": 400.997
+          },
+          {
+            "w": "for",
+            "t": 401.475
+          },
+          {
+            "w": "those",
+            "t": 401.954
+          },
+          {
+            "w": "individuals.",
+            "t": 402.432
+          },
+          {
+            "w": "The",
+            "t": 402.911
+          },
+          {
+            "w": "model",
+            "t": 403.389
+          },
+          {
+            "w": "creates",
+            "t": 403.868
+          },
+          {
+            "w": "its",
+            "t": 404.346
+          },
+          {
+            "w": "own",
+            "t": 404.825
+          },
+          {
+            "w": "self-fulfilling",
+            "t": 405.303
+          },
+          {
+            "w": "prophecy.",
+            "t": 405.782
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "And standard offline test metrics won't detect it because the test set is generated by the same biased collection mechanism!",
+        "start": 406.61,
+        "end": 413.786,
+        "words": [
+          {
+            "w": "And",
+            "t": 406.61
+          },
+          {
+            "w": "standard",
+            "t": 406.969
+          },
+          {
+            "w": "offline",
+            "t": 407.328
+          },
+          {
+            "w": "test",
+            "t": 407.686
+          },
+          {
+            "w": "metrics",
+            "t": 408.045
+          },
+          {
+            "w": "won't",
+            "t": 408.404
+          },
+          {
+            "w": "detect",
+            "t": 408.763
+          },
+          {
+            "w": "it",
+            "t": 409.122
+          },
+          {
+            "w": "because",
+            "t": 409.48
+          },
+          {
+            "w": "the",
+            "t": 409.839
+          },
+          {
+            "w": "test",
+            "t": 410.198
+          },
+          {
+            "w": "set",
+            "t": 410.557
+          },
+          {
+            "w": "is",
+            "t": 410.916
+          },
+          {
+            "w": "generated",
+            "t": 411.274
+          },
+          {
+            "w": "by",
+            "t": 411.633
+          },
+          {
+            "w": "the",
+            "t": 411.992
+          },
+          {
+            "w": "same",
+            "t": 412.351
+          },
+          {
+            "w": "biased",
+            "t": 412.71
+          },
+          {
+            "w": "collection",
+            "t": 413.068
+          },
+          {
+            "w": "mechanism!",
+            "t": 413.427
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is why offline evaluation benchmarks must be paired with out-of-distribution counterfactual testing.",
+        "start": 414.136,
+        "end": 422.248,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 414.136
+          },
+          {
+            "w": "That",
+            "t": 414.715
+          },
+          {
+            "w": "is",
+            "t": 415.295
+          },
+          {
+            "w": "why",
+            "t": 415.874
+          },
+          {
+            "w": "offline",
+            "t": 416.454
+          },
+          {
+            "w": "evaluation",
+            "t": 417.033
+          },
+          {
+            "w": "benchmarks",
+            "t": 417.613
+          },
+          {
+            "w": "must",
+            "t": 418.192
+          },
+          {
+            "w": "be",
+            "t": 418.771
+          },
+          {
+            "w": "paired",
+            "t": 419.351
+          },
+          {
+            "w": "with",
+            "t": 419.93
+          },
+          {
+            "w": "out-of-distribution",
+            "t": 420.51
+          },
+          {
+            "w": "counterfactual",
+            "t": 421.089
+          },
+          {
+            "w": "testing.",
+            "t": 421.669
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how could a state-of-the-art deep learning model mistake nurse check frequency for biological sepsis?",
+        "start": 422.998,
+        "end": 429.646,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 422.998
+          },
+          {
+            "w": "Nova,",
+            "t": 423.413
+          },
+          {
+            "w": "how",
+            "t": 423.829
+          },
+          {
+            "w": "could",
+            "t": 424.245
+          },
+          {
+            "w": "a",
+            "t": 424.66
+          },
+          {
+            "w": "state-of-the-art",
+            "t": 425.075
+          },
+          {
+            "w": "deep",
+            "t": 425.491
+          },
+          {
+            "w": "learning",
+            "t": 425.906
+          },
+          {
+            "w": "model",
+            "t": 426.322
+          },
+          {
+            "w": "mistake",
+            "t": 426.738
+          },
+          {
+            "w": "nurse",
+            "t": 427.153
+          },
+          {
+            "w": "check",
+            "t": 427.568
+          },
+          {
+            "w": "frequency",
+            "t": 427.984
+          },
+          {
+            "w": "for",
+            "t": 428.399
+          },
+          {
+            "w": "biological",
+            "t": 428.815
+          },
+          {
+            "w": "sepsis?",
+            "t": 429.231
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Because deep neural networks are opportunistic feature extractors! If nurse check frequency correlates with sepsis with ninety-five percent accuracy in the training dataset, gradient descent will exploit that shortcut before learning subtle physiological trends.",
+        "start": 429.996,
+        "end": 445.5,
+        "words": [
+          {
+            "w": "Because",
+            "t": 429.996
+          },
+          {
+            "w": "deep",
+            "t": 430.452
+          },
+          {
+            "w": "neural",
+            "t": 430.908
+          },
+          {
+            "w": "networks",
+            "t": 431.364
+          },
+          {
+            "w": "are",
+            "t": 431.82
+          },
+          {
+            "w": "opportunistic",
+            "t": 432.276
+          },
+          {
+            "w": "feature",
+            "t": 432.732
+          },
+          {
+            "w": "extractors!",
+            "t": 433.188
+          },
+          {
+            "w": "If",
+            "t": 433.644
+          },
+          {
+            "w": "nurse",
+            "t": 434.1
+          },
+          {
+            "w": "check",
+            "t": 434.556
+          },
+          {
+            "w": "frequency",
+            "t": 435.012
+          },
+          {
+            "w": "correlates",
+            "t": 435.468
+          },
+          {
+            "w": "with",
+            "t": 435.924
+          },
+          {
+            "w": "sepsis",
+            "t": 436.38
+          },
+          {
+            "w": "with",
+            "t": 436.836
+          },
+          {
+            "w": "ninety-five",
+            "t": 437.292
+          },
+          {
+            "w": "percent",
+            "t": 437.748
+          },
+          {
+            "w": "accuracy",
+            "t": 438.204
+          },
+          {
+            "w": "in",
+            "t": 438.66
+          },
+          {
+            "w": "the",
+            "t": 439.116
+          },
+          {
+            "w": "training",
+            "t": 439.572
+          },
+          {
+            "w": "dataset,",
+            "t": 440.028
+          },
+          {
+            "w": "gradient",
+            "t": 440.484
+          },
+          {
+            "w": "descent",
+            "t": 440.94
+          },
+          {
+            "w": "will",
+            "t": 441.396
+          },
+          {
+            "w": "exploit",
+            "t": 441.852
+          },
+          {
+            "w": "that",
+            "t": 442.308
+          },
+          {
+            "w": "shortcut",
+            "t": 442.764
+          },
+          {
+            "w": "before",
+            "t": 443.22
+          },
+          {
+            "w": "learning",
+            "t": 443.676
+          },
+          {
+            "w": "subtle",
+            "t": 444.132
+          },
+          {
+            "w": "physiological",
+            "t": 444.588
+          },
+          {
+            "w": "trends.",
+            "t": 445.044
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "And when the model arrived at the new hospital with automated continuous arterial lines, that entire correlation broke down!",
+        "start": 445.85,
+        "end": 453.29,
+        "words": [
+          {
+            "w": "And",
+            "t": 445.85
+          },
+          {
+            "w": "when",
+            "t": 446.242
+          },
+          {
+            "w": "the",
+            "t": 446.633
+          },
+          {
+            "w": "model",
+            "t": 447.025
+          },
+          {
+            "w": "arrived",
+            "t": 447.416
+          },
+          {
+            "w": "at",
+            "t": 447.808
+          },
+          {
+            "w": "the",
+            "t": 448.199
+          },
+          {
+            "w": "new",
+            "t": 448.591
+          },
+          {
+            "w": "hospital",
+            "t": 448.983
+          },
+          {
+            "w": "with",
+            "t": 449.374
+          },
+          {
+            "w": "automated",
+            "t": 449.766
+          },
+          {
+            "w": "continuous",
+            "t": 450.157
+          },
+          {
+            "w": "arterial",
+            "t": 450.549
+          },
+          {
+            "w": "lines,",
+            "t": 450.941
+          },
+          {
+            "w": "that",
+            "t": 451.332
+          },
+          {
+            "w": "entire",
+            "t": 451.724
+          },
+          {
+            "w": "correlation",
+            "t": 452.115
+          },
+          {
+            "w": "broke",
+            "t": 452.507
+          },
+          {
+            "w": "down!",
+            "t": 452.898
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. The model completely failed because it was predicting human clinical workflows rather than human biology.",
+        "start": 453.64,
+        "end": 461.56,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 453.64
+          },
+          {
+            "w": "The",
+            "t": 454.135
+          },
+          {
+            "w": "model",
+            "t": 454.63
+          },
+          {
+            "w": "completely",
+            "t": 455.125
+          },
+          {
+            "w": "failed",
+            "t": 455.62
+          },
+          {
+            "w": "because",
+            "t": 456.115
+          },
+          {
+            "w": "it",
+            "t": 456.61
+          },
+          {
+            "w": "was",
+            "t": 457.105
+          },
+          {
+            "w": "predicting",
+            "t": 457.6
+          },
+          {
+            "w": "human",
+            "t": 458.095
+          },
+          {
+            "w": "clinical",
+            "t": 458.59
+          },
+          {
+            "w": "workflows",
+            "t": 459.085
+          },
+          {
+            "w": "rather",
+            "t": 459.58
+          },
+          {
+            "w": "than",
+            "t": 460.075
+          },
+          {
+            "w": "human",
+            "t": 460.57
+          },
+          {
+            "w": "biology.",
+            "t": 461.065
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, can't modern transformer sensor fusion networks learn to compensate for twenty milliseconds of camera-LiDAR time lag?",
+        "start": 462.31,
+        "end": 470.206,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 462.31
+          },
+          {
+            "w": "Nova,",
+            "t": 462.749
+          },
+          {
+            "w": "can't",
+            "t": 463.187
+          },
+          {
+            "w": "modern",
+            "t": 463.626
+          },
+          {
+            "w": "transformer",
+            "t": 464.065
+          },
+          {
+            "w": "sensor",
+            "t": 464.503
+          },
+          {
+            "w": "fusion",
+            "t": 464.942
+          },
+          {
+            "w": "networks",
+            "t": 465.381
+          },
+          {
+            "w": "learn",
+            "t": 465.819
+          },
+          {
+            "w": "to",
+            "t": 466.258
+          },
+          {
+            "w": "compensate",
+            "t": 466.697
+          },
+          {
+            "w": "for",
+            "t": 467.135
+          },
+          {
+            "w": "twenty",
+            "t": 467.574
+          },
+          {
+            "w": "milliseconds",
+            "t": 468.013
+          },
+          {
+            "w": "of",
+            "t": 468.451
+          },
+          {
+            "w": "camera-LiDAR",
+            "t": 468.89
+          },
+          {
+            "w": "time",
+            "t": 469.329
+          },
+          {
+            "w": "lag?",
+            "t": 469.767
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Only if velocity and acceleration are perfectly constant, Kaito. During sudden braking or cornering, velocity changes rapidly. A twenty-millisecond asynchronous lag warps the point cloud non-linearly along the trajectory, destroying 3D spatial alignment.",
+        "start": 470.556,
+        "end": 487.692,
+        "words": [
+          {
+            "w": "Only",
+            "t": 470.556
+          },
+          {
+            "w": "if",
+            "t": 471.075
+          },
+          {
+            "w": "velocity",
+            "t": 471.595
+          },
+          {
+            "w": "and",
+            "t": 472.114
+          },
+          {
+            "w": "acceleration",
+            "t": 472.633
+          },
+          {
+            "w": "are",
+            "t": 473.152
+          },
+          {
+            "w": "perfectly",
+            "t": 473.672
+          },
+          {
+            "w": "constant,",
+            "t": 474.191
+          },
+          {
+            "w": "Kaito.",
+            "t": 474.71
+          },
+          {
+            "w": "During",
+            "t": 475.229
+          },
+          {
+            "w": "sudden",
+            "t": 475.749
+          },
+          {
+            "w": "braking",
+            "t": 476.268
+          },
+          {
+            "w": "or",
+            "t": 476.787
+          },
+          {
+            "w": "cornering,",
+            "t": 477.307
+          },
+          {
+            "w": "velocity",
+            "t": 477.826
+          },
+          {
+            "w": "changes",
+            "t": 478.345
+          },
+          {
+            "w": "rapidly.",
+            "t": 478.864
+          },
+          {
+            "w": "A",
+            "t": 479.384
+          },
+          {
+            "w": "twenty-millisecond",
+            "t": 479.903
+          },
+          {
+            "w": "asynchronous",
+            "t": 480.422
+          },
+          {
+            "w": "lag",
+            "t": 480.941
+          },
+          {
+            "w": "warps",
+            "t": 481.461
+          },
+          {
+            "w": "the",
+            "t": 481.98
+          },
+          {
+            "w": "point",
+            "t": 482.499
+          },
+          {
+            "w": "cloud",
+            "t": 483.019
+          },
+          {
+            "w": "non-linearly",
+            "t": 483.538
+          },
+          {
+            "w": "along",
+            "t": 484.057
+          },
+          {
+            "w": "the",
+            "t": 484.576
+          },
+          {
+            "w": "trajectory,",
+            "t": 485.096
+          },
+          {
+            "w": "destroying",
+            "t": 485.615
+          },
+          {
+            "w": "3D",
+            "t": 486.134
+          },
+          {
+            "w": "spatial",
+            "t": 486.653
+          },
+          {
+            "w": "alignment.",
+            "t": 487.173
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "So hardware timestamping and network clock domains are actually core dataset attributes!",
+        "start": 488.042,
+        "end": 493.538,
+        "words": [
+          {
+            "w": "So",
+            "t": 488.042
+          },
+          {
+            "w": "hardware",
+            "t": 488.5
+          },
+          {
+            "w": "timestamping",
+            "t": 488.958
+          },
+          {
+            "w": "and",
+            "t": 489.416
+          },
+          {
+            "w": "network",
+            "t": 489.874
+          },
+          {
+            "w": "clock",
+            "t": 490.332
+          },
+          {
+            "w": "domains",
+            "t": 490.79
+          },
+          {
+            "w": "are",
+            "t": 491.248
+          },
+          {
+            "w": "actually",
+            "t": 491.706
+          },
+          {
+            "w": "core",
+            "t": 492.164
+          },
+          {
+            "w": "dataset",
+            "t": 492.622
+          },
+          {
+            "w": "attributes!",
+            "t": 493.08
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. If your hardware timestamps lack microsecond PTP synchronization, no amount of deep learning can recover true 3D spatial geometry.",
+        "start": 493.888,
+        "end": 504.208,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 493.888
+          },
+          {
+            "w": "If",
+            "t": 494.404
+          },
+          {
+            "w": "your",
+            "t": 494.92
+          },
+          {
+            "w": "hardware",
+            "t": 495.436
+          },
+          {
+            "w": "timestamps",
+            "t": 495.952
+          },
+          {
+            "w": "lack",
+            "t": 496.468
+          },
+          {
+            "w": "microsecond",
+            "t": 496.984
+          },
+          {
+            "w": "PTP",
+            "t": 497.5
+          },
+          {
+            "w": "synchronization,",
+            "t": 498.016
+          },
+          {
+            "w": "no",
+            "t": 498.532
+          },
+          {
+            "w": "amount",
+            "t": 499.048
+          },
+          {
+            "w": "of",
+            "t": 499.564
+          },
+          {
+            "w": "deep",
+            "t": 500.08
+          },
+          {
+            "w": "learning",
+            "t": 500.596
+          },
+          {
+            "w": "can",
+            "t": 501.112
+          },
+          {
+            "w": "recover",
+            "t": 501.628
+          },
+          {
+            "w": "true",
+            "t": 502.144
+          },
+          {
+            "w": "3D",
+            "t": 502.66
+          },
+          {
+            "w": "spatial",
+            "t": 503.176
+          },
+          {
+            "w": "geometry.",
+            "t": 503.692
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what is the Cascade Risk Index computed by the validator in Section 5?",
+        "start": 504.958,
+        "end": 510.79,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 504.958
+          },
+          {
+            "w": "Nova,",
+            "t": 505.347
+          },
+          {
+            "w": "what",
+            "t": 505.736
+          },
+          {
+            "w": "is",
+            "t": 506.124
+          },
+          {
+            "w": "the",
+            "t": 506.513
+          },
+          {
+            "w": "Cascade",
+            "t": 506.902
+          },
+          {
+            "w": "Risk",
+            "t": 507.291
+          },
+          {
+            "w": "Index",
+            "t": 507.68
+          },
+          {
+            "w": "computed",
+            "t": 508.068
+          },
+          {
+            "w": "by",
+            "t": 508.457
+          },
+          {
+            "w": "the",
+            "t": 508.846
+          },
+          {
+            "w": "validator",
+            "t": 509.235
+          },
+          {
+            "w": "in",
+            "t": 509.624
+          },
+          {
+            "w": "Section",
+            "t": 510.012
+          },
+          {
+            "w": "5?",
+            "t": 510.401
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "It is a weighted heuristic that sums missing cells at one point five, type violations at two point zero, and extreme outliers at three point zero, normalized over total matrix cells. When that score exceeds zero point three, downstream model collapse is statistically inevitable.",
+        "start": 511.14,
+        "end": 528.564,
+        "words": [
+          {
+            "w": "It",
+            "t": 511.14
+          },
+          {
+            "w": "is",
+            "t": 511.536
+          },
+          {
+            "w": "a",
+            "t": 511.932
+          },
+          {
+            "w": "weighted",
+            "t": 512.328
+          },
+          {
+            "w": "heuristic",
+            "t": 512.724
+          },
+          {
+            "w": "that",
+            "t": 513.12
+          },
+          {
+            "w": "sums",
+            "t": 513.516
+          },
+          {
+            "w": "missing",
+            "t": 513.912
+          },
+          {
+            "w": "cells",
+            "t": 514.308
+          },
+          {
+            "w": "at",
+            "t": 514.704
+          },
+          {
+            "w": "one",
+            "t": 515.1
+          },
+          {
+            "w": "point",
+            "t": 515.496
+          },
+          {
+            "w": "five,",
+            "t": 515.892
+          },
+          {
+            "w": "type",
+            "t": 516.288
+          },
+          {
+            "w": "violations",
+            "t": 516.684
+          },
+          {
+            "w": "at",
+            "t": 517.08
+          },
+          {
+            "w": "two",
+            "t": 517.476
+          },
+          {
+            "w": "point",
+            "t": 517.872
+          },
+          {
+            "w": "zero,",
+            "t": 518.268
+          },
+          {
+            "w": "and",
+            "t": 518.664
+          },
+          {
+            "w": "extreme",
+            "t": 519.06
+          },
+          {
+            "w": "outliers",
+            "t": 519.456
+          },
+          {
+            "w": "at",
+            "t": 519.852
+          },
+          {
+            "w": "three",
+            "t": 520.248
+          },
+          {
+            "w": "point",
+            "t": 520.644
+          },
+          {
+            "w": "zero,",
+            "t": 521.04
+          },
+          {
+            "w": "normalized",
+            "t": 521.436
+          },
+          {
+            "w": "over",
+            "t": 521.832
+          },
+          {
+            "w": "total",
+            "t": 522.228
+          },
+          {
+            "w": "matrix",
+            "t": 522.624
+          },
+          {
+            "w": "cells.",
+            "t": 523.02
+          },
+          {
+            "w": "When",
+            "t": 523.416
+          },
+          {
+            "w": "that",
+            "t": 523.812
+          },
+          {
+            "w": "score",
+            "t": 524.208
+          },
+          {
+            "w": "exceeds",
+            "t": 524.604
+          },
+          {
+            "w": "zero",
+            "t": 525.0
+          },
+          {
+            "w": "point",
+            "t": 525.396
+          },
+          {
+            "w": "three,",
+            "t": 525.792
+          },
+          {
+            "w": "downstream",
+            "t": 526.188
+          },
+          {
+            "w": "model",
+            "t": 526.584
+          },
+          {
+            "w": "collapse",
+            "t": 526.98
+          },
+          {
+            "w": "is",
+            "t": 527.376
+          },
+          {
+            "w": "statistically",
+            "t": 527.772
+          },
+          {
+            "w": "inevitable.",
+            "t": 528.168
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "And the inspector allows us to audit raw CSV streams right in the browser before saving to disk!",
+        "start": 528.914,
+        "end": 534.746,
+        "words": [
+          {
+            "w": "And",
+            "t": 528.914
+          },
+          {
+            "w": "the",
+            "t": 529.238
+          },
+          {
+            "w": "inspector",
+            "t": 529.562
+          },
+          {
+            "w": "allows",
+            "t": 529.886
+          },
+          {
+            "w": "us",
+            "t": 530.21
+          },
+          {
+            "w": "to",
+            "t": 530.534
+          },
+          {
+            "w": "audit",
+            "t": 530.858
+          },
+          {
+            "w": "raw",
+            "t": 531.182
+          },
+          {
+            "w": "CSV",
+            "t": 531.506
+          },
+          {
+            "w": "streams",
+            "t": 531.83
+          },
+          {
+            "w": "right",
+            "t": 532.154
+          },
+          {
+            "w": "in",
+            "t": 532.478
+          },
+          {
+            "w": "the",
+            "t": 532.802
+          },
+          {
+            "w": "browser",
+            "t": 533.126
+          },
+          {
+            "w": "before",
+            "t": 533.45
+          },
+          {
+            "w": "saving",
+            "t": 533.774
+          },
+          {
+            "w": "to",
+            "t": 534.098
+          },
+          {
+            "w": "disk!",
+            "t": 534.422
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Try clicking Inject Corrupt Noise in Section 5 below to see the cascade warning trigger live.",
+        "start": 535.096,
+        "end": 542.8,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 535.096
+          },
+          {
+            "w": "Try",
+            "t": 535.549
+          },
+          {
+            "w": "clicking",
+            "t": 536.002
+          },
+          {
+            "w": "Inject",
+            "t": 536.456
+          },
+          {
+            "w": "Corrupt",
+            "t": 536.909
+          },
+          {
+            "w": "Noise",
+            "t": 537.362
+          },
+          {
+            "w": "in",
+            "t": 537.815
+          },
+          {
+            "w": "Section",
+            "t": 538.268
+          },
+          {
+            "w": "5",
+            "t": 538.721
+          },
+          {
+            "w": "below",
+            "t": 539.175
+          },
+          {
+            "w": "to",
+            "t": 539.628
+          },
+          {
+            "w": "see",
+            "t": 540.081
+          },
+          {
+            "w": "the",
+            "t": 540.534
+          },
+          {
+            "w": "cascade",
+            "t": 540.987
+          },
+          {
+            "w": "warning",
+            "t": 541.44
+          },
+          {
+            "w": "trigger",
+            "t": 541.894
+          },
+          {
+            "w": "live.",
+            "t": 542.347
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do we use Pydantic field validators instead of simple if-else statements inside our data loader?",
+        "start": 543.55,
+        "end": 550.246,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 543.55
+          },
+          {
+            "w": "Nova,",
+            "t": 543.922
+          },
+          {
+            "w": "why",
+            "t": 544.294
+          },
+          {
+            "w": "do",
+            "t": 544.666
+          },
+          {
+            "w": "we",
+            "t": 545.038
+          },
+          {
+            "w": "use",
+            "t": 545.41
+          },
+          {
+            "w": "Pydantic",
+            "t": 545.782
+          },
+          {
+            "w": "field",
+            "t": 546.154
+          },
+          {
+            "w": "validators",
+            "t": 546.526
+          },
+          {
+            "w": "instead",
+            "t": 546.898
+          },
+          {
+            "w": "of",
+            "t": 547.27
+          },
+          {
+            "w": "simple",
+            "t": 547.642
+          },
+          {
+            "w": "if-else",
+            "t": 548.014
+          },
+          {
+            "w": "statements",
+            "t": 548.386
+          },
+          {
+            "w": "inside",
+            "t": 548.758
+          },
+          {
+            "w": "our",
+            "t": 549.13
+          },
+          {
+            "w": "data",
+            "t": 549.502
+          },
+          {
+            "w": "loader?",
+            "t": 549.874
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Because if-else statements scattered across data loaders create technical debt and maintenance nightmares! Pydantic models serve as self-documenting, synthesizable contracts that can generate OpenAPI specifications and compile into high-speed Rust validation binaries.",
+        "start": 550.596,
+        "end": 566.724,
+        "words": [
+          {
+            "w": "Because",
+            "t": 550.596
+          },
+          {
+            "w": "if-else",
+            "t": 551.1
+          },
+          {
+            "w": "statements",
+            "t": 551.604
+          },
+          {
+            "w": "scattered",
+            "t": 552.108
+          },
+          {
+            "w": "across",
+            "t": 552.612
+          },
+          {
+            "w": "data",
+            "t": 553.116
+          },
+          {
+            "w": "loaders",
+            "t": 553.62
+          },
+          {
+            "w": "create",
+            "t": 554.124
+          },
+          {
+            "w": "technical",
+            "t": 554.628
+          },
+          {
+            "w": "debt",
+            "t": 555.132
+          },
+          {
+            "w": "and",
+            "t": 555.636
+          },
+          {
+            "w": "maintenance",
+            "t": 556.14
+          },
+          {
+            "w": "nightmares!",
+            "t": 556.644
+          },
+          {
+            "w": "Pydantic",
+            "t": 557.148
+          },
+          {
+            "w": "models",
+            "t": 557.652
+          },
+          {
+            "w": "serve",
+            "t": 558.156
+          },
+          {
+            "w": "as",
+            "t": 558.66
+          },
+          {
+            "w": "self-documenting,",
+            "t": 559.164
+          },
+          {
+            "w": "synthesizable",
+            "t": 559.668
+          },
+          {
+            "w": "contracts",
+            "t": 560.172
+          },
+          {
+            "w": "that",
+            "t": 560.676
+          },
+          {
+            "w": "can",
+            "t": 561.18
+          },
+          {
+            "w": "generate",
+            "t": 561.684
+          },
+          {
+            "w": "OpenAPI",
+            "t": 562.188
+          },
+          {
+            "w": "specifications",
+            "t": 562.692
+          },
+          {
+            "w": "and",
+            "t": 563.196
+          },
+          {
+            "w": "compile",
+            "t": 563.7
+          },
+          {
+            "w": "into",
+            "t": 564.204
+          },
+          {
+            "w": "high-speed",
+            "t": 564.708
+          },
+          {
+            "w": "Rust",
+            "t": 565.212
+          },
+          {
+            "w": "validation",
+            "t": 565.716
+          },
+          {
+            "w": "binaries.",
+            "t": 566.22
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "And if an upstream vendor sends an invalid customer ID or negative price, Pydantic immediately rejects it with line-number precision!",
+        "start": 567.074,
+        "end": 574.994,
+        "words": [
+          {
+            "w": "And",
+            "t": 567.074
+          },
+          {
+            "w": "if",
+            "t": 567.47
+          },
+          {
+            "w": "an",
+            "t": 567.866
+          },
+          {
+            "w": "upstream",
+            "t": 568.262
+          },
+          {
+            "w": "vendor",
+            "t": 568.658
+          },
+          {
+            "w": "sends",
+            "t": 569.054
+          },
+          {
+            "w": "an",
+            "t": 569.45
+          },
+          {
+            "w": "invalid",
+            "t": 569.846
+          },
+          {
+            "w": "customer",
+            "t": 570.242
+          },
+          {
+            "w": "ID",
+            "t": 570.638
+          },
+          {
+            "w": "or",
+            "t": 571.034
+          },
+          {
+            "w": "negative",
+            "t": 571.43
+          },
+          {
+            "w": "price,",
+            "t": 571.826
+          },
+          {
+            "w": "Pydantic",
+            "t": 572.222
+          },
+          {
+            "w": "immediately",
+            "t": 572.618
+          },
+          {
+            "w": "rejects",
+            "t": 573.014
+          },
+          {
+            "w": "it",
+            "t": 573.41
+          },
+          {
+            "w": "with",
+            "t": 573.806
+          },
+          {
+            "w": "line-number",
+            "t": 574.202
+          },
+          {
+            "w": "precision!",
+            "t": 574.598
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You isolate the defect at the boundary before it contaminates feature stores.",
+        "start": 575.344,
+        "end": 581.872,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 575.344
+          },
+          {
+            "w": "You",
+            "t": 575.846
+          },
+          {
+            "w": "isolate",
+            "t": 576.348
+          },
+          {
+            "w": "the",
+            "t": 576.85
+          },
+          {
+            "w": "defect",
+            "t": 577.353
+          },
+          {
+            "w": "at",
+            "t": 577.855
+          },
+          {
+            "w": "the",
+            "t": 578.357
+          },
+          {
+            "w": "boundary",
+            "t": 578.859
+          },
+          {
+            "w": "before",
+            "t": 579.361
+          },
+          {
+            "w": "it",
+            "t": 579.863
+          },
+          {
+            "w": "contaminates",
+            "t": 580.366
+          },
+          {
+            "w": "feature",
+            "t": 580.868
+          },
+          {
+            "w": "stores.",
+            "t": 581.37
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how does Polars validate ten million rows in one hundred and forty-two milliseconds when Python loops take minutes?",
+        "start": 582.622,
+        "end": 589.966,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 582.622
+          },
+          {
+            "w": "Nova,",
+            "t": 582.989
+          },
+          {
+            "w": "how",
+            "t": 583.356
+          },
+          {
+            "w": "does",
+            "t": 583.724
+          },
+          {
+            "w": "Polars",
+            "t": 584.091
+          },
+          {
+            "w": "validate",
+            "t": 584.458
+          },
+          {
+            "w": "ten",
+            "t": 584.825
+          },
+          {
+            "w": "million",
+            "t": 585.192
+          },
+          {
+            "w": "rows",
+            "t": 585.56
+          },
+          {
+            "w": "in",
+            "t": 585.927
+          },
+          {
+            "w": "one",
+            "t": 586.294
+          },
+          {
+            "w": "hundred",
+            "t": 586.661
+          },
+          {
+            "w": "and",
+            "t": 587.028
+          },
+          {
+            "w": "forty-two",
+            "t": 587.396
+          },
+          {
+            "w": "milliseconds",
+            "t": 587.763
+          },
+          {
+            "w": "when",
+            "t": 588.13
+          },
+          {
+            "w": "Python",
+            "t": 588.497
+          },
+          {
+            "w": "loops",
+            "t": 588.864
+          },
+          {
+            "w": "take",
+            "t": 589.232
+          },
+          {
+            "w": "minutes?",
+            "t": 589.599
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "By bypassing Python runtime overhead completely! Polars compiles expressions into query execution graphs executed in Rust and C++ across all CPU cores, utilizing SIMD vector registers on Apache Arrow memory buffers.",
+        "start": 590.316,
+        "end": 605.916,
+        "words": [
+          {
+            "w": "By",
+            "t": 590.316
+          },
+          {
+            "w": "bypassing",
+            "t": 590.819
+          },
+          {
+            "w": "Python",
+            "t": 591.322
+          },
+          {
+            "w": "runtime",
+            "t": 591.826
+          },
+          {
+            "w": "overhead",
+            "t": 592.329
+          },
+          {
+            "w": "completely!",
+            "t": 592.832
+          },
+          {
+            "w": "Polars",
+            "t": 593.335
+          },
+          {
+            "w": "compiles",
+            "t": 593.839
+          },
+          {
+            "w": "expressions",
+            "t": 594.342
+          },
+          {
+            "w": "into",
+            "t": 594.845
+          },
+          {
+            "w": "query",
+            "t": 595.348
+          },
+          {
+            "w": "execution",
+            "t": 595.851
+          },
+          {
+            "w": "graphs",
+            "t": 596.355
+          },
+          {
+            "w": "executed",
+            "t": 596.858
+          },
+          {
+            "w": "in",
+            "t": 597.361
+          },
+          {
+            "w": "Rust",
+            "t": 597.864
+          },
+          {
+            "w": "and",
+            "t": 598.368
+          },
+          {
+            "w": "C++",
+            "t": 598.871
+          },
+          {
+            "w": "across",
+            "t": 599.374
+          },
+          {
+            "w": "all",
+            "t": 599.877
+          },
+          {
+            "w": "CPU",
+            "t": 600.381
+          },
+          {
+            "w": "cores,",
+            "t": 600.884
+          },
+          {
+            "w": "utilizing",
+            "t": 601.387
+          },
+          {
+            "w": "SIMD",
+            "t": 601.89
+          },
+          {
+            "w": "vector",
+            "t": 602.393
+          },
+          {
+            "w": "registers",
+            "t": 602.897
+          },
+          {
+            "w": "on",
+            "t": 603.4
+          },
+          {
+            "w": "Apache",
+            "t": 603.903
+          },
+          {
+            "w": "Arrow",
+            "t": 604.406
+          },
+          {
+            "w": "memory",
+            "t": 604.91
+          },
+          {
+            "w": "buffers.",
+            "t": 605.413
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "So we use Pydantic for individual REST transactions, and Polars for massive batch file ingestion!",
+        "start": 606.266,
+        "end": 612.434,
+        "words": [
+          {
+            "w": "So",
+            "t": 606.266
+          },
+          {
+            "w": "we",
+            "t": 606.677
+          },
+          {
+            "w": "use",
+            "t": 607.088
+          },
+          {
+            "w": "Pydantic",
+            "t": 607.5
+          },
+          {
+            "w": "for",
+            "t": 607.911
+          },
+          {
+            "w": "individual",
+            "t": 608.322
+          },
+          {
+            "w": "REST",
+            "t": 608.733
+          },
+          {
+            "w": "transactions,",
+            "t": 609.144
+          },
+          {
+            "w": "and",
+            "t": 609.556
+          },
+          {
+            "w": "Polars",
+            "t": 609.967
+          },
+          {
+            "w": "for",
+            "t": 610.378
+          },
+          {
+            "w": "massive",
+            "t": 610.789
+          },
+          {
+            "w": "batch",
+            "t": 611.2
+          },
+          {
+            "w": "file",
+            "t": 611.612
+          },
+          {
+            "w": "ingestion!",
+            "t": 612.023
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You use the right mechanical tool for each scale tier.",
+        "start": 612.784,
+        "end": 618.088,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 612.784
+          },
+          {
+            "w": "You",
+            "t": 613.266
+          },
+          {
+            "w": "use",
+            "t": 613.748
+          },
+          {
+            "w": "the",
+            "t": 614.231
+          },
+          {
+            "w": "right",
+            "t": 614.713
+          },
+          {
+            "w": "mechanical",
+            "t": 615.195
+          },
+          {
+            "w": "tool",
+            "t": 615.677
+          },
+          {
+            "w": "for",
+            "t": 616.159
+          },
+          {
+            "w": "each",
+            "t": 616.641
+          },
+          {
+            "w": "scale",
+            "t": 617.124
+          },
+          {
+            "w": "tier.",
+            "t": 617.606
           }
         ]
       },
@@ -5285,73 +11561,85 @@ window.LESSON_TIMINGS = {
         "slide": 15,
         "slideId": "s15",
         "speaker": "Kaito",
-        "text": "Dr. Nova, why is Sambasivan's research on Data Cascades cited so widely across modern data engineering?",
-        "start": 287.204,
-        "end": 293.972,
+        "text": "Dr. Nova, how can an ML engineer quickly distinguish between model underfitting and target leakage in an enterprise pipeline?",
+        "start": 618.838,
+        "end": 626.254,
         "words": [
           {
             "w": "Dr.",
-            "t": 287.204
+            "t": 618.838
           },
           {
             "w": "Nova,",
-            "t": 287.627
+            "t": 619.228
           },
           {
-            "w": "why",
-            "t": 288.05
+            "w": "how",
+            "t": 619.619
           },
           {
-            "w": "is",
-            "t": 288.473
+            "w": "can",
+            "t": 620.009
           },
           {
-            "w": "Sambasivan's",
-            "t": 288.896
+            "w": "an",
+            "t": 620.399
           },
           {
-            "w": "research",
-            "t": 289.319
+            "w": "ML",
+            "t": 620.79
           },
           {
-            "w": "on",
-            "t": 289.742
+            "w": "engineer",
+            "t": 621.18
           },
           {
-            "w": "Data",
-            "t": 290.165
+            "w": "quickly",
+            "t": 621.57
           },
           {
-            "w": "Cascades",
-            "t": 290.588
+            "w": "distinguish",
+            "t": 621.961
           },
           {
-            "w": "cited",
-            "t": 291.011
+            "w": "between",
+            "t": 622.351
           },
           {
-            "w": "so",
-            "t": 291.434
+            "w": "model",
+            "t": 622.741
           },
           {
-            "w": "widely",
-            "t": 291.857
+            "w": "underfitting",
+            "t": 623.131
           },
           {
-            "w": "across",
-            "t": 292.28
+            "w": "and",
+            "t": 623.522
           },
           {
-            "w": "modern",
-            "t": 292.703
+            "w": "target",
+            "t": 623.912
           },
           {
-            "w": "data",
-            "t": 293.126
+            "w": "leakage",
+            "t": 624.302
           },
           {
-            "w": "engineering?",
-            "t": 293.549
+            "w": "in",
+            "t": 624.693
+          },
+          {
+            "w": "an",
+            "t": 625.083
+          },
+          {
+            "w": "enterprise",
+            "t": 625.473
+          },
+          {
+            "w": "pipeline?",
+            "t": 625.864
           }
         ]
       },
@@ -5359,129 +11647,277 @@ window.LESSON_TIMINGS = {
         "slide": 15,
         "slideId": "s15",
         "speaker": "Dr. Nova",
-        "text": "Because Sambasivan proved empirically that over ninety percent of production AI failures stem from data practices rather than neural network architectures. Data-Centric AI is the direct response to this finding.",
-        "start": 294.322,
-        "end": 307.258,
+        "text": "Look at the gap between validation and production! When a model exhibits ninety-nine percent accuracy in offline test sets but fails immediately upon live user deployment, that is the definitive signature of temporal data leakage.",
+        "start": 626.604,
+        "end": 640.572,
         "words": [
           {
-            "w": "Because",
-            "t": 294.322
+            "w": "Look",
+            "t": 626.604
           },
           {
-            "w": "Sambasivan",
-            "t": 294.753
-          },
-          {
-            "w": "proved",
-            "t": 295.184
-          },
-          {
-            "w": "empirically",
-            "t": 295.616
-          },
-          {
-            "w": "that",
-            "t": 296.047
-          },
-          {
-            "w": "over",
-            "t": 296.478
-          },
-          {
-            "w": "ninety",
-            "t": 296.909
-          },
-          {
-            "w": "percent",
-            "t": 297.34
-          },
-          {
-            "w": "of",
-            "t": 297.772
-          },
-          {
-            "w": "production",
-            "t": 298.203
-          },
-          {
-            "w": "AI",
-            "t": 298.634
-          },
-          {
-            "w": "failures",
-            "t": 299.065
-          },
-          {
-            "w": "stem",
-            "t": 299.496
-          },
-          {
-            "w": "from",
-            "t": 299.928
-          },
-          {
-            "w": "data",
-            "t": 300.359
-          },
-          {
-            "w": "practices",
-            "t": 300.79
-          },
-          {
-            "w": "rather",
-            "t": 301.221
-          },
-          {
-            "w": "than",
-            "t": 301.652
-          },
-          {
-            "w": "neural",
-            "t": 302.084
-          },
-          {
-            "w": "network",
-            "t": 302.515
-          },
-          {
-            "w": "architectures.",
-            "t": 302.946
-          },
-          {
-            "w": "Data-Centric",
-            "t": 303.377
-          },
-          {
-            "w": "AI",
-            "t": 303.808
-          },
-          {
-            "w": "is",
-            "t": 304.24
+            "w": "at",
+            "t": 627.003
           },
           {
             "w": "the",
-            "t": 304.671
+            "t": 627.402
           },
           {
-            "w": "direct",
-            "t": 305.102
+            "w": "gap",
+            "t": 627.801
           },
           {
-            "w": "response",
-            "t": 305.533
+            "w": "between",
+            "t": 628.2
+          },
+          {
+            "w": "validation",
+            "t": 628.599
+          },
+          {
+            "w": "and",
+            "t": 628.999
+          },
+          {
+            "w": "production!",
+            "t": 629.398
+          },
+          {
+            "w": "When",
+            "t": 629.797
+          },
+          {
+            "w": "a",
+            "t": 630.196
+          },
+          {
+            "w": "model",
+            "t": 630.595
+          },
+          {
+            "w": "exhibits",
+            "t": 630.994
+          },
+          {
+            "w": "ninety-nine",
+            "t": 631.393
+          },
+          {
+            "w": "percent",
+            "t": 631.792
+          },
+          {
+            "w": "accuracy",
+            "t": 632.191
+          },
+          {
+            "w": "in",
+            "t": 632.59
+          },
+          {
+            "w": "offline",
+            "t": 632.989
+          },
+          {
+            "w": "test",
+            "t": 633.388
+          },
+          {
+            "w": "sets",
+            "t": 633.788
+          },
+          {
+            "w": "but",
+            "t": 634.187
+          },
+          {
+            "w": "fails",
+            "t": 634.586
+          },
+          {
+            "w": "immediately",
+            "t": 634.985
+          },
+          {
+            "w": "upon",
+            "t": 635.384
+          },
+          {
+            "w": "live",
+            "t": 635.783
+          },
+          {
+            "w": "user",
+            "t": 636.182
+          },
+          {
+            "w": "deployment,",
+            "t": 636.581
+          },
+          {
+            "w": "that",
+            "t": 636.98
+          },
+          {
+            "w": "is",
+            "t": 637.379
+          },
+          {
+            "w": "the",
+            "t": 637.778
+          },
+          {
+            "w": "definitive",
+            "t": 638.177
+          },
+          {
+            "w": "signature",
+            "t": 638.577
+          },
+          {
+            "w": "of",
+            "t": 638.976
+          },
+          {
+            "w": "temporal",
+            "t": 639.375
+          },
+          {
+            "w": "data",
+            "t": 639.774
+          },
+          {
+            "w": "leakage.",
+            "t": 640.173
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "Because the model had access to future timestamps or target proxies during offline training!",
+        "start": 640.922,
+        "end": 646.442,
+        "words": [
+          {
+            "w": "Because",
+            "t": 640.922
+          },
+          {
+            "w": "the",
+            "t": 641.316
+          },
+          {
+            "w": "model",
+            "t": 641.711
+          },
+          {
+            "w": "had",
+            "t": 642.105
+          },
+          {
+            "w": "access",
+            "t": 642.499
           },
           {
             "w": "to",
-            "t": 305.964
+            "t": 642.893
           },
           {
-            "w": "this",
-            "t": 306.396
+            "w": "future",
+            "t": 643.288
           },
           {
-            "w": "finding.",
-            "t": 306.827
+            "w": "timestamps",
+            "t": 643.682
+          },
+          {
+            "w": "or",
+            "t": 644.076
+          },
+          {
+            "w": "target",
+            "t": 644.471
+          },
+          {
+            "w": "proxies",
+            "t": 644.865
+          },
+          {
+            "w": "during",
+            "t": 645.259
+          },
+          {
+            "w": "offline",
+            "t": 645.653
+          },
+          {
+            "w": "training!",
+            "t": 646.048
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Enforcing point-in-time correctness in your feature store is the only foolproof antidote.",
+        "start": 646.792,
+        "end": 653.8,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 646.792
+          },
+          {
+            "w": "Enforcing",
+            "t": 647.331
+          },
+          {
+            "w": "point-in-time",
+            "t": 647.87
+          },
+          {
+            "w": "correctness",
+            "t": 648.409
+          },
+          {
+            "w": "in",
+            "t": 648.948
+          },
+          {
+            "w": "your",
+            "t": 649.487
+          },
+          {
+            "w": "feature",
+            "t": 650.026
+          },
+          {
+            "w": "store",
+            "t": 650.566
+          },
+          {
+            "w": "is",
+            "t": 651.105
+          },
+          {
+            "w": "the",
+            "t": 651.644
+          },
+          {
+            "w": "only",
+            "t": 652.183
+          },
+          {
+            "w": "foolproof",
+            "t": 652.722
+          },
+          {
+            "w": "antidote.",
+            "t": 653.261
           }
         ]
       },
@@ -5489,69 +11925,73 @@ window.LESSON_TIMINGS = {
         "slide": 16,
         "slideId": "s16",
         "speaker": "Kaito",
-        "text": "Dr. Nova, what is the single most important mindset shift for engineers entering Data-Centric AI?",
-        "start": 308.008,
-        "end": 314.584,
+        "text": "Dr. Nova, what is the single most vital principle for engineers to remember from Lesson 1.1?",
+        "start": 654.55,
+        "end": 661.246,
         "words": [
           {
             "w": "Dr.",
-            "t": 308.008
+            "t": 654.55
           },
           {
             "w": "Nova,",
-            "t": 308.446
+            "t": 654.968
           },
           {
             "w": "what",
-            "t": 308.885
+            "t": 655.387
           },
           {
             "w": "is",
-            "t": 309.323
+            "t": 655.805
           },
           {
             "w": "the",
-            "t": 309.762
+            "t": 656.224
           },
           {
             "w": "single",
-            "t": 310.2
+            "t": 656.642
           },
           {
             "w": "most",
-            "t": 310.638
+            "t": 657.061
           },
           {
-            "w": "important",
-            "t": 311.077
+            "w": "vital",
+            "t": 657.479
           },
           {
-            "w": "mindset",
-            "t": 311.515
-          },
-          {
-            "w": "shift",
-            "t": 311.954
+            "w": "principle",
+            "t": 657.898
           },
           {
             "w": "for",
-            "t": 312.392
+            "t": 658.316
           },
           {
             "w": "engineers",
-            "t": 312.83
+            "t": 658.735
           },
           {
-            "w": "entering",
-            "t": 313.269
+            "w": "to",
+            "t": 659.154
           },
           {
-            "w": "Data-Centric",
-            "t": 313.707
+            "w": "remember",
+            "t": 659.572
           },
           {
-            "w": "AI?",
-            "t": 314.146
+            "w": "from",
+            "t": 659.99
+          },
+          {
+            "w": "Lesson",
+            "t": 660.409
+          },
+          {
+            "w": "1.1?",
+            "t": 660.827
           }
         ]
       },
@@ -5560,108 +12000,220 @@ window.LESSON_TIMINGS = {
         "slideId": "s16",
         "speaker": "Dr. Nova",
         "text": "Stop treating datasets as static, infallible inputs. Datasets are complex engineered systems that require continuous auditing, schema enforcement, and versioned lineage from sensor to serving.",
-        "start": 314.934,
-        "end": 327.294,
+        "start": 661.596,
+        "end": 673.956,
         "words": [
           {
             "w": "Stop",
-            "t": 314.934
+            "t": 661.596
           },
           {
             "w": "treating",
-            "t": 315.428
+            "t": 662.09
           },
           {
             "w": "datasets",
-            "t": 315.923
+            "t": 662.585
           },
           {
             "w": "as",
-            "t": 316.417
+            "t": 663.079
           },
           {
             "w": "static,",
-            "t": 316.912
+            "t": 663.574
           },
           {
             "w": "infallible",
-            "t": 317.406
+            "t": 664.068
           },
           {
             "w": "inputs.",
-            "t": 317.9
+            "t": 664.562
           },
           {
             "w": "Datasets",
-            "t": 318.395
+            "t": 665.057
           },
           {
             "w": "are",
-            "t": 318.889
+            "t": 665.551
           },
           {
             "w": "complex",
-            "t": 319.384
+            "t": 666.046
           },
           {
             "w": "engineered",
-            "t": 319.878
+            "t": 666.54
           },
           {
             "w": "systems",
-            "t": 320.372
+            "t": 667.034
           },
           {
             "w": "that",
-            "t": 320.867
+            "t": 667.529
           },
           {
             "w": "require",
-            "t": 321.361
+            "t": 668.023
           },
           {
             "w": "continuous",
-            "t": 321.856
+            "t": 668.518
           },
           {
             "w": "auditing,",
-            "t": 322.35
+            "t": 669.012
           },
           {
             "w": "schema",
-            "t": 322.844
+            "t": 669.506
           },
           {
             "w": "enforcement,",
-            "t": 323.339
+            "t": 670.001
           },
           {
             "w": "and",
-            "t": 323.833
+            "t": 670.495
           },
           {
             "w": "versioned",
-            "t": 324.328
+            "t": 670.99
           },
           {
             "w": "lineage",
-            "t": 324.822
+            "t": 671.484
           },
           {
             "w": "from",
-            "t": 325.316
+            "t": 671.978
           },
           {
             "w": "sensor",
-            "t": 325.811
+            "t": 672.473
           },
           {
             "w": "to",
-            "t": 326.305
+            "t": 672.967
           },
           {
             "w": "serving.",
-            "t": 326.8
+            "t": 673.462
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "And in Lesson 1.2, we will explore structural dataset taxonomies across tabular, graph, and streaming domains!",
+        "start": 674.306,
+        "end": 681.818,
+        "words": [
+          {
+            "w": "And",
+            "t": 674.306
+          },
+          {
+            "w": "in",
+            "t": 674.776
+          },
+          {
+            "w": "Lesson",
+            "t": 675.245
+          },
+          {
+            "w": "1.2,",
+            "t": 675.715
+          },
+          {
+            "w": "we",
+            "t": 676.184
+          },
+          {
+            "w": "will",
+            "t": 676.654
+          },
+          {
+            "w": "explore",
+            "t": 677.123
+          },
+          {
+            "w": "structural",
+            "t": 677.593
+          },
+          {
+            "w": "dataset",
+            "t": 678.062
+          },
+          {
+            "w": "taxonomies",
+            "t": 678.532
+          },
+          {
+            "w": "across",
+            "t": 679.001
+          },
+          {
+            "w": "tabular,",
+            "t": 679.471
+          },
+          {
+            "w": "graph,",
+            "t": 679.94
+          },
+          {
+            "w": "and",
+            "t": 680.41
+          },
+          {
+            "w": "streaming",
+            "t": 680.879
+          },
+          {
+            "w": "domains!",
+            "t": 681.349
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Let us proceed to Lesson 1.2!",
+        "start": 682.168,
+        "end": 686.872,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 682.168
+          },
+          {
+            "w": "Let",
+            "t": 682.84
+          },
+          {
+            "w": "us",
+            "t": 683.512
+          },
+          {
+            "w": "proceed",
+            "t": 684.184
+          },
+          {
+            "w": "to",
+            "t": 684.856
+          },
+          {
+            "w": "Lesson",
+            "t": 685.528
+          },
+          {
+            "w": "1.2!",
+            "t": 686.2
           }
         ]
       }

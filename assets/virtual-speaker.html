@@ -15,9 +15,9 @@
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-  <script src="./curriculums/manifest.js"></script>
-  <script src="./curriculums/chapter1.js"></script>
-  <script src="./audio/timings.js"></script>
+  <script src="./curriculums/manifest.js?v=1794378000"></script>
+  <script src="./curriculums/chapter1.js?v=1794379999"></script>
+  <script src="./audio/timings.js?v=1794379999"></script>
   <style>
     :root {
       --ink: #151b20;
@@ -817,12 +817,12 @@
                   title="Focus speakers on main slide content"
                   class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]">📄
                   Core Slide</button>
-                <button type="button" onclick="manualMoveSpeaker('sim')" id="dockBtnSim"
-                  title="Move speakers to interactive simulator"
+                <button type="button" onclick="manualMoveSpeaker('sim', true)" id="dockBtnSim"
+                  title="Move speakers to interactive simulator and play explanation"
                   class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">⚡
                   Simulator</button>
-                <button type="button" onclick="manualMoveSpeaker('quiz')" id="dockBtnQuiz"
-                  title="Move speakers to active recall checkpoint"
+                <button type="button" onclick="manualMoveSpeaker('quiz', true)" id="dockBtnQuiz"
+                  title="Move speakers to active recall checkpoint and play question"
                   class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">💡
                   Checkpoint</button>
                 <button type="button" onclick="startInteractiveSequence()" id="btnInteractiveSequence"
@@ -1134,122 +1134,6 @@
         </button>
       </div>
     </div>
-
-    <!-- 2. Capeur 'Your Turn' Interactive Workbench (Data Quality Cascade Simulator) -->
-    <div id="cascadeSimulatorCard"
-      class="p-4 sm:p-5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[6px_6px_0px_#b7df69] transition-all duration-300">
-      <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-        <div class="flex items-center gap-2">
-          <span class="text-base">🛠️</span>
-          <span class="font-mono font-black text-xs sm:text-sm uppercase tracking-wide text-[#151b20]">
-            Your Turn: Interactive Data Quality Cascade Simulator
-          </span>
-          <span
-            class="px-2 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] font-mono text-[10px] font-black border border-[#151b20]">
-            Free Exploration
-          </span>
-        </div>
-        <div id="freeModeControls" class="flex items-center gap-2">
-          <button id="btnReturnToLecture" onclick="leaveFreeMode()"
-            class="cursor-pointer hidden px-3 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] transition flex items-center gap-1.5 animate-bounce">
-            <span>◀</span> Resume Lecture
-          </button>
-          <button type="button" onclick="toggleWorkbenchVisibility()" id="btnToggleWorkbench"
-            class="cursor-pointer px-2.5 py-1 rounded-lg bg-[#eee4c8] hover:bg-[#fffaf0] text-[#151b20] font-mono text-xs font-bold border border-[#151b20]">
-            ▼ Minimize
-          </button>
-        </div>
-      </div>
-
-      <div id="workbenchBody" class="space-y-3">
-        <p class="text-xs text-[rgba(21,27,32,0.75)] leading-relaxed">
-          Based on Sambasivan et al. (CHI 2021). Adjust upstream parameters to observe how defects in physical data
-          collection cascade into downstream catastrophic production failures.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
-          <!-- Slider 1 -->
-          <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
-            <div class="flex justify-between font-bold mb-1">
-              <span>1. Sensor Calibration Drift:</span>
-              <span id="valSensorDrift" class="text-[#0e7490] font-black">8%</span>
-            </div>
-            <input type="range" id="sliderSensorDrift" min="0" max="30" value="8" step="1" oninput="onSimulatorInput()"
-              class="w-full accent-[#0e7490]">
-            <span class="text-[10px] text-slate-600">Hardware &amp; collection noise</span>
-          </div>
-
-          <!-- Slider 2 -->
-          <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
-            <div class="flex justify-between font-bold mb-1">
-              <span>2. Imputation Distortion:</span>
-              <span id="valImputeDistort" class="text-[#b45309] font-black">12%</span>
-            </div>
-            <input type="range" id="sliderImputeDistort" min="0" max="35" value="12" step="1"
-              oninput="onSimulatorInput()" class="w-full accent-[#b45309]">
-            <span class="text-[10px] text-slate-600">Heuristic fill distortion</span>
-          </div>
-
-          <!-- Slider 3 -->
-          <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
-            <div class="flex justify-between font-bold mb-1">
-              <span>3. Annotation Inconsistency:</span>
-              <span id="valAnnotNoise" class="text-[#dc2626] font-black">10%</span>
-            </div>
-            <input type="range" id="sliderAnnotNoise" min="0" max="40" value="10" step="1" oninput="onSimulatorInput()"
-              class="w-full accent-[#dc2626]">
-            <span class="text-[10px] text-slate-600">Inter-rater label ambiguity</span>
-          </div>
-        </div>
-
-        <!-- Real-time SVG Cascade Visualization -->
-        <div
-          class="bg-[#eee4c8] p-3.5 rounded-xl border-2 border-[#151b20] text-[#151b20] font-mono text-xs space-y-2 shadow-[2px_2px_0px_#151b20]">
-          <div
-            class="flex items-center justify-between text-[11px] text-[#151b20]/80 pb-1 border-b border-[#151b20]/20 font-bold">
-            <span>LIFECYCLE ERROR COMPOUNDING STAGE</span>
-            <span>ESTIMATED SYSTEM DEGRADATION</span>
-          </div>
-          <div class="space-y-1.5">
-            <div class="flex items-center gap-2">
-              <span class="w-36 text-[#151b20] font-semibold">1. Raw Collection:</span>
-              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
-                <div id="barRaw" class="h-full bg-[#22bfd7] transition-all duration-150" style="width: 8%;"></div>
-              </div>
-              <span id="pctRaw" class="w-12 text-right font-black text-[#0e7490]">8.0%</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-36 text-[#151b20] font-semibold">2. Preprocessing:</span>
-              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
-                <div id="barPrep" class="h-full bg-[#ffc83e] transition-all duration-150" style="width: 21%;"></div>
-              </div>
-              <span id="pctPrep" class="w-12 text-right font-black text-[#b45309]">21.2%</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-36 text-[#151b20] font-semibold">3. Feature Store:</span>
-              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
-                <div id="barFeatures" class="h-full bg-[#f38469] transition-all duration-150" style="width: 38%;"></div>
-              </div>
-              <span id="pctFeatures" class="w-12 text-right font-black text-[#e11d48]">38.5%</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-36 text-[#151b20] font-semibold">4. Model Serving:</span>
-              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
-                <div id="barServing" class="h-full bg-[#dc2626] transition-all duration-150" style="width: 63%;"></div>
-              </div>
-              <span id="pctServing" class="w-12 text-right font-black text-[#dc2626]">63.1%</span>
-            </div>
-          </div>
-          <div
-            class="pt-2 border-t border-[#151b20]/20 flex items-center justify-between text-[11px] font-bold flex-wrap gap-2">
-            <span class="text-[#151b20]">Compound Multiplier Factor: <span id="cascadeMultiplier"
-                class="font-black text-[#dc2626]">3.9×</span></span>
-            <span id="cascadeVerdict"
-              class="px-2.5 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black uppercase">Critical
-              Production Failure</span>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- 4. Character Voice Studio & Playback Engine (Unified Master Controls) -->
@@ -1674,22 +1558,39 @@
       }
     }
 
+    function buildTimedSentence(speaker, text, startT, endT) {
+      const words = text.split(/\s+/).filter(Boolean);
+      const dur = Math.max(0.1, endT - startT);
+      const step = dur / Math.max(1, words.length);
+      return {
+        speaker: speaker,
+        text: text,
+        start: startT,
+        end: endT,
+        words: words.map((w, i) => ({
+          w: w,
+          t: Math.round((startT + (i * step)) * 1000) / 1000
+        }))
+      };
+    }
+
     let lastRenderedSentenceText = "";
     function updateKaraokeWords(sentence, t) {
-      if (!ccVisible) return;
+      if (!ccVisible || !sentence) return;
       const speakerEl = document.getElementById('cinemaSpeaker');
       const textEl = document.getElementById('cinemaSubtitleText');
       if (!textEl) return;
 
-      if (speakerEl) speakerEl.innerText = `${sentence.speaker}:`;
-      if (speakerEl) {
+      if (speakerEl && sentence.speaker) {
+        speakerEl.innerText = `${sentence.speaker}:`;
         speakerEl.className = sentence.speaker.toLowerCase().includes('kaito')
           ? "font-mono font-black text-xs sm:text-sm md:text-base text-[#b45309] uppercase tracking-wider"
           : "font-mono font-black text-xs sm:text-sm md:text-base text-[#0e7490] uppercase tracking-wider";
       }
 
-      // If new sentence, create word spans
-      if (lastRenderedSentenceText !== sentence.text) {
+      // If new sentence or DOM does not contain timed spans, render them immediately
+      const existingSpans = textEl.querySelectorAll('.kword');
+      if (lastRenderedSentenceText !== sentence.text || existingSpans.length !== sentence.words.length || !textEl.querySelector('[data-t]')) {
         lastRenderedSentenceText = sentence.text;
         textEl.innerHTML = sentence.words.map((w, idx) => {
           return `<span class="kword kword-future" id="kword_${idx}" data-t="${w.t}">${w.w}</span>`;
@@ -1700,7 +1601,7 @@
       sentence.words.forEach((w, idx) => {
         const span = document.getElementById(`kword_${idx}`);
         if (!span) return;
-        const nextT = sentence.words[idx + 1] ? sentence.words[idx + 1].t : sentence.end;
+        const nextT = sentence.words[idx + 1] ? sentence.words[idx + 1].t : (sentence.end || 9999);
 
         if (t >= w.t && t < nextT) {
           span.className = "kword kword-current";
@@ -2759,14 +2660,15 @@
       }
 
       // 3. Interactive Empirical Risk & Bias Cascade Playground (Simulation Widget)
-      const isCascadeSlide = titleLower.includes('empirical') || titleLower.includes('cascade') || contentLower.includes('empirical risk') || slideIndex === 1 || slideIndex === 2;
+      const isSampleRiskSlide = slideIndex === 1; // Slide 2: Empirical Sample & Selection Bias
+      const isCascadeSlide = (slideIndex === 7 || slideIndex === 8);
       const toolContainer = document.getElementById('slideToolContainer');
       const checkpointContainer = document.getElementById('slideCheckpointContainer');
 
       if (toolContainer) toolContainer.innerHTML = '';
       if (checkpointContainer) checkpointContainer.innerHTML = '';
 
-      if (isCascadeSlide && toolContainer) {
+      if (isSampleRiskSlide && toolContainer) {
         const simCard = document.createElement('div');
         simCard.id = 'empiricalSimWidget';
         simCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#ffc83e] transition-all duration-300';
@@ -2830,50 +2732,193 @@
           </div>
 
           <div id="simInsightText" class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
-            💡 <b>Classical Guarantee Holds:</b> When upstream data collection is unbiased ($eta = 0\%$), empirical risk converges asymptotically to true risk as $N$ increases.
+            💡 <b>Classical Guarantee Holds:</b> When upstream data collection is unbiased ($\beta = 0\%$), empirical risk converges asymptotically to true risk as $N$ increases.
           </div>
         `;
         toolContainer.appendChild(simCard);
 
-        // Traveling Speaker Dock Slot 2: Directly Below Simulator (Inside Tool Section)
         const simDock = document.createElement('div');
         simDock.id = 'speakerDockSimulator';
         simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
         toolContainer.appendChild(simDock);
+      } else if (isCascadeSlide && toolContainer) {
+        const cascadeCard = document.createElement('div');
+        cascadeCard.id = 'empiricalCascadeWidget';
+        cascadeCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#b7df69] transition-all duration-300';
+        cascadeCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#151b20] uppercase tracking-wide">
+              <span>🛠️</span> Interactive Data Quality Cascade Simulator
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Based on Sambasivan et al. (CHI 2021)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Adjust upstream parameters below to observe how minor physical collection flaws trigger non-linear compounding failures in production model serving:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs mb-3">
+            <!-- Slider 1 -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>1. Sensor Calibration Drift:</span>
+                <span id="valSensorDrift" class="text-[#0e7490] font-black">8%</span>
+              </div>
+              <input type="range" id="sliderSensorDrift" min="0" max="30" value="8" step="1" oninput="updateCascadeSim()"
+                class="w-full accent-[#0e7490] cursor-pointer">
+              <span class="text-[10px] text-slate-600">Hardware &amp; collection noise</span>
+            </div>
+
+            <!-- Slider 2 -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>2. Imputation Distortion:</span>
+                <span id="valImputeDistort" class="text-[#b45309] font-black">12%</span>
+              </div>
+              <input type="range" id="sliderImputeDistort" min="0" max="35" value="12" step="1"
+                oninput="updateCascadeSim()" class="w-full accent-[#b45309] cursor-pointer">
+              <span class="text-[10px] text-slate-600">Heuristic fill distortion</span>
+            </div>
+
+            <!-- Slider 3 -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1">
+                <span>3. Annotation Inconsistency:</span>
+                <span id="valAnnotNoise" class="text-[#dc2626] font-black">10%</span>
+              </div>
+              <input type="range" id="sliderAnnotNoise" min="0" max="40" value="10" step="1" oninput="updateCascadeSim()"
+                class="w-full accent-[#dc2626] cursor-pointer">
+              <span class="text-[10px] text-slate-600">Inter-rater label ambiguity</span>
+            </div>
+          </div>
+
+          <!-- Real-time Lifecycle Error Compounding Stages -->
+          <div class="bg-[#f6f0dc] p-3.5 rounded-xl border-2 border-[#151b20] text-[#151b20] font-mono text-xs space-y-2 shadow-[2px_2px_0px_#151b20] mb-3">
+            <div class="flex items-center justify-between text-[11px] text-[#151b20]/80 pb-1 border-b border-[#151b20]/20 font-bold">
+              <span>LIFECYCLE ERROR COMPOUNDING STAGE</span>
+              <span>ESTIMATED SYSTEM DEGRADATION</span>
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-36 text-[#151b20] font-semibold">1. Raw Collection:</span>
+                <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
+                  <div id="barRaw" class="h-full bg-[#22bfd7] transition-all duration-150" style="width: 8%;"></div>
+                </div>
+                <span id="pctRaw" class="w-12 text-right font-black text-[#0e7490]">8.0%</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-36 text-[#151b20] font-semibold">2. Preprocessing:</span>
+                <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
+                  <div id="barPrep" class="h-full bg-[#ffc83e] transition-all duration-150" style="width: 21%;"></div>
+                </div>
+                <span id="pctPrep" class="w-12 text-right font-black text-[#b45309]">21.2%</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-36 text-[#151b20] font-semibold">3. Feature Store:</span>
+                <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
+                  <div id="barFeatures" class="h-full bg-[#f38469] transition-all duration-150" style="width: 38%;"></div>
+                </div>
+                <span id="pctFeatures" class="w-12 text-right font-black text-[#e11d48]">38.5%</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-36 text-[#151b20] font-semibold">4. Model Serving:</span>
+                <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
+                  <div id="barServing" class="h-full bg-[#dc2626] transition-all duration-150" style="width: 63%;"></div>
+                </div>
+                <span id="pctServing" class="w-12 text-right font-black text-[#dc2626]">63.1%</span>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-[#151b20]/20 flex items-center justify-between text-[11px] font-bold flex-wrap gap-2">
+              <span class="text-[#151b20]">Compound Multiplier Factor: <span id="cascadeMultiplier" class="font-black text-[#dc2626]">3.9×</span></span>
+              <span id="cascadeVerdict" class="px-2.5 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black uppercase">Critical Production Failure</span>
+            </div>
+          </div>
+
+          <div id="cascadeInsightText" class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
+            💡 <b>Non-Linear Defect Compounding:</b> Data cascades compound non-linearly ($\Delta \text{Loss}_{prod} \propto \alpha \cdot (\text{Noise}_{raw})^\gamma, \gamma > 1$). A modest 8% sensor noise doubles through heuristics and quadruples by live serving!
+          </div>
+        `;
+        toolContainer.appendChild(cascadeCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        // Populate initial values for cascade bars
+        if (typeof updateCascadeSim === 'function') {
+          updateCascadeSim();
+        }
       }
 
       // 4. Interactive Active Checkpoint (Capeur Formative Assessment)
-      if (checkpointContainer && (isCascadeSlide || slideIndex === 1 || slideIndex === 2)) {
-        const quizCard = document.createElement('div');
-        quizCard.id = 'slideQuizCheckpoint';
-        quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
-        quizCard.innerHTML = `
-          <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
-            <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
-              <span>💡</span> Active Checkpoint: Test Your Architectural Intuition
-            </span>
-            <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
-          </div>
-          <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
-            Question: If your dataset collection pipeline has selection bias ($\\beta > 0$), will gathering 10× more data ($N \to 1,000,000$) eliminate the generalization gap?
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans">
-            <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
-              <strong>A.</strong> Yes — Big Data and the Law of Large Numbers washes out any upstream sampling defects.
-            </button>
-            <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
-              <strong>B.</strong> No — Increasing $N$ merely converges with higher certainty to the <em>wrong</em> distribution!
-            </button>
-          </div>
-          <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
-        `;
-        checkpointContainer.appendChild(quizCard);
+      if (checkpointContainer) {
+        if (isSampleRiskSlide) {
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Test Your Architectural Intuition
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: If your dataset collection pipeline has selection bias ($\beta > 0$), will gathering 10× more data ($N \to 1,000,000$) eliminate the generalization gap?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A.</strong> Yes — Big Data and the Law of Large Numbers washes out any upstream sampling defects.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B.</strong> No — Increasing $N$ merely converges with higher certainty to the <em>wrong</em> distribution!
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
 
-        // Traveling Speaker Dock Slot 3: Directly Below Checkpoint Quiz (Inside Checkpoint Section)
-        const quizDock = document.createElement('div');
-        quizDock.id = 'speakerDockCheckpoint';
-        quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
-        checkpointContainer.appendChild(quizDock);
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isCascadeSlide) {
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Data Quality Cascade Law (Sambasivan et al., CHI 2021)
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: According to the Law of Data Quality Cascades (Sambasivan et al., CHI 2021), where in the machine learning lifecycle does unaddressed data defect compound into the most catastrophic failure?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A.</strong> In downstream <b>Model Serving &amp; Deployment</b>, where unmodeled upstream noise triggers non-linear compounding errors while conventional offline benchmarks report deceptively high accuracy.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B.</strong> At the initial <b>Raw Ingestion</b> stage, because corrupted sensor bytes immediately trigger fatal parser exceptions and crash the data pipeline before saving.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C.</strong> Inside the <b>GPU Matrix Kernels</b> during backpropagation, where floating-point underflows cause NaN weight updates.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        }
       }
 
       // Re-run KaTeX math rendering on newly added elements across content, tool, and checkpoint
@@ -3023,17 +3068,28 @@
 
       feedback.classList.remove('hidden');
       let verbalFeedback = '';
+      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
 
       if (isCorrect) {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#b7df69] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black scale-[1.02]';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#f0fbfd] border-2 border-[#151b20] text-[#151b20] text-xs font-sans leading-relaxed';
-        feedback.innerHTML = `🎉 <b>Precisely Correct!</b> The Law of Large Numbers converges to the expectation of the <em>sampled</em> distribution. When that sampling mechanism is biased, $N \\to \\infty$ simply guarantees with 100% certainty that your model converges to the <b>wrong</b> target. This is why Data-Centric AI focuses on collection hygiene before model scale.`;
-        verbalFeedback = 'Precisely correct! The Law of Large Numbers converges to the expectation of the sampled distribution. Scaling data locks in the bias with 100% mathematical certainty. Excellent job!';
+        if (isCascade) {
+          feedback.innerHTML = `🎉 <b>Precisely Correct!</b> Sambasivan et al. (CHI 2021) established that data cascades compound non-linearly through preprocessing and training into downstream model serving. While standard offline benchmarks report deceptively high accuracy, production deployments suffer catastrophic, silent degradation.`;
+          verbalFeedback = 'Correct! Sambasivan and colleagues established that negative feedback loops compound through preprocessing and training, multiplying errors exponentially in production while evading standard benchmark tests.';
+        } else {
+          feedback.innerHTML = `🎉 <b>Precisely Correct!</b> The Law of Large Numbers converges to the expectation of the <em>sampled</em> distribution. When that sampling mechanism is biased, $N \\to \\infty$ simply guarantees with 100% certainty that your model converges to the <b>wrong</b> target. This is why Data-Centric AI focuses on collection hygiene before model scale.`;
+          verbalFeedback = 'Precisely correct! The Law of Large Numbers converges to the expectation of the sampled distribution. Scaling data locks in the bias with 100% mathematical certainty. Excellent job!';
+        }
       } else {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] text-[#151b20] text-xs font-sans leading-relaxed';
-        feedback.innerHTML = `❌ <b>Common Industry Trap:</b> Big Data does NOT eliminate sampling bias! As $N \\to \\infty$, the model locks in the bias with high statistical certainty. You cannot fix upstream sampling defects with downstream scale.`;
-        verbalFeedback = 'Common industry trap! Big Data does not eliminate upstream sampling bias; it merely guarantees convergence to the wrong target.';
+        if (isCascade) {
+          feedback.innerHTML = `❌ <b>Common Industry Trap:</b> Upstream collection defects do NOT reliably throw parser crashes; instead, dirty data slips silently through normalization and heuristics, compounding into massive production failures at serving time.`;
+          verbalFeedback = 'Misconception. Normalization and model capacity cannot repair flawed ground truth. Defective upstream data triggers silent catastrophic degradation in production.';
+        } else {
+          feedback.innerHTML = `❌ <b>Common Industry Trap:</b> Big Data does NOT eliminate sampling bias! As $N \\to \\infty$, the model locks in the bias with high statistical certainty. You cannot fix upstream sampling defects with downstream scale.`;
+          verbalFeedback = 'Common industry trap! Big Data does not eliminate upstream sampling bias; it merely guarantees convergence to the wrong target.';
+        }
       }
 
       if (window.renderMathInElement) {
@@ -3046,12 +3102,15 @@
         const compBanner = document.createElement('div');
         compBanner.id = 'checkpointCompleteBanner';
         compBanner.className = 'w-full p-3 bg-[#b7df69] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
+        const bannerMsg = isCascade
+          ? "You've mastered the Law of Data Quality Cascades (Sambasivan et al., CHI 2021)!"
+          : "You've mastered Empirical Risk and Upstream Selection Bias!";
         compBanner.innerHTML = `
           <div class="flex items-center gap-2.5">
             <span class="text-xl">🎓</span>
             <div>
               <div class="font-mono font-black text-xs text-[#15803d] uppercase tracking-wide">Checkpoint Completed!</div>
-              <div class="text-xs text-[#151b20] font-sans">You've mastered Empirical Risk and Upstream Selection Bias!</div>
+              <div class="text-xs text-[#151b20] font-sans">${bannerMsg}</div>
             </div>
           </div>
           <button type="button" onclick="completeCheckpointAndAdvance()" class="cursor-pointer px-4 py-2 rounded-xl bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black text-xs font-mono transition flex items-center gap-1.5 active:translate-y-0.5">
@@ -3177,8 +3236,17 @@
       const turnCounter = document.getElementById('turnCounter');
 
       if (cinemaSpeaker) cinemaSpeaker.innerText = `${speaker}:`;
-      if (cinemaText) cinemaText.innerText = `"${text}"`;
-      if (turnCounter) turnCounter.innerText = `Turn ${turnNum} of ${totalTurns}`;
+      if (turnCounter && turnNum != null && totalTurns != null) {
+        turnCounter.innerText = `Turn ${turnNum} of ${totalTurns}`;
+      }
+
+      if (cinemaText) {
+        lastRenderedSentenceText = text;
+        const words = (text || "").split(/\s+/).filter(Boolean);
+        cinemaText.innerHTML = words.map((w, idx) => {
+          return `<span class="kword kword-future" id="kword_${idx}">${w}</span>`;
+        }).join(" ");
+      }
 
       if (speaker.toLowerCase().includes('kaito')) {
         if (cinemaSpeaker) cinemaSpeaker.className = "font-mono font-black text-xs md:text-sm text-[#b45309] uppercase tracking-wider";
@@ -3388,8 +3456,9 @@
       updatePlayButtons(false);
       animateTalking('both', false);
 
-      // Highlight the simulator with glowing halo and autoscroll
-      const simWidget = document.getElementById('empiricalSimWidget');
+      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
+      const targetWidgetId = isCascade ? 'empiricalCascadeWidget' : 'empiricalSimWidget';
+      const simWidget = document.getElementById(targetWidgetId);
       if (simWidget) {
         simWidget.classList.add('spotlight-active');
         simWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -3401,12 +3470,15 @@
         const banner = document.createElement('div');
         banner.id = 'simExplorationBanner';
         banner.className = 'w-full p-3 bg-[#c9f3f4] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
+        const subDesc = isCascade
+          ? "Adjust <b>Sensor Drift</b>, <b>Imputation Distortion</b>, and <b>Annotation Inconsistency</b> sliders above to observe non-linear error compounding!"
+          : "Adjust <b>Sample Size (N)</b> and <b>Selection Bias (β)</b> sliders above to observe distribution divergence!";
         banner.innerHTML = `
           <div class="flex items-center gap-2.5">
             <span class="text-xl animate-bounce">⚡</span>
             <div>
               <div class="font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide">Interactive Hands-on Phase: Test Your Intuition</div>
-              <div class="text-xs text-[#151b20] font-sans">Adjust <b>Sample Size (N)</b> and <b>Selection Bias (β)</b> sliders above to observe distribution divergence!</div>
+              <div class="text-xs text-[#151b20] font-sans">${subDesc}</div>
             </div>
           </div>
           <button type="button" onclick="resumeLectureToCheckpoint()" id="btnResumeToCheckpoint" class="cursor-pointer px-4 py-2 rounded-xl bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black text-xs font-mono transition flex items-center gap-1.5 active:translate-y-0.5">
@@ -3419,7 +3491,10 @@
       const topicData = curriculum[currentTopic];
       const totalTurns = (topicData && topicData.slides && topicData.slides[currentSlideIndex] && topicData.slides[currentSlideIndex][currentMode].turns) ? topicData.slides[currentSlideIndex][currentMode].turns.length : 1;
       const spk = customSpeaker || (currentMode === 'duo' ? "Dr. Nova & Kaito" : "Dr. Nova (Interactive Simulator)");
-      const txt = customText || "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!";
+      const defaultTxt = isCascade
+        ? "We have docked at the Data Quality Cascade Simulator directly below! Look at the three upstream sliders: Sensor Calibration Drift, Imputation Distortion, and Annotation Inconsistency. Notice how pushing sensor drift from 8% to 20% does not just double error—it triples downstream model degradation! Try adjusting the sliders now to observe the non-linear cascade."
+        : "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!";
+      const txt = customText || defaultTxt;
       setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
     }
 
@@ -3443,17 +3518,19 @@
         quizWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
+      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
       const arena = document.getElementById('avatarArena');
       if (arena && !document.getElementById('checkpointPromptBanner')) {
         const banner = document.createElement('div');
         banner.id = 'checkpointPromptBanner';
         banner.className = 'w-full p-3 bg-[#fff0b9] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
+        const optDesc = isCascade ? "Option A, Option B, or Option C" : "Option A or Option B";
         banner.innerHTML = `
           <div class="flex items-center gap-2.5">
             <span class="text-xl animate-pulse">💡</span>
             <div>
               <div class="font-mono font-black text-xs text-[#b45309] uppercase tracking-wide">Active Checkpoint Paused: Your Turn!</div>
-              <div class="text-xs text-[#151b20] font-sans">Select <b>Option A</b> or <b>Option B</b> above to test your architectural intuition.</div>
+              <div class="text-xs text-[#151b20] font-sans">Select <b>${optDesc}</b> above to test your architectural intuition.</div>
             </div>
           </div>
           <span class="text-[11px] font-mono font-black text-[#151b20] bg-[#fffdf7] px-3 py-1 rounded-lg border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] animate-pulse">
@@ -3466,7 +3543,10 @@
       const topicData = curriculum[currentTopic];
       const totalTurns = (topicData && topicData.slides && topicData.slides[currentSlideIndex] && topicData.slides[currentSlideIndex][currentMode].turns) ? topicData.slides[currentSlideIndex][currentMode].turns.length : 1;
       const spk = customSpeaker || (currentMode === 'duo' ? "Dr. Nova & Kaito" : "Dr. Nova (Active Checkpoint)");
-      const txt = customText || "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!";
+      const defaultTxt = isCascade
+        ? "Here is your active checkpoint: According to the Law of Data Quality Cascades, where in the machine learning lifecycle does error manifest with the most catastrophic compounding multiplier? Select Option A, B, or C above me!"
+        : "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!";
+      const txt = customText || defaultTxt;
       setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
     }
 
@@ -3489,45 +3569,171 @@
       }
 
       const isDuo = currentMode === 'duo';
+      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
       let audioPath = '';
-      let defaultSpeaker = isDuo ? 'Dr. Nova & Kaito' : 'Dr. Nova';
-      let spokenText = '';
+      let interactiveSentences = [];
+      let totalDuration = 10.0;
 
       if (dockKey === 'sim') {
-        audioPath = isDuo ? './audio/ch1_p1_sim_duo.mp3' : './audio/ch1_p1_sim_solo.mp3';
-        spokenText = isDuo
-          ? "Dr. Nova, look at our empirical simulator! What happens to our risk when selection bias creeps into the training data? Watch closely, Kaito! As selection bias beta increases, empirical risk stays deceptively low, but true risk explodes. Try adjusting the sliders above to see it firsthand!"
-          : "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!";
+        if (isCascade) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p1_cascade_sim_duo.mp3';
+            totalDuration = 28.272;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, can we see how this non-linear compounding looks across a real production pipeline?",
+                0.0,
+                5.928
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Watch as our speaker stage glides down to the Data Quality Cascade Simulator! Tweak the Sensor Drift, Imputation Distortion, and Annotation Noise sliders above us. Watch the 4 pipeline bars: raw collection error is small, but by the time it reaches production model serving, the cascade multiplier explodes! Try it firsthand.",
+                6.278,
+                28.272
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p1_cascade_sim_solo.mp3';
+            totalDuration = 24.240;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Data Quality Cascade Simulator directly below! Look at the three upstream sliders: Sensor Calibration Drift, Imputation Distortion, and Annotation Inconsistency. Notice how pushing sensor drift from 8% to 20% does not just double error—it triples downstream model degradation! Try adjusting the sliders now to observe the non-linear cascade.",
+                0.0,
+                24.240
+              )
+            ];
+          }
+        } else {
+          if (isDuo) {
+            audioPath = './audio/ch1_p1_sim_duo.mp3';
+            totalDuration = 16.44;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, look at our empirical simulator! What happens to our risk when selection bias creeps into the training data?",
+                0.0,
+                4.2
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Watch closely, Kaito! As selection bias beta increases, empirical risk stays deceptively low, but true risk explodes. Try adjusting the sliders above to see it firsthand!",
+                4.2,
+                16.44
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p1_sim_solo.mp3';
+            totalDuration = 21.72;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!",
+                0.0,
+                21.72
+              )
+            ];
+          }
+        }
       } else if (dockKey === 'quiz') {
-        audioPath = isDuo ? './audio/ch1_p1_quiz_duo.mp3' : './audio/ch1_p1_quiz_solo.mp3';
-        spokenText = isDuo
-          ? "Dr. Nova, in our active checkpoint question, if a pipeline suffers from selection bias beta greater than zero, can we fix it by simply collecting 10x more data? Exactly the question every ML engineer faces, Kaito! Let's challenge our readers: select Option A or Option B above to test your architectural intuition."
-          : "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!";
+        if (isCascade) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p1_cascade_quiz_duo.mp3';
+            totalDuration = 22.464;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "That compounding multiplier is brutal! Let's see if our readers can identify where the worst damage occurs in production.",
+                0.0,
+                7.944
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Here is your active checkpoint: According to the Law of Data Quality Cascades, where in the machine learning lifecycle does error manifest with the most catastrophic compounding multiplier? Select Option A, B, or C above me!",
+                8.294,
+                22.464
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p1_cascade_quiz_solo.mp3';
+            totalDuration = 14.136;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Here is your active checkpoint: According to the Law of Data Quality Cascades, where in the machine learning lifecycle does error manifest with the most catastrophic compounding multiplier? Select Option A, B, or C above me!",
+                0.0,
+                14.136
+              )
+            ];
+          }
+        } else {
+          if (isDuo) {
+            audioPath = './audio/ch1_p1_quiz_duo.mp3';
+            totalDuration = 11.88;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, in our active checkpoint question, if a pipeline suffers from selection bias beta greater than zero, can we fix it by simply collecting 10x more data?",
+                0.0,
+                3.5
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Exactly the question every ML engineer faces, Kaito! Let's challenge our readers: select Option A or Option B above to test your architectural intuition.",
+                3.5,
+                11.88
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p1_quiz_solo.mp3';
+            totalDuration = 15.336;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!",
+                0.0,
+                15.336
+              )
+            ];
+          }
+        }
       }
 
-      setSubtitles(defaultSpeaker, spokenText, currentTurnIndex + 1, currentTurnIndex + 1);
+      // Initialize Cinema Subtitle Display with interactive karaoke spans
+      lastRenderedSentenceText = "";
+      const initialSent = interactiveSentences[0];
+      setSubtitles(initialSent.speaker, initialSent.text, 1, interactiveSentences.length);
+      updateKaraokeWords(initialSent, 0.0);
+
       isSpeaking = true;
       updatePlayButtons(true);
 
-      const startVisualFallback = (durationMs = 9500) => {
-        if (isDuo) {
-          highlightActiveAvatar('Kaito');
-          animateTalking('Kaito', true);
-          animateTalking('Dr. Nova', false);
-          setTimeout(() => {
-            if (isSpeaking) {
-              highlightActiveAvatar('Dr. Nova');
-              animateTalking('Dr. Nova', true);
-              animateTalking('Kaito', false);
+      const startVisualFallback = (durationMs = totalDuration * 1000) => {
+        const startTime = Date.now();
+        const fallbackInterval = setInterval(() => {
+          if (!isSpeaking) {
+            clearInterval(fallbackInterval);
+            return;
+          }
+          const elapsed = (Date.now() - startTime) / 1000;
+          const activeSent = interactiveSentences.find(s => elapsed >= s.start && elapsed <= s.end) || interactiveSentences[interactiveSentences.length - 1];
+          if (activeSent) {
+            highlightActiveAvatar(activeSent.speaker);
+            animateTalking(activeSent.speaker, true);
+            if (isDuo) {
+              const other = activeSent.speaker.toLowerCase().includes('kaito') ? 'Dr. Nova' : 'Kaito';
+              animateTalking(other, false);
             }
-          }, Math.min(3500, durationMs / 2));
-        } else {
-          highlightActiveAvatar('Dr. Nova');
-          animateTalking('Dr. Nova', true);
-        }
+            updateKaraokeWords(activeSent, elapsed);
+          }
+        }, 60);
 
         interactiveTimer = setTimeout(() => {
+          clearInterval(fallbackInterval);
           stopSpeech();
+          const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
+          wordSpans.forEach(s => s.className = 'kword kword-past');
           if (dockKey === 'sim') {
             pauseForToolExploration();
           } else if (dockKey === 'quiz') {
@@ -3544,20 +3750,20 @@
 
         interactiveAudio.ontimeupdate = () => {
           const t = interactiveAudio.currentTime;
-          if (isDuo) {
-            const splitTime = (dockKey === 'sim') ? 4.2 : 3.5;
-            if (t < splitTime) {
-              highlightActiveAvatar('Kaito');
-              animateTalking('Kaito', true);
-              animateTalking('Dr. Nova', false);
-            } else {
-              highlightActiveAvatar('Dr. Nova');
-              animateTalking('Dr. Nova', true);
-              animateTalking('Kaito', false);
+          const activeSent = interactiveSentences.find(s => t >= s.start && t <= s.end) || interactiveSentences[interactiveSentences.length - 1];
+          if (activeSent) {
+            highlightActiveAvatar(activeSent.speaker);
+            animateTalking(activeSent.speaker, true);
+            if (isDuo) {
+              const other = activeSent.speaker.toLowerCase().includes('kaito') ? 'Dr. Nova' : 'Kaito';
+              animateTalking(other, false);
             }
-          } else {
-            highlightActiveAvatar('Dr. Nova');
-            animateTalking('Dr. Nova', true);
+            // Update Turn counter if multi-turn
+            const turnIndex = interactiveSentences.indexOf(activeSent) + 1;
+            const turnCounter = document.getElementById('turnCounter');
+            if (turnCounter) turnCounter.innerText = `Turn ${turnIndex} of ${interactiveSentences.length}`;
+            // Live Karaoke Word Highlighting!
+            updateKaraokeWords(activeSent, t);
           }
         };
 
@@ -3565,6 +3771,9 @@
           isSpeaking = false;
           updatePlayButtons(false);
           animateTalking('both', false);
+          // Mark all words as past/completed
+          const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
+          wordSpans.forEach(s => s.className = 'kword kword-past');
           if (dockKey === 'sim') {
             pauseForToolExploration();
           } else if (dockKey === 'quiz') {
@@ -3574,18 +3783,18 @@
 
         interactiveAudio.onerror = (e) => {
           console.warn(`[InteractiveAudio] Audio '${audioPath}' load error, using WebSpeech fallback:`, e);
-          playInteractiveWebSpeech(spokenText, isDuo, dockKey, startVisualFallback);
+          playInteractiveWebSpeech(initialSent.text, isDuo, dockKey, startVisualFallback);
         };
 
         const playPromise = interactiveAudio.play();
         if (playPromise !== undefined) {
           playPromise.catch(err => {
             console.warn("[InteractiveAudio] play() blocked or rejected:", err);
-            playInteractiveWebSpeech(spokenText, isDuo, dockKey, startVisualFallback);
+            playInteractiveWebSpeech(initialSent.text, isDuo, dockKey, startVisualFallback);
           });
         }
       } else {
-        playInteractiveWebSpeech(spokenText, isDuo, dockKey, startVisualFallback);
+        playInteractiveWebSpeech(initialSent.text, isDuo, dockKey, startVisualFallback);
       }
     }
 
@@ -3646,11 +3855,22 @@
         window.speechSynthesis.cancel();
       }
 
-      setSubtitles("Dr. Nova (Feedback)", text, currentTurnIndex + 1, currentTurnIndex + 1);
+      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
+      const feedbackDuration = isCascade
+        ? (isCorrect ? 12.792 : 11.640)
+        : (isCorrect ? 13.728 : 12.912);
+      const feedbackSentence = buildTimedSentence("Dr. Nova (Feedback)", text, 0.0, feedbackDuration);
+
+      lastRenderedSentenceText = "";
+      setSubtitles("Dr. Nova (Feedback)", text, 1, 1);
+      updateKaraokeWords(feedbackSentence, 0.0);
+
       highlightActiveAvatar("Dr. Nova");
       animateTalking("Dr. Nova", true);
 
-      const feedbackSrc = isCorrect ? './audio/ch1_p1_quiz_correct.mp3' : './audio/ch1_p1_quiz_incorrect.mp3';
+      const feedbackSrc = isCascade
+        ? (isCorrect ? './audio/ch1_p1_cascade_correct.mp3' : './audio/ch1_p1_cascade_incorrect.mp3')
+        : (isCorrect ? './audio/ch1_p1_quiz_correct.mp3' : './audio/ch1_p1_quiz_incorrect.mp3');
 
       const fallbackWebSpeech = () => {
         if (!('speechSynthesis' in window)) {
@@ -3680,12 +3900,22 @@
         interactiveAudio.pause();
         interactiveAudio.src = feedbackSrc;
         interactiveAudio.playbackRate = engineSpeed || 1.0;
+
+        interactiveAudio.ontimeupdate = () => {
+          const t = interactiveAudio.currentTime;
+          updateKaraokeWords(feedbackSentence, t);
+        };
+
         interactiveAudio.onended = () => {
           animateTalking("Dr. Nova", false);
+          const wordSpans = document.querySelectorAll('#cinemaSubtitleText .kword');
+          wordSpans.forEach(s => s.className = 'kword kword-past');
         };
+
         interactiveAudio.onerror = () => {
           fallbackWebSpeech();
         };
+
         const p = interactiveAudio.play();
         if (p !== undefined) {
           p.catch(() => fallbackWebSpeech());
@@ -3800,7 +4030,7 @@
       clearSpotlights();
 
       if (targetKey === 'sim') {
-        const sim = document.getElementById('empiricalSimWidget');
+        const sim = document.getElementById('empiricalCascadeWidget') || document.getElementById('empiricalSimWidget');
         if (sim) {
           sim.classList.add('spotlight-active');
           if (smoothScroll) sim.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -3820,6 +4050,14 @@
     }
 
     function manualMoveSpeaker(targetKey, shouldSpeak = false) {
+      // Smart Auto-Navigation: If user is on a slide without tools, navigate to nearest tool slide
+      const isToolSlide = (currentSlideIndex === 1 || currentSlideIndex === 7 || currentSlideIndex === 8);
+      if (!isToolSlide && (targetKey === 'sim' || targetKey === 'quiz')) {
+        const destSlide = currentSlideIndex < 5 ? 1 : 7;
+        goToSlide(destSlide);
+        setTimeout(() => manualMoveSpeaker(targetKey, shouldSpeak), 250);
+        return;
+      }
       moveSpeakerToDock(targetKey, true);
 
       // Stop any ongoing background neural audio or speech synthesis
@@ -3930,9 +4168,14 @@
       if (btnSim) btnSim.className = activeKey === 'sim' ? activeClass : inactiveClass;
       if (btnQuiz) btnQuiz.className = activeKey === 'quiz' ? activeClass : inactiveClass;
 
+      const isCascade = (currentSlideIndex === 7 || currentSlideIndex === 8);
+      if (btnSim) {
+        btnSim.innerHTML = isCascade ? '⚡ Cascade Simulator' : '⚡ Simulator';
+      }
+
       if (label) {
         if (activeKey === 'main') label.innerText = "1. Core Slide Content";
-        else if (activeKey === 'sim') label.innerText = "2. Empirical Risk & Bias Playground";
+        else if (activeKey === 'sim') label.innerText = isCascade ? "2. Data Quality Cascade Simulator" : "2. Empirical Risk & Bias Playground";
         else if (activeKey === 'quiz') label.innerText = "3. Active Recall Checkpoint";
         else label.innerText = "Lecture Deck Stage";
       }

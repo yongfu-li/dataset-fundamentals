@@ -358,11 +358,30 @@
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Law of Data Quality Cascades, formulated by Sambasivan and colleagues at Google Research, proves that production system error compounds non-linearly across pipeline transformations. Upstream noise epsilon 1 does not merely add to downstream error; it interacts multiplicatively."
+              "text": "The Law of Data Quality Cascades, formulated by Sambasivan and colleagues at Google Research, proves that production system error compounds non-linearly across pipeline transformations. Upstream noise epsilon 1 does not merely add to downstream error; it interacts multiplicatively.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Notice the mathematical formulation: final production loss scales with raw noise raised to the power gamma, where gamma is strictly greater than one. A minor two percent sensor drift early on can trigger a fifty percent collapse in production model safety."
+              "text": "Notice the mathematical formulation: final production loss scales with raw noise raised to the power gamma, where gamma is strictly greater than one. A minor two percent sensor drift early on can trigger a fifty percent collapse in production model safety.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "We have docked at the Data Quality Cascade Simulator directly below! Look at the three upstream sliders: Sensor Calibration Drift, Imputation Distortion, and Annotation Inconsistency. Notice how pushing sensor drift from 8% to 20% does not just double error—it triples downstream model degradation! Try adjusting the sliders now to observe the non-linear cascade.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now, let us test your architectural intuition on our active checkpoint question above me.",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is your active checkpoint: According to the Law of Data Quality Cascades, where in the machine learning lifecycle does error manifest with the most catastrophic compounding multiplier? Select Option A, B, or C above me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
             }
           ],
           "contentHtml": "<div class=\"p-3.5 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Sambasivan et al. Cascade Model</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif py-1 overflow-x-auto\">\n    $$\\Delta \\text{Loss}_{prod} \\propto \\alpha \\cdot (\\text{Noise}_{raw})^{\\gamma}, \\quad \\gamma > 1$$\n  </div>\n</div>\n<div class=\"p-3.5 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Compounding Stage Coupling</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif py-1 overflow-x-auto\">\n    $$\\text{Error}_{final} \\ge \\sum_{k=1}^K w_k \\cdot \\|\\epsilon_k\\|_2^2 + \\sum_{j \\neq k} \\Gamma_{jk} \\cdot (\\epsilon_j \\odot \\epsilon_k)$$\n  </div>\n</div>\n<div class=\"space-y-2 text-xs\">\n  <div class=\"p-2.5 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] flex items-start gap-2 shadow-[2px_2px_0px_#151b20]\">\n    <span class=\"text-sm text-[#c2410c] font-bold\">⚠️</span>\n    <p class=\"text-[#151b20] leading-relaxed\">\n      <strong>Cross-Stage Coupling Factor ($\\Gamma_{jk}$):</strong> Feature scaling, outlier clipping, and loss weights amplify small upstream discrepancies into massive parameter divergence.\n    </p>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border-2 border-[#22bfd7] flex items-start gap-2 shadow-[2px_2px_0px_#151b20]\">\n    <span class=\"text-sm text-[#0e7490] font-bold\">💡</span>\n    <p class=\"text-[#151b20] leading-relaxed\">\n      <strong>Architecture Invariance:</strong> Model depth cannot repair data cascades. Increasing parameters simply trains the network to fit corrupted boundary artifacts with higher confidence.\n    </p>\n  </div>\n</div>"
@@ -373,19 +392,45 @@
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, why does Sambasivan's equation show that data quality errors compound rather than average out over large datasets?"
+              "text": "Dr. Nova, why does Sambasivan's equation show that data quality errors compound rather than average out over large datasets?",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Because machine learning models are trained using optimization algorithms that seek any predictive correlation, including spurious artifacts! When raw sensor noise passes into feature normalization, it skews the entire distribution manifold."
+              "text": "Because machine learning models are trained using optimization algorithms that seek any predictive correlation, including spurious artifacts! When raw sensor noise passes into feature normalization, it skews the entire distribution manifold.",
+              "dock": "main"
             },
             {
               "speaker": "Kaito",
-              "text": "So if we spend months tuning hyperparameters instead of fixing the ingestion pipeline, we are treating symptoms instead of the disease."
+              "text": "So if we spend months tuning hyperparameters instead of fixing the ingestion pipeline, we are treating symptoms instead of the disease.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Exactly. Upstream data hygiene delivers ten times the return on investment compared to hyperparameter optimization."
+              "text": "Exactly. Upstream data hygiene delivers ten times the return on investment compared to hyperparameter optimization.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, can we see how this non-linear compounding looks across a real production pipeline?",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Watch as our speaker stage glides down to the Data Quality Cascade Simulator! Tweak the Sensor Drift, Imputation Distortion, and Annotation Noise sliders above us. Watch the 4 pipeline bars: raw collection error is small, but by the time it reaches production model serving, the cascade multiplier explodes! Try it firsthand.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That compounding multiplier is brutal! Let's see if our readers can identify where the worst damage occurs in production.",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is your active checkpoint: According to the Law of Data Quality Cascades, where in the machine learning lifecycle does error manifest with the most catastrophic compounding multiplier? Select Option A, B, or C above me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
             }
           ],
           "contentHtml": "<div class=\"p-3.5 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Sambasivan et al. Cascade Model</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif py-1 overflow-x-auto\">\n    $$\\Delta \\text{Loss}_{prod} \\propto \\alpha \\cdot (\\text{Noise}_{raw})^{\\gamma}, \\quad \\gamma > 1$$\n  </div>\n</div>\n<div class=\"p-2.5 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] flex items-start gap-2 text-xs shadow-[2px_2px_0px_#151b20]\">\n  <span class=\"text-sm text-[#c2410c] font-bold\">⚠️</span>\n  <p class=\"text-[#151b20] leading-relaxed\">\n    <strong>Compounding Ingestion Bias:</strong> A small collection artifact ($\\epsilon_1$) induces downstream normalization distortion ($\\epsilon_2$), causing catastrophic model miscalibration.\n  </p>\n</div>"
@@ -408,7 +453,7 @@
               "text": "Notice the critical dashed arrow returning from production deployment back to raw ingestion. When an AI model's biased predictions dictate what future data is captured and annotated, the system enters an irreversible bias spiral."
             }
           ],
-          "contentHtml": "<div class=\"p-3 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#f38469] my-2\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-2 flex items-center justify-between\">\n    <span>📊 Compounding Error Pipeline</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">4 Stages &amp; Feedback Loop</span>\n  </div>\n  <div class=\"mermaid text-center py-2\">\nflowchart TD\n    A[\"1. Hardware &amp; Ingestion Drift<br/>(Sensor noise, clock jitter, dropped frames)\"] -->|Compounding Noise ε_1| B[\"2. Data Preparation &amp; Cleaning<br/>(Silent median imputation, temporal leakage)\"]\n    B -->|Amplified Bias ε_2| C[\"3. Model Training &amp; Validation<br/>(False confidence on biased test splits)\"]\n    C -->|Deployment Drift ε_3| D[\"4. Production Serving &amp; Safety<br/>(Silent real-world failures, safety hazards)\"]\n    D -.->|Self-Reinforcing Feedback Loop| A\n  </div>\n  <p class=\"text-xs text-[#334155] mt-2 font-medium leading-relaxed\">\n    Notice the feedback loop: when biased model decisions filter what future data is captured, the cascade locks into an irreversible failure loop. Auditing must happen at every boundary.\n  </p>\n</div>"
+          "contentHtml": "<div class=\"p-3 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#f38469] my-2\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-2 flex items-center justify-between\">\n    <span>📊 Compounding Error Pipeline</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">4 Stages &amp; Feedback Loop</span>\n  </div>\n  <div class=\"mermaid text-center py-2\">\nflowchart TD\n    A[\"1. Hardware &amp; Ingestion Drift<br/>(Sensor noise, clock jitter, dropped frames)\"] -->|Compounding Noise ε_1| B[\"2. Data Preparation &amp; Cleaning<br/>(Silent median imputation, temporal leakage)\"]\n    B -->|Amplified Bias ε_2| C[\"3. Model Training &amp; Validation<br/>(False confidence on biased test splits)\"]\n    C -->|Deployment Drift ε_3| D[\"4. Production Serving &amp; Safety<br/>(Silent real-world failures, safety hazards)\"]\n    D -.->|Self-Reinforcing Feedback Loop| A\n  </div>\n  <p class=\"text-xs text-[#334155] mt-2 font-medium leading-relaxed\">\n    Notice the feedback loop: when biased model decisions filter what future data is captured, the cascade locks into an irreversible failure loop. Auditing must happen at every boundary.\n  </p>\n</div>\n<div class=\"mt-3 p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n  <div class=\"flex items-center justify-between mb-2 pb-1 border-b border-[#151b20]/15 flex-wrap gap-1\">\n    <div class=\"flex items-center gap-1.5 font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      <span>🤖</span> Case in Point: The Perilous Journey of Record #402\n    </div>\n    <span class=\"text-[9px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20]\">Sambasivan et al.</span>\n  </div>\n  <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono\">\n    <div class=\"p-2 rounded-lg bg-[#f0fdfa] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#0e7490]\">1. INGESTION</div>\n      <div class=\"text-[11px] font-black text-[#151b20] my-0.5 font-sans font-bold\">#402: HAPPY</div>\n      <div class=\"text-[9px] text-[#b45309] font-bold bg-[#fff0b9] rounded px-1\">+25ms Jitter</div>\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#fffbeb] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#b45309]\">2. CLEANING</div>\n      <div class=\"text-[11px] font-black text-[#c2410c] my-0.5 font-sans font-bold\">ERR: -999</div>\n      <div class=\"text-[9px] text-[#c2410c] font-bold bg-[#ffd8ce] rounded px-1\">+440% Shift</div>\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#faf5ff] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#6b21a8]\">3. LABELING</div>\n      <div class=\"text-[11px] font-black text-[#6b21a8] my-0.5 font-sans font-bold\">LABEL FLIPPED</div>\n      <div class=\"text-[9px] text-[#9d174d] font-bold bg-[#fce7f3] rounded px-1\">κ = 0.22</div>\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#fef2f2] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#b91c1c]\">4. DEPLOYMENT</div>\n      <div class=\"text-[11px] font-black text-[#b91c1c] my-0.5 font-sans font-bold\">AUC 0.52 CRASH</div>\n      <div class=\"text-[9px] text-[#991b1b] font-bold bg-[#fecaca] rounded px-1\">Catastrophic</div>\n    </div>\n  </div>\n  <p class=\"text-[11px] text-[#334155] mt-2 font-medium leading-relaxed font-sans text-left\">\n    <strong>Compounding Cascade:</strong> Hardware telemetry desync (Stage 1) compounds via naive -999 imputation (Stage 2) and inverted annotation (Stage 3), forcing the downstream model to overfit spurious artifacts and fail in clinical ICU triage (Stage 4).\n  </p>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
@@ -431,7 +476,7 @@
               "text": "Exactly. That is why offline evaluation benchmarks must be paired with out-of-distribution counterfactual testing."
             }
           ],
-          "contentHtml": "<div class=\"p-3 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#f38469] my-2\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-2 flex items-center justify-between\">\n    <span>📊 Compounding Error Pipeline</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">4 Stages &amp; Feedback Loop</span>\n  </div>\n  <div class=\"mermaid text-center py-2\">\nflowchart TD\n    A[\"1. Hardware &amp; Ingestion Drift<br/>(Sensor noise, clock jitter)\"] -->|Noise ε_1| B[\"2. Data Preparation<br/>(Imputation, leakage)\"]\n    B -->|Bias ε_2| C[\"3. Validation<br/>(Biased test set)\"]\n    C -->|Drift ε_3| D[\"4. Production<br/>(Silent crash)\"]\n    D -.->|Feedback Loop| A\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-3 md:p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#f38469] my-2\">\n  <div class=\"text-[10px] font-mono text-[#c2410c] font-black uppercase tracking-wider mb-2 flex items-center justify-between\">\n    <span>📊 Compounding Error Pipeline</span>\n    <span class=\"text-[#475569] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">4 Stages &amp; Feedback Loop</span>\n  </div>\n  <div class=\"mermaid text-center py-2\">\nflowchart TD\n    A[\"1. Hardware &amp; Ingestion Drift<br/>(Sensor noise, clock jitter)\"] -->|Noise ε_1| B[\"2. Data Preparation<br/>(Imputation, leakage)\"]\n    B -->|Bias ε_2| C[\"3. Validation<br/>(Biased test set)\"]\n    C -->|Drift ε_3| D[\"4. Production<br/>(Silent crash)\"]\n    D -.->|Feedback Loop| A\n  </div>\n</div>\n<div class=\"mt-3 p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n  <div class=\"flex items-center justify-between mb-2 pb-1 border-b border-[#151b20]/15 flex-wrap gap-1\">\n    <div class=\"flex items-center gap-1.5 font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      <span>🤖</span> Case in Point: The Perilous Journey of Record #402\n    </div>\n    <span class=\"text-[9px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20]\">Sambasivan et al.</span>\n  </div>\n  <div class=\"grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono\">\n    <div class=\"p-2 rounded-lg bg-[#f0fdfa] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#0e7490]\">1. INGESTION</div>\n      <div class=\"text-[11px] font-black text-[#151b20] my-0.5 font-sans font-bold\">#402: HAPPY</div>\n      <div class=\"text-[9px] text-[#b45309] font-bold bg-[#fff0b9] rounded px-1\">+25ms Jitter</div>\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#fffbeb] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#b45309]\">2. CLEANING</div>\n      <div class=\"text-[11px] font-black text-[#c2410c] my-0.5 font-sans font-bold\">ERR: -999</div>\n      <div class=\"text-[9px] text-[#c2410c] font-bold bg-[#ffd8ce] rounded px-1\">+440% Shift</div>\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#faf5ff] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#6b21a8]\">3. LABELING</div>\n      <div class=\"text-[11px] font-black text-[#6b21a8] my-0.5 font-sans font-bold\">LABEL FLIPPED</div>\n      <div class=\"text-[9px] text-[#9d174d] font-bold bg-[#fce7f3] rounded px-1\">κ = 0.22</div>\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#fef2f2] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]\">\n      <div class=\"text-[9px] font-black text-[#b91c1c]\">4. DEPLOYMENT</div>\n      <div class=\"text-[11px] font-black text-[#b91c1c] my-0.5 font-sans font-bold\">AUC 0.52 CRASH</div>\n      <div class=\"text-[9px] text-[#991b1b] font-bold bg-[#fecaca] rounded px-1\">Catastrophic</div>\n    </div>\n  </div>\n  <p class=\"text-[11px] text-[#334155] mt-2 font-medium leading-relaxed font-sans text-left\">\n    <strong>Compounding Cascade:</strong> Hardware telemetry desync (Stage 1) compounds via naive -999 imputation (Stage 2) and inverted annotation (Stage 3), forcing the downstream model to overfit spurious artifacts and fail in clinical ICU triage (Stage 4).\n  </p>\n</div>"
         }
       },
       {
