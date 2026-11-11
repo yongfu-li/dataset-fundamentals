@@ -1,0 +1,505 @@
+{
+  "duration": 620.64,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in everyday data science, practitioners often just drop missing rows with dropna and run a few ad-hoc regex substitutions. Why do we need formal mathematical theory for data cleaning?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 12.168
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because naive fixes often destroy statistical signal, Kaito! Dropping rows can introduce catastrophic survival bias, while uncleaned measurement noise systematically attenuates regression coefficients and model weights toward zero.",
+          "dock": "main",
+          "start": 12.168,
+          "end": 27.072
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So dirty data doesn't just reduce accuracy\u2014it actively distorts the model's understanding of feature importance?",
+          "dock": "main",
+          "start": 27.072,
+          "end": 34.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. And across multi-table relational joins, even minor defect rates compound exponentially into double-digit warehouse corruption. Formal pipelines are essential.",
+          "dock": "main",
+          "start": 34.128,
+          "end": 46.68
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Looking at these six dimensions, engineering teams frequently obsess over completeness\u2014making sure there are zero nulls\u2014while completely ignoring consistency or timeliness.",
+          "dock": "main",
+          "start": 46.68,
+          "end": 56.496
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is a classic anti-pattern, Kaito. A dataset can be 100% complete and valid syntactically, yet contain fatal semantic contradictions\u2014like a three-year-old customer marked as married, or stale credit scores from six months ago.",
+          "dock": "main",
+          "start": 56.496,
+          "end": 72.072
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the composite DQI combines them all with convex weights, establishing an automated production deployment gate!",
+          "dock": "main",
+          "start": 72.072,
+          "end": 79.224
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. A pipeline that only checks nulls is blind to ninety percent of real-world operational failure modes.",
+          "dock": "main",
+          "start": 79.224,
+          "end": 87.096
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why order the gates sequentially? Does the order of checks really matter from an engineering standpoint?",
+          "dock": "main",
+          "start": 87.096,
+          "end": 95.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Computational efficiency dictates the order, Kaito! Inexpensive syntactic checks\u2014null checks, regexes, and type validations\u2014execute first at sub-millisecond cost. Expensive relational joins, cross-column constraint evaluations, and fuzzy deduplication run only on records that pass the syntactic filters.",
+          "dock": "main",
+          "start": 95.136,
+          "end": 117.24
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That saves massive compute on invalid payloads and isolates defect root causes cleanly in the quarantine stream!",
+          "dock": "main",
+          "start": 117.24,
+          "end": 124.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Filtering dirty records early preserves GPU cluster budgets and prevents corrupt batches from triggering downstream ETL cascading crashes.",
+          "dock": "main",
+          "start": 124.008,
+          "end": 134.472
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! In linear regression, doesn't zero-mean noise average out in expectation across large training datasets?",
+          "dock": "main",
+          "start": 134.472,
+          "end": 143.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Noise in the target variable Y averages out into the residual variance without biasing the slope, Kaito. But noise in the feature X appears in the denominator\u2014the feature variance\u2014inflating it and systematically compressing the learned slope toward zero!",
+          "dock": "main",
+          "start": 143.328,
+          "end": 158.88
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in a multivariate model with correlated features, that noise covariance matrix can even flip the mathematical sign of a feature's coefficient entirely!",
+          "dock": "main",
+          "start": 158.88,
+          "end": 167.928
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. If your sensor noise is twice the true signal variance, your algorithmic trading engine perceives only one-third of the true market risk. That is why denoising is mandatory before training.",
+          "dock": "main",
+          "start": 167.928,
+          "end": 181.296
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Every database team I talk to claims their individual tables are 96% accurate or better. They assume their corporate data warehouse must be in fantastic shape!",
+          "dock": "main",
+          "start": 181.296,
+          "end": 191.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the relational illusion, Kaito! When an analyst runs a star-schema query joining four or five tables, those tiny defect probabilities compound exponentially. More than one in every ten rows delivered to dashboards is corrupted.",
+          "dock": "main",
+          "start": 191.832,
+          "end": 207.768
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Which proves why data cleaning must occur before relational joins at the ingestion tier, not after joining!",
+          "dock": "main",
+          "start": 207.768,
+          "end": 213.96
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Cleaning dirty tables after an inner join is like trying to un-bake a cake. You must clean the ingredients before they combine.",
+          "dock": "main",
+          "start": 213.96,
+          "end": 223.872
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at Record 104\u2014the customer age is 4, but marital status is 'Married'! And Record 102 has an amount of negative 45 dollars.",
+          "dock": "sim",
+          "start": 223.872,
+          "end": 234.768
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Those are direct violations of syntactic validity and relational consistency, Kaito. Right now, the composite DQI is failing at 0.79. Let's trigger the remediation pipelines and watch the quality gate clear the batch.",
+          "dock": "sim",
+          "start": 234.768,
+          "end": 251.184
+        },
+        {
+          "speaker": "Kaito",
+          "text": "When we impute nulls, fix negative amounts, and drop the duplicate record, the composite DQI climbs past 0.95 into PASSED status!",
+          "dock": "sim",
+          "start": 251.184,
+          "end": 260.064
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And that single gate prevented four corrupted records from poisoning our downstream feature store.",
+          "dock": "sim",
+          "start": 260.064,
+          "end": 266.088
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if measurement noise variance is twice the feature variance, how does that alter the model's perception of risk?",
+          "dock": "checkpoint",
+          "start": 266.088,
+          "end": 273.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let's test our learners, Kaito. True slope is 4.0, but sigma-u squared equals 2 sigma-x squared. What slope will the model learn, and what catastrophe might result?",
+          "dock": "checkpoint",
+          "start": 273.312,
+          "end": 285.984
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Executives often push back against spending engineering cycles on upstream data validation, asking why we can't just store everything in a raw data lake and fix it later.",
+          "dock": "main",
+          "start": 285.984,
+          "end": 295.728
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because 'fixing it later' is a financial disaster, Kaito! Catching a defective record at the API gateway costs one dollar. Letting that record corrupt a credit underwriting decision in production costs one hundred dollars or more in regulatory fines and chargebacks.",
+          "dock": "main",
+          "start": 295.728,
+          "end": 313.056
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The 1-10-100 rule provides the exact economic justification data teams need to enforce strict gateway validation!",
+          "dock": "main",
+          "start": 313.056,
+          "end": 321.024
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Upstream data quality engineering is not an administrative burden\u2014it is one of the highest-ROI investments in the entire software engineering stack.",
+          "dock": "main",
+          "start": 321.024,
+          "end": 331.656
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "A three-hundred-million-dollar spacecraft was lost because of a simple unit mismatch between pound-seconds and Newton-seconds?",
+          "dock": "main",
+          "start": 331.656,
+          "end": 338.904
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. The numbers themselves looked completely plausible on both ends\u2014they were just standard floating-point numbers. But because the serialization contract lacked explicit unit typing, the error propagated silently through navigation equations.",
+          "dock": "main",
+          "start": 338.904,
+          "end": 356.088
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Strong typing with Pydantic or schema registries like Protobuf would have caught that error at compile time or ingestion!",
+          "dock": "main",
+          "start": 356.088,
+          "end": 363.024
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Indeed. A single schema validation check costing virtually nothing would have saved one of the most ambitious space exploration missions of that decade.",
+          "dock": "main",
+          "start": 363.024,
+          "end": 372.768
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "The Equifax incident proves that even if all your records are formatted cleanly, a breakdown in cache currency or timestamps can instantly produce dirty output.",
+          "dock": "main",
+          "start": 372.768,
+          "end": 381.744
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Indeed, Kaito. Timeliness is an active quality dimension. And Amazon Deequ proved that unit testing belongs in production data pipelines just as much as in application code.",
+          "dock": "main",
+          "start": 381.744,
+          "end": 394.224
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Automated verification gates prevent silent schema and distribution drift before downstream consumers ever see the data!",
+          "dock": "main",
+          "start": 394.224,
+          "end": 401.592
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Declarative constraints like hasCompleteness and isNonNegative catch anomalies before they reach production inference models.",
+          "dock": "main",
+          "start": 401.592,
+          "end": 410.64
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "So if our fraud pipeline takes 45 seconds to buffer and ingest transactions, our geolocation feature is essentially useless?",
+          "dock": "main",
+          "start": 410.64,
+          "end": 418.584
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. By the time the model evaluates the location ping, the fraudster has already moved or completed the next transaction. Timeliness decay turns clean data into useless noise.",
+          "dock": "main",
+          "start": 418.584,
+          "end": 432.456
+        },
+        {
+          "speaker": "Kaito",
+          "text": "To keep timeliness above 80%, our end-to-end ingestion latency must remain under 4.5 seconds!",
+          "dock": "main",
+          "start": 432.456,
+          "end": 439.368
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Which is why real-time streaming infrastructure with low micro-second latency is non-negotiable for high-velocity fraud engines.",
+          "dock": "main",
+          "start": 439.368,
+          "end": 446.904
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the canvas! When I dial noise variance up to 80, the green true slope stays at 2.5, but the red dashed line collapses to 1.25\u2014a 50% loss in feature sensitivity!",
+          "dock": "sim",
+          "start": 446.904,
+          "end": 460.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the visual proof of attenuation bias, Kaito. And on Tab B, notice how allowing just 10% of defects to reach production multiplies total cleanup costs by more than twelve times!",
+          "dock": "sim",
+          "start": 460.032,
+          "end": 472.584
+        },
+        {
+          "speaker": "Kaito",
+          "text": "This lab visually demonstrates both the statistical danger and the financial peril of uncleaned data.",
+          "dock": "sim",
+          "start": 472.584,
+          "end": 478.776
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Math and economics point to the exact same conclusion: enforce quality at the earliest ingestion boundary.",
+          "dock": "sim",
+          "start": 478.776,
+          "end": 487.704
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, four tables with defect rates of two, three, two, and four percent. Does the join error equal the maximum rate of four percent, or does it compound?",
+          "dock": "checkpoint",
+          "start": 487.704,
+          "end": 498.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let's put the question to our learners, Kaito. Apply Thomas Redman's compound join formula to calculate the exact joined defect probability.",
+          "dock": "checkpoint",
+          "start": 498.552,
+          "end": 508.392
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "ActiveClean is fascinating\u2014it actually inspects the machine learning model's loss gradients to tell human annotators which specific rows need cleaning first!",
+          "dock": "main",
+          "start": 508.392,
+          "end": 517.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, Kaito! Instead of blindly paying engineers to clean a hundred million rows, ActiveClean cleans the five percent that actually move the model's decision boundary, reducing cleaning costs by up to eighty percent.",
+          "dock": "main",
+          "start": 517.176,
+          "end": 531.624
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Combined with strict ingestion schema validation, that forms a complete end-to-end data quality strategy!",
+          "dock": "main",
+          "start": 531.624,
+          "end": 538.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Schema validation stops obvious corruption at the front door, while gradient-aware cleaning polishes the nuanced boundary cases during model training.",
+          "dock": "main",
+          "start": 538.2,
+          "end": 548.976
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Having Pydantic V2 validate that the composite quality weights sum to exactly 1.0 prevents silent configuration drift in CI/CD pipelines.",
+          "dock": "main",
+          "start": 548.976,
+          "end": 558.528
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And our automated test suite asserts that the reliability ratio and Redman join calculations match theoretical values to five decimal places before any ETL code merges to main!",
+          "dock": "main",
+          "start": 558.528,
+          "end": 569.856
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Mathematical rigor combined with type safety turns data cleaning from guesswork into solid software engineering.",
+          "dock": "main",
+          "start": 569.856,
+          "end": 576.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. That is the hallmark of modern data engineering.",
+          "dock": "main",
+          "start": 576.672,
+          "end": 581.712
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "This was a masterclass in data quality, Dr. Nova. Treating data cleaning as a rigorous mathematical discipline completely changes how we design AI ingestion pipelines.",
+          "dock": "main",
+          "start": 581.712,
+          "end": 592.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "It does, Kaito. And now that we have established quality dimensions, attenuation bias, and error propagation, we are ready to tackle one of the most pervasive real-world corruptions: missing data in Lesson 5.2!",
+          "dock": "main",
+          "start": 592.92,
+          "end": 607.632
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Donald Rubin's taxonomy of MCAR, MAR, and MNAR mechanisms, plus Little's test and MICE imputation algorithms!",
+          "dock": "main",
+          "start": 607.632,
+          "end": 615.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Let's move forward into Lesson 5.2!",
+          "dock": "main",
+          "start": 615.504,
+          "end": 620.64
+        }
+      ]
+    }
+  ]
+}

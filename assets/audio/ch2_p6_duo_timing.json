@@ -1,0 +1,5469 @@
+{
+  "duration": 554.928,
+  "sentences": [
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "speaker": "Dr. Nova",
+      "text": "Welcome back to Dataset Fundamentals. Today we tackle Lesson 2.6: Probability Sampling Theory: Simple Random, Stratified, and Cluster Derivations. In machine learning, practitioners frequently draw training datasets opportunistically, whatever logs are easiest to extract. But as Jerzy Neyman proved in 1934, non-probability draws systematically destroy empirical generalizability.",
+      "start": 0.0,
+      "end": 25.197,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 0.0
+        },
+        {
+          "w": "back",
+          "t": 0.536
+        },
+        {
+          "w": "to",
+          "t": 1.072
+        },
+        {
+          "w": "Dataset",
+          "t": 1.608
+        },
+        {
+          "w": "Fundamentals.",
+          "t": 2.144
+        },
+        {
+          "w": "Today",
+          "t": 2.681
+        },
+        {
+          "w": "we",
+          "t": 3.217
+        },
+        {
+          "w": "tackle",
+          "t": 3.753
+        },
+        {
+          "w": "Lesson",
+          "t": 4.289
+        },
+        {
+          "w": "2.6:",
+          "t": 4.825
+        },
+        {
+          "w": "Probability",
+          "t": 5.361
+        },
+        {
+          "w": "Sampling",
+          "t": 5.897
+        },
+        {
+          "w": "Theory:",
+          "t": 6.433
+        },
+        {
+          "w": "Simple",
+          "t": 6.969
+        },
+        {
+          "w": "Random,",
+          "t": 7.505
+        },
+        {
+          "w": "Stratified,",
+          "t": 8.042
+        },
+        {
+          "w": "and",
+          "t": 8.578
+        },
+        {
+          "w": "Cluster",
+          "t": 9.114
+        },
+        {
+          "w": "Derivations.",
+          "t": 9.65
+        },
+        {
+          "w": "In",
+          "t": 10.186
+        },
+        {
+          "w": "machine",
+          "t": 10.722
+        },
+        {
+          "w": "learning,",
+          "t": 11.258
+        },
+        {
+          "w": "practitioners",
+          "t": 11.794
+        },
+        {
+          "w": "frequently",
+          "t": 12.33
+        },
+        {
+          "w": "draw",
+          "t": 12.867
+        },
+        {
+          "w": "training",
+          "t": 13.403
+        },
+        {
+          "w": "datasets",
+          "t": 13.939
+        },
+        {
+          "w": "opportunistically,",
+          "t": 14.475
+        },
+        {
+          "w": "whatever",
+          "t": 15.011
+        },
+        {
+          "w": "logs",
+          "t": 15.547
+        },
+        {
+          "w": "are",
+          "t": 16.083
+        },
+        {
+          "w": "easiest",
+          "t": 16.619
+        },
+        {
+          "w": "to",
+          "t": 17.155
+        },
+        {
+          "w": "extract.",
+          "t": 17.692
+        },
+        {
+          "w": "But",
+          "t": 18.228
+        },
+        {
+          "w": "as",
+          "t": 18.764
+        },
+        {
+          "w": "Jerzy",
+          "t": 19.3
+        },
+        {
+          "w": "Neyman",
+          "t": 19.836
+        },
+        {
+          "w": "proved",
+          "t": 20.372
+        },
+        {
+          "w": "in",
+          "t": 20.908
+        },
+        {
+          "w": "1934,",
+          "t": 21.444
+        },
+        {
+          "w": "non-probability",
+          "t": 21.98
+        },
+        {
+          "w": "draws",
+          "t": 22.516
+        },
+        {
+          "w": "systematically",
+          "t": 23.053
+        },
+        {
+          "w": "destroy",
+          "t": 23.589
+        },
+        {
+          "w": "empirical",
+          "t": 24.125
+        },
+        {
+          "w": "generalizability.",
+          "t": 24.661
+        }
+      ]
+    },
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "speaker": "Kaito",
+      "text": "That hits home, Dr. Nova! In production, engineers often confuse stratified sampling with cluster sampling. We think we are reducing variance, when in reality positive intra-cluster correlation is silently inflating our true standard errors by a factor of three or four. Today we will build the exact mathematical tools to catch and solve that.",
+      "start": 25.197,
+      "end": 47.947,
+      "words": [
+        {
+          "w": "That",
+          "t": 25.197
+        },
+        {
+          "w": "hits",
+          "t": 25.618
+        },
+        {
+          "w": "home,",
+          "t": 26.04
+        },
+        {
+          "w": "Dr.",
+          "t": 26.461
+        },
+        {
+          "w": "Nova!",
+          "t": 26.882
+        },
+        {
+          "w": "In",
+          "t": 27.303
+        },
+        {
+          "w": "production,",
+          "t": 27.725
+        },
+        {
+          "w": "engineers",
+          "t": 28.146
+        },
+        {
+          "w": "often",
+          "t": 28.567
+        },
+        {
+          "w": "confuse",
+          "t": 28.989
+        },
+        {
+          "w": "stratified",
+          "t": 29.41
+        },
+        {
+          "w": "sampling",
+          "t": 29.831
+        },
+        {
+          "w": "with",
+          "t": 30.253
+        },
+        {
+          "w": "cluster",
+          "t": 30.674
+        },
+        {
+          "w": "sampling.",
+          "t": 31.095
+        },
+        {
+          "w": "We",
+          "t": 31.516
+        },
+        {
+          "w": "think",
+          "t": 31.938
+        },
+        {
+          "w": "we",
+          "t": 32.359
+        },
+        {
+          "w": "are",
+          "t": 32.78
+        },
+        {
+          "w": "reducing",
+          "t": 33.202
+        },
+        {
+          "w": "variance,",
+          "t": 33.623
+        },
+        {
+          "w": "when",
+          "t": 34.044
+        },
+        {
+          "w": "in",
+          "t": 34.466
+        },
+        {
+          "w": "reality",
+          "t": 34.887
+        },
+        {
+          "w": "positive",
+          "t": 35.308
+        },
+        {
+          "w": "intra-cluster",
+          "t": 35.729
+        },
+        {
+          "w": "correlation",
+          "t": 36.151
+        },
+        {
+          "w": "is",
+          "t": 36.572
+        },
+        {
+          "w": "silently",
+          "t": 36.993
+        },
+        {
+          "w": "inflating",
+          "t": 37.415
+        },
+        {
+          "w": "our",
+          "t": 37.836
+        },
+        {
+          "w": "true",
+          "t": 38.257
+        },
+        {
+          "w": "standard",
+          "t": 38.678
+        },
+        {
+          "w": "errors",
+          "t": 39.1
+        },
+        {
+          "w": "by",
+          "t": 39.521
+        },
+        {
+          "w": "a",
+          "t": 39.942
+        },
+        {
+          "w": "factor",
+          "t": 40.364
+        },
+        {
+          "w": "of",
+          "t": 40.785
+        },
+        {
+          "w": "three",
+          "t": 41.206
+        },
+        {
+          "w": "or",
+          "t": 41.628
+        },
+        {
+          "w": "four.",
+          "t": 42.049
+        },
+        {
+          "w": "Today",
+          "t": 42.47
+        },
+        {
+          "w": "we",
+          "t": 42.891
+        },
+        {
+          "w": "will",
+          "t": 43.313
+        },
+        {
+          "w": "build",
+          "t": 43.734
+        },
+        {
+          "w": "the",
+          "t": 44.155
+        },
+        {
+          "w": "exact",
+          "t": 44.577
+        },
+        {
+          "w": "mathematical",
+          "t": 44.998
+        },
+        {
+          "w": "tools",
+          "t": 45.419
+        },
+        {
+          "w": "to",
+          "t": 45.841
+        },
+        {
+          "w": "catch",
+          "t": 46.262
+        },
+        {
+          "w": "and",
+          "t": 46.683
+        },
+        {
+          "w": "solve",
+          "t": 47.104
+        },
+        {
+          "w": "that.",
+          "t": 47.526
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "speaker": "Dr. Nova",
+      "text": "Notice the primary branching gate in our flowchart: do we have a complete individual sampling frame? If our data engineering team has an exhaustive database table of all user IDs, we evaluate subgroup heterogeneity. If mobile users have much higher variance than desktop users, stratified sampling eliminates between-strata differences from our estimator variance.",
+      "start": 47.947,
+      "end": 72.02,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 47.947
+        },
+        {
+          "w": "the",
+          "t": 48.401
+        },
+        {
+          "w": "primary",
+          "t": 48.855
+        },
+        {
+          "w": "branching",
+          "t": 49.31
+        },
+        {
+          "w": "gate",
+          "t": 49.764
+        },
+        {
+          "w": "in",
+          "t": 50.218
+        },
+        {
+          "w": "our",
+          "t": 50.672
+        },
+        {
+          "w": "flowchart:",
+          "t": 51.126
+        },
+        {
+          "w": "do",
+          "t": 51.581
+        },
+        {
+          "w": "we",
+          "t": 52.035
+        },
+        {
+          "w": "have",
+          "t": 52.489
+        },
+        {
+          "w": "a",
+          "t": 52.943
+        },
+        {
+          "w": "complete",
+          "t": 53.397
+        },
+        {
+          "w": "individual",
+          "t": 53.852
+        },
+        {
+          "w": "sampling",
+          "t": 54.306
+        },
+        {
+          "w": "frame?",
+          "t": 54.76
+        },
+        {
+          "w": "If",
+          "t": 55.214
+        },
+        {
+          "w": "our",
+          "t": 55.669
+        },
+        {
+          "w": "data",
+          "t": 56.123
+        },
+        {
+          "w": "engineering",
+          "t": 56.577
+        },
+        {
+          "w": "team",
+          "t": 57.031
+        },
+        {
+          "w": "has",
+          "t": 57.485
+        },
+        {
+          "w": "an",
+          "t": 57.94
+        },
+        {
+          "w": "exhaustive",
+          "t": 58.394
+        },
+        {
+          "w": "database",
+          "t": 58.848
+        },
+        {
+          "w": "table",
+          "t": 59.302
+        },
+        {
+          "w": "of",
+          "t": 59.756
+        },
+        {
+          "w": "all",
+          "t": 60.211
+        },
+        {
+          "w": "user",
+          "t": 60.665
+        },
+        {
+          "w": "IDs,",
+          "t": 61.119
+        },
+        {
+          "w": "we",
+          "t": 61.573
+        },
+        {
+          "w": "evaluate",
+          "t": 62.027
+        },
+        {
+          "w": "subgroup",
+          "t": 62.482
+        },
+        {
+          "w": "heterogeneity.",
+          "t": 62.936
+        },
+        {
+          "w": "If",
+          "t": 63.39
+        },
+        {
+          "w": "mobile",
+          "t": 63.844
+        },
+        {
+          "w": "users",
+          "t": 64.298
+        },
+        {
+          "w": "have",
+          "t": 64.753
+        },
+        {
+          "w": "much",
+          "t": 65.207
+        },
+        {
+          "w": "higher",
+          "t": 65.661
+        },
+        {
+          "w": "variance",
+          "t": 66.115
+        },
+        {
+          "w": "than",
+          "t": 66.57
+        },
+        {
+          "w": "desktop",
+          "t": 67.024
+        },
+        {
+          "w": "users,",
+          "t": 67.478
+        },
+        {
+          "w": "stratified",
+          "t": 67.932
+        },
+        {
+          "w": "sampling",
+          "t": 68.386
+        },
+        {
+          "w": "eliminates",
+          "t": 68.841
+        },
+        {
+          "w": "between-strata",
+          "t": 69.295
+        },
+        {
+          "w": "differences",
+          "t": 69.749
+        },
+        {
+          "w": "from",
+          "t": 70.203
+        },
+        {
+          "w": "our",
+          "t": 70.657
+        },
+        {
+          "w": "estimator",
+          "t": 71.112
+        },
+        {
+          "w": "variance.",
+          "t": 71.566
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "speaker": "Kaito",
+      "text": "Exactly. But if we are auditing hospital EHR systems across the country, we cannot randomly sample five patients in hospital A, two patients in hospital B, and three in hospital C. The travel and security authorization costs would be catastrophic! We must cluster hospitals, which saves budget but penalizes our effective sample size through positive intra-cluster correlation.",
+      "start": 72.02,
+      "end": 96.952,
+      "words": [
+        {
+          "w": "Exactly.",
+          "t": 72.02
+        },
+        {
+          "w": "But",
+          "t": 72.457
+        },
+        {
+          "w": "if",
+          "t": 72.895
+        },
+        {
+          "w": "we",
+          "t": 73.332
+        },
+        {
+          "w": "are",
+          "t": 73.77
+        },
+        {
+          "w": "auditing",
+          "t": 74.207
+        },
+        {
+          "w": "hospital",
+          "t": 74.644
+        },
+        {
+          "w": "EHR",
+          "t": 75.082
+        },
+        {
+          "w": "systems",
+          "t": 75.519
+        },
+        {
+          "w": "across",
+          "t": 75.957
+        },
+        {
+          "w": "the",
+          "t": 76.394
+        },
+        {
+          "w": "country,",
+          "t": 76.831
+        },
+        {
+          "w": "we",
+          "t": 77.269
+        },
+        {
+          "w": "cannot",
+          "t": 77.706
+        },
+        {
+          "w": "randomly",
+          "t": 78.144
+        },
+        {
+          "w": "sample",
+          "t": 78.581
+        },
+        {
+          "w": "five",
+          "t": 79.018
+        },
+        {
+          "w": "patients",
+          "t": 79.456
+        },
+        {
+          "w": "in",
+          "t": 79.893
+        },
+        {
+          "w": "hospital",
+          "t": 80.331
+        },
+        {
+          "w": "A,",
+          "t": 80.768
+        },
+        {
+          "w": "two",
+          "t": 81.205
+        },
+        {
+          "w": "patients",
+          "t": 81.643
+        },
+        {
+          "w": "in",
+          "t": 82.08
+        },
+        {
+          "w": "hospital",
+          "t": 82.518
+        },
+        {
+          "w": "B,",
+          "t": 82.955
+        },
+        {
+          "w": "and",
+          "t": 83.392
+        },
+        {
+          "w": "three",
+          "t": 83.83
+        },
+        {
+          "w": "in",
+          "t": 84.267
+        },
+        {
+          "w": "hospital",
+          "t": 84.705
+        },
+        {
+          "w": "C.",
+          "t": 85.142
+        },
+        {
+          "w": "The",
+          "t": 85.58
+        },
+        {
+          "w": "travel",
+          "t": 86.017
+        },
+        {
+          "w": "and",
+          "t": 86.454
+        },
+        {
+          "w": "security",
+          "t": 86.892
+        },
+        {
+          "w": "authorization",
+          "t": 87.329
+        },
+        {
+          "w": "costs",
+          "t": 87.767
+        },
+        {
+          "w": "would",
+          "t": 88.204
+        },
+        {
+          "w": "be",
+          "t": 88.641
+        },
+        {
+          "w": "catastrophic!",
+          "t": 89.079
+        },
+        {
+          "w": "We",
+          "t": 89.516
+        },
+        {
+          "w": "must",
+          "t": 89.954
+        },
+        {
+          "w": "cluster",
+          "t": 90.391
+        },
+        {
+          "w": "hospitals,",
+          "t": 90.828
+        },
+        {
+          "w": "which",
+          "t": 91.266
+        },
+        {
+          "w": "saves",
+          "t": 91.703
+        },
+        {
+          "w": "budget",
+          "t": 92.141
+        },
+        {
+          "w": "but",
+          "t": 92.578
+        },
+        {
+          "w": "penalizes",
+          "t": 93.015
+        },
+        {
+          "w": "our",
+          "t": 93.453
+        },
+        {
+          "w": "effective",
+          "t": 93.89
+        },
+        {
+          "w": "sample",
+          "t": 94.328
+        },
+        {
+          "w": "size",
+          "t": 94.765
+        },
+        {
+          "w": "through",
+          "t": 95.202
+        },
+        {
+          "w": "positive",
+          "t": 95.64
+        },
+        {
+          "w": "intra-cluster",
+          "t": 96.077
+        },
+        {
+          "w": "correlation.",
+          "t": 96.515
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "speaker": "Dr. Nova",
+      "text": "Notice how elegant Horvitz and Thompson's proof is: we represent the sample selection as an indicator variable I-sub-i. Because expectation is linear, the expected value of I-sub-i is exactly pi-sub-i, which neatly cancels out the denominator. The result is strictly equal to the true population total Y, with zero bias.",
+      "start": 96.952,
+      "end": 118.115,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 96.952
+        },
+        {
+          "w": "how",
+          "t": 97.375
+        },
+        {
+          "w": "elegant",
+          "t": 97.799
+        },
+        {
+          "w": "Horvitz",
+          "t": 98.222
+        },
+        {
+          "w": "and",
+          "t": 98.645
+        },
+        {
+          "w": "Thompson's",
+          "t": 99.068
+        },
+        {
+          "w": "proof",
+          "t": 99.492
+        },
+        {
+          "w": "is:",
+          "t": 99.915
+        },
+        {
+          "w": "we",
+          "t": 100.338
+        },
+        {
+          "w": "represent",
+          "t": 100.761
+        },
+        {
+          "w": "the",
+          "t": 101.185
+        },
+        {
+          "w": "sample",
+          "t": 101.608
+        },
+        {
+          "w": "selection",
+          "t": 102.031
+        },
+        {
+          "w": "as",
+          "t": 102.454
+        },
+        {
+          "w": "an",
+          "t": 102.878
+        },
+        {
+          "w": "indicator",
+          "t": 103.301
+        },
+        {
+          "w": "variable",
+          "t": 103.724
+        },
+        {
+          "w": "I-sub-i.",
+          "t": 104.147
+        },
+        {
+          "w": "Because",
+          "t": 104.571
+        },
+        {
+          "w": "expectation",
+          "t": 104.994
+        },
+        {
+          "w": "is",
+          "t": 105.417
+        },
+        {
+          "w": "linear,",
+          "t": 105.84
+        },
+        {
+          "w": "the",
+          "t": 106.264
+        },
+        {
+          "w": "expected",
+          "t": 106.687
+        },
+        {
+          "w": "value",
+          "t": 107.11
+        },
+        {
+          "w": "of",
+          "t": 107.534
+        },
+        {
+          "w": "I-sub-i",
+          "t": 107.957
+        },
+        {
+          "w": "is",
+          "t": 108.38
+        },
+        {
+          "w": "exactly",
+          "t": 108.803
+        },
+        {
+          "w": "pi-sub-i,",
+          "t": 109.227
+        },
+        {
+          "w": "which",
+          "t": 109.65
+        },
+        {
+          "w": "neatly",
+          "t": 110.073
+        },
+        {
+          "w": "cancels",
+          "t": 110.496
+        },
+        {
+          "w": "out",
+          "t": 110.92
+        },
+        {
+          "w": "the",
+          "t": 111.343
+        },
+        {
+          "w": "denominator.",
+          "t": 111.766
+        },
+        {
+          "w": "The",
+          "t": 112.189
+        },
+        {
+          "w": "result",
+          "t": 112.613
+        },
+        {
+          "w": "is",
+          "t": 113.036
+        },
+        {
+          "w": "strictly",
+          "t": 113.459
+        },
+        {
+          "w": "equal",
+          "t": 113.882
+        },
+        {
+          "w": "to",
+          "t": 114.306
+        },
+        {
+          "w": "the",
+          "t": 114.729
+        },
+        {
+          "w": "true",
+          "t": 115.152
+        },
+        {
+          "w": "population",
+          "t": 115.575
+        },
+        {
+          "w": "total",
+          "t": 115.999
+        },
+        {
+          "w": "Y,",
+          "t": 116.422
+        },
+        {
+          "w": "with",
+          "t": 116.845
+        },
+        {
+          "w": "zero",
+          "t": 117.268
+        },
+        {
+          "w": "bias.",
+          "t": 117.692
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "speaker": "Kaito",
+      "text": "And this proof exposes the fundamental flaw of web scraping datasets: if you collect data by scraping social media comments, anyone without an account has an inclusion probability of exactly zero. You cannot calculate pi-sub-i, and your training dataset suffers permanent, unquantifiable representation bias!",
+      "start": 118.115,
+      "end": 138.484,
+      "words": [
+        {
+          "w": "And",
+          "t": 118.115
+        },
+        {
+          "w": "this",
+          "t": 118.578
+        },
+        {
+          "w": "proof",
+          "t": 119.041
+        },
+        {
+          "w": "exposes",
+          "t": 119.504
+        },
+        {
+          "w": "the",
+          "t": 119.967
+        },
+        {
+          "w": "fundamental",
+          "t": 120.43
+        },
+        {
+          "w": "flaw",
+          "t": 120.893
+        },
+        {
+          "w": "of",
+          "t": 121.356
+        },
+        {
+          "w": "web",
+          "t": 121.818
+        },
+        {
+          "w": "scraping",
+          "t": 122.281
+        },
+        {
+          "w": "datasets:",
+          "t": 122.744
+        },
+        {
+          "w": "if",
+          "t": 123.207
+        },
+        {
+          "w": "you",
+          "t": 123.67
+        },
+        {
+          "w": "collect",
+          "t": 124.133
+        },
+        {
+          "w": "data",
+          "t": 124.596
+        },
+        {
+          "w": "by",
+          "t": 125.059
+        },
+        {
+          "w": "scraping",
+          "t": 125.522
+        },
+        {
+          "w": "social",
+          "t": 125.985
+        },
+        {
+          "w": "media",
+          "t": 126.448
+        },
+        {
+          "w": "comments,",
+          "t": 126.911
+        },
+        {
+          "w": "anyone",
+          "t": 127.374
+        },
+        {
+          "w": "without",
+          "t": 127.837
+        },
+        {
+          "w": "an",
+          "t": 128.299
+        },
+        {
+          "w": "account",
+          "t": 128.762
+        },
+        {
+          "w": "has",
+          "t": 129.225
+        },
+        {
+          "w": "an",
+          "t": 129.688
+        },
+        {
+          "w": "inclusion",
+          "t": 130.151
+        },
+        {
+          "w": "probability",
+          "t": 130.614
+        },
+        {
+          "w": "of",
+          "t": 131.077
+        },
+        {
+          "w": "exactly",
+          "t": 131.54
+        },
+        {
+          "w": "zero.",
+          "t": 132.003
+        },
+        {
+          "w": "You",
+          "t": 132.466
+        },
+        {
+          "w": "cannot",
+          "t": 132.929
+        },
+        {
+          "w": "calculate",
+          "t": 133.392
+        },
+        {
+          "w": "pi-sub-i,",
+          "t": 133.855
+        },
+        {
+          "w": "and",
+          "t": 134.318
+        },
+        {
+          "w": "your",
+          "t": 134.781
+        },
+        {
+          "w": "training",
+          "t": 135.243
+        },
+        {
+          "w": "dataset",
+          "t": 135.706
+        },
+        {
+          "w": "suffers",
+          "t": 136.169
+        },
+        {
+          "w": "permanent,",
+          "t": 136.632
+        },
+        {
+          "w": "unquantifiable",
+          "t": 137.095
+        },
+        {
+          "w": "representation",
+          "t": 137.558
+        },
+        {
+          "w": "bias!",
+          "t": 138.021
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "speaker": "Dr. Nova",
+      "text": "The Finite Population Correction is a critical concept when auditing finite corporate databases. If you inspect one thousand records from a table of ten thousand rows, your sampling fraction is ten percent. That means the FPC factor is zero point nine zero, yielding a ten percent reduction in the variance of your estimate.",
+      "start": 138.484,
+      "end": 159.911,
+      "words": [
+        {
+          "w": "The",
+          "t": 138.484
+        },
+        {
+          "w": "Finite",
+          "t": 138.888
+        },
+        {
+          "w": "Population",
+          "t": 139.293
+        },
+        {
+          "w": "Correction",
+          "t": 139.697
+        },
+        {
+          "w": "is",
+          "t": 140.101
+        },
+        {
+          "w": "a",
+          "t": 140.505
+        },
+        {
+          "w": "critical",
+          "t": 140.91
+        },
+        {
+          "w": "concept",
+          "t": 141.314
+        },
+        {
+          "w": "when",
+          "t": 141.718
+        },
+        {
+          "w": "auditing",
+          "t": 142.123
+        },
+        {
+          "w": "finite",
+          "t": 142.527
+        },
+        {
+          "w": "corporate",
+          "t": 142.931
+        },
+        {
+          "w": "databases.",
+          "t": 143.335
+        },
+        {
+          "w": "If",
+          "t": 143.74
+        },
+        {
+          "w": "you",
+          "t": 144.144
+        },
+        {
+          "w": "inspect",
+          "t": 144.548
+        },
+        {
+          "w": "one",
+          "t": 144.953
+        },
+        {
+          "w": "thousand",
+          "t": 145.357
+        },
+        {
+          "w": "records",
+          "t": 145.761
+        },
+        {
+          "w": "from",
+          "t": 146.165
+        },
+        {
+          "w": "a",
+          "t": 146.57
+        },
+        {
+          "w": "table",
+          "t": 146.974
+        },
+        {
+          "w": "of",
+          "t": 147.378
+        },
+        {
+          "w": "ten",
+          "t": 147.783
+        },
+        {
+          "w": "thousand",
+          "t": 148.187
+        },
+        {
+          "w": "rows,",
+          "t": 148.591
+        },
+        {
+          "w": "your",
+          "t": 148.995
+        },
+        {
+          "w": "sampling",
+          "t": 149.4
+        },
+        {
+          "w": "fraction",
+          "t": 149.804
+        },
+        {
+          "w": "is",
+          "t": 150.208
+        },
+        {
+          "w": "ten",
+          "t": 150.612
+        },
+        {
+          "w": "percent.",
+          "t": 151.017
+        },
+        {
+          "w": "That",
+          "t": 151.421
+        },
+        {
+          "w": "means",
+          "t": 151.825
+        },
+        {
+          "w": "the",
+          "t": 152.23
+        },
+        {
+          "w": "FPC",
+          "t": 152.634
+        },
+        {
+          "w": "factor",
+          "t": 153.038
+        },
+        {
+          "w": "is",
+          "t": 153.442
+        },
+        {
+          "w": "zero",
+          "t": 153.847
+        },
+        {
+          "w": "point",
+          "t": 154.251
+        },
+        {
+          "w": "nine",
+          "t": 154.655
+        },
+        {
+          "w": "zero,",
+          "t": 155.06
+        },
+        {
+          "w": "yielding",
+          "t": 155.464
+        },
+        {
+          "w": "a",
+          "t": 155.868
+        },
+        {
+          "w": "ten",
+          "t": 156.272
+        },
+        {
+          "w": "percent",
+          "t": 156.677
+        },
+        {
+          "w": "reduction",
+          "t": 157.081
+        },
+        {
+          "w": "in",
+          "t": 157.485
+        },
+        {
+          "w": "the",
+          "t": 157.89
+        },
+        {
+          "w": "variance",
+          "t": 158.294
+        },
+        {
+          "w": "of",
+          "t": 158.698
+        },
+        {
+          "w": "your",
+          "t": 159.102
+        },
+        {
+          "w": "estimate.",
+          "t": 159.507
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "speaker": "Kaito",
+      "text": "And Cochran's formula is every ML engineer's secret weapon for model validation! If your product manager asks how many test annotations are needed for a three percent confidence band, you plug in Z equals 1.96, assume maximum entropy p equals 0.5, and hand them the exact answer: 1,067 records.",
+      "start": 159.911,
+      "end": 179.354,
+      "words": [
+        {
+          "w": "And",
+          "t": 159.911
+        },
+        {
+          "w": "Cochran's",
+          "t": 160.308
+        },
+        {
+          "w": "formula",
+          "t": 160.705
+        },
+        {
+          "w": "is",
+          "t": 161.101
+        },
+        {
+          "w": "every",
+          "t": 161.498
+        },
+        {
+          "w": "ML",
+          "t": 161.895
+        },
+        {
+          "w": "engineer's",
+          "t": 162.292
+        },
+        {
+          "w": "secret",
+          "t": 162.689
+        },
+        {
+          "w": "weapon",
+          "t": 163.085
+        },
+        {
+          "w": "for",
+          "t": 163.482
+        },
+        {
+          "w": "model",
+          "t": 163.879
+        },
+        {
+          "w": "validation!",
+          "t": 164.276
+        },
+        {
+          "w": "If",
+          "t": 164.673
+        },
+        {
+          "w": "your",
+          "t": 165.069
+        },
+        {
+          "w": "product",
+          "t": 165.466
+        },
+        {
+          "w": "manager",
+          "t": 165.863
+        },
+        {
+          "w": "asks",
+          "t": 166.26
+        },
+        {
+          "w": "how",
+          "t": 166.657
+        },
+        {
+          "w": "many",
+          "t": 167.053
+        },
+        {
+          "w": "test",
+          "t": 167.45
+        },
+        {
+          "w": "annotations",
+          "t": 167.847
+        },
+        {
+          "w": "are",
+          "t": 168.244
+        },
+        {
+          "w": "needed",
+          "t": 168.641
+        },
+        {
+          "w": "for",
+          "t": 169.037
+        },
+        {
+          "w": "a",
+          "t": 169.434
+        },
+        {
+          "w": "three",
+          "t": 169.831
+        },
+        {
+          "w": "percent",
+          "t": 170.228
+        },
+        {
+          "w": "confidence",
+          "t": 170.624
+        },
+        {
+          "w": "band,",
+          "t": 171.021
+        },
+        {
+          "w": "you",
+          "t": 171.418
+        },
+        {
+          "w": "plug",
+          "t": 171.815
+        },
+        {
+          "w": "in",
+          "t": 172.212
+        },
+        {
+          "w": "Z",
+          "t": 172.608
+        },
+        {
+          "w": "equals",
+          "t": 173.005
+        },
+        {
+          "w": "1.96,",
+          "t": 173.402
+        },
+        {
+          "w": "assume",
+          "t": 173.799
+        },
+        {
+          "w": "maximum",
+          "t": 174.196
+        },
+        {
+          "w": "entropy",
+          "t": 174.592
+        },
+        {
+          "w": "p",
+          "t": 174.989
+        },
+        {
+          "w": "equals",
+          "t": 175.386
+        },
+        {
+          "w": "0.5,",
+          "t": 175.783
+        },
+        {
+          "w": "and",
+          "t": 176.18
+        },
+        {
+          "w": "hand",
+          "t": 176.576
+        },
+        {
+          "w": "them",
+          "t": 176.973
+        },
+        {
+          "w": "the",
+          "t": 177.37
+        },
+        {
+          "w": "exact",
+          "t": 177.767
+        },
+        {
+          "w": "answer:",
+          "t": 178.164
+        },
+        {
+          "w": "1,067",
+          "t": 178.56
+        },
+        {
+          "w": "records.",
+          "t": 178.957
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "speaker": "Dr. Nova",
+      "text": "Think about what happens in simple random sampling: through bad luck of the draw, your sample might over-represent high-spending power users and under-represent casual users. That chance imbalance is what drives up the variance of your estimator.",
+      "start": 179.354,
+      "end": 195.623,
+      "words": [
+        {
+          "w": "Think",
+          "t": 179.354
+        },
+        {
+          "w": "about",
+          "t": 179.794
+        },
+        {
+          "w": "what",
+          "t": 180.233
+        },
+        {
+          "w": "happens",
+          "t": 180.673
+        },
+        {
+          "w": "in",
+          "t": 181.113
+        },
+        {
+          "w": "simple",
+          "t": 181.553
+        },
+        {
+          "w": "random",
+          "t": 181.992
+        },
+        {
+          "w": "sampling:",
+          "t": 182.432
+        },
+        {
+          "w": "through",
+          "t": 182.872
+        },
+        {
+          "w": "bad",
+          "t": 183.311
+        },
+        {
+          "w": "luck",
+          "t": 183.751
+        },
+        {
+          "w": "of",
+          "t": 184.191
+        },
+        {
+          "w": "the",
+          "t": 184.63
+        },
+        {
+          "w": "draw,",
+          "t": 185.07
+        },
+        {
+          "w": "your",
+          "t": 185.51
+        },
+        {
+          "w": "sample",
+          "t": 185.95
+        },
+        {
+          "w": "might",
+          "t": 186.389
+        },
+        {
+          "w": "over-represent",
+          "t": 186.829
+        },
+        {
+          "w": "high-spending",
+          "t": 187.269
+        },
+        {
+          "w": "power",
+          "t": 187.708
+        },
+        {
+          "w": "users",
+          "t": 188.148
+        },
+        {
+          "w": "and",
+          "t": 188.588
+        },
+        {
+          "w": "under-represent",
+          "t": 189.027
+        },
+        {
+          "w": "casual",
+          "t": 189.467
+        },
+        {
+          "w": "users.",
+          "t": 189.907
+        },
+        {
+          "w": "That",
+          "t": 190.347
+        },
+        {
+          "w": "chance",
+          "t": 190.786
+        },
+        {
+          "w": "imbalance",
+          "t": 191.226
+        },
+        {
+          "w": "is",
+          "t": 191.666
+        },
+        {
+          "w": "what",
+          "t": 192.105
+        },
+        {
+          "w": "drives",
+          "t": 192.545
+        },
+        {
+          "w": "up",
+          "t": 192.985
+        },
+        {
+          "w": "the",
+          "t": 193.424
+        },
+        {
+          "w": "variance",
+          "t": 193.864
+        },
+        {
+          "w": "of",
+          "t": 194.304
+        },
+        {
+          "w": "your",
+          "t": 194.744
+        },
+        {
+          "w": "estimator.",
+          "t": 195.183
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "speaker": "Kaito",
+      "text": "Right! Stratified sampling fixes that by setting explicit quotas. If power users represent ten percent of our database, we lock down exactly ten percent of our sample. Between-group variance vanishes from our error bars!",
+      "start": 195.623,
+      "end": 210.172,
+      "words": [
+        {
+          "w": "Right!",
+          "t": 195.623
+        },
+        {
+          "w": "Stratified",
+          "t": 196.051
+        },
+        {
+          "w": "sampling",
+          "t": 196.479
+        },
+        {
+          "w": "fixes",
+          "t": 196.907
+        },
+        {
+          "w": "that",
+          "t": 197.335
+        },
+        {
+          "w": "by",
+          "t": 197.763
+        },
+        {
+          "w": "setting",
+          "t": 198.19
+        },
+        {
+          "w": "explicit",
+          "t": 198.618
+        },
+        {
+          "w": "quotas.",
+          "t": 199.046
+        },
+        {
+          "w": "If",
+          "t": 199.474
+        },
+        {
+          "w": "power",
+          "t": 199.902
+        },
+        {
+          "w": "users",
+          "t": 200.33
+        },
+        {
+          "w": "represent",
+          "t": 200.758
+        },
+        {
+          "w": "ten",
+          "t": 201.186
+        },
+        {
+          "w": "percent",
+          "t": 201.614
+        },
+        {
+          "w": "of",
+          "t": 202.042
+        },
+        {
+          "w": "our",
+          "t": 202.47
+        },
+        {
+          "w": "database,",
+          "t": 202.897
+        },
+        {
+          "w": "we",
+          "t": 203.325
+        },
+        {
+          "w": "lock",
+          "t": 203.753
+        },
+        {
+          "w": "down",
+          "t": 204.181
+        },
+        {
+          "w": "exactly",
+          "t": 204.609
+        },
+        {
+          "w": "ten",
+          "t": 205.037
+        },
+        {
+          "w": "percent",
+          "t": 205.465
+        },
+        {
+          "w": "of",
+          "t": 205.893
+        },
+        {
+          "w": "our",
+          "t": 206.321
+        },
+        {
+          "w": "sample.",
+          "t": 206.749
+        },
+        {
+          "w": "Between-group",
+          "t": 207.177
+        },
+        {
+          "w": "variance",
+          "t": 207.605
+        },
+        {
+          "w": "vanishes",
+          "t": 208.032
+        },
+        {
+          "w": "from",
+          "t": 208.46
+        },
+        {
+          "w": "our",
+          "t": 208.888
+        },
+        {
+          "w": "error",
+          "t": 209.316
+        },
+        {
+          "w": "bars!",
+          "t": 209.744
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "speaker": "Dr. Nova",
+      "text": "Try moving the standard deviation slider for Stratum 3, the Rural group. Watch how the Neyman allocation automatically shifts sample budget away from the low-variance Urban stratum and into Rural.",
+      "start": 210.172,
+      "end": 223.134,
+      "words": [
+        {
+          "w": "Try",
+          "t": 210.172
+        },
+        {
+          "w": "moving",
+          "t": 210.604
+        },
+        {
+          "w": "the",
+          "t": 211.036
+        },
+        {
+          "w": "standard",
+          "t": 211.468
+        },
+        {
+          "w": "deviation",
+          "t": 211.9
+        },
+        {
+          "w": "slider",
+          "t": 212.332
+        },
+        {
+          "w": "for",
+          "t": 212.764
+        },
+        {
+          "w": "Stratum",
+          "t": 213.196
+        },
+        {
+          "w": "3,",
+          "t": 213.629
+        },
+        {
+          "w": "the",
+          "t": 214.061
+        },
+        {
+          "w": "Rural",
+          "t": 214.493
+        },
+        {
+          "w": "group.",
+          "t": 214.925
+        },
+        {
+          "w": "Watch",
+          "t": 215.357
+        },
+        {
+          "w": "how",
+          "t": 215.789
+        },
+        {
+          "w": "the",
+          "t": 216.221
+        },
+        {
+          "w": "Neyman",
+          "t": 216.653
+        },
+        {
+          "w": "allocation",
+          "t": 217.085
+        },
+        {
+          "w": "automatically",
+          "t": 217.517
+        },
+        {
+          "w": "shifts",
+          "t": 217.949
+        },
+        {
+          "w": "sample",
+          "t": 218.381
+        },
+        {
+          "w": "budget",
+          "t": 218.813
+        },
+        {
+          "w": "away",
+          "t": 219.245
+        },
+        {
+          "w": "from",
+          "t": 219.677
+        },
+        {
+          "w": "the",
+          "t": 220.11
+        },
+        {
+          "w": "low-variance",
+          "t": 220.542
+        },
+        {
+          "w": "Urban",
+          "t": 220.974
+        },
+        {
+          "w": "stratum",
+          "t": 221.406
+        },
+        {
+          "w": "and",
+          "t": 221.838
+        },
+        {
+          "w": "into",
+          "t": 222.27
+        },
+        {
+          "w": "Rural.",
+          "t": 222.702
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "speaker": "Kaito",
+      "text": "Look at the variance reduction percentage at the bottom! In proportional allocation, Rural only got 100 samples because it makes up ten percent of the population. But because its variance is huge, Neyman bumps it up to 212 samples, cutting total estimator variance by twenty percent!",
+      "start": 223.134,
+      "end": 241.85,
+      "words": [
+        {
+          "w": "Look",
+          "t": 223.134
+        },
+        {
+          "w": "at",
+          "t": 223.541
+        },
+        {
+          "w": "the",
+          "t": 223.948
+        },
+        {
+          "w": "variance",
+          "t": 224.355
+        },
+        {
+          "w": "reduction",
+          "t": 224.761
+        },
+        {
+          "w": "percentage",
+          "t": 225.168
+        },
+        {
+          "w": "at",
+          "t": 225.575
+        },
+        {
+          "w": "the",
+          "t": 225.982
+        },
+        {
+          "w": "bottom!",
+          "t": 226.389
+        },
+        {
+          "w": "In",
+          "t": 226.796
+        },
+        {
+          "w": "proportional",
+          "t": 227.203
+        },
+        {
+          "w": "allocation,",
+          "t": 227.61
+        },
+        {
+          "w": "Rural",
+          "t": 228.016
+        },
+        {
+          "w": "only",
+          "t": 228.423
+        },
+        {
+          "w": "got",
+          "t": 228.83
+        },
+        {
+          "w": "100",
+          "t": 229.237
+        },
+        {
+          "w": "samples",
+          "t": 229.644
+        },
+        {
+          "w": "because",
+          "t": 230.051
+        },
+        {
+          "w": "it",
+          "t": 230.458
+        },
+        {
+          "w": "makes",
+          "t": 230.865
+        },
+        {
+          "w": "up",
+          "t": 231.271
+        },
+        {
+          "w": "ten",
+          "t": 231.678
+        },
+        {
+          "w": "percent",
+          "t": 232.085
+        },
+        {
+          "w": "of",
+          "t": 232.492
+        },
+        {
+          "w": "the",
+          "t": 232.899
+        },
+        {
+          "w": "population.",
+          "t": 233.306
+        },
+        {
+          "w": "But",
+          "t": 233.713
+        },
+        {
+          "w": "because",
+          "t": 234.119
+        },
+        {
+          "w": "its",
+          "t": 234.526
+        },
+        {
+          "w": "variance",
+          "t": 234.933
+        },
+        {
+          "w": "is",
+          "t": 235.34
+        },
+        {
+          "w": "huge,",
+          "t": 235.747
+        },
+        {
+          "w": "Neyman",
+          "t": 236.154
+        },
+        {
+          "w": "bumps",
+          "t": 236.561
+        },
+        {
+          "w": "it",
+          "t": 236.968
+        },
+        {
+          "w": "up",
+          "t": 237.374
+        },
+        {
+          "w": "to",
+          "t": 237.781
+        },
+        {
+          "w": "212",
+          "t": 238.188
+        },
+        {
+          "w": "samples,",
+          "t": 238.595
+        },
+        {
+          "w": "cutting",
+          "t": 239.002
+        },
+        {
+          "w": "total",
+          "t": 239.409
+        },
+        {
+          "w": "estimator",
+          "t": 239.816
+        },
+        {
+          "w": "variance",
+          "t": 240.223
+        },
+        {
+          "w": "by",
+          "t": 240.629
+        },
+        {
+          "w": "twenty",
+          "t": 241.036
+        },
+        {
+          "w": "percent!",
+          "t": 241.443
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 1! Remember our proof from Slide 3. What mathematical condition guarantees that the Horvitz-Thompson estimator has zero expectation bias?",
+      "start": 241.85,
+      "end": 252.101,
+      "words": [
+        {
+          "w": "Active",
+          "t": 241.85
+        },
+        {
+          "w": "Checkpoint",
+          "t": 242.338
+        },
+        {
+          "w": "1!",
+          "t": 242.826
+        },
+        {
+          "w": "Remember",
+          "t": 243.314
+        },
+        {
+          "w": "our",
+          "t": 243.803
+        },
+        {
+          "w": "proof",
+          "t": 244.291
+        },
+        {
+          "w": "from",
+          "t": 244.779
+        },
+        {
+          "w": "Slide",
+          "t": 245.267
+        },
+        {
+          "w": "3.",
+          "t": 245.755
+        },
+        {
+          "w": "What",
+          "t": 246.243
+        },
+        {
+          "w": "mathematical",
+          "t": 246.731
+        },
+        {
+          "w": "condition",
+          "t": 247.22
+        },
+        {
+          "w": "guarantees",
+          "t": 247.708
+        },
+        {
+          "w": "that",
+          "t": 248.196
+        },
+        {
+          "w": "the",
+          "t": 248.684
+        },
+        {
+          "w": "Horvitz-Thompson",
+          "t": 249.172
+        },
+        {
+          "w": "estimator",
+          "t": 249.66
+        },
+        {
+          "w": "has",
+          "t": 250.148
+        },
+        {
+          "w": "zero",
+          "t": 250.637
+        },
+        {
+          "w": "expectation",
+          "t": 251.125
+        },
+        {
+          "w": "bias?",
+          "t": 251.613
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "speaker": "Kaito",
+      "text": "Think about what happens if any unit has pi-sub-i equal to zero: can you divide by zero, or reconstruct their missing contribution? Pick the correct option above!",
+      "start": 252.101,
+      "end": 262.815,
+      "words": [
+        {
+          "w": "Think",
+          "t": 252.101
+        },
+        {
+          "w": "about",
+          "t": 252.498
+        },
+        {
+          "w": "what",
+          "t": 252.895
+        },
+        {
+          "w": "happens",
+          "t": 253.291
+        },
+        {
+          "w": "if",
+          "t": 253.688
+        },
+        {
+          "w": "any",
+          "t": 254.085
+        },
+        {
+          "w": "unit",
+          "t": 254.482
+        },
+        {
+          "w": "has",
+          "t": 254.879
+        },
+        {
+          "w": "pi-sub-i",
+          "t": 255.276
+        },
+        {
+          "w": "equal",
+          "t": 255.672
+        },
+        {
+          "w": "to",
+          "t": 256.069
+        },
+        {
+          "w": "zero:",
+          "t": 256.466
+        },
+        {
+          "w": "can",
+          "t": 256.863
+        },
+        {
+          "w": "you",
+          "t": 257.26
+        },
+        {
+          "w": "divide",
+          "t": 257.656
+        },
+        {
+          "w": "by",
+          "t": 258.053
+        },
+        {
+          "w": "zero,",
+          "t": 258.45
+        },
+        {
+          "w": "or",
+          "t": 258.847
+        },
+        {
+          "w": "reconstruct",
+          "t": 259.244
+        },
+        {
+          "w": "their",
+          "t": 259.64
+        },
+        {
+          "w": "missing",
+          "t": 260.037
+        },
+        {
+          "w": "contribution?",
+          "t": 260.434
+        },
+        {
+          "w": "Pick",
+          "t": 260.831
+        },
+        {
+          "w": "the",
+          "t": 261.228
+        },
+        {
+          "w": "correct",
+          "t": 261.625
+        },
+        {
+          "w": "option",
+          "t": 262.021
+        },
+        {
+          "w": "above!",
+          "t": 262.418
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "speaker": "Dr. Nova",
+      "text": "Notice the mathematical elegance of the Tschuprow-Neyman cost formula: the sampling cost appears under a square root in the denominator. That means even if human expert verification costs four times more than automated logging, you only reduce the expert stratum allocation by a factor of two, not four.",
+      "start": 262.815,
+      "end": 282.854,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 262.815
+        },
+        {
+          "w": "the",
+          "t": 263.232
+        },
+        {
+          "w": "mathematical",
+          "t": 263.65
+        },
+        {
+          "w": "elegance",
+          "t": 264.067
+        },
+        {
+          "w": "of",
+          "t": 264.485
+        },
+        {
+          "w": "the",
+          "t": 264.902
+        },
+        {
+          "w": "Tschuprow-Neyman",
+          "t": 265.32
+        },
+        {
+          "w": "cost",
+          "t": 265.737
+        },
+        {
+          "w": "formula:",
+          "t": 266.155
+        },
+        {
+          "w": "the",
+          "t": 266.572
+        },
+        {
+          "w": "sampling",
+          "t": 266.99
+        },
+        {
+          "w": "cost",
+          "t": 267.407
+        },
+        {
+          "w": "appears",
+          "t": 267.825
+        },
+        {
+          "w": "under",
+          "t": 268.242
+        },
+        {
+          "w": "a",
+          "t": 268.66
+        },
+        {
+          "w": "square",
+          "t": 269.077
+        },
+        {
+          "w": "root",
+          "t": 269.495
+        },
+        {
+          "w": "in",
+          "t": 269.912
+        },
+        {
+          "w": "the",
+          "t": 270.33
+        },
+        {
+          "w": "denominator.",
+          "t": 270.747
+        },
+        {
+          "w": "That",
+          "t": 271.165
+        },
+        {
+          "w": "means",
+          "t": 271.582
+        },
+        {
+          "w": "even",
+          "t": 272.0
+        },
+        {
+          "w": "if",
+          "t": 272.417
+        },
+        {
+          "w": "human",
+          "t": 272.834
+        },
+        {
+          "w": "expert",
+          "t": 273.252
+        },
+        {
+          "w": "verification",
+          "t": 273.669
+        },
+        {
+          "w": "costs",
+          "t": 274.087
+        },
+        {
+          "w": "four",
+          "t": 274.504
+        },
+        {
+          "w": "times",
+          "t": 274.922
+        },
+        {
+          "w": "more",
+          "t": 275.339
+        },
+        {
+          "w": "than",
+          "t": 275.757
+        },
+        {
+          "w": "automated",
+          "t": 276.174
+        },
+        {
+          "w": "logging,",
+          "t": 276.592
+        },
+        {
+          "w": "you",
+          "t": 277.009
+        },
+        {
+          "w": "only",
+          "t": 277.427
+        },
+        {
+          "w": "reduce",
+          "t": 277.844
+        },
+        {
+          "w": "the",
+          "t": 278.262
+        },
+        {
+          "w": "expert",
+          "t": 278.679
+        },
+        {
+          "w": "stratum",
+          "t": 279.097
+        },
+        {
+          "w": "allocation",
+          "t": 279.514
+        },
+        {
+          "w": "by",
+          "t": 279.932
+        },
+        {
+          "w": "a",
+          "t": 280.349
+        },
+        {
+          "w": "factor",
+          "t": 280.767
+        },
+        {
+          "w": "of",
+          "t": 281.184
+        },
+        {
+          "w": "two,",
+          "t": 281.602
+        },
+        {
+          "w": "not",
+          "t": 282.019
+        },
+        {
+          "w": "four.",
+          "t": 282.437
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "speaker": "Kaito",
+      "text": "That square root dampening is brilliant. It ensures that expensive but highly volatile sub-populations are never starved of sample size, protecting your global model from blindness in high-stakes domains!",
+      "start": 282.854,
+      "end": 296.345,
+      "words": [
+        {
+          "w": "That",
+          "t": 282.854
+        },
+        {
+          "w": "square",
+          "t": 283.319
+        },
+        {
+          "w": "root",
+          "t": 283.784
+        },
+        {
+          "w": "dampening",
+          "t": 284.25
+        },
+        {
+          "w": "is",
+          "t": 284.715
+        },
+        {
+          "w": "brilliant.",
+          "t": 285.18
+        },
+        {
+          "w": "It",
+          "t": 285.645
+        },
+        {
+          "w": "ensures",
+          "t": 286.11
+        },
+        {
+          "w": "that",
+          "t": 286.576
+        },
+        {
+          "w": "expensive",
+          "t": 287.041
+        },
+        {
+          "w": "but",
+          "t": 287.506
+        },
+        {
+          "w": "highly",
+          "t": 287.971
+        },
+        {
+          "w": "volatile",
+          "t": 288.436
+        },
+        {
+          "w": "sub-populations",
+          "t": 288.902
+        },
+        {
+          "w": "are",
+          "t": 289.367
+        },
+        {
+          "w": "never",
+          "t": 289.832
+        },
+        {
+          "w": "starved",
+          "t": 290.297
+        },
+        {
+          "w": "of",
+          "t": 290.763
+        },
+        {
+          "w": "sample",
+          "t": 291.228
+        },
+        {
+          "w": "size,",
+          "t": 291.693
+        },
+        {
+          "w": "protecting",
+          "t": 292.158
+        },
+        {
+          "w": "your",
+          "t": 292.623
+        },
+        {
+          "w": "global",
+          "t": 293.089
+        },
+        {
+          "w": "model",
+          "t": 293.554
+        },
+        {
+          "w": "from",
+          "t": 294.019
+        },
+        {
+          "w": "blindness",
+          "t": 294.484
+        },
+        {
+          "w": "in",
+          "t": 294.949
+        },
+        {
+          "w": "high-stakes",
+          "t": 295.415
+        },
+        {
+          "w": "domains!",
+          "t": 295.88
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "speaker": "Dr. Nova",
+      "text": "Engineers often ask why anyone would use cluster sampling if it inflates variance. The answer is simple: physical reality. If you are deploying LiDAR test vehicles or sending field auditors to interview hospital patients, traveling to hundreds of disparate locations would bankrupt your data collection budget.",
+      "start": 296.345,
+      "end": 316.846,
+      "words": [
+        {
+          "w": "Engineers",
+          "t": 296.345
+        },
+        {
+          "w": "often",
+          "t": 296.791
+        },
+        {
+          "w": "ask",
+          "t": 297.236
+        },
+        {
+          "w": "why",
+          "t": 297.682
+        },
+        {
+          "w": "anyone",
+          "t": 298.128
+        },
+        {
+          "w": "would",
+          "t": 298.573
+        },
+        {
+          "w": "use",
+          "t": 299.019
+        },
+        {
+          "w": "cluster",
+          "t": 299.465
+        },
+        {
+          "w": "sampling",
+          "t": 299.91
+        },
+        {
+          "w": "if",
+          "t": 300.356
+        },
+        {
+          "w": "it",
+          "t": 300.802
+        },
+        {
+          "w": "inflates",
+          "t": 301.247
+        },
+        {
+          "w": "variance.",
+          "t": 301.693
+        },
+        {
+          "w": "The",
+          "t": 302.139
+        },
+        {
+          "w": "answer",
+          "t": 302.584
+        },
+        {
+          "w": "is",
+          "t": 303.03
+        },
+        {
+          "w": "simple:",
+          "t": 303.476
+        },
+        {
+          "w": "physical",
+          "t": 303.921
+        },
+        {
+          "w": "reality.",
+          "t": 304.367
+        },
+        {
+          "w": "If",
+          "t": 304.813
+        },
+        {
+          "w": "you",
+          "t": 305.258
+        },
+        {
+          "w": "are",
+          "t": 305.704
+        },
+        {
+          "w": "deploying",
+          "t": 306.15
+        },
+        {
+          "w": "LiDAR",
+          "t": 306.596
+        },
+        {
+          "w": "test",
+          "t": 307.041
+        },
+        {
+          "w": "vehicles",
+          "t": 307.487
+        },
+        {
+          "w": "or",
+          "t": 307.933
+        },
+        {
+          "w": "sending",
+          "t": 308.378
+        },
+        {
+          "w": "field",
+          "t": 308.824
+        },
+        {
+          "w": "auditors",
+          "t": 309.27
+        },
+        {
+          "w": "to",
+          "t": 309.715
+        },
+        {
+          "w": "interview",
+          "t": 310.161
+        },
+        {
+          "w": "hospital",
+          "t": 310.607
+        },
+        {
+          "w": "patients,",
+          "t": 311.052
+        },
+        {
+          "w": "traveling",
+          "t": 311.498
+        },
+        {
+          "w": "to",
+          "t": 311.944
+        },
+        {
+          "w": "hundreds",
+          "t": 312.389
+        },
+        {
+          "w": "of",
+          "t": 312.835
+        },
+        {
+          "w": "disparate",
+          "t": 313.281
+        },
+        {
+          "w": "locations",
+          "t": 313.726
+        },
+        {
+          "w": "would",
+          "t": 314.172
+        },
+        {
+          "w": "bankrupt",
+          "t": 314.618
+        },
+        {
+          "w": "your",
+          "t": 315.063
+        },
+        {
+          "w": "data",
+          "t": 315.509
+        },
+        {
+          "w": "collection",
+          "t": 315.955
+        },
+        {
+          "w": "budget.",
+          "t": 316.4
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "speaker": "Kaito",
+      "text": "Exactly. You bundle observations into clusters to survive your budget constraints. But you must pay the statistical correlation tax! Because data points within the same cluster resemble each other, you get diminishing statistical returns from each additional observation.",
+      "start": 316.846,
+      "end": 334.768,
+      "words": [
+        {
+          "w": "Exactly.",
+          "t": 316.846
+        },
+        {
+          "w": "You",
+          "t": 317.318
+        },
+        {
+          "w": "bundle",
+          "t": 317.789
+        },
+        {
+          "w": "observations",
+          "t": 318.261
+        },
+        {
+          "w": "into",
+          "t": 318.733
+        },
+        {
+          "w": "clusters",
+          "t": 319.204
+        },
+        {
+          "w": "to",
+          "t": 319.676
+        },
+        {
+          "w": "survive",
+          "t": 320.147
+        },
+        {
+          "w": "your",
+          "t": 320.619
+        },
+        {
+          "w": "budget",
+          "t": 321.091
+        },
+        {
+          "w": "constraints.",
+          "t": 321.562
+        },
+        {
+          "w": "But",
+          "t": 322.034
+        },
+        {
+          "w": "you",
+          "t": 322.506
+        },
+        {
+          "w": "must",
+          "t": 322.977
+        },
+        {
+          "w": "pay",
+          "t": 323.449
+        },
+        {
+          "w": "the",
+          "t": 323.92
+        },
+        {
+          "w": "statistical",
+          "t": 324.392
+        },
+        {
+          "w": "correlation",
+          "t": 324.864
+        },
+        {
+          "w": "tax!",
+          "t": 325.335
+        },
+        {
+          "w": "Because",
+          "t": 325.807
+        },
+        {
+          "w": "data",
+          "t": 326.279
+        },
+        {
+          "w": "points",
+          "t": 326.75
+        },
+        {
+          "w": "within",
+          "t": 327.222
+        },
+        {
+          "w": "the",
+          "t": 327.694
+        },
+        {
+          "w": "same",
+          "t": 328.165
+        },
+        {
+          "w": "cluster",
+          "t": 328.637
+        },
+        {
+          "w": "resemble",
+          "t": 329.108
+        },
+        {
+          "w": "each",
+          "t": 329.58
+        },
+        {
+          "w": "other,",
+          "t": 330.052
+        },
+        {
+          "w": "you",
+          "t": 330.523
+        },
+        {
+          "w": "get",
+          "t": 330.995
+        },
+        {
+          "w": "diminishing",
+          "t": 331.467
+        },
+        {
+          "w": "statistical",
+          "t": 331.938
+        },
+        {
+          "w": "returns",
+          "t": 332.41
+        },
+        {
+          "w": "from",
+          "t": 332.881
+        },
+        {
+          "w": "each",
+          "t": 333.353
+        },
+        {
+          "w": "additional",
+          "t": 333.825
+        },
+        {
+          "w": "observation.",
+          "t": 334.296
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "speaker": "Dr. Nova",
+      "text": "Notice the numerator and denominator in the definition of rho: between-cluster variance divided by total variance. If patients within a hospital have almost identical outcomes due to standardized clinical protocols, within-cluster variance shrinks, driving rho higher.",
+      "start": 334.768,
+      "end": 352.492,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 334.768
+        },
+        {
+          "w": "the",
+          "t": 335.26
+        },
+        {
+          "w": "numerator",
+          "t": 335.753
+        },
+        {
+          "w": "and",
+          "t": 336.245
+        },
+        {
+          "w": "denominator",
+          "t": 336.737
+        },
+        {
+          "w": "in",
+          "t": 337.23
+        },
+        {
+          "w": "the",
+          "t": 337.722
+        },
+        {
+          "w": "definition",
+          "t": 338.214
+        },
+        {
+          "w": "of",
+          "t": 338.707
+        },
+        {
+          "w": "rho:",
+          "t": 339.199
+        },
+        {
+          "w": "between-cluster",
+          "t": 339.691
+        },
+        {
+          "w": "variance",
+          "t": 340.184
+        },
+        {
+          "w": "divided",
+          "t": 340.676
+        },
+        {
+          "w": "by",
+          "t": 341.168
+        },
+        {
+          "w": "total",
+          "t": 341.661
+        },
+        {
+          "w": "variance.",
+          "t": 342.153
+        },
+        {
+          "w": "If",
+          "t": 342.645
+        },
+        {
+          "w": "patients",
+          "t": 343.138
+        },
+        {
+          "w": "within",
+          "t": 343.63
+        },
+        {
+          "w": "a",
+          "t": 344.122
+        },
+        {
+          "w": "hospital",
+          "t": 344.615
+        },
+        {
+          "w": "have",
+          "t": 345.107
+        },
+        {
+          "w": "almost",
+          "t": 345.599
+        },
+        {
+          "w": "identical",
+          "t": 346.092
+        },
+        {
+          "w": "outcomes",
+          "t": 346.584
+        },
+        {
+          "w": "due",
+          "t": 347.076
+        },
+        {
+          "w": "to",
+          "t": 347.569
+        },
+        {
+          "w": "standardized",
+          "t": 348.061
+        },
+        {
+          "w": "clinical",
+          "t": 348.553
+        },
+        {
+          "w": "protocols,",
+          "t": 349.046
+        },
+        {
+          "w": "within-cluster",
+          "t": 349.538
+        },
+        {
+          "w": "variance",
+          "t": 350.03
+        },
+        {
+          "w": "shrinks,",
+          "t": 350.523
+        },
+        {
+          "w": "driving",
+          "t": 351.015
+        },
+        {
+          "w": "rho",
+          "t": 351.507
+        },
+        {
+          "w": "higher.",
+          "t": 352.0
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "speaker": "Kaito",
+      "text": "And the kicker is the multiplier: in Kish's formulation, rho is multiplied by m minus one. If your cluster size m is large, say 100 IoT smart meters per neighborhood, a modest rho of 0.10 multiplies your estimation variance by a factor of nearly eleven!",
+      "start": 352.492,
+      "end": 369.224,
+      "words": [
+        {
+          "w": "And",
+          "t": 352.492
+        },
+        {
+          "w": "the",
+          "t": 352.864
+        },
+        {
+          "w": "kicker",
+          "t": 353.236
+        },
+        {
+          "w": "is",
+          "t": 353.607
+        },
+        {
+          "w": "the",
+          "t": 353.979
+        },
+        {
+          "w": "multiplier:",
+          "t": 354.351
+        },
+        {
+          "w": "in",
+          "t": 354.723
+        },
+        {
+          "w": "Kish's",
+          "t": 355.095
+        },
+        {
+          "w": "formulation,",
+          "t": 355.467
+        },
+        {
+          "w": "rho",
+          "t": 355.838
+        },
+        {
+          "w": "is",
+          "t": 356.21
+        },
+        {
+          "w": "multiplied",
+          "t": 356.582
+        },
+        {
+          "w": "by",
+          "t": 356.954
+        },
+        {
+          "w": "m",
+          "t": 357.326
+        },
+        {
+          "w": "minus",
+          "t": 357.698
+        },
+        {
+          "w": "one.",
+          "t": 358.069
+        },
+        {
+          "w": "If",
+          "t": 358.441
+        },
+        {
+          "w": "your",
+          "t": 358.813
+        },
+        {
+          "w": "cluster",
+          "t": 359.185
+        },
+        {
+          "w": "size",
+          "t": 359.557
+        },
+        {
+          "w": "m",
+          "t": 359.928
+        },
+        {
+          "w": "is",
+          "t": 360.3
+        },
+        {
+          "w": "large,",
+          "t": 360.672
+        },
+        {
+          "w": "say",
+          "t": 361.044
+        },
+        {
+          "w": "100",
+          "t": 361.416
+        },
+        {
+          "w": "IoT",
+          "t": 361.788
+        },
+        {
+          "w": "smart",
+          "t": 362.159
+        },
+        {
+          "w": "meters",
+          "t": 362.531
+        },
+        {
+          "w": "per",
+          "t": 362.903
+        },
+        {
+          "w": "neighborhood,",
+          "t": 363.275
+        },
+        {
+          "w": "a",
+          "t": 363.647
+        },
+        {
+          "w": "modest",
+          "t": 364.018
+        },
+        {
+          "w": "rho",
+          "t": 364.39
+        },
+        {
+          "w": "of",
+          "t": 364.762
+        },
+        {
+          "w": "0.10",
+          "t": 365.134
+        },
+        {
+          "w": "multiplies",
+          "t": 365.506
+        },
+        {
+          "w": "your",
+          "t": 365.878
+        },
+        {
+          "w": "estimation",
+          "t": 366.249
+        },
+        {
+          "w": "variance",
+          "t": 366.621
+        },
+        {
+          "w": "by",
+          "t": 366.993
+        },
+        {
+          "w": "a",
+          "t": 367.365
+        },
+        {
+          "w": "factor",
+          "t": 367.737
+        },
+        {
+          "w": "of",
+          "t": 368.109
+        },
+        {
+          "w": "nearly",
+          "t": 368.48
+        },
+        {
+          "w": "eleven!",
+          "t": 368.852
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "speaker": "Dr. Nova",
+      "text": "Leslie Kish's design effect formula is one of the most practical equations in empirical statistics. When Deff is equal to 4, your confidence interval is twice as wide as standard software will report if it assumes simple random sampling.",
+      "start": 369.224,
+      "end": 384.898,
+      "words": [
+        {
+          "w": "Leslie",
+          "t": 369.224
+        },
+        {
+          "w": "Kish's",
+          "t": 369.626
+        },
+        {
+          "w": "design",
+          "t": 370.028
+        },
+        {
+          "w": "effect",
+          "t": 370.43
+        },
+        {
+          "w": "formula",
+          "t": 370.832
+        },
+        {
+          "w": "is",
+          "t": 371.233
+        },
+        {
+          "w": "one",
+          "t": 371.635
+        },
+        {
+          "w": "of",
+          "t": 372.037
+        },
+        {
+          "w": "the",
+          "t": 372.439
+        },
+        {
+          "w": "most",
+          "t": 372.841
+        },
+        {
+          "w": "practical",
+          "t": 373.243
+        },
+        {
+          "w": "equations",
+          "t": 373.645
+        },
+        {
+          "w": "in",
+          "t": 374.047
+        },
+        {
+          "w": "empirical",
+          "t": 374.449
+        },
+        {
+          "w": "statistics.",
+          "t": 374.851
+        },
+        {
+          "w": "When",
+          "t": 375.252
+        },
+        {
+          "w": "Deff",
+          "t": 375.654
+        },
+        {
+          "w": "is",
+          "t": 376.056
+        },
+        {
+          "w": "equal",
+          "t": 376.458
+        },
+        {
+          "w": "to",
+          "t": 376.86
+        },
+        {
+          "w": "4,",
+          "t": 377.262
+        },
+        {
+          "w": "your",
+          "t": 377.664
+        },
+        {
+          "w": "confidence",
+          "t": 378.066
+        },
+        {
+          "w": "interval",
+          "t": 378.468
+        },
+        {
+          "w": "is",
+          "t": 378.87
+        },
+        {
+          "w": "twice",
+          "t": 379.271
+        },
+        {
+          "w": "as",
+          "t": 379.673
+        },
+        {
+          "w": "wide",
+          "t": 380.075
+        },
+        {
+          "w": "as",
+          "t": 380.477
+        },
+        {
+          "w": "standard",
+          "t": 380.879
+        },
+        {
+          "w": "software",
+          "t": 381.281
+        },
+        {
+          "w": "will",
+          "t": 381.683
+        },
+        {
+          "w": "report",
+          "t": 382.085
+        },
+        {
+          "w": "if",
+          "t": 382.487
+        },
+        {
+          "w": "it",
+          "t": 382.889
+        },
+        {
+          "w": "assumes",
+          "t": 383.29
+        },
+        {
+          "w": "simple",
+          "t": 383.692
+        },
+        {
+          "w": "random",
+          "t": 384.094
+        },
+        {
+          "w": "sampling.",
+          "t": 384.496
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "speaker": "Kaito",
+      "text": "And the effective sample size n-effective shows the real story: you paid to collect 1,000 observations, but you only received 250 observations worth of independent statistical signal! Let us test this in the interactive simulator.",
+      "start": 384.898,
+      "end": 400.109,
+      "words": [
+        {
+          "w": "And",
+          "t": 384.898
+        },
+        {
+          "w": "the",
+          "t": 385.333
+        },
+        {
+          "w": "effective",
+          "t": 385.767
+        },
+        {
+          "w": "sample",
+          "t": 386.202
+        },
+        {
+          "w": "size",
+          "t": 386.636
+        },
+        {
+          "w": "n-effective",
+          "t": 387.071
+        },
+        {
+          "w": "shows",
+          "t": 387.506
+        },
+        {
+          "w": "the",
+          "t": 387.94
+        },
+        {
+          "w": "real",
+          "t": 388.375
+        },
+        {
+          "w": "story:",
+          "t": 388.809
+        },
+        {
+          "w": "you",
+          "t": 389.244
+        },
+        {
+          "w": "paid",
+          "t": 389.679
+        },
+        {
+          "w": "to",
+          "t": 390.113
+        },
+        {
+          "w": "collect",
+          "t": 390.548
+        },
+        {
+          "w": "1,000",
+          "t": 390.982
+        },
+        {
+          "w": "observations,",
+          "t": 391.417
+        },
+        {
+          "w": "but",
+          "t": 391.852
+        },
+        {
+          "w": "you",
+          "t": 392.286
+        },
+        {
+          "w": "only",
+          "t": 392.721
+        },
+        {
+          "w": "received",
+          "t": 393.155
+        },
+        {
+          "w": "250",
+          "t": 393.59
+        },
+        {
+          "w": "observations",
+          "t": 394.025
+        },
+        {
+          "w": "worth",
+          "t": 394.459
+        },
+        {
+          "w": "of",
+          "t": 394.894
+        },
+        {
+          "w": "independent",
+          "t": 395.328
+        },
+        {
+          "w": "statistical",
+          "t": 395.763
+        },
+        {
+          "w": "signal!",
+          "t": 396.198
+        },
+        {
+          "w": "Let",
+          "t": 396.632
+        },
+        {
+          "w": "us",
+          "t": 397.067
+        },
+        {
+          "w": "test",
+          "t": 397.501
+        },
+        {
+          "w": "this",
+          "t": 397.936
+        },
+        {
+          "w": "in",
+          "t": 398.371
+        },
+        {
+          "w": "the",
+          "t": 398.805
+        },
+        {
+          "w": "interactive",
+          "t": 399.24
+        },
+        {
+          "w": "simulator.",
+          "t": 399.674
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "speaker": "Dr. Nova",
+      "text": "Try moving the cluster size slider m up to 50 or 60. Watch how rapidly the Design Effect multiplies and how your effective sample size collapses.",
+      "start": 400.109,
+      "end": 409.698,
+      "words": [
+        {
+          "w": "Try",
+          "t": 400.109
+        },
+        {
+          "w": "moving",
+          "t": 400.478
+        },
+        {
+          "w": "the",
+          "t": 400.847
+        },
+        {
+          "w": "cluster",
+          "t": 401.215
+        },
+        {
+          "w": "size",
+          "t": 401.584
+        },
+        {
+          "w": "slider",
+          "t": 401.953
+        },
+        {
+          "w": "m",
+          "t": 402.322
+        },
+        {
+          "w": "up",
+          "t": 402.691
+        },
+        {
+          "w": "to",
+          "t": 403.059
+        },
+        {
+          "w": "50",
+          "t": 403.428
+        },
+        {
+          "w": "or",
+          "t": 403.797
+        },
+        {
+          "w": "60.",
+          "t": 404.166
+        },
+        {
+          "w": "Watch",
+          "t": 404.535
+        },
+        {
+          "w": "how",
+          "t": 404.904
+        },
+        {
+          "w": "rapidly",
+          "t": 405.272
+        },
+        {
+          "w": "the",
+          "t": 405.641
+        },
+        {
+          "w": "Design",
+          "t": 406.01
+        },
+        {
+          "w": "Effect",
+          "t": 406.379
+        },
+        {
+          "w": "multiplies",
+          "t": 406.748
+        },
+        {
+          "w": "and",
+          "t": 407.116
+        },
+        {
+          "w": "how",
+          "t": 407.485
+        },
+        {
+          "w": "your",
+          "t": 407.854
+        },
+        {
+          "w": "effective",
+          "t": 408.223
+        },
+        {
+          "w": "sample",
+          "t": 408.592
+        },
+        {
+          "w": "size",
+          "t": 408.96
+        },
+        {
+          "w": "collapses.",
+          "t": 409.329
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "speaker": "Kaito",
+      "text": "Look at that information loss gauge: seventy-four percent at m equals 20! That is why survey designers prioritize visiting more clusters with fewer people per cluster. It directly drives down Deff and preserves statistical power!",
+      "start": 409.698,
+      "end": 424.843,
+      "words": [
+        {
+          "w": "Look",
+          "t": 409.698
+        },
+        {
+          "w": "at",
+          "t": 410.131
+        },
+        {
+          "w": "that",
+          "t": 410.563
+        },
+        {
+          "w": "information",
+          "t": 410.996
+        },
+        {
+          "w": "loss",
+          "t": 411.429
+        },
+        {
+          "w": "gauge:",
+          "t": 411.862
+        },
+        {
+          "w": "seventy-four",
+          "t": 412.294
+        },
+        {
+          "w": "percent",
+          "t": 412.727
+        },
+        {
+          "w": "at",
+          "t": 413.16
+        },
+        {
+          "w": "m",
+          "t": 413.592
+        },
+        {
+          "w": "equals",
+          "t": 414.025
+        },
+        {
+          "w": "20!",
+          "t": 414.458
+        },
+        {
+          "w": "That",
+          "t": 414.891
+        },
+        {
+          "w": "is",
+          "t": 415.323
+        },
+        {
+          "w": "why",
+          "t": 415.756
+        },
+        {
+          "w": "survey",
+          "t": 416.189
+        },
+        {
+          "w": "designers",
+          "t": 416.621
+        },
+        {
+          "w": "prioritize",
+          "t": 417.054
+        },
+        {
+          "w": "visiting",
+          "t": 417.487
+        },
+        {
+          "w": "more",
+          "t": 417.92
+        },
+        {
+          "w": "clusters",
+          "t": 418.352
+        },
+        {
+          "w": "with",
+          "t": 418.785
+        },
+        {
+          "w": "fewer",
+          "t": 419.218
+        },
+        {
+          "w": "people",
+          "t": 419.65
+        },
+        {
+          "w": "per",
+          "t": 420.083
+        },
+        {
+          "w": "cluster.",
+          "t": 420.516
+        },
+        {
+          "w": "It",
+          "t": 420.949
+        },
+        {
+          "w": "directly",
+          "t": 421.381
+        },
+        {
+          "w": "drives",
+          "t": 421.814
+        },
+        {
+          "w": "down",
+          "t": 422.247
+        },
+        {
+          "w": "Deff",
+          "t": 422.679
+        },
+        {
+          "w": "and",
+          "t": 423.112
+        },
+        {
+          "w": "preserves",
+          "t": 423.545
+        },
+        {
+          "w": "statistical",
+          "t": 423.978
+        },
+        {
+          "w": "power!",
+          "t": 424.41
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 2! Apply Leslie Kish's formula: 1 plus m minus 1 times rho. Cluster size m is 20, and rho is 0.15. What is the calculated Deff and the effective sample size?",
+      "start": 424.843,
+      "end": 436.416,
+      "words": [
+        {
+          "w": "Active",
+          "t": 424.843
+        },
+        {
+          "w": "Checkpoint",
+          "t": 425.194
+        },
+        {
+          "w": "2!",
+          "t": 425.544
+        },
+        {
+          "w": "Apply",
+          "t": 425.895
+        },
+        {
+          "w": "Leslie",
+          "t": 426.246
+        },
+        {
+          "w": "Kish's",
+          "t": 426.596
+        },
+        {
+          "w": "formula:",
+          "t": 426.947
+        },
+        {
+          "w": "1",
+          "t": 427.298
+        },
+        {
+          "w": "plus",
+          "t": 427.649
+        },
+        {
+          "w": "m",
+          "t": 427.999
+        },
+        {
+          "w": "minus",
+          "t": 428.35
+        },
+        {
+          "w": "1",
+          "t": 428.701
+        },
+        {
+          "w": "times",
+          "t": 429.051
+        },
+        {
+          "w": "rho.",
+          "t": 429.402
+        },
+        {
+          "w": "Cluster",
+          "t": 429.753
+        },
+        {
+          "w": "size",
+          "t": 430.103
+        },
+        {
+          "w": "m",
+          "t": 430.454
+        },
+        {
+          "w": "is",
+          "t": 430.805
+        },
+        {
+          "w": "20,",
+          "t": 431.156
+        },
+        {
+          "w": "and",
+          "t": 431.506
+        },
+        {
+          "w": "rho",
+          "t": 431.857
+        },
+        {
+          "w": "is",
+          "t": 432.208
+        },
+        {
+          "w": "0.15.",
+          "t": 432.558
+        },
+        {
+          "w": "What",
+          "t": 432.909
+        },
+        {
+          "w": "is",
+          "t": 433.26
+        },
+        {
+          "w": "the",
+          "t": 433.61
+        },
+        {
+          "w": "calculated",
+          "t": 433.961
+        },
+        {
+          "w": "Deff",
+          "t": 434.312
+        },
+        {
+          "w": "and",
+          "t": 434.663
+        },
+        {
+          "w": "the",
+          "t": 435.013
+        },
+        {
+          "w": "effective",
+          "t": 435.364
+        },
+        {
+          "w": "sample",
+          "t": 435.715
+        },
+        {
+          "w": "size?",
+          "t": 436.065
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "speaker": "Kaito",
+      "text": "Do the math carefully: 20 minus 1 is 19. Multiply 19 by 0.15, and don't forget to add 1! Then divide 1,000 by your Deff. Select your answer above!",
+      "start": 436.416,
+      "end": 446.072,
+      "words": [
+        {
+          "w": "Do",
+          "t": 436.416
+        },
+        {
+          "w": "the",
+          "t": 436.749
+        },
+        {
+          "w": "math",
+          "t": 437.082
+        },
+        {
+          "w": "carefully:",
+          "t": 437.415
+        },
+        {
+          "w": "20",
+          "t": 437.748
+        },
+        {
+          "w": "minus",
+          "t": 438.081
+        },
+        {
+          "w": "1",
+          "t": 438.414
+        },
+        {
+          "w": "is",
+          "t": 438.747
+        },
+        {
+          "w": "19.",
+          "t": 439.08
+        },
+        {
+          "w": "Multiply",
+          "t": 439.413
+        },
+        {
+          "w": "19",
+          "t": 439.746
+        },
+        {
+          "w": "by",
+          "t": 440.079
+        },
+        {
+          "w": "0.15,",
+          "t": 440.412
+        },
+        {
+          "w": "and",
+          "t": 440.745
+        },
+        {
+          "w": "don't",
+          "t": 441.078
+        },
+        {
+          "w": "forget",
+          "t": 441.41
+        },
+        {
+          "w": "to",
+          "t": 441.743
+        },
+        {
+          "w": "add",
+          "t": 442.076
+        },
+        {
+          "w": "1!",
+          "t": 442.409
+        },
+        {
+          "w": "Then",
+          "t": 442.742
+        },
+        {
+          "w": "divide",
+          "t": 443.075
+        },
+        {
+          "w": "1,000",
+          "t": 443.408
+        },
+        {
+          "w": "by",
+          "t": 443.741
+        },
+        {
+          "w": "your",
+          "t": 444.074
+        },
+        {
+          "w": "Deff.",
+          "t": 444.407
+        },
+        {
+          "w": "Select",
+          "t": 444.74
+        },
+        {
+          "w": "your",
+          "t": 445.073
+        },
+        {
+          "w": "answer",
+          "t": 445.406
+        },
+        {
+          "w": "above!",
+          "t": 445.739
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "speaker": "Dr. Nova",
+      "text": "Look closely at the stratified Neyman row: at nearly the exact same financial cost as simple random sampling, the standard error dropped from 1.12% down to 0.78%. In terms of variance, that is equivalent to doubling our sample size for free!",
+      "start": 446.072,
+      "end": 462.01,
+      "words": [
+        {
+          "w": "Look",
+          "t": 446.072
+        },
+        {
+          "w": "closely",
+          "t": 446.461
+        },
+        {
+          "w": "at",
+          "t": 446.849
+        },
+        {
+          "w": "the",
+          "t": 447.238
+        },
+        {
+          "w": "stratified",
+          "t": 447.627
+        },
+        {
+          "w": "Neyman",
+          "t": 448.016
+        },
+        {
+          "w": "row:",
+          "t": 448.404
+        },
+        {
+          "w": "at",
+          "t": 448.793
+        },
+        {
+          "w": "nearly",
+          "t": 449.182
+        },
+        {
+          "w": "the",
+          "t": 449.571
+        },
+        {
+          "w": "exact",
+          "t": 449.959
+        },
+        {
+          "w": "same",
+          "t": 450.348
+        },
+        {
+          "w": "financial",
+          "t": 450.737
+        },
+        {
+          "w": "cost",
+          "t": 451.126
+        },
+        {
+          "w": "as",
+          "t": 451.514
+        },
+        {
+          "w": "simple",
+          "t": 451.903
+        },
+        {
+          "w": "random",
+          "t": 452.292
+        },
+        {
+          "w": "sampling,",
+          "t": 452.68
+        },
+        {
+          "w": "the",
+          "t": 453.069
+        },
+        {
+          "w": "standard",
+          "t": 453.458
+        },
+        {
+          "w": "error",
+          "t": 453.847
+        },
+        {
+          "w": "dropped",
+          "t": 454.235
+        },
+        {
+          "w": "from",
+          "t": 454.624
+        },
+        {
+          "w": "1.12%",
+          "t": 455.013
+        },
+        {
+          "w": "down",
+          "t": 455.402
+        },
+        {
+          "w": "to",
+          "t": 455.79
+        },
+        {
+          "w": "0.78%.",
+          "t": 456.179
+        },
+        {
+          "w": "In",
+          "t": 456.568
+        },
+        {
+          "w": "terms",
+          "t": 456.956
+        },
+        {
+          "w": "of",
+          "t": 457.345
+        },
+        {
+          "w": "variance,",
+          "t": 457.734
+        },
+        {
+          "w": "that",
+          "t": 458.123
+        },
+        {
+          "w": "is",
+          "t": 458.511
+        },
+        {
+          "w": "equivalent",
+          "t": 458.9
+        },
+        {
+          "w": "to",
+          "t": 459.289
+        },
+        {
+          "w": "doubling",
+          "t": 459.678
+        },
+        {
+          "w": "our",
+          "t": 460.066
+        },
+        {
+          "w": "sample",
+          "t": 460.455
+        },
+        {
+          "w": "size",
+          "t": 460.844
+        },
+        {
+          "w": "for",
+          "t": 461.233
+        },
+        {
+          "w": "free!",
+          "t": 461.621
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "speaker": "Kaito",
+      "text": "And look at the cluster sampling row: yes, the standard error grew to 1.91%, but the cost plummeted from 180,000 dollars down to 45,000 dollars. Because field collection was seventy-five percent cheaper, the team could easily double the number of clusters to drive the error down, while still pocketing immense cost savings!",
+      "start": 462.01,
+      "end": 483.437,
+      "words": [
+        {
+          "w": "And",
+          "t": 462.01
+        },
+        {
+          "w": "look",
+          "t": 462.422
+        },
+        {
+          "w": "at",
+          "t": 462.834
+        },
+        {
+          "w": "the",
+          "t": 463.246
+        },
+        {
+          "w": "cluster",
+          "t": 463.658
+        },
+        {
+          "w": "sampling",
+          "t": 464.07
+        },
+        {
+          "w": "row:",
+          "t": 464.482
+        },
+        {
+          "w": "yes,",
+          "t": 464.894
+        },
+        {
+          "w": "the",
+          "t": 465.306
+        },
+        {
+          "w": "standard",
+          "t": 465.719
+        },
+        {
+          "w": "error",
+          "t": 466.131
+        },
+        {
+          "w": "grew",
+          "t": 466.543
+        },
+        {
+          "w": "to",
+          "t": 466.955
+        },
+        {
+          "w": "1.91%,",
+          "t": 467.367
+        },
+        {
+          "w": "but",
+          "t": 467.779
+        },
+        {
+          "w": "the",
+          "t": 468.191
+        },
+        {
+          "w": "cost",
+          "t": 468.603
+        },
+        {
+          "w": "plummeted",
+          "t": 469.015
+        },
+        {
+          "w": "from",
+          "t": 469.427
+        },
+        {
+          "w": "180,000",
+          "t": 469.839
+        },
+        {
+          "w": "dollars",
+          "t": 470.251
+        },
+        {
+          "w": "down",
+          "t": 470.663
+        },
+        {
+          "w": "to",
+          "t": 471.075
+        },
+        {
+          "w": "45,000",
+          "t": 471.487
+        },
+        {
+          "w": "dollars.",
+          "t": 471.899
+        },
+        {
+          "w": "Because",
+          "t": 472.311
+        },
+        {
+          "w": "field",
+          "t": 472.724
+        },
+        {
+          "w": "collection",
+          "t": 473.136
+        },
+        {
+          "w": "was",
+          "t": 473.548
+        },
+        {
+          "w": "seventy-five",
+          "t": 473.96
+        },
+        {
+          "w": "percent",
+          "t": 474.372
+        },
+        {
+          "w": "cheaper,",
+          "t": 474.784
+        },
+        {
+          "w": "the",
+          "t": 475.196
+        },
+        {
+          "w": "team",
+          "t": 475.608
+        },
+        {
+          "w": "could",
+          "t": 476.02
+        },
+        {
+          "w": "easily",
+          "t": 476.432
+        },
+        {
+          "w": "double",
+          "t": 476.844
+        },
+        {
+          "w": "the",
+          "t": 477.256
+        },
+        {
+          "w": "number",
+          "t": 477.668
+        },
+        {
+          "w": "of",
+          "t": 478.08
+        },
+        {
+          "w": "clusters",
+          "t": 478.492
+        },
+        {
+          "w": "to",
+          "t": 478.904
+        },
+        {
+          "w": "drive",
+          "t": 479.316
+        },
+        {
+          "w": "the",
+          "t": 479.728
+        },
+        {
+          "w": "error",
+          "t": 480.141
+        },
+        {
+          "w": "down,",
+          "t": 480.553
+        },
+        {
+          "w": "while",
+          "t": 480.965
+        },
+        {
+          "w": "still",
+          "t": 481.377
+        },
+        {
+          "w": "pocketing",
+          "t": 481.789
+        },
+        {
+          "w": "immense",
+          "t": 482.201
+        },
+        {
+          "w": "cost",
+          "t": 482.613
+        },
+        {
+          "w": "savings!",
+          "t": 483.025
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "speaker": "Dr. Nova",
+      "text": "Notice how simple and elegant the horvitz-underscore-thompson method is: with NumPy, we compute the inverse-probability weighted sum in a single vectorized call. This operates in microseconds even across large datasets.",
+      "start": 483.437,
+      "end": 497.92,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 483.437
+        },
+        {
+          "w": "how",
+          "t": 483.92
+        },
+        {
+          "w": "simple",
+          "t": 484.403
+        },
+        {
+          "w": "and",
+          "t": 484.885
+        },
+        {
+          "w": "elegant",
+          "t": 485.368
+        },
+        {
+          "w": "the",
+          "t": 485.851
+        },
+        {
+          "w": "horvitz-underscore-thompson",
+          "t": 486.334
+        },
+        {
+          "w": "method",
+          "t": 486.816
+        },
+        {
+          "w": "is:",
+          "t": 487.299
+        },
+        {
+          "w": "with",
+          "t": 487.782
+        },
+        {
+          "w": "NumPy,",
+          "t": 488.265
+        },
+        {
+          "w": "we",
+          "t": 488.747
+        },
+        {
+          "w": "compute",
+          "t": 489.23
+        },
+        {
+          "w": "the",
+          "t": 489.713
+        },
+        {
+          "w": "inverse-probability",
+          "t": 490.196
+        },
+        {
+          "w": "weighted",
+          "t": 490.678
+        },
+        {
+          "w": "sum",
+          "t": 491.161
+        },
+        {
+          "w": "in",
+          "t": 491.644
+        },
+        {
+          "w": "a",
+          "t": 492.127
+        },
+        {
+          "w": "single",
+          "t": 492.61
+        },
+        {
+          "w": "vectorized",
+          "t": 493.092
+        },
+        {
+          "w": "call.",
+          "t": 493.575
+        },
+        {
+          "w": "This",
+          "t": 494.058
+        },
+        {
+          "w": "operates",
+          "t": 494.541
+        },
+        {
+          "w": "in",
+          "t": 495.023
+        },
+        {
+          "w": "microseconds",
+          "t": 495.506
+        },
+        {
+          "w": "even",
+          "t": 495.989
+        },
+        {
+          "w": "across",
+          "t": 496.472
+        },
+        {
+          "w": "large",
+          "t": 496.954
+        },
+        {
+          "w": "datasets.",
+          "t": 497.437
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "speaker": "Kaito",
+      "text": "And in the neyman-underscore-allocation method, notice that max(1, ...) guard! That ensures that even a very small stratum never receives zero samples, which preserves our non-zero inclusion probability invariant for all strata!",
+      "start": 497.92,
+      "end": 512.998,
+      "words": [
+        {
+          "w": "And",
+          "t": 497.92
+        },
+        {
+          "w": "in",
+          "t": 498.391
+        },
+        {
+          "w": "the",
+          "t": 498.862
+        },
+        {
+          "w": "neyman-underscore-allocation",
+          "t": 499.334
+        },
+        {
+          "w": "method,",
+          "t": 499.805
+        },
+        {
+          "w": "notice",
+          "t": 500.276
+        },
+        {
+          "w": "that",
+          "t": 500.747
+        },
+        {
+          "w": "max(1,",
+          "t": 501.218
+        },
+        {
+          "w": "...)",
+          "t": 501.69
+        },
+        {
+          "w": "guard!",
+          "t": 502.161
+        },
+        {
+          "w": "That",
+          "t": 502.632
+        },
+        {
+          "w": "ensures",
+          "t": 503.103
+        },
+        {
+          "w": "that",
+          "t": 503.574
+        },
+        {
+          "w": "even",
+          "t": 504.045
+        },
+        {
+          "w": "a",
+          "t": 504.517
+        },
+        {
+          "w": "very",
+          "t": 504.988
+        },
+        {
+          "w": "small",
+          "t": 505.459
+        },
+        {
+          "w": "stratum",
+          "t": 505.93
+        },
+        {
+          "w": "never",
+          "t": 506.401
+        },
+        {
+          "w": "receives",
+          "t": 506.873
+        },
+        {
+          "w": "zero",
+          "t": 507.344
+        },
+        {
+          "w": "samples,",
+          "t": 507.815
+        },
+        {
+          "w": "which",
+          "t": 508.286
+        },
+        {
+          "w": "preserves",
+          "t": 508.757
+        },
+        {
+          "w": "our",
+          "t": 509.229
+        },
+        {
+          "w": "non-zero",
+          "t": 509.7
+        },
+        {
+          "w": "inclusion",
+          "t": 510.171
+        },
+        {
+          "w": "probability",
+          "t": 510.642
+        },
+        {
+          "w": "invariant",
+          "t": 511.113
+        },
+        {
+          "w": "for",
+          "t": 511.584
+        },
+        {
+          "w": "all",
+          "t": 512.056
+        },
+        {
+          "w": "strata!",
+          "t": 512.527
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "speaker": "Dr. Nova",
+      "text": "What an insightful exploration of sampling theory! We have proven that probability sampling is the mathematical bedrock of empirical data science. When inclusion probabilities are strictly positive and known, Horvitz-Thompson estimation guarantees unbiased generalization.",
+      "start": 512.998,
+      "end": 530.986,
+      "words": [
+        {
+          "w": "What",
+          "t": 512.998
+        },
+        {
+          "w": "an",
+          "t": 513.527
+        },
+        {
+          "w": "insightful",
+          "t": 514.056
+        },
+        {
+          "w": "exploration",
+          "t": 514.585
+        },
+        {
+          "w": "of",
+          "t": 515.114
+        },
+        {
+          "w": "sampling",
+          "t": 515.643
+        },
+        {
+          "w": "theory!",
+          "t": 516.172
+        },
+        {
+          "w": "We",
+          "t": 516.701
+        },
+        {
+          "w": "have",
+          "t": 517.23
+        },
+        {
+          "w": "proven",
+          "t": 517.76
+        },
+        {
+          "w": "that",
+          "t": 518.289
+        },
+        {
+          "w": "probability",
+          "t": 518.818
+        },
+        {
+          "w": "sampling",
+          "t": 519.347
+        },
+        {
+          "w": "is",
+          "t": 519.876
+        },
+        {
+          "w": "the",
+          "t": 520.405
+        },
+        {
+          "w": "mathematical",
+          "t": 520.934
+        },
+        {
+          "w": "bedrock",
+          "t": 521.463
+        },
+        {
+          "w": "of",
+          "t": 521.992
+        },
+        {
+          "w": "empirical",
+          "t": 522.521
+        },
+        {
+          "w": "data",
+          "t": 523.05
+        },
+        {
+          "w": "science.",
+          "t": 523.579
+        },
+        {
+          "w": "When",
+          "t": 524.108
+        },
+        {
+          "w": "inclusion",
+          "t": 524.637
+        },
+        {
+          "w": "probabilities",
+          "t": 525.166
+        },
+        {
+          "w": "are",
+          "t": 525.695
+        },
+        {
+          "w": "strictly",
+          "t": 526.224
+        },
+        {
+          "w": "positive",
+          "t": 526.754
+        },
+        {
+          "w": "and",
+          "t": 527.283
+        },
+        {
+          "w": "known,",
+          "t": 527.812
+        },
+        {
+          "w": "Horvitz-Thompson",
+          "t": 528.341
+        },
+        {
+          "w": "estimation",
+          "t": 528.87
+        },
+        {
+          "w": "guarantees",
+          "t": 529.399
+        },
+        {
+          "w": "unbiased",
+          "t": 529.928
+        },
+        {
+          "w": "generalization.",
+          "t": 530.457
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "speaker": "Kaito",
+      "text": "And we mastered the two big tools of production design: Neyman allocation to crush estimation variance when subgroups are diverse, and Kish's design effect to honestly audit the cost of cluster sampling. In Lesson 2.7, we will take these foundations into modern machine learning with active sampling, importance sampling, and hard negative mining. See you there!",
+      "start": 530.986,
+      "end": 554.928,
+      "words": [
+        {
+          "w": "And",
+          "t": 530.986
+        },
+        {
+          "w": "we",
+          "t": 531.414
+        },
+        {
+          "w": "mastered",
+          "t": 531.841
+        },
+        {
+          "w": "the",
+          "t": 532.269
+        },
+        {
+          "w": "two",
+          "t": 532.696
+        },
+        {
+          "w": "big",
+          "t": 533.124
+        },
+        {
+          "w": "tools",
+          "t": 533.551
+        },
+        {
+          "w": "of",
+          "t": 533.979
+        },
+        {
+          "w": "production",
+          "t": 534.406
+        },
+        {
+          "w": "design:",
+          "t": 534.834
+        },
+        {
+          "w": "Neyman",
+          "t": 535.261
+        },
+        {
+          "w": "allocation",
+          "t": 535.689
+        },
+        {
+          "w": "to",
+          "t": 536.116
+        },
+        {
+          "w": "crush",
+          "t": 536.544
+        },
+        {
+          "w": "estimation",
+          "t": 536.971
+        },
+        {
+          "w": "variance",
+          "t": 537.399
+        },
+        {
+          "w": "when",
+          "t": 537.827
+        },
+        {
+          "w": "subgroups",
+          "t": 538.254
+        },
+        {
+          "w": "are",
+          "t": 538.682
+        },
+        {
+          "w": "diverse,",
+          "t": 539.109
+        },
+        {
+          "w": "and",
+          "t": 539.537
+        },
+        {
+          "w": "Kish's",
+          "t": 539.964
+        },
+        {
+          "w": "design",
+          "t": 540.392
+        },
+        {
+          "w": "effect",
+          "t": 540.819
+        },
+        {
+          "w": "to",
+          "t": 541.247
+        },
+        {
+          "w": "honestly",
+          "t": 541.674
+        },
+        {
+          "w": "audit",
+          "t": 542.102
+        },
+        {
+          "w": "the",
+          "t": 542.529
+        },
+        {
+          "w": "cost",
+          "t": 542.957
+        },
+        {
+          "w": "of",
+          "t": 543.385
+        },
+        {
+          "w": "cluster",
+          "t": 543.812
+        },
+        {
+          "w": "sampling.",
+          "t": 544.24
+        },
+        {
+          "w": "In",
+          "t": 544.667
+        },
+        {
+          "w": "Lesson",
+          "t": 545.095
+        },
+        {
+          "w": "2.7,",
+          "t": 545.522
+        },
+        {
+          "w": "we",
+          "t": 545.95
+        },
+        {
+          "w": "will",
+          "t": 546.377
+        },
+        {
+          "w": "take",
+          "t": 546.805
+        },
+        {
+          "w": "these",
+          "t": 547.232
+        },
+        {
+          "w": "foundations",
+          "t": 547.66
+        },
+        {
+          "w": "into",
+          "t": 548.087
+        },
+        {
+          "w": "modern",
+          "t": 548.515
+        },
+        {
+          "w": "machine",
+          "t": 548.942
+        },
+        {
+          "w": "learning",
+          "t": 549.37
+        },
+        {
+          "w": "with",
+          "t": 549.798
+        },
+        {
+          "w": "active",
+          "t": 550.225
+        },
+        {
+          "w": "sampling,",
+          "t": 550.653
+        },
+        {
+          "w": "importance",
+          "t": 551.08
+        },
+        {
+          "w": "sampling,",
+          "t": 551.508
+        },
+        {
+          "w": "and",
+          "t": 551.935
+        },
+        {
+          "w": "hard",
+          "t": 552.363
+        },
+        {
+          "w": "negative",
+          "t": 552.79
+        },
+        {
+          "w": "mining.",
+          "t": 553.218
+        },
+        {
+          "w": "See",
+          "t": 553.645
+        },
+        {
+          "w": "you",
+          "t": 554.073
+        },
+        {
+          "w": "there!",
+          "t": 554.5
+        }
+      ]
+    }
+  ]
+}

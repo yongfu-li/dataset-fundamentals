@@ -1,4 +1,4 @@
-window.CURRICULUM_MANIFEST = [
+window.CURRICULUM_MANIFEST = window.manifestData = [
   {
     "chapter": 1,
     "part": 1,
@@ -104,7 +104,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch2_p5",
     "title": "Execution Paradigms: Manual Auditing, Automated Sensing & Hybrid Pipelines",
     "trackName": "Data Collection & Ingestion",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track2-data-collection/05-manual-vs-automated/"
   },
   {
@@ -113,7 +113,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch2_p6",
     "title": "Probability Sampling Theory: Simple Random, Stratified & Cluster Derivations",
     "trackName": "Data Collection & Ingestion",
-    "slidesCount": 12,
+    "slidesCount": 16,
     "docPath": "track2-data-collection/06-probability-sampling/"
   },
   {
@@ -167,7 +167,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch3_p3",
     "title": "The Utility-Privacy Frontier: Pareto Dilemmas & Externalities",
     "trackName": "Ethics, Privacy & Governance",
-    "slidesCount": 11,
+    "slidesCount": 16,
     "docPath": "track3-ethics-privacy/03-utility-dilemmas-consequences/"
   },
   {
@@ -284,7 +284,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch4_p5",
     "title": "Tools and Infrastructure for Data Annotation: Architectures, Platforms & Enterprise Workflows",
     "trackName": "Data Annotation & Labeling",
-    "slidesCount": 10,
+    "slidesCount": 16,
     "docPath": "track4-data-annotation/05-tools-for-annotation/"
   },
   {
@@ -293,7 +293,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch4_p6",
     "title": "Quality Control in Annotation: Inter-Annotator Agreement, Fleiss' Kappa & Dawid-Skene Consensus",
     "trackName": "Data Annotation & Labeling",
-    "slidesCount": 12,
+    "slidesCount": 16,
     "docPath": "track4-data-annotation/06-quality-control/"
   },
   {
@@ -338,7 +338,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch5_p1",
     "title": "Introduction to Data Cleaning: Dimensions, Redman's Law & Systematic Pipelines",
     "trackName": "Data Cleaning & Preprocessing",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track5-data-cleaning/01-introduction-to-data-cleaning/"
   },
   {
@@ -444,9 +444,9 @@ window.CURRICULUM_MANIFEST = [
     "chapter": 6,
     "part": 1,
     "key": "ch6_p1",
-    "title": "Introduction to Exploratory Data Analysis (EDA)",
+    "title": "Introduction to Exploratory Data Analysis: Foundations, Epistemology & Residual Auditing",
     "trackName": "Exploratory Data Analysis",
-    "slidesCount": 9,
+    "slidesCount": 16,
     "docPath": "track6-exploratory-data-analysis/01-introduction-to-eda/"
   },
   {

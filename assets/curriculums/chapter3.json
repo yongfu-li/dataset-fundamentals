@@ -1412,339 +1412,772 @@
         "type": "title",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Utility-Privacy Frontier: Pareto Dilemmas & Externalities",
+          "title": "The Utility-Privacy Frontier: Navigating Fundamental Tension",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 3.3. Today we examine the utility-privacy frontier: pareto dilemmas & externalities, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 3: Foundations</span>\n    <span>•</span>\n    <span>Lesson 3.3</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    The Utility-Privacy Frontier: Pareto Dilemmas &amp; Externalities\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into the utility-privacy frontier: pareto dilemmas &amp; externalities with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Utility-Privacy Frontier: Pareto Dilemmas & Externalities",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 3.3?"
+              "text": "Welcome to Track 3, Lesson 3.3 of Dataset Fundamentals: The Utility-Privacy Frontier, Pareto Dilemmas, and Externalities. In data engineering, analytical utility and privacy protection exist in unavoidable mathematical tension.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 3.3. Today we examine the utility-privacy frontier: pareto dilemmas & externalities, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "The most mathematically useful dataset is raw, unredacted microdata with continuous coordinates and exact clinical codes. The only perfectly private dataset is pure white noise. Today, we formalize the Pareto trade-off curve, Differential Privacy guarantees, Kaldor-Hicks social externalities, and Helen Nissenbaum's Contextual Integrity.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 3: Foundations</span>\n    <span>•</span>\n    <span>Lesson 3.3</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    The Utility-Privacy Frontier: Pareto Dilemmas &amp; Externalities\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into the utility-privacy frontier: pareto dilemmas &amp; externalities with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 3 • Ethics, Privacy &amp; Governance • Lesson 3.3</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    The Utility-Privacy Frontier: Pareto Dilemmas &amp; Externalities\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Formalizing constrained multi-objective optimization, $\\epsilon$-Differential Privacy risk bounds, Kaldor-Hicks social net benefit, and negative data externalities.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">1. Pareto Frontier</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Multi-objective trade-off $\\max \\mathcal{U}$ s.t. $\\mathcal{R}_{\\text{privacy}} \\le \\epsilon$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">2. Differential Privacy</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Dwork's bound $e^\\epsilon$, Laplace noise $\\eta \\sim \\text{Lap}(0, \\frac{\\Delta f}{\\epsilon})$, MSE $2(\\frac{\\Delta f}{\\epsilon})^2$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Social Welfare</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Kaldor-Hicks $\\Delta W_{\\text{KH}}$ and Arrow-Pratt risk-averse certainty equivalent $\\text{CE}(\\mathcal{M})$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Real Dilemmas</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">US Census DAS, COVID-19 GAEN vs GPS, and Strava military heatmaps.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Myth of the Zero-Cost Privacy Shield",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 3.3, Kaito! Today we explore the inescapable mathematical trade-off between analytical utility and individual privacy.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, product managers always promise our users 100 percent data utility and 100 percent zero-risk anonymity. Is that actually achievable with modern cryptography?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Never! That claim violates fundamental information theory. A dataset with zero privacy risk is literally pure random noise, providing zero analytical value. Every production data system must choose an exact operating point along the Pareto frontier.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So our goal isn't eliminating tension—it's eliminating architectural waste and finding the Pareto-optimal operating point where privacy loss is provably bounded!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 3 • Socratic Masterclass • Lesson 3.3</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    The Utility-Privacy Frontier: Pareto Dilemmas &amp; Externalities\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Kaito and Dr. Nova debate why \"zero-risk, full-utility\" claims are mathematically impossible, formalizing the Pareto trade-off curve across data systems.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">1. Pareto Frontier</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Multi-objective trade-off $\\max \\mathcal{U}$ s.t. $\\mathcal{R}_{\\text{privacy}} \\le \\epsilon$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">2. Differential Privacy</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Dwork's bound $e^\\epsilon$, Laplace noise $\\eta \\sim \\text{Lap}(0, \\frac{\\Delta f}{\\epsilon})$, MSE $2(\\frac{\\Delta f}{\\epsilon})^2$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Social Welfare</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Kaldor-Hicks $\\Delta W_{\\text{KH}}$ and Arrow-Pratt risk-averse certainty equivalent $\\text{CE}(\\mathcal{M})$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Real Dilemmas</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">US Census DAS, COVID-19 GAEN vs GPS, and Strava military heatmaps.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "The Mathematical Formulation of the Trade-Off Frontier",
-        "type": "equation",
+        "title": "Mathematical Formulation: Utility vs. Disclosure Risk",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Mathematical Formulation of the Trade-Off Frontier",
+          "title": "Constrained Optimization: Balancing Precision and Protection",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Mathematical Formulation of the Trade-Off Frontier. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\max_{\\mathcal{M}} \\mathcal{U}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\quad \\text{subject to} \\quad \\mathcal{R}_{\\text{privacy}}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\le \\epsilon$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Analytical Utility</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{U}$ represents Analytical Utility (e.g., model accuracy $R^2$, classification F1-score, or statistical query precision).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Re-Identification / Leakage Risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{R}_{\\text{privacy}}$ represents Re-Identification / Leakage Risk (e.g., differential privacy budget $\\epsilon$, or mutual information $I(\\mathcal{M}(\\mathcal{D}); \\mathbf{S})$ with sensitive attributes).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Mathematical Formulation of the Trade-Off Frontier",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does the mathematical formulation of the trade-off frontier protect our system against silent distribution shift in production?"
+              "text": "Let raw empirical dataset D be transformed by sanitization mechanism M of D. The data architect formulates a constrained multi-objective optimization problem: maximize analytical utility U subject to privacy risk R remaining bounded by epsilon.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Notice how global sensitivity Delta f dictates this frontier. For a counting query, Delta f equals 1. For a sum query over salary, Delta f equals the entire salary range. Higher sensitivity directly forces higher perturbation to preserve privacy.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\max_{\\mathcal{M}} \\mathcal{U}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\quad \\text{subject to} \\quad \\mathcal{R}_{\\text{privacy}}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\le \\epsilon$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Analytical Utility</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{U}$ represents Analytical Utility (e.g., model accuracy $R^2$, classification F1-score, or statistical query precision).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Re-Identification / Leakage Risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{R}_{\\text{privacy}}$ represents Re-Identification / Leakage Risk (e.g., differential privacy budget $\\epsilon$, or mutual information $I(\\mathcal{M}(\\mathcal{D}); \\mathbf{S})$ with sensitive attributes).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Optimization Problem • The Utility-Privacy Frontier\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded-full font-bold\">\n        Constrained Multi-Objective\n      </span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-sm md:text-base text-[#151b20] font-black mb-2\">\n      $$\\max_{\\mathcal{M}} \\mathcal{U}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\quad \\text{subject to} \\quad \\mathcal{R}_{\\text{privacy}}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\le \\epsilon$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      Where $\\mathcal{U}$ quantifies <strong>Analytical Utility</strong> (query precision, model F1-score, statistical convergence) and $\\mathcal{R}_{\\text{privacy}}$ measures <strong>Disclosure Risk</strong> (differential privacy budget $\\epsilon$, mutual information $I(\\mathcal{M}(\\mathcal{D}); \\mathbf{S})$, or linkage advantage).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs\">\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-[11px] uppercase mb-1\">Point A: Raw Microdata</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-0.5\">\n        <div>• Utility: $\\mathcal{U} = 100\\%$ (Perfect)</div>\n        <div>• Privacy: $\\mathcal{R} \\to \\infty$ (Fatal)</div>\n        <div>• Re-ID risk via Sweeney linkage</div>\n      </div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#15803d] text-[11px] uppercase mb-1\">Point B: Pareto Optimal</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-0.5\">\n        <div>• Utility: $\\mathcal{U} \\approx 92\\%$ (High)</div>\n        <div>• Privacy: $\\epsilon = 1.0$ (Bounded DP)</div>\n        <div>• Provable mathematical protection</div>\n      </div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b91c1c] text-[11px] uppercase mb-1\">Point C: Over-Sanitized</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-0.5\">\n        <div>• Utility: $\\mathcal{U} \\to 0\\%$ (Garbage)</div>\n        <div>• Privacy: $\\mathcal{R} = 0$ (Zero leakage)</div>\n        <div>• Random noise destroys decisions</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] text-xs\">\n    <div class=\"font-mono font-black text-[#b45309] mb-1 flex items-center gap-1.5\">\n      <span>📐</span> Global Sensitivity Dictates Perturbation Magnitude:\n    </div>\n    <div class=\"text-[11px] text-[#334155] leading-relaxed\">\n      $$\\Delta f = \\max_{\\|\\mathcal{D}_1 - \\mathcal{D}_2\\|_1 = 1} \\|f(\\mathcal{D}_1) - f(\\mathcal{D}_2)\\|_1 \\implies \\text{Counting: } \\Delta f = 1 \\quad\\big|\\quad \\text{Sum: } \\Delta f = B_{\\text{max}} \\quad\\big|\\quad \\text{Mean: } \\Delta f = \\frac{B_{\\text{max}}}{N}$$\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Three Operating Points",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at the three operating points on our board, Kaito. Point A is raw microdata, Point B is a tuned differential privacy mechanism, and Point C is excessive perturbation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Point A is what data scientists ask for because their gradient boosted trees get 99 percent accuracy! But in production, Point A is a legal nightmare waiting for a Sweeney linkage breach.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. And if compliance officers panic, they force Point C—adding so much noise that the dataset becomes useless. Ethical engineering lives at Point B: maximizing utility while enforcing provable risk bounds.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the key knob is global sensitivity Delta f! If our query has high sensitivity, we must inject substantially more noise to maintain the exact same privacy budget.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Optimization Problem • The Utility-Privacy Frontier\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded-full font-bold\">\n        Constrained Multi-Objective\n      </span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-sm md:text-base text-[#151b20] font-black mb-2\">\n      $$\\max_{\\mathcal{M}} \\mathcal{U}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\quad \\text{subject to} \\quad \\mathcal{R}_{\\text{privacy}}\\left(\\mathcal{M}(\\mathcal{D})\\right) \\le \\epsilon$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      Where $\\mathcal{U}$ quantifies <strong>Analytical Utility</strong> (query precision, model F1-score, statistical convergence) and $\\mathcal{R}_{\\text{privacy}}$ measures <strong>Disclosure Risk</strong> (differential privacy budget $\\epsilon$, mutual information $I(\\mathcal{M}(\\mathcal{D}); \\mathbf{S})$, or linkage advantage).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs\">\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-[11px] uppercase mb-1\">Point A: Raw Microdata</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-0.5\">\n        <div>• Utility: $\\mathcal{U} = 100\\%$ (Perfect)</div>\n        <div>• Privacy: $\\mathcal{R} \\to \\infty$ (Fatal)</div>\n        <div>• Re-ID risk via Sweeney linkage</div>\n      </div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#15803d] text-[11px] uppercase mb-1\">Point B: Pareto Optimal</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-0.5\">\n        <div>• Utility: $\\mathcal{U} \\approx 92\\%$ (High)</div>\n        <div>• Privacy: $\\epsilon = 1.0$ (Bounded DP)</div>\n        <div>• Provable mathematical protection</div>\n      </div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b91c1c] text-[11px] uppercase mb-1\">Point C: Over-Sanitized</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-0.5\">\n        <div>• Utility: $\\mathcal{U} \\to 0\\%$ (Garbage)</div>\n        <div>• Privacy: $\\mathcal{R} = 0$ (Zero leakage)</div>\n        <div>• Random noise destroys decisions</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] text-xs\">\n    <div class=\"font-mono font-black text-[#b45309] mb-1 flex items-center gap-1.5\">\n      <span>📐</span> Global Sensitivity Dictates Perturbation Magnitude:\n    </div>\n    <div class=\"text-[11px] text-[#334155] leading-relaxed\">\n      $$\\Delta f = \\max_{\\|\\mathcal{D}_1 - \\mathcal{D}_2\\|_1 = 1} \\|f(\\mathcal{D}_1) - f(\\mathcal{D}_2)\\|_1 \\implies \\text{Counting: } \\Delta f = 1 \\quad\\big|\\quad \\text{Sum: } \\Delta f = B_{\\text{max}} \\quad\\big|\\quad \\text{Mean: } \\Delta f = \\frac{B_{\\text{max}}}{N}$$\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "The Mathematical Formulation of the Trade-Off Frontier: Architecture Flowchart",
-        "type": "figure",
+        "title": "Pareto Optimality Condition & Sub-Optimal Pipeline Elimination",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Mathematical Formulation of the Trade-Off Frontier: Architecture Flowchart",
+          "title": "Strict Dominance: Eliminating Architecturally Defective Pipelines",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Mathematical Formulation of the Trade-Off Frontier: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph Frontier [\"The Pareto Frontier of Data Publishing\"]\n        A[\"Point A: Raw Microdata<br/>Utility: 100%, Privacy Risk: High\"]\n        B[\"Point B: Optimal Operating Point<br/>(e.g., ε = 1.0 DP / k = 10)<br/>Utility: 92%, Privacy Risk: Minimal\"]\n        C[\"Point C: Over-Sanitized Data<br/>Utility: 15%, Privacy Risk: Zero\"]\n    end\n\n    A -->|Add Noise / Generalize| B\n    B -->|Excessive Destruction| C\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class A amber;\n    class B green;\n    class C blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Analytical Utility</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{U}$ represents Analytical Utility (e.g., model accuracy $R^2$, classification F1-score, or statistical query precision).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Re-Identification / Leakage Risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{R}_{\\text{privacy}}$ represents Re-Identification / Leakage Risk (e.g., differential privacy budget $\\epsilon$, or mutual information $I(\\mathcal{M}(\\mathcal{D}); \\mathbf{S})$ with sensitive attributes).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Mathematical Formulation of the Trade-Off Frontier: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the mathematical formulation of the trade-off frontier: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "A mechanism M star belongs to the Pareto frontier if and only if no alternative M prime exists that strictly improves utility without increasing disclosure risk. Any sanitization pipeline operating below the frontier is strictly dominated.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "In production, naive heuristic masking and unsalted MD5 hashing are prime examples of architecturally defective mechanisms. They degrade downstream data utility by 30 percent while providing near zero real-world privacy protection against auxiliary linkage attacks.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph Frontier [\"The Pareto Frontier of Data Publishing\"]\n        A[\"Point A: Raw Microdata<br/>Utility: 100%, Privacy Risk: High\"]\n        B[\"Point B: Optimal Operating Point<br/>(e.g., ε = 1.0 DP / k = 10)<br/>Utility: 92%, Privacy Risk: Minimal\"]\n        C[\"Point C: Over-Sanitized Data<br/>Utility: 15%, Privacy Risk: Zero\"]\n    end\n\n    A -->|Add Noise / Generalize| B\n    B -->|Excessive Destruction| C\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class A amber;\n    class B green;\n    class C blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Analytical Utility</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{U}$ represents Analytical Utility (e.g., model accuracy $R^2$, classification F1-score, or statistical query precision).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Re-Identification / Leakage Risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mathcal{R}_{\\text{privacy}}$ represents Re-Identification / Leakage Risk (e.g., differential privacy budget $\\epsilon$, or mutual information $I(\\mathcal{M}(\\mathcal{D}); \\mathbf{S})$ with sensitive attributes).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Pareto Non-Dominance Criterion\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n        Efficiency Contract\n      </span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-xs md:text-sm text-[#151b20] font-black mb-2.5 overflow-x-auto\">\n      $$\\mathcal{M}^* \\in \\mathcal{P} \\iff \\nexists \\mathcal{M}' : \\left( \\mathcal{U}(\\mathcal{M}') \\ge \\mathcal{U}(\\mathcal{M}^*) \\land \\mathcal{R}(\\mathcal{M}') \\le \\mathcal{R}(\\mathcal{M}^*) \\land (\\mathcal{U}(\\mathcal{M}') > \\mathcal{U}(\\mathcal{M}^*) \\lor \\mathcal{R}(\\mathcal{M}') < \\mathcal{R}(\\mathcal{M}^*)) \\right)$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      A sanitization architecture is <strong>Pareto-Optimal</strong> if you cannot make it more accurate without making it leakier, and you cannot make it more private without degrading utility.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#b91c1c] shadow-[2px_2px_0px_#b91c1c]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black flex items-center gap-1.5\">\n        <span>🚫</span> Sub-Optimal Dominated Pipeline\n      </strong>\n      <p class=\"text-[11px] text-[#7f1d1d] font-sans leading-relaxed\">\n        Example: <em>Unsalted SHA-256 Hashing of SSNs</em>.\n        Destroys SQL query join speed ($\\mathcal{U} = 0.65$), yet adversary with rainbow tables re-identifies $99.8\\%$ of records ($\\mathcal{R} = 0.88$). It lies deep below the frontier!\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#dcfce7] border-2 border-[#15803d] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black flex items-center gap-1.5\">\n        <span>✅</span> Pareto Non-Dominated Pipeline\n      </strong>\n      <p class=\"text-[11px] text-[#14532d] font-sans leading-relaxed\">\n        Example: <em>Calibrated Laplace Mechanism ($\\epsilon = 1.0$)</em>.\n        Preserves $94.2\\%$ analytical query precision while providing mathematically provable bounded worst-case risk $e^\\epsilon = 2.718$ against all future auxiliary databases!\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Exposing the Sub-Optimal Pipeline",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look closely at the formula for Pareto non-dominance, Kaito. If pipeline M prime achieves both higher utility and lower risk than pipeline M, what does that say about M?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "It means pipeline M is strictly dominated! It is literally defective code that harms both the user and the company.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Last year an engineering team hashed phone numbers with unsalted SHA-256. It broke analytical substring searches, yet took an attacker four seconds to invert with a precomputed rainbow table. Lower utility and zero privacy!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Our automated CI/CD auditor should instantly flag and reject any sanitization candidate that is dominated by an existing differential privacy mechanism!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Pareto Non-Dominance Criterion\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n        Efficiency Contract\n      </span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-xs md:text-sm text-[#151b20] font-black mb-2.5 overflow-x-auto\">\n      $$\\mathcal{M}^* \\in \\mathcal{P} \\iff \\nexists \\mathcal{M}' : \\left( \\mathcal{U}(\\mathcal{M}') \\ge \\mathcal{U}(\\mathcal{M}^*) \\land \\mathcal{R}(\\mathcal{M}') \\le \\mathcal{R}(\\mathcal{M}^*) \\land (\\mathcal{U}(\\mathcal{M}') > \\mathcal{U}(\\mathcal{M}^*) \\lor \\mathcal{R}(\\mathcal{M}') < \\mathcal{R}(\\mathcal{M}^*)) \\right)$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      A sanitization architecture is <strong>Pareto-Optimal</strong> if you cannot make it more accurate without making it leakier, and you cannot make it more private without degrading utility.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#b91c1c] shadow-[2px_2px_0px_#b91c1c]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black flex items-center gap-1.5\">\n        <span>🚫</span> Sub-Optimal Dominated Pipeline\n      </strong>\n      <p class=\"text-[11px] text-[#7f1d1d] font-sans leading-relaxed\">\n        Example: <em>Unsalted SHA-256 Hashing of SSNs</em>.\n        Destroys SQL query join speed ($\\mathcal{U} = 0.65$), yet adversary with rainbow tables re-identifies $99.8\\%$ of records ($\\mathcal{R} = 0.88$). It lies deep below the frontier!\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#dcfce7] border-2 border-[#15803d] shadow-[2px_2px_0px_#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black flex items-center gap-1.5\">\n        <span>✅</span> Pareto Non-Dominated Pipeline\n      </strong>\n      <p class=\"text-[11px] text-[#14532d] font-sans leading-relaxed\">\n        Example: <em>Calibrated Laplace Mechanism ($\\epsilon = 1.0$)</em>.\n        Preserves $94.2\\%$ analytical query precision while providing mathematically provable bounded worst-case risk $e^\\epsilon = 2.718$ against all future auxiliary databases!\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Pareto Optimality Condition",
-        "type": "equation",
+        "title": "Differential Privacy & The Laplace Mechanism: Provable Risk Bounds",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Pareto Optimality Condition",
+          "title": "Cynthia Dwork's Foundation: Perturbation Scaled to Sensitivity",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Pareto Optimality Condition. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{M}^* \\in \\mathcal{P} \\iff \\nexists \\mathcal{M}' : \\left( \\mathcal{U}(\\mathcal{M}') \\ge \\mathcal{U}(\\mathcal{M}^*) \\land \\mathcal{R}(\\mathcal{M}') \\le \\mathcal{R}(\\mathcal{M}^*) \\land (\\mathcal{U}(\\mathcal{M}') > \\mathcal{U}(\\mathcal{M}^*) \\lor \\mathcal{R}(\\mathcal{M}') < \\mathcal{R}(\\mathcal{M}^*)) \\right)$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Pareto Optimality Condition",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does pareto optimality condition protect our system against silent distribution shift in production?"
+              "text": "Under Cynthia Dwork's foundational formulation, a mechanism provides epsilon-Differential Privacy if for any two neighboring datasets D1 and D2 differing by a single record, the probability ratio of any output S is bounded by e to the epsilon.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "To sanitize a numeric query f, the Laplace Mechanism injects zero-mean noise drawn from a Laplace distribution scaled to Delta f over epsilon. The expected Mean Squared Error scales inversely with epsilon squared: two times Delta f squared over epsilon squared.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{M}^* \\in \\mathcal{P} \\iff \\nexists \\mathcal{M}' : \\left( \\mathcal{U}(\\mathcal{M}') \\ge \\mathcal{U}(\\mathcal{M}^*) \\land \\mathcal{R}(\\mathcal{M}') \\le \\mathcal{R}(\\mathcal{M}^*) \\land (\\mathcal{U}(\\mathcal{M}') > \\mathcal{U}(\\mathcal{M}^*) \\lor \\mathcal{R}(\\mathcal{M}') < \\mathcal{R}(\\mathcal{M}^*)) \\right)$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Dwork's $\\epsilon$-Differential Privacy Definition (2006)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded-full font-bold\">\n        Worst-Case Guarantee\n      </span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-sm md:text-base text-[#151b20] font-black mb-2\">\n      $$P(\\mathcal{M}(\\mathcal{D}_1) \\in \\mathcal{S}) \\le e^\\epsilon \\cdot P(\\mathcal{M}(\\mathcal{D}_2) \\in \\mathcal{S}) \\quad \\forall |\\mathcal{D}_1 \\triangle \\mathcal{D}_2| = 1$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      An adversary observing sanitized output $\\mathcal{S}$ cannot determine whether any specific individual participated in dataset $\\mathcal{D}_1$ versus $\\mathcal{D}_2$, bounded by multiplicative factor $e^\\epsilon$.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-[11px] uppercase mb-1\">Laplace Mechanism</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-1\">\n        <div>$$\\mathcal{M}(x) = f(x) + \\eta$$</div>\n        <div>$$\\eta \\sim \\text{Lap}\\left(0, \\; b = \\frac{\\Delta f}{\\epsilon}\\right)$$</div>\n        <div class=\"text-[#475569] font-sans\">Noise drawn from double-exponential density $f(\\eta) = \\frac{1}{2b}e^{-|\\eta|/b}$.</div>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#15803d] text-[11px] uppercase mb-1\">Expected Analytical Error (MSE)</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-1\">\n        <div>$$\\mathbb{E}\\left[ (\\mathcal{M}(x) - f(x))^2 \\right] = 2 \\left( \\frac{\\Delta f}{\\epsilon} \\right)^2$$</div>\n        <div>$$\\text{Std Dev } \\sigma = \\sqrt{2}\\frac{\\Delta f}{\\epsilon}$$</div>\n        <div class=\"text-[#475569] font-sans\">Halving $\\epsilon$ doubles standard deviation and quadruples expected error!</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#22bfd7] font-mono text-xs text-[#0e7490] flex items-center justify-between\">\n    <span>🛡️ <strong>Post-Processing Immunity:</strong> For any arbitrary algorithm $g$, $g(\\mathcal{M}(\\mathcal{D}))$ remains strictly $\\epsilon$-DP.</span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Differential Privacy Is Unbreakable",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the mathematical beauty of Dwork's theorem, Kaito. It makes zero assumptions about what auxiliary databases an attacker might possess in the future.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because it guarantees that whether my data is included or completely deleted, the probability of any model output changes by at most e to the epsilon!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. But look at the MSE formula: two times Delta f squared over epsilon squared. If your budget epsilon is set too low—say 0.01—the error variance blows up exponentially, destroying query utility.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if epsilon is set to 20, the noise is microscopic, but your privacy guarantee weakens because e to the 20 is nearly 500 million! Finding the right epsilon is the true engineering craft.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Dwork's $\\epsilon$-Differential Privacy Definition (2006)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded-full font-bold\">\n        Worst-Case Guarantee\n      </span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-sm md:text-base text-[#151b20] font-black mb-2\">\n      $$P(\\mathcal{M}(\\mathcal{D}_1) \\in \\mathcal{S}) \\le e^\\epsilon \\cdot P(\\mathcal{M}(\\mathcal{D}_2) \\in \\mathcal{S}) \\quad \\forall |\\mathcal{D}_1 \\triangle \\mathcal{D}_2| = 1$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      An adversary observing sanitized output $\\mathcal{S}$ cannot determine whether any specific individual participated in dataset $\\mathcal{D}_1$ versus $\\mathcal{D}_2$, bounded by multiplicative factor $e^\\epsilon$.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-[11px] uppercase mb-1\">Laplace Mechanism</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-1\">\n        <div>$$\\mathcal{M}(x) = f(x) + \\eta$$</div>\n        <div>$$\\eta \\sim \\text{Lap}\\left(0, \\; b = \\frac{\\Delta f}{\\epsilon}\\right)$$</div>\n        <div class=\"text-[#475569] font-sans\">Noise drawn from double-exponential density $f(\\eta) = \\frac{1}{2b}e^{-|\\eta|/b}$.</div>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#15803d] text-[11px] uppercase mb-1\">Expected Analytical Error (MSE)</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-1\">\n        <div>$$\\mathbb{E}\\left[ (\\mathcal{M}(x) - f(x))^2 \\right] = 2 \\left( \\frac{\\Delta f}{\\epsilon} \\right)^2$$</div>\n        <div>$$\\text{Std Dev } \\sigma = \\sqrt{2}\\frac{\\Delta f}{\\epsilon}$$</div>\n        <div class=\"text-[#475569] font-sans\">Halving $\\epsilon$ doubles standard deviation and quadruples expected error!</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#f0fbfd] border border-[#22bfd7] font-mono text-xs text-[#0e7490] flex items-center justify-between\">\n    <span>🛡️ <strong>Post-Processing Immunity:</strong> For any arbitrary algorithm $g$, $g(\\mathcal{M}(\\mathcal{D}))$ remains strictly $\\epsilon$-DP.</span>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Kaldor-Hicks Social Net Benefit with Negative Externalities",
-        "type": "equation",
+        "title": "Welfare Economics: Kaldor-Hicks Externalities & Arrow-Pratt Risk",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Kaldor-Hicks Social Net Benefit with Negative Externalities",
+          "title": "Pricing Externalities & Modeling Institutional Risk Aversion",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Kaldor-Hicks Social Net Benefit with Negative Externalities. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta W_{\\text{KH}} = \\sum_{i \\in \\text{Gainers}} \\Delta U_i - \\sum_{j \\in \\text{Losers}} |\\Delta U_j| - \\mathcal{X}_{\\text{external}}$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Kaldor-Hicks Social Net Benefit with Negative Externalities",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does kaldor-hicks social net benefit with negative externalities protect our system against silent distribution shift in production?"
+              "text": "When data harvesting generates systemic societal harms, such as dynamic price discrimination or surveillance capitalism, we evaluate net welfare using the Kaldor-Hicks criterion: beneficiary utility minus subject loss minus unpriced negative externalities.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Furthermore, institutional decision-makers exhibit risk aversion modeled by the Arrow-Pratt certainty equivalent. Expected utility is penalized by half alpha times the variance of disclosure risk, modeling the severe cost of GDPR fines and catastrophic reputational collapse.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta W_{\\text{KH}} = \\sum_{i \\in \\text{Gainers}} \\Delta U_i - \\sum_{j \\in \\text{Losers}} |\\Delta U_j| - \\mathcal{X}_{\\text{external}}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Kaldor-Hicks Social Net Benefit with Externalities\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#ffd8ce] text-[#991b1b] px-2 py-0.5 rounded-full font-bold\">\n        Acemoglu et al. (2022)\n      </span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-sm md:text-base text-[#151b20] font-black mb-2\">\n      $$\\Delta W_{\\text{KH}} = \\sum_{i \\in \\text{Beneficiaries}} \\Delta U_i - \\sum_{j \\in \\text{Subjects}} |\\Delta U_j| - \\mathcal{X}_{\\text{external}}$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      Where $\\mathcal{X}_{\\text{external}}$ represents unpriced third-party harms imposed on individuals whose data was harvested without direct compensation or informed consent (e.g., surveillance capitalism, price discrimination, data breach exposure).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-[11px] uppercase mb-1\">Negative Data Externalities ($\\mathcal{X}_{\\text{ext}}$)</div>\n      <p class=\"text-[11px] text-[#334155] font-sans leading-relaxed\">\n        When User A sells or surrenders their behavioral or genetic data, that data contains correlated information describing relatives and social peers. User A captures the private benefit, but society absorbs the systemic surveillance risk.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#0e7490] text-[11px] uppercase mb-1\">Arrow-Pratt Risk-Averse Certainty Equivalent</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-1 mb-1\">\n        $$\\text{CE}(\\mathcal{M}) \\approx \\mathbb{E}[\\mathcal{U}(\\mathcal{M})] - \\frac{1}{2}\\alpha \\cdot \\mathbb{V}[\\mathcal{R}_{\\text{privacy}}(\\mathcal{M})]$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] font-sans\">\n        $\\alpha > 0$ models corporate risk aversion against regulatory sanctions (GDPR Article 83 fines up to €20M or 4% of global turnover).\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Who Pays for Data Harvesting?",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the term X external in the Kaldor-Hicks formula, Kaito. That term explains why ad-tech business models often feel predatory.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because the platform gets the advertising revenue, but users and their contacts suffer the unpriced privacy erosion, dynamic price discrimination, and psychological manipulation!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. If an engineering pipeline creates 10 million dollars in corporate profit but imposes 15 million dollars in societal externalities, Kaldor-Hicks social net benefit is negative. True engineering maturity requires internalizing those externalities.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the Arrow-Pratt certainty equivalent shows why compliance officers are so conservative: the variance of privacy risk carries a severe quadratic penalty under GDPR!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Kaldor-Hicks Social Net Benefit with Externalities\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#ffd8ce] text-[#991b1b] px-2 py-0.5 rounded-full font-bold\">\n        Acemoglu et al. (2022)\n      </span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-mono text-center text-sm md:text-base text-[#151b20] font-black mb-2\">\n      $$\\Delta W_{\\text{KH}} = \\sum_{i \\in \\text{Beneficiaries}} \\Delta U_i - \\sum_{j \\in \\text{Subjects}} |\\Delta U_j| - \\mathcal{X}_{\\text{external}}$$\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      Where $\\mathcal{X}_{\\text{external}}$ represents unpriced third-party harms imposed on individuals whose data was harvested without direct compensation or informed consent (e.g., surveillance capitalism, price discrimination, data breach exposure).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-[11px] uppercase mb-1\">Negative Data Externalities ($\\mathcal{X}_{\\text{ext}}$)</div>\n      <p class=\"text-[11px] text-[#334155] font-sans leading-relaxed\">\n        When User A sells or surrenders their behavioral or genetic data, that data contains correlated information describing relatives and social peers. User A captures the private benefit, but society absorbs the systemic surveillance risk.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#0e7490] text-[11px] uppercase mb-1\">Arrow-Pratt Risk-Averse Certainty Equivalent</div>\n      <div class=\"text-[11px] text-[#151b20] space-y-1 mb-1\">\n        $$\\text{CE}(\\mathcal{M}) \\approx \\mathbb{E}[\\mathcal{U}(\\mathcal{M})] - \\frac{1}{2}\\alpha \\cdot \\mathbb{V}[\\mathcal{R}_{\\text{privacy}}(\\mathcal{M})]$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] font-sans\">\n        $\\alpha > 0$ models corporate risk aversion against regulatory sanctions (GDPR Article 83 fines up to €20M or 4% of global turnover).\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Arrow-Pratt Risk-Averse Certainty Equivalent",
-        "type": "equation",
+        "title": "Interactive Lab: Pareto Utility-Privacy & DP Epsilon-Tradeoff Simulator",
+        "type": "interactive",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Arrow-Pratt Risk-Averse Certainty Equivalent",
+          "title": "Pareto Frontier & Laplace Perturbation Workbench",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Arrow-Pratt Risk-Averse Certainty Equivalent. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{CE}(\\mathcal{M}) \\approx \\mathbb{E}[\\mathcal{U}(\\mathcal{M})] - \\frac{1}{2} \\alpha \\cdot \\mathbb{V}[\\mathcal{R}_{\\text{privacy}}(\\mathcal{M})]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">For data pipelines</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">handling critical infrastructure or patient records, decision-makers exhibit risk aversion modeled by the Arrow-Pratt certainty equivalent: Where $\\alpha > 0$ represents the organization&#x27;s coefficient of absolute risk aversion against regulatory sanctions and reputational damage.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Arrow-Pratt Risk-Averse Certainty Equivalent",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does arrow-pratt risk-averse certainty equivalent protect our system against silent distribution shift in production?"
+              "text": "Welcome to the Pareto Utility-Privacy Laboratory! In the simulator below, tune the privacy budget epsilon from 0.02 to 5.0, adjust query sensitivity Delta f, and inspect the real-time SVG Pareto frontier curve.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Click Preset 1 for raw microdata, Preset 2 for optimal Differential Privacy at epsilon equals 1.0, and Preset 4 to see how excessive noise destroys query utility. Notice how the published query and relative error adapt dynamically.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{CE}(\\mathcal{M}) \\approx \\mathbb{E}[\\mathcal{U}(\\mathcal{M})] - \\frac{1}{2} \\alpha \\cdot \\mathbb{V}[\\mathcal{R}_{\\text{privacy}}(\\mathcal{M})]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">For data pipelines</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">handling critical infrastructure or patient records, decision-makers exhibit risk aversion modeled by the Arrow-Pratt certainty equivalent: Where $\\alpha > 0$ represents the organization&#x27;s coefficient of absolute risk aversion against regulatory sanctions and reputational damage.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>🔬</span> Interactive Lab: Pareto Utility-Privacy &amp; DP Epsilon Simulator\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#c9f3f4] px-2 py-0.5 rounded-full\">Section 4 Alignment</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Tune privacy budget $\\epsilon$, global sensitivity $\\Delta f$, and negative externality cost $\\mathcal{X}_{\\text{ext}}$ to observe the live SVG Pareto curve, Kaldor-Hicks net welfare, and empirical Laplace query perturbations:\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Lab: Stress-Testing the Laplace Mechanism",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's test our Laplace simulator! Right now, under Preset 2 with epsilon equals 1.0, our analytical utility is 94 percent with robust privacy protection.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let me click Preset 1 for Raw Microdata! Wow—utility jumps to 99 percent, but look at the red warning badge: Re-ID Leakage Risk spikes to 0.95! The yellow operating point moves all the way to the top right danger zone.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now click Preset 4 for Over-Noise at epsilon equals 0.02. Privacy protection is almost 100 percent, but the relative query error explodes past 400 percent! That is why we must balance trade-offs mathematically.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And increasing sensitivity Delta f shifts the entire curve downward! That's why query design and bounded clamping are just as critical as choosing epsilon.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>🔬</span> Interactive Lab: Pareto Utility-Privacy &amp; DP Epsilon Simulator\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#c9f3f4] px-2 py-0.5 rounded-full\">Section 4 Alignment</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Tune privacy budget $\\epsilon$, global sensitivity $\\Delta f$, and negative externality cost $\\mathcal{X}_{\\text{ext}}$ to observe the live SVG Pareto curve, Kaldor-Hicks net welfare, and empirical Laplace query perturbations:\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Kleinberg-Chouldechova Impossibility Theorem",
-        "type": "equation",
+        "title": "Active Checkpoint 1: US Census Differential Privacy & Rural Scaling",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Kleinberg-Chouldechova Impossibility Theorem",
+          "title": "Active Recall: Diagnosing the Rural Sensitivity Dilemma",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Kleinberg-Chouldechova Impossibility Theorem. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{FPR}_g = \\frac{p_g}{1 - p_g} \\left( \\frac{1 - \\text{PPV}_g}{\\text{PPV}_g} \\right) (1 - \\text{FNR}_g)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{E}[U] = \\sum P(\\text{Benefit}) \\cdot U(\\text{Benefit}) - \\sum P(\\text{Harm}) \\cdot C(\\text{Harm})$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Before deploying surveillance or biometric telemetry systems, conduct a formal Privacy Impact Assessment (PIA) quantifying the Utilitarian expected utility: $$\\mathbb{E}[U] = \\sum P(\\text{Benefit}) \\cdot U(\\text{Benefit}) - \\sum P(\\text{Harm}) \\cdot </span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Equal False Positive Rates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$P(R > \\tau \\mid Y=0, G=0) = P(R > \\tau \\mid Y=0, G=1)$</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Equal False Negative Rates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$P(R \\le \\tau \\mid Y=1, G=0) = P(R \\le \\tau \\mid Y=1, G=1)$</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Kleinberg-Chouldechova Impossibility Theorem",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does kleinberg-chouldechova impossibility theorem protect our system against silent distribution shift in production?"
+              "text": "Time for Active Recall Checkpoint 1! The US Census Bureau adopted Differential Privacy with epsilon approximately 19.6 for the 2020 decennial census, sparking fierce pushback from rural town leaders and civil rights lawyers.",
+              "dock": "checkpoint"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Select the correct mathematical and engineering diagnosis below to demonstrate your mastery of relative error scaling in the Laplace Mechanism.",
+              "dock": "checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{FPR}_g = \\frac{p_g}{1 - p_g} \\left( \\frac{1 - \\text{PPV}_g}{\\text{PPV}_g} \\right) (1 - \\text{FNR}_g)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{E}[U] = \\sum P(\\text{Benefit}) \\cdot U(\\text{Benefit}) - \\sum P(\\text{Harm}) \\cdot C(\\text{Harm})$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Before deploying surveillance or biometric telemetry systems, conduct a formal Privacy Impact Assessment (PIA) quantifying the Utilitarian expected utility: $$\\mathbb{E}[U] = \\sum P(\\text{Benefit}) \\cdot U(\\text{Benefit}) - \\sum P(\\text{Harm}) \\cdot </span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Equal False Positive Rates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$P(R > \\tau \\mid Y=0, G=0) = P(R > \\tau \\mid Y=0, G=1)$</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Equal False Negative Rates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$P(R \\le \\tau \\mid Y=1, G=0) = P(R \\le \\tau \\mid Y=1, G=1)$</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#b45309] flex items-center gap-1.5 uppercase\">\n      <span>💡</span> Active Recall Checkpoint 1: US Census DP Dilemma\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full\">Diagnostic Evaluation</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Evaluate why uniform Laplace perturbation triggers severe relative distortion in sparse demographic counts:\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Checkpoint: The Rural Census Paradox",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, here is Checkpoint 1! Why did small rural communities sue the US Census Bureau over Differential Privacy, when major metropolitan areas barely noticed any change?",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let's analyze the math: Laplace noise variance is two times Delta f over epsilon squared—which depends only on sensitivity, not on the population size of the district!",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Let's see if you can select the precise engineering answer among the choices below!",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#b45309] flex items-center gap-1.5 uppercase\">\n      <span>💡</span> Active Recall Checkpoint 1: US Census DP Dilemma\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full\">Diagnostic Evaluation</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Evaluate why uniform Laplace perturbation triggers severe relative distortion in sparse demographic counts:\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Three Archetypal Ethical Dilemmas in Data Practice",
-        "type": "figure",
+        "title": "Three Archetypal Ethical Dilemmas in Engineering Practice",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Three Archetypal Ethical Dilemmas in Data Practice",
+          "title": "Classifying Systemic Dilemmas: When Normative Values Collide",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Three Archetypal Ethical Dilemmas in Data Practice. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    D1[\"Dilemma 1: Public Health Surveillance vs Autonomy<br/>(COVID-19 digital contact tracing vs unconsented location tracking)\"]\n    D2[\"Dilemma 2: Institutional Accuracy vs Group Fairness<br/>(COMPAS recidivism risk: overall accuracy vs racial parity)\"]\n    D3[\"Dilemma 3: Engagement Optimization vs Mental Health<br/>(Social media recommendation feeds: clicks vs addictive polarization)\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class D1 blue;\n    class D2 amber;\n    class D3 purple;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Public Health vs. Civil Autonomy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High-frequency mobile GPS trajectories enable automated infectious disease contact tracing, yet exposing real-time spatial vectors creates permanent surveillance architecture (Abowd, 2018).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Predictive Calibration vs. Demographic Parity</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The famous ProPublica analysis of the COMPAS recidivism instrument (Angwin, 2016) demonstrated that maintaining equal calibration across Black and white defendants resulted in twice the false positive rate for Black defendants ($44.9\\%$ vs $23.5\\%$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Engagement vs. Mental Health Externalities</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Training recommendation models strictly on click-through and dwell time maximizes advertising revenue while imposing severe psychological externalities through sensationalist content loops.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Three Archetypal Ethical Dilemmas in Data Practice",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for three archetypal ethical dilemmas in data practice, how does the architectural flow enforce system stability?"
+              "text": "An engineering dilemma arises when a system must arbitrate between legitimate, competing normative values where no single choice is harm-free. We classify these into three archetypes.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Dilemma 1 pits Public Health Surveillance against Civil Autonomy. Dilemma 2 pits Institutional Accuracy against Demographic Error Parity. And Dilemma 3 pits Platform Engagement Optimization against Mental Health Externalities.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    D1[\"Dilemma 1: Public Health Surveillance vs Autonomy<br/>(COVID-19 digital contact tracing vs unconsented location tracking)\"]\n    D2[\"Dilemma 2: Institutional Accuracy vs Group Fairness<br/>(COMPAS recidivism risk: overall accuracy vs racial parity)\"]\n    D3[\"Dilemma 3: Engagement Optimization vs Mental Health<br/>(Social media recommendation feeds: clicks vs addictive polarization)\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class D1 blue;\n    class D2 amber;\n    class D3 purple;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Public Health vs. Civil Autonomy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High-frequency mobile GPS trajectories enable automated infectious disease contact tracing, yet exposing real-time spatial vectors creates permanent surveillance architecture (Abowd, 2018).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Predictive Calibration vs. Demographic Parity</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The famous ProPublica analysis of the COMPAS recidivism instrument (Angwin, 2016) demonstrated that maintaining equal calibration across Black and white defendants resulted in twice the false positive rate for Black defendants ($44.9\\%$ vs $23.5\\%$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Engagement vs. Mental Health Externalities</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Training recommendation models strictly on click-through and dwell time maximizes advertising revenue while imposing severe psychological externalities through sensationalist content loops.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Taxonomy of Production Ethical Dilemmas\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#fff0b9] text-[#92400e] px-2 py-0.5 rounded-full font-bold\">\n        Section 2 Formulation\n      </span>\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      In data work, ethical failure rarely stems from cartoonish malice. It arises when two defensible institutional goals cannot be satisfied simultaneously under mathematical constraints.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black text-[11px] uppercase\">Dilemma 1: Health vs. Autonomy</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n        <strong>The Clash:</strong> Real-time COVID-19 contagion containment vs. unconsented dragnet spatial tracking. Centralized servers risk police function creep.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black text-[11px] uppercase\">Dilemma 2: Accuracy vs. Parity</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n        <strong>The Clash:</strong> COMPAS recidivism risk scoring: maximizing aggregate judicial calibration vs. tolerating a $2\\times$ false positive rate on Black defendants.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#6b21a8] block mb-1 font-black text-[11px] uppercase\">Dilemma 3: Growth vs. Harm</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n        <strong>The Clash:</strong> Maximizing ad click-through rate and dwell time vs. internalizing negative externalities of teenage behavioral addiction and civic radicalization.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Anatomy of a Dilemma",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice why these three dilemmas are so dangerous, Kaito: both sides have compelling moral arguments!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Right! In Dilemma 1, public health officials genuinely want to save lives during a viral pandemic. But civil libertarians rightly fear building a permanent location tracking apparatus that outlasts the disease.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And in Dilemma 3, product managers claim they are merely giving users what they click on, while ignoring that algorithms exploit neurological vulnerabilities for unpriced corporate profit.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "To resolve these dilemmas, we need to compare how Consequentialist and Deontological moral frameworks analyze each engineering choice!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Taxonomy of Production Ethical Dilemmas\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#fff0b9] text-[#92400e] px-2 py-0.5 rounded-full font-bold\">\n        Section 2 Formulation\n      </span>\n    </div>\n    <p class=\"text-xs text-[#334155] leading-relaxed\">\n      In data work, ethical failure rarely stems from cartoonish malice. It arises when two defensible institutional goals cannot be satisfied simultaneously under mathematical constraints.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black text-[11px] uppercase\">Dilemma 1: Health vs. Autonomy</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n        <strong>The Clash:</strong> Real-time COVID-19 contagion containment vs. unconsented dragnet spatial tracking. Centralized servers risk police function creep.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black text-[11px] uppercase\">Dilemma 2: Accuracy vs. Parity</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n        <strong>The Clash:</strong> COMPAS recidivism risk scoring: maximizing aggregate judicial calibration vs. tolerating a $2\\times$ false positive rate on Black defendants.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#6b21a8] block mb-1 font-black text-[11px] uppercase\">Dilemma 3: Growth vs. Harm</strong>\n      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n        <strong>The Clash:</strong> Maximizing ad click-through rate and dwell time vs. internalizing negative externalities of teenage behavioral addiction and civic radicalization.\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s9",
-        "title": "Python Verification: Simulating the Kleinberg Trade-Off",
-        "type": "code",
+        "title": "Normative Frameworks: Consequentialism vs. Deontology",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Python Verification: Simulating the Kleinberg Trade-Off",
+          "title": "Table 3.2 Operationalization Matrix",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Python Verification: Simulating the Kleinberg Trade-Off. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># kleinberg_impossibility_sim.py\n# Validates the mathematical coupling between base rates, calibration, and FPR\n\nfrom typing import Dict, Tuple\nimport numpy as np\n\ndef compute_fpr_from_calibration(\n    base_rate: float,\n    ppv: float,\n    fnr: float\n) -&gt; float:\n    # Computes exact FPR dictated by calibration under Kleinberg-Chouldechova\n    odds_ratio = base_rate / (1.0 - base_rate)\n    precision_ratio = (1.0 - ppv) / ppv\n    fpr = odds_ratio * precision_ratio * (1.0 - fnr)\n    return float(fpr)\n\ndef test_kleinberg_assertions():\n    # Group A: High base prevalence (p_A = 0.40)\n    # Group B: Low base prevalence (p_B = 0.20)\n    p_A = 0.40\n    p_B = 0.20\n    \n    # Enforce Equal Calibration (PPV = 0.70) and Equal False Negative Rate (FNR = 0.20)\n    target_ppv = 0.70\n    target_fnr = 0.20\n    \n    fpr_A = compute_fpr_from_calibration(p_A</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Python Verification: Simulating the Kleinberg Trade-Off",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Table 3.2 maps how ethical philosophies evaluate each dilemma. Consequentialists evaluate the aggregate outcome—lives saved or total profit. Deontologists evaluate rights, duties, and whether individuals are treated as mere means to an end.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Notice the third column: the engineering resolution! For contact tracing, we don't surrender to mass surveillance—we engineer decentralized Bluetooth tokens. For recidivism, we calibrate explicit error parity thresholds.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># kleinberg_impossibility_sim.py\n# Validates the mathematical coupling between base rates, calibration, and FPR\n\nfrom typing import Dict, Tuple\nimport numpy as np\n\ndef compute_fpr_from_calibration(\n    base_rate: float,\n    ppv: float,\n    fnr: float\n) -&gt; float:\n    # Computes exact FPR dictated by calibration under Kleinberg-Chouldechova\n    odds_ratio = base_rate / (1.0 - base_rate)\n    precision_ratio = (1.0 - ppv) / ppv\n    fpr = odds_ratio * precision_ratio * (1.0 - fnr)\n    return float(fpr)\n\ndef test_kleinberg_assertions():\n    # Group A: High base prevalence (p_A = 0.40)\n    # Group B: Low base prevalence (p_B = 0.20)\n    p_A = 0.40\n    p_B = 0.20\n    \n    # Enforce Equal Calibration (PPV = 0.70) and Equal False Negative Rate (FNR = 0.20)\n    target_ppv = 0.70\n    target_fnr = 0.20\n    \n    fpr_A = compute_fpr_from_calibration(p_A</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] font-sans\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Table 3.2 • Deontological vs. Consequentialist Resolutions\n    </span>\n    <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n      Curriculum Reference\n    </span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left text-xs font-sans border-collapse\">\n      <thead>\n        <tr class=\"bg-[#f1f5f9] border-b-2 border-[#151b20] text-[#151b20] font-mono text-[11px]\">\n          <th class=\"p-2 border-r border-[#151b20]/20\">Dilemma Dimension</th>\n          <th class=\"p-2 border-r border-[#151b20]/20\">Consequentialist / Utilitarian</th>\n          <th class=\"p-2 border-r border-[#151b20]/20\">Deontological / Rights-Based</th>\n          <th class=\"p-2\">Engineering Resolution</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#151b20]/10 text-[11px]\">\n        <tr class=\"hover:bg-[#fffaf0]\">\n          <td class=\"p-2 font-mono font-bold text-[#0e7490] border-r border-[#151b20]/20\">Dilemma 1: Public Health</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Maximizes aggregate lives saved by tracking real-time contagion trajectories ($1\\text{ Hz}$ GPS).</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Rejects involuntary mass surveillance as a violation of fundamental spatial autonomy.</td>\n          <td class=\"p-2 font-semibold text-[#047857]\">Decentralized Bluetooth tokens (GAEN) with local on-device matching.</td>\n        </tr>\n        <tr class=\"hover:bg-[#fffaf0]\">\n          <td class=\"p-2 font-mono font-bold text-[#b45309] border-r border-[#151b20]/20\">Dilemma 2: Recidivism Scoring</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Optimizes overall judicial prediction calibration to minimize violent offenses across society.</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Forbids imposing a $2\\times$ higher False Positive Rate on marginalized defendants as a matter of justice.</td>\n          <td class=\"p-2 font-semibold text-[#047857]\">Explicit threshold calibration enforcing Equalized Odds error parity.</td>\n        </tr>\n        <tr class=\"hover:bg-[#fffaf0]\">\n          <td class=\"p-2 font-mono font-bold text-[#6b21a8] border-r border-[#151b20]/20\">Dilemma 3: Behavioral Feeds</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Maximizes shareholder value and platform dwell time via CTR reward optimization.</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Condemns deliberate cognitive manipulation and psychological addiction loops.</td>\n          <td class=\"p-2 font-semibold text-[#047857]\">Multi-stakeholder objective functions penalizing addictive outrage engagement.</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Architecture of Moral Synthesis",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how Table 3.2 resolves the deadlock, Kaito. Philosophers often debate Consequentialism versus Deontology for centuries. But engineers must ship code on Monday morning!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That's why the Engineering Resolution column is so empowering! In the COVID-19 pandemic, governments thought they had to choose between letting people die or tracking everyone's GPS coordinates.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Until cryptographers at Apple, Google, and European universities created GAEN: exchanging ephemeral cryptographic beacons that match exposures locally on your phone without sending any location data to the government.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That shifted the Pareto frontier outward! It achieved 80 percent of the epidemiological benefit while completely eliminating the dragnet surveillance risk.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] font-sans\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      Table 3.2 • Deontological vs. Consequentialist Resolutions\n    </span>\n    <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n      Curriculum Reference\n    </span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left text-xs font-sans border-collapse\">\n      <thead>\n        <tr class=\"bg-[#f1f5f9] border-b-2 border-[#151b20] text-[#151b20] font-mono text-[11px]\">\n          <th class=\"p-2 border-r border-[#151b20]/20\">Dilemma Dimension</th>\n          <th class=\"p-2 border-r border-[#151b20]/20\">Consequentialist / Utilitarian</th>\n          <th class=\"p-2 border-r border-[#151b20]/20\">Deontological / Rights-Based</th>\n          <th class=\"p-2\">Engineering Resolution</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#151b20]/10 text-[11px]\">\n        <tr class=\"hover:bg-[#fffaf0]\">\n          <td class=\"p-2 font-mono font-bold text-[#0e7490] border-r border-[#151b20]/20\">Dilemma 1: Public Health</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Maximizes aggregate lives saved by tracking real-time contagion trajectories ($1\\text{ Hz}$ GPS).</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Rejects involuntary mass surveillance as a violation of fundamental spatial autonomy.</td>\n          <td class=\"p-2 font-semibold text-[#047857]\">Decentralized Bluetooth tokens (GAEN) with local on-device matching.</td>\n        </tr>\n        <tr class=\"hover:bg-[#fffaf0]\">\n          <td class=\"p-2 font-mono font-bold text-[#b45309] border-r border-[#151b20]/20\">Dilemma 2: Recidivism Scoring</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Optimizes overall judicial prediction calibration to minimize violent offenses across society.</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Forbids imposing a $2\\times$ higher False Positive Rate on marginalized defendants as a matter of justice.</td>\n          <td class=\"p-2 font-semibold text-[#047857]\">Explicit threshold calibration enforcing Equalized Odds error parity.</td>\n        </tr>\n        <tr class=\"hover:bg-[#fffaf0]\">\n          <td class=\"p-2 font-mono font-bold text-[#6b21a8] border-r border-[#151b20]/20\">Dilemma 3: Behavioral Feeds</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Maximizes shareholder value and platform dwell time via CTR reward optimization.</td>\n          <td class=\"p-2 text-[#334155] border-r border-[#151b20]/20\">Condemns deliberate cognitive manipulation and psychological addiction loops.</td>\n          <td class=\"p-2 font-semibold text-[#047857]\">Multi-stakeholder objective functions penalizing addictive outrage engagement.</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s10",
-        "title": "Interactive Lab: Explore the Pareto Utility-Privacy Curve",
-        "type": "tool",
+        "title": "Case Study 1: US Census DAS & Database Reconstruction Attacks",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore the Pareto Utility-Privacy Curve",
+          "title": "The Dinur-Nissim Threat & The Epsilon Allocation Battle",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore the Pareto Utility-Privacy Curve. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore the Pareto Utility-Privacy Curve</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Adjust differential privacy noise ($\\epsilon$), visualize accuracy degradation, and compute re-identification probabilities dynamically.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Privacy Frontier Studio →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore the Pareto Utility-Privacy Curve",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore the pareto utility-privacy curve located below this player?"
+              "text": "In 2018, US Census Bureau internal researchers proved a sobering vulnerability: by linking published aggregate census tables with commercial credit rolls and voter registries, an adversary could reconstruct individual microdata for over 52 million Americans.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "To prevent reconstruction, the Bureau implemented the Disclosure Avoidance System with epsilon approximately 19.6. But rural leaders sued, demonstrating that noise distorted voting age population counts in small precincts, threatening Voting Rights Act redistricting compliance.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore the Pareto Utility-Privacy Curve</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Adjust differential privacy noise ($\\epsilon$), visualize accuracy degradation, and compute re-identification probabilities dynamically.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Privacy Frontier Studio →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Case Study 1 • US Census Bureau DAS (2020)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded-full font-bold\">\n        John Abowd (2018)\n      </span>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n      <div>\n        <strong class=\"text-[#b91c1c] block mb-1 font-mono uppercase text-[11px]\">The Reconstruction Threat</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Under the <strong>Dinur-Nissim Theorem (2003)</strong>, publishing too many aggregate queries with bounded error allows an attacker to solve a system of linear equations that recovers raw microdata. The Census Bureau confirmed this attack reconstructed exact age, sex, race, and ethnicity for <strong>$52\\text{ million}$ Americans</strong>!\n        </p>\n      </div>\n      <div>\n        <strong class=\"text-[#b45309] block mb-1 font-mono uppercase text-[11px]\">The Rural Demographer Lawsuit</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Because Laplace noise variance $\\sigma^2 = 2(\\Delta f / \\epsilon)^2$ is constant regardless of population, small rural towns saw relative errors of $20\\%+$. In <em>Alabama v. Commerce</em>, plaintiffs argued noisy data violated the Constitutional mandate for an actual headcount.\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs\">\n    <div class=\"font-mono font-black text-[#15803d] mb-1 flex items-center gap-1.5\">\n      <span>⚖️</span> The Engineering Resolution: Hierarchical Pareto Budget Allocation\n    </div>\n    <p class=\"text-[#14532d] leading-relaxed\">\n      Rather than abandoning Differential Privacy, the Bureau tuned the Pareto frontier: they increased total $\\epsilon$ to $19.6$ and allocated larger budget shares to voting-age demographic cross-tabulations, ensuring redistricting precision while bounding whole-table reconstruction advantage.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The 52 Million Record Reconstruction",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, many critics thought the Census Bureau was paranoid for adopting Differential Privacy. But what did their internal attack prove?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "It proved that traditional de-identification techniques—like table cell suppression and data swapping—are completely broken against modern linear programming reconstruction! Fifty-two million people's raw records were exfiltrated from public tables.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Yet rural demographers had a legitimate grievance: a small reservation of 120 people could see its count swing to 95 or 145, altering legislative redistricting and federal grant allocation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So the solution wasn't deleting Differential Privacy—it was hierarchically allocating the epsilon budget so high-stakes legal attributes received lower noise!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Case Study 1 • US Census Bureau DAS (2020)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded-full font-bold\">\n        John Abowd (2018)\n      </span>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n      <div>\n        <strong class=\"text-[#b91c1c] block mb-1 font-mono uppercase text-[11px]\">The Reconstruction Threat</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Under the <strong>Dinur-Nissim Theorem (2003)</strong>, publishing too many aggregate queries with bounded error allows an attacker to solve a system of linear equations that recovers raw microdata. The Census Bureau confirmed this attack reconstructed exact age, sex, race, and ethnicity for <strong>$52\\text{ million}$ Americans</strong>!\n        </p>\n      </div>\n      <div>\n        <strong class=\"text-[#b45309] block mb-1 font-mono uppercase text-[11px]\">The Rural Demographer Lawsuit</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Because Laplace noise variance $\\sigma^2 = 2(\\Delta f / \\epsilon)^2$ is constant regardless of population, small rural towns saw relative errors of $20\\%+$. In <em>Alabama v. Commerce</em>, plaintiffs argued noisy data violated the Constitutional mandate for an actual headcount.\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs\">\n    <div class=\"font-mono font-black text-[#15803d] mb-1 flex items-center gap-1.5\">\n      <span>⚖️</span> The Engineering Resolution: Hierarchical Pareto Budget Allocation\n    </div>\n    <p class=\"text-[#14532d] leading-relaxed\">\n      Rather than abandoning Differential Privacy, the Bureau tuned the Pareto frontier: they increased total $\\epsilon$ to $19.6$ and allocated larger budget shares to voting-age demographic cross-tabulations, ensuring redistricting precision while bounding whole-table reconstruction advantage.\n    </p>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s11",
-        "title": "Key Engineering Takeaways",
-        "type": "bullets",
+        "title": "Case Study 2: COVID-19 Contact Tracing: Centralized GPS vs. GAEN",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Key Engineering Takeaways",
+          "title": "Architectural Pareto Dominance in Public Health Engineering",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Key Engineering Takeaways. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Pareto Frontier</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Privacy and analytical utility cannot be maximized simultaneously; data architects must identify and document the Pareto-optimal operating point.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Kleinberg Impossibility</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">If demographic base rates differ, an algorithm cannot simultaneously satisfy predictive calibration and equal false positive rates.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Internalizing Externalities</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Engineering teams are morally and legally accountable for societal externalities created by optimization objectives.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Risk-Averse Certainty</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Incorporate downside variance penalties when releasing high-consequence datasets.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Key Engineering Takeaways",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "In 2020, governments deploying automated contact tracing faced a critical architectural crossroads. Centralized architectures in Singapore and South Korea uploaded continuous GPS trails and social contact graphs to state health department databases.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "The inevitable occurred: function creep. In Singapore, police formally accessed TraceTogether contact logs for murder investigations, violating public privacy pledges. Meanwhile, the decentralized GAEN Bluetooth architecture proved that local cryptographic matching provided equivalent health tracking with zero centralized surveillance risk.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Pareto Frontier</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Privacy and analytical utility cannot be maximized simultaneously; data architects must identify and document the Pareto-optimal operating point.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Kleinberg Impossibility</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">If demographic base rates differ, an algorithm cannot simultaneously satisfy predictive calibration and equal false positive rates.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Internalizing Externalities</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Engineering teams are morally and legally accountable for societal externalities created by optimization objectives.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Risk-Averse Certainty</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Incorporate downside variance penalties when releasing high-consequence datasets.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Case Study 2 • Automated Contact Tracing Architectures (2020)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n        Privacy-Preserving Telemetry\n      </span>\n    </div>\n\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n      <div class=\"p-2.5 rounded-lg bg-[#fee2e2] border border-[#b91c1c]\">\n        <strong class=\"text-[#b91c1c] block mb-1 font-mono uppercase text-[11px]\">Centralized GPS Architecture</strong>\n        <p class=\"text-[#7f1d1d] leading-relaxed\">\n          <strong>Design:</strong> Clients upload continuous $1\\text{ Hz}$ GPS coordinates and phone identity to central health ministry servers.<br/>\n          <strong>The Breach:</strong> <em>Function Creep</em>. Singapore police accessed TraceTogether logs for criminal investigations, destroying civic trust and causing app uninstalls.\n        </p>\n      </div>\n\n      <div class=\"p-2.5 rounded-lg bg-[#dcfce7] border border-[#15803d]\">\n        <strong class=\"text-[#15803d] block mb-1 font-mono uppercase text-[11px]\">Decentralized Bluetooth (GAEN)</strong>\n        <p class=\"text-[#14532d] leading-relaxed\">\n          <strong>Design:</strong> Rotating ephemeral cryptographic beacons (TEKs) broadcast peer-to-peer over BLE. Only infected diagnostic keys uploaded.<br/>\n          <strong>The Win:</strong> Exposure matching happens locally on-device. Servers never see user identities, GPS coordinates, or social contact graphs!\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490] text-xs\">\n    <div class=\"font-mono font-black text-[#0e7490] mb-1 flex items-center gap-1.5\">\n      <span>📐</span> Pareto Dominance Proof:\n    </div>\n    <p class=\"text-[#334155] leading-relaxed\">\n      GAEN strictly dominated centralized GPS: it achieved $\\approx 80\\%+$ of epidemiological infection-tracing utility with near-zero dragnet surveillance risk ($\\mathcal{R}_{\\text{privacy}} \\to 0$). Good cryptography shifts the entire Pareto frontier!\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Lessons of Function Creep",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the tragic lesson of Singapore's TraceTogether app, Kaito. The government promised users their data would only be used for COVID-19 contact tracing.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And less than a year later, the police used existing criminal procedural codes to subpoena the data for a murder case! Once data exists in a central database, function creep is almost inevitable.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the core rule of privacy engineering: Policy promises do not protect data; architecture protects data! If you don't store the centralized coordinates, no subpoena or hacker can ever exfiltrate them.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Decentralized architectures like GAEN eliminate the single point of failure and prove that ethical engineering and public safety can coexist!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Case Study 2 • Automated Contact Tracing Architectures (2020)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n        Privacy-Preserving Telemetry\n      </span>\n    </div>\n\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n      <div class=\"p-2.5 rounded-lg bg-[#fee2e2] border border-[#b91c1c]\">\n        <strong class=\"text-[#b91c1c] block mb-1 font-mono uppercase text-[11px]\">Centralized GPS Architecture</strong>\n        <p class=\"text-[#7f1d1d] leading-relaxed\">\n          <strong>Design:</strong> Clients upload continuous $1\\text{ Hz}$ GPS coordinates and phone identity to central health ministry servers.<br/>\n          <strong>The Breach:</strong> <em>Function Creep</em>. Singapore police accessed TraceTogether logs for criminal investigations, destroying civic trust and causing app uninstalls.\n        </p>\n      </div>\n\n      <div class=\"p-2.5 rounded-lg bg-[#dcfce7] border border-[#15803d]\">\n        <strong class=\"text-[#15803d] block mb-1 font-mono uppercase text-[11px]\">Decentralized Bluetooth (GAEN)</strong>\n        <p class=\"text-[#14532d] leading-relaxed\">\n          <strong>Design:</strong> Rotating ephemeral cryptographic beacons (TEKs) broadcast peer-to-peer over BLE. Only infected diagnostic keys uploaded.<br/>\n          <strong>The Win:</strong> Exposure matching happens locally on-device. Servers never see user identities, GPS coordinates, or social contact graphs!\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490] text-xs\">\n    <div class=\"font-mono font-black text-[#0e7490] mb-1 flex items-center gap-1.5\">\n      <span>📐</span> Pareto Dominance Proof:\n    </div>\n    <p class=\"text-[#334155] leading-relaxed\">\n      GAEN strictly dominated centralized GPS: it achieved $\\approx 80\\%+$ of epidemiological infection-tracing utility with near-zero dragnet surveillance risk ($\\mathcal{R}_{\\text{privacy}} \\to 0$). Good cryptography shifts the entire Pareto frontier!\n    </p>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Kaldor-Hicks Social Welfare & Externalities Workbench",
+        "type": "interactive",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Quantifying Negative Data Externalities in Real Time",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Interactive Lab 2: The Kaldor-Hicks Social Welfare and Externalities Workbench. Here you can quantify how producer surplus, consumer surplus loss, and unpriced third-party externalities interact.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Try the dynamic pricing preset, the ad-tech behavioral monetization preset, and the ethical privacy-preserving sharing preset. Notice how unpriced data externalities can drag total social net benefit into severe negative territory.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>⚖️</span> Interactive Lab: Kaldor-Hicks Welfare &amp; Externalities Workbench\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#c9f3f4] px-2 py-0.5 rounded-full\">Acemoglu Model</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Calculate $\\Delta W_{\\text{KH}} = \\sum \\Delta U_{\\text{gainers}} - \\sum |\\Delta U_{\\text{losers}}| - \\mathcal{X}_{\\text{external}}$ across dynamic data market scenarios below:\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Lab: Pricing the Hidden Costs of Surveillance",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's explore our Kaldor-Hicks Workbench below! Notice the three presets: Airline Dynamic Pricing, Ad-Tech Behavioral Profiling, and Ethical Differential Privacy Sharing.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let me select Airline Dynamic Pricing! Producer profit rises by 45 thousand dollars, but consumer surplus drops by 35 thousand, and unpriced negative externalities—like lost trust and defensive VPN costs—add another 25 thousand!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Resulting in a net social welfare loss of minus 15 thousand dollars! The corporate earnings call celebrates record margins, while society absorbs a deadweight loss. That is why ethical regulation intervenes.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Now toggle to Ethical Differential Privacy Sharing: producer value is 30 thousand, consumer loss is near zero, and externalities drop to 2 thousand, giving a robust positive net benefit of plus 28 thousand!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] flex items-center gap-1.5 uppercase\">\n      <span>⚖️</span> Interactive Lab: Kaldor-Hicks Welfare &amp; Externalities Workbench\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#c9f3f4] px-2 py-0.5 rounded-full\">Acemoglu Model</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Calculate $\\Delta W_{\\text{KH}} = \\sum \\Delta U_{\\text{gainers}} - \\sum |\\Delta U_{\\text{losers}}| - \\mathcal{X}_{\\text{external}}$ across dynamic data market scenarios below:\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Interpersonal Data Externalities & Linkage",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Recall: The Genetic & Geospatial Linkage Paradox",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Checkpoint 2 tests your understanding of data externalities! In 2018, law enforcement identified the Golden State Killer through GEDmatch, even though the suspect never submitted DNA. In that same year, Strava's global heatmap exfiltrated secret US military bases.",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Analyze both incidents and select the underlying engineering mechanism that explains how individual uploads compromise non-consenting third parties.",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase\">\n      <span>💡</span> Active Recall Checkpoint 2: Linkage Paradox\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full\">Diagnostic Evaluation</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Diagnose how correlated data generates massive negative externalities across non-consenting populations:\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Checkpoint: The Illusion of Isolated Consent",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, here is our second checkpoint! Why does one user uploading their DNA or running route destroy the privacy of hundreds of other people who never used the platform?",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because data isn't an isolated commodity! We share 50 percent of our DNA with siblings, and 12.5 percent with first cousins. When merely two percent of a population tests their DNA, they form a genealogical net spanning 90 percent of society!",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Let's see if you can identify the exact answer diagnosing both the GEDmatch linkage and the Strava military exfiltration!",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] mb-2 font-sans\">\n  <div class=\"flex items-center justify-between pb-1 mb-1.5 border-b border-[#151b20]/20 flex-wrap gap-1\">\n    <span class=\"font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase\">\n      <span>💡</span> Active Recall Checkpoint 2: Linkage Paradox\n    </span>\n    <span class=\"text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full\">Diagnostic Evaluation</span>\n  </div>\n  <p class=\"text-xs text-[#334155] leading-relaxed\">\n    Diagnose how correlated data generates massive negative externalities across non-consenting populations:\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Case Study 3: Strava Heatmap Exfiltration & Contextual Integrity",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Spatial Aggregation Fallacy & Helen Nissenbaum's Informational Norms",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In November 2017, Strava published an interactive global data visualization displaying 3 trillion GPS coordinates from 27 million users. Strava believed that massive aggregation eliminated individual privacy risk.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "They failed to account for spatial context. In conflict zones like Syria, Somalia, and Afghanistan, local civilians do not jog with GPS watches. Military personnel on secret forward operating bases did. The high-contrast heat trails traced guard towers, patrol paths, and supply airstrips.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Case Study 3 • The Strava Heatmap Military Breach (2018)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#ffd8ce] text-[#991b1b] px-2 py-0.5 rounded-full font-bold\">\n        Spatial Aggregation Failure\n      </span>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n      <div>\n        <strong class=\"text-[#b91c1c] block mb-1 font-mono uppercase text-[11px]\">The Spatial Aggregation Fallacy</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Aggregating $3\\text{ trillion}$ GPS coordinates provides anonymity in New York or London due to dense background activity. But in low-density rural or combat zones, the signal-to-noise ratio is infinite. High-contrast heat trails clearly outlined perimeter fences and patrol routes of classified US military forward operating bases!\n        </p>\n      </div>\n      <div>\n        <strong class=\"text-[#0e7490] block mb-1 font-mono uppercase text-[11px]\">Helen Nissenbaum's Contextual Integrity (2004)</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Privacy is not secrecy; it is the adherence to context-relative informational norms across 5 parameters:\n          <strong>(1) Data Subject</strong> (athlete), <strong>(2) Sender</strong> (smartwatch), <strong>(3) Recipient</strong> (server), <strong>(4) Information Type</strong> (pace/route), <strong>(5) Transmission Principle</strong> (training support vs. public intelligence).\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border border-[#f59e0b] font-mono text-xs text-[#92400e]\">\n    ⚠️ <strong>Engineering Rule:</strong> Spatial aggregation without Differential Privacy noise or density-normalized $k$-anonymity guarantees inevitably leaks structural intelligence in sparse regions.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: When Aggregation Fails",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at Strava's mistake, Kaito. Their engineers assumed that because they aggregated 3 trillion data points, no individual could ever be exposed.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "They forgot that base rate matters! In downtown Manhattan, a million runners create a blurry cloud. But in Helmand province in Afghanistan, the only people running five miles in a neat circle at 6:00 AM are foreign soldiers stationed at a secret base!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And that directly violates Helen Nissenbaum's transmission principles. Athletes surrendered telemetry to track their cardio workouts, not to publish an open-source targeting map for hostile adversaries.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Contextual integrity reminds us that privacy is violated the moment data crosses boundaries without respecting the governing social norm!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Case Study 3 • The Strava Heatmap Military Breach (2018)\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#ffd8ce] text-[#991b1b] px-2 py-0.5 rounded-full font-bold\">\n        Spatial Aggregation Failure\n      </span>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n      <div>\n        <strong class=\"text-[#b91c1c] block mb-1 font-mono uppercase text-[11px]\">The Spatial Aggregation Fallacy</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Aggregating $3\\text{ trillion}$ GPS coordinates provides anonymity in New York or London due to dense background activity. But in low-density rural or combat zones, the signal-to-noise ratio is infinite. High-contrast heat trails clearly outlined perimeter fences and patrol routes of classified US military forward operating bases!\n        </p>\n      </div>\n      <div>\n        <strong class=\"text-[#0e7490] block mb-1 font-mono uppercase text-[11px]\">Helen Nissenbaum's Contextual Integrity (2004)</strong>\n        <p class=\"text-[#334155] leading-relaxed\">\n          Privacy is not secrecy; it is the adherence to context-relative informational norms across 5 parameters:\n          <strong>(1) Data Subject</strong> (athlete), <strong>(2) Sender</strong> (smartwatch), <strong>(3) Recipient</strong> (server), <strong>(4) Information Type</strong> (pace/route), <strong>(5) Transmission Principle</strong> (training support vs. public intelligence).\n        </p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border border-[#f59e0b] font-mono text-xs text-[#92400e]\">\n    ⚠️ <strong>Engineering Rule:</strong> Spatial aggregation without Differential Privacy noise or density-normalized $k$-anonymity guarantees inevitably leaks structural intelligence in sparse regions.\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Implementation: Pareto Frontier & Laplace Mechanism Audit",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "CI/CD Verification: Pareto Non-Dominance and Laplace Sampling",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is our production Python implementation: pareto frontier auditor dot py. It uses Pydantic V2 to define MechanismCandidate schemas and executes automated non-dominance checks across candidate sanitization pipelines.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the LaplacePrivacyEngine executes calibrated Differential Privacy queries and validates that empirical Monte Carlo MSE over ten thousand trials matches the theoretical prediction of two times Delta f squared over epsilon squared within ten percent.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] font-sans\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      pareto_frontier_auditor.py • Pydantic V2 Architecture\n    </span>\n    <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n      Production Ready\n    </span>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#1e293b] text-[#f8fafc] font-mono text-[11px] leading-relaxed overflow-x-auto mb-2.5\">\n<pre class=\"m-0\"><span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">ParetoFrontierAuditor</span>:\n    <span class=\"text-[#94a3b8]\">@staticmethod</span>\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">identify_pareto_frontier</span>(candidates: List[MechanismCandidate]) -&gt; List[MechanismCandidate]:\n        <span class=\"text-[#94a3b8]\"># Candidate A dominates B iff (U_A >= U_B and R_A <= R_B) with strict inequality</span>\n        <span class=\"text-[#38bdf8]\">for</span> c1 <span class=\"text-[#38bdf8]\">in</span> candidates:\n            <span class=\"text-[#38bdf8]\">for</span> c2 <span class=\"text-[#38bdf8]\">in</span> candidates:\n                <span class=\"text-[#38bdf8]\">if</span> c2.utility &gt;= c1.utility <span class=\"text-[#38bdf8]\">and</span> c2.risk &lt;= c1.risk <span class=\"text-[#38bdf8]\">and</span> \\\n                   (c2.utility &gt; c1.utility <span class=\"text-[#38bdf8]\">or</span> c2.risk &lt; c1.risk):\n                    c1.is_pareto_optimal = <span class=\"text-[#f87171]\">False</span>\n                    <span class=\"text-[#38bdf8]\">break</span>\n        <span class=\"text-[#38bdf8]\">return</span> candidates\n\n<span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">LaplacePrivacyEngine</span>:\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">execute_query</span>(self, true_val: float) -&gt; float:\n        noise = np.random.laplace(<span class=\"text-[#f59e0b]\">0.0</span>, self.sensitivity / self.epsilon)\n        <span class=\"text-[#38bdf8]\">return</span> float(true_val + noise)\n\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">theoretical_mse</span>(self) -&gt; float:\n        <span class=\"text-[#38bdf8]\">return</span> <span class=\"text-[#f59e0b]\">2.0</span> * (self.sensitivity / self.epsilon) ** <span class=\"text-[#f59e0b]\">2</span></pre>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono\">\n    <div class=\"p-2 rounded bg-[#f1f5f9] border border-[#cbd5e1] text-[#334155]\">\n      ✓ <strong>Assertion 1:</strong> Naive Masking eliminated as strictly dominated.\n    </div>\n    <div class=\"p-2 rounded bg-[#f1f5f9] border border-[#cbd5e1] text-[#334155]\">\n      ✓ <strong>Assertion 2:</strong> Monte Carlo empirical error matches theoretical MSE ($p &lt; 0.05$).\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Automating Pareto Verification",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Take a look at the identify pareto frontier method in our script, Kaito. It iterates across every candidate sanitization mechanism and eliminates any that are strictly dominated.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And it flags candidate 3—Suboptimal Naive Masking—because it has both worse utility and higher disclosure risk than our Laplace mechanism! That means our CI/CD pipeline blocks deployment automatically.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Furthermore, the test suite runs ten thousand Monte Carlo query simulations to verify that empirical variance matches theoretical MSE within statistical tolerances. That is how we ensure mathematical theory translates into production reliability.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Type-safe Pydantic contracts combined with Monte Carlo verification give our engineering teams total confidence before shipping!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] font-sans\">\n  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n    <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n      pareto_frontier_auditor.py • Pydantic V2 Architecture\n    </span>\n    <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n      Production Ready\n    </span>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#1e293b] text-[#f8fafc] font-mono text-[11px] leading-relaxed overflow-x-auto mb-2.5\">\n<pre class=\"m-0\"><span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">ParetoFrontierAuditor</span>:\n    <span class=\"text-[#94a3b8]\">@staticmethod</span>\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">identify_pareto_frontier</span>(candidates: List[MechanismCandidate]) -&gt; List[MechanismCandidate]:\n        <span class=\"text-[#94a3b8]\"># Candidate A dominates B iff (U_A >= U_B and R_A <= R_B) with strict inequality</span>\n        <span class=\"text-[#38bdf8]\">for</span> c1 <span class=\"text-[#38bdf8]\">in</span> candidates:\n            <span class=\"text-[#38bdf8]\">for</span> c2 <span class=\"text-[#38bdf8]\">in</span> candidates:\n                <span class=\"text-[#38bdf8]\">if</span> c2.utility &gt;= c1.utility <span class=\"text-[#38bdf8]\">and</span> c2.risk &lt;= c1.risk <span class=\"text-[#38bdf8]\">and</span> \\\n                   (c2.utility &gt; c1.utility <span class=\"text-[#38bdf8]\">or</span> c2.risk &lt; c1.risk):\n                    c1.is_pareto_optimal = <span class=\"text-[#f87171]\">False</span>\n                    <span class=\"text-[#38bdf8]\">break</span>\n        <span class=\"text-[#38bdf8]\">return</span> candidates\n\n<span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">LaplacePrivacyEngine</span>:\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">execute_query</span>(self, true_val: float) -&gt; float:\n        noise = np.random.laplace(<span class=\"text-[#f59e0b]\">0.0</span>, self.sensitivity / self.epsilon)\n        <span class=\"text-[#38bdf8]\">return</span> float(true_val + noise)\n\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">theoretical_mse</span>(self) -&gt; float:\n        <span class=\"text-[#38bdf8]\">return</span> <span class=\"text-[#f59e0b]\">2.0</span> * (self.sensitivity / self.epsilon) ** <span class=\"text-[#f59e0b]\">2</span></pre>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono\">\n    <div class=\"p-2 rounded bg-[#f1f5f9] border border-[#cbd5e1] text-[#334155]\">\n      ✓ <strong>Assertion 1:</strong> Naive Masking eliminated as strictly dominated.\n    </div>\n    <div class=\"p-2 rounded bg-[#f1f5f9] border border-[#cbd5e1] text-[#334155]\">\n      ✓ <strong>Assertion 2:</strong> Monte Carlo empirical error matches theoretical MSE ($p &lt; 0.05$).\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: The 5 Utility-Privacy Laws + Next: Lesson 3.4",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Five Engineering Laws of Utility-Privacy Trade-Offs",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us summarize the five core engineering takeaways from Lesson 3.3. First: Privacy and utility are mathematically opposed; you cannot maximize both without finding the optimal Pareto operating point. Second: Eliminate sub-optimal pipelines that destroy data utility while failing to stop re-identification.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Third: Internalize unpriced negative externalities using the Kaldor-Hicks framework. Fourth: Use Differential Privacy as a provable mathematical bound holding against all auxiliary data. And fifth: Enforce Helen Nissenbaum's Contextual Integrity. Up next is Lesson 3.4: Data Privacy Principles!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2.5 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Key Engineering Takeaways • Lesson 3.3\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n        Next: Lesson 3.4\n      </span>\n    </div>\n\n    <div class=\"space-y-1.5 font-mono text-xs\">\n      <div class=\"p-2 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n        <strong>1. The Pareto Frontier:</strong> Analytical utility and privacy exist in fundamental mathematical tension; zero-risk, full-utility claims violate information theory.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#c9f3f4] border border-[#151b20]\">\n        <strong>2. Eliminating Sub-Optimal Pipelines:</strong> Architectures operating below the frontier (unsalted hashes, naive masking) destroy utility without delivering real privacy.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n        <strong>3. Internalize Negative Externalities:</strong> Commercial telemetry monetization generates unpriced societal harms; quantify them using Kaldor-Hicks $\\Delta W_{\\text{KH}}$.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n        <strong>4. Differential Privacy as a Formal Bound:</strong> $\\epsilon$-DP provides worst-case mathematical guarantees ($e^\\epsilon$) holding regardless of future auxiliary data availability.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#e2dfff] border border-[#151b20]\">\n        <strong>5. Contextual Integrity Over Secrecy:</strong> Privacy is adherence to context-relative informational norms; transferring telemetry outside governing principles breaches integrity.\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-xl bg-[#151b20] text-white text-center text-xs font-mono\">\n    <span>Next Lecture → <strong>Lesson 3.4: Data Privacy Principles ($k$-Anonymity, $l$-Diversity, $t$-Closeness &amp; DP Implementations)</strong></span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Capstone: Ready for Privacy Engineering",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Outstanding work today, Kaito! You've mastered the mathematics of the Pareto frontier, Differential Privacy noise calibration, Kaldor-Hicks externalities, and Contextual Integrity.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Thank you, Dr. Nova! I now understand why naive masking is a dangerous trap, how the 2020 Census solved database reconstruction, and how GAEN achieved decentralized privacy.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In our next lecture—Lesson 3.4: Data Privacy Principles—we dive deep into tabular anonymization algorithms: k-anonymity, l-diversity, t-closeness, and production differential privacy engines!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "I can't wait to turn these theoretical guarantees into concrete anonymization code in Lesson 3.4! Let's build ethical systems that protect everyone.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2.5 font-sans\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wide\">\n        Key Engineering Takeaways • Lesson 3.3\n      </span>\n      <span class=\"text-[10px] font-mono bg-[#b7df69] text-[#151b20] px-2 py-0.5 rounded-full font-bold\">\n        Next: Lesson 3.4\n      </span>\n    </div>\n\n    <div class=\"space-y-1.5 font-mono text-xs\">\n      <div class=\"p-2 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n        <strong>1. The Pareto Frontier:</strong> Analytical utility and privacy exist in fundamental mathematical tension; zero-risk, full-utility claims violate information theory.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#c9f3f4] border border-[#151b20]\">\n        <strong>2. Eliminating Sub-Optimal Pipelines:</strong> Architectures operating below the frontier (unsalted hashes, naive masking) destroy utility without delivering real privacy.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n        <strong>3. Internalize Negative Externalities:</strong> Commercial telemetry monetization generates unpriced societal harms; quantify them using Kaldor-Hicks $\\Delta W_{\\text{KH}}$.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#e7f4c8] border border-[#151b20]\">\n        <strong>4. Differential Privacy as a Formal Bound:</strong> $\\epsilon$-DP provides worst-case mathematical guarantees ($e^\\epsilon$) holding regardless of future auxiliary data availability.\n      </div>\n      <div class=\"p-2 rounded-lg bg-[#e2dfff] border border-[#151b20]\">\n        <strong>5. Contextual Integrity Over Secrecy:</strong> Privacy is adherence to context-relative informational norms; transferring telemetry outside governing principles breaches integrity.\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-xl bg-[#151b20] text-white text-center text-xs font-mono\">\n    <span>Next Lecture → <strong>Lesson 3.4: Data Privacy Principles ($k$-Anonymity, $l$-Diversity, $t$-Closeness &amp; DP Implementations)</strong></span>\n  </div>\n</div>\n"
         }
       }
     ]
