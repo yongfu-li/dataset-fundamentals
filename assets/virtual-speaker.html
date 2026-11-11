@@ -2478,6 +2478,72 @@
       loadAudioForLesson(currentTopic, currentMode);
     }
 
+    function sanitizeMermaid(root) {
+      if (!root) return;
+      const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+      shapes.forEach(el => {
+        if (el.closest('.cluster')) {
+          el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
+          el.style.setProperty('stroke', '#151b20', 'important');
+          el.style.setProperty('stroke-width', '2px', 'important');
+          el.style.setProperty('stroke-dasharray', '6 4', 'important');
+          return;
+        }
+        const node = el.closest('.node');
+        if (node) {
+          const cl = node.classList;
+          let fill = '#c9f3f4';
+          let stroke = '#151b20';
+          let shadow = 'drop-shadow(3px 3px 0px #22bfd7)';
+
+          if (cl.contains('blue') || cl.contains('cyan') || cl.contains('obj') || cl.contains('store')) {
+            fill = '#c9f3f4';
+            shadow = 'drop-shadow(3px 3px 0px #22bfd7)';
+          } else if (cl.contains('green') || cl.contains('lime') || cl.contains('val') || cl.contains('comp')) {
+            fill = '#e7f4c8';
+            shadow = 'drop-shadow(3px 3px 0px #b7df69)';
+          } else if (cl.contains('amber') || cl.contains('yellow') || cl.contains('list')) {
+            fill = '#fff0b9';
+            shadow = 'drop-shadow(3px 3px 0px #ffc83e)';
+          } else if (cl.contains('purple') || cl.contains('out')) {
+            fill = '#e2dfff';
+            shadow = 'drop-shadow(3px 3px 0px #8275e8)';
+          } else if (cl.contains('red') || cl.contains('coral')) {
+            fill = '#ffd8ce';
+            shadow = 'drop-shadow(3px 3px 0px #f38469)';
+          } else {
+            fill = '#fffaf0';
+            shadow = 'drop-shadow(3px 3px 0px #151b20)';
+          }
+
+          el.style.setProperty('fill', fill, 'important');
+          el.style.setProperty('stroke', stroke, 'important');
+          el.style.setProperty('stroke-width', '2px', 'important');
+          el.style.setProperty('filter', shadow, 'important');
+        }
+      });
+
+      const texts = root.querySelectorAll('text, tspan, foreignObject, foreignObject div, foreignObject p, foreignObject span, .nodeLabel, .label, .edgeLabel, .cluster text, .cluster span');
+      texts.forEach(t => {
+        t.style.setProperty('fill', '#151b20', 'important');
+        t.style.setProperty('color', '#151b20', 'important');
+        t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
+        t.style.setProperty('font-weight', '700', 'important');
+      });
+
+      const links = root.querySelectorAll('.edgePath .path, .flowchart-link, .relation, .transition');
+      links.forEach(l => {
+        l.style.setProperty('stroke', '#151b20', 'important');
+        l.style.setProperty('stroke-width', '2px', 'important');
+      });
+
+      const markers = root.querySelectorAll('marker path, .marker, .arrowheadPath, .arrowMarkerPath');
+      markers.forEach(m => {
+        m.style.setProperty('fill', '#151b20', 'important');
+        m.style.setProperty('stroke', '#151b20', 'important');
+      });
+    }
+
     function updateView() {
       const topicData = curriculum[currentTopic];
       if (!topicData || !topicData.slides || topicData.slides.length === 0) return;
@@ -2556,9 +2622,12 @@
           try {
             const mermaidNodes = contentEl.querySelectorAll('.mermaid');
             if (mermaidNodes.length > 0) {
-              window.mermaid.run({ nodes: Array.from(mermaidNodes) }).catch(err => {
-                console.warn('Mermaid run error:', err);
-              });
+              window.mermaid.run({ nodes: Array.from(mermaidNodes) })
+                .then(() => sanitizeMermaid(contentEl))
+                .catch(err => {
+                  console.warn('Mermaid run error:', err);
+                  sanitizeMermaid(contentEl);
+                });
             }
           } catch (e) {
             console.warn('Mermaid render warning:', e);
@@ -2783,7 +2852,7 @@
             <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
           </div>
           <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
-            Question: If your dataset collection pipeline has selection bias ($\beta > 0$), will gathering 10× more data ($N \to 1,000,000$) eliminate the generalization gap?
+            Question: If your dataset collection pipeline has selection bias ($\\beta > 0$), will gathering 10× more data ($N \to 1,000,000$) eliminate the generalization gap?
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans">
             <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
@@ -2804,15 +2873,18 @@
         checkpointContainer.appendChild(quizDock);
       }
 
-      // Re-run KaTeX math rendering on newly added elements
+      // Re-run KaTeX math rendering on newly added elements across content, tool, and checkpoint
       if (window.renderMathInElement) {
         try {
-          renderMathInElement(contentEl, {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '$', right: '$', display: false }
-            ],
-            throwOnError: false
+          const targets = [contentEl, toolContainer, checkpointContainer].filter(Boolean);
+          targets.forEach(target => {
+            renderMathInElement(target, {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false }
+              ],
+              throwOnError: false
+            });
           });
         } catch (e) {
           console.warn('Interactive KaTeX error:', e);
