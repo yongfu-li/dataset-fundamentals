@@ -14,6 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script src="./curriculums/manifest.js"></script>
   <script src="./curriculums/chapter1.js"></script>
+  <script src="./audio/timings.js"></script>
   <style>
     :root {
       --ink: #151b20;
@@ -312,21 +313,25 @@
       margin: 0 1.5px;
       border-radius: 4px;
       padding: 0 2px;
+      color: #151b20;
     }
     .kword-current {
       background: #ffc83e !important;
       color: #151b20 !important;
       font-weight: 900 !important;
       padding: 1px 6px !important;
+      border: 1.5px solid #151b20 !important;
       box-shadow: 2px 2px 0px #151b20 !important;
-      transform: scale(1.06) !important;
+      transform: scale(1.05) !important;
     }
     .kword-past {
-      color: #ffffff !important;
-      opacity: 0.95;
+      color: #151b20 !important;
+      font-weight: 700;
+      opacity: 1;
     }
     .kword-future {
-      color: rgba(255, 255, 255, 0.45) !important;
+      color: #151b20 !important;
+      opacity: 0.45;
     }
 
     .scrubber-track {
@@ -353,6 +358,22 @@
     .scrubber-track::-webkit-slider-thumb:hover {
       transform: scale(1.25);
       background: #22bfd7;
+    }
+
+  
+    /* Dynamic Slide Content Term Synchronization */
+    .slide-term-pulse {
+      box-shadow: 0 0 0 3px #22bfd7, 0 0 24px rgba(34, 191, 215, 0.45) !important;
+      border-color: #22bfd7 !important;
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+    .slide-math-active {
+      background: rgba(255, 200, 62, 0.28) !important;
+      outline: 2px solid #ffc83e !important;
+      border-radius: 6px;
+      padding: 2px 4px;
+      transition: all 0.25s ease;
     }
 
   </style>
@@ -429,13 +450,13 @@
       <!-- Slide Carousel Navigation & Progress Controls Bar -->
       <div class="mt-6 pt-4 border-t-2 border-[#151b20]/20 flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
         <div class="flex items-center gap-1.5">
-          <button onclick="prevSlide()" id="prevSlideBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
+          <button onclick="prevSlide()" id="prevSlideBtn" class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
             <span>◀</span> Prev Slide
           </button>
           <span id="slideDeckCounter" class="px-2 sm:px-2.5 py-1.5 rounded-lg bg-[#ffc83e] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-[#151b20] font-black">
             Slide 1 of 14
           </span>
-          <button onclick="nextSlide()" id="nextSlideBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
+          <button onclick="nextSlide()" id="nextSlideBtn" class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
             Next Slide <span>▶</span>
           </button>
         </div>
@@ -447,7 +468,7 @@
 
         <!-- Auto-Advance Toggle -->
         <label class="flex items-center gap-2 cursor-pointer text-[#151b20] font-bold select-none">
-          <input type="checkbox" id="autoAdvanceToggle" checked onchange="onAutoAdvanceChange(this.checked)" class="accent-cyan-400 rounded">
+          <input type="checkbox" id="autoAdvanceToggle" checked onchange="onAutoAdvanceChange(this.checked)" class="accent-[#0e7490] rounded">
           <span>Auto-Advance Deck</span>
         </label>
       </div>
@@ -603,7 +624,7 @@
     <!-- Hidden HTML5 Audio Element for Deterministic Timeline Sync -->
     <audio id="neuralAudio" preload="auto"></audio>
 
-    <!-- Capeur Formative 'Pause and Guess' Active Recall Card -->
+    <!-- 1. Capeur Formative 'Pause and Guess' Active Recall Card -->
     <div id="pauseAndGuessCard" class="hidden p-5 rounded-2xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[6px_6px_0px_#f38469] text-[#151b20] transition-all duration-300">
       <div class="flex items-center justify-between gap-2 mb-3">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono font-black text-xs uppercase">
@@ -611,7 +632,7 @@
           <span>•</span>
           <span>Active Recall Checkpoint</span>
         </div>
-        <span class="text-xs font-mono font-bold text-[rgba(21,27,32,0.6)] bg-[#fffaf0] px-2.5 py-0.5 rounded-full border border-[#151b20]">Lecture Auto-Paused</span>
+        <span class="text-xs font-mono font-bold text-[#151b20] bg-[#fffaf0] px-2.5 py-0.5 rounded-full border border-[#151b20]">Lecture Auto-Paused</span>
       </div>
       <h3 id="pauseQuestionText" class="text-base sm:text-lg font-black text-[#151b20] mb-3">
         Where does error compound most catastrophically if sensor calibration drifts at raw collection?
@@ -623,18 +644,18 @@
         <!-- Immediate feedback message -->
       </div>
       <div class="flex items-center justify-between pt-2 border-t border-[#151b20]/20 flex-wrap gap-2">
-        <button id="btnResumeAfterGuess" onclick="resumeAfterGuess()" class="px-4 py-2 rounded-xl bg-[#b7df69] hover:bg-[#a6d054] text-[#151b20] font-mono font-black text-xs sm:text-sm border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] transition flex items-center gap-2">
+        <button id="btnResumeAfterGuess" onclick="resumeAfterGuess()" class="cursor-pointer px-4 py-2 rounded-xl bg-[#b7df69] hover:bg-[#a6d054] text-[#151b20] font-mono font-black text-xs sm:text-sm border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] transition flex items-center gap-2">
           <span>Continue Lesson</span>
           <span>▶</span>
         </button>
-        <button onclick="skipPauseAndGuess()" class="text-xs font-mono text-[rgba(21,27,32,0.6)] hover:underline font-bold">
+        <button onclick="skipPauseAndGuess()" class="cursor-pointer text-xs font-mono text-[#151b20]/70 hover:underline font-bold">
           Skip Question ⏩
         </button>
       </div>
     </div>
 
-    <!-- Capeur 'Your Turn' Free Mode Interactive Workbench (Data Quality Cascade Simulator) -->
-    <div id="cascadeSimulatorCard" class="p-4 sm:p-5 rounded-2xl bg-[#f6f0dc] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] transition-all duration-300">
+    <!-- 2. Capeur 'Your Turn' Interactive Workbench (Data Quality Cascade Simulator) -->
+    <div id="cascadeSimulatorCard" class="p-4 sm:p-5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[6px_6px_0px_#b7df69] transition-all duration-300">
       <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
         <div class="flex items-center gap-2">
           <span class="text-base">🛠️</span>
@@ -646,10 +667,10 @@
           </span>
         </div>
         <div id="freeModeControls" class="flex items-center gap-2">
-          <button id="btnReturnToLecture" onclick="leaveFreeMode()" class="hidden px-3 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] transition flex items-center gap-1.5 animate-bounce">
+          <button id="btnReturnToLecture" onclick="leaveFreeMode()" class="cursor-pointer hidden px-3 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] transition flex items-center gap-1.5 animate-bounce">
             <span>◀</span> Resume Lecture
           </button>
-          <button type="button" onclick="toggleWorkbenchVisibility()" id="btnToggleWorkbench" class="px-2.5 py-1 rounded-lg bg-[#fffaf0] hover:bg-[#eee4c8] text-[#151b20] font-mono text-xs font-bold border border-[#151b20]">
+          <button type="button" onclick="toggleWorkbenchVisibility()" id="btnToggleWorkbench" class="cursor-pointer px-2.5 py-1 rounded-lg bg-[#eee4c8] hover:bg-[#fffaf0] text-[#151b20] font-mono text-xs font-bold border border-[#151b20]">
             ▼ Minimize
           </button>
         </div>
@@ -662,174 +683,123 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
           <!-- Slider 1 -->
-          <div class="bg-[#fffaf0] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+          <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
             <div class="flex justify-between font-bold mb-1">
               <span>1. Sensor Calibration Drift:</span>
               <span id="valSensorDrift" class="text-[#0e7490] font-black">8%</span>
             </div>
             <input type="range" id="sliderSensorDrift" min="0" max="30" value="8" step="1" oninput="onSimulatorInput()" class="w-full accent-[#0e7490]">
-            <span class="text-[10px] text-slate-500">Hardware &amp; collection noise</span>
+            <span class="text-[10px] text-slate-600">Hardware &amp; collection noise</span>
           </div>
 
           <!-- Slider 2 -->
-          <div class="bg-[#fffaf0] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+          <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
             <div class="flex justify-between font-bold mb-1">
               <span>2. Imputation Distortion:</span>
               <span id="valImputeDistort" class="text-[#b45309] font-black">12%</span>
             </div>
             <input type="range" id="sliderImputeDistort" min="0" max="35" value="12" step="1" oninput="onSimulatorInput()" class="w-full accent-[#b45309]">
-            <span class="text-[10px] text-slate-500">Heuristic mean/median fill bias</span>
+            <span class="text-[10px] text-slate-600">Heuristic fill distortion</span>
           </div>
 
           <!-- Slider 3 -->
-          <div class="bg-[#fffaf0] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+          <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
             <div class="flex justify-between font-bold mb-1">
               <span>3. Annotation Inconsistency:</span>
               <span id="valAnnotNoise" class="text-[#dc2626] font-black">10%</span>
             </div>
             <input type="range" id="sliderAnnotNoise" min="0" max="40" value="10" step="1" oninput="onSimulatorInput()" class="w-full accent-[#dc2626]">
-            <span class="text-[10px] text-slate-500">Inter-rater label ambiguity</span>
+            <span class="text-[10px] text-slate-600">Inter-rater label ambiguity</span>
           </div>
         </div>
 
         <!-- Real-time SVG Cascade Visualization -->
-        <div class="bg-[#151b20] p-3.5 rounded-xl border-2 border-[#151b20] text-white font-mono text-xs space-y-2">
-          <div class="flex items-center justify-between text-[11px] text-slate-300 pb-1 border-b border-slate-700">
+        <div class="bg-[#eee4c8] p-3.5 rounded-xl border-2 border-[#151b20] text-[#151b20] font-mono text-xs space-y-2 shadow-[2px_2px_0px_#151b20]">
+          <div class="flex items-center justify-between text-[11px] text-[#151b20]/80 pb-1 border-b border-[#151b20]/20 font-bold">
             <span>LIFECYCLE ERROR COMPOUNDING STAGE</span>
             <span>ESTIMATED SYSTEM DEGRADATION</span>
           </div>
           <div class="space-y-1.5">
             <div class="flex items-center gap-2">
-              <span class="w-36 text-slate-400">1. Raw Collection:</span>
-              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+              <span class="w-36 text-[#151b20] font-semibold">1. Raw Collection:</span>
+              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
                 <div id="barRaw" class="h-full bg-[#22bfd7] transition-all duration-150" style="width: 8%;"></div>
               </div>
-              <span id="pctRaw" class="w-12 text-right font-bold text-[#22bfd7]">8.0%</span>
+              <span id="pctRaw" class="w-12 text-right font-black text-[#0e7490]">8.0%</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-36 text-slate-400">2. Preprocessing:</span>
-              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+              <span class="w-36 text-[#151b20] font-semibold">2. Preprocessing:</span>
+              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
                 <div id="barPrep" class="h-full bg-[#ffc83e] transition-all duration-150" style="width: 21%;"></div>
               </div>
-              <span id="pctPrep" class="w-12 text-right font-bold text-[#ffc83e]">21.2%</span>
+              <span id="pctPrep" class="w-12 text-right font-black text-[#b45309]">21.2%</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-36 text-slate-400">3. Feature Store:</span>
-              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+              <span class="w-36 text-[#151b20] font-semibold">3. Feature Store:</span>
+              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
                 <div id="barFeatures" class="h-full bg-[#f38469] transition-all duration-150" style="width: 38%;"></div>
               </div>
-              <span id="pctFeatures" class="w-12 text-right font-bold text-[#f38469]">38.5%</span>
+              <span id="pctFeatures" class="w-12 text-right font-black text-[#e11d48]">38.5%</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-36 text-slate-400">4. Model Serving:</span>
-              <div class="flex-1 bg-slate-800 h-3 rounded overflow-hidden border border-slate-700">
+              <span class="w-36 text-[#151b20] font-semibold">4. Model Serving:</span>
+              <div class="flex-1 bg-[#fffaf0] h-3 rounded overflow-hidden border border-[#151b20]">
                 <div id="barServing" class="h-full bg-[#dc2626] transition-all duration-150" style="width: 63%;"></div>
               </div>
               <span id="pctServing" class="w-12 text-right font-black text-[#dc2626]">63.1%</span>
             </div>
           </div>
-          <div class="pt-2 border-t border-slate-700 flex items-center justify-between text-[11px] font-bold flex-wrap gap-2">
-            <span class="text-amber-400">Compound Multiplier Factor: <span id="cascadeMultiplier" class="text-white">3.9×</span></span>
-            <span id="cascadeVerdict" class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold uppercase">Critical Production Failure</span>
+          <div class="pt-2 border-t border-[#151b20]/20 flex items-center justify-between text-[11px] font-bold flex-wrap gap-2">
+            <span class="text-[#151b20]">Compound Multiplier Factor: <span id="cascadeMultiplier" class="font-black text-[#dc2626]">3.9×</span></span>
+            <span id="cascadeVerdict" class="px-2.5 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black uppercase">Critical Production Failure</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Capeur-Style Deterministic Audio Transport Dock -->
-    <div id="transportDock" class="bg-[#151b20] border-2 border-[#151b20] rounded-2xl p-3 sm:p-4 shadow-[6px_6px_0px_#22bfd7] text-white">
-      <!-- Status row: Mode Pill & Timecode -->
-      <div class="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/10 text-xs font-mono">
+    <!-- 3. Prominent Cinema Subtitle Banner (High Contrast Manga Paper Card with Word Karaoke) -->
+    <div id="cinemaSubtitleCard" class="p-4 sm:p-5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[6px_6px_0px_#22bfd7] relative overflow-hidden transition-all duration-300 text-[#151b20]">
+      <div class="flex items-center justify-between mb-2.5 pb-2 border-b-2 border-[#151b20]/15">
         <div class="flex items-center gap-2">
-          <span id="audioEngineBadge" class="px-2.5 py-0.5 rounded-full font-bold bg-[#c9f3f4] text-[#151b20] border border-[#151b20] flex items-center gap-1.5 shadow-[1px_1px_0px_#151b20]">
-            <span class="w-2 h-2 rounded-full bg-[#0e7490] animate-pulse"></span>
-            <span id="audioEngineBadgeText">🎙️ Neural Audio Synced (S(t) = f(t))</span>
-          </span>
-          <span id="lessonSpeedBadge" class="hidden sm:inline text-slate-400 font-mono">1.0× Speed</span>
+          <span id="ccBadge" class="px-2.5 py-0.5 rounded-full bg-[#b7df69] text-[#151b20] font-mono font-black text-xs tracking-wider border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">CC ON</span>
+          <span id="cinemaSpeaker" class="font-mono font-black text-xs sm:text-sm md:text-base text-[#0e7490] uppercase tracking-wider">Dr. Nova (Senior Architect)</span>
         </div>
         <div class="flex items-center gap-2">
-          <span id="timecodeDisplay" class="font-mono font-bold text-xs text-[#22bfd7]">00:00 / 00:00</span>
+          <span id="freeModeIndicatorBadge" class="hidden px-2.5 py-0.5 rounded-full bg-[#f38469] text-[#151b20] font-mono font-black text-xs animate-pulse border-2 border-[#151b20]">🛠️ FREE MODE</span>
+          <span id="turnCounter" class="text-xs font-mono font-bold text-[#151b20] bg-[#eee4c8] px-3 py-1 rounded-full border border-[#151b20]">Turn 1 of 2</span>
         </div>
       </div>
-
-      <!-- Scrubber Slider with Slide Tick Markers -->
-      <div class="relative py-1 flex items-center">
-        <input type="range" id="audioScrubber" min="0" max="100" value="0" step="0.1"
-          oninput="onScrubberInput(this.value)"
-          class="w-full h-3 scrubber-track cursor-pointer accent-[#ffc83e]">
-        <div id="scrubberTicks" class="absolute inset-x-0 top-0 h-full pointer-events-none flex justify-between px-1"></div>
-      </div>
-
-      <!-- Transport Controls: Play/Pause, Navigation, Speeds, CC -->
-      <div class="flex items-center justify-between gap-2 mt-2 pt-1 flex-wrap font-mono text-xs">
-        <div class="flex items-center gap-2">
-          <button id="transportPlayBtn" onclick="togglePlayback()" class="px-4 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] font-black border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex items-center gap-1.5 transition">
-            <span id="transportPlayIcon">▶</span>
-            <span id="transportPlayText">Play Lesson</span>
-          </button>
-          <button onclick="prevSlide()" class="px-2.5 py-1.5 rounded-lg bg-[#242c33] hover:bg-[#333e48] text-white border border-white/20 transition">
-            ◀ Prev Slide
-          </button>
-          <button onclick="nextSlide()" class="px-2.5 py-1.5 rounded-lg bg-[#242c33] hover:bg-[#333e48] text-white border border-white/20 transition">
-            Next Slide ▶
-          </button>
-        </div>
-
-        <div class="flex items-center gap-1.5">
-          <span class="text-slate-400 font-bold hidden sm:inline">Speed:</span>
-          <button onclick="setEngineSpeed(0.8)" id="btnSpd08" class="px-2 py-1 rounded bg-[#242c33] text-slate-300 hover:text-white border border-white/10">0.8×</button>
-          <button onclick="setEngineSpeed(1.0)" id="btnSpd10" class="px-2 py-1 rounded bg-[#0e7490] text-white font-bold border border-cyan-400">1.0×</button>
-          <button onclick="setEngineSpeed(1.2)" id="btnSpd12" class="px-2 py-1 rounded bg-[#242c33] text-slate-300 hover:text-white border border-white/10">1.2×</button>
-          <button onclick="setEngineSpeed(1.5)" id="btnSpd15" class="px-2 py-1 rounded bg-[#242c33] text-slate-300 hover:text-white border border-white/10">1.5×</button>
-          <button onclick="toggleClosedCaptions()" id="btnCCToggle" class="ml-1 px-2.5 py-1 rounded bg-[#b7df69] text-[#151b20] font-black border border-[#151b20]">CC ON</button>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- 2. Prominent Cinema Subtitle Banner (Directly Below the Slide Canvas) -->
-    <div id="cinemaSubtitleCard" class="p-4 sm:p-5 rounded-2xl bg-[#151b20] border-2 border-[#151b20] shadow-[6px_6px_0px_#ffc83e] relative overflow-hidden transition-all duration-300">
-      <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
-        <div class="flex items-center gap-2">
-          <span id="ccBadge" class="px-2.5 py-0.5 rounded bg-[#b7df69] text-[#151b20] font-mono font-black text-xs tracking-wider border border-[#151b20]">CC ON</span>
-          <span id="cinemaSpeaker" class="font-mono font-black text-xs sm:text-sm md:text-base text-[#22bfd7] uppercase tracking-wider">Dr. Nova (Senior Architect)</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span id="freeModeIndicatorBadge" class="hidden px-2.5 py-0.5 rounded-full bg-[#f38469] text-[#151b20] font-mono font-black text-xs animate-pulse border border-[#151b20]">🛠️ FREE MODE</span>
-          <span id="turnCounter" class="text-xs font-mono font-bold text-white bg-[#242c33] px-3 py-1 rounded-full border border-white/20">Turn 1 of 2</span>
-        </div>
-      </div>
-      <p id="cinemaSubtitleText" class="text-sm sm:text-base md:text-lg font-bold text-white leading-relaxed tracking-wide">
+      <p id="cinemaSubtitleText" class="text-sm sm:text-base md:text-lg font-bold text-[#151b20] leading-relaxed tracking-wide min-h-[48px]">
         "Welcome to Lesson 1.1: What is a Dataset? Records, Attributes &amp; Data Quality Cascades."
       </p>
     </div>
 
-    <!-- 3. Character Voice Studio & Playback Settings (Directly Following Subtitles) -->
-    <div class="bg-[#fffaf0] border-2 border-[#151b20] rounded-2xl p-4 sm:p-5 shadow-[6px_6px_0px_#151b20] space-y-4">
+    <!-- 4. Character Voice Studio & Playback Engine (Unified Master Controls) -->
+    <div id="characterVoiceStudio" class="bg-[#fffaf0] border-2 border-[#151b20] rounded-2xl p-4 sm:p-5 shadow-[6px_6px_0px_#151b20] space-y-4">
       
-      <!-- Studio Header -->
-      <div class="flex items-center justify-between pb-2.5 border-b border-[#1e293b]">
+      <!-- Studio Header with Status Badge -->
+      <div class="flex items-center justify-between pb-2.5 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
         <div class="flex items-center gap-2">
           <span class="text-base sm:text-lg">🎙️</span>
           <span class="text-xs sm:text-sm font-mono font-black text-[#151b20] uppercase tracking-wider">Character Voice Studio &amp; Playback Engine</span>
         </div>
-        <span class="text-[10px] sm:text-xs font-mono text-[#151b20] bg-[#e7f4c8] px-2.5 py-1 rounded-full border border-[#151b20] font-bold">
-          Neural &amp; WebSpeech Active
+        <span id="voiceEngineStatusBadge" class="text-[10px] sm:text-xs font-mono text-[#0e7490] bg-[#c9f3f4] px-2.5 py-1 rounded-full border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black">
+          🎙️ Neural Audio Synced (04:13)
         </span>
       </div>
 
       <!-- Playback Controls & Speed Group -->
-      <div class="flex flex-wrap items-center justify-between gap-3 bg-[#f6f0dc] border-2 border-[#151b20] rounded-xl p-3 shadow-[3px_3px_0px_#151b20]">
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-[#eee4c8] border-2 border-[#151b20] rounded-xl p-3 shadow-[2px_2px_0px_#151b20]">
         <!-- Play / Stop Buttons -->
         <div class="flex items-center gap-2">
-          <button id="btnPlaySpeech" onclick="toggleSpeech()" class="px-3.5 py-2 rounded-lg bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] font-black text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-[2px_2px_0px_#151b20] font-mono">
+          <button id="btnPlaySpeech" onclick="toggleSpeech()" class="cursor-pointer px-4 py-2 rounded-xl bg-[#ffc83e] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] font-black text-xs sm:text-sm flex items-center gap-1.5 transition shadow-[2px_2px_0px_#151b20] font-mono active:translate-x-[1px] active:translate-y-[1px]">
             <span id="playIcon">▶</span>
             <span id="playText">Speak Slide</span>
           </button>
-          <button id="btnPlayDeck" onclick="presentFullDeck()" class="px-3 py-2 rounded-lg bg-[#b7df69] hover:bg-[#e7f4c8] text-[#151b20] border-2 border-[#151b20] text-xs font-mono font-black transition flex items-center gap-1.5 shadow-[2px_2px_0px_#151b20]">
+          <button id="btnPlayDeck" onclick="presentFullDeck()" class="cursor-pointer px-3.5 py-2 rounded-xl bg-[#b7df69] hover:bg-[#d8f0a0] text-[#151b20] border-2 border-[#151b20] text-xs font-mono font-black transition flex items-center gap-1.5 shadow-[2px_2px_0px_#151b20] active:translate-x-[1px] active:translate-y-[1px]">
             <span>▶▶</span> Play Deck
           </button>
-          <button onclick="stopSpeech()" class="px-3 py-2 rounded-lg bg-[#ffd8ce] hover:bg-[#f38469] text-[#151b20] border-2 border-[#151b20] text-xs font-mono font-bold transition shadow-[2px_2px_0px_#151b20]">
+          <button onclick="stopSpeech()" class="cursor-pointer px-3 py-2 rounded-xl bg-[#ffd8ce] hover:bg-[#f38469] text-[#151b20] border-2 border-[#151b20] text-xs font-mono font-bold transition shadow-[2px_2px_0px_#151b20] active:translate-x-[1px] active:translate-y-[1px]">
             ⏹ Stop
           </button>
         </div>
@@ -837,83 +807,72 @@
         <!-- Playback Speed Controls -->
         <div class="flex items-center gap-2 bg-[#fffaf0] px-3 py-1.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
           <span class="text-xs text-[#151b20] font-mono font-bold">Speed:</span>
-          <div class="inline-flex rounded-md shadow-sm" role="group">
-            <button onclick="setSpeed(0.8)" id="spd08" class="px-2.5 py-1 text-xs font-mono font-bold rounded-l bg-slate-800 text-slate-300 hover:text-white">0.8x</button>
-            <button onclick="setSpeed(1.0)" id="spd10" class="px-2.5 py-1 text-xs font-mono font-bold bg-cyan-600 text-white">1.0x</button>
-            <button onclick="setSpeed(1.2)" id="spd12" class="px-2.5 py-1 text-xs font-mono font-bold bg-slate-800 text-slate-300 hover:text-white">1.2x</button>
-            <button onclick="setSpeed(1.4)" id="spd14" class="px-2.5 py-1 text-xs font-mono font-bold rounded-r bg-slate-800 text-slate-300 hover:text-white">1.4x</button>
+          <div class="inline-flex rounded-md gap-1" role="group">
+            <button onclick="setSpeed(0.8)" id="spd08" class="cursor-pointer px-2.5 py-1 text-xs font-mono font-bold rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/60 hover:bg-[#eee4c8]">0.8x</button>
+            <button onclick="setSpeed(1.0)" id="spd10" class="cursor-pointer px-2.5 py-1 text-xs font-mono font-black rounded-lg bg-[#22bfd7] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">1.0x</button>
+            <button onclick="setSpeed(1.2)" id="spd12" class="cursor-pointer px-2.5 py-1 text-xs font-mono font-bold rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/60 hover:bg-[#eee4c8]">1.2x</button>
+            <button onclick="setSpeed(1.5)" id="spd15" class="cursor-pointer px-2.5 py-1 text-xs font-mono font-bold rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/60 hover:bg-[#eee4c8]">1.5x</button>
           </div>
         </div>
       </div>
 
-      <!-- Persona Presets & Voice Selectors Grid -->
+      <!-- Quick Persona Presets -->
+      <div class="bg-[#eee4c8] p-3.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+        <span class="text-[11px] font-mono font-black text-[#151b20] uppercase tracking-wide block mb-2">⚡ Quick Persona Presets:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] font-mono">
+          <button type="button" onclick="applyVoicePreset('academic')" id="preset_academic" class="preset-pill px-2.5 py-1.5 rounded-lg bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition text-left truncate cursor-pointer">🎓 Academic Duo</button>
+          <button type="button" onclick="applyVoicePreset('studio')" id="preset_studio" class="preset-pill px-2.5 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/40 hover:bg-[#fff0b9] font-bold transition text-left truncate cursor-pointer">🎙️ Broadcaster</button>
+          <button type="button" onclick="applyVoicePreset('british')" id="preset_british" class="preset-pill px-2.5 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/40 hover:bg-[#fff0b9] font-bold transition text-left truncate cursor-pointer">🇬🇧 Oxford</button>
+          <button type="button" onclick="applyVoicePreset('expressive')" id="preset_expressive" class="preset-pill px-2.5 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/40 hover:bg-[#fff0b9] font-bold transition text-left truncate cursor-pointer">⚡ Expressive</button>
+          <button type="button" onclick="applyVoicePreset('commonwealth')" id="preset_commonwealth" class="preset-pill px-2.5 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/40 hover:bg-[#fff0b9] font-bold transition text-left truncate cursor-pointer">🌏 Commonwealth</button>
+          <button type="button" onclick="applyVoicePreset('calm')" id="preset_calm" class="preset-pill px-2.5 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/40 hover:bg-[#fff0b9] font-bold transition text-left truncate cursor-pointer">🌊 Calm Socratic</button>
+        </div>
+      </div>
+
+      <!-- Dual Voice Selectors for Nova & Kaito -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-        
-        <!-- Left: Quick Persona Presets -->
-        <div class="bg-[#f6f0dc] p-3.5 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between">
-          <span class="text-[11px] font-mono font-black text-[#151b20] uppercase tracking-wide block mb-2">⚡ Quick Persona Presets:</span>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-[11px] font-mono">
-            <button type="button" onclick="applyVoicePreset('academic')" id="preset_academic" class="preset-pill px-2.5 py-1.5 rounded bg-cyan-950/90 text-cyan-300 border border-cyan-500/80 font-bold hover:bg-cyan-900 transition text-left truncate">🎓 Academic Duo</button>
-            <button type="button" onclick="applyVoicePreset('studio')" id="preset_studio" class="preset-pill px-2.5 py-1.5 rounded bg-slate-900 text-slate-300 border border-slate-700 hover:text-white transition text-left truncate">🎙️ Broadcaster</button>
-            <button type="button" onclick="applyVoicePreset('british')" id="preset_british" class="preset-pill px-2.5 py-1.5 rounded bg-slate-900 text-slate-300 border border-slate-700 hover:text-white transition text-left truncate">🇬🇧 Oxford</button>
-            <button type="button" onclick="applyVoicePreset('expressive')" id="preset_expressive" class="preset-pill px-2.5 py-1.5 rounded bg-slate-900 text-slate-300 border border-slate-700 hover:text-white transition text-left truncate">⚡ Expressive</button>
-            <button type="button" onclick="applyVoicePreset('commonwealth')" id="preset_commonwealth" class="preset-pill px-2.5 py-1.5 rounded bg-slate-900 text-slate-300 border border-slate-700 hover:text-white transition text-left truncate">🌏 Commonwealth</button>
-            <button type="button" onclick="applyVoicePreset('calm')" id="preset_calm" class="preset-pill px-2.5 py-1.5 rounded bg-slate-900 text-slate-300 border border-slate-700 hover:text-white transition text-left truncate">🌊 Calm Socratic</button>
+        <!-- Dr. Nova Voice Selector -->
+        <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+          <div class="flex items-center justify-between text-xs font-mono mb-1.5">
+            <span class="text-[#151b20] font-black">👩 Dr. Nova (Lead Architect):</span>
+            <button onclick="testVoice('nova')" class="cursor-pointer text-[10px] px-2.5 py-0.5 rounded bg-[#c9f3f4] text-[#151b20] border border-[#151b20] hover:bg-[#22bfd7] font-black transition shadow-[1px_1px_0px_#151b20]">
+              Test 🔊
+            </button>
           </div>
+          <select id="novaVoiceSelect" onchange="onNovaVoiceChange(this.value)" class="w-full bg-[#fffaf0] border-2 border-[#151b20] text-[#151b20] text-xs rounded-lg px-2.5 py-1.5 font-mono focus:outline-none focus:border-[#22bfd7]">
+            <option value="">Detecting browser voices...</option>
+          </select>
         </div>
 
-        <!-- Right: Dual Voice Selectors for Nova & Kaito -->
-        <div class="space-y-2.5">
-          <!-- Dr. Nova Voice Selector -->
-          <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]">
-            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-              <span class="text-[#151b20] font-black">👩 Dr. Nova (Lead Architect):</span>
-              <button onclick="testVoice('nova')" class="text-[10px] px-2.5 py-0.5 rounded bg-[#c9f3f4] text-[#151b20] border border-[#151b20] hover:bg-[#22bfd7] font-black transition shadow-[1px_1px_0px_#151b20]">
-                Test 🔊
-              </button>
-            </div>
-            <select id="novaVoiceSelect" onchange="onNovaVoiceChange(this.value)" class="w-full bg-[#fffdf7] border-2 border-[#151b20] text-[#151b20] text-xs rounded-lg px-2.5 py-1.5 font-mono focus:outline-none focus:border-[#22bfd7]">
-              <option value="">Detecting browser voices...</option>
-            </select>
+        <!-- Kaito Voice Selector -->
+        <div class="bg-[#eee4c8] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+          <div class="flex items-center justify-between text-xs font-mono mb-1.5">
+            <span class="text-[#151b20] font-black">👨 Kaito (Junior ML Engineer):</span>
+            <button onclick="testVoice('kaito')" class="cursor-pointer text-[10px] px-2.5 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border border-[#151b20] hover:bg-[#f38469] font-black transition shadow-[1px_1px_0px_#151b20]">
+              Test 🔊
+            </button>
           </div>
-
-          <!-- Kaito Voice Selector -->
-          <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]">
-            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-              <span class="text-[#151b20] font-black">👨 Kaito (Junior ML Engineer):</span>
-              <button onclick="testVoice('kaito')" class="text-[10px] px-2.5 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border border-[#151b20] hover:bg-[#f38469] font-black transition shadow-[1px_1px_0px_#151b20]">
-                Test 🔊
-              </button>
-            </div>
-            <select id="kaitoVoiceSelect" onchange="onKaitoVoiceChange(this.value)" class="w-full bg-[#fffdf7] border-2 border-[#151b20] text-[#151b20] text-xs rounded-lg px-2.5 py-1.5 font-mono focus:outline-none focus:border-[#ffc83e]">
-              <option value="">Detecting browser voices...</option>
-            </select>
-          </div>
+          <select id="kaitoVoiceSelect" onchange="onKaitoVoiceChange(this.value)" class="w-full bg-[#fffaf0] border-2 border-[#151b20] text-[#151b20] text-xs rounded-lg px-2.5 py-1.5 font-mono focus:outline-none focus:border-[#ffc83e]">
+            <option value="">Detecting browser voices...</option>
+          </select>
         </div>
-
       </div>
 
-      <!-- Fine-Tuning Controls (Pitch & Cadence Sliders) -->
-      <div class="bg-[#f6f0dc] p-3.5 rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]">
-        <button type="button" onclick="toggleTuningPanel()" class="flex items-center justify-between w-full text-xs font-mono text-[#151b20] hover:text-[#0e7490]">
-          <span class="flex items-center gap-1.5 font-black">🎛️ Timbre &amp; Pitch Controls</span>
-          <span id="tuningToggleIcon" class="text-xs text-[#151b20] font-bold">▼ Expand</span>
-        </button>
-        <div id="tuningControls" class="hidden mt-3 pt-3 border-t border-[#1e293b] space-y-2.5 text-[11px] font-mono">
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-cyan-400 font-semibold w-24">👩 Nova Pitch:</span>
-            <input type="range" id="novaPitchSlider" min="0.7" max="1.5" step="0.05" value="1.22" oninput="updatePitch('nova', this.value)" class="flex-1 accent-cyan-400">
-            <span id="novaPitchVal" class="text-slate-300 w-12 text-right">1.22x</span>
-          </div>
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-orange-400 font-semibold w-24">👨 Kaito Pitch:</span>
-            <input type="range" id="kaitoPitchSlider" min="0.5" max="1.2" step="0.05" value="0.78" oninput="updatePitch('kaito', this.value)" class="flex-1 accent-orange-400">
-            <span id="kaitoPitchVal" class="text-slate-300 w-12 text-right">0.78x</span>
-          </div>
-          <button type="button" onclick="resetPitch()" class="w-full text-center py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#eee4c8] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-[11px] font-bold transition">
-            Reset Timbre to Defaults
-          </button>
+      <!-- Timbre & Pitch Sliders -->
+      <div class="bg-[#eee4c8] p-3.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2.5 text-[11px] font-mono">
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-[#0e7490] font-bold w-28">👩 Nova Pitch:</span>
+          <input type="range" id="novaPitchSlider" min="0.7" max="1.5" step="0.05" value="1.22" oninput="updatePitch('nova', this.value)" class="flex-1 accent-[#0e7490]">
+          <span id="novaPitchVal" class="text-[#151b20] font-black w-12 text-right">1.22x</span>
         </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-[#b45309] font-bold w-28">👨 Kaito Pitch:</span>
+          <input type="range" id="kaitoPitchSlider" min="0.5" max="1.2" step="0.05" value="0.78" oninput="updatePitch('kaito', this.value)" class="flex-1 accent-[#b45309]">
+          <span id="kaitoPitchVal" class="text-[#151b20] font-black w-12 text-right">0.78x</span>
+        </div>
+        <button type="button" onclick="resetPitch()" class="cursor-pointer w-full text-center py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#eee4c8] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-[11px] font-bold transition">
+          Reset Timbre to Defaults
+        </button>
       </div>
 
     </div>
@@ -922,6 +881,519 @@
 
   <!-- Complete Chapter 1 Curriculum Database (All 7 Lessons with Dual Speakers) -->
   <script>
+
+    // =========================================================================
+    // Capeur Deterministic Timeline, Forced-Alignment Karaoke & Active Recall
+    // =========================================================================
+    let currentTiming = null;
+    let isNeuralAudioActive = false;
+    let neuralAudio = null;
+    let inFreeMode = false;
+    let isAskingPauseGuess = false;
+    let hasAnsweredPauseGuess = false;
+    let activeQuestion = null;
+    let engineSpeed = 1.0;
+    let ccVisible = true;
+    let engineRaf = null;
+
+    const LESSON_QUESTIONS = {
+      "ch1_p1": {
+        slide: 6,
+        prompt: "According to the Law of Data Quality Cascades, where in the ML lifecycle does error manifest with the most catastrophic compounding multiplier?",
+        options: [
+          {
+            text: "A. Downstream in production deployment where latent errors trigger silent failures (>10× compound degradation)",
+            correct: true,
+            feedback: "Correct! Sambasivan et al. (CHI 2021) established that negative feedback loops compound through preprocessing and training, multiplying errors exponentially in production while evading standard benchmark tests."
+          },
+          {
+            text: "B. In the feature engineering stage where normalization layers automatically bound and eliminate the error",
+            correct: false,
+            feedback: "Misconception. Normalization scales numerical ranges mathematically but cannot detect systematic physical drift or sensor biases, passing distorted inputs to subsequent layers."
+          },
+          {
+            text: "C. Nowhere, because deep neural network capacity inherently compensates for upstream dataset flaws",
+            correct: false,
+            feedback: "Misconception. The fundamental axiom of Data-Centric AI is that model capacity cannot repair flawed ground truth (Garbage In, Garbage Out)."
+          }
+        ]
+      }
+    };
+
+    function formatTime(sec) {
+      if (isNaN(sec) || sec == null) return "00:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    async function loadAudioForLesson(topicKey, mode) {
+      if (neuralAudio) {
+        neuralAudio.pause();
+        neuralAudio.src = "";
+      }
+      isNeuralAudioActive = false;
+      currentTiming = null;
+      hasAnsweredPauseGuess = false;
+      isAskingPauseGuess = false;
+      const guessCard = document.getElementById('pauseAndGuessCard');
+      if (guessCard) guessCard.classList.add('hidden');
+
+      const badge = document.getElementById('audioEngineBadgeText');
+      const timecode = document.getElementById('timecodeDisplay');
+
+      const timingKey = `${topicKey}_${mode}`;
+
+      // 1. Check window.LESSON_TIMINGS (Works 100% offline under file:// and zero-latency online)
+      if (window.LESSON_TIMINGS) {
+        if (window.LESSON_TIMINGS[timingKey]) {
+          currentTiming = window.LESSON_TIMINGS[timingKey];
+          setupNeuralAudioPlayer(topicKey, mode);
+          return;
+        } else if (window.LESSON_TIMINGS[`${topicKey}_solo`]) {
+          currentTiming = window.LESSON_TIMINGS[`${topicKey}_solo`];
+          setupNeuralAudioPlayer(topicKey, 'solo');
+          return;
+        } else if (window.LESSON_TIMINGS[`${topicKey}_duo`]) {
+          currentTiming = window.LESSON_TIMINGS[`${topicKey}_duo`];
+          setupNeuralAudioPlayer(topicKey, 'duo');
+          return;
+        }
+      }
+
+      // 2. Fetch timing manifest as fallback
+      try {
+        const resp = await fetch(`./audio/${timingKey}_timing.json`);
+        if (resp.ok) {
+          currentTiming = await resp.json();
+          setupNeuralAudioPlayer(topicKey, mode);
+          return;
+        }
+      } catch (err) {
+        console.warn("Could not fetch neural audio timing via HTTP:", err);
+      }
+
+      // WebSpeech fallback
+      isNeuralAudioActive = false;
+      updateVoiceBadge();
+    }
+
+    function updateVoiceBadge() {
+      const badge = document.getElementById('voiceEngineStatusBadge');
+      if (!badge) return;
+      if (isNeuralAudioActive && currentTiming) {
+        badge.className = "text-[10px] sm:text-xs font-mono text-[#0e7490] bg-[#c9f3f4] px-2.5 py-1 rounded-full border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black";
+        badge.innerText = `🎙️ Neural Audio Synced (${formatTime(currentTiming.duration)})`;
+      } else {
+        badge.className = "text-[10px] sm:text-xs font-mono text-[#151b20] bg-[#e7f4c8] px-2.5 py-1 rounded-full border border-[#151b20] font-bold";
+        badge.innerText = "🌐 WebSpeech Active";
+      }
+    }
+
+    function setupNeuralAudioPlayer(topicKey, mode) {
+      neuralAudio = document.getElementById('neuralAudio');
+      if (!neuralAudio || !currentTiming) return;
+
+      const audioSrcUrl = `./audio/${topicKey}_${mode}.mp3`;
+      isNeuralAudioActive = true;
+      updateVoiceBadge();
+
+      const onError = () => {
+        neuralAudio.removeEventListener('error', onError);
+        console.warn(`Neural audio file '${audioSrcUrl}' not reachable, enabling browser WebSpeech fallback.`);
+        isNeuralAudioActive = false;
+        updateVoiceBadge();
+      };
+
+      neuralAudio.addEventListener('error', onError);
+
+      neuralAudio.src = audioSrcUrl;
+      neuralAudio.playbackRate = engineSpeed;
+      neuralAudio.preservesPitch = true;
+      neuralAudio.load();
+    }
+
+    function updatePlayButtons(playing) {
+      const studioText = document.getElementById('playText');
+      const studioIcon = document.getElementById('playIcon');
+      if (playing) {
+        if (studioText) studioText.innerText = "Pause Audio";
+        if (studioIcon) studioIcon.innerText = "❚❚";
+      } else {
+        if (studioText) studioText.innerText = "Speak Slide";
+        if (studioIcon) studioIcon.innerText = "▶";
+      }
+    }
+
+    function engineLoop() {
+      if (!neuralAudio || neuralAudio.paused || inFreeMode) {
+        return;
+      }
+
+      const t = neuralAudio.currentTime;
+      const dur = neuralAudio.duration || (currentTiming ? currentTiming.duration : 1);
+
+      // 1. Scrubber & Timecode
+      const scrubber = document.getElementById('audioScrubber');
+      if (scrubber && !scrubber.matches(':active')) {
+        scrubber.value = ((t / dur) * 100).toFixed(1);
+      }
+      const tc = document.getElementById('timecodeDisplay');
+      if (tc) tc.innerText = `${formatTime(t)} / ${formatTime(dur)}`;
+
+      // 2. Active sentence & slide sync
+      if (currentTiming && currentTiming.sentences) {
+        const curSentence = currentTiming.sentences.find(s => t >= s.start && t <= s.end);
+
+        if (curSentence) {
+          // Slide synchronization
+          const targetSlideIdx = curSentence.slide - 1;
+          if (targetSlideIdx !== currentSlideIndex) {
+            currentSlideIndex = targetSlideIdx;
+            updateView();
+          }
+
+          // Active speaker & pose
+          highlightActiveAvatar(curSentence.speaker);
+          animateTalking(curSentence.speaker, true);
+
+          // Active subtitle & karaoke words
+          updateKaraokeWords(curSentence, t);
+
+          // Dynamic Slide Content Term Synchronization
+          highlightSlideTermsFromSpokenText(curSentence.text);
+        } else {
+          animateTalking('both', false);
+        }
+
+        // 3. Pause & Guess Active Recall Trigger
+        const q = LESSON_QUESTIONS[currentTopic];
+        if (q && !hasAnsweredPauseGuess && !isAskingPauseGuess) {
+          if (currentSlideIndex + 1 === q.slide) {
+            const slideStart = currentTiming.sentences.find(s => s.slide === q.slide)?.start || 0;
+            if (t >= slideStart + 5.0) {
+              triggerPauseAndGuess(q);
+              return;
+            }
+          }
+        }
+      }
+
+      // 4. Continue loop
+      engineRaf = requestAnimationFrame(engineLoop);
+    }
+
+    function highlightSlideTermsFromSpokenText(spokenText) {
+      const contentEl = document.getElementById('slideContent');
+      if (!contentEl) return;
+
+      const lower = spokenText.toLowerCase();
+
+      // Highlight math blocks if formulas mentioned
+      const mathBlocks = contentEl.querySelectorAll('.katex-display, [class*="Mathematical Formulation"]');
+      if (lower.includes('empirical') || lower.includes('mathematical') || lower.includes('risk') || lower.includes('formulation')) {
+        mathBlocks.forEach(b => {
+          const parentBox = b.closest('.rounded-xl') || b;
+          parentBox.classList.add('slide-term-pulse');
+        });
+      } else {
+        mathBlocks.forEach(b => {
+          const parentBox = b.closest('.rounded-xl') || b;
+          parentBox.classList.remove('slide-term-pulse');
+        });
+      }
+
+      // Highlight architecture diagram if workflow mentioned
+      const archBoxes = contentEl.querySelectorAll('.mermaid, [class*="Architecture & Workflow"]');
+      if (lower.includes('diagram') || lower.includes('workflow') || lower.includes('architecture') || lower.includes('transition')) {
+        archBoxes.forEach(b => {
+          const parentBox = b.closest('.rounded-xl') || b;
+          parentBox.classList.add('slide-term-pulse');
+        });
+      } else {
+        archBoxes.forEach(b => {
+          const parentBox = b.closest('.rounded-xl') || b;
+          parentBox.classList.remove('slide-term-pulse');
+        });
+      }
+    }
+
+    let lastRenderedSentenceText = "";
+    function updateKaraokeWords(sentence, t) {
+      if (!ccVisible) return;
+      const speakerEl = document.getElementById('cinemaSpeaker');
+      const textEl = document.getElementById('cinemaSubtitleText');
+      if (!textEl) return;
+
+      if (speakerEl) speakerEl.innerText = `${sentence.speaker}:`;
+      if (speakerEl) {
+        speakerEl.className = sentence.speaker.toLowerCase().includes('kaito')
+          ? "font-mono font-black text-xs sm:text-sm md:text-base text-[#b45309] uppercase tracking-wider"
+          : "font-mono font-black text-xs sm:text-sm md:text-base text-[#0e7490] uppercase tracking-wider";
+      }
+
+      // If new sentence, create word spans
+      if (lastRenderedSentenceText !== sentence.text) {
+        lastRenderedSentenceText = sentence.text;
+        textEl.innerHTML = sentence.words.map((w, idx) => {
+          return `<span class="kword kword-future" id="kword_${idx}" data-t="${w.t}">${w.w}</span>`;
+        }).join(" ");
+      }
+
+      // Highlight active word
+      sentence.words.forEach((w, idx) => {
+        const span = document.getElementById(`kword_${idx}`);
+        if (!span) return;
+        const nextT = sentence.words[idx + 1] ? sentence.words[idx + 1].t : sentence.end;
+
+        if (t >= w.t && t < nextT) {
+          span.className = "kword kword-current";
+        } else if (t >= nextT) {
+          span.className = "kword kword-past";
+        } else {
+          span.className = "kword kword-future";
+        }
+      });
+    }
+
+    function onScrubberInput(percent) {
+      if (inFreeMode) leaveFreeMode();
+
+      if (isNeuralAudioActive && neuralAudio && neuralAudio.duration) {
+        const targetT = (parseFloat(percent) / 100) * neuralAudio.duration;
+        neuralAudio.currentTime = targetT;
+
+        const curSentence = currentTiming.sentences.find(s => targetT >= s.start && targetT <= s.end);
+        if (curSentence) {
+          currentSlideIndex = curSentence.slide - 1;
+          updateView();
+          updateKaraokeWords(curSentence, targetT);
+          highlightActiveAvatar(curSentence.speaker);
+        }
+      } else {
+        const topicData = curriculum[currentTopic];
+        if (topicData && topicData.slides) {
+          const targetSlide = Math.floor((parseFloat(percent) / 100) * topicData.slides.length);
+          goToSlide(targetSlide);
+        }
+      }
+    }
+
+    function setEngineSpeed(rate) {
+      engineSpeed = rate;
+      if (neuralAudio) {
+        neuralAudio.playbackRate = rate;
+        neuralAudio.preservesPitch = true;
+      }
+      ['btnSpd08', 'btnSpd10', 'btnSpd12', 'btnSpd15'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) b.className = "cursor-pointer px-2.5 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20] font-bold border border-[#151b20]/60 hover:bg-[#eee4c8]";
+      });
+      const activeBtnId = rate === 0.8 ? 'btnSpd08' : (rate === 1.0 ? 'btnSpd10' : (rate === 1.2 ? 'btnSpd12' : 'btnSpd15'));
+      const activeBtn = document.getElementById(activeBtnId);
+      if (activeBtn) activeBtn.className = "cursor-pointer px-2.5 py-1.5 rounded-lg bg-[#22bfd7] text-[#151b20] font-black border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]";
+
+      const badge = document.getElementById('lessonSpeedBadge');
+      if (badge) badge.innerText = `${rate.toFixed(1)}× Speed`;
+
+      setSpeed(rate);
+    }
+
+    function toggleClosedCaptions() {
+      ccVisible = !ccVisible;
+      const ccBadge = document.getElementById('ccBadge');
+      const btnCC = document.getElementById('btnCCToggle');
+      const subCard = document.getElementById('cinemaSubtitleCard');
+
+      if (ccVisible) {
+        if (ccBadge) ccBadge.innerText = "CC ON";
+        if (btnCC) {
+          btnCC.innerText = "CC ON";
+          btnCC.className = "cursor-pointer ml-1 px-3 py-1.5 rounded-lg bg-[#c9f3f4] text-[#151b20] font-black border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]";
+        }
+        if (subCard) subCard.classList.remove('hidden');
+      } else {
+        if (ccBadge) ccBadge.innerText = "CC OFF";
+        if (btnCC) {
+          btnCC.innerText = "CC OFF";
+          btnCC.className = "cursor-pointer ml-1 px-3 py-1.5 rounded-lg bg-[#fffaf0] text-[#151b20]/60 font-bold border border-[#151b20]/40";
+        }
+        if (subCard) subCard.classList.add('hidden');
+      }
+    }
+
+    function triggerPauseAndGuess(q) {
+      isAskingPauseGuess = true;
+      activeQuestion = q;
+      if (neuralAudio) neuralAudio.pause();
+      stopSpeech();
+      updateTransportButton(false);
+      animateTalking('both', false);
+
+      const card = document.getElementById('pauseAndGuessCard');
+      const qText = document.getElementById('pauseQuestionText');
+      const optContainer = document.getElementById('pauseOptionsContainer');
+      const feedback = document.getElementById('pauseFeedbackContainer');
+
+      if (!card || !qText || !optContainer) return;
+      card.classList.remove('hidden');
+      qText.innerText = q.prompt;
+      if (feedback) feedback.classList.add('hidden');
+
+      optContainer.innerHTML = '';
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = "w-full text-left p-3 rounded-xl bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-start gap-2";
+        btn.innerHTML = `<span class="px-2 py-0.5 rounded bg-[#eee4c8] border border-[#151b20] font-black">${String.fromCharCode(65 + idx)}</span> <span class="flex-1">${opt.text}</span>`;
+        btn.onclick = () => selectPauseGuessOption(idx);
+        optContainer.appendChild(btn);
+      });
+
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function selectPauseGuessOption(chosenIdx) {
+      if (!activeQuestion) return;
+      const opt = activeQuestion.options[chosenIdx];
+      const feedback = document.getElementById('pauseFeedbackContainer');
+      const optContainer = document.getElementById('pauseOptionsContainer');
+      if (!feedback || !optContainer) return;
+
+      const buttons = optContainer.querySelectorAll('button');
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        const curOpt = activeQuestion.options[idx];
+        if (curOpt.correct) {
+          btn.className = "w-full text-left p-3 rounded-xl bg-[#e7f4c8] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black transition";
+        } else if (idx === chosenIdx) {
+          btn.className = "w-full text-left p-3 rounded-xl bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition line-through opacity-80";
+        } else {
+          btn.className = "w-full text-left p-3 rounded-xl bg-[#fffdf7] text-[rgba(21,27,32,0.4)] border border-[#151b20]/20 font-medium transition";
+        }
+      });
+
+      feedback.classList.remove('hidden');
+      if (opt.correct) {
+        feedback.className = "p-3.5 rounded-xl border-2 border-[#151b20] mb-3 font-mono text-xs leading-relaxed bg-[#e7f4c8] text-[#151b20]";
+        feedback.innerHTML = `<strong>🎉 Excellent Deduction!</strong><br>${opt.feedback}`;
+      } else {
+        feedback.className = "p-3.5 rounded-xl border-2 border-[#151b20] mb-3 font-mono text-xs leading-relaxed bg-[#ffd8ce] text-[#151b20]";
+        feedback.innerHTML = `<strong>⚠️ Misconception Detected:</strong><br>${opt.feedback}`;
+      }
+
+      hasAnsweredPauseGuess = true;
+    }
+
+    function resumeAfterGuess() {
+      const card = document.getElementById('pauseAndGuessCard');
+      if (card) card.classList.add('hidden');
+      isAskingPauseGuess = false;
+      hasAnsweredPauseGuess = true;
+      togglePlayback();
+    }
+
+    function skipPauseAndGuess() {
+      resumeAfterGuess();
+    }
+
+    function enterFreeMode(label) {
+      if (inFreeMode) return;
+      inFreeMode = true;
+
+      if (neuralAudio && !neuralAudio.paused) {
+        neuralAudio.pause();
+        updateTransportButton(false);
+      }
+      stopSpeech();
+      animateTalking('both', false);
+
+      const indicator = document.getElementById('freeModeIndicatorBadge');
+      if (indicator) indicator.classList.remove('hidden');
+
+      const returnBtn = document.getElementById('btnReturnToLecture');
+      if (returnBtn) returnBtn.classList.remove('hidden');
+
+      const subText = document.getElementById('cinemaSubtitleText');
+      if (subText) {
+        subText.innerHTML = `<em>"Paused: You are exploring the <strong>${label || 'Interactive Stage'}</strong> in Free Mode. Tweak parameters freely, then click 'Resume Lecture' to continue."</em>`;
+      }
+    }
+
+    function leaveFreeMode() {
+      if (!inFreeMode) return;
+      inFreeMode = false;
+
+      const indicator = document.getElementById('freeModeIndicatorBadge');
+      if (indicator) indicator.classList.add('hidden');
+
+      const returnBtn = document.getElementById('btnReturnToLecture');
+      if (returnBtn) returnBtn.classList.add('hidden');
+
+      togglePlayback();
+    }
+
+    function toggleWorkbenchVisibility() {
+      const body = document.getElementById('workbenchBody');
+      const btn = document.getElementById('btnToggleWorkbench');
+      if (!body || !btn) return;
+      if (body.classList.contains('hidden')) {
+        body.classList.remove('hidden');
+        btn.innerText = "▼ Minimize";
+      } else {
+        body.classList.add('hidden');
+        btn.innerText = "▲ Expand";
+      }
+    }
+
+    function onSimulatorInput() {
+      enterFreeMode("Data Quality Cascade Simulator");
+      updateCascadeSim();
+    }
+
+    function updateCascadeSim() {
+      const sDrift = parseFloat(document.getElementById('sliderSensorDrift').value);
+      const sImpute = parseFloat(document.getElementById('sliderImputeDistort').value);
+      const sAnnot = parseFloat(document.getElementById('sliderAnnotNoise').value);
+
+      document.getElementById('valSensorDrift').innerText = `${sDrift}%`;
+      document.getElementById('valImputeDistort').innerText = `${sImpute}%`;
+      document.getElementById('valAnnotNoise').innerText = `${sAnnot}%`;
+
+      const r1 = sDrift;
+      const r2 = Math.min(100, r1 * 1.35 + sImpute * 0.95);
+      const r3 = Math.min(100, r2 * 1.3 + sAnnot * 0.9);
+      const multiplier = (1.0 + 0.08 * Math.pow(sDrift, 1.1) + 0.05 * sAnnot).toFixed(1);
+      const r4 = Math.min(100, r3 * (multiplier / 2.2));
+
+      document.getElementById('barRaw').style.width = `${Math.min(100, r1)}%`;
+      document.getElementById('pctRaw').innerText = `${r1.toFixed(1)}%`;
+
+      document.getElementById('barPrep').style.width = `${Math.min(100, r2)}%`;
+      document.getElementById('pctPrep').innerText = `${r2.toFixed(1)}%`;
+
+      document.getElementById('barFeatures').style.width = `${Math.min(100, r3)}%`;
+      document.getElementById('pctFeatures').innerText = `${r3.toFixed(1)}%`;
+
+      document.getElementById('barServing').style.width = `${Math.min(100, r4)}%`;
+      document.getElementById('pctServing').innerText = `${r4.toFixed(1)}%`;
+
+      document.getElementById('cascadeMultiplier').innerText = `${multiplier}×`;
+
+      const verdict = document.getElementById('cascadeVerdict');
+      if (r4 < 25) {
+        verdict.className = "px-2.5 py-0.5 rounded bg-[#e7f4c8] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black uppercase";
+        verdict.innerText = "Controlled Operating Variance";
+      } else if (r4 < 50) {
+        verdict.className = "px-2.5 py-0.5 rounded bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black uppercase";
+        verdict.innerText = "Elevated Generalization Drift";
+      } else {
+        verdict.className = "px-2.5 py-0.5 rounded bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20] font-black uppercase";
+        verdict.innerText = "Critical Production Failure";
+      }
+    }
+
+
     let isSpeaking = false;
     let currentTopic = 'part1';
     let currentSlideIndex = 0;
@@ -1393,16 +1865,24 @@
 
     function setSpeed(speed) {
       playbackSpeed = speed;
-      ['spd08', 'spd10', 'spd12', 'spd14'].forEach(id => {
+      engineSpeed = speed;
+      if (neuralAudio) {
+        neuralAudio.playbackRate = speed;
+        neuralAudio.preservesPitch = true;
+      }
+      ['spd08', 'spd10', 'spd12', 'spd15'].forEach(id => {
         const btn = document.getElementById(id);
-        btn.className = "px-2.5 py-1 text-xs font-mono font-bold bg-[#fffaf0] text-[#151b20] border border-[#151b20] hover:bg-[#eee4c8]";
+        if (btn) {
+          btn.className = "cursor-pointer px-2.5 py-1 text-xs font-mono font-bold rounded-lg bg-[#fffaf0] text-[#151b20] border border-[#151b20]/60 hover:bg-[#eee4c8]";
+        }
       });
-      if (speed === 0.8) document.getElementById('spd08').className = "px-2.5 py-1 text-xs font-mono font-bold bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]";
-      if (speed === 1.0) document.getElementById('spd10').className = "px-2.5 py-1 text-xs font-mono font-bold bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]";
-      if (speed === 1.2) document.getElementById('spd12').className = "px-2.5 py-1 text-xs font-mono font-bold bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]";
-      if (speed === 1.4) document.getElementById('spd14').className = "px-2.5 py-1 text-xs font-mono font-bold bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]";
+      const activeId = `spd${speed.toString().replace('.', '')}`;
+      const activeBtn = document.getElementById(activeId);
+      if (activeBtn) {
+        activeBtn.className = "cursor-pointer px-2.5 py-1 text-xs font-mono font-black rounded-lg bg-[#22bfd7] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]";
+      }
 
-      if (isSpeaking) {
+      if (isSpeaking && !isNeuralAudioActive) {
         stopSpeech();
         startSpeech();
       }
@@ -1508,21 +1988,21 @@
       setSubtitles(firstTurn.speaker, firstTurn.text, 1, slideData.turns.length);
       highlightActiveAvatar(firstTurn.speaker);
 
-      // 4. Update Prev / Next Buttons state
+      // 4. Update Prev / Next Buttons state on Slide Canvas
       const prevBtn = document.getElementById('prevSlideBtn');
       if (prevBtn) {
         prevBtn.disabled = currentSlideIndex === 0;
         prevBtn.className = currentSlideIndex === 0 
-          ? "px-2.5 py-1 rounded bg-[#eee4c8] text-[rgba(21,27,32,0.4)] border border-[rgba(21,27,32,0.3)] font-bold opacity-60 cursor-not-allowed flex items-center gap-1"
-          : "px-2.5 py-1 rounded bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1";
+          ? "cursor-not-allowed px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#eee4c8] text-[#151b20]/40 border border-[#151b20]/30 font-bold opacity-60 flex items-center gap-1"
+          : "cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1 active:translate-x-[1px] active:translate-y-[1px]";
       }
 
       const nextBtn = document.getElementById('nextSlideBtn');
       if (nextBtn) {
         nextBtn.disabled = currentSlideIndex === totalSlides - 1;
         nextBtn.className = currentSlideIndex === totalSlides - 1
-          ? "px-2.5 py-1 rounded bg-[#eee4c8] text-[rgba(21,27,32,0.4)] border border-[rgba(21,27,32,0.3)] font-bold opacity-60 cursor-not-allowed flex items-center gap-1"
-          : "px-2.5 py-1 rounded bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1";
+          ? "cursor-not-allowed px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#eee4c8] text-[#151b20]/40 border border-[#151b20]/30 font-bold opacity-60 flex items-center gap-1"
+          : "cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1 active:translate-x-[1px] active:translate-y-[1px]";
       }
     }
 
@@ -1550,12 +2030,20 @@
       const topicData = curriculum[currentTopic];
       if (!topicData || !topicData.slides) return;
       if (currentSlideIndex < topicData.slides.length - 1) {
-        const wasPlaying = isSpeaking;
-        stopSpeech();
+        const isPlayingNeural = isNeuralAudioActive && neuralAudio && !neuralAudio.paused;
+        const isPlayingWebSpeech = isSpeaking;
+
         currentSlideIndex++;
         updateView();
-        if (wasPlaying || isAuto || isFullDeckPlaying) {
-          setTimeout(() => startSpeech(), 300);
+
+        if (isPlayingNeural && currentTiming && currentTiming.sentences) {
+          const nextSent = currentTiming.sentences.find(s => s.slide === (currentSlideIndex + 1));
+          if (nextSent) {
+            neuralAudio.currentTime = nextSent.start;
+          }
+        } else if (isPlayingWebSpeech || isAuto || isFullDeckPlaying) {
+          stopSpeech();
+          setTimeout(() => startSpeech(), 250);
         }
       } else {
         if (isFullDeckPlaying) {
@@ -1568,23 +2056,39 @@
 
     function prevSlide() {
       if (currentSlideIndex > 0) {
-        const wasPlaying = isSpeaking;
-        stopSpeech();
+        const isPlayingNeural = isNeuralAudioActive && neuralAudio && !neuralAudio.paused;
+        const isPlayingWebSpeech = isSpeaking;
+
         currentSlideIndex--;
         updateView();
-        if (wasPlaying) {
-          setTimeout(() => startSpeech(), 300);
+
+        if (isPlayingNeural && currentTiming && currentTiming.sentences) {
+          const prevSent = currentTiming.sentences.find(s => s.slide === (currentSlideIndex + 1));
+          if (prevSent) {
+            neuralAudio.currentTime = prevSent.start;
+          }
+        } else if (isPlayingWebSpeech) {
+          stopSpeech();
+          setTimeout(() => startSpeech(), 250);
         }
       }
     }
 
     function goToSlide(idx) {
-      const wasPlaying = isSpeaking;
-      stopSpeech();
+      const isPlayingNeural = isNeuralAudioActive && neuralAudio && !neuralAudio.paused;
+      const isPlayingWebSpeech = isSpeaking;
+
       currentSlideIndex = idx;
       updateView();
-      if (wasPlaying) {
-        setTimeout(() => startSpeech(), 300);
+
+      if (isPlayingNeural && currentTiming && currentTiming.sentences) {
+        const targetSent = currentTiming.sentences.find(s => s.slide === (idx + 1));
+        if (targetSent) {
+          neuralAudio.currentTime = targetSent.start;
+        }
+      } else if (isPlayingWebSpeech) {
+        stopSpeech();
+        setTimeout(() => startSpeech(), 250);
       }
     }
 
@@ -1599,11 +2103,14 @@
       if (toggle) toggle.checked = true;
       currentSlideIndex = 0;
       updateView();
-      startSpeech();
+      if (isNeuralAudioActive && neuralAudio) {
+        neuralAudio.currentTime = 0;
+      }
+      toggleSpeech();
     }
 
     function setSubtitles(speaker, text, turnNum, totalTurns) {
-      // Update Cinema Subtitle Banner (Top of Slides)
+      // Update Cinema Subtitle Banner (Manga Paper Theme)
       const cinemaCard = document.getElementById('cinemaSubtitleCard');
       const cinemaSpeaker = document.getElementById('cinemaSpeaker');
       const cinemaText = document.getElementById('cinemaSubtitleText');
@@ -1614,11 +2121,11 @@
       if (turnCounter) turnCounter.innerText = `Turn ${turnNum} of ${totalTurns}`;
 
       if (speaker.toLowerCase().includes('kaito')) {
-        if (cinemaSpeaker) cinemaSpeaker.className = "font-mono font-black text-xs md:text-sm text-[#ffc83e] uppercase tracking-wider";
-        if (cinemaCard) cinemaCard.className = "p-4 sm:p-5 rounded-2xl bg-[#151b20] border-2 border-[#151b20] shadow-[6px_6px_0px_#f38469] relative overflow-hidden transition-all duration-300 text-white";
+        if (cinemaSpeaker) cinemaSpeaker.className = "font-mono font-black text-xs md:text-sm text-[#b45309] uppercase tracking-wider";
+        if (cinemaCard) cinemaCard.className = "p-4 sm:p-5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[6px_6px_0px_#ffc83e] relative overflow-hidden transition-all duration-300 text-[#151b20]";
       } else {
-        if (cinemaSpeaker) cinemaSpeaker.className = "font-mono font-black text-xs md:text-sm text-[#22bfd7] uppercase tracking-wider";
-        if (cinemaCard) cinemaCard.className = "p-4 sm:p-5 rounded-2xl bg-[#151b20] border-2 border-[#151b20] shadow-[6px_6px_0px_#ffc83e] relative overflow-hidden transition-all duration-300 text-white";
+        if (cinemaSpeaker) cinemaSpeaker.className = "font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wider";
+        if (cinemaCard) cinemaCard.className = "p-4 sm:p-5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[6px_6px_0px_#22bfd7] relative overflow-hidden transition-all duration-300 text-[#151b20]";
       }
     }
 
@@ -1648,11 +2155,45 @@
     }
 
     function toggleSpeech() {
-      if (isSpeaking) {
-        stopSpeech();
-        return;
+      if (inFreeMode) {
+        leaveFreeMode();
       }
-      startSpeech();
+
+      if (!neuralAudio) {
+        neuralAudio = document.getElementById('neuralAudio');
+      }
+
+      if (isNeuralAudioActive && neuralAudio && neuralAudio.src) {
+        if (neuralAudio.paused) {
+          neuralAudio.playbackRate = engineSpeed;
+          const playPromise = neuralAudio.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              isSpeaking = true;
+              updatePlayButtons(true);
+              cancelAnimationFrame(engineRaf);
+              engineRaf = requestAnimationFrame(engineLoop);
+            }).catch(err => {
+              console.warn("Neural audio play error, falling back to WebSpeech:", err);
+              isNeuralAudioActive = false;
+              updateVoiceBadge();
+              startSpeech();
+            });
+          }
+        } else {
+          neuralAudio.pause();
+          isSpeaking = false;
+          updatePlayButtons(false);
+          cancelAnimationFrame(engineRaf);
+          animateTalking('both', false);
+        }
+      } else {
+        if (isSpeaking) {
+          stopSpeech();
+        } else {
+          startSpeech();
+        }
+      }
     }
 
     function startSpeech() {
@@ -1662,11 +2203,13 @@
         return;
       }
 
-      window.speechSynthesis.cancel();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.resume();
+      }
       isSpeaking = true;
       currentTurnIndex = 0;
-      document.getElementById('playText').innerText = "Pause Audio";
-      document.getElementById('playIcon').innerText = "⏸";
+      updatePlayButtons(true);
 
       playCurrentTurn();
     }
@@ -1748,10 +2291,13 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
+      if (neuralAudio) {
+        neuralAudio.pause();
+      }
       isSpeaking = false;
+      updatePlayButtons(false);
       animateTalking('both', false);
-      document.getElementById('playText').innerText = "Speak Aloud";
-      document.getElementById('playIcon').innerText = "▶";
+      cancelAnimationFrame(engineRaf);
     }
 
     function animateTalking(speaker, speaking) {
