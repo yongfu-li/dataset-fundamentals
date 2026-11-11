@@ -12218,5 +12218,10429 @@ window.LESSON_TIMINGS = {
         ]
       }
     ]
+  },
+  "ch1_p2_solo": {
+    "lessonKey": "ch1_p2",
+    "mode": "solo",
+    "duration": 512.432,
+    "slidesCount": 16,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 1.2 of Dataset Fundamentals: Types of Datasets and Structural Taxonomies. In production data engineering, datasets do not arrive in a single homogenous shape. How you classify and store observational data fundamentally dictates your downstream ingestion throughput, memory overhead, and model reliability.",
+        "start": 0.0,
+        "end": 20.616,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "to",
+            "t": 0.469
+          },
+          {
+            "w": "Lesson",
+            "t": 0.937
+          },
+          {
+            "w": "1.2",
+            "t": 1.406
+          },
+          {
+            "w": "of",
+            "t": 1.874
+          },
+          {
+            "w": "Dataset",
+            "t": 2.343
+          },
+          {
+            "w": "Fundamentals:",
+            "t": 2.811
+          },
+          {
+            "w": "Types",
+            "t": 3.28
+          },
+          {
+            "w": "of",
+            "t": 3.748
+          },
+          {
+            "w": "Datasets",
+            "t": 4.217
+          },
+          {
+            "w": "and",
+            "t": 4.685
+          },
+          {
+            "w": "Structural",
+            "t": 5.154
+          },
+          {
+            "w": "Taxonomies.",
+            "t": 5.623
+          },
+          {
+            "w": "In",
+            "t": 6.091
+          },
+          {
+            "w": "production",
+            "t": 6.56
+          },
+          {
+            "w": "data",
+            "t": 7.028
+          },
+          {
+            "w": "engineering,",
+            "t": 7.497
+          },
+          {
+            "w": "datasets",
+            "t": 7.965
+          },
+          {
+            "w": "do",
+            "t": 8.434
+          },
+          {
+            "w": "not",
+            "t": 8.902
+          },
+          {
+            "w": "arrive",
+            "t": 9.371
+          },
+          {
+            "w": "in",
+            "t": 9.839
+          },
+          {
+            "w": "a",
+            "t": 10.308
+          },
+          {
+            "w": "single",
+            "t": 10.777
+          },
+          {
+            "w": "homogenous",
+            "t": 11.245
+          },
+          {
+            "w": "shape.",
+            "t": 11.714
+          },
+          {
+            "w": "How",
+            "t": 12.182
+          },
+          {
+            "w": "you",
+            "t": 12.651
+          },
+          {
+            "w": "classify",
+            "t": 13.119
+          },
+          {
+            "w": "and",
+            "t": 13.588
+          },
+          {
+            "w": "store",
+            "t": 14.056
+          },
+          {
+            "w": "observational",
+            "t": 14.525
+          },
+          {
+            "w": "data",
+            "t": 14.993
+          },
+          {
+            "w": "fundamentally",
+            "t": 15.462
+          },
+          {
+            "w": "dictates",
+            "t": 15.931
+          },
+          {
+            "w": "your",
+            "t": 16.399
+          },
+          {
+            "w": "downstream",
+            "t": 16.868
+          },
+          {
+            "w": "ingestion",
+            "t": 17.336
+          },
+          {
+            "w": "throughput,",
+            "t": 17.805
+          },
+          {
+            "w": "memory",
+            "t": 18.273
+          },
+          {
+            "w": "overhead,",
+            "t": 18.742
+          },
+          {
+            "w": "and",
+            "t": 19.21
+          },
+          {
+            "w": "model",
+            "t": 19.679
+          },
+          {
+            "w": "reliability.",
+            "t": 20.147
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Today, we establish a rigorous two-dimensional classification taxonomy: Structural Organization across Tabular Relations, Semi-Structured Trees, and Continuous Manifolds; and Temporal Dynamics across Static Snapshots and Unbounded Streaming Windows. Let us explore the taxonomy.",
+        "start": 20.966,
+        "end": 39.47,
+        "words": [
+          {
+            "w": "Today,",
+            "t": 20.966
+          },
+          {
+            "w": "we",
+            "t": 21.527
+          },
+          {
+            "w": "establish",
+            "t": 22.087
+          },
+          {
+            "w": "a",
+            "t": 22.648
+          },
+          {
+            "w": "rigorous",
+            "t": 23.209
+          },
+          {
+            "w": "two-dimensional",
+            "t": 23.77
+          },
+          {
+            "w": "classification",
+            "t": 24.33
+          },
+          {
+            "w": "taxonomy:",
+            "t": 24.891
+          },
+          {
+            "w": "Structural",
+            "t": 25.452
+          },
+          {
+            "w": "Organization",
+            "t": 26.013
+          },
+          {
+            "w": "across",
+            "t": 26.573
+          },
+          {
+            "w": "Tabular",
+            "t": 27.134
+          },
+          {
+            "w": "Relations,",
+            "t": 27.695
+          },
+          {
+            "w": "Semi-Structured",
+            "t": 28.255
+          },
+          {
+            "w": "Trees,",
+            "t": 28.816
+          },
+          {
+            "w": "and",
+            "t": 29.377
+          },
+          {
+            "w": "Continuous",
+            "t": 29.938
+          },
+          {
+            "w": "Manifolds;",
+            "t": 30.498
+          },
+          {
+            "w": "and",
+            "t": 31.059
+          },
+          {
+            "w": "Temporal",
+            "t": 31.62
+          },
+          {
+            "w": "Dynamics",
+            "t": 32.181
+          },
+          {
+            "w": "across",
+            "t": 32.741
+          },
+          {
+            "w": "Static",
+            "t": 33.302
+          },
+          {
+            "w": "Snapshots",
+            "t": 33.863
+          },
+          {
+            "w": "and",
+            "t": 34.423
+          },
+          {
+            "w": "Unbounded",
+            "t": 34.984
+          },
+          {
+            "w": "Streaming",
+            "t": 35.545
+          },
+          {
+            "w": "Windows.",
+            "t": 36.106
+          },
+          {
+            "w": "Let",
+            "t": 36.666
+          },
+          {
+            "w": "us",
+            "t": 37.227
+          },
+          {
+            "w": "explore",
+            "t": 37.788
+          },
+          {
+            "w": "the",
+            "t": 38.349
+          },
+          {
+            "w": "taxonomy.",
+            "t": 38.909
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Every empirical dataset exists at the intersection of two orthogonal dimensions: Structural Organization and Temporal Dynamics. As formulated by Gandomi and Haider, structure governs how fields are addressed, while temporality governs how observations arrive across time.",
+        "start": 40.22,
+        "end": 57.164,
+        "words": [
+          {
+            "w": "Every",
+            "t": 40.22
+          },
+          {
+            "w": "empirical",
+            "t": 40.691
+          },
+          {
+            "w": "dataset",
+            "t": 41.161
+          },
+          {
+            "w": "exists",
+            "t": 41.632
+          },
+          {
+            "w": "at",
+            "t": 42.103
+          },
+          {
+            "w": "the",
+            "t": 42.573
+          },
+          {
+            "w": "intersection",
+            "t": 43.044
+          },
+          {
+            "w": "of",
+            "t": 43.515
+          },
+          {
+            "w": "two",
+            "t": 43.985
+          },
+          {
+            "w": "orthogonal",
+            "t": 44.456
+          },
+          {
+            "w": "dimensions:",
+            "t": 44.927
+          },
+          {
+            "w": "Structural",
+            "t": 45.397
+          },
+          {
+            "w": "Organization",
+            "t": 45.868
+          },
+          {
+            "w": "and",
+            "t": 46.339
+          },
+          {
+            "w": "Temporal",
+            "t": 46.809
+          },
+          {
+            "w": "Dynamics.",
+            "t": 47.28
+          },
+          {
+            "w": "As",
+            "t": 47.751
+          },
+          {
+            "w": "formulated",
+            "t": 48.221
+          },
+          {
+            "w": "by",
+            "t": 48.692
+          },
+          {
+            "w": "Gandomi",
+            "t": 49.163
+          },
+          {
+            "w": "and",
+            "t": 49.633
+          },
+          {
+            "w": "Haider,",
+            "t": 50.104
+          },
+          {
+            "w": "structure",
+            "t": 50.575
+          },
+          {
+            "w": "governs",
+            "t": 51.045
+          },
+          {
+            "w": "how",
+            "t": 51.516
+          },
+          {
+            "w": "fields",
+            "t": 51.987
+          },
+          {
+            "w": "are",
+            "t": 52.457
+          },
+          {
+            "w": "addressed,",
+            "t": 52.928
+          },
+          {
+            "w": "while",
+            "t": 53.399
+          },
+          {
+            "w": "temporality",
+            "t": 53.869
+          },
+          {
+            "w": "governs",
+            "t": 54.34
+          },
+          {
+            "w": "how",
+            "t": 54.811
+          },
+          {
+            "w": "observations",
+            "t": 55.281
+          },
+          {
+            "w": "arrive",
+            "t": 55.752
+          },
+          {
+            "w": "across",
+            "t": 56.223
+          },
+          {
+            "w": "time.",
+            "t": 56.693
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Notice the 3 by 2 enterprise matrix on this slide: Structured, Semi-Structured, and Unstructured formats mapped against Static Snapshots versus Dynamic Continuous Streams. Each cell represents a distinct serialization format and architectural failure mode.",
+        "start": 57.514,
+        "end": 73.906,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 57.514
+          },
+          {
+            "w": "the",
+            "t": 57.996
+          },
+          {
+            "w": "3",
+            "t": 58.478
+          },
+          {
+            "w": "by",
+            "t": 58.96
+          },
+          {
+            "w": "2",
+            "t": 59.442
+          },
+          {
+            "w": "enterprise",
+            "t": 59.925
+          },
+          {
+            "w": "matrix",
+            "t": 60.407
+          },
+          {
+            "w": "on",
+            "t": 60.889
+          },
+          {
+            "w": "this",
+            "t": 61.371
+          },
+          {
+            "w": "slide:",
+            "t": 61.853
+          },
+          {
+            "w": "Structured,",
+            "t": 62.335
+          },
+          {
+            "w": "Semi-Structured,",
+            "t": 62.817
+          },
+          {
+            "w": "and",
+            "t": 63.299
+          },
+          {
+            "w": "Unstructured",
+            "t": 63.782
+          },
+          {
+            "w": "formats",
+            "t": 64.264
+          },
+          {
+            "w": "mapped",
+            "t": 64.746
+          },
+          {
+            "w": "against",
+            "t": 65.228
+          },
+          {
+            "w": "Static",
+            "t": 65.71
+          },
+          {
+            "w": "Snapshots",
+            "t": 66.192
+          },
+          {
+            "w": "versus",
+            "t": 66.674
+          },
+          {
+            "w": "Dynamic",
+            "t": 67.156
+          },
+          {
+            "w": "Continuous",
+            "t": 67.638
+          },
+          {
+            "w": "Streams.",
+            "t": 68.121
+          },
+          {
+            "w": "Each",
+            "t": 68.603
+          },
+          {
+            "w": "cell",
+            "t": 69.085
+          },
+          {
+            "w": "represents",
+            "t": 69.567
+          },
+          {
+            "w": "a",
+            "t": 70.049
+          },
+          {
+            "w": "distinct",
+            "t": 70.531
+          },
+          {
+            "w": "serialization",
+            "t": 71.013
+          },
+          {
+            "w": "format",
+            "t": 71.495
+          },
+          {
+            "w": "and",
+            "t": 71.978
+          },
+          {
+            "w": "architectural",
+            "t": 72.46
+          },
+          {
+            "w": "failure",
+            "t": 72.942
+          },
+          {
+            "w": "mode.",
+            "t": 73.424
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "In relational database theory, a structured dataset is formalized as an empirical relation R over a schema signature S with M typed attribute domains. Every observation is an ordered tuple where attribute j strictly belongs to domain F sub j.",
+        "start": 74.656,
+        "end": 90.064,
+        "words": [
+          {
+            "w": "In",
+            "t": 74.656
+          },
+          {
+            "w": "relational",
+            "t": 75.041
+          },
+          {
+            "w": "database",
+            "t": 75.426
+          },
+          {
+            "w": "theory,",
+            "t": 75.812
+          },
+          {
+            "w": "a",
+            "t": 76.197
+          },
+          {
+            "w": "structured",
+            "t": 76.582
+          },
+          {
+            "w": "dataset",
+            "t": 76.967
+          },
+          {
+            "w": "is",
+            "t": 77.352
+          },
+          {
+            "w": "formalized",
+            "t": 77.738
+          },
+          {
+            "w": "as",
+            "t": 78.123
+          },
+          {
+            "w": "an",
+            "t": 78.508
+          },
+          {
+            "w": "empirical",
+            "t": 78.893
+          },
+          {
+            "w": "relation",
+            "t": 79.278
+          },
+          {
+            "w": "R",
+            "t": 79.664
+          },
+          {
+            "w": "over",
+            "t": 80.049
+          },
+          {
+            "w": "a",
+            "t": 80.434
+          },
+          {
+            "w": "schema",
+            "t": 80.819
+          },
+          {
+            "w": "signature",
+            "t": 81.204
+          },
+          {
+            "w": "S",
+            "t": 81.59
+          },
+          {
+            "w": "with",
+            "t": 81.975
+          },
+          {
+            "w": "M",
+            "t": 82.36
+          },
+          {
+            "w": "typed",
+            "t": 82.745
+          },
+          {
+            "w": "attribute",
+            "t": 83.13
+          },
+          {
+            "w": "domains.",
+            "t": 83.516
+          },
+          {
+            "w": "Every",
+            "t": 83.901
+          },
+          {
+            "w": "observation",
+            "t": 84.286
+          },
+          {
+            "w": "is",
+            "t": 84.671
+          },
+          {
+            "w": "an",
+            "t": 85.056
+          },
+          {
+            "w": "ordered",
+            "t": 85.442
+          },
+          {
+            "w": "tuple",
+            "t": 85.827
+          },
+          {
+            "w": "where",
+            "t": 86.212
+          },
+          {
+            "w": "attribute",
+            "t": 86.597
+          },
+          {
+            "w": "j",
+            "t": 86.982
+          },
+          {
+            "w": "strictly",
+            "t": 87.368
+          },
+          {
+            "w": "belongs",
+            "t": 87.753
+          },
+          {
+            "w": "to",
+            "t": 88.138
+          },
+          {
+            "w": "domain",
+            "t": 88.523
+          },
+          {
+            "w": "F",
+            "t": 88.908
+          },
+          {
+            "w": "sub",
+            "t": 89.294
+          },
+          {
+            "w": "j.",
+            "t": 89.679
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Structured relations obey Relational Invariance: column homogeneity ensures identical physical memory layouts for all records, and Codd's First Normal Form mandates atomic, indivisible values with no unindexed repeating arrays.",
+        "start": 90.414,
+        "end": 104.502,
+        "words": [
+          {
+            "w": "Structured",
+            "t": 90.414
+          },
+          {
+            "w": "relations",
+            "t": 90.9
+          },
+          {
+            "w": "obey",
+            "t": 91.386
+          },
+          {
+            "w": "Relational",
+            "t": 91.871
+          },
+          {
+            "w": "Invariance:",
+            "t": 92.357
+          },
+          {
+            "w": "column",
+            "t": 92.843
+          },
+          {
+            "w": "homogeneity",
+            "t": 93.329
+          },
+          {
+            "w": "ensures",
+            "t": 93.815
+          },
+          {
+            "w": "identical",
+            "t": 94.3
+          },
+          {
+            "w": "physical",
+            "t": 94.786
+          },
+          {
+            "w": "memory",
+            "t": 95.272
+          },
+          {
+            "w": "layouts",
+            "t": 95.758
+          },
+          {
+            "w": "for",
+            "t": 96.244
+          },
+          {
+            "w": "all",
+            "t": 96.729
+          },
+          {
+            "w": "records,",
+            "t": 97.215
+          },
+          {
+            "w": "and",
+            "t": 97.701
+          },
+          {
+            "w": "Codd's",
+            "t": 98.187
+          },
+          {
+            "w": "First",
+            "t": 98.672
+          },
+          {
+            "w": "Normal",
+            "t": 99.158
+          },
+          {
+            "w": "Form",
+            "t": 99.644
+          },
+          {
+            "w": "mandates",
+            "t": 100.13
+          },
+          {
+            "w": "atomic,",
+            "t": 100.616
+          },
+          {
+            "w": "indivisible",
+            "t": 101.101
+          },
+          {
+            "w": "values",
+            "t": 101.587
+          },
+          {
+            "w": "with",
+            "t": 102.073
+          },
+          {
+            "w": "no",
+            "t": 102.559
+          },
+          {
+            "w": "unindexed",
+            "t": 103.045
+          },
+          {
+            "w": "repeating",
+            "t": 103.53
+          },
+          {
+            "w": "arrays.",
+            "t": 104.016
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Semi-structured records discard the requirement of a universal global schema. As formalized by Serge Abiteboul, records are modeled as rooted, labeled, directed trees where vertices represent nested dictionaries or lists, and leaf nodes contain scalar union values.",
+        "start": 105.252,
+        "end": 121.74,
+        "words": [
+          {
+            "w": "Semi-structured",
+            "t": 105.252
+          },
+          {
+            "w": "records",
+            "t": 105.698
+          },
+          {
+            "w": "discard",
+            "t": 106.143
+          },
+          {
+            "w": "the",
+            "t": 106.589
+          },
+          {
+            "w": "requirement",
+            "t": 107.034
+          },
+          {
+            "w": "of",
+            "t": 107.48
+          },
+          {
+            "w": "a",
+            "t": 107.926
+          },
+          {
+            "w": "universal",
+            "t": 108.371
+          },
+          {
+            "w": "global",
+            "t": 108.817
+          },
+          {
+            "w": "schema.",
+            "t": 109.263
+          },
+          {
+            "w": "As",
+            "t": 109.708
+          },
+          {
+            "w": "formalized",
+            "t": 110.154
+          },
+          {
+            "w": "by",
+            "t": 110.599
+          },
+          {
+            "w": "Serge",
+            "t": 111.045
+          },
+          {
+            "w": "Abiteboul,",
+            "t": 111.491
+          },
+          {
+            "w": "records",
+            "t": 111.936
+          },
+          {
+            "w": "are",
+            "t": 112.382
+          },
+          {
+            "w": "modeled",
+            "t": 112.828
+          },
+          {
+            "w": "as",
+            "t": 113.273
+          },
+          {
+            "w": "rooted,",
+            "t": 113.719
+          },
+          {
+            "w": "labeled,",
+            "t": 114.164
+          },
+          {
+            "w": "directed",
+            "t": 114.61
+          },
+          {
+            "w": "trees",
+            "t": 115.056
+          },
+          {
+            "w": "where",
+            "t": 115.501
+          },
+          {
+            "w": "vertices",
+            "t": 115.947
+          },
+          {
+            "w": "represent",
+            "t": 116.393
+          },
+          {
+            "w": "nested",
+            "t": 116.838
+          },
+          {
+            "w": "dictionaries",
+            "t": 117.284
+          },
+          {
+            "w": "or",
+            "t": 117.729
+          },
+          {
+            "w": "lists,",
+            "t": 118.175
+          },
+          {
+            "w": "and",
+            "t": 118.621
+          },
+          {
+            "w": "leaf",
+            "t": 119.066
+          },
+          {
+            "w": "nodes",
+            "t": 119.512
+          },
+          {
+            "w": "contain",
+            "t": 119.958
+          },
+          {
+            "w": "scalar",
+            "t": 120.403
+          },
+          {
+            "w": "union",
+            "t": 120.849
+          },
+          {
+            "w": "values.",
+            "t": 121.294
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "This tree structure introduces schema-on-read flexibility: records in the same collection can feature entirely different keys and variable array lengths without migration scripts. However, it incurs significant parser overhead and branch divergence during SIMD vectorization.",
+        "start": 122.09,
+        "end": 138.962,
+        "words": [
+          {
+            "w": "This",
+            "t": 122.09
+          },
+          {
+            "w": "tree",
+            "t": 122.572
+          },
+          {
+            "w": "structure",
+            "t": 123.054
+          },
+          {
+            "w": "introduces",
+            "t": 123.536
+          },
+          {
+            "w": "schema-on-read",
+            "t": 124.018
+          },
+          {
+            "w": "flexibility:",
+            "t": 124.5
+          },
+          {
+            "w": "records",
+            "t": 124.982
+          },
+          {
+            "w": "in",
+            "t": 125.464
+          },
+          {
+            "w": "the",
+            "t": 125.946
+          },
+          {
+            "w": "same",
+            "t": 126.429
+          },
+          {
+            "w": "collection",
+            "t": 126.911
+          },
+          {
+            "w": "can",
+            "t": 127.393
+          },
+          {
+            "w": "feature",
+            "t": 127.875
+          },
+          {
+            "w": "entirely",
+            "t": 128.357
+          },
+          {
+            "w": "different",
+            "t": 128.839
+          },
+          {
+            "w": "keys",
+            "t": 129.321
+          },
+          {
+            "w": "and",
+            "t": 129.803
+          },
+          {
+            "w": "variable",
+            "t": 130.285
+          },
+          {
+            "w": "array",
+            "t": 130.767
+          },
+          {
+            "w": "lengths",
+            "t": 131.249
+          },
+          {
+            "w": "without",
+            "t": 131.731
+          },
+          {
+            "w": "migration",
+            "t": 132.213
+          },
+          {
+            "w": "scripts.",
+            "t": 132.695
+          },
+          {
+            "w": "However,",
+            "t": 133.177
+          },
+          {
+            "w": "it",
+            "t": 133.659
+          },
+          {
+            "w": "incurs",
+            "t": 134.141
+          },
+          {
+            "w": "significant",
+            "t": 134.623
+          },
+          {
+            "w": "parser",
+            "t": 135.106
+          },
+          {
+            "w": "overhead",
+            "t": 135.588
+          },
+          {
+            "w": "and",
+            "t": 136.07
+          },
+          {
+            "w": "branch",
+            "t": 136.552
+          },
+          {
+            "w": "divergence",
+            "t": 137.034
+          },
+          {
+            "w": "during",
+            "t": 137.516
+          },
+          {
+            "w": "SIMD",
+            "t": 137.998
+          },
+          {
+            "w": "vectorization.",
+            "t": 138.48
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Unstructured datasets lack explicit schema attributes or field keys. Instead, observations represent digitized continuous physical signals: spatial image tensors with height, width, and color channels; acoustic 1D waveforms; or discrete token sequences from natural language vocabulary lexicons.",
+        "start": 139.712,
+        "end": 159.92,
+        "words": [
+          {
+            "w": "Unstructured",
+            "t": 139.712
+          },
+          {
+            "w": "datasets",
+            "t": 140.258
+          },
+          {
+            "w": "lack",
+            "t": 140.804
+          },
+          {
+            "w": "explicit",
+            "t": 141.35
+          },
+          {
+            "w": "schema",
+            "t": 141.897
+          },
+          {
+            "w": "attributes",
+            "t": 142.443
+          },
+          {
+            "w": "or",
+            "t": 142.989
+          },
+          {
+            "w": "field",
+            "t": 143.535
+          },
+          {
+            "w": "keys.",
+            "t": 144.081
+          },
+          {
+            "w": "Instead,",
+            "t": 144.627
+          },
+          {
+            "w": "observations",
+            "t": 145.174
+          },
+          {
+            "w": "represent",
+            "t": 145.72
+          },
+          {
+            "w": "digitized",
+            "t": 146.266
+          },
+          {
+            "w": "continuous",
+            "t": 146.812
+          },
+          {
+            "w": "physical",
+            "t": 147.358
+          },
+          {
+            "w": "signals:",
+            "t": 147.904
+          },
+          {
+            "w": "spatial",
+            "t": 148.451
+          },
+          {
+            "w": "image",
+            "t": 148.997
+          },
+          {
+            "w": "tensors",
+            "t": 149.543
+          },
+          {
+            "w": "with",
+            "t": 150.089
+          },
+          {
+            "w": "height,",
+            "t": 150.635
+          },
+          {
+            "w": "width,",
+            "t": 151.181
+          },
+          {
+            "w": "and",
+            "t": 151.728
+          },
+          {
+            "w": "color",
+            "t": 152.274
+          },
+          {
+            "w": "channels;",
+            "t": 152.82
+          },
+          {
+            "w": "acoustic",
+            "t": 153.366
+          },
+          {
+            "w": "1D",
+            "t": 153.912
+          },
+          {
+            "w": "waveforms;",
+            "t": 154.458
+          },
+          {
+            "w": "or",
+            "t": 155.005
+          },
+          {
+            "w": "discrete",
+            "t": 155.551
+          },
+          {
+            "w": "token",
+            "t": 156.097
+          },
+          {
+            "w": "sequences",
+            "t": 156.643
+          },
+          {
+            "w": "from",
+            "t": 157.189
+          },
+          {
+            "w": "natural",
+            "t": 157.735
+          },
+          {
+            "w": "language",
+            "t": 158.282
+          },
+          {
+            "w": "vocabulary",
+            "t": 158.828
+          },
+          {
+            "w": "lexicons.",
+            "t": 159.374
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Because raw physical signals possess enormous ambient dimensionality but low intrinsic manifold dimension, deep learning models learn a parameterized encoder f sub theta that projects raw observations onto structured dense embedding manifolds.",
+        "start": 160.27,
+        "end": 174.214,
+        "words": [
+          {
+            "w": "Because",
+            "t": 160.27
+          },
+          {
+            "w": "raw",
+            "t": 160.706
+          },
+          {
+            "w": "physical",
+            "t": 161.142
+          },
+          {
+            "w": "signals",
+            "t": 161.577
+          },
+          {
+            "w": "possess",
+            "t": 162.013
+          },
+          {
+            "w": "enormous",
+            "t": 162.449
+          },
+          {
+            "w": "ambient",
+            "t": 162.885
+          },
+          {
+            "w": "dimensionality",
+            "t": 163.32
+          },
+          {
+            "w": "but",
+            "t": 163.756
+          },
+          {
+            "w": "low",
+            "t": 164.192
+          },
+          {
+            "w": "intrinsic",
+            "t": 164.627
+          },
+          {
+            "w": "manifold",
+            "t": 165.063
+          },
+          {
+            "w": "dimension,",
+            "t": 165.499
+          },
+          {
+            "w": "deep",
+            "t": 165.935
+          },
+          {
+            "w": "learning",
+            "t": 166.371
+          },
+          {
+            "w": "models",
+            "t": 166.806
+          },
+          {
+            "w": "learn",
+            "t": 167.242
+          },
+          {
+            "w": "a",
+            "t": 167.678
+          },
+          {
+            "w": "parameterized",
+            "t": 168.114
+          },
+          {
+            "w": "encoder",
+            "t": 168.549
+          },
+          {
+            "w": "f",
+            "t": 168.985
+          },
+          {
+            "w": "sub",
+            "t": 169.421
+          },
+          {
+            "w": "theta",
+            "t": 169.857
+          },
+          {
+            "w": "that",
+            "t": 170.292
+          },
+          {
+            "w": "projects",
+            "t": 170.728
+          },
+          {
+            "w": "raw",
+            "t": 171.164
+          },
+          {
+            "w": "observations",
+            "t": 171.6
+          },
+          {
+            "w": "onto",
+            "t": 172.035
+          },
+          {
+            "w": "structured",
+            "t": 172.471
+          },
+          {
+            "w": "dense",
+            "t": 172.907
+          },
+          {
+            "w": "embedding",
+            "t": 173.343
+          },
+          {
+            "w": "manifolds.",
+            "t": 173.778
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Multi-Structure Inspector directly below! Look at the three structural modes: Relational Table, Semi-Structured JSON, and Unstructured 512-dimensional Vector Projections.",
+        "start": 174.964,
+        "end": 187.948,
+        "words": [
+          {
+            "w": "We",
+            "t": 174.964
+          },
+          {
+            "w": "have",
+            "t": 175.505
+          },
+          {
+            "w": "docked",
+            "t": 176.046
+          },
+          {
+            "w": "at",
+            "t": 176.587
+          },
+          {
+            "w": "the",
+            "t": 177.128
+          },
+          {
+            "w": "Multi-Structure",
+            "t": 177.669
+          },
+          {
+            "w": "Inspector",
+            "t": 178.21
+          },
+          {
+            "w": "directly",
+            "t": 178.751
+          },
+          {
+            "w": "below!",
+            "t": 179.292
+          },
+          {
+            "w": "Look",
+            "t": 179.833
+          },
+          {
+            "w": "at",
+            "t": 180.374
+          },
+          {
+            "w": "the",
+            "t": 180.915
+          },
+          {
+            "w": "three",
+            "t": 181.456
+          },
+          {
+            "w": "structural",
+            "t": 181.997
+          },
+          {
+            "w": "modes:",
+            "t": 182.538
+          },
+          {
+            "w": "Relational",
+            "t": 183.079
+          },
+          {
+            "w": "Table,",
+            "t": 183.62
+          },
+          {
+            "w": "Semi-Structured",
+            "t": 184.161
+          },
+          {
+            "w": "JSON,",
+            "t": 184.702
+          },
+          {
+            "w": "and",
+            "t": 185.243
+          },
+          {
+            "w": "Unstructured",
+            "t": 185.784
+          },
+          {
+            "w": "512-dimensional",
+            "t": 186.325
+          },
+          {
+            "w": "Vector",
+            "t": 186.866
+          },
+          {
+            "w": "Projections.",
+            "t": 187.407
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Try switching presets between E-Commerce, Clinical EHR, and Autonomous Driving. Notice how relational schemas require explicit foreign key joins, whereas semi-structured trees embed nested line items directly inside the document. Take a moment to inspect the trade-offs.",
+        "start": 188.298,
+        "end": 206.25,
+        "words": [
+          {
+            "w": "Try",
+            "t": 188.298
+          },
+          {
+            "w": "switching",
+            "t": 188.783
+          },
+          {
+            "w": "presets",
+            "t": 189.268
+          },
+          {
+            "w": "between",
+            "t": 189.754
+          },
+          {
+            "w": "E-Commerce,",
+            "t": 190.239
+          },
+          {
+            "w": "Clinical",
+            "t": 190.724
+          },
+          {
+            "w": "EHR,",
+            "t": 191.209
+          },
+          {
+            "w": "and",
+            "t": 191.694
+          },
+          {
+            "w": "Autonomous",
+            "t": 192.18
+          },
+          {
+            "w": "Driving.",
+            "t": 192.665
+          },
+          {
+            "w": "Notice",
+            "t": 193.15
+          },
+          {
+            "w": "how",
+            "t": 193.635
+          },
+          {
+            "w": "relational",
+            "t": 194.12
+          },
+          {
+            "w": "schemas",
+            "t": 194.605
+          },
+          {
+            "w": "require",
+            "t": 195.091
+          },
+          {
+            "w": "explicit",
+            "t": 195.576
+          },
+          {
+            "w": "foreign",
+            "t": 196.061
+          },
+          {
+            "w": "key",
+            "t": 196.546
+          },
+          {
+            "w": "joins,",
+            "t": 197.031
+          },
+          {
+            "w": "whereas",
+            "t": 197.517
+          },
+          {
+            "w": "semi-structured",
+            "t": 198.002
+          },
+          {
+            "w": "trees",
+            "t": 198.487
+          },
+          {
+            "w": "embed",
+            "t": 198.972
+          },
+          {
+            "w": "nested",
+            "t": 199.457
+          },
+          {
+            "w": "line",
+            "t": 199.943
+          },
+          {
+            "w": "items",
+            "t": 200.428
+          },
+          {
+            "w": "directly",
+            "t": 200.913
+          },
+          {
+            "w": "inside",
+            "t": 201.398
+          },
+          {
+            "w": "the",
+            "t": 201.883
+          },
+          {
+            "w": "document.",
+            "t": 202.368
+          },
+          {
+            "w": "Take",
+            "t": 202.854
+          },
+          {
+            "w": "a",
+            "t": 203.339
+          },
+          {
+            "w": "moment",
+            "t": 203.824
+          },
+          {
+            "w": "to",
+            "t": 204.309
+          },
+          {
+            "w": "inspect",
+            "t": 204.794
+          },
+          {
+            "w": "the",
+            "t": 205.28
+          },
+          {
+            "w": "trade-offs.",
+            "t": 205.765
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Now, let us test your architectural intuition on our active checkpoint question above me.",
+        "start": 207.0,
+        "end": 212.64,
+        "words": [
+          {
+            "w": "Now,",
+            "t": 207.0
+          },
+          {
+            "w": "let",
+            "t": 207.403
+          },
+          {
+            "w": "us",
+            "t": 207.806
+          },
+          {
+            "w": "test",
+            "t": 208.209
+          },
+          {
+            "w": "your",
+            "t": 208.611
+          },
+          {
+            "w": "architectural",
+            "t": 209.014
+          },
+          {
+            "w": "intuition",
+            "t": 209.417
+          },
+          {
+            "w": "on",
+            "t": 209.82
+          },
+          {
+            "w": "our",
+            "t": 210.223
+          },
+          {
+            "w": "active",
+            "t": 210.626
+          },
+          {
+            "w": "checkpoint",
+            "t": 211.029
+          },
+          {
+            "w": "question",
+            "t": 211.431
+          },
+          {
+            "w": "above",
+            "t": 211.834
+          },
+          {
+            "w": "me.",
+            "t": 212.237
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Here is your active checkpoint: When an ingestion service processes 100,000 JSON payloads per second where 5% of records add unexpected nested metadata, what is the optimal production storage strategy? Select Option A, B, or C above me!",
+        "start": 212.99,
+        "end": 229.166,
+        "words": [
+          {
+            "w": "Here",
+            "t": 212.99
+          },
+          {
+            "w": "is",
+            "t": 213.416
+          },
+          {
+            "w": "your",
+            "t": 213.841
+          },
+          {
+            "w": "active",
+            "t": 214.267
+          },
+          {
+            "w": "checkpoint:",
+            "t": 214.693
+          },
+          {
+            "w": "When",
+            "t": 215.118
+          },
+          {
+            "w": "an",
+            "t": 215.544
+          },
+          {
+            "w": "ingestion",
+            "t": 215.97
+          },
+          {
+            "w": "service",
+            "t": 216.395
+          },
+          {
+            "w": "processes",
+            "t": 216.821
+          },
+          {
+            "w": "100,000",
+            "t": 217.247
+          },
+          {
+            "w": "JSON",
+            "t": 217.673
+          },
+          {
+            "w": "payloads",
+            "t": 218.098
+          },
+          {
+            "w": "per",
+            "t": 218.524
+          },
+          {
+            "w": "second",
+            "t": 218.95
+          },
+          {
+            "w": "where",
+            "t": 219.375
+          },
+          {
+            "w": "5%",
+            "t": 219.801
+          },
+          {
+            "w": "of",
+            "t": 220.227
+          },
+          {
+            "w": "records",
+            "t": 220.652
+          },
+          {
+            "w": "add",
+            "t": 221.078
+          },
+          {
+            "w": "unexpected",
+            "t": 221.504
+          },
+          {
+            "w": "nested",
+            "t": 221.929
+          },
+          {
+            "w": "metadata,",
+            "t": 222.355
+          },
+          {
+            "w": "what",
+            "t": 222.781
+          },
+          {
+            "w": "is",
+            "t": 223.206
+          },
+          {
+            "w": "the",
+            "t": 223.632
+          },
+          {
+            "w": "optimal",
+            "t": 224.058
+          },
+          {
+            "w": "production",
+            "t": 224.483
+          },
+          {
+            "w": "storage",
+            "t": 224.909
+          },
+          {
+            "w": "strategy?",
+            "t": 225.335
+          },
+          {
+            "w": "Select",
+            "t": 225.761
+          },
+          {
+            "w": "Option",
+            "t": 226.186
+          },
+          {
+            "w": "A,",
+            "t": 226.612
+          },
+          {
+            "w": "B,",
+            "t": 227.038
+          },
+          {
+            "w": "or",
+            "t": 227.463
+          },
+          {
+            "w": "C",
+            "t": 227.889
+          },
+          {
+            "w": "above",
+            "t": 228.315
+          },
+          {
+            "w": "me!",
+            "t": 228.74
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Now we transition to the second fundamental axis: Temporal Dynamics. A static dataset is a closed, immutable snapshot captured between timestamps t start and t end. It guarantees deterministic scientific reproducibility for benchmarks like ImageNet and GLUE.",
+        "start": 229.916,
+        "end": 247.772,
+        "words": [
+          {
+            "w": "Now",
+            "t": 229.916
+          },
+          {
+            "w": "we",
+            "t": 230.399
+          },
+          {
+            "w": "transition",
+            "t": 230.881
+          },
+          {
+            "w": "to",
+            "t": 231.364
+          },
+          {
+            "w": "the",
+            "t": 231.846
+          },
+          {
+            "w": "second",
+            "t": 232.329
+          },
+          {
+            "w": "fundamental",
+            "t": 232.812
+          },
+          {
+            "w": "axis:",
+            "t": 233.294
+          },
+          {
+            "w": "Temporal",
+            "t": 233.777
+          },
+          {
+            "w": "Dynamics.",
+            "t": 234.259
+          },
+          {
+            "w": "A",
+            "t": 234.742
+          },
+          {
+            "w": "static",
+            "t": 235.225
+          },
+          {
+            "w": "dataset",
+            "t": 235.707
+          },
+          {
+            "w": "is",
+            "t": 236.19
+          },
+          {
+            "w": "a",
+            "t": 236.672
+          },
+          {
+            "w": "closed,",
+            "t": 237.155
+          },
+          {
+            "w": "immutable",
+            "t": 237.638
+          },
+          {
+            "w": "snapshot",
+            "t": 238.12
+          },
+          {
+            "w": "captured",
+            "t": 238.603
+          },
+          {
+            "w": "between",
+            "t": 239.085
+          },
+          {
+            "w": "timestamps",
+            "t": 239.568
+          },
+          {
+            "w": "t",
+            "t": 240.05
+          },
+          {
+            "w": "start",
+            "t": 240.533
+          },
+          {
+            "w": "and",
+            "t": 241.016
+          },
+          {
+            "w": "t",
+            "t": 241.498
+          },
+          {
+            "w": "end.",
+            "t": 241.981
+          },
+          {
+            "w": "It",
+            "t": 242.463
+          },
+          {
+            "w": "guarantees",
+            "t": 242.946
+          },
+          {
+            "w": "deterministic",
+            "t": 243.429
+          },
+          {
+            "w": "scientific",
+            "t": 243.911
+          },
+          {
+            "w": "reproducibility",
+            "t": 244.394
+          },
+          {
+            "w": "for",
+            "t": 244.876
+          },
+          {
+            "w": "benchmarks",
+            "t": 245.359
+          },
+          {
+            "w": "like",
+            "t": 245.842
+          },
+          {
+            "w": "ImageNet",
+            "t": 246.324
+          },
+          {
+            "w": "and",
+            "t": 246.807
+          },
+          {
+            "w": "GLUE.",
+            "t": 247.289
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "However, static datasets suffer from temporal covariate shift. As calendar time progresses into production, the physical universe diverges from the frozen training distribution. High validation accuracy on a static test set masks severe real-world performance decay.",
+        "start": 248.122,
+        "end": 265.33,
+        "words": [
+          {
+            "w": "However,",
+            "t": 248.122
+          },
+          {
+            "w": "static",
+            "t": 248.6
+          },
+          {
+            "w": "datasets",
+            "t": 249.078
+          },
+          {
+            "w": "suffer",
+            "t": 249.556
+          },
+          {
+            "w": "from",
+            "t": 250.034
+          },
+          {
+            "w": "temporal",
+            "t": 250.512
+          },
+          {
+            "w": "covariate",
+            "t": 250.99
+          },
+          {
+            "w": "shift.",
+            "t": 251.468
+          },
+          {
+            "w": "As",
+            "t": 251.946
+          },
+          {
+            "w": "calendar",
+            "t": 252.424
+          },
+          {
+            "w": "time",
+            "t": 252.902
+          },
+          {
+            "w": "progresses",
+            "t": 253.38
+          },
+          {
+            "w": "into",
+            "t": 253.858
+          },
+          {
+            "w": "production,",
+            "t": 254.336
+          },
+          {
+            "w": "the",
+            "t": 254.814
+          },
+          {
+            "w": "physical",
+            "t": 255.292
+          },
+          {
+            "w": "universe",
+            "t": 255.77
+          },
+          {
+            "w": "diverges",
+            "t": 256.248
+          },
+          {
+            "w": "from",
+            "t": 256.726
+          },
+          {
+            "w": "the",
+            "t": 257.204
+          },
+          {
+            "w": "frozen",
+            "t": 257.682
+          },
+          {
+            "w": "training",
+            "t": 258.16
+          },
+          {
+            "w": "distribution.",
+            "t": 258.638
+          },
+          {
+            "w": "High",
+            "t": 259.116
+          },
+          {
+            "w": "validation",
+            "t": 259.594
+          },
+          {
+            "w": "accuracy",
+            "t": 260.072
+          },
+          {
+            "w": "on",
+            "t": 260.55
+          },
+          {
+            "w": "a",
+            "t": 261.028
+          },
+          {
+            "w": "static",
+            "t": 261.506
+          },
+          {
+            "w": "test",
+            "t": 261.984
+          },
+          {
+            "w": "set",
+            "t": 262.462
+          },
+          {
+            "w": "masks",
+            "t": 262.94
+          },
+          {
+            "w": "severe",
+            "t": 263.418
+          },
+          {
+            "w": "real-world",
+            "t": 263.896
+          },
+          {
+            "w": "performance",
+            "t": 264.374
+          },
+          {
+            "w": "decay.",
+            "t": 264.852
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "In dynamic streaming, data arrives as an infinite, unbounded sequence of timestamped tuples. Unlike static datasets, streaming data exhibits non-stationarity: the conditional probability mapping from inputs to outputs drifts over time.",
+        "start": 266.08,
+        "end": 281.032,
+        "words": [
+          {
+            "w": "In",
+            "t": 266.08
+          },
+          {
+            "w": "dynamic",
+            "t": 266.562
+          },
+          {
+            "w": "streaming,",
+            "t": 267.045
+          },
+          {
+            "w": "data",
+            "t": 267.527
+          },
+          {
+            "w": "arrives",
+            "t": 268.009
+          },
+          {
+            "w": "as",
+            "t": 268.492
+          },
+          {
+            "w": "an",
+            "t": 268.974
+          },
+          {
+            "w": "infinite,",
+            "t": 269.456
+          },
+          {
+            "w": "unbounded",
+            "t": 269.939
+          },
+          {
+            "w": "sequence",
+            "t": 270.421
+          },
+          {
+            "w": "of",
+            "t": 270.903
+          },
+          {
+            "w": "timestamped",
+            "t": 271.386
+          },
+          {
+            "w": "tuples.",
+            "t": 271.868
+          },
+          {
+            "w": "Unlike",
+            "t": 272.35
+          },
+          {
+            "w": "static",
+            "t": 272.833
+          },
+          {
+            "w": "datasets,",
+            "t": 273.315
+          },
+          {
+            "w": "streaming",
+            "t": 273.797
+          },
+          {
+            "w": "data",
+            "t": 274.279
+          },
+          {
+            "w": "exhibits",
+            "t": 274.762
+          },
+          {
+            "w": "non-stationarity:",
+            "t": 275.244
+          },
+          {
+            "w": "the",
+            "t": 275.726
+          },
+          {
+            "w": "conditional",
+            "t": 276.209
+          },
+          {
+            "w": "probability",
+            "t": 276.691
+          },
+          {
+            "w": "mapping",
+            "t": 277.173
+          },
+          {
+            "w": "from",
+            "t": 277.656
+          },
+          {
+            "w": "inputs",
+            "t": 278.138
+          },
+          {
+            "w": "to",
+            "t": 278.62
+          },
+          {
+            "w": "outputs",
+            "t": 279.103
+          },
+          {
+            "w": "drifts",
+            "t": 279.585
+          },
+          {
+            "w": "over",
+            "t": 280.067
+          },
+          {
+            "w": "time.",
+            "t": 280.55
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Notice the sequence diagram: events flow continuously from physical sensors and financial order feeds into Kafka buffers. The streaming engine must slice this infinite river into discrete window aggregations before flushing micro-batches to cold storage.",
+        "start": 281.382,
+        "end": 296.646,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 281.382
+          },
+          {
+            "w": "the",
+            "t": 281.818
+          },
+          {
+            "w": "sequence",
+            "t": 282.254
+          },
+          {
+            "w": "diagram:",
+            "t": 282.69
+          },
+          {
+            "w": "events",
+            "t": 283.126
+          },
+          {
+            "w": "flow",
+            "t": 283.563
+          },
+          {
+            "w": "continuously",
+            "t": 283.999
+          },
+          {
+            "w": "from",
+            "t": 284.435
+          },
+          {
+            "w": "physical",
+            "t": 284.871
+          },
+          {
+            "w": "sensors",
+            "t": 285.307
+          },
+          {
+            "w": "and",
+            "t": 285.743
+          },
+          {
+            "w": "financial",
+            "t": 286.179
+          },
+          {
+            "w": "order",
+            "t": 286.615
+          },
+          {
+            "w": "feeds",
+            "t": 287.051
+          },
+          {
+            "w": "into",
+            "t": 287.488
+          },
+          {
+            "w": "Kafka",
+            "t": 287.924
+          },
+          {
+            "w": "buffers.",
+            "t": 288.36
+          },
+          {
+            "w": "The",
+            "t": 288.796
+          },
+          {
+            "w": "streaming",
+            "t": 289.232
+          },
+          {
+            "w": "engine",
+            "t": 289.668
+          },
+          {
+            "w": "must",
+            "t": 290.104
+          },
+          {
+            "w": "slice",
+            "t": 290.54
+          },
+          {
+            "w": "this",
+            "t": 290.977
+          },
+          {
+            "w": "infinite",
+            "t": 291.413
+          },
+          {
+            "w": "river",
+            "t": 291.849
+          },
+          {
+            "w": "into",
+            "t": 292.285
+          },
+          {
+            "w": "discrete",
+            "t": 292.721
+          },
+          {
+            "w": "window",
+            "t": 293.157
+          },
+          {
+            "w": "aggregations",
+            "t": 293.593
+          },
+          {
+            "w": "before",
+            "t": 294.029
+          },
+          {
+            "w": "flushing",
+            "t": 294.465
+          },
+          {
+            "w": "micro-batches",
+            "t": 294.902
+          },
+          {
+            "w": "to",
+            "t": 295.338
+          },
+          {
+            "w": "cold",
+            "t": 295.774
+          },
+          {
+            "w": "storage.",
+            "t": 296.21
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "To extract stationary feature vectors from infinite streams, stream processing engines employ three distinct windowing topologies: Tumbling windows, Sliding windows, and Session windows.",
+        "start": 297.396,
+        "end": 309.084,
+        "words": [
+          {
+            "w": "To",
+            "t": 297.396
+          },
+          {
+            "w": "extract",
+            "t": 297.904
+          },
+          {
+            "w": "stationary",
+            "t": 298.412
+          },
+          {
+            "w": "feature",
+            "t": 298.921
+          },
+          {
+            "w": "vectors",
+            "t": 299.429
+          },
+          {
+            "w": "from",
+            "t": 299.937
+          },
+          {
+            "w": "infinite",
+            "t": 300.445
+          },
+          {
+            "w": "streams,",
+            "t": 300.953
+          },
+          {
+            "w": "stream",
+            "t": 301.461
+          },
+          {
+            "w": "processing",
+            "t": 301.97
+          },
+          {
+            "w": "engines",
+            "t": 302.478
+          },
+          {
+            "w": "employ",
+            "t": 302.986
+          },
+          {
+            "w": "three",
+            "t": 303.494
+          },
+          {
+            "w": "distinct",
+            "t": 304.002
+          },
+          {
+            "w": "windowing",
+            "t": 304.51
+          },
+          {
+            "w": "topologies:",
+            "t": 305.019
+          },
+          {
+            "w": "Tumbling",
+            "t": 305.527
+          },
+          {
+            "w": "windows,",
+            "t": 306.035
+          },
+          {
+            "w": "Sliding",
+            "t": 306.543
+          },
+          {
+            "w": "windows,",
+            "t": 307.051
+          },
+          {
+            "w": "and",
+            "t": 307.559
+          },
+          {
+            "w": "Session",
+            "t": 308.068
+          },
+          {
+            "w": "windows.",
+            "t": 308.576
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Tumbling windows partition time into non-overlapping contiguous intervals of width delta t. Sliding windows advance by a smaller step delta, creating overlapping evaluation frames. Session windows adapt dynamically, closing only when user inactivity exceeds an idle gap threshold.",
+        "start": 309.434,
+        "end": 326.714,
+        "words": [
+          {
+            "w": "Tumbling",
+            "t": 309.434
+          },
+          {
+            "w": "windows",
+            "t": 309.889
+          },
+          {
+            "w": "partition",
+            "t": 310.343
+          },
+          {
+            "w": "time",
+            "t": 310.798
+          },
+          {
+            "w": "into",
+            "t": 311.253
+          },
+          {
+            "w": "non-overlapping",
+            "t": 311.708
+          },
+          {
+            "w": "contiguous",
+            "t": 312.162
+          },
+          {
+            "w": "intervals",
+            "t": 312.617
+          },
+          {
+            "w": "of",
+            "t": 313.072
+          },
+          {
+            "w": "width",
+            "t": 313.527
+          },
+          {
+            "w": "delta",
+            "t": 313.981
+          },
+          {
+            "w": "t.",
+            "t": 314.436
+          },
+          {
+            "w": "Sliding",
+            "t": 314.891
+          },
+          {
+            "w": "windows",
+            "t": 315.346
+          },
+          {
+            "w": "advance",
+            "t": 315.8
+          },
+          {
+            "w": "by",
+            "t": 316.255
+          },
+          {
+            "w": "a",
+            "t": 316.71
+          },
+          {
+            "w": "smaller",
+            "t": 317.165
+          },
+          {
+            "w": "step",
+            "t": 317.619
+          },
+          {
+            "w": "delta,",
+            "t": 318.074
+          },
+          {
+            "w": "creating",
+            "t": 318.529
+          },
+          {
+            "w": "overlapping",
+            "t": 318.983
+          },
+          {
+            "w": "evaluation",
+            "t": 319.438
+          },
+          {
+            "w": "frames.",
+            "t": 319.893
+          },
+          {
+            "w": "Session",
+            "t": 320.348
+          },
+          {
+            "w": "windows",
+            "t": 320.802
+          },
+          {
+            "w": "adapt",
+            "t": 321.257
+          },
+          {
+            "w": "dynamically,",
+            "t": 321.712
+          },
+          {
+            "w": "closing",
+            "t": 322.167
+          },
+          {
+            "w": "only",
+            "t": 322.621
+          },
+          {
+            "w": "when",
+            "t": 323.076
+          },
+          {
+            "w": "user",
+            "t": 323.531
+          },
+          {
+            "w": "inactivity",
+            "t": 323.986
+          },
+          {
+            "w": "exceeds",
+            "t": 324.44
+          },
+          {
+            "w": "an",
+            "t": 324.895
+          },
+          {
+            "w": "idle",
+            "t": 325.35
+          },
+          {
+            "w": "gap",
+            "t": 325.805
+          },
+          {
+            "w": "threshold.",
+            "t": 326.259
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "In distributed networks, transmission jitter causes out-of-order delivery. Event-time t event marks when an observation occurred on the physical sensor, whereas processing-time t proc marks when the server ingest worker observed it.",
+        "start": 327.464,
+        "end": 341.48,
+        "words": [
+          {
+            "w": "In",
+            "t": 327.464
+          },
+          {
+            "w": "distributed",
+            "t": 327.902
+          },
+          {
+            "w": "networks,",
+            "t": 328.34
+          },
+          {
+            "w": "transmission",
+            "t": 328.778
+          },
+          {
+            "w": "jitter",
+            "t": 329.216
+          },
+          {
+            "w": "causes",
+            "t": 329.654
+          },
+          {
+            "w": "out-of-order",
+            "t": 330.092
+          },
+          {
+            "w": "delivery.",
+            "t": 330.53
+          },
+          {
+            "w": "Event-time",
+            "t": 330.968
+          },
+          {
+            "w": "t",
+            "t": 331.406
+          },
+          {
+            "w": "event",
+            "t": 331.844
+          },
+          {
+            "w": "marks",
+            "t": 332.282
+          },
+          {
+            "w": "when",
+            "t": 332.72
+          },
+          {
+            "w": "an",
+            "t": 333.158
+          },
+          {
+            "w": "observation",
+            "t": 333.596
+          },
+          {
+            "w": "occurred",
+            "t": 334.034
+          },
+          {
+            "w": "on",
+            "t": 334.472
+          },
+          {
+            "w": "the",
+            "t": 334.91
+          },
+          {
+            "w": "physical",
+            "t": 335.348
+          },
+          {
+            "w": "sensor,",
+            "t": 335.786
+          },
+          {
+            "w": "whereas",
+            "t": 336.224
+          },
+          {
+            "w": "processing-time",
+            "t": 336.662
+          },
+          {
+            "w": "t",
+            "t": 337.1
+          },
+          {
+            "w": "proc",
+            "t": 337.538
+          },
+          {
+            "w": "marks",
+            "t": 337.976
+          },
+          {
+            "w": "when",
+            "t": 338.414
+          },
+          {
+            "w": "the",
+            "t": 338.852
+          },
+          {
+            "w": "server",
+            "t": 339.29
+          },
+          {
+            "w": "ingest",
+            "t": 339.728
+          },
+          {
+            "w": "worker",
+            "t": 340.166
+          },
+          {
+            "w": "observed",
+            "t": 340.604
+          },
+          {
+            "w": "it.",
+            "t": 341.042
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Stream processing engines resolve this asynchrony using a watermark function: Watermark t equals the maximum observed event timestamp minus a permitted lag threshold tau. When the watermark passes window boundary W end, the window seals and calculates its final output.",
+        "start": 341.83,
+        "end": 358.414,
+        "words": [
+          {
+            "w": "Stream",
+            "t": 341.83
+          },
+          {
+            "w": "processing",
+            "t": 342.245
+          },
+          {
+            "w": "engines",
+            "t": 342.659
+          },
+          {
+            "w": "resolve",
+            "t": 343.074
+          },
+          {
+            "w": "this",
+            "t": 343.488
+          },
+          {
+            "w": "asynchrony",
+            "t": 343.903
+          },
+          {
+            "w": "using",
+            "t": 344.318
+          },
+          {
+            "w": "a",
+            "t": 344.732
+          },
+          {
+            "w": "watermark",
+            "t": 345.147
+          },
+          {
+            "w": "function:",
+            "t": 345.561
+          },
+          {
+            "w": "Watermark",
+            "t": 345.976
+          },
+          {
+            "w": "t",
+            "t": 346.391
+          },
+          {
+            "w": "equals",
+            "t": 346.805
+          },
+          {
+            "w": "the",
+            "t": 347.22
+          },
+          {
+            "w": "maximum",
+            "t": 347.634
+          },
+          {
+            "w": "observed",
+            "t": 348.049
+          },
+          {
+            "w": "event",
+            "t": 348.464
+          },
+          {
+            "w": "timestamp",
+            "t": 348.878
+          },
+          {
+            "w": "minus",
+            "t": 349.293
+          },
+          {
+            "w": "a",
+            "t": 349.707
+          },
+          {
+            "w": "permitted",
+            "t": 350.122
+          },
+          {
+            "w": "lag",
+            "t": 350.537
+          },
+          {
+            "w": "threshold",
+            "t": 350.951
+          },
+          {
+            "w": "tau.",
+            "t": 351.366
+          },
+          {
+            "w": "When",
+            "t": 351.78
+          },
+          {
+            "w": "the",
+            "t": 352.195
+          },
+          {
+            "w": "watermark",
+            "t": 352.61
+          },
+          {
+            "w": "passes",
+            "t": 353.024
+          },
+          {
+            "w": "window",
+            "t": 353.439
+          },
+          {
+            "w": "boundary",
+            "t": 353.853
+          },
+          {
+            "w": "W",
+            "t": 354.268
+          },
+          {
+            "w": "end,",
+            "t": 354.683
+          },
+          {
+            "w": "the",
+            "t": 355.097
+          },
+          {
+            "w": "window",
+            "t": 355.512
+          },
+          {
+            "w": "seals",
+            "t": 355.926
+          },
+          {
+            "w": "and",
+            "t": 356.341
+          },
+          {
+            "w": "calculates",
+            "t": 356.756
+          },
+          {
+            "w": "its",
+            "t": 357.17
+          },
+          {
+            "w": "final",
+            "t": 357.585
+          },
+          {
+            "w": "output.",
+            "t": 357.999
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Dynamic Tumbling Window Simulator directly below! Watch the live waveform canvas. As real-time temperature telemetry arrives, the engine fills a 6-event tumbling window buffer.",
+        "start": 359.164,
+        "end": 372.268,
+        "words": [
+          {
+            "w": "We",
+            "t": 359.164
+          },
+          {
+            "w": "have",
+            "t": 359.616
+          },
+          {
+            "w": "docked",
+            "t": 360.068
+          },
+          {
+            "w": "at",
+            "t": 360.52
+          },
+          {
+            "w": "the",
+            "t": 360.971
+          },
+          {
+            "w": "Dynamic",
+            "t": 361.423
+          },
+          {
+            "w": "Tumbling",
+            "t": 361.875
+          },
+          {
+            "w": "Window",
+            "t": 362.327
+          },
+          {
+            "w": "Simulator",
+            "t": 362.779
+          },
+          {
+            "w": "directly",
+            "t": 363.231
+          },
+          {
+            "w": "below!",
+            "t": 363.683
+          },
+          {
+            "w": "Watch",
+            "t": 364.134
+          },
+          {
+            "w": "the",
+            "t": 364.586
+          },
+          {
+            "w": "live",
+            "t": 365.038
+          },
+          {
+            "w": "waveform",
+            "t": 365.49
+          },
+          {
+            "w": "canvas.",
+            "t": 365.942
+          },
+          {
+            "w": "As",
+            "t": 366.394
+          },
+          {
+            "w": "real-time",
+            "t": 366.846
+          },
+          {
+            "w": "temperature",
+            "t": 367.298
+          },
+          {
+            "w": "telemetry",
+            "t": 367.749
+          },
+          {
+            "w": "arrives,",
+            "t": 368.201
+          },
+          {
+            "w": "the",
+            "t": 368.653
+          },
+          {
+            "w": "engine",
+            "t": 369.105
+          },
+          {
+            "w": "fills",
+            "t": 369.557
+          },
+          {
+            "w": "a",
+            "t": 370.009
+          },
+          {
+            "w": "6-event",
+            "t": 370.461
+          },
+          {
+            "w": "tumbling",
+            "t": 370.912
+          },
+          {
+            "w": "window",
+            "t": 371.364
+          },
+          {
+            "w": "buffer.",
+            "t": 371.816
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Notice the red threshold line at 72 degrees Celsius. When the window mean exceeds 72 degrees, an immediate critical alarm triggers! Try clicking 'Inject Late Record' or 'Burst 5 Events' above us to observe window eviction and watermark enforcement.",
+        "start": 372.618,
+        "end": 389.274,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 372.618
+          },
+          {
+            "w": "the",
+            "t": 373.045
+          },
+          {
+            "w": "red",
+            "t": 373.472
+          },
+          {
+            "w": "threshold",
+            "t": 373.899
+          },
+          {
+            "w": "line",
+            "t": 374.326
+          },
+          {
+            "w": "at",
+            "t": 374.753
+          },
+          {
+            "w": "72",
+            "t": 375.18
+          },
+          {
+            "w": "degrees",
+            "t": 375.608
+          },
+          {
+            "w": "Celsius.",
+            "t": 376.035
+          },
+          {
+            "w": "When",
+            "t": 376.462
+          },
+          {
+            "w": "the",
+            "t": 376.889
+          },
+          {
+            "w": "window",
+            "t": 377.316
+          },
+          {
+            "w": "mean",
+            "t": 377.743
+          },
+          {
+            "w": "exceeds",
+            "t": 378.17
+          },
+          {
+            "w": "72",
+            "t": 378.597
+          },
+          {
+            "w": "degrees,",
+            "t": 379.024
+          },
+          {
+            "w": "an",
+            "t": 379.451
+          },
+          {
+            "w": "immediate",
+            "t": 379.878
+          },
+          {
+            "w": "critical",
+            "t": 380.305
+          },
+          {
+            "w": "alarm",
+            "t": 380.732
+          },
+          {
+            "w": "triggers!",
+            "t": 381.16
+          },
+          {
+            "w": "Try",
+            "t": 381.587
+          },
+          {
+            "w": "clicking",
+            "t": 382.014
+          },
+          {
+            "w": "'Inject",
+            "t": 382.441
+          },
+          {
+            "w": "Late",
+            "t": 382.868
+          },
+          {
+            "w": "Record'",
+            "t": 383.295
+          },
+          {
+            "w": "or",
+            "t": 383.722
+          },
+          {
+            "w": "'Burst",
+            "t": 384.149
+          },
+          {
+            "w": "5",
+            "t": 384.576
+          },
+          {
+            "w": "Events'",
+            "t": 385.003
+          },
+          {
+            "w": "above",
+            "t": 385.43
+          },
+          {
+            "w": "us",
+            "t": 385.857
+          },
+          {
+            "w": "to",
+            "t": 386.284
+          },
+          {
+            "w": "observe",
+            "t": 386.712
+          },
+          {
+            "w": "window",
+            "t": 387.139
+          },
+          {
+            "w": "eviction",
+            "t": 387.566
+          },
+          {
+            "w": "and",
+            "t": 387.993
+          },
+          {
+            "w": "watermark",
+            "t": 388.42
+          },
+          {
+            "w": "enforcement.",
+            "t": 388.847
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Now, let us test your architectural intuition on our streaming checkpoint question above me.",
+        "start": 390.024,
+        "end": 395.784,
+        "words": [
+          {
+            "w": "Now,",
+            "t": 390.024
+          },
+          {
+            "w": "let",
+            "t": 390.435
+          },
+          {
+            "w": "us",
+            "t": 390.847
+          },
+          {
+            "w": "test",
+            "t": 391.258
+          },
+          {
+            "w": "your",
+            "t": 391.67
+          },
+          {
+            "w": "architectural",
+            "t": 392.081
+          },
+          {
+            "w": "intuition",
+            "t": 392.493
+          },
+          {
+            "w": "on",
+            "t": 392.904
+          },
+          {
+            "w": "our",
+            "t": 393.315
+          },
+          {
+            "w": "streaming",
+            "t": 393.727
+          },
+          {
+            "w": "checkpoint",
+            "t": 394.138
+          },
+          {
+            "w": "question",
+            "t": 394.55
+          },
+          {
+            "w": "above",
+            "t": 394.961
+          },
+          {
+            "w": "me.",
+            "t": 395.373
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Here is your active checkpoint: An IoT telemetry sensor network experiences a 500-millisecond network jitter. If you configure your streaming watermark threshold to tau lag equals 100 milliseconds, what happens to records arriving with a 350-millisecond transit delay? Select Option A, B, or C above me!",
+        "start": 396.134,
+        "end": 417.086,
+        "words": [
+          {
+            "w": "Here",
+            "t": 396.134
+          },
+          {
+            "w": "is",
+            "t": 396.589
+          },
+          {
+            "w": "your",
+            "t": 397.045
+          },
+          {
+            "w": "active",
+            "t": 397.5
+          },
+          {
+            "w": "checkpoint:",
+            "t": 397.956
+          },
+          {
+            "w": "An",
+            "t": 398.411
+          },
+          {
+            "w": "IoT",
+            "t": 398.867
+          },
+          {
+            "w": "telemetry",
+            "t": 399.322
+          },
+          {
+            "w": "sensor",
+            "t": 399.778
+          },
+          {
+            "w": "network",
+            "t": 400.233
+          },
+          {
+            "w": "experiences",
+            "t": 400.689
+          },
+          {
+            "w": "a",
+            "t": 401.144
+          },
+          {
+            "w": "500-millisecond",
+            "t": 401.6
+          },
+          {
+            "w": "network",
+            "t": 402.055
+          },
+          {
+            "w": "jitter.",
+            "t": 402.511
+          },
+          {
+            "w": "If",
+            "t": 402.966
+          },
+          {
+            "w": "you",
+            "t": 403.422
+          },
+          {
+            "w": "configure",
+            "t": 403.877
+          },
+          {
+            "w": "your",
+            "t": 404.333
+          },
+          {
+            "w": "streaming",
+            "t": 404.788
+          },
+          {
+            "w": "watermark",
+            "t": 405.244
+          },
+          {
+            "w": "threshold",
+            "t": 405.699
+          },
+          {
+            "w": "to",
+            "t": 406.155
+          },
+          {
+            "w": "tau",
+            "t": 406.61
+          },
+          {
+            "w": "lag",
+            "t": 407.065
+          },
+          {
+            "w": "equals",
+            "t": 407.521
+          },
+          {
+            "w": "100",
+            "t": 407.976
+          },
+          {
+            "w": "milliseconds,",
+            "t": 408.432
+          },
+          {
+            "w": "what",
+            "t": 408.887
+          },
+          {
+            "w": "happens",
+            "t": 409.343
+          },
+          {
+            "w": "to",
+            "t": 409.798
+          },
+          {
+            "w": "records",
+            "t": 410.254
+          },
+          {
+            "w": "arriving",
+            "t": 410.709
+          },
+          {
+            "w": "with",
+            "t": 411.165
+          },
+          {
+            "w": "a",
+            "t": 411.62
+          },
+          {
+            "w": "350-millisecond",
+            "t": 412.076
+          },
+          {
+            "w": "transit",
+            "t": 412.531
+          },
+          {
+            "w": "delay?",
+            "t": 412.987
+          },
+          {
+            "w": "Select",
+            "t": 413.442
+          },
+          {
+            "w": "Option",
+            "t": 413.898
+          },
+          {
+            "w": "A,",
+            "t": 414.353
+          },
+          {
+            "w": "B,",
+            "t": 414.809
+          },
+          {
+            "w": "or",
+            "t": 415.264
+          },
+          {
+            "w": "C",
+            "t": 415.72
+          },
+          {
+            "w": "above",
+            "t": 416.175
+          },
+          {
+            "w": "me!",
+            "t": 416.631
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Enterprise systems never operate on a single isolated data type. In Case Study A, modern e-commerce recommendation platforms join relational PostgreSQL customer accounts with semi-structured JSON clickstream logs and 512-dimensional product image embeddings into a unified feature store.",
+        "start": 417.836,
+        "end": 436.268,
+        "words": [
+          {
+            "w": "Enterprise",
+            "t": 417.836
+          },
+          {
+            "w": "systems",
+            "t": 418.321
+          },
+          {
+            "w": "never",
+            "t": 418.806
+          },
+          {
+            "w": "operate",
+            "t": 419.291
+          },
+          {
+            "w": "on",
+            "t": 419.776
+          },
+          {
+            "w": "a",
+            "t": 420.261
+          },
+          {
+            "w": "single",
+            "t": 420.746
+          },
+          {
+            "w": "isolated",
+            "t": 421.231
+          },
+          {
+            "w": "data",
+            "t": 421.716
+          },
+          {
+            "w": "type.",
+            "t": 422.201
+          },
+          {
+            "w": "In",
+            "t": 422.687
+          },
+          {
+            "w": "Case",
+            "t": 423.172
+          },
+          {
+            "w": "Study",
+            "t": 423.657
+          },
+          {
+            "w": "A,",
+            "t": 424.142
+          },
+          {
+            "w": "modern",
+            "t": 424.627
+          },
+          {
+            "w": "e-commerce",
+            "t": 425.112
+          },
+          {
+            "w": "recommendation",
+            "t": 425.597
+          },
+          {
+            "w": "platforms",
+            "t": 426.082
+          },
+          {
+            "w": "join",
+            "t": 426.567
+          },
+          {
+            "w": "relational",
+            "t": 427.052
+          },
+          {
+            "w": "PostgreSQL",
+            "t": 427.537
+          },
+          {
+            "w": "customer",
+            "t": 428.022
+          },
+          {
+            "w": "accounts",
+            "t": 428.507
+          },
+          {
+            "w": "with",
+            "t": 428.992
+          },
+          {
+            "w": "semi-structured",
+            "t": 429.477
+          },
+          {
+            "w": "JSON",
+            "t": 429.962
+          },
+          {
+            "w": "clickstream",
+            "t": 430.447
+          },
+          {
+            "w": "logs",
+            "t": 430.932
+          },
+          {
+            "w": "and",
+            "t": 431.417
+          },
+          {
+            "w": "512-dimensional",
+            "t": 431.903
+          },
+          {
+            "w": "product",
+            "t": 432.388
+          },
+          {
+            "w": "image",
+            "t": 432.873
+          },
+          {
+            "w": "embeddings",
+            "t": 433.358
+          },
+          {
+            "w": "into",
+            "t": 433.843
+          },
+          {
+            "w": "a",
+            "t": 434.328
+          },
+          {
+            "w": "unified",
+            "t": 434.813
+          },
+          {
+            "w": "feature",
+            "t": 435.298
+          },
+          {
+            "w": "store.",
+            "t": 435.783
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "In Case Study B, algorithmic high-frequency trading processes nanosecond UDP tick feeds for Limit Order Books. Treating tick feeds as static batches causes fatal lookahead bias, proving why temporal isolation and clock synchronization are paramount.",
+        "start": 436.618,
+        "end": 452.89,
+        "words": [
+          {
+            "w": "In",
+            "t": 436.618
+          },
+          {
+            "w": "Case",
+            "t": 437.083
+          },
+          {
+            "w": "Study",
+            "t": 437.548
+          },
+          {
+            "w": "B,",
+            "t": 438.013
+          },
+          {
+            "w": "algorithmic",
+            "t": 438.478
+          },
+          {
+            "w": "high-frequency",
+            "t": 438.943
+          },
+          {
+            "w": "trading",
+            "t": 439.407
+          },
+          {
+            "w": "processes",
+            "t": 439.872
+          },
+          {
+            "w": "nanosecond",
+            "t": 440.337
+          },
+          {
+            "w": "UDP",
+            "t": 440.802
+          },
+          {
+            "w": "tick",
+            "t": 441.267
+          },
+          {
+            "w": "feeds",
+            "t": 441.732
+          },
+          {
+            "w": "for",
+            "t": 442.197
+          },
+          {
+            "w": "Limit",
+            "t": 442.662
+          },
+          {
+            "w": "Order",
+            "t": 443.127
+          },
+          {
+            "w": "Books.",
+            "t": 443.592
+          },
+          {
+            "w": "Treating",
+            "t": 444.057
+          },
+          {
+            "w": "tick",
+            "t": 444.522
+          },
+          {
+            "w": "feeds",
+            "t": 444.986
+          },
+          {
+            "w": "as",
+            "t": 445.451
+          },
+          {
+            "w": "static",
+            "t": 445.916
+          },
+          {
+            "w": "batches",
+            "t": 446.381
+          },
+          {
+            "w": "causes",
+            "t": 446.846
+          },
+          {
+            "w": "fatal",
+            "t": 447.311
+          },
+          {
+            "w": "lookahead",
+            "t": 447.776
+          },
+          {
+            "w": "bias,",
+            "t": 448.241
+          },
+          {
+            "w": "proving",
+            "t": 448.706
+          },
+          {
+            "w": "why",
+            "t": 449.171
+          },
+          {
+            "w": "temporal",
+            "t": 449.636
+          },
+          {
+            "w": "isolation",
+            "t": 450.101
+          },
+          {
+            "w": "and",
+            "t": 450.565
+          },
+          {
+            "w": "clock",
+            "t": 451.03
+          },
+          {
+            "w": "synchronization",
+            "t": 451.495
+          },
+          {
+            "w": "are",
+            "t": 451.96
+          },
+          {
+            "w": "paramount.",
+            "t": 452.425
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Here is synthesizable production code demonstrating how to ingest semi-structured JSON events, enforce Pydantic V2 boundary contracts, and vectorize them into zero-copy columnar Polars DataFrames.",
+        "start": 453.64,
+        "end": 466.048,
+        "words": [
+          {
+            "w": "Here",
+            "t": 453.64
+          },
+          {
+            "w": "is",
+            "t": 454.136
+          },
+          {
+            "w": "synthesizable",
+            "t": 454.633
+          },
+          {
+            "w": "production",
+            "t": 455.129
+          },
+          {
+            "w": "code",
+            "t": 455.625
+          },
+          {
+            "w": "demonstrating",
+            "t": 456.122
+          },
+          {
+            "w": "how",
+            "t": 456.618
+          },
+          {
+            "w": "to",
+            "t": 457.114
+          },
+          {
+            "w": "ingest",
+            "t": 457.611
+          },
+          {
+            "w": "semi-structured",
+            "t": 458.107
+          },
+          {
+            "w": "JSON",
+            "t": 458.603
+          },
+          {
+            "w": "events,",
+            "t": 459.1
+          },
+          {
+            "w": "enforce",
+            "t": 459.596
+          },
+          {
+            "w": "Pydantic",
+            "t": 460.092
+          },
+          {
+            "w": "V2",
+            "t": 460.588
+          },
+          {
+            "w": "boundary",
+            "t": 461.085
+          },
+          {
+            "w": "contracts,",
+            "t": 461.581
+          },
+          {
+            "w": "and",
+            "t": 462.077
+          },
+          {
+            "w": "vectorize",
+            "t": 462.574
+          },
+          {
+            "w": "them",
+            "t": 463.07
+          },
+          {
+            "w": "into",
+            "t": 463.566
+          },
+          {
+            "w": "zero-copy",
+            "t": 464.063
+          },
+          {
+            "w": "columnar",
+            "t": 464.559
+          },
+          {
+            "w": "Polars",
+            "t": 465.055
+          },
+          {
+            "w": "DataFrames.",
+            "t": 465.552
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Notice the TumblingWindowProcessor: it maintains an event-time buffer and automatically seals windows when the watermark advances, computing vectorized aggregations without memory leaks.",
+        "start": 466.398,
+        "end": 477.534,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 466.398
+          },
+          {
+            "w": "the",
+            "t": 466.904
+          },
+          {
+            "w": "TumblingWindowProcessor:",
+            "t": 467.41
+          },
+          {
+            "w": "it",
+            "t": 467.917
+          },
+          {
+            "w": "maintains",
+            "t": 468.423
+          },
+          {
+            "w": "an",
+            "t": 468.929
+          },
+          {
+            "w": "event-time",
+            "t": 469.435
+          },
+          {
+            "w": "buffer",
+            "t": 469.941
+          },
+          {
+            "w": "and",
+            "t": 470.447
+          },
+          {
+            "w": "automatically",
+            "t": 470.954
+          },
+          {
+            "w": "seals",
+            "t": 471.46
+          },
+          {
+            "w": "windows",
+            "t": 471.966
+          },
+          {
+            "w": "when",
+            "t": 472.472
+          },
+          {
+            "w": "the",
+            "t": 472.978
+          },
+          {
+            "w": "watermark",
+            "t": 473.485
+          },
+          {
+            "w": "advances,",
+            "t": 473.991
+          },
+          {
+            "w": "computing",
+            "t": 474.497
+          },
+          {
+            "w": "vectorized",
+            "t": 475.003
+          },
+          {
+            "w": "aggregations",
+            "t": 475.509
+          },
+          {
+            "w": "without",
+            "t": 476.015
+          },
+          {
+            "w": "memory",
+            "t": 476.522
+          },
+          {
+            "w": "leaks.",
+            "t": 477.028
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Our curriculum is grounded in seminal literature: Gandomi and Haider on Big Data Taxonomies, Abiteboul on Semi-Structured Data Models, Babcock on Streaming Systems, and Deng on Multimodal Representation Manifolds.",
+        "start": 478.284,
+        "end": 491.772,
+        "words": [
+          {
+            "w": "Our",
+            "t": 478.284
+          },
+          {
+            "w": "curriculum",
+            "t": 478.749
+          },
+          {
+            "w": "is",
+            "t": 479.214
+          },
+          {
+            "w": "grounded",
+            "t": 479.679
+          },
+          {
+            "w": "in",
+            "t": 480.144
+          },
+          {
+            "w": "seminal",
+            "t": 480.61
+          },
+          {
+            "w": "literature:",
+            "t": 481.075
+          },
+          {
+            "w": "Gandomi",
+            "t": 481.54
+          },
+          {
+            "w": "and",
+            "t": 482.005
+          },
+          {
+            "w": "Haider",
+            "t": 482.47
+          },
+          {
+            "w": "on",
+            "t": 482.935
+          },
+          {
+            "w": "Big",
+            "t": 483.4
+          },
+          {
+            "w": "Data",
+            "t": 483.865
+          },
+          {
+            "w": "Taxonomies,",
+            "t": 484.33
+          },
+          {
+            "w": "Abiteboul",
+            "t": 484.795
+          },
+          {
+            "w": "on",
+            "t": 485.261
+          },
+          {
+            "w": "Semi-Structured",
+            "t": 485.726
+          },
+          {
+            "w": "Data",
+            "t": 486.191
+          },
+          {
+            "w": "Models,",
+            "t": 486.656
+          },
+          {
+            "w": "Babcock",
+            "t": 487.121
+          },
+          {
+            "w": "on",
+            "t": 487.586
+          },
+          {
+            "w": "Streaming",
+            "t": 488.051
+          },
+          {
+            "w": "Systems,",
+            "t": 488.516
+          },
+          {
+            "w": "and",
+            "t": 488.981
+          },
+          {
+            "w": "Deng",
+            "t": 489.446
+          },
+          {
+            "w": "on",
+            "t": 489.912
+          },
+          {
+            "w": "Multimodal",
+            "t": 490.377
+          },
+          {
+            "w": "Representation",
+            "t": 490.842
+          },
+          {
+            "w": "Manifolds.",
+            "t": 491.307
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "To summarize Lesson 1.2: match your structural geometry to your computational access patterns, manage temporal dynamics with watermarks, and enforce strict boundaries. In Lesson 1.3, we dive into physical serialization formats: Parquet, Arrow, CSV, and HDF5.",
+        "start": 492.122,
+        "end": 511.682,
+        "words": [
+          {
+            "w": "To",
+            "t": 492.122
+          },
+          {
+            "w": "summarize",
+            "t": 492.665
+          },
+          {
+            "w": "Lesson",
+            "t": 493.209
+          },
+          {
+            "w": "1.2:",
+            "t": 493.752
+          },
+          {
+            "w": "match",
+            "t": 494.295
+          },
+          {
+            "w": "your",
+            "t": 494.839
+          },
+          {
+            "w": "structural",
+            "t": 495.382
+          },
+          {
+            "w": "geometry",
+            "t": 495.925
+          },
+          {
+            "w": "to",
+            "t": 496.469
+          },
+          {
+            "w": "your",
+            "t": 497.012
+          },
+          {
+            "w": "computational",
+            "t": 497.555
+          },
+          {
+            "w": "access",
+            "t": 498.099
+          },
+          {
+            "w": "patterns,",
+            "t": 498.642
+          },
+          {
+            "w": "manage",
+            "t": 499.185
+          },
+          {
+            "w": "temporal",
+            "t": 499.729
+          },
+          {
+            "w": "dynamics",
+            "t": 500.272
+          },
+          {
+            "w": "with",
+            "t": 500.815
+          },
+          {
+            "w": "watermarks,",
+            "t": 501.359
+          },
+          {
+            "w": "and",
+            "t": 501.902
+          },
+          {
+            "w": "enforce",
+            "t": 502.445
+          },
+          {
+            "w": "strict",
+            "t": 502.989
+          },
+          {
+            "w": "boundaries.",
+            "t": 503.532
+          },
+          {
+            "w": "In",
+            "t": 504.075
+          },
+          {
+            "w": "Lesson",
+            "t": 504.619
+          },
+          {
+            "w": "1.3,",
+            "t": 505.162
+          },
+          {
+            "w": "we",
+            "t": 505.705
+          },
+          {
+            "w": "dive",
+            "t": 506.249
+          },
+          {
+            "w": "into",
+            "t": 506.792
+          },
+          {
+            "w": "physical",
+            "t": 507.335
+          },
+          {
+            "w": "serialization",
+            "t": 507.879
+          },
+          {
+            "w": "formats:",
+            "t": 508.422
+          },
+          {
+            "w": "Parquet,",
+            "t": 508.965
+          },
+          {
+            "w": "Arrow,",
+            "t": 509.509
+          },
+          {
+            "w": "CSV,",
+            "t": 510.052
+          },
+          {
+            "w": "and",
+            "t": 510.595
+          },
+          {
+            "w": "HDF5.",
+            "t": 511.139
+          }
+        ]
+      }
+    ]
+  },
+  "ch1_p2_duo": {
+    "lessonKey": "ch1_p2",
+    "mode": "duo",
+    "duration": 601.064,
+    "slidesCount": 16,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, in machine learning we usually convert everything into numerical tensors eventually. Why does it matter whether our upstream dataset was originally stored as a relational table, a JSON tree, or an unbounded stream?",
+        "start": 0.0,
+        "end": 13.8,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 0.0
+          },
+          {
+            "w": "Nova,",
+            "t": 0.394
+          },
+          {
+            "w": "in",
+            "t": 0.789
+          },
+          {
+            "w": "machine",
+            "t": 1.183
+          },
+          {
+            "w": "learning",
+            "t": 1.577
+          },
+          {
+            "w": "we",
+            "t": 1.971
+          },
+          {
+            "w": "usually",
+            "t": 2.366
+          },
+          {
+            "w": "convert",
+            "t": 2.76
+          },
+          {
+            "w": "everything",
+            "t": 3.154
+          },
+          {
+            "w": "into",
+            "t": 3.549
+          },
+          {
+            "w": "numerical",
+            "t": 3.943
+          },
+          {
+            "w": "tensors",
+            "t": 4.337
+          },
+          {
+            "w": "eventually.",
+            "t": 4.731
+          },
+          {
+            "w": "Why",
+            "t": 5.126
+          },
+          {
+            "w": "does",
+            "t": 5.52
+          },
+          {
+            "w": "it",
+            "t": 5.914
+          },
+          {
+            "w": "matter",
+            "t": 6.309
+          },
+          {
+            "w": "whether",
+            "t": 6.703
+          },
+          {
+            "w": "our",
+            "t": 7.097
+          },
+          {
+            "w": "upstream",
+            "t": 7.491
+          },
+          {
+            "w": "dataset",
+            "t": 7.886
+          },
+          {
+            "w": "was",
+            "t": 8.28
+          },
+          {
+            "w": "originally",
+            "t": 8.674
+          },
+          {
+            "w": "stored",
+            "t": 9.069
+          },
+          {
+            "w": "as",
+            "t": 9.463
+          },
+          {
+            "w": "a",
+            "t": 9.857
+          },
+          {
+            "w": "relational",
+            "t": 10.251
+          },
+          {
+            "w": "table,",
+            "t": 10.646
+          },
+          {
+            "w": "a",
+            "t": 11.04
+          },
+          {
+            "w": "JSON",
+            "t": 11.434
+          },
+          {
+            "w": "tree,",
+            "t": 11.829
+          },
+          {
+            "w": "or",
+            "t": 12.223
+          },
+          {
+            "w": "an",
+            "t": 12.617
+          },
+          {
+            "w": "unbounded",
+            "t": 13.011
+          },
+          {
+            "w": "stream?",
+            "t": 13.406
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Because how data is structured upstream dictates your memory cache locality, serialization cost, and susceptibility to silent corruption! Squeezing semi-structured polymorphic JSON into a rigid relational table causes null explosion, while ignoring streaming temporal dynamics triggers fatal lookahead bias.",
+        "start": 14.15,
+        "end": 33.326,
+        "words": [
+          {
+            "w": "Because",
+            "t": 14.15
+          },
+          {
+            "w": "how",
+            "t": 14.642
+          },
+          {
+            "w": "data",
+            "t": 15.133
+          },
+          {
+            "w": "is",
+            "t": 15.625
+          },
+          {
+            "w": "structured",
+            "t": 16.117
+          },
+          {
+            "w": "upstream",
+            "t": 16.608
+          },
+          {
+            "w": "dictates",
+            "t": 17.1
+          },
+          {
+            "w": "your",
+            "t": 17.592
+          },
+          {
+            "w": "memory",
+            "t": 18.084
+          },
+          {
+            "w": "cache",
+            "t": 18.575
+          },
+          {
+            "w": "locality,",
+            "t": 19.067
+          },
+          {
+            "w": "serialization",
+            "t": 19.559
+          },
+          {
+            "w": "cost,",
+            "t": 20.05
+          },
+          {
+            "w": "and",
+            "t": 20.542
+          },
+          {
+            "w": "susceptibility",
+            "t": 21.034
+          },
+          {
+            "w": "to",
+            "t": 21.525
+          },
+          {
+            "w": "silent",
+            "t": 22.017
+          },
+          {
+            "w": "corruption!",
+            "t": 22.509
+          },
+          {
+            "w": "Squeezing",
+            "t": 23.0
+          },
+          {
+            "w": "semi-structured",
+            "t": 23.492
+          },
+          {
+            "w": "polymorphic",
+            "t": 23.984
+          },
+          {
+            "w": "JSON",
+            "t": 24.476
+          },
+          {
+            "w": "into",
+            "t": 24.967
+          },
+          {
+            "w": "a",
+            "t": 25.459
+          },
+          {
+            "w": "rigid",
+            "t": 25.951
+          },
+          {
+            "w": "relational",
+            "t": 26.442
+          },
+          {
+            "w": "table",
+            "t": 26.934
+          },
+          {
+            "w": "causes",
+            "t": 27.426
+          },
+          {
+            "w": "null",
+            "t": 27.917
+          },
+          {
+            "w": "explosion,",
+            "t": 28.409
+          },
+          {
+            "w": "while",
+            "t": 28.901
+          },
+          {
+            "w": "ignoring",
+            "t": 29.392
+          },
+          {
+            "w": "streaming",
+            "t": 29.884
+          },
+          {
+            "w": "temporal",
+            "t": 30.376
+          },
+          {
+            "w": "dynamics",
+            "t": 30.868
+          },
+          {
+            "w": "triggers",
+            "t": 31.359
+          },
+          {
+            "w": "fatal",
+            "t": 31.851
+          },
+          {
+            "w": "lookahead",
+            "t": 32.343
+          },
+          {
+            "w": "bias.",
+            "t": 32.834
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "So choosing our dataset taxonomy is really about mechanical sympathy—matching our data model to the physical behavior of our hardware and pipelines.",
+        "start": 33.676,
+        "end": 42.124,
+        "words": [
+          {
+            "w": "So",
+            "t": 33.676
+          },
+          {
+            "w": "choosing",
+            "t": 34.06
+          },
+          {
+            "w": "our",
+            "t": 34.444
+          },
+          {
+            "w": "dataset",
+            "t": 34.828
+          },
+          {
+            "w": "taxonomy",
+            "t": 35.212
+          },
+          {
+            "w": "is",
+            "t": 35.596
+          },
+          {
+            "w": "really",
+            "t": 35.98
+          },
+          {
+            "w": "about",
+            "t": 36.364
+          },
+          {
+            "w": "mechanical",
+            "t": 36.748
+          },
+          {
+            "w": "sympathy—matching",
+            "t": 37.132
+          },
+          {
+            "w": "our",
+            "t": 37.516
+          },
+          {
+            "w": "data",
+            "t": 37.9
+          },
+          {
+            "w": "model",
+            "t": 38.284
+          },
+          {
+            "w": "to",
+            "t": 38.668
+          },
+          {
+            "w": "the",
+            "t": 39.052
+          },
+          {
+            "w": "physical",
+            "t": 39.436
+          },
+          {
+            "w": "behavior",
+            "t": 39.82
+          },
+          {
+            "w": "of",
+            "t": 40.204
+          },
+          {
+            "w": "our",
+            "t": 40.588
+          },
+          {
+            "w": "hardware",
+            "t": 40.972
+          },
+          {
+            "w": "and",
+            "t": 41.356
+          },
+          {
+            "w": "pipelines.",
+            "t": 41.74
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Today we formalize both axes mathematically, inspect multi-structural transformations in real time, and build high-throughput tumbling window aggregators.",
+        "start": 42.474,
+        "end": 53.538,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 42.474
+          },
+          {
+            "w": "Today",
+            "t": 43.056
+          },
+          {
+            "w": "we",
+            "t": 43.639
+          },
+          {
+            "w": "formalize",
+            "t": 44.221
+          },
+          {
+            "w": "both",
+            "t": 44.803
+          },
+          {
+            "w": "axes",
+            "t": 45.386
+          },
+          {
+            "w": "mathematically,",
+            "t": 45.968
+          },
+          {
+            "w": "inspect",
+            "t": 46.55
+          },
+          {
+            "w": "multi-structural",
+            "t": 47.133
+          },
+          {
+            "w": "transformations",
+            "t": 47.715
+          },
+          {
+            "w": "in",
+            "t": 48.297
+          },
+          {
+            "w": "real",
+            "t": 48.879
+          },
+          {
+            "w": "time,",
+            "t": 49.462
+          },
+          {
+            "w": "and",
+            "t": 50.044
+          },
+          {
+            "w": "build",
+            "t": 50.626
+          },
+          {
+            "w": "high-throughput",
+            "t": 51.209
+          },
+          {
+            "w": "tumbling",
+            "t": 51.791
+          },
+          {
+            "w": "window",
+            "t": 52.373
+          },
+          {
+            "w": "aggregators.",
+            "t": 52.956
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, looking at this 2D classification matrix, why can't we just treat streaming data as a sequence of tiny static datasets?",
+        "start": 54.288,
+        "end": 62.304,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 54.288
+          },
+          {
+            "w": "Nova,",
+            "t": 54.652
+          },
+          {
+            "w": "looking",
+            "t": 55.017
+          },
+          {
+            "w": "at",
+            "t": 55.381
+          },
+          {
+            "w": "this",
+            "t": 55.745
+          },
+          {
+            "w": "2D",
+            "t": 56.11
+          },
+          {
+            "w": "classification",
+            "t": 56.474
+          },
+          {
+            "w": "matrix,",
+            "t": 56.839
+          },
+          {
+            "w": "why",
+            "t": 57.203
+          },
+          {
+            "w": "can't",
+            "t": 57.567
+          },
+          {
+            "w": "we",
+            "t": 57.932
+          },
+          {
+            "w": "just",
+            "t": 58.296
+          },
+          {
+            "w": "treat",
+            "t": 58.66
+          },
+          {
+            "w": "streaming",
+            "t": 59.025
+          },
+          {
+            "w": "data",
+            "t": 59.389
+          },
+          {
+            "w": "as",
+            "t": 59.753
+          },
+          {
+            "w": "a",
+            "t": 60.118
+          },
+          {
+            "w": "sequence",
+            "t": 60.482
+          },
+          {
+            "w": "of",
+            "t": 60.847
+          },
+          {
+            "w": "tiny",
+            "t": 61.211
+          },
+          {
+            "w": "static",
+            "t": 61.575
+          },
+          {
+            "w": "datasets?",
+            "t": 61.94
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Because static datasets grant you the luxury of random access and global aggregations. In a dynamic stream, data is unbounded and non-stationary. You cannot compute a global mean or shuffle records across time without violating causality or running out of memory!",
+        "start": 62.654,
+        "end": 79.382,
+        "words": [
+          {
+            "w": "Because",
+            "t": 62.654
+          },
+          {
+            "w": "static",
+            "t": 63.062
+          },
+          {
+            "w": "datasets",
+            "t": 63.47
+          },
+          {
+            "w": "grant",
+            "t": 63.878
+          },
+          {
+            "w": "you",
+            "t": 64.286
+          },
+          {
+            "w": "the",
+            "t": 64.694
+          },
+          {
+            "w": "luxury",
+            "t": 65.102
+          },
+          {
+            "w": "of",
+            "t": 65.51
+          },
+          {
+            "w": "random",
+            "t": 65.918
+          },
+          {
+            "w": "access",
+            "t": 66.326
+          },
+          {
+            "w": "and",
+            "t": 66.734
+          },
+          {
+            "w": "global",
+            "t": 67.142
+          },
+          {
+            "w": "aggregations.",
+            "t": 67.55
+          },
+          {
+            "w": "In",
+            "t": 67.958
+          },
+          {
+            "w": "a",
+            "t": 68.366
+          },
+          {
+            "w": "dynamic",
+            "t": 68.774
+          },
+          {
+            "w": "stream,",
+            "t": 69.182
+          },
+          {
+            "w": "data",
+            "t": 69.59
+          },
+          {
+            "w": "is",
+            "t": 69.998
+          },
+          {
+            "w": "unbounded",
+            "t": 70.406
+          },
+          {
+            "w": "and",
+            "t": 70.814
+          },
+          {
+            "w": "non-stationary.",
+            "t": 71.222
+          },
+          {
+            "w": "You",
+            "t": 71.63
+          },
+          {
+            "w": "cannot",
+            "t": 72.038
+          },
+          {
+            "w": "compute",
+            "t": 72.446
+          },
+          {
+            "w": "a",
+            "t": 72.854
+          },
+          {
+            "w": "global",
+            "t": 73.262
+          },
+          {
+            "w": "mean",
+            "t": 73.67
+          },
+          {
+            "w": "or",
+            "t": 74.078
+          },
+          {
+            "w": "shuffle",
+            "t": 74.486
+          },
+          {
+            "w": "records",
+            "t": 74.894
+          },
+          {
+            "w": "across",
+            "t": 75.302
+          },
+          {
+            "w": "time",
+            "t": 75.71
+          },
+          {
+            "w": "without",
+            "t": 76.118
+          },
+          {
+            "w": "violating",
+            "t": 76.526
+          },
+          {
+            "w": "causality",
+            "t": 76.934
+          },
+          {
+            "w": "or",
+            "t": 77.342
+          },
+          {
+            "w": "running",
+            "t": 77.75
+          },
+          {
+            "w": "out",
+            "t": 78.158
+          },
+          {
+            "w": "of",
+            "t": 78.566
+          },
+          {
+            "w": "memory!",
+            "t": 78.974
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "And network latency means events can arrive out of order, so our stream processing time doesn't even match event generation time.",
+        "start": 79.732,
+        "end": 87.076,
+        "words": [
+          {
+            "w": "And",
+            "t": 79.732
+          },
+          {
+            "w": "network",
+            "t": 80.082
+          },
+          {
+            "w": "latency",
+            "t": 80.431
+          },
+          {
+            "w": "means",
+            "t": 80.781
+          },
+          {
+            "w": "events",
+            "t": 81.131
+          },
+          {
+            "w": "can",
+            "t": 81.481
+          },
+          {
+            "w": "arrive",
+            "t": 81.83
+          },
+          {
+            "w": "out",
+            "t": 82.18
+          },
+          {
+            "w": "of",
+            "t": 82.53
+          },
+          {
+            "w": "order,",
+            "t": 82.879
+          },
+          {
+            "w": "so",
+            "t": 83.229
+          },
+          {
+            "w": "our",
+            "t": 83.579
+          },
+          {
+            "w": "stream",
+            "t": 83.929
+          },
+          {
+            "w": "processing",
+            "t": 84.278
+          },
+          {
+            "w": "time",
+            "t": 84.628
+          },
+          {
+            "w": "doesn't",
+            "t": 84.978
+          },
+          {
+            "w": "even",
+            "t": 85.327
+          },
+          {
+            "w": "match",
+            "t": 85.677
+          },
+          {
+            "w": "event",
+            "t": 86.027
+          },
+          {
+            "w": "generation",
+            "t": 86.377
+          },
+          {
+            "w": "time.",
+            "t": 86.726
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is why streaming architectures require explicit temporal windowing and watermark assertions, which we will formalize step by step.",
+        "start": 87.426,
+        "end": 97.122,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 87.426
+          },
+          {
+            "w": "That",
+            "t": 87.911
+          },
+          {
+            "w": "is",
+            "t": 88.396
+          },
+          {
+            "w": "why",
+            "t": 88.88
+          },
+          {
+            "w": "streaming",
+            "t": 89.365
+          },
+          {
+            "w": "architectures",
+            "t": 89.85
+          },
+          {
+            "w": "require",
+            "t": 90.335
+          },
+          {
+            "w": "explicit",
+            "t": 90.82
+          },
+          {
+            "w": "temporal",
+            "t": 91.304
+          },
+          {
+            "w": "windowing",
+            "t": 91.789
+          },
+          {
+            "w": "and",
+            "t": 92.274
+          },
+          {
+            "w": "watermark",
+            "t": 92.759
+          },
+          {
+            "w": "assertions,",
+            "t": 93.244
+          },
+          {
+            "w": "which",
+            "t": 93.728
+          },
+          {
+            "w": "we",
+            "t": 94.213
+          },
+          {
+            "w": "will",
+            "t": 94.698
+          },
+          {
+            "w": "formalize",
+            "t": 95.183
+          },
+          {
+            "w": "step",
+            "t": 95.668
+          },
+          {
+            "w": "by",
+            "t": 96.152
+          },
+          {
+            "w": "step.",
+            "t": 96.637
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does Codd's First Normal Form insist on atomic scalar values? In modern machine learning, we love embedding vectors and lists of token IDs!",
+        "start": 97.872,
+        "end": 108.312,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 97.872
+          },
+          {
+            "w": "Nova,",
+            "t": 98.274
+          },
+          {
+            "w": "why",
+            "t": 98.675
+          },
+          {
+            "w": "does",
+            "t": 99.077
+          },
+          {
+            "w": "Codd's",
+            "t": 99.478
+          },
+          {
+            "w": "First",
+            "t": 99.88
+          },
+          {
+            "w": "Normal",
+            "t": 100.281
+          },
+          {
+            "w": "Form",
+            "t": 100.683
+          },
+          {
+            "w": "insist",
+            "t": 101.084
+          },
+          {
+            "w": "on",
+            "t": 101.486
+          },
+          {
+            "w": "atomic",
+            "t": 101.887
+          },
+          {
+            "w": "scalar",
+            "t": 102.289
+          },
+          {
+            "w": "values?",
+            "t": 102.69
+          },
+          {
+            "w": "In",
+            "t": 103.092
+          },
+          {
+            "w": "modern",
+            "t": 103.494
+          },
+          {
+            "w": "machine",
+            "t": 103.895
+          },
+          {
+            "w": "learning,",
+            "t": 104.297
+          },
+          {
+            "w": "we",
+            "t": 104.698
+          },
+          {
+            "w": "love",
+            "t": 105.1
+          },
+          {
+            "w": "embedding",
+            "t": 105.501
+          },
+          {
+            "w": "vectors",
+            "t": 105.903
+          },
+          {
+            "w": "and",
+            "t": 106.304
+          },
+          {
+            "w": "lists",
+            "t": 106.706
+          },
+          {
+            "w": "of",
+            "t": 107.107
+          },
+          {
+            "w": "token",
+            "t": 107.509
+          },
+          {
+            "w": "IDs!",
+            "t": 107.91
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Because in classical relational theory, variable-length nested lists break fixed-width record layout! When attributes have variable lengths, calculating the byte offset of attribute 10 requires parsing attributes 1 through 9. Column homogeneity eliminates pointer chasing.",
+        "start": 108.662,
+        "end": 126.254,
+        "words": [
+          {
+            "w": "Because",
+            "t": 108.662
+          },
+          {
+            "w": "in",
+            "t": 109.165
+          },
+          {
+            "w": "classical",
+            "t": 109.667
+          },
+          {
+            "w": "relational",
+            "t": 110.17
+          },
+          {
+            "w": "theory,",
+            "t": 110.673
+          },
+          {
+            "w": "variable-length",
+            "t": 111.175
+          },
+          {
+            "w": "nested",
+            "t": 111.678
+          },
+          {
+            "w": "lists",
+            "t": 112.18
+          },
+          {
+            "w": "break",
+            "t": 112.683
+          },
+          {
+            "w": "fixed-width",
+            "t": 113.186
+          },
+          {
+            "w": "record",
+            "t": 113.688
+          },
+          {
+            "w": "layout!",
+            "t": 114.191
+          },
+          {
+            "w": "When",
+            "t": 114.694
+          },
+          {
+            "w": "attributes",
+            "t": 115.196
+          },
+          {
+            "w": "have",
+            "t": 115.699
+          },
+          {
+            "w": "variable",
+            "t": 116.201
+          },
+          {
+            "w": "lengths,",
+            "t": 116.704
+          },
+          {
+            "w": "calculating",
+            "t": 117.207
+          },
+          {
+            "w": "the",
+            "t": 117.709
+          },
+          {
+            "w": "byte",
+            "t": 118.212
+          },
+          {
+            "w": "offset",
+            "t": 118.715
+          },
+          {
+            "w": "of",
+            "t": 119.217
+          },
+          {
+            "w": "attribute",
+            "t": 119.72
+          },
+          {
+            "w": "10",
+            "t": 120.222
+          },
+          {
+            "w": "requires",
+            "t": 120.725
+          },
+          {
+            "w": "parsing",
+            "t": 121.228
+          },
+          {
+            "w": "attributes",
+            "t": 121.73
+          },
+          {
+            "w": "1",
+            "t": 122.233
+          },
+          {
+            "w": "through",
+            "t": 122.736
+          },
+          {
+            "w": "9.",
+            "t": 123.238
+          },
+          {
+            "w": "Column",
+            "t": 123.741
+          },
+          {
+            "w": "homogeneity",
+            "t": 124.243
+          },
+          {
+            "w": "eliminates",
+            "t": 124.746
+          },
+          {
+            "w": "pointer",
+            "t": 125.249
+          },
+          {
+            "w": "chasing.",
+            "t": 125.751
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "So when we store embedding lists in relational databases, we either need specialized columnar extension types like Arrow FixedSizeList, or we must normalize into a separate foreign key table.",
+        "start": 126.604,
+        "end": 137.188,
+        "words": [
+          {
+            "w": "So",
+            "t": 126.604
+          },
+          {
+            "w": "when",
+            "t": 126.969
+          },
+          {
+            "w": "we",
+            "t": 127.334
+          },
+          {
+            "w": "store",
+            "t": 127.699
+          },
+          {
+            "w": "embedding",
+            "t": 128.064
+          },
+          {
+            "w": "lists",
+            "t": 128.429
+          },
+          {
+            "w": "in",
+            "t": 128.794
+          },
+          {
+            "w": "relational",
+            "t": 129.159
+          },
+          {
+            "w": "databases,",
+            "t": 129.524
+          },
+          {
+            "w": "we",
+            "t": 129.889
+          },
+          {
+            "w": "either",
+            "t": 130.254
+          },
+          {
+            "w": "need",
+            "t": 130.619
+          },
+          {
+            "w": "specialized",
+            "t": 130.984
+          },
+          {
+            "w": "columnar",
+            "t": 131.349
+          },
+          {
+            "w": "extension",
+            "t": 131.714
+          },
+          {
+            "w": "types",
+            "t": 132.078
+          },
+          {
+            "w": "like",
+            "t": 132.443
+          },
+          {
+            "w": "Arrow",
+            "t": 132.808
+          },
+          {
+            "w": "FixedSizeList,",
+            "t": 133.173
+          },
+          {
+            "w": "or",
+            "t": 133.538
+          },
+          {
+            "w": "we",
+            "t": 133.903
+          },
+          {
+            "w": "must",
+            "t": 134.268
+          },
+          {
+            "w": "normalize",
+            "t": 134.633
+          },
+          {
+            "w": "into",
+            "t": 134.998
+          },
+          {
+            "w": "a",
+            "t": 135.363
+          },
+          {
+            "w": "separate",
+            "t": 135.728
+          },
+          {
+            "w": "foreign",
+            "t": 136.093
+          },
+          {
+            "w": "key",
+            "t": 136.458
+          },
+          {
+            "w": "table.",
+            "t": 136.823
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Otherwise you end up with serialization bottlenecks that choke your model training workers.",
+        "start": 137.538,
+        "end": 144.474,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 137.538
+          },
+          {
+            "w": "Otherwise",
+            "t": 138.033
+          },
+          {
+            "w": "you",
+            "t": 138.529
+          },
+          {
+            "w": "end",
+            "t": 139.024
+          },
+          {
+            "w": "up",
+            "t": 139.52
+          },
+          {
+            "w": "with",
+            "t": 140.015
+          },
+          {
+            "w": "serialization",
+            "t": 140.511
+          },
+          {
+            "w": "bottlenecks",
+            "t": 141.006
+          },
+          {
+            "w": "that",
+            "t": 141.501
+          },
+          {
+            "w": "choke",
+            "t": 141.997
+          },
+          {
+            "w": "your",
+            "t": 142.492
+          },
+          {
+            "w": "model",
+            "t": 142.988
+          },
+          {
+            "w": "training",
+            "t": 143.483
+          },
+          {
+            "w": "workers.",
+            "t": 143.979
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if JSON has such high storage overhead and slow parsing, why does almost every modern web API and microservice communicate in JSON?",
+        "start": 145.224,
+        "end": 153.984,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 145.224
+          },
+          {
+            "w": "Nova,",
+            "t": 145.589
+          },
+          {
+            "w": "if",
+            "t": 145.954
+          },
+          {
+            "w": "JSON",
+            "t": 146.319
+          },
+          {
+            "w": "has",
+            "t": 146.684
+          },
+          {
+            "w": "such",
+            "t": 147.049
+          },
+          {
+            "w": "high",
+            "t": 147.414
+          },
+          {
+            "w": "storage",
+            "t": 147.779
+          },
+          {
+            "w": "overhead",
+            "t": 148.144
+          },
+          {
+            "w": "and",
+            "t": 148.509
+          },
+          {
+            "w": "slow",
+            "t": 148.874
+          },
+          {
+            "w": "parsing,",
+            "t": 149.239
+          },
+          {
+            "w": "why",
+            "t": 149.604
+          },
+          {
+            "w": "does",
+            "t": 149.969
+          },
+          {
+            "w": "almost",
+            "t": 150.334
+          },
+          {
+            "w": "every",
+            "t": 150.699
+          },
+          {
+            "w": "modern",
+            "t": 151.064
+          },
+          {
+            "w": "web",
+            "t": 151.429
+          },
+          {
+            "w": "API",
+            "t": 151.794
+          },
+          {
+            "w": "and",
+            "t": 152.159
+          },
+          {
+            "w": "microservice",
+            "t": 152.524
+          },
+          {
+            "w": "communicate",
+            "t": 152.889
+          },
+          {
+            "w": "in",
+            "t": 153.254
+          },
+          {
+            "w": "JSON?",
+            "t": 153.619
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Because human developers and decoupled microservice teams need schema evolution! Team A can add a new nested field without breaking Team B's parser. In early-stage development, schema agility beats physical memory efficiency.",
+        "start": 154.334,
+        "end": 169.046,
+        "words": [
+          {
+            "w": "Because",
+            "t": 154.334
+          },
+          {
+            "w": "human",
+            "t": 154.794
+          },
+          {
+            "w": "developers",
+            "t": 155.254
+          },
+          {
+            "w": "and",
+            "t": 155.713
+          },
+          {
+            "w": "decoupled",
+            "t": 156.173
+          },
+          {
+            "w": "microservice",
+            "t": 156.633
+          },
+          {
+            "w": "teams",
+            "t": 157.093
+          },
+          {
+            "w": "need",
+            "t": 157.552
+          },
+          {
+            "w": "schema",
+            "t": 158.012
+          },
+          {
+            "w": "evolution!",
+            "t": 158.472
+          },
+          {
+            "w": "Team",
+            "t": 158.931
+          },
+          {
+            "w": "A",
+            "t": 159.391
+          },
+          {
+            "w": "can",
+            "t": 159.851
+          },
+          {
+            "w": "add",
+            "t": 160.311
+          },
+          {
+            "w": "a",
+            "t": 160.77
+          },
+          {
+            "w": "new",
+            "t": 161.23
+          },
+          {
+            "w": "nested",
+            "t": 161.69
+          },
+          {
+            "w": "field",
+            "t": 162.15
+          },
+          {
+            "w": "without",
+            "t": 162.609
+          },
+          {
+            "w": "breaking",
+            "t": 163.069
+          },
+          {
+            "w": "Team",
+            "t": 163.529
+          },
+          {
+            "w": "B's",
+            "t": 163.989
+          },
+          {
+            "w": "parser.",
+            "t": 164.448
+          },
+          {
+            "w": "In",
+            "t": 164.908
+          },
+          {
+            "w": "early-stage",
+            "t": 165.368
+          },
+          {
+            "w": "development,",
+            "t": 165.828
+          },
+          {
+            "w": "schema",
+            "t": 166.287
+          },
+          {
+            "w": "agility",
+            "t": 166.747
+          },
+          {
+            "w": "beats",
+            "t": 167.207
+          },
+          {
+            "w": "physical",
+            "t": 167.667
+          },
+          {
+            "w": "memory",
+            "t": 168.126
+          },
+          {
+            "w": "efficiency.",
+            "t": 168.586
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "But when those JSON logs hit our data lake, we shouldn't keep them as raw JSON strings.",
+        "start": 169.396,
+        "end": 174.964,
+        "words": [
+          {
+            "w": "But",
+            "t": 169.396
+          },
+          {
+            "w": "when",
+            "t": 169.724
+          },
+          {
+            "w": "those",
+            "t": 170.051
+          },
+          {
+            "w": "JSON",
+            "t": 170.379
+          },
+          {
+            "w": "logs",
+            "t": 170.706
+          },
+          {
+            "w": "hit",
+            "t": 171.034
+          },
+          {
+            "w": "our",
+            "t": 171.361
+          },
+          {
+            "w": "data",
+            "t": 171.689
+          },
+          {
+            "w": "lake,",
+            "t": 172.016
+          },
+          {
+            "w": "we",
+            "t": 172.344
+          },
+          {
+            "w": "shouldn't",
+            "t": 172.671
+          },
+          {
+            "w": "keep",
+            "t": 172.999
+          },
+          {
+            "w": "them",
+            "t": 173.326
+          },
+          {
+            "w": "as",
+            "t": 173.654
+          },
+          {
+            "w": "raw",
+            "t": 173.981
+          },
+          {
+            "w": "JSON",
+            "t": 174.309
+          },
+          {
+            "w": "strings.",
+            "t": 174.636
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Exactly! The production architecture pattern is Schema-on-Read at the boundary, followed by instant flattening into strongly-typed columnar Parquet for analytics.",
+        "start": 175.314,
+        "end": 185.682,
+        "words": [
+          {
+            "w": "Exactly!",
+            "t": 175.314
+          },
+          {
+            "w": "The",
+            "t": 175.832
+          },
+          {
+            "w": "production",
+            "t": 176.351
+          },
+          {
+            "w": "architecture",
+            "t": 176.869
+          },
+          {
+            "w": "pattern",
+            "t": 177.388
+          },
+          {
+            "w": "is",
+            "t": 177.906
+          },
+          {
+            "w": "Schema-on-Read",
+            "t": 178.424
+          },
+          {
+            "w": "at",
+            "t": 178.943
+          },
+          {
+            "w": "the",
+            "t": 179.461
+          },
+          {
+            "w": "boundary,",
+            "t": 179.98
+          },
+          {
+            "w": "followed",
+            "t": 180.498
+          },
+          {
+            "w": "by",
+            "t": 181.016
+          },
+          {
+            "w": "instant",
+            "t": 181.535
+          },
+          {
+            "w": "flattening",
+            "t": 182.053
+          },
+          {
+            "w": "into",
+            "t": 182.572
+          },
+          {
+            "w": "strongly-typed",
+            "t": 183.09
+          },
+          {
+            "w": "columnar",
+            "t": 183.608
+          },
+          {
+            "w": "Parquet",
+            "t": 184.127
+          },
+          {
+            "w": "for",
+            "t": 184.645
+          },
+          {
+            "w": "analytics.",
+            "t": 185.164
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if a 4K image has 8 million pixels, why do we call it unstructured? It has a very strict grid of pixels!",
+        "start": 186.432,
+        "end": 195.192,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 186.432
+          },
+          {
+            "w": "Nova,",
+            "t": 186.797
+          },
+          {
+            "w": "if",
+            "t": 187.162
+          },
+          {
+            "w": "a",
+            "t": 187.527
+          },
+          {
+            "w": "4K",
+            "t": 187.892
+          },
+          {
+            "w": "image",
+            "t": 188.257
+          },
+          {
+            "w": "has",
+            "t": 188.622
+          },
+          {
+            "w": "8",
+            "t": 188.987
+          },
+          {
+            "w": "million",
+            "t": 189.352
+          },
+          {
+            "w": "pixels,",
+            "t": 189.717
+          },
+          {
+            "w": "why",
+            "t": 190.082
+          },
+          {
+            "w": "do",
+            "t": 190.447
+          },
+          {
+            "w": "we",
+            "t": 190.812
+          },
+          {
+            "w": "call",
+            "t": 191.177
+          },
+          {
+            "w": "it",
+            "t": 191.542
+          },
+          {
+            "w": "unstructured?",
+            "t": 191.907
+          },
+          {
+            "w": "It",
+            "t": 192.272
+          },
+          {
+            "w": "has",
+            "t": 192.637
+          },
+          {
+            "w": "a",
+            "t": 193.002
+          },
+          {
+            "w": "very",
+            "t": 193.367
+          },
+          {
+            "w": "strict",
+            "t": 193.732
+          },
+          {
+            "w": "grid",
+            "t": 194.097
+          },
+          {
+            "w": "of",
+            "t": 194.462
+          },
+          {
+            "w": "pixels!",
+            "t": 194.827
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Because pixel coordinates contain zero semantic attributes! Pixel 500 being blue does not tell you if the image contains an ambulance, a tumor, or a sunset. In tabular data, column 3 has an explicit semantic meaning like user age. In unstructured data, meaning only emerges from spatial and temporal correlations.",
+        "start": 195.542,
+        "end": 217.31,
+        "words": [
+          {
+            "w": "Because",
+            "t": 195.542
+          },
+          {
+            "w": "pixel",
+            "t": 195.977
+          },
+          {
+            "w": "coordinates",
+            "t": 196.413
+          },
+          {
+            "w": "contain",
+            "t": 196.848
+          },
+          {
+            "w": "zero",
+            "t": 197.283
+          },
+          {
+            "w": "semantic",
+            "t": 197.719
+          },
+          {
+            "w": "attributes!",
+            "t": 198.154
+          },
+          {
+            "w": "Pixel",
+            "t": 198.59
+          },
+          {
+            "w": "500",
+            "t": 199.025
+          },
+          {
+            "w": "being",
+            "t": 199.46
+          },
+          {
+            "w": "blue",
+            "t": 199.896
+          },
+          {
+            "w": "does",
+            "t": 200.331
+          },
+          {
+            "w": "not",
+            "t": 200.766
+          },
+          {
+            "w": "tell",
+            "t": 201.202
+          },
+          {
+            "w": "you",
+            "t": 201.637
+          },
+          {
+            "w": "if",
+            "t": 202.072
+          },
+          {
+            "w": "the",
+            "t": 202.508
+          },
+          {
+            "w": "image",
+            "t": 202.943
+          },
+          {
+            "w": "contains",
+            "t": 203.378
+          },
+          {
+            "w": "an",
+            "t": 203.814
+          },
+          {
+            "w": "ambulance,",
+            "t": 204.249
+          },
+          {
+            "w": "a",
+            "t": 204.685
+          },
+          {
+            "w": "tumor,",
+            "t": 205.12
+          },
+          {
+            "w": "or",
+            "t": 205.555
+          },
+          {
+            "w": "a",
+            "t": 205.991
+          },
+          {
+            "w": "sunset.",
+            "t": 206.426
+          },
+          {
+            "w": "In",
+            "t": 206.861
+          },
+          {
+            "w": "tabular",
+            "t": 207.297
+          },
+          {
+            "w": "data,",
+            "t": 207.732
+          },
+          {
+            "w": "column",
+            "t": 208.167
+          },
+          {
+            "w": "3",
+            "t": 208.603
+          },
+          {
+            "w": "has",
+            "t": 209.038
+          },
+          {
+            "w": "an",
+            "t": 209.474
+          },
+          {
+            "w": "explicit",
+            "t": 209.909
+          },
+          {
+            "w": "semantic",
+            "t": 210.344
+          },
+          {
+            "w": "meaning",
+            "t": 210.78
+          },
+          {
+            "w": "like",
+            "t": 211.215
+          },
+          {
+            "w": "user",
+            "t": 211.65
+          },
+          {
+            "w": "age.",
+            "t": 212.086
+          },
+          {
+            "w": "In",
+            "t": 212.521
+          },
+          {
+            "w": "unstructured",
+            "t": 212.956
+          },
+          {
+            "w": "data,",
+            "t": 213.392
+          },
+          {
+            "w": "meaning",
+            "t": 213.827
+          },
+          {
+            "w": "only",
+            "t": 214.262
+          },
+          {
+            "w": "emerges",
+            "t": 214.698
+          },
+          {
+            "w": "from",
+            "t": 215.133
+          },
+          {
+            "w": "spatial",
+            "t": 215.569
+          },
+          {
+            "w": "and",
+            "t": 216.004
+          },
+          {
+            "w": "temporal",
+            "t": 216.439
+          },
+          {
+            "w": "correlations.",
+            "t": 216.875
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "And that is why we train deep convolutional and transformer backbones—to extract high-level feature vectors from raw coordinate grids.",
+        "start": 217.66,
+        "end": 225.196,
+        "words": [
+          {
+            "w": "And",
+            "t": 217.66
+          },
+          {
+            "w": "that",
+            "t": 218.057
+          },
+          {
+            "w": "is",
+            "t": 218.453
+          },
+          {
+            "w": "why",
+            "t": 218.85
+          },
+          {
+            "w": "we",
+            "t": 219.247
+          },
+          {
+            "w": "train",
+            "t": 219.643
+          },
+          {
+            "w": "deep",
+            "t": 220.04
+          },
+          {
+            "w": "convolutional",
+            "t": 220.436
+          },
+          {
+            "w": "and",
+            "t": 220.833
+          },
+          {
+            "w": "transformer",
+            "t": 221.23
+          },
+          {
+            "w": "backbones—to",
+            "t": 221.626
+          },
+          {
+            "w": "extract",
+            "t": 222.023
+          },
+          {
+            "w": "high-level",
+            "t": 222.42
+          },
+          {
+            "w": "feature",
+            "t": 222.816
+          },
+          {
+            "w": "vectors",
+            "t": 223.213
+          },
+          {
+            "w": "from",
+            "t": 223.609
+          },
+          {
+            "w": "raw",
+            "t": 224.006
+          },
+          {
+            "w": "coordinate",
+            "t": 224.403
+          },
+          {
+            "w": "grids.",
+            "t": 224.799
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Now let us dock at our interactive lab to inspect how structured, semi-structured, and unstructured representations transform in real time.",
+        "start": 225.546,
+        "end": 235.746,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 225.546
+          },
+          {
+            "w": "Now",
+            "t": 226.032
+          },
+          {
+            "w": "let",
+            "t": 226.517
+          },
+          {
+            "w": "us",
+            "t": 227.003
+          },
+          {
+            "w": "dock",
+            "t": 227.489
+          },
+          {
+            "w": "at",
+            "t": 227.975
+          },
+          {
+            "w": "our",
+            "t": 228.46
+          },
+          {
+            "w": "interactive",
+            "t": 228.946
+          },
+          {
+            "w": "lab",
+            "t": 229.432
+          },
+          {
+            "w": "to",
+            "t": 229.917
+          },
+          {
+            "w": "inspect",
+            "t": 230.403
+          },
+          {
+            "w": "how",
+            "t": 230.889
+          },
+          {
+            "w": "structured,",
+            "t": 231.375
+          },
+          {
+            "w": "semi-structured,",
+            "t": 231.86
+          },
+          {
+            "w": "and",
+            "t": 232.346
+          },
+          {
+            "w": "unstructured",
+            "t": 232.832
+          },
+          {
+            "w": "representations",
+            "t": 233.317
+          },
+          {
+            "w": "transform",
+            "t": 233.803
+          },
+          {
+            "w": "in",
+            "t": 234.289
+          },
+          {
+            "w": "real",
+            "t": 234.775
+          },
+          {
+            "w": "time.",
+            "t": 235.26
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, our speaker stage has traveled down to the Multi-Structure Inspector! How should readers compare these representations?",
+        "start": 236.496,
+        "end": 245.256,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 236.496
+          },
+          {
+            "w": "Nova,",
+            "t": 236.983
+          },
+          {
+            "w": "our",
+            "t": 237.469
+          },
+          {
+            "w": "speaker",
+            "t": 237.956
+          },
+          {
+            "w": "stage",
+            "t": 238.443
+          },
+          {
+            "w": "has",
+            "t": 238.929
+          },
+          {
+            "w": "traveled",
+            "t": 239.416
+          },
+          {
+            "w": "down",
+            "t": 239.903
+          },
+          {
+            "w": "to",
+            "t": 240.389
+          },
+          {
+            "w": "the",
+            "t": 240.876
+          },
+          {
+            "w": "Multi-Structure",
+            "t": 241.363
+          },
+          {
+            "w": "Inspector!",
+            "t": 241.849
+          },
+          {
+            "w": "How",
+            "t": 242.336
+          },
+          {
+            "w": "should",
+            "t": 242.823
+          },
+          {
+            "w": "readers",
+            "t": 243.309
+          },
+          {
+            "w": "compare",
+            "t": 243.796
+          },
+          {
+            "w": "these",
+            "t": 244.283
+          },
+          {
+            "w": "representations?",
+            "t": 244.769
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Inspect the tabs in the simulator directly below us! Notice how the tabular view separates customers and line items into two tables with a foreign key join, while the JSON view nests them in a single self-describing tree. Observe how the memory footprints diverge!",
+        "start": 245.606,
+        "end": 262.142,
+        "words": [
+          {
+            "w": "Inspect",
+            "t": 245.606
+          },
+          {
+            "w": "the",
+            "t": 245.982
+          },
+          {
+            "w": "tabs",
+            "t": 246.358
+          },
+          {
+            "w": "in",
+            "t": 246.733
+          },
+          {
+            "w": "the",
+            "t": 247.109
+          },
+          {
+            "w": "simulator",
+            "t": 247.485
+          },
+          {
+            "w": "directly",
+            "t": 247.861
+          },
+          {
+            "w": "below",
+            "t": 248.237
+          },
+          {
+            "w": "us!",
+            "t": 248.613
+          },
+          {
+            "w": "Notice",
+            "t": 248.988
+          },
+          {
+            "w": "how",
+            "t": 249.364
+          },
+          {
+            "w": "the",
+            "t": 249.74
+          },
+          {
+            "w": "tabular",
+            "t": 250.116
+          },
+          {
+            "w": "view",
+            "t": 250.492
+          },
+          {
+            "w": "separates",
+            "t": 250.867
+          },
+          {
+            "w": "customers",
+            "t": 251.243
+          },
+          {
+            "w": "and",
+            "t": 251.619
+          },
+          {
+            "w": "line",
+            "t": 251.995
+          },
+          {
+            "w": "items",
+            "t": 252.371
+          },
+          {
+            "w": "into",
+            "t": 252.747
+          },
+          {
+            "w": "two",
+            "t": 253.122
+          },
+          {
+            "w": "tables",
+            "t": 253.498
+          },
+          {
+            "w": "with",
+            "t": 253.874
+          },
+          {
+            "w": "a",
+            "t": 254.25
+          },
+          {
+            "w": "foreign",
+            "t": 254.626
+          },
+          {
+            "w": "key",
+            "t": 255.001
+          },
+          {
+            "w": "join,",
+            "t": 255.377
+          },
+          {
+            "w": "while",
+            "t": 255.753
+          },
+          {
+            "w": "the",
+            "t": 256.129
+          },
+          {
+            "w": "JSON",
+            "t": 256.505
+          },
+          {
+            "w": "view",
+            "t": 256.881
+          },
+          {
+            "w": "nests",
+            "t": 257.256
+          },
+          {
+            "w": "them",
+            "t": 257.632
+          },
+          {
+            "w": "in",
+            "t": 258.008
+          },
+          {
+            "w": "a",
+            "t": 258.384
+          },
+          {
+            "w": "single",
+            "t": 258.76
+          },
+          {
+            "w": "self-describing",
+            "t": 259.135
+          },
+          {
+            "w": "tree.",
+            "t": 259.511
+          },
+          {
+            "w": "Observe",
+            "t": 259.887
+          },
+          {
+            "w": "how",
+            "t": 260.263
+          },
+          {
+            "w": "the",
+            "t": 260.639
+          },
+          {
+            "w": "memory",
+            "t": 261.015
+          },
+          {
+            "w": "footprints",
+            "t": 261.39
+          },
+          {
+            "w": "diverge!",
+            "t": 261.766
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this active checkpoint tests the real-world dilemma between rigid tabular speed and messy JSON microservice payloads!",
+        "start": 262.892,
+        "end": 270.692,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 262.892
+          },
+          {
+            "w": "Nova,",
+            "t": 263.325
+          },
+          {
+            "w": "this",
+            "t": 263.759
+          },
+          {
+            "w": "active",
+            "t": 264.192
+          },
+          {
+            "w": "checkpoint",
+            "t": 264.625
+          },
+          {
+            "w": "tests",
+            "t": 265.059
+          },
+          {
+            "w": "the",
+            "t": 265.492
+          },
+          {
+            "w": "real-world",
+            "t": 265.925
+          },
+          {
+            "w": "dilemma",
+            "t": 266.359
+          },
+          {
+            "w": "between",
+            "t": 266.792
+          },
+          {
+            "w": "rigid",
+            "t": 267.225
+          },
+          {
+            "w": "tabular",
+            "t": 267.659
+          },
+          {
+            "w": "speed",
+            "t": 268.092
+          },
+          {
+            "w": "and",
+            "t": 268.525
+          },
+          {
+            "w": "messy",
+            "t": 268.959
+          },
+          {
+            "w": "JSON",
+            "t": 269.392
+          },
+          {
+            "w": "microservice",
+            "t": 269.825
+          },
+          {
+            "w": "payloads!",
+            "t": 270.259
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Let us see if our readers can identify the production hybrid strategy that avoids both null explosion and raw parsing bottlenecks. Select Option A, B, or C above us!",
+        "start": 271.042,
+        "end": 283.954,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 271.042
+          },
+          {
+            "w": "Let",
+            "t": 271.472
+          },
+          {
+            "w": "us",
+            "t": 271.903
+          },
+          {
+            "w": "see",
+            "t": 272.333
+          },
+          {
+            "w": "if",
+            "t": 272.764
+          },
+          {
+            "w": "our",
+            "t": 273.194
+          },
+          {
+            "w": "readers",
+            "t": 273.624
+          },
+          {
+            "w": "can",
+            "t": 274.055
+          },
+          {
+            "w": "identify",
+            "t": 274.485
+          },
+          {
+            "w": "the",
+            "t": 274.916
+          },
+          {
+            "w": "production",
+            "t": 275.346
+          },
+          {
+            "w": "hybrid",
+            "t": 275.776
+          },
+          {
+            "w": "strategy",
+            "t": 276.207
+          },
+          {
+            "w": "that",
+            "t": 276.637
+          },
+          {
+            "w": "avoids",
+            "t": 277.068
+          },
+          {
+            "w": "both",
+            "t": 277.498
+          },
+          {
+            "w": "null",
+            "t": 277.928
+          },
+          {
+            "w": "explosion",
+            "t": 278.359
+          },
+          {
+            "w": "and",
+            "t": 278.789
+          },
+          {
+            "w": "raw",
+            "t": 279.22
+          },
+          {
+            "w": "parsing",
+            "t": 279.65
+          },
+          {
+            "w": "bottlenecks.",
+            "t": 280.08
+          },
+          {
+            "w": "Select",
+            "t": 280.511
+          },
+          {
+            "w": "Option",
+            "t": 280.941
+          },
+          {
+            "w": "A,",
+            "t": 281.372
+          },
+          {
+            "w": "B,",
+            "t": 281.802
+          },
+          {
+            "w": "or",
+            "t": 282.232
+          },
+          {
+            "w": "C",
+            "t": 282.663
+          },
+          {
+            "w": "above",
+            "t": 283.093
+          },
+          {
+            "w": "us!",
+            "t": 283.524
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do enterprise teams often report that their production models perform ten to twenty percent worse than their offline cross-validation scores?",
+        "start": 284.704,
+        "end": 293.128,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 284.704
+          },
+          {
+            "w": "Nova,",
+            "t": 285.07
+          },
+          {
+            "w": "why",
+            "t": 285.437
+          },
+          {
+            "w": "do",
+            "t": 285.803
+          },
+          {
+            "w": "enterprise",
+            "t": 286.169
+          },
+          {
+            "w": "teams",
+            "t": 286.535
+          },
+          {
+            "w": "often",
+            "t": 286.902
+          },
+          {
+            "w": "report",
+            "t": 287.268
+          },
+          {
+            "w": "that",
+            "t": 287.634
+          },
+          {
+            "w": "their",
+            "t": 288.0
+          },
+          {
+            "w": "production",
+            "t": 288.367
+          },
+          {
+            "w": "models",
+            "t": 288.733
+          },
+          {
+            "w": "perform",
+            "t": 289.099
+          },
+          {
+            "w": "ten",
+            "t": 289.465
+          },
+          {
+            "w": "to",
+            "t": 289.832
+          },
+          {
+            "w": "twenty",
+            "t": 290.198
+          },
+          {
+            "w": "percent",
+            "t": 290.564
+          },
+          {
+            "w": "worse",
+            "t": 290.93
+          },
+          {
+            "w": "than",
+            "t": 291.297
+          },
+          {
+            "w": "their",
+            "t": 291.663
+          },
+          {
+            "w": "offline",
+            "t": 292.029
+          },
+          {
+            "w": "cross-validation",
+            "t": 292.395
+          },
+          {
+            "w": "scores?",
+            "t": 292.762
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Calendar covariate shift! If you randomly shuffle data across time during train-test splitting, your model learns from future events to predict past events. When deployed, the model faces unobserved future distributions without training support.",
+        "start": 293.478,
+        "end": 308.91,
+        "words": [
+          {
+            "w": "Calendar",
+            "t": 293.478
+          },
+          {
+            "w": "covariate",
+            "t": 293.932
+          },
+          {
+            "w": "shift!",
+            "t": 294.386
+          },
+          {
+            "w": "If",
+            "t": 294.84
+          },
+          {
+            "w": "you",
+            "t": 295.294
+          },
+          {
+            "w": "randomly",
+            "t": 295.747
+          },
+          {
+            "w": "shuffle",
+            "t": 296.201
+          },
+          {
+            "w": "data",
+            "t": 296.655
+          },
+          {
+            "w": "across",
+            "t": 297.109
+          },
+          {
+            "w": "time",
+            "t": 297.563
+          },
+          {
+            "w": "during",
+            "t": 298.017
+          },
+          {
+            "w": "train-test",
+            "t": 298.471
+          },
+          {
+            "w": "splitting,",
+            "t": 298.925
+          },
+          {
+            "w": "your",
+            "t": 299.378
+          },
+          {
+            "w": "model",
+            "t": 299.832
+          },
+          {
+            "w": "learns",
+            "t": 300.286
+          },
+          {
+            "w": "from",
+            "t": 300.74
+          },
+          {
+            "w": "future",
+            "t": 301.194
+          },
+          {
+            "w": "events",
+            "t": 301.648
+          },
+          {
+            "w": "to",
+            "t": 302.102
+          },
+          {
+            "w": "predict",
+            "t": 302.556
+          },
+          {
+            "w": "past",
+            "t": 303.01
+          },
+          {
+            "w": "events.",
+            "t": 303.463
+          },
+          {
+            "w": "When",
+            "t": 303.917
+          },
+          {
+            "w": "deployed,",
+            "t": 304.371
+          },
+          {
+            "w": "the",
+            "t": 304.825
+          },
+          {
+            "w": "model",
+            "t": 305.279
+          },
+          {
+            "w": "faces",
+            "t": 305.733
+          },
+          {
+            "w": "unobserved",
+            "t": 306.187
+          },
+          {
+            "w": "future",
+            "t": 306.641
+          },
+          {
+            "w": "distributions",
+            "t": 307.094
+          },
+          {
+            "w": "without",
+            "t": 307.548
+          },
+          {
+            "w": "training",
+            "t": 308.002
+          },
+          {
+            "w": "support.",
+            "t": 308.456
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "So we must always split time-series datasets chronologically, rather than using random k-fold cross validation.",
+        "start": 309.26,
+        "end": 316.052,
+        "words": [
+          {
+            "w": "So",
+            "t": 309.26
+          },
+          {
+            "w": "we",
+            "t": 309.713
+          },
+          {
+            "w": "must",
+            "t": 310.166
+          },
+          {
+            "w": "always",
+            "t": 310.618
+          },
+          {
+            "w": "split",
+            "t": 311.071
+          },
+          {
+            "w": "time-series",
+            "t": 311.524
+          },
+          {
+            "w": "datasets",
+            "t": 311.977
+          },
+          {
+            "w": "chronologically,",
+            "t": 312.43
+          },
+          {
+            "w": "rather",
+            "t": 312.882
+          },
+          {
+            "w": "than",
+            "t": 313.335
+          },
+          {
+            "w": "using",
+            "t": 313.788
+          },
+          {
+            "w": "random",
+            "t": 314.241
+          },
+          {
+            "w": "k-fold",
+            "t": 314.694
+          },
+          {
+            "w": "cross",
+            "t": 315.146
+          },
+          {
+            "w": "validation.",
+            "t": 315.599
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Always! Time is non-invertible. Shuffling temporal records leaks future state into the past.",
+        "start": 316.402,
+        "end": 324.13,
+        "words": [
+          {
+            "w": "Always!",
+            "t": 316.402
+          },
+          {
+            "w": "Time",
+            "t": 316.996
+          },
+          {
+            "w": "is",
+            "t": 317.591
+          },
+          {
+            "w": "non-invertible.",
+            "t": 318.185
+          },
+          {
+            "w": "Shuffling",
+            "t": 318.78
+          },
+          {
+            "w": "temporal",
+            "t": 319.374
+          },
+          {
+            "w": "records",
+            "t": 319.969
+          },
+          {
+            "w": "leaks",
+            "t": 320.563
+          },
+          {
+            "w": "future",
+            "t": 321.158
+          },
+          {
+            "w": "state",
+            "t": 321.752
+          },
+          {
+            "w": "into",
+            "t": 322.347
+          },
+          {
+            "w": "the",
+            "t": 322.941
+          },
+          {
+            "w": "past.",
+            "t": 323.536
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how does a stream processor compute statistical features like standard deviation when new records arrive every millisecond?",
+        "start": 324.88,
+        "end": 332.944,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 324.88
+          },
+          {
+            "w": "Nova,",
+            "t": 325.304
+          },
+          {
+            "w": "how",
+            "t": 325.729
+          },
+          {
+            "w": "does",
+            "t": 326.153
+          },
+          {
+            "w": "a",
+            "t": 326.578
+          },
+          {
+            "w": "stream",
+            "t": 327.002
+          },
+          {
+            "w": "processor",
+            "t": 327.427
+          },
+          {
+            "w": "compute",
+            "t": 327.851
+          },
+          {
+            "w": "statistical",
+            "t": 328.275
+          },
+          {
+            "w": "features",
+            "t": 328.7
+          },
+          {
+            "w": "like",
+            "t": 329.124
+          },
+          {
+            "w": "standard",
+            "t": 329.549
+          },
+          {
+            "w": "deviation",
+            "t": 329.973
+          },
+          {
+            "w": "when",
+            "t": 330.397
+          },
+          {
+            "w": "new",
+            "t": 330.822
+          },
+          {
+            "w": "records",
+            "t": 331.246
+          },
+          {
+            "w": "arrive",
+            "t": 331.671
+          },
+          {
+            "w": "every",
+            "t": 332.095
+          },
+          {
+            "w": "millisecond?",
+            "t": 332.52
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Through Welford's algorithm or temporal windowing! You cannot keep millions of raw numbers in memory. Instead, you maintain running summary accumulators or slice the stream into bounded temporal windows.",
+        "start": 333.294,
+        "end": 346.206,
+        "words": [
+          {
+            "w": "Through",
+            "t": 333.294
+          },
+          {
+            "w": "Welford's",
+            "t": 333.739
+          },
+          {
+            "w": "algorithm",
+            "t": 334.184
+          },
+          {
+            "w": "or",
+            "t": 334.63
+          },
+          {
+            "w": "temporal",
+            "t": 335.075
+          },
+          {
+            "w": "windowing!",
+            "t": 335.52
+          },
+          {
+            "w": "You",
+            "t": 335.965
+          },
+          {
+            "w": "cannot",
+            "t": 336.411
+          },
+          {
+            "w": "keep",
+            "t": 336.856
+          },
+          {
+            "w": "millions",
+            "t": 337.301
+          },
+          {
+            "w": "of",
+            "t": 337.746
+          },
+          {
+            "w": "raw",
+            "t": 338.192
+          },
+          {
+            "w": "numbers",
+            "t": 338.637
+          },
+          {
+            "w": "in",
+            "t": 339.082
+          },
+          {
+            "w": "memory.",
+            "t": 339.527
+          },
+          {
+            "w": "Instead,",
+            "t": 339.973
+          },
+          {
+            "w": "you",
+            "t": 340.418
+          },
+          {
+            "w": "maintain",
+            "t": 340.863
+          },
+          {
+            "w": "running",
+            "t": 341.308
+          },
+          {
+            "w": "summary",
+            "t": 341.754
+          },
+          {
+            "w": "accumulators",
+            "t": 342.199
+          },
+          {
+            "w": "or",
+            "t": 342.644
+          },
+          {
+            "w": "slice",
+            "t": 343.089
+          },
+          {
+            "w": "the",
+            "t": 343.535
+          },
+          {
+            "w": "stream",
+            "t": 343.98
+          },
+          {
+            "w": "into",
+            "t": 344.425
+          },
+          {
+            "w": "bounded",
+            "t": 344.87
+          },
+          {
+            "w": "temporal",
+            "t": 345.316
+          },
+          {
+            "w": "windows.",
+            "t": 345.761
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "And that brings us to windowing mechanics—tumbling versus sliding versus session windows.",
+        "start": 346.556,
+        "end": 352.004,
+        "words": [
+          {
+            "w": "And",
+            "t": 346.556
+          },
+          {
+            "w": "that",
+            "t": 347.01
+          },
+          {
+            "w": "brings",
+            "t": 347.464
+          },
+          {
+            "w": "us",
+            "t": 347.918
+          },
+          {
+            "w": "to",
+            "t": 348.372
+          },
+          {
+            "w": "windowing",
+            "t": 348.826
+          },
+          {
+            "w": "mechanics—tumbling",
+            "t": 349.28
+          },
+          {
+            "w": "versus",
+            "t": 349.734
+          },
+          {
+            "w": "sliding",
+            "t": 350.188
+          },
+          {
+            "w": "versus",
+            "t": 350.642
+          },
+          {
+            "w": "session",
+            "t": 351.096
+          },
+          {
+            "w": "windows.",
+            "t": 351.55
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Let us examine the three canonical windowing partitions on the next slide.",
+        "start": 352.354,
+        "end": 358.666,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 352.354
+          },
+          {
+            "w": "Let",
+            "t": 352.84
+          },
+          {
+            "w": "us",
+            "t": 353.325
+          },
+          {
+            "w": "examine",
+            "t": 353.811
+          },
+          {
+            "w": "the",
+            "t": 354.296
+          },
+          {
+            "w": "three",
+            "t": 354.782
+          },
+          {
+            "w": "canonical",
+            "t": 355.267
+          },
+          {
+            "w": "windowing",
+            "t": 355.753
+          },
+          {
+            "w": "partitions",
+            "t": 356.238
+          },
+          {
+            "w": "on",
+            "t": 356.724
+          },
+          {
+            "w": "the",
+            "t": 357.209
+          },
+          {
+            "w": "next",
+            "t": 357.695
+          },
+          {
+            "w": "slide.",
+            "t": 358.18
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if sliding windows provide much smoother moving averages, why wouldn't we use sliding windows for all real-time dashboards?",
+        "start": 359.416,
+        "end": 366.952,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 359.416
+          },
+          {
+            "w": "Nova,",
+            "t": 359.793
+          },
+          {
+            "w": "if",
+            "t": 360.17
+          },
+          {
+            "w": "sliding",
+            "t": 360.546
+          },
+          {
+            "w": "windows",
+            "t": 360.923
+          },
+          {
+            "w": "provide",
+            "t": 361.3
+          },
+          {
+            "w": "much",
+            "t": 361.677
+          },
+          {
+            "w": "smoother",
+            "t": 362.054
+          },
+          {
+            "w": "moving",
+            "t": 362.43
+          },
+          {
+            "w": "averages,",
+            "t": 362.807
+          },
+          {
+            "w": "why",
+            "t": 363.184
+          },
+          {
+            "w": "wouldn't",
+            "t": 363.561
+          },
+          {
+            "w": "we",
+            "t": 363.938
+          },
+          {
+            "w": "use",
+            "t": 364.314
+          },
+          {
+            "w": "sliding",
+            "t": 364.691
+          },
+          {
+            "w": "windows",
+            "t": 365.068
+          },
+          {
+            "w": "for",
+            "t": 365.445
+          },
+          {
+            "w": "all",
+            "t": 365.822
+          },
+          {
+            "w": "real-time",
+            "t": 366.198
+          },
+          {
+            "w": "dashboards?",
+            "t": 366.575
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Stateful memory amplification! In a sliding window where delta t is 60 minutes and step delta is 1 second, every single incoming event must be stored and referenced inside 3,600 overlapping windows simultaneously. Tumbling windows emit and discard state immediately upon closure.",
+        "start": 367.302,
+        "end": 386.622,
+        "words": [
+          {
+            "w": "Stateful",
+            "t": 367.302
+          },
+          {
+            "w": "memory",
+            "t": 367.762
+          },
+          {
+            "w": "amplification!",
+            "t": 368.222
+          },
+          {
+            "w": "In",
+            "t": 368.682
+          },
+          {
+            "w": "a",
+            "t": 369.142
+          },
+          {
+            "w": "sliding",
+            "t": 369.602
+          },
+          {
+            "w": "window",
+            "t": 370.062
+          },
+          {
+            "w": "where",
+            "t": 370.522
+          },
+          {
+            "w": "delta",
+            "t": 370.982
+          },
+          {
+            "w": "t",
+            "t": 371.442
+          },
+          {
+            "w": "is",
+            "t": 371.902
+          },
+          {
+            "w": "60",
+            "t": 372.362
+          },
+          {
+            "w": "minutes",
+            "t": 372.822
+          },
+          {
+            "w": "and",
+            "t": 373.282
+          },
+          {
+            "w": "step",
+            "t": 373.742
+          },
+          {
+            "w": "delta",
+            "t": 374.202
+          },
+          {
+            "w": "is",
+            "t": 374.662
+          },
+          {
+            "w": "1",
+            "t": 375.122
+          },
+          {
+            "w": "second,",
+            "t": 375.582
+          },
+          {
+            "w": "every",
+            "t": 376.042
+          },
+          {
+            "w": "single",
+            "t": 376.502
+          },
+          {
+            "w": "incoming",
+            "t": 376.962
+          },
+          {
+            "w": "event",
+            "t": 377.422
+          },
+          {
+            "w": "must",
+            "t": 377.882
+          },
+          {
+            "w": "be",
+            "t": 378.342
+          },
+          {
+            "w": "stored",
+            "t": 378.802
+          },
+          {
+            "w": "and",
+            "t": 379.262
+          },
+          {
+            "w": "referenced",
+            "t": 379.722
+          },
+          {
+            "w": "inside",
+            "t": 380.182
+          },
+          {
+            "w": "3,600",
+            "t": 380.642
+          },
+          {
+            "w": "overlapping",
+            "t": 381.102
+          },
+          {
+            "w": "windows",
+            "t": 381.562
+          },
+          {
+            "w": "simultaneously.",
+            "t": 382.022
+          },
+          {
+            "w": "Tumbling",
+            "t": 382.482
+          },
+          {
+            "w": "windows",
+            "t": 382.942
+          },
+          {
+            "w": "emit",
+            "t": 383.402
+          },
+          {
+            "w": "and",
+            "t": 383.862
+          },
+          {
+            "w": "discard",
+            "t": 384.322
+          },
+          {
+            "w": "state",
+            "t": 384.782
+          },
+          {
+            "w": "immediately",
+            "t": 385.242
+          },
+          {
+            "w": "upon",
+            "t": 385.702
+          },
+          {
+            "w": "closure.",
+            "t": 386.162
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "And that memory overhead explodes when scaling to millions of connected IoT devices.",
+        "start": 386.972,
+        "end": 392.516,
+        "words": [
+          {
+            "w": "And",
+            "t": 386.972
+          },
+          {
+            "w": "that",
+            "t": 387.398
+          },
+          {
+            "w": "memory",
+            "t": 387.825
+          },
+          {
+            "w": "overhead",
+            "t": 388.251
+          },
+          {
+            "w": "explodes",
+            "t": 388.678
+          },
+          {
+            "w": "when",
+            "t": 389.104
+          },
+          {
+            "w": "scaling",
+            "t": 389.531
+          },
+          {
+            "w": "to",
+            "t": 389.957
+          },
+          {
+            "w": "millions",
+            "t": 390.384
+          },
+          {
+            "w": "of",
+            "t": 390.81
+          },
+          {
+            "w": "connected",
+            "t": 391.237
+          },
+          {
+            "w": "IoT",
+            "t": 391.663
+          },
+          {
+            "w": "devices.",
+            "t": 392.09
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. System architects choose tumbling windows for scalable batching and sliding windows only for localized rolling anomaly triggers.",
+        "start": 392.866,
+        "end": 402.202,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 392.866
+          },
+          {
+            "w": "System",
+            "t": 393.385
+          },
+          {
+            "w": "architects",
+            "t": 393.903
+          },
+          {
+            "w": "choose",
+            "t": 394.422
+          },
+          {
+            "w": "tumbling",
+            "t": 394.941
+          },
+          {
+            "w": "windows",
+            "t": 395.459
+          },
+          {
+            "w": "for",
+            "t": 395.978
+          },
+          {
+            "w": "scalable",
+            "t": 396.497
+          },
+          {
+            "w": "batching",
+            "t": 397.015
+          },
+          {
+            "w": "and",
+            "t": 397.534
+          },
+          {
+            "w": "sliding",
+            "t": 398.053
+          },
+          {
+            "w": "windows",
+            "t": 398.571
+          },
+          {
+            "w": "only",
+            "t": 399.09
+          },
+          {
+            "w": "for",
+            "t": 399.609
+          },
+          {
+            "w": "localized",
+            "t": 400.127
+          },
+          {
+            "w": "rolling",
+            "t": 400.646
+          },
+          {
+            "w": "anomaly",
+            "t": 401.165
+          },
+          {
+            "w": "triggers.",
+            "t": 401.683
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what happens if an IoT sensor temporarily loses cellular connectivity in a tunnel and uploads its telemetry 20 minutes late?",
+        "start": 402.952,
+        "end": 411.448,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 402.952
+          },
+          {
+            "w": "Nova,",
+            "t": 403.338
+          },
+          {
+            "w": "what",
+            "t": 403.724
+          },
+          {
+            "w": "happens",
+            "t": 404.111
+          },
+          {
+            "w": "if",
+            "t": 404.497
+          },
+          {
+            "w": "an",
+            "t": 404.883
+          },
+          {
+            "w": "IoT",
+            "t": 405.269
+          },
+          {
+            "w": "sensor",
+            "t": 405.655
+          },
+          {
+            "w": "temporarily",
+            "t": 406.041
+          },
+          {
+            "w": "loses",
+            "t": 406.428
+          },
+          {
+            "w": "cellular",
+            "t": 406.814
+          },
+          {
+            "w": "connectivity",
+            "t": 407.2
+          },
+          {
+            "w": "in",
+            "t": 407.586
+          },
+          {
+            "w": "a",
+            "t": 407.972
+          },
+          {
+            "w": "tunnel",
+            "t": 408.359
+          },
+          {
+            "w": "and",
+            "t": 408.745
+          },
+          {
+            "w": "uploads",
+            "t": 409.131
+          },
+          {
+            "w": "its",
+            "t": 409.517
+          },
+          {
+            "w": "telemetry",
+            "t": 409.903
+          },
+          {
+            "w": "20",
+            "t": 410.289
+          },
+          {
+            "w": "minutes",
+            "t": 410.676
+          },
+          {
+            "w": "late?",
+            "t": 411.062
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "If your watermark lag is set to 2 minutes, that 20-minute-old record arrives after the watermark has already advanced past its window! The window is already sealed and emitted. The late record is discarded or routed to a dead-letter compensation queue.",
+        "start": 411.798,
+        "end": 427.422,
+        "words": [
+          {
+            "w": "If",
+            "t": 411.798
+          },
+          {
+            "w": "your",
+            "t": 412.179
+          },
+          {
+            "w": "watermark",
+            "t": 412.56
+          },
+          {
+            "w": "lag",
+            "t": 412.941
+          },
+          {
+            "w": "is",
+            "t": 413.322
+          },
+          {
+            "w": "set",
+            "t": 413.703
+          },
+          {
+            "w": "to",
+            "t": 414.084
+          },
+          {
+            "w": "2",
+            "t": 414.466
+          },
+          {
+            "w": "minutes,",
+            "t": 414.847
+          },
+          {
+            "w": "that",
+            "t": 415.228
+          },
+          {
+            "w": "20-minute-old",
+            "t": 415.609
+          },
+          {
+            "w": "record",
+            "t": 415.99
+          },
+          {
+            "w": "arrives",
+            "t": 416.371
+          },
+          {
+            "w": "after",
+            "t": 416.752
+          },
+          {
+            "w": "the",
+            "t": 417.133
+          },
+          {
+            "w": "watermark",
+            "t": 417.514
+          },
+          {
+            "w": "has",
+            "t": 417.895
+          },
+          {
+            "w": "already",
+            "t": 418.276
+          },
+          {
+            "w": "advanced",
+            "t": 418.657
+          },
+          {
+            "w": "past",
+            "t": 419.038
+          },
+          {
+            "w": "its",
+            "t": 419.419
+          },
+          {
+            "w": "window!",
+            "t": 419.801
+          },
+          {
+            "w": "The",
+            "t": 420.182
+          },
+          {
+            "w": "window",
+            "t": 420.563
+          },
+          {
+            "w": "is",
+            "t": 420.944
+          },
+          {
+            "w": "already",
+            "t": 421.325
+          },
+          {
+            "w": "sealed",
+            "t": 421.706
+          },
+          {
+            "w": "and",
+            "t": 422.087
+          },
+          {
+            "w": "emitted.",
+            "t": 422.468
+          },
+          {
+            "w": "The",
+            "t": 422.849
+          },
+          {
+            "w": "late",
+            "t": 423.23
+          },
+          {
+            "w": "record",
+            "t": 423.611
+          },
+          {
+            "w": "is",
+            "t": 423.992
+          },
+          {
+            "w": "discarded",
+            "t": 424.373
+          },
+          {
+            "w": "or",
+            "t": 424.754
+          },
+          {
+            "w": "routed",
+            "t": 425.136
+          },
+          {
+            "w": "to",
+            "t": 425.517
+          },
+          {
+            "w": "a",
+            "t": 425.898
+          },
+          {
+            "w": "dead-letter",
+            "t": 426.279
+          },
+          {
+            "w": "compensation",
+            "t": 426.66
+          },
+          {
+            "w": "queue.",
+            "t": 427.041
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "So streaming systems must always explicitly define their tolerance for network jitter.",
+        "start": 427.772,
+        "end": 433.316,
+        "words": [
+          {
+            "w": "So",
+            "t": 427.772
+          },
+          {
+            "w": "streaming",
+            "t": 428.234
+          },
+          {
+            "w": "systems",
+            "t": 428.696
+          },
+          {
+            "w": "must",
+            "t": 429.158
+          },
+          {
+            "w": "always",
+            "t": 429.62
+          },
+          {
+            "w": "explicitly",
+            "t": 430.082
+          },
+          {
+            "w": "define",
+            "t": 430.544
+          },
+          {
+            "w": "their",
+            "t": 431.006
+          },
+          {
+            "w": "tolerance",
+            "t": 431.468
+          },
+          {
+            "w": "for",
+            "t": 431.93
+          },
+          {
+            "w": "network",
+            "t": 432.392
+          },
+          {
+            "w": "jitter.",
+            "t": 432.854
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Always. Let us glide down to our streaming simulator to watch window sealing and watermark cutoff firsthand!",
+        "start": 433.666,
+        "end": 441.226,
+        "words": [
+          {
+            "w": "Always.",
+            "t": 433.666
+          },
+          {
+            "w": "Let",
+            "t": 434.111
+          },
+          {
+            "w": "us",
+            "t": 434.555
+          },
+          {
+            "w": "glide",
+            "t": 435.0
+          },
+          {
+            "w": "down",
+            "t": 435.445
+          },
+          {
+            "w": "to",
+            "t": 435.89
+          },
+          {
+            "w": "our",
+            "t": 436.334
+          },
+          {
+            "w": "streaming",
+            "t": 436.779
+          },
+          {
+            "w": "simulator",
+            "t": 437.224
+          },
+          {
+            "w": "to",
+            "t": 437.668
+          },
+          {
+            "w": "watch",
+            "t": 438.113
+          },
+          {
+            "w": "window",
+            "t": 438.558
+          },
+          {
+            "w": "sealing",
+            "t": 439.002
+          },
+          {
+            "w": "and",
+            "t": 439.447
+          },
+          {
+            "w": "watermark",
+            "t": 439.892
+          },
+          {
+            "w": "cutoff",
+            "t": 440.337
+          },
+          {
+            "w": "firsthand!",
+            "t": 440.781
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, our speaker stage is docked at the Streaming Simulator! Look at the canvas waveform updating in real time.",
+        "start": 441.976,
+        "end": 450.064,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 441.976
+          },
+          {
+            "w": "Nova,",
+            "t": 442.38
+          },
+          {
+            "w": "our",
+            "t": 442.785
+          },
+          {
+            "w": "speaker",
+            "t": 443.189
+          },
+          {
+            "w": "stage",
+            "t": 443.594
+          },
+          {
+            "w": "is",
+            "t": 443.998
+          },
+          {
+            "w": "docked",
+            "t": 444.402
+          },
+          {
+            "w": "at",
+            "t": 444.807
+          },
+          {
+            "w": "the",
+            "t": 445.211
+          },
+          {
+            "w": "Streaming",
+            "t": 445.616
+          },
+          {
+            "w": "Simulator!",
+            "t": 446.02
+          },
+          {
+            "w": "Look",
+            "t": 446.424
+          },
+          {
+            "w": "at",
+            "t": 446.829
+          },
+          {
+            "w": "the",
+            "t": 447.233
+          },
+          {
+            "w": "canvas",
+            "t": 447.638
+          },
+          {
+            "w": "waveform",
+            "t": 448.042
+          },
+          {
+            "w": "updating",
+            "t": 448.446
+          },
+          {
+            "w": "in",
+            "t": 448.851
+          },
+          {
+            "w": "real",
+            "t": 449.255
+          },
+          {
+            "w": "time.",
+            "t": 449.66
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Try clicking the 'Burst 5 Events' and 'Inject Late Record' buttons above us, Kaito! Watch how late arrivals behind the watermark lag cannot update the sealed window mean.",
+        "start": 450.414,
+        "end": 461.094,
+        "words": [
+          {
+            "w": "Try",
+            "t": 450.414
+          },
+          {
+            "w": "clicking",
+            "t": 450.795
+          },
+          {
+            "w": "the",
+            "t": 451.177
+          },
+          {
+            "w": "'Burst",
+            "t": 451.558
+          },
+          {
+            "w": "5",
+            "t": 451.94
+          },
+          {
+            "w": "Events'",
+            "t": 452.321
+          },
+          {
+            "w": "and",
+            "t": 452.703
+          },
+          {
+            "w": "'Inject",
+            "t": 453.084
+          },
+          {
+            "w": "Late",
+            "t": 453.465
+          },
+          {
+            "w": "Record'",
+            "t": 453.847
+          },
+          {
+            "w": "buttons",
+            "t": 454.228
+          },
+          {
+            "w": "above",
+            "t": 454.61
+          },
+          {
+            "w": "us,",
+            "t": 454.991
+          },
+          {
+            "w": "Kaito!",
+            "t": 455.373
+          },
+          {
+            "w": "Watch",
+            "t": 455.754
+          },
+          {
+            "w": "how",
+            "t": 456.135
+          },
+          {
+            "w": "late",
+            "t": 456.517
+          },
+          {
+            "w": "arrivals",
+            "t": 456.898
+          },
+          {
+            "w": "behind",
+            "t": 457.28
+          },
+          {
+            "w": "the",
+            "t": 457.661
+          },
+          {
+            "w": "watermark",
+            "t": 458.043
+          },
+          {
+            "w": "lag",
+            "t": 458.424
+          },
+          {
+            "w": "cannot",
+            "t": 458.805
+          },
+          {
+            "w": "update",
+            "t": 459.187
+          },
+          {
+            "w": "the",
+            "t": 459.568
+          },
+          {
+            "w": "sealed",
+            "t": 459.95
+          },
+          {
+            "w": "window",
+            "t": 460.331
+          },
+          {
+            "w": "mean.",
+            "t": 460.713
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if our watermark lag tolerance is too strict, we drop real sensor telemetry!",
+        "start": 461.844,
+        "end": 468.036,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 461.844
+          },
+          {
+            "w": "Nova,",
+            "t": 462.257
+          },
+          {
+            "w": "if",
+            "t": 462.67
+          },
+          {
+            "w": "our",
+            "t": 463.082
+          },
+          {
+            "w": "watermark",
+            "t": 463.495
+          },
+          {
+            "w": "lag",
+            "t": 463.908
+          },
+          {
+            "w": "tolerance",
+            "t": 464.321
+          },
+          {
+            "w": "is",
+            "t": 464.734
+          },
+          {
+            "w": "too",
+            "t": 465.146
+          },
+          {
+            "w": "strict,",
+            "t": 465.559
+          },
+          {
+            "w": "we",
+            "t": 465.972
+          },
+          {
+            "w": "drop",
+            "t": 466.385
+          },
+          {
+            "w": "real",
+            "t": 466.798
+          },
+          {
+            "w": "sensor",
+            "t": 467.21
+          },
+          {
+            "w": "telemetry!",
+            "t": 467.623
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Indeed! Let us see if our readers can identify what happens when jitter exceeds the watermark threshold. Select Option A, B, or C above us!",
+        "start": 468.386,
+        "end": 479.09,
+        "words": [
+          {
+            "w": "Indeed!",
+            "t": 468.386
+          },
+          {
+            "w": "Let",
+            "t": 468.814
+          },
+          {
+            "w": "us",
+            "t": 469.242
+          },
+          {
+            "w": "see",
+            "t": 469.67
+          },
+          {
+            "w": "if",
+            "t": 470.099
+          },
+          {
+            "w": "our",
+            "t": 470.527
+          },
+          {
+            "w": "readers",
+            "t": 470.955
+          },
+          {
+            "w": "can",
+            "t": 471.383
+          },
+          {
+            "w": "identify",
+            "t": 471.811
+          },
+          {
+            "w": "what",
+            "t": 472.239
+          },
+          {
+            "w": "happens",
+            "t": 472.668
+          },
+          {
+            "w": "when",
+            "t": 473.096
+          },
+          {
+            "w": "jitter",
+            "t": 473.524
+          },
+          {
+            "w": "exceeds",
+            "t": 473.952
+          },
+          {
+            "w": "the",
+            "t": 474.38
+          },
+          {
+            "w": "watermark",
+            "t": 474.808
+          },
+          {
+            "w": "threshold.",
+            "t": 475.237
+          },
+          {
+            "w": "Select",
+            "t": 475.665
+          },
+          {
+            "w": "Option",
+            "t": 476.093
+          },
+          {
+            "w": "A,",
+            "t": 476.521
+          },
+          {
+            "w": "B,",
+            "t": 476.949
+          },
+          {
+            "w": "or",
+            "t": 477.377
+          },
+          {
+            "w": "C",
+            "t": 477.806
+          },
+          {
+            "w": "above",
+            "t": 478.234
+          },
+          {
+            "w": "us!",
+            "t": 478.662
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, how does an enterprise feature store join high-dimensional image embeddings with fast JSON clickstream events without causing massive latency spikes?",
+        "start": 479.84,
+        "end": 488.792,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 479.84
+          },
+          {
+            "w": "Nova,",
+            "t": 480.247
+          },
+          {
+            "w": "how",
+            "t": 480.654
+          },
+          {
+            "w": "does",
+            "t": 481.061
+          },
+          {
+            "w": "an",
+            "t": 481.468
+          },
+          {
+            "w": "enterprise",
+            "t": 481.875
+          },
+          {
+            "w": "feature",
+            "t": 482.281
+          },
+          {
+            "w": "store",
+            "t": 482.688
+          },
+          {
+            "w": "join",
+            "t": 483.095
+          },
+          {
+            "w": "high-dimensional",
+            "t": 483.502
+          },
+          {
+            "w": "image",
+            "t": 483.909
+          },
+          {
+            "w": "embeddings",
+            "t": 484.316
+          },
+          {
+            "w": "with",
+            "t": 484.723
+          },
+          {
+            "w": "fast",
+            "t": 485.13
+          },
+          {
+            "w": "JSON",
+            "t": 485.537
+          },
+          {
+            "w": "clickstream",
+            "t": 485.944
+          },
+          {
+            "w": "events",
+            "t": 486.351
+          },
+          {
+            "w": "without",
+            "t": 486.757
+          },
+          {
+            "w": "causing",
+            "t": 487.164
+          },
+          {
+            "w": "massive",
+            "t": 487.571
+          },
+          {
+            "w": "latency",
+            "t": 487.978
+          },
+          {
+            "w": "spikes?",
+            "t": 488.385
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Asynchronous pre-computation! Image embeddings are computed once offline upon catalog upload and indexed in vector databases like Milvus or Qdrant. The real-time stream engine only needs to retrieve the pre-computed 512-dimensional vector by product ID.",
+        "start": 489.142,
+        "end": 506.038,
+        "words": [
+          {
+            "w": "Asynchronous",
+            "t": 489.142
+          },
+          {
+            "w": "pre-computation!",
+            "t": 489.625
+          },
+          {
+            "w": "Image",
+            "t": 490.107
+          },
+          {
+            "w": "embeddings",
+            "t": 490.59
+          },
+          {
+            "w": "are",
+            "t": 491.073
+          },
+          {
+            "w": "computed",
+            "t": 491.556
+          },
+          {
+            "w": "once",
+            "t": 492.038
+          },
+          {
+            "w": "offline",
+            "t": 492.521
+          },
+          {
+            "w": "upon",
+            "t": 493.004
+          },
+          {
+            "w": "catalog",
+            "t": 493.487
+          },
+          {
+            "w": "upload",
+            "t": 493.969
+          },
+          {
+            "w": "and",
+            "t": 494.452
+          },
+          {
+            "w": "indexed",
+            "t": 494.935
+          },
+          {
+            "w": "in",
+            "t": 495.418
+          },
+          {
+            "w": "vector",
+            "t": 495.9
+          },
+          {
+            "w": "databases",
+            "t": 496.383
+          },
+          {
+            "w": "like",
+            "t": 496.866
+          },
+          {
+            "w": "Milvus",
+            "t": 497.349
+          },
+          {
+            "w": "or",
+            "t": 497.831
+          },
+          {
+            "w": "Qdrant.",
+            "t": 498.314
+          },
+          {
+            "w": "The",
+            "t": 498.797
+          },
+          {
+            "w": "real-time",
+            "t": 499.28
+          },
+          {
+            "w": "stream",
+            "t": 499.762
+          },
+          {
+            "w": "engine",
+            "t": 500.245
+          },
+          {
+            "w": "only",
+            "t": 500.728
+          },
+          {
+            "w": "needs",
+            "t": 501.211
+          },
+          {
+            "w": "to",
+            "t": 501.693
+          },
+          {
+            "w": "retrieve",
+            "t": 502.176
+          },
+          {
+            "w": "the",
+            "t": 502.659
+          },
+          {
+            "w": "pre-computed",
+            "t": 503.142
+          },
+          {
+            "w": "512-dimensional",
+            "t": 503.624
+          },
+          {
+            "w": "vector",
+            "t": 504.107
+          },
+          {
+            "w": "by",
+            "t": 504.59
+          },
+          {
+            "w": "product",
+            "t": 505.073
+          },
+          {
+            "w": "ID.",
+            "t": 505.555
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "And in financial order books, a single nanosecond of lookahead leakage in backtesting creates a strategy that looks profitable on paper but collapses instantly in live execution.",
+        "start": 506.388,
+        "end": 516.516,
+        "words": [
+          {
+            "w": "And",
+            "t": 506.388
+          },
+          {
+            "w": "in",
+            "t": 506.763
+          },
+          {
+            "w": "financial",
+            "t": 507.138
+          },
+          {
+            "w": "order",
+            "t": 507.513
+          },
+          {
+            "w": "books,",
+            "t": 507.888
+          },
+          {
+            "w": "a",
+            "t": 508.264
+          },
+          {
+            "w": "single",
+            "t": 508.639
+          },
+          {
+            "w": "nanosecond",
+            "t": 509.014
+          },
+          {
+            "w": "of",
+            "t": 509.389
+          },
+          {
+            "w": "lookahead",
+            "t": 509.764
+          },
+          {
+            "w": "leakage",
+            "t": 510.139
+          },
+          {
+            "w": "in",
+            "t": 510.514
+          },
+          {
+            "w": "backtesting",
+            "t": 510.889
+          },
+          {
+            "w": "creates",
+            "t": 511.264
+          },
+          {
+            "w": "a",
+            "t": 511.64
+          },
+          {
+            "w": "strategy",
+            "t": 512.015
+          },
+          {
+            "w": "that",
+            "t": 512.39
+          },
+          {
+            "w": "looks",
+            "t": 512.765
+          },
+          {
+            "w": "profitable",
+            "t": 513.14
+          },
+          {
+            "w": "on",
+            "t": 513.515
+          },
+          {
+            "w": "paper",
+            "t": 513.89
+          },
+          {
+            "w": "but",
+            "t": 514.265
+          },
+          {
+            "w": "collapses",
+            "t": 514.64
+          },
+          {
+            "w": "instantly",
+            "t": 515.016
+          },
+          {
+            "w": "in",
+            "t": 515.391
+          },
+          {
+            "w": "live",
+            "t": 515.766
+          },
+          {
+            "w": "execution.",
+            "t": 516.141
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. True engineering discipline means enforcing strict causal point-in-time joins across all structural modalities.",
+        "start": 516.866,
+        "end": 525.218,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 516.866
+          },
+          {
+            "w": "True",
+            "t": 517.463
+          },
+          {
+            "w": "engineering",
+            "t": 518.059
+          },
+          {
+            "w": "discipline",
+            "t": 518.656
+          },
+          {
+            "w": "means",
+            "t": 519.252
+          },
+          {
+            "w": "enforcing",
+            "t": 519.849
+          },
+          {
+            "w": "strict",
+            "t": 520.445
+          },
+          {
+            "w": "causal",
+            "t": 521.042
+          },
+          {
+            "w": "point-in-time",
+            "t": 521.639
+          },
+          {
+            "w": "joins",
+            "t": 522.235
+          },
+          {
+            "w": "across",
+            "t": 522.832
+          },
+          {
+            "w": "all",
+            "t": 523.428
+          },
+          {
+            "w": "structural",
+            "t": 524.025
+          },
+          {
+            "w": "modalities.",
+            "t": 524.621
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do we use Polars instead of standard Python loops or Pandas for flattening nested JSON?",
+        "start": 525.968,
+        "end": 532.352,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 525.968
+          },
+          {
+            "w": "Nova,",
+            "t": 526.323
+          },
+          {
+            "w": "why",
+            "t": 526.677
+          },
+          {
+            "w": "do",
+            "t": 527.032
+          },
+          {
+            "w": "we",
+            "t": 527.387
+          },
+          {
+            "w": "use",
+            "t": 527.741
+          },
+          {
+            "w": "Polars",
+            "t": 528.096
+          },
+          {
+            "w": "instead",
+            "t": 528.451
+          },
+          {
+            "w": "of",
+            "t": 528.805
+          },
+          {
+            "w": "standard",
+            "t": 529.16
+          },
+          {
+            "w": "Python",
+            "t": 529.515
+          },
+          {
+            "w": "loops",
+            "t": 529.869
+          },
+          {
+            "w": "or",
+            "t": 530.224
+          },
+          {
+            "w": "Pandas",
+            "t": 530.579
+          },
+          {
+            "w": "for",
+            "t": 530.933
+          },
+          {
+            "w": "flattening",
+            "t": 531.288
+          },
+          {
+            "w": "nested",
+            "t": 531.643
+          },
+          {
+            "w": "JSON?",
+            "t": 531.997
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "SIMD vectorization and Arrow memory layouts! Polars allocates Arrow columnar buffers directly in Rust. A loop over dicts in Python creates millions of heap allocations, whereas Polars processes millions of rows in milliseconds using CPU cache lines.",
+        "start": 532.702,
+        "end": 550.006,
+        "words": [
+          {
+            "w": "SIMD",
+            "t": 532.702
+          },
+          {
+            "w": "vectorization",
+            "t": 533.17
+          },
+          {
+            "w": "and",
+            "t": 533.637
+          },
+          {
+            "w": "Arrow",
+            "t": 534.105
+          },
+          {
+            "w": "memory",
+            "t": 534.573
+          },
+          {
+            "w": "layouts!",
+            "t": 535.04
+          },
+          {
+            "w": "Polars",
+            "t": 535.508
+          },
+          {
+            "w": "allocates",
+            "t": 535.976
+          },
+          {
+            "w": "Arrow",
+            "t": 536.443
+          },
+          {
+            "w": "columnar",
+            "t": 536.911
+          },
+          {
+            "w": "buffers",
+            "t": 537.379
+          },
+          {
+            "w": "directly",
+            "t": 537.846
+          },
+          {
+            "w": "in",
+            "t": 538.314
+          },
+          {
+            "w": "Rust.",
+            "t": 538.782
+          },
+          {
+            "w": "A",
+            "t": 539.249
+          },
+          {
+            "w": "loop",
+            "t": 539.717
+          },
+          {
+            "w": "over",
+            "t": 540.185
+          },
+          {
+            "w": "dicts",
+            "t": 540.652
+          },
+          {
+            "w": "in",
+            "t": 541.12
+          },
+          {
+            "w": "Python",
+            "t": 541.588
+          },
+          {
+            "w": "creates",
+            "t": 542.056
+          },
+          {
+            "w": "millions",
+            "t": 542.523
+          },
+          {
+            "w": "of",
+            "t": 542.991
+          },
+          {
+            "w": "heap",
+            "t": 543.459
+          },
+          {
+            "w": "allocations,",
+            "t": 543.926
+          },
+          {
+            "w": "whereas",
+            "t": 544.394
+          },
+          {
+            "w": "Polars",
+            "t": 544.862
+          },
+          {
+            "w": "processes",
+            "t": 545.329
+          },
+          {
+            "w": "millions",
+            "t": 545.797
+          },
+          {
+            "w": "of",
+            "t": 546.265
+          },
+          {
+            "w": "rows",
+            "t": 546.732
+          },
+          {
+            "w": "in",
+            "t": 547.2
+          },
+          {
+            "w": "milliseconds",
+            "t": 547.668
+          },
+          {
+            "w": "using",
+            "t": 548.135
+          },
+          {
+            "w": "CPU",
+            "t": 548.603
+          },
+          {
+            "w": "cache",
+            "t": 549.071
+          },
+          {
+            "w": "lines.",
+            "t": 549.538
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "And Pydantic guarantees that any corrupted payload is caught and quarantined before it ever touches the columnar table.",
+        "start": 550.356,
+        "end": 557.028,
+        "words": [
+          {
+            "w": "And",
+            "t": 550.356
+          },
+          {
+            "w": "Pydantic",
+            "t": 550.727
+          },
+          {
+            "w": "guarantees",
+            "t": 551.097
+          },
+          {
+            "w": "that",
+            "t": 551.468
+          },
+          {
+            "w": "any",
+            "t": 551.839
+          },
+          {
+            "w": "corrupted",
+            "t": 552.209
+          },
+          {
+            "w": "payload",
+            "t": 552.58
+          },
+          {
+            "w": "is",
+            "t": 552.951
+          },
+          {
+            "w": "caught",
+            "t": 553.321
+          },
+          {
+            "w": "and",
+            "t": 553.692
+          },
+          {
+            "w": "quarantined",
+            "t": 554.063
+          },
+          {
+            "w": "before",
+            "t": 554.433
+          },
+          {
+            "w": "it",
+            "t": 554.804
+          },
+          {
+            "w": "ever",
+            "t": 555.175
+          },
+          {
+            "w": "touches",
+            "t": 555.545
+          },
+          {
+            "w": "the",
+            "t": 555.916
+          },
+          {
+            "w": "columnar",
+            "t": 556.287
+          },
+          {
+            "w": "table.",
+            "t": 556.657
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Defensive schema contracts paired with vectorized columnar storage.",
+        "start": 557.378,
+        "end": 563.546,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 557.378
+          },
+          {
+            "w": "Defensive",
+            "t": 558.063
+          },
+          {
+            "w": "schema",
+            "t": 558.749
+          },
+          {
+            "w": "contracts",
+            "t": 559.434
+          },
+          {
+            "w": "paired",
+            "t": 560.119
+          },
+          {
+            "w": "with",
+            "t": 560.805
+          },
+          {
+            "w": "vectorized",
+            "t": 561.49
+          },
+          {
+            "w": "columnar",
+            "t": 562.175
+          },
+          {
+            "w": "storage.",
+            "t": 562.861
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what is the single most vital lesson for data engineers to remember from Lesson 1.2?",
+        "start": 564.296,
+        "end": 570.968,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 564.296
+          },
+          {
+            "w": "Nova,",
+            "t": 564.688
+          },
+          {
+            "w": "what",
+            "t": 565.081
+          },
+          {
+            "w": "is",
+            "t": 565.473
+          },
+          {
+            "w": "the",
+            "t": 565.866
+          },
+          {
+            "w": "single",
+            "t": 566.258
+          },
+          {
+            "w": "most",
+            "t": 566.651
+          },
+          {
+            "w": "vital",
+            "t": 567.043
+          },
+          {
+            "w": "lesson",
+            "t": 567.436
+          },
+          {
+            "w": "for",
+            "t": 567.828
+          },
+          {
+            "w": "data",
+            "t": 568.221
+          },
+          {
+            "w": "engineers",
+            "t": 568.613
+          },
+          {
+            "w": "to",
+            "t": 569.006
+          },
+          {
+            "w": "remember",
+            "t": 569.398
+          },
+          {
+            "w": "from",
+            "t": 569.791
+          },
+          {
+            "w": "Lesson",
+            "t": 570.183
+          },
+          {
+            "w": "1.2?",
+            "t": 570.576
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Respect the physical nature of your data! Never force streaming events into static batch assumptions, and never store high-throughput data in raw unindexed JSON strings. Design your pipelines around structural and temporal truth.",
+        "start": 571.318,
+        "end": 585.838,
+        "words": [
+          {
+            "w": "Respect",
+            "t": 571.318
+          },
+          {
+            "w": "the",
+            "t": 571.758
+          },
+          {
+            "w": "physical",
+            "t": 572.198
+          },
+          {
+            "w": "nature",
+            "t": 572.638
+          },
+          {
+            "w": "of",
+            "t": 573.078
+          },
+          {
+            "w": "your",
+            "t": 573.518
+          },
+          {
+            "w": "data!",
+            "t": 573.958
+          },
+          {
+            "w": "Never",
+            "t": 574.398
+          },
+          {
+            "w": "force",
+            "t": 574.838
+          },
+          {
+            "w": "streaming",
+            "t": 575.278
+          },
+          {
+            "w": "events",
+            "t": 575.718
+          },
+          {
+            "w": "into",
+            "t": 576.158
+          },
+          {
+            "w": "static",
+            "t": 576.598
+          },
+          {
+            "w": "batch",
+            "t": 577.038
+          },
+          {
+            "w": "assumptions,",
+            "t": 577.478
+          },
+          {
+            "w": "and",
+            "t": 577.918
+          },
+          {
+            "w": "never",
+            "t": 578.358
+          },
+          {
+            "w": "store",
+            "t": 578.798
+          },
+          {
+            "w": "high-throughput",
+            "t": 579.238
+          },
+          {
+            "w": "data",
+            "t": 579.678
+          },
+          {
+            "w": "in",
+            "t": 580.118
+          },
+          {
+            "w": "raw",
+            "t": 580.558
+          },
+          {
+            "w": "unindexed",
+            "t": 580.998
+          },
+          {
+            "w": "JSON",
+            "t": 581.438
+          },
+          {
+            "w": "strings.",
+            "t": 581.878
+          },
+          {
+            "w": "Design",
+            "t": 582.318
+          },
+          {
+            "w": "your",
+            "t": 582.758
+          },
+          {
+            "w": "pipelines",
+            "t": 583.198
+          },
+          {
+            "w": "around",
+            "t": 583.638
+          },
+          {
+            "w": "structural",
+            "t": 584.078
+          },
+          {
+            "w": "and",
+            "t": 584.518
+          },
+          {
+            "w": "temporal",
+            "t": 584.958
+          },
+          {
+            "w": "truth.",
+            "t": 585.398
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "And in Lesson 1.3, we will examine the physical serialization formats—Parquet, Arrow, CSV, and HDF5—down to the byte level!",
+        "start": 586.188,
+        "end": 595.212,
+        "words": [
+          {
+            "w": "And",
+            "t": 586.188
+          },
+          {
+            "w": "in",
+            "t": 586.663
+          },
+          {
+            "w": "Lesson",
+            "t": 587.138
+          },
+          {
+            "w": "1.3,",
+            "t": 587.613
+          },
+          {
+            "w": "we",
+            "t": 588.088
+          },
+          {
+            "w": "will",
+            "t": 588.563
+          },
+          {
+            "w": "examine",
+            "t": 589.038
+          },
+          {
+            "w": "the",
+            "t": 589.513
+          },
+          {
+            "w": "physical",
+            "t": 589.988
+          },
+          {
+            "w": "serialization",
+            "t": 590.463
+          },
+          {
+            "w": "formats—Parquet,",
+            "t": 590.937
+          },
+          {
+            "w": "Arrow,",
+            "t": 591.412
+          },
+          {
+            "w": "CSV,",
+            "t": 591.887
+          },
+          {
+            "w": "and",
+            "t": 592.362
+          },
+          {
+            "w": "HDF5—down",
+            "t": 592.837
+          },
+          {
+            "w": "to",
+            "t": 593.312
+          },
+          {
+            "w": "the",
+            "t": 593.787
+          },
+          {
+            "w": "byte",
+            "t": 594.262
+          },
+          {
+            "w": "level!",
+            "t": 594.737
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Let us proceed to Lesson 1.3!",
+        "start": 595.562,
+        "end": 600.314,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 595.562
+          },
+          {
+            "w": "Let",
+            "t": 596.241
+          },
+          {
+            "w": "us",
+            "t": 596.92
+          },
+          {
+            "w": "proceed",
+            "t": 597.599
+          },
+          {
+            "w": "to",
+            "t": 598.277
+          },
+          {
+            "w": "Lesson",
+            "t": 598.956
+          },
+          {
+            "w": "1.3!",
+            "t": 599.635
+          }
+        ]
+      }
+    ]
   }
 };
