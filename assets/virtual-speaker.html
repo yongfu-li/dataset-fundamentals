@@ -341,6 +341,7 @@
       box-shadow: 4px 4px 0px #151b20 !important;
       color: #151b20 !important;
     }
+
     #slideContent [class*="border-amber"] *,
     #slideContent [class*="bg-amber"] * {
       color: #151b20 !important;
@@ -398,7 +399,7 @@
       box-shadow: 1px 1px 0px #151b20;
     }
 
-    #slideContent pre {
+    #slideContent pre:not(.mermaid) {
       background: #151b20 !important;
       border: 2px solid #151b20 !important;
       border-radius: 12px !important;
@@ -406,7 +407,16 @@
       padding: 14px !important;
     }
 
-    #slideContent pre code {
+    #slideContent pre.mermaid,
+    .mermaid {
+      background: transparent !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0.5rem 0 !important;
+    }
+
+    #slideContent pre:not(.mermaid) code {
       background: transparent !important;
       color: #f8fafc !important;
       border: none !important;
@@ -422,18 +432,39 @@
       display: block;
     }
 
+    .mermaid text,
+    .mermaid tspan,
     .mermaid .nodeLabel,
+    .mermaid .nodeLabel *,
     .mermaid .label,
-    .mermaid foreignObject div {
-      color: var(--ink) !important;
-      fill: var(--ink) !important;
+    .mermaid .label *,
+    .mermaid foreignObject,
+    .mermaid foreignObject div,
+    .mermaid foreignObject span,
+    .mermaid foreignObject p,
+    .mermaid .edgeLabel,
+    .mermaid .edgeLabel *,
+    .mermaid .cluster text,
+    .mermaid .cluster span {
+      color: var(--ink, #151b20) !important;
+      fill: var(--ink, #151b20) !important;
       font-weight: 700 !important;
     }
 
     .mermaid .node.blue rect,
+    .mermaid .node.blue polygon,
+    .mermaid .node.blue circle,
+    .mermaid .node.blue ellipse,
+    .mermaid .node.blue path:not(.flowchart-link),
     .mermaid .node.cyan rect,
+    .mermaid .node.cyan polygon,
+    .mermaid .node.cyan circle,
+    .mermaid .node.cyan ellipse,
+    .mermaid .node.cyan path:not(.flowchart-link),
     .mermaid .node.obj rect,
-    .mermaid .node.store rect {
+    .mermaid .node.obj polygon,
+    .mermaid .node.store rect,
+    .mermaid .node.store polygon {
       fill: var(--cyan-soft) !important;
       stroke: var(--ink) !important;
       stroke-width: 2px !important;
@@ -441,9 +472,19 @@
     }
 
     .mermaid .node.green rect,
+    .mermaid .node.green polygon,
+    .mermaid .node.green circle,
+    .mermaid .node.green ellipse,
+    .mermaid .node.green path:not(.flowchart-link),
     .mermaid .node.lime rect,
+    .mermaid .node.lime polygon,
+    .mermaid .node.lime circle,
+    .mermaid .node.lime ellipse,
+    .mermaid .node.lime path:not(.flowchart-link),
     .mermaid .node.val rect,
-    .mermaid .node.comp rect {
+    .mermaid .node.val polygon,
+    .mermaid .node.comp rect,
+    .mermaid .node.comp polygon {
       fill: var(--lime-soft) !important;
       stroke: var(--ink) !important;
       stroke-width: 2px !important;
@@ -451,8 +492,17 @@
     }
 
     .mermaid .node.amber rect,
+    .mermaid .node.amber polygon,
+    .mermaid .node.amber circle,
+    .mermaid .node.amber ellipse,
+    .mermaid .node.amber path:not(.flowchart-link),
     .mermaid .node.yellow rect,
-    .mermaid .node.list rect {
+    .mermaid .node.yellow polygon,
+    .mermaid .node.yellow circle,
+    .mermaid .node.yellow ellipse,
+    .mermaid .node.yellow path:not(.flowchart-link),
+    .mermaid .node.list rect,
+    .mermaid .node.list polygon {
       fill: var(--yellow-soft) !important;
       stroke: var(--ink) !important;
       stroke-width: 2px !important;
@@ -460,7 +510,12 @@
     }
 
     .mermaid .node.purple rect,
-    .mermaid .node.out rect {
+    .mermaid .node.purple polygon,
+    .mermaid .node.purple circle,
+    .mermaid .node.purple ellipse,
+    .mermaid .node.purple path:not(.flowchart-link),
+    .mermaid .node.out rect,
+    .mermaid .node.out polygon {
       fill: var(--purple-soft) !important;
       stroke: var(--ink) !important;
       stroke-width: 2px !important;
@@ -468,7 +523,15 @@
     }
 
     .mermaid .node.red rect,
-    .mermaid .node.coral rect {
+    .mermaid .node.red polygon,
+    .mermaid .node.red circle,
+    .mermaid .node.red ellipse,
+    .mermaid .node.red path:not(.flowchart-link),
+    .mermaid .node.coral rect,
+    .mermaid .node.coral polygon,
+    .mermaid .node.coral circle,
+    .mermaid .node.coral ellipse,
+    .mermaid .node.coral path:not(.flowchart-link) {
       fill: var(--coral-soft) !important;
       stroke: var(--ink) !important;
       stroke-width: 2px !important;
@@ -477,11 +540,22 @@
 
     .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
     .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-    .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]) {
+    .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
+    .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
+    .mermaid .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
       fill: var(--cream) !important;
       stroke: var(--ink) !important;
       stroke-width: 2px !important;
       filter: drop-shadow(3px 3px 0px var(--ink)) !important;
+    }
+
+    .mermaid .edgeLabel,
+    .mermaid .edgeLabel rect {
+      background-color: var(--cream, #fffaf0) !important;
+      fill: var(--cream, #fffaf0) !important;
+      stroke: var(--ink, #151b20) !important;
+      stroke-width: 1.5px !important;
+      rx: 6px !important;
     }
 
     .mermaid .edgePath .path,
@@ -679,8 +753,7 @@
       </div>
 
       <!-- Quick Site Tour Button -->
-      <button id="btnHeaderTour" onclick="startSiteTour()" type="button"
-        title="Start Guided Tour of the Lecture Studio"
+      <button id="btnHeaderTour" onclick="startSiteTour()" type="button" title="Start Guided Tour of the Lecture Studio"
         class="cursor-pointer px-3 py-2 rounded-xl bg-[#c9f3f4] hover:bg-[#b7df69] text-[#0e7490] hover:text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center gap-1.5 transition active:translate-y-0.5 select-none">
         <span class="text-sm">🎯</span>
         <span>Site Tour</span>
@@ -726,227 +799,264 @@
         <!-- Traveling Dock Slot 1: Directly Under Main Slide Content -->
         <div id="speakerDockInitial" class="speaker-dock-slot transition-all duration-500 w-full mt-2 mb-3">
           <div id="avatarArena"
-          class="flex flex-col w-full my-2 p-3 bg-[#fffaf0] border-2 border-[#151b20] rounded-2xl shadow-[4px_4px_0px_#22bfd7] relative gap-2 transition-all duration-500">
+            class="flex flex-col w-full my-2 p-3 bg-[#fffaf0] border-2 border-[#151b20] rounded-2xl shadow-[4px_4px_0px_#22bfd7] relative gap-2 transition-all duration-500">
 
-          <!-- Traveling Presenter Focus Indicator & Navigation Bar -->
-          <div id="dockFocusBar" class="w-full flex items-center justify-between px-3 py-1.5 bg-[#f6f0dc] border-2 border-[#151b20] rounded-xl shadow-[2px_2px_0px_#151b20] text-xs font-mono flex-wrap gap-1.5 mb-1 transition-all">
-            <div class="flex items-center gap-1.5 font-bold text-[#151b20]">
-              <span class="text-sm">📍</span>
-              <span class="text-[11px] uppercase tracking-wider text-[#0e7490] font-black">Speaker Focus:</span>
-              <span id="dockActiveLabel" class="text-[10px] font-bold text-[#151b20] bg-[#fffdf7] px-2 py-0.5 rounded border border-[#151b20]">1. Core Slide Content</span>
+            <!-- Traveling Presenter Focus Indicator & Navigation Bar -->
+            <div id="dockFocusBar"
+              class="w-full flex items-center justify-between px-3 py-1.5 bg-[#f6f0dc] border-2 border-[#151b20] rounded-xl shadow-[2px_2px_0px_#151b20] text-xs font-mono flex-wrap gap-1.5 mb-1 transition-all">
+              <div class="flex items-center gap-1.5 font-bold text-[#151b20]">
+                <span class="text-sm">📍</span>
+                <span class="text-[11px] uppercase tracking-wider text-[#0e7490] font-black">Speaker Focus:</span>
+                <span id="dockActiveLabel"
+                  class="text-[10px] font-bold text-[#151b20] bg-[#fffdf7] px-2 py-0.5 rounded border border-[#151b20]">1.
+                  Core Slide Content</span>
+              </div>
+              <div class="inline-flex items-center rounded-lg bg-[#eee4c8] p-0.5 border border-[#151b20] gap-0.5"
+                id="dockPillGroup">
+                <button type="button" onclick="manualMoveSpeaker('main')" id="dockBtnMain"
+                  title="Focus speakers on main slide content"
+                  class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]">📄
+                  Core Slide</button>
+                <button type="button" onclick="manualMoveSpeaker('sim')" id="dockBtnSim"
+                  title="Move speakers to interactive simulator"
+                  class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">⚡
+                  Simulator</button>
+                <button type="button" onclick="manualMoveSpeaker('quiz')" id="dockBtnQuiz"
+                  title="Move speakers to active recall checkpoint"
+                  class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">💡
+                  Checkpoint</button>
+                <button type="button" onclick="startInteractiveSequence()" id="btnInteractiveSequence"
+                  title="Auto-travel through Core Lecture, Tool, and Checkpoint"
+                  class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#c9f3f4] text-[#0e7490] hover:bg-[#ffc83e] hover:text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20] ml-1">🎬
+                  Guided Shift</button>
+              </div>
             </div>
-            <div class="inline-flex items-center rounded-lg bg-[#eee4c8] p-0.5 border border-[#151b20] gap-0.5" id="dockPillGroup">
-              <button type="button" onclick="manualMoveSpeaker('main')" id="dockBtnMain" title="Focus speakers on main slide content" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20]">📄 Core Slide</button>
-              <button type="button" onclick="manualMoveSpeaker('sim')" id="dockBtnSim" title="Move speakers to interactive simulator" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">⚡ Simulator</button>
-              <button type="button" onclick="manualMoveSpeaker('quiz')" id="dockBtnQuiz" title="Move speakers to active recall checkpoint" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition text-[#151b20]/70 hover:bg-[#fff0b9]">💡 Checkpoint</button>
-              <button type="button" onclick="startInteractiveSequence()" id="btnInteractiveSequence" title="Auto-travel through Core Lecture, Tool, and Checkpoint" class="cursor-pointer px-2.5 py-0.5 rounded text-[10px] font-black transition bg-[#c9f3f4] text-[#0e7490] hover:bg-[#ffc83e] hover:text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20] ml-1">🎬 Guided Shift</button>
-            </div>
-          </div>
 
-          <div class="flex items-end justify-between w-full relative gap-2 sm:gap-4">
+            <div class="flex items-end justify-between w-full relative gap-2 sm:gap-4">
 
-        <!-- Bottom-Left Edge: Dr. Nova Avatar Pod -->
-        <div id="novaAvatarCard"
-          class="speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300">
-          <div class="cursor-pointer transition-transform hover:scale-105" onclick="toggleSpeech()" title="Click Dr. Nova to Play / Pause Audio">
-            <svg class="w-16 sm:w-20 md:w-24 h-auto" viewBox="0 0 200 240" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="75" fill="url(#haloGrad)" opacity="0.3" />
-            <!-- Hair Back (Anime Long Bob / Cyber Violet) -->
-            <path d="M 50 110 C 35 150 45 190 55 210 C 70 190 75 160 70 120 Z" fill="#6366f1" />
-            <path d="M 150 110 C 165 150 155 190 145 210 C 130 190 125 160 130 120 Z" fill="#6366f1" />
-            <!-- High-Collar Cyber Lab Coat -->
-            <path d="M 60 180 L 40 240 L 160 240 L 140 180 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
-            <path d="M 75 180 L 100 215 L 125 180" stroke="#38bdf8" stroke-width="3" fill="#1e293b" />
-            <path d="M 70 180 L 60 240 L 95 240 L 85 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-            <path d="M 130 180 L 140 240 L 105 240 L 115 195 Z" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
-            <rect x="70" y="210" width="18" height="10" rx="3" fill="#0284c7" />
-            <circle cx="75" cy="215" r="2" fill="#38bdf8" />
-            <!-- Neck -->
-            <rect x="90" y="145" width="20" height="35" rx="5" fill="#fcd34d" opacity="0.9" />
-            <path d="M 90 160 Q 100 168 110 160" stroke="#d97706" stroke-width="1.5" fill="none" opacity="0.4" />
-            <!-- Face -->
-            <path
-              d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z"
-              fill="#fef3c7" />
-            <ellipse cx="78" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3" />
-            <ellipse cx="122" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3" />
-            <!-- Eyes -->
-            <g class="eyes-blinking">
-              <ellipse cx="80" cy="100" rx="9" ry="11" fill="#0f172a" />
-              <ellipse cx="80" cy="100" rx="7" ry="9" fill="#0284c7" />
-              <circle cx="78" cy="96" r="3.5" fill="#ffffff" />
-              <circle cx="83" cy="103" r="1.5" fill="#ffffff" />
-              <path d="M 70 88 Q 80 84 90 89" stroke="#312e81" stroke-width="2.5" stroke-linecap="round"
-                fill="none" />
+              <!-- Bottom-Left Edge: Dr. Nova Avatar Pod -->
+              <div id="novaAvatarCard"
+                class="speaker-sway avatar-active flex-shrink-0 flex flex-col items-center transition-all duration-300">
+                <div class="cursor-pointer transition-transform hover:scale-105" onclick="toggleSpeech()"
+                  title="Click Dr. Nova to Play / Pause Audio">
+                  <svg class="w-16 sm:w-20 md:w-24 h-auto" viewBox="0 0 200 240" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="75" fill="url(#haloGrad)" opacity="0.3" />
+                    <!-- Hair Back (Anime Long Bob / Cyber Violet) -->
+                    <path d="M 50 110 C 35 150 45 190 55 210 C 70 190 75 160 70 120 Z" fill="#6366f1" />
+                    <path d="M 150 110 C 165 150 155 190 145 210 C 130 190 125 160 130 120 Z" fill="#6366f1" />
+                    <!-- High-Collar Cyber Lab Coat -->
+                    <path d="M 60 180 L 40 240 L 160 240 L 140 180 Z" fill="#0f172a" stroke="#1e293b"
+                      stroke-width="2" />
+                    <path d="M 75 180 L 100 215 L 125 180" stroke="#38bdf8" stroke-width="3" fill="#1e293b" />
+                    <path d="M 70 180 L 60 240 L 95 240 L 85 195 Z" fill="#1e293b" stroke="#334155"
+                      stroke-width="1.5" />
+                    <path d="M 130 180 L 140 240 L 105 240 L 115 195 Z" fill="#1e293b" stroke="#334155"
+                      stroke-width="1.5" />
+                    <rect x="70" y="210" width="18" height="10" rx="3" fill="#0284c7" />
+                    <circle cx="75" cy="215" r="2" fill="#38bdf8" />
+                    <!-- Neck -->
+                    <rect x="90" y="145" width="20" height="35" rx="5" fill="#fcd34d" opacity="0.9" />
+                    <path d="M 90 160 Q 100 168 110 160" stroke="#d97706" stroke-width="1.5" fill="none"
+                      opacity="0.4" />
+                    <!-- Face -->
+                    <path
+                      d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z"
+                      fill="#fef3c7" />
+                    <ellipse cx="78" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3" />
+                    <ellipse cx="122" cy="118" rx="6" ry="3" fill="#f43f5e" opacity="0.3" />
+                    <!-- Eyes -->
+                    <g class="eyes-blinking">
+                      <ellipse cx="80" cy="100" rx="9" ry="11" fill="#0f172a" />
+                      <ellipse cx="80" cy="100" rx="7" ry="9" fill="#0284c7" />
+                      <circle cx="78" cy="96" r="3.5" fill="#ffffff" />
+                      <circle cx="83" cy="103" r="1.5" fill="#ffffff" />
+                      <path d="M 70 88 Q 80 84 90 89" stroke="#312e81" stroke-width="2.5" stroke-linecap="round"
+                        fill="none" />
 
-              <ellipse cx="120" cy="100" rx="9" ry="11" fill="#0f172a" />
-              <ellipse cx="120" cy="100" rx="7" ry="9" fill="#0284c7" />
-              <circle cx="118" cy="96" r="3.5" fill="#ffffff" />
-              <circle cx="123" cy="103" r="1.5" fill="#ffffff" />
-              <path d="M 110 89 Q 120 84 130 88" stroke="#312e81" stroke-width="2.5" stroke-linecap="round"
-                fill="none" />
-            </g>
-            <!-- AR Monocle -->
-            <circle cx="120" cy="100" r="14" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.85" />
-            <line x1="134" y1="100" x2="148" y2="92" stroke="#38bdf8" stroke-width="1.5" />
-            <circle cx="120" cy="100" r="12" fill="#38bdf8" opacity="0.18" />
-            <path d="M 100 110 L 98 116 L 101 116" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
-              fill="none" />
-            <!-- Mouth -->
-            <path id="novaMouth" d="M 92 128 Q 100 132 108 128" stroke="#e11d48" stroke-width="2.5"
-              stroke-linecap="round" fill="none" />
-            <!-- Hair Front Bangs -->
-            <path d="M 60 75 Q 85 95 90 120 Q 95 85 100 65 Q 105 85 115 118 Q 120 90 140 75 C 130 50 70 50 60 75 Z"
-              fill="#818cf8" />
-            <path d="M 75 65 Q 100 75 125 65" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round" fill="none"
-              opacity="0.8" />
-            <!-- Soundwave Equalizer -->
-            <g id="novaSoundwaves" class="opacity-0 transition-opacity duration-300">
-              <rect x="25" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-1" />
-              <rect x="31" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2" />
-              <rect x="37" y="102" width="3" height="8" rx="1.5" fill="#38bdf8" class="wave-bar-3" />
-            </g>
-            <defs>
-              <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#38bdf8" />
-                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
-              </radialGradient>
-            </defs>
-          </svg>
-          </div>
-          <span
-            class="mt-1 text-[10px] sm:text-xs font-mono font-bold text-[#151b20] bg-[#c9f3f4] px-2 sm:px-2.5 py-0.5 rounded-full border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] whitespace-nowrap">
-            Dr. Nova
-          </span>
-          <!-- Extra Play Button Near Avatar -->
-          <button id="avatarPlayBtn" onclick="toggleSpeech()"
-            title="Play / Pause Audio (Hotkey: Space)"
-            class="mt-1.5 cursor-pointer px-3 py-1 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] active:translate-y-0.5 text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex items-center gap-1 transition select-none">
-            <span id="avatarPlayIcon">▶</span>
-            <span id="avatarPlayText">Play</span>
-          </button>
-        </div>
-
-        <!-- Center Stage: Cinema Subtitle Dialogue Box Between the 2 Avatars -->
-        <div class="flex-1 min-w-0 flex flex-col justify-end">
-          <div id="cinemaSubtitleCard"
-            class="p-2.5 sm:p-3.5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] relative overflow-hidden transition-all duration-300 text-[#151b20]">
-            <div class="flex items-center justify-between mb-1.5 pb-1 border-b-2 border-[#151b20]/15 flex-wrap gap-1">
-              <div class="flex items-center gap-1.5 sm:gap-2">
-                <span id="ccBadge"
-                  class="px-2 py-0.5 rounded-full bg-[#b7df69] text-[#151b20] font-mono font-black text-[10px] sm:text-xs tracking-wider border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">CC ON</span>
-                <span id="cinemaSpeaker"
-                  class="font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wider">Dr. Nova (Senior Architect)</span>
-                <span id="speakerName" class="hidden">Dr. Nova (Data Architect)</span>
-                <span id="poseBadge"
-                  class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold whitespace-nowrap">
-                  Pose: Teaching
+                      <ellipse cx="120" cy="100" rx="9" ry="11" fill="#0f172a" />
+                      <ellipse cx="120" cy="100" rx="7" ry="9" fill="#0284c7" />
+                      <circle cx="118" cy="96" r="3.5" fill="#ffffff" />
+                      <circle cx="123" cy="103" r="1.5" fill="#ffffff" />
+                      <path d="M 110 89 Q 120 84 130 88" stroke="#312e81" stroke-width="2.5" stroke-linecap="round"
+                        fill="none" />
+                    </g>
+                    <!-- AR Monocle -->
+                    <circle cx="120" cy="100" r="14" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.85" />
+                    <line x1="134" y1="100" x2="148" y2="92" stroke="#38bdf8" stroke-width="1.5" />
+                    <circle cx="120" cy="100" r="12" fill="#38bdf8" opacity="0.18" />
+                    <path d="M 100 110 L 98 116 L 101 116" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
+                      fill="none" />
+                    <!-- Mouth -->
+                    <path id="novaMouth" d="M 92 128 Q 100 132 108 128" stroke="#e11d48" stroke-width="2.5"
+                      stroke-linecap="round" fill="none" />
+                    <!-- Hair Front Bangs -->
+                    <path
+                      d="M 60 75 Q 85 95 90 120 Q 95 85 100 65 Q 105 85 115 118 Q 120 90 140 75 C 130 50 70 50 60 75 Z"
+                      fill="#818cf8" />
+                    <path d="M 75 65 Q 100 75 125 65" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round"
+                      fill="none" opacity="0.8" />
+                    <!-- Soundwave Equalizer -->
+                    <g id="novaSoundwaves" class="opacity-0 transition-opacity duration-300">
+                      <rect x="25" y="100" width="3" height="10" rx="1.5" fill="#38bdf8" class="wave-bar-1" />
+                      <rect x="31" y="96" width="3" height="18" rx="1.5" fill="#38bdf8" class="wave-bar-2" />
+                      <rect x="37" y="102" width="3" height="8" rx="1.5" fill="#38bdf8" class="wave-bar-3" />
+                    </g>
+                    <defs>
+                      <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#38bdf8" />
+                        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <span
+                  class="mt-1 text-[10px] sm:text-xs font-mono font-bold text-[#151b20] bg-[#c9f3f4] px-2 sm:px-2.5 py-0.5 rounded-full border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] whitespace-nowrap">
+                  Dr. Nova
                 </span>
+                <!-- Extra Play Button Near Avatar -->
+                <button id="avatarPlayBtn" onclick="toggleSpeech()" title="Play / Pause Audio (Hotkey: Space)"
+                  class="mt-1.5 cursor-pointer px-3 py-1 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] active:translate-y-0.5 text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex items-center gap-1 transition select-none">
+                  <span id="avatarPlayIcon">▶</span>
+                  <span id="avatarPlayText">Play</span>
+                </button>
               </div>
-              <div class="flex items-center gap-1.5">
-                <span id="freeModeIndicatorBadge"
-                  class="hidden px-2 py-0.5 rounded-full bg-[#f38469] text-[#151b20] font-mono font-black text-[10px] animate-pulse border-2 border-[#151b20]">🛠️ FREE MODE</span>
-                <span id="turnCounter"
-                  class="text-[10px] sm:text-xs font-mono font-bold text-[#151b20] bg-[#eee4c8] px-2.5 py-0.5 rounded-full border border-[#151b20]">Turn 1 of 2</span>
+
+              <!-- Center Stage: Cinema Subtitle Dialogue Box Between the 2 Avatars -->
+              <div class="flex-1 min-w-0 flex flex-col justify-end">
+                <div id="cinemaSubtitleCard"
+                  class="p-2.5 sm:p-3.5 rounded-2xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] relative overflow-hidden transition-all duration-300 text-[#151b20]">
+                  <div
+                    class="flex items-center justify-between mb-1.5 pb-1 border-b-2 border-[#151b20]/15 flex-wrap gap-1">
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                      <span id="ccBadge"
+                        class="px-2 py-0.5 rounded-full bg-[#b7df69] text-[#151b20] font-mono font-black text-[10px] sm:text-xs tracking-wider border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">CC
+                        ON</span>
+                      <span id="cinemaSpeaker"
+                        class="font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wider">Dr. Nova
+                        (Senior Architect)</span>
+                      <span id="speakerName" class="hidden">Dr. Nova (Data Architect)</span>
+                      <span id="poseBadge"
+                        class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#c9f3f4] text-[#151b20] border border-[#151b20] font-bold whitespace-nowrap">
+                        Pose: Teaching
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span id="freeModeIndicatorBadge"
+                        class="hidden px-2 py-0.5 rounded-full bg-[#f38469] text-[#151b20] font-mono font-black text-[10px] animate-pulse border-2 border-[#151b20]">🛠️
+                        FREE MODE</span>
+                      <span id="turnCounter"
+                        class="text-[10px] sm:text-xs font-mono font-bold text-[#151b20] bg-[#eee4c8] px-2.5 py-0.5 rounded-full border border-[#151b20]">Turn
+                        1 of 2</span>
+                    </div>
+                  </div>
+                  <p id="cinemaSubtitleText"
+                    class="text-xs sm:text-sm md:text-base font-bold text-[#151b20] leading-snug sm:leading-relaxed tracking-wide min-h-[38px] sm:min-h-[44px]">
+                    "Welcome to Lesson 1.1: What is a Dataset? Records, Attributes &amp; Data Quality Cascades."
+                  </p>
+                </div>
               </div>
-            </div>
-            <p id="cinemaSubtitleText"
-              class="text-xs sm:text-sm md:text-base font-bold text-[#151b20] leading-snug sm:leading-relaxed tracking-wide min-h-[38px] sm:min-h-[44px]">
-              "Welcome to Lesson 1.1: What is a Dataset? Records, Attributes &amp; Data Quality Cascades."
-            </p>
-          </div>
-        </div>
 
-        <!-- Bottom-Right Edge: Kaito Avatar Pod -->
-        <div id="kaitoAvatarCard"
-          class="speaker-sway avatar-inactive flex-shrink-0 flex flex-col items-center transition-all duration-300 hidden">
-          <div class="cursor-pointer transition-transform hover:scale-105" onclick="toggleSpeech()" title="Click Kaito to Play / Pause Audio">
-            <svg class="w-16 sm:w-20 md:w-24 h-auto" viewBox="0 0 200 240" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="75" fill="url(#kaitoHaloGrad)" opacity="0.3" />
-            <!-- Hair Back (Anime Spiky / Amber Brown) -->
-            <path d="M 45 90 L 35 130 L 50 160 L 60 180 L 140 180 L 150 160 L 165 130 L 155 90 Z" fill="#431407" />
-            <path d="M 40 85 L 25 110 L 45 130 Z" fill="#b45309" />
-            <path d="M 160 85 L 175 110 L 155 130 Z" fill="#b45309" />
-            <!-- Tech Hoodie Torso -->
-            <path d="M 55 180 L 35 240 L 165 240 L 145 180 Z" fill="#1e1b4b" stroke="#312e81" stroke-width="2" />
-            <path d="M 70 180 L 100 215 L 130 180" stroke="#f97316" stroke-width="3" fill="#1e1b4b" />
-            <line x1="88" y1="215" x2="88" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round" />
-            <line x1="112" y1="215" x2="112" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round" />
-            <!-- Headset on Neck -->
-            <path d="M 60 170 C 60 195 140 195 140 170" stroke="#64748b" stroke-width="7" stroke-linecap="round"
-              fill="none" />
-            <circle cx="62" cy="170" r="10" fill="#f97316" />
-            <circle cx="138" cy="170" r="10" fill="#f97316" />
-            <!-- Neck -->
-            <rect x="90" y="145" width="20" height="35" rx="5" fill="#fde68a" />
-            <!-- Face -->
-            <path
-              d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z"
-              fill="#fffbeb" />
-            <ellipse cx="78" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3" />
-            <ellipse cx="122" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3" />
-            <!-- Eyes (Anime Expressive Inquisitive Eyes) -->
-            <g class="eyes-blinking">
-              <ellipse cx="80" cy="102" rx="8" ry="10" fill="#0f172a" />
-              <ellipse cx="80" cy="102" rx="6" ry="8" fill="#d97706" />
-              <circle cx="78" cy="98" r="3" fill="#ffffff" />
-              <circle cx="83" cy="105" r="1.5" fill="#ffffff" />
-              <path d="M 70 90 Q 80 85 90 91" stroke="#451a03" stroke-width="2.5" stroke-linecap="round"
-                fill="none" />
+              <!-- Bottom-Right Edge: Kaito Avatar Pod -->
+              <div id="kaitoAvatarCard"
+                class="speaker-sway avatar-inactive flex-shrink-0 flex flex-col items-center transition-all duration-300 hidden">
+                <div class="cursor-pointer transition-transform hover:scale-105" onclick="toggleSpeech()"
+                  title="Click Kaito to Play / Pause Audio">
+                  <svg class="w-16 sm:w-20 md:w-24 h-auto" viewBox="0 0 200 240" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="75" fill="url(#kaitoHaloGrad)" opacity="0.3" />
+                    <!-- Hair Back (Anime Spiky / Amber Brown) -->
+                    <path d="M 45 90 L 35 130 L 50 160 L 60 180 L 140 180 L 150 160 L 165 130 L 155 90 Z"
+                      fill="#431407" />
+                    <path d="M 40 85 L 25 110 L 45 130 Z" fill="#b45309" />
+                    <path d="M 160 85 L 175 110 L 155 130 Z" fill="#b45309" />
+                    <!-- Tech Hoodie Torso -->
+                    <path d="M 55 180 L 35 240 L 165 240 L 145 180 Z" fill="#1e1b4b" stroke="#312e81"
+                      stroke-width="2" />
+                    <path d="M 70 180 L 100 215 L 130 180" stroke="#f97316" stroke-width="3" fill="#1e1b4b" />
+                    <line x1="88" y1="215" x2="88" y2="235" stroke="#f97316" stroke-width="2" stroke-linecap="round" />
+                    <line x1="112" y1="215" x2="112" y2="235" stroke="#f97316" stroke-width="2"
+                      stroke-linecap="round" />
+                    <!-- Headset on Neck -->
+                    <path d="M 60 170 C 60 195 140 195 140 170" stroke="#64748b" stroke-width="7" stroke-linecap="round"
+                      fill="none" />
+                    <circle cx="62" cy="170" r="10" fill="#f97316" />
+                    <circle cx="138" cy="170" r="10" fill="#f97316" />
+                    <!-- Neck -->
+                    <rect x="90" y="145" width="20" height="35" rx="5" fill="#fde68a" />
+                    <!-- Face -->
+                    <path
+                      d="M 65 95 C 65 140 80 165 100 165 C 120 165 135 140 135 95 C 135 55 120 50 100 50 C 80 50 65 55 65 95 Z"
+                      fill="#fffbeb" />
+                    <ellipse cx="78" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3" />
+                    <ellipse cx="122" cy="120" rx="5" ry="3" fill="#fb923c" opacity="0.3" />
+                    <!-- Eyes (Anime Expressive Inquisitive Eyes) -->
+                    <g class="eyes-blinking">
+                      <ellipse cx="80" cy="102" rx="8" ry="10" fill="#0f172a" />
+                      <ellipse cx="80" cy="102" rx="6" ry="8" fill="#d97706" />
+                      <circle cx="78" cy="98" r="3" fill="#ffffff" />
+                      <circle cx="83" cy="105" r="1.5" fill="#ffffff" />
+                      <path d="M 70 90 Q 80 85 90 91" stroke="#451a03" stroke-width="2.5" stroke-linecap="round"
+                        fill="none" />
 
-              <ellipse cx="120" cy="102" rx="8" ry="10" fill="#0f172a" />
-              <ellipse cx="120" cy="102" rx="6" ry="8" fill="#d97706" />
-              <circle cx="118" cy="98" r="3" fill="#ffffff" />
-              <circle cx="123" cy="105" r="1.5" fill="#ffffff" />
-              <path d="M 110 91 Q 120 85 130 90" stroke="#451a03" stroke-width="2.5" stroke-linecap="round"
-                fill="none" />
-            </g>
-            <!-- Nose -->
-            <path d="M 100 112 L 98 118 L 102 118" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
-              fill="none" />
-            <!-- Mouth (Centered at X=100, Morphs cleanly when speaking) -->
-            <path id="kaitoMouth" d="M 91 128 Q 100 132 109 128" stroke="#c2410c" stroke-width="2.5"
-              stroke-linecap="round" fill="none" />
-            <!-- Spiky Anime Front Bangs -->
-            <path d="M 55 75 L 75 95 L 85 65 L 100 95 L 115 65 L 125 95 L 145 75 C 135 50 65 50 55 75 Z"
-              fill="#d97706" />
-            <path d="M 85 65 L 100 50 L 115 65 Z" fill="#f59e0b" />
-            <!-- Soundwave Equalizer -->
-            <g id="kaitoSoundwaves" class="opacity-0 transition-opacity duration-300">
-              <rect x="160" y="102" width="3" height="8" rx="1.5" fill="#f97316" class="wave-bar-3" />
-              <rect x="166" y="96" width="3" height="18" rx="1.5" fill="#f97316" class="wave-bar-2" />
-              <rect x="172" y="100" width="3" height="10" rx="1.5" fill="#f97316" class="wave-bar-4" />
-            </g>
-            <defs>
-              <radialGradient id="kaitoHaloGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#f97316" />
-                <stop offset="100%" stop-color="#f97316" stop-opacity="0" />
-              </radialGradient>
-            </defs>
-          </svg>
-          </div>
-          <span
-            class="mt-1 text-[10px] sm:text-xs font-mono font-bold text-[#151b20] bg-[#ffd8ce] px-2 sm:px-2.5 py-0.5 rounded-full border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] whitespace-nowrap">
-            Kaito
-          </span>
-          <!-- Extra Play Button Near Avatar (Kaito Pod) -->
-          <button id="kaitoPlayBtn" onclick="toggleSpeech()"
-            title="Play / Pause Audio (Hotkey: Space)"
-            class="mt-1.5 cursor-pointer px-3 py-1 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] active:translate-y-0.5 text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex items-center gap-1 transition select-none">
-            <span id="kaitoPlayIcon">▶</span>
-            <span id="kaitoPlayText">Play</span>
-          </button>
-        </div>
+                      <ellipse cx="120" cy="102" rx="8" ry="10" fill="#0f172a" />
+                      <ellipse cx="120" cy="102" rx="6" ry="8" fill="#d97706" />
+                      <circle cx="118" cy="98" r="3" fill="#ffffff" />
+                      <circle cx="123" cy="105" r="1.5" fill="#ffffff" />
+                      <path d="M 110 91 Q 120 85 130 90" stroke="#451a03" stroke-width="2.5" stroke-linecap="round"
+                        fill="none" />
+                    </g>
+                    <!-- Nose -->
+                    <path d="M 100 112 L 98 118 L 102 118" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
+                      fill="none" />
+                    <!-- Mouth (Centered at X=100, Morphs cleanly when speaking) -->
+                    <path id="kaitoMouth" d="M 91 128 Q 100 132 109 128" stroke="#c2410c" stroke-width="2.5"
+                      stroke-linecap="round" fill="none" />
+                    <!-- Spiky Anime Front Bangs -->
+                    <path d="M 55 75 L 75 95 L 85 65 L 100 95 L 115 65 L 125 95 L 145 75 C 135 50 65 50 55 75 Z"
+                      fill="#d97706" />
+                    <path d="M 85 65 L 100 50 L 115 65 Z" fill="#f59e0b" />
+                    <!-- Soundwave Equalizer -->
+                    <g id="kaitoSoundwaves" class="opacity-0 transition-opacity duration-300">
+                      <rect x="160" y="102" width="3" height="8" rx="1.5" fill="#f97316" class="wave-bar-3" />
+                      <rect x="166" y="96" width="3" height="18" rx="1.5" fill="#f97316" class="wave-bar-2" />
+                      <rect x="172" y="100" width="3" height="10" rx="1.5" fill="#f97316" class="wave-bar-4" />
+                    </g>
+                    <defs>
+                      <radialGradient id="kaitoHaloGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#f97316" />
+                        <stop offset="100%" stop-color="#f97316" stop-opacity="0" />
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <span
+                  class="mt-1 text-[10px] sm:text-xs font-mono font-bold text-[#151b20] bg-[#ffd8ce] px-2 sm:px-2.5 py-0.5 rounded-full border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] whitespace-nowrap">
+                  Kaito
+                </span>
+                <!-- Extra Play Button Near Avatar (Kaito Pod) -->
+                <button id="kaitoPlayBtn" onclick="toggleSpeech()" title="Play / Pause Audio (Hotkey: Space)"
+                  class="mt-1.5 cursor-pointer px-3 py-1 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] active:translate-y-0.5 text-[#151b20] font-mono font-black text-xs border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex items-center gap-1 transition select-none">
+                  <span id="kaitoPlayIcon">▶</span>
+                  <span id="kaitoPlayText">Play</span>
+                </button>
+              </div>
 
-        </div> <!-- Closes inner flex items-end row -->
-      </div> <!-- Closes avatarArena -->
+            </div> <!-- Closes inner flex items-end row -->
+          </div> <!-- Closes avatarArena -->
         </div>
       </div>
 
       <!-- Slide Carousel Navigation & Progress Controls Bar -->
-      <div id="slideCarouselControls" class="mt-6 pt-4 border-t-2 border-[#151b20]/20 flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
+
+      <!-- Traveling Section 2: Interactive Tool Area (Directly Below Initial Speaker Dock) -->
+      <div id="slideToolContainer" class="w-full space-y-3"></div>
+
+      <!-- Traveling Section 3: Active Checkpoint Area (Directly Below Tool Area) -->
+      <div id="slideCheckpointContainer" class="w-full space-y-3"></div>
+
+      <div id="slideCarouselControls"
+        class="mt-6 pt-4 border-t-2 border-[#151b20]/20 flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
         <div class="flex items-center gap-1.5">
           <button onclick="prevSlide()" id="prevSlideBtn"
             class="cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1">
@@ -979,9 +1089,9 @@
       <!-- Traveling Dock Slot 2: Deck Bottom Slot (Fallback Anchor) -->
       <div id="speakerDockBottom" class="speaker-dock-slot transition-all duration-500 w-full mt-2">
         <!-- Fallback speaker dock anchor -->
-      
-    </div> <!-- Closes speakerDockBottom -->
-  </div> <!-- Closes slideCard -->
+
+      </div> <!-- Closes speakerDockBottom -->
+    </div> <!-- Closes slideCard -->
 
 
     <!-- Hidden HTML5 Audio Element for Deterministic Timeline Sync -->
@@ -1479,13 +1589,13 @@
 
       // 2. Active sentence & slide sync
       if (currentTiming && currentTiming.sentences) {
-      // Slide 2 Interactive Tool Pause Hook for Neural Audio
-      if (currentSlideIndex === 1 && t >= 32.5 && !isWaitingForExploration && !isWaitingForQuiz) {
-        neuralAudio.pause();
-        moveSpeakerToDock('sim', true);
-        pauseForToolExploration();
-        return;
-      }
+        // Slide 2 Interactive Tool Pause Hook for Neural Audio
+        if (currentSlideIndex === 1 && t >= 32.5 && !isWaitingForExploration && !isWaitingForQuiz) {
+          neuralAudio.pause();
+          moveSpeakerToDock('sim', true);
+          pauseForToolExploration();
+          return;
+        }
         const curSentence = currentTiming.sentences.find(s => t >= s.start && t <= s.end);
 
         if (curSentence) {
@@ -1843,6 +1953,7 @@
     let currentMode = 'solo';
     let playbackSpeed = 1.0;
     let currentTurnIndex = 0;
+    let currentSpeakerDock = 'main';
     let turnTimeout = null;
     let autoAdvance = true;
     let isFullDeckPlaying = false;
@@ -1851,18 +1962,31 @@
       try {
         mermaid.initialize({
           startOnLoad: false,
-          theme: 'dark',
+          theme: 'base',
           themeVariables: {
-            darkMode: true,
-            background: '#070b14',
-            primaryColor: '#0e7490',
-            primaryTextColor: '#f8fafc',
-            primaryBorderColor: '#06b6d4',
-            lineColor: '#38bdf8',
-            secondaryColor: '#1e293b',
-            tertiaryColor: '#0f172a',
-            mainBkg: '#0b1329',
-            nodeBorder: '#0ea5e9'
+            darkMode: false,
+            fontFamily: 'Inter, system-ui, sans-serif',
+            fontSize: '13px',
+            textColor: '#151b20',
+            primaryColor: '#c9f3f4',
+            primaryTextColor: '#151b20',
+            primaryBorderColor: '#151b20',
+            lineColor: '#151b20',
+            secondaryColor: '#e7f4c8',
+            secondaryTextColor: '#151b20',
+            secondaryBorderColor: '#151b20',
+            tertiaryColor: '#fff0b9',
+            tertiaryTextColor: '#151b20',
+            tertiaryBorderColor: '#151b20',
+            mainBkg: '#fffaf0',
+            nodeBorder: '#151b20',
+            nodeTextColor: '#151b20',
+            clusterBkg: '#eee4c8',
+            clusterBorder: '#151b20',
+            clusterTextColor: '#151b20',
+            defaultLinkColor: '#151b20',
+            titleColor: '#151b20',
+            edgeLabelBackground: '#fffaf0'
           }
         });
       } catch (e) {
@@ -2391,7 +2515,7 @@
       const titleEl = document.getElementById('slideTitle');
       if (titleEl) titleEl.innerText = slide.title;
 
-            // Rescue traveling speaker stage back into permanent initial dock before clearing slide content
+      // Rescue traveling speaker stage back into permanent initial dock before clearing slide content
       const initialDock = document.getElementById('speakerDockInitial');
       const arena = document.getElementById('avatarArena');
       if (arena && initialDock && arena.parentElement !== initialDock) {
@@ -2564,10 +2688,16 @@
 
       // 3. Interactive Empirical Risk & Bias Cascade Playground (Simulation Widget)
       const isCascadeSlide = titleLower.includes('empirical') || titleLower.includes('cascade') || contentLower.includes('empirical risk') || slideIndex === 1 || slideIndex === 2;
-      if (isCascadeSlide && !contentEl.querySelector('#empiricalSimWidget')) {
+      const toolContainer = document.getElementById('slideToolContainer');
+      const checkpointContainer = document.getElementById('slideCheckpointContainer');
+
+      if (toolContainer) toolContainer.innerHTML = '';
+      if (checkpointContainer) checkpointContainer.innerHTML = '';
+
+      if (isCascadeSlide && toolContainer) {
         const simCard = document.createElement('div');
         simCard.id = 'empiricalSimWidget';
-        simCard.className = 'mt-4 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#ffc83e] transition-all duration-300';
+        simCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#ffc83e] transition-all duration-300';
         simCard.innerHTML = `
           <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
             <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#151b20] uppercase tracking-wide">
@@ -2628,23 +2758,23 @@
           </div>
 
           <div id="simInsightText" class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
-            💡 <b>Classical Guarantee Holds:</b> When upstream data collection is unbiased ($\beta = 0\\%$), empirical risk converges asymptotically to true risk as $N$ increases.
+            💡 <b>Classical Guarantee Holds:</b> When upstream data collection is unbiased ($eta = 0\%$), empirical risk converges asymptotically to true risk as $N$ increases.
           </div>
         `;
-        contentEl.appendChild(simCard);
+        toolContainer.appendChild(simCard);
 
-        // Traveling Speaker Dock Slot 2: Directly Adjacent to Simulator
+        // Traveling Speaker Dock Slot 2: Directly Below Simulator (Inside Tool Section)
         const simDock = document.createElement('div');
         simDock.id = 'speakerDockSimulator';
         simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
-        contentEl.appendChild(simDock);
+        toolContainer.appendChild(simDock);
       }
 
       // 4. Interactive Active Checkpoint (Capeur Formative Assessment)
-      if (!contentEl.querySelector('#slideQuizCheckpoint')) {
+      if (checkpointContainer && (isCascadeSlide || slideIndex === 1 || slideIndex === 2)) {
         const quizCard = document.createElement('div');
         quizCard.id = 'slideQuizCheckpoint';
-        quizCard.className = 'mt-4 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+        quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
         quizCard.innerHTML = `
           <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
             <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
@@ -2653,7 +2783,7 @@
             <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
           </div>
           <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
-            Question: If your dataset collection pipeline has selection bias ($\\beta > 0$), will gathering 10× more data ($N \\to 1,000,000$) eliminate the generalization gap?
+            Question: If your dataset collection pipeline has selection bias ($\beta > 0$), will gathering 10× more data ($N \to 1,000,000$) eliminate the generalization gap?
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans">
             <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
@@ -2665,13 +2795,13 @@
           </div>
           <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
         `;
-        contentEl.appendChild(quizCard);
+        checkpointContainer.appendChild(quizCard);
 
-        // Traveling Speaker Dock Slot 3: Directly Adjacent to Checkpoint Quiz
+        // Traveling Speaker Dock Slot 3: Directly Below Checkpoint Quiz (Inside Checkpoint Section)
         const quizDock = document.createElement('div');
         quizDock.id = 'speakerDockCheckpoint';
         quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
-        contentEl.appendChild(quizDock);
+        checkpointContainer.appendChild(quizDock);
       }
 
       // Re-run KaTeX math rendering on newly added elements
@@ -3324,11 +3454,11 @@
       cancelAnimationFrame(engineRaf);
     }
 
-    
+
     /* ========================================================
        Traveling Adaptive Virtual Speakers Engine
        ======================================================== */
-    let currentSpeakerDock = 'main';
+    currentSpeakerDock = 'main';
 
     function moveSpeakerToDock(targetKey, smoothScroll = false) {
       const arena = document.getElementById('avatarArena');
@@ -3482,7 +3612,7 @@
       if (overlay) overlay.classList.add('hidden');
       try {
         localStorage.setItem('dataset_site_tour_completed', 'true');
-      } catch (e) {}
+      } catch (e) { }
     }
 
     function renderTourStep(stepIdx) {
@@ -3670,8 +3800,7 @@
 
 
   <!-- Floating Guided Tour Launcher (Inspired by Partitioning Module Coordinator) -->
-  <button id="btnFloatingTour" onclick="startSiteTour()" type="button"
-    title="Start Interactive Guided Tour"
+  <button id="btnFloatingTour" onclick="startSiteTour()" type="button" title="Start Interactive Guided Tour"
     class="fixed bottom-5 right-5 z-50 px-4 py-2.5 rounded-full bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] font-mono font-black text-xs md:text-sm border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center gap-2 transition hover:scale-105 active:translate-y-0.5 select-none cursor-pointer">
     <span class="text-base animate-bounce">🧭</span>
     <span>Interactive Site Tour</span>
@@ -3682,16 +3811,27 @@
     <div id="siteTourSpotlight"></div>
     <div id="siteTourCard" class="w-80 sm:w-96 p-4 max-w-[92vw]">
       <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/20">
-        <span id="tourStepBadge" class="px-2 py-0.5 rounded-md bg-[#ffc83e] text-[#151b20] font-mono font-black text-[11px] border border-[#151b20]">Step 1 of 7</span>
-        <button type="button" onclick="endSiteTour()" class="cursor-pointer text-xs font-mono font-bold text-[#151b20]/70 hover:text-[#151b20] px-2 py-0.5 rounded hover:bg-[#eee4c8]">✕ Esc</button>
+        <span id="tourStepBadge"
+          class="px-2 py-0.5 rounded-md bg-[#ffc83e] text-[#151b20] font-mono font-black text-[11px] border border-[#151b20]">Step
+          1 of 7</span>
+        <button type="button" onclick="endSiteTour()"
+          class="cursor-pointer text-xs font-mono font-bold text-[#151b20]/70 hover:text-[#151b20] px-2 py-0.5 rounded hover:bg-[#eee4c8]">✕
+          Esc</button>
       </div>
-      <h3 id="tourTitle" class="text-sm sm:text-base font-black text-[#151b20] mb-1.5 font-sans leading-snug">Welcome to the Lecture Studio</h3>
-      <p id="tourDescription" class="text-xs text-[#151b20]/80 mb-4 leading-relaxed font-sans">Learn how to explore slides, engage with interactive empirical simulations, and follow traveling virtual presenters.</p>
+      <h3 id="tourTitle" class="text-sm sm:text-base font-black text-[#151b20] mb-1.5 font-sans leading-snug">Welcome to
+        the Lecture Studio</h3>
+      <p id="tourDescription" class="text-xs text-[#151b20]/80 mb-4 leading-relaxed font-sans">Learn how to explore
+        slides, engage with interactive empirical simulations, and follow traveling virtual presenters.</p>
       <div class="flex items-center justify-between pt-2 border-t border-[#151b20]/15 gap-2">
-        <button type="button" onclick="endSiteTour()" class="cursor-pointer px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-[#151b20]/70 hover:bg-[#eee4c8]">Skip</button>
+        <button type="button" onclick="endSiteTour()"
+          class="cursor-pointer px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-[#151b20]/70 hover:bg-[#eee4c8]">Skip</button>
         <div class="flex items-center gap-2">
-          <button type="button" id="tourPrevBtn" onclick="prevTourStep()" class="cursor-pointer px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-bold transition">◀ Back</button>
-          <button type="button" id="tourNextBtn" onclick="nextTourStep()" class="cursor-pointer px-3.5 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-black transition">Next ▶</button>
+          <button type="button" id="tourPrevBtn" onclick="prevTourStep()"
+            class="cursor-pointer px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-bold transition">◀
+            Back</button>
+          <button type="button" id="tourNextBtn" onclick="nextTourStep()"
+            class="cursor-pointer px-3.5 py-1.5 rounded-lg bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-black transition">Next
+            ▶</button>
         </div>
       </div>
     </div>

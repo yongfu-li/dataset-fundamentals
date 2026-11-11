@@ -309,7 +309,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch5_p2",
     "title": "Missing Data: Rubin's Taxonomy, Statistical Tests & Multivariate Imputation (MICE)",
     "trackName": "Data Cleaning & Preprocessing",
-    "slidesCount": 8
+    "slidesCount": 9
   },
   {
     "chapter": 5,
