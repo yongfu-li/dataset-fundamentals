@@ -427,7 +427,7 @@
     .mermaid svg {
       max-width: 100% !important;
       height: auto !important;
-      max-height: 380px;
+      max-height: 450px;
       margin: 0 auto;
       display: block;
     }
@@ -2028,8 +2028,8 @@
     var curriculum = window.curriculum || {};
     const loadedChapters = new Set();
 
-    if (window.CURRICULUM_CH1) {
-      Object.assign(curriculum, window.CURRICULUM_CH1);
+    if (window.CURRICULUM_CH1 || window.CHAPTER1_CURRICULUM) {
+      Object.assign(curriculum, window.CURRICULUM_CH1 || window.CHAPTER1_CURRICULUM);
       loadedChapters.add(1);
     }
 
@@ -2142,7 +2142,7 @@
       const script = document.createElement('script');
       script.src = `./curriculums/chapter${ch}.js`;
       script.onload = () => {
-        const chData = window[`CURRICULUM_CH${ch}`];
+        const chData = window[`CURRICULUM_CH${ch}`] || window[`curriculum_chapter${ch}`] || window[`curriculum_ch${ch}`];
         if (chData) {
           Object.assign(curriculum, chData);
           loadedChapters.add(ch);
@@ -2628,20 +2628,43 @@
         }
       });
 
-      const texts = root.querySelectorAll('text, tspan, foreignObject, foreignObject div, foreignObject p, foreignObject span, .nodeLabel, .label, .edgeLabel, .cluster text, .cluster span');
+      const texts = root.querySelectorAll('text, tspan, foreignObject, foreignObject div, foreignObject p, foreignObject span, foreignObject b, foreignObject strong, foreignObject small, .nodeLabel, .label, .edgeLabel, .cluster text, .cluster span');
       texts.forEach(t => {
-        t.style.setProperty('fill', '#151b20', 'important');
-        t.style.setProperty('color', '#151b20', 'important');
-        t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-        t.style.setProperty('font-weight', '700', 'important');
-        t.style.setProperty('text-align', 'center', 'important');
         const tag = t.tagName.toLowerCase();
+        t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
+
+        if (tag === 'b' || tag === 'strong') {
+          t.style.setProperty('fill', '#151b20', 'important');
+          t.style.setProperty('color', '#151b20', 'important');
+          t.style.setProperty('font-weight', '800', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
+          t.style.setProperty('letter-spacing', '-0.01em', 'important');
+        } else if (tag === 'span' || tag === 'small') {
+          t.style.setProperty('fill', '#334155', 'important');
+          t.style.setProperty('color', '#334155', 'important');
+          t.style.setProperty('font-weight', '500', 'important');
+          t.style.setProperty('font-size', '10px', 'important');
+          t.style.setProperty('opacity', '0.9', 'important');
+        } else if (t.closest('.cluster')) {
+          t.style.setProperty('fill', '#151b20', 'important');
+          t.style.setProperty('color', '#151b20', 'important');
+          t.style.setProperty('font-weight', '800', 'important');
+          t.style.setProperty('font-size', '11px', 'important');
+          t.style.setProperty('letter-spacing', '0.04em', 'important');
+        } else {
+          t.style.setProperty('fill', '#151b20', 'important');
+          t.style.setProperty('color', '#151b20', 'important');
+          t.style.setProperty('font-weight', '700', 'important');
+        }
+
+        t.style.setProperty('text-align', 'center', 'important');
+
         if (tag === 'div' && t.closest('foreignObject')) {
           t.style.setProperty('text-align', 'center', 'important');
           t.style.setProperty('margin', '0', 'important');
           t.style.setProperty('padding', '0', 'important');
         }
-        if (tag === 'text' || tag === 'tspan') {
+        if ((tag === 'text' || tag === 'tspan') && !t.closest('.cluster')) {
           t.style.setProperty('text-anchor', 'middle', 'important');
           t.style.setProperty('dominant-baseline', 'central', 'important');
         }

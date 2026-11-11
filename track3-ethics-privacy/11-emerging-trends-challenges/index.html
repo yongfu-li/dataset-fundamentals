@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1954,13 +1998,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-the-generative-privacy-threat-landscape" class="md-nav__link">
+  <a href="#1-the-generative-ai-privacy-adversarial-threat-landscape" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. The Generative Privacy Threat Landscape
+        1. The Generative AI Privacy &amp; Adversarial Threat Landscape
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1. The Generative AI Privacy &amp; Adversarial Threat Landscape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-311-emerging-frontier-privacy-threat-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.11: Emerging Frontier Privacy Threat Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1977,10 +2038,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-training-data-memorization-extraction-likelihood" class="md-nav__link">
+  <a href="#1-training-data-extraction-likelihood-ratio-carlini-et-al-2021" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Training Data Memorization &amp; Extraction Likelihood
+        1. Training Data Extraction Likelihood Ratio (Carlini et al., 2021)
       
     </span>
   </a>
@@ -1988,10 +2049,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-membership-inference-attack-mia-likelihood-ratio" class="md-nav__link">
+  <a href="#2-loss-based-membership-inference-attack-mia" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Membership Inference Attack (MIA) Likelihood Ratio
+        2. Loss-Based Membership Inference Attack (MIA)
       
     </span>
   </a>
@@ -1999,10 +2060,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-model-parameter-capacity-vs-token-memorization-bound" class="md-nav__link">
+  <a href="#3-gradient-inversion-deep-leakage-in-federated-learning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Model Parameter Capacity vs. Token Memorization Bound
+        3. Gradient Inversion &amp; Deep Leakage in Federated Learning
       
     </span>
   </a>
@@ -2010,21 +2071,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-synthetic-data-distributional-leakage-kullback-leibler-bound" class="md-nav__link">
+  <a href="#4-synthetic-data-mode-collapse-distributional-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Synthetic Data Distributional Leakage (Kullback-Leibler Bound)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-geopolitical-data-sovereignty-constraint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Geopolitical Data Sovereignty Constraint
+        4. Synthetic Data Mode Collapse &amp; Distributional Leakage
       
     </span>
   </a>
@@ -2037,10 +2087,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-simulating-membership-inference-likelihood" class="md-nav__link">
+  <a href="#3-landmark-case-studies-in-frontier-ai-ethics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Simulating Membership Inference Likelihood
+        3. Landmark Case Studies in Frontier AI Ethics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Landmark Case Studies in Frontier AI Ethics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-verbatim-pii-extraction-from-large-language-models-carlini-et-al-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Verbatim PII Extraction from Large Language Models (Carlini et al., 2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-laion-5b-dataset-withdrawal-stanford-internet-observatory-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: LAION-5B Dataset Withdrawal (Stanford Internet Observatory, 2023)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-the-italian-garante-chatgpt-nationwide-ban-march-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: The Italian Garante ChatGPT Nationwide Ban (March 2023)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-interactive-laboratory-foundation-model-memorization-mia-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Interactive Laboratory: Foundation Model Memorization &amp; MIA Studio
       
     </span>
   </a>
@@ -2048,10 +2148,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-verification-generative-ai-privacy-membership-inference-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        5. Production Verification: Generative AI Privacy &amp; Membership Inference Engine
       
     </span>
   </a>
@@ -2059,10 +2159,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#6-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        6. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -2070,10 +2170,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#7-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        7. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2081,10 +2181,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7410,13 +7510,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-the-generative-privacy-threat-landscape" class="md-nav__link">
+  <a href="#1-the-generative-ai-privacy-adversarial-threat-landscape" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. The Generative Privacy Threat Landscape
+        1. The Generative AI Privacy &amp; Adversarial Threat Landscape
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1. The Generative AI Privacy &amp; Adversarial Threat Landscape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-311-emerging-frontier-privacy-threat-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.11: Emerging Frontier Privacy Threat Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7433,10 +7550,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-training-data-memorization-extraction-likelihood" class="md-nav__link">
+  <a href="#1-training-data-extraction-likelihood-ratio-carlini-et-al-2021" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Training Data Memorization &amp; Extraction Likelihood
+        1. Training Data Extraction Likelihood Ratio (Carlini et al., 2021)
       
     </span>
   </a>
@@ -7444,10 +7561,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-membership-inference-attack-mia-likelihood-ratio" class="md-nav__link">
+  <a href="#2-loss-based-membership-inference-attack-mia" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Membership Inference Attack (MIA) Likelihood Ratio
+        2. Loss-Based Membership Inference Attack (MIA)
       
     </span>
   </a>
@@ -7455,10 +7572,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-model-parameter-capacity-vs-token-memorization-bound" class="md-nav__link">
+  <a href="#3-gradient-inversion-deep-leakage-in-federated-learning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Model Parameter Capacity vs. Token Memorization Bound
+        3. Gradient Inversion &amp; Deep Leakage in Federated Learning
       
     </span>
   </a>
@@ -7466,21 +7583,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-synthetic-data-distributional-leakage-kullback-leibler-bound" class="md-nav__link">
+  <a href="#4-synthetic-data-mode-collapse-distributional-leakage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Synthetic Data Distributional Leakage (Kullback-Leibler Bound)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-geopolitical-data-sovereignty-constraint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Geopolitical Data Sovereignty Constraint
+        4. Synthetic Data Mode Collapse &amp; Distributional Leakage
       
     </span>
   </a>
@@ -7493,10 +7599,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-simulating-membership-inference-likelihood" class="md-nav__link">
+  <a href="#3-landmark-case-studies-in-frontier-ai-ethics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Simulating Membership Inference Likelihood
+        3. Landmark Case Studies in Frontier AI Ethics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Landmark Case Studies in Frontier AI Ethics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-verbatim-pii-extraction-from-large-language-models-carlini-et-al-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Verbatim PII Extraction from Large Language Models (Carlini et al., 2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-laion-5b-dataset-withdrawal-stanford-internet-observatory-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: LAION-5B Dataset Withdrawal (Stanford Internet Observatory, 2023)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-the-italian-garante-chatgpt-nationwide-ban-march-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: The Italian Garante ChatGPT Nationwide Ban (March 2023)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-interactive-laboratory-foundation-model-memorization-mia-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Interactive Laboratory: Foundation Model Memorization &amp; MIA Studio
       
     </span>
   </a>
@@ -7504,10 +7660,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#5-production-verification-generative-ai-privacy-membership-inference-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        5. Production Verification: Generative AI Privacy &amp; Membership Inference Engine
       
     </span>
   </a>
@@ -7515,10 +7671,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#6-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        6. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7526,10 +7682,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#7-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        7. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7537,10 +7693,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#8-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        8. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7568,38 +7724,38 @@
 
 
 <h1 id="311-emerging-frontiers-foundation-model-extraction-synthetic-leakage-data-sovereignty">3.11 Emerging Frontiers: Foundation Model Extraction, Synthetic Leakage &amp; Data Sovereignty</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.9: Emerging Frontiers in Data Ethics)</strong> in the official Springer Nature monograph, analyzing foundation model memorization attacks, synthetic data privacy leakage, and national data sovereignty boundaries.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.11: Emerging Frontiers & Future Challenges)</strong> in the official Springer Nature monograph, analyzing foundation model memorization attacks, synthetic data privacy leakage, gradient inversion in federated learning, and national data sovereignty.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-311">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.11</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">11 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=11" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=11" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7608,180 +7764,556 @@
 </div>
 
 <hr />
-<p>The frontier of data ethics has shifted dramatically with the emergence of multi-billion parameter <strong>Foundation Models (LLMs, Diffusion Models)</strong> and generative architectures. </p>
-<p>Where legacy data pipelines managed discrete relational databases, modern machine learning systems train on petabytes of scraped internet data, generating unprecedented ethical and legal challenges: <strong>unintentional training data memorization</strong>, <strong>membership inference attacks</strong>, <strong>synthetic data privacy leakage</strong>, and <strong>geopolitical data sovereignty</strong> [<a href="#ref-carlini2021">Carlini2021</a>, <a href="#ref-shokri2017">Shokri2017</a>, <a href="#ref-hummel2021">Hummel2021</a>].</p>
+<p>The landscape of data ethics and privacy has undergone an ontological paradigm shift with the rise of multi-billion parameter <strong>Foundation Models (Large Language Models, Multimodal Transformers, Latent Diffusion Models)</strong>.</p>
+<p>Where traditional data pipelines managed discrete, structured records in relational databases, modern AI architectures train on uncurated petabytes scraped indiscriminately from the open web. This creates novel threat surfaces: <strong>verbatim training data memorization</strong>, <strong>membership inference attacks</strong>, <strong>synthetic data mode-collapse leakage</strong>, <strong>gradient inversion in federated learning</strong>, and <strong>geopolitical data sovereignty fragmentation</strong> [<a href="#ref-carlini2021">Carlini2021</a>, <a href="#ref-shokri2017">Shokri2017</a>, <a href="#ref-zhu2019">Zhu2019</a>, <a href="#ref-hummel2021">Hummel2021</a>].</p>
 <hr />
-<h2 id="1-the-generative-privacy-threat-landscape">1. The Generative Privacy Threat Landscape</h2>
+<h2 id="1-the-generative-ai-privacy-adversarial-threat-landscape">1. The Generative AI Privacy &amp; Adversarial Threat Landscape</h2>
+<p>Foundation models act not merely as statistical interpolators, but as lossy, high-capacity compression mechanisms of their pretraining data:</p>
 <pre class="mermaid"><code>flowchart TD
-    Pretrain["Internet-Scale Pretraining Corpus&lt;br/&gt;(Contains PII, Medical Records, Private Code)"] --&gt; Model["Foundation Model (100B+ Parameters)"]
+    Pretrain["1. Internet-Scale Pretraining Scrape&lt;br&gt;(Common Crawl, Books3, GitHub, MedData)"] --&gt; Foundation["2. Foundation Model (7B–1T+ Parameters)"]
 
-    Model --&gt; Attack1["1. Training Data Extraction Attack&lt;br/&gt;Adversarial prompt forces verbatim PII regurgitation"]
-    Model --&gt; Attack2["2. Membership Inference Attack (MIA)&lt;br/&gt;Determines if patient X was in the clinical training set"]
-    Model --&gt; Attack3["3. Synthetic Data Leakage&lt;br/&gt;Generative models clone mode-collapsed sensitive records"]
-    Model --&gt; Attack4["4. Copyright &amp; Personality Infringement&lt;br/&gt;Unauthorized voice, likeness, and style replication"]
+    Foundation --&gt; Attack1["Threat 1: Training Data Extraction&lt;br&gt;Adversarial prefix prompts trigger verbatim PII regurgitation"]
+    Foundation --&gt; Attack2["Threat 2: Membership Inference Attack (MIA)&lt;br&gt;Loss-based Likelihood Ratio proves patient was in training set"]
+    Foundation --&gt; Attack3["Threat 3: Synthetic Data Mode Collapse&lt;br&gt;Generative models clone private outliers identically"]
+    Foundation --&gt; Attack4["Threat 4: Gradient Inversion in FL&lt;br&gt;Deep leakage recovers raw patient pixels from weight updates"]
+    Foundation --&gt; Attack5["Threat 5: Geopolitical Sovereignty Walls&lt;br&gt;Schrems II, China PIPL &amp; national AI data borders"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class Pretrain blue;
-    class Model amber;
-    class Attack1,Attack2,Attack3,Attack4 red;</code></pre>
+    class Foundation amber;
+    class Attack1,Attack2,Attack3,Attack4,Attack5 red;</code></pre>
+<h3 id="table-311-emerging-frontier-privacy-threat-vectors">Table 3.11: Emerging Frontier Privacy Threat Vectors</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Frontier Threat Vector</th>
+<th style="text-align: left;">Mathematical Mechanism</th>
+<th style="text-align: left;">Concrete Failure Incident</th>
+<th style="text-align: left;">Preventative Engineering Countermeasure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Training Data Extraction</strong></td>
+<td style="text-align: left;">Likelihood ratio gap between target model and reference model (<span class="arithmatex">\(\mathcal{R}_{\text{extract}}(\mathbf{x}) \gg 1\)</span>).</td>
+<td style="text-align: left;">Verbatim extraction of names, residential addresses, and crypto keys from GPT-2/3 [<a href="#ref-carlini2021">Carlini2021</a>].</td>
+<td style="text-align: left;">Strict pre-training PII deduplication, DP-SGD fine-tuning, output entropy filters.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Membership Inference (MIA)</strong></td>
+<td style="text-align: left;">Generalization error gap: in-sample cross-entropy loss is significantly lower than out-of-sample loss.</td>
+<td style="text-align: left;">Reconstructing clinical trial patient cohort membership with over <span class="arithmatex">\(85\%\)</span> confidence [<a href="#ref-shokri2017">Shokri2017</a>].</td>
+<td style="text-align: left;">Differential privacy training (<span class="arithmatex">\(\epsilon \le 4.0\)</span>), regularization (weight decay, dropout), early stopping.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Synthetic Mode Collapse</strong></td>
+<td style="text-align: left;">Overfitted GANs/Diffusion models memorize small empirical clusters instead of learning true density.</td>
+<td style="text-align: left;">Synthetic electronic health records reproducing real patient rare disease combinations identically.</td>
+<td style="text-align: left;">Privacy-preserving synthetic generators (DP-CTGAN), Earth Mover's Distance bounds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gradient Inversion in FL</strong></td>
+<td style="text-align: left;">Analytical or optimization-based inversion of backpropagated weight tensors (<span class="arithmatex">\(\arg\min \|\nabla W - \nabla W'\|\)</span>).</td>
+<td style="text-align: left;"><em>Deep Leakage from Gradients</em> [<a href="#ref-zhu2019">Zhu2019</a>]: Recovering clinical scans from raw federated gradients.</td>
+<td style="text-align: left;">Bonawitz Secure Aggregation (SecAgg), gradient quantization, Gaussian DP noise injection.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Geopolitical Sovereignty</strong></td>
+<td style="text-align: left;">Statutory export bans (China CAC security reviews, GDPR Art. 44–49, India DPDP).</td>
+<td style="text-align: left;">Italian DPA (Garante) temporary nationwide ban on ChatGPT in 2023 for unconsented GDPR training data scraping.</td>
+<td style="text-align: left;">Localized data residency zones, sovereign foundation model clusters.</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Secure Aggregation in Federated Learning</p>
-<p>In distributed federated learning (FL), local gradients must be aggregated using <strong>Bonawitz Secure Aggregation (SecAgg)</strong> or homomorphic encryption. Even without raw data transmission, unmasked neural gradients can be inverted by a malicious central server to reconstruct user training images.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Differential Privacy Guarantees in Large Language Models</p>
-<p>Fine-tuning a 70B parameter LLM with Differential Privacy (DP-SGD) requires substantial gradient clipping (<span class="arithmatex">\(C\)</span>) and noise addition (<span class="arithmatex">\(\sigma\)</span>) grounded in DP-SGD foundations [<a href="#ref-abadi2016">Abadi2016</a>] and differential privacy guarantees [<a href="#ref-dwork2014">Dwork2014</a>]. If hyperparameter budgets are miscalibrated, the model either memorizes sensitive training data (insufficient <span class="arithmatex">\(\epsilon\)</span>) or collapses into unintelligible gibberish (excessive noise destroying downstream perplexity).</p>
-</div>
 <h2 id="2-mathematical-formalization-of-emerging-generative-attacks">2. Mathematical Formalization of Emerging Generative Attacks</h2>
-<h3 id="1-training-data-memorization-extraction-likelihood">1. Training Data Memorization &amp; Extraction Likelihood</h3>
-<p>As proved by Carlini et al. [<a href="#ref-carlini2021">Carlini2021</a>], deep neural networks memorize rare training sequences. The likelihood ratio metric used by adversaries to detect whether a sequence <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_T)\)</span> was memorized verbatim is:</p>
+<h3 id="1-training-data-extraction-likelihood-ratio-carlini-et-al-2021">1. Training Data Extraction Likelihood Ratio (Carlini et al., 2021)</h3>
+<p>Adversaries extract sensitive sequences from large models without direct parameter access using <strong>Likelihood Ratio Prompting</strong>. Let <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_T)\)</span> be a sequence of generated tokens. The adversary computes the ratio between the target model's perplexity and an independent generic reference model <span class="arithmatex">\(\mathcal{L}_{\text{ref}}\)</span>:</p>
 <div class="arithmatex">\[
-\mathcal{R}_{\text{extract}}(\mathbf{x}) = \frac{\mathcal{L}_{\text{target}}(\mathbf{x}; \theta)}{\mathcal{L}_{\text{ref}}(\mathbf{x})} = \frac{\prod_{t=1}^T P_\theta(x_t \mid x_{&lt;t})}{\mathcal{L}_{\text{ref}}(\mathbf{x})}
+\mathcal{R}_{\text{extract}}(\mathbf{x}) = \frac{\mathcal{L}_{\text{target}}(\mathbf{x}; \theta)}{\mathcal{L}_{\text{ref}}(\mathbf{x})} = \frac{\prod_{t=1}^T P_\theta(x_t \mid x_{&lt;t})}{\prod_{t=1}^T P_{\text{ref}}(x_t \mid x_{&lt;t})}
 \]</div>
-<p>Where <span class="arithmatex">\(\mathcal{L}_{\text{ref}}(\mathbf{x})\)</span> is the perplexity evaluated by an independent generic reference language model. Sequences with anomalously high likelihood ratios indicate verbatim training data memorization.</p>
-<h3 id="2-membership-inference-attack-mia-likelihood-ratio">2. Membership Inference Attack (MIA) Likelihood Ratio</h3>
-<p>Shokri et al. [<a href="#ref-shokri2017">Shokri2017</a>] formulated <strong>Membership Inference</strong>, where an adversary determines whether a specific target record <span class="arithmatex">\((\mathbf{x}, y)\)</span> was included in private training dataset <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span>:</p>
+<p>When <span class="arithmatex">\(\mathcal{R}_{\text{extract}}(\mathbf{x}) \gg \tau_{\text{memo}}\)</span>, the sequence is flagged as <strong>verbatim training data memorization</strong> rather than spontaneous generation. Carlini et al. proved that memorization likelihood follows a power law with token duplication frequency <span class="arithmatex">\(k\)</span> and parameter scale <span class="arithmatex">\(P\)</span>:</p>
+<div class="arithmatex">\[
+P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha \approx 0.75, \; \beta \approx 0.35
+\]</div>
+<p>A string repeated only 10 times in a 1-trillion-token corpus has an exponentially higher extraction likelihood in a 70B model than in a 7B model.</p>
+<h3 id="2-loss-based-membership-inference-attack-mia">2. Loss-Based Membership Inference Attack (MIA)</h3>
+<p>In <strong>Membership Inference Attacks (MIA)</strong>, an adversary determines whether a specific individual's record <span class="arithmatex">\((\mathbf{x}, y)\)</span> was part of private training corpus <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span> [<a href="#ref-shokri2017">Shokri2017</a>, <a href="#ref-yeom2018">Yeom2018</a>]:</p>
 <div class="arithmatex">\[
 \Lambda(\mathbf{x}, y) = \log \frac{P(f_\theta(\mathbf{x}) \mid (\mathbf{x}, y) \in \mathcal{D}_{\text{train}})}{P(f_\theta(\mathbf{x}) \mid (\mathbf{x}, y) \notin \mathcal{D}_{\text{train}})} \ge \tau_{\text{MIA}}
 \]</div>
-<p>Under shadow model training, if loss <span class="arithmatex">\(\ell(f_\theta(\mathbf{x}), y)\)</span> is substantially lower than expected under the population distribution, the record is flagged as an in-sample member with statistical confidence.</p>
-<h3 id="3-model-parameter-capacity-vs-token-memorization-bound">3. Model Parameter Capacity vs. Token Memorization Bound</h3>
-<p>The theoretical capacity of a neural network with <span class="arithmatex">\(P\)</span> parameters to memorize distinct unstructured tokens follows information-theoretic bounds:</p>
+<p>Under cross-entropy loss <span class="arithmatex">\(\ell(f_\theta(\mathbf{x}), y) = -\log f_\theta(\mathbf{x})_y\)</span>:</p>
 <div class="arithmatex">\[
-C_{\text{memo}} \le \mathcal{O}\left( \frac{P \cdot b_{\text{precision}}}{\log_2 |\mathcal{V}|} \right)
+(\mathbf{x}, y) \in \mathcal{D}_{\text{train}} \iff \ell(f_\theta(\mathbf{x}), y) \le \tau_{\text{threshold}}
 \]</div>
-<p>Where <span class="arithmatex">\(b_{\text{precision}}\)</span> is parameter bit-width (e.g., 16-bit float) and <span class="arithmatex">\(|\mathcal{V}|\)</span> is vocabulary size. As models reach trillions of parameters, the network acts as a lossy cryptographic compression engine of its pretraining data.</p>
-<h3 id="4-synthetic-data-distributional-leakage-kullback-leibler-bound">4. Synthetic Data Distributional Leakage (Kullback-Leibler Bound)</h3>
-<p>When training generative models (GANs, Diffusion) to synthesize privacy-preserving tabular datasets, mode collapse can cause the generator <span class="arithmatex">\(G_\phi\)</span> to overfit and reproduce private patient points:</p>
+<pre class="mermaid"><code>flowchart LR
+    Target["Target Record (x, y)"] --&gt; Loss["Compute Loss: ℓ(f_θ(x), y)"]
+    Loss --&gt; Thresh{"ℓ ≤ τ_MIA?"}
+    Thresh --&gt;|Yes| Member["In-Sample Member&lt;br&gt;(Training Set Confirmed)"]
+    Thresh --&gt;|No| NonMember["Out-of-Sample Record&lt;br&gt;(Unseen General Population)"]
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Target blue;
+    class Loss,Thresh amber;
+    class Member red;
+    class NonMember green;</code></pre>
+<p>Under <span class="arithmatex">\((\epsilon, \delta)\)</span>-Differential Privacy training (DP-SGD), the maximal MIA advantage is strictly bounded by <span class="arithmatex">\(e^\epsilon - 1\)</span>, neutralizing the attack.</p>
+<h3 id="3-gradient-inversion-deep-leakage-in-federated-learning">3. Gradient Inversion &amp; Deep Leakage in Federated Learning</h3>
+<p>In distributed federated learning (FL), worker nodes transmit local gradient updates <span class="arithmatex">\(\nabla_{\mathbf{W}} \mathcal{L}(\mathbf{W}; \mathbf{x}, y)\)</span> instead of raw microdata. However, <strong>Deep Leakage from Gradients (DLG)</strong> [<a href="#ref-zhu2019">Zhu2019</a>] solves a continuous optimization problem to reconstruct the exact private input <span class="arithmatex">\(\mathbf{x}^*\)</span>:</p>
 <div class="arithmatex">\[
-\mathcal{D}_{\text{KL}}(P_{\text{real}}(\mathbf{x}) \parallel P_{\text{synth}}(\mathbf{x})) = \int P_{\text{real}}(\mathbf{x}) \log \frac{P_{\text{real}}(\mathbf{x})}{P_{\text{synth}}(\mathbf{x})} \, d\mathbf{x} \le \epsilon_{\text{fidelity}}
+\mathbf{x}^* = \arg\min_{\mathbf{x}'} \left\| \nabla_{\mathbf{W}} \mathcal{L}(\mathbf{W}; \mathbf{x}', y') - \nabla_{\mathbf{W}} \mathcal{L}_{\text{observed}} \right\|_2^2 + \lambda \mathcal{R}_{\text{TV}}(\mathbf{x}')
 \]</div>
-<p>If distance <span class="arithmatex">\(\min_{\mathbf{x}_{\text{train}} \in \mathcal{D}} \|\mathbf{x}_{\text{synth}} - \mathbf{x}_{\text{train}}\|_2 \to 0\)</span>, the synthetic data generates zero identity deniability.</p>
-<h3 id="5-geopolitical-data-sovereignty-constraint">5. Geopolitical Data Sovereignty Constraint</h3>
-<p>National frameworks (EU GDPR Schrems II [<a href="#ref-voigt2017">Voigt2017</a>], China PIPL, India DPDP) mandate that personal data cannot exit physical geopolitical territories without rigorous legal equivalency:</p>
+<p>Where <span class="arithmatex">\(\mathcal{R}_{\text{TV}}\)</span> is total variation regularization. Without cryptographic aggregation or gradient DP clipping, an adversary eavesdropping on the network reconstructs raw patient medical scans with near-perfect pixel fidelity.</p>
+<h3 id="4-synthetic-data-mode-collapse-distributional-leakage">4. Synthetic Data Mode Collapse &amp; Distributional Leakage</h3>
+<p>A common misconception is that synthetic datasets (generated via GANs or Diffusion) are inherently anonymous. When a generative model overfits, it collapses into the nearest empirical training point:</p>
 <div class="arithmatex">\[
-\forall r_i \in \mathcal{D}_k, \quad \text{GeoLocation}\left(\text{Storage}(r_i)\right) \subseteq \text{Territory}(\mathcal{J}_k)
+\Delta_{\min}(\mathbf{x}_{\text{synth}}) = \min_{\mathbf{x}_{\text{train}} \in \mathcal{D}} \|\mathbf{x}_{\text{synth}} - \mathbf{x}_{\text{train}}\|_2
 \]</div>
+<p>If <span class="arithmatex">\(\Delta_{\min}(\mathbf{x}_{\text{synth}}) \to 0\)</span> for high-dimensional feature spaces, the synthetic data replicates the underlying training subject with zero plausible deniability, violating GDPR and HIPAA standards.</p>
 <hr />
-<h2 id="3-python-verification-simulating-membership-inference-likelihood">3. Python Verification: Simulating Membership Inference Likelihood</h2>
-<p>The following Python script computes the loss-based Membership Inference score on a target model and evaluates training data memorization thresholds.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># mia_memorization_sim.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Simulates loss-based Membership Inference Attack (MIA) on a classification model</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_mia_scores</span><span class="p">(</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">in_sample_losses</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">out_of_sample_losses</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># Evaluates attacker precision, recall, and accuracy in identifying training records</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">in_sample_losses</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">fn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">in_sample_losses</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">fp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">out_of_sample_losses</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">out_of_sample_losses</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">precision</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">recall</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">in_sample_losses</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_of_sample_losses</span><span class="p">)))</span>
+<h2 id="3-landmark-case-studies-in-frontier-ai-ethics">3. Landmark Case Studies in Frontier AI Ethics</h2>
+<h3 id="case-study-1-verbatim-pii-extraction-from-large-language-models-carlini-et-al-2021">Case Study 1: Verbatim PII Extraction from Large Language Models (Carlini et al., 2021)</h3>
+<ul>
+<li><strong>The Incident</strong>: Researchers queried open pre-trained checkpoints of GPT-2 using internet-derived prefix sequences.</li>
+<li><strong>The Findings</strong>: By generating sequences and ranking by perplexity ratio <span class="arithmatex">\(\mathcal{R}_{\text{extract}}\)</span>, researchers extracted over <strong>600 verbatim training records</strong>, including real individuals' full names, residential physical addresses, cell phone numbers, and 128-bit private Bitcoin wallet keys.</li>
+<li><strong>The Insight</strong>: Filtering and deduplicating pretraining datasets is non-negotiable; duplicating a string more than 10 times increases memorization risk by over <span class="arithmatex">\(100\times\)</span>.</li>
+</ul>
+<h3 id="case-study-2-laion-5b-dataset-withdrawal-stanford-internet-observatory-2023">Case Study 2: LAION-5B Dataset Withdrawal (Stanford Internet Observatory, 2023)</h3>
+<ul>
+<li><strong>The Dataset</strong>: LAION-5B, a publicly scraped multimodal dataset of 5.85 billion image-URL pairs used to train leading text-to-image models (including Stable Diffusion).</li>
+<li><strong>The Failure</strong>: Stanford researchers discovered over <strong>1,000 verified links to Child Sexual Abuse Material (CSAM)</strong> embedded in the uncurated Common Crawl scrape.</li>
+<li><strong>The Response</strong>: LAION temporarily withdrew the dataset from global distribution for deep cryptographic purging. The incident established that web scraping at scale without rigorous perceptual hashing (PhotoDNA) creates catastrophic legal liabilities.</li>
+</ul>
+<h3 id="case-study-3-the-italian-garante-chatgpt-nationwide-ban-march-2023">Case Study 3: The Italian Garante ChatGPT Nationwide Ban (March 2023)</h3>
+<ul>
+<li><strong>The Regulatory Action</strong>: The Italian Data Protection Authority (Garante per la Protezione dei Dati Personali) issued an immediate temporary restriction order blocking OpenAI from processing Italian user data.</li>
+<li><strong>The Legal Grounds</strong>:</li>
+<li><strong>Article 6 Violation</strong>: Lack of a valid lawful basis for the mass collection and processing of personal data for LLM pretraining.</li>
+<li><strong>Article 5(1)(d) Inaccuracy</strong>: Large models hallucinate false personal facts about living individuals, violating the fundamental GDPR Principle of Accuracy.</li>
+<li><strong>Absence of Age Verification</strong>: Failure to implement age gating to protect minors from harmful content under GDPR Article 8.</li>
+<li><strong>The Settlement</strong>: OpenAI resumed service after creating an explicit EU privacy opt-out form allowing users to object to their personal data being used for model training.</li>
+</ul>
+<hr />
+<h2 id="4-interactive-laboratory-foundation-model-memorization-mia-studio">4. Interactive Laboratory: Foundation Model Memorization &amp; MIA Studio</h2>
+<p>Simulate the relationship between model parameter capacity, string duplication frequency, and membership inference vulnerability. Test how <strong>Differential Privacy (DP-SGD)</strong> suppresses memorization extraction curves in real-time.</p>
+<p><div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
+<br />
+<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.5rem;">🤖</span>
+      <h3 style="margin: 0; font-weight: 800; color: #151b20; font-size: 1.25rem;">Foundation Model Memorization &amp; MIA Studio</h3>
+    </div>
+    <span style="background: #c9f3f4; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; font-family: monospace;">CARLINI MEMORIZATION BENCHMARK</span>
+  </div>
+</p>
+<p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
+    Observe how model parameter capacity and training data repetition compound verbatim memorization risk, and evaluate how DP-SGD gradient noise bounds Membership Inference Attacks (MIA).
+  </p>
+
+<!-- Controls Panel -->
+<div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+      ⚙️ Foundation Model Architecture &amp; Training Parameters
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Model Parameter Scale:
+        </label>
+        <select id="sel_param_scale" style="width: 100%; padding: 6px; border: 1.5px solid #151b20; border-radius: 6px; font-weight: 700; font-size: 0.8rem; background: #ffffff;" onchange="updateGenSim()">
+          <option value="1">1 Billion Parameters (Small Transformer)</option>
+          <option value="7" selected>7 Billion Parameters (Standard Edge)</option>
+          <option value="70">70 Billion Parameters (Mid-Tier Enterprise)</option>
+          <option value="175">175 Billion Parameters (Frontier Scale)</option>
+        </select>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          String Duplication Frequency $k$: <span id="lbl_k" style="color: #0284c7; font-family: monospace;">15 Copies</span>
+        </label>
+        <input type="range" id="sl_k" min="1" max="100" step="1" value="15" style="width: 100%; accent-color: #0284c7;" oninput="updateGenSim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Differential Privacy (DP-SGD) Defense:
+        </label>
+        <select id="sel_dp_defense" style="width: 100%; padding: 6px; border: 1.5px solid #151b20; border-radius: 6px; font-weight: 700; font-size: 0.8rem; background: #ffffff;" onchange="updateGenSim()">
+          <option value="none">No Privacy Defense ($\epsilon = \infty$, Raw Gradients)</option>
+          <option value="weak">Weak Privacy ($\epsilon = 8.0$, Clipping $C=1.0$)</option>
+          <option value="strong" selected>Certified Strong ($\epsilon = 1.0$, Rigorous Noise)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+<!-- Real-Time Metrics Display -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
+    <!-- Memorization Extraction Probability -->
+    <div style="background: #fef2f2; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #991b1b; text-transform: uppercase;">Extraction Probability $P_{\text{extract}}$</div>
+      <div id="stat_extract_prob" style="font-size: 1.35rem; font-weight: 800; color: #b91c1c; margin: 4px 0;">3.8%</div>
+      <div style="font-size: 0.68rem; color: #475569;">Carlini Power-Law Metric</div>
+    </div>
+
+    <!-- MIA Attack AUC -->
+    <div style="background: #fffbeb; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Membership Inference AUC</div>
+      <div id="stat_mia_auc" style="font-size: 1.35rem; font-weight: 800; color: #b45309; margin: 4px 0;">0.521</div>
+      <div style="font-size: 0.68rem; color: #92400e;">Baseline Random Guess = 0.500</div>
+    </div>
+
+    <!-- Extraction Likelihood Ratio -->
+    <div style="background: #eff6ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">Likelihood Ratio $\mathcal{R}_{\text{extract}}$</div>
+      <div id="stat_lr_ratio" style="font-size: 1.35rem; font-weight: 800; color: #1e3a8a; margin: 4px 0;">1.24x</div>
+      <div style="font-size: 0.68rem; color: #0284c7;">Target / Reference Perplexity</div>
+    </div>
+
+    <!-- Synthetic Distribution Distance -->
+    <div style="background: #f0fdf4; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #166534; text-transform: uppercase;">Synthetic Outlier Deniability</div>
+      <div id="stat_deniability" style="font-size: 1.35rem; font-weight: 800; color: #15803d; margin: 4px 0;">HIGH (Safe)</div>
+      <div style="font-size: 0.68rem; color: #166534;">Mode Collapse Guardrail</div>
+    </div>
+  </div>
+
+<!-- Dynamic Risk Banner -->
+<div id="gen_risk_banner" style="background: #dcfce7; border: 2px solid #15803d; border-radius: 8px; padding: 14px; font-size: 0.85rem; color: #14532d; line-height: 1.5;">
+    <strong>✓ Certified Privacy Invariant Active:</strong> Strong Differential Privacy ($\epsilon = 1.0$) prevents training data extraction and collapses Membership Inference Attack AUC to near-random ($0.521$). Individual training records are mathematically protected.
+  </div>
+</div>
+<script>
+function updateGenSim() {
+  let pScale = parseFloat(document.getElementById('sel_param_scale').value);
+  let k = parseInt(document.getElementById('sl_k').value);
+  let dpMode = document.getElementById('sel_dp_defense').value;
+
+  document.getElementById('lbl_k').textContent = `${k} Copies`;
+
+  // Raw extraction base: P(Extract) proportional to k^0.75 * P^0.35
+  let rawExtract = 0.015 * Math.pow(k, 0.75) * Math.pow(pScale, 0.35);
+
+  let finalExtract = 0.0;
+  let miaAuc = 0.50;
+  let lrRatio = 1.0;
+  let deniability = "HIGH (Safe)";
+
+  if (dpMode === 'none') {
+    finalExtract = Math.min(0.99, rawExtract);
+    // Without DP, MIA AUC scales with overfitting / capacity
+    miaAuc = Math.min(0.94, 0.55 + 0.05 * Math.log10(pScale + 1) + 0.003 * k);
+    lrRatio = 1.0 + (finalExtract * 8.5);
+    deniability = (k > 40 || pScale >= 70) ? "LOW (Leaking)" : "MODERATE";
+  } else if (dpMode === 'weak') {
+    finalExtract = Math.min(0.40, rawExtract * 0.25);
+    miaAuc = Math.min(0.68, 0.52 + 0.001 * k);
+    lrRatio = 1.0 + (finalExtract * 2.5);
+    deniability = "MODERATE";
+  } else {
+    // Strong DP (eps = 1.0)
+    finalExtract = Math.min(0.04, rawExtract * 0.03);
+    miaAuc = 0.50 + Math.random() * 0.03; // Bounded near 0.50 by DP guarantees
+    lrRatio = 1.0 + (finalExtract * 0.4);
+    deniability = "HIGH (Safe)";
+  }
+
+  // Update DOM
+  document.getElementById('stat_extract_prob').textContent = `${(finalExtract * 100).toFixed(1)}%`;
+  document.getElementById('stat_mia_auc').textContent = miaAuc.toFixed(3);
+  document.getElementById('stat_lr_ratio').textContent = `${lrRatio.toFixed(2)}x`;
+  document.getElementById('stat_deniability').textContent = deniability;
+
+  let extStat = document.getElementById('stat_extract_prob');
+  let miaStat = document.getElementById('stat_mia_auc');
+  let denStat = document.getElementById('stat_deniability');
+  let banner = document.getElementById('gen_risk_banner');
+
+  if (finalExtract > 0.30 || miaAuc > 0.75) {
+    extStat.style.color = "#b91c1c";
+    miaStat.style.color = "#b91c1c";
+    denStat.style.color = "#b91c1c";
+    banner.style.background = "#fee2e2";
+    banner.style.border = "2px solid #b91c1c";
+    banner.style.color = "#7f1d1d";
+    banner.innerHTML = `<strong>⚠️ Critical Privacy Leakage Alert:</strong> High parameter capacity (${pScale}B) and string duplication ($k=${k}$) cause verbatim training memorization ($P_{\\text{extract}} = ${(finalExtract*100).toFixed(1)}\\%$). Membership inference AUC is elevated to ${miaAuc.toFixed(3)}, allowing adversaries to reconstruct private clinical or identity training data with high confidence.`;
+  } else if (finalExtract > 0.10 || miaAuc > 0.60) {
+    extStat.style.color = "#d97706";
+    miaStat.style.color = "#d97706";
+    denStat.style.color = "#d97706";
+    banner.style.background = "#fef3c7";
+    banner.style.border = "2px solid #d97706";
+    banner.style.color = "#78350f";
+    banner.innerHTML = `<strong>⚠️ Moderate Memorization Risk:</strong> Weak privacy defense permits noticeable extraction surface for duplicated records ($k=${k}$). Additional gradient clipping and input deduplication required before public release.`;
+  } else {
+    extStat.style.color = "#15803d";
+    miaStat.style.color = "#15803d";
+    denStat.style.color = "#15803d";
+    banner.style.background = "#dcfce7";
+    banner.style.border = "2px solid #15803d";
+    banner.style.color = "#14532d";
+    banner.innerHTML = `<strong>✓ Certified Privacy Invariant Active:</strong> Differential Privacy constraints bound Membership Inference Attack AUC to near-random (${miaAuc.toFixed(3)}) and suppress extraction likelihood ($P_{\\text{extract}} = ${(finalExtract*100).toFixed(1)}\\%$). Training records are mathematically insulated.`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', updateGenSim);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateGenSim();
+}
+</script>
+
+<hr />
+<h2 id="5-production-verification-generative-ai-privacy-membership-inference-engine">5. Production Verification: Generative AI Privacy &amp; Membership Inference Engine</h2>
+<p>The following production Python module uses <strong>Pydantic V2</strong> to evaluate training data extraction likelihoods, execute loss-based Membership Inference Attack (MIA) audits, and verify synthetic data privacy bounds.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">generative_privacy_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production frontier privacy verification engine for generative models and foundation LLMs using Pydantic V2.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Evaluates training data memorization likelihood ratios, loss-based Membership Inference Attacks (MIA),</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">and synthetic dataset nearest-neighbor distributional deniability.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">InferenceLossRecord</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">"""Inference loss metadata for a sample record."""</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">is_actual_member</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">cross_entropy_loss</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">target_model_perplexity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">reference_model_perplexity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="s2">"precision"</span><span class="p">:</span> <span class="n">precision</span><span class="p">,</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="s2">"recall"</span><span class="p">:</span> <span class="n">recall</span><span class="p">,</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="s2">"accuracy"</span><span class="p">:</span> <span class="n">accuracy</span><span class="p">,</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="s2">"threshold"</span><span class="p">:</span> <span class="n">threshold</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="p">}</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_mia_assertions</span><span class="p">():</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="c1"># Overfitted model: in-sample loss is very low (mean=0.15, std=0.08)</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">in_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">in_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">in_losses</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenerativePrivacyAuditReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="sd">"""Consolidated generative model privacy audit report."""</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">total_samples</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">mia_accuracy</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">mia_precision</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">mia_recall</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">mia_auc_approx</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">max_likelihood_ratio</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">memorization_alert</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">synthetic_min_distance</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">is_mode_collapsed</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="c1"># Out-of-sample loss on unseen general population is higher (mean=0.65, std=0.20)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">out_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">out_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">out_losses</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="c1"># Attacker sets decision threshold at 0.35</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">mia_result</span> <span class="o">=</span> <span class="n">compute_mia_scores</span><span class="p">(</span><span class="n">in_losses</span><span class="p">,</span> <span class="n">out_losses</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="c1"># Assertions</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="c1"># Overfitting enables high MIA accuracy (&gt; 80%)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="k">assert</span> <span class="n">mia_result</span><span class="p">[</span><span class="s2">"accuracy"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.80</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"MIA accuracy unexpectedly low: </span><span class="si">{</span><span class="n">mia_result</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="k">assert</span> <span class="n">mia_result</span><span class="p">[</span><span class="s2">"precision"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.80</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="k">assert</span> <span class="n">mia_result</span><span class="p">[</span><span class="s2">"recall"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.85</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MIA Precision: </span><span class="si">{</span><span class="n">mia_result</span><span class="p">[</span><span class="s1">'precision'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MIA Recall: </span><span class="si">{</span><span class="n">mia_result</span><span class="p">[</span><span class="s1">'recall'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MIA Overall Accuracy: </span><span class="si">{</span><span class="n">mia_result</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Membership inference and memorization assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">test_mia_assertions</span><span class="p">()</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenerativePrivacyEngine</span><span class="p">:</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="sd">"""Production privacy verification engine for foundation models."""</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_mia_metrics</span><span class="p">(</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="n">records</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">InferenceLossRecord</span><span class="p">],</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="n">loss_threshold</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">        </span><span class="sd">"""Calculates attacker precision, recall, and accuracy in deducing training membership."""</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="n">tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">is_actual_member</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">cross_entropy_loss</span> <span class="o">&lt;=</span> <span class="n">loss_threshold</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="n">fn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">is_actual_member</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">cross_entropy_loss</span> <span class="o">&gt;</span> <span class="n">loss_threshold</span><span class="p">)</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="n">fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span> <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">is_actual_member</span><span class="p">)</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">cross_entropy_loss</span> <span class="o">&lt;=</span> <span class="n">loss_threshold</span><span class="p">)</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="n">tn</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span> <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">is_actual_member</span><span class="p">)</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">cross_entropy_loss</span> <span class="o">&gt;</span> <span class="n">loss_threshold</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="n">precision</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="n">recall</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>            <span class="s2">"precision"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>            <span class="s2">"recall"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">recall</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="s2">"accuracy"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="p">}</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_foundation_model</span><span class="p">(</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="n">records</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">InferenceLossRecord</span><span class="p">],</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="n">synthetic_embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>        <span class="n">training_embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="n">loss_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.35</span><span class="p">,</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="n">lr_alert_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.50</span><span class="p">,</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="n">mode_collapse_dist_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenerativePrivacyAuditReport</span><span class="p">:</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">        </span><span class="sd">"""Executes full privacy evaluation across MIA, memorization, and synthetic leakage."""</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>        <span class="n">mia</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">compute_mia_metrics</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">loss_threshold</span><span class="p">)</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>        <span class="c1"># Likelihood ratios: R_extract = target_ppl / ref_ppl</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="n">lr_ratios</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>            <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">reference_model_perplexity</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">target_model_perplexity</span><span class="p">))</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="p">]</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="n">max_lr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">lr_ratios</span><span class="p">))</span> <span class="k">if</span> <span class="n">lr_ratios</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>        <span class="n">memorization_alert</span> <span class="o">=</span> <span class="n">max_lr</span> <span class="o">&gt;=</span> <span class="n">lr_alert_threshold</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="c1"># Synthetic Nearest-Neighbor Euclidean Distance</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="c1"># Min distance between synthetic points and real training points</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">min_dists</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="k">for</span> <span class="n">synth_pt</span> <span class="ow">in</span> <span class="n">synthetic_embeddings</span><span class="p">:</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>            <span class="n">diffs</span> <span class="o">=</span> <span class="n">training_embeddings</span> <span class="o">-</span> <span class="n">synth_pt</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>            <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diffs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>            <span class="n">min_dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>        <span class="n">overall_min_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">min_dists</span><span class="p">))</span> <span class="k">if</span> <span class="n">min_dists</span> <span class="k">else</span> <span class="mf">1.0</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>        <span class="n">mode_collapsed</span> <span class="o">=</span> <span class="n">overall_min_dist</span> <span class="o">&lt;=</span> <span class="n">mode_collapse_dist_threshold</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="k">return</span> <span class="n">GenerativePrivacyAuditReport</span><span class="p">(</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>            <span class="n">total_samples</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">),</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>            <span class="n">mia_accuracy</span><span class="o">=</span><span class="n">mia</span><span class="p">[</span><span class="s2">"accuracy"</span><span class="p">],</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>            <span class="n">mia_precision</span><span class="o">=</span><span class="n">mia</span><span class="p">[</span><span class="s2">"precision"</span><span class="p">],</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>            <span class="n">mia_recall</span><span class="o">=</span><span class="n">mia</span><span class="p">[</span><span class="s2">"recall"</span><span class="p">],</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>            <span class="n">mia_auc_approx</span><span class="o">=</span><span class="nb">round</span><span class="p">((</span><span class="n">mia</span><span class="p">[</span><span class="s2">"precision"</span><span class="p">]</span> <span class="o">+</span> <span class="n">mia</span><span class="p">[</span><span class="s2">"recall"</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>            <span class="n">max_likelihood_ratio</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">max_lr</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>            <span class="n">memorization_alert</span><span class="o">=</span><span class="n">memorization_alert</span><span class="p">,</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>            <span class="n">synthetic_min_distance</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">overall_min_dist</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>            <span class="n">is_mode_collapsed</span><span class="o">=</span><span class="n">mode_collapsed</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>        <span class="p">)</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a><span class="c1"># Automated Assertion Suite for Frontier AI Security CI/CD Gates</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_generative_privacy_assertions</span><span class="p">():</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">600</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="c1"># Simulate overfitted target model</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="c1"># In-sample records have abnormally low cross-entropy</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">in_sample_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">300</span><span class="p">),</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="n">out_sample_losses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.62</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">300</span><span class="p">),</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>    <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">):</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>        <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">InferenceLossRecord</span><span class="p">(</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>            <span class="n">record_id</span><span class="o">=</span><span class="sa">f</span><span class="s2">"in_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>            <span class="n">is_actual_member</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>            <span class="n">cross_entropy_loss</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">in_sample_losses</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>            <span class="n">target_model_perplexity</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>            <span class="n">reference_model_perplexity</span><span class="o">=</span><span class="mf">5.4</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>        <span class="p">))</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">):</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>        <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">InferenceLossRecord</span><span class="p">(</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>            <span class="n">record_id</span><span class="o">=</span><span class="sa">f</span><span class="s2">"out_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>            <span class="n">is_actual_member</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>            <span class="n">cross_entropy_loss</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">out_sample_losses</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>            <span class="n">target_model_perplexity</span><span class="o">=</span><span class="mf">4.8</span><span class="p">,</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>            <span class="n">reference_model_perplexity</span><span class="o">=</span><span class="mf">5.1</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>        <span class="p">))</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="c1"># Synthetic embeddings test: safe distributed synthetic data</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="n">train_emb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="n">synth_emb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="n">report</span> <span class="o">=</span> <span class="n">GenerativePrivacyEngine</span><span class="o">.</span><span class="n">audit_foundation_model</span><span class="p">(</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>        <span class="n">records</span><span class="o">=</span><span class="n">records</span><span class="p">,</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>        <span class="n">synthetic_embeddings</span><span class="o">=</span><span class="n">synth_emb</span><span class="p">,</span>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>        <span class="n">training_embeddings</span><span class="o">=</span><span class="n">train_emb</span><span class="p">,</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>        <span class="n">loss_threshold</span><span class="o">=</span><span class="mf">0.35</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="p">)</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="c1"># Assertions</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>    <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">mia_accuracy</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Overfitted model should enable high MIA accuracy, got </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">mia_accuracy</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>    <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">memorization_alert</span><span class="p">,</span> <span class="s2">"High perplexity ratio failed to trigger memorization alert."</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>    <span class="k">assert</span> <span class="ow">not</span> <span class="n">report</span><span class="o">.</span><span class="n">is_mode_collapsed</span><span class="p">,</span> <span class="s2">"Gaussian synthetic data should maintain safe distance."</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MIA Accuracy on Overfitted Model: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">mia_accuracy</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Max Likelihood Extraction Ratio: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">max_likelihood_ratio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x (Alert: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">memorization_alert</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Synthetic Data Nearest Neighbor: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">synthetic_min_distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (Mode Collapsed: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">is_mode_collapsed</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All foundation model memorization and generative privacy assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>    <span class="n">run_generative_privacy_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="4-interactive-laboratory-workbench">4. 🔬 Interactive Laboratory Workbench</h2>
-<p><div class="noc-sim-card">
-<br />
-<div class="noc-sim-badge">🔬 Interactive Laboratory</div></p>
-<h4>Launch Foundation Model Privacy Studio</h4>
-<p>Test prompt extraction vulnerabilities, audit membership inference scores, and evaluate synthetic dataset mode collapse.</p>
-<p><a href="../../tools/deid-risk/" class="noc-sim-btn">Launch Generative Privacy Studio →</a>
-</div>
-<br />
-<h4>Explore De-Identification Risk Checker</h4></p>
-<p>Simulate differential privacy loss in federated learning updates, test gradient leakage vectors, and calculate reconstruction bounds.</p>
-<p><a href="../../tools/deid-risk/" class="noc-sim-btn">Launch De-ID Risk Workbench →</a>
-</div></p>
-<hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
+<h2 id="6-diagnostic-self-assessment-scenarios">6. Diagnostic Self-Assessment Scenarios</h2>
+<p>Test your comprehension of foundation model extraction, membership inference, and generative data privacy:</p>
+<details class="question">
+<summary>Self-Assessment 1: Token Duplication and Memorization in Foundation Models</summary>
+<p>In Carlini et al.'s landmark empirical investigation of LLM training data extraction, what was the mathematical relationship between the number of times a sequence is duplicated in the pretraining corpus and its extraction probability?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Memorization extraction probability follows a <strong>Super-Linear Power Law with Duplication Frequency</strong>:
+$<span class="arithmatex">\(\Pr(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha \approx 0.75, \; \beta \approx 0.35\)</span>$
+1. <strong>The Power of Duplication (<span class="arithmatex">\(k\)</span>)</strong>: A string appearing only once or twice in a 1-trillion token scrape has a negligible extraction probability. However, if a sensitive record (e.g., a software developer's private API key, or an individual's phone number on multiple public contact pages) is duplicated <span class="arithmatex">\(k \ge 15\)</span> times, the model transitions from general representation learning to <strong>exact lossy compression and verbatim memorization</strong>.
+2. <strong>Engineering Invariant</strong>: Deduplication is the single most effective pretraining defense. Running MinHash or near-deduplication on web crawl datasets before training eliminates over <span class="arithmatex">\(90\%\)</span> of memorized extraction surfaces.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 2: Deep Leakage from Gradients in Healthcare Federated Learning</summary>
+<p>A consortium of three research hospitals collaborates to train a cancer classification CNN via Federated Learning. Instead of sharing patient CT scans, each hospital sends only gradient weight updates (<span class="arithmatex">\(\nabla W\)</span>) to a central aggregator. A security researcher on the central server successfully reconstructs identifiable patient CT scans. What mathematical attack occurred, and what cryptographic protocol prevents it?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>The Attack</strong>: <strong>Deep Leakage from Gradients (DLG)</strong> (Zhu et al., 2019).
+   Because backpropagated gradients are linear combinations of the input features and hidden representations, the adversary treats the dummy input <span class="arithmatex">\(\mathbf{x}'\)</span> as a variable and solves:
+   $<span class="arithmatex">\(\mathbf{x}^* = \arg\min_{\mathbf{x}'} \|\nabla_{\mathbf{W}} \mathcal{L}(\mathbf{W}; \mathbf{x}', y') - \nabla_{\mathbf{W}} \mathcal{L}_{\text{observed}}\|_2^2\)</span>$
+   Gradient descent over the input space matches the gradient update, recovering the original pixels with near-zero error.
+2. <strong>The Defense</strong>: <strong>Bonawitz Secure Aggregation (SecAgg) with Local Differential Privacy</strong>.
+   - <strong>SecAgg</strong>: Cryptographic protocol ensuring the central server only sees the aggregate sum <span class="arithmatex">\(\sum_{i} \nabla W_i\)</span>, never individual hospital updates.
+   - <strong>Differential Privacy (DP)</strong>: Local gradient clipping (<span class="arithmatex">\(\|\nabla W\|_2 \le C\)</span>) and Gaussian noise addition mathematically bounding reconstruction fidelity.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: Synthetic Data Mode Collapse and the Anonymity Fallacy</summary>
+<p>A financial institution uses a generative diffusion model to synthesize a dataset of 100,000 credit transactions to bypass GDPR restrictions. An external auditor discovers that five synthetic records represent exact, bit-for-bit reproductions of high-net-worth customers' actual accounts and spending histories. How can a generative model produce real personal data, and why does this violate GDPR?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The mechanism is <strong>Mode Collapse and Empirical Overfitting on Outlier Densities</strong>.</p>
 <ol>
-<li><strong>LLM Memorization Risks</strong>: Massive foundation models memorize rare training strings verbatim; scrub private PII before pretraining.</li>
-<li><strong>Membership Inference Threat</strong>: Overfitted models exhibit lower cross-entropy on training records, enabling adversaries to deduce dataset membership.</li>
-<li><strong>Synthetic Data is Not Automatically Private</strong>: Generative models suffering from mode collapse can reproduce private records identically.</li>
-<li><strong>Data Sovereignty Architecture</strong>: Multi-cloud architectures must maintain geographical geofences to comply with national sovereign storage mandates.</li>
+<li><strong>Distributional Failure</strong>: Generative neural networks (GANs, Diffusion) minimize divergence between the true distribution and the generated distribution. When training on sparse, high-dimensional tails (e.g., rare multi-million dollar transactions), the generator overfits the isolated density peak and memorizes the training coordinates verbatim (<span class="arithmatex">\(\min \|\mathbf{x}_{\text{synth}} - \mathbf{x}_{\text{train}}\|_2 \to 0\)</span>).</li>
+<li><strong>Legal Violation</strong>: Under GDPR Recital 26 and CJEU precedents, anonymization requires that personal data be rendered irreversible such that the data subject is no longer identifiable. Replicating unique, identifiable behavioral profiles means the synthetic dataset <strong>still contains personal data</strong>, nullifying the claim of anonymization.</li>
+<li><strong>Remediation</strong>: Generative models must be trained with <strong>DP-SGD (e.g., DP-CTGAN)</strong> with bounded privacy budgets (<span class="arithmatex">\(\epsilon \le 2.0\)</span>) to guarantee individual plausible deniability.</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Geopolitical Data Sovereignty &amp; Schrems II Cloud Architecture</summary>
+<p>A multinational enterprise operates an AI data lake in Frankfurt, Germany. To accelerate analytics query latency, data engineers configure automated replication of raw database snapshots to an AWS S3 bucket in North Virginia, USA. The team signs standard EU Standard Contractual Clauses (SCCs). Does this replication violate EU law under the <em>Schrems II</em> precedent?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> <strong>Yes, it constitutes an unlawful transfer without supplemental technical measures</strong>.</p>
+<p>Under the landmark <em>Schrems II</em> ruling (CJEU Case C-311/18):
+1. <strong>Inadequacy of Commercial Contracts Alone</strong>: Standard Contractual Clauses (SCCs) are purely contractual and cannot bind foreign sovereign intelligence agencies. Because US intelligence operates under Section 702 of the Foreign Intelligence Surveillance Act (FISA) and Executive Order 12333, US cloud providers can be compelled to provide unencrypted data to intelligence authorities.
+2. <strong>Supplemental Measures Required</strong>: Transferring personal data from the EEA to the US is unlawful unless accompanied by <strong>effective supplemental technical measures</strong>—specifically, client-side encryption where the encryption keys are retained exclusively within the EU and never accessible to the US cloud provider or authorities.</p>
+</details>
+</details>
+<hr />
+<h2 id="7-key-engineering-takeaways">7. Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Pretraining Deduplication is Mandatory</strong>: LLM memorization scales super-linearly with duplication frequency (<span class="arithmatex">\(k^\alpha\)</span>); aggressive string deduplication prevents verbatim PII regurgitation.</li>
+<li><strong>DP-SGD Bounds Membership Inference</strong>: Differentially private training (<span class="arithmatex">\(\epsilon \le 4.0\)</span>) mathematically bounds an adversary's ability to deduce dataset membership to <span class="arithmatex">\(e^\epsilon - 1\)</span>.</li>
+<li><strong>Synthetic Data Requires Privacy Guarantees</strong>: Generative models without differential privacy can mode-collapse and reproduce rare patient or financial records identically.</li>
+<li><strong>Federated Gradients Leak Data</strong>: Always combine federated learning with Secure Aggregation (SecAgg) and differential privacy noise to neutralize gradient inversion attacks.</li>
+<li><strong>Data Sovereignty by Design</strong>: Enforce regional encryption key custody and geofenced cloud storage to comply with international data sovereignty mandates.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
-<details class="question">
-<summary>Self-Assessment: Why Pretraining on Public Web Scrapes Leaks Confidential PII</summary>
-<p>In Carlini et al.'s landmark 2021 study on GPT-2, how were researchers able to extract real individuals' private home addresses, phone numbers, and email addresses by querying the model with generic prompts?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The vulnerability was caused by <strong>Verbatim Memorization of High-Frequency Internet Scrapes</strong>.</p>
-<p>Web scraping corpora (like Common Crawl) contain public disclosures, leaked credentials, and personal contact directories. Even when individual web pages appear only a few times in the corpus, deep neural networks with billions of parameters memorize these exact string sequences. By designing targeted prefix prompts and ranking outputs by the likelihood ratio <span class="arithmatex">\(\mathcal{L}_{\text{target}}(\mathbf{x}) / \mathcal{L}_{\text{ref}}(\mathbf{x})\)</span>, researchers successfully extracted verbatim sensitive personal contact information with zero prior access to the internal model weights.</p>
-</details>
-</details>
-<details class="question">
-<summary>Self-Assessment: Differential Privacy as a Defense Against Membership Inference</summary>
-<p>How does training a model with <strong>Differentially Private Stochastic Gradient Descent (DP-SGD)</strong> theoretically prevent Membership Inference Attacks?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> DP-SGD bounds the <strong>Maximal Information Contribution of Any Single Training Sample</strong>.</p>
-<p>In DP-SGD, per-sample gradients are clipped to a maximum norm <span class="arithmatex">\(C\)</span> (<span class="arithmatex">\(\|g_i\|_2 \le C\)</span>) and calibrated Gaussian noise is added to the batch gradient sum. Under <span class="arithmatex">\((\epsilon, \delta)\)</span>-differential privacy guarantees:
-$<span class="arithmatex">\(\Pr[\mathcal{M}(D) \in \mathcal{S}] \le e^\epsilon \Pr[\mathcal{M}(D \cup \{z\}) \in \mathcal{S}] + \delta\)</span>$
-Because the model's loss and parameter distribution cannot vary by more than a factor of <span class="arithmatex">\(e^\epsilon\)</span> whether sample <span class="arithmatex">\(z\)</span> is included or excluded, an adversary's ability to deduce membership <span class="arithmatex">\(\Lambda(\mathbf{x}, y)\)</span> is mathematically bounded by <span class="arithmatex">\(e^\epsilon\)</span>, neutralizing membership inference.</p>
-</details>
-</details>
-<hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="8-peer-reviewed-scholarly-references">8. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-carlini2021"></a><strong>[Carlini2021]</strong> N. Carlini et al., "Extracting Training Data from Large Language Models," in <em>Proceedings of the 30th USENIX Security Symposium</em>, pp. 2633–2650, 2021. <a href="https://doi.org/10.48550/arXiv.2012.07805">DOI: 10.48550/arXiv.2012.07805</a>.</li>
-<li><a id="ref-shokri2017"></a><strong>[Shokri2017]</strong> R. Shokri, M. Stronati, C. Song, and V. Shmatikov, "Membership Inference Attacks Against Machine Learning Models," in <em>Proceedings of the 2017 IEEE Symposium on Security and Privacy (SP)</em>, pp. 3–18. <a href="https://doi.org/10.1109/SP.2017.41">DOI: 10.1109/SP.2017.41</a>.</li>
-<li><a id="ref-hummel2021"></a><strong>[Hummel2021]</strong> P. Hummel, M. Braun, M. Tretter, and P. Dabrock, "Data Sovereignty: A Review," <em>Big Data &amp; Society</em>, vol. 8, no. 1, pp. 1–17, 2021. <a href="https://doi.org/10.1177/2053951720982012">DOI: 10.1177/2053951720982012</a>.</li>
+<li><a id="ref-shokri2017"></a><strong>[Shokri2017]</strong> R. Shokri, M. Stronati, C. Song, and V. Shmatikov, "Membership Inference Attacks Against Machine Learning Models," in <em>Proceedings of the 2017 IEEE Symposium on Security and Privacy (SP)</em>, pp. 3–18, 2017. <a href="https://doi.org/10.1109/SP.2017.41">DOI: 10.1109/SP.2017.41</a>.</li>
+<li><a id="ref-zhu2019"></a><strong>[Zhu2019]</strong> L. Zhu, Z. Liu, and S. Han, "Deep Leakage from Gradients," in <em>Advances in Neural Information Processing Systems (NeurIPS 2019)</em>, vol. 32, pp. 14774–14784, 2019. <a href="https://doi.org/10.48550/arXiv.1906.08935">DOI: 10.48550/arXiv.1906.08935</a>.</li>
+<li><a id="ref-geiping2020"></a><strong>[Geiping2020]</strong> J. Geiping, H. Bauermeister, H. Dröge, and M. Moeller, "Inverting Gradients—How Easy Is It to Break Privacy in Federated Learning?," in <em>Advances in Neural Information Processing Systems (NeurIPS 2020)</em>, vol. 33, pp. 16937–16947, 2020. <a href="https://doi.org/10.48550/arXiv.2003.14053">DOI: 10.48550/arXiv.2003.14053</a>.</li>
+<li><a id="ref-abadi2016"></a><strong>[Abadi2016]</strong> M. Abadi et al., "Deep Learning with Differential Privacy," in <em>Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security (CCS)</em>, pp. 308–318, 2016. <a href="https://doi.org/10.1145/2976749.2978318">DOI: 10.1145/2976749.2978318</a>.</li>
 <li><a id="ref-dwork2014"></a><strong>[Dwork2014]</strong> C. Dwork and A. Roth, "The Algorithmic Foundations of Differential Privacy," <em>Foundations and Trends in Theoretical Computer Science</em>, vol. 9, no. 3–4, pp. 211–407, 2014. <a href="https://doi.org/10.1561/0400000042">DOI: 10.1561/0400000042</a>.</li>
-<li><a id="ref-abadi2016"></a><strong>[Abadi2016]</strong> M. Abadi et al., "Deep Learning with Differential Privacy," in <em>Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security (CCS)</em>, pp. 308–318. <a href="https://doi.org/10.1145/2976749.2978318">DOI: 10.1145/2976749.2978318</a>.</li>
+<li><a id="ref-hummel2021"></a><strong>[Hummel2021]</strong> P. Hummel, M. Braun, M. Tretter, and P. Dabrock, "Data Sovereignty: A Review," <em>Big Data &amp; Society</em>, vol. 8, no. 1, pp. 1–17, 2021. <a href="https://doi.org/10.1177/2053951720982012">DOI: 10.1177/2053951720982012</a>.</li>
 <li><a id="ref-voigt2017"></a><strong>[Voigt2017]</strong> P. Voigt and A. Von dem Bussche, <em>The EU General Data Protection Regulation (GDPR): A Practical Guide</em>, 1st ed., Springer Cham, 2017. <a href="https://doi.org/10.1007/978-3-319-57959-7">DOI: 10.1007/978-3-319-57959-7</a>.</li>
+<li><a id="ref-yeom2018"></a><strong>[Yeom2018]</strong> S. Yeom, I. Giacomelli, M. Fredrikson, and S. Jha, "Privacy Risk in Machine Learning: Analyzing the Connection to Overfitting," in <em>Proceedings of the 2018 IEEE 31st Computer Security Foundations Symposium (CSF)</em>, pp. 268–282, 2018. <a href="https://doi.org/10.1109/CSF.2018.00027">DOI: 10.1109/CSF.2018.00027</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../10-ethical-decision-making/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.10 Ethical Decision-Making</a>
-  <a href="../" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Back to Track 3 Overview →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../10-ethical-decision-making/" class="noc-sim-btn secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffffff; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← Previous: 3.10 Ethical Decision-Making Frameworks
+  </a>
+  <a href="../../" class="noc-sim-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Return to Curriculum Overview ⌂
+  </a>
 </div>
 
 

@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1864,72 +1908,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#special-category-personal-data-article-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Category Personal Data (Article 9)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-mathematical-formalization-of-statutory-compliance-bounds" class="md-nav__link">
+  <a href="#2-health-insurance-portability-and-accountability-act-hipaa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Mathematical Formalization of Statutory Compliance Bounds
+        2. Health Insurance Portability and Accountability Act (HIPAA)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Mathematical Formalization of Statutory Compliance Bounds">
+    <nav class="md-nav" aria-label="2. Health Insurance Portability and Accountability Act (HIPAA)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-gdpr-statutory-penalty-upper-bound-function-article-83" class="md-nav__link">
+  <a href="#the-18-hipaa-safe-harbor-identifier-categories-164514b2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. GDPR Statutory Penalty Upper Bound Function (Article 83)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-mandatory-breach-notification-clock-window-article-33" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Mandatory Breach Notification Clock Window (Article 33)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-hipaa-safe-harbor-identifier-suppression-model-45-cfr-164514b2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. HIPAA Safe Harbor Identifier Suppression Model (45 CFR §164.514(b)(2))
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-hipaa-expert-determination-statistical-risk-bound-164514b1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. HIPAA Expert Determination Statistical Risk Bound (§164.514(b)(1))
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-california-consumer-privacy-act-ccpacpra-statutory-damages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. California Consumer Privacy Act (CCPA/CPRA) Statutory Damages
+        The 18 HIPAA Safe Harbor Identifier Categories (§164.514(b)(2))
       
     </span>
   </a>
@@ -1942,10 +1953,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-comparative-statutory-analysis" class="md-nav__link">
+  <a href="#3-california-consumer-privacy-act-ccpa-rights-act-cpra" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Comparative Statutory Analysis
+        3. California Consumer Privacy Act (CCPA) &amp; Rights Act (CPRA)
       
     </span>
   </a>
@@ -1953,10 +1964,149 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-hipaa-18-identifier-masking-penalty-calculator" class="md-nav__link">
+  <a href="#4-mathematical-statutory-exposure-formulations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator
+        4. Mathematical &amp; Statutory Exposure Formulations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Mathematical &amp; Statutory Exposure Formulations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gdpr-administrative-fines-formulation-article-83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. GDPR Administrative Fines Formulation (Article 83)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mandatory-gdpr-breach-notification-window-article-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mandatory GDPR Breach Notification Window (Article 33)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ccpa-statutory-damages-exposure-formulation-1798150" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. CCPA Statutory Damages Exposure Formulation (§1798.150)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-hipaa-civil-monetary-penalties-hhs-enforcement-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. HIPAA Civil Monetary Penalties (HHS Enforcement Tiers)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comparative-cross-jurisdictional-statutory-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Comparative Cross-Jurisdictional Statutory Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comparative Cross-Jurisdictional Statutory Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-37-global-regulatory-compliance-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.7: Global Regulatory Compliance Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-landmark-regulatory-enforcement-case-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Landmark Regulatory Enforcement Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Landmark Regulatory Enforcement Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-meta-ireland-cross-border-data-transfers-edpb-2023-12-billion-gdpr-fine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Meta Ireland Cross-Border Data Transfers (EDPB 2023 - €1.2 Billion GDPR Fine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-anthem-blue-cross-healthcare-breach-2015-hhs-ocr-settlement-16-million" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Anthem Blue Cross Healthcare Breach (2015 / HHS OCR Settlement - $16 Million)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-sephora-ccpa-enforcement-action-california-ag-2022-12-million-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Sephora CCPA Enforcement Action (California AG 2022 - $1.2 Million Penalty)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-interactive-laboratory-multi-statute-compliance-risk-exposure-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Laboratory: Multi-Statute Compliance &amp; Risk Exposure Engine
       
     </span>
   </a>
@@ -1964,10 +2114,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#8-production-implementation-multi-statute-compliance-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        8. Production Implementation: Multi-Statute Compliance Engine
       
     </span>
   </a>
@@ -1975,10 +2125,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#9-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        9. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -1986,10 +2136,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#10-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        10. Key Engineering Takeaways
       
     </span>
   </a>
@@ -1997,10 +2147,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#11-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        11. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7460,72 +7610,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#special-category-personal-data-article-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special Category Personal Data (Article 9)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-mathematical-formalization-of-statutory-compliance-bounds" class="md-nav__link">
+  <a href="#2-health-insurance-portability-and-accountability-act-hipaa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Mathematical Formalization of Statutory Compliance Bounds
+        2. Health Insurance Portability and Accountability Act (HIPAA)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Mathematical Formalization of Statutory Compliance Bounds">
+    <nav class="md-nav" aria-label="2. Health Insurance Portability and Accountability Act (HIPAA)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-gdpr-statutory-penalty-upper-bound-function-article-83" class="md-nav__link">
+  <a href="#the-18-hipaa-safe-harbor-identifier-categories-164514b2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. GDPR Statutory Penalty Upper Bound Function (Article 83)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-mandatory-breach-notification-clock-window-article-33" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Mandatory Breach Notification Clock Window (Article 33)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-hipaa-safe-harbor-identifier-suppression-model-45-cfr-164514b2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. HIPAA Safe Harbor Identifier Suppression Model (45 CFR §164.514(b)(2))
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-hipaa-expert-determination-statistical-risk-bound-164514b1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. HIPAA Expert Determination Statistical Risk Bound (§164.514(b)(1))
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-california-consumer-privacy-act-ccpacpra-statutory-damages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. California Consumer Privacy Act (CCPA/CPRA) Statutory Damages
+        The 18 HIPAA Safe Harbor Identifier Categories (§164.514(b)(2))
       
     </span>
   </a>
@@ -7538,10 +7655,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-comparative-statutory-analysis" class="md-nav__link">
+  <a href="#3-california-consumer-privacy-act-ccpa-rights-act-cpra" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Comparative Statutory Analysis
+        3. California Consumer Privacy Act (CCPA) &amp; Rights Act (CPRA)
       
     </span>
   </a>
@@ -7549,10 +7666,149 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-hipaa-18-identifier-masking-penalty-calculator" class="md-nav__link">
+  <a href="#4-mathematical-statutory-exposure-formulations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator
+        4. Mathematical &amp; Statutory Exposure Formulations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Mathematical &amp; Statutory Exposure Formulations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gdpr-administrative-fines-formulation-article-83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. GDPR Administrative Fines Formulation (Article 83)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mandatory-gdpr-breach-notification-window-article-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mandatory GDPR Breach Notification Window (Article 33)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ccpa-statutory-damages-exposure-formulation-1798150" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. CCPA Statutory Damages Exposure Formulation (§1798.150)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-hipaa-civil-monetary-penalties-hhs-enforcement-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. HIPAA Civil Monetary Penalties (HHS Enforcement Tiers)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comparative-cross-jurisdictional-statutory-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Comparative Cross-Jurisdictional Statutory Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comparative Cross-Jurisdictional Statutory Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-37-global-regulatory-compliance-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table 3.7: Global Regulatory Compliance Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-landmark-regulatory-enforcement-case-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Landmark Regulatory Enforcement Case Studies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Landmark Regulatory Enforcement Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-meta-ireland-cross-border-data-transfers-edpb-2023-12-billion-gdpr-fine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: Meta Ireland Cross-Border Data Transfers (EDPB 2023 - €1.2 Billion GDPR Fine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-anthem-blue-cross-healthcare-breach-2015-hhs-ocr-settlement-16-million" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Anthem Blue Cross Healthcare Breach (2015 / HHS OCR Settlement - $16 Million)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-sephora-ccpa-enforcement-action-california-ag-2022-12-million-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Sephora CCPA Enforcement Action (California AG 2022 - $1.2 Million Penalty)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-interactive-laboratory-multi-statute-compliance-risk-exposure-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Interactive Laboratory: Multi-Statute Compliance &amp; Risk Exposure Engine
       
     </span>
   </a>
@@ -7560,10 +7816,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#8-production-implementation-multi-statute-compliance-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        8. Production Implementation: Multi-Statute Compliance Engine
       
     </span>
   </a>
@@ -7571,10 +7827,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#9-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        9. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7582,10 +7838,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#10-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        10. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7593,10 +7849,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#11-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        11. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7624,38 +7880,38 @@
 
 
 <h1 id="37-statutory-frameworks-regulatory-compliance-gdpr-hipaa-ccpacpra">3.7 Statutory Frameworks &amp; Regulatory Compliance: GDPR, HIPAA &amp; CCPA/CPRA</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.6: Real-World Privacy Statutes)</strong> in the official Springer Nature monograph, providing planning maps for GDPR Article 22, HIPAA 18 Safe Harbor identifiers, and CCPA/CPRA enforcement.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.7: Statutory Frameworks & Privacy Laws)</strong> in the official Springer Nature monograph, providing planning maps for GDPR Article 22, HIPAA 18 Safe Harbor identifiers, and CCPA/CPRA statutory liabilities.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-37">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.7</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">12 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">11 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7664,281 +7920,752 @@
 </div>
 
 <hr />
-<p>While ethical frameworks and mathematical PETs provide normative guidance, <strong>privacy statutes establish legally enforceable floors</strong> backed by severe civil penalties, mandatory breach notification clocks, and private rights of action [<a href="#ref-voigt2017">Voigt2017</a>], mandating core principles like Privacy by Design [<a href="#ref-cavoukian2010">Cavoukian2010</a>].</p>
-<p>A data engineering architecture deployed across multinational environments must reconcile overlapping and occasionally conflicting statutory regimes. Software teams cannot outsource this knowledge entirely to legal counsel; engineers must translate statutory concepts—such as <strong>lawful bases</strong>, <strong>data subject rights</strong>, <strong>automated decision-making opt-outs</strong>, and <strong>extraterritorial jurisdiction</strong>—into programmatic database invariants and API schemas [<a href="#ref-goddard2017">Goddard2017</a>, <a href="#ref-ness2020">Ness2020</a>].</p>
+<p>While ethical principles and mathematical PETs provide normative engineering goals, <strong>privacy statutes establish legally enforceable baselines</strong> backed by severe civil penalties, mandatory breach notification deadlines, and private rights of action [<a href="#ref-voigt2017">Voigt2017</a>, <a href="#ref-bradford2020">Bradford2020</a>].</p>
+<p>Modern data architectures deployed across multinational boundaries must reconcile overlapping and occasionally conflicting legal frameworks. Data engineers and ML practitioners cannot treat regulatory compliance as a legal afterthought; statutory mandates—such as <strong>lawful bases</strong>, <strong>data subject erasure DAGs</strong>, <strong>automated profiling opt-outs</strong>, <strong>de-identification safe harbors</strong>, and <strong>cross-border transfer restrictions</strong>—must be directly operationalized as programmatic database constraints and API invariants [<a href="#ref-cavoukian2010">Cavoukian2010</a>, <a href="#ref-goddard2017">Goddard2017</a>].</p>
 <hr />
 <h2 id="1-general-data-protection-regulation-gdpr">1. General Data Protection Regulation (GDPR)</h2>
-<p>The European Union's GDPR (Regulation EU 2016/679) serves as the global gold standard for rights-based data protection, possessing significant <strong>extraterritorial reach</strong> (Art. 3): it applies to any entity processing personal data of individuals located in the EU/EEA, regardless of where the processing servers physically reside.</p>
+<p>The European Union's GDPR (Regulation EU 2016/679) serves as the global benchmark for rights-based data protection. It possesses comprehensive <strong>extraterritorial jurisdiction (Article 3)</strong>: it binds any organization worldwide that processes personal data in connection with offering goods or services to, or monitoring the behavior of, individuals located within the European Economic Area (EEA), regardless of server location [<a href="#ref-voigt2017">Voigt2017</a>].</p>
 <pre class="mermaid"><code>flowchart TD
-    Ingest["Personal Data Ingestion"] --&gt; CheckBasis{"Is there a valid Lawful Basis? (Art. 6)"}
+    Ingest["1. Ingestion of Natural Person Data"] --&gt; CheckBasis{"Is there a valid Lawful Basis? (Art. 6)"}
 
-    CheckBasis --&gt;|No| Illegal["Illegal Processing (Subject to 4% Turnover Fine)"]
-    CheckBasis --&gt;|Yes| Basis["1 of 6 Lawful Bases:&lt;br/&gt;• Freely Given Consent&lt;br/&gt;• Performance of Contract&lt;br/&gt;• Legal Obligation&lt;br/&gt;• Vital Interests&lt;br/&gt;• Public Task&lt;br/&gt;• Legitimate Interests"]
+    CheckBasis --&gt;|No| Illegal["❌ Unlawful Processing&lt;br&gt;(Statutory Fine up to €20M or 4% Global Turnover)"]
+    CheckBasis --&gt;|Yes| Basis["Assign 1 of 6 Lawful Bases:&lt;br&gt;• Consent (Art. 7)&lt;br&gt;• Contractual Necessity&lt;br&gt;• Legal Obligation&lt;br&gt;• Vital Interests&lt;br&gt;• Public Task&lt;br&gt;• Legitimate Interests"]
 
-    Basis --&gt; Governance["Continuous Data Subject Rights Engine (Art. 12-22)"]
-    Governance --&gt; R1["Art. 15: Right of Access (Data Export JSON)"]
-    Governance --&gt; R2["Art. 17: Right to Erasure (Automated Deletion DAG)"]
-    Governance --&gt; R3["Art. 20: Data Portability (Interoperable format)"]
-    Governance --&gt; R4["Art. 22: Automated Profiling Human Review"]
+    Basis --&gt; Governance["Continuous Data Subject Rights Engine (Arts. 12-22)"]
+    Governance --&gt; R1["Art. 15: Right of Access (JSON / Schema Export)"]
+    Governance --&gt; R2["Art. 17: Right to Erasure ('To Be Forgotten' Deletion DAG)"]
+    Governance --&gt; R3["Art. 20: Data Portability (Interoperable Open Format)"]
+    Governance --&gt; R4["Art. 22: Automated Profiling Human Intervention"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class Ingest,Basis,Governance,R1,R2,R3,R4 blue;
     class CheckBasis green;
     class Illegal red;</code></pre>
 <h3 id="the-6-lawful-bases-for-processing-article-6">The 6 Lawful Bases for Processing (Article 6)</h3>
-<p>Data pipelines cannot ingest records without designating a specific lawful basis per feature:
-1. <strong>Consent</strong>: Affirmative, unbundled, freely given consent.
-2. <strong>Contractual Necessity</strong>: Necessary to fulfill a contract with the user (e.g., shipping address for physical delivery).
-3. <strong>Legal Obligation</strong>: Required by national statutory law (e.g., tax or financial anti-money-laundering audits).
-4. <strong>Vital Interests</strong>: Emergency triage to save human life.
-5. <strong>Public Interest</strong>: Performing a statutory public task.
-6. <strong>Legitimate Interests</strong>: Commercial interest of controller, provided it does not override fundamental user rights.</p>
+<p>Every processing operation within a data engineering pipeline must be explicitly mapped to exactly one lawful basis prior to data capture:</p>
+<ol>
+<li><strong>Consent (Art. 6(1)(a) &amp; Art. 7)</strong>: Requires an affirmative, unbundled, granular, informed, and revocable act of will. Pre-ticked checkboxes or forced bundled consent ("take it or leave it") are legally void.</li>
+<li><strong>Contractual Necessity (Art. 6(1)(b))</strong>: Processing is objectively essential to fulfill a contract with the user (e.g., routing addresses to delivery couriers).</li>
+<li><strong>Legal Obligation (Art. 6(1)(c))</strong>: Necessary to comply with EU or Member State statutory mandates (e.g., financial anti-money laundering records, employment tax filings).</li>
+<li><strong>Vital Interests (Art. 6(1)(d))</strong>: Essential to preserve a natural person's life in medical or humanitarian emergencies.</li>
+<li><strong>Public Task (Art. 6(1)(e))</strong>: Necessary for the performance of a task carried out in the public interest or by official authority.</li>
+<li><strong>Legitimate Interests (Art. 6(1)(f))</strong>: Processing for genuine commercial or organizational purposes, provided it survives the three-part balancing test:
+   $<span class="arithmatex">\(\text{Purpose Test} \land \text{Necessity Test} \land (\text{Controller Interests} &gt; \text{Individual Fundamental Rights})\)</span>$</li>
+</ol>
+<h3 id="special-category-personal-data-article-9">Special Category Personal Data (Article 9)</h3>
+<p>Processing data revealing <strong>racial or ethnic origin, political opinions, religious beliefs, genetic data, biometric data for unique identification, health data, or sexual orientation</strong> is prohibited by default, unless satisfying narrow exceptions (e.g., explicit separate consent under Art. 9(2)(a) or public healthcare emergency under Art. 9(2)(i)).</p>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Cross-Border Data Transfer Standard Contractual Clauses (SCC)</p>
-<p>When transmitting training datasets across jurisdictions (e.g., EU to US under Schrems II), execute formalized <strong>Standard Contractual Clauses (SCCs)</strong> accompanied by a <strong>Transfer Impact Assessment (TIA)</strong> verifying that local government surveillance laws do not undermine EU GDPR Article 46 guarantees.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Statutory Fine Multipliers</p>
-<p>Violations of core GDPR principles (Articles 5, 6, 9) incur statutory fines up to €20 million or 4% of total worldwide annual turnover, whichever is higher. Regulatory penalties target the enterprise holding the data controller status, not individual subcontractors.</p>
-</div>
-<h2 id="2-mathematical-formalization-of-statutory-compliance-bounds">2. Mathematical Formalization of Statutory Compliance Bounds</h2>
-<h3 id="1-gdpr-statutory-penalty-upper-bound-function-article-83">1. GDPR Statutory Penalty Upper Bound Function (Article 83)</h3>
-<p>GDPR establishes two tiers of statutory civil fines. For Tier 2 violations (infringement of core data principles, lack of lawful basis, or refusal of subject rights):</p>
-<div class="arithmatex">\[
-\text{Fine}_{\text{Tier 2}} = \max\left(€20{,}000{,}000, \; 0.04 \times \text{Turnover}_{\text{global}}\right)
-\]</div>
-<p>For Tier 1 violations (technical or recordkeeping non-compliance):</p>
-<div class="arithmatex">\[
-\text{Fine}_{\text{Tier 1}} = \max\left(€10{,}000{,}000, \; 0.02 \times \text{Turnover}_{\text{global}}\right)
-\]</div>
-<p>Where <span class="arithmatex">\(\text{Turnover}_{\text{global}}\)</span> is the total worldwide annual revenue of the corporate group.</p>
-<h3 id="2-mandatory-breach-notification-clock-window-article-33">2. Mandatory Breach Notification Clock Window (Article 33)</h3>
-<p>Under GDPR Article 33, when a personal data breach occurs, data controllers must notify the supervisory authority without undue delay and not later than <strong>72 hours</strong> after becoming aware of it:</p>
-<div class="arithmatex">\[
-\Delta t_{\text{notification}} = t_{\text{reported}} - t_{\text{awareness}} \le 72 \text{ hours}
-\]</div>
-<h3 id="3-hipaa-safe-harbor-identifier-suppression-model-45-cfr-164514b2">3. HIPAA Safe Harbor Identifier Suppression Model (45 CFR §164.514(b)(2))</h3>
-<p>Under HIPAA Safe Harbor, an electronic health record (ePHI) is deemed legally de-identified if and only if <strong>all 18 designated direct and quasi-identifiers are removed</strong>:</p>
-<div class="arithmatex">\[
-\forall r \in \mathcal{D}, \quad \pi_{\text{SafeHarbor}}(r) = \{a \in r \mid a \notin \mathcal{H}_{18}\}
-\]</div>
-<p>Where <span class="arithmatex">\(\mathcal{H}_{18}\)</span> includes patient names, all geographic subdivisions smaller than state (except first 3 digits of ZIP if population <span class="arithmatex">\(&gt; 20{,}000\)</span>), all dates (except year), telephone numbers, vehicle identifiers, biometric identifiers, full-face photographs, and IP addresses.</p>
-<h3 id="4-hipaa-expert-determination-statistical-risk-bound-164514b1">4. HIPAA Expert Determination Statistical Risk Bound (§164.514(b)(1))</h3>
-<p>If an organization retains partial demographic attributes for clinical utility, it must obtain an independent statistical certification proving that the re-identification risk is bounded under formal models like <span class="arithmatex">\(k\)</span>-anonymity [<a href="#ref-sweeney2002">Sweeney2002</a>] or differential privacy [<a href="#ref-dwork2014">Dwork2014</a>]:</p>
-<div class="arithmatex">\[
-\max_{r \in \mathcal{D}} P(\text{Re-ID}(r) \mid \text{Public Data } \mathcal{A}) \le \tau_{\text{HIPAA}} \approx 0.05 \quad (5\%)
-\]</div>
-<h3 id="5-california-consumer-privacy-act-ccpacpra-statutory-damages">5. California Consumer Privacy Act (CCPA/CPRA) Statutory Damages</h3>
-<p>Under California Civil Code §1798.150, consumers whose non-encrypted personal information is exfiltrated in a breach are entitled to statutory damages between <span class="arithmatex">\(\$100\)</span> and <span class="arithmatex">\(\$750\)</span> per consumer per incident, without proving actual economic injury:</p>
-<div class="arithmatex">\[
-\text{Damages}_{\text{CCPA}} = N_{\text{victims}} \cdot \max(\$100, \; \min(\$750, \; d_{\text{adjudicated}}))
-\]</div>
-<p>For an enterprise losing <span class="arithmatex">\(2{,}000{,}000\)</span> California user records, statutory civil exposure ranges from <span class="arithmatex">\(\$200\text{ Million}\)</span> to <span class="arithmatex">\(\$1.5\text{ Billion}\)</span>.</p>
+<h2 id="2-health-insurance-portability-and-accountability-act-hipaa">2. Health Insurance Portability and Accountability Act (HIPAA)</h2>
+<p>In the United States, healthcare data privacy is governed sectorally by the <strong>HIPAA Privacy and Security Rules (45 CFR Parts 160 &amp; 164)</strong>, regulating <strong>Covered Entities</strong> (hospitals, physicians, health insurers) and <strong>Business Associates</strong> (cloud providers, data processing vendors under executed BAAs) handling <strong>Protected Health Information (ePHI)</strong> [<a href="#ref-ness2020">Ness2020</a>].</p>
+<pre class="mermaid"><code>flowchart TD
+    Raw["Raw Patient Electronic Health Record (ePHI)"] --&gt; Method{"Choose De-Identification Pathway (45 CFR §164.514)"}
+
+    Method --&gt;|Safe Harbor §164.514(b)(2)| SH["Strict Stripping of All 18 Identifiers&lt;br&gt;• Names, SSN, MRN&lt;br&gt;• All dates except year&lt;br&gt;• ZIP codes truncated to 3-digits (pop &gt; 20k)&lt;br&gt;• Biometrics, photos, IPs"]
+
+    Method --&gt;|Expert Determination §164.514(b)(1)| ED["Formal Mathematical &amp; Statistical Certification&lt;br&gt;Certified by qualified statistical expert&lt;br&gt;Bounded re-identification probability: P(Re-ID) ≤ τ (e.g. 5%)"]
+
+    SH --&gt; LegalDeID["Legally Non-PHI Microdata&lt;br&gt;(Exempt from HIPAA Privacy Rule Restrictions)"]
+    ED --&gt; LegalDeID
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Raw blue;
+    class Method amber;
+    class SH,ED,LegalDeID green;</code></pre>
+<h3 id="the-18-hipaa-safe-harbor-identifier-categories-164514b2">The 18 HIPAA Safe Harbor Identifier Categories (§164.514(b)(2))</h3>
+<p>To qualify for the Safe Harbor standard, a dataset must remove all 18 direct and quasi-identifiers regarding the individual, their relatives, employers, and household members:</p>
+<ol>
+<li><strong>Names</strong>;</li>
+<li><strong>All geographic subdivisions smaller than a state</strong>, including street address, city, county, precinct, and ZIP code (except the initial 3 digits of a ZIP code if the geographic unit contains more than 20,000 people);</li>
+<li><strong>All elements of dates</strong> (except year) directly related to an individual (birth date, admission date, discharge date, date of death) and all ages over 89 (aggregated into a single <span class="arithmatex">\(\ge 90\)</span> category);</li>
+<li><strong>Telephone numbers</strong>;</li>
+<li><strong>Fax numbers</strong>;</li>
+<li><strong>Electronic mail addresses</strong>;</li>
+<li><strong>Social Security numbers (SSN)</strong>;</li>
+<li><strong>Medical record numbers (MRN)</strong>;</li>
+<li><strong>Health plan beneficiary numbers</strong>;</li>
+<li><strong>Account numbers</strong>;</li>
+<li><strong>Certificate / license numbers</strong>;</li>
+<li><strong>Vehicle identifiers and serial numbers</strong> (including license plates);</li>
+<li><strong>Device identifiers and serial numbers</strong>;</li>
+<li><strong>Web Universal Resource Locators (URLs)</strong>;</li>
+<li><strong>Internet Protocol (IP) address numbers</strong>;</li>
+<li><strong>Biometric identifiers</strong>, including finger and voice prints;</li>
+<li><strong>Full-face photographic images</strong> and comparable images;</li>
+<li><strong>Any other unique identifying number, characteristic, or code</strong> (except permissible re-identification keys under §164.514(c)).</li>
+</ol>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>Safe Harbor Condition Precedent</strong>:
+Even if all 18 items are redacted, the dataset is <strong>not</strong> de-identified under Safe Harbor if the covered entity has <strong>actual knowledge</strong> that the remaining information could be used alone or in combination with other data to re-identify an individual.</p>
+</blockquote>
 <hr />
-<h2 id="3-comparative-statutory-analysis">3. Comparative Statutory Analysis</h2>
+<h2 id="3-california-consumer-privacy-act-ccpa-rights-act-cpra">3. California Consumer Privacy Act (CCPA) &amp; Rights Act (CPRA)</h2>
+<p>The California Consumer Privacy Act, enhanced by the California Privacy Rights Act (Cal. Civ. Code §1798.100 et seq.), established the most comprehensive consumer rights regime in the United States, enforced by the dedicated <strong>California Privacy Protection Agency (CPPA)</strong>:</p>
 <pre class="mermaid"><code>flowchart LR
-    subgraph US_Regimes ["US Sectoral Frameworks"]
-    direction TB
-        HIPAA["HIPAA (Health Data)"]
-        CCPA["CCPA/CPRA (California Consumers)"]
-        FERPA["FERPA (Education Data)"]
+    subgraph Rights ["Consumer Rights Under CCPA / CPRA"]
+        R1["Right to Know &amp; Access"]
+        R2["Right to Delete PI"]
+        R3["Right to Correct Inaccurate PI"]
+        R4["Right to Opt-Out of Sale / Sharing&lt;br&gt;('Do Not Sell/Share My PI' &amp; GPC Signal)"]
+        R5["Right to Limit Use of Sensitive PI"]
     end
 
-    subgraph EU_Regime ["EU Omnibus Framework"]
-    direction TB
-        GDPR["GDPR (All Personal Data Across Sectors)"]
+    subgraph Scope ["Threshold Applicability"]
+        T1["Gross Revenue &gt; $25M"]
+        T2["Buys/Sells/Shares PI of ≥ 100,000 Consumers"]
+        T3["Derives ≥ 50% Revenue from Selling/Sharing PI"]
     end
 
-  %% Top-alignment constraint across stages
-  HIPAA ~~~ GDPR
+    Scope --&gt; Rights
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class US_Regimes,HIPAA,CCPA,FERPA amber;
-    class EU_Regime,GDPR blue;</code></pre>
+    class Scope amber;
+    class Rights,R1,R2,R3,R4,R5 blue;</code></pre>
+<ul>
+<li><strong>Broad Definition of "Sale" and "Sharing"</strong>: CCPA defines "selling" as renting, releasing, disclosing, disseminating, or transferring personal information for <em>monetary or other valuable consideration</em>. "Sharing" specifically covers cross-context behavioral advertising (tracking across distinct websites).</li>
+<li><strong>Global Privacy Control (GPC)</strong>: Browsers emitting the automated <code>Sec-GPC: 1</code> HTTP request header must be honored as a legally binding, frictionless opt-out of selling and sharing without requiring user account sign-in.</li>
+<li><strong>Private Right of Action (§1798.150)</strong>: Unlike GDPR or HIPAA, California law provides a direct private right of action for consumers whose non-encrypted and non-redacted personal information is breached due to a business's failure to maintain reasonable security practices.</li>
+</ul>
+<hr />
+<h2 id="4-mathematical-statutory-exposure-formulations">4. Mathematical &amp; Statutory Exposure Formulations</h2>
+<h3 id="1-gdpr-administrative-fines-formulation-article-83">1. GDPR Administrative Fines Formulation (Article 83)</h3>
+<p>GDPR establishes two tiers of statutory civil fines based on global corporate scale:</p>
+<div class="arithmatex">\[
+\text{Fine}_{\text{Tier 1}} = \max\left( €10{,}000{,}000, \; 0.02 \times \text{Turnover}_{\text{global}} \right)
+\]</div>
+<div class="arithmatex">\[
+\text{Fine}_{\text{Tier 2}} = \max\left( €20{,}000{,}000, \; 0.04 \times \text{Turnover}_{\text{global}} \right)
+\]</div>
+<p>Where <span class="arithmatex">\(\text{Turnover}_{\text{global}}\)</span> is the total worldwide annual revenue of the preceding financial year for the entire corporate group (undertaking). Tier 2 applies to breaches of core data protection principles (Art. 5), lawful basis violations (Art. 6), special categories (Art. 9), data subject rights (Arts. 12–22), and international transfer rules (Arts. 44–49).</p>
+<h3 id="2-mandatory-gdpr-breach-notification-window-article-33">2. Mandatory GDPR Breach Notification Window (Article 33)</h3>
+<p>Under GDPR Article 33, when a personal data breach occurs, data controllers must notify the competent Supervisory Authority (DPA) without undue delay and at latest within 72 hours of becoming aware:</p>
+<div class="arithmatex">\[
+\Delta t_{\text{notification}} = t_{\text{reported}} - t_{\text{awareness}} \le 72 \text{ hours}
+\]</div>
+<p>If notification occurs after 72 hours, it must be accompanied by documented reasoned justification for the delay.</p>
+<h3 id="3-ccpa-statutory-damages-exposure-formulation-1798150">3. CCPA Statutory Damages Exposure Formulation (§1798.150)</h3>
+<p>In class action litigation arising from a data breach of sensitive consumer records:</p>
+<div class="arithmatex">\[
+\text{Exposure}_{\text{CCPA}} = N_{\text{victims}} \times d_{\text{statutory}}, \quad \text{where } d_{\text{statutory}} \in [\$100, \; \$750]
+\]</div>
+<p>Consumers do not need to prove actual financial fraud, identity theft, or pecuniary loss to recover statutory damages between <span class="arithmatex">\(\$100\)</span> and <span class="arithmatex">\(\$750\)</span> per incident. A breach compromising <span class="arithmatex">\(1{,}000{,}000\)</span> California consumer records exposes an enterprise to <strong><span class="arithmatex">\(\$100\text{M} \text{ to } \$750\text{M}\)</span></strong> in statutory claims alone.</p>
+<h3 id="4-hipaa-civil-monetary-penalties-hhs-enforcement-tiers">4. HIPAA Civil Monetary Penalties (HHS Enforcement Tiers)</h3>
+<p>Under the HITECH Act revision to HIPAA, civil monetary penalties scale across four culpability tiers per violation per calendar year:</p>
+<div class="arithmatex">\[
+\text{Penalty}_{\text{HIPAA}} = \min\left( \sum_{i=1}^{k} \text{TierRate}_i \times N_{\text{violations}}, \; \$2{,}067{,}813 \right)
+\]</div>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Dimension</th>
-<th style="text-align: left;">GDPR (EU / EEA)</th>
-<th style="text-align: left;">HIPAA (United States)</th>
-<th style="text-align: left;">CCPA / CPRA (California)</th>
+<th style="text-align: left;">Culpability Tier</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Minimum per Violation</th>
+<th style="text-align: left;">Annual Statutory Cap</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Philosophical Basis</strong></td>
-<td style="text-align: left;">Fundamental human right to data privacy.</td>
-<td style="text-align: left;">Sectoral protection of medical records.</td>
-<td style="text-align: left;">Consumer consumer-protection and market transparency.</td>
+<td style="text-align: left;"><strong>Tier 1: Did Not Know</strong></td>
+<td style="text-align: left;">Unaware despite reasonable diligence</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$137\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(\$2,067,813\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Material Scope</strong></td>
-<td style="text-align: left;">Any identified or identifiable natural person.</td>
-<td style="text-align: left;">Protected Health Information (PHI) held by Covered Entities.</td>
-<td style="text-align: left;">Personal information of California residents.</td>
+<td style="text-align: left;"><strong>Tier 2: Reasonable Cause</strong></td>
+<td style="text-align: left;">Knew or should have known without willful neglect</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$1,379\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(\$2,067,813\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>De-Identification Test</strong></td>
-<td style="text-align: left;">True irreversible anonymization (extremely strict).</td>
-<td style="text-align: left;">Safe Harbor (18 items) OR Expert Determination (<span class="arithmatex">\(&lt; 5\%\)</span>).</td>
-<td style="text-align: left;">De-identified or aggregated data with technical anti-linkage controls.</td>
+<td style="text-align: left;"><strong>Tier 3: Willful Neglect (Corrected <span class="arithmatex">\(\le 30\)</span> days)</strong></td>
+<td style="text-align: left;">Conscious intentional failure, corrected within 30 days</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$13,785\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(\$2,067,813\)</span></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Private Right of Action</strong></td>
-<td style="text-align: left;">Broad (Art. 79/82 for material or non-material damage).</td>
-<td style="text-align: left;">None (enforced by HHS Office for Civil Rights).</td>
-<td style="text-align: left;">Limited to data breaches resulting from failure to maintain reasonable security.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Maximum Fine</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(\max(€20\text{M}, 4\% \text{ global revenue})\)</span>.</td>
-<td style="text-align: left;"><span class="arithmatex">\(\$50{,}000\)</span> per violation up to <span class="arithmatex">\(\$2\text{M}\)</span> annually.</td>
-<td style="text-align: left;"><span class="arithmatex">\(\$7{,}500\)</span> per intentional violation.</td>
+<td style="text-align: left;"><strong>Tier 4: Willful Neglect (Uncorrected)</strong></td>
+<td style="text-align: left;">Intentional failure, not corrected within 30 days</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$68,928\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(\$2,067,813\)</span></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="4-python-verification-hipaa-18-identifier-masking-penalty-calculator">4. Python Verification: HIPAA 18 Identifier Masking &amp; Penalty Calculator</h2>
-<p>The following Python script implements the 18 Safe Harbor filtering transforms and computes statutory penalty upper bounds under GDPR and CCPA.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># statutory_compliance_validator.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Validates HIPAA Safe Harbor scrubbing and calculates statutory regulatory exposure</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">HIPAA_DIRECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"address"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">,</span> <span class="s2">"fax"</span><span class="p">,</span> <span class="s2">"ssn"</span><span class="p">,</span> <span class="s2">"mrn"</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">"health_plan_id"</span><span class="p">,</span> <span class="s2">"account_num"</span><span class="p">,</span> <span class="s2">"certificate_num"</span><span class="p">,</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">"license_num"</span><span class="p">,</span> <span class="s2">"vehicle_id"</span><span class="p">,</span> <span class="s2">"device_id"</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">,</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">"ip_address"</span><span class="p">,</span> <span class="s2">"biometric"</span><span class="p">,</span> <span class="s2">"photo"</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
+<h2 id="5-comparative-cross-jurisdictional-statutory-matrix">5. Comparative Cross-Jurisdictional Statutory Matrix</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph US_Regimes ["United States (Sectoral Model)"]
+    direction TB
+        HIPAA["HIPAA (Health Sector / HHS)"]
+        GLBA["GLBA (Financial Institutions)"]
+        CCPA["CCPA/CPRA (California Consumers / CPPA)"]
+    end
+
+    subgraph EU_Regimes ["European Union (Omnibus Model)"]
+    direction TB
+        GDPR["GDPR (All Sectors / Fundamental Human Right)"]
+        AIAct["EU AI Act (Risk-Tiered Foundation Models)"]
+    end
+
+    subgraph APAC_Regimes ["Asia-Pacific (State &amp; National Sovereignty)"]
+    direction TB
+        PIPL["China PIPL (Cross-Border CAC Review / CIIO)"]
+        PDPA["Singapore PDPA (Commission Enforcement)"]
+    end
+
+    HIPAA ~~~ GDPR ~~~ PIPL
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class US_Regimes,HIPAA,GLBA,CCPA amber;
+    class EU_Regimes,GDPR,AIAct blue;
+    class APAC_Regimes,PIPL,PDPA green;</code></pre>
+<h3 id="table-37-global-regulatory-compliance-matrix">Table 3.7: Global Regulatory Compliance Matrix</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Statutory Dimension</th>
+<th style="text-align: left;">GDPR (European Union)</th>
+<th style="text-align: left;">HIPAA (United States)</th>
+<th style="text-align: left;">CCPA / CPRA (California)</th>
+<th style="text-align: left;">PIPL (China)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Philosophical Paradigm</strong></td>
+<td style="text-align: left;">Fundamental human right to dignity and privacy.</td>
+<td style="text-align: left;">Sectoral protection of medical information.</td>
+<td style="text-align: left;">Consumer protection and commercial transparency.</td>
+<td style="text-align: left;">National security, individual rights &amp; cyber sovereignty.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Scope of Data</strong></td>
+<td style="text-align: left;">Any data relating to an identified or identifiable natural person.</td>
+<td style="text-align: left;">Individually identifiable Protected Health Information (ePHI).</td>
+<td style="text-align: left;">Personal Information identifying or linked to consumer/household.</td>
+<td style="text-align: left;">Personal information of natural persons processed within or outside PRC.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>De-Identification Threshold</strong></td>
+<td style="text-align: left;">Irreversible anonymization (extremely stringent).</td>
+<td style="text-align: left;">Safe Harbor (18 fields) OR Expert Determination (<span class="arithmatex">\(P \le \tau\)</span>).</td>
+<td style="text-align: left;">De-identified or aggregate data with contractual anti-linkage controls.</td>
+<td style="text-align: left;">Anonymized information that cannot be restored or identified.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cross-Border Transfer Rule</strong></td>
+<td style="text-align: left;">Adequacy decisions, SCCs + TIA (Schrems II), Binding Corporate Rules.</td>
+<td style="text-align: left;">Covered Entity BAAs require compliance across cloud vendors.</td>
+<td style="text-align: left;">Transfer permitted; opt-out required if characterized as "sale/share".</td>
+<td style="text-align: left;">Mandatory Cyberspace Administration of China (CAC) security assessment or standard contract.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Maximum Statutory Penalty</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(\max(€20\text{M}, \; 4\% \text{ global turnover})\)</span>.</td>
+<td style="text-align: left;">Up to <span class="arithmatex">\(\$2.07\text{M}\)</span> annually per violation category.</td>
+<td style="text-align: left;"><span class="arithmatex">\(\$7{,}500\)</span> per intentional violation; <span class="arithmatex">\(\$100-\$750\)</span> per victim in class action breach.</td>
+<td style="text-align: left;">Up to <span class="arithmatex">\(50\text{M RMB}\)</span> or <span class="arithmatex">\(5\%\)</span> annual revenue; operational license revocation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Private Right of Action</strong></td>
+<td style="text-align: left;">Broad (Art. 79/82 for material or non-material damages).</td>
+<td style="text-align: left;">None (exclusively enforced by HHS Office for Civil Rights).</td>
+<td style="text-align: left;">Limited to security breaches of non-redacted/unencrypted data.</td>
+<td style="text-align: left;">Civil lawsuits before People's Courts for infringed personal rights.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-landmark-regulatory-enforcement-case-studies">6. Landmark Regulatory Enforcement Case Studies</h2>
+<h3 id="case-study-1-meta-ireland-cross-border-data-transfers-edpb-2023-12-billion-gdpr-fine">Case Study 1: Meta Ireland Cross-Border Data Transfers (EDPB 2023 - €1.2 Billion GDPR Fine)</h3>
+<p>In May 2023, the European Data Protection Board (EDPB) ordered Ireland's Data Protection Commission to issue a record <strong>€1.2 Billion fine</strong> against Meta Platforms Ireland:</p>
+<ul>
+<li><strong>The Violation</strong>: Systematic transfer of European user personal data to US servers relying on Standard Contractual Clauses (SCCs) following the landmark <em>Schrems II</em> ruling (CJEU Case C-311/18).</li>
+<li><strong>The Finding</strong>: The CJEU and EDPB held that US statutory surveillance laws (Section 702 of FISA and Executive Order 12333) allow US intelligence agencies disproportionate access without judicial redress for EU citizens, rendering commercial SCCs legally insufficient without supplemental cryptographic barriers.</li>
+</ul>
+<h3 id="case-study-2-anthem-blue-cross-healthcare-breach-2015-hhs-ocr-settlement-16-million">Case Study 2: Anthem Blue Cross Healthcare Breach (2015 / HHS OCR Settlement - $16 Million)</h3>
+<p>The Anthem Blue Cross breach compromised the electronic protected health information (ePHI) of nearly <strong>79 million individuals</strong>, including names, dates of birth, Social Security numbers, medical IDs, and employment details:</p>
+<ul>
+<li><strong>The Attack Vector</strong>: Foreign state-sponsored spear-phishing compromised administrative credentials, traversing unencrypted internal databases over several months without detection.</li>
+<li><strong>The Regulatory Consequence</strong>: The HHS Office for Civil Rights (OCR) assessed a <strong>$16 Million HIPAA monetary settlement</strong> (the largest in HHS history) alongside a mandatory corrective action plan, plus a <strong>$115 Million class action settlement</strong> for failing to conduct enterprise-wide risk analysis and implement multi-factor credential authentication.</li>
+</ul>
+<h3 id="case-study-3-sephora-ccpa-enforcement-action-california-ag-2022-12-million-penalty">Case Study 3: Sephora CCPA Enforcement Action (California AG 2022 - $1.2 Million Penalty)</h3>
+<p>The California Attorney General prosecuted cosmetics retailer Sephora in the state's first major public CCPA enforcement resolution:</p>
+<ul>
+<li><strong>The Allegation</strong>: Sephora embedded third-party ad network tracking scripts on its website that collected browsing history, device hardware identifiers, and shopping cart contents. Under CCPA, trading customer behavioral data for discounted analytics software constituted a <strong>"sale" of personal data</strong>.</li>
+<li><strong>The Compliance Failure</strong>: Sephora failed to provide a visible "Do Not Sell My Personal Information" link and systematically ignored the browser-level <strong>Global Privacy Control (GPC)</strong> opt-out signal.</li>
+<li><strong>Resolution</strong>: Sephora paid a <strong>$1.2 Million penalty</strong>, updated its vendor agreements to service provider status, and integrated automated GPC header parsing across its web infrastructure.</li>
+</ul>
+<hr />
+<h2 id="7-interactive-laboratory-multi-statute-compliance-risk-exposure-engine">7. Interactive Laboratory: Multi-Statute Compliance &amp; Risk Exposure Engine</h2>
+<p>Evaluate regulatory compliance, audit dataset schemas against HIPAA 18 Safe Harbor identifiers, and compute statutory financial liabilities under GDPR, CCPA, and HIPAA in real-time.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.5rem;">⚖️</span>
+      <h3 style="margin: 0; font-weight: 800; color: #151b20; font-size: 1.25rem;">Multi-Statute Compliance &amp; Exposure Calculator</h3>
+    </div>
+    <span style="background: #c9f3f4; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; font-family: monospace;">GDPR • HIPAA • CCPA</span>
+  </div>
+
+  <p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
+    Adjust enterprise revenue and breach scale parameters to compute maximum statutory exposures, and toggle dataset attributes to test HIPAA Safe Harbor compliance.
+  </p>
+
+  <!-- Parameter Controls -->
+  <div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+      🏢 Enterprise Financial &amp; Demographic Scale
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Global Annual Turnover: <span id="label_rev" style="color: #0284c7; font-family: monospace;">€500 Million</span>
+        </label>
+        <input type="range" id="slider_rev" min="10" max="5000" step="50" value="500" style="width: 100%; accent-color: #0284c7;" oninput="updateStatuteSim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          California Consumer Records Breached: <span id="label_ca_records" style="color: #0284c7; font-family: monospace;">100,000 Records</span>
+        </label>
+        <input type="range" id="slider_ca_records" min="1000" max="1000000" step="10000" value="100000" style="width: 100%; accent-color: #0284c7;" oninput="updateStatuteSim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          HIPAA Culpability Tier:
+        </label>
+        <select id="select_hipaa_tier" style="width: 100%; padding: 6px; border: 1.5px solid #151b20; border-radius: 6px; font-weight: 700; font-size: 0.8rem; background: #ffffff;" onchange="updateStatuteSim()">
+          <option value="1">Tier 1: Did Not Know ($137 / max $2.07M)</option>
+          <option value="2">Tier 2: Reasonable Cause ($1,379 / max $2.07M)</option>
+          <option value="3">Tier 3: Willful Neglect (Corrected &le; 30d)</option>
+          <option value="4" selected>Tier 4: Willful Neglect (Uncorrected - Max)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIPAA 18 Safe Harbor Schema Auditor -->
+  <div style="background: #fdf6ec; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #7c2d12; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+      🩺 HIPAA Safe Harbor (§164.514(b)(2)) Attribute Checker
+    </div>
+    <div style="font-size: 0.78rem; color: #7c2d12; margin-bottom: 12px;">
+      Select the attributes present in your released dataset schema:
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;" id="hipaa_checkboxes">
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_names" onchange="updateStatuteSim()"> Patient Name
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_ssn" onchange="updateStatuteSim()"> SSN / MRN
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_dates" onchange="updateStatuteSim()"> Exact Admission Dates
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_zip" onchange="updateStatuteSim()"> 5-Digit Full ZIP
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_ip" onchange="updateStatuteSim()"> IP Address / Device ID
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_clinical" checked onchange="updateStatuteSim()"> ICD-10 Diagnosis Codes
+      </label>
+      <label style="display: flex; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 700; background: #ffffff; padding: 4px 8px; border-radius: 4px; border: 1px solid #151b20; cursor: pointer;">
+        <input type="checkbox" id="chk_lab" checked onchange="updateStatuteSim()"> Laboratory Test Results
+      </label>
+    </div>
+
+    <div id="hipaa_status_banner" style="margin-top: 14px; padding: 10px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; border: 1.5px solid #151b20; background: #dcfce7; color: #15803d;">
+      ✓ Safe Harbor Compliant: Only non-identifying clinical and laboratory attributes retained.
+    </div>
+  </div>
+
+  <!-- Exposure Calculation Cards -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-bottom: 20px;">
+    <!-- GDPR Exposure -->
+    <div style="background: #eff6ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">GDPR Tier 2 Max Penalty</div>
+      <div id="stat_gdpr_t2" style="font-size: 1.25rem; font-weight: 800; color: #1e3a8a; margin: 4px 0;">€20.00 M</div>
+      <div style="font-size: 0.68rem; color: #475569;">$\max(€20\text{M}, 4\% \times \text{Rev})$</div>
+    </div>
+
+    <!-- GDPR Tier 1 -->
+    <div style="background: #eff6ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">GDPR Tier 1 Max Penalty</div>
+      <div id="stat_gdpr_t1" style="font-size: 1.25rem; font-weight: 800; color: #1e3a8a; margin: 4px 0;">€10.00 M</div>
+      <div style="font-size: 0.68rem; color: #475569;">$\max(€10\text{M}, 2\% \times \text{Rev})$</div>
+    </div>
+
+    <!-- CCPA Statutory Damages -->
+    <div style="background: #fef2f2; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #991b1b; text-transform: uppercase;">CCPA Statutory Class Exposure</div>
+      <div id="stat_ccpa_max" style="font-size: 1.25rem; font-weight: 800; color: #b91c1c; margin: 4px 0;">$75.00 M</div>
+      <div style="font-size: 0.68rem; color: #475569;">$N \times \$750 \text{ per victim}$</div>
+    </div>
+
+    <!-- HIPAA OCR Cap -->
+    <div style="background: #fdf4ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #86198f; text-transform: uppercase;">HIPAA Annual Statutory Cap</div>
+      <div id="stat_hipaa_cap" style="font-size: 1.25rem; font-weight: 800; color: #701a75; margin: 4px 0;">$2.07 M</div>
+      <div style="font-size: 0.68rem; color: #475569;">HHS OCR 45 CFR Part 160 Cap</div>
+    </div>
+  </div>
+
+  <!-- 72-Hour Breach Clock Timeline Tracker -->
+  <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 16px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #151b20; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+      <span>⏱️ GDPR Article 33 Mandatory 72-Hour Breach Clock</span>
+      <span style="font-family: monospace; font-size: 0.75rem; background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 4px; border: 1px solid #151b20; font-weight: 700;">$\Delta t \le 72\text{h}$</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; font-size: 0.75rem;">
+      <div style="background: #f8fafc; border-left: 3px solid #0284c7; padding: 8px; border-radius: 4px;">
+        <strong style="color: #0284c7;">Hour 0–12</strong><br>
+        Security Incident Detection, triage isolation, containment, and activation of DPO Incident Response Team.
+      </div>
+      <div style="background: #f8fafc; border-left: 3px solid #0284c7; padding: 8px; border-radius: 4px;">
+        <strong style="color: #0284c7;">Hour 12–36</strong><br>
+        Forensic log audit: identify impacted database tables, determine whether personal identifiers were unencrypted.
+      </div>
+      <div style="background: #f8fafc; border-left: 3px solid #eab308; padding: 8px; border-radius: 4px;">
+        <strong style="color: #ca8a04;">Hour 36–60</strong><br>
+        Evaluate risk to individual rights; draft preliminary Article 33 notification with known victim counts.
+      </div>
+      <div style="background: #f8fafc; border-left: 3px solid #ef4444; padding: 8px; border-radius: 4px;">
+        <strong style="color: #dc2626;">Hour 60–72</strong><br>
+        <strong>Statutory Deadline:</strong> Submit formal electronic notification to lead supervisory DPA.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateStatuteSim() {
+  let revMillions = parseFloat(document.getElementById('slider_rev').value);
+  let caRecords = parseInt(document.getElementById('slider_ca_records').value);
+  let hipaaTier = parseInt(document.getElementById('select_hipaa_tier').value);
+
+  document.getElementById('label_rev').textContent = (revMillions >= 1000) 
+    ? `€${(revMillions / 1000).toFixed(2)} Billion` 
+    : `€${revMillions.toFixed(0)} Million`;
+
+  document.getElementById('label_ca_records').textContent = `${caRecords.toLocaleString()} Records`;
+
+  // GDPR Calculations
+  let turnoverEur = revMillions * 1e6;
+  let gdprT2 = Math.max(20e6, 0.04 * turnoverEur);
+  let gdprT1 = Math.max(10e6, 0.02 * turnoverEur);
+
+  document.getElementById('stat_gdpr_t2').textContent = (gdprT2 >= 1e9) 
+    ? `€${(gdprT2 / 1e9).toFixed(2)} B` 
+    : `€${(gdprT2 / 1e6).toFixed(2)} M`;
+
+  document.getElementById('stat_gdpr_t1').textContent = (gdprT1 >= 1e9) 
+    ? `€${(gdprT1 / 1e9).toFixed(2)} B` 
+    : `€${(gdprT1 / 1e6).toFixed(2)} M`;
+
+  // CCPA Calculations ($100 - $750 per record)
+  let ccpaMax = caRecords * 750;
+  document.getElementById('stat_ccpa_max').textContent = (ccpaMax >= 1e9)
+    ? `$${(ccpaMax / 1e9).toFixed(2)} B`
+    : `$${(ccpaMax / 1e6).toFixed(2)} M`;
+
+  // HIPAA Safe Harbor Check
+  let hasName = document.getElementById('chk_names').checked;
+  let hasSSN = document.getElementById('chk_ssn').checked;
+  let hasDates = document.getElementById('chk_dates').checked;
+  let hasZip = document.getElementById('chk_zip').checked;
+  let hasIP = document.getElementById('chk_ip').checked;
+
+  let violations = [];
+  if (hasName) violations.push("Names (§164.514(b)(2)(i)(A))");
+  if (hasSSN) violations.push("SSN/MRN (§164.514(b)(2)(i)(G-H))");
+  if (hasDates) violations.push("Exact Dates (§164.514(b)(2)(i)(C))");
+  if (hasZip) violations.push("5-digit ZIP (§164.514(b)(2)(i)(B))");
+  if (hasIP) violations.push("IP/Device IDs (§164.514(b)(2)(i)(M-O))");
+
+  let banner = document.getElementById('hipaa_status_banner');
+  if (violations.length === 0) {
+    banner.style.background = '#dcfce7';
+    banner.style.color = '#15803d';
+    banner.innerHTML = "✓ Safe Harbor Compliant: Dataset meets 45 CFR §164.514(b)(2) scrubbing standards.";
+  } else {
+    banner.style.background = '#fee2e2';
+    banner.style.color = '#991b1b';
+    banner.innerHTML = `⚠️ Safe Harbor Violation: Dataset contains ${violations.length} prohibited identifier categories: <strong>${violations.join(', ')}</strong>. Must scrub before public release or undergo §164.514(b)(1) Expert Determination.`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', updateStatuteSim);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateStatuteSim();
+}
+</script>
+
+<hr />
+<h2 id="8-production-implementation-multi-statute-compliance-engine">8. Production Implementation: Multi-Statute Compliance Engine</h2>
+<p>The following production Python module uses <strong>Pydantic V2</strong> to enforce statutory compliance auditing, validate HIPAA Safe Harbor de-identification transformations, verify GDPR Article 6 lawful basis attachment, and calculate corporate regulatory liabilities.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">statutory_compliance_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production regulatory compliance verification engine using Pydantic V2.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Validates HIPAA 18 Safe Harbor scrubbers, checks GDPR Article 6 lawful bases,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">and computes corporate statutory penalties under GDPR, CCPA, and HIPAA.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">scrub_hipaa_safe_harbor</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="c1"># Implements HIPAA 45 CFR 164.514(b)(2) 18-attribute Safe Harbor scrubber</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">scrubbed</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">k_norm</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="k">if</span> <span class="n">k_norm</span> <span class="ow">in</span> <span class="n">HIPAA_DIRECT_KEYS</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            <span class="k">continue</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">elif</span> <span class="n">k_norm</span> <span class="o">==</span> <span class="s2">"date_of_birth"</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="c1"># Retain only birth year</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            <span class="n">year_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(19\d\d|20\d\d)\b"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"birth_year"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">year_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">year_match</span> <span class="k">else</span> <span class="kc">None</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">elif</span> <span class="n">k_norm</span> <span class="o">==</span> <span class="s2">"zip_code"</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="c1"># Mask last two digits</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            <span class="n">zip_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>            <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"zip_prefix"</span><span class="p">]</span> <span class="o">=</span> <span class="n">zip_str</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"**"</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">zip_str</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="s2">"***"</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            <span class="n">scrubbed</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">return</span> <span class="n">scrubbed</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">LawfulBasis</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="sd">"""GDPR Article 6(1) Lawful Processing Bases."""</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">CONSENT</span> <span class="o">=</span> <span class="s2">"consent"</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">CONTRACT</span> <span class="o">=</span> <span class="s2">"contractual_necessity"</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">LEGAL_OBLIGATION</span> <span class="o">=</span> <span class="s2">"legal_obligation"</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">VITAL_INTERESTS</span> <span class="o">=</span> <span class="s2">"vital_interests"</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">PUBLIC_TASK</span> <span class="o">=</span> <span class="s2">"public_task"</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">LEGITIMATE_INTERESTS</span> <span class="o">=</span> <span class="s2">"legitimate_interests"</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">class</span><span class="w"> </span><span class="nc">DatasetFieldMetadata</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="sd">"""Metadata schema defining data privacy classifications per field."""</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">is_direct_identifier</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">is_quasi_identifier</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">contains_phi</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">gdpr_lawful_basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LawfulBasis</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_statutory_exposure</span><span class="p">(</span><span class="n">global_turnover_eur</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">california_victims</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Calculates statutory maximum regulatory exposure</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">gdpr_tier2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">20_000_000.0</span><span class="p">,</span> <span class="mf">0.04</span> <span class="o">*</span> <span class="n">global_turnover_eur</span><span class="p">)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">gdpr_tier1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">10_000_000.0</span><span class="p">,</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">global_turnover_eur</span><span class="p">)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">ccpa_max_statutory</span> <span class="o">=</span> <span class="n">california_victims</span> <span class="o">*</span> <span class="mf">750.0</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="s2">"gdpr_tier1_max"</span><span class="p">:</span> <span class="n">gdpr_tier1</span><span class="p">,</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="s2">"gdpr_tier2_max"</span><span class="p">:</span> <span class="n">gdpr_tier2</span><span class="p">,</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="s2">"ccpa_breach_statutory_max"</span><span class="p">:</span> <span class="n">ccpa_max_statutory</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">}</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_compliance_assertions</span><span class="p">():</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="c1"># Patient record with HIPAA identifiers</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="n">raw_patient</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Jane Doe"</span><span class="p">,</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="s2">"ssn"</span><span class="p">:</span> <span class="s2">"000-12-3456"</span><span class="p">,</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="s2">"date_of_birth"</span><span class="p">:</span> <span class="s2">"1984-06-15"</span><span class="p">,</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="s2">"zip_code"</span><span class="p">:</span> <span class="s2">"02138"</span><span class="p">,</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="s2">"diagnosis_code"</span><span class="p">:</span> <span class="s2">"E11.9"</span><span class="p">,</span> <span class="c1"># Type 2 Diabetes (clinical attribute retained)</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="s2">"hba1c"</span><span class="p">:</span> <span class="mf">6.8</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="p">}</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">scrubbed</span> <span class="o">=</span> <span class="n">scrub_hipaa_safe_harbor</span><span class="p">(</span><span class="n">raw_patient</span><span class="p">)</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># Assertions</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="k">assert</span> <span class="s2">"name"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scrubbed</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="k">assert</span> <span class="s2">"ssn"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scrubbed</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"birth_year"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1984</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"zip_prefix"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"021**"</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="p">[</span><span class="s2">"diagnosis_code"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"E11.9"</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="c1"># Corporate exposure check: Global enterprise with €2 Billion revenue, 50,000 CA victims</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">exposure</span> <span class="o">=</span> <span class="n">calculate_statutory_exposure</span><span class="p">(</span><span class="n">global_turnover_eur</span><span class="o">=</span><span class="mf">2.0e9</span><span class="p">,</span> <span class="n">california_victims</span><span class="o">=</span><span class="mi">50_000</span><span class="p">)</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="k">assert</span> <span class="n">exposure</span><span class="p">[</span><span class="s2">"gdpr_tier2_max"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">80_000_000.0</span> <span class="c1"># 4% of 2B</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="k">assert</span> <span class="n">exposure</span><span class="p">[</span><span class="s2">"ccpa_breach_statutory_max"</span><span class="p">]</span> <span class="o">==</span> <span class="mf">37_500_000.0</span> <span class="c1"># 50,000 * $750</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Scrubbed Patient Keys: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">scrubbed</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GDPR Tier 2 Max Fine: €</span><span class="si">{</span><span class="n">exposure</span><span class="p">[</span><span class="s1">'gdpr_tier2_max'</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CCPA Statutory Max Exposure: $</span><span class="si">{</span><span class="n">exposure</span><span class="p">[</span><span class="s1">'ccpa_breach_statutory_max'</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Statutory compliance and penalty calculation assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">test_compliance_assertions</span><span class="p">()</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScrubbedPatientRecord</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="sd">"""Sanitized patient record strictly compliant with HIPAA Safe Harbor."""</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">record_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">birth_year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1900</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">2026</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">zip_3digit_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">icd10_diagnosis_code</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">lab_hba1c</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">"zip_3digit_prefix"</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_zip_format</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">"^\d</span><span class="si">{3}</span><span class="s2">\*</span><span class="si">{2}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"ZIP prefix must be truncated to 3 digits plus '**', got </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="k">return</span> <span class="n">v</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">class</span><span class="w"> </span><span class="nc">StatutoryLiabilityAssessment</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="sd">"""Corporate statutory exposure breakdown across legal regimes."""</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="n">annual_turnover_eur</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">ca_consumer_records_exposed</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="n">gdpr_tier1_max_eur</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">gdpr_tier2_max_eur</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">ccpa_statutory_damage_min_usd</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">ccpa_statutory_damage_max_usd</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="n">hipaa_statutory_cap_usd</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="k">class</span><span class="w"> </span><span class="nc">ComplianceEngine</span><span class="p">:</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="sd">"""Production verification engine for multi-jurisdictional compliance."""</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">HIPAA_PROHIBITED_DIRECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"patient_name"</span><span class="p">,</span> <span class="s2">"ssn"</span><span class="p">,</span> <span class="s2">"mrn"</span><span class="p">,</span> <span class="s2">"phone"</span><span class="p">,</span> <span class="s2">"fax"</span><span class="p">,</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>        <span class="s2">"email"</span><span class="p">,</span> <span class="s2">"address"</span><span class="p">,</span> <span class="s2">"account_num"</span><span class="p">,</span> <span class="s2">"license_num"</span><span class="p">,</span> <span class="s2">"vin"</span><span class="p">,</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="s2">"device_id"</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">,</span> <span class="s2">"ip_address"</span><span class="p">,</span> <span class="s2">"biometric"</span><span class="p">,</span> <span class="s2">"photo"</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="p">}</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">scrub_hipaa_record</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">raw</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ScrubbedPatientRecord</span><span class="p">:</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">        </span><span class="sd">"""Applies 45 CFR §164.514(b)(2) Safe Harbor transforms to raw clinical record."""</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>        <span class="c1"># Assert no direct prohibited keys are present</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">raw</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">HIPAA_PROHIBITED_DIRECT_KEYS</span><span class="p">:</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Prohibited direct identifier detected: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="c1"># Process Date of Birth to Year Only</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="n">raw_dob</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"date_of_birth"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>        <span class="n">match_year</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\b(19\d\d|20\d\d)\b"</span><span class="p">,</span> <span class="n">raw_dob</span><span class="p">)</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">match_year</span><span class="p">:</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid date of birth format: </span><span class="si">{</span><span class="n">raw_dob</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="n">birth_year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match_year</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>        <span class="c1"># Truncate ZIP code to 3 digits + '**'</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="n">raw_zip</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"zip_code"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_zip</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid ZIP code: </span><span class="si">{</span><span class="n">raw_zip</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="n">zip_prefix</span> <span class="o">=</span> <span class="n">raw_zip</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"**"</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>        <span class="k">return</span> <span class="n">ScrubbedPatientRecord</span><span class="p">(</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>            <span class="n">record_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">"record_id"</span><span class="p">]),</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>            <span class="n">birth_year</span><span class="o">=</span><span class="n">birth_year</span><span class="p">,</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>            <span class="n">zip_3digit_prefix</span><span class="o">=</span><span class="n">zip_prefix</span><span class="p">,</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>            <span class="n">icd10_diagnosis_code</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">"icd10_code"</span><span class="p">]),</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>            <span class="n">lab_hba1c</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">"hba1c"</span><span class="p">])</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>        <span class="p">)</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_statutory_exposure</span><span class="p">(</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>        <span class="n">annual_turnover_eur</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>        <span class="n">ca_consumer_records</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatutoryLiabilityAssessment</span><span class="p">:</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="w">        </span><span class="sd">"""Computes upper bound civil liability across GDPR, CCPA, and HIPAA."""</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>        <span class="n">gdpr_t1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">10_000_000.0</span><span class="p">,</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">annual_turnover_eur</span><span class="p">)</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>        <span class="n">gdpr_t2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">20_000_000.0</span><span class="p">,</span> <span class="mf">0.04</span> <span class="o">*</span> <span class="n">annual_turnover_eur</span><span class="p">)</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="n">ccpa_min</span> <span class="o">=</span> <span class="n">ca_consumer_records</span> <span class="o">*</span> <span class="mf">100.0</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>        <span class="n">ccpa_max</span> <span class="o">=</span> <span class="n">ca_consumer_records</span> <span class="o">*</span> <span class="mf">750.0</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>        <span class="n">hipaa_cap</span> <span class="o">=</span> <span class="mf">2_067_813.0</span>  <span class="c1"># HITECH statutory annual cap per violation category</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>        <span class="k">return</span> <span class="n">StatutoryLiabilityAssessment</span><span class="p">(</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>            <span class="n">annual_turnover_eur</span><span class="o">=</span><span class="n">annual_turnover_eur</span><span class="p">,</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>            <span class="n">ca_consumer_records_exposed</span><span class="o">=</span><span class="n">ca_consumer_records</span><span class="p">,</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>            <span class="n">gdpr_tier1_max_eur</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">gdpr_t1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>            <span class="n">gdpr_tier2_max_eur</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">gdpr_t2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>            <span class="n">ccpa_statutory_damage_min_usd</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">ccpa_min</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>            <span class="n">ccpa_statutory_damage_max_usd</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">ccpa_max</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>            <span class="n">hipaa_statutory_cap_usd</span><span class="o">=</span><span class="n">hipaa_cap</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>        <span class="p">)</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a><span class="c1"># Automated Test Suite for CI/CD Gates</span>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_compliance_tests</span><span class="p">():</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="c1"># Test 1: HIPAA Safe Harbor Scrubbing</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="n">raw_patient</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>        <span class="s2">"record_id"</span><span class="p">:</span> <span class="s2">"REC_90210"</span><span class="p">,</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>        <span class="s2">"date_of_birth"</span><span class="p">:</span> <span class="s2">"1988-04-22"</span><span class="p">,</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>        <span class="s2">"zip_code"</span><span class="p">:</span> <span class="s2">"02138"</span><span class="p">,</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>        <span class="s2">"icd10_code"</span><span class="p">:</span> <span class="s2">"E11.9"</span><span class="p">,</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>        <span class="s2">"hba1c"</span><span class="p">:</span> <span class="mf">6.7</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="p">}</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="n">scrubbed</span> <span class="o">=</span> <span class="n">ComplianceEngine</span><span class="o">.</span><span class="n">scrub_hipaa_record</span><span class="p">(</span><span class="n">raw_patient</span><span class="p">)</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="o">.</span><span class="n">birth_year</span> <span class="o">==</span> <span class="mi">1988</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="o">.</span><span class="n">zip_3digit_prefix</span> <span class="o">==</span> <span class="s2">"021**"</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="k">assert</span> <span class="n">scrubbed</span><span class="o">.</span><span class="n">icd10_diagnosis_code</span> <span class="o">==</span> <span class="s2">"E11.9"</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="c1"># Test 2: Reject direct prohibited identifier</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="n">raw_illegal</span> <span class="o">=</span> <span class="n">raw_patient</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>    <span class="n">raw_illegal</span><span class="p">[</span><span class="s2">"ssn"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"000-12-3456"</span>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>        <span class="n">ComplianceEngine</span><span class="o">.</span><span class="n">scrub_hipaa_record</span><span class="p">(</span><span class="n">raw_illegal</span><span class="p">)</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>        <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"Engine failed to reject illegal SSN identifier."</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>        <span class="k">assert</span> <span class="s2">"Prohibited direct identifier"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>    <span class="c1"># Test 3: Statutory Liability Calculation (€3 Billion enterprise, 100k CA breach victims)</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>    <span class="n">liability</span> <span class="o">=</span> <span class="n">ComplianceEngine</span><span class="o">.</span><span class="n">calculate_statutory_exposure</span><span class="p">(</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>        <span class="n">annual_turnover_eur</span><span class="o">=</span><span class="mf">3.0e9</span><span class="p">,</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>        <span class="n">ca_consumer_records</span><span class="o">=</span><span class="mi">100_000</span>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="p">)</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    <span class="k">assert</span> <span class="n">liability</span><span class="o">.</span><span class="n">gdpr_tier2_max_eur</span> <span class="o">==</span> <span class="mf">120_000_000.0</span>  <span class="c1"># 4% of 3B</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>    <span class="k">assert</span> <span class="n">liability</span><span class="o">.</span><span class="n">gdpr_tier1_max_eur</span> <span class="o">==</span> <span class="mf">60_000_000.0</span>   <span class="c1"># 2% of 3B</span>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>    <span class="k">assert</span> <span class="n">liability</span><span class="o">.</span><span class="n">ccpa_statutory_damage_max_usd</span> <span class="o">==</span> <span class="mf">75_000_000.0</span>  <span class="c1"># 100k * $750</span>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>    <span class="k">assert</span> <span class="n">liability</span><span class="o">.</span><span class="n">ccpa_statutory_damage_min_usd</span> <span class="o">==</span> <span class="mf">10_000_000.0</span>  <span class="c1"># 100k * $100</span>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All statutory compliance and regulatory calculation assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>    <span class="n">run_compliance_tests</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="5-interactive-laboratory-workbench">5. 🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Launch Regulatory Compliance Auditor</h4>
-  <p>Audit datasets against GDPR Article 6 basis mappings and HIPAA Safe Harbor 18-attribute de-identification invariants.</p>
-  <a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch Compliance Audit Studio →</a>
-</div>
-<h4>Explore Open Science License Chooser</h4>
-<p>Evaluate data transfer terms, regulatory compliance clauses, and open access licenses across international jurisdictions.</p>
-<p><a href="../../tools/license-chooser/" class="noc-sim-btn">Launch License Chooser Workbench →</a>
-</div></p>
+<h2 id="9-diagnostic-self-assessment-scenarios">9. Diagnostic Self-Assessment Scenarios</h2>
+<p>Test your comprehension of extraterritorial jurisdiction, de-identification safe harbors, and statutory liability:</p>
+<details class="question">
+<summary>Self-Assessment 1: GDPR Extraterritorial Jurisdiction &amp; Transfer Mechanisms</summary>
+<p>A Canadian SaaS startup provides AI-powered code completion tools. The startup has no offices or employees in the European Union, and all backend inference clusters reside in Oregon, USA. Over 25,000 developers in Germany and France subscribe to the service. What specific GDPR provisions bind this company, and what transfer mechanism is legally mandatory?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Jurisdiction under Article 3(2)(a)</strong>:
+   GDPR applies extraterritorially because the company explicitly offers goods and services (whether paid or free) to data subjects located in the EU. Server location is legally irrelevant.
+2. <strong>Mandatory Obligations</strong>:
+   - Must designate an <strong>EU Legal Representative</strong> under Article 27.
+   - Must maintain a designated Article 6 lawful basis for every collected telemetry attribute.
+   - Must comply with Article 17 erasure requests and Article 33 72-hour breach notification rules.
+3. <strong>Cross-Border Transfer Requirement (Chapter V)</strong>:
+   Because user prompt code and telemetry flow from the EEA to US servers, the company must execute <strong>Standard Contractual Clauses (SCCs)</strong> and complete a <strong>Transfer Impact Assessment (TIA)</strong> under the <em>Schrems II</em> doctrine, ensuring US surveillance statutes (FISA 702) do not undermine EU fundamental rights.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 2: HIPAA Safe Harbor vs. Clinical Utility in Longitudinal Cohorts</summary>
+<p>An academic hospital pathology department intends to publish an open-access NLP benchmark dataset composed of 15,000 de-identified clinical notes. To allow researchers to model disease progression, the researchers propose retaining the exact calendar dates of patient admission, chemotherapy infusion, and disease progression, while removing patient names, SSNs, and phone numbers. Can this dataset be legally published under HIPAA Safe Harbor?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> <strong>No, the dataset cannot be published under Safe Harbor</strong>.</p>
+<p>Under 45 CFR §164.514(b)(2)(i)(C), the Safe Harbor standard strictly forbids retaining <strong>any date elements</strong> relating to an individual (including admission date, discharge date, and procedure date) except for the <strong>calendar year</strong>.</p>
+<p>To legally distribute longitudinal progression data, the department must choose one of two legally compliant pathways:
+1. <strong>Relative Temporal Transformation</strong>: Convert all dates to relative integer elapsed days relative to an arbitrary baseline (e.g., <code>Day 0 = Admission</code>, <code>Day 14 = Chemotherapy Cycle 1</code>, <code>Day 45 = Remission Assessment</code>).
+2. <strong>Expert Determination (§164.514(b)(1))</strong>: Retain an independent statistical expert to formally certify that the combination of longitudinal event dates with public records (e.g., local obituaries, news articles) exhibits a bounded re-identification risk below an established threshold (<span class="arithmatex">\(P(\text{Re-ID}) \le 0.05\)</span>).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: CCPA/CPRA 'Sale' Definition &amp; Global Privacy Control (GPC)</summary>
+<p>A retail mobile app shares user pseudonymous advertising identifiers (IDFA / GAID) and real-time geolocation coordinates with an external programmatic advertising bidding exchange. The app developers claim that because no monetary payment is received from the ad exchange (the exchange merely fills in-app banner ad inventory), this data sharing does not constitute a "Sale" under CCPA. Is this claim legally valid?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> <strong>No, this claim is legally invalid</strong>.</p>
+<p>Under California Civil Code §1798.140(ad), CCPA defines "selling" as disclosing personal information to a third party for <strong>monetary or other valuable consideration</strong>. Receiving discounted advertising inventory, behavioral analytics, or monetization revenue constitutes valuable consideration.</p>
+<p>Furthermore, under the CPRA amendments, transmitting advertising IDs for cross-context behavioral advertising explicitly constitutes <strong>"Sharing"</strong> regardless of consideration. The retailer must:
+1. Provide a clear, conspicuous link titled <em>"Do Not Sell or Share My Personal Information"</em>.
+2. Support and automatically honor frictionless opt-out preference signals emitted via browsers and operating systems (<strong>Global Privacy Control / GPC</strong>) without requiring user authentication.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: GDPR Article 17 Right to Erasure in Deep Learning Models</summary>
+<p>A user exercises their GDPR Article 17 Right to Erasure ("Right to Be Forgotten") demanding complete deletion of their profile, uploaded images, and interaction history from a facial recognition service. The company deletes all user rows from its production PostgreSQL database. However, the user's images were used to train the company's core production vision model. Does deleting the database rows satisfy Article 17, or does the trained model weights violate GDPR?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> <strong>Deleting database rows alone may be legally insufficient if the model retains memorized personal data</strong>.</p>
+<p>Under European regulatory guidance and CJEU precedents:
+1. <strong>Extraction / Reconstruction Risk</strong>: If the deep learning model memorized training samples such that the user's face can be reconstructed via model inversion or membership inference attacks (e.g., Carlini et al.), the model weights themselves constitute <strong>personal data</strong>.
+2. <strong>Engineering Remedy</strong>: When personal data is memorized in model weights, the data controller must either:
+   - Retrain the model on the purged dataset excluding the erased subject's data, or
+   - Apply certified <strong>Machine Unlearning</strong> algorithms that mathematically guarantee the weight distribution is indistinguishable from a model trained without the erased individual's data (<span class="arithmatex">\(\epsilon\)</span>-unlearning).
+3. <strong>Statutory Exception</strong>: If the company can demonstrate that model retraining imposes an impossible technical burden and that the model weights are provably generalized (zero re-identification risk under differential privacy bounds), retention may be defensible, but the raw training samples must be permanently purged.</p>
+</details>
+</details>
 <hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
+<h2 id="10-key-engineering-takeaways">10. Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Extraterritorial Jurisdiction</strong>: The GDPR binds any pipeline handling EU residents regardless of server geography; statutory fines scale up to <span class="arithmatex">\(4\%\)</span> of worldwide turnover.</li>
-<li><strong>The 72-Hour Breach Clock</strong>: Incident response runbooks must ensure breach forensics identify affected scopes within 72 hours of detection.</li>
-<li><strong>Safe Harbor vs. Expert Determination</strong>: HIPAA Safe Harbor requires scrubbing all 18 identifiers; partial retention requires formal statistical certification (<span class="arithmatex">\(P(\text{Re-ID}) \le 0.05\)</span>).</li>
-<li><strong>Statutory CCPA Damages</strong>: California statutory damages (<span class="arithmatex">\(N \times \$750\)</span>) expose enterprises to immense liabilities without plaintiffs proving actual fraud.</li>
+<li><strong>Extraterritoriality is Non-Negotiable</strong>: GDPR binds pipelines handling EU residents regardless of server location; violations incur fines up to <span class="arithmatex">\(4\%\)</span> of worldwide annual turnover.</li>
+<li><strong>The 72-Hour Breach Clock</strong>: Incident response runbooks must ensure security logging and forensic tracing can identify affected data subject scopes within 72 hours of initial compromise.</li>
+<li><strong>Safe Harbor vs. Expert Determination</strong>: HIPAA Safe Harbor requires scrubbing all 18 identifiers; retaining longitudinal event dates requires converting to elapsed offsets or obtaining formal statistical expert certification.</li>
+<li><strong>Statutory Damages Create Asymmetric Risk</strong>: CCPA class action statutory damages (<span class="arithmatex">\(\$100 - \$750\)</span> per record) expose companies to multi-million dollar liabilities without plaintiffs demonstrating actual financial loss.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
-<details class="question">
-<summary>Self-Assessment: GDPR Extraterritorial Jurisdiction Scenario</summary>
-<p>A mobile gaming startup based in Singapore hosts all its servers in Tokyo. The game is available on global app stores, and <span class="arithmatex">\(15{,}000\)</span> players reside in France and Germany. Does the GDPR apply to this company, and what is its regulatory exposure?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> <strong>Yes, the GDPR applies fully under Article 3(2)(a)</strong>.</p>
-<p>The GDPR applies extraterritorially to organizations with no physical presence in the EU if they offer goods or services to, or monitor the behavior of, individuals located in the Union. Because the app is actively distributed to players in France and Germany, the startup is a data controller under EU law. Failure to implement Article 17 erasure or experiencing a breach exposes the company to statutory penalties up to €20M or 4% of global turnover.</p>
-</details>
-</details>
-<details class="question">
-<summary>Self-Assessment: Safe Harbor vs. Clinical Utility in Medical NLP</summary>
-<p>A hospital pathology lab wants to release 10,000 clinical radiology reports for an NLP benchmark. To preserve clinical meaning, the lab wants to retain exact patient dates of admission, discharge, and biopsy. Can this dataset be released under HIPAA Safe Harbor?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> <strong>No, it cannot be released under Safe Harbor</strong>.</p>
-<p>Under 45 CFR §164.514(b)(2), Safe Harbor strictly prohibits all date elements relating to an individual (including admission date, discharge date, and date of death) except for the year. Retaining exact dates violates Safe Harbor. To legally release the dataset with exact temporal offsets, the hospital must either:
-1. Convert dates to relative elapsed intervals (e.g., <code>Day 0 = Admission</code>, <code>Day 3 = Biopsy</code>), or
-2. Pursue <strong>Expert Determination</strong> (§164.514(b)(1)) with a formal mathematical proof that auxiliary temporal linkage risk is bounded below <span class="arithmatex">\(\tau \le 0.05\)</span>.</p>
-</details>
-</details>
-<hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="11-peer-reviewed-scholarly-references">11. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-voigt2017"></a><strong>[Voigt2017]</strong> P. Voigt and A. Von dem Bussche, <em>The EU General Data Protection Regulation (GDPR): A Practical Guide</em>, 1st ed., Springer Cham, 2017. <a href="https://doi.org/10.1007/978-3-319-57959-7">DOI: 10.1007/978-3-319-57959-7</a>.</li>
+<li><a id="ref-bradford2020"></a><strong>[Bradford2020]</strong> A. Bradford, <em>The Brussels Effect: How the European Union Rules the World</em>, Oxford University Press, 2020. <a href="https://doi.org/10.1093/oso/9780190088583.001.0001">DOI: 10.1093/oso/9780190088583.001.0001</a>.</li>
+<li><a id="ref-cavoukian2010"></a><strong>[Cavoukian2010]</strong> A. Cavoukian, "Privacy by Design: The 7 Foundational Principles," <em>Information and Privacy Commissioner of Ontario</em>, Technical Report, 2010. <a href="https://doi.org/10.5195/lawreview.2012.219">DOI: 10.5195/lawreview.2012.219</a>.</li>
 <li><a id="ref-goddard2017"></a><strong>[Goddard2017]</strong> M. Goddard, "The EU General Data Protection Regulation (GDPR): European Regulation That Has a Global Impact," <em>International Journal of Market Research</em>, vol. 59, no. 6, pp. 703–705, 2017. <a href="https://doi.org/10.2501/IJMR-2017-050">DOI: 10.2501/IJMR-2017-050</a>.</li>
 <li><a id="ref-ness2020"></a><strong>[Ness2020]</strong> R. B. Ness, "Influence of HIPAA on Health Research: A Survey of Members of the Society for Epidemiologic Research," <em>American Journal of Epidemiology</em>, vol. 162, no. 6, pp. 588–597, 2020. <a href="https://doi.org/10.1093/aje/kwi243">DOI: 10.1093/aje/kwi243</a>.</li>
 <li><a id="ref-sweeney2002"></a><strong>[Sweeney2002]</strong> L. Sweeney, "k-anonymity: A Model for Protecting Privacy," <em>International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems</em>, vol. 10, no. 5, pp. 557–570, 2002. <a href="https://doi.org/10.1142/S0218488502001648">DOI: 10.1142/S0218488502001648</a>.</li>
-<li><a id="ref-cavoukian2010"></a><strong>[Cavoukian2010]</strong> A. Cavoukian, "Privacy by Design: The 7 Foundational Principles," <em>Information and Privacy Commissioner of Ontario</em>, Technical Report, 2010. <a href="https://doi.org/10.5195/lawreview.2012.219">DOI: 10.5195/lawreview.2012.219</a>.</li>
 <li><a id="ref-dwork2014"></a><strong>[Dwork2014]</strong> C. Dwork and A. Roth, "The Algorithmic Foundations of Differential Privacy," <em>Foundations and Trends in Theoretical Computer Science</em>, vol. 9, no. 3–4, pp. 211–407, 2014. <a href="https://doi.org/10.1561/0400000042">DOI: 10.1561/0400000042</a>.</li>
+<li><a id="ref-kuner2020"></a><strong>[Kuner2020]</strong> C. Kuner, L. A. Bygrave, C. Docksey, and L. Drechsler, <em>The EU General Data Protection Regulation (GDPR): A Commentary</em>, Oxford University Press, 2020. <a href="https://doi.org/10.1093/oso/9780198826491.001.0001">DOI: 10.1093/oso/9780198826491.001.0001</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../06-bias-and-fairness/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.6 Bias & Fairness</a>
-  <a href="../08-data-breaches/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Data Breaches (3.8) →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../06-bias-and-fairness/" class="noc-sim-btn secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffffff; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← Previous: 3.6 Bias &amp; Algorithmic Fairness
+  </a>
+  <a href="../08-data-breaches/" class="noc-sim-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: 3.8 Anatomy of Data Breaches →
+  </a>
 </div>
 
 

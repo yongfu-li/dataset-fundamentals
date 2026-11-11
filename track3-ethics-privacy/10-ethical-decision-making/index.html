@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1926,10 +1970,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-algorithmic-impact-assessment-aia-architecture" class="md-nav__link">
+  <a href="#1-normative-ethical-foundations-in-data-systems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Algorithmic Impact Assessment (AIA) Architecture
+        1. Normative Ethical Foundations in Data Systems
       
     </span>
   </a>
@@ -1937,55 +1981,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-mathematical-formalization-of-decision-frameworks" class="md-nav__link">
+  <a href="#2-algorithmic-impact-assessment-aia-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Mathematical Formalization of Decision Frameworks
+        2. Algorithmic Impact Assessment (AIA) Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Mathematical Formalization of Decision Frameworks">
+    <nav class="md-nav" aria-label="2. Algorithmic Impact Assessment (AIA) Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-multi-criteria-ethical-decision-analysis-mcda-scoring" class="md-nav__link">
+  <a href="#table-310-the-four-aia-risk-tiers-aligned-with-eu-ai-act-ieee-7000" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Multi-Criteria Ethical Decision Analysis (MCDA) Scoring
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-algorithmic-impact-risk-severity-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Algorithmic Impact Risk Severity Index
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-stakeholder-disparity-utility-variance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Stakeholder Disparity Utility Variance
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-algorithmic-recourse-cost-metric" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Algorithmic Recourse Cost Metric
+        Table 3.10: The Four AIA Risk Tiers (Aligned with EU AI Act &amp; IEEE 7000)
       
     </span>
   </a>
@@ -1998,10 +2009,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-multi-criteria-scoring-recourse-optimization" class="md-nav__link">
+  <a href="#3-mathematical-formalization-of-decision-frameworks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Multi-Criteria Scoring &amp; Recourse Optimization
+        3. Mathematical Formalization of Decision Frameworks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Mathematical Formalization of Decision Frameworks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-criteria-ethical-decision-analysis-mcda-with-hard-vetoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Criteria Ethical Decision Analysis (MCDA) with Hard Vetoes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stakeholder-disparity-utility-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Stakeholder Disparity Utility Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-actionable-algorithmic-recourse-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Actionable Algorithmic Recourse Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-landmark-case-studies-in-algorithmic-governance-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Landmark Case Studies in Algorithmic Governance Failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Landmark Case Studies in Algorithmic Governance Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-dutch-childcare-benefit-scandal-toeslagenaffaire-20192021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The Dutch Childcare Benefit Scandal (Toeslagenaffaire, 2019–2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-uk-a-level-exam-standardization-disaster-ofqual-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: UK A-Level Exam Standardization Disaster (Ofqual, 2020)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-google-project-maven-workforce-ethical-agency-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Google Project Maven &amp; Workforce Ethical Agency (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-standardized-documentation-datasheets-for-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Standardized Documentation: Datasheets for Datasets
       
     </span>
   </a>
@@ -2009,10 +2120,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-interactive-laboratory-algorithmic-impact-assessment-recourse-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        6. Interactive Laboratory: Algorithmic Impact Assessment &amp; Recourse Studio
       
     </span>
   </a>
@@ -2020,10 +2131,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#7-production-verification-algorithmic-impact-recourse-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        7. Production Verification: Algorithmic Impact &amp; Recourse Engine
       
     </span>
   </a>
@@ -2031,10 +2142,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#8-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        8. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -2042,10 +2153,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#9-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        9. Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7399,10 +7521,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-algorithmic-impact-assessment-aia-architecture" class="md-nav__link">
+  <a href="#1-normative-ethical-foundations-in-data-systems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Algorithmic Impact Assessment (AIA) Architecture
+        1. Normative Ethical Foundations in Data Systems
       
     </span>
   </a>
@@ -7410,55 +7532,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-mathematical-formalization-of-decision-frameworks" class="md-nav__link">
+  <a href="#2-algorithmic-impact-assessment-aia-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Mathematical Formalization of Decision Frameworks
+        2. Algorithmic Impact Assessment (AIA) Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Mathematical Formalization of Decision Frameworks">
+    <nav class="md-nav" aria-label="2. Algorithmic Impact Assessment (AIA) Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-multi-criteria-ethical-decision-analysis-mcda-scoring" class="md-nav__link">
+  <a href="#table-310-the-four-aia-risk-tiers-aligned-with-eu-ai-act-ieee-7000" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Multi-Criteria Ethical Decision Analysis (MCDA) Scoring
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-algorithmic-impact-risk-severity-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Algorithmic Impact Risk Severity Index
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-stakeholder-disparity-utility-variance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Stakeholder Disparity Utility Variance
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-algorithmic-recourse-cost-metric" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Algorithmic Recourse Cost Metric
+        Table 3.10: The Four AIA Risk Tiers (Aligned with EU AI Act &amp; IEEE 7000)
       
     </span>
   </a>
@@ -7471,10 +7560,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-python-verification-multi-criteria-scoring-recourse-optimization" class="md-nav__link">
+  <a href="#3-mathematical-formalization-of-decision-frameworks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Multi-Criteria Scoring &amp; Recourse Optimization
+        3. Mathematical Formalization of Decision Frameworks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Mathematical Formalization of Decision Frameworks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-criteria-ethical-decision-analysis-mcda-with-hard-vetoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Criteria Ethical Decision Analysis (MCDA) with Hard Vetoes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stakeholder-disparity-utility-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Stakeholder Disparity Utility Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-actionable-algorithmic-recourse-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Actionable Algorithmic Recourse Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-landmark-case-studies-in-algorithmic-governance-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Landmark Case Studies in Algorithmic Governance Failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Landmark Case Studies in Algorithmic Governance Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-the-dutch-childcare-benefit-scandal-toeslagenaffaire-20192021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: The Dutch Childcare Benefit Scandal (Toeslagenaffaire, 2019–2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-uk-a-level-exam-standardization-disaster-ofqual-2020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: UK A-Level Exam Standardization Disaster (Ofqual, 2020)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-google-project-maven-workforce-ethical-agency-2018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Google Project Maven &amp; Workforce Ethical Agency (2018)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-standardized-documentation-datasheets-for-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Standardized Documentation: Datasheets for Datasets
       
     </span>
   </a>
@@ -7482,10 +7671,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-interactive-laboratory-algorithmic-impact-assessment-recourse-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 🔬 Interactive Laboratory Workbench
+        6. Interactive Laboratory: Algorithmic Impact Assessment &amp; Recourse Studio
       
     </span>
   </a>
@@ -7493,10 +7682,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#7-production-verification-algorithmic-impact-recourse-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        7. Production Verification: Algorithmic Impact &amp; Recourse Engine
       
     </span>
   </a>
@@ -7504,10 +7693,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#8-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        8. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7515,10 +7704,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#9-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        9. Key Engineering Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-peer-reviewed-scholarly-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7546,38 +7746,38 @@
 
 
 <h1 id="310-ethical-decision-making-frameworks-algorithmic-impact-assessments">3.10 Ethical Decision-Making Frameworks &amp; Algorithmic Impact Assessments</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.8: Ethical Decision-Making Frameworks)</strong> in the official Springer Nature monograph, exploring Algorithmic Impact Assessments (AIAs), stakeholder multi-criteria scoring, and red-teaming protocols.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.10: Ethical Decision-Making Frameworks)</strong> in the official Springer Nature monograph, analyzing Algorithmic Impact Assessments (AIAs), multi-criteria decision analysis (MCDA), actionable recourse metrics, and AI review boards.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~14 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-310">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.10</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">10 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">9 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=10" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=10" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7586,19 +7786,47 @@
 </div>
 
 <hr />
-<p>When data teams encounter ambiguous moral dilemmas—such as deploying predictive models in child welfare or releasing facial recognition datasets—intuitive "gut feel" is dangerously unreliable. </p>
-<p>Engineering ethical data pipelines requires <strong>systematic, repeatable decision-making frameworks</strong> that translate high-level moral philosophy—such as Rawlsian distributive justice [<a href="#ref-rawls1971">Rawls1971</a>] and demographic parity / equality of opportunity [<a href="#ref-hardt2016">Hardt2016</a>]—into structured scoring rubrics, standardized artifact documentation [<a href="#ref-gebru2021">Gebru2021</a>], algorithmic impact assessments (AIAs), and formal algorithmic recourse metrics [<a href="#ref-mittelstadt2016">Mittelstadt2016</a>, <a href="#ref-moss2021">Moss2021</a>, <a href="#ref-ustun2019">Ustun2019</a>].</p>
+<p>When data engineering teams confront ambiguous ethical dilemmas—such as deploying predictive fraud algorithms in welfare disbursement or curating massive unconsented scraping datasets—unstructured intuition or commercial expediency is dangerously unreliable.</p>
+<p>Operationalizing ethical data work requires <strong>systematic, repeatable decision-making frameworks</strong> that translate philosophical principles—such as Rawlsian distributive justice [<a href="#ref-rawls1971">Rawls1971</a>] and deontological duty—into formal Multi-Criteria Decision Analysis (MCDA), standardized artifact documentation (<em>Datasheets for Datasets</em> [<a href="#ref-gebru2021">Gebru2021</a>]), <strong>Algorithmic Impact Assessments (AIAs)</strong>, and mathematically bounded <strong>algorithmic recourse</strong> [<a href="#ref-mittelstadt2016">Mittelstadt2016</a>, <a href="#ref-ustun2019">Ustun2019</a>, <a href="#ref-moss2021">Moss2021</a>].</p>
 <hr />
-<h2 id="1-algorithmic-impact-assessment-aia-architecture">1. Algorithmic Impact Assessment (AIA) Architecture</h2>
-<p>An <strong>Algorithmic Impact Assessment (AIA)</strong> is a mandatory procedural gate conducted prior to dataset ingestion or model training:</p>
-<pre class="mermaid"><code>flowchart TD
-    Init["1. Threshold Screening&lt;br/&gt;Identify affected human subjects &amp; protected attributes"] --&gt; Stakeholder["2. Multi-Stakeholder Consultation&lt;br/&gt;Document risks to marginalized populations"]
-    Stakeholder --&gt; QuantAudit["3. Quantitative Fairness &amp; Privacy Audit&lt;br/&gt;Compute DIR, EO Disparity, and Re-ID Risk"]
-    QuantAudit --&gt; RiskMatrix{"4. Risk Classification Gate"}
+<h2 id="1-normative-ethical-foundations-in-data-systems">1. Normative Ethical Foundations in Data Systems</h2>
+<p>Engineering tradeoffs in data pipelines inherently reflect underlying ethical philosophies:</p>
+<pre class="mermaid"><code>graph TD
+    Ethics["Philosophical Foundations of Data Ethics"]
+    Ethics --&gt; Deon["1. Deontology (Duty Ethics)&lt;br&gt;Immanuel Kant"]
+    Ethics --&gt; Util["2. Consequentialism / Utilitarianism&lt;br&gt;Bentham &amp; Mill"]
+    Ethics --&gt; Rawls["3. Distributive Justice (Contractarianism)&lt;br&gt;John Rawls"]
 
-    RiskMatrix --&gt;|Unacceptable Risk| Terminate["Prohibit Deployment / Scrap Pipeline"]
-    RiskMatrix --&gt;|High Risk| Mitigate["Enforce Mitigation &amp; Human-in-the-Loop SLA"]
-    RiskMatrix --&gt;|Low / Minimal Risk| Deploy["Approved Deployment with Continuous Monitoring"]
+    Deon --&gt; D_Exp["Categorical Imperative:&lt;br&gt;Never treat human subjects merely as a means to an aggregate utility end. Certain rights (privacy, dignity) are inviolable."]
+    Util --&gt; U_Exp["Utilitarian Welfare Maximization:&lt;br&gt;max ∑ U_i. High aggregate efficiency, but vulnerable to minoritarian harm and systemic marginalization."]
+    Rawls --&gt; R_Exp["Veil of Ignorance &amp; Difference Principle:&lt;br&gt;max min_g U_g. Inequality in algorithmic benefit is permissible ONLY if it elevates the least-advantaged group."]
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Ethics blue;
+    class Deon,D_Exp amber;
+    class Util,U_Exp purple;
+    class Rawls,R_Exp green;</code></pre>
+<ul>
+<li><strong>Deontology (Non-Compensatory Rights)</strong>: Holds that individuals possess fundamental rights (e.g., privacy, bodily autonomy, non-discrimination) that cannot be traded away for marginal accuracy gains. Deontological constraints act as <strong>hard veto thresholds</strong> in data governance.</li>
+<li><strong>Utilitarianism (Welfare Maximization)</strong>: Aims to maximize aggregate societal utility <span class="arithmatex">\(\sum_{i} u_i\)</span>. In automated systems, utilitarian optimization frequently causes catastrophic failure for small minority cohorts (<span class="arithmatex">\(&lt;5\%\)</span> of population) because global loss functions optimize for dominant demographic groups.</li>
+<li><strong>Rawlsian Justice (The Maximin Principle)</strong>: Under the "Veil of Ignorance," an engineer must design system allocations assuming they could belong to the most marginalized demographic cohort. Algorithms must maximize the minimum welfare across demographic groups:
+  $<span class="arithmatex">\(\max_{\pi} \min_{g \in \mathcal{G}} u_g(\pi)\)</span>$</li>
+</ul>
+<hr />
+<h2 id="2-algorithmic-impact-assessment-aia-architecture">2. Algorithmic Impact Assessment (AIA) Architecture</h2>
+<p>An <strong>Algorithmic Impact Assessment (AIA)</strong> is a mandatory procedural gate conducted prior to dataset ingestion or model training, formalized under frameworks like the EU AI Act and IEEE 7000:</p>
+<pre class="mermaid"><code>flowchart TD
+    Init["1. Threshold Screening &amp; Categorization&lt;br&gt;Identify sensitive attributes &amp; human life impact"] --&gt; Stakeholder["2. Multi-Stakeholder Consultation&lt;br&gt;Engage marginalized groups &amp; domain experts"]
+    Stakeholder --&gt; QuantAudit["3. Quantitative Fairness &amp; Privacy Audit&lt;br&gt;Compute DIR, Equal Opportunity gap, and Re-ID risk"]
+    QuantAudit --&gt; RiskGate{"4. AIA Risk Classification Gate"}
+
+    RiskGate --&gt;|Unacceptable Risk| Scrap["❌ Prohibit Deployment / Scrap Pipeline&lt;br&gt;(e.g., Real-Time Biometric Surveillance)"]
+    RiskGate --&gt;|High Risk| Mitigate["⚠️ Enforce Mandatory Mitigations:&lt;br&gt;• Independent Human-in-the-Loop Review&lt;br&gt;• Actionable Counterfactual Recourse SLA&lt;br&gt;• Continuous Post-Deployment CI/CD Drift Auditing"]
+    RiskGate --&gt;|Low / Minimal Risk| Deploy["✓ Approved Deployment with Logging"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7606,196 +7834,579 @@
     classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class Init,Stakeholder blue;
-    class QuantAudit,RiskMatrix amber;
+    class QuantAudit,RiskGate amber;
     class Deploy green;
-    class Terminate,Mitigate red;</code></pre>
+    class Scrap,Mitigate red;</code></pre>
+<h3 id="table-310-the-four-aia-risk-tiers-aligned-with-eu-ai-act-ieee-7000">Table 3.10: The Four AIA Risk Tiers (Aligned with EU AI Act &amp; IEEE 7000)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Risk Classification Tier</th>
+<th style="text-align: left;">Defining Operational Criteria</th>
+<th style="text-align: left;">Data Engineering Regulatory Requirements</th>
+<th style="text-align: left;">Permitted Deployment Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Unacceptable Risk</strong></td>
+<td style="text-align: left;">Subliminal manipulation, social credit scoring, real-time remote biometric identification in public spaces.</td>
+<td style="text-align: left;">Immediate termination of data collection; destruction of collected embeddings.</td>
+<td style="text-align: left;"><strong>Strictly Prohibited</strong> by statutory law.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>High Risk</strong></td>
+<td style="text-align: left;">Credit scoring, employment screening, educational admissions, criminal justice triage, critical medical diagnosis.</td>
+<td style="text-align: left;">Formal AIA documentation, Datasheets for Datasets, bias mitigation, human-in-the-loop fallback.</td>
+<td style="text-align: left;"><strong>Authorized with Strict Conformity Assessment</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Specific Transparency Risk</strong></td>
+<td style="text-align: left;">Chatbots, deepfakes, synthetic data generation, emotion recognition.</td>
+<td style="text-align: left;">Mandatory disclosure to data subjects that interaction is synthetic; provenance watermarking.</td>
+<td style="text-align: left;"><strong>Authorized with Disclosure Invariants</strong>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Minimal / Low Risk</strong></td>
+<td style="text-align: left;">Spam filters, recommendation systems, automated inventory routing, search indexing.</td>
+<td style="text-align: left;">Standard software quality testing and security hygiene.</td>
+<td style="text-align: left;"><strong>Freely Permitted</strong>.</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Multi-Disciplinary Algorithmic Review Boards</p>
-<p>Establish an independent <strong>Algorithmic Review Board (ARB)</strong> composed of data scientists, legal counsel, bioethicists, and impacted community representatives. No high-risk dataset or automated decision model may transition to production without unanimous ARB certification.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Ethics Washing Without Veto Authority</p>
-<p>Creating internal ethics committees that lack binding veto power over deployment decisions results in "ethics washing": organizations publicize high-minded ethical principles while overriding committee objections whenever commercial timelines or revenue targets conflict.</p>
-</div>
-<h2 id="2-mathematical-formalization-of-decision-frameworks">2. Mathematical Formalization of Decision Frameworks</h2>
-<h3 id="1-multi-criteria-ethical-decision-analysis-mcda-scoring">1. Multi-Criteria Ethical Decision Analysis (MCDA) Scoring</h3>
-<p>Let <span class="arithmatex">\(\mathcal{A} = \{a_1, \dots, a_M\}\)</span> represent candidate data engineering architectures (e.g., centralized storage vs. federated learning with DP). Each alternative is evaluated across <span class="arithmatex">\(K\)</span> ethical criteria with normalized weights <span class="arithmatex">\(w_k\)</span>:</p>
+<h2 id="3-mathematical-formalization-of-decision-frameworks">3. Mathematical Formalization of Decision Frameworks</h2>
+<h3 id="1-multi-criteria-ethical-decision-analysis-mcda-with-hard-vetoes">1. Multi-Criteria Ethical Decision Analysis (MCDA) with Hard Vetoes</h3>
+<p>Let <span class="arithmatex">\(\mathcal{A} = \{a_1, \dots, a_M\}\)</span> represent candidate data engineering architectures (e.g., Centralized Raw Lake, Pseudonymized Lake, or Federated Learning with Local Differential Privacy). Each alternative is scored across <span class="arithmatex">\(K\)</span> normalized ethical criteria <span class="arithmatex">\(\phi_k(a) \in [0, 1]\)</span> with weights <span class="arithmatex">\(w_k\)</span>:</p>
 <div class="arithmatex">\[
-\mathcal{S}_{\text{ethical}}(a) = \sum_{k=1}^K w_k \cdot \phi_k(a) \quad \text{subject to} \quad \sum_{k=1}^K w_k = 1, \quad \phi_k(a) \in [0, 1]
+\mathcal{S}_{\text{ethical}}(a) = \sum_{k=1}^K w_k \cdot \phi_k(a) \quad \text{subject to} \quad \sum_{k=1}^K w_k = 1
 \]</div>
-<p>Where criteria include:
-- <span class="arithmatex">\(\phi_{\text{privacy}}\)</span>: Mathematical de-identification strength (<span class="arithmatex">\(1 - P_{\text{re-id}}\)</span>).
-- <span class="arithmatex">\(\phi_{\text{fairness}}\)</span>: Inverse error disparity (<span class="arithmatex">\(1 - \Delta_{\text{EO}}\)</span>).
-- <span class="arithmatex">\(\phi_{\text{autonomy}}\)</span>: User consent granularity and revocability.
-- <span class="arithmatex">\(\phi_{\text{utility}}\)</span>: Downstream task predictive accuracy.</p>
-<p>If any non-negotiable critical safety criterion violates a minimum threshold (<span class="arithmatex">\(\phi_{\text{safety}}(a) &lt; \tau_{\text{critical}}\)</span>), the alternative is vetoed regardless of aggregate score.</p>
-<h3 id="2-algorithmic-impact-risk-severity-index">2. Algorithmic Impact Risk Severity Index</h3>
-<p>Under IEEE 7000 and EU AI Act impact guidelines, the total risk score <span class="arithmatex">\(\mathcal{R}_{\text{AIA}}\)</span> is the product of severity <span class="arithmatex">\(\mathcal{S}\)</span>, probability of occurrence <span class="arithmatex">\(\mathcal{P}\)</span>, and irreversibility of harm <span class="arithmatex">\(\mathcal{I}\)</span>:</p>
-<div class="arithmatex">\[
-\mathcal{R}_{\text{AIA}} = \mathcal{S} \times \mathcal{P} \times \left(1 - \mathcal{R}_{\text{remediation}}\right)
-\]</div>
-<p>Where <span class="arithmatex">\(\mathcal{R}_{\text{remediation}} \in [0, 1)\)</span> reflects the availability of automated human appeals and algorithmic recourse.</p>
-<h3 id="3-stakeholder-disparity-utility-variance">3. Stakeholder Disparity Utility Variance</h3>
-<p>To prevent majoritarian utilitarian dominance, we compute the variance of expected utility across diverse stakeholder groups <span class="arithmatex">\(\mathcal{G}\)</span>:</p>
+<blockquote>
+<p>[!CAUTION]
+<strong>The Non-Compensatory Veto Invariant</strong>:
+Pure linear weighted scoring allows an architecture with stellar predictive accuracy (<span class="arithmatex">\(\phi_{\text{utility}} = 0.99\)</span>) to mathematically "buy out" a catastrophic violation of civil rights or privacy (<span class="arithmatex">\(\phi_{\text{privacy}} = 0.10\)</span>).
+Under the <strong>Roy ELECTRE Outranking Method</strong>, non-negotiable ethical criteria <span class="arithmatex">\(\mathcal{K}_{\text{veto}} \subseteq \{1, \dots, K\}\)</span> enforce hard floor thresholds <span class="arithmatex">\(\tau_k\)</span>:
+$<span class="arithmatex">\(\exists k \in \mathcal{K}_{\text{veto}} \quad \text{such that} \quad \phi_k(a) &lt; \tau_k \implies \mathcal{S}_{\text{ethical}}(a) \equiv \mathbf{VETOED}\)</span>$</p>
+</blockquote>
+<h3 id="2-stakeholder-disparity-utility-variance">2. Stakeholder Disparity Utility Variance</h3>
+<p>To quantify whether an algorithmic system distributes benefits equitably across diverse stakeholder groups <span class="arithmatex">\(\mathcal{G}\)</span>, we compute the <strong>Stakeholder Utility Variance</strong>:</p>
 <div class="arithmatex">\[
 \mathbb{V}_{\text{stakeholder}}(a) = \frac{1}{|\mathcal{G}|} \sum_{g \in \mathcal{G}} \left( u_g(a) - \bar{u}(a) \right)^2
 \]</div>
-<p>A sustainable ethical deployment requires both high average utility <span class="arithmatex">\(\bar{u}(a)\)</span> and bounded stakeholder variance: <span class="arithmatex">\(\mathbb{V}_{\text{stakeholder}}(a) \le \sigma_{\max}^2\)</span>.</p>
-<h3 id="4-algorithmic-recourse-cost-metric">4. Algorithmic Recourse Cost Metric</h3>
-<p>When an algorithm issues an adverse decision (e.g., loan denial <span class="arithmatex">\(\hat{Y} = 0\)</span>), actionable explainability requires identifying the minimal mutable feature perturbation <span class="arithmatex">\(\boldsymbol{\delta}^*\)</span> that inverts the prediction to <span class="arithmatex">\(\hat{Y} = 1\)</span> [<a href="#ref-ustun2019">Ustun2019</a>]:</p>
+<p>A socially sustainable deployment requires that aggregate utility <span class="arithmatex">\(\bar{u}(a) \ge u_{\min}\)</span> while simultaneously bounding disparity variance: <span class="arithmatex">\(\mathbb{V}_{\text{stakeholder}}(a) \le \sigma_{\max}^2\)</span>.</p>
+<h3 id="3-actionable-algorithmic-recourse-optimization">3. Actionable Algorithmic Recourse Optimization</h3>
+<p>When an automated model issues an adverse decision (e.g., loan denial or welfare fraud flag, <span class="arithmatex">\(\hat{Y} = 0\)</span>), procedural justice requires providing the applicant with <strong>actionable recourse</strong>—the minimal, realistic perturbation vector <span class="arithmatex">\(\boldsymbol{\delta}^*\)</span> that inverts the prediction to <span class="arithmatex">\(\hat{Y} = 1\)</span> [<a href="#ref-ustun2019">Ustun2019</a>, <a href="#ref-wachter2017">Wachter2017</a>]:</p>
 <div class="arithmatex">\[
-\boldsymbol{\delta}^* = \arg\min_{\boldsymbol{\delta}} \text{Cost}(\mathbf{x}, \mathbf{x} + \boldsymbol{\delta}) \quad \text{s.t.} \quad f(\mathbf{x} + \boldsymbol{\delta}) = 1
+\boldsymbol{\delta}^* = \arg\min_{\boldsymbol{\delta}} \text{Cost}(\mathbf{x}, \mathbf{x} + \boldsymbol{\delta}) \quad \text{subject to} \quad f(\mathbf{x} + \boldsymbol{\delta}) = 1
 \]</div>
-<p>Where the actionable recourse cost is normalized by feature standard deviations and restricted to mutable features:</p>
+<p>Where normalized distance accounts for feature variance and strict immutability constraints:</p>
 <div class="arithmatex">\[
-\text{Cost}(\mathbf{x}, \mathbf{x} + \boldsymbol{\delta}) = \sum_{j=1}^d \frac{|\delta_j|}{\sigma_j} \cdot \mathbb{I}(\text{Mutable}_j = 1)
+\text{Cost}(\mathbf{x}, \mathbf{x} + \boldsymbol{\delta}) = \sum_{j=1}^d \frac{|\delta_j|}{\sigma_j} \cdot \mathbb{I}(\text{Mutable}_j = 1) + \infty \cdot \sum_{j=1}^d |\delta_j| \cdot \mathbb{I}(\text{Mutable}_j = 0)
 \]</div>
-<p>Immutability constraints enforce that an applicant is never instructed to change protected or immutable attributes (e.g., age, race).</p>
+<p>Features are categorized into three mutability tiers:
+1. <strong>Immutable Attributes</strong> (<span class="arithmatex">\(\text{Mutable} = 0\)</span>): Age, race, birth country, biological sex (<span class="arithmatex">\(\delta_j \equiv 0\)</span>).
+2. <strong>Actionable Unidirectional Attributes</strong>: Educational attainment, credit history length (<span class="arithmatex">\(\delta_j \ge 0\)</span>).
+3. <strong>Actionable Bidirectional Attributes</strong>: Debt balance, savings liquidity (<span class="arithmatex">\(\delta_j \in \mathbb{R}\)</span>).</p>
 <hr />
-<h2 id="3-python-verification-multi-criteria-scoring-recourse-optimization">3. Python Verification: Multi-Criteria Scoring &amp; Recourse Optimization</h2>
-<p>The following Python script computes MCDA ethical scores with veto thresholds and calculates algorithmic recourse costs on structured applicant profiles.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># mcda_ethical_scorer.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes multi-criteria ethical scores and evaluates actionable recourse costs</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_mcda</span><span class="p">(</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">scores</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">weights</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">veto_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.40</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># Evaluates multi-criteria score and enforces safety veto constraints</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">weighted_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">veto_triggered</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">veto_criteria</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">for</span> <span class="n">crit</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">w</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">crit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="n">weighted_sum</span> <span class="o">+=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">score</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="n">veto_threshold</span><span class="p">:</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            <span class="n">veto_triggered</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="n">veto_criteria</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">crit</span><span class="p">)</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">is_approved</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">veto_triggered</span> <span class="ow">and</span> <span class="n">weighted_sum</span> <span class="o">&gt;=</span> <span class="mf">0.70</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="s2">"composite_score"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">weighted_sum</span><span class="p">),</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="s2">"is_approved"</span><span class="p">:</span> <span class="n">is_approved</span><span class="p">,</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="s2">"veto_triggered"</span><span class="p">:</span> <span class="n">veto_triggered</span><span class="p">,</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="s2">"veto_criteria"</span><span class="p">:</span> <span class="n">veto_criteria</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="p">}</span>
+<h2 id="4-landmark-case-studies-in-algorithmic-governance-failures">4. Landmark Case Studies in Algorithmic Governance Failures</h2>
+<h3 id="case-study-1-the-dutch-childcare-benefit-scandal-toeslagenaffaire-20192021">Case Study 1: The Dutch Childcare Benefit Scandal (<em>Toeslagenaffaire</em>, 2019–2021)</h3>
+<ul>
+<li><strong>The Algorithm</strong>: The Dutch Tax and Customs Administration deployed a self-learning predictive algorithm to flag potential childcare benefit fraud.</li>
+<li><strong>The Discriminatory Mechanism</strong>: The algorithm used <strong>dual nationality</strong> and ethnic origin proxies as heavily weighted risk indicators. If a parent possessed dual citizenship, their fraud risk score was escalated automatically.</li>
+<li><strong>The Fallout</strong>:</li>
+<li>Over <strong>26,000 parents</strong> were falsely accused of fraud without explanation, forced to repay tens of thousands of euros, and placed on secret administrative blacklists without right of appeal.</li>
+<li>Thousands of families suffered bankruptcy, eviction, and severe psychological distress; over 1,000 children were wrongfully removed into state foster care.</li>
+<li><strong>Political Accountability</strong>: In January 2021, the <strong>entire Dutch Cabinet resigned</strong> following parliamentary inquiries condemning the system as institutional discrimination and an unprecedented breakdown of the rule of law.</li>
+</ul>
+<h3 id="case-study-2-uk-a-level-exam-standardization-disaster-ofqual-2020">Case Study 2: UK A-Level Exam Standardization Disaster (Ofqual, 2020)</h3>
+<ul>
+<li><strong>The Problem</strong>: During the COVID-19 pandemic, the UK government cancelled in-person A-level examinations and tasked the Office of Qualifications and Examinations Regulation (Ofqual) with calculating algorithmic standardized grades.</li>
+<li><strong>The Structural Flaw</strong>: The algorithm standardized grades based heavily on each school's <strong>historical five-year grade distribution</strong> rather than individual student work.</li>
+<li><strong>The Disparate Impact</strong>:</li>
+<li>Private schools with small class sizes were exempt from algorithmic adjustment, resulting in a <strong><span class="arithmatex">\(4.7\%\)</span> increase in top grades</strong> for wealthy students.</li>
+<li>Public comprehensive schools in working-class neighborhoods saw <strong><span class="arithmatex">\(39.1\%\)</span> of teacher assessments downgraded</strong>, barring qualified students from university admissions.</li>
+<li>Following nationwide protests under the banner <em>"F*** the Algorithm,"</em> the UK government abandoned the algorithm within days, reverting to human teacher assessments.</li>
+</ul>
+<h3 id="case-study-3-google-project-maven-workforce-ethical-agency-2018">Case Study 3: Google Project Maven &amp; Workforce Ethical Agency (2018)</h3>
+<ul>
+<li><strong>The Dilemma</strong>: Google entered into a defense contract with the US Department of Defense (Project Maven) to train computer vision models analyzing unclassified drone surveillance video footage.</li>
+<li><strong>The Ethical Conflict</strong>: Engineers raised deep deontological objections regarding the complicity of commercial AI technologies in autonomous military targeting and lethal operations.</li>
+<li><strong>The Organizational Outcome</strong>: Over 4,000 employees signed an internal petition, and a dozen senior engineers resigned. Google leadership declined to renew the contract and subsequently published formal corporate <strong>AI Principles</strong>, establishing binding review boards for high-risk defense contracts.</li>
+</ul>
+<hr />
+<h2 id="5-standardized-documentation-datasheets-for-datasets">5. Standardized Documentation: Datasheets for Datasets</h2>
+<p>To prevent undocumented technical debt and unintended downstream misuse, every production dataset must publish a formal <strong>Datasheet for Datasets</strong> [<a href="#ref-gebru2021">Gebru2021</a>] addressing six lifecycle stages:</p>
+<pre class="mermaid"><code>flowchart LR
+    D1["1. Motivation &amp; Purpose&lt;br&gt;Why created? Who funded?"] --&gt; D2["2. Dataset Composition&lt;br&gt;Instances, labels, missingness"]
+    D2 --&gt; D3["3. Collection Process&lt;br&gt;Sampling frames, consent protocols"]
+    D3 --&gt; D4["4. Preprocessing &amp; Scrubbing&lt;br&gt;PII masking, outlier filters"]
+    D4 --&gt; D5["5. Intended &amp; Prohibited Uses&lt;br&gt;Valid tasks vs out-of-scope tasks"]
+    D5 --&gt; D6["6. Maintenance &amp; Retention&lt;br&gt;Deprecation date, contact owner"]
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class D1,D2 blue;
+    class D3,D4 amber;
+    class D5,D6 green;</code></pre>
+<hr />
+<h2 id="6-interactive-laboratory-algorithmic-impact-assessment-recourse-studio">6. Interactive Laboratory: Algorithmic Impact Assessment &amp; Recourse Studio</h2>
+<p>Audit algorithmic architectures across multi-criteria ethical dimensions, adjust non-compensatory safety veto thresholds, and simulate actionable counterfactual recourse trajectories.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.5rem;">⚖️</span>
+      <h3 style="margin: 0; font-weight: 800; color: #151b20; font-size: 1.25rem;">AIA Multi-Criteria Decision &amp; Recourse Studio</h3>
+    </div>
+    <span style="background: #ffc83e; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; font-family: monospace;">MCDA &amp; VETO ENGINE</span>
+  </div>
+
+  <p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
+    Test how the non-compensatory veto principle prevents high commercial accuracy from masking civil rights failures, and calculate actionable recourse costs on denied profiles.
+  </p>
+
+  <!-- Controls Panel -->
+  <div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+      ⚙️ Candidate Architecture Ethical Evaluation Criteria
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Privacy Guarantee $\phi_{\text{priv}}$: <span id="lbl_priv" style="color: #0284c7; font-family: monospace;">0.85</span>
+        </label>
+        <input type="range" id="sl_priv" min="0.10" max="1.00" step="0.05" value="0.85" style="width: 100%; accent-color: #0284c7;" oninput="updateAIASim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Subgroup Fairness $\phi_{\text{fair}}$: <span id="lbl_fair" style="color: #0284c7; font-family: monospace;">0.35</span>
+        </label>
+        <input type="range" id="sl_fair" min="0.10" max="1.00" step="0.05" value="0.35" style="width: 100%; accent-color: #0284c7;" oninput="updateAIASim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Model Accuracy / Utility $\phi_{\text{util}}$: <span id="lbl_util" style="color: #0284c7; font-family: monospace;">0.95</span>
+        </label>
+        <input type="range" id="sl_util" min="0.10" max="1.00" step="0.05" value="0.95" style="width: 100%; accent-color: #0284c7;" oninput="updateAIASim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Actionable Recourse $\phi_{\text{recourse}}$: <span id="lbl_rec" style="color: #0284c7; font-family: monospace;">0.75</span>
+        </label>
+        <input type="range" id="sl_rec" min="0.10" max="1.00" step="0.05" value="0.75" style="width: 100%; accent-color: #0284c7;" oninput="updateAIASim()">
+      </div>
+    </div>
+
+    <!-- Veto Threshold Configuration -->
+    <div style="margin-top: 14px; border-top: 1px solid #cbd5e1; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label style="font-size: 0.78rem; font-weight: 800; color: #1e293b;">
+          🛡️ Non-Compensatory Veto Threshold $\tau_{\text{veto}}$:
+        </label>
+        <input type="range" id="sl_veto" min="0.20" max="0.60" step="0.05" value="0.40" style="width: 120px; accent-color: #b91c1c;" oninput="updateAIASim()">
+        <span id="lbl_veto" style="font-family: monospace; font-size: 0.8rem; font-weight: 800; color: #b91c1c;">0.40</span>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <button onclick="setAIAPreset('dutch')" style="background: #ffffff; border: 1.5px solid #151b20; border-radius: 4px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">Dutch Welfare Scandal</button>
+        <button onclick="setAIAPreset('rawls')" style="background: #ffffff; border: 1.5px solid #151b20; border-radius: 4px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">Rawlsian Maximin System</button>
+        <button onclick="setAIAPreset('balanced')" style="background: #ffffff; border: 1.5px solid #151b20; border-radius: 4px; padding: 4px 8px; font-size: 0.72rem; font-weight: 700; cursor: pointer;">Production Certified AIA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-Time Evaluation Display Cards -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
+    <!-- Composite Score -->
+    <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Composite Weighted Score $\mathcal{S}$</div>
+      <div id="stat_mcda_score" style="font-size: 1.35rem; font-weight: 800; color: #1e293b; margin: 4px 0;">0.725</div>
+      <div style="font-size: 0.68rem; color: #475569;">Passing Bar $\ge 0.700$</div>
+    </div>
+
+    <!-- Governance Status -->
+    <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase;">AIA Governance Determination</div>
+      <div id="stat_gov_status" style="font-size: 1.15rem; font-weight: 800; color: #b91c1c; margin: 4px 0;">❌ VETO TRIGGERED</div>
+      <div id="stat_veto_reason" style="font-size: 0.68rem; color: #b91c1c; font-weight: 700;">Fairness (0.35) &lt; 0.40</div>
+    </div>
+
+    <!-- Recourse Cost Metric -->
+    <div style="background: #f0fdf4; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #166534; text-transform: uppercase;">Minimal Recourse Cost $C^*$</div>
+      <div id="stat_recourse_cost" style="font-size: 1.35rem; font-weight: 800; color: #15803d; margin: 4px 0;">2.50 $\sigma$</div>
+      <div style="font-size: 0.68rem; color: #166534;">Valid Mutable Trajectory</div>
+    </div>
+
+    <!-- Disparity Variance -->
+    <div style="background: #fffbeb; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Stakeholder Variance $\mathbb{V}$</div>
+      <div id="stat_disparity_var" style="font-size: 1.35rem; font-weight: 800; color: #b45309; margin: 4px 0;">0.048</div>
+      <div style="font-size: 0.68rem; color: #92400e;">Equity Dispersion Metric</div>
+    </div>
+  </div>
+
+  <!-- Dynamic Explanation Box -->
+  <div id="aia_explanation_banner" style="background: #fee2e2; border: 2px solid #b91c1c; border-radius: 8px; padding: 14px; font-size: 0.82rem; color: #7f1d1d; line-height: 1.5;">
+    <strong>⚖️ Non-Compensatory Veto Triggered:</strong> Despite a passing composite score ($\mathcal{S} = 0.725 \ge 0.70$), Subgroup Fairness ($\phi = 0.35$) falls below the safety veto threshold ($\tau = 0.40$). Under Deontological ethics and EU AI Act high-risk rules, deployment is <strong>strictly blocked</strong>. High accuracy cannot buy out demographic injustice.
+  </div>
+</div>
+
+<script>
+function updateAIASim() {
+  let priv = parseFloat(document.getElementById('sl_priv').value);
+  let fair = parseFloat(document.getElementById('sl_fair').value);
+  let util = parseFloat(document.getElementById('sl_util').value);
+  let rec = parseFloat(document.getElementById('sl_rec').value);
+  let veto = parseFloat(document.getElementById('sl_veto').value);
+
+  document.getElementById('lbl_priv').textContent = priv.toFixed(2);
+  document.getElementById('lbl_fair').textContent = fair.toFixed(2);
+  document.getElementById('lbl_util').textContent = util.toFixed(2);
+  document.getElementById('lbl_rec').textContent = rec.toFixed(2);
+  document.getElementById('lbl_veto').textContent = veto.toFixed(2);
+
+  // Equal weights: 0.30 priv, 0.30 fair, 0.20 util, 0.20 rec
+  let composite = (0.30 * priv) + (0.30 * fair) + (0.20 * util) + (0.20 * rec);
+  document.getElementById('stat_mcda_score').textContent = composite.toFixed(3);
+
+  // Check Veto Conditions (Privacy, Fairness, Recourse are non-negotiable)
+  let vetoed = false;
+  let vetoReasons = [];
+  if (priv < veto) { vetoed = true; vetoReasons.push(`Privacy (${priv.toFixed(2)}) < ${veto.toFixed(2)}`); }
+  if (fair < veto) { vetoed = true; vetoReasons.push(`Fairness (${fair.toFixed(2)}) < ${veto.toFixed(2)}`); }
+  if (rec < veto) { vetoed = true; vetoReasons.push(`Recourse (${rec.toFixed(2)}) < ${veto.toFixed(2)}`); }
+
+  // Stakeholder Variance approx
+  let mean = (priv + fair + util + rec) / 4.0;
+  let variance = ((priv-mean)**2 + (fair-mean)**2 + (util-mean)**2 + (rec-mean)**2) / 4.0;
+  document.getElementById('stat_disparity_var').textContent = variance.toFixed(4);
+
+  // Recourse Cost
+  let recourseCost = (rec > 0.5) ? (3.5 - 2.0 * rec) : 999.0;
+  if (recourseCost > 50.0) {
+    document.getElementById('stat_recourse_cost').textContent = "∞ (Infeasible)";
+    document.getElementById('stat_recourse_cost').style.color = "#b91c1c";
+  } else {
+    document.getElementById('stat_recourse_cost').textContent = `${recourseCost.toFixed(2)} σ`;
+    document.getElementById('stat_recourse_cost').style.color = "#15803d";
+  }
+
+  // Update Status Display
+  let statusElem = document.getElementById('stat_gov_status');
+  let reasonElem = document.getElementById('stat_veto_reason');
+  let banner = document.getElementById('aia_explanation_banner');
+
+  if (vetoed) {
+    statusElem.textContent = "❌ VETO TRIGGERED";
+    statusElem.style.color = "#b91c1c";
+    reasonElem.textContent = vetoReasons.join(", ");
+    reasonElem.style.color = "#b91c1c";
+
+    banner.style.background = "#fee2e2";
+    banner.style.border = "2px solid #b91c1c";
+    banner.style.color = "#7f1d1d";
+    banner.innerHTML = `<strong>⚖️ Non-Compensatory Veto Triggered:</strong> Despite a composite score of $\\mathcal{S} = ${composite.toFixed(3)}$, the architecture violates non-negotiable ethical constraints (${vetoReasons.join("; ")}). Under Deontological ethics and EU AI Act requirements, deployment is <strong>strictly blocked</strong>. High accuracy cannot compensate for fundamental rights violations.`;
+  } else if (composite >= 0.70) {
+    statusElem.textContent = "✓ AIA CERTIFIED";
+    statusElem.style.color = "#15803d";
+    reasonElem.textContent = "All Safety Vetoes & Composite Thresholds Passed";
+    reasonElem.style.color = "#15803d";
+
+    banner.style.background = "#dcfce7";
+    banner.style.border = "2px solid #15803d";
+    banner.style.color = "#14532d";
+    banner.innerHTML = `<strong>✓ Production Authorization Granted:</strong> Composite ethical score ($\mathcal{S} = ${composite.toFixed(3)}$) exceeds the 0.70 threshold with all criteria clearing the $\\tau = ${veto.toFixed(2)}$ non-compensatory veto barrier. Actionable recourse is mathematically guaranteed for denied applicants.`;
+  } else {
+    statusElem.textContent = "⚠️ REJECTED (LOW SCORE)";
+    statusElem.style.color = "#d97706";
+    reasonElem.textContent = `Score ${composite.toFixed(3)} < 0.700 Bar`;
+    reasonElem.style.color = "#d97706";
+
+    banner.style.background = "#fef3c7";
+    banner.style.border = "2px solid #d97706";
+    banner.style.color = "#78350f";
+    banner.innerHTML = `<strong>⚠️ Sub-Threshold Performance:</strong> While no individual safety veto was tripped, the overall weighted ethical composite score ($\mathcal{S} = ${composite.toFixed(3)}$) is below the 0.70 release threshold. The pipeline must undergo further optimization prior to deployment.`;
+  }
+}
+
+function setAIAPreset(preset) {
+  if (preset === 'dutch') {
+    document.getElementById('sl_priv').value = 0.50;
+    document.getElementById('sl_fair').value = 0.20; // Extreme bias against dual nationality
+    document.getElementById('sl_util').value = 0.90; // High detection rate
+    document.getElementById('sl_rec').value = 0.15; // No explanation or appeal
+    document.getElementById('sl_veto').value = 0.40;
+  } else if (preset === 'rawls') {
+    document.getElementById('sl_priv').value = 0.90;
+    document.getElementById('sl_fair').value = 0.85; // Maximin protection
+    document.getElementById('sl_util').value = 0.75; // Balanced accuracy
+    document.getElementById('sl_rec').value = 0.80;
+    document.getElementById('sl_veto').value = 0.45;
+  } else {
+    document.getElementById('sl_priv').value = 0.85;
+    document.getElementById('sl_fair').value = 0.80;
+    document.getElementById('sl_util').value = 0.85;
+    document.getElementById('sl_rec').value = 0.75;
+    document.getElementById('sl_veto').value = 0.40;
+  }
+  updateAIASim();
+}
+
+document.addEventListener('DOMContentLoaded', updateAIASim);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateAIASim();
+}
+</script>
+
+<hr />
+<h2 id="7-production-verification-algorithmic-impact-recourse-engine">7. Production Verification: Algorithmic Impact &amp; Recourse Engine</h2>
+<p>The following production Python module uses <strong>Pydantic V2</strong> to implement the Multi-Criteria Decision Analysis (MCDA) framework with non-compensatory veto invariants, evaluate stakeholder utility disparity variance, and compute actionable recourse counterfactual trajectories.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">ethical_decision_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production Algorithmic Impact Assessment (AIA) and actionable recourse validation engine using Pydantic V2.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Enforces non-compensatory veto constraints, evaluates stakeholder disparity variance,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">and computes optimal recourse perturbations subject to feature immutability.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">CriterionScore</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">"""Individual ethical assessment criterion."""</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">is_veto_criterion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">veto_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">0.40</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">class</span><span class="w"> </span><span class="nc">ApplicantFeature</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="sd">"""Individual feature specification for algorithmic recourse."""</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">current_value</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">target_value</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">std_dev</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">is_mutable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">is_unidirectional</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># e.g., credit history length cannot decrease</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_recourse_cost</span><span class="p">(</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">x_current</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">x_target</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">stds</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">mutable_mask</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># Computes normalized distance restricted to mutable features</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">deltas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_target</span> <span class="o">-</span> <span class="n">x_current</span><span class="p">)</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="c1"># Check if immutable features were changed</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">immutable_changes</span> <span class="o">=</span> <span class="n">deltas</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mutable_mask</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">immutable_changes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span> <span class="c1"># Infeasible recourse</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="n">normalized_cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">deltas</span> <span class="o">/</span> <span class="n">stds</span><span class="p">)</span> <span class="o">*</span> <span class="n">mutable_mask</span><span class="p">)</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">normalized_cost</span><span class="p">)</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_mcda_assertions</span><span class="p">():</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"privacy"</span><span class="p">:</span> <span class="mf">0.30</span><span class="p">,</span> <span class="s2">"fairness"</span><span class="p">:</span> <span class="mf">0.30</span><span class="p">,</span> <span class="s2">"utility"</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span> <span class="s2">"autonomy"</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">}</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="c1"># Candidate A: High utility, but terrible privacy (below veto)</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">cand_A</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"privacy"</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s2">"fairness"</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="s2">"utility"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s2">"autonomy"</span><span class="p">:</span> <span class="mf">0.80</span><span class="p">}</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="n">res_A</span> <span class="o">=</span> <span class="n">evaluate_mcda</span><span class="p">(</span><span class="n">cand_A</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">veto_threshold</span><span class="o">=</span><span class="mf">0.40</span><span class="p">)</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="k">assert</span> <span class="n">res_A</span><span class="p">[</span><span class="s2">"veto_triggered"</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="k">assert</span> <span class="s2">"privacy"</span> <span class="ow">in</span> <span class="n">res_A</span><span class="p">[</span><span class="s2">"veto_criteria"</span><span class="p">]</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="k">assert</span> <span class="n">res_A</span><span class="p">[</span><span class="s2">"is_approved"</span><span class="p">]</span> <span class="o">==</span> <span class="kc">False</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># Candidate B: Balanced federated learning with DP</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="n">cand_B</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"privacy"</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span> <span class="s2">"fairness"</span><span class="p">:</span> <span class="mf">0.80</span><span class="p">,</span> <span class="s2">"utility"</span><span class="p">:</span> <span class="mf">0.78</span><span class="p">,</span> <span class="s2">"autonomy"</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">}</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">res_B</span> <span class="o">=</span> <span class="n">evaluate_mcda</span><span class="p">(</span><span class="n">cand_B</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">veto_threshold</span><span class="o">=</span><span class="mf">0.40</span><span class="p">)</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">assert</span> <span class="n">res_B</span><span class="p">[</span><span class="s2">"veto_triggered"</span><span class="p">]</span> <span class="o">==</span> <span class="kc">False</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">assert</span> <span class="n">res_B</span><span class="p">[</span><span class="s2">"is_approved"</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">assert</span> <span class="n">res_B</span><span class="p">[</span><span class="s2">"composite_score"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.80</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="c1"># Recourse test</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="n">x_cur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">50000.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span> <span class="c1"># Age, Income, LatePayments</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">stds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20000.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="n">mut_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Age is immutable!</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="c1"># Attempting to change age should give infinite cost</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="n">x_invalid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">30.0</span><span class="p">,</span> <span class="mf">60000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="n">cost_invalid</span> <span class="o">=</span> <span class="n">compute_recourse_cost</span><span class="p">(</span><span class="n">x_cur</span><span class="p">,</span> <span class="n">x_invalid</span><span class="p">,</span> <span class="n">stds</span><span class="p">,</span> <span class="n">mut_mask</span><span class="p">)</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="k">assert</span> <span class="n">cost_invalid</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="c1"># Valid recourse: increase income and clear late payments</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="n">x_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">60000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="n">cost_valid</span> <span class="o">=</span> <span class="n">compute_recourse_cost</span><span class="p">(</span><span class="n">x_cur</span><span class="p">,</span> <span class="n">x_valid</span><span class="p">,</span> <span class="n">stds</span><span class="p">,</span> <span class="n">mut_mask</span><span class="p">)</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="n">expected_cost</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10000.0</span> <span class="o">/</span> <span class="mf">20000.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="mf">1.0</span><span class="p">)</span> <span class="c1"># 0.5 + 2.0 = 2.5</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">cost_valid</span> <span class="o">-</span> <span class="n">expected_cost</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ MCDA ethical scoring and algorithmic recourse assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">class</span><span class="w"> </span><span class="nc">AIAEvaluationReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="sd">"""Consolidated Algorithmic Impact Assessment report."""</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">composite_ethical_score</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">is_approved</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">is_vetoed</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">veto_violations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">stakeholder_variance</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">recourse_cost</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">is_recourse_feasible</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="k">class</span><span class="w"> </span><span class="nc">EthicalDecisionEngine</span><span class="p">:</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="sd">"""Production governance engine for AIA audits and recourse optimization."""</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_mcda</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">criteria</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CriterionScore</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">        </span><span class="sd">"""Computes weighted ethical score and enforces non-compensatory veto invariants."""</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="n">total_weight</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">criteria</span><span class="p">)</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">total_weight</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Criterion weights must sum to 1.0, got </span><span class="si">{</span><span class="n">total_weight</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">weighted_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">score</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">criteria</span><span class="p">)</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="n">veto_violations</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">criteria</span><span class="p">:</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">is_veto_criterion</span> <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">score</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">.</span><span class="n">veto_threshold</span><span class="p">:</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>                <span class="n">veto_violations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> &lt; </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">veto_threshold</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="n">is_vetoed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">veto_violations</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">is_approved</span> <span class="o">=</span> <span class="p">(</span><span class="ow">not</span> <span class="n">is_vetoed</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">weighted_sum</span> <span class="o">&gt;=</span> <span class="mf">0.70</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">weighted_sum</span><span class="p">),</span> <span class="n">is_approved</span><span class="p">,</span> <span class="n">veto_violations</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_stakeholder_variance</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">utility_vector</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">        </span><span class="sd">"""Calculates stakeholder disparity variance across demographic cohorts."""</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">utility_vector</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>            <span class="k">return</span> <span class="mf">0.0</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">utility_vector</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_actionable_recourse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ApplicantFeature</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">        </span><span class="sd">"""Calculates normalized recourse cost enforcing immutability constraints."""</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="n">total_cost</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="n">is_feasible</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>            <span class="n">delta</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">target_value</span> <span class="o">-</span> <span class="n">feat</span><span class="o">.</span><span class="n">current_value</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>                <span class="k">continue</span>
 </span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="n">test_mcda_assertions</span><span class="p">()</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>            <span class="c1"># Check Immutability</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">feat</span><span class="o">.</span><span class="n">is_mutable</span><span class="p">:</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>                <span class="n">is_feasible</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span> <span class="kc">False</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>            <span class="c1"># Check Unidirectional Constraint</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>            <span class="k">if</span> <span class="n">feat</span><span class="o">.</span><span class="n">is_unidirectional</span> <span class="ow">and</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>                <span class="n">is_feasible</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>                <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span> <span class="kc">False</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>            <span class="n">normalized_delta</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="n">feat</span><span class="o">.</span><span class="n">std_dev</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>            <span class="n">total_cost</span> <span class="o">+=</span> <span class="n">normalized_delta</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">total_cost</span><span class="p">),</span> <span class="n">is_feasible</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_system</span><span class="p">(</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>        <span class="n">criteria</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CriterionScore</span><span class="p">],</span>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>        <span class="n">stakeholder_utilities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>        <span class="n">recourse_features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ApplicantFeature</span><span class="p">]</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AIAEvaluationReport</span><span class="p">:</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="w">        </span><span class="sd">"""Executes complete algorithmic impact assessment."""</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>        <span class="n">score</span><span class="p">,</span> <span class="n">approved</span><span class="p">,</span> <span class="n">violations</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">evaluate_mcda</span><span class="p">(</span><span class="n">criteria</span><span class="p">)</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>        <span class="n">var</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">compute_stakeholder_variance</span><span class="p">(</span><span class="n">stakeholder_utilities</span><span class="p">)</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>        <span class="n">cost</span><span class="p">,</span> <span class="n">feasible</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">compute_actionable_recourse</span><span class="p">(</span><span class="n">recourse_features</span><span class="p">)</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>        <span class="k">return</span> <span class="n">AIAEvaluationReport</span><span class="p">(</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>            <span class="n">composite_ethical_score</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>            <span class="n">is_approved</span><span class="o">=</span><span class="n">approved</span><span class="p">,</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>            <span class="n">is_vetoed</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">violations</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>            <span class="n">veto_violations</span><span class="o">=</span><span class="n">violations</span><span class="p">,</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>            <span class="n">stakeholder_variance</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>            <span class="n">recourse_cost</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">if</span> <span class="n">feasible</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>            <span class="n">is_recourse_feasible</span><span class="o">=</span><span class="n">feasible</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>        <span class="p">)</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a><span class="c1"># Automated Assertion Suite for Governance CI/CD Gates</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_decision_engine_assertions</span><span class="p">():</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="c1"># Test 1: Dutch Welfare Scandal Scenario (High utility, fatal fairness veto)</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="n">dutch_criteria</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>        <span class="n">CriterionScore</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"privacy"</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="mf">0.50</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">veto_threshold</span><span class="o">=</span><span class="mf">0.40</span><span class="p">),</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>        <span class="n">CriterionScore</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"subgroup_fairness"</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">veto_threshold</span><span class="o">=</span><span class="mf">0.40</span><span class="p">),</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>        <span class="n">CriterionScore</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"predictive_utility"</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">veto_threshold</span><span class="o">=</span><span class="mf">0.40</span><span class="p">),</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>        <span class="n">CriterionScore</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"recourse_feasibility"</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">veto_threshold</span><span class="o">=</span><span class="mf">0.40</span><span class="p">)</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="p">]</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="n">score_d</span><span class="p">,</span> <span class="n">approved_d</span><span class="p">,</span> <span class="n">violations_d</span> <span class="o">=</span> <span class="n">EthicalDecisionEngine</span><span class="o">.</span><span class="n">evaluate_mcda</span><span class="p">(</span><span class="n">dutch_criteria</span><span class="p">)</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="k">assert</span> <span class="ow">not</span> <span class="n">approved_d</span><span class="p">,</span> <span class="s2">"Dutch welfare scenario should be strictly rejected."</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="k">assert</span> <span class="s2">"subgroup_fairness"</span> <span class="ow">in</span> <span class="n">violations_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="k">assert</span> <span class="s2">"recourse_feasibility"</span> <span class="ow">in</span> <span class="n">violations_d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="c1"># Test 2: Actionable Recourse - Reject Immutable Feature Mutation</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>    <span class="n">features_illegal</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>        <span class="n">ApplicantFeature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"age"</span><span class="p">,</span> <span class="n">current_value</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> <span class="n">target_value</span><span class="o">=</span><span class="mf">35.0</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">is_mutable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>        <span class="n">ApplicantFeature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"income"</span><span class="p">,</span> <span class="n">current_value</span><span class="o">=</span><span class="mf">45000.0</span><span class="p">,</span> <span class="n">target_value</span><span class="o">=</span><span class="mf">60000.0</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="mf">15000.0</span><span class="p">,</span> <span class="n">is_mutable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>    <span class="p">]</span>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>    <span class="n">cost_illegal</span><span class="p">,</span> <span class="n">feasible_illegal</span> <span class="o">=</span> <span class="n">EthicalDecisionEngine</span><span class="o">.</span><span class="n">compute_actionable_recourse</span><span class="p">(</span><span class="n">features_illegal</span><span class="p">)</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>    <span class="k">assert</span> <span class="ow">not</span> <span class="n">feasible_illegal</span><span class="p">,</span> <span class="s2">"Engine failed to reject immutable feature change."</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="k">assert</span> <span class="n">cost_illegal</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="c1"># Test 3: Actionable Recourse - Valid Mutable Trajectory</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>    <span class="n">features_legal</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>        <span class="n">ApplicantFeature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"age"</span><span class="p">,</span> <span class="n">current_value</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> <span class="n">target_value</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">is_mutable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>        <span class="n">ApplicantFeature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"debt"</span><span class="p">,</span> <span class="n">current_value</span><span class="o">=</span><span class="mf">8000.0</span><span class="p">,</span> <span class="n">target_value</span><span class="o">=</span><span class="mf">3000.0</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="mf">2500.0</span><span class="p">,</span> <span class="n">is_mutable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>    <span class="p">]</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>    <span class="n">cost_legal</span><span class="p">,</span> <span class="n">feasible_legal</span> <span class="o">=</span> <span class="n">EthicalDecisionEngine</span><span class="o">.</span><span class="n">compute_actionable_recourse</span><span class="p">(</span><span class="n">features_legal</span><span class="p">)</span>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="k">assert</span> <span class="n">feasible_legal</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">cost_legal</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-4</span>  <span class="c1"># (8000 - 3000) / 2500 = 2.0</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All ethical decision framework and actionable recourse assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>    <span class="n">run_decision_engine_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="4-interactive-laboratory-workbench">4. 🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Launch Algorithmic Impact Assessment Studio</h4>
-  <p>Perform multi-criteria stakeholder scoring, evaluate safety veto gates, and compute algorithmic recourse trajectories.</p>
-  <a href="../../tools/eda-dashboard/" class="noc-sim-btn">Launch AIA Workbench →</a>
-</div>
-<h4>Explore Ethical Data Decision Tree</h4>
-<p>Step through multi-stage ethical review simulations, evaluate stakeholder vetoes, and verify Algorithmic Impact Assessments.</p>
-<p><a href="../../tools/ethical-decision/" class="noc-sim-btn">Launch Ethical Decision Workbench →</a>
-</div></p>
-<hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
+<h2 id="8-diagnostic-self-assessment-scenarios">8. Diagnostic Self-Assessment Scenarios</h2>
+<p>Test your comprehension of ethical frameworks, non-compensatory vetoes, and algorithmic recourse:</p>
+<details class="question">
+<summary>Self-Assessment 1: The Non-Compensatory Veto Principle vs. Pure Utilitarianism</summary>
+<p>A state Department of Transportation proposes an automated computer vision traffic tolling system. The system achieves <span class="arithmatex">\(99.4\%\)</span> accuracy on overall vehicle license plate detection, reducing traffic congestion and yielding <span class="arithmatex">\(\$40\text{ Million}\)</span> in annual public transit funding. However, the system's plate recognition error rate on vehicles registered in indigenous reservation lands is <span class="arithmatex">\(18.5\%\)</span> (compared to <span class="arithmatex">\(0.6\%\)</span> statewide), resulting in disproportionate fines and debt collection for indigenous drivers. Under a pure utilitarian framework vs. a deontological AIA framework, how does the deployment determination differ?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+1. <strong>Pure Utilitarianism (<span class="arithmatex">\(\max \sum U_i\)</span>)</strong>:
+   Because the affected indigenous cohort represents less than <span class="arithmatex">\(2\%\)</span> of the total driving population, the massive aggregate societal benefits (congestion reduction, <span class="arithmatex">\(\$40\text{M}\)</span> public transit investment) mathematically dwarf the localized harm. A pure utilitarian metric would approve the deployment.
+2. <strong>Deontological / AIA Framework with Safety Vetoes</strong>:
+   Under deontological ethics (Kant) and the non-compensatory veto principle, fundamental equality before the law is an inviolable right (<span class="arithmatex">\(\phi_{\text{fairness}} \ge \tau_{\text{critical}}\)</span>). An <span class="arithmatex">\(18.5\%\)</span> error disparity on a protected subpopulation triggers an immediate <strong>hard governance veto</strong>. The deployment must be halted until sensor calibration or manual human audit lines eliminate the disparate error rate. High aggregate utility cannot buy out institutional discrimination.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 2: Counterfactual Plausibility in Algorithmic Recourse</summary>
+<p>A consumer applying for a small business loan is denied by an automated credit model. The automated rejection notice provides the following counterfactual explanation: <em>"To achieve approval, reduce your residential address duration from 12 years to 2 years, change your business sector from 'Restaurant' to 'Software', and increase liquid savings by $5,000."</em> Evaluate this explanation under the principles of actionable recourse.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The explanation is <strong>fundamentally invalid and ethically defective</strong>:
+1. <strong>Violation of Causal Directionality</strong>: An applicant cannot reverse the elapsed duration of their residential history (<span class="arithmatex">\(\delta &lt; 0\)</span> on elapsed time is physically impossible).
+2. <strong>Burden of Infeasible Business Mutation</strong>: Demanding an entrepreneur abandon a restaurant to start a software enterprise is not actionable or realistic recourse; it imposes an absurd and infeasible cost (<span class="arithmatex">\(\text{Cost} \to \infty\)</span>).
+3. <strong>Valid Recourse Standard</strong>: Legitimate algorithmic recourse must restrict recommendations to <strong>actionable, realistic variables within the applicant's direct control</strong> (e.g., <em>"Reduce credit card revolving balance by $2,500, or provide a co-signer with a FICO score <span class="arithmatex">\(\ge 720\)</span>"</em>).</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: Procedural Due Process in the Dutch Childcare Scandal</summary>
+<p>In the Dutch Childcare Benefit Scandal (<em>Toeslagenaffaire</em>), what specific violation of GDPR Article 22 occurred when the tax authority cut off family benefits based on predictive algorithm risk scores?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The system violated <strong>GDPR Article 22(1) &amp; (3) (Right to Human Intervention and Meaningful Explanation)</strong>.</p>
 <ol>
-<li><strong>Safety Veto Invariants</strong>: Never allow high predictive accuracy to mathematically compensate for a catastrophic privacy or human rights failure.</li>
-<li><strong>Actionable Recourse</strong>: Transparency requires offering data subjects realistic, mutable paths to reverse automated adverse decisions.</li>
-<li><strong>Structured AIAs</strong>: Algorithmic impact assessments must precede data ingestion, documenting stakeholder harms before model training commences.</li>
-<li><strong>Bounded Disparity Variance</strong>: Ensure the dispersion of benefits and risks across demographic subgroups remains tightly bounded.</li>
+<li><strong>Prohibition of Solely Automated Decisions</strong>: Under Article 22(1), a data subject has the right not to be subject to a decision based solely on automated processing which produces legal effects or similarly significantly affects them.</li>
+<li><strong>The "Rubber-Stamping" Fiction</strong>: Although human caseworkers formally signed off on fraud cancellations, caseworkers systematically deferred to the algorithmic risk score without independent verification (known as <em>automation bias</em>). Courts ruled this constituted solely automated decision-making.</li>
+<li><strong>Absence of Recourse &amp; Contestability</strong>: Families were denied access to the underlying logic, prevented from knowing what attributes caused the suspicion, and given no administrative forum to contest the decision, eliminating procedural due process.</li>
+</ol>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Rawlsian Maximin Allocation in Clinical ICU Bed Triage</summary>
+<p>During a respiratory pandemic, an automated triage algorithm must allocate scarce ICU ventilators across heterogeneous hospital networks. Strategy A achieves an overall survival rate of <span class="arithmatex">\(82\%\)</span>, with survival rates of <span class="arithmatex">\(85\%\)</span> for younger cohorts and <span class="arithmatex">\(52\%\)</span> for elderly patients with chronic comorbidities. Strategy B achieves an overall survival rate of <span class="arithmatex">\(76\%\)</span>, with survival rates of <span class="arithmatex">\(78\%\)</span> for younger cohorts and <span class="arithmatex">\(68\%\)</span> for elderly patients with comorbidities. Which strategy satisfies the Rawlsian Maximin criterion, and why?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> <strong>Strategy B satisfies the Rawlsian Maximin criterion</strong>.</p>
+<ol>
+<li><strong>Mathematical Definition of Maximin</strong>:
+   $<span class="arithmatex">\(\max_{\text{strategy}} \min_{g \in \mathcal{G}} u_g\)</span>$
+   The Maximin principle dictates that ethical priority belongs to maximizing the welfare of the <strong>least-advantaged demographic subgroup</strong>.</li>
+<li><strong>Evaluation</strong>:</li>
+<li>Strategy A: <span class="arithmatex">\(\min(u_{\text{young}}, u_{\text{elderly}}) = \min(85\%, 52\%) = \mathbf{52\%}\)</span></li>
+<li>Strategy B: <span class="arithmatex">\(\min(u_{\text{young}}, u_{\text{elderly}}) = \min(78\%, 68\%) = \mathbf{68\%}\)</span></li>
+<li><strong>Conclusion</strong>: Strategy B is chosen under Rawlsian justice because it elevates the worst-off cohort from <span class="arithmatex">\(52\%\)</span> to <span class="arithmatex">\(68\%\)</span> survival, refusing to sacrifice vulnerable populations for an increase in overall average survival (<span class="arithmatex">\(82\%\)</span> vs <span class="arithmatex">\(76\%\)</span>).</li>
+</ol>
+</details>
+</details>
+<hr />
+<h2 id="9-key-engineering-takeaways">9. Key Engineering Takeaways</h2>
+<ol>
+<li><strong>Non-Compensatory Safety Vetoes</strong>: Core human rights, privacy, and non-discrimination act as non-negotiable hard floors; high model accuracy cannot override ethical red lines.</li>
+<li><strong>Actionable Recourse Invariants</strong>: Counterfactual explanations must respect feature mutability and directional plausibility; never suggest impossible changes to immutable attributes.</li>
+<li><strong>Structured AIAs Precede Ingestion</strong>: Algorithmic impact assessments must be completed before data collection and model training commence, documenting potential stakeholder harms.</li>
+<li><strong>Independent Veto Authority</strong>: Internal algorithmic review boards must possess binding authority to scrap or halt high-risk deployments, eliminating corporate ethics washing.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
-<details class="question">
-<summary>Self-Assessment: The Veto Principle in Multi-Criteria Scoring</summary>
-<p>In a corporate review of a facial recognition employee access system, the model scores <span class="arithmatex">\(0.98\)</span> on Convenience, <span class="arithmatex">\(0.95\)</span> on Throughput, and <span class="arithmatex">\(0.92\)</span> on Corporate Security. However, its Subgroup Fairness score is <span class="arithmatex">\(0.22\)</span> due to extreme error disparities on darker-skinned female employees. If weighted sum scoring yields a composite score of <span class="arithmatex">\(0.83\)</span> (above the <span class="arithmatex">\(0.70\)</span> passing bar), why must an ethical framework veto the deployment?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The deployment must be vetoed under the <strong>Non-Compensatory Safety Threshold (Veto Principle)</strong>.</p>
-<p>Pure compensatory scoring allows commercial convenience and operational speed to mathematically override severe civil rights violations. Under structured ethical governance, core rights (non-discrimination, privacy) act as non-negotiable hard constraints (<span class="arithmatex">\(\phi_{\text{fairness}} \ge \tau_{\text{critical}}\)</span>). Because the fairness score (<span class="arithmatex">\(0.22\)</span>) is below the critical threshold (<span class="arithmatex">\(\tau = 0.40\)</span>), the system triggers an immediate governance veto, regardless of high aggregate utility.</p>
-</details>
-</details>
-<details class="question">
-<summary>Self-Assessment: Feasibility of Algorithmic Recourse</summary>
-<p>A credit risk model rejects an applicant. The model's counterfactual explanation engine suggests: <em>"To qualify for approval, decrease your age from 22 to 35 and increase your credit history length from 1 year to 10 years."</em> Why is this counterfactual guidance invalid?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The explanation violates <strong>Actionable Recourse and Immutability Constraints</strong>.</p>
-<p>Algorithmic recourse requires that suggested feature adjustments be practically achievable by the applicant:
-$<span class="arithmatex">\(\text{Cost}(\mathbf{x}, \mathbf{x} + \boldsymbol{\delta}) = \sum \frac{|\delta_j|}{\sigma_j} \cdot \mathbb{I}(\text{Mutable}_j = 1)\)</span>$
-Age and historical elapsed time are strictly immutable features (<span class="arithmatex">\(\text{Mutable} = 0\)</span>). Providing an impossible counterfactual offers zero meaningful recourse and violates transparency guidelines under GDPR Article 22 and the Equal Credit Opportunity Act.</p>
-</details>
-</details>
-<hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="10-peer-reviewed-scholarly-references">10. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-mittelstadt2016"></a><strong>[Mittelstadt2016]</strong> B. D. Mittelstadt et al., "The Ethics of Algorithms: Mapping the Debate," <em>Big Data &amp; Society</em>, vol. 3, no. 2, pp. 1–21, 2016. <a href="https://doi.org/10.1177/2053951716679679">DOI: 10.1177/2053951716679679</a>.</li>
 <li><a id="ref-moss2021"></a><strong>[Moss2021]</strong> E. Moss, E. Watkins, R. Singh, J. Elish, and J. Metcalf, "Assembling Accountability: Algorithmic Impact Assessments for the Public Sector," <em>Data &amp; Society Research Institute</em>, 2021. <a href="https://doi.org/10.2139/ssrn.3877437">DOI: 10.2139/ssrn.3877437</a>.</li>
-<li><a id="ref-ustun2019"></a><strong>[Ustun2019]</strong> B. Ustun, A. Spangher, and Y. Liu, "Actionable Recourse in Linear Classification," in <em>Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT</em> 2019)*, pp. 10–19. <a href="https://doi.org/10.1145/3287560.3287566">DOI: 10.1145/3287560.3287566</a>.</li>
+<li><a id="ref-ustun2019"></a><strong>[Ustun2019]</strong> B. Ustun, A. Spangher, and Y. Liu, "Actionable Recourse in Linear Classification," in <em>Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT</em> 2019)*, pp. 10–19, 2019. <a href="https://doi.org/10.1145/3287560.3287566">DOI: 10.1145/3287560.3287566</a>.</li>
 <li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, Dec. 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>
 <li><a id="ref-rawls1971"></a><strong>[Rawls1971]</strong> J. Rawls, <em>A Theory of Justice</em>, Harvard University Press, Cambridge, MA, 1971. <a href="https://doi.org/10.2307/j.ctvjf3z9b">DOI: 10.2307/j.ctvjf3z9b</a>.</li>
 <li><a id="ref-hardt2016"></a><strong>[Hardt2016]</strong> M. Hardt, E. Price, and N. Srebro, "Equality of Opportunity in Supervised Learning," in <em>Proceedings of the 30th Conference on Neural Information Processing Systems (NeurIPS 2016)</em>, pp. 3315–3323. <a href="https://doi.org/10.48550/arXiv.1610.02413">DOI: 10.48550/arXiv.1610.02413</a>.</li>
+<li><a id="ref-wachter2017"></a><strong>[Wachter2017]</strong> S. Wachter, B. Mittelstadt, and C. Russell, "Counterfactual Explanations Without Opening the Black Box: Automated Decisions and the GDPR," <em>Harvard Journal of Law &amp; Technology</em>, vol. 31, no. 2, pp. 841–887, 2017. <a href="https://doi.org/10.2139/ssrn.3063289">DOI: 10.2139/ssrn.3063289</a>.</li>
+<li><a id="ref-mitchell2019"></a><strong>[Mitchell2019]</strong> M. Mitchell et al., "Model Cards for Model Reporting," in <em>Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT</em> 2019)*, pp. 220–229, 2019. <a href="https://doi.org/10.1145/3287560.3287596">DOI: 10.1145/3287560.3287596</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../09-breach-consequences-prevention/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.9 Breach Fallout & Defense</a>
-  <a href="../11-emerging-trends-challenges/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Emerging Frontiers (3.11) →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../09-breach-consequences-prevention/" class="noc-sim-btn secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffffff; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← Previous: 3.9 Breach Fallout &amp; Defense
+  </a>
+  <a href="../11-emerging-trends-challenges/" class="noc-sim-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: 3.11 Emerging Frontiers &amp; Future Challenges →
+  </a>
 </div>
 
 

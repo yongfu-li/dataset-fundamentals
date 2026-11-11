@@ -34554,5 +34554,679 @@ window.LESSON_TIMINGS = {
         ]
       }
     ]
+  },
+  "ch1_p3_solo": {
+    "duration": 573.32,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 1.3 of Dataset Fundamentals: Dataset Storage Formats and Serialization Architectures. In production machine learning, choosing a physical serialization layout is never an aesthetic preference. It dictates disk I/O throughput, deserialization latency, network bandwidth, and memory consumption across your entire data pipeline.",
+        "start": 0.0,
+        "end": 22.368
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Grounding our curriculum in Section 1.2.5 and Chapter 12 of the Springer Nature monograph, today we dissect the physical mechanics of row-oriented versus columnar layouts, derive the mathematical laws of analytical projection efficiency, examine Apache Parquet and Apache Arrow zero-copy memory architectures, and explore multidimensional scientific tensors.",
+        "start": 22.718,
+        "end": 44.798
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Every dataset ingestion engine faces a fundamental architectural fork: how to serialize logical records into physical bytes on disk. As visualized in this workflow, your choice branches across three primary paradigms: Row-Oriented layouts for transaction processing, Column-Oriented layouts for analytical aggregations, and Multidimensional Chunks for scientific tensors.",
+        "start": 45.548,
+        "end": 68.228
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "A format mismatch imposes catastrophic pipeline penalties. Storing hundreds of millions of tabular records in CSV wastes terabytes of storage and bandwidth. Conversely, forcing point lookups on a columnar format causes massive decompression overhead. Choosing the right physical layout is foundational to data-centric AI.",
+        "start": 68.578,
+        "end": 89.41
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us examine the physical layout of row-oriented storage. In CSV files, JSON Lines, SQLite databases, and relational heap tables, all attributes of Record 1 are placed contiguously on disk, followed immediately by Record 2, and so forth.",
+        "start": 90.16,
+        "end": 107.32
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "This organization is optimal for Online Transaction Processing. When a user logs in, fetching their complete profile requires reading a single contiguous block of bytes. But in machine learning feature extraction, if your table has one hundred columns and your model only needs three features, the operating system must read all one hundred columns off NVMe storage into memory, wasting ninety-seven percent of memory bandwidth.",
+        "start": 107.67,
+        "end": 133.11
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "In stark contrast, column-oriented architectures invert physical storage. In formats like Apache Parquet and Apache Arrow, all values for Column 1 are stored in a contiguous physical array on disk and in memory, followed by all values for Column 2.",
+        "start": 133.86,
+        "end": 150.108
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "This layout achieves what hardware engineers call mechanical memory sympathy. Because every element in a column chunk shares the exact same binary type, CPU caches load 64-byte lines packed with consecutive values. Modern processors can execute AVX-512 vector instructions across multiple floats simultaneously, computing aggregates at billions of rows per second.",
+        "start": 150.458,
+        "end": 174.65
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Now let us formalize the physical I/O advantage mathematically. Reading data from persistent storage requires two steps: initial seek time, plus transfer time governed by sequential bandwidth. In a row store, reading any subset of k attributes out of d total dimensions forces reading one hundred percent of the bytes.",
+        "start": 175.4,
+        "end": 195.128
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "In a columnar store, total I/O scales strictly with the size of the queried subset k, multiplied by column-specific compression ratio rho. The theoretical speedup factor is directly proportional to the ratio of total columns d over queried columns k, amplified by the compression multiplier. This is why analytical queries on Parquet run orders of magnitude faster.",
+        "start": 195.478,
+        "end": 218.854
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "How do columnar formats achieve that eighty percent compression ratio? It is done through multi-layer encoding algorithms. The first layer is Dictionary Encoding, which replaces repeated string values with small integer keys.",
+        "start": 219.604,
+        "end": 233.932
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "The second layer is Run-Length Encoding, which compresses consecutive identical values into count-value pairs. The third layer is Bit-Packing, storing integers using the exact minimum number of bits needed. Finally, block-level codecs like Snappy or Zstandard compress the encoded pages. This layered hierarchy crushes storage footprint without sacrificing decompression speed.",
+        "start": 234.282,
+        "end": 258.402
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Recall Checkpoint 1. Let us test your intuition on analytical query efficiency across physical layouts.",
+        "start": 259.152,
+        "end": 267.312
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "To master columnar engineering, you must understand the internal anatomy of an Apache Parquet file. Notice how Parquet organizes data hierarchically: File Metadata at the footer, horizontal Row Groups, vertical Column Chunks, and Data Pages.",
+        "start": 268.062,
+        "end": 283.662
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "When a query engine like DuckDB or Spark opens a Parquet file, it does not read from byte zero. Instead, it seeks directly to the end of the file to parse the File Footer. The footer contains schema definitions and byte-offset pointers to every row group and column chunk. This allows the engine to jump directly to target columns without touching the rest of the file.",
+        "start": 284.012,
+        "end": 306.476
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Beyond projection pushdown, columnar formats enable Predicate Pushdown. In Parquet, every Row Group and Data Page stores metadata statistics in its header: the minimum value, maximum value, and null count for every column.",
+        "start": 307.226,
+        "end": 322.01
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "When you execute a filtered query like WHERE age is greater than 65, the query engine inspects the row group statistics. If maximum age in Row Group 1 is 58, the engine knows mathematically that no matching records exist. It completely skips the 128 MB row group, spending zero CPU cycles on disk I/O or decompression.",
+        "start": 322.36,
+        "end": 345.04
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Physical Storage Layout & Query I/O Simulator! Try toggling between Dataset Scale, Column Schema Profile, and Target Workload Query. Observe how on-disk footprint, physical I/O read bytes, and estimated latency diverge dramatically between CSV, JSONL, SQLite, Parquet, and Arrow Feather.",
+        "start": 345.79,
+        "end": 367.174
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "While Apache Parquet is the gold standard for on-disk persistence, Apache Arrow is the universal standard for in-memory columnar execution. Historically, passing data between Python, Pandas, Spark, and PyTorch required costly serialization and copy cycles.",
+        "start": 367.924,
+        "end": 385.348
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Apache Arrow eliminates this by establishing an identical contiguous byte layout in RAM across all languages. Using the Arrow C Data Interface and PyCapsule, DuckDB or Polars can pass a hundred-million-row table to PyTorch in zero milliseconds with zero copies. The memory pointer is shared directly, eliminating serialization overhead entirely.",
+        "start": 385.698,
+        "end": 408.402
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "What happens when your dataset is not a two-dimensional table, but a high-dimensional tensor? In climate modeling, particle physics, neuroimaging, and deep learning weight checkpoints, observations exist as N-dimensional array cubes.",
+        "start": 409.152,
+        "end": 423.48
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "For these domains, 2D tabular formats break down. We deploy Hierarchical Data Format 5 and Zarr. These formats divide N-dimensional tensors into chunked hypercubes, allowing multidimensional slicing across arbitrary axes without decompressing the entire file.",
+        "start": 423.83,
+        "end": 441.662
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Recall Checkpoint 2. Let us analyze what happens when semi-structured JSON stores undergo uncontrolled schema evolution.",
+        "start": 442.412,
+        "end": 451.676
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Now let us synthesize the Big Four Storage Paradigms into a clear decision matrix. This matrix maps Delimited Text, Semi-Structured JSON, Columnar Parquet and Arrow, and Scientific Tensors across serialization latency, compression, schema enforcement, and optimal ML workloads.",
+        "start": 452.426,
+        "end": 471.362
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Notice the architectural tradeoffs: Delimited text offers human readability at the cost of catastrophic I/O amplification. Semi-structured JSON enables flexible ingestion boundaries but risks schema collisions. Parquet and Arrow deliver peak analytical efficiency. And HDF5 and Zarr dominate high-dimensional scientific tensors.",
+        "start": 471.712,
+        "end": 494.104
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us examine production code that implements zero-copy projection and predicate pushdown using Polars and PyArrow. Notice how we write partitioned Parquet with Snappy compression and statistics enabled.",
+        "start": 494.854,
+        "end": 507.334
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "When executing the query, we use Polars LazyFrames with scan_parquet. Polars builds an abstract syntax tree, pushes the filter and projection down to the Parquet reader, and executes the entire computation in parallel Rust threads without loading unneeded data into Python memory.",
+        "start": 507.684,
+        "end": 525.732
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Congratulations on completing Lesson 1.3! Let us review the Five Golden Rules of Physical Dataset Serialization: First, default to Apache Parquet for static analytical datasets. Second, deploy Apache Arrow for in-memory inter-process computation. Third, use JSON Lines only for flexible streaming ingestion boundaries.",
+        "start": 526.482,
+        "end": 548.898
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Fourth, reserve HDF5 and Zarr for high-dimensional scientific tensors. And fifth, never train enterprise models directly on raw CSV files. In Lesson 1.4, we explore the Five Core Dimensions of Data Quality: Accuracy, Completeness, Consistency, Timeliness, and Relevance. Click continue to advance to Lesson 1.4!",
+        "start": 549.248,
+        "end": 573.32
+      }
+    ]
+  },
+  "ch1_p3_duo": {
+    "duration": 650.614,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, in our previous lesson we established that structured datasets represent tabular relations. When it comes to saving data to disk, can't we just dump everything into CSV files or JSON lines? Why does physical serialization format matter so much?",
+        "start": 0.0,
+        "end": 16.608
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Because a naive CSV dump forces downstream compute to parse raw ASCII strings into binary floats on every single run. If you have 100 million rows, parsing CSV consumes gigabytes of wasted CPU cycles, whereas an optimized columnar format reads raw binary values directly into memory with zero deserialization overhead.",
+        "start": 16.958,
+        "end": 37.862
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So format selection isn't just about disk footprint—it directly controls whether our training cluster spends ninety percent of its time waiting on disk I/O?",
+        "start": 38.212,
+        "end": 46.756
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Today we will prove mathematically and empirically why format choice determines the throughput and scalability of your entire machine learning infrastructure.",
+        "start": 47.106,
+        "end": 57.402
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at this flowchart. If columnar formats are so much faster for analytical queries, why doesn't every production system use Apache Parquet for everything?",
+        "start": 58.152,
+        "end": 68.88
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Because columnar formats trade write latency for read efficiency. In Parquet, you cannot simply append a single row to disk. You must buffer an entire row group, compute dictionary encodings, sort statistics, compress data pages, and rewrite the file footer.",
+        "start": 69.23,
+        "end": 86.462
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So if an e-commerce gateway needs to write ten thousand purchase transactions per second in real time, Parquet would choke?",
+        "start": 86.812,
+        "end": 93.7
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. High-frequency transactional writes demand row-oriented log appends or relational databases. Columnar formats are designed for batch analytics and training set consumption.",
+        "start": 94.05,
+        "end": 106.65
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, I see why row stores work well for databases like PostgreSQL. When a user requests their shopping cart, the server needs all items and address fields in one payload.",
+        "start": 107.4,
+        "end": 118.632
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Correct. But now picture training an XGBoost model where you want to calculate feature importance on just two numerical columns out of eighty. What happens at the hardware level in a CSV or row store?",
+        "start": 118.982,
+        "end": 131.966
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "The storage controller must transfer all eighty columns across the PCIe bus into memory, and the CPU has to parse strings and discard seventy-eight columns!",
+        "start": 132.316,
+        "end": 141.124
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You saturate your bus and CPU caches with data you instantly throw in the trash. That is the fundamental row-store bottleneck.",
+        "start": 141.474,
+        "end": 151.434
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, so when a columnar format reads Salary, it doesn't touch ID, Age, City, or Zip at all. It simply seeks to the start of the Salary byte block and reads continuously?",
+        "start": 152.184,
+        "end": 163.68
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is Projection Pushdown. If you have an eighty-column table and query one column, you cut physical disk I/O by almost ninety-nine percent. And because identical data types sit side-by-side, compression algorithms achieve staggering ratios.",
+        "start": 164.03,
+        "end": 181.454
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And the CPU vectorization you mentioned—does that mean calculations like sums and averages happen in parallel across multiple rows at once?",
+        "start": 181.804,
+        "end": 189.82
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Yes! Modern AVX-512 registers can load sixteen 32-bit floats in a single clock cycle. Instead of sixteen separate additions, the CPU executes one vectorized instruction.",
+        "start": 190.17,
+        "end": 204.186
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at that speedup formula: d over k, multiplied by 1 over 1 minus rho. Let's plug in numbers. Suppose we have an enterprise table with 100 columns, our model needs 5 features, and columnar compression ratio is 80 percent.",
+        "start": 204.936,
+        "end": 221.4
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Let us compute it: d over k is 100 divided by 5, which is 20. Then 1 over 1 minus 0.8 is 5. Twenty times five equals a 100x speedup in theoretical I/O throughput!",
+        "start": 221.75,
+        "end": 235.958
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "A hundred times faster! That means a query that takes ten minutes on CSV takes only six seconds on Parquet!",
+        "start": 236.308,
+        "end": 244.06
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. And that does not even account for CPU string parsing time. That is the sheer physical law of columnar projection efficiency.",
+        "start": 244.41,
+        "end": 254.298
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, so dictionary encoding and run-length encoding happen before Snappy compression is even applied?",
+        "start": 255.048,
+        "end": 261.672
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Yes! That is why Parquet is so effective. It does not blindly run gzip on raw text. It first applies semantic, structure-aware encodings on integers and strings. When Snappy compresses the result, the data is already organized into highly repetitive byte streams.",
+        "start": 262.022,
+        "end": 281.294
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And when the query engine reads the dictionary-encoded column, it can even evaluate filter predicates directly on the integer keys without decoding the strings!",
+        "start": 281.644,
+        "end": 290.596
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Brilliant observation, Kaito! Evaluating `WHERE country == 'US'` translates to checking if `key == 0`, avoiding thousands of string comparison operations.",
+        "start": 290.946,
+        "end": 303.018
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this scenario looks intense: two hundred million records and eighty-five columns! Let's see if the student can spot the exact architectural mechanism that makes Parquet win here.",
+        "start": 303.768,
+        "end": 315.216
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Indeed, Kaito. Select your answer below to test your grasp of physical storage mechanics.",
+        "start": 315.566,
+        "end": 322.43
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, wait! Why is the metadata stored at the footer of the file instead of the header at the top like other formats?",
+        "start": 323.18,
+        "end": 331.172
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "A brilliant design choice by the Apache team! When writing a multi-gigabyte dataset, you do not know the exact byte offsets, row counts, or min-max column statistics until all data has been written to disk. Putting metadata at the footer allows single-pass streaming writes without seeking backwards.",
+        "start": 331.522,
+        "end": 350.17
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "Ah! So the writer streams row groups continuously, and when finished, writes the summary footer and closes the file!",
+        "start": 350.52,
+        "end": 358.368
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. And the reader simply reads the last few kilobytes to get the entire blueprint of the file.",
+        "start": 358.718,
+        "end": 365.966
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this is incredible. In this example, Row Groups 1 and 2 are never even decompressed! The engine looks at the min-max numbers and skips two million rows instantly.",
+        "start": 366.716,
+        "end": 379.028
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. The disk head never touches those blocks. And if your table is sorted chronologically by timestamp or partitioned by country, nearly every query skips ninety percent of the files.",
+        "start": 379.378,
+        "end": 392.098
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So by sorting our data before writing Parquet, we turn brute-force scans into targeted range skips without building expensive B-Tree indices!",
+        "start": 392.448,
+        "end": 400.584
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "You've got it, Kaito. That is the synergy of columnar physical layout and metadata statistics.",
+        "start": 400.934,
+        "end": 407.894
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, we are docked at the Storage Format Benchmark Simulator! Look at the controls: we can select 100k, 1M, or 10M rows, test narrow versus wide enterprise tables, and compare column aggregations against point lookups!",
+        "start": 408.644,
+        "end": 422.948
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Try switching the query to Column Aggregation on 10M rows with the Standard Enterprise profile. Watch how Parquet and Arrow read less than 50 megabytes, while CSV and JSON Lines force reading over two gigabytes of data off disk!",
+        "start": 423.298,
+        "end": 438.178
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, so Arrow is essentially an in-memory specification of columnar data, while Parquet is the compressed format that lives on disk?",
+        "start": 438.928,
+        "end": 447.04
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "That is the perfect mental model, Kaito! Parquet compresses and encodes data for long-term storage efficiency on disk. When you decompress Parquet, it unpacks directly into Arrow memory buffers in RAM.",
+        "start": 447.39,
+        "end": 461.07
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And once in Arrow memory, Polars can filter it, DuckDB can run SQL queries on it, and PyTorch can train on it without converting or copying data back and forth?",
+        "start": 461.42,
+        "end": 470.732
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is the modern data-centric AI stack: Parquet on NVMe, Arrow in RAM, zero serialization overhead.",
+        "start": 471.082,
+        "end": 480.226
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why couldn't we just store climate simulation data in a Parquet table with four columns: time, latitude, longitude, and temperature?",
+        "start": 480.976,
+        "end": 489.664
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Consider the dimensionality! A four-dimensional grid of that size contains over 18 billion coordinate cells. Storing explicit coordinates for every point multiplies memory by four times. In HDF5 or Zarr, coordinates are implicit in the array index, cutting storage by 75% before compression even starts.",
+        "start": 490.014,
+        "end": 511.83
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And slicing along any axis—like getting a cross-section of the ocean at latitude 40—only requires reading the chunks intersecting that plane!",
+        "start": 512.18,
+        "end": 520.292
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is why chunked tensor storage is essential for high-dimensional scientific computing.",
+        "start": 520.642,
+        "end": 527.53
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this happens constantly in industry! An app developer changes an integer field to a string without notifying the data platform team.",
+        "start": 528.28,
+        "end": 537.808
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Indeed, Kaito. Let us see if the learner recognizes the catastrophic pipeline failure mode that follows when distributed engines infer conflicting schemas.",
+        "start": 538.158,
+        "end": 548.238
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at this table. It clarifies everything! CSV is purely for small human-readable exports, JSON Lines is for ingestion at the edge, Parquet is the storage workhorse, Arrow handles in-memory compute, and HDF5 handles multidimensional tensors.",
+        "start": 548.988,
+        "end": 566.388
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Precisely formulated, Kaito. An elite ML engineering team never asks 'what is the best format' in isolation. They ask: 'where does this step sit in our data lifecycle, and which layout matches its mechanical access pattern?'",
+        "start": 566.738,
+        "end": 582.002
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, notice how clean the Polars lazy API is: scan_parquet, filter, select, collect! It looks like standard Pandas, but under the hood it's executing compiled Rust with zero memory copies.",
+        "start": 582.752,
+        "end": 595.928
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "That is the power of modern Arrow-native query engines. By compiling the query into an execution plan before touching disk, Polars fuses filters and column selections directly into the NVMe read operations.",
+        "start": 596.278,
+        "end": 609.646
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this lesson completely transformed how I think about datasets. Storage formats are not passive file containers; they are active hardware execution engines!",
+        "start": 610.396,
+        "end": 621.1
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Well said, Kaito. By choosing Parquet and Arrow with intentional encodings and pushdown statistics, you unlock orders of magnitude faster training iterations.",
+        "start": 621.45,
+        "end": 632.106
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And in Lesson 1.4, we move from physical file mechanics to intrinsic dataset quality: accuracy, completeness, consistency, timeliness, and relevance!",
+        "start": 632.456,
+        "end": 642.464
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Join us in Lesson 1.4 to establish the rigorous standards of trustworthy data-centric AI!",
+        "start": 642.814,
+        "end": 650.614
+      }
+    ]
   }
 };

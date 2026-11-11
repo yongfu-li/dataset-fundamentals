@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -1882,10 +1926,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#table-33-attack-vectors-in-the-modern-data-stack" class="md-nav__link">
+  <a href="#table-38-attack-vectors-in-modern-data-engineering-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table 3.3: Attack Vectors in the Modern Data Stack
+        Table 3.8: Attack Vectors in Modern Data Engineering Pipelines
       
     </span>
   </a>
@@ -1910,10 +1954,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-total-mean-time-to-remediate-mttr" class="md-nav__link">
+  <a href="#1-mean-time-to-identify-mtti-and-dwell-time-dynamics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Total Mean Time to Remediate (MTTR)
+        1. Mean Time to Identify (MTTI) and Dwell Time Dynamics
       
     </span>
   </a>
@@ -1921,10 +1965,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-empirical-breach-cost-scaling-law" class="md-nav__link">
+  <a href="#2-romanosky-power-law-breach-cost-scaling-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Empirical Breach Cost Scaling Law
+        2. Romanosky Power-Law Breach Cost Scaling Model
       
     </span>
   </a>
@@ -1943,10 +1987,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-cloud-misconfiguration-combinatorial-vulnerability" class="md-nav__link">
+  <a href="#4-combinatorial-risk-of-cloud-bucket-misconfigurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Cloud Misconfiguration Combinatorial Vulnerability
+        4. Combinatorial Risk of Cloud Bucket Misconfigurations
       
     </span>
   </a>
@@ -1971,10 +2015,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#case-study-1-equifax-2017-the-unpatched-dependency-catastrophe" class="md-nav__link">
+  <a href="#case-study-1-equifax-2017-the-unpatched-dependency-expired-certificate-disaster" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study 1: Equifax (2017) — The Unpatched Dependency Catastrophe
+        Case Study 1: Equifax (2017) — The Unpatched Dependency &amp; Expired Certificate Disaster
       
     </span>
   </a>
@@ -1982,10 +2026,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#case-study-2-target-2013-lateral-supply-chain-infiltration" class="md-nav__link">
+  <a href="#case-study-2-target-2013-lateral-movement-via-hvac-supply-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study 2: Target (2013) — Lateral Supply Chain Infiltration
+        Case Study 2: Target (2013) — Lateral Movement via HVAC Supply Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-capital-one-2019-ssrf-overprivileged-iam-role-assumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Capital One (2019) — SSRF &amp; Overprivileged IAM Role Assumption
       
     </span>
   </a>
@@ -1998,10 +2053,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-simulating-breach-cost-misconfiguration-probability" class="md-nav__link">
+  <a href="#4-architectural-defenses-zero-trust-envelope-encryption" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Simulating Breach Cost &amp; Misconfiguration Probability
+        4. Architectural Defenses: Zero Trust &amp; Envelope Encryption
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Architectural Defenses: Zero Trust &amp; Envelope Encryption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-envelope-encryption-with-hardware-security-modules-hsms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Envelope Encryption with Hardware Security Modules (HSMs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-zero-trust-network-architecture-nist-sp-800-207" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Zero Trust Network Architecture (NIST SP 800-207)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-interactive-laboratory-cyber-forensics-dwell-time-blast-radius-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Interactive Laboratory: Cyber Forensics, Dwell-Time &amp; Blast Radius Simulator
       
     </span>
   </a>
@@ -2009,10 +2103,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-production-implementation-forensic-breach-cost-cloud-combinatorial-auditor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        6. Production Implementation: Forensic Breach Cost &amp; Cloud Combinatorial Auditor
       
     </span>
   </a>
@@ -2020,10 +2114,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#7-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        7. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -2031,10 +2125,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#8-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        8. Key Engineering Takeaways
       
     </span>
   </a>
@@ -2042,10 +2136,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#9-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        9. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7467,10 +7561,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#table-33-attack-vectors-in-the-modern-data-stack" class="md-nav__link">
+  <a href="#table-38-attack-vectors-in-modern-data-engineering-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table 3.3: Attack Vectors in the Modern Data Stack
+        Table 3.8: Attack Vectors in Modern Data Engineering Pipelines
       
     </span>
   </a>
@@ -7495,10 +7589,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-total-mean-time-to-remediate-mttr" class="md-nav__link">
+  <a href="#1-mean-time-to-identify-mtti-and-dwell-time-dynamics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Total Mean Time to Remediate (MTTR)
+        1. Mean Time to Identify (MTTI) and Dwell Time Dynamics
       
     </span>
   </a>
@@ -7506,10 +7600,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-empirical-breach-cost-scaling-law" class="md-nav__link">
+  <a href="#2-romanosky-power-law-breach-cost-scaling-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Empirical Breach Cost Scaling Law
+        2. Romanosky Power-Law Breach Cost Scaling Model
       
     </span>
   </a>
@@ -7528,10 +7622,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-cloud-misconfiguration-combinatorial-vulnerability" class="md-nav__link">
+  <a href="#4-combinatorial-risk-of-cloud-bucket-misconfigurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Cloud Misconfiguration Combinatorial Vulnerability
+        4. Combinatorial Risk of Cloud Bucket Misconfigurations
       
     </span>
   </a>
@@ -7556,10 +7650,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#case-study-1-equifax-2017-the-unpatched-dependency-catastrophe" class="md-nav__link">
+  <a href="#case-study-1-equifax-2017-the-unpatched-dependency-expired-certificate-disaster" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study 1: Equifax (2017) — The Unpatched Dependency Catastrophe
+        Case Study 1: Equifax (2017) — The Unpatched Dependency &amp; Expired Certificate Disaster
       
     </span>
   </a>
@@ -7567,10 +7661,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#case-study-2-target-2013-lateral-supply-chain-infiltration" class="md-nav__link">
+  <a href="#case-study-2-target-2013-lateral-movement-via-hvac-supply-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Case Study 2: Target (2013) — Lateral Supply Chain Infiltration
+        Case Study 2: Target (2013) — Lateral Movement via HVAC Supply Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-3-capital-one-2019-ssrf-overprivileged-iam-role-assumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 3: Capital One (2019) — SSRF &amp; Overprivileged IAM Role Assumption
       
     </span>
   </a>
@@ -7583,10 +7688,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-python-verification-simulating-breach-cost-misconfiguration-probability" class="md-nav__link">
+  <a href="#4-architectural-defenses-zero-trust-envelope-encryption" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Python Verification: Simulating Breach Cost &amp; Misconfiguration Probability
+        4. Architectural Defenses: Zero Trust &amp; Envelope Encryption
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Architectural Defenses: Zero Trust &amp; Envelope Encryption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-envelope-encryption-with-hardware-security-modules-hsms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Envelope Encryption with Hardware Security Modules (HSMs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-zero-trust-network-architecture-nist-sp-800-207" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Zero Trust Network Architecture (NIST SP 800-207)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-interactive-laboratory-cyber-forensics-dwell-time-blast-radius-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Interactive Laboratory: Cyber Forensics, Dwell-Time &amp; Blast Radius Simulator
       
     </span>
   </a>
@@ -7594,10 +7738,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#6-production-implementation-forensic-breach-cost-cloud-combinatorial-auditor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 🔬 Interactive Laboratory Workbench
+        6. Production Implementation: Forensic Breach Cost &amp; Cloud Combinatorial Auditor
       
     </span>
   </a>
@@ -7605,10 +7749,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#7-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        7. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7616,10 +7760,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#8-key-engineering-takeaways" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        8. Key Engineering Takeaways
       
     </span>
   </a>
@@ -7627,10 +7771,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#9-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        9. Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7658,38 +7802,38 @@
 
 
 <h1 id="38-anatomy-of-data-breaches-attack-vectors-dwell-time-architectural-failures">3.8 Anatomy of Data Breaches: Attack Vectors, Dwell Time &amp; Architectural Failures</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
       <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.7: Anatomy of Data Breaches)</strong> in the official Springer Nature monograph, analyzing dwell-time forensic metrics, Apache Struts exploits, and vendor lateral movement.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.8: Anatomy of Data Breaches)</strong> in the official Springer Nature monograph, analyzing dwell-time forensic metrics, Apache Struts exploits, cloud IAM role assumptions, and vendor lateral movement.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 3 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~14 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-38">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.8</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">12 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">11 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=3&part=8" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=3&part=8" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7698,212 +7842,674 @@
 </div>
 
 <hr />
-<p>A <strong>Data Breach</strong> is defined under NIST SP 800-61 as an incident involving the unauthorized acquisition, access, disclosure, or destruction of sensitive personal records or confidential corporate intellectual property.</p>
-<p>In data engineering pipelines, breaches are rarely caused by cinematic Hollywood-style cryptographic cracking. Instead, breaches occur because of <strong>unpatched internet-facing software dependencies, misconfigured cloud storage permissions, lateral third-party vendor movement, and prolonged attacker dwell times</strong> [<a href="#ref-kabanov2021">Kabanov2021</a>, <a href="#ref-harrell2017">Harrell2017</a>].</p>
-<p>When an organization collects millions of sensitive identity attributes, security technical debt ceases to be a routine IT backlog item—it becomes an existential ethical and legal failure under regulatory compliance frameworks such as the GDPR [<a href="#ref-voigt2017">Voigt2017</a>, <a href="#ref-romanosky2016">Romanosky2016</a>].</p>
+<p>A <strong>Data Breach</strong> is defined under NIST SP 800-61 as an incident involving the confirmed unauthorized acquisition, access, disclosure, or destruction of sensitive personal microdata or confidential organizational intellectual property.</p>
+<p>In enterprise data engineering, catastrophic breaches are rarely caused by cinematic Hollywood-style cryptographic cracking. Instead, breaches are the mathematical consequence of <strong>unpatched internet-facing dependencies, over-privileged cloud IAM credentials, unsegmented third-party vendor conduits, and prolonged attacker dwell times</strong> [<a href="#ref-kabanov2021">Kabanov2021</a>, <a href="#ref-harrell2017">Harrell2017</a>].</p>
+<p>When an organization centralizes millions of personal identity attributes into data lakes without cryptographic envelope barriers and zero-trust microsegmentation, architecture security technical debt ceases to be an operational inconvenience—it becomes an existential liability under global regulatory frameworks such as GDPR, HIPAA, and CCPA [<a href="#ref-romanosky2016">Romanosky2016</a>, <a href="#ref-voigt2017">Voigt2017</a>].</p>
 <hr />
 <h2 id="1-the-anatomy-of-attack-vectors-in-data-infrastructure">1. The Anatomy of Attack Vectors in Data Infrastructure</h2>
+<p>Adversaries exfiltrating sensitive datasets traverse structured infiltration pipelines documented in the <strong>MITRE ATT&amp;CK Framework</strong>:</p>
 <pre class="mermaid"><code>flowchart LR
-    Threat["Threat Actor / Adversary"] --&gt; V1["Vector 1: Unpatched Internet Dependencies&lt;br/&gt;(e.g., Apache Struts CVE-2017-5638)"]
-    Threat --&gt; V2["Vector 2: Third-Party Supply Chain&lt;br/&gt;(HVAC / SaaS credentials)"]
-    Threat --&gt; V3["Vector 3: Cloud Misconfigurations&lt;br/&gt;(Public S3 Buckets / Open Elasticsearch)"]
-    Threat --&gt; V4["Vector 4: Credential Stuffing &amp; Linkage Attacks&lt;br/&gt;(Re-identification [[Sweeney2002](#ref-sweeney2002)])"]
+    subgraph Ingress ["1. Initial Access &amp; Ingress"]
+        V1["Vector A: Unpatched Dependency&lt;br&gt;(e.g., Apache Struts, Log4j)"]
+        V2["Vector B: Supply Chain Lateral Hop&lt;br&gt;(HVAC / Billing Vendor)"]
+        V3["Vector C: Cloud SSRF / IAM Abuse&lt;br&gt;(IMDSv1 Metadata Theft)"]
+        V4["Vector D: Misconfigured S3 Bucket&lt;br&gt;(Public 0.0.0.0/0 ACL)"]
+    end
 
-    V1 &amp; V2 &amp; V3 &amp; V4 --&gt; Infiltrate["Network Infiltration &amp; Privilege Escalation"]
-    Infiltrate --&gt; Dwell["Undetected Dwell Period (Median: 200+ Days)"]
-    Dwell --&gt; Exfil["Exfiltration of High-Value Identity Stores"]
+    subgraph Internal ["2. Lateral Traversal &amp; Privilege Escalation"]
+        P1["Internal Recon &amp; Port Sweep"]
+        P2["Harvest Plaintext Database Keys"]
+        P3["Assume High-Privilege IAM Roles"]
+    end
+
+    subgraph Exploitation ["3. Staging &amp; Exfiltration"]
+        Dwell["Silent Dwell Period&lt;br&gt;(Industry Median: 200+ Days)"]
+        Exfil["Encrypted Bulk DB Exfiltration&lt;br&gt;(S3 Sync, DNS Tunnel, Mega)"]
+    end
+
+    Ingress --&gt; Internal
+    Internal --&gt; Dwell
+    Dwell --&gt; Exfil
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class Threat,V1,V2,V3,V4 blue;
-    class Infiltrate amber;
-    class Dwell,Exfil red;</code></pre>
-<h3 id="table-33-attack-vectors-in-the-modern-data-stack">Table 3.3: Attack Vectors in the Modern Data Stack</h3>
+    class Ingress,V1,V2,V3,V4 blue;
+    class Internal,P1,P2,P3 amber;
+    class Exploitation,Dwell,Exfil red;</code></pre>
+<h3 id="table-38-attack-vectors-in-modern-data-engineering-pipelines">Table 3.8: Attack Vectors in Modern Data Engineering Pipelines</h3>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Infiltration Vector</th>
-<th style="text-align: left;">Underlying Root Cause</th>
-<th style="text-align: left;">Typical Asset Targeted</th>
-<th style="text-align: left;">Preventative Engineering Countermeasure</th>
+<th style="text-align: left;">Root Technical Failure</th>
+<th style="text-align: left;">Primary Target Asset</th>
+<th style="text-align: left;">Engineering Defense Invariant</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Unpatched Dependencies</strong></td>
-<td style="text-align: left;">Failure to track Software Bill of Materials (SBOM) and apply zero-day security patches.</td>
-<td style="text-align: left;">Web application portals, REST ingress endpoints.</td>
-<td style="text-align: left;">Automated dependency vulnerability scanners (Dependabot, Snyk), immutable container rebuilds.</td>
+<td style="text-align: left;">Failure to maintain Software Bill of Materials (SBOM) and automate zero-day CVE patching.</td>
+<td style="text-align: left;">Public-facing API gateways, portal web apps.</td>
+<td style="text-align: left;">Automated SCA scanners (Dependabot, Snyk), immutable container base image rebuilds.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Supply Chain / Third-Party</strong></td>
-<td style="text-align: left;">External contractor granted unsegmented, excessive network access privileges.</td>
-<td style="text-align: left;">Corporate LAN, internal operational databases.</td>
-<td style="text-align: left;">Zero Trust Network Architecture (ZTNA), strict network segmentation (VPC subnets).</td>
+<td style="text-align: left;"><strong>Third-Party Supply Chain</strong></td>
+<td style="text-align: left;">Unsegmented network peering granting external contractor direct access to internal database subnets.</td>
+<td style="text-align: left;">Production databases, internal billing networks.</td>
+<td style="text-align: left;">Zero Trust Network Access (ZTNA), ephemeral VPN bastions, strict VLAN isolation.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Cloud Misconfiguration</strong></td>
-<td style="text-align: left;">Insecure storage bucket access policies; unauthenticated cluster ports.</td>
-<td style="text-align: left;">Analytical data lakes (S3, GCS, Blob), search clusters.</td>
-<td style="text-align: left;">Automated infrastructure-as-code (Terraform) policy gates; default block on public buckets.</td>
+<td style="text-align: left;"><strong>Cloud IAM &amp; SSRF Exploitation</strong></td>
+<td style="text-align: left;">Web application proxying untrusted requests to instance metadata endpoints (<code>169.254.169.254</code>).</td>
+<td style="text-align: left;">Ephemeral STS tokens, analytical S3/GCS buckets.</td>
+<td style="text-align: left;">AWS IMDSv2 token enforcement (hop limit = 1), least-privilege IAM service role boundaries.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Credential Phishing</strong></td>
-<td style="text-align: left;">Absence of phishing-resistant multi-factor authentication (MFA).</td>
-<td style="text-align: left;">Production database admin accounts, SSH bastion keys.</td>
-<td style="text-align: left;">FIDO2 / WebAuthn hardware security keys, short-lived ephemeral certificates.</td>
+<td style="text-align: left;"><strong>Cloud Storage Misconfiguration</strong></td>
+<td style="text-align: left;">S3 bucket policies or Elasticsearch clusters exposed to <code>AllUsers</code> (<code>0.0.0.0/0</code>).</td>
+<td style="text-align: left;">Raw analytical data lakes, staging Parquet files.</td>
+<td style="text-align: left;">Automated Infrastructure as Code (Terraform) static analysis (Checkov), AWS S3 Public Block.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Credential Phishing &amp; Stuffing</strong></td>
+<td style="text-align: left;">Lack of phishing-resistant multi-factor authentication (MFA) on developer bastions.</td>
+<td style="text-align: left;">Production read-replicas, analytics warehouses.</td>
+<td style="text-align: left;">FIDO2 / WebAuthn hardware security keys, short-lived PKI certificates (Teleport).</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Envelope Encryption with Hardware Security Modules (HSM)</p>
-<p>Store sensitive dataset columns using <strong>Envelope Encryption</strong>: data fields are encrypted with an ephemeral Data Encryption Key (DEK), and the DEK is encrypted under a Key Encryption Key (KEK) managed inside a FIPS 140-2 Level 3 Hardware Security Module (HSM). KEKs never leave the cryptographic boundary.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Unencrypted Database Backups in Public S3 Buckets</p>
-<p>Over 40% of major cloud data breaches occur not via sophisticated zero-day exploits, but through misconfigured storage bucket access control lists (ACLs) or unencrypted snapshots containing raw database credentials and production user records.</p>
-</div>
 <h2 id="2-mathematical-formalization-of-forensic-breach-metrics">2. Mathematical Formalization of Forensic Breach Metrics</h2>
-<h3 id="1-total-mean-time-to-remediate-mttr">1. Total Mean Time to Remediate (MTTR)</h3>
-<p>In cyber forensics, the severity of a data breach is governed by <strong>Dwell Time</strong> (<span class="arithmatex">\(t_{\text{dwell}}\)</span>) and <strong>Containment Time</strong> (<span class="arithmatex">\(t_{\text{containment}}\)</span>):</p>
+<h3 id="1-mean-time-to-identify-mtti-and-dwell-time-dynamics">1. Mean Time to Identify (MTTI) and Dwell Time Dynamics</h3>
+<p>In cyber incident response, the <strong>Dwell Time</strong> (<span class="arithmatex">\(t_{\text{dwell}}\)</span>) represents the temporal window during which an adversary operates undetected inside the network perimeter [<a href="#ref-ponemon2023">Ponemon2023</a>]:</p>
 <div class="arithmatex">\[
-t_{\text{MTTR}} = t_{\text{dwell}} + t_{\text{containment}} = \left( t_{\text{detection}} - t_{\text{infiltrate}} \right) + \left( t_{\text{containment}} - t_{\text{detection}} \right)
+t_{\text{dwell}} = t_{\text{detection}} - t_{\text{initial\_access}}
 \]</div>
-<p>According to empirical research by IBM Security [<a href="#ref-ponemon2023">Ponemon2023</a>], breaches with <span class="arithmatex">\(t_{\text{dwell}} &gt; 200\text{ days}\)</span> cost <span class="arithmatex">\(28.3\%\)</span> more to remediate than breaches contained within 200 days.</p>
-<h3 id="2-empirical-breach-cost-scaling-law">2. Empirical Breach Cost Scaling Law</h3>
-<p>The financial cost of a breach does not scale strictly linearly with stolen records <span class="arithmatex">\(N\)</span>; it follows a sublinear power-law with an exponential penalty for prolonged dwell time [<a href="#ref-romanosky2016">Romanosky2016</a>]:</p>
+<p>The total breach lifecycle includes detection and subsequent containment:</p>
+<div class="arithmatex">\[
+t_{\text{lifecycle}} = t_{\text{dwell}} + t_{\text{containment}} = (t_{\text{detection}} - t_{\text{initial\_access}}) + (t_{\text{contained}} - t_{\text{detection}})
+\]</div>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>The 200-Day Cost Inflection Threshold</strong>:
+According to IBM Security empirical forensics, data breaches with a dwell time exceeding 200 days incur an average total cost of <strong>$4.95 Million</strong>, representing a <strong><span class="arithmatex">\(28.3\%\)</span> cost penalty</strong> compared to breaches identified and contained in under 200 days ($3.86 Million).</p>
+</blockquote>
+<h3 id="2-romanosky-power-law-breach-cost-scaling-model">2. Romanosky Power-Law Breach Cost Scaling Model</h3>
+<p>The financial fallout of a data breach does not scale linearly per stolen record. Empirical economic research by <strong>Sasha Romanosky (2016)</strong> demonstrates that breach damages follow a sublinear power law with an exponential penalty for prolonged dwell time:</p>
 <div class="arithmatex">\[
 \mathcal{C}_{\text{total}}(N, t_{\text{dwell}}) = c_{\text{fixed}} + c_{\text{record}} \cdot N^\beta \cdot \exp\left( \gamma \cdot \frac{t_{\text{dwell}}}{365} \right)
 \]</div>
-<p>Where empirically <span class="arithmatex">\(\beta \approx 0.72\)</span> (reflecting economies of scale in forensic investigations), and <span class="arithmatex">\(\gamma \approx 0.18\)</span> represents compounding regulatory fines and litigation discovery costs.</p>
+<p>Where:
+- <span class="arithmatex">\(N\)</span> is the number of compromised identity records.
+- <span class="arithmatex">\(c_{\text{fixed}} \approx \$1{,}500{,}000\)</span> represents fixed baseline forensic, incident triage, legal, and crisis PR retainers.
+- <span class="arithmatex">\(c_{\text{record}} \approx \$165\)</span> is the base marginal per-record unit cost.
+- <span class="arithmatex">\(\beta \approx 0.72\)</span> is the sublinear economy-of-scale exponent (marginal forensic and customer notification cost decreases for massive datasets).
+- <span class="arithmatex">\(\gamma \approx 0.18\)</span> represents compounding regulatory sanctions and discovery litigation costs as attacker dwell duration expands.</p>
 <h3 id="3-exfiltration-anomaly-entropy-threshold">3. Exfiltration Anomaly Entropy Threshold</h3>
-<p>Adversaries exfiltrating multi-gigabyte database dumps alter the statistical distribution of outbound network packets. Let <span class="arithmatex">\(p(b_k)\)</span> represent the probability distribution of egress flow sizes across <span class="arithmatex">\(K\)</span> network buckets. The network transfer Shannon entropy is:</p>
+<p>Adversaries exfiltrating multi-gigabyte analytical dataset dumps distort the continuous probability distribution of egress flow sizes across network interfaces. Let <span class="arithmatex">\(p(b_k)\)</span> represent the empirical frequency of egress transfer chunk sizes across <span class="arithmatex">\(K\)</span> histogram bins. The egress Shannon entropy is:</p>
 <div class="arithmatex">\[
-H_{\text{net}}(B) = -\sum_{k=1}^K p(b_k) \log_2 p(b_k)
+H_{\text{egress}}(B) = -\sum_{k=1}^K p(b_k) \log_2 p(b_k)
 \]</div>
-<p>A sudden plunge in <span class="arithmatex">\(H_{\text{net}}(B) &lt; \tau_{\text{anomaly}}\)</span> indicates mass bulk exfiltration across single long-lived TLS sessions.</p>
-<h3 id="4-cloud-misconfiguration-combinatorial-vulnerability">4. Cloud Misconfiguration Combinatorial Vulnerability</h3>
-<p>In a data lake comprising <span class="arithmatex">\(M\)</span> storage buckets and <span class="arithmatex">\(P\)</span> IAM permission roles, the probability that at least one asset is inadvertently exposed to the public internet is:</p>
+<p>Under normal operational conditions, egress traffic exhibits high entropy (<span class="arithmatex">\(H_{\text{egress}} \gg 4.0\text{ bits}\)</span>) due to diverse, bursty micro-transactions. During a bulk exfiltration event (e.g., streaming uncompressed CSV or Parquet dumps via single long-lived TLS pipes), flow sizes collapse into uniform maximal chunk sizes, causing entropy to drop sharply:</p>
 <div class="arithmatex">\[
-P(\text{Exposed}) = 1 - \prod_{j=1}^M \left( 1 - P(\text{Misconfig}_j) \right)
+H_{\text{egress}}(B) &lt; \tau_{\text{alert}} \approx 1.50\text{ bits} \implies \text{Trigger Automated Network Circuit Breaker}
 \]</div>
-<p>For an enterprise with <span class="arithmatex">\(M = 500\)</span> buckets each having a minor misconfiguration rate <span class="arithmatex">\(P = 0.005\)</span>, the organization faces an exposure likelihood of:</p>
+<h3 id="4-combinatorial-risk-of-cloud-bucket-misconfigurations">4. Combinatorial Risk of Cloud Bucket Misconfigurations</h3>
+<p>In an enterprise analytics data lake distributed across <span class="arithmatex">\(M\)</span> storage buckets (S3, GCS, Azure Blob) managed by diverse engineering squads:</p>
 <div class="arithmatex">\[
-P(\text{Exposed}) = 1 - (1 - 0.005)^{500} \approx 1 - 0.0816 \approx 91.8\%
+P(\text{Breach}_{\ge 1}) = 1 - \prod_{j=1}^M \left( 1 - P(\text{Misconfig}_j) \right)
 \]</div>
-<p>This combinatorial vulnerability mandates automated cloud security posture management (CSPM) and immutable policy-as-code guardrails.</p>
+<p>Assuming an independent minor misconfiguration probability <span class="arithmatex">\(P(\text{Misconfig}) = 0.003\)</span> per bucket:</p>
+<div class="arithmatex">\[
+M = 500 \implies P(\text{Breach}) = 1 - (1 - 0.003)^{500} = 1 - 0.2223 = \mathbf{77.77\%}
+\]</div>
+<div class="arithmatex">\[
+M = 1{,}000 \implies P(\text{Breach}) = 1 - (1 - 0.003)^{1000} = 1 - 0.0496 = \mathbf{95.04\%}
+\]</div>
+<p>This combinatorial scaling proves mathematically why human review and manual cloud console auditing are doomed to fail at enterprise scale, mandating automated continuous Infrastructure-as-Code (IaC) linting and policy-as-code guardrails.</p>
 <hr />
 <h2 id="3-forensic-deconstruction-of-landmark-breaches">3. Forensic Deconstruction of Landmark Breaches</h2>
-<h3 id="case-study-1-equifax-2017-the-unpatched-dependency-catastrophe">Case Study 1: Equifax (2017) — The Unpatched Dependency Catastrophe</h3>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Case1 ["Equifax (2017)"]
+        E1["CVE-2017-5638 Apache Struts"] --&gt; E2["Expired Internal TLS Certificate"]
+        E2 --&gt; E3["76 Days Undetected Dwell"]
+        E3 --&gt; E4["147M SSNs &amp; Records Exfiltrated"]
+    end
+
+    subgraph Case2 ["Target (2013)"]
+        T1["HVAC Vendor Credential Phishing"] --&gt; T2["Flat Corporate Network Peering"]
+        T2 --&gt; T3["BlackPOS Memory Scraper Deploy"]
+        T3 --&gt; T4["40M Payment Cards Exfiltrated"]
+    end
+
+    subgraph Case3 ["Capital One (2019)"]
+        C1["ModSecurity WAF SSRF Vulnerability"] --&gt; C2["AWS IMDSv1 Metadata Token Theft"]
+        C2 --&gt; C3["Overprivileged WAFRole IAM Policy"]
+        C3 --&gt; C4["106M Credit Applications Exfiltrated"]
+    end
+
+    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Case1,E1,E2,E3,E4 red;
+    class Case2,T1,T2,T3,T4 amber;
+    class Case3,C1,C2,C3,C4 blue;</code></pre>
+<h3 id="case-study-1-equifax-2017-the-unpatched-dependency-expired-certificate-disaster">Case Study 1: Equifax (2017) — The Unpatched Dependency &amp; Expired Certificate Disaster</h3>
 <ul>
-<li><strong>Vulnerability</strong>: CVE-2017-5638 in Apache Struts Jakarta Multipart parser.</li>
-<li><strong>Root Failure</strong>: US-CERT issued a critical patch warning in March 2017. Equifax's internal security team failed to update an internet-facing dispute portal for 4 months.</li>
-<li><strong>Impact</strong>: Attackers dwelled inside the network undetected for <strong>76 days</strong>, querying 48 internal databases and exfiltrating the names, SSNs, and birthdates of <strong><span class="arithmatex">\(147\text{ Million}\)</span> citizens</strong> [<a href="#ref-harrell2017">Harrell2017</a>].</li>
-<li><strong>Settlement</strong>: Over <span class="arithmatex">\(\$700\text{ Million}\)</span> in regulatory fines and class-action settlements.</li>
+<li><strong>The Initial Vector</strong>: CVE-2017-5638, a remote code execution vulnerability in the Apache Struts Jakarta Multipart parser.</li>
+<li><strong>The Operational Failure</strong>: US-CERT issued a critical security patch warning in March 2017. Equifax's security operations failed to patch an internet-facing consumer dispute web application.</li>
+<li><strong>The Internal Blindspot</strong>: Attackers breached the dispute portal and executed network reconnaissance. Crucially, Equifax had allowed an internal <strong>TLS inspection certificate to expire 10 months prior</strong>. As a result, network traffic monitors were blinded, allowing the attackers to execute thousands of database queries over a <strong>76-day dwell time</strong> without triggering intrusion alarms [<a href="#ref-harrell2017">Harrell2017</a>].</li>
+<li><strong>The Blast Radius</strong>: Exfiltration of names, Social Security numbers, birth dates, and addresses of <strong>147 Million citizens</strong>, culminating in a <strong>$700 Million regulatory settlement</strong> with the FTC and CFPB.</li>
 </ul>
-<h3 id="case-study-2-target-2013-lateral-supply-chain-infiltration">Case Study 2: Target (2013) — Lateral Supply Chain Infiltration</h3>
+<h3 id="case-study-2-target-2013-lateral-movement-via-hvac-supply-chain">Case Study 2: Target (2013) — Lateral Movement via HVAC Supply Chain</h3>
 <ul>
-<li><strong>Vulnerability</strong>: Stolen credentials from a third-party HVAC contractor (Fazio Mechanical Services).</li>
-<li><strong>Root Failure</strong>: The third-party contractor was granted remote network access with no network segmentation separating vendor billing from the Point-of-Sale (POS) payment environment.</li>
-<li><strong>Impact</strong>: Attackers laterally traversed the corporate network, deployed memory-scraping malware across <span class="arithmatex">\(40{,}000\)</span> cash registers, and exfiltrated <strong><span class="arithmatex">\(40\text{ Million}\)</span> credit cards</strong> and <strong><span class="arithmatex">\(70\text{ Million}\)</span> identity records</strong>.</li>
+<li><strong>The Initial Vector</strong>: Phishing email compromising credentials of Fazio Mechanical Services, an external HVAC vendor providing heating and refrigeration management.</li>
+<li><strong>The Architectural Failure</strong>: Target granted the HVAC vendor remote network portal access, but failed to implement <strong>network segmentation</strong>. The vendor portal sat on the same flat internal network routing domain as the Point-of-Sale (POS) registers.</li>
+<li><strong>Lateral Propagation</strong>: Attackers pivoted laterally across the corporate domain, escalated administrative privileges, and pushed the <em>BlackPOS</em> memory-scraping malware to over <span class="arithmatex">\(40{,}000\)</span> cash register terminals during the holiday shopping season.</li>
+<li><strong>The Fallout</strong>: Compromise of <strong>40 Million credit card numbers</strong> and <strong>70 Million customer PII records</strong>, resulting in the resignation of Target's CEO and CIO and $292 Million in gross breach expenses.</li>
+</ul>
+<h3 id="case-study-3-capital-one-2019-ssrf-overprivileged-iam-role-assumption">Case Study 3: Capital One (2019) — SSRF &amp; Overprivileged IAM Role Assumption</h3>
+<ul>
+<li><strong>The Initial Vector</strong>: A misconfigured open-source Web Application Firewall (ModSecurity) running on an Amazon EC2 instance was vulnerable to <strong>Server-Side Request Forgery (SSRF)</strong>.</li>
+<li><strong>The Metadata Exploitation</strong>: The attacker coerced the WAF into querying the local AWS Instance Metadata Service endpoint (<code>http://169.254.169.254/latest/meta-data/iam/security-credentials/</code>), exfiltrating temporary AWS Security Token Service (STS) credentials for the instance's associated IAM role (<code>WAFRole</code>).</li>
+<li><strong>Overprivileged Permissions</strong>: The <code>WAFRole</code> possessed excessively broad permissions, including <code>s3:ListBuckets</code> and <code>s3:GetObject</code> across hundreds of production analytical data buckets.</li>
+<li><strong>The Impact</strong>: The attacker downloaded over 700 S3 buckets containing <strong>106 Million credit card applications</strong>, 140,000 Social Security numbers, and 80,000 bank account numbers, yielding an <strong>$80 Million civil fine</strong> from the OCC and a <strong>$190 Million class action settlement</strong>.</li>
 </ul>
 <hr />
-<h2 id="4-python-verification-simulating-breach-cost-misconfiguration-probability">4. Python Verification: Simulating Breach Cost &amp; Misconfiguration Probability</h2>
-<p>The following Python script computes the empirical breach cost scaling model and validates the combinatorial risk of cloud bucket misconfiguration.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># breach_forensics_sim.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes power-law breach costs and cloud combinatorial exposure probability</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_breach_cost</span><span class="p">(</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">n_records</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">dwell_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">c_fixed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1_500_000.0</span><span class="p">,</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">c_record</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">165.0</span><span class="p">,</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.72</span><span class="p">,</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.18</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="c1"># Computes total breach financial impact via Romanosky power-law scaling</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">time_penalty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">dwell_days</span> <span class="o">/</span> <span class="mf">365.0</span><span class="p">))</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">variable_cost</span> <span class="o">=</span> <span class="n">c_record</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_records</span> <span class="o">**</span> <span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">time_penalty</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">c_fixed</span> <span class="o">+</span> <span class="n">variable_cost</span><span class="p">)</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_cloud_exposure_prob</span><span class="p">(</span><span class="n">n_buckets</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">p_misconfig</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="c1"># Evaluates combinatorial probability of at least one public cloud exposure</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">p_misconfig</span><span class="p">)</span> <span class="o">**</span> <span class="n">n_buckets</span><span class="p">)</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_breach_forensics_assertions</span><span class="p">():</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="c1"># Test case 1: 100,000 records lost, 60 days dwell vs 280 days dwell</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">cost_fast</span> <span class="o">=</span> <span class="n">compute_breach_cost</span><span class="p">(</span><span class="n">n_records</span><span class="o">=</span><span class="mi">100_000</span><span class="p">,</span> <span class="n">dwell_days</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">cost_slow</span> <span class="o">=</span> <span class="n">compute_breach_cost</span><span class="p">(</span><span class="n">n_records</span><span class="o">=</span><span class="mi">100_000</span><span class="p">,</span> <span class="n">dwell_days</span><span class="o">=</span><span class="mi">280</span><span class="p">)</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="c1"># Assertions</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="k">assert</span> <span class="n">cost_slow</span> <span class="o">&gt;</span> <span class="n">cost_fast</span><span class="p">,</span> <span class="s2">"Prolonged dwell time must increase total cost"</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">cost_increase_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">cost_slow</span> <span class="o">-</span> <span class="n">cost_fast</span><span class="p">)</span> <span class="o">/</span> <span class="n">cost_fast</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">assert</span> <span class="mf">0.05</span> <span class="o">&lt;</span> <span class="n">cost_increase_pct</span> <span class="o">&lt;</span> <span class="mf">0.25</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Unexpected penalty: </span><span class="si">{</span><span class="n">cost_increase_pct</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># Test case 2: Combinatorial cloud risk</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">p_exp_500</span> <span class="o">=</span> <span class="n">compute_cloud_exposure_prob</span><span class="p">(</span><span class="n">n_buckets</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">p_misconfig</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p_exp_500</span> <span class="o">-</span> <span class="mf">0.9184</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected ~91.8% exposure, got </span><span class="si">{</span><span class="n">p_exp_500</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="c1"># Enforcing policy-as-code drops p_misconfig to 0.0001</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="n">p_exp_hardened</span> <span class="o">=</span> <span class="n">compute_cloud_exposure_prob</span><span class="p">(</span><span class="n">n_buckets</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">p_misconfig</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="k">assert</span> <span class="n">p_exp_hardened</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Hardened probability too high: </span><span class="si">{</span><span class="n">p_exp_hardened</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Breach Cost (60 days dwell): $</span><span class="si">{</span><span class="n">cost_fast</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Breach Cost (280 days dwell): $</span><span class="si">{</span><span class="n">cost_slow</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2"> (+</span><span class="si">{</span><span class="n">cost_increase_pct</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cloud Exposure Prob (M=500, p=0.005): </span><span class="si">{</span><span class="n">p_exp_500</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% -&gt; Hardened: </span><span class="si">{</span><span class="n">p_exp_hardened</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Breach forensics and combinatorial risk assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="n">test_breach_forensics_assertions</span><span class="p">()</span>
+<h2 id="4-architectural-defenses-zero-trust-envelope-encryption">4. Architectural Defenses: Zero Trust &amp; Envelope Encryption</h2>
+<p>To insulate datasets from cascading perimeter failures, modern data engineering relies on two non-negotiable architectural invariants:</p>
+<h3 id="1-envelope-encryption-with-hardware-security-modules-hsms">1. Envelope Encryption with Hardware Security Modules (HSMs)</h3>
+<p>Storing sensitive dataset columns in plaintext or encrypting an entire database with a single static symmetric key represents a single point of failure. <strong>Envelope Encryption</strong> decouples data storage from key custody:</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Storage ["Encrypted Data Lake / Database Tier"]
+        Record["Sensitive Microdata Row r"]
+        Ciphertext["Encrypted Ciphertext c = AES-256-GCM(r, DEK)"]
+        EncDEK["Encrypted DEK = RSA-OAEP(DEK, KEK_pub)"]
+    end
+
+    subgraph HSM ["Hardware Security Module (FIPS 140-2 Level 3)"]
+        KEK["Master Key Encryption Key (KEK)&lt;br&gt;• Never leaves silicon boundary&lt;br&gt;• Rotated automatically every 90 days"]
+        CryptoEngine["Cryptographic Decryption Core"]
+    end
+
+    Record --&gt;|Encrypt with Ephemeral DEK| Ciphertext
+    EncDEK --&gt;|Decrypt Request with IAM Token| CryptoEngine
+    KEK --&gt; CryptoEngine
+    CryptoEngine --&gt;|Plaintext DEK (In-Memory Only)| DecryptRecord["Decrypt Microdata Row (Ephemeral RAM)"]
+
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Storage,Record,Ciphertext,EncDEK blue;
+    class HSM,KEK,CryptoEngine amber;
+    class DecryptRecord green;</code></pre>
+<ol>
+<li>Each individual dataset partition or sensitive column is encrypted using an ephemeral <strong>Data Encryption Key (DEK)</strong> via AES-256-GCM.</li>
+<li>The DEK itself is encrypted under a customer-managed <strong>Key Encryption Key (KEK)</strong> residing inside a FIPS 140-2 Level 3 Hardware Security Module (e.g., AWS KMS, Google Cloud KMS).</li>
+<li>The encrypted DEK is stored alongside the ciphertext. An attacker who steals the storage bucket or database dump cannot decrypt the records without live, authenticated IAM access to the KMS HSM.</li>
+</ol>
+<h3 id="2-zero-trust-network-architecture-nist-sp-800-207">2. Zero Trust Network Architecture (NIST SP 800-207)</h3>
+<ul>
+<li><strong>Eliminate Implicit Trust Zones</strong>: No node inside a network is trusted simply because of its IP address or physical presence in a VPC.</li>
+<li><strong>Mutual TLS (mTLS)</strong>: Every microservice and pipeline component authenticates via cryptographically signed x509 certificates.</li>
+<li><strong>IMDSv2 Enforcement</strong>: Disallow IMDSv1; require session tokens (<code>PUT /latest/api/token</code>) with HTTP hop limits set strictly to <code>1</code> to eliminate SSRF credential exfiltration.</li>
+</ul>
+<hr />
+<h2 id="5-interactive-laboratory-cyber-forensics-dwell-time-blast-radius-simulator">5. Interactive Laboratory: Cyber Forensics, Dwell-Time &amp; Blast Radius Simulator</h2>
+<p>Simulate the cascading stages of an enterprise data breach. Adjust attacker dwell time, select infiltration attack vectors, toggle architectural defenses, and observe real-time exfiltration costs and blast radius containment.</p>
+<div class="noc-sim-card" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 24px; margin: 24px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 1.5rem;">🛡️</span>
+      <h3 style="margin: 0; font-weight: 800; color: #151b20; font-size: 1.25rem;">Cyber Forensics &amp; Dwell-Time Simulator</h3>
+    </div>
+    <span style="background: #ffc83e; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; font-family: monospace;">ROMANOSKY FORENSIC MODEL</span>
+  </div>
+
+  <p style="color: #475569; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;">
+    Observe how attacker dwell duration compounds financial liabilities, and evaluate how envelope encryption and micro-segmentation constrain the exfiltration blast radius.
+  </p>
+
+  <!-- Controls Panel -->
+  <div style="background: #f8fafc; border: 2px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+    <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+      ⚙️ Incident Simulation Parameters
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Initial Attack Vector:
+        </label>
+        <select id="sel_vector" style="width: 100%; padding: 6px; border: 1.5px solid #151b20; border-radius: 6px; font-weight: 700; font-size: 0.8rem; background: #ffffff;" onchange="updateBreachSim()">
+          <option value="struts">Unpatched Framework (Equifax / Struts)</option>
+          <option value="ssrf">Cloud SSRF &amp; IAM Role (Capital One)</option>
+          <option value="supply_chain">Vendor Lateral Movement (Target HVAC)</option>
+          <option value="misconfig">Public Cloud Bucket (S3 0.0.0.0/0)</option>
+        </select>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Attacker Dwell Time: <span id="label_dwell" style="color: #0284c7; font-family: monospace;">76 Days</span>
+        </label>
+        <input type="range" id="slider_dwell" min="5" max="365" step="5" value="76" style="width: 100%; accent-color: #0284c7;" oninput="updateBreachSim()">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
+          Database Records at Risk: <span id="label_records" style="color: #0284c7; font-family: monospace;">1,000,000 Records</span>
+        </label>
+        <input type="range" id="slider_records" min="10000" max="10000000" step="50000" value="1000000" style="width: 100%; accent-color: #0284c7;" oninput="updateBreachSim()">
+      </div>
+    </div>
+
+    <!-- Architectural Defense Toggles -->
+    <div style="margin-top: 14px; border-top: 1px solid #cbd5e1; padding-top: 12px;">
+      <span style="font-size: 0.78rem; font-weight: 800; color: #1e293b; display: block; margin-bottom: 8px;">
+        🛡️ Active Architectural Countermeasures:
+      </span>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; background: #ffffff; padding: 4px 10px; border-radius: 6px; border: 1.5px solid #151b20; cursor: pointer;">
+          <input type="checkbox" id="chk_envelope" onchange="updateBreachSim()"> Envelope Encryption (HSM / KMS)
+        </label>
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; background: #ffffff; padding: 4px 10px; border-radius: 6px; border: 1.5px solid #151b20; cursor: pointer;">
+          <input type="checkbox" id="chk_zerotrust" onchange="updateBreachSim()"> Zero Trust Micro-segmentation
+        </label>
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; background: #ffffff; padding: 4px 10px; border-radius: 6px; border: 1.5px solid #151b20; cursor: pointer;">
+          <input type="checkbox" id="chk_imdsv2" onchange="updateBreachSim()"> AWS IMDSv2 Hop-Limit Enforcement
+        </label>
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; background: #ffffff; padding: 4px 10px; border-radius: 6px; border: 1.5px solid #151b20; cursor: pointer;">
+          <input type="checkbox" id="chk_entropy" onchange="updateBreachSim()"> Egress Entropy Circuit Breaker
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-Time Impact Metric Cards -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
+    <!-- Financial Loss Card -->
+    <div style="background: #fef2f2; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #991b1b; text-transform: uppercase;">Romanosky Projected Cost</div>
+      <div id="stat_breach_cost" style="font-size: 1.3rem; font-weight: 800; color: #b91c1c; margin: 4px 0;">$4.72 M</div>
+      <div style="font-size: 0.68rem; color: #475569;">$c_{\text{fix}} + c_{\text{rec}} N^\beta e^{\gamma t / 365}$</div>
+    </div>
+
+    <!-- Dwell Time Penalty -->
+    <div style="background: #fffbeb; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Dwell Multiplier Penalty</div>
+      <div id="stat_dwell_penalty" style="font-size: 1.3rem; font-weight: 800; color: #b45309; margin: 4px 0;">+3.8%</div>
+      <div style="font-size: 0.68rem; color: #475569;">Compounding Discovery Exposure</div>
+    </div>
+
+    <!-- Blast Radius Exfiltration -->
+    <div style="background: #eff6ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">Records Exfiltrated (Blast Radius)</div>
+      <div id="stat_exfil_records" style="font-size: 1.3rem; font-weight: 800; color: #1e3a8a; margin: 4px 0;">1,000,000</div>
+      <div id="stat_containment_badge" style="font-size: 0.68rem; color: #0284c7; font-weight: 700;">Full Perimeter Breach</div>
+    </div>
+
+    <!-- Egress Entropy Status -->
+    <div style="background: #fdf4ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: #86198f; text-transform: uppercase;">Egress Entropy Indicator</div>
+      <div id="stat_entropy_val" style="font-size: 1.3rem; font-weight: 800; color: #701a75; margin: 4px 0;">1.12 bits</div>
+      <div id="stat_entropy_status" style="font-size: 0.68rem; color: #dc2626; font-weight: 700;">⚠️ Bulk Dump Anomaly Detected</div>
+    </div>
+  </div>
+
+  <!-- Incident Forensics Log Terminal -->
+  <div style="background: #151b20; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace; font-size: 0.78rem; color: #cbd5e1; line-height: 1.5;">
+    <div style="color: #60a5fa; font-weight: 700; margin-bottom: 6px;">[FORENSIC TIMELINE AUDIT LOG]</div>
+    <div id="log_event_1">00:00:00 - Initial access gained via unpatched Apache Struts endpoint (CVE-2017-5638).</div>
+    <div id="log_event_2">00:04:12 - Reconnaissance: internal port scan across unsegmented 10.0.0.0/8 subnet.</div>
+    <div id="log_event_3">Dwell Phase - Attacker persistent for 76 days querying database replicas.</div>
+    <div id="log_event_4" style="color: #f87171;">EXFILTRATION: 1,000,000 unencrypted microdata records streamed via encrypted TLS pipe.</div>
+  </div>
+</div>
+
+<script>
+function updateBreachSim() {
+  let vector = document.getElementById('sel_vector').value;
+  let dwellDays = parseInt(document.getElementById('slider_dwell').value);
+  let records = parseInt(document.getElementById('slider_records').value);
+
+  let hasEnvelope = document.getElementById('chk_envelope').checked;
+  let hasZeroTrust = document.getElementById('chk_zerotrust').checked;
+  let hasIMDSv2 = document.getElementById('chk_imdsv2').checked;
+  let hasEntropyAlert = document.getElementById('chk_entropy').checked;
+
+  document.getElementById('label_dwell').textContent = `${dwellDays} Days`;
+  document.getElementById('label_records').textContent = `${records.toLocaleString()} Records`;
+
+  // Mitigations against specific attack vectors
+  let blocked = false;
+  let mitigationMsg = "";
+  if (vector === 'ssrf' && hasIMDSv2) {
+    blocked = true;
+    mitigationMsg = "IMDSv2 session token hop-limit enforced: Attacker SSRF payload blocked from accessing instance metadata credentials!";
+  } else if (vector === 'supply_chain' && hasZeroTrust) {
+    blocked = true;
+    mitigationMsg = "Zero Trust microsegmentation active: Contractor portal isolated from production database VLAN. Lateral movement blocked!";
+  }
+
+  // Effective records breached
+  let effectiveRecords = records;
+  if (blocked) {
+    effectiveRecords = 0;
+  } else if (hasEnvelope) {
+    // If envelope encrypted, records are useless ciphertext
+    effectiveRecords = 0;
+  } else if (hasEntropyAlert && dwellDays > 20) {
+    // Entropy alert triggers circuit breaker, capping exfiltration to 5%
+    effectiveRecords = Math.round(records * 0.05);
+  }
+
+  // Cost calculation via Romanosky power-law: C = c_fixed + c_record * N^0.72 * exp(0.18 * dwell / 365)
+  let c_fixed = 1500000;
+  let c_record = 165;
+  let dwellFactor = Math.exp(0.18 * (dwellDays / 365.0));
+  let penaltyPct = (dwellFactor - 1.0) * 100.0;
+
+  let totalCost = 0;
+  if (effectiveRecords > 0) {
+    let variableCost = c_record * Math.pow(effectiveRecords, 0.72) * dwellFactor;
+    totalCost = c_fixed + variableCost;
+  } else {
+    // Incident triage base cost
+    totalCost = (blocked) ? 75000 : 350000;
+  }
+
+  // Update Display
+  document.getElementById('stat_breach_cost').textContent = (totalCost >= 1e6) 
+    ? `$${(totalCost / 1e6).toFixed(2)} M` 
+    : `$${(totalCost / 1e3).toFixed(0)} K`;
+
+  document.getElementById('stat_dwell_penalty').textContent = `+${penaltyPct.toFixed(1)}%`;
+  document.getElementById('stat_exfil_records').textContent = effectiveRecords.toLocaleString();
+
+  let badge = document.getElementById('stat_containment_badge');
+  if (effectiveRecords === 0) {
+    badge.textContent = "✓ Data Fully Protected / Contained";
+    badge.style.color = "#15803d";
+  } else if (effectiveRecords < records) {
+    badge.textContent = "⚡ Partial Exfiltration (Circuit Breaker Tripped)";
+    badge.style.color = "#d97706";
+  } else {
+    badge.textContent = "⚠️ Full Perimeter Microdata Exfiltrated";
+    badge.style.color = "#dc2626";
+  }
+
+  // Egress Entropy
+  let entropyVal = (effectiveRecords > 0 && !hasEntropyAlert) ? 1.12 : 4.65;
+  document.getElementById('stat_entropy_val').textContent = `${entropyVal.toFixed(2)} bits`;
+  let entStatus = document.getElementById('stat_entropy_status');
+  if (entropyVal < 2.0) {
+    entStatus.textContent = "⚠️ Bulk Dump Anomaly Detected";
+    entStatus.style.color = "#dc2626";
+  } else {
+    entStatus.textContent = "✓ Egress Flow Distribution Normal";
+    entStatus.style.color = "#15803d";
+  }
+
+  // Forensic Log Updates
+  let l1 = document.getElementById('log_event_1');
+  let l2 = document.getElementById('log_event_2');
+  let l3 = document.getElementById('log_event_3');
+  let l4 = document.getElementById('log_event_4');
+
+  if (vector === 'struts') {
+    l1.textContent = "00:00:00 - Initial access: unpatched Apache Struts parser (CVE-2017-5638).";
+  } else if (vector === 'ssrf') {
+    l1.textContent = (hasIMDSv2) 
+      ? "00:00:00 - SSRF attempt intercepted by IMDSv2 token validation. Attack terminated."
+      : "00:00:00 - SSRF exploited on WAF: AWS IMDSv1 temporary STS credentials exfiltrated.";
+  } else if (vector === 'supply_chain') {
+    l1.textContent = (hasZeroTrust)
+      ? "00:00:00 - Contractor credential compromised. Zero Trust network perimeter denied DB access."
+      : "00:00:00 - Contractor portal compromised; flat routing domain allowed lateral pivot to DB subnet.";
+  } else {
+    l1.textContent = "00:00:00 - Analytical S3 bucket policy misconfigured: unauthenticated public download.";
+  }
+
+  l2.textContent = (blocked) 
+    ? "00:01:15 - Perimeter defenses held. Blast radius confined to external DMZ."
+    : `00:14:22 - Attacker established persistence; querying ${records.toLocaleString()} records across analytical cluster.`;
+
+  l3.textContent = `Dwell Phase - Attacker active inside infrastructure for ${dwellDays} days prior to incident identification.`;
+
+  if (effectiveRecords === 0) {
+    l4.style.color = "#4ade80";
+    l4.textContent = (hasEnvelope) 
+      ? "DEFENSE IN DEPTH: Exfiltrated blobs encrypted under HSM KEK. Plaintext data remains protected."
+      : `CONTAINED: ${mitigationMsg}`;
+  } else {
+    l4.style.color = "#f87171";
+    l4.textContent = `EXFILTRATION: ${effectiveRecords.toLocaleString()} microdata records exfiltrated across external network interface.`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', updateBreachSim);
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  updateBreachSim();
+}
+</script>
+
+<hr />
+<h2 id="6-production-implementation-forensic-breach-cost-cloud-combinatorial-auditor">6. Production Implementation: Forensic Breach Cost &amp; Cloud Combinatorial Auditor</h2>
+<p>The following production Python module uses <strong>Pydantic V2</strong> to implement the Romanosky power-law breach financial loss model, compute cloud storage combinatorial exposure likelihoods, and perform Shannon entropy anomaly audits on egress network flow metrics.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">breach_forensics_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production cyber incident loss estimation and forensics engine using Pydantic V2.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Evaluates Romanosky power-law breach scaling, combinatorial cloud misconfiguration,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">and network egress Shannon entropy anomaly detection.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">IncidentParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="sd">"""Forensic attributes defining a security incident."""</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">incident_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">compromised_records</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of sensitive identity records"</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">dwell_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Attacker dwell time prior to detection"</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">is_envelope_encrypted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">circuit_breaker_active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">class</span><span class="w"> </span><span class="nc">CloudInfrastructureProfile</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="sd">"""Enterprise multi-cloud storage bucket portfolio."""</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">total_buckets</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">per_bucket_misconfig_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">class</span><span class="w"> </span><span class="nc">ForensicLossReport</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="sd">"""Consolidated financial and forensic impact report."""</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="n">incident_id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">effective_exposed_records</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">dwell_days</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">dwell_cost_multiplier</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">total_projected_cost_usd</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="n">cloud_portfolio_breach_probability</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">egress_entropy_bits</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">is_bulk_exfiltration_alert</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="k">class</span><span class="w"> </span><span class="nc">CyberForensicsEngine</span><span class="p">:</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="sd">"""Forensic evaluation engine for cloud data pipelines."""</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="n">C_FIXED</span> <span class="o">=</span> <span class="mf">1_500_000.0</span>  <span class="c1"># Baseline legal, forensics, and crisis PR retainers</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="n">C_RECORD</span> <span class="o">=</span> <span class="mf">165.0</span>       <span class="c1"># Base unit record cost</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="n">BETA</span> <span class="o">=</span> <span class="mf">0.72</span>            <span class="c1"># Romanosky sublinear economies-of-scale exponent</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.18</span>           <span class="c1"># Dwell time exponential penalty factor</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_projected_loss</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">incident</span><span class="p">:</span> <span class="n">IncidentParameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">        </span><span class="sd">"""Computes empirical breach cost using the Romanosky power-law model."""</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="k">if</span> <span class="n">incident</span><span class="o">.</span><span class="n">is_envelope_encrypted</span><span class="p">:</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>            <span class="c1"># Data remains unreadable ciphertext; cost limited to forensic containment</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>            <span class="k">return</span> <span class="mf">350_000.0</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">effective_n</span> <span class="o">=</span> <span class="n">incident</span><span class="o">.</span><span class="n">compromised_records</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="k">if</span> <span class="n">incident</span><span class="o">.</span><span class="n">circuit_breaker_active</span> <span class="ow">and</span> <span class="n">incident</span><span class="o">.</span><span class="n">dwell_days</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="c1"># Automatic network kill-switch limits exfiltration to 5% of database</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>            <span class="n">effective_n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">effective_n</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">)</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="n">dwell_multiplier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">GAMMA</span> <span class="o">*</span> <span class="p">(</span><span class="n">incident</span><span class="o">.</span><span class="n">dwell_days</span> <span class="o">/</span> <span class="mf">365.0</span><span class="p">))</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="n">variable_cost</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">C_RECORD</span> <span class="o">*</span> <span class="p">(</span><span class="n">effective_n</span> <span class="o">**</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BETA</span><span class="p">)</span> <span class="o">*</span> <span class="n">dwell_multiplier</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">C_FIXED</span> <span class="o">+</span> <span class="n">variable_cost</span><span class="p">)</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_cloud_combinatorial_risk</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span> <span class="n">CloudInfrastructureProfile</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">        </span><span class="sd">"""Evaluates probability that at least one storage bucket is exposed."""</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>        <span class="n">p_safe_single</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">profile</span><span class="o">.</span><span class="n">per_bucket_misconfig_prob</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="n">p_all_safe</span> <span class="o">=</span> <span class="n">p_safe_single</span> <span class="o">**</span> <span class="n">profile</span><span class="o">.</span><span class="n">total_buckets</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">p_all_safe</span><span class="p">)</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_egress_entropy</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">flow_sizes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">        </span><span class="sd">"""Calculates Shannon entropy across network egress chunk sizes."""</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">flow_sizes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>            <span class="k">return</span> <span class="mf">0.0</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="n">counts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">flow_sizes</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>        <span class="n">probabilities</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">))</span>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>        <span class="c1"># Filter zero-probabilities for numerical stability</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>        <span class="n">probabilities</span> <span class="o">=</span> <span class="n">probabilities</span><span class="p">[</span><span class="n">probabilities</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">probabilities</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">probabilities</span><span class="p">))</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">entropy</span><span class="p">)</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">audit_incident</span><span class="p">(</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="n">incident</span><span class="p">:</span> <span class="n">IncidentParameters</span><span class="p">,</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="n">cloud_profile</span><span class="p">:</span> <span class="n">CloudInfrastructureProfile</span><span class="p">,</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="n">egress_samples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ForensicLossReport</span><span class="p">:</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="w">        </span><span class="sd">"""Generates comprehensive forensic incident report."""</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>        <span class="n">effective_records</span> <span class="o">=</span> <span class="n">incident</span><span class="o">.</span><span class="n">compromised_records</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="k">if</span> <span class="n">incident</span><span class="o">.</span><span class="n">is_envelope_encrypted</span><span class="p">:</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>            <span class="n">effective_records</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>        <span class="k">elif</span> <span class="n">incident</span><span class="o">.</span><span class="n">circuit_breaker_active</span><span class="p">:</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>            <span class="n">effective_records</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">effective_records</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">)</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>        <span class="n">total_cost</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">calculate_projected_loss</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>        <span class="n">dwell_mult</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">GAMMA</span> <span class="o">*</span> <span class="p">(</span><span class="n">incident</span><span class="o">.</span><span class="n">dwell_days</span> <span class="o">/</span> <span class="mf">365.0</span><span class="p">)))</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>        <span class="n">cloud_risk</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">calculate_cloud_combinatorial_risk</span><span class="p">(</span><span class="n">cloud_profile</span><span class="p">)</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="n">entropy</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">compute_egress_entropy</span><span class="p">(</span><span class="n">egress_samples</span><span class="p">)</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>        <span class="k">return</span> <span class="n">ForensicLossReport</span><span class="p">(</span>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>            <span class="n">incident_id</span><span class="o">=</span><span class="n">incident</span><span class="o">.</span><span class="n">incident_id</span><span class="p">,</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>            <span class="n">effective_exposed_records</span><span class="o">=</span><span class="n">effective_records</span><span class="p">,</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>            <span class="n">dwell_days</span><span class="o">=</span><span class="n">incident</span><span class="o">.</span><span class="n">dwell_days</span><span class="p">,</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>            <span class="n">dwell_cost_multiplier</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">dwell_mult</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>            <span class="n">total_projected_cost_usd</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">total_cost</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>            <span class="n">cloud_portfolio_breach_probability</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cloud_risk</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>            <span class="n">egress_entropy_bits</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">entropy</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>            <span class="n">is_bulk_exfiltration_alert</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">entropy</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>        <span class="p">)</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a><span class="c1"># Automated Assertion Suite for Security CI/CD Gates</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_forensic_engine_assertions</span><span class="p">():</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="c1"># Test Case 1: Romanosky Scaling Monotonicity</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="n">fast_inc</span> <span class="o">=</span> <span class="n">IncidentParameters</span><span class="p">(</span><span class="n">incident_id</span><span class="o">=</span><span class="s2">"INC_FAST"</span><span class="p">,</span> <span class="n">compromised_records</span><span class="o">=</span><span class="mi">500_000</span><span class="p">,</span> <span class="n">dwell_days</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="n">slow_inc</span> <span class="o">=</span> <span class="n">IncidentParameters</span><span class="p">(</span><span class="n">incident_id</span><span class="o">=</span><span class="s2">"INC_SLOW"</span><span class="p">,</span> <span class="n">compromised_records</span><span class="o">=</span><span class="mi">500_000</span><span class="p">,</span> <span class="n">dwell_days</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>    <span class="n">cost_fast</span> <span class="o">=</span> <span class="n">CyberForensicsEngine</span><span class="o">.</span><span class="n">calculate_projected_loss</span><span class="p">(</span><span class="n">fast_inc</span><span class="p">)</span>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="n">cost_slow</span> <span class="o">=</span> <span class="n">CyberForensicsEngine</span><span class="o">.</span><span class="n">calculate_projected_loss</span><span class="p">(</span><span class="n">slow_inc</span><span class="p">)</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="k">assert</span> <span class="n">cost_slow</span> <span class="o">&gt;</span> <span class="n">cost_fast</span><span class="p">,</span> <span class="s2">"Prolonged dwell time must increase projected loss."</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="k">assert</span> <span class="n">cost_slow</span> <span class="o">&gt;</span> <span class="mf">3_000_000.0</span><span class="p">,</span> <span class="s2">"500k records breach must exceed baseline threshold."</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="c1"># Test Case 2: Combinatorial Cloud Exposure Probability</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="n">profile</span> <span class="o">=</span> <span class="n">CloudInfrastructureProfile</span><span class="p">(</span><span class="n">total_buckets</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">per_bucket_misconfig_prob</span><span class="o">=</span><span class="mf">0.003</span><span class="p">)</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="n">p_exposed</span> <span class="o">=</span> <span class="n">CyberForensicsEngine</span><span class="o">.</span><span class="n">calculate_cloud_combinatorial_risk</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="k">assert</span> <span class="mf">0.77</span> <span class="o">&lt;</span> <span class="n">p_exposed</span> <span class="o">&lt;</span> <span class="mf">0.79</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Expected ~77.8% exposure risk, got </span><span class="si">{</span><span class="n">p_exposed</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="c1"># Test Case 3: Egress Entropy Anomaly Detection</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="c1"># Normal diverse traffic vs bulk uniform exfiltration</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="n">normal_flows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1500.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="n">bulk_flows</span> <span class="o">=</span> <span class="p">[</span><span class="mf">65535.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">950</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="n">report_normal</span> <span class="o">=</span> <span class="n">CyberForensicsEngine</span><span class="o">.</span><span class="n">audit_incident</span><span class="p">(</span><span class="n">fast_inc</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="n">normal_flows</span><span class="p">)</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="n">report_bulk</span> <span class="o">=</span> <span class="n">CyberForensicsEngine</span><span class="o">.</span><span class="n">audit_incident</span><span class="p">(</span><span class="n">fast_inc</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="n">bulk_flows</span><span class="p">)</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>    <span class="k">assert</span> <span class="ow">not</span> <span class="n">report_normal</span><span class="o">.</span><span class="n">is_bulk_exfiltration_alert</span>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>    <span class="k">assert</span> <span class="n">report_bulk</span><span class="o">.</span><span class="n">is_bulk_exfiltration_alert</span><span class="p">,</span> <span class="s2">"Engine failed to trigger bulk exfiltration alert."</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="k">assert</span> <span class="n">report_bulk</span><span class="o">.</span><span class="n">egress_entropy_bits</span> <span class="o">&lt;</span> <span class="mf">2.0</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All cyber forensics loss and network anomaly assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>    <span class="n">run_forensic_engine_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="5-interactive-laboratory-workbench">5. 🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Launch Cyber Forensics & Dwell-Time Simulator</h4>
-  <p>Model attacker dwell time, calculate exfiltration blast radii, and evaluate multi-cloud storage bucket access policies.</p>
-  <a href="../../tools/deid-risk/" class="noc-sim-btn">Launch Forensics Studio →</a>
-</div>
-<h4>Explore Consent & PII Scrubber</h4>
-<p>Test in-memory tokenization and evaluate perimeter defense strategies against credential stuffing and database dumps.</p>
-<p><a href="../../tools/pii-scrubber/" class="noc-sim-btn">Launch PII Scrubber Workbench →</a>
-</div></p>
+<h2 id="7-diagnostic-self-assessment-scenarios">7. Diagnostic Self-Assessment Scenarios</h2>
+<p>Test your comprehension of breach attack paths, dwell metrics, and architectural defense patterns:</p>
+<details class="question">
+<summary>Self-Assessment 1: Equifax Expired Certificate &amp; Detection Blindspot</summary>
+<p>In the 2017 Equifax data breach, attackers operated undetected inside internal networks for 76 days despite Equifax maintaining enterprise network intrusion detection sensors (IDS). What specific operational failure blinded the security sensors, and what architectural invariant would have prevented the exfiltration?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The operational failure was an <strong>Expired TLS Decryption / Inspection Certificate</strong>.</p>
+<p>Equifax routed internal network traffic through security monitoring appliances that performed deep packet inspection on encrypted TLS streams. However, the cryptographic certificate installed on the inspection device had expired <strong>10 months prior</strong> to the breach. As a result, encrypted network flows passed through the sensors uninspected, allowing attackers to execute thousands of unauthorized database queries and stream 147 million records to external servers without triggering IDS alarms.</p>
+<p><strong>Architectural Invariant to Prevent Breach:</strong>
+1. <strong>Automated PKI Lifecycle Management</strong>: Continuous monitoring and renewal of x509 certificates to prevent sensor blackout.
+2. <strong>Network Egress Whitelisting &amp; Microsegmentation</strong>: Disallowing internal database instances from initiating outbound internet connections to arbitrary IP addresses.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 2: AWS IMDSv1 SSRF vs. IMDSv2 Hop-Limit Enforcement</summary>
+<p>In the 2019 Capital One cloud data breach, an attacker exploited a Server-Side Request Forgery (SSRF) flaw in an EC2-hosted Web Application Firewall to obtain temporary IAM role credentials from <code>http://169.254.169.254</code>. Why did this attack succeed under AWS IMDSv1, and how does IMDSv2 eliminate this entire vulnerability class?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong>
+- <strong>Why IMDSv1 Failed</strong>: Under IMDSv1, fetching metadata credentials requires only a simple HTTP <code>GET</code> request (<code>GET /latest/meta-data/iam/security-credentials/&lt;RoleName&gt;</code>). When an application is vulnerable to SSRF, an external attacker can force the web application proxy to issue this <code>GET</code> request on their behalf, receiving the returned temporary STS tokens.
+- <strong>How IMDSv2 Prevents SSRF</strong>: IMDSv2 is session-oriented. It requires a client to first initiate a <code>PUT</code> request with a custom header (<code>X-aws-ec2-metadata-token-ttl-seconds: 21600</code>) to acquire a cryptographic session token, and then present that token in subsequent requests (<code>X-aws-ec2-metadata-token: &lt;Token&gt;</code>).
+- <strong>The Hop-Limit Constraint</strong>: Furthermore, IMDSv2 enforces an <strong>IP Time-To-Live (TTL) hop limit of 1</strong>. If an SSRF-vulnerable reverse proxy receives an external request and attempts to forward or route it across an internal network boundary to the metadata service, the packet's TTL drops from 1 to 0, causing the network stack to immediately drop the packet before it reaches the metadata service.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 3: The Sublinear Cost Paradox in Enterprise Data Breaches</summary>
+<p>An enterprise executive reviews two breach risk assessments: Scenario A involves 50,000 lost records; Scenario B involves 5,000,000 lost records (<span class="arithmatex">\(100\times\)</span> more data). The executive calculates the projected cost of Scenario B by multiplying Scenario A's cost by 100. Why is this linear calculation economically flawed under the Romanosky power-law model?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> The linear calculation is flawed because breach costs exhibit <strong>Sublinear Power-Law Scaling (<span class="arithmatex">\(\beta \approx 0.72\)</span>)</strong> and high fixed overheads (<span class="arithmatex">\(c_{\text{fixed}} \approx \$1.5\text{M}\)</span>).</p>
+<p>Under Romanosky's empirical model:
+$<span class="arithmatex">\(\mathcal{C}(N) = c_{\text{fixed}} + c_{\text{record}} \cdot N^{0.72}\)</span>$
+1. <strong>Fixed Investigation Overheads</strong>: Forensic retainer costs, legal defense, supervisory notifications, and executive PR overheads are largely fixed regardless of whether 50,000 or 5,000,000 records are stolen.
+2. <strong>Economies of Scale in Notification &amp; Remediation</strong>: Bulk customer notifications, credit monitoring procurement, and call center staffing experience dramatic volume discounts at scale (<span class="arithmatex">\(5\text{M}^{0.72} \approx 65{,}500\)</span>, compared to <span class="arithmatex">\(50\text{k}^{0.72} \approx 2{,}370\)</span>, representing a <span class="arithmatex">\(\approx 27.6\times\)</span> cost increase rather than a <span class="arithmatex">\(100\times\)</span> increase). Linear multiplication vastly overstates marginal per-record costs for massive breaches while understating the fixed overhead of small breaches.</p>
+</details>
+</details>
+<details class="question">
+<summary>Self-Assessment 4: Zero Trust Microsegmentation in Third-Party Contractor Access</summary>
+<p>In the 2013 Target data breach, attackers leveraged credentials stolen from an external HVAC maintenance contractor to compromise the Point-of-Sale cash register environment. Under NIST SP 800-207 Zero Trust Architecture, what three specific network control invariants would have prevented this lateral movement?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Answer:</strong> Under NIST SP 800-207 Zero Trust principles:
+1. <strong>Microsegmentation &amp; VLAN Isolation</strong>: The HVAC remote telemetry management system must be placed in a dedicated, isolated micro-segment with zero routable paths to payment processing or corporate Active Directory domains.
+2. <strong>Least Privilege &amp; Role-Based Access Control (RBAC)</strong>: Contractor service accounts must be restricted strictly to the HVAC monitoring API endpoints, disallowing administrative domain queries or access to shared network file systems.
+3. <strong>Context-Aware Ephemeral Bastions &amp; Phishing-Resistant MFA</strong>: Third-party remote connections must authenticate through an identity-aware proxy enforcing FIDO2 hardware keys, establishing temporary ephemeral SSH/TLS sessions with all session commands cryptographically recorded and audited.</p>
+</details>
+</details>
 <hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
+<h2 id="8-key-engineering-takeaways">8. Key Engineering Takeaways</h2>
 <ol>
-<li><strong>Dwell Time Dictates Impact</strong>: Median adversary dwell time exceeds 200 days; reducing detection latency through anomaly logging dramatically caps total financial loss.</li>
-<li><strong>Combinatorial Cloud Exposure</strong>: In large organizations, even small per-bucket error rates guarantee exposure without automated infrastructure-as-code guardrails.</li>
-<li><strong>Lateral Vendor Segmentation</strong>: Never grant contractors flat network access; apply Zero Trust segmentation between vendor portals and production data repositories.</li>
-<li><strong>Envelope Encryption Defense</strong>: Always encrypt data columns with ephemeral DEKs protected by hardware security modules (HSMs).</li>
+<li><strong>Dwell Time Dictates Catastrophe</strong>: Median adversary dwell time exceeds 200 days; reducing detection latency via continuous anomaly monitoring dramatically caps total financial and regulatory liabilities.</li>
+<li><strong>Combinatorial Cloud Inevitability</strong>: In large-scale cloud estates (<span class="arithmatex">\(M \ge 500\)</span>), manual auditing guarantees exposure; organizations must mandate automated Policy-as-Code and immutable CI/CD deployment checks.</li>
+<li><strong>Zero Trust Lateral Isolation</strong>: Never grant contractors or third-party web apps flat network routing access; isolate payment and sensitive data tiers behind zero-trust microsegmentation.</li>
+<li><strong>Envelope Encryption Neutralizes Exfiltration</strong>: Storing ciphertext with keys managed exclusively inside Hardware Security Modules ensures that exfiltrated database dumps remain mathematically unreadable.</li>
 </ol>
 <hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
-<details class="question">
-<summary>Self-Assessment: Apache Struts Root Failure in Equifax Breach</summary>
-<p>In the 2017 Equifax data breach, why did an attacker who compromised an internet-facing consumer dispute web application succeed in extracting 147 million records from 48 core credit databases?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The disaster resulted from a failure of <strong>Internal Network Segmentation and Least Privilege</strong>.</p>
-<p>Once the adversaries gained remote code execution through the unpatched Apache Struts vulnerability (CVE-2017-5638), the web server possessed unconstrained network access to internal core database servers. Furthermore, database credentials and encryption keys were stored in plaintext on internal file shares, allowing attackers to query 48 critical identity databases over a 76-day dwell period with zero internal network isolation.</p>
-</details>
-</details>
-<details class="question">
-<summary>Self-Assessment: Sublinear Power-Law in Breach Record Costs</summary>
-<p>Why does the financial cost of a data breach scale sublinearly with record volume (<span class="arithmatex">\(\beta \approx 0.72\)</span>) rather than strictly linearly (<span class="arithmatex">\(N \times \$165\)</span>)?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Breach response involves <strong>High Fixed Overhead Costs</strong>.</p>
-<p>A data breach incurs fixed incident investigation costs: retaining external cyber forensic firms, legal counsel, crisis PR, executive governance meetings, and supervisory regulatory filings. Whether a breach involves 5,000 records or 500,000 records, the fixed investigation and crisis management base cost (<span class="arithmatex">\(c_{\text{fixed}} \approx \$1.5\text{M}\)</span>) remains relatively constant, resulting in a declining marginal cost per record as volume scales.</p>
-</details>
-</details>
-<hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<h2 id="9-peer-reviewed-scholarly-references">9. Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-kabanov2021"></a><strong>[Kabanov2021]</strong> I. Kabanov and E. A. E. A. A. A. A. S. A. G. S. A., "A Comprehensive Survey on Data Breaches: Taxonomy, Lifecycle, and Defense," <em>IEEE Access</em>, vol. 9, pp. 132450–132472, 2021. <a href="https://doi.org/10.1109/ACCESS.2021.3114421">DOI: 10.1109/ACCESS.2021.3114421</a>.</li>
 <li><a id="ref-harrell2017"></a><strong>[Harrell2017]</strong> U.S. House of Representatives Committee on Oversight and Government Reform, "The Equifax Data Breach," <em>Majority Staff Report, 115th Congress</em>, 2017. <a href="https://doi.org/10.2139/ssrn.3340059">DOI: 10.2139/ssrn.3340059</a>.</li>
@@ -7913,9 +8519,13 @@ P(\text{Exposed}) = 1 - (1 - 0.005)^{500} \approx 1 - 0.0816 \approx 91.8\%
 <li><a id="ref-sweeney2002"></a><strong>[Sweeney2002]</strong> L. Sweeney, "k-anonymity: A Model for Protecting Privacy," <em>International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems</em>, vol. 10, no. 5, pp. 557–570, 2002. <a href="https://doi.org/10.1142/S0218488502001648">DOI: 10.1142/S0218488502001648</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../07-real-world-privacy-laws/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 3.7 Statutory Frameworks</a>
-  <a href="../09-breach-consequences-prevention/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Breach Fallout & Defense (3.9) →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../07-real-world-privacy-laws/" class="noc-sim-btn secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffffff; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← Previous: 3.7 Statutory Frameworks
+  </a>
+  <a href="../09-breach-consequences-prevention/" class="noc-sim-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; color: #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: 3.9 Breach Consequences &amp; Incident Response →
+  </a>
 </div>
 
 
