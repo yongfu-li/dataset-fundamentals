@@ -3223,6 +3223,18 @@
         leaveFreeMode();
       }
 
+      // If docked at simulator or checkpoint, speak the local interactive turn via WebSpeech
+      if (currentSpeakerDock === 'sim' || currentSpeakerDock === 'quiz' || isWaitingForExploration || isWaitingForQuiz) {
+        if (isSpeaking) {
+          stopSpeech();
+        } else {
+          isSpeaking = true;
+          updatePlayButtons(true);
+          playCurrentTurn();
+        }
+        return;
+      }
+
       if (!neuralAudio) {
         neuralAudio = document.getElementById('neuralAudio');
       }
@@ -3365,7 +3377,7 @@
     let isWaitingForExploration = false;
     let isWaitingForQuiz = false;
 
-    function pauseForToolExploration() {
+    function pauseForToolExploration(customSpeaker, customText) {
       isWaitingForExploration = true;
       isSpeaking = false;
       updatePlayButtons(false);
@@ -3399,7 +3411,11 @@
         arena.insertBefore(banner, arena.children[1] || arena.firstChild);
       }
 
-      setSubtitles("Dr. Nova & Kaito", "Interactive simulation active. Adjust the sample size (N) and bias (β) sliders above! Click 'Continue to Checkpoint' when ready.", currentTurnIndex + 1, curriculum[currentTopic].slides[currentSlideIndex][currentMode].turns.length);
+      const topicData = curriculum[currentTopic];
+      const totalTurns = (topicData && topicData.slides && topicData.slides[currentSlideIndex] && topicData.slides[currentSlideIndex][currentMode].turns) ? topicData.slides[currentSlideIndex][currentMode].turns.length : 1;
+      const spk = customSpeaker || (currentMode === 'duo' ? "Dr. Nova & Kaito" : "Dr. Nova (Interactive Simulator)");
+      const txt = customText || "We have docked at the Empirical Simulator! Look at the two sliders above me: Sample Size N and Upstream Selection Bias beta. Try dragging the Selection Bias slider up to 35%—watch how the empirical risk stays low, while the true production risk diverges catastrophically!";
+      setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
     }
 
     function resumeLectureToCheckpoint() {
@@ -3414,7 +3430,7 @@
       playCurrentTurn();
     }
 
-    function pauseForCheckpointAnswer() {
+    function pauseForCheckpointAnswer(customSpeaker, customText) {
       isWaitingForQuiz = true;
       isSpeaking = false;
       updatePlayButtons(false);
@@ -3446,7 +3462,11 @@
         arena.insertBefore(banner, arena.children[1] || arena.firstChild);
       }
 
-      setSubtitles("Dr. Nova & Kaito", "Awaiting your answer: Please select Option A or Option B above to continue.", currentTurnIndex + 1, curriculum[currentTopic].slides[currentSlideIndex][currentMode].turns.length);
+      const topicData = curriculum[currentTopic];
+      const totalTurns = (topicData && topicData.slides && topicData.slides[currentSlideIndex] && topicData.slides[currentSlideIndex][currentMode].turns) ? topicData.slides[currentSlideIndex][currentMode].turns.length : 1;
+      const spk = customSpeaker || (currentMode === 'duo' ? "Dr. Nova & Kaito" : "Dr. Nova (Active Checkpoint)");
+      const txt = customText || "Here is your active checkpoint: If your dataset collection pipeline has selection bias (beta > 0), will gathering 10x more data (N to 1,000,000) eliminate the generalization gap? Select Option A or Option B above me!";
+      setSubtitles(spk, txt, currentTurnIndex + 1, totalTurns);
     }
 
     function speakFeedback(text) {
@@ -3584,8 +3604,98 @@
       }
     }
 
-    function manualMoveSpeaker(targetKey) {
+    function manualMoveSpeaker(targetKey, shouldSpeak = false) {
       moveSpeakerToDock(targetKey, true);
+
+      // Stop any ongoing background neural audio or speech synthesis
+      if (neuralAudio && !neuralAudio.paused) {
+        neuralAudio.pause();
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      isSpeaking = false;
+      updatePlayButtons(false);
+      animateTalking('both', false);
+
+      const topicData = curriculum[currentTopic];
+      if (!topicData || !topicData.slides || !topicData.slides[currentSlideIndex]) return;
+
+      const slide = topicData.slides[currentSlideIndex];
+      const slideData = slide[currentMode];
+      const turns = slideData.turns || [];
+
+      // Clean up previous transient banners
+      const oldSimBanner = document.getElementById('simExplorationBanner');
+      if (oldSimBanner) oldSimBanner.remove();
+      const oldQuizBanner = document.getElementById('checkpointPromptBanner');
+      if (oldQuizBanner) oldQuizBanner.remove();
+      const oldCompBanner = document.getElementById('checkpointCompleteBanner');
+      if (oldCompBanner) oldCompBanner.remove();
+
+      // Find the primary interactive turn for this dock
+      let matchIdx = -1;
+      if (targetKey === 'sim') {
+        matchIdx = turns.findIndex(t => t.pauseForInteraction === 'explore_tool' || (t.dock === 'sim' && t.text.toLowerCase().includes('slider')));
+        if (matchIdx === -1) matchIdx = turns.findIndex(t => t.dock === 'sim');
+      } else if (targetKey === 'quiz') {
+        matchIdx = turns.findIndex(t => t.pauseForInteraction === 'answer_checkpoint' || (t.dock === 'quiz' && (t.text.toLowerCase().includes('question') || t.text.toLowerCase().includes('option'))));
+        if (matchIdx === -1) matchIdx = turns.findIndex(t => t.dock === 'quiz');
+      } else {
+        matchIdx = turns.findIndex(t => t.dock === 'main');
+        if (matchIdx === -1) matchIdx = 0;
+      }
+
+      if (matchIdx !== -1) {
+        currentTurnIndex = matchIdx;
+        const targetTurn = turns[matchIdx];
+        setSubtitles(targetTurn.speaker, targetTurn.text, matchIdx + 1, turns.length);
+        highlightActiveAvatar(targetTurn.speaker);
+
+        if (targetTurn.pauseForInteraction === 'explore_tool' || targetKey === 'sim') {
+          pauseForToolExploration(targetTurn.speaker, targetTurn.text);
+        } else if (targetTurn.pauseForInteraction === 'answer_checkpoint' || targetKey === 'quiz') {
+          pauseForCheckpointAnswer(targetTurn.speaker, targetTurn.text);
+        } else {
+          isWaitingForExploration = false;
+          isWaitingForQuiz = false;
+        }
+      } else {
+        // Dynamic contextual transcript when slide has single turn
+        if (targetKey === 'sim') {
+          const simText = currentMode === 'duo'
+            ? "Everyone, look at the interactive playground above us! Drag the Selection Bias slider up to 25% or 35%—notice how empirical risk stays low while true production risk diverges catastrophically. Take a moment to experiment with the sliders!"
+            : "We have docked at the Empirical Simulator! Look at the two controls above me: Sample Size N and Upstream Selection Bias beta. Try adjusting the bias slider to see how the divergence gap explodes even with large datasets.";
+          const speaker = currentMode === 'duo' ? "Kaito" : "Dr. Nova (Interactive Simulator)";
+          currentTurnIndex = 1;
+          setSubtitles(speaker, simText, Math.min(2, turns.length), turns.length);
+          highlightActiveAvatar(currentMode === 'duo' ? "Kaito" : "Dr. Nova");
+          pauseForToolExploration(speaker, simText);
+        } else if (targetKey === 'quiz') {
+          const quizText = currentMode === 'duo'
+            ? "Here is our challenge question: If your dataset collection pipeline has selection bias, will gathering 10× more data eliminate the generalization gap? Select Option A or Option B above us!"
+            : "Active Checkpoint: Test your architectural intuition on the challenge question above. If your pipeline has selection bias (beta > 0), will gathering 10× more data eliminate the generalization gap? Select Option A or Option B above me!";
+          const speaker = currentMode === 'duo' ? "Dr. Nova & Kaito" : "Dr. Nova (Active Checkpoint)";
+          currentTurnIndex = Math.min(3, turns.length);
+          setSubtitles(speaker, quizText, Math.min(3, turns.length), turns.length);
+          highlightActiveAvatar("Dr. Nova");
+          pauseForCheckpointAnswer(speaker, quizText);
+        } else {
+          // Returning to main slide
+          currentTurnIndex = 0;
+          const firstTurn = turns[0] || { speaker: "Dr. Nova", text: "Ready to explore." };
+          setSubtitles(firstTurn.speaker, firstTurn.text, 1, turns.length);
+          highlightActiveAvatar(firstTurn.speaker);
+          isWaitingForExploration = false;
+          isWaitingForQuiz = false;
+        }
+      }
+
+      if (shouldSpeak) {
+        isSpeaking = true;
+        updatePlayButtons(true);
+        playCurrentTurn();
+      }
     }
 
     function updateDockFocusPills(activeKey) {

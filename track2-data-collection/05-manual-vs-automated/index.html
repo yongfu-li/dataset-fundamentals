@@ -61,8 +61,9 @@
     
   <script>
     (function () {
-      // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM
-      // Following the EDA Floorplanning Warm Paper & Neo-Brutalist Design System
+      // Dynamic theme-adaptive styling for Mermaid diagrams inside closed Shadow DOM & Light DOM
+      // Following the EDA Floorplanning Warm Paper & Neo-Brutalist Design System:
+      // All nodes have light color backgrounds with crisp black wording (#151b20).
       const shadowCss = `
         /* Default typography and colors for unstyled nodes & diagram labels */
         .nodeLabel,
@@ -84,27 +85,21 @@
         }
 
         /* Default SVG text / tspan */
-        text:not([fill]):not([style*="fill"]),
-        tspan:not([fill]):not([style*="fill"]) {
+        text,
+        tspan {
           fill: var(--ink, #151b20) !important;
+          color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
           font-weight: 700 !important;
-          font-size: 13.5px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
-        .nodeLabel p,
-        .nodeLabel span,
-        .nodeLabel div,
-        .nodeLabel strong,
-        .nodeLabel em,
-        .nodeLabel code,
-        .label p,
-        .label span,
-        foreignObject p,
-        foreignObject span {
+        .nodeLabel *,
+        .label *,
+        foreignObject * {
           color: var(--ink, #151b20) !important;
-          font-family: inherit !important;
+          fill: var(--ink, #151b20) !important;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
           font-weight: 700 !important;
         }
 
@@ -168,11 +163,11 @@
         }
 
         /* Unstyled Default Nodes - Warm Cream Surface with Solid Ink Border & Hard Shadow */
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon:not([style*="fill"]),
-        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link):not([style*="fill"]) {
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) rect,
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) circle,
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) ellipse,
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) polygon,
+        .node:not(.blue):not(.green):not(.amber):not(.purple):not(.red):not(.cyan):not(.lime):not(.yellow):not(.coral):not(.obj):not(.val):not(.list):not(.store):not(.comp):not(.out) path:not(.flowchart-link) {
           fill: var(--cream, #fffaf0) !important;
           stroke: var(--ink, #151b20) !important;
           stroke-width: 2px !important;
@@ -226,7 +221,81 @@
         }
       `;
 
-      function injectStyle(shadow) {
+      // Active JavaScript sanitizer to forcefully override any inline !important styles from Mermaid
+      function sanitizeMermaid(root) {
+        if (!root) return;
+
+        // 1. Sanitize all shape fills, borders and drop shadows
+        const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+        shapes.forEach(el => {
+          // If this shape is part of a cluster / subgraph container, handle cluster styling
+          if (el.closest('.cluster')) {
+            el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
+            el.style.setProperty('stroke', '#151b20', 'important');
+            el.style.setProperty('stroke-width', '2px', 'important');
+            el.style.setProperty('stroke-dasharray', '6 4', 'important');
+            return;
+          }
+
+          const node = el.closest('.node');
+          if (node) {
+            const cl = node.classList;
+            let fill = '#c9f3f4';
+            let stroke = '#151b20';
+            let shadow = 'drop-shadow(3px 3px 0px #22bfd7)';
+
+            if (cl.contains('blue') || cl.contains('cyan') || cl.contains('obj') || cl.contains('store')) {
+              fill = '#c9f3f4';
+              shadow = 'drop-shadow(3px 3px 0px #22bfd7)';
+            } else if (cl.contains('green') || cl.contains('lime') || cl.contains('val') || cl.contains('comp')) {
+              fill = '#e7f4c8';
+              shadow = 'drop-shadow(3px 3px 0px #b7df69)';
+            } else if (cl.contains('amber') || cl.contains('yellow') || cl.contains('list')) {
+              fill = '#fff0b9';
+              shadow = 'drop-shadow(3px 3px 0px #ffc83e)';
+            } else if (cl.contains('purple') || cl.contains('out')) {
+              fill = '#e2dfff';
+              shadow = 'drop-shadow(3px 3px 0px #8275e8)';
+            } else if (cl.contains('red') || cl.contains('coral')) {
+              fill = '#ffd8ce';
+              shadow = 'drop-shadow(3px 3px 0px #f38469)';
+            } else {
+              // Unstyled default node
+              fill = '#fffaf0';
+              shadow = 'drop-shadow(3px 3px 0px #151b20)';
+            }
+
+            el.style.setProperty('fill', fill, 'important');
+            el.style.setProperty('stroke', stroke, 'important');
+            el.style.setProperty('stroke-width', '2px', 'important');
+            el.style.setProperty('filter', shadow, 'important');
+          }
+        });
+
+        // 2. Sanitize all text elements inside Mermaid diagrams - All Crisp Black Wording
+        const texts = root.querySelectorAll('text, tspan, foreignObject, foreignObject div, foreignObject p, foreignObject span, .nodeLabel, .label, .edgeLabel, .cluster text, .cluster span');
+        texts.forEach(t => {
+          t.style.setProperty('fill', '#151b20', 'important');
+          t.style.setProperty('color', '#151b20', 'important');
+          t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
+          t.style.setProperty('font-weight', '700', 'important');
+        });
+
+        // 3. Sanitize edge paths & markers
+        const links = root.querySelectorAll('.edgePath .path, .flowchart-link, .relation, .transition');
+        links.forEach(l => {
+          l.style.setProperty('stroke', '#151b20', 'important');
+          l.style.setProperty('stroke-width', '2px', 'important');
+        });
+
+        const markers = root.querySelectorAll('marker path, .marker, .arrowheadPath, .arrowMarkerPath');
+        markers.forEach(m => {
+          m.style.setProperty('fill', '#151b20', 'important');
+          m.style.setProperty('stroke', '#151b20', 'important');
+        });
+      }
+
+      function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
         let styleTag = shadow.querySelector('#noc-mermaid-shadow-style');
         if (!styleTag) {
@@ -237,6 +306,7 @@
         if (styleTag.textContent !== shadowCss) {
           styleTag.textContent = shadowCss;
         }
+        sanitizeMermaid(shadow);
       }
 
       // Intercept attachShadow at the earliest stage before bundle.min.js initializes
@@ -246,15 +316,24 @@
         Element.prototype.attachShadow = function (init) {
           const shadow = origAttach.call(this, { mode: 'open' });
           
-          // Apply styling whenever DOM tree inside shadow root changes
-          const observer = new MutationObserver(() => injectStyle(shadow));
+          // Apply styling and sanitize whenever DOM tree inside shadow root changes
+          const observer = new MutationObserver(() => injectStyleAndSanitize(shadow));
           observer.observe(shadow, { childList: true, subtree: true });
           
           // Initial application pass
-          setTimeout(() => injectStyle(shadow), 0);
+          setTimeout(() => injectStyleAndSanitize(shadow), 0);
           return shadow;
         };
       }
+
+      // Also listen on document for non-shadow Mermaid instances
+      document.addEventListener('DOMContentLoaded', function () {
+        sanitizeMermaid(document);
+        const docObserver = new MutationObserver(() => {
+          sanitizeMermaid(document);
+        });
+        docObserver.observe(document.body, { childList: true, subtree: true });
+      });
     })();
   </script>
 
@@ -7545,11 +7624,11 @@
 <p>Data collection execution exists along a continuum anchored by two extremes: <strong>Pure Manual Ingestion</strong> (Human annotators, field surveys, manual curation) and <strong>Pure Automated Sensing</strong> (IoT telemetry, web scraping bots, automated logs) (<a href="#ref-krishnan2016">Krishnan et al., 2016</a>; <a href="#ref-cochran1977">Cochran, 1977</a>; <a href="#ref-groves2009">Groves et al., 2009</a>). Modern industrial pipelines employ a <strong>Human-in-the-Loop (HITL) Triaging Architecture</strong>, balancing human cognitive nuance against machine throughput (<a href="#ref-fleiss1971">Fleiss, 1971</a>; <a href="#ref-schelter2018">Schelter et al., 2018</a>).</p>
 <pre class="mermaid"><code>flowchart TD
   %% Standard 5-Color Semantic Palette
-  classDef blue fill:#EBF3FA,stroke:#2B6CB0,stroke-width:1.5px,color:#1A365D;
-  classDef amber fill:#FEF3D6,stroke:#D69E2E,stroke-width:1.5px,color:#744210;
-  classDef green fill:#E6F4EA,stroke:#38A169,stroke-width:1.5px,color:#1C4532;
-  classDef purple fill:#F3E8FD,stroke:#805AD5,stroke-width:1.5px,color:#44337A;
-  classDef red fill:#FCE8E6,stroke:#E53E3E,stroke-width:1.5px,color:#742A2A;
+  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
 
   RawStream["High-Volume Ingestion Stream&lt;br/&gt;(Sensors / Scrapers / Telemetry)"]:::purple
 
