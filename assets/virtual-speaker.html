@@ -2804,6 +2804,11 @@
     /* Active Checkpoint Quiz Handler */
     function answerSlideQuiz(isCorrect, btnEl) {
       moveSpeakerToDock('quiz', true);
+
+      const promptBanner = document.getElementById('checkpointPromptBanner');
+      if (promptBanner) promptBanner.remove();
+      isWaitingForQuiz = false;
+
       const feedback = document.getElementById('quizFeedbackBox');
       if (!feedback) return;
 
@@ -2812,18 +2817,47 @@
       });
 
       feedback.classList.remove('hidden');
+      let verbalFeedback = '';
+
       if (isCorrect) {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#b7df69] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black scale-[1.02]';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#f0fbfd] border-2 border-[#151b20] text-[#151b20] text-xs font-sans leading-relaxed';
         feedback.innerHTML = `🎉 <b>Precisely Correct!</b> The Law of Large Numbers converges to the expectation of the <em>sampled</em> distribution. When that sampling mechanism is biased, $N \\to \\infty$ simply guarantees with 100% certainty that your model converges to the <b>wrong</b> target. This is why Data-Centric AI focuses on collection hygiene before model scale.`;
+        verbalFeedback = 'Precisely correct! The Law of Large Numbers converges to the expectation of the sampled distribution. Scaling data locks in the bias with 100% mathematical certainty. Excellent job!';
       } else {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] text-[#151b20] text-xs font-sans leading-relaxed';
         feedback.innerHTML = `❌ <b>Common Industry Trap:</b> Big Data does NOT eliminate sampling bias! As $N \\to \\infty$, the model locks in the bias with high statistical certainty. You cannot fix upstream sampling defects with downstream scale.`;
+        verbalFeedback = 'Common industry trap! Big Data does not eliminate upstream sampling bias; it merely guarantees convergence to the wrong target.';
       }
 
       if (window.renderMathInElement) {
         renderMathInElement(feedback, { delimiters: [{ left: '$$', right: '$$', display: false }, { left: '$', right: '$', display: false }] });
+      }
+
+      // Checkpoint completion banner with prominent Continue to Next Slide button
+      const arena = document.getElementById('avatarArena');
+      if (arena && !document.getElementById('checkpointCompleteBanner')) {
+        const compBanner = document.createElement('div');
+        compBanner.id = 'checkpointCompleteBanner';
+        compBanner.className = 'w-full p-3 bg-[#b7df69] border-2 border-[#151b20] rounded-xl shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-2.5 my-1 transition-all duration-300 animate-fade-in';
+        compBanner.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="text-xl">🎓</span>
+            <div>
+              <div class="font-mono font-black text-xs text-[#15803d] uppercase tracking-wide">Checkpoint Completed!</div>
+              <div class="text-xs text-[#151b20] font-sans">You've mastered Empirical Risk and Upstream Selection Bias!</div>
+            </div>
+          </div>
+          <button type="button" onclick="completeCheckpointAndAdvance()" class="cursor-pointer px-4 py-2 rounded-xl bg-[#ffc83e] hover:bg-[#ffb703] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black text-xs font-mono transition flex items-center gap-1.5 active:translate-y-0.5">
+            <span>Continue to Next Slide</span> <span>▶</span>
+          </button>
+        `;
+        arena.insertBefore(compBanner, arena.children[1] || arena.firstChild);
+      }
+
+      if (typeof speakFeedback === 'function') {
+        speakFeedback(verbalFeedback);
       }
     }
 
