@@ -449,6 +449,48 @@
       color: var(--ink, #151b20) !important;
       fill: var(--ink, #151b20) !important;
       font-weight: 700 !important;
+      text-align: center !important;
+    }
+
+    .mermaid foreignObject {
+      overflow: visible !important;
+    }
+
+    .mermaid .nodeLabel,
+    .mermaid .label,
+    .mermaid foreignObject div,
+    .mermaid foreignObject span,
+    .mermaid foreignObject p {
+      text-align: center !important;
+      line-height: 1.35 !important;
+    }
+
+    .mermaid foreignObject div {
+      display: inline-block !important;
+      text-align: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .mermaid .node g.label rect,
+    .mermaid .node .label rect,
+    .mermaid .node foreignObject rect {
+      display: none !important;
+    }
+
+    .mermaid text,
+    .mermaid tspan {
+      text-anchor: middle !important;
+      dominant-baseline: central !important;
+      text-align: center !important;
+    }
+
+    .mermaid .edgeLabel,
+    .mermaid .edgeLabel * {
+      text-align: center !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     .mermaid .node.blue rect,
@@ -2322,6 +2364,35 @@
       window.speechSynthesis.speak(utt);
     }
 
+    
+    function getNextLessonKey(currentKey) {
+      const manifest = window.CURRICULUM_MANIFEST || [];
+      const idx = manifest.findIndex(m => m.key === currentKey);
+      if (idx !== -1 && idx < manifest.length - 1) {
+        return manifest[idx + 1].key;
+      }
+      const match = (currentKey || '').match(/^ch(\d+)_p(\d+)$/);
+      if (match) {
+        const ch = match[1];
+        const part = Number(match[2]) + 1;
+        const nextKey = `ch${ch}_p${part}`;
+        if (curriculum[nextKey] || (window.ALL_CURRICULUM && window.ALL_CURRICULUM[nextKey])) {
+          return nextKey;
+        }
+      }
+      return null;
+    }
+
+    function advanceToNextLesson() {
+      const nextKey = getNextLessonKey(currentTopic);
+      if (nextKey) {
+        changeTopic(nextKey);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert("🎉 Congratulations! You have completed all lessons in this track.");
+      }
+    }
+
     function changeTopic(topicKey) {
       if (isSpeaking) stopSpeech();
       currentSlideIndex = 0;
@@ -2386,6 +2457,10 @@
       if (!root) return;
       const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
       shapes.forEach(el => {
+        if (el.closest('.label') || el.closest('foreignObject')) {
+          el.style.setProperty('display', 'none', 'important');
+          return;
+        }
         if (el.closest('.cluster')) {
           el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
           el.style.setProperty('stroke', '#151b20', 'important');
@@ -2433,6 +2508,17 @@
         t.style.setProperty('color', '#151b20', 'important');
         t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
         t.style.setProperty('font-weight', '700', 'important');
+        t.style.setProperty('text-align', 'center', 'important');
+        const tag = t.tagName.toLowerCase();
+        if (tag === 'div' && t.closest('foreignObject')) {
+          t.style.setProperty('text-align', 'center', 'important');
+          t.style.setProperty('margin', '0', 'important');
+          t.style.setProperty('padding', '0', 'important');
+        }
+        if (tag === 'text' || tag === 'tspan') {
+          t.style.setProperty('text-anchor', 'middle', 'important');
+          t.style.setProperty('dominant-baseline', 'central', 'important');
+        }
       });
 
       const links = root.querySelectorAll('.edgePath .path, .flowchart-link, .relation, .transition');
@@ -2564,10 +2650,24 @@
 
       const nextBtn = document.getElementById('nextSlideBtn');
       if (nextBtn) {
-        nextBtn.disabled = currentSlideIndex === totalSlides - 1;
-        nextBtn.className = currentSlideIndex === totalSlides - 1
-          ? "cursor-not-allowed px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#eee4c8] text-[#151b20]/40 border border-[#151b20]/30 font-bold opacity-60 flex items-center gap-1"
-          : "cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1 active:translate-x-[1px] active:translate-y-[1px]";
+        const isLastSlide = currentSlideIndex === totalSlides - 1;
+        const nextKey = getNextLessonKey(currentTopic);
+
+        if (isLastSlide && nextKey) {
+          const nextItem = (window.CURRICULUM_MANIFEST || []).find(m => m.key === nextKey);
+          const nextLabel = nextItem ? `Next: Lesson ${nextItem.chapter}.${nextItem.part}` : "Next Lesson";
+          nextBtn.disabled = false;
+          nextBtn.innerHTML = `<span>${nextLabel}</span> <span>⏭</span>`;
+          nextBtn.className = "cursor-pointer px-3 sm:px-4 py-1.5 rounded-lg bg-[#22bfd7] hover:bg-[#1bb0c7] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black transition flex items-center gap-1.5 active:translate-x-[1px] active:translate-y-[1px]";
+          nextBtn.onclick = () => advanceToNextLesson();
+        } else {
+          nextBtn.disabled = isLastSlide;
+          nextBtn.innerHTML = 'Next Slide <span>▶</span>';
+          nextBtn.className = isLastSlide
+            ? "cursor-not-allowed px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#eee4c8] text-[#151b20]/40 border border-[#151b20]/30 font-bold opacity-60 flex items-center gap-1"
+            : "cursor-pointer px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#fffaf0] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-bold transition flex items-center gap-1 active:translate-x-[1px] active:translate-y-[1px]";
+          nextBtn.onclick = () => nextSlide();
+        }
       }
     }
 
@@ -2581,19 +2681,22 @@
       const titleLower = (slide.title || '').toLowerCase();
       const contentLower = (contentEl.innerText || '').toLowerCase();
 
-      // 1. Add "📋 Copy LaTeX" button to all math formula blocks
-      const mathCards = contentEl.querySelectorAll('[class*="Mathematical Formulation"], .katex-display');
-      mathCards.forEach((card, idx) => {
-        const parent = card.closest('[class*="rounded-xl"]') || card;
-        if (!parent.querySelector('.copy-latex-btn')) {
-          const header = parent.querySelector('.font-mono') || parent;
+      // 1. Add "📋 Copy LaTeX" button to formal Mathematical Formulation blocks
+      const mathCards = contentEl.querySelectorAll('.katex-display');
+      mathCards.forEach((card) => {
+        const parent = card.closest('[class*="rounded-xl"], [class*="rounded-lg"]') || card;
+        // Only attach if this block has a dedicated Mathematical Formulation header
+        const headers = Array.from(parent.querySelectorAll('.font-mono'));
+        const mathHeader = headers.find(h => h.textContent.includes('Mathematical Formulation'));
+        if (mathHeader && !mathHeader.querySelector('.copy-latex-btn')) {
           const copyBtn = document.createElement('button');
           copyBtn.type = 'button';
           copyBtn.className = 'copy-latex-btn cursor-pointer float-right px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#fff0b9] hover:bg-[#ffc83e] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20] transition select-none';
           copyBtn.innerText = '📋 Copy LaTeX';
           copyBtn.onclick = (e) => {
             e.stopPropagation();
-            const texSource = parent.innerText || '';
+            const annotation = card.querySelector('annotation');
+            const texSource = annotation ? annotation.textContent.trim() : (card.innerText || parent.innerText || '');
             navigator.clipboard.writeText(texSource).then(() => {
               copyBtn.innerText = '✓ Copied!';
               copyBtn.className = 'copy-latex-btn px-2 py-0.5 rounded text-[10px] font-mono font-black bg-[#b7df69] text-[#151b20] border border-[#151b20] shadow-[1px_1px_0px_#151b20] transition select-none';
@@ -2603,11 +2706,7 @@
               }, 1600);
             });
           };
-          if (header && header !== parent) {
-            header.appendChild(copyBtn);
-          } else {
-            parent.insertBefore(copyBtn, parent.firstChild);
-          }
+          mathHeader.appendChild(copyBtn);
         }
       });
 
@@ -3165,10 +3264,16 @@
           setTimeout(() => startSpeech(), 250);
         }
       } else {
-        if (isFullDeckPlaying) {
-          isFullDeckPlaying = false;
-          stopSpeech();
-          alert("Lesson Deck Complete! Great job mastering this chapter.");
+        // Reached end of slide deck
+        const nextKey = getNextLessonKey(currentTopic);
+        if (nextKey) {
+          advanceToNextLesson();
+        } else {
+          if (isFullDeckPlaying) {
+            isFullDeckPlaying = false;
+            stopSpeech();
+            alert("Lesson Deck Complete! Great job mastering this chapter.");
+          }
         }
       }
     }
